@@ -1,0 +1,2644 @@
+'-- Extracted from RFC5280:' Comment.Single
+'\n\n'        Text.Whitespace
+
+'Certificate' Name.Type
+'  '          Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+'  '          Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'tbsCertificate' Name.Variable
+'       '     Text.Whitespace
+'TBSCertificate' Name.Type
+','           Punctuation
+'\n        '  Text.Whitespace
+'signatureAlgorithm' Name.Variable
+'   '         Text.Whitespace
+'AlgorithmIdentifier' Name.Type
+','           Punctuation
+'\n        '  Text.Whitespace
+'signatureValue' Name.Variable
+'       '     Text.Whitespace
+'BIT STRING'  Keyword.Type
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'TBSCertificate' Name.Type
+'  '          Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+'  '          Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'version'     Name.Variable
+'         '   Text.Whitespace
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+'  '          Text.Whitespace
+'EXPLICIT'    Keyword
+' '           Text.Whitespace
+'Version'     Name.Type
+' '           Text.Whitespace
+'DEFAULT'     Keyword.Declaration
+' '           Text.Whitespace
+'v1'          Name.Variable
+','           Punctuation
+'\n    '      Text.Whitespace
+'serialNumber' Name.Variable
+'         '   Text.Whitespace
+'CertificateSerialNumber' Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'signature'   Name.Variable
+'            ' Text.Whitespace
+'AlgorithmIdentifier' Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'issuer'      Name.Variable
+'               ' Text.Whitespace
+'Name'        Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'validity'    Name.Variable
+'             ' Text.Whitespace
+'Validity'    Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'subject'     Name.Variable
+'              ' Text.Whitespace
+'Name'        Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'subjectPublicKeyInfo' Name.Variable
+' '           Text.Whitespace
+'SubjectPublicKeyInfo' Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'issuerUniqueID' Name.Variable
+'  '          Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+'  '          Text.Whitespace
+'IMPLICIT'    Keyword
+' '           Text.Whitespace
+'UniqueIdentifier' Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+','           Punctuation
+'\n                            ' Text.Whitespace
+'-- If present, version MUST be v2 or v3' Comment.Single
+'\n    '      Text.Whitespace
+'subjectUniqueID' Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+'  '          Text.Whitespace
+'IMPLICIT'    Keyword
+' '           Text.Whitespace
+'UniqueIdentifier' Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+','           Punctuation
+'\n                                ' Text.Whitespace
+'-- If present, version MUST be v2 or v3' Comment.Single
+'\n    '      Text.Whitespace
+'extensions'  Name.Variable
+'      '      Text.Whitespace
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+'  '          Text.Whitespace
+'EXPLICIT'    Keyword
+' '           Text.Whitespace
+'Extensions'  Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+'\n                        ' Text.Whitespace
+'-- If present, version MUST be v3' Comment.Single
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'Version'     Name.Type
+'  '          Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'INTEGER'     Keyword.Type
+'  '          Text.Whitespace
+'{'           Punctuation
+'  '          Text.Whitespace
+'v1'          Name.Variable
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'v2'          Name.Variable
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'v3'          Name.Variable
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'CertificateSerialNumber' Name.Type
+'  '          Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'INTEGER'     Keyword.Type
+'\n\n'        Text.Whitespace
+
+'Validity'    Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'notBefore'   Name.Variable
+'      '      Text.Whitespace
+'Time'        Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'notAfter'    Name.Variable
+'       '     Text.Whitespace
+'Time'        Name.Type
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'Time'        Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'CHOICE'      Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'utcTime'     Name.Variable
+'        '    Text.Whitespace
+'UTCTime'     Keyword.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'generalTime' Name.Variable
+'    '        Text.Whitespace
+'GeneralizedTime' Keyword.Type
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'UniqueIdentifier' Name.Type
+'  '          Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'BIT STRING'  Keyword.Type
+'\n\n'        Text.Whitespace
+
+'SubjectPublicKeyInfo' Name.Type
+'  '          Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+'  '          Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'algorithm'   Name.Variable
+'            ' Text.Whitespace
+'AlgorithmIdentifier' Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'subjectPublicKey' Name.Variable
+'     '       Text.Whitespace
+'BIT STRING'  Keyword.Type
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'Extensions'  Name.Type
+'  '          Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'SIZE'        Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'1.'          Literal.Number.Float
+'.'           Punctuation
+'MAX'         Keyword.Constant
+')'           Punctuation
+' '           Text.Whitespace
+'OF'          Keyword
+' '           Text.Whitespace
+'Extension'   Name.Type
+'\n\n'        Text.Whitespace
+
+'Extension'   Name.Type
+'  '          Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+'  '          Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'extnID'      Name.Variable
+'      '      Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'critical'    Name.Variable
+'    '        Text.Whitespace
+'BOOLEAN'     Keyword.Type
+' '           Text.Whitespace
+'DEFAULT'     Keyword.Declaration
+' '           Text.Whitespace
+'FALSE'       Keyword.Constant
+','           Punctuation
+'\n    '      Text.Whitespace
+'extnValue'   Name.Variable
+'   '         Text.Whitespace
+'OCTET STRING' Keyword.Type
+'\n                ' Text.Whitespace
+'-- contains the DER encoding of an ASN.1 value' Comment.Single
+'\n                ' Text.Whitespace
+'-- corresponding to the extension type identified' Comment.Single
+'\n                ' Text.Whitespace
+'-- by extnID' Comment.Single
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'AlgorithmIdentifier' Name.Type
+'  '          Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+'  '          Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'algorithm'   Name.Variable
+'               ' Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+','           Punctuation
+'\n        '  Text.Whitespace
+'parameters'  Name.Variable
+'              ' Text.Whitespace
+'ANY'         Name.Type
+' '           Text.Whitespace
+'DEFINED'     Name.Type
+' '           Text.Whitespace
+'BY'          Keyword
+' '           Text.Whitespace
+'algorithm'   Name.Variable
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'Name'        Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'CHOICE'      Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'-- only one possibility for now --' Comment.Single
+'\n     '     Text.Whitespace
+'rdnSequence' Name.Variable
+'  '          Text.Whitespace
+'RDNSequence' Name.Type
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'RDNSequence' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'SEQUENCE OF' Keyword.Declaration
+' '           Text.Whitespace
+'RelativeDistinguishedName' Name.Type
+'\n\n'        Text.Whitespace
+
+'RelativeDistinguishedName' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+'\n    '      Text.Whitespace
+'SET'         Keyword.Declaration
+' '           Text.Whitespace
+'SIZE'        Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'1.'          Literal.Number.Float
+'.'           Punctuation
+'MAX'         Keyword.Constant
+')'           Punctuation
+' '           Text.Whitespace
+'OF'          Keyword
+' '           Text.Whitespace
+'AttributeTypeAndValue' Name.Type
+'\n\n'        Text.Whitespace
+
+'AttributeTypeAndValue' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'type'        Name.Variable
+'     '       Text.Whitespace
+'AttributeType' Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'value'       Name.Variable
+'    '        Text.Whitespace
+'AttributeValue' Name.Type
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'AttributeType' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+'\n\n'        Text.Whitespace
+
+'AttributeValue' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'ANY'         Name.Type
+' '           Text.Whitespace
+'-- DEFINED BY AttributeType' Comment.Single
+'\n\n'        Text.Whitespace
+
+'DirectoryString' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'CHOICE'      Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'teletexString' Name.Variable
+'           ' Text.Whitespace
+'TeletexString' Keyword.Type
+' '           Text.Whitespace
+'('           Punctuation
+'SIZE'        Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'1.'          Literal.Number.Float
+'.'           Punctuation
+'MAX'         Keyword.Constant
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+'\n        '  Text.Whitespace
+'printableString' Name.Variable
+'         '   Text.Whitespace
+'PrintableString' Keyword.Type
+' '           Text.Whitespace
+'('           Punctuation
+'SIZE'        Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'1.'          Literal.Number.Float
+'.'           Punctuation
+'MAX'         Keyword.Constant
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+'\n        '  Text.Whitespace
+'universalString' Name.Variable
+'         '   Text.Whitespace
+'UniversalString' Keyword.Type
+' '           Text.Whitespace
+'('           Punctuation
+'SIZE'        Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'1.'          Literal.Number.Float
+'.'           Punctuation
+'MAX'         Keyword.Constant
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+'\n        '  Text.Whitespace
+'utf8String'  Name.Variable
+'              ' Text.Whitespace
+'UTF8String'  Keyword.Type
+' '           Text.Whitespace
+'('           Punctuation
+'SIZE'        Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'1.'          Literal.Number.Float
+'.'           Punctuation
+'MAX'         Keyword.Constant
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+'\n        '  Text.Whitespace
+'bmpString'   Name.Variable
+'               ' Text.Whitespace
+'BMPString'   Keyword.Type
+' '           Text.Whitespace
+'('           Punctuation
+'SIZE'        Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'1.'          Literal.Number.Float
+'.'           Punctuation
+'MAX'         Keyword.Constant
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'id-ce-authorityKeyIdentifier' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ce'       Name.Variable
+' '           Text.Whitespace
+'35'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'AuthorityKeyIdentifier' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'keyIdentifier' Name.Variable
+'             ' Text.Whitespace
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'KeyIdentifier' Name.Type
+'           ' Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+','           Punctuation
+'\n    '      Text.Whitespace
+'authorityCertIssuer' Name.Variable
+'       '     Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'GeneralNames' Name.Type
+'            ' Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+','           Punctuation
+'\n    '      Text.Whitespace
+'authorityCertSerialNumber' Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'CertificateSerialNumber' Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'KeyIdentifier' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'OCTET STRING' Keyword.Type
+'\n\n'        Text.Whitespace
+
+'id-ce-keyUsage' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ce'       Name.Variable
+' '           Text.Whitespace
+'15'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'KeyUsage'    Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'BIT STRING'  Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'digitalSignature' Name.Variable
+'        '    Text.Whitespace
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'nonRepudiation' Name.Variable
+'          '  Text.Whitespace
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'-- recent editions of X.509 have' Comment.Single
+'\n                        ' Text.Whitespace
+'-- renamed this bit to contentCommitment' Comment.Single
+'\n    '      Text.Whitespace
+'keyEncipherment' Name.Variable
+'         '   Text.Whitespace
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'dataEncipherment' Name.Variable
+'        '    Text.Whitespace
+'('           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'keyAgreement' Name.Variable
+'            ' Text.Whitespace
+'('           Punctuation
+'4'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'keyCertSign' Name.Variable
+'             ' Text.Whitespace
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'cRLSign'     Name.Variable
+'                 ' Text.Whitespace
+'('           Punctuation
+'6'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'encipherOnly' Name.Variable
+'            ' Text.Whitespace
+'('           Punctuation
+'7'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'decipherOnly' Name.Variable
+'            ' Text.Whitespace
+'('           Punctuation
+'8'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'id-ce-certificatePolicies' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ce'       Name.Variable
+' '           Text.Whitespace
+'32'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'anyPolicy'   Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ce-certificatePolicies' Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'certificatePolicies' Name.Variable
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'SIZE'        Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'1.'          Literal.Number.Float
+'.'           Punctuation
+'MAX'         Keyword.Constant
+')'           Punctuation
+' '           Text.Whitespace
+'OF'          Keyword
+' '           Text.Whitespace
+'PolicyInformation' Name.Type
+'\n\n'        Text.Whitespace
+
+'PolicyInformation' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'policyIdentifier' Name.Variable
+'   '         Text.Whitespace
+'CertPolicyId' Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'policyQualifiers' Name.Variable
+'   '         Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'SIZE'        Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'1.'          Literal.Number.Float
+'.'           Punctuation
+'MAX'         Keyword.Constant
+')'           Punctuation
+' '           Text.Whitespace
+'OF'          Keyword
+'\n                            ' Text.Whitespace
+'PolicyQualifierInfo' Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'CertPolicyId' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+'\n\n'        Text.Whitespace
+
+'PolicyQualifierInfo' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'policyQualifierId' Name.Variable
+'  '          Text.Whitespace
+'PolicyQualifierId' Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'qualifier'   Name.Variable
+'          '  Text.Whitespace
+'ANY'         Name.Type
+' '           Text.Whitespace
+'DEFINED'     Name.Type
+' '           Text.Whitespace
+'BY'          Keyword
+' '           Text.Whitespace
+'policyQualifierId' Name.Variable
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'-- policyQualifierIds for Internet policy qualifiers' Comment.Single
+'\n\n'        Text.Whitespace
+
+'id-qt'       Name.Variable
+'          '  Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-pkix'     Name.Variable
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'id-qt-cps'   Name.Variable
+'      '      Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-qt'       Name.Variable
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'id-qt-unotice' Name.Variable
+'  '          Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-qt'       Name.Variable
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'PolicyQualifierId' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'id-qt-cps'   Name.Variable
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'id-qt-unotice' Name.Variable
+' '           Text.Whitespace
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'Qualifier'   Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'CHOICE'      Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'cPSuri'      Name.Variable
+'           ' Text.Whitespace
+'CPSuri'      Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'userNotice'  Name.Variable
+'       '     Text.Whitespace
+'UserNotice'  Name.Type
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'CPSuri'      Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'IA5String'   Keyword.Type
+'\n\n'        Text.Whitespace
+
+'UserNotice'  Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'noticeRef'   Name.Variable
+'        '    Text.Whitespace
+'NoticeReference' Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+','           Punctuation
+'\n    '      Text.Whitespace
+'explicitText' Name.Variable
+'     '       Text.Whitespace
+'DisplayText' Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'NoticeReference' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'organization' Name.Variable
+'     '       Text.Whitespace
+'DisplayText' Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'noticeNumbers' Name.Variable
+'    '        Text.Whitespace
+'SEQUENCE OF' Keyword.Declaration
+' '           Text.Whitespace
+'INTEGER'     Keyword.Type
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'DisplayText' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'CHOICE'      Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'ia5String'   Name.Variable
+'        '    Text.Whitespace
+'IA5String'   Keyword.Type
+'      '      Text.Whitespace
+'('           Punctuation
+'SIZE'        Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'1.'          Literal.Number.Float
+'.'           Punctuation
+'200'         Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'visibleString' Name.Variable
+'    '        Text.Whitespace
+'VisibleString' Keyword.Type
+'  '          Text.Whitespace
+'('           Punctuation
+'SIZE'        Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'1.'          Literal.Number.Float
+'.'           Punctuation
+'200'         Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'bmpString'   Name.Variable
+'        '    Text.Whitespace
+'BMPString'   Keyword.Type
+'      '      Text.Whitespace
+'('           Punctuation
+'SIZE'        Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'1.'          Literal.Number.Float
+'.'           Punctuation
+'200'         Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'utf8String'  Name.Variable
+'       '     Text.Whitespace
+'UTF8String'  Keyword.Type
+'     '       Text.Whitespace
+'('           Punctuation
+'SIZE'        Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'1.'          Literal.Number.Float
+'.'           Punctuation
+'200'         Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'id-ce-policyMappings' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ce'       Name.Variable
+' '           Text.Whitespace
+'33'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'PolicyMappings' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'SIZE'        Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'1.'          Literal.Number.Float
+'.'           Punctuation
+'MAX'         Keyword.Constant
+')'           Punctuation
+' '           Text.Whitespace
+'OF'          Keyword
+' '           Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'issuerDomainPolicy' Name.Variable
+'      '      Text.Whitespace
+'CertPolicyId' Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'subjectDomainPolicy' Name.Variable
+'     '       Text.Whitespace
+'CertPolicyId' Name.Type
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'id-ce-subjectAltName' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ce'       Name.Variable
+' '           Text.Whitespace
+'17'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'SubjectAltName' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'GeneralNames' Name.Type
+'\n\n'        Text.Whitespace
+
+'GeneralNames' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'SIZE'        Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'1.'          Literal.Number.Float
+'.'           Punctuation
+'MAX'         Keyword.Constant
+')'           Punctuation
+' '           Text.Whitespace
+'OF'          Keyword
+' '           Text.Whitespace
+'GeneralName' Name.Type
+'\n\n'        Text.Whitespace
+
+'GeneralName' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'CHOICE'      Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'otherName'   Name.Variable
+'                       ' Text.Whitespace
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+'     '       Text.Whitespace
+'OtherName'   Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'rfc822Name'  Name.Variable
+'                      ' Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+'     '       Text.Whitespace
+'IA5String'   Keyword.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'dNSName'     Name.Variable
+'                         ' Text.Whitespace
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+'     '       Text.Whitespace
+'IA5String'   Keyword.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'x400Address' Name.Variable
+'                     ' Text.Whitespace
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+'     '       Text.Whitespace
+'ORAddress'   Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'directoryName' Name.Variable
+'                   ' Text.Whitespace
+'['           Punctuation
+'4'           Literal.Number.Integer
+']'           Punctuation
+'     '       Text.Whitespace
+'Name'        Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'ediPartyName' Name.Variable
+'                    ' Text.Whitespace
+'['           Punctuation
+'5'           Literal.Number.Integer
+']'           Punctuation
+'     '       Text.Whitespace
+'EDIPartyName' Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'uniformResourceIdentifier' Name.Variable
+'       '     Text.Whitespace
+'['           Punctuation
+'6'           Literal.Number.Integer
+']'           Punctuation
+'     '       Text.Whitespace
+'IA5String'   Keyword.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'iPAddress'   Name.Variable
+'                       ' Text.Whitespace
+'['           Punctuation
+'7'           Literal.Number.Integer
+']'           Punctuation
+'     '       Text.Whitespace
+'OCTET STRING' Keyword.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'registeredID' Name.Variable
+'                    ' Text.Whitespace
+'['           Punctuation
+'8'           Literal.Number.Integer
+']'           Punctuation
+'     '       Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'OtherName'   Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'type-id'     Name.Variable
+'    '        Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'value'       Name.Variable
+'      '      Text.Whitespace
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'EXPLICIT'    Keyword
+' '           Text.Whitespace
+'ANY'         Name.Type
+' '           Text.Whitespace
+'DEFINED'     Name.Type
+' '           Text.Whitespace
+'BY'          Keyword
+' '           Text.Whitespace
+'type-id'     Name.Variable
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'EDIPartyName' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'nameAssigner' Name.Variable
+'            ' Text.Whitespace
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+'     '       Text.Whitespace
+'DirectoryString' Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+','           Punctuation
+'\n    '      Text.Whitespace
+'partyName'   Name.Variable
+'               ' Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+'     '       Text.Whitespace
+'DirectoryString' Name.Type
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n\n'      Text.Whitespace
+
+'id-ce-issuerAltName' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ce'       Name.Variable
+' '           Text.Whitespace
+'18'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'IssuerAltName' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'GeneralNames' Name.Type
+'\n\n'        Text.Whitespace
+
+'id-ce-subjectDirectoryAttributes' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ce'       Name.Variable
+' '           Text.Whitespace
+'9'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'SubjectDirectoryAttributes' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'SIZE'        Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'1.'          Literal.Number.Float
+'.'           Punctuation
+'MAX'         Keyword.Constant
+')'           Punctuation
+' '           Text.Whitespace
+'OF'          Keyword
+' '           Text.Whitespace
+'Attribute'   Name.Type
+'\n\n'        Text.Whitespace
+
+'id-ce-basicConstraints' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ce'       Name.Variable
+' '           Text.Whitespace
+'19'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'BasicConstraints' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'cA'          Name.Variable
+'                      ' Text.Whitespace
+'BOOLEAN'     Keyword.Type
+' '           Text.Whitespace
+'DEFAULT'     Keyword.Declaration
+' '           Text.Whitespace
+'FALSE'       Keyword.Constant
+','           Punctuation
+'\n    '      Text.Whitespace
+'pathLenConstraint' Name.Variable
+'       '     Text.Whitespace
+'INTEGER'     Keyword.Type
+' '           Text.Whitespace
+'('           Punctuation
+'0.'          Literal.Number.Float
+'.'           Punctuation
+'MAX'         Keyword.Constant
+')'           Punctuation
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+' '           Text.Whitespace
+'}'           Punctuation
+'\n      '    Text.Whitespace
+'id-ce-nameConstraints' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ce'       Name.Variable
+' '           Text.Whitespace
+'30'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'NameConstraints' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'permittedSubtrees' Name.Variable
+'       '     Text.Whitespace
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+'     '       Text.Whitespace
+'GeneralSubtrees' Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+','           Punctuation
+'\n    '      Text.Whitespace
+'excludedSubtrees' Name.Variable
+'        '    Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+'     '       Text.Whitespace
+'GeneralSubtrees' Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'GeneralSubtrees' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'SIZE'        Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'1.'          Literal.Number.Float
+'.'           Punctuation
+'MAX'         Keyword.Constant
+')'           Punctuation
+' '           Text.Whitespace
+'OF'          Keyword
+' '           Text.Whitespace
+'GeneralSubtree' Name.Type
+'\n\n\n'      Text.Whitespace
+
+'GeneralSubtree' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'base'        Name.Variable
+'                    ' Text.Whitespace
+'GeneralName' Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'minimum'     Name.Variable
+'         '   Text.Whitespace
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+'     '       Text.Whitespace
+'BaseDistance' Name.Type
+' '           Text.Whitespace
+'DEFAULT'     Keyword.Declaration
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+'\n    '      Text.Whitespace
+'maximum'     Name.Variable
+'         '   Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+'     '       Text.Whitespace
+'BaseDistance' Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'BaseDistance' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'INTEGER'     Keyword.Type
+' '           Text.Whitespace
+'('           Punctuation
+'0.'          Literal.Number.Float
+'.'           Punctuation
+'MAX'         Keyword.Constant
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'id-ce-policyConstraints' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ce'       Name.Variable
+' '           Text.Whitespace
+'36'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'PolicyConstraints' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'requireExplicitPolicy' Name.Variable
+'           ' Text.Whitespace
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'SkipCerts'   Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+','           Punctuation
+'\n    '      Text.Whitespace
+'inhibitPolicyMapping' Name.Variable
+'            ' Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'SkipCerts'   Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'SkipCerts'   Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'INTEGER'     Keyword.Type
+' '           Text.Whitespace
+'('           Punctuation
+'0.'          Literal.Number.Float
+'.'           Punctuation
+'MAX'         Keyword.Constant
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'id-ce-extKeyUsage' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ce'       Name.Variable
+' '           Text.Whitespace
+'37'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'ExtKeyUsageSyntax' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'SIZE'        Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'1.'          Literal.Number.Float
+'.'           Punctuation
+'MAX'         Keyword.Constant
+')'           Punctuation
+' '           Text.Whitespace
+'OF'          Keyword
+' '           Text.Whitespace
+'KeyPurposeId' Name.Type
+'\n\n'        Text.Whitespace
+
+'KeyPurposeId' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+'\n\n'        Text.Whitespace
+
+'anyExtendedKeyUsage' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ce-extKeyUsage' Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'id-kp'       Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-pkix'     Name.Variable
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'id-kp-serverAuth' Name.Variable
+'             ' Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-kp'       Name.Variable
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'-- TLS WWW server authentication' Comment.Single
+'\n'          Text.Whitespace
+
+'-- Key usage bits that may be consistent: digitalSignature,' Comment.Single
+'\n'          Text.Whitespace
+
+'-- keyEncipherment or keyAgreement' Comment.Single
+'\n\n'        Text.Whitespace
+
+'id-kp-clientAuth' Name.Variable
+'             ' Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-kp'       Name.Variable
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'-- TLS WWW client authentication' Comment.Single
+'\n'          Text.Whitespace
+
+'-- Key usage bits that may be consistent: digitalSignature' Comment.Single
+'\n'          Text.Whitespace
+
+'-- and/or keyAgreement' Comment.Single
+'\n\n'        Text.Whitespace
+
+'id-kp-codeSigning' Name.Variable
+'             ' Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-kp'       Name.Variable
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'-- Signing of downloadable executable code' Comment.Single
+'\n'          Text.Whitespace
+
+'-- Key usage bits that may be consistent: digitalSignature' Comment.Single
+'\n\n'        Text.Whitespace
+
+'id-kp-emailProtection' Name.Variable
+'         '   Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-kp'       Name.Variable
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'-- Email protection' Comment.Single
+'\n'          Text.Whitespace
+
+'-- Key usage bits that may be consistent: digitalSignature,' Comment.Single
+'\n'          Text.Whitespace
+
+'-- nonRepudiation, and/or (keyEncipherment or keyAgreement)' Comment.Single
+'\n\n'        Text.Whitespace
+
+'id-kp-timeStamping' Name.Variable
+'            ' Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-kp'       Name.Variable
+' '           Text.Whitespace
+'8'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'-- Binding the hash of an object to a time' Comment.Single
+'\n'          Text.Whitespace
+
+'-- Key usage bits that may be consistent: digitalSignature' Comment.Single
+'\n'          Text.Whitespace
+
+'-- and/or nonRepudiation' Comment.Single
+'\n\n'        Text.Whitespace
+
+'id-kp-OCSPSigning' Name.Variable
+'            ' Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-kp'       Name.Variable
+' '           Text.Whitespace
+'9'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'-- Signing OCSP responses' Comment.Single
+'\n'          Text.Whitespace
+
+'-- Key usage bits that may be consistent: digitalSignature' Comment.Single
+'\n'          Text.Whitespace
+
+'-- and/or nonRepudiation' Comment.Single
+'\n\n '       Text.Whitespace
+'id-ce-cRLDistributionPoints' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ce'       Name.Variable
+' '           Text.Whitespace
+'31'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'CRLDistributionPoints' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'SIZE'        Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'1.'          Literal.Number.Float
+'.'           Punctuation
+'MAX'         Keyword.Constant
+')'           Punctuation
+' '           Text.Whitespace
+'OF'          Keyword
+' '           Text.Whitespace
+'DistributionPoint' Name.Type
+'\n\n'        Text.Whitespace
+
+'DistributionPoint' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'distributionPoint' Name.Variable
+'       '     Text.Whitespace
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+'     '       Text.Whitespace
+'DistributionPointName' Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+','           Punctuation
+'\n    '      Text.Whitespace
+'reasons'     Name.Variable
+'                 ' Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+'     '       Text.Whitespace
+'ReasonFlags' Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+','           Punctuation
+'\n    '      Text.Whitespace
+'cRLIssuer'   Name.Variable
+'               ' Text.Whitespace
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+'     '       Text.Whitespace
+'GeneralNames' Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'DistributionPointName' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'CHOICE'      Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'fullName'    Name.Variable
+'                ' Text.Whitespace
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+'     '       Text.Whitespace
+'GeneralNames' Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'nameRelativeToCRLIssuer' Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+'     '       Text.Whitespace
+'RelativeDistinguishedName' Name.Type
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'ReasonFlags' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'BIT STRING'  Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'unused'      Name.Variable
+'                  ' Text.Whitespace
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n        '  Text.Whitespace
+'keyCompromise' Name.Variable
+'           ' Text.Whitespace
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n        '  Text.Whitespace
+'cACompromise' Name.Variable
+'            ' Text.Whitespace
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n        '  Text.Whitespace
+'affiliationChanged' Name.Variable
+'      '      Text.Whitespace
+'('           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n        '  Text.Whitespace
+'superseded'  Name.Variable
+'              ' Text.Whitespace
+'('           Punctuation
+'4'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n        '  Text.Whitespace
+'cessationOfOperation' Name.Variable
+'    '        Text.Whitespace
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n        '  Text.Whitespace
+'certificateHold' Name.Variable
+'         '   Text.Whitespace
+'('           Punctuation
+'6'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n        '  Text.Whitespace
+'privilegeWithdrawn' Name.Variable
+'      '      Text.Whitespace
+'('           Punctuation
+'7'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n        '  Text.Whitespace
+'aACompromise' Name.Variable
+'            ' Text.Whitespace
+'('           Punctuation
+'8'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'Conforming'  Name.Type
+' '           Text.Whitespace
+'CAs'         Name.Type
+' '           Text.Whitespace
+'MUST'        Name.Type
+' '           Text.Whitespace
+'mark'        Name.Variable
+' '           Text.Whitespace
+'this'        Name.Variable
+' '           Text.Whitespace
+'extension'   Name.Variable
+' '           Text.Whitespace
+'as'          Name.Variable
+' '           Text.Whitespace
+'critical'    Name.Variable
+'.'           Punctuation
+'\n\n'        Text.Whitespace
+
+'id-ce-inhibitAnyPolicy' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ce'       Name.Variable
+' '           Text.Whitespace
+'54'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'InhibitAnyPolicy' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'SkipCerts'   Name.Type
+'\n\n'        Text.Whitespace
+
+'SkipCerts'   Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'INTEGER'     Keyword.Type
+' '           Text.Whitespace
+'('           Punctuation
+'0.'          Literal.Number.Float
+'.'           Punctuation
+'MAX'         Keyword.Constant
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'id-ce-freshestCRL' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ce'       Name.Variable
+' '           Text.Whitespace
+'46'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'FreshestCRL' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'CRLDistributionPoints' Name.Type
+'\n\n'        Text.Whitespace
+
+'id-pkix'     Name.Variable
+'  '          Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+'  '          Text.Whitespace
+'::='         Operator
+'\n        '  Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'iso'         Name.Variable
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'identified-organization' Name.Variable
+'('           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'dod'         Name.Variable
+'('           Punctuation
+'6'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'internet'    Name.Variable
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n                ' Text.Whitespace
+'security'    Name.Variable
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'mechanisms'  Name.Variable
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'pkix'        Name.Variable
+'('           Punctuation
+'7'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'id-pe'       Name.Variable
+'  '          Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+'  '          Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-pkix'     Name.Variable
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'id-pe-authorityInfoAccess' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-pe'       Name.Variable
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'AuthorityInfoAccessSyntax' Name.Type
+'  '          Text.Whitespace
+'::='         Operator
+'\n        '  Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'SIZE'        Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'1.'          Literal.Number.Float
+'.'           Punctuation
+'MAX'         Keyword.Constant
+')'           Punctuation
+' '           Text.Whitespace
+'OF'          Keyword
+' '           Text.Whitespace
+'AccessDescription' Name.Type
+'\n\n'        Text.Whitespace
+
+'AccessDescription' Name.Type
+'  '          Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'accessMethod' Name.Variable
+'          '  Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+','           Punctuation
+'\n        '  Text.Whitespace
+'accessLocation' Name.Variable
+'        '    Text.Whitespace
+'GeneralName' Name.Type
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'id-ad'       Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-pkix'     Name.Variable
+' '           Text.Whitespace
+'48'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'id-ad-caIssuers' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ad'       Name.Variable
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'id-ad-ocsp'  Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ad'       Name.Variable
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'id-pe-subjectInfoAccess' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-pe'       Name.Variable
+' '           Text.Whitespace
+'11'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'SubjectInfoAccessSyntax' Name.Type
+'  '          Text.Whitespace
+'::='         Operator
+'\n        '  Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'SIZE'        Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'1.'          Literal.Number.Float
+'.'           Punctuation
+'MAX'         Keyword.Constant
+')'           Punctuation
+' '           Text.Whitespace
+'OF'          Keyword
+' '           Text.Whitespace
+'AccessDescription' Name.Type
+'\n\n'        Text.Whitespace
+
+'AccessDescription' Name.Type
+'  '          Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'accessMethod' Name.Variable
+'          '  Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+','           Punctuation
+'\n        '  Text.Whitespace
+'accessLocation' Name.Variable
+'        '    Text.Whitespace
+'GeneralName' Name.Type
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'id-ad'       Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-pkix'     Name.Variable
+' '           Text.Whitespace
+'48'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'id-ad-caRepository' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ad'       Name.Variable
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'id-ad-timeStamping' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ad'       Name.Variable
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'CertificateList' Name.Type
+'  '          Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+'  '          Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'tbsCertList' Name.Variable
+'          '  Text.Whitespace
+'TBSCertList' Name.Type
+','           Punctuation
+'\n        '  Text.Whitespace
+'signatureAlgorithm' Name.Variable
+'   '         Text.Whitespace
+'AlgorithmIdentifier' Name.Type
+','           Punctuation
+'\n        '  Text.Whitespace
+'signatureValue' Name.Variable
+'       '     Text.Whitespace
+'BIT STRING'  Keyword.Type
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'TBSCertList' Name.Type
+'  '          Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+'  '          Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'version'     Name.Variable
+'                 ' Text.Whitespace
+'Version'     Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+','           Punctuation
+'\n                                    ' Text.Whitespace
+'-- if present, MUST be v2' Comment.Single
+'\n    '      Text.Whitespace
+'signature'   Name.Variable
+'               ' Text.Whitespace
+'AlgorithmIdentifier' Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'issuer'      Name.Variable
+'                  ' Text.Whitespace
+'Name'        Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'thisUpdate'  Name.Variable
+'              ' Text.Whitespace
+'Time'        Name.Type
+','           Punctuation
+'\n    '      Text.Whitespace
+'nextUpdate'  Name.Variable
+'              ' Text.Whitespace
+'Time'        Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+','           Punctuation
+'\n    '      Text.Whitespace
+'revokedCertificates' Name.Variable
+'     '       Text.Whitespace
+'SEQUENCE OF' Keyword.Declaration
+' '           Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+'  '          Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'userCertificate' Name.Variable
+'         '   Text.Whitespace
+'CertificateSerialNumber' Name.Type
+','           Punctuation
+'\n            ' Text.Whitespace
+'revocationDate' Name.Variable
+'          '  Text.Whitespace
+'Time'        Name.Type
+','           Punctuation
+'\n            ' Text.Whitespace
+'crlEntryExtensions' Name.Variable
+'      '      Text.Whitespace
+'Extensions'  Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+'\n                                    ' Text.Whitespace
+'-- if present, version MUST be v2' Comment.Single
+'\n                                ' Text.Whitespace
+'}'           Punctuation
+'  '          Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+','           Punctuation
+'\n    '      Text.Whitespace
+'crlExtensions' Name.Variable
+'           ' Text.Whitespace
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+'  '          Text.Whitespace
+'EXPLICIT'    Keyword
+' '           Text.Whitespace
+'Extensions'  Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+'\n                                    ' Text.Whitespace
+'-- if present, version MUST be v2' Comment.Single
+'\n                                ' Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'-- Version, Time, CertificateSerialNumber, and Extensions' Comment.Single
+'\n'          Text.Whitespace
+
+'-- are all defined in the ASN.1 in Section 4.1' Comment.Single
+'\n\n'        Text.Whitespace
+
+'-- AlgorithmIdentifier is defined in Section 4.1.1.2' Comment.Single
+'\n\n'        Text.Whitespace
+
+'id-ce-cRLNumber' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ce'       Name.Variable
+' '           Text.Whitespace
+'20'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'CRLNumber'   Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'INTEGER'     Keyword.Type
+' '           Text.Whitespace
+'('           Punctuation
+'0.'          Literal.Number.Float
+'.'           Punctuation
+'MAX'         Keyword.Constant
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'id-ce-deltaCRLIndicator' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ce'       Name.Variable
+' '           Text.Whitespace
+'27'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'BaseCRLNumber' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'CRLNumber'   Name.Type
+'\n\n'        Text.Whitespace
+
+'id-ce-issuingDistributionPoint' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ce'       Name.Variable
+' '           Text.Whitespace
+'28'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'IssuingDistributionPoint' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'SEQUENCE'    Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'distributionPoint' Name.Variable
+'          '  Text.Whitespace
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'DistributionPointName' Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+','           Punctuation
+'\n    '      Text.Whitespace
+'onlyContainsUserCerts' Name.Variable
+'      '      Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'BOOLEAN'     Keyword.Type
+' '           Text.Whitespace
+'DEFAULT'     Keyword.Declaration
+' '           Text.Whitespace
+'FALSE'       Keyword.Constant
+','           Punctuation
+'\n    '      Text.Whitespace
+'onlyContainsCACerts' Name.Variable
+'        '    Text.Whitespace
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'BOOLEAN'     Keyword.Type
+' '           Text.Whitespace
+'DEFAULT'     Keyword.Declaration
+' '           Text.Whitespace
+'FALSE'       Keyword.Constant
+','           Punctuation
+'\n    '      Text.Whitespace
+'onlySomeReasons' Name.Variable
+'            ' Text.Whitespace
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'ReasonFlags' Name.Type
+' '           Text.Whitespace
+'OPTIONAL'    Keyword.Declaration
+','           Punctuation
+'\n    '      Text.Whitespace
+'indirectCRL' Name.Variable
+'                ' Text.Whitespace
+'['           Punctuation
+'4'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'BOOLEAN'     Keyword.Type
+' '           Text.Whitespace
+'DEFAULT'     Keyword.Declaration
+' '           Text.Whitespace
+'FALSE'       Keyword.Constant
+','           Punctuation
+'\n    '      Text.Whitespace
+'onlyContainsAttributeCerts' Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'5'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'BOOLEAN'     Keyword.Type
+' '           Text.Whitespace
+'DEFAULT'     Keyword.Declaration
+' '           Text.Whitespace
+'FALSE'       Keyword.Constant
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'-- at most one of onlyContainsUserCerts, onlyContainsCACerts,' Comment.Single
+'\n'          Text.Whitespace
+
+'-- and onlyContainsAttributeCerts may be set to TRUE.' Comment.Single
+'\n\n'        Text.Whitespace
+
+'id-ce-freshestCRL' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ce'       Name.Variable
+' '           Text.Whitespace
+'46'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'FreshestCRL' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'CRLDistributionPoints' Name.Type
+'\n\n'        Text.Whitespace
+
+'id-ce-cRLReasons' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ce'       Name.Variable
+' '           Text.Whitespace
+'21'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'-- reasonCode ::= { CRLReason }' Comment.Single
+'\n\n'        Text.Whitespace
+
+'CRLReason'   Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'ENUMERATED'  Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'unspecified' Name.Variable
+'             ' Text.Whitespace
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'keyCompromise' Name.Variable
+'           ' Text.Whitespace
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'cACompromise' Name.Variable
+'            ' Text.Whitespace
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'affiliationChanged' Name.Variable
+'      '      Text.Whitespace
+'('           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'superseded'  Name.Variable
+'              ' Text.Whitespace
+'('           Punctuation
+'4'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'cessationOfOperation' Name.Variable
+'    '        Text.Whitespace
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'certificateHold' Name.Variable
+'         '   Text.Whitespace
+'('           Punctuation
+'6'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n            ' Text.Whitespace
+'-- value 7 is not used' Comment.Single
+'\n    '      Text.Whitespace
+'removeFromCRL' Name.Variable
+'           ' Text.Whitespace
+'('           Punctuation
+'8'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'privilegeWithdrawn' Name.Variable
+'      '      Text.Whitespace
+'('           Punctuation
+'9'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'aACompromise' Name.Variable
+'           ' Text.Whitespace
+'('           Punctuation
+'10'          Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'id-ce-invalidityDate' Name.Variable
+' '           Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ce'       Name.Variable
+' '           Text.Whitespace
+'24'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'InvalidityDate' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+'  '          Text.Whitespace
+'GeneralizedTime' Keyword.Type
+'\n\n'        Text.Whitespace
+
+'id-ce-certificateIssuer' Name.Variable
+'   '         Text.Whitespace
+'OBJECT IDENTIFIER' Keyword.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'id-ce'       Name.Variable
+' '           Text.Whitespace
+'29'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'CertificateIssuer' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+'     '       Text.Whitespace
+'GeneralNames' Name.Type
+'\n'          Text.Whitespace

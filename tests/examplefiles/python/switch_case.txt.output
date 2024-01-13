@@ -1,0 +1,196 @@
+'match'       Keyword
+' '           Text
+'command'     Name
+'.'           Operator
+'split'       Name
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'case'        Keyword
+' '           Text
+'['           Punctuation
+"'"           Literal.String.Single
+'to'          Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'direction'   Name
+']'           Punctuation
+' '           Text
+'if'          Keyword
+' '           Text
+'direction'   Name
+' '           Text
+'in'          Operator.Word
+' '           Text
+'destination' Name
+'.'           Operator
+'route'       Name
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text
+'return'      Keyword
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'    '        Text
+'case'        Keyword
+' '           Text
+"'"           Literal.String.Single
+'foo'         Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'|'           Operator
+' '           Text
+"'"           Literal.String.Single
+'bar'         Literal.String.Single
+"'"           Literal.String.Single
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text
+'return'      Keyword
+' '           Text
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'    '        Text
+'case'        Keyword
+' '           Text
+"'"           Literal.String.Single
+'raz'         Literal.String.Single
+"'"           Literal.String.Single
+' '           Text
+'as'          Keyword
+' '           Text
+'name'        Name
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text
+'return'      Keyword
+' '           Text
+'3'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'    '        Text
+'case'        Keyword
+' '           Text.Whitespace
+'['           Punctuation
+"'"           Literal.String.Single
+'to'          Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'_'           Keyword
+']'           Punctuation
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text
+'return'      Keyword
+' '           Text
+'4'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'    '        Text
+'case'        Keyword
+' '           Text
+'else_bar'    Name
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text
+'return'      Keyword
+' '           Text
+'5'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'    '        Text
+'case'        Keyword
+' '           Text.Whitespace
+'_'           Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text
+'return'      Keyword
+' '           Text
+'6'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'match'       Keyword
+' '           Text
+'command'     Name
+'.'           Operator
+'split'       Name
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'case'        Keyword
+' '           Text
+'_Direction'  Name
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text
+'return'      Keyword
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'    '        Text
+'case'        Keyword
+' '           Text.Whitespace
+'_'           Keyword
+' '           Text
+'as'          Keyword
+' '           Text
+'default'     Name
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text
+'return'      Keyword
+' '           Text
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'case'        Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'match'       Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'match'       Name
+' '           Text
+'if'          Keyword
+' '           Text
+'True'        Keyword.Constant
+' '           Text
+'else'        Keyword
+' '           Text
+'bar'         Name
+'\n'          Text.Whitespace

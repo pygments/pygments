@@ -21,16 +21,9 @@
 
     .. _Markdown: https://pypi.python.org/pypi/Markdown
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-
-# Options
-# ~~~~~~~
-
-# Set to True if you want inline CSS styles instead of classes
-INLINESTYLES = False
-
 
 import re
 
@@ -40,6 +33,13 @@ from markdown.extensions import Extension
 from pygments import highlight
 from pygments.formatters import HtmlFormatter
 from pygments.lexers import get_lexer_by_name, TextLexer
+
+
+# Options
+# ~~~~~~~
+
+# Set to True if you want inline CSS styles instead of classes
+INLINESTYLES = False
 
 
 class CodeBlockPreprocessor(Preprocessor):

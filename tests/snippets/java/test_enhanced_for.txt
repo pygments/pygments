@@ -3,19 +3,20 @@ label:
 for(String var2: var1) {}
 
 ---tokens---
-'label:'      Name.Label
-'\n'          Text
+'label'       Name.Label
+':'           Punctuation
+'\n'          Text.Whitespace
 
 'for'         Keyword
 '('           Punctuation
 'String'      Name
-' '           Text
+' '           Text.Whitespace
 'var2'        Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'var1'        Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

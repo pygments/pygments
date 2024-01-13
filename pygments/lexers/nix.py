@@ -4,7 +4,7 @@
 
     Lexers for the NixOS Nix language.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -19,24 +19,22 @@ __all__ = ['NixLexer']
 
 class NixLexer(RegexLexer):
     """
-    For the `Nix language <http://nixos.org/nix/>`_.
-
-    .. versionadded:: 2.0
+    For the Nix language.
     """
 
     name = 'Nix'
+    url = 'http://nixos.org/nix/'
     aliases = ['nixos', 'nix']
     filenames = ['*.nix']
     mimetypes = ['text/x-nix']
-
-    flags = re.MULTILINE | re.UNICODE
+    version_added = '2.0'
 
     keywords = ['rec', 'with', 'let', 'in', 'inherit', 'assert', 'if',
                 'else', 'then', '...']
     builtins = ['import', 'abort', 'baseNameOf', 'dirOf', 'isNull', 'builtins',
                 'map', 'removeAttrs', 'throw', 'toString', 'derivation']
-    operators = ['++', '+', '?', '.', '!', '//', '==',
-                 '!=', '&&', '||', '->', '=']
+    operators = ['++', '+', '?', '.', '!', '//', '==', '/',
+                 '!=', '&&', '||', '->', '=', '<', '>', '*', '-']
 
     punctuations = ["(", ")", "[", "]", ";", "{", "}", ":", ",", "@"]
 
@@ -60,6 +58,17 @@ class NixLexer(RegexLexer):
 
             (r'\b(true|false|null)\b', Name.Constant),
 
+            # floats
+            (r'-?(\d+\.\d*|\.\d+)([eE][-+]?\d+)?', Number.Float),
+
+            # integers
+            (r'-?[0-9]+', Number.Integer),
+
+            # paths
+            (r'[\w.+-]*(\/[\w.+-]+)+', Literal),
+            (r'~(\/[\w.+-]+)+', Literal),
+            (r'\<[\w.+-]+(\/[\w.+-]+)*\>', Literal),
+
             # operators
             ('(%s)' % '|'.join(re.escape(entry) for entry in operators),
              Operator),
@@ -67,27 +76,23 @@ class NixLexer(RegexLexer):
             # word operators
             (r'\b(or|and)\b', Operator.Word),
 
+            (r'\{', Punctuation, 'block'),
+
             # punctuations
             ('(%s)' % '|'.join(re.escape(entry) for entry in punctuations), Punctuation),
 
-            # integers
-            (r'[0-9]+', Number.Integer),
-
             # strings
             (r'"', String.Double, 'doublequote'),
-            (r"''", String.Single, 'singlequote'),
-
-            # paths
-            (r'[\w.+-]*(\/[\w.+-]+)+', Literal),
-            (r'\<[\w.+-]+(\/[\w.+-]+)*\>', Literal),
+            (r"''", String.Multiline, 'multiline'),
 
             # urls
             (r'[a-zA-Z][a-zA-Z0-9\+\-\.]*\:[\w%/?:@&=+$,\\.!~*\'-]+', Literal),
 
             # names of variables
-            (r'[\w-]+\s*=', String.Symbol),
+            (r'[\w-]+(?=\s*=)', String.Symbol),
             (r'[a-zA-Z_][\w\'-]*', Text),
 
+            (r"\$\{", String.Interpol, 'antiquote'),
         ],
         'comment': [
             (r'[^/*]+', Comment.Multiline),
@@ -95,28 +100,32 @@ class NixLexer(RegexLexer):
             (r'\*/', Comment.Multiline, '#pop'),
             (r'[*/]', Comment.Multiline),
         ],
-        'singlequote': [
-            (r"'''", String.Escape),
-            (r"''\$\{", String.Escape),
-            (r"''\n", String.Escape),
-            (r"''\r", String.Escape),
-            (r"''\t", String.Escape),
-            (r"''", String.Single, '#pop'),
+        'multiline': [
+            (r"''(\$|'|\\n|\\r|\\t|\\)", String.Escape),
+            (r"''", String.Multiline, '#pop'),
             (r'\$\{', String.Interpol, 'antiquote'),
-            (r"[^']", String.Single),
+            (r"[^'\$]+", String.Multiline),
+            (r"\$[^\{']", String.Multiline),
+            (r"'[^']", String.Multiline),
+            (r"\$(?=')", String.Multiline),
         ],
         'doublequote': [
-            (r'\\', String.Escape),
-            (r'\\"', String.Escape),
-            (r'\\$\{', String.Escape),
+            (r'\\(\\|"|\$|n)', String.Escape),
             (r'"', String.Double, '#pop'),
             (r'\$\{', String.Interpol, 'antiquote'),
-            (r'[^"]', String.Double),
+            (r'[^"\\\$]+', String.Double),
+            (r'\$[^\{"]', String.Double),
+            (r'\$(?=")', String.Double),
+            (r'\\', String.Double),
         ],
         'antiquote': [
             (r"\}", String.Interpol, '#pop'),
             # TODO: we should probably escape also here ''${ \${
             (r"\$\{", String.Interpol, '#push'),
+            include('root'),
+        ],
+        'block': [
+            (r"\}", Punctuation, '#pop'),
             include('root'),
         ],
     }

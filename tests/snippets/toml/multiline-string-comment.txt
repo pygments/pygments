@@ -1,0 +1,15 @@
+---input---
+message = """multiline strings
+            can be followed by""" # comments
+
+---tokens---
+'message'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"""'         Literal.String.Double
+'multiline strings\n            can be followed by' Literal.String.Double
+'"""'         Literal.String.Double
+' '           Text.Whitespace
+'# comments'  Comment.Single
+'\n'          Text.Whitespace

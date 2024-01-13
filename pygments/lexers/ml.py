@@ -4,7 +4,7 @@
 
     Lexers for ML family languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -20,14 +20,14 @@ __all__ = ['SMLLexer', 'OcamlLexer', 'OpaLexer', 'ReasonLexer', 'FStarLexer']
 class SMLLexer(RegexLexer):
     """
     For the Standard ML language.
-
-    .. versionadded:: 1.5
     """
 
     name = 'Standard ML'
     aliases = ['sml']
     filenames = ['*.sml', '*.sig', '*.fun']
     mimetypes = ['text/x-standardml', 'application/x-standardml']
+    url = 'https://en.wikipedia.org/wiki/Standard_ML'
+    version_added = '1.5'
 
     alphanumid_reserved = {
         # Core
@@ -55,7 +55,7 @@ class SMLLexer(RegexLexer):
     # A character constant is a sequence of the form #s, where s is a string
     # constant denoting a string of size one character. This setup just parses
     # the entire string as either a String.Double or a String.Char (depending
-    # on the argument), even if the String.Char is an erronous
+    # on the argument), even if the String.Char is an erroneous
     # multiple-character string.
     def stringy(whatkind):
         return [
@@ -355,23 +355,23 @@ class SMLLexer(RegexLexer):
 class OcamlLexer(RegexLexer):
     """
     For the OCaml language.
-
-    .. versionadded:: 0.7
     """
 
     name = 'OCaml'
+    url = 'https://ocaml.org/'
     aliases = ['ocaml']
     filenames = ['*.ml', '*.mli', '*.mll', '*.mly']
     mimetypes = ['text/x-ocaml']
+    version_added = '0.7'
 
     keywords = (
-        'as', 'assert', 'begin', 'class', 'constraint', 'do', 'done',
+        'and', 'as', 'assert', 'begin', 'class', 'constraint', 'do', 'done',
         'downto', 'else', 'end', 'exception', 'external', 'false',
         'for', 'fun', 'function', 'functor', 'if', 'in', 'include',
         'inherit', 'initializer', 'lazy', 'let', 'match', 'method',
         'module', 'mutable', 'new', 'object', 'of', 'open', 'private',
         'raise', 'rec', 'sig', 'struct', 'then', 'to', 'true', 'try',
-        'type', 'value', 'val', 'virtual', 'when', 'while', 'with',
+        'type', 'val', 'virtual', 'when', 'while', 'with',
     )
     keyopts = (
         '!=', '#', '&', '&&', r'\(', r'\)', r'\*', r'\+', ',', '-',
@@ -381,7 +381,7 @@ class OcamlLexer(RegexLexer):
     )
 
     operators = r'[!$%&*+\./:<=>?@^|~-]'
-    word_operators = ('and', 'asr', 'land', 'lor', 'lsl', 'lxor', 'mod', 'or')
+    word_operators = ('asr', 'land', 'lor', 'lsl', 'lxor', 'mod', 'or')
     prefix_syms = r'[!?~]'
     infix_syms = r'[=<>@^|&+\*/$%-]'
     primitives = ('unit', 'int', 'float', 'bool', 'string', 'char', 'list', 'array')
@@ -446,15 +446,15 @@ class OcamlLexer(RegexLexer):
 
 class OpaLexer(RegexLexer):
     """
-    Lexer for the Opa language (http://opalang.org).
-
-    .. versionadded:: 1.5
+    Lexer for the Opa language.
     """
 
     name = 'Opa'
     aliases = ['opa']
     filenames = ['*.opa']
     mimetypes = ['text/x-opa']
+    url = 'http://opalang.org'
+    version_added = '1.5'
 
     # most of these aren't strictly keywords
     # but if you color only real keywords, you might just
@@ -769,15 +769,15 @@ class OpaLexer(RegexLexer):
 
 class ReasonLexer(RegexLexer):
     """
-    For the ReasonML language (https://reasonml.github.io/).
-
-    .. versionadded:: 2.6
+    For the ReasonML language.
     """
 
     name = 'ReasonML'
+    url = 'https://reasonml.github.io/'
     aliases = ['reasonml', 'reason']
     filenames = ['*.re', '*.rei']
     mimetypes = ['text/x-reasonml']
+    version_added = '2.6'
 
     keywords = (
         'as', 'assert', 'begin', 'class', 'constraint', 'do', 'done', 'downto',
@@ -861,14 +861,15 @@ class ReasonLexer(RegexLexer):
 
 class FStarLexer(RegexLexer):
     """
-    For the F* language (https://www.fstar-lang.org/).
-    .. versionadded:: 2.7
+    For the F* language.
     """
 
     name = 'FStar'
+    url = 'https://www.fstar-lang.org/'
     aliases = ['fstar']
     filenames = ['*.fst', '*.fsti']
     mimetypes = ['text/x-fstar']
+    version_added = '2.7'
 
     keywords = (
         'abstract', 'attributes', 'noeq', 'unopteq', 'and'
@@ -908,7 +909,7 @@ class FStarLexer(RegexLexer):
             (r'\b([A-Z][\w\']*)(?=\s*\.)', Name.Namespace, 'dotted'),
             (r'\b([A-Z][\w\']*)', Name.Class),
             (r'\(\*(?![)])', Comment, 'comment'),
-            (r'^\/\/.+$', Comment),
+            (r'\/\/.+$', Comment),
             (r'\b(%s)\b' % '|'.join(keywords), Keyword),
             (r'\b(%s)\b' % '|'.join(assume_keywords), Name.Exception),
             (r'\b(%s)\b' % '|'.join(decl_keywords), Keyword.Declaration),

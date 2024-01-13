@@ -4,7 +4,7 @@
 
     Lexers for Tcl and related languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -19,31 +19,34 @@ __all__ = ['TclLexer']
 class TclLexer(RegexLexer):
     """
     For Tcl source code.
-
-    .. versionadded:: 0.10
     """
 
     keyword_cmds_re = words((
-        'after', 'apply', 'array', 'break', 'catch', 'continue', 'elseif', 'else', 'error',
-        'eval', 'expr', 'for', 'foreach', 'global', 'if', 'namespace', 'proc', 'rename', 'return',
-        'set', 'switch', 'then', 'trace', 'unset', 'update', 'uplevel', 'upvar', 'variable',
-        'vwait', 'while'), prefix=r'\b', suffix=r'\b')
+        'after', 'apply', 'array', 'break', 'catch', 'continue', 'elseif',
+        'else', 'error', 'eval', 'expr', 'for', 'foreach', 'global', 'if',
+        'namespace', 'proc', 'rename', 'return', 'set', 'switch', 'then',
+        'trace', 'unset', 'update', 'uplevel', 'upvar', 'variable', 'vwait',
+        'while'), prefix=r'\b', suffix=r'\b')
 
     builtin_cmds_re = words((
-        'append', 'bgerror', 'binary', 'cd', 'chan', 'clock', 'close', 'concat', 'dde', 'dict',
-        'encoding', 'eof', 'exec', 'exit', 'fblocked', 'fconfigure', 'fcopy', 'file',
-        'fileevent', 'flush', 'format', 'gets', 'glob', 'history', 'http', 'incr', 'info', 'interp',
-        'join', 'lappend', 'lassign', 'lindex', 'linsert', 'list', 'llength', 'load', 'loadTk',
-        'lrange', 'lrepeat', 'lreplace', 'lreverse', 'lsearch', 'lset', 'lsort', 'mathfunc',
-        'mathop', 'memory', 'msgcat', 'open', 'package', 'pid', 'pkg::create', 'pkg_mkIndex',
-        'platform', 'platform::shell', 'puts', 'pwd', 're_syntax', 'read', 'refchan',
-        'regexp', 'registry', 'regsub', 'scan', 'seek', 'socket', 'source', 'split', 'string',
-        'subst', 'tell', 'time', 'tm', 'unknown', 'unload'), prefix=r'\b', suffix=r'\b')
+        'append', 'bgerror', 'binary', 'cd', 'chan', 'clock', 'close',
+        'concat', 'dde', 'dict', 'encoding', 'eof', 'exec', 'exit', 'fblocked',
+        'fconfigure', 'fcopy', 'file', 'fileevent', 'flush', 'format', 'gets',
+        'glob', 'history', 'http', 'incr', 'info', 'interp', 'join', 'lappend',
+        'lassign', 'lindex', 'linsert', 'list', 'llength', 'load', 'loadTk',
+        'lrange', 'lrepeat', 'lreplace', 'lreverse', 'lsearch', 'lset', 'lsort',
+        'mathfunc', 'mathop', 'memory', 'msgcat', 'open', 'package', 'pid',
+        'pkg::create', 'pkg_mkIndex', 'platform', 'platform::shell', 'puts',
+        'pwd', 're_syntax', 'read', 'refchan', 'regexp', 'registry', 'regsub',
+        'scan', 'seek', 'socket', 'source', 'split', 'string', 'subst', 'tell',
+        'time', 'tm', 'unknown', 'unload'), prefix=r'\b', suffix=r'\b')
 
     name = 'Tcl'
+    url = 'https://www.tcl.tk/about/language.html'
     aliases = ['tcl']
     filenames = ['*.tcl', '*.rvt']
     mimetypes = ['text/x-tcl', 'text/x-script.tcl', 'application/x-tcl']
+    version_added = '0.10'
 
     def _gen_command_rules(keyword_cmds_re, builtin_cmds_re, context=""):
         return [
@@ -84,8 +87,9 @@ class TclLexer(RegexLexer):
             (r'0[0-7]+', Number.Oct),
             (r'\d+\.\d+', Number.Float),
             (r'\d+', Number.Integer),
-            (r'\$([\w.:-]+)', Name.Variable),
-            (r'([\w.,@:-]+)', Text),
+            (r'\$[\w.:-]+', Name.Variable),
+            (r'\$\{[\w.:-]+\}', Name.Variable),
+            (r'[\w.,@:-]+', Text),
         ],
         'params': [
             (r';', Keyword, '#pop'),

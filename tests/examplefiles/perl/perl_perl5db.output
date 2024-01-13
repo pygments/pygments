@@ -1,526 +1,526 @@
 "=head1 NAME \n\nperl5db.pl - the perl debugger\n\n=head1 SYNOPSIS\n\n    perl -d  your_Perl_script\n\n=head1 DESCRIPTION\n\nAfter this routine is over, we don't have user code executing in the debugger's\ncontext, so we can use C<my> freely.\n\n=cut" Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '############################################## Begin lexical danger zone' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "# 'my' variables used here could leak into (that is, be visible in)" Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# the context that the code being evaluated is executing in. This means that' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 "# the code could modify the debugger's variables." Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 "# Fiddling with the debugger's context could be Bad. We insulate things as" Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# much as we can.' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'sub'         Keyword
-' '           Text
+' '           Text.Whitespace
 'eval'        Name.Function
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 "# 'my' would make it visible from user code" Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '#    but so does local! --tchrist' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '# Remember: this localizes @DB::res, not @main::res.' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'local'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '@'           Name.Variable
 'res'         Name.Variable
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '# Try to keep the user code from messing  with us. Save these so that' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 "# even if the eval'ed code changes them, we can put them back again." Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 "# Needed because the user could refer directly to the debugger's" Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 "# package globals (and any 'my' variables in this containing scope)" Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '# inside the eval(), and we want to try to stay safe.' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 'local'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'otrace'      Name.Variable
-'  '          Text
+'  '          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'trace'       Name.Variable
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'local'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'osingle'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'single'      Name.Variable
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'local'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'od'          Name.Variable
-'      '      Text
+'      '      Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$^D'         Name.Variable.Global
 ';'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '# Untaint the incoming eval() argument.' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '$'           Name.Variable
 'evalarg'     Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'evalarg'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '=~'          Operator
 ' /(.*)/s'    Literal.String.Regex
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '# $usercontext built in DB::DB near the comment' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '# "set up the context for DB::eval ..."' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '# Evaluate and save any results.' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '@'           Name.Variable
 'res'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'eval'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"$usercontext $evalarg;\\n"' Literal.String
 ';'           Punctuation
-'  '          Text
+'  '          Text.Whitespace
 "# '\\n' for nice recursive debug" Comment.Single
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '# Restore those old values.' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '$'           Name.Variable
 'trace'       Name.Variable
-'  '          Text
+'  '          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'otrace'      Name.Variable
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '$'           Name.Variable
 'single'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'osingle'     Name.Variable
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '$^D'         Name.Variable.Global
-'     '       Text
+'     '       Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'od'          Name.Variable
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 "# Save the current value of $@, and preserve it in the debugger's copy" Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '# of the saved precious globals.' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'my'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'at'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$@'          Name.Variable.Global
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 "# Since we're only saving $@, we only have to localize the array element" Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '# that it will be stored in.' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'local'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'saved'       Name.Variable
 '['           Punctuation
 '0'           Literal.Number.Integer
 ']'           Punctuation
 ';'           Punctuation
-'    '        Text
+'    '        Text.Whitespace
 '# Preserve the old value of $@' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'eval'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '&'           Operator
 ''            Name
 'DB::'        Name.Namespace
 ''            Name
 'save'        Name
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '# Now see whether we need to report an error back to the user.' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '$'           Name.Variable
 'at'          Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'local'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$\\'         Name.Variable.Global
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "''"          Literal.String
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'OUT'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'at'          Name.Variable
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '# Display as required by the caller. $onetimeDump and $onetimedumpDepth' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '# are package globals.' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'elsif'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '$'           Name.Variable
 'onetimeDump' Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'onetimeDump' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'eq'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'dump'"      Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'local'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'option'      Name.Variable
 '{'           Punctuation
 ''            Name
 'dumpDepth'   Name
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'onetimedumpDepth' Name.Variable
-'\n              ' Text
+'\n              ' Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'onetimedumpDepth' Name.Variable
 ';'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 ''            Name
 'dumpit'      Name
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'OUT'         Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '@'           Name.Variable
 'res'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'elsif'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'onetimeDump' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'eq'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'methods'"   Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 ''            Name
 'methods'     Name
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'res'         Name.Variable
 '['           Punctuation
 '0'           Literal.Number.Integer
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '## end elsif ($onetimeDump)' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '@'           Name.Variable
 'res'         Name.Variable
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '## end sub eval' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '############################################## End lexical danger zone' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# After this point it is safe to introduce lexicals.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# The code being debugged will be executing in its own context, and' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 "# can't see the inside of the debugger." Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# However, one should not overdo it: leave as much control from outside as' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 "# possible. If you make something a lexical, it's not going to be addressable" Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# from outside the debugger even if you know its name.' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# This file is automatically included if you do perl -d.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 "# It's probably not useful to include this yourself." Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Before venturing further into these twisty passages, it is' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# wise to read the perldebguts man page or risk the ire of dragons.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# (It should be noted that perldebguts will tell you a lot about' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# the underlying mechanics of how the debugger interfaces into the' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Perl interpreter, but not a lot about the debugger itself. The new' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# comments in this code try to address this problem.)' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Note that no subroutine call is possible until &DB::sub is defined' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# (for subroutines defined outside of the package DB). In fact the same is' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# true if $deep is not defined.' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Enhanced by ilya@math.ohio-state.edu (Ilya Zakharevich)' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# modified Perl debugger, to be run from Emacs in perldb-mode' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Ray Lischner (uunet!mntgfx!lisch) as of 5 Nov 1990' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Johan Vromans -- upgrade to 4.0 pl 10' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Ilya Zakharevich -- patches after 5.001 (and some before ;-)' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# (We have made efforts to  clarify the comments in the change log' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# in other places; some of them may seem somewhat obscure as they' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# were originally written, and explaining them away from the code' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# in question seems conterproductive.. -JM)' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '=head1 DEBUGGER INITIALIZATION\n\nThe debugger starts up in phases.\n\n=head2 BASIC SETUP\n\nFirst, it initializes the environment it wants to run in: turning off\nwarnings during its own compilation, defining variables which it will need\nto avoid warnings later, setting itself up to not exit when the program\nterminates, and defaulting to printing return values for the C<r> command.\n\n=cut' Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Needed for the statement after exec():' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# This BEGIN block is simply used to switch off warnings during debugger' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# compiliation. Probably it would be better practice to fix the warnings,' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 "# but this is how it's done at the moment." Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'BEGIN'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'ini_warn'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$^W'         Name.Variable.Global
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$^W'         Name.Variable.Global
-'       '     Text
+'       '     Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'    '        Text
+'    '        Text.Whitespace
 '# Switch compilation warnings off until another BEGIN.' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# test if assertions are supported and actived:' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'BEGIN'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'ini_assertion' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'eval'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"sub asserting_test : assertion {1}; 1"' Literal.String
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '# $ini_assertion = undef => assertions unsupported,' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '#        "       = 1     => assertions supported' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '# print "\\$ini_assertion=$ini_assertion\\n";' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'local'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '$^W'         Name.Variable.Global
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ';'           Punctuation
-'    '        Text
+'    '        Text.Whitespace
 '# Switch run-time warnings off during init.' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '=head2 THREADS SUPPORT\n\nIf we are running under a threaded Perl, we require threads and threads::shared\nif the environment variable C<PERL5DB_THREADED> is set, to enable proper\nthreaded debugger control.  C<-dt> can also be used to set this.\n\nEach new thread will be announced and the debugger prompt will always inform\nyou of each new thread created.  It will also indicate the thread id in which\nwe are currently running within the prompt like this:\n\n\t[tid] DB<$i>\n\nWhere C<[tid]> is an integer thread id and C<$i> is the familiar debugger\ncommand prompt.  The prompt will show: C<[0]> when running under threads, but\nnot actually in a thread.  C<[tid]> is consistent with C<gdb> usage.\n\nWhile running under threads, when you set or delete a breakpoint (etc.), this\nwill apply to all threads, not just the currently running one.  When you are \nin a currently executing thread, you will stay there until it completes.  With\nthe current implementation it is not currently possible to hop from one thread\nto another.\n\nThe C<e> and C<E> commands are currently fairly minimal - see C<h e> and C<h E>.\n\nNote that threading support was built into the debugger as of Perl version\nC<5.8.6> and debugger version C<1.2.8>.\n\n=cut' Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'BEGIN'       Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '# ensure we can share our non-threaded variables or no-op' Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '$'           Name.Variable
 'ENV'         Name.Variable
@@ -529,35 +529,35 @@
 'PERL5DB_THREADED' Name
 '}'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'require'     Keyword
-' '           Text
+' '           Text.Whitespace
 'threads'     Name.Namespace
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'require'     Keyword
-' '           Text
+' '           Text.Whitespace
 'threads::shared' Name.Namespace
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'import'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'threads::'   Name.Namespace
 ''            Name
 'shared'      Name
-' '           Text
+' '           Text.Whitespace
 'qw('         Literal.String.Other
 'share'       Literal.String.Other
 ')'           Literal.String.Other
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '$'           Name.Variable
 'DBGR'        Name.Variable
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 ''            Name
 'share'       Name
 '('           Punctuation
@@ -566,7 +566,7 @@
 'DBGR'        Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 ''            Name
 'lock'        Name
 '('           Punctuation
@@ -574,170 +574,170 @@
 'DBGR'        Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 '"Threads support enabled\\n"' Literal.String
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '*'           Operator
 ''            Name
 'lock'        Name
-'  '          Text
+'  '          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'sub'         Name
 '('           Punctuation
 '*'           Operator
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '}'           Punctuation
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '*'           Operator
 ''            Name
 'share'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'sub'         Name
 '('           Punctuation
 '*'           Operator
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '}'           Punctuation
 ';'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# This would probably be better done with "use vars", but that wasn\'t around' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# when this code was originally written. (Neither was "use strict".) And on' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# the principle of not fiddling with something that was working, this was' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# left alone.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'warn'        Name.Builtin
 '('           Punctuation
-'               ' Text
+'               ' Text.Whitespace
 '# Do not ;-)' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 "# These variables control the execution of 'dumpvar.pl'." Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'dumpvar::'   Name.Namespace
 'hashDepth'   Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'dumpvar::'   Name.Namespace
 'arrayDepth'  Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'dumpvar::'   Name.Namespace
 'dumpDBFiles' Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'dumpvar::'   Name.Namespace
 'dumpPackages' Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'dumpvar::'   Name.Namespace
 'quoteHighBit' Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'dumpvar::'   Name.Namespace
 'printUndef'  Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'dumpvar::'   Name.Namespace
 'globPrint'   Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'dumpvar::'   Name.Namespace
 'usageOnly'   Name.Variable
 ','           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '# used to save @ARGV and extract any debugger-related flags.' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '@'           Name.Variable
 'ARGS'        Name.Variable
 ','           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '# used to control die() reporting in diesignal()' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'Carp::'      Name.Namespace
 'CarpLevel'   Name.Variable
 ','           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '# used to prevent multiple entries to diesignal()' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '# (if for instance diesignal() itself dies)' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'panic'       Name.Variable
 ','           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '# used to prevent the debugger from running nonstop' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '# after a restart' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'second_time' Name.Variable
 ','           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'foreach'     Keyword
-' '           Text
+' '           Text.Whitespace
 'my'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'k'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'keys'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '%'           Name.Variable
 'INC'         Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '&'           Operator
 ''            Name
 'share'       Name
@@ -753,377 +753,377 @@
 '}'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Command-line + PERLLIB:' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Save the contents of @INC before they are modified elsewhere.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@'           Name.Variable
 'ini_INC'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@'           Name.Variable
 'INC'         Name.Variable
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# This was an attempt to clear out the previous values of various' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 "# trapped errors. Apparently it didn't help. XXX More info needed!" Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 "# $prevwarn = $prevdie = $prevbus = $prevsegv = ''; # Does not help?!" Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "# We set these variables to safe values. We don't want to blindly turn" Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# off warnings, because other packages may still want them.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$'           Name.Variable
 'trace'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'signal'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'single'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ';'           Punctuation
-'    '        Text
+'    '        Text.Whitespace
 '# Uninitialized warning suppression' Comment.Single
-'\n                                   ' Text
+'\n                                   ' Text.Whitespace
 '# (local $^W cannot help - other packages!).' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Default to not exiting when program finishes; print the return' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 "# value when the 'r' command is used to return from a subroutine." Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$'           Name.Variable
 'inhibit_exit' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'option'      Name.Variable
 '{'           Punctuation
 ''            Name
 'PrintRet'    Name
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "=head1 OPTION PROCESSING\n\nThe debugger's options are actually spread out over the debugger itself and \nC<dumpvar.pl>; some of these are variables to be set, while others are \nsubs to be called with a value. To try to make this a little easier to\nmanage, the debugger uses a few data structures to define what options\nare legal and how they are to be processed.\n\nFirst, the C<@options> array defines the I<names> of all the options that\nare to be accepted.\n\n=cut" Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '@'           Name.Variable
 'options'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'qw('         Literal.String.Other
 '\n  CommandSet\n  hashDepth    arrayDepth    dumpDepth\n  DumpDBFiles  DumpPackages  DumpReused\n  compactDump  veryCompact   quote\n  HighBit      undefPrint    globPrint\n  PrintRet     UsageOnly     frame\n  AutoTrace    TTY           noTTY\n  ReadLine     NonStop       LineInfo\n  maxTraceLen  recallCommand ShellBang\n  pager        tkRunning     ornaments\n  signalLevel  warnLevel     dieLevel\n  inhibit_exit ImmediateStop bareStringify\n  CreateTTY    RemotePort    windowSize\n  DollarCaretP OnlyAssertions WarnAssertions\n' Literal.String.Other
 
 ')'           Literal.String.Other
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '@'           Name.Variable
 'RememberOnROptions' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'qw('         Literal.String.Other
 'DollarCaretP OnlyAssertions' Literal.String.Other
 ')'           Literal.String.Other
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '=pod\n\nSecond, C<optionVars> lists the variables that each option uses to save its\nstate.\n\n=cut' Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '%'           Name.Variable
 'optionVars'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'hashDepth'   Name
-'     '       Text
+'     '       Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '$'           Name.Variable
 'dumpvar::'   Name.Namespace
 'hashDepth'   Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'arrayDepth'  Name
-'    '        Text
+'    '        Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '$'           Name.Variable
 'dumpvar::'   Name.Namespace
 'arrayDepth'  Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'CommandSet'  Name
-'    '        Text
+'    '        Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '$'           Name.Variable
 'CommandSet'  Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'DumpDBFiles' Name
-'   '         Text
+'   '         Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '$'           Name.Variable
 'dumpvar::'   Name.Namespace
 'dumpDBFiles' Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'DumpPackages' Name
-'  '          Text
+'  '          Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '$'           Name.Variable
 'dumpvar::'   Name.Namespace
 'dumpPackages' Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'DumpReused'  Name
-'    '        Text
+'    '        Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '$'           Name.Variable
 'dumpvar::'   Name.Namespace
 'dumpReused'  Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'HighBit'     Name
-'       '     Text
+'       '     Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '$'           Name.Variable
 'dumpvar::'   Name.Namespace
 'quoteHighBit' Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'undefPrint'  Name
-'    '        Text
+'    '        Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '$'           Name.Variable
 'dumpvar::'   Name.Namespace
 'printUndef'  Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'globPrint'   Name
-'     '       Text
+'     '       Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '$'           Name.Variable
 'dumpvar::'   Name.Namespace
 'globPrint'   Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'UsageOnly'   Name
-'     '       Text
+'     '       Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '$'           Name.Variable
 'dumpvar::'   Name.Namespace
 'usageOnly'   Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'CreateTTY'   Name
-'     '       Text
+'     '       Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '$'           Name.Variable
 'CreateTTY'   Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'bareStringify' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '$'           Name.Variable
 'dumpvar::'   Name.Namespace
 'bareStringify' Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'frame'       Name
-'         '   Text
+'         '   Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '$'           Name.Variable
 'frame'       Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'AutoTrace'   Name
-'     '       Text
+'     '       Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '$'           Name.Variable
 'trace'       Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'inhibit_exit' Name
-'  '          Text
+'  '          Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '$'           Name.Variable
 'inhibit_exit' Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'maxTraceLen' Name
-'   '         Text
+'   '         Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '$'           Name.Variable
 'maxtrace'    Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'ImmediateStop' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '$'           Name.Variable
 'ImmediateStop' Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'RemotePort'  Name
-'    '        Text
+'    '        Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '$'           Name.Variable
 'remoteport'  Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'windowSize'  Name
-'    '        Text
+'    '        Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '$'           Name.Variable
 'window'      Name.Variable
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'WarnAssertions' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '$'           Name.Variable
 'warnassertions' Name.Variable
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ')'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '=pod\n\nThird, C<%optionAction> defines the subroutine to be called to process each\noption.\n\n=cut' Comment.Multiline
-' \n\n'       Text
+' \n\n'       Text.Whitespace
 
 '%'           Name.Variable
 'optionAction' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'compactDump' Name
-'   '         Text
+'   '         Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '&'           Operator
 ''            Name
@@ -1131,13 +1131,13 @@
 ''            Name
 'compactDump' Name
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'veryCompact' Name
-'   '         Text
+'   '         Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '&'           Operator
 ''            Name
@@ -1145,13 +1145,13 @@
 ''            Name
 'veryCompact' Name
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'quote'       Name
-'         '   Text
+'         '   Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '&'           Operator
 ''            Name
@@ -1159,409 +1159,409 @@
 ''            Name
 'quote'       Name
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'TTY'         Name
-'           ' Text
+'           ' Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '&'           Operator
 ''            Name
 'TTY'         Name
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'noTTY'       Name
-'         '   Text
+'         '   Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '&'           Operator
 ''            Name
 'noTTY'       Name
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'ReadLine'    Name
-'      '      Text
+'      '      Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '&'           Operator
 ''            Name
 'ReadLine'    Name
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'NonStop'     Name
-'       '     Text
+'       '     Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '&'           Operator
 ''            Name
 'NonStop'     Name
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'LineInfo'    Name
-'      '      Text
+'      '      Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '&'           Operator
 ''            Name
 'LineInfo'    Name
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'recallCommand' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '&'           Operator
 ''            Name
 'recallCommand' Name
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'ShellBang'   Name
-'     '       Text
+'     '       Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '&'           Operator
 ''            Name
 'shellBang'   Name
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'pager'       Name
-'         '   Text
+'         '   Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '&'           Operator
 ''            Name
 'pager'       Name
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'signalLevel' Name
-'   '         Text
+'   '         Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '&'           Operator
 ''            Name
 'signalLevel' Name
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'warnLevel'   Name
-'     '       Text
+'     '       Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '&'           Operator
 ''            Name
 'warnLevel'   Name
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'dieLevel'    Name
-'      '      Text
+'      '      Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '&'           Operator
 ''            Name
 'dieLevel'    Name
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'tkRunning'   Name
-'     '       Text
+'     '       Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '&'           Operator
 ''            Name
 'tkRunning'   Name
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'ornaments'   Name
-'     '       Text
+'     '       Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '&'           Operator
 ''            Name
 'ornaments'   Name
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'RemotePort'  Name
-'    '        Text
+'    '        Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '&'           Operator
 ''            Name
 'RemotePort'  Name
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'DollarCaretP' Name
-'  '          Text
+'  '          Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '&'           Operator
 ''            Name
 'DollarCaretP' Name
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'OnlyAssertions' Name
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '&'           Operator
 ''            Name
 'OnlyAssertions' Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ')'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '=pod\n\nLast, the C<%optionRequire> notes modules that must be C<require>d if an\noption is used.\n\n=cut' Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Note that this list is not complete: several options not listed here' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# actually require that dumpvar.pl be loaded for them to work, but are' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# not in the table. A subsequent patch will correct this problem; for' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 "# the moment, we're just recommenting, and we are NOT going to change" Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# function.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '%'           Name.Variable
 'optionRequire' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'compactDump' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'dumpvar.pl'" Literal.String
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'veryCompact' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'dumpvar.pl'" Literal.String
 ','           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'quote'       Name
-'       '     Text
+'       '     Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'dumpvar.pl'" Literal.String
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ')'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '=pod\n\nThere are a number of initialization-related variables which can be set\nby putting code to set them in a BEGIN block in the C<PERL5DB> environment\nvariable. These are:\n\n=over 4\n\n=item C<$rl> - readline control XXX needs more explanation\n\n=item C<$warnLevel> - whether or not debugger takes over warning handling\n\n=item C<$dieLevel> - whether or not debugger takes over die handling\n\n=item C<$signalLevel> - whether or not debugger takes over signal handling\n\n=item C<$pre> - preprompt actions (array reference)\n\n=item C<$post> - postprompt actions (array reference)\n\n=item C<$pretype>\n\n=item C<$CreateTTY> - whether or not to create a new TTY for this debugger\n\n=item C<$CommandSet> - which command set to use (defaults to new, documented set)\n\n=back\n\n=cut' Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# These guys may be defined in $ENV{PERL5DB} :' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$'           Name.Variable
 'rl'          Name.Variable
-'          '  Text
+'          '  Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'     '       Text
+'     '       Text.Whitespace
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'rl'          Name.Variable
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$'           Name.Variable
 'warnLevel'   Name.Variable
-'   '         Text
+'   '         Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'     '       Text
+'     '       Text.Whitespace
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'warnLevel'   Name.Variable
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$'           Name.Variable
 'dieLevel'    Name.Variable
-'    '        Text
+'    '        Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'     '       Text
+'     '       Text.Whitespace
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'dieLevel'    Name.Variable
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$'           Name.Variable
 'signalLevel' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'     '       Text
+'     '       Text.Whitespace
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'signalLevel' Name.Variable
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$'           Name.Variable
 'pre'         Name.Variable
-'         '   Text
+'         '   Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '[]'          Operator
-'    '        Text
+'    '        Text.Whitespace
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'pre'         Name.Variable
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$'           Name.Variable
 'post'        Name.Variable
-'        '    Text
+'        '    Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '[]'          Operator
-'    '        Text
+'    '        Text.Whitespace
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'post'        Name.Variable
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$'           Name.Variable
 'pretype'     Name.Variable
-'     '       Text
+'     '       Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '[]'          Operator
-'    '        Text
+'    '        Text.Whitespace
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'pretype'     Name.Variable
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$'           Name.Variable
 'CreateTTY'   Name.Variable
-'   '         Text
+'   '         Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
-'     '       Text
+'     '       Text.Whitespace
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'CreateTTY'   Name.Variable
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$'           Name.Variable
 'CommandSet'  Name.Variable
-'  '          Text
+'  '          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'580'"       Literal.String
-' '           Text
+' '           Text.Whitespace
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'CommandSet'  Name.Variable
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ''            Name
 'share'       Name
@@ -1570,7 +1570,7 @@
 'rl'          Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ''            Name
 'share'       Name
@@ -1579,7 +1579,7 @@
 'warnLevel'   Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ''            Name
 'share'       Name
@@ -1588,7 +1588,7 @@
 'dieLevel'    Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ''            Name
 'share'       Name
@@ -1597,7 +1597,7 @@
 'signalLevel' Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ''            Name
 'share'       Name
@@ -1606,7 +1606,7 @@
 'pre'         Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ''            Name
 'share'       Name
@@ -1615,7 +1615,7 @@
 'post'        Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ''            Name
 'share'       Name
@@ -1624,7 +1624,7 @@
 'pretype'     Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ''            Name
 'share'       Name
@@ -1633,7 +1633,7 @@
 'rl'          Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ''            Name
 'share'       Name
@@ -1642,7 +1642,7 @@
 'CreateTTY'   Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ''            Name
 'share'       Name
@@ -1651,10 +1651,10 @@
 'CommandSet'  Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '=pod\n\nThe default C<die>, C<warn>, and C<signal> handlers are set up.\n\n=cut' Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ''            Name
 'warnLevel'   Name
@@ -1663,7 +1663,7 @@
 'warnLevel'   Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ''            Name
 'dieLevel'    Name
@@ -1672,7 +1672,7 @@
 'dieLevel'    Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 ''            Name
 'signalLevel' Name
@@ -1681,56 +1681,56 @@
 'signalLevel' Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "=pod\n\nThe pager to be used is needed next. We try to get it from the\nenvironment first.  if it's not defined there, we try to find it in\nthe Perl C<Config.pm>.  If it's not there, we default to C<more>. We\nthen call the C<pager()> function to save the pager name.\n\n=cut" Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "# This routine makes sure $pager is set up so that '|' can use it." Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ''            Name
 'pager'       Name
 '('           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '# If PAGER is defined in the environment, use it.' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'ENV'         Name.Variable
 '{'           Punctuation
 ''            Name
 'PAGER'       Name
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '?'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'ENV'         Name.Variable
 '{'           Punctuation
 ''            Name
 'PAGER'       Name
 '}'           Punctuation
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 '# If not, see if Config.pm defines it.' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'eval'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'require'     Keyword
-' '           Text
+' '           Text.Whitespace
 'Config'      Name.Namespace
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'Config::'    Name.Namespace
 'Config'      Name.Variable
@@ -1738,9 +1738,9 @@
 ''            Name
 'pager'       Name
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '?'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'Config::'    Name.Namespace
 'Config'      Name.Variable
@@ -1748,39 +1748,39 @@
 ''            Name
 'pager'       Name
 '}'           Punctuation
-'\n\n      '  Text
+'\n\n      '  Text.Whitespace
 "# If not, fall back to 'more'." Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'more'"      Literal.String
-'\n  '        Text
+'\n  '        Text.Whitespace
 ')'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'pager'       Name.Variable
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '=pod\n\nWe set up the command to be used to access the man pages, the command\nrecall character (C<!> unless otherwise defined) and the shell escape\ncharacter (C<!> unless otherwise defined). Yes, these do conflict, and\nneither works in the debugger at the moment.\n\n=cut' Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ''            Name
 'setman'      Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Set up defaults for command recall and shell escape (note:' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 "# these currently don't work in linemode debugging)." Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '&'           Operator
 ''            Name
@@ -1788,15 +1788,15 @@
 '('           Punctuation
 '"!"'         Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'prc'         Name.Variable
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '&'           Operator
 ''            Name
@@ -1804,62 +1804,62 @@
 '('           Punctuation
 '"!"'         Literal.String
 ')'           Punctuation
-'     '       Text
+'     '       Text.Whitespace
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'psh'         Name.Variable
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "=pod\n\nWe then set up the gigantic string containing the debugger help.\nWe also set the limit on the number of arguments we'll display during a\ntrace.\n\n=cut" Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ''            Name
 'sethelp'     Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "# If we didn't get a default for the length of eval/stack trace args," Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# set it here.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$'           Name.Variable
 'maxtrace'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '400'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'maxtrace'    Name.Variable
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "=head2 SETTING UP THE DEBUGGER GREETING\n\nThe debugger I<greeting> helps to inform the user how many debuggers are\nrunning, and whether the current debugger is the primary or a child.\n\nIf we are the primary, we just hang onto our pid so we'll have it when\nor if we start a child debugger. If we are a child, we'll set things up\nso we'll have a unique greeting and so the parent will give us our own\nTTY later.\n\nWe save the current contents of the C<PERLDB_PIDS> environment variable\nbecause we mess around with it. We'll also need to hang onto it because\nwe'll need it if we restart.\n\nChild debuggers make a label out of the current PID structure recorded in\nPERLDB_PIDS plus the new PID. They also mark themselves as not having a TTY\nyet so the parent will give them one later via C<resetterm()>.\n\n=cut" Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "# Save the current contents of the environment; we're about to" Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 "# much with it. We'll need this if we have to restart." Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$'           Name.Variable
 'ini_pids'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'ENV'         Name.Variable
 '{'           Punctuation
@@ -1867,781 +1867,781 @@
 'PERLDB_PIDS' Name
 '}'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'ENV'         Name.Variable
 '{'           Punctuation
 ''            Name
 'PERLDB_PIDS' Name
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 "# We're a child. Make us a label out of the current PID structure" Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '# recorded in PERLDB_PIDS plus our (new) PID. Mark us as not having' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '# a term yet so the parent will give us one later via resetterm().' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'pids'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"[$ENV{PERLDB_PIDS}]"' Literal.String
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'ENV'         Name.Variable
 '{'           Punctuation
 ''            Name
 'PERLDB_PIDS' Name
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '.'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"->$$"'      Literal.String
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'term_pid'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '1'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '## end if (defined $ENV{PERLDB_PIDS...' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 "# We're the parent PID. Initialize PERLDB_PID in case we end up with a" Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 "# child debugger, and mark us as the parent, so we'll know to set up" Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 "# more TTY's is we have to." Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'ENV'         Name.Variable
 '{'           Punctuation
 ''            Name
 'PERLDB_PIDS' Name
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"$$"'        Literal.String
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'pids'        Name.Variable
-'             ' Text
+'             ' Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"{pid=$$}"'  Literal.String
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'term_pid'    Name.Variable
-'         '   Text
+'         '   Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$$'          Name.Variable.Global
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '$'           Name.Variable
 'pidprompt'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "''"          Literal.String
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Sets up $emacs as a synonym for $slave_editor.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Operator
 ''            Name
 'emacs'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'slave_editor' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'slave_editor' Name.Variable
 ';'           Punctuation
-'    '        Text
+'    '        Text.Whitespace
 '# May be used in afterinit()...' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "=head2 READING THE RC FILE\n\nThe debugger will read a file of initialization options if supplied. If    \nrunning interactively, this is C<.perldb>; if not, it's C<perldb.ini>.\n\n=cut" Comment.Multiline
-'      \n\n'  Text
+'      \n\n'  Text.Whitespace
 
 "# As noted, this test really doesn't check accurately that the debugger" Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# is running at a terminal or not.' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 ''            Name
 'e'           Name
-' '           Text
+' '           Text.Whitespace
 '"/dev/tty"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'                      ' Text
+'                      ' Text.Whitespace
 '# this is the wrong metric!' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'rcfile'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '".perldb"'   Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'rcfile'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"perldb.ini"' Literal.String
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '=pod\n\nThe debugger does a safety test of the file to be read. It must be owned\neither by the current user or root, and must only be writable by the owner.\n\n=cut' Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# This wraps a safety test around "do" to read and evaluate the init file.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 "# This isn't really safe, because there's a race" Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# between checking and opening.  The solution is to' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# open and fstat the handle, but then you have to read and' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# eval the contents.  But then the silly thing gets' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# your lexical scope, which is unfortunate at best.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sub'         Keyword
-' '           Text
+' '           Text.Whitespace
 'safe_do'     Name.Function
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'my'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'file'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'shift'       Name.Builtin
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '# Just exactly what part of the word "CORE::" don\'t you understand?' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'local'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'SIG'         Name.Variable
 '{'           Punctuation
 '__WARN__'    Name.Builtin.Pseudo
 '}'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'local'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'SIG'         Name.Variable
 '{'           Punctuation
 '__DIE__'     Name.Builtin.Pseudo
 '}'           Punctuation
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'is_safe_file' Name
 '('           Punctuation
 '$'           Name.Variable
 'file'        Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 ''            Name
 'CORE::'      Name.Namespace
 'warn'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '<<'          Literal.String
 'EO_GRIPE'    Literal.String.Delimiter
 ';\nperldb: Must not source insecure rcfile $file.\n        You or the superuser must be the owner, and it must not \n        be writable by anyone but its owner.\n' Literal.String
 
 'EO_GRIPE'    Literal.String.Delimiter
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'return'      Keyword
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '## end unless (is_safe_file($file...' Comment.Single
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'do'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'file'        Name.Variable
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'CORE::'      Name.Namespace
 'warn'        Name.Builtin
 '('           Punctuation
 '"perldb: couldn\'t parse $file: $@"' Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$@'          Name.Variable.Global
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '## end sub safe_do' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# This is the safety test itself.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#'           Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Verifies that owner is either real user or superuser and that no' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# one but owner may write to it.  This function is of limited use' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# when called on a path instead of upon a handle, because there are' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# no guarantees that filename (by dirent) whose file (by ino) is' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# eventually accessed is the same as the one tested.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 "# Assumes that the file's existence is not in doubt." Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sub'         Keyword
-' '           Text
+' '           Text.Whitespace
 'is_safe_file' Name.Function
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'my'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'path'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'shift'       Name.Builtin
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'stat'        Name.Builtin
 '('           Punctuation
 '$'           Name.Variable
 'path'        Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '||'          Operator
-' '           Text
+' '           Text.Whitespace
 'return'      Keyword
 ';'           Punctuation
-'    '        Text
+'    '        Text.Whitespace
 '# mysteriously vaporized' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'my'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'dev'         Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'ino'         Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'mode'        Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'nlink'       Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'uid'         Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'gid'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'stat'        Name.Builtin
 '('           Punctuation
 ''            Name
 '_'           Name
 ')'           Punctuation
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'uid'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'uid'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 '$<'          Name.Variable.Global
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'mode'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '&'           Operator
-' '           Text
+' '           Text.Whitespace
 '022'         Literal.Number.Oct
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '## end sub is_safe_file' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# If the rcfile (whichever one we decided was the right one to read)' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# exists, we safely do it.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 ''            Name
 'f'           Name
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'rcfile'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'safe_do'     Name
 '('           Punctuation
 '"./$rcfile"' Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "# If there isn't one here, try the user's home directory." Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'elsif'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'ENV'         Name.Variable
 '{'           Punctuation
 ''            Name
 'HOME'        Name
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 ''            Name
 'f'           Name
-' '           Text
+' '           Text.Whitespace
 '"$ENV{HOME}/$rcfile"' Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'safe_do'     Name
 '('           Punctuation
 '"$ENV{HOME}/$rcfile"' Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Else try the login directory.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'elsif'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'ENV'         Name.Variable
 '{'           Punctuation
 ''            Name
 'LOGDIR'      Name
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 ''            Name
 'f'           Name
-' '           Text
+' '           Text.Whitespace
 '"$ENV{LOGDIR}/$rcfile"' Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'safe_do'     Name
 '('           Punctuation
 '"$ENV{LOGDIR}/$rcfile"' Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# If the PERLDB_OPTS variable has options in it, parse those out next.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'ENV'         Name.Variable
 '{'           Punctuation
 ''            Name
 'PERLDB_OPTS' Name
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 ''            Name
 'parse_options' Name
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'ENV'         Name.Variable
 '{'           Punctuation
 ''            Name
 'PERLDB_OPTS' Name
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '=pod\n\nThe last thing we do during initialization is determine which subroutine is\nto be used to obtain a new terminal when a new debugger is started. Right now,\nthe debugger only handles X Windows and OS/2.\n\n=cut' Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Set up the get_fork_TTY subroutine to be aliased to the proper routine.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 "# Works if you're running an xterm or xterm-like window, or you're on" Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 "# OS/2. This may need some expansion: for instance, this doesn't handle" Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# OS X Terminal windows.' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'not'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '&'           Operator
 ''            Name
 'get_fork_TTY' Name
-'    '        Text
+'    '        Text.Whitespace
 '# no routine exists,' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'and'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'ENV'         Name.Variable
 '{'           Punctuation
 ''            Name
 'TERM'        Name
 '}'           Punctuation
-'       '     Text
+'       '     Text.Whitespace
 '# and we know what kind' Comment.Single
-'\n                                 ' Text
+'\n                                 ' Text.Whitespace
 '# of terminal this is,' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'and'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'ENV'         Name.Variable
 '{'           Punctuation
 ''            Name
 'TERM'        Name
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'eq'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'xterm'"     Literal.String
-'    '        Text
+'    '        Text.Whitespace
 "# and it's an xterm," Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#   and defined $ENV{WINDOWID}   # and we know what window this is, <- wrong metric' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'and'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'ENV'         Name.Variable
 '{'           Punctuation
 ''            Name
 'DISPLAY'     Name
 '}'           Punctuation
-'    '        Text
+'    '        Text.Whitespace
 "# and what display it's on," Comment.Single
-'\n  '        Text
+'\n  '        Text.Whitespace
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '*'           Operator
 ''            Name
 'get_fork_TTY' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '&'           Operator
 ''            Name
 'xterm_get_fork_TTY' Name
 ';'           Punctuation
-'    '        Text
+'    '        Text.Whitespace
 '# use the xterm version' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '## end if (not defined &get_fork_TTY...' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'elsif'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$^O'         Name.Variable.Global
-' '           Text
+' '           Text.Whitespace
 'eq'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'os2'"       Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'                     ' Text
+'                     ' Text.Whitespace
 '# If this is OS/2,' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '*'           Operator
 ''            Name
 'get_fork_TTY' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '&'           Operator
 ''            Name
 'os2_get_fork_TTY' Name
 ';'           Punctuation
-'      '      Text
+'      '      Text.Whitespace
 '# use the OS/2 version' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# untaint $^O, which may have been tainted by the last statement.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# see bug [perl #24674]' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$^O'         Name.Variable.Global
-' '           Text
+' '           Text.Whitespace
 '=~'          Operator
-' '           Text
+' '           Text.Whitespace
 'm/^(.*)\\z/' Literal.String.Regex
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$^O'         Name.Variable.Global
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 '1'           Name.Variable
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Here begin the unreadable code.  It needs fixing.' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "=head2 RESTART PROCESSING\n\nThis section handles the restart command. When the C<R> command is invoked, it\ntries to capture all of the state it can into environment variables, and\nthen sets C<PERLDB_RESTART>. When we start executing again, we check to see\nif C<PERLDB_RESTART> is there; if so, we reload all the information that\nthe R command stuffed into the environment variables.\n\n  PERLDB_RESTART   - flag only, contains no restart data itself.       \n  PERLDB_HIST      - command history, if it's available\n  PERLDB_ON_LOAD   - breakpoints set by the rc file\n  PERLDB_POSTPONE  - subs that have been loaded/not executed, and have actions\n  PERLDB_VISITED   - files that had breakpoints\n  PERLDB_FILE_...  - breakpoints for a file\n  PERLDB_OPT       - active options\n  PERLDB_INC       - the original @INC\n  PERLDB_PRETYPE   - preprompt debugger actions\n  PERLDB_PRE       - preprompt Perl code\n  PERLDB_POST      - post-prompt Perl code\n  PERLDB_TYPEAHEAD - typeahead captured by readline()\n\nWe chug through all these variables and plug the values saved in them\nback into the appropriate spots in the debugger.\n\n=cut" Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'exists'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'ENV'         Name.Variable
 '{'           Punctuation
 ''            Name
 'PERLDB_RESTART' Name
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 "# We're restarting, so we don't need the flag that says to restart anymore." Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'delete'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'ENV'         Name.Variable
 '{'           Punctuation
@@ -2649,45 +2649,45 @@
 'PERLDB_RESTART' Name
 '}'           Punctuation
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '# $restart = 1;' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '@'           Name.Variable
 'hist'        Name.Variable
-'          '  Text
+'          '  Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'get_list'    Name
 '('           Punctuation
 "'PERLDB_HIST'" Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '%'           Name.Variable
 'break_on_load' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'get_list'    Name
 '('           Punctuation
 '"PERLDB_ON_LOAD"' Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '%'           Name.Variable
 'postponed'   Name.Variable
-'     '       Text
+'     '       Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'get_list'    Name
 '('           Punctuation
 '"PERLDB_POSTPONE"' Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 ''            Name
 'share'       Name
 '('           Punctuation
@@ -2695,7 +2695,7 @@
 'hist'        Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 ''            Name
 'share'       Name
 '('           Punctuation
@@ -2703,7 +2703,7 @@
 'truehist'    Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 ''            Name
 'share'       Name
 '('           Punctuation
@@ -2711,7 +2711,7 @@
 'break_on_load' Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 ''            Name
 'share'       Name
 '('           Punctuation
@@ -2719,269 +2719,269 @@
 'postponed'   Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '# restore breakpoints/actions' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'my'          Keyword
-' '           Text
+' '           Text.Whitespace
 '@'           Name.Variable
 'had_breakpoints' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'get_list'    Name
 '('           Punctuation
 '"PERLDB_VISITED"' Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '..'          Operator
-' '           Text
+' '           Text.Whitespace
 '$#'          Name.Variable
 'had_breakpoints' Name.Variable
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'my'          Keyword
-' '           Text
+' '           Text.Whitespace
 '%'           Name.Variable
 'pf'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'get_list'    Name
 '('           Punctuation
 '"PERLDB_FILE_$_"' Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '$'           Name.Variable
 'postponed_file' Name.Variable
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'had_breakpoints' Name.Variable
 '['           Punctuation
 '$'           Name.Variable
 '_'           Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '%'           Name.Variable
 'pf'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '%'           Name.Variable
 'pf'          Name.Variable
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '# restore options' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'my'          Keyword
-' '           Text
+' '           Text.Whitespace
 '%'           Name.Variable
 'opt'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'get_list'    Name
 '('           Punctuation
 '"PERLDB_OPT"' Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'my'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'opt'         Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'val'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'while'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'opt'         Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'val'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'each'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '%'           Name.Variable
 'opt'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '$'           Name.Variable
 'val'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '=~'          Operator
-' '           Text
+' '           Text.Whitespace
 "s/[\\\\\\']/\\\\$1/g" Literal.String.Regex
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 ''            Name
 'parse_options' Name
 '('           Punctuation
 '"$opt\'$val\'"' Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '# restore original @INC' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '@'           Name.Variable
 'INC'         Name.Variable
-'     '       Text
+'     '       Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'get_list'    Name
 '('           Punctuation
 '"PERLDB_INC"' Literal.String
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '@'           Name.Variable
 'ini_INC'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@'           Name.Variable
 'INC'         Name.Variable
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '# return pre/postprompt actions and typeahead buffer' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'pretype'     Name.Variable
-'   '         Text
+'   '         Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'get_list'    Name
 '('           Punctuation
 '"PERLDB_PRETYPE"' Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ']'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'pre'         Name.Variable
-'       '     Text
+'       '     Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'get_list'    Name
 '('           Punctuation
 '"PERLDB_PRE"' Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ']'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'post'        Name.Variable
-'      '      Text
+'      '      Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'get_list'    Name
 '('           Punctuation
 '"PERLDB_POST"' Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ']'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '@'           Name.Variable
 'typeahead'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'get_list'    Name
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"PERLDB_TYPEAHEAD"' Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '@'           Name.Variable
 'typeahead'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '## end if (exists $ENV{PERLDB_RESTART...' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "=head2 SETTING UP THE TERMINAL\n\nNow, we'll decide how the debugger is going to interact with the user.\nIf there's no TTY, we set the debugger to run non-stop; there's not going\nto be anyone there to enter commands.\n\n=cut" Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '$'           Name.Variable
 'notty'       Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'runnonstop'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 ''            Name
 'share'       Name
 '('           Punctuation
@@ -2989,917 +2989,917 @@
 'runnonstop'  Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "=pod\n\nIf there is a TTY, we have to determine who it belongs to before we can\nproceed. If this is a slave editor or graphical debugger (denoted by\nthe first command-line switch being '-emacs'), we shift this off and\nset C<$rl> to 0 (XXX ostensibly to do straight reads).\n\n=cut" Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '# Is Perl being run from a slave editor or graphical debugger?' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 "# If so, don't use readline, and set $slave_editor = 1." Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'slave_editor' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'main::'      Name.Namespace
 'ARGV'        Name.Variable
 '['           Punctuation
 '0'           Literal.Number.Integer
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'and'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'main::'      Name.Namespace
 'ARGV'        Name.Variable
 '['           Punctuation
 '0'           Literal.Number.Integer
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'eq'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'-emacs'"    Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'rl'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'shift'       Name.Builtin
 '('           Punctuation
 '@'           Name.Variable
 'main::'      Name.Namespace
 'ARGV'        Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'slave_editor' Name.Variable
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '#require Term::ReadLine;' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '=pod\n\nWe then determine what the console should be on various systems:\n\n=over 4\n\n=item * Cygwin - We use C<stdin> instead of a separate device.\n\n=cut' Comment.Multiline
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$^O'         Name.Variable.Global
-' '           Text
+' '           Text.Whitespace
 'eq'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'cygwin'"    Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '# /dev/tty is binary. use stdin for textmode' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 'undef'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'console'     Name.Variable
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '=item * Unix - use C</dev/tty>.\n\n=cut' Comment.Multiline
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'elsif'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 ''            Name
 'e'           Name
-' '           Text
+' '           Text.Whitespace
 '"/dev/tty"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '$'           Name.Variable
 'console'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"/dev/tty"'  Literal.String
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '=item * Windows or MSDOS - use C<con>.\n\n=cut' Comment.Multiline
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'elsif'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$^O'         Name.Variable.Global
-' '           Text
+' '           Text.Whitespace
 'eq'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'dos'"       Literal.String
-' '           Text
+' '           Text.Whitespace
 'or'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 ''            Name
 'e'           Name
-' '           Text
+' '           Text.Whitespace
 '"con"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 'or'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 '$^O'         Name.Variable.Global
-' '           Text
+' '           Text.Whitespace
 'eq'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'MSWin32'"   Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '$'           Name.Variable
 'console'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"con"'       Literal.String
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "=item * MacOS - use C<Dev:Console:Perl Debug> if this is the MPW version; C<Dev:\nConsole> if not.\n\nNote that Mac OS X returns C<darwin>, not C<MacOS>. Also note that the debugger doesn't do anything special for C<darwin>. Maybe it should.\n\n=cut" Comment.Multiline
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'elsif'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$^O'         Name.Variable.Global
-' '           Text
+' '           Text.Whitespace
 'eq'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'MacOS'"     Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'MacPerl::'   Name.Namespace
 'Version'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '!~'          Operator
-' '           Text
+' '           Text.Whitespace
 '/MPW/'       Literal.String.Regex
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '$'           Name.Variable
 'console'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-'\n              ' Text
+'\n              ' Text.Whitespace
 '"Dev:Console:Perl Debug"' Literal.String
 ';'           Punctuation
-'    '        Text
+'    '        Text.Whitespace
 '# Separate window for application' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '$'           Name.Variable
 'console'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"Dev:Console"' Literal.String
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "## end elsif ($^O eq 'MacOS')" Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '=item * VMS - use C<sys$command>.\n\n=cut' Comment.Multiline
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '# everything else is ...' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '$'           Name.Variable
 'console'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"sys\\$command"' Literal.String
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "=pod\n\n=back\n\nSeveral other systems don't use a specific console. We C<undef $console>\nfor those (Windows using a slave editor/graphical debugger, NetWare, OS/2\nwith a slave editor, Epoc).\n\n=cut" Comment.Multiline
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$^O'         Name.Variable.Global
-' '           Text
+' '           Text.Whitespace
 'eq'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'MSWin32'"   Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'and'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'slave_editor' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'or'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'ENV'         Name.Variable
 '{'           Punctuation
 ''            Name
 'EMACS'       Name
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '# /dev/tty is binary. use stdin for textmode' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '$'           Name.Variable
 'console'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'undef'       Name.Builtin
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$^O'         Name.Variable.Global
-' '           Text
+' '           Text.Whitespace
 'eq'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'NetWare'"   Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '# /dev/tty is binary. use stdin for textmode' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '$'           Name.Variable
 'console'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'undef'       Name.Builtin
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '# In OS/2, we need to use STDIN to get textmode too, even though' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '# it pretty much looks like Unix otherwise.' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'ENV'         Name.Variable
 '{'           Punctuation
 ''            Name
 'OS2_SHELL'   Name
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'and'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'slave_editor' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'or'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'ENV'         Name.Variable
 '{'           Punctuation
 ''            Name
 'WINDOWID'    Name
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
-'    '        Text
+'    '        Text.Whitespace
 '# In OS/2'   Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '$'           Name.Variable
 'console'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'undef'       Name.Builtin
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 "# EPOC also falls into the 'got to use STDIN' camp." Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$^O'         Name.Variable.Global
-' '           Text
+' '           Text.Whitespace
 'eq'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'epoc'"      Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '$'           Name.Variable
 'console'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'undef'       Name.Builtin
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '=pod\n\nIf there is a TTY hanging around from a parent, we use that as the console.\n\n=cut' Comment.Multiline
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '$'           Name.Variable
 'console'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'tty'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'tty'         Name.Variable
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '=head2 SOCKET HANDLING   \n\nThe debugger is capable of opening a socket and carrying out a debugging\nsession over the socket.\n\nIf C<RemotePort> was defined in the options, the debugger assumes that it\nshould try to start a debugging session on that port. It builds the socket\nand then tries to connect the input and output filehandles to it.\n\n=cut' Comment.Multiline
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '# Handle socket stuff.' Comment.Single
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'remoteport'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '# If RemotePort was defined in the options, connect input and output' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '# to the socket.' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 'require'     Keyword
-' '           Text
+' '           Text.Whitespace
 'IO::Socket'  Name.Namespace
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '$'           Name.Variable
 'OUT'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'new'         Keyword
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'IO::Socket::' Name.Namespace
 ''            Name
 'INET'        Name
 '('           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 ''            Name
 'Timeout'     Name
-'  '          Text
+'  '          Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'10'"        Literal.String
 ','           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 ''            Name
 'PeerAddr'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'remoteport'  Name.Variable
 ','           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 ''            Name
 'Proto'       Name
-'    '        Text
+'    '        Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'tcp'"       Literal.String
 ','           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
 '$'           Name.Variable
 'OUT'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'die'         Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '"Unable to connect to remote host: $remoteport\\n"' Literal.String
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '$'           Name.Variable
 'IN'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'OUT'         Name.Variable
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '## end if (defined $remoteport)' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '=pod\n\nIf no C<RemotePort> was defined, and we want to create a TTY on startup,\nthis is probably a situation where multiple debuggers are running (for example,\na backticked command that starts up another debugger). We create a new IN and\nOUT filehandle, and do the necessary mojo to create a new TTY if we know how\nand if we can.\n\n=cut' Comment.Multiline
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '# Non-socket.' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '# Two debuggers running (probably a system or a backtick that invokes' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '# the debugger itself under the running one). create a new IN and OUT' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '# filehandle, and do the necessary mojo to create a new tty if we' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '# know how, and we can.' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 ''            Name
 'create_IN_OUT' Name
 '('           Punctuation
 '4'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'CreateTTY'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '&'           Operator
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '$'           Name.Variable
 'console'     Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\n            ' Text
+'\n\n            ' Text.Whitespace
 '# If we have a console, check to see if there are separate ins and' Comment.Single
-'\n            ' Text
+'\n            ' Text.Whitespace
 '# outs to open. (They are assumed identiical if not.)' Comment.Single
-'\n\n            ' Text
+'\n\n            ' Text.Whitespace
 'my'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'i'           Name.Variable
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'o'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'split'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '/,/'         Literal.String.Regex
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'console'     Name.Variable
 ';'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '$'           Name.Variable
 'o'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'i'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'o'           Name.Variable
 ';'           Punctuation
-'\n\n            ' Text
+'\n\n            ' Text.Whitespace
 '# read/write on in, or just read, or read on STDIN.' Comment.Single
-'\n            ' Text
+'\n            ' Text.Whitespace
 'open'        Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'IN'          Name
 ','           Punctuation
-'      '      Text
+'      '      Text.Whitespace
 '"+<$i"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '||'          Operator
-' '           Text
+' '           Text.Whitespace
 'open'        Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'IN'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"<$i"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '||'          Operator
-' '           Text
+' '           Text.Whitespace
 'open'        Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'IN'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"<&STDIN"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n\n            ' Text
+'\n\n            ' Text.Whitespace
 '# read/write/create/clobber out, or write/create/clobber out,' Comment.Single
-'\n            ' Text
+'\n            ' Text.Whitespace
 '# or merge with STDERR, or merge with STDOUT.' Comment.Single
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 'open'        Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'OUT'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"+>$o"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '||'          Operator
-' '           Text
+' '           Text.Whitespace
 'open'        Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'OUT'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '">$o"'       Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '||'          Operator
-' '           Text
+' '           Text.Whitespace
 'open'        Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'OUT'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '">&STDERR"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '||'          Operator
-' '           Text
+' '           Text.Whitespace
 'open'        Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'OUT'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '">&STDOUT"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'    '        Text
+'    '        Text.Whitespace
 "# so we don't dongle stdout" Comment.Single
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '## end if ($console)' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 'elsif'       Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'not'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'console'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\n            ' Text
+'\n\n            ' Text.Whitespace
 '# No console. Open STDIN.' Comment.Single
-'\n            ' Text
+'\n            ' Text.Whitespace
 'open'        Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'IN'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"<&STDIN"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n\n            ' Text
+'\n\n            ' Text.Whitespace
 '# merge with STDERR, or with STDOUT.' Comment.Single
-'\n            ' Text
+'\n            ' Text.Whitespace
 'open'        Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'OUT'         Name
 ','           Punctuation
-'      '      Text
+'      '      Text.Whitespace
 '">&STDERR"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '||'          Operator
-' '           Text
+' '           Text.Whitespace
 'open'        Name.Builtin
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 ''            Name
 'OUT'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '">&STDOUT"'  Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'    '        Text
+'    '        Text.Whitespace
 "# so we don't dongle stdout" Comment.Single
-'\n            ' Text
+'\n            ' Text.Whitespace
 '$'           Name.Variable
 'console'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'STDIN/OUT'" Literal.String
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '## end elsif (not defined $console)' Comment.Single
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '# Keep copies of the filehandles so that when the pager runs, it' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '# can close standard input without clobbering ours.' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '$'           Name.Variable
 'IN'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '*'           Operator
 ''            Name
 'IN'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'OUT'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '\\'          Operator
 '*'           Operator
 ''            Name
 'OUT'         Name
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'console'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'or'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'not'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'console'     Name.Variable
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '## end elsif (from if(defined $remoteport))' Comment.Single
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '# Unbuffer DB::OUT. We need to see responses right away.' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'my'          Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'previous'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'select'      Name.Builtin
 '('           Punctuation
 '$'           Name.Variable
 'OUT'         Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$|'          Name.Variable.Global
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Punctuation
-'                                  ' Text
+'                                  ' Text.Whitespace
 '# for DB::OUT' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 'select'      Name.Builtin
 '('           Punctuation
 '$'           Name.Variable
 'previous'    Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '# Line info goes to debugger output unless pointed elsewhere.' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '# Pointing elsewhere makes it possible for slave editors to' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '# keep track of file and position. We have both a filehandle' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '# and a I/O description to keep track of.' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'LINEINFO'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'OUT'         Name.Variable
-'     '       Text
+'     '       Text.Whitespace
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'LINEINFO'    Name.Variable
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'lineinfo'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'console'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'lineinfo'    Name.Variable
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '# share($LINEINFO); # <- unable to share globs' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 ''            Name
 'share'       Name
 '('           Punctuation
@@ -3907,214 +3907,214 @@
 'lineinfo'    Name.Variable
 ')'           Punctuation
 ';'           Punctuation
-'   '         Text
+'   '         Text.Whitespace
 '# '          Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '=pod\n\nTo finish initialization, we show the debugger greeting,\nand then call the C<afterinit()> subroutine if there is one.\n\n=cut' Comment.Multiline
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 '# Show the debugger greeting.' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '$'           Name.Variable
 'header'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '=~'          Operator
-' '           Text
+' '           Text.Whitespace
 's/.Header: ([^,]+),v(\\s+\\S+\\s+\\S+).*$/$1$2/' Literal.String.Regex
 ';'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '$'           Name.Variable
 'runnonstop'  Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'local'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$\\'         Name.Variable.Global
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "''"          Literal.String
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'local'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '$,'          Name.Variable.Global
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "''"          Literal.String
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'term_pid'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'eq'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 "'-1'"        Literal.String
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'OUT'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"\\nDaughter DB session started...\\n"' Literal.String
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'OUT'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"\\nLoading DB routines from $header\\n"' Literal.String
 ';'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'OUT'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '"Editor support "' Literal.String
 ','           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '$'           Name.Variable
 'slave_editor' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '?'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"enabled"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"available"' Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '".\\n"'      Literal.String
-'\n            ' Text
+'\n            ' Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'print'       Keyword
-' '           Text
+' '           Text.Whitespace
 '$'           Name.Variable
 'OUT'         Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"\\nEnter h or `h h\' for help, or `$doccmd perldebug\' for more help.\\n\\n"' Literal.String
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 "## end else [ if ($term_pid eq '-1')" Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '## end unless ($runnonstop)' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '## end else [ if ($notty)' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# XXX This looks like a bug to me.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Why copy to @ARGS and then futz with @args?' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '@'           Name.Variable
 'ARGS'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '@'           Name.Variable
 'ARGV'        Name.Variable
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '@'           Name.Variable
 'args'        Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '# Make sure backslashes before single quotes are stripped out, and' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '# keep args unless they are numeric (XXX why?)' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 "# s/\\'/\\\\\\'/g;                      # removed while not justified understandably" Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 "# s/(.*)/'$1'/ unless /^-?[\\d.]+$/; # ditto" Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# If there was an afterinit() sub defined, call it. It will get' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# executed in our scope, so it can fiddle with debugger globals.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-' '           Text
+' '           Text.Whitespace
 'defined'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '&'           Operator
 ''            Name
 'afterinit'   Name
-' '           Text
+' '           Text.Whitespace
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'    '        Text
+'    '        Text.Whitespace
 '# May be defined in $rcfile' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '&'           Operator
 ''            Name
 'afterinit'   Name
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '# Inform us about "Stack dump during die enabled ..." in dieLevel().' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '$'           Name.Variable
 'I_m_init'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

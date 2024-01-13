@@ -8,9 +8,15 @@ dict:
   key3: > str-like value
   key4: no trailing whitespace
   key5: trailing whitespace    
-  'key: single-quoted': value
-  "key: double-quoted": value
+
+  : key:
+    > key with terminal colon: value
+  : - key
+    > key with leading -: value
   empty:
+  a: single character key
+  b: another single character key
+  c: yet another single character key
 
 list:
   - dict-like: value

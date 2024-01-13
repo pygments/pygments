@@ -1,314 +1,240 @@
 '#example mission box1.flo' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#from: https://github.com/ioflo/ioflo' Comment.Single
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 'house'       Keyword
-' '           Text
+' '           Text.Whitespace
 'box1'        Name
-'\n'          Text
-
-'\n'          Text
-
-'   '         Text
+'\n\n   '     Text.Whitespace
 'framer'      Keyword
-' '           Text
+' '           Text.Whitespace
 'vehiclesim'  Name
-' '           Text
+' '           Text.Whitespace
 'be'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'active'      Name
-' '           Text
+' '           Text.Whitespace
 'first'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'vehicle_run' Name
-'\n'          Text
-
-'      '      Text
+'\n      '    Text.Whitespace
 'frame'       Keyword
-' '           Text
+' '           Text.Whitespace
 'vehicle_run' Name
-'\n'          Text
-
-'         '   Text
+'\n         ' Text.Whitespace
 'do'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'simulator'   Name
-' '           Text
+' '           Text.Whitespace
 'motion'      Name
-' '           Text
+' '           Text.Whitespace
 'uuv'         Name
-'\n'          Text
-
-'\n'          Text
-
-'   '         Text
+'\n\n   '     Text.Whitespace
 'framer'      Keyword
-' '           Text
+' '           Text.Whitespace
 'mission'     Name
-' '           Text
+' '           Text.Whitespace
 'be'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'active'      Name
-' '           Text
+' '           Text.Whitespace
 'first'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'northleg'    Name
-'\n'          Text
-
-'      '      Text
+'\n      '    Text.Whitespace
 'frame'       Keyword
-' '           Text
+' '           Text.Whitespace
 'northleg'    Name
-'\n'          Text
-
-'         '   Text
+'\n         ' Text.Whitespace
 'set'         Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'elapsed'     Name
-' '           Text
+' '           Text.Whitespace
 'with'        Operator.Word
-' '           Text
+' '           Text.Whitespace
 '20.0'        Literal.Number.Float
-'\n'          Text
-
-'         '   Text
+'\n         ' Text.Whitespace
 'set'         Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'heading'     Name
-' '           Text
+' '           Text.Whitespace
 'with'        Operator.Word
-' '           Text
+' '           Text.Whitespace
 '0.0'         Literal.Number.Float
-'\n'          Text
-
-'         '   Text
+'\n         ' Text.Whitespace
 'set'         Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'depth'       Name
-' '           Text
+' '           Text.Whitespace
 'with'        Operator.Word
-' '           Text
+' '           Text.Whitespace
 '5.0'         Literal.Number.Float
-'\n'          Text
-
-'         '   Text
+'\n         ' Text.Whitespace
 'set'         Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'speed'       Name
-' '           Text
+' '           Text.Whitespace
 'with'        Operator.Word
-' '           Text
+' '           Text.Whitespace
 '2.5'         Literal.Number.Float
-'\n'          Text
-
-'         '   Text
+'\n         ' Text.Whitespace
 'go'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'next'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'if'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'elapsed'     Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'goal'        Name
-'\n'          Text
-
-'\n'          Text
-
-'      '      Text
+'\n\n      '  Text.Whitespace
 'frame'       Keyword
-' '           Text
+' '           Text.Whitespace
 'eastleg'     Name
-'\n'          Text
-
-'         '   Text
+'\n         ' Text.Whitespace
 'set'         Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'heading'     Name
-' '           Text
+' '           Text.Whitespace
 'with'        Operator.Word
-' '           Text
+' '           Text.Whitespace
 '90.0'        Literal.Number.Float
-'\n'          Text
-
-'         '   Text
+'\n         ' Text.Whitespace
 'go'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'next'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'if'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'elapsed'     Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'goal'        Name
-'\n'          Text
-
-'\n'          Text
-
-'      '      Text
+'\n\n      '  Text.Whitespace
 'frame'       Keyword
-' '           Text
+' '           Text.Whitespace
 'southleg'    Name
-'\n'          Text
-
-'         '   Text
+'\n         ' Text.Whitespace
 'set'         Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'heading'     Name
-' '           Text
+' '           Text.Whitespace
 'with'        Operator.Word
-' '           Text
+' '           Text.Whitespace
 '180.0'       Literal.Number.Float
-'\n'          Text
-
-'         '   Text
+'\n         ' Text.Whitespace
 'go'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'next'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'if'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'elapsed'     Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'goal'        Name
-'\n'          Text
-
-'\n'          Text
-
-'      '      Text
+'\n\n      '  Text.Whitespace
 'frame'       Keyword
-' '           Text
+' '           Text.Whitespace
 'westleg'     Name
-'\n'          Text
-
-'         '   Text
+'\n         ' Text.Whitespace
 'set'         Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'heading'     Name
-' '           Text
+' '           Text.Whitespace
 'with'        Operator.Word
-' '           Text
+' '           Text.Whitespace
 '270.0'       Literal.Number.Float
-'\n'          Text
-
-'         '   Text
+'\n         ' Text.Whitespace
 'go'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'next'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'if'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'elapsed'     Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'goal'        Name
-'\n'          Text
-
-'\n'          Text
-
-'      '      Text
+'\n\n      '  Text.Whitespace
 'frame'       Keyword
-' '           Text
+' '           Text.Whitespace
 'mission_stop' Name
-'\n'          Text
-
-'         '   Text
+'\n         ' Text.Whitespace
 'bid'         Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'stop'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'vehiclesim'  Name
-'\n'          Text
-
-'         '   Text
+'\n         ' Text.Whitespace
 'bid'         Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'stop'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'autopilot'   Name
-'\n'          Text
-
-'         '   Text
+'\n         ' Text.Whitespace
 'bid'         Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'stop'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'me'          Name
-'\n'          Text
-
-'\n'          Text
-
-'   '         Text
+'\n\n   '     Text.Whitespace
 'framer'      Keyword
-' '           Text
+' '           Text.Whitespace
 'autopilot'   Name
-' '           Text
+' '           Text.Whitespace
 'be'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'active'      Name
-' '           Text
+' '           Text.Whitespace
 'first'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'autopilot_run' Name
-'\n'          Text
-
-'      '      Text
+'\n      '    Text.Whitespace
 'frame'       Keyword
-' '           Text
+' '           Text.Whitespace
 'autopilot_run' Name
-'\n'          Text
-
-'         '   Text
+'\n         ' Text.Whitespace
 'do'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'controller'  Name
-' '           Text
+' '           Text.Whitespace
 'pid'         Name
-' '           Text
+' '           Text.Whitespace
 'speed'       Name
-'\n'          Text
-
-'         '   Text
+'\n         ' Text.Whitespace
 'do'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'controller'  Name
-' '           Text
+' '           Text.Whitespace
 'pid'         Name
-' '           Text
+' '           Text.Whitespace
 'heading'     Name
-'\n'          Text
-
-'         '   Text
+'\n         ' Text.Whitespace
 'do'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'controller'  Name
-' '           Text
+' '           Text.Whitespace
 'pid'         Name
-' '           Text
+' '           Text.Whitespace
 'depth'       Name
-'\n'          Text
-
-'         '   Text
+'\n         ' Text.Whitespace
 'do'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'controller'  Name
-' '           Text
+' '           Text.Whitespace
 'pid'         Name
-' '           Text
+' '           Text.Whitespace
 'pitch'       Name
-'\n'          Text
+'\n'          Text.Whitespace

@@ -4,7 +4,7 @@
 
     Lexers for various template engines' markup.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -18,6 +18,7 @@ from pygments.lexers.python import PythonLexer
 from pygments.lexers.perl import PerlLexer
 from pygments.lexers.jvm import JavaLexer, TeaLangLexer
 from pygments.lexers.data import YamlLexer
+from pygments.lexers.sql import SqlLexer
 from pygments.lexer import Lexer, DelegatingLexer, RegexLexer, bygroups, \
     include, using, this, default, combined
 from pygments.token import Error, Punctuation, Whitespace, \
@@ -43,13 +44,13 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'TeaTemplateLexer', 'LassoHtmlLexer', 'LassoXmlLexer',
            'LassoCssLexer', 'LassoJavascriptLexer', 'HandlebarsLexer',
            'HandlebarsHtmlLexer', 'YamlJinjaLexer', 'LiquidLexer',
-           'TwigLexer', 'TwigHtmlLexer', 'Angular2Lexer', 'Angular2HtmlLexer']
+           'TwigLexer', 'TwigHtmlLexer', 'Angular2Lexer', 'Angular2HtmlLexer',
+           'SqlJinjaLexer']
 
 
 class ErbLexer(Lexer):
     """
-    Generic `ERB <http://ruby-doc.org/core/classes/ERB.html>`_ (Ruby Templating)
-    lexer.
+    Generic ERB (Ruby Templating) lexer.
 
     Just highlights ruby code between the preprocessor directives, other data
     is left untouched by the lexer.
@@ -58,8 +59,10 @@ class ErbLexer(Lexer):
     """
 
     name = 'ERB'
+    url = 'https://github.com/ruby/erb'
     aliases = ['erb']
     mimetypes = ['application/x-ruby-templating']
+    version_added = ''
 
     _block_re = re.compile(r'(<%%|%%>|<%=|<%#|<%-|<%|-%>|%>|^%[^%].*?$)', re.M)
 
@@ -143,16 +146,18 @@ class ErbLexer(Lexer):
 
 class SmartyLexer(RegexLexer):
     """
-    Generic `Smarty <http://smarty.php.net/>`_ template lexer.
+    Generic Smarty template lexer.
 
     Just highlights smarty code between the preprocessor directives, other
     data is left untouched by the lexer.
     """
 
     name = 'Smarty'
+    url = 'https://www.smarty.net/'
     aliases = ['smarty']
     filenames = ['*.tpl']
     mimetypes = ['application/x-smarty']
+    version_added = ''
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -199,15 +204,17 @@ class SmartyLexer(RegexLexer):
 
 class VelocityLexer(RegexLexer):
     """
-    Generic `Velocity <http://velocity.apache.org/>`_ template lexer.
+    Generic Velocity template lexer.
 
     Just highlights velocity directives and variable references, other
     data is left untouched by the lexer.
     """
 
     name = 'Velocity'
+    url = 'https://velocity.apache.org/'
     aliases = ['velocity']
     filenames = ['*.vm', '*.fhtml']
+    version_added = ''
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -288,8 +295,10 @@ class VelocityHtmlLexer(DelegatingLexer):
 
     name = 'HTML+Velocity'
     aliases = ['html+velocity']
+    version_added = ''
     alias_filenames = ['*.html', '*.fhtml']
     mimetypes = ['text/html+velocity']
+    url = 'https://velocity.apache.org/'
 
     def __init__(self, **options):
         super().__init__(HtmlLexer, VelocityLexer, **options)
@@ -304,8 +313,10 @@ class VelocityXmlLexer(DelegatingLexer):
 
     name = 'XML+Velocity'
     aliases = ['xml+velocity']
+    version_added = ''
     alias_filenames = ['*.xml', '*.vm']
     mimetypes = ['application/xml+velocity']
+    url = 'https://velocity.apache.org/'
 
     def __init__(self, **options):
         super().__init__(XmlLexer, VelocityLexer, **options)
@@ -319,8 +330,8 @@ class VelocityXmlLexer(DelegatingLexer):
 
 class DjangoLexer(RegexLexer):
     """
-    Generic `django <http://www.djangoproject.com/documentation/templates/>`_
-    and `jinja <https://jinja.pocoo.org/jinja/>`_ template lexer.
+    Generic `Django <https://www.djangoproject.com/documentation/templates/>`_
+    and `Jinja <https://jinja.palletsprojects.com>`_ template lexer.
 
     It just highlights django/jinja code between the preprocessor directives,
     other data is left untouched by the lexer.
@@ -329,6 +340,8 @@ class DjangoLexer(RegexLexer):
     name = 'Django/Jinja'
     aliases = ['django', 'jinja']
     mimetypes = ['application/x-django-templating', 'application/x-jinja']
+    url = 'https://www.djangoproject.com/documentation/templates'
+    version_added = ''
 
     flags = re.M | re.S
 
@@ -402,18 +415,16 @@ class DjangoLexer(RegexLexer):
 
 class MyghtyLexer(RegexLexer):
     """
-    Generic `myghty templates`_ lexer. Code that isn't Myghty
+    Generic myghty templates lexer. Code that isn't Myghty
     markup is yielded as `Token.Other`.
-
-    .. versionadded:: 0.6
-
-    .. _myghty templates: http://www.myghty.org/
     """
 
     name = 'Myghty'
+    url = 'http://www.myghty.org/'
     aliases = ['myghty']
     filenames = ['*.myt', 'autodelegate']
     mimetypes = ['application/x-myghty']
+    version_added = '0.6'
 
     tokens = {
         'root': [
@@ -452,13 +463,13 @@ class MyghtyHtmlLexer(DelegatingLexer):
     """
     Subclass of the `MyghtyLexer` that highlights unlexed data
     with the `HtmlLexer`.
-
-    .. versionadded:: 0.6
     """
 
     name = 'HTML+Myghty'
     aliases = ['html+myghty']
     mimetypes = ['text/html+myghty']
+    url = 'http://www.myghty.org/'
+    version_added = '0.6'
 
     def __init__(self, **options):
         super().__init__(HtmlLexer, MyghtyLexer, **options)
@@ -468,13 +479,13 @@ class MyghtyXmlLexer(DelegatingLexer):
     """
     Subclass of the `MyghtyLexer` that highlights unlexed data
     with the `XmlLexer`.
-
-    .. versionadded:: 0.6
     """
 
     name = 'XML+Myghty'
     aliases = ['xml+myghty']
     mimetypes = ['application/xml+myghty']
+    url = 'http://www.myghty.org/'
+    version_added = '0.6'
 
     def __init__(self, **options):
         super().__init__(XmlLexer, MyghtyLexer, **options)
@@ -484,8 +495,6 @@ class MyghtyJavascriptLexer(DelegatingLexer):
     """
     Subclass of the `MyghtyLexer` that highlights unlexed data
     with the `JavascriptLexer`.
-
-    .. versionadded:: 0.6
     """
 
     name = 'JavaScript+Myghty'
@@ -493,6 +502,8 @@ class MyghtyJavascriptLexer(DelegatingLexer):
     mimetypes = ['application/x-javascript+myghty',
                  'text/x-javascript+myghty',
                  'text/javascript+mygthy']
+    url = 'http://www.myghty.org/'
+    version_added = '0.6'
 
     def __init__(self, **options):
         super().__init__(JavascriptLexer, MyghtyLexer, **options)
@@ -502,13 +513,13 @@ class MyghtyCssLexer(DelegatingLexer):
     """
     Subclass of the `MyghtyLexer` that highlights unlexed data
     with the `CssLexer`.
-
-    .. versionadded:: 0.6
     """
 
     name = 'CSS+Myghty'
     aliases = ['css+myghty']
     mimetypes = ['text/css+myghty']
+    url = 'http://www.myghty.org/'
+    version_added = '0.6'
 
     def __init__(self, **options):
         super().__init__(CssLexer, MyghtyLexer, **options)
@@ -516,25 +527,23 @@ class MyghtyCssLexer(DelegatingLexer):
 
 class MasonLexer(RegexLexer):
     """
-    Generic `mason templates`_ lexer. Stolen from Myghty lexer. Code that isn't
+    Generic mason templates lexer. Stolen from Myghty lexer. Code that isn't
     Mason markup is HTML.
-
-    .. _mason templates: http://www.masonhq.com/
-
-    .. versionadded:: 1.4
     """
     name = 'Mason'
+    url = 'http://www.masonhq.com/'
     aliases = ['mason']
     filenames = ['*.m', '*.mhtml', '*.mc', '*.mi', 'autohandler', 'dhandler']
     mimetypes = ['application/x-mason']
+    version_added = '1.4'
 
     tokens = {
         'root': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'(?s)(<%doc>)(.*?)(</%doc>)',
              bygroups(Name.Tag, Comment.Multiline, Name.Tag)),
             (r'(?s)(<%(?:def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)',
-             bygroups(Name.Tag, Text, Name.Function, Name.Tag,
+             bygroups(Name.Tag, Whitespace, Name.Function, Name.Tag,
                       using(this), Name.Tag)),
             (r'(?s)(<%(\w+)(.*?)(>))(.*?)(</%\2\s*>)',
              bygroups(Name.Tag, None, None, None, using(PerlLexer), Name.Tag)),
@@ -572,28 +581,26 @@ class MasonLexer(RegexLexer):
 
 class MakoLexer(RegexLexer):
     """
-    Generic `mako templates`_ lexer. Code that isn't Mako
+    Generic mako templates lexer. Code that isn't Mako
     markup is yielded as `Token.Other`.
-
-    .. versionadded:: 0.7
-
-    .. _mako templates: http://www.makotemplates.org/
     """
 
     name = 'Mako'
+    url = 'http://www.makotemplates.org/'
     aliases = ['mako']
     filenames = ['*.mao']
     mimetypes = ['application/x-mako']
+    version_added = '0.7'
 
     tokens = {
         'root': [
             (r'(\s*)(%)(\s*end(?:\w+))(\n|\Z)',
-             bygroups(Text, Comment.Preproc, Keyword, Other)),
+             bygroups(Text.Whitespace, Comment.Preproc, Keyword, Other)),
             (r'(\s*)(%)([^\n]*)(\n|\Z)',
-             bygroups(Text, Comment.Preproc, using(PythonLexer), Other)),
+             bygroups(Text.Whitespace, Comment.Preproc, using(PythonLexer), Other)),
             (r'(\s*)(##[^\n]*)(\n|\Z)',
-             bygroups(Text, Comment.Preproc, Other)),
-            (r'(?s)<%doc>.*?</%doc>', Comment.Preproc),
+             bygroups(Text.Whitespace, Comment.Single, Text.Whitespace)),
+            (r'(?s)<%doc>.*?</%doc>', Comment.Multiline),
             (r'(<%)([\w.:]+)',
              bygroups(Comment.Preproc, Name.Builtin), 'tag'),
             (r'(</%)([\w.:]+)(>)',
@@ -642,13 +649,13 @@ class MakoHtmlLexer(DelegatingLexer):
     """
     Subclass of the `MakoLexer` that highlights unlexed data
     with the `HtmlLexer`.
-
-    .. versionadded:: 0.7
     """
 
     name = 'HTML+Mako'
     aliases = ['html+mako']
     mimetypes = ['text/html+mako']
+    url = 'http://www.makotemplates.org/'
+    version_added = '0.7'
 
     def __init__(self, **options):
         super().__init__(HtmlLexer, MakoLexer, **options)
@@ -658,13 +665,13 @@ class MakoXmlLexer(DelegatingLexer):
     """
     Subclass of the `MakoLexer` that highlights unlexed data
     with the `XmlLexer`.
-
-    .. versionadded:: 0.7
     """
 
     name = 'XML+Mako'
     aliases = ['xml+mako']
     mimetypes = ['application/xml+mako']
+    url = 'http://www.makotemplates.org/'
+    version_added = '0.7'
 
     def __init__(self, **options):
         super().__init__(XmlLexer, MakoLexer, **options)
@@ -674,8 +681,6 @@ class MakoJavascriptLexer(DelegatingLexer):
     """
     Subclass of the `MakoLexer` that highlights unlexed data
     with the `JavascriptLexer`.
-
-    .. versionadded:: 0.7
     """
 
     name = 'JavaScript+Mako'
@@ -683,6 +688,8 @@ class MakoJavascriptLexer(DelegatingLexer):
     mimetypes = ['application/x-javascript+mako',
                  'text/x-javascript+mako',
                  'text/javascript+mako']
+    url = 'http://www.makotemplates.org/'
+    version_added = '0.7'
 
     def __init__(self, **options):
         super().__init__(JavascriptLexer, MakoLexer, **options)
@@ -692,13 +699,13 @@ class MakoCssLexer(DelegatingLexer):
     """
     Subclass of the `MakoLexer` that highlights unlexed data
     with the `CssLexer`.
-
-    .. versionadded:: 0.7
     """
 
     name = 'CSS+Mako'
     aliases = ['css+mako']
     mimetypes = ['text/css+mako']
+    url = 'http://www.makotemplates.org/'
+    version_added = '0.7'
 
     def __init__(self, **options):
         super().__init__(CssLexer, MakoLexer, **options)
@@ -721,18 +728,19 @@ class CheetahPythonLexer(Lexer):
 
 class CheetahLexer(RegexLexer):
     """
-    Generic `cheetah templates`_ lexer. Code that isn't Cheetah
+    Generic cheetah templates lexer. Code that isn't Cheetah
     markup is yielded as `Token.Other`.  This also works for
     `spitfire templates`_ which use the same syntax.
 
-    .. _cheetah templates: http://www.cheetahtemplate.org/
     .. _spitfire templates: http://code.google.com/p/spitfire/
     """
 
     name = 'Cheetah'
+    url = 'http://www.cheetahtemplate.org/'
     aliases = ['cheetah', 'spitfire']
     filenames = ['*.tmpl', '*.spt']
     mimetypes = ['application/x-cheetah', 'application/x-spitfire']
+    version_added = ''
 
     tokens = {
         'root': [
@@ -772,6 +780,8 @@ class CheetahHtmlLexer(DelegatingLexer):
     name = 'HTML+Cheetah'
     aliases = ['html+cheetah', 'html+spitfire', 'htmlcheetah']
     mimetypes = ['text/html+cheetah', 'text/html+spitfire']
+    url = 'http://www.cheetahtemplate.org/'
+    version_added = ''
 
     def __init__(self, **options):
         super().__init__(HtmlLexer, CheetahLexer, **options)
@@ -786,6 +796,8 @@ class CheetahXmlLexer(DelegatingLexer):
     name = 'XML+Cheetah'
     aliases = ['xml+cheetah', 'xml+spitfire']
     mimetypes = ['application/xml+cheetah', 'application/xml+spitfire']
+    url = 'http://www.cheetahtemplate.org/'
+    version_added = ''
 
     def __init__(self, **options):
         super().__init__(XmlLexer, CheetahLexer, **options)
@@ -806,6 +818,8 @@ class CheetahJavascriptLexer(DelegatingLexer):
                  'application/x-javascript+spitfire',
                  'text/x-javascript+spitfire',
                  'text/javascript+spitfire']
+    url = 'http://www.cheetahtemplate.org/'
+    version_added = ''
 
     def __init__(self, **options):
         super().__init__(JavascriptLexer, CheetahLexer, **options)
@@ -813,13 +827,14 @@ class CheetahJavascriptLexer(DelegatingLexer):
 
 class GenshiTextLexer(RegexLexer):
     """
-    A lexer that highlights `genshi <http://genshi.edgewall.org/>`_ text
-    templates.
+    A lexer that highlights genshi text templates.
     """
 
     name = 'Genshi Text'
+    url = 'https://genshi.edgewall.org/'
     aliases = ['genshitext']
     mimetypes = ['application/x-genshi-text', 'text/x-genshi']
+    version_added = ''
 
     tokens = {
         'root': [
@@ -912,14 +927,16 @@ class GenshiMarkupLexer(RegexLexer):
 
 class HtmlGenshiLexer(DelegatingLexer):
     """
-    A lexer that highlights `genshi <http://genshi.edgewall.org/>`_ and
+    A lexer that highlights `genshi <https://genshi.edgewall.org/>`_ and
     `kid <http://kid-templating.org/>`_ kid HTML templates.
     """
 
     name = 'HTML+Genshi'
     aliases = ['html+genshi', 'html+kid']
+    version_added = ''
     alias_filenames = ['*.html', '*.htm', '*.xhtml']
     mimetypes = ['text/html+genshi']
+    url = 'https://genshi.edgewall.org/'
 
     def __init__(self, **options):
         super().__init__(HtmlLexer, GenshiMarkupLexer, **options)
@@ -935,15 +952,17 @@ class HtmlGenshiLexer(DelegatingLexer):
 
 class GenshiLexer(DelegatingLexer):
     """
-    A lexer that highlights `genshi <http://genshi.edgewall.org/>`_ and
+    A lexer that highlights `genshi <https://genshi.edgewall.org/>`_ and
     `kid <http://kid-templating.org/>`_ kid XML templates.
     """
 
     name = 'Genshi'
     aliases = ['genshi', 'kid', 'xml+genshi', 'xml+kid']
     filenames = ['*.kid']
+    version_added = ''
     alias_filenames = ['*.xml']
     mimetypes = ['application/x-genshi', 'application/x-kid']
+    url = 'https://genshi.edgewall.org/'
 
     def __init__(self, **options):
         super().__init__(XmlLexer, GenshiMarkupLexer, **options)
@@ -965,10 +984,12 @@ class JavascriptGenshiLexer(DelegatingLexer):
     name = 'JavaScript+Genshi Text'
     aliases = ['js+genshitext', 'js+genshi', 'javascript+genshitext',
                'javascript+genshi']
+    version_added = ''
     alias_filenames = ['*.js']
     mimetypes = ['application/x-javascript+genshi',
                  'text/x-javascript+genshi',
                  'text/javascript+genshi']
+    url = 'https://genshi.edgewall.org'
 
     def __init__(self, **options):
         super().__init__(JavascriptLexer, GenshiTextLexer, **options)
@@ -984,8 +1005,10 @@ class CssGenshiLexer(DelegatingLexer):
 
     name = 'CSS+Genshi Text'
     aliases = ['css+genshitext', 'css+genshi']
+    version_added = ''
     alias_filenames = ['*.css']
     mimetypes = ['text/css+genshi']
+    url = 'https://genshi.edgewall.org'
 
     def __init__(self, **options):
         super().__init__(CssLexer, GenshiTextLexer, **options)
@@ -1005,8 +1028,11 @@ class RhtmlLexer(DelegatingLexer):
     name = 'RHTML'
     aliases = ['rhtml', 'html+erb', 'html+ruby']
     filenames = ['*.rhtml']
+    version_added = ''
     alias_filenames = ['*.html', '*.htm', '*.xhtml']
     mimetypes = ['text/html+ruby']
+    url = 'https://github.com/ruby/erb'
+
 
     def __init__(self, **options):
         super().__init__(HtmlLexer, ErbLexer, **options)
@@ -1027,8 +1053,10 @@ class XmlErbLexer(DelegatingLexer):
 
     name = 'XML+Ruby'
     aliases = ['xml+ruby', 'xml+erb']
+    version_added = ''
     alias_filenames = ['*.xml']
     mimetypes = ['application/xml+ruby']
+    url = 'https://github.com/ruby/erb'
 
     def __init__(self, **options):
         super().__init__(XmlLexer, ErbLexer, **options)
@@ -1047,8 +1075,10 @@ class CssErbLexer(DelegatingLexer):
 
     name = 'CSS+Ruby'
     aliases = ['css+ruby', 'css+erb']
+    version_added = ''
     alias_filenames = ['*.css']
     mimetypes = ['text/css+ruby']
+    url = 'https://github.com/ruby/erb'
 
     def __init__(self, **options):
         super().__init__(CssLexer, ErbLexer, **options)
@@ -1065,10 +1095,12 @@ class JavascriptErbLexer(DelegatingLexer):
 
     name = 'JavaScript+Ruby'
     aliases = ['javascript+ruby', 'js+ruby', 'javascript+erb', 'js+erb']
+    version_added = ''
     alias_filenames = ['*.js']
     mimetypes = ['application/x-javascript+ruby',
                  'text/x-javascript+ruby',
                  'text/javascript+ruby']
+    url = 'https://github.com/ruby/erb'
 
     def __init__(self, **options):
         super().__init__(JavascriptLexer, ErbLexer, **options)
@@ -1087,11 +1119,14 @@ class HtmlPhpLexer(DelegatingLexer):
     name = 'HTML+PHP'
     aliases = ['html+php']
     filenames = ['*.phtml']
+    version_added = ''
     alias_filenames = ['*.php', '*.html', '*.htm', '*.xhtml',
                        '*.php[345]']
     mimetypes = ['application/x-php',
                  'application/x-httpd-php', 'application/x-httpd-php3',
                  'application/x-httpd-php4', 'application/x-httpd-php5']
+    url = 'https://www.php.net'
+
 
     def __init__(self, **options):
         super().__init__(HtmlLexer, PhpLexer, **options)
@@ -1110,8 +1145,10 @@ class XmlPhpLexer(DelegatingLexer):
 
     name = 'XML+PHP'
     aliases = ['xml+php']
+    version_added = ''
     alias_filenames = ['*.xml', '*.php', '*.php[345]']
     mimetypes = ['application/xml+php']
+    url = 'https://www.php.net'
 
     def __init__(self, **options):
         super().__init__(XmlLexer, PhpLexer, **options)
@@ -1130,8 +1167,10 @@ class CssPhpLexer(DelegatingLexer):
 
     name = 'CSS+PHP'
     aliases = ['css+php']
+    version_added = ''
     alias_filenames = ['*.css']
     mimetypes = ['text/css+php']
+    url = 'https://www.php.net'
 
     def __init__(self, **options):
         super().__init__(CssLexer, PhpLexer, **options)
@@ -1148,10 +1187,12 @@ class JavascriptPhpLexer(DelegatingLexer):
 
     name = 'JavaScript+PHP'
     aliases = ['javascript+php', 'js+php']
+    version_added = ''
     alias_filenames = ['*.js']
     mimetypes = ['application/x-javascript+php',
                  'text/x-javascript+php',
                  'text/javascript+php']
+    url = 'https://www.php.net'
 
     def __init__(self, **options):
         super().__init__(JavascriptLexer, PhpLexer, **options)
@@ -1170,8 +1211,10 @@ class HtmlSmartyLexer(DelegatingLexer):
 
     name = 'HTML+Smarty'
     aliases = ['html+smarty']
+    version_added = ''
     alias_filenames = ['*.html', '*.htm', '*.xhtml', '*.tpl']
     mimetypes = ['text/html+smarty']
+    url = 'https://www.smarty.net/'
 
     def __init__(self, **options):
         super().__init__(HtmlLexer, SmartyLexer, **options)
@@ -1191,8 +1234,10 @@ class XmlSmartyLexer(DelegatingLexer):
 
     name = 'XML+Smarty'
     aliases = ['xml+smarty']
+    version_added = ''
     alias_filenames = ['*.xml', '*.tpl']
     mimetypes = ['application/xml+smarty']
+    url = 'https://www.smarty.net/'
 
     def __init__(self, **options):
         super().__init__(XmlLexer, SmartyLexer, **options)
@@ -1212,8 +1257,10 @@ class CssSmartyLexer(DelegatingLexer):
 
     name = 'CSS+Smarty'
     aliases = ['css+smarty']
+    version_added = ''
     alias_filenames = ['*.css', '*.tpl']
     mimetypes = ['text/css+smarty']
+    url = 'https://www.smarty.net/'
 
     def __init__(self, **options):
         super().__init__(CssLexer, SmartyLexer, **options)
@@ -1230,10 +1277,12 @@ class JavascriptSmartyLexer(DelegatingLexer):
 
     name = 'JavaScript+Smarty'
     aliases = ['javascript+smarty', 'js+smarty']
+    version_added = ''
     alias_filenames = ['*.js', '*.tpl']
     mimetypes = ['application/x-javascript+smarty',
                  'text/x-javascript+smarty',
                  'text/javascript+smarty']
+    url = 'https://www.smarty.net/'
 
     def __init__(self, **options):
         super().__init__(JavascriptLexer, SmartyLexer, **options)
@@ -1252,8 +1301,11 @@ class HtmlDjangoLexer(DelegatingLexer):
 
     name = 'HTML+Django/Jinja'
     aliases = ['html+django', 'html+jinja', 'htmldjango']
+    filenames = ['*.html.j2', '*.htm.j2', '*.xhtml.j2', '*.html.jinja2', '*.htm.jinja2', '*.xhtml.jinja2']
+    version_added = ''
     alias_filenames = ['*.html', '*.htm', '*.xhtml']
     mimetypes = ['text/html+django', 'text/html+jinja']
+    url = 'https://www.djangoproject.com/documentation/templates'
 
     def __init__(self, **options):
         super().__init__(HtmlLexer, DjangoLexer, **options)
@@ -1273,8 +1325,11 @@ class XmlDjangoLexer(DelegatingLexer):
 
     name = 'XML+Django/Jinja'
     aliases = ['xml+django', 'xml+jinja']
+    filenames = ['*.xml.j2', '*.xml.jinja2']
+    version_added = ''
     alias_filenames = ['*.xml']
     mimetypes = ['application/xml+django', 'application/xml+jinja']
+    url = 'https://www.djangoproject.com/documentation/templates'
 
     def __init__(self, **options):
         super().__init__(XmlLexer, DjangoLexer, **options)
@@ -1294,8 +1349,11 @@ class CssDjangoLexer(DelegatingLexer):
 
     name = 'CSS+Django/Jinja'
     aliases = ['css+django', 'css+jinja']
+    filenames = ['*.css.j2', '*.css.jinja2']
+    version_added = ''
     alias_filenames = ['*.css']
     mimetypes = ['text/css+django', 'text/css+jinja']
+    url = 'https://www.djangoproject.com/documentation/templates'
 
     def __init__(self, **options):
         super().__init__(CssLexer, DjangoLexer, **options)
@@ -1313,6 +1371,8 @@ class JavascriptDjangoLexer(DelegatingLexer):
     name = 'JavaScript+Django/Jinja'
     aliases = ['javascript+django', 'js+django',
                'javascript+jinja', 'js+jinja']
+    filenames = ['*.js.j2', '*.js.jinja2']
+    version_added = ''
     alias_filenames = ['*.js']
     mimetypes = ['application/x-javascript+django',
                  'application/x-javascript+jinja',
@@ -1320,6 +1380,7 @@ class JavascriptDjangoLexer(DelegatingLexer):
                  'text/x-javascript+jinja',
                  'text/javascript+django',
                  'text/javascript+jinja']
+    url = 'https://www.djangoproject.com/documentation/templates'
 
     def __init__(self, **options):
         super().__init__(JavascriptLexer, DjangoLexer, **options)
@@ -1356,13 +1417,13 @@ class JspRootLexer(RegexLexer):
 class JspLexer(DelegatingLexer):
     """
     Lexer for Java Server Pages.
-
-    .. versionadded:: 0.7
     """
     name = 'Java Server Page'
     aliases = ['jsp']
     filenames = ['*.jsp']
     mimetypes = ['application/x-jsp']
+    url = 'https://projects.eclipse.org/projects/ee4j.jsp'
+    version_added = '0.7'
 
     def __init__(self, **options):
         super().__init__(XmlLexer, JspRootLexer, **options)
@@ -1379,13 +1440,13 @@ class JspLexer(DelegatingLexer):
 class EvoqueLexer(RegexLexer):
     """
     For files using the Evoque templating system.
-
-    .. versionadded:: 1.1
     """
     name = 'Evoque'
     aliases = ['evoque']
     filenames = ['*.evoque']
     mimetypes = ['application/x-evoque']
+    url = 'https://gizmojo.org/templating'
+    version_added = '1.1'
 
     flags = re.DOTALL
 
@@ -1437,13 +1498,13 @@ class EvoqueHtmlLexer(DelegatingLexer):
     """
     Subclass of the `EvoqueLexer` that highlights unlexed data with the
     `HtmlLexer`.
-
-    .. versionadded:: 1.1
     """
     name = 'HTML+Evoque'
     aliases = ['html+evoque']
     filenames = ['*.html']
     mimetypes = ['text/html+evoque']
+    url = 'https://gizmojo.org/templating'
+    version_added = '1.1'
 
     def __init__(self, **options):
         super().__init__(HtmlLexer, EvoqueLexer, **options)
@@ -1456,13 +1517,13 @@ class EvoqueXmlLexer(DelegatingLexer):
     """
     Subclass of the `EvoqueLexer` that highlights unlexed data with the
     `XmlLexer`.
-
-    .. versionadded:: 1.1
     """
     name = 'XML+Evoque'
     aliases = ['xml+evoque']
     filenames = ['*.xml']
     mimetypes = ['application/xml+evoque']
+    url = 'https://gizmojo.org/templating'
+    version_added = '1.1'
 
     def __init__(self, **options):
         super().__init__(XmlLexer, EvoqueLexer, **options)
@@ -1479,6 +1540,9 @@ class ColdfusionLexer(RegexLexer):
     aliases = ['cfs']
     filenames = []
     mimetypes = []
+    url = 'https://www.adobe.com/products/coldfusion-family.html'
+    version_added = ''
+
     flags = re.IGNORECASE
 
     tokens = {
@@ -1527,6 +1591,7 @@ class ColdfusionMarkupLexer(RegexLexer):
     aliases = ['cf']
     filenames = []
     mimetypes = []
+    url = 'https://www.adobe.com/products/coldfusion-family.html'
 
     tokens = {
         'root': [
@@ -1573,6 +1638,8 @@ class ColdfusionHtmlLexer(DelegatingLexer):
     aliases = ['cfm']
     filenames = ['*.cfm', '*.cfml']
     mimetypes = ['application/x-coldfusion']
+    url = 'https://www.adobe.com/products/coldfusion-family.html'
+    version_added = ''
 
     def __init__(self, **options):
         super().__init__(HtmlLexer, ColdfusionMarkupLexer, **options)
@@ -1581,13 +1648,13 @@ class ColdfusionHtmlLexer(DelegatingLexer):
 class ColdfusionCFCLexer(DelegatingLexer):
     """
     Coldfusion markup/script components
-
-    .. versionadded:: 2.0
     """
     name = 'Coldfusion CFC'
     aliases = ['cfc']
     filenames = ['*.cfc']
     mimetypes = []
+    url = 'https://www.adobe.com/products/coldfusion-family.html'
+    version_added = '2.0'
 
     def __init__(self, **options):
         super().__init__(ColdfusionHtmlLexer, ColdfusionLexer, **options)
@@ -1596,13 +1663,13 @@ class ColdfusionCFCLexer(DelegatingLexer):
 class SspLexer(DelegatingLexer):
     """
     Lexer for Scalate Server Pages.
-
-    .. versionadded:: 1.4
     """
     name = 'Scalate Server Page'
     aliases = ['ssp']
     filenames = ['*.ssp']
     mimetypes = ['application/x-ssp']
+    url = 'https://scalate.github.io/scalate/'
+    version_added = '1.4'
 
     def __init__(self, **options):
         super().__init__(XmlLexer, JspRootLexer, **options)
@@ -1642,14 +1709,14 @@ class TeaTemplateRootLexer(RegexLexer):
 
 class TeaTemplateLexer(DelegatingLexer):
     """
-    Lexer for `Tea Templates <http://teatrove.org/>`_.
-
-    .. versionadded:: 1.5
+    Lexer for Tea Templates.
     """
     name = 'Tea'
     aliases = ['tea']
     filenames = ['*.tea']
     mimetypes = ['text/x-tea']
+    url = 'https://github.com/teatrove/teatrove'
+    version_added = '1.5'
 
     def __init__(self, **options):
         super().__init__(XmlLexer, TeaTemplateRootLexer, **options)
@@ -1669,17 +1736,17 @@ class LassoHtmlLexer(DelegatingLexer):
     `HtmlLexer`.
 
     Nested JavaScript and CSS is also highlighted.
-
-    .. versionadded:: 1.6
     """
 
     name = 'HTML+Lasso'
     aliases = ['html+lasso']
+    version_added = '1.6'
     alias_filenames = ['*.html', '*.htm', '*.xhtml', '*.lasso', '*.lasso[89]',
                        '*.incl', '*.inc', '*.las']
     mimetypes = ['text/html+lasso',
                  'application/x-httpd-lasso',
                  'application/x-httpd-lasso[89]']
+    url = 'https://www.lassosoft.com'
 
     def __init__(self, **options):
         super().__init__(HtmlLexer, LassoLexer, **options)
@@ -1695,15 +1762,15 @@ class LassoXmlLexer(DelegatingLexer):
     """
     Subclass of the `LassoLexer` which highlights unhandled data with the
     `XmlLexer`.
-
-    .. versionadded:: 1.6
     """
 
     name = 'XML+Lasso'
     aliases = ['xml+lasso']
+    version_added = '1.6'
     alias_filenames = ['*.xml', '*.lasso', '*.lasso[89]',
                        '*.incl', '*.inc', '*.las']
     mimetypes = ['application/xml+lasso']
+    url = 'https://www.lassosoft.com'
 
     def __init__(self, **options):
         super().__init__(XmlLexer, LassoLexer, **options)
@@ -1719,14 +1786,14 @@ class LassoCssLexer(DelegatingLexer):
     """
     Subclass of the `LassoLexer` which highlights unhandled data with the
     `CssLexer`.
-
-    .. versionadded:: 1.6
     """
 
     name = 'CSS+Lasso'
     aliases = ['css+lasso']
+    version_added = '1.6'
     alias_filenames = ['*.css']
     mimetypes = ['text/css+lasso']
+    url = 'https://www.lassosoft.com'
 
     def __init__(self, **options):
         options['requiredelimiters'] = True
@@ -1745,16 +1812,16 @@ class LassoJavascriptLexer(DelegatingLexer):
     """
     Subclass of the `LassoLexer` which highlights unhandled data with the
     `JavascriptLexer`.
-
-    .. versionadded:: 1.6
     """
 
     name = 'JavaScript+Lasso'
     aliases = ['javascript+lasso', 'js+lasso']
+    version_added = '1.6'
     alias_filenames = ['*.js']
     mimetypes = ['application/x-javascript+lasso',
                  'text/x-javascript+lasso',
                  'text/javascript+lasso']
+    url = 'https://www.lassosoft.com'
 
     def __init__(self, **options):
         options['requiredelimiters'] = True
@@ -1767,16 +1834,16 @@ class LassoJavascriptLexer(DelegatingLexer):
 
 class HandlebarsLexer(RegexLexer):
     """
-    Generic `handlebars <http://handlebarsjs.com/>` template lexer.
+    Generic handlebars template lexer.
 
     Highlights only the Handlebars template tags (stuff between `{{` and `}}`).
     Everything else is left for a delegating lexer.
-
-    .. versionadded:: 2.0
     """
 
     name = "Handlebars"
+    url = 'https://handlebarsjs.com/'
     aliases = ['handlebars']
+    version_added = '2.0'
 
     tokens = {
         'root': [
@@ -1845,14 +1912,14 @@ class HandlebarsHtmlLexer(DelegatingLexer):
     """
     Subclass of the `HandlebarsLexer` that highlights unlexed data with the
     `HtmlLexer`.
-
-    .. versionadded:: 2.0
     """
 
     name = "HTML+Handlebars"
     aliases = ["html+handlebars"]
     filenames = ['*.handlebars', '*.hbs']
     mimetypes = ['text/html+handlebars', 'text/x-handlebars-template']
+    url = 'https://handlebarsjs.com/'
+    version_added = '2.0'
 
     def __init__(self, **options):
         super().__init__(HtmlLexer, HandlebarsLexer, **options)
@@ -1864,14 +1931,14 @@ class YamlJinjaLexer(DelegatingLexer):
     `YamlLexer`.
 
     Commonly used in Saltstack salt states.
-
-    .. versionadded:: 2.0
     """
 
     name = 'YAML+Jinja'
     aliases = ['yaml+jinja', 'salt', 'sls']
-    filenames = ['*.sls']
+    filenames = ['*.sls', '*.yaml.j2', '*.yml.j2', '*.yaml.jinja2', '*.yml.jinja2']
     mimetypes = ['text/x-yaml+jinja', 'text/x-sls']
+    url = 'https://jinja.palletsprojects.com'
+    version_added = '2.0'
 
     def __init__(self, **options):
         super().__init__(YamlLexer, DjangoLexer, **options)
@@ -1879,14 +1946,13 @@ class YamlJinjaLexer(DelegatingLexer):
 
 class LiquidLexer(RegexLexer):
     """
-    Lexer for `Liquid templates
-    <http://www.rubydoc.info/github/Shopify/liquid>`_.
-
-    .. versionadded:: 2.0
+    Lexer for Liquid templates.
     """
     name = 'liquid'
+    url = 'https://www.rubydoc.info/github/Shopify/liquid'
     aliases = ['liquid']
     filenames = ['*.liquid']
+    version_added = '2.0'
 
     tokens = {
         'root': [
@@ -2085,17 +2151,17 @@ class LiquidLexer(RegexLexer):
 
 class TwigLexer(RegexLexer):
     """
-    `Twig <http://twig.sensiolabs.org/>`_ template lexer.
+    Twig template lexer.
 
     It just highlights Twig code between the preprocessor directives,
     other data is left untouched by the lexer.
-
-    .. versionadded:: 2.0
     """
 
     name = 'Twig'
     aliases = ['twig']
     mimetypes = ['application/x-twig']
+    url = 'https://twig.symfony.com'
+    version_added = '2.0'
 
     flags = re.M | re.S
 
@@ -2170,14 +2236,14 @@ class TwigHtmlLexer(DelegatingLexer):
     """
     Subclass of the `TwigLexer` that highlights unlexed data with the
     `HtmlLexer`.
-
-    .. versionadded:: 2.0
     """
 
     name = "HTML+Twig"
     aliases = ["html+twig"]
     filenames = ['*.twig']
     mimetypes = ['text/html+twig']
+    url = 'https://twig.symfony.com'
+    version_added = '2.0'
 
     def __init__(self, **options):
         super().__init__(HtmlLexer, TwigLexer, **options)
@@ -2185,19 +2251,17 @@ class TwigHtmlLexer(DelegatingLexer):
 
 class Angular2Lexer(RegexLexer):
     """
-    Generic
-    `angular2 <http://victorsavkin.com/post/119943127151/angular-2-template-syntax>`_
-    template lexer.
+    Generic angular2 template lexer.
 
     Highlights only the Angular template tags (stuff between `{{` and `}}` and
     special attributes: '(event)=', '[property]=', '[(twoWayBinding)]=').
     Everything else is left for a delegating lexer.
-
-    .. versionadded:: 2.1
     """
 
     name = "Angular2"
+    url = 'https://angular.io/guide/template-syntax'
     aliases = ['ng2']
+    version_added = '2.1'
 
     tokens = {
         'root': [
@@ -2251,13 +2315,41 @@ class Angular2HtmlLexer(DelegatingLexer):
     """
     Subclass of the `Angular2Lexer` that highlights unlexed data with the
     `HtmlLexer`.
-
-    .. versionadded:: 2.0
     """
 
     name = "HTML + Angular2"
     aliases = ["html+ng2"]
     filenames = ['*.ng2']
+    url = 'https://angular.io/guide/template-syntax'
+    version_added = '2.0'
 
     def __init__(self, **options):
         super().__init__(HtmlLexer, Angular2Lexer, **options)
+
+
+class SqlJinjaLexer(DelegatingLexer):
+    """
+    Templated SQL lexer.
+    """
+
+    name = 'SQL+Jinja'
+    aliases = ['sql+jinja']
+    filenames = ['*.sql', '*.sql.j2', '*.sql.jinja2']
+    url = 'https://jinja.palletsprojects.com'
+    version_added = '2.13'
+
+    def __init__(self, **options):
+        super().__init__(SqlLexer, DjangoLexer, **options)
+
+    def analyse_text(text):
+        rv = 0.0
+        # dbt's ref function
+        if re.search(r'\{\{\s*ref\(.*\)\s*\}\}', text):
+            rv += 0.4
+        # dbt's source function
+        if re.search(r'\{\{\s*source\(.*\)\s*\}\}', text):
+            rv += 0.25
+        # Jinja macro
+        if re.search(r'\{%-?\s*macro \w+\(.*\)\s*-?%\}', text):
+            rv += 0.15
+        return rv

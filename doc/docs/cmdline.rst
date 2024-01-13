@@ -14,6 +14,26 @@ will print the file test.py to standard output, using the Python lexer
 (inferred from the file name extension) and the terminal formatter (because
 you didn't give an explicit formatter name).
 
+.. note::
+
+   If you are on Windows, an extra tool may be needed for colored output to
+   work in the terminal. You can make sure Pygments is installed with
+   Windows console coloring support by installing Pygments with the ``windows-terminal``
+   extra (e.g., ``pip install pygments[windows-terminal]``).
+
+:program:`pygmentize` attempts to
+detect the maximum number of colors that the terminal supports. The difference
+between color formatters for 16 and 256 colors is immense, but there is a less
+noticeable difference between color formatters for 256 and 16 million colors.
+
+Here's the process of how it detects the maxiumum number of colors
+supported by your terminal. If the ``COLORTERM`` environment variable is set to
+either ``truecolor`` or ``24bit``, it will use a 16 million color representation
+(like ``terminal16m``). Next, it will try to find ``256`` is anywhere in the
+environment variable ``TERM``, which it will use a 256-color representaion
+(such as ``terminal256``).  When neither of those are found, it falls back to a
+the 16 color representation (like ``terminal``).
+
 If you want HTML output::
 
     $ pygmentize -f html -l python -o test.html test.py
@@ -84,7 +104,7 @@ the "colorful" style prepending a ".syntax" selector to all style rules.
 
 For an explanation what ``-a`` means for :doc:`a particular formatter
 <formatters>`, look for the `arg` argument for the formatter's
-:meth:`.get_style_defs()` method.
+:meth:`.get_style_defs() <pygments.formatter.Formatter.get_style_defs()>` method.
 
 
 Getting lexer names
@@ -98,6 +118,37 @@ The ``-N`` option guesses a lexer name for a given filename, so that ::
 
 will print out ``python``.  It won't highlight anything yet.  If no specific
 lexer is known for that filename, ``text`` is printed.
+
+Additionally, there is the ``-C`` option, which is just like like ``-N``, except
+that it prints out a lexer name based solely on a given content from standard
+input.
+
+
+Guessing the lexer from the file contents
+-----------------------------------------
+
+The ``-g`` option will try to guess the correct lexer from the file contents,
+or pass through as plain text if nothing can be guessed. This option also looks
+for Vim modelines in the text, and for *some* languages, shebangs. Usage is as
+follows::
+
+    $ pygmentize -g setup.py
+
+Note though, that this option is not very relaiable, and probably should be
+used only if Pygments is not able to guess the correct lexer from the file's
+extension.
+
+
+Highlighting stdin until EOF
+----------------------------
+
+The ``-s`` option processes lines one at a time until EOF, rather than waiting
+to process the entire file. This only works for stdin, only for lexers with no
+line-spanning constructs, and is intended for streaming input such as you get
+from `tail -f`. Usage is as follows::
+
+    $ tail -f sql.log | pygmentize -s -l sql
+
 
 Custom Lexers and Formatters
 ----------------------------
@@ -117,6 +168,7 @@ You can also specify the name of your class with a colon::
 For more information, see :doc:`the Pygments documentation on Lexer development
 <lexerdevelopment>`.
 
+
 Getting help
 ------------
 
@@ -127,6 +179,14 @@ only one category, give it as an argument::
     $ pygmentize -L filters
 
 will list only all installed filters.
+
+.. versionadded:: 2.11
+
+The ``--json`` option can be used in conjunction with the ``-L`` option to
+output it's contents as JSON. Thus, to print all the installed styles and their
+description in JSON, use the command::
+
+    $ pygmentize -L styles --json
 
 The ``-H`` option will give you detailed information (the same that can be found
 in this documentation) about a lexer, formatter or filter. Usage is as follows::

@@ -1,15 +1,15 @@
 'package'     Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 ''            Text
 'package'     Keyword
-' '           Text
+' '           Text.Whitespace
 'com'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'package'     Keyword
-' '           Text
+' '           Text.Whitespace
 'com'         Name.Namespace
 '.'           Punctuation
 'example'     Name
-'\n'          Text
+'\n'          Text.Whitespace

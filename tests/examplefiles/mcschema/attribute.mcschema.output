@@ -1,0 +1,52 @@
+'shared_attribute' Literal.String.Symbol
+':'           Operator
+'1'           Literal.Number.Integer
+'.'           Operator
+'16'          Literal.Number.Integer
+'.'           Operator
+'100'         Literal.Number.Integer
+'-'           Operator
+'alpha'       Literal.String
+'+'           Operator
+'beta'        Literal.String
+':'           Operator
+'\n'          Text.Whitespace
+
+'object'      Keyword.Declaration
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'float_range' Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'value'       Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n    '      Text.Whitespace
+'float'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'min'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n    '      Text.Whitespace
+'float'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'max'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

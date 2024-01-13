@@ -3,16 +3,16 @@ data class A(val data: String)
 
 ---tokens---
 'data'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'A'           Name.Class
 '('           Punctuation
 'val'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'data'        Name.Variable
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'String'      Keyword.Type
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

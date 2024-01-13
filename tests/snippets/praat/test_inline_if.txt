@@ -3,25 +3,25 @@ var = if true == 1 then -1 else 0 fi
 
 ---tokens---
 'var'         Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'true'        Text
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '1'           Literal.Number
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number
-' '           Text
+' '           Text.Whitespace
 'fi'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace

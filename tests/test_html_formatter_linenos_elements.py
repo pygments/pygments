@@ -6,6 +6,7 @@ import pytest
 from pygments.formatters import HtmlFormatter
 from pygments.lexers import PythonLexer
 
+from .support import structural_diff
 
 TESTDIR = os.path.dirname(os.path.abspath(__file__))
 EXPECTED_OUTPUT_DIR = os.path.join(TESTDIR, "html_linenos_expected_output")
@@ -13,7 +14,7 @@ CODE = list(PythonLexer().get_tokens("# a\n# b\n# c"))
 
 
 def single_line(text):
-    return "".join(l.strip() for l in text.splitlines())
+    return "".join(line.strip() for line in text.splitlines())
 
 
 # Note: option `anchorlinenos` is currently ignored for `linenos=inline`
@@ -52,7 +53,12 @@ def test_linenos_elements(
     filename_parts.append("filename" if filename else "nofilename")
     expected_html_filename = "_".join(filename_parts) + ".html"
 
-    with open(os.path.join(EXPECTED_OUTPUT_DIR, expected_html_filename)) as f:
+    # with open(os.path.join(EXPECTED_OUTPUT_DIR, expected_html_filename), 'w') as f:
+    #     import bs4 as BeautifulSoup
+    #     f.write(str(BeautifulSoup.BeautifulSoup(html, 'html.parser')))
+
+    with open(os.path.join(EXPECTED_OUTPUT_DIR, expected_html_filename),
+              encoding="utf-8") as f:
         expected_html = f.read()
 
-    assert single_line(html) == single_line(expected_html)
+    structural_diff.structural_diff(html, expected_html)

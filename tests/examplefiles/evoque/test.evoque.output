@@ -117,7 +117,7 @@
 '{'           Punctuation
 ' \n                #table_row' Literal.String
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 '}'           Punctuation
@@ -240,7 +240,7 @@
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '        '    Text
 'rows'        Name

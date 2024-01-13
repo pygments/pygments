@@ -4,11 +4,11 @@ HTTP::Server.new
 
 ---tokens---
 'HTTP'        Name.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 'HTTP'        Name
 '::'          Operator
 'Server'      Name
 '.'           Operator
 'new'         Name
-'\n'          Text
+'\n'          Text.Whitespace

@@ -24,35 +24,31 @@ endmodule : Adder
 '// Adder flops the sum of its inputs\n' Comment.Single
 
 'module'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Adder'       Name
-' '           Text
+' '           Text.Whitespace
 '#'           Punctuation
 '('           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'parameter'   Keyword
-' '           Text
+' '           Text.Whitespace
 'int'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'N'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '42'          Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'output'      Keyword
-' '           Text
+' '           Text.Whitespace
 'logic'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'N'           Name
 '-'           Operator
@@ -60,27 +56,21 @@ endmodule : Adder
 ':'           Operator
 '0'           Literal.Number.Integer
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'y'           Name
 ','           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'output'      Keyword
-' '           Text
+' '           Text.Whitespace
 'logic'       Keyword.Type
-'         '   Text
+'         '   Text.Whitespace
 'co'          Name
 ','           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'    '        Text
+'\n\n    '    Text.Whitespace
 'input'       Keyword
-'  '          Text
+'  '          Text.Whitespace
 'logic'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'N'           Name
 '-'           Operator
@@ -88,16 +78,14 @@ endmodule : Adder
 ':'           Operator
 '0'           Literal.Number.Integer
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'a'           Name
 ','           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'input'       Keyword
-'  '          Text
+'  '          Text.Whitespace
 'logic'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'N'           Name
 '-'           Operator
@@ -105,77 +93,65 @@ endmodule : Adder
 ':'           Operator
 '0'           Literal.Number.Integer
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'b'           Name
 ','           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'input'       Keyword
-'  '          Text
+'  '          Text.Whitespace
 'logic'       Keyword.Type
-'         '   Text
+'         '   Text.Whitespace
 'ci'          Name
 ','           Punctuation
-'\n'          Text
-
-'\n'          Text
-
-'    '        Text
+'\n\n    '    Text.Whitespace
 'input'       Keyword
-'  '          Text
+'  '          Text.Whitespace
 'logic'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'clk'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'always_ff'   Keyword
-' '           Text
+' '           Text.Whitespace
 '@'           Punctuation
 '('           Punctuation
 'posedge'     Keyword
-' '           Text
+' '           Text.Whitespace
 'clk'         Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'begin'       Keyword
-'\n'          Text
-
-'        '    Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
 'co'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'y'           Name
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'b'           Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'ci'          Name
 ';'           Punctuation
-'\n'          Text
-
-'    '        Text
+'\n    '      Text.Whitespace
 'end'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'endmodule'   Keyword
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'Adder'       Name
-'\n'          Text
+'\n'          Text.Whitespace

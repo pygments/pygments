@@ -1,0 +1,12 @@
+---input---
+@"ant\fbee\rcougar"
+
+---tokens---
+'@"'          Literal.String
+'ant'         Literal.String
+'\\f'         Literal.String.Escape
+'bee'         Literal.String
+'\\r'         Literal.String.Escape
+'cougar'      Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace

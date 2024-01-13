@@ -5,12 +5,12 @@ f'{ chr(65) =}'
 'f'           Literal.String.Affix
 "'"           Literal.String.Single
 '{'           Literal.String.Interpol
-' '           Text
+' '           Text.Whitespace
 'chr'         Name.Builtin
 '('           Punctuation
 '65'          Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '=}'          Literal.String.Interpol
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace

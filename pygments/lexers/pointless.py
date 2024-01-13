@@ -4,7 +4,7 @@
 
     Lexers for Pointless.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -17,14 +17,14 @@ __all__ = ['PointlessLexer']
 
 class PointlessLexer(RegexLexer):
     """
-    For `Pointless <https://ptls.dev>`_ source code.
-
-    .. versionadded:: 2.7
+    For Pointless source code.
     """
 
     name = 'Pointless'
+    url = 'https://ptls.dev'
     aliases = ['pointless']
     filenames = ['*.ptls']
+    version_added = '2.7'
 
     ops = words([
         "+", "-", "*", "/", "**", "%", "+=", "-=", "*=",

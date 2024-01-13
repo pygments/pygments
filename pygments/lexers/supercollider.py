@@ -4,7 +4,7 @@
 
     Lexer for SuperCollider
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -19,15 +19,15 @@ __all__ = ['SuperColliderLexer']
 
 class SuperColliderLexer(RegexLexer):
     """
-    For `SuperCollider <http://supercollider.github.io/>`_ source code.
-
-    .. versionadded:: 2.1
+    For SuperCollider source code.
     """
 
     name = 'SuperCollider'
+    url = 'http://supercollider.github.io/'
     aliases = ['supercollider', 'sc']
     filenames = ['*.sc', '*.scd']
-    mimetypes = ['application/supercollider', 'text/supercollider', ]
+    mimetypes = ['application/supercollider', 'text/supercollider']
+    version_added = '2.1'
 
     flags = re.DOTALL | re.MULTILINE
     tokens = {

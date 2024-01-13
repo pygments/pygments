@@ -4,30 +4,31 @@
 
     Lexers for the Dylan language.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
-from pygments.lexer import Lexer, RegexLexer, bygroups, do_insertions, default
-from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Generic, Literal
+from pygments.lexer import Lexer, RegexLexer, bygroups, do_insertions, \
+    default, line_re
+from pygments.token import Comment, Operator, Keyword, Name, String, \
+    Number, Punctuation, Generic, Literal, Whitespace
 
 __all__ = ['DylanLexer', 'DylanConsoleLexer', 'DylanLidLexer']
 
 
 class DylanLexer(RegexLexer):
     """
-    For the `Dylan <http://www.opendylan.org/>`_ language.
-
-    .. versionadded:: 0.7
+    For the Dylan language.
     """
 
     name = 'Dylan'
+    url = 'http://www.opendylan.org/'
     aliases = ['dylan']
     filenames = ['*.dylan', '*.dyl', '*.intr']
     mimetypes = ['text/x-dylan']
+    version_added = '0.7'
 
     flags = re.IGNORECASE
 
@@ -110,23 +111,23 @@ class DylanLexer(RegexLexer):
     tokens = {
         'root': [
             # Whitespace
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
 
             # single line comment
             (r'//.*?\n', Comment.Single),
 
             # lid header
             (r'([a-z0-9-]+)(:)([ \t]*)(.*(?:\n[ \t].+)*)',
-                bygroups(Name.Attribute, Operator, Text, String)),
+                bygroups(Name.Attribute, Operator, Whitespace, String)),
 
             default('code')  # no header match, switch to code
         ],
         'code': [
             # Whitespace
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
 
             # single line comment
-            (r'//.*?\n', Comment.Single),
+            (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace)),
 
             # multi-line comment
             (r'/\*', Comment.Multiline, 'comment'),
@@ -190,7 +191,7 @@ class DylanLexer(RegexLexer):
             (valid_name, Name),
         ],
         'comment': [
-            (r'[^*/]', Comment.Multiline),
+            (r'[^*/]+', Comment.Multiline),
             (r'/\*', Comment.Multiline, '#push'),
             (r'\*/', Comment.Multiline, '#pop'),
             (r'[*/]', Comment.Multiline)
@@ -212,53 +213,45 @@ class DylanLexer(RegexLexer):
 class DylanLidLexer(RegexLexer):
     """
     For Dylan LID (Library Interchange Definition) files.
-
-    .. versionadded:: 1.6
     """
 
     name = 'DylanLID'
     aliases = ['dylan-lid', 'lid']
     filenames = ['*.lid', '*.hdp']
     mimetypes = ['text/x-dylan-lid']
-
+    url = 'http://www.opendylan.org/'
+    version_added = '1.6'
     flags = re.IGNORECASE
 
     tokens = {
         'root': [
             # Whitespace
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
 
             # single line comment
-            (r'//.*?\n', Comment.Single),
+            (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace)),
 
             # lid header
             (r'(.*?)(:)([ \t]*)(.*(?:\n[ \t].+)*)',
-             bygroups(Name.Attribute, Operator, Text, String)),
+             bygroups(Name.Attribute, Operator, Whitespace, String)),
         ]
     }
 
 
 class DylanConsoleLexer(Lexer):
     """
-    For Dylan interactive console output like:
-
-    .. sourcecode:: dylan-console
-
-        ? let a = 1;
-        => 1
-        ? a
-        => 1
+    For Dylan interactive console output.
 
     This is based on a copy of the RubyConsoleLexer.
-
-    .. versionadded:: 1.6
     """
     name = 'Dylan session'
     aliases = ['dylan-console', 'dylan-repl']
     filenames = ['*.dylan-console']
     mimetypes = ['text/x-dylan-console']
+    url = 'http://www.opendylan.org/'
+    version_added = '1.6'
+    _example = 'dylan-console/console'
 
-    _line_re = re.compile('.*?\n')
     _prompt_re = re.compile(r'\?| ')
 
     def get_tokens_unprocessed(self, text):
@@ -266,7 +259,7 @@ class DylanConsoleLexer(Lexer):
 
         curcode = ''
         insertions = []
-        for match in self._line_re.finditer(text):
+        for match in line_re.finditer(text):
             line = match.group()
             m = self._prompt_re.match(line)
             if m is not None:

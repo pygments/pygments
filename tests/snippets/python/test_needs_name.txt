@@ -52,4 +52,4 @@ S = (H @ beta - r).T @ inv(H @ V @ H.T) @ (H @ beta - r)
 ' '           Text
 'r'           Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

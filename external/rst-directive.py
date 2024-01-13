@@ -30,9 +30,17 @@
     .. _directive documentation:
        https://docutils.sourceforge.io/docs/howto/rst-directives.html
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+
+from docutils import nodes
+from docutils.parsers.rst import directives, Directive
+
+from pygments import highlight
+from pygments.formatters import HtmlFormatter
+from pygments.lexers import get_lexer_by_name, TextLexer
+
 
 # Options
 # ~~~~~~~
@@ -40,7 +48,6 @@
 # Set to True if you want inline CSS styles instead of classes
 INLINESTYLES = False
 
-from pygments.formatters import HtmlFormatter
 
 # The default formatter
 DEFAULT = HtmlFormatter(noclasses=INLINESTYLES)
@@ -51,14 +58,8 @@ VARIANTS = {
 }
 
 
-from docutils import nodes
-from docutils.parsers.rst import directives, Directive
-
-from pygments import highlight
-from pygments.lexers import get_lexer_by_name, TextLexer
-
 class Pygments(Directive):
-    """ Source code syntax hightlighting.
+    """ Source code syntax highlighting.
     """
     required_arguments = 1
     optional_arguments = 0

@@ -1,0 +1,1813 @@
+'CREATE'      Keyword
+' '           Text.Whitespace
+'QUERY'       Keyword
+' '           Text.Whitespace
+'Member_Likeness' Name
+'('           Operator
+'VERTEX'      Keyword
+' '           Text.Whitespace
+'<'           Punctuation
+'motionMember' Name
+'>'           Punctuation
+' '           Text.Whitespace
+'m1'          Name
+','           Operator
+' '           Text.Whitespace
+'STRING'      Keyword
+' '           Text.Whitespace
+'inDate'      Name
+')'           Operator
+' '           Text.Whitespace
+'FOR'         Keyword
+' '           Text.Whitespace
+'GRAPH'       Keyword
+' '           Text.Whitespace
+'motionData'  Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'# TYPEDEF TUPLE <x FLOAT, y FLOAT> XYPair;' Comment.Single
+'\n\t'        Text.Whitespace
+'MapAccum'    Name.Builtin
+'<'           Punctuation
+'VERTEX'      Keyword
+'<'           Punctuation
+'motionMember' Name
+'>'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'MapAccum'    Name.Builtin
+'<'           Punctuation
+'STRING'      Keyword
+','           Operator
+' '           Text.Whitespace
+'FLOAT'       Keyword
+'>'           Punctuation
+'>'           Punctuation
+' '           Text.Whitespace
+'@@likenessAccum' Name.Variable
+';'           Operator
+'\n\t'        Text.Whitespace
+'MapAccum'    Name.Builtin
+'<'           Punctuation
+'VERTEX'      Keyword
+'<'           Punctuation
+'motionMember' Name
+'>'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'FLOAT'       Keyword
+'>'           Punctuation
+' '           Text.Whitespace
+'@@BirthYearAccum' Name.Variable
+';'           Operator
+'\n\t'        Text.Whitespace
+'MapAccum'    Name.Builtin
+'<'           Punctuation
+'VERTEX'      Keyword
+'<'           Punctuation
+'motionMember' Name
+'>'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'FLOAT'       Keyword
+'>'           Punctuation
+' '           Text.Whitespace
+'@@HeightAccum' Name.Variable
+';'           Operator
+'\n\t'        Text.Whitespace
+'MapAccum'    Name.Builtin
+'<'           Punctuation
+'VERTEX'      Keyword
+'<'           Punctuation
+'motionMember' Name
+'>'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'FLOAT'       Keyword
+'>'           Punctuation
+' '           Text.Whitespace
+'@@WeightAccum' Name.Variable
+';'           Operator
+'\n\t'        Text.Whitespace
+'ListAccum'   Name.Builtin
+'<'           Punctuation
+'VERTEX'      Keyword
+'<'           Punctuation
+'location'    Name
+'>'           Punctuation
+'>'           Punctuation
+' '           Text.Whitespace
+'@@MemLocAccum' Name.Variable
+';'           Operator
+'\n\t'        Text.Whitespace
+'MapAccum'    Name.Builtin
+'<'           Punctuation
+'VERTEX'      Keyword
+'<'           Punctuation
+'motionMember' Name
+'>'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'FLOAT'       Keyword
+'>'           Punctuation
+' '           Text.Whitespace
+'@@LocAccum'  Name.Variable
+';'           Operator
+'\n\t'        Text.Whitespace
+'MapAccum'    Name.Builtin
+'<'           Punctuation
+'VERTEX'      Keyword
+'<'           Punctuation
+'motionMember' Name
+'>'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'BagAccum'    Name.Builtin
+'<'           Punctuation
+'VERTEX'      Keyword
+'<'           Punctuation
+'incentive'   Name
+'>'           Punctuation
+'>'           Punctuation
+'>'           Punctuation
+' '           Text.Whitespace
+'@@DayIncentives' Name.Variable
+';'           Operator
+'\n\t'        Text.Whitespace
+'MapAccum'    Name.Builtin
+'<'           Punctuation
+'VERTEX'      Keyword
+'<'           Punctuation
+'motionMember' Name
+'>'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'MapAccum'    Name.Builtin
+'<'           Punctuation
+'STRING'      Keyword
+','           Operator
+' '           Text.Whitespace
+'FLOAT'       Keyword
+'>'           Punctuation
+'>'           Punctuation
+' '           Text.Whitespace
+'@@MemberStats' Name.Variable
+';'           Operator
+'\n\t'        Text.Whitespace
+'BagAccum'    Name.Builtin
+'<'           Punctuation
+'VERTEX'      Keyword
+'<'           Punctuation
+'incentive'   Name
+'>'           Punctuation
+'>'           Punctuation
+' '           Text.Whitespace
+'@MemberIncentives' Name.Variable
+';'           Operator
+'\n\t'        Text.Whitespace
+'AvgAccum'    Name.Builtin
+' '           Text.Whitespace
+'@@StepsAccum' Name.Variable
+';'           Operator
+'\n\t'        Text.Whitespace
+'AvgAccum'    Name.Builtin
+' '           Text.Whitespace
+'@@BoutsAccum' Name.Variable
+';'           Operator
+'\n\t'        Text.Whitespace
+'AvgAccum'    Name.Builtin
+' '           Text.Whitespace
+'@@MilesAccum' Name.Variable
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'# Universal Vars' Comment.Single
+'\n\t'        Text.Whitespace
+'INT'         Keyword
+' '           Text.Whitespace
+'lastMax'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number
+';'           Operator
+'\n\t'        Text.Whitespace
+'INT'         Keyword
+' '           Text.Whitespace
+'lastMin'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1000'        Literal.Number
+';'           Operator
+'\n\t'        Text.Whitespace
+'FLOAT'       Keyword
+' '           Text.Whitespace
+'mult'        Name
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'# Age Vars'  Comment.Single
+'\n\t'        Text.Whitespace
+'INT'         Keyword
+' '           Text.Whitespace
+'ageRange'    Name
+';'           Operator
+'\n\t'        Text.Whitespace
+'INT'         Keyword
+' '           Text.Whitespace
+'birthYear'   Name
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'# Height Vars' Comment.Single
+'\n\t'        Text.Whitespace
+'INT'         Keyword
+' '           Text.Whitespace
+'heightRange' Name
+';'           Operator
+'\n\t'        Text.Whitespace
+'INT'         Keyword
+' '           Text.Whitespace
+'height'      Name
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'# Height Vars' Comment.Single
+'\n\t'        Text.Whitespace
+'INT'         Keyword
+' '           Text.Whitespace
+'weightRange' Name
+';'           Operator
+'\n\t'        Text.Whitespace
+'INT'         Keyword
+' '           Text.Whitespace
+'weight'      Name
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'# Location Vars' Comment.Single
+'\n\t'        Text.Whitespace
+'FLOAT'       Keyword
+' '           Text.Whitespace
+'locRange'    Name
+';'           Operator
+'\n\t'        Text.Whitespace
+'VERTEX'      Keyword
+' '           Text.Whitespace
+'memLoc'      Name
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'# Activity Vars' Comment.Single
+'\n\t'        Text.Whitespace
+'DATETIME'    Keyword
+' '           Text.Whitespace
+'lastRecording' Name
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'# lastRecording = to_datetime("2018-05-19");' Comment.Single
+'\n\t'        Text.Whitespace
+'lastRecording' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'to_datetime' Keyword
+'('           Operator
+'inDate'      Name
+')'           Operator
+';'           Operator
+'\n\n    '    Text.Whitespace
+'/*\n\n    test comment block\n\n    */' Comment.Multiline
+'\n\n\n\t'    Text.Whitespace
+'members'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'motionMember' Name
+'.'           Punctuation
+'*'           Punctuation
+'}'           Punctuation
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'birthYear'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Get_Birth_Year' Name
+'('           Operator
+'m1'          Name
+')'           Operator
+';'           Operator
+'\n\t'        Text.Whitespace
+'height'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'m1'          Name
+'.'           Punctuation
+'Height'      Name
+';'           Operator
+'\n\t'        Text.Whitespace
+'weight'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'m1'          Name
+'.'           Punctuation
+'Weight'      Name
+';'           Operator
+'\n\t'        Text.Whitespace
+'temp'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'SELECT'      Keyword
+' '           Text.Whitespace
+'loc'         Name
+' '           Text.Whitespace
+'FROM'        Keyword
+' '           Text.Whitespace
+'members'     Name
+':'           Operator
+'member'      Name
+' '           Text.Whitespace
+'-'           Operator
+'('           Operator
+':'           Operator
+'e'           Name
+')'           Operator
+' -'          Operator
+' '           Text.Whitespace
+'location'    Name
+':'           Operator
+' '           Text.Whitespace
+'loc'         Name
+'\n\t  '      Text.Whitespace
+'WHERE'       Keyword
+' '           Text.Whitespace
+'member'      Name
+' '           Text.Whitespace
+'== '         Operator
+'m1'          Name
+'\n\t    '    Text.Whitespace
+'ACCUM'       Keyword
+'\n\t      '  Text.Whitespace
+'@@MemLocAccum' Name.Variable
+' '           Text.Whitespace
+'+= '         Operator
+'loc'         Name
+';'           Operator
+'\n\t'        Text.Whitespace
+'FOREACH'     Keyword
+' '           Text.Whitespace
+'loc'         Name
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'@@MemLocAccum' Name.Variable
+' '           Text.Whitespace
+'DO'          Keyword
+'\n\t  '      Text.Whitespace
+'memLoc'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'loc'         Name
+';'           Operator
+'\n\t  '      Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'PRINT'       Keyword
+' '           Text.Whitespace
+'memLoc'      Name
+';'           Operator
+'\n\t'        Text.Whitespace
+'PRINT'       Keyword
+' '           Text.Whitespace
+'birthYear'   Name
+';'           Operator
+'\n\t'        Text.Whitespace
+'PRINT'       Keyword
+' '           Text.Whitespace
+'height'      Name
+';'           Operator
+'\n\t'        Text.Whitespace
+'PRINT'       Keyword
+' '           Text.Whitespace
+'weight'      Name
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'results'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'SELECT'      Keyword
+' '           Text.Whitespace
+'member'      Name
+' '           Text.Whitespace
+'FROM'        Keyword
+' '           Text.Whitespace
+'members'     Name
+':'           Operator
+'member'      Name
+'\n\t  '      Text.Whitespace
+'ACCUM'       Keyword
+'\n\t    '    Text.Whitespace
+'@@BirthYearAccum' Name.Variable
+' '           Text.Whitespace
+'+= '         Operator
+'('           Operator
+'member'      Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'abs'         Name
+'('           Operator
+'Get_Birth_Year' Name
+'('           Operator
+'member'      Name
+')'           Operator
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'birthYear'   Name
+')'           Operator
+')'           Operator
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'FOREACH'     Keyword
+' '           Text.Whitespace
+'('           Operator
+'member'      Name
+','           Operator
+'bys'         Name
+')'           Operator
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'@@BirthYearAccum' Name.Variable
+' '           Text.Whitespace
+'DO'          Keyword
+'\n\t  '      Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'bys'         Name
+' '           Text.Whitespace
+'>'           Punctuation
+' '           Text.Whitespace
+'lastMax'     Name
+' '           Text.Whitespace
+'THEN'        Keyword
+'\n\t    '    Text.Whitespace
+'lastMax'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'bys'         Name
+';'           Operator
+'\n\t    '    Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\t  '      Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'bys'         Name
+' '           Text.Whitespace
+'<'           Punctuation
+' '           Text.Whitespace
+'lastMin'     Name
+' '           Text.Whitespace
+'THEN'        Keyword
+'\n\t    '    Text.Whitespace
+'lastMin'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'bys'         Name
+';'           Operator
+'\n\t    '    Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\t  '      Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'ageRange'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'lastMax'     Name
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'lastMin'     Name
+';'           Operator
+'\n\t'        Text.Whitespace
+'print'       Keyword
+' '           Text.Whitespace
+'ageRange'    Name
+';'           Operator
+'\n\t'        Text.Whitespace
+'mult'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1.0'         Literal.Number
+'/'           Operator
+'ageRange'    Name
+';'           Operator
+'\n\n\n\t'    Text.Whitespace
+'FOREACH'     Keyword
+' '           Text.Whitespace
+'('           Operator
+'member'      Name
+','           Operator
+'bys'         Name
+')'           Operator
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'@@BirthYearAccum' Name.Variable
+' '           Text.Whitespace
+'DO'          Keyword
+'\n\t  '      Text.Whitespace
+'bys'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'bys'         Name
+' '           Text.Whitespace
+'*'           Punctuation
+' '           Text.Whitespace
+'mult'        Name
+';'           Operator
+'\n\t  '      Text.Whitespace
+'@@likenessAccum' Name.Variable
+' '           Text.Whitespace
+'+= '         Operator
+'('           Operator
+'member'      Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'('           Operator
+'"age"'       Literal.String
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'bys'         Name
+')'           Operator
+')'           Operator
+';'           Operator
+'\n\t  '      Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'lastMax'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number
+';'           Operator
+'\n\t'        Text.Whitespace
+'lastMin'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1000'        Literal.Number
+';'           Operator
+'\n\t'        Text.Whitespace
+'mult'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'results'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'SELECT'      Keyword
+' '           Text.Whitespace
+'member'      Name
+' '           Text.Whitespace
+'FROM'        Keyword
+' '           Text.Whitespace
+'members'     Name
+':'           Operator
+'member'      Name
+'\n\t  '      Text.Whitespace
+'ACCUM'       Keyword
+'\n\t    '    Text.Whitespace
+'@@HeightAccum' Name.Variable
+' '           Text.Whitespace
+'+= '         Operator
+'('           Operator
+'member'      Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'abs'         Name
+'('           Operator
+'member'      Name
+'.'           Punctuation
+'Height'      Name
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'height'      Name
+')'           Operator
+')'           Operator
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'FOREACH'     Keyword
+' '           Text.Whitespace
+'('           Operator
+'member'      Name
+','           Operator
+'heights'     Name
+')'           Operator
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'@@HeightAccum' Name.Variable
+' '           Text.Whitespace
+'DO'          Keyword
+'\n\t  '      Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'heights'     Name
+' '           Text.Whitespace
+'<'           Punctuation
+' '           Text.Whitespace
+'height'      Name
+' '           Text.Whitespace
+'THEN'        Keyword
+'\n\t    '    Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'heights'     Name
+' '           Text.Whitespace
+'>'           Punctuation
+' '           Text.Whitespace
+'lastMax'     Name
+' '           Text.Whitespace
+'THEN'        Keyword
+'\n\t      '  Text.Whitespace
+'lastMax'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'heights'     Name
+';'           Operator
+'\n\t      '  Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\t    '    Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'heights'     Name
+' '           Text.Whitespace
+'<'           Punctuation
+' '           Text.Whitespace
+'lastMin'     Name
+' '           Text.Whitespace
+'THEN'        Keyword
+'\n\t      '  Text.Whitespace
+'lastMin'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'heights'     Name
+';'           Operator
+'\n\t      '  Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\t    '    Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\t  '      Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'heightRange' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'lastMax'     Name
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'lastMin'     Name
+';'           Operator
+'\n\t'        Text.Whitespace
+'print'       Keyword
+' '           Text.Whitespace
+'heightRange' Name
+';'           Operator
+'\n\t'        Text.Whitespace
+'mult'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1.0'         Literal.Number
+'/'           Operator
+'heightRange' Name
+';'           Operator
+'\n\n\n\t'    Text.Whitespace
+'FOREACH'     Keyword
+' '           Text.Whitespace
+'('           Operator
+'member'      Name
+','           Operator
+'heights'     Name
+')'           Operator
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'@@HeightAccum' Name.Variable
+' '           Text.Whitespace
+'DO'          Keyword
+'\n\t  '      Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'heights'     Name
+' '           Text.Whitespace
+'<'           Punctuation
+' '           Text.Whitespace
+'height'      Name
+' '           Text.Whitespace
+'THEN'        Keyword
+'\n\t    '    Text.Whitespace
+'heights'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'heights'     Name
+' '           Text.Whitespace
+'*'           Punctuation
+' '           Text.Whitespace
+'mult'        Name
+';'           Operator
+'\n\t  '      Text.Whitespace
+'ELSE'        Keyword
+'\n\t    '    Text.Whitespace
+'heights'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number
+';'           Operator
+'\n\t    '    Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\t  '      Text.Whitespace
+'@@likenessAccum' Name.Variable
+' '           Text.Whitespace
+'+= '         Operator
+'('           Operator
+'member'      Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'('           Operator
+'"height"'    Literal.String
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'heights'     Name
+')'           Operator
+')'           Operator
+';'           Operator
+'\n\t  '      Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'lastMax'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number
+';'           Operator
+'\n\t'        Text.Whitespace
+'lastMin'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1000'        Literal.Number
+';'           Operator
+'\n\t'        Text.Whitespace
+'mult'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'results'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'SELECT'      Keyword
+' '           Text.Whitespace
+'member'      Name
+' '           Text.Whitespace
+'FROM'        Keyword
+' '           Text.Whitespace
+'members'     Name
+':'           Operator
+'member'      Name
+'\n\t  '      Text.Whitespace
+'ACCUM'       Keyword
+'\n\t    '    Text.Whitespace
+'@@WeightAccum' Name.Variable
+' '           Text.Whitespace
+'+= '         Operator
+'('           Operator
+'member'      Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'abs'         Name
+'('           Operator
+'member'      Name
+'.'           Punctuation
+'Weight'      Name
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'weight'      Name
+')'           Operator
+')'           Operator
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'FOREACH'     Keyword
+' '           Text.Whitespace
+'('           Operator
+'member'      Name
+','           Operator
+'weights'     Name
+')'           Operator
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'@@WeightAccum' Name.Variable
+' '           Text.Whitespace
+'DO'          Keyword
+'\n\t  '      Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'weights'     Name
+' '           Text.Whitespace
+'<'           Punctuation
+' '           Text.Whitespace
+'weight'      Name
+' '           Text.Whitespace
+'THEN'        Keyword
+'\n\t    '    Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'weights'     Name
+' '           Text.Whitespace
+'>'           Punctuation
+' '           Text.Whitespace
+'lastMax'     Name
+' '           Text.Whitespace
+'THEN'        Keyword
+'\n\t      '  Text.Whitespace
+'lastMax'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'weights'     Name
+';'           Operator
+'\n\t      '  Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\t    '    Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'weights'     Name
+' '           Text.Whitespace
+'<'           Punctuation
+' '           Text.Whitespace
+'lastMin'     Name
+' '           Text.Whitespace
+'THEN'        Keyword
+'\n\t      '  Text.Whitespace
+'lastMin'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'weights'     Name
+';'           Operator
+'\n\t      '  Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\t    '    Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\t  '      Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'weightRange' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'lastMax'     Name
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'lastMin'     Name
+';'           Operator
+'\n\t'        Text.Whitespace
+'print'       Keyword
+' '           Text.Whitespace
+'weightRange' Name
+';'           Operator
+'\n\t'        Text.Whitespace
+'mult'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1.0'         Literal.Number
+'/'           Operator
+'weightRange' Name
+';'           Operator
+'\n\n\n\t'    Text.Whitespace
+'FOREACH'     Keyword
+' '           Text.Whitespace
+'('           Operator
+'member'      Name
+','           Operator
+'weights'     Name
+')'           Operator
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'@@WeightAccum' Name.Variable
+' '           Text.Whitespace
+'DO'          Keyword
+'\n\t  '      Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'weights'     Name
+' '           Text.Whitespace
+'<'           Punctuation
+' '           Text.Whitespace
+'weight'      Name
+' '           Text.Whitespace
+'THEN'        Keyword
+'\n\t    '    Text.Whitespace
+'weights'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'weights'     Name
+' '           Text.Whitespace
+'*'           Punctuation
+' '           Text.Whitespace
+'mult'        Name
+';'           Operator
+'\n\t  '      Text.Whitespace
+'ELSE'        Keyword
+'\n\t    '    Text.Whitespace
+'weights'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number
+';'           Operator
+'\n\t    '    Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\t  '      Text.Whitespace
+'@@likenessAccum' Name.Variable
+' '           Text.Whitespace
+'+= '         Operator
+'('           Operator
+'member'      Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'('           Operator
+'"weight"'    Literal.String
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'weights'     Name
+')'           Operator
+')'           Operator
+';'           Operator
+'\n\t  '      Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'lastMax'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number
+';'           Operator
+'\n\t'        Text.Whitespace
+'lastMin'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1000'        Literal.Number
+';'           Operator
+'\n\t'        Text.Whitespace
+'mult'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'resultsLoc'  Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'SELECT'      Keyword
+' '           Text.Whitespace
+'loc'         Name
+' '           Text.Whitespace
+'FROM'        Keyword
+' '           Text.Whitespace
+'members'     Name
+':'           Operator
+'member'      Name
+' '           Text.Whitespace
+'-'           Operator
+'('           Operator
+':'           Operator
+'e'           Name
+')'           Operator
+' -'          Operator
+' '           Text.Whitespace
+'location'    Name
+':'           Operator
+' '           Text.Whitespace
+'loc'         Name
+'\n\t  '      Text.Whitespace
+'ACCUM'       Keyword
+'\n\t    '    Text.Whitespace
+'@@LocAccum'  Name.Variable
+' '           Text.Whitespace
+'+= '         Operator
+'('           Operator
+'member'      Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'Check_Distance' Name
+'('           Operator
+'loc'         Name
+','           Operator
+'memLoc'      Name
+')'           Operator
+')'           Operator
+';'           Operator
+'\n\t'        Text.Whitespace
+'FOREACH'     Keyword
+' '           Text.Whitespace
+'('           Operator
+'member'      Name
+','           Operator
+'loc'         Name
+')'           Operator
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'@@LocAccum'  Name.Variable
+' '           Text.Whitespace
+'DO'          Keyword
+'\n\t  '      Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'loc'         Name
+' '           Text.Whitespace
+'<'           Punctuation
+' '           Text.Whitespace
+'5800'        Literal.Number
+' '           Text.Whitespace
+'THEN'        Keyword
+'\n\t    '    Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'loc'         Name
+' '           Text.Whitespace
+'>'           Punctuation
+' '           Text.Whitespace
+'lastMax'     Name
+' '           Text.Whitespace
+'THEN'        Keyword
+'\n\t      '  Text.Whitespace
+'lastMax'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'ceil'        Name
+'('           Operator
+'loc'         Name
+')'           Operator
+';'           Operator
+'\n\t      '  Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\t    '    Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'loc'         Name
+' '           Text.Whitespace
+'<'           Punctuation
+' '           Text.Whitespace
+'lastMin'     Name
+' '           Text.Whitespace
+'THEN'        Keyword
+'\n\t      '  Text.Whitespace
+'lastMin'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'floor'       Name
+'('           Operator
+'loc'         Name
+')'           Operator
+';'           Operator
+'\n\t      '  Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\t    '    Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\t  '      Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'PRINT'       Keyword
+' '           Text.Whitespace
+'lastMax'     Name
+';'           Operator
+'\n\t'        Text.Whitespace
+'PRINT'       Keyword
+' '           Text.Whitespace
+'lastMin'     Name
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'locRange'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'lastMax'     Name
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'lastMin'     Name
+';'           Operator
+'\n\t'        Text.Whitespace
+'print'       Keyword
+' '           Text.Whitespace
+'locRange'    Name
+';'           Operator
+'\n\t'        Text.Whitespace
+'mult'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1.0'         Literal.Number
+'/'           Operator
+'locRange'    Name
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'FOREACH'     Keyword
+' '           Text.Whitespace
+'('           Operator
+'member'      Name
+','           Operator
+'loc'         Name
+')'           Operator
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'@@LocAccum'  Name.Variable
+' '           Text.Whitespace
+'DO'          Keyword
+'\n\t  '      Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'loc'         Name
+' '           Text.Whitespace
+'>'           Punctuation
+' '           Text.Whitespace
+'5800'        Literal.Number
+' '           Text.Whitespace
+'THEN'        Keyword
+'\n\t    '    Text.Whitespace
+'loc'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'-'           Operator
+'1'           Literal.Number
+';'           Operator
+'\n\t  '      Text.Whitespace
+'ELSE'        Keyword
+'\n\t    '    Text.Whitespace
+'loc'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'loc'         Name
+' '           Text.Whitespace
+'*'           Punctuation
+' '           Text.Whitespace
+'mult'        Name
+';'           Operator
+'\n\t    '    Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\t  '      Text.Whitespace
+'@@likenessAccum' Name.Variable
+' '           Text.Whitespace
+'+= '         Operator
+'('           Operator
+'member'      Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'('           Operator
+'"distance"'  Literal.String
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'loc'         Name
+')'           Operator
+')'           Operator
+';'           Operator
+'\n\t  '      Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'lastMax'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number
+';'           Operator
+'\n\t'        Text.Whitespace
+'lastMin'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1000'        Literal.Number
+';'           Operator
+'\n\t'        Text.Whitespace
+'mult'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'incentives'  Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'incentive'   Name
+'.'           Punctuation
+'*'           Punctuation
+'}'           Punctuation
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'incentives'  Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'SELECT'      Keyword
+' '           Text.Whitespace
+'incent'      Name
+' '           Text.Whitespace
+'FROM'        Keyword
+' '           Text.Whitespace
+'incentives'  Name
+':'           Operator
+'incent'      Name
+' '           Text.Whitespace
+'- '          Operator
+'('           Operator
+':'           Operator
+'e'           Name
+')'           Operator
+' -'          Operator
+' '           Text.Whitespace
+'lookupRule'  Name
+':'           Operator
+'rule'        Name
+' '           Text.Whitespace
+'WHERE'       Keyword
+'\n\t  '      Text.Whitespace
+'rule'        Name
+'.'           Punctuation
+'RuleName'    Name
+' '           Text.Whitespace
+'== '         Operator
+'"Tenacity"'  Literal.String
+' '           Text.Whitespace
+'AND'         Keyword
+' '           Text.Whitespace
+'incent'      Name
+'.'           Punctuation
+'IncentiveDate' Name
+' '           Text.Whitespace
+'>'           Punctuation
+' '           Text.Whitespace
+'datetime_sub' Keyword
+'('           Operator
+'lastRecording' Name
+','           Operator
+' '           Text.Whitespace
+'INTERVAL'    Keyword
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'MONTH'       Name
+')'           Operator
+' '           Text.Whitespace
+'AND'         Keyword
+' '           Text.Whitespace
+'incent'      Name
+'.'           Punctuation
+'IncentiveDate' Name
+' '           Text.Whitespace
+'<'           Punctuation
+' '           Text.Whitespace
+'lastRecording' Name
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'members'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'SELECT'      Keyword
+' '           Text.Whitespace
+'member'      Name
+' '           Text.Whitespace
+'FROM'        Keyword
+' '           Text.Whitespace
+'incentives'  Name
+':'           Operator
+'incent'      Name
+' '           Text.Whitespace
+'- '          Operator
+'('           Operator
+':'           Operator
+'e'           Name
+')'           Operator
+' -'          Operator
+' '           Text.Whitespace
+'motionMember' Name
+':'           Operator
+'member'      Name
+'\n\t  '      Text.Whitespace
+'ACCUM'       Keyword
+'\n\t    '    Text.Whitespace
+'@@DayIncentives' Name.Variable
+' '           Text.Whitespace
+'+= '         Operator
+'('           Operator
+'member'      Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'('           Operator
+'incent'      Name
+')'           Operator
+')'           Operator
+';'           Operator
+'\n\n\t'      Text.Whitespace
+'FOREACH'     Keyword
+' '           Text.Whitespace
+'('           Operator
+'member'      Name
+','           Operator
+' '           Text.Whitespace
+'incent'      Name
+')'           Operator
+' '           Text.Whitespace
+'IN'          Keyword
+' '           Text.Whitespace
+'@@DayIncentives' Name.Variable
+' '           Text.Whitespace
+'DO'          Keyword
+'\n\t  '      Text.Whitespace
+'@@StepsAccum' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number
+';'           Operator
+'\n\t  '      Text.Whitespace
+'FOREACH'     Keyword
+' '           Text.Whitespace
+'Incentive'   Name
+' '           Text.Whitespace
+'IN'          Keyword
+' '           Text.Whitespace
+'incent'      Name
+' '           Text.Whitespace
+'DO'          Keyword
+'\n\t      '  Text.Whitespace
+'@@StepsAccum' Name.Variable
+' '           Text.Whitespace
+'+= '         Operator
+'Incentive'   Name
+'.'           Punctuation
+'TotalSteps'  Name
+';'           Operator
+'\n\t      '  Text.Whitespace
+'@@BoutsAccum' Name.Variable
+' '           Text.Whitespace
+'+= '         Operator
+'Incentive'   Name
+'.'           Punctuation
+'TotalBouts'  Name
+';'           Operator
+'\n\t      '  Text.Whitespace
+'@@MilesAccum' Name.Variable
+' '           Text.Whitespace
+'+= '         Operator
+'Incentive'   Name
+'.'           Punctuation
+'Miles'       Name
+';'           Operator
+'\n\t    '    Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\t  '      Text.Whitespace
+'@@MemberStats' Name.Variable
+' '           Text.Whitespace
+'+= '         Operator
+'('           Operator
+'member'      Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'('           Operator
+'"stepsAvg"'  Literal.String
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'@@StepsAccum' Name.Variable
+')'           Operator
+')'           Operator
+';'           Operator
+'\n\t  '      Text.Whitespace
+'@@MemberStats' Name.Variable
+' '           Text.Whitespace
+'+= '         Operator
+'('           Operator
+'member'      Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'('           Operator
+'"stepsSlope"' Literal.String
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'Linear_Regression' Name
+'('           Operator
+'incent'      Name
+','           Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Operator
+')'           Operator
+')'           Operator
+';'           Operator
+'\n\t  '      Text.Whitespace
+'# @@MemberStats += (member -> ("boutsAvg" -> @@BoutsAccum));' Comment.Single
+'\n\t  '      Text.Whitespace
+'# @@MemberStats += (member -> ("boutsSlope" -> Linear_Regression(incent, 2)));' Comment.Single
+'\n\t  '      Text.Whitespace
+'@@MemberStats' Name.Variable
+' '           Text.Whitespace
+'+= '         Operator
+'('           Operator
+'member'      Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'('           Operator
+'"milesAvg"'  Literal.String
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'@@MilesAccum' Name.Variable
+')'           Operator
+')'           Operator
+';'           Operator
+'\n\t  '      Text.Whitespace
+'@@MemberStats' Name.Variable
+' '           Text.Whitespace
+'+= '         Operator
+'('           Operator
+'member'      Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'('           Operator
+'"milesSlope"' Literal.String
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'Linear_Regression' Name
+'('           Operator
+'incent'      Name
+','           Operator
+' '           Text.Whitespace
+'3'           Literal.Number
+')'           Operator
+')'           Operator
+')'           Operator
+';'           Operator
+'\n\t  '      Text.Whitespace
+'END'         Keyword
+';'           Operator
+'\n\n\n\t'    Text.Whitespace
+'PRINT'       Keyword
+' '           Text.Whitespace
+'@@MemberStats' Name.Variable
+';'           Operator
+'\n\t'        Text.Whitespace
+'PRINT'       Keyword
+' '           Text.Whitespace
+'@@likenessAccum' Name.Variable
+';'           Operator
+'\n\n'        Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'# Test end-of-line comments and multiline comments for PR#2002' Comment.Single
+'\n'          Text.Whitespace
+
+'USE'         Name
+' '           Text.Whitespace
+'GLOBAL'      Name
+' '           Text.Whitespace
+'# end of line comment' Comment.Single
+'\n'          Text.Whitespace
+
+'DROP'        Name
+' '           Text.Whitespace
+'GRAPH'       Keyword
+' '           Text.Whitespace
+'Patents'     Name
+'\n'          Text.Whitespace
+
+'CREATE'      Keyword
+' '           Text.Whitespace
+'GRAPH'       Keyword
+' '           Text.Whitespace
+'Patents'     Name
+'('           Operator
+')'           Operator
+'\n\n'        Text.Whitespace
+
+'CREATE'      Keyword
+' '           Text.Whitespace
+'SCHEMA_CHANGE' Name
+' '           Text.Whitespace
+'JOB'         Name
+' '           Text.Whitespace
+'do_schema_change' Name
+' '           Text.Whitespace
+'FOR'         Keyword
+' '           Text.Whitespace
+'GRAPH'       Keyword
+' '           Text.Whitespace
+'Patents'     Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'# add vertex and edge types' Comment.Single
+'\n       '   Text.Whitespace
+'/*\n       We add vertex and edge types to our empty graph\n       The job will be run then we will drop the job\n       */' Comment.Multiline
+'\n  '        Text.Whitespace
+'ADD'         Name
+' '           Text.Whitespace
+'VERTEX'      Keyword
+' '           Text.Whitespace
+'Address'     Name
+'('           Operator
+'PRIMARY_ID'  Keyword
+' '           Text.Whitespace
+'id'          Name
+' '           Text.Whitespace
+'STRING'      Keyword
+','           Operator
+' '           Text.Whitespace
+'line1'       Name
+' '           Text.Whitespace
+'STRING'      Keyword
+','           Operator
+' '           Text.Whitespace
+'line2'       Name
+' '           Text.Whitespace
+'STRING'      Keyword
+','           Operator
+' '           Text.Whitespace
+'line3'       Name
+' '           Text.Whitespace
+'STRING'      Keyword
+')'           Operator
+' '           Text.Whitespace
+'WITH'        Keyword
+' '           Text.Whitespace
+'PRIMARY_ID_AS_ATTRIBUTE' Name
+'='           Operator
+'"true"'      Literal.String
+';'           Operator
+' '           Text.Whitespace
+'# ID will be concatenation of several fields' Comment.Single
+'\n\n'        Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'RUN'         Keyword
+' '           Text.Whitespace
+'SCHEMA_CHANGE' Name
+' '           Text.Whitespace
+'JOB'         Name
+' '           Text.Whitespace
+'do_schema_change' Name
+'\n'          Text.Whitespace
+
+'DROP'        Name
+' '           Text.Whitespace
+'JOB'         Name
+' '           Text.Whitespace
+'do_schema_change' Name
+'\n\n'        Text.Whitespace
+
+'# Tests for PR#2006' Comment.Single
+'\n'          Text.Whitespace
+
+'# Test lexer hang with params following SET<STRING> param' Comment.Single
+'\n'          Text.Whitespace
+
+'CREATE'      Keyword
+' '           Text.Whitespace
+'QUERY'       Keyword
+' '           Text.Whitespace
+'tg_astar'    Name
+' '           Text.Whitespace
+'('           Operator
+'VERTEX'      Keyword
+' '           Text.Whitespace
+'source_vertex' Name
+','           Operator
+' '           Text.Whitespace
+'VERTEX'      Keyword
+' '           Text.Whitespace
+'target_vertex' Name
+','           Operator
+' '           Text.Whitespace
+'SET'         Keyword
+'<'           Punctuation
+'STRING'      Keyword
+'>'           Punctuation
+' '           Text.Whitespace
+'e_type'      Name
+','           Operator
+' '           Text.Whitespace
+'STRING'      Keyword
+' '           Text.Whitespace
+'wt_type'     Name
+','           Operator
+' '           Text.Whitespace
+'STRING'      Keyword
+' '           Text.Whitespace
+'latitude'    Name
+','           Operator
+' '           Text.Whitespace
+'STRING'      Keyword
+' '           Text.Whitespace
+'longitude'   Name
+','           Operator
+'\n'          Text.Whitespace
+
+'STRING'      Keyword
+' '           Text.Whitespace
+'wt_attr'     Name
+','           Operator
+' '           Text.Whitespace
+'BOOL'        Keyword
+' '           Text.Whitespace
+'display'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'False'       Keyword
+')'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n       '   Text.Whitespace
+'# empty body for testing' Comment.Single
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'# Test $(0), $"field", and empty positional parameter _' Comment.Single
+'\n'          Text.Whitespace
+
+'CREATE'      Keyword
+' '           Text.Whitespace
+'LOADING'     Name
+' '           Text.Whitespace
+'JOB'         Name
+' '           Text.Whitespace
+'load_job_supplychain' Name
+' '           Text.Whitespace
+'FOR'         Keyword
+' '           Text.Whitespace
+'GRAPH'       Keyword
+' '           Text.Whitespace
+'SupplyChain' Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'DEFINE'      Name
+' '           Text.Whitespace
+'FILENAME'    Name
+' '           Text.Whitespace
+'Inventory'   Name
+'='           Operator
+'"m1:/home/tigergraph/mydata/supplychain/Inventory.csv"' Literal.String
+';'           Operator
+'\n  '        Text.Whitespace
+'LOAD'        Name
+' '           Text.Whitespace
+'Inventory'   Name
+' '           Text.Whitespace
+'TO'          Keyword
+' '           Text.Whitespace
+'EDGE'        Keyword
+' '           Text.Whitespace
+'in_warehouse_inventory' Name
+' '           Text.Whitespace
+'VALUES'      Keyword
+'('           Operator
+'$'           Operator
+'"warehouse"' Literal.String
+','           Operator
+' '           Text.Whitespace
+'$'           Operator
+'1'           Literal.Number
+','           Operator
+' '           Text.Whitespace
+'$'           Operator
+'2'           Literal.Number
+')'           Operator
+' '           Text.Whitespace
+'USING'       Name
+' '           Text.Whitespace
+'SEPARATOR'   Name
+'='           Operator
+'","'         Literal.String
+','           Operator
+' '           Text.Whitespace
+'HEADER'      Name
+'='           Operator
+'"true"'      Literal.String
+','           Operator
+' '           Text.Whitespace
+'EOL'         Name
+'='           Operator
+'"\\n"'       Literal.String
+';'           Operator
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

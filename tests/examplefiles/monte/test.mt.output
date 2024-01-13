@@ -3,9 +3,9 @@
 '('           Punctuation
 'main'        Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'def'         Keyword.Declaration
 ' '           Text.Whitespace
@@ -23,7 +23,7 @@
 ' '           Text.Whitespace
 'DeepFrozen'  Keyword.Type
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text.Whitespace
 'traceln'     Keyword.Pseudo
@@ -49,7 +49,7 @@
 '$currentProcess' Name
 '`'           Literal.String.Backtick
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text.Whitespace
 '"'           Literal.String.Double
@@ -63,16 +63,16 @@
 ' '           Literal.String.Double
 '\\u1234'     Literal.String.Escape
 '"'           Literal.String.Double
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text.Whitespace
 "'"           Literal.String.Double
 '\\u1234'     Literal.String.Escape
 "'"           Literal.String.Char
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
 '0'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace

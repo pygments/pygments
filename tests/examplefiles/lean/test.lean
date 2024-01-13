@@ -207,3 +207,12 @@ let ⟨m, hm⟩ := @zorn α (≤) h (assume a b c, le_trans) in
 ⟨m, assume a ha, le_antisymm (hm a ha) ha⟩
 
 end zorn
+
+-- other bits of tricky syntax
+@[to_additive "See note [foo]"]
+lemma mul_one : sorry := sorry
+
+variables {ι A B : Type*} (𝒜 : ι → A) (ℬ : ι → B)
+
+#check `𝒜.a
+#check ``𝒜

@@ -1,0 +1,98 @@
+---input---
+>>> exec('"')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<string>", line 1
+    "
+     ^
+SyntaxError: EOL while scanning string literal
+
+>>> exec('"')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<string>", line 1, in <module>
+    "
+     ^
+SyntaxError: EOL while scanning string literal
+
+---tokens---
+'>>> '        Generic.Prompt
+'exec'        Name
+'('           Punctuation
+"'"           Literal.String.Single
+'"'           Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'Traceback (most recent call last):\n' Generic.Traceback
+
+'  File '     Text
+'"<stdin>"'   Name.Builtin
+', line '     Text
+'1'           Literal.Number
+', in '       Text
+'<module>'    Name
+'\n'          Text.Whitespace
+
+'  File '     Text
+'"<string>"'  Name.Builtin
+', line '     Text
+'1'           Literal.Number
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'^'           Punctuation.Marker
+'\n'          Text.Whitespace
+
+'SyntaxError' Generic.Error
+': '          Text
+'EOL while scanning string literal' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'>>> '        Generic.Prompt
+'exec'        Name
+'('           Punctuation
+"'"           Literal.String.Single
+'"'           Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'Traceback (most recent call last):\n' Generic.Traceback
+
+'  File '     Text
+'"<stdin>"'   Name.Builtin
+', line '     Text
+'1'           Literal.Number
+', in '       Text
+'<module>'    Name
+'\n'          Text.Whitespace
+
+'  File '     Text
+'"<string>"'  Name.Builtin
+', line '     Text
+'1'           Literal.Number
+', in '       Text
+'<module>'    Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'^'           Punctuation.Marker
+'\n'          Text.Whitespace
+
+'SyntaxError' Generic.Error
+': '          Text
+'EOL while scanning string literal' Name
+'\n'          Text.Whitespace

@@ -1,0 +1,1158 @@
+'manifest'    Literal.String.Symbol
+':'           Operator
+'2'           Literal.Number.Integer
+':'           Operator
+'\n'          Text.Whitespace
+
+'object'      Keyword.Declaration
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'int'         Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'format_version' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'// 该文件的格式版本，此处应为`2`' Comment.Single
+'\n    '      Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'header'      Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'uuid'        Literal.String.Double
+'"'           Literal.String.Double
+'<'           Operator
+'/[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}/' Literal.String.Regex
+'>'           Operator
+' '           Text.Whitespace
+'// 该包的UUID，当解析内容出错时，引擎会报内容日志错误。当引擎最终使用的该包的UUID为`6989C411-4355-4756-9163-51C1DF5EF677`时，由于该UUID为保留的UUID，这会使该附加包从列表中隐藏' Comment.Single
+'\n        '  Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'name'        Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'// 当不存在时引擎会报内容日志错误' Comment.Single
+'\n        '  Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'description' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n        '  Text.Whitespace
+'bool'        Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'platform_locked' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+' '           Text.Whitespace
+'// 默认为false' Comment.Single
+'\n        '  Text.Whitespace
+'enumerated_value' Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'pack_scope'  Literal.String.Double
+'"'           Literal.String.Double
+'<'           Operator
+'"'           Literal.String.Double
+'global'      Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'world'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'any'         Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+' '           Text.Whitespace
+'// 默认为`any`' Comment.Single
+'\n        '  Text.Whitespace
+'bool'        Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'lock_template_options' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'// 当该包是世界模板包时是必须字段，当不是世界模板包时有效的该字段值会导致内容日志警告。引擎中实际有三种值：未定义、启用和禁用，该字段不存在或解析出错时为未定义，`true`时为启用，`false`时为禁用' Comment.Single
+'\n        '  Text.Whitespace
+'semver'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'version'     Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'// 该语义化版本字段不可为`*`，解析出错时报内容日志错误' Comment.Single
+'\n        '  Text.Whitespace
+'semver'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'min_engine_version' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'// 当该包是资源包或行为包时是必须字段，当不是资源包且不是行为包时有效的该字段值会导致内容日志警告。该语义化版本字段只支持数组格式，且值必须大于或等于`1.13.0`，否则会报内容日志错误' Comment.Single
+'\n        '  Text.Whitespace
+'semver'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'base_game_version' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'// 当该包是世界模板包时是必须字段，当不是世界模板包时有效的该字段值会导致内容日志警告。该语义化版本字段无限制，但不得大于当前游戏版本或小于`1.13.0`，否则会报内容日志错误' Comment.Single
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'modules'     Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'// 若不存在，则会报内容日志错误' Comment.Single
+'\n    '      Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+'\n        '  Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'uuid'        Literal.String.Double
+'"'           Literal.String.Double
+'<'           Operator
+'/[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}/' Literal.String.Regex
+'>'           Operator
+' '           Text.Whitespace
+'// 该模块的UUID，当解析内容出错时，引擎会报内容日志错误。如果包的UUID和某个模块的UUID重复，会报内容日志警告并以包的UUID的MD5杂凑值为种子通过一定算法生成新的包的UUID' Comment.Single
+'\n            ' Text.Whitespace
+'semver'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'version'     Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'// 该语义化版本字段不可为`*`，解析出错时报内容日志错误' Comment.Single
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'name'        Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n            ' Text.Whitespace
+'enumerated_value' Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'type'        Literal.String.Double
+'"'           Literal.String.Double
+'<'           Operator
+'"'           Literal.String.Double
+'invalid'     Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'resourcepack' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'resources'   Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'data'        Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'plugin'      Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'client_data' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'interface'   Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'script'      Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'client_script' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'world_template' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'worldtemplate' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'skin_pack'   Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'skinpack'    Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'persona_piece' Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+' '           Text.Whitespace
+'// `invalid`和其他非法字符串会导致内容日志错误' Comment.Single
+'\n            ' Text.Whitespace
+'enumerated_value' Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'language'    Literal.String.Double
+'"'           Literal.String.Double
+'<'           Operator
+'"'           Literal.String.Double
+'javascript'  Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'entry'       Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n        '  Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'dependencies' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n    '      Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+'\n        '  Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'module_name' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'// 依赖的脚本API模块名，与`uuid`至少存在一个' Comment.Single
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'uuid'        Literal.String.Double
+'"'           Literal.String.Double
+'<'           Operator
+'/[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}/' Literal.String.Regex
+'>'           Operator
+' '           Text.Whitespace
+'// 依赖的包或模块的UUID，当解析内容出错时，引擎会报内容日志错误。' Comment.Single
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'version'     Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'// 该语义化版本字段不可为`*`，解析出错时报内容日志错误' Comment.Single
+'\n        '  Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'metadata'    Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n    '      Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'url'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n        '  Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'license'     Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n        '  Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'authors'     Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n        '  Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+'\n        '  Text.Whitespace
+'}'           Punctuation
+'\n        '  Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'generated_with' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n        '  Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any tool name>' Literal.String.Double
+'"'           Literal.String.Double
+'\n            ' Text.Whitespace
+'{'           Punctuation
+'\n                ' Text.Whitespace
+'semver'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'// 该语义化版本字段不可为`*`' Comment.Single
+'\n            ' Text.Whitespace
+'}'           Punctuation
+'\n        '  Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'settings'    Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n    '      Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any label control>' Literal.String.Double
+'"'           Literal.String.Double
+'\n        '  Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'enumerated_value' Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'type'        Literal.String.Double
+'"'           Literal.String.Double
+'<'           Operator
+'"'           Literal.String.Double
+'label'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'toggle'      Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'slider'      Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'step_slider' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'dropdown'    Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'input'       Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+' '           Text.Whitespace
+'// 控件类型，当前应为`label`' Comment.Single
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'text'        Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'// 控件显示的文本'  Comment.Single
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'name'        Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'// 该控件的名字，用于存值' Comment.Single
+'\n        '  Text.Whitespace
+'}'           Punctuation
+'\n        '  Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any toggle control>' Literal.String.Double
+'"'           Literal.String.Double
+'\n        '  Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'enumerated_value' Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'type'        Literal.String.Double
+'"'           Literal.String.Double
+'<'           Operator
+'"'           Literal.String.Double
+'label'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'toggle'      Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'slider'      Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'step_slider' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'dropdown'    Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'input'       Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+' '           Text.Whitespace
+'// 控件类型，当前应为`toggle`' Comment.Single
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'text'        Literal.String.Double
+'"'           Literal.String.Double
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'name'        Literal.String.Double
+'"'           Literal.String.Double
+'\n            ' Text.Whitespace
+'bool'        Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'default'     Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'// 默认值'      Comment.Single
+'\n            ' Text.Whitespace
+'enumerated_value' Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'control_locked' Literal.String.Double
+'"'           Literal.String.Double
+'<'           Operator
+'"'           Literal.String.Double
+'none'        Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'pregame'     Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ingame'      Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+' '           Text.Whitespace
+'// 何时锁定该控件'  Comment.Single
+'\n        '  Text.Whitespace
+'}'           Punctuation
+'\n        '  Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any slider control>' Literal.String.Double
+'"'           Literal.String.Double
+'\n        '  Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'enumerated_value' Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'type'        Literal.String.Double
+'"'           Literal.String.Double
+'<'           Operator
+'"'           Literal.String.Double
+'label'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'toggle'      Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'slider'      Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'step_slider' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'dropdown'    Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'input'       Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+' '           Text.Whitespace
+'// 控件类型，当前应为`slider`' Comment.Single
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'text'        Literal.String.Double
+'"'           Literal.String.Double
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'name'        Literal.String.Double
+'"'           Literal.String.Double
+'\n            ' Text.Whitespace
+'float'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'default'     Literal.String.Double
+'"'           Literal.String.Double
+'\n            ' Text.Whitespace
+'float'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'min'         Literal.String.Double
+'"'           Literal.String.Double
+'\n            ' Text.Whitespace
+'float'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'max'         Literal.String.Double
+'"'           Literal.String.Double
+'\n            ' Text.Whitespace
+'float'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'step'        Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+' '           Text.Whitespace
+'// 步长，默认为`1`' Comment.Single
+'\n            ' Text.Whitespace
+'enumerated_value' Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'control_locked' Literal.String.Double
+'"'           Literal.String.Double
+'<'           Operator
+'"'           Literal.String.Double
+'none'        Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'pregame'     Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ingame'      Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n        '  Text.Whitespace
+'}'           Punctuation
+'\n        '  Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any step slider control>' Literal.String.Double
+'"'           Literal.String.Double
+'\n        '  Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'enumerated_value' Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'type'        Literal.String.Double
+'"'           Literal.String.Double
+'<'           Operator
+'"'           Literal.String.Double
+'label'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'toggle'      Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'slider'      Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'step_slider' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'dropdown'    Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'input'       Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+' '           Text.Whitespace
+'// 控件类型，当前应为`step_slider`' Comment.Single
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'text'        Literal.String.Double
+'"'           Literal.String.Double
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'name'        Literal.String.Double
+'"'           Literal.String.Double
+'\n            ' Text.Whitespace
+'int'         Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'default'     Literal.String.Double
+'"'           Literal.String.Double
+'<'           Operator
+'0'           Literal.Number.Integer
+'-'           Operator
+'*'           Operator
+'>'           Operator
+'\n            ' Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'steps'       Literal.String.Double
+'"'           Literal.String.Double
+'\n            ' Text.Whitespace
+'{'           Punctuation
+'\n                ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'// 滑块中每步的文本' Comment.Single
+'\n            ' Text.Whitespace
+'}'           Punctuation
+'\n            ' Text.Whitespace
+'enumerated_value' Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'control_locked' Literal.String.Double
+'"'           Literal.String.Double
+'<'           Operator
+'"'           Literal.String.Double
+'none'        Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'pregame'     Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ingame'      Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n        '  Text.Whitespace
+'}'           Punctuation
+'\n        '  Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any dropdown control>' Literal.String.Double
+'"'           Literal.String.Double
+'\n        '  Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'enumerated_value' Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'type'        Literal.String.Double
+'"'           Literal.String.Double
+'<'           Operator
+'"'           Literal.String.Double
+'label'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'toggle'      Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'slider'      Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'step_slider' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'dropdown'    Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'input'       Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+' '           Text.Whitespace
+'// 控件类型，当前应为`dropdown`' Comment.Single
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'text'        Literal.String.Double
+'"'           Literal.String.Double
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'name'        Literal.String.Double
+'"'           Literal.String.Double
+'\n            ' Text.Whitespace
+'int'         Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'default'     Literal.String.Double
+'"'           Literal.String.Double
+'<'           Operator
+'0'           Literal.Number.Integer
+'-'           Operator
+'*'           Operator
+'>'           Operator
+'\n            ' Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'options'     Literal.String.Double
+'"'           Literal.String.Double
+'\n            ' Text.Whitespace
+'{'           Punctuation
+'\n                ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'// 下拉菜单中每项的文本' Comment.Single
+'\n            ' Text.Whitespace
+'}'           Punctuation
+'\n        '  Text.Whitespace
+'}'           Punctuation
+'\n        '  Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any text input control>' Literal.String.Double
+'"'           Literal.String.Double
+'\n        '  Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'enumerated_value' Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'type'        Literal.String.Double
+'"'           Literal.String.Double
+'<'           Operator
+'"'           Literal.String.Double
+'label'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'toggle'      Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'slider'      Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'step_slider' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'dropdown'    Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'input'       Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+' '           Text.Whitespace
+'// 控件类型，当前应为`input`' Comment.Single
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'text'        Literal.String.Double
+'"'           Literal.String.Double
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'name'        Literal.String.Double
+'"'           Literal.String.Double
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'default'     Literal.String.Double
+'"'           Literal.String.Double
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'placeholder' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+' '           Text.Whitespace
+'// 当用户尚未输入文本时输入框底部的暗文本' Comment.Single
+'\n            ' Text.Whitespace
+'enumerated_value' Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'control_locked' Literal.String.Double
+'"'           Literal.String.Double
+'<'           Operator
+'"'           Literal.String.Double
+'none'        Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'pregame'     Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ingame'      Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n        '  Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'legacy_module_dependencies' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+' '           Text.Whitespace
+'// 等价于`0`格式版本下的依赖' Comment.Single
+'\n    '      Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+'\n        '  Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'uuid'        Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'version'     Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n        '  Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'subpacks'    Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n    '      Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+'\n        '  Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'folder_name' Literal.String.Double
+'"'           Literal.String.Double
+'\n            ' Text.Whitespace
+'string'      Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'name'        Literal.String.Double
+'"'           Literal.String.Double
+'\n            ' Text.Whitespace
+'int'         Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'memory_tier' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+' '           Text.Whitespace
+'// 默认为`0`'   Comment.Single
+'\n        '  Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'capabilities' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+'\n    '      Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'enumerated_value' Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'<any array element>' Literal.String.Double
+'"'           Literal.String.Double
+'<'           Operator
+'"'           Literal.String.Double
+'chemistry'   Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'raytraced'   Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'script_eval' Literal.String.Double
+'"'           Literal.String.Double
+'>'           Operator
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'bool'        Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'has_education_metadata' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'opt'         Operator.Word
+' '           Text.Whitespace
+'// 默认为`0`'   Comment.Single
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

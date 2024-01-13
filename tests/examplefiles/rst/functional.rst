@@ -1470,3 +1470,10 @@ features in Python 2.5.
         print elem[-1]
 
 
+..
+    This is a comment,
+
+    as is this line, and the next,
+    and also the last line.
+
+    Goodbye from the comment block.

@@ -4,7 +4,7 @@
 
     Simple lexer for Microsoft Visual FoxPro source code.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -12,7 +12,7 @@ import re
 
 from pygments.lexer import RegexLexer
 from pygments.token import Punctuation, Text, Comment, Operator, Keyword, \
-     Name, String
+    Name, String
 
 __all__ = ['FoxProLexer']
 
@@ -22,14 +22,14 @@ class FoxProLexer(RegexLexer):
 
     FoxPro syntax allows to shorten all keywords and function names
     to 4 characters.  Shortened forms are not recognized by this lexer.
-
-    .. versionadded:: 1.6
     """
 
     name = 'FoxPro'
     aliases = ['foxpro', 'vfp', 'clipper', 'xbase']
     filenames = ['*.PRG', '*.prg']
+    version_added = '1.6'
     mimetype = []
+    url = 'https://learn.microsoft.com/en-us/previous-versions/visualstudio/foxpro'
 
     flags = re.IGNORECASE | re.MULTILINE
 

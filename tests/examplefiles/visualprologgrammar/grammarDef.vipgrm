@@ -1,0 +1,239 @@
+namespace vip\lalr
+
+grammar grammarDef
+    open grammarDefSem, vip\yTree, pfc\syntax\syntax
+    open vip\vipSyntaxSem
+
+startsymbols
+    grammarDef : gGrammarDef.
+
+nonterminals
+    formula : yTerm.
+    expression : yTerm.
+
+nonterminals
+    typeExpression : yTypeExpression.
+
+terminals
+    ["!"].
+    ["#bininclude"].
+    ["#stringinclude"].
+    ["$"].
+    ["("].
+    [")"].
+    ["+"].
+    [","].
+    ["-"].
+    ["."].
+    ["..."].
+    [":"].
+    [":-"].
+    ["::"].
+    [":="].
+    [";"].
+    ["==>"].
+    ["["].
+    ["\\"].
+    ["]"].
+    ["^"].
+    ["and"].
+    ["catch"].
+    ["do"].
+    ["else"].
+    ["elseif"].
+    ["end"].
+    ["erroneous"].
+    ["finally"].
+    ["foreach"].
+    ["grammar"].
+    ["if"].
+    ["namespace"].
+    ["nonterminals"].
+    ["open"].
+    ["or"].
+    ["orelse"].
+    ["otherwise"].
+    ["precedence"].
+    ["rules"].
+    ["startsymbols"].
+    [t_mul_op] :  ["*"] ["/"] ["div"] ["mod"] ["quot"] ["rem"].
+    [t_rel_op] :  ["<"] ["<="] ["<>"] ["="] ["=="] [">"] ["><"] [">="].
+    ["terminals"].
+    ["then"].
+    ["try"].
+    ["{"].
+    ["|"].
+    ["||"].
+    ["}"].
+    ["~~"].
+    ["^^"].
+    ["++"].
+    ["**"].
+    [t_shift_op] :  ["<<"] [">>"].
+    ["--"].
+
+precedence
+    [";"] ["or"] right.
+    ["orelse"] right.
+    [","] ["and"] right.
+    [t_rel_op] nonassoc.
+    ["otherwise"] right.
+    ["++"] ["--"] left.
+    ["^^"] left.
+    ["**"] left.
+    [t_shift_op] left.
+    ["+"] ["-"] left.
+    [t_mul_op] left.
+    ["~~"] nonassoc.
+    ["^"] right.
+
+rules
+    grammarDef { addNamespace(Grammar, Namespace) } ==>
+        namespaceDeclaration { Namespace },
+        grammarDef2 { Grammar }.
+
+    grammarDef ==>
+        grammarDef2.
+
+nonterminals
+    grammarDef2 : gGrammarDef.
+rules
+    grammarDef2 { mkGrammarDef(Cursor, N, N2, OpenRL, SL) } ==>
+        ["grammar"],
+        lowerName { N },
+        scopeQualifierSection_list_opt { OpenRL },
+        sect_revList { SL },
+        ["end"],
+        ["grammar"],
+        lowerNameOpt { N2 }.
+
+nonterminals
+    sect_revList : revList{gSect}.
+rules
+    sect_revList { nil } ==>
+        .
+
+    sect_revList { consRear(SL, S) } ==>
+        sect_revList { SL },
+        sect { S }.
+
+nonterminals
+    sect : gSect.
+rules
+    sect { gNonterminalSect(Cursor, Start, unRevList(SL)) } ==>
+        nonterminalsToken { Start },
+        nonterminalDef_revList { SL }.
+
+    sect { gRuleSect(Cursor, unRevList(RL)) } ==>
+        ["rules"],
+        rule_revList { RL }.
+
+    sect { gPrececenceSect(Cursor, unRevList(PDL)) } ==>
+        ["precedence"],
+        precedenceDef_revList { PDL }.
+
+    sect { gTerminalSect(Cursor, unRevList(TL)) } ==>
+        ["terminals"],
+        terminalDef_revList { TL }.
+
+nonterminals
+    precedenceDef_revList : revList{gPrecedenceDef}.
+rules
+    precedenceDef_revList { nil } ==>
+        .
+
+    precedenceDef_revList { consRear(PDL, PD) } ==>
+        precedenceDef_revList { PDL },
+        precedenceDef { PD }.
+
+nonterminals
+    precedenceDef : gPrecedenceDef.
+rules
+    precedenceDef { gPrecedenceDef(Cursor, A, unRevList(TL)) } ==>
+        terminal_revList { TL },
+        assoc { A },
+        ["."].
+
+nonterminals
+    assoc : assoc.
+rules
+    assoc { mkAssoc(CursorNC, Assoc) } ==>
+        [lowercaseId] { Assoc }.
+
+nonterminals
+    terminalDef_revList : revList{gTerminalDef}.
+rules
+    terminalDef_revList { nil } ==>
+        .
+
+    terminalDef_revList { consRear(TL, T) } ==>
+        terminalDef_revList { TL },
+        terminalDef { T }.
+
+% <<<>>>
+
+nonterminals
+    terminal : gTerminal.
+rules
+    terminal { terminal_ident(Cursor, Id) } ==>
+        ["["],
+        [lowercaseId] { Id },
+        ["]"].
+
+    terminal { terminal_string(Cursor, S) } ==>
+        ["["],
+        [string] { S },
+        ["]"].
+
+nonterminals
+    scopeTypeParameterName : name.
+rules
+    scopeTypeParameterName { mkName_at(Cursor, AtName) } ==>
+        [atId] { AtName }.
+
+nonterminals
+    lowerNameExpect : name.
+rules
+    lowerNameExpect ==>
+        lowerName.
+
+    lowerNameExpect { expectedLowercase(Cursor, Name) } ==>
+        upperId { Name }.
+
+nonterminals
+    lowerName : name.
+rules
+    lowerName { mkName(Cursor, Name) } ==>
+        lowerId { Name }.
+
+nonterminals
+    integer : string.
+rules
+    integer ==>
+        [integer].
+
+nonterminals
+    real : string.
+rules
+    real ==>
+        [real].
+
+nonterminals
+    lowerId : string.
+rules
+    lowerId ==>
+        [lowercaseId].
+
+nonterminals
+    upperName : name.
+rules
+    upperName { mkName(Cursor, Name) } ==>
+        upperId { Name }.
+
+nonterminals
+    upperId : string.
+rules
+    upperId ==>
+        [uppercaseId].
+
+end grammar grammarDef

@@ -1,0 +1,17 @@
+---input---
+set size 10; puts ${size}x${size}
+
+---tokens---
+'set'         Keyword
+' '           Text.Whitespace
+'size'        Text
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+';'           Keyword
+' '           Text.Whitespace
+'puts'        Name.Builtin
+' '           Text.Whitespace
+'${size}'     Name.Variable
+'x'           Text
+'${size}'     Name.Variable
+'\n'          Text

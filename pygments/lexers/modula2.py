@@ -4,7 +4,7 @@
 
     Multi-Dialect Lexer for Modula-2.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -21,7 +21,7 @@ __all__ = ['Modula2Lexer']
 # Multi-Dialect Modula-2 Lexer
 class Modula2Lexer(RegexLexer):
     """
-    For `Modula-2 <http://www.modula2.org/>`_ source code.
+    For Modula-2 source code.
 
     The Modula-2 lexer supports several dialects.  By default, it operates in
     fallback mode, recognising the *combined* literals, punctuation symbols
@@ -153,15 +153,15 @@ class Modula2Lexer(RegexLexer):
     ``$ pygmentize -O full,dialect=m2r10,treat_stdlib_adts_as_builtins=Off ...``
         Render standard library ADTs as ordinary library types.
 
-    .. versionadded:: 1.3
-
     .. versionchanged:: 2.1
        Added multi-dialect support.
     """
     name = 'Modula-2'
+    url = 'http://www.modula2.org/'
     aliases = ['modula2', 'm2']
     filenames = ['*.def', '*.mod']
     mimetypes = ['text/x-modula2']
+    version_added = '1.3'
 
     flags = re.MULTILINE | re.DOTALL
 

@@ -1,0 +1,108 @@
+---input---
+>>> from multiprocessing import Pool
+>>> p = Pool(5)
+>>> def f(x):
+...     return x*x
+...
+>>> with p:
+...     p.map(f, [1,2,3])
+Process PoolWorker-1:
+Process PoolWorker-2:
+Process PoolWorker-3:
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+AttributeError: Can't get attribute 'f' on <module '__main__' (<class '_frozen_importlib.BuiltinImporter'>)>
+AttributeError: Can't get attribute 'f' on <module '__main__' (<class '_frozen_importlib.BuiltinImporter'>)>
+AttributeError: Can't get attribute 'f' on <module '__main__' (<class '_frozen_importlib.BuiltinImporter'>)>
+
+---tokens---
+'>>> '        Generic.Prompt
+'from'        Keyword.Namespace
+' '           Text
+'multiprocessing' Name.Namespace
+' '           Text
+'import'      Keyword.Namespace
+' '           Text
+'Pool'        Name
+'\n'          Text.Whitespace
+
+'>>> '        Generic.Prompt
+'p'           Name
+' '           Text
+'='           Operator
+' '           Text
+'Pool'        Name
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'>>> '        Generic.Prompt
+'def'         Keyword
+' '           Text
+'f'           Name.Function
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'... '        Generic.Prompt
+'    '        Text
+'return'      Keyword
+' '           Text
+'x'           Name
+'*'           Operator
+'x'           Name
+'\n'          Text.Whitespace
+
+'...'         Generic.Prompt
+'\n'          Text.Whitespace
+
+'>>> '        Generic.Prompt
+'with'        Keyword
+' '           Text
+'p'           Name
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'... '        Generic.Prompt
+'    '        Text
+'p'           Name
+'.'           Operator
+'map'         Name
+'('           Punctuation
+'f'           Name
+','           Punctuation
+' '           Text
+'['           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'Process PoolWorker-1:\n' Generic.Output
+
+'Process PoolWorker-2:\n' Generic.Output
+
+'Process PoolWorker-3:\n' Generic.Output
+
+'Traceback (most recent call last):\n' Generic.Traceback
+
+'Traceback (most recent call last):\n' Generic.Traceback
+
+'Traceback (most recent call last):\n' Generic.Traceback
+
+'AttributeError' Generic.Error
+': '          Text
+"Can't get attribute 'f' on <module '__main__' (<class '_frozen_importlib.BuiltinImporter'>)>" Name
+'\n'          Text.Whitespace
+
+"AttributeError: Can't get attribute 'f' on <module '__main__' (<class '_frozen_importlib.BuiltinImporter'>)>\n" Other
+
+"AttributeError: Can't get attribute 'f' on <module '__main__' (<class '_frozen_importlib.BuiltinImporter'>)>\n" Other

@@ -1,0 +1,289 @@
+---input---
+To ''italicize text'', put two consecutive apostrophes on each side of it.
+
+Three apostrophes each side will '''bold the text'''.
+
+Five consecutive apostrophes on each side (two for italics plus three for bold) produces '''''bold italics'''''.
+
+'''''Italic and bold formatting''''' works correctly only within a single line.
+
+''''''foo''''''
+
+L''''''Étranger'''''
+
+'' a ''' a ''' a ''
+
+'' a ''' a '' a '''
+
+''''' a '' a '''
+''''' a ''' a ''
+
+''''' a
+a
+
+''a[[b|c]]d
+a[[b|''c]]d
+''a{{b|c}}d
+a{{b|''c}}d
+
+---tokens---
+'To'          Text
+' '           Text
+"''"          Generic.Emph
+'italicize'   Generic.Emph
+' '           Generic.Emph
+'text'        Generic.Emph
+"''"          Generic.Emph
+','           Text
+' '           Text
+'put'         Text
+' '           Text
+'two'         Text
+' '           Text
+'consecutive' Text
+' '           Text
+'apostrophes' Text
+' '           Text
+'on'          Text
+' '           Text
+'each'        Text
+' '           Text
+'side'        Text
+' '           Text
+'of'          Text
+' '           Text
+'it'          Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'Three'       Text
+' '           Text
+'apostrophes' Text
+' '           Text
+'each'        Text
+' '           Text
+'side'        Text
+' '           Text
+'will'        Text
+' '           Text
+"'''"         Generic.Strong
+'bold'        Generic.Strong
+' '           Generic.Strong
+'the'         Generic.Strong
+' '           Generic.Strong
+'text'        Generic.Strong
+"'''"         Generic.Strong
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'Five'        Text
+' '           Text
+'consecutive' Text
+' '           Text
+'apostrophes' Text
+' '           Text
+'on'          Text
+' '           Text
+'each'        Text
+' '           Text
+'side'        Text
+' '           Text
+'('           Text
+'two'         Text
+' '           Text
+'for'         Text
+' '           Text
+'italics'     Text
+' '           Text
+'plus'        Text
+' '           Text
+'three'       Text
+' '           Text
+'for'         Text
+' '           Text
+'bold'        Text
+')'           Text
+' '           Text
+'produces'    Text
+' '           Text
+"''"          Generic.Emph
+"'''"         Generic.EmphStrong
+'bold'        Generic.EmphStrong
+' '           Generic.EmphStrong
+'italics'     Generic.EmphStrong
+"'''"         Generic.EmphStrong
+"''"          Generic.Emph
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+"''"          Generic.Emph
+"'''"         Generic.EmphStrong
+'Italic'      Generic.EmphStrong
+' '           Generic.EmphStrong
+'and'         Generic.EmphStrong
+' '           Generic.EmphStrong
+'bold'        Generic.EmphStrong
+' '           Generic.EmphStrong
+'formatting'  Generic.EmphStrong
+"'''"         Generic.EmphStrong
+"''"          Generic.Emph
+' '           Text
+'works'       Text
+' '           Text
+'correctly'   Text
+' '           Text
+'only'        Text
+' '           Text
+'within'      Text
+' '           Text
+'a'           Text
+' '           Text
+'single'      Text
+' '           Text
+'line'        Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+"'"           Text
+"''"          Generic.Emph
+"'''"         Generic.EmphStrong
+'foo'         Generic.EmphStrong
+"'"           Generic.EmphStrong
+"'''"         Generic.EmphStrong
+"''"          Generic.Emph
+'\n'          Text
+
+'\n'          Text
+
+'L'           Text
+"'"           Text
+"''"          Generic.Emph
+"'''"         Generic.EmphStrong
+'Étranger'    Generic.EmphStrong
+"'''"         Generic.EmphStrong
+"''"          Generic.Emph
+'\n'          Text
+
+'\n'          Text
+
+"''"          Generic.Emph
+' '           Generic.Emph
+'a'           Generic.Emph
+' '           Generic.Emph
+"'''"         Generic.EmphStrong
+' '           Generic.EmphStrong
+'a'           Generic.EmphStrong
+' '           Generic.EmphStrong
+"'''"         Generic.EmphStrong
+' '           Generic.Emph
+'a'           Generic.Emph
+' '           Generic.Emph
+"''"          Generic.Emph
+'\n'          Text
+
+'\n'          Text
+
+"''"          Generic.Emph
+' '           Generic.Emph
+'a'           Generic.Emph
+' '           Generic.Emph
+"'''"         Generic.EmphStrong
+' '           Generic.EmphStrong
+'a'           Generic.EmphStrong
+' '           Generic.EmphStrong
+"''"          Generic.EmphStrong
+' '           Generic.Strong
+'a'           Generic.Strong
+' '           Generic.Strong
+"'''"         Generic.Strong
+'\n'          Text
+
+'\n'          Text
+
+"''"          Generic.Emph
+"'''"         Generic.EmphStrong
+' '           Generic.EmphStrong
+'a'           Generic.EmphStrong
+' '           Generic.EmphStrong
+"''"          Generic.EmphStrong
+' '           Generic.Strong
+'a'           Generic.Strong
+' '           Generic.Strong
+"'''"         Generic.Strong
+'\n'          Text
+
+"''"          Generic.Emph
+"'''"         Generic.EmphStrong
+' '           Generic.EmphStrong
+'a'           Generic.EmphStrong
+' '           Generic.EmphStrong
+"'''"         Generic.EmphStrong
+' '           Generic.Emph
+'a'           Generic.Emph
+' '           Generic.Emph
+"''"          Generic.Emph
+'\n'          Text
+
+'\n'          Text
+
+"''"          Generic.Emph
+"'''"         Generic.EmphStrong
+' '           Generic.EmphStrong
+'a'           Generic.EmphStrong
+'\n'          Text
+
+'a'           Text
+'\n'          Text
+
+'\n'          Text
+
+"''"          Generic.Emph
+'a'           Generic.Emph
+'[['          Punctuation
+'b'           Name.Tag
+'|'           Punctuation
+'c'           Text
+']]'          Punctuation
+'d'           Generic.Emph
+'\n'          Text
+
+'a'           Text
+'[['          Punctuation
+'b'           Name.Tag
+'|'           Punctuation
+"''"          Generic.Emph
+'c'           Generic.Emph
+''            Punctuation
+']]'          Punctuation
+'d'           Text
+'\n'          Text
+
+"''"          Generic.Emph
+'a'           Generic.Emph
+''            Punctuation
+'{{'          Punctuation
+'b'           Name.Tag
+'|'           Punctuation
+'c'           Text
+'}}'          Punctuation
+'d'           Text
+'\n'          Text
+
+'a'           Text
+'{{'          Punctuation
+'b'           Name.Tag
+'|'           Punctuation
+"''"          Generic.Emph
+'c'           Generic.Emph
+''            Punctuation
+'}}'          Punctuation
+'d'           Text
+'\n'          Text

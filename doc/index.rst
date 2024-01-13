@@ -5,7 +5,7 @@ This is the home of Pygments.  It is a generic syntax highlighter suitable for
 use in code hosting, forums, wikis or other applications that need to prettify
 source code.  Highlights are:
 
-* a wide range of over 500 languages and other text formats is supported
+* a wide range of |language_count| languages and other text formats is supported
 * special attention is paid to details that increase highlighting quality
 * support for new languages and formats are added easily; most languages use a
   simple regex-based lexing mechanism
@@ -16,16 +16,13 @@ source code.  Highlights are:
 Read more in the :doc:`FAQ list <faq>` or the :doc:`documentation <docs/index>`,
 or `download the latest release <https://pypi.python.org/pypi/Pygments>`_.
 
-.. _contribute:
-
 Contribute
 ----------
 
 Like every open-source project, we are always looking for volunteers to help us
 with programming. Python knowledge is required, but don't fear: Python is a very
-clear and easy to learn language.
-
-Development takes place on `GitHub <https://github.com/pygments/pygments>`_.
+clear and easy to learn language. Read our :doc:`contribution guidelines
+<docs/contributing>` for more information.
 
 If you found a bug, just open a ticket in the GitHub tracker. Be sure to log
 in to be notified when the issue is fixed -- development is not fast-paced as
@@ -35,11 +32,10 @@ below.
 The authors
 -----------
 
-Pygments is maintained by **Georg Brandl**, e-mail address *georg*\ *@*\ *python.org*
-and **Matthäus Chajdas**.
+Pygments is maintained by **Georg Brandl**, e-mail address *georg*\ *@*\ *python.org*, **Matthäus Chajdas** and **Jean Abou-Samra**.
 
 Many lexers and fixes have been contributed by **Armin Ronacher**, the rest of
-the `Pocoo <https://dev.pocoo.org/>`_ team and **Tim Hatch**.
+the `Pocoo <https://www.pocoo.org/>`_ team and **Tim Hatch**.
 
 .. toctree::
    :maxdepth: 1

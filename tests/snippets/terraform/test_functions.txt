@@ -9,40 +9,40 @@ provider "aws" {
 
 ---tokens---
 'provider'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '"aws"'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'value'       Name.Attribute
-'  '          Text
+'  '          Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'file'        Name.Function
 '('           Punctuation
 '"path.txt"'  Literal.String.Double
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'provider'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '"aws"'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'value'       Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'jsonencode'  Name.Function
 '('           Punctuation
 'element'     Name.Function
@@ -50,7 +50,7 @@ provider "aws" {
 '"value"'     Literal.String.Double
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

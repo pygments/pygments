@@ -4,7 +4,7 @@
 
     Lexers for diff/patch formats.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -12,7 +12,7 @@ import re
 
 from pygments.lexer import RegexLexer, include, bygroups
 from pygments.token import Text, Comment, Operator, Keyword, Name, Generic, \
-    Literal
+    Literal, Whitespace
 
 __all__ = ['DiffLexer', 'DarcsPatchLexer', 'WDiffLexer']
 
@@ -26,17 +26,22 @@ class DiffLexer(RegexLexer):
     aliases = ['diff', 'udiff']
     filenames = ['*.diff', '*.patch']
     mimetypes = ['text/x-diff', 'text/x-patch']
+    url = 'https://en.wikipedia.org/wiki/Diff'
+    version_added = ''
 
     tokens = {
         'root': [
-            (r' .*\n', Text),
-            (r'\+.*\n', Generic.Inserted),
-            (r'-.*\n', Generic.Deleted),
-            (r'!.*\n', Generic.Strong),
-            (r'@.*\n', Generic.Subheading),
-            (r'([Ii]ndex|diff).*\n', Generic.Heading),
-            (r'=.*\n', Generic.Heading),
-            (r'.*\n', Text),
+            (r'( )(.*)(\n)', bygroups(Whitespace, Text, Whitespace)),
+            (r'(!.*|---)(\n)', bygroups(Generic.Strong, Whitespace)),
+            (r'((?:< |-).*)(\n)', bygroups(Generic.Deleted, Whitespace)),
+            (r'((?:> |\+).*)(\n)', bygroups(Generic.Inserted, Whitespace)),
+            (
+                r'(@.*|\d(?:,\d+)?(?:a|c|d)\d+(?:,\d+)?)(\n)',
+                bygroups(Generic.Subheading, Whitespace),
+            ),
+            (r'((?:[Ii]ndex|diff).*)(\n)', bygroups(Generic.Heading, Whitespace)),
+            (r'(=.*)(\n)', bygroups(Generic.Heading, Whitespace)),
+            (r'(.*)(\n)', bygroups(Text, Whitespace)),
         ]
     }
 
@@ -54,13 +59,13 @@ class DarcsPatchLexer(RegexLexer):
     DarcsPatchLexer is a lexer for the various versions of the darcs patch
     format.  Examples of this format are derived by commands such as
     ``darcs annotate --patch`` and ``darcs send``.
-
-    .. versionadded:: 0.10
     """
 
     name = 'Darcs Patch'
     aliases = ['dpatch']
     filenames = ['*.dpatch', '*.darcspatch']
+    url = 'https://darcs.net'
+    version_added = '0.10'
 
     DPATCH_KEYWORDS = ('hunk', 'addfile', 'adddir', 'rmfile', 'rmdir', 'move',
                        'replace')
@@ -72,26 +77,26 @@ class DarcsPatchLexer(RegexLexer):
             (r'\{', Operator),
             (r'\}', Operator),
             (r'(\[)((?:TAG )?)(.*)(\n)(.*)(\*\*)(\d+)(\s?)(\])',
-             bygroups(Operator, Keyword, Name, Text, Name, Operator,
-                      Literal.Date, Text, Operator)),
+             bygroups(Operator, Keyword, Name, Whitespace, Name, Operator,
+                      Literal.Date, Whitespace, Operator)),
             (r'(\[)((?:TAG )?)(.*)(\n)(.*)(\*\*)(\d+)(\s?)',
-             bygroups(Operator, Keyword, Name, Text, Name, Operator,
-                      Literal.Date, Text), 'comment'),
+             bygroups(Operator, Keyword, Name, Whitespace, Name, Operator,
+                      Literal.Date, Whitespace), 'comment'),
             (r'New patches:', Generic.Heading),
             (r'Context:', Generic.Heading),
             (r'Patch bundle hash:', Generic.Heading),
-            (r'(\s*)(%s)(.*\n)' % '|'.join(DPATCH_KEYWORDS),
-                bygroups(Text, Keyword, Text)),
+            (r'(\s*)(%s)(.*)(\n)' % '|'.join(DPATCH_KEYWORDS),
+                bygroups(Whitespace, Keyword, Text, Whitespace)),
             (r'\+', Generic.Inserted, "insert"),
             (r'-', Generic.Deleted, "delete"),
-            (r'.*\n', Text),
+            (r'(.*)(\n)', bygroups(Text, Whitespace)),
         ],
         'comment': [
             (r'[^\]].*\n', Comment),
             (r'\]', Operator, "#pop"),
         ],
         'specialText': [            # darcs add [_CODE_] special operators for clarity
-            (r'\n', Text, "#pop"),  # line-based
+            (r'\n', Whitespace, "#pop"),  # line-based
             (r'\[_[^_]*_]', Operator),
         ],
         'insert': [
@@ -109,21 +114,21 @@ class DarcsPatchLexer(RegexLexer):
 
 class WDiffLexer(RegexLexer):
     """
-    A `wdiff <https://www.gnu.org/software/wdiff/>`_ lexer.
+    A wdiff lexer.
 
     Note that:
 
     * It only works with normal output (without options like ``-l``).
     * If the target files contain "[-", "-]", "{+", or "+}",
       especially they are unbalanced, the lexer will get confused.
-
-    .. versionadded:: 2.2
     """
 
     name = 'WDiff'
+    url = 'https://www.gnu.org/software/wdiff/'
     aliases = ['wdiff']
     filenames = ['*.wdiff']
     mimetypes = []
+    version_added = '2.2'
 
     flags = re.MULTILINE | re.DOTALL
 

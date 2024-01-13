@@ -4,15 +4,13 @@
 
     Lexers for esoteric languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, include, words
-from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Error
-
-import re
+from pygments.lexer import RegexLexer, include, words, bygroups
+from pygments.token import Comment, Operator, Keyword, Name, String, Number, \
+    Punctuation, Error, Whitespace
 
 __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'CAmkESLexer',
            'CapDLLexer', 'AheuiLexer']
@@ -20,14 +18,15 @@ __all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'CAmkESLexer',
 
 class BrainfuckLexer(RegexLexer):
     """
-    Lexer for the esoteric `BrainFuck <http://www.muppetlabs.com/~breadbox/bf/>`_
-    language.
+    Lexer for the esoteric BrainFuck language.
     """
 
     name = 'Brainfuck'
+    url = 'http://www.muppetlabs.com/~breadbox/bf/'
     aliases = ['brainfuck', 'bf']
     filenames = ['*.bf', '*.b']
     mimetypes = ['application/x-brainfuck']
+    version_added = ''
 
     tokens = {
         'common': [
@@ -77,15 +76,14 @@ class BrainfuckLexer(RegexLexer):
 
 class BefungeLexer(RegexLexer):
     """
-    Lexer for the esoteric `Befunge <http://en.wikipedia.org/wiki/Befunge>`_
-    language.
-
-    .. versionadded:: 0.7
+    Lexer for the esoteric Befunge language.
     """
     name = 'Befunge'
+    url = 'http://en.wikipedia.org/wiki/Befunge'
     aliases = ['befunge']
     filenames = ['*.befunge']
     mimetypes = ['application/x-befunge']
+    version_added = '0.7'
 
     tokens = {
         'root': [
@@ -100,31 +98,31 @@ class BefungeLexer(RegexLexer):
             (r'[#;]', Comment),                   # Trampoline... depends on direction hit
             (r'[pg&~=@iotsy]', Keyword),          # Misc
             (r'[()A-Z]', Comment),                # Fingerprints
-            (r'\s+', Text),                       # Whitespace doesn't matter
+            (r'\s+', Whitespace),                 # Whitespace doesn't matter
         ],
     }
 
 
 class CAmkESLexer(RegexLexer):
     """
-    Basic lexer for the input language for the
-    `CAmkES <https://sel4.systems/CAmkES/>`_ component platform.
-
-    .. versionadded:: 2.1
+    Basic lexer for the input language for the CAmkES component platform.
     """
     name = 'CAmkES'
+    url = 'https://sel4.systems/CAmkES/'
     aliases = ['camkes', 'idl4']
     filenames = ['*.camkes', '*.idl4']
+    version_added = '2.1'
 
     tokens = {
         'root': [
             # C pre-processor directive
-            (r'^\s*#.*\n', Comment.Preproc),
+            (r'^(\s*)(#.*)(\n)', bygroups(Whitespace, Comment.Preproc,
+                Whitespace)),
 
             # Whitespace, comments
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'/\*(.|\n)*?\*/', Comment),
-            (r'//.*\n', Comment),
+            (r'//.*$', Comment),
 
             (r'[\[(){},.;\]]', Punctuation),
             (r'[~!%^&*+=|?:<>/-]', Operator),
@@ -152,10 +150,12 @@ class CAmkESLexer(RegexLexer):
                 Keyword.Reserved),
 
             # CAmkES-level include
-            (r'import\s+(<[^>]*>|"[^"]*");', Comment.Preproc),
+            (r'(import)(\s+)((?:<[^>]*>|"[^"]*");)',
+                bygroups(Comment.Preproc, Whitespace, Comment.Preproc)),
 
             # C-level include
-            (r'include\s+(<[^>]*>|"[^"]*");', Comment.Preproc),
+            (r'(include)(\s+)((?:<[^>]*>|"[^"]*");)',
+                bygroups(Comment.Preproc, Whitespace, Comment.Preproc)),
 
             # Literals
             (r'0[xX][\da-fA-F]+', Number.Hex),
@@ -172,8 +172,7 @@ class CAmkESLexer(RegexLexer):
 
 class CapDLLexer(RegexLexer):
     """
-    Basic lexer for
-    `CapDL <https://ssrg.nicta.com.au/publications/nictaabstracts/Kuz_KLW_10.abstract.pml>`_.
+    Basic lexer for CapDL.
 
     The source of the primary tool that reads such specifications is available
     at https://github.com/seL4/capdl/tree/master/capDL-tool. Note that this
@@ -181,22 +180,23 @@ class CapDLLexer(RegexLexer):
     shadow type names, but these instances are currently incorrectly
     highlighted as types. Supporting this would need a stateful lexer that is
     considered unnecessarily complex for now.
-
-    .. versionadded:: 2.2
     """
     name = 'CapDL'
+    url = 'https://ssrg.nicta.com.au/publications/nictaabstracts/Kuz_KLW_10.abstract.pml'
     aliases = ['capdl']
     filenames = ['*.cdl']
+    version_added = '2.2'
 
     tokens = {
         'root': [
             # C pre-processor directive
-            (r'^\s*#.*\n', Comment.Preproc),
+            (r'^(\s*)(#.*)(\n)',
+                bygroups(Whitespace, Comment.Preproc, Whitespace)),
 
             # Whitespace, comments
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'/\*(.|\n)*?\*/', Comment),
-            (r'(//|--).*\n', Comment),
+            (r'(//|--).*$', Comment),
 
             (r'[<>\[(){},:;=\]]', Punctuation),
             (r'\.\.', Punctuation),
@@ -233,12 +233,12 @@ class RedcodeLexer(RegexLexer):
     """
     A simple Redcode lexer based on ICWS'94.
     Contributed by Adam Blinkinsop <blinks@acm.org>.
-
-    .. versionadded:: 0.8
     """
     name = 'Redcode'
     aliases = ['redcode']
     filenames = ['*.cw']
+    url = 'https://en.wikipedia.org/wiki/Core_War'
+    version_added = '0.8'
 
     opcodes = ('DAT', 'MOV', 'ADD', 'SUB', 'MUL', 'DIV', 'MOD',
                'JMP', 'JMZ', 'JMN', 'DJN', 'CMP', 'SLT', 'SPL',
@@ -248,7 +248,7 @@ class RedcodeLexer(RegexLexer):
     tokens = {
         'root': [
             # Whitespace:
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r';.*$', Comment.Single),
             # Lexemes:
             #  Identifiers
@@ -267,17 +267,14 @@ class RedcodeLexer(RegexLexer):
 
 class AheuiLexer(RegexLexer):
     """
-    Aheui_ Lexer.
-
-    Aheui_ is esoteric language based on Korean alphabets.
-
-    .. _Aheui: http://aheui.github.io/
-
+    Aheui is esoteric language based on Korean alphabets.
     """
 
     name = 'Aheui'
+    url = 'http://aheui.github.io/'
     aliases = ['aheui']
     filenames = ['*.aheui']
+    version_added = ''
 
     tokens = {
         'root': [

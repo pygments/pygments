@@ -1,0 +1,33 @@
+---input---
+tc {{ Eq lp:A }} {{ f lp:B l } }} :- foo A B.
+
+---tokens---
+'tc'          Text
+' '           Text.Whitespace
+'{{'          Punctuation
+' Eq '        Text
+'lp:'         Keyword
+'A'           Name.Variable
+' '           Text
+'}}'          Punctuation
+' '           Text.Whitespace
+'{{'          Punctuation
+' f '         Text
+'lp:'         Keyword
+'B'           Name.Variable
+' '           Text
+'l'           Text
+' '           Text
+'}'           Text
+' '           Text
+'}}'          Punctuation
+' '           Text.Whitespace
+':-'          Keyword.Declaration
+' '           Text.Whitespace
+'foo'         Text
+' '           Text.Whitespace
+'A'           Name.Variable
+' '           Text.Whitespace
+'B'           Name.Variable
+'.'           Operator
+'\n'          Text.Whitespace

@@ -1,0 +1,101 @@
+---input---
+''
+  ''\t ''\n ''\r ''' ''$ '
+''
+
+"\"\$${builtins.toString maxArgIndex}\""
+
+"\n"
+
+"cp \"$(nix-build -A ${attr})\" \"$0\" > /dev/null"
+
+"$" #
+
+''$'' #
+
+" \ "
+
+'' ''\ ''
+
+---tokens---
+"''"          Literal.String.Multiline
+'\n  '        Literal.String.Multiline
+"''\\t"       Literal.String.Escape
+' '           Literal.String.Multiline
+"''\\n"       Literal.String.Escape
+' '           Literal.String.Multiline
+"''\\r"       Literal.String.Escape
+' '           Literal.String.Multiline
+"'''"         Literal.String.Escape
+' '           Literal.String.Multiline
+"''$"         Literal.String.Escape
+' '           Literal.String.Multiline
+"'\n"         Literal.String.Multiline
+
+"''"          Literal.String.Multiline
+'\n\n'        Text
+
+'"'           Literal.String.Double
+'\\"'         Literal.String.Escape
+'\\$'         Literal.String.Escape
+'${'          Literal.String.Interpol
+'builtins'    Name.Builtin
+'.'           Operator
+'toString'    Name.Builtin
+' '           Text
+'maxArgIndex' Text
+'}'           Literal.String.Interpol
+'\\"'         Literal.String.Escape
+'"'           Literal.String.Double
+'\n\n'        Text
+
+'"'           Literal.String.Double
+'\\n'         Literal.String.Escape
+'"'           Literal.String.Double
+'\n\n'        Text
+
+'"'           Literal.String.Double
+'cp '         Literal.String.Double
+'\\"'         Literal.String.Escape
+'$('          Literal.String.Double
+'nix-build -A ' Literal.String.Double
+'${'          Literal.String.Interpol
+'attr'        Text
+'}'           Literal.String.Interpol
+')'           Literal.String.Double
+'\\"'         Literal.String.Escape
+' '           Literal.String.Double
+'\\"'         Literal.String.Escape
+'$0'          Literal.String.Double
+'\\"'         Literal.String.Escape
+' > /dev/null' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text
+
+'"'           Literal.String.Double
+'$'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'#'           Comment.Single
+'\n\n'        Text
+
+"''"          Literal.String.Multiline
+'$'           Literal.String.Multiline
+"''"          Literal.String.Multiline
+' '           Text
+'#'           Comment.Single
+'\n\n'        Text
+
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'\\'          Literal.String.Double
+' '           Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text
+
+"''"          Literal.String.Multiline
+' '           Literal.String.Multiline
+"''\\"        Literal.String.Escape
+' '           Literal.String.Multiline
+"''"          Literal.String.Multiline
+'\n'          Text

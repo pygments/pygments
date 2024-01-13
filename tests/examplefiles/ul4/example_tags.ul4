@@ -1,0 +1,41 @@
+<?ul4 templatename()?>
+<?whitespace keep?>
+<?doc UL4 example for all the available tags?>
+
+<?def gurk(a, b, c, d)?>
+	<?doc?>
+	Function `gurk`
+	<?doc?>
+	Foo
+	<?end doc?>
+	<?end doc?>
+	<?for i in range(10)?>
+		<?print a?>
+		<?if b?>
+			<?printx b?>
+		<?elif c?>
+			<?render c()?>
+		<?else?>
+			<?renderx d()?>
+		<?end if?>
+		<?code i = 0?>
+		<?while i < 42?>
+			<?code i += 1?>
+		<?end while?>
+	<?end for?>
+<?end def?>
+
+<?renderblock hinz()?>
+	<?note Note?>
+	...
+<?end renderblock?>
+
+<?renderblocks kunz()?>
+	<?note?>
+	Note
+	<?note?>
+	Subnote
+	<?end note?>
+	<?end note?>
+	...
+<?end renderblocks?>

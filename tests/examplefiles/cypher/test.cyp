@@ -1,4 +1,5 @@
 //test comment
+  //another test comment
 START a = node(*)
 MATCH (a)-[:ACTED_IN]->(m)<-[:DIRECTED]-(d)
 RETURN a.name, m.title, d.name;
@@ -117,7 +118,11 @@ RETURN extract(n in nodes(p) | n.name)[1];
 
 START actors=node:
 
-MATCH (alice)-[:`REALLY LIKES`]->(bob)
+MATCH (alice)-[:`REALLY LIKES`]->(bob)  // comment to something
 MATCH (alice)-[:`REALLY ``LIKES```]->(bob)
 myFancyIdentifier.`(weird property name)`
 "string\t\n\b\f\\\''\""
+'also string'
+
+MATCH (p:Person {uri:"http://example.com/thing/1"})
+RETURN p

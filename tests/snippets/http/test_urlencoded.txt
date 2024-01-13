@@ -1,0 +1,41 @@
+---input---
+POST /login HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 50
+
+login=foo&password=12345
+
+
+---tokens---
+'POST'        Name.Function
+' '           Text
+'/login'      Name.Namespace
+' '           Text
+'HTTP'        Keyword.Reserved
+'/'           Operator
+'1.1'         Literal.Number
+'\n'          Text
+
+'Content-Type' Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'application/x-www-form-urlencoded' Literal
+'\n'          Text
+
+'Content-Length' Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'50'          Literal
+'\n'          Text
+
+'\n'          Text
+
+'login'       Name.Tag
+'='           Operator
+'foo'         Literal.String
+'&'           Punctuation
+'password'    Name.Tag
+'='           Operator
+'12345\n'     Literal.String

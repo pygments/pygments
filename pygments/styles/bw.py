@@ -4,7 +4,7 @@
 
     Simple black/white only style.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -13,10 +13,13 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
      Operator, Generic
 
 
+__all__ = ['BlackWhiteStyle']
+
+
 class BlackWhiteStyle(Style):
+    name = 'bw'
 
     background_color = "#ffffff"
-    default_style = ""
 
     styles = {
         Comment:                   "italic",
@@ -42,6 +45,7 @@ class BlackWhiteStyle(Style):
         Generic.Subheading:        "bold",
         Generic.Emph:              "italic",
         Generic.Strong:            "bold",
+        Generic.EmphStrong:        "bold italic",
         Generic.Prompt:            "bold",
 
         Error:                     "border:#FF0000"

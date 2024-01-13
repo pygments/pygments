@@ -1,0 +1,21 @@
+---input---
+@group(0) @binding(5) var texture_external;
+
+---tokens---
+'@'           Name.Decorator
+'group'       Name.Decorator
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'@'           Name.Decorator
+'binding'     Name.Decorator
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'texture_external' Name.Builtin
+';'           Punctuation
+'\n'          Text.Whitespace

@@ -1,145 +1,148 @@
 '; Demonstration of how to write an entire .EXE format program as a .OBJ' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; file to be linked. Tested with the VAL free linker.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; To build:' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';    nasm -fobj objexe.asm' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';    val objexe.obj,objexe.exe;' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; To test:'  Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';    objexe' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 "; (should print `hello, world')" Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
-'\n'          Text
+'\t  '        Text.Whitespace
+'\n'          Text.Whitespace
 
-'\t  '        Text
-'segment '    Keyword
+'\t  '        Text.Whitespace
+'segment'     Keyword
+' '           Text.Whitespace
 'code'        Name.Variable
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '..start:'    Name.Label
-'  '          Text
+'  '          Text.Whitespace
 'mov'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'ax'          Name.Builtin
 ','           Punctuation
 'data'        Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'mov'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'ds'          Name.Builtin
 ','           Punctuation
 'ax'          Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'mov'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'ax'          Name.Builtin
 ','           Punctuation
 'stack'       Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'mov'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'ss'          Name.Builtin
 ','           Punctuation
 'ax'          Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'mov'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'sp'          Name.Builtin
 ','           Punctuation
 'stacktop'    Name.Variable
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'mov'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'dx'          Name.Builtin
 ','           Punctuation
 'hello'       Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'mov'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'ah'          Name.Builtin
 ','           Punctuation
 '9'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'int'         Name.Function
-' '           Text
+' '           Text.Whitespace
 '0x21'        Literal.Number.Hex
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'mov'         Name.Function
-' '           Text
+' '           Text.Whitespace
 'ax'          Name.Builtin
 ','           Punctuation
 '0x4c00'      Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'int'         Name.Function
-' '           Text
+' '           Text.Whitespace
 '0x21'        Literal.Number.Hex
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'\t  '        Text
-'segment '    Keyword
+'\t  '        Text.Whitespace
+'segment'     Keyword
+' '           Text.Whitespace
 'data'        Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 'hello:'      Name.Label
-'\t  '        Text
+'\t  '        Text.Whitespace
 'db'          Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 "'hello, world'" Literal.String
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '13'          Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '10'          Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'$'"         Literal.String
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'\t  '        Text
-'segment '    Keyword
+'\t  '        Text.Whitespace
+'segment'     Keyword
+' '           Text.Whitespace
 'stack'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'stack'       Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t  '        Text
+'\t  '        Text.Whitespace
 'resb'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 '64'          Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'stacktop:'   Name.Label
-'\n'          Text
+'\n'          Text.Whitespace

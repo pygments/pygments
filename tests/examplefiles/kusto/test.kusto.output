@@ -1,0 +1,254 @@
+'// keywords' Comment
+'\n'          Text.Whitespace
+
+'and'         Keyword
+'\n'          Text.Whitespace
+
+'as'          Keyword
+'\n'          Text.Whitespace
+
+'by'          Keyword
+'\n'          Text.Whitespace
+
+'consume'     Keyword
+'\n'          Text.Whitespace
+
+'contains'    Keyword
+'\n'          Text.Whitespace
+
+'containscs'  Keyword
+'\n'          Text.Whitespace
+
+'count'       Keyword
+'\n'          Text.Whitespace
+
+'distinct'    Keyword
+'\n'          Text.Whitespace
+
+'evaluate'    Keyword
+'\n'          Text.Whitespace
+
+'extend'      Keyword
+'\n'          Text.Whitespace
+
+'facet'       Keyword
+'\n'          Text.Whitespace
+
+'filter'      Keyword
+'\n'          Text.Whitespace
+
+'find'        Keyword
+'\n'          Text.Whitespace
+
+'fork'        Keyword
+'\n'          Text.Whitespace
+
+'getschema'   Keyword
+'\n'          Text.Whitespace
+
+'has'         Keyword
+'\n'          Text.Whitespace
+
+'invoke'      Keyword
+'\n'          Text.Whitespace
+
+'join'        Keyword
+'\n'          Text.Whitespace
+
+'limit'       Keyword
+'\n'          Text.Whitespace
+
+'lookup'      Keyword
+'\n'          Text.Whitespace
+
+'make-series' Keyword
+'\n'          Text.Whitespace
+
+'matches regex' Keyword
+'\n'          Text.Whitespace
+
+'mv-apply'    Keyword
+'\n'          Text.Whitespace
+
+'mv-expand'   Keyword
+'\n'          Text.Whitespace
+
+'notcontains' Keyword
+'\n'          Text.Whitespace
+
+'notcontainscs' Keyword
+'\n'          Text.Whitespace
+
+'!contains'   Keyword
+'\n'          Text.Whitespace
+
+'!has'        Keyword
+'\n'          Text.Whitespace
+
+'!startswith' Keyword
+'\n'          Text.Whitespace
+
+'on'          Keyword
+'\n'          Text.Whitespace
+
+'or'          Keyword
+'\n'          Text.Whitespace
+
+'order'       Keyword
+'\n'          Text.Whitespace
+
+'parse'       Keyword
+'\n'          Text.Whitespace
+
+'parse-where' Keyword
+'\n'          Text.Whitespace
+
+'parse-kv'    Keyword
+'\n'          Text.Whitespace
+
+'partition'   Keyword
+'\n'          Text.Whitespace
+
+'print'       Keyword
+'\n'          Text.Whitespace
+
+'project'     Keyword
+'\n'          Text.Whitespace
+
+'project-away' Keyword
+'\n'          Text.Whitespace
+
+'project-keep' Keyword
+'\n'          Text.Whitespace
+
+'project-rename' Keyword
+'\n'          Text.Whitespace
+
+'project-reorder' Keyword
+'\n'          Text.Whitespace
+
+'range'       Keyword
+'\n'          Text.Whitespace
+
+'reduce'      Keyword
+'\n'          Text.Whitespace
+
+'regex'       Keyword
+'\n'          Text.Whitespace
+
+'render'      Keyword
+'\n'          Text.Whitespace
+
+'sample'      Keyword
+'\n'          Text.Whitespace
+
+'sample-distinct' Keyword
+'\n'          Text.Whitespace
+
+'scan'        Keyword
+'\n'          Text.Whitespace
+
+'search'      Keyword
+'\n'          Text.Whitespace
+
+'serialize'   Keyword
+'\n'          Text.Whitespace
+
+'sort'        Keyword
+'\n'          Text.Whitespace
+
+'startswith'  Keyword
+'\n'          Text.Whitespace
+
+'summarize'   Keyword
+'\n'          Text.Whitespace
+
+'take'        Keyword
+'\n'          Text.Whitespace
+
+'top'         Keyword
+'\n'          Text.Whitespace
+
+'top-hitters' Keyword
+'\n'          Text.Whitespace
+
+'top-nested'  Keyword
+'\n'          Text.Whitespace
+
+'typeof'      Keyword
+'\n'          Text.Whitespace
+
+'union'       Keyword
+'\n'          Text.Whitespace
+
+'where'       Keyword
+'\n'          Text.Whitespace
+
+'bool'        Keyword
+'\n'          Text.Whitespace
+
+'date'        Keyword
+'\n'          Text.Whitespace
+
+'datetime'    Keyword
+'\n'          Text.Whitespace
+
+'int'         Keyword
+'\n'          Text.Whitespace
+
+'long'        Keyword
+'\n'          Text.Whitespace
+
+'real'        Keyword
+'\n'          Text.Whitespace
+
+'string'      Keyword
+'\n'          Text.Whitespace
+
+'time'        Keyword
+'\n\n'        Text.Whitespace
+
+'// numbers'  Comment
+'\n'          Text.Whitespace
+
+'0.2'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'7'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'.9'          Literal.Number.Float
+'\n'          Text.Whitespace
+
+'8.'          Literal.Number.Float
+'\n\n'        Text.Whitespace
+
+'// strings'  Comment
+'\n'          Text.Whitespace
+
+'```'         Literal.String
+'multi-\nline ' Literal.String
+'`'           Literal.String
+' string'     Literal.String
+'```'         Literal.String
+'\n'          Text.Whitespace
+
+'"'           Literal.String
+'double-quoted' Literal.String
+'\\"'         Literal.String.Escape
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+"'"           Literal.String
+'single-quoted' Literal.String
+"\\'"         Literal.String.Escape
+"'"           Literal.String
+'\n'          Text.Whitespace
+
+"@'"          Literal.String
+'single-verbatim' Literal.String
+"'"           Literal.String
+'\n'          Text.Whitespace
+
+'@"'          Literal.String
+'double-verbatim\n\n// name\nmyColumnName123\n' Literal.String

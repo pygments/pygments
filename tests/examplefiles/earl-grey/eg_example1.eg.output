@@ -1,28 +1,30 @@
-';; filepath tests\n' Comment
+';; filepath tests' Comment
+'\n'          Text.Whitespace
 
 'require'     Keyword.Pseudo
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 'library'     Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 './'          Text.Whitespace
 'awesome'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 './variable/greatness/' Text.Whitespace
 'file'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-';; Strings\n' Comment
+';; Strings'  Comment
+'\n'          Text.Whitespace
 
 '"'           Literal.String
 'H'           Literal.String
@@ -38,7 +40,7 @@
 'd'           Literal.String
 '!'           Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"'           Literal.String
 'H'           Literal.String
@@ -55,7 +57,7 @@
 'd'           Literal.String
 '!'           Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 "'"           Literal.String
 's'           Literal.String
@@ -84,7 +86,7 @@
 ' '           Text
 '}'           Literal.String.Interpol
 "'"           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'var '        Keyword.Control
 'dstring'     Name.Variable
@@ -92,31 +94,32 @@
 '='           Operator.Word
 ' '           Text
 '.dotted-string' Literal.String.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'key-dash'    Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 'but-can-it-do-ops' Name.Symbol
 ' '           Text
 '+'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'yes-it-can'  Keyword.Control
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '100'         Literal.Number.Integer
 ' '           Text
 '+'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '         '   Text
-'print '      Keyword.Control
+'print'       Keyword.Control
+' '           Text.Whitespace
 '"'           Literal.String
 'S'           Literal.String
 'o'           Literal.String
@@ -127,11 +130,11 @@
 'l'           Literal.String
 '!'           Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '         '   Text
 '100'         Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '{'           Punctuation
@@ -175,12 +178,12 @@
 '}'           Punctuation
 ' '           Text
 '+'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'         '   Text
+'         '   Text.Whitespace
 'jiminy-crickets' Keyword.Control
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '            ' Text
 'oliver-twist' Name.Symbol
@@ -189,28 +192,28 @@
 'mr-bojangles' Name.Symbol
 ' '           Text
 '+'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '               ' Text
 'kittens'     Name.Variable
 ' '           Text
 '='           Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
 '                  ' Text
 '12'          Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'check-it'    Name.Symbol
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'still-works' Keyword.Control
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '{'           Punctuation
@@ -242,7 +245,7 @@
 'map'         Name.Function
 ' '           Text
 'with'        Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
 '         '   Text
 'x'           Name.Symbol
@@ -254,7 +257,7 @@
 '*'           Operator
 ' '           Text
 'x'           Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 '('           Punctuation
@@ -270,9 +273,9 @@
 '+'           Operator
 ' '           Text
 'this'        Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'if '         Keyword.Control
 'total '      Keyword.Control
@@ -283,10 +286,11 @@
 'great '      Keyword.Control
 'stupidity'   Name.Symbol
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
-'print '      Keyword.Control
+'print'       Keyword.Control
+' '           Text.Whitespace
 '"'           Literal.String
 'Y'           Literal.String
 'o'           Literal.String
@@ -300,7 +304,7 @@
 'n'           Literal.String
 '!'           Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 'not-sure-what-this-does' Name.Symbol
@@ -308,14 +312,15 @@
 '@@'          Operator
 ' '           Text
 'but-it-wont-capture' Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 'else'        Keyword.Pseudo
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
-'print '      Keyword.Control
+'print'       Keyword.Control
+' '           Text.Whitespace
 '"'           Literal.String
 'K'           Literal.String
 'e'           Literal.String
@@ -330,7 +335,7 @@
 'g'           Literal.String
 '!'           Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 'needs-work'  Name.Symbol
@@ -338,11 +343,12 @@
 '++'          Operator
 ' '           Text
 'you'         Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-';; with tests\n' Comment
+';; with tests' Comment
+'\n'          Text.Whitespace
 
 'needs-obj'   Name.Symbol
 '('           Punctuation
@@ -357,7 +363,8 @@
 "'"           Literal.String
 ')'           Punctuation
 ' '           Text
-'with '       Keyword.Control
+'with'        Keyword.Control
+' '           Text.Whitespace
 '{'           Punctuation
 '"'           Literal.String
 'g'           Literal.String
@@ -378,7 +385,7 @@
 's'           Literal.String
 '"'           Literal.String
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'object'      Name.Symbol
 '.'           Punctuation
@@ -386,7 +393,8 @@
 '.'           Punctuation
 'method'      Name.Function
 ' '           Text
-'with '       Keyword.Control
+'with'        Keyword.Control
+' '           Text.Whitespace
 '{'           Punctuation
 '1'           Literal.Number.Integer
 ','           Punctuation
@@ -396,18 +404,19 @@
 ' '           Text
 '3'           Literal.Number.Integer
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-';; object assignment\n' Comment
+';; object assignment' Comment
+'\n'          Text.Whitespace
 
 'obj'         Name.Variable
 ' '           Text
 '='           Operator.Word
 ' '           Text
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 'key'         Name.Variable
@@ -423,7 +432,7 @@
 'a'           Literal.String
 'h'           Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 'tree'        Name.Variable
@@ -444,10 +453,10 @@
 'a'           Literal.String
 'h'           Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'obj'         Name.Symbol
 '.'           Punctuation
@@ -456,7 +465,7 @@
 '='           Operator.Word
 ' '           Text
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 'that'        Name.Variable
@@ -477,7 +486,7 @@
 's'           Literal.String
 '!'           Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 'thatFunc'    Name.Variable
@@ -491,21 +500,22 @@
 '->'          Name.Function
 ' '           Text
 'x'           Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-';; match statements\n' Comment
+';; match statements' Comment
+'\n'          Text.Whitespace
 
 'match '      Keyword.Control
 '@awesome'    Name.Variable.Instance
 '.'           Punctuation
 'great'       Name.Field
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 '{'           Punctuation
@@ -525,7 +535,7 @@
 ' '           Text
 'tail'        Name.Symbol
 ']'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 'Array'       Keyword.Type
@@ -538,7 +548,7 @@
 '('           Punctuation
 '.arr'        Literal.String.Symbol
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 'String'      Keyword.Type
@@ -550,7 +560,7 @@
 '('           Punctuation
 '.str'        Literal.String.Symbol
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 'else'        Keyword.Pseudo
@@ -580,9 +590,9 @@
 '!'           Literal.String
 '"'           Literal.String
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'unimpl-func' Name.Variable
 ' '           Text
@@ -591,11 +601,12 @@
 '->'          Name.Function
 ' '           Text
 'pass'        Keyword.Pseudo
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-';; if / elif / else test\n' Comment
+';; if / elif / else test' Comment
+'\n'          Text.Whitespace
 
 'if '         Keyword.Control
 'coolness'    Name.Symbol
@@ -604,7 +615,7 @@
 ' '           Text
 '11'          Literal.Number.Integer
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 'add '        Keyword.Control
@@ -612,12 +623,12 @@
 ':'           Punctuation
 ' '           Text
 'something-else' Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 'elif '       Keyword.Control
 'true'        Name.Constant
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 'add '        Keyword.Control
@@ -625,11 +636,11 @@
 ':'           Punctuation
 ' '           Text
 'something-else' Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 'else'        Keyword.Pseudo
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 'add '        Keyword.Control
@@ -637,11 +648,12 @@
 ':'           Punctuation
 ' '           Text
 'the-castle'  Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-';; nested if / elif / else test\n' Comment
+';; nested if / elif / else test' Comment
+'\n'          Text.Whitespace
 
 'mad-function' Name.Variable
 ' '           Text
@@ -650,7 +662,7 @@
 'bananas'     Name.Symbol
 ' '           Text
 '->'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 'if '         Keyword.Control
@@ -660,10 +672,11 @@
 ' '           Text
 '5'           Literal.Number.Integer
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
-'print '      Keyword.Control
+'print'       Keyword.Control
+' '           Text.Whitespace
 '"'           Literal.String
 'Y'           Literal.String
 'o'           Literal.String
@@ -694,7 +707,7 @@
 's'           Literal.String
 '!'           Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 'elif '       Keyword.Control
@@ -705,10 +718,11 @@
 ' '           Text
 '5'           Literal.Number.Integer
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
-'print '      Keyword.Control
+'print'       Keyword.Control
+' '           Text.Whitespace
 '"'           Literal.String
 'Y'           Literal.String
 'o'           Literal.String
@@ -758,15 +772,16 @@
 'a'           Literal.String
 's'           Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   '         Text
+'   '         Text.Whitespace
 'else'        Keyword.Control
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
-'print '      Keyword.Control
+'print'       Keyword.Control
+' '           Text.Whitespace
 '"'           Literal.String
 'G'           Literal.String
 'o'           Literal.String
@@ -793,16 +808,17 @@
 'w'           Literal.String
 '!'           Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-';; class test\n' Comment
+';; class test' Comment
+'\n'          Text.Whitespace
 
 'class '      Keyword.Control
 'Dog'         Name.Symbol
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 'constructor' Name.Builtin
@@ -814,7 +830,7 @@
 ')'           Punctuation
 ' '           Text
 '='           Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      '      Text
 'this'        Keyword.Constant
@@ -824,9 +840,9 @@
 '='           Operator.Word
 ' '           Text
 '100'         Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 'unimpl-meth' Name.Variable
@@ -836,9 +852,9 @@
 '->'          Name.Function
 ' '           Text
 'pass'        Keyword.Pseudo
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 'bark'        Name.Symbol
@@ -848,15 +864,16 @@
 ' '           Text
 'sd'          Name.Symbol
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-';; error test\n' Comment
+';; error test' Comment
+'\n'          Text.Whitespace
 
 'try'         Name.Symbol
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 'throw '      Keyword.Control
@@ -882,7 +899,7 @@
 '.'           Literal.String
 '"'           Literal.String
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'catch '      Keyword.Control
 'TypeError'   Name.Exception
@@ -890,10 +907,11 @@
 ' '           Text
 'e'           Name.Symbol
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
-'print '      Keyword.Control
+'print'       Keyword.Control
+' '           Text.Whitespace
 '"'           Literal.String
 'T'           Literal.String
 'h'           Literal.String
@@ -919,7 +937,7 @@
 'r'           Literal.String
 '.'           Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'catch '      Keyword.Control
 'E.my-error'  Name.Exception
@@ -927,10 +945,11 @@
 ' '           Text
 'e'           Name.Symbol
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
-'print '      Keyword.Control
+'print'       Keyword.Control
+' '           Text.Whitespace
 '"'           Literal.String
 'M'           Literal.String
 'y'           Literal.String
@@ -942,15 +961,16 @@
 'r'           Literal.String
 '!'           Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'catch '      Keyword.Control
 'e'           Name.Symbol
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
-'print '      Keyword.Control
+'print'       Keyword.Control
+' '           Text.Whitespace
 '"'           Literal.String
 'S'           Literal.String
 'o'           Literal.String
@@ -970,14 +990,15 @@
 'r'           Literal.String
 '.'           Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'finally'     Name.Symbol
 ':'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
-'print '      Keyword.Control
+'print'       Keyword.Control
+' '           Text.Whitespace
 '"'           Literal.String
 'W'           Literal.String
 'e'           Literal.String
@@ -992,41 +1013,46 @@
 'e'           Literal.String
 '.'           Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-';; method shorthand operator\n' Comment
+';; method shorthand operator' Comment
+'\n'          Text.Whitespace
 
 'stream-of-twos' Name.Variable
 ' '           Text
 '='           Operator.Word
 ' '           Text
 '*->'         Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
-'while '      Keyword.Control
+'while'       Keyword.Control
+' '           Text.Whitespace
 '['           Punctuation
 'true'        Name.Constant
 ']'           Punctuation
 ':'           Punctuation
 ' '           Text
-'yield '      Keyword.Control
+'yield'       Keyword.Control
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ' '           Text
-';; need to fix literals with colons after them.\n' Comment
+';; need to fix literals with colons after them.' Comment
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-';; gen shorthand operator\n' Comment
+';; gen shorthand operator' Comment
+'\n'          Text.Whitespace
 
 'full-name'   Name.Variable
 ' '           Text
 '='           Operator.Word
 ' '           Text
 '@->'         Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 "'"           Literal.String
@@ -1038,16 +1064,16 @@
 '@last-name'  Name.Variable.Instance
 '}'           Literal.String.Interpol
 "'"           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'name-method' Name.Variable
 ' '           Text
 '='           Operator.Word
 ' '           Text
 '@->'         Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   '         Text
 '@name'       Name.Variable.Instance
@@ -1057,15 +1083,16 @@
 'full-name'   Name.Function
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-';; Keyword highlight test\n' Comment
+';; Keyword highlight test' Comment
+'\n'          Text.Whitespace
 
 'key '        Keyword.Control
 'x'           Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 'key '        Keyword.Control
 '+'           Operator
@@ -1081,36 +1108,41 @@
 ' '           Text
 ';'           Punctuation
 ' '           Text
-'key '        Keyword.Control
+'key'         Keyword.Control
+' '           Text.Whitespace
 '"'           Literal.String
 'x'           Literal.String
 '"'           Literal.String
 ';'           Punctuation
 ' '           Text
-'key '        Keyword.Control
+'key'         Keyword.Control
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ';'           Punctuation
 ' '           Text
 '.asdasd'     Literal.String.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
-'key '        Keyword.Control
+'key'         Keyword.Control
+' '           Text.Whitespace
 '('           Punctuation
 'x'           Name.Symbol
 ')'           Punctuation
 ';'           Punctuation
 ' '           Text
-'key '        Keyword.Control
+'key'         Keyword.Control
+' '           Text.Whitespace
 '['           Punctuation
 'x'           Name.Symbol
 ']'           Punctuation
 ';'           Punctuation
 ' '           Text
-'key '        Keyword.Control
+'key'         Keyword.Control
+' '           Text.Whitespace
 '{'           Punctuation
 'x'           Name.Symbol
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'nokey'       Name.Symbol
 '.'           Punctuation
@@ -1123,7 +1155,7 @@
 '{'           Punctuation
 'x'           Name.Symbol
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'key '        Keyword.Control
 'x'           Name.Symbol
@@ -1131,12 +1163,12 @@
 '+'           Operator
 ' '           Text
 'y'           Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 'key '        Keyword.Control
 'key '        Keyword.Control
 'x'           Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 'x'           Name.Symbol
 ' '           Text
@@ -1144,7 +1176,7 @@
 ' '           Text
 'key '        Keyword.Control
 'y'           Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 'x'           Name.Symbol
 ' '           Text
@@ -1152,30 +1184,30 @@
 ' '           Text
 'key '        Keyword.Control
 'y'           Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 'nokey'       Name.Symbol
 ' '           Text
 '+'           Operator
 ' '           Text
 'x'           Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 'nokey'       Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 'key'         Name.Symbol
 ':'           Punctuation
 ' '           Text
 'x'           Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 'key '        Keyword.Control
 'nokey'       Name.Symbol
 ':'           Punctuation
 ' '           Text
 'y'           Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 'key '        Keyword.Control
 'x'           Name.Symbol
@@ -1186,7 +1218,7 @@
 ':'           Punctuation
 ' '           Text
 'z'           Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 'x'           Name.Symbol
 ' '           Text
@@ -1197,18 +1229,19 @@
 ':'           Punctuation
 ' '           Text
 'z'           Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 'x'           Name.Symbol
 ' '           Text
-'and '        Keyword.Control
+'and'         Keyword.Control
+' '           Text.Whitespace
 '{'           Punctuation
 'y'           Name.Symbol
 ','           Punctuation
 ' '           Text
 'z'           Name.Symbol
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'x'           Name.Symbol
 ' '           Text
@@ -1218,7 +1251,7 @@
 ':'           Punctuation
 ' '           Text
 'y'           Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 'x'           Name.Symbol
 ' '           Text
@@ -1227,18 +1260,19 @@
 ':'           Punctuation
 ' '           Text
 'y'           Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 'x'           Name.Variable
 ' '           Text
 '='           Operator.Word
-' '           Text
+' '           Text.Whitespace
 'key'         Keyword.Control
 ':'           Punctuation
 ' '           Text
 'y'           Name.Symbol
 ' '           Text
-';; comments work after keywords!\n' Comment
+';; comments work after keywords!' Comment
+'\n'          Text.Whitespace
 
 'x'           Name.Symbol
 ' '           Text
@@ -1247,7 +1281,7 @@
 ':'           Punctuation
 ' '           Text
 'y'           Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 'x'           Name.Symbol
 ' '           Text
@@ -1255,7 +1289,8 @@
 ' '           Text
 'k'           Name.Symbol
 ' '           Text
-';;\n'        Comment
+';;'          Comment
+'\n'          Text.Whitespace
 
 'a'           Name.Symbol
 '.'           Punctuation
@@ -1270,7 +1305,7 @@
 '.'           Punctuation
 'f'           Name.Field
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Name.Symbol
 '.'           Punctuation
@@ -1285,27 +1320,30 @@
 '.'           Punctuation
 'f'           Name.Field
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#a'          Name.Namespace
 '{'           Punctuation
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'nokey'       Name.Symbol
-' '           Text
+' '           Text.Whitespace
 'mod'         Keyword.Control
 ':'           Punctuation
 ' '           Text
 'y'           Name.Symbol
 ' '           Text
-';; do not highlight nokey\n' Comment
+';; do not highlight nokey' Comment
+'\n'          Text.Whitespace
 
-';; because mod is an operator\n' Comment
+';; because mod is an operator' Comment
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-';; Highlight all of these:\n' Comment
+';; Highlight all of these:' Comment
+'\n'          Text.Whitespace
 
 'await'       Keyword.Pseudo
 ';'           Punctuation
@@ -1318,13 +1356,13 @@
 ' '           Text
 'continue'    Keyword.Pseudo
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword.Control
 ':'           Punctuation
 ';'           Punctuation
 ' '           Text
 'expr-value'  Keyword.Pseudo
-'\n'          Text
+'\n'          Text.Whitespace
 
 'match'       Keyword.Pseudo
 ';'           Punctuation
@@ -1333,17 +1371,18 @@
 ';'           Punctuation
 ' '           Text
 'yield'       Keyword.Pseudo
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-';; Edge-case highlighting test\n' Comment
+';; Edge-case highlighting test' Comment
+'\n'          Text.Whitespace
 
 'key-word'    Name.Symbol
 ':'           Punctuation
 ' '           Text
 'xyz'         Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
 'nokey'       Name.Symbol
 ' '           Text
@@ -1353,45 +1392,53 @@
 ':'           Punctuation
 ' '           Text
 'yz'          Name.Symbol
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-';; Some keywords may contain operators as a subpart. If your regexp\n' Comment
+';; Some keywords may contain operators as a subpart. If your regexp' Comment
+'\n'          Text.Whitespace
 
-';; uses \\b to single out operators like each, is or in, you may\n' Comment
+';; uses \\b to single out operators like each, is or in, you may' Comment
+'\n'          Text.Whitespace
 
-';; fail to highlight these properly:\n' Comment
+';; fail to highlight these properly:' Comment
+'\n'          Text.Whitespace
 
 'beaches'     Name.Symbol
 '           ' Text
-';; Do not highlight each inside the word beaches\n' Comment
+';; Do not highlight each inside the word beaches' Comment
+'\n'          Text.Whitespace
 
 'each-thing'  Name.Symbol
 '        '    Text
-';; Do not highlight each\n' Comment
+';; Do not highlight each' Comment
+'\n'          Text.Whitespace
 
 'sleep-in'    Name.Symbol
 '          '  Text
-';; Do not highlight in\n' Comment
+';; Do not highlight in' Comment
+'\n'          Text.Whitespace
 
 'before-each' Name.Symbol
 ':'           Punctuation
 ' '           Text
 'xyz'         Name.Symbol
 '  '          Text
-';; Highlight before-each as a keyword\n' Comment
+';; Highlight before-each as a keyword' Comment
+'\n'          Text.Whitespace
 
 'is-great'    Name.Symbol
 ':'           Punctuation
 ' '           Text
 'xyz'         Name.Symbol
 '     '       Text
-';; Highlight is-great as a keyword\n' Comment
+';; Highlight is-great as a keyword' Comment
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'send'        Name.Builtin
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

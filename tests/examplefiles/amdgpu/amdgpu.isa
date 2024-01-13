@@ -1,5 +1,8 @@
 s_load_dwordx2  s[4:5], s[0:1], 0x10
 s_load_dwordx4  s[0:3], s[0:1], 0x00
+scratch_load_dwordx3 v[2:5], v0, off
+v_interp_p1_f32_e32 v2, v0, attr0.x
+v_interp_p1_f32_e32 v3, v0, attr0.y
 v_lshlrev_b32  v0, 2, v0
 s_waitcnt     lgkmcnt(0)
 v_add_u32     v1, vcc, s2, v0

@@ -40,41 +40,41 @@
 
 '> '          Generic.Prompt
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '<-'          Operator
-' '           Text
+' '           Text.Whitespace
 'function'    Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Error: syntax error\n' Generic.Output
 
 '> '          Generic.Prompt
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '<-'          Operator
-' '           Text
+' '           Text.Whitespace
 'function'    Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '<-'          Operator
-' '           Text
+' '           Text.Whitespace
 'function'    Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+ '          Generic.Prompt
 'cat'         Name.Function
@@ -82,7 +82,7 @@
 '"'           Literal.String
 'hello"'      Literal.String
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+ '          Generic.Prompt
 'cat'         Name.Function
@@ -90,15 +90,15 @@
 '"'           Literal.String
 'world"'      Literal.String
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '+ '          Generic.Prompt
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 'x'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'function() {\n' Generic.Output
 
@@ -112,19 +112,19 @@
 'x'           Name.Function
 '('           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'helloworld\n' Generic.Output
 
 '> '          Generic.Prompt
 '2'           Literal.Number
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace
 
 '[1] 4\n'     Generic.Output
 
 '> '          Generic.Prompt
-'\n'          Text
+'\n'          Text.Whitespace

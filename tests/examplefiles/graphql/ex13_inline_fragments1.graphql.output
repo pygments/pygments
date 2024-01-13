@@ -1,0 +1,54 @@
+'query'       Keyword
+' '           Text.Whitespace
+'HeroForEpisode' Name.Function
+'('           Punctuation
+'$ep'         Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Episode'     Name.Class
+'!'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'hero'        Name
+'('           Punctuation
+'episode'     Name
+':'           Punctuation
+' '           Text.Whitespace
+'$ep'         Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'name'        Name
+'\n    '      Text.Whitespace
+'...'         Punctuation
+' '           Text.Whitespace
+'on'          Keyword
+' '           Text.Whitespace
+'Droid'       Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n      '    Text.Whitespace
+'primaryFunction' Name
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'...'         Punctuation
+' '           Text.Whitespace
+'on'          Keyword
+' '           Text.Whitespace
+'Human'       Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n      '    Text.Whitespace
+'height'      Name
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

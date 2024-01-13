@@ -1,0 +1,72 @@
+---input---
+super(member1, member2)
+
+super(member1,member2)
+
+super(member1,
+member2)
+
+super (member1, member2)
+
+super  (member1,member2)
+
+super   (member1,
+member2)
+
+---tokens---
+'super'       Keyword
+'('           Punctuation
+'member1'     Name.Other
+','           Punctuation
+' '           Text.Whitespace
+'member2'     Name.Other
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'super'       Keyword
+'('           Punctuation
+'member1'     Name.Other
+','           Punctuation
+'member2'     Name.Other
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'super'       Keyword
+'('           Punctuation
+'member1'     Name.Other
+','           Punctuation
+'\n'          Text.Whitespace
+
+'member2'     Name.Other
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'super'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'member1'     Name.Other
+','           Punctuation
+' '           Text.Whitespace
+'member2'     Name.Other
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'super'       Keyword
+'  '          Text.Whitespace
+'('           Punctuation
+'member1'     Name.Other
+','           Punctuation
+'member2'     Name.Other
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'super'       Keyword
+'   '         Text.Whitespace
+'('           Punctuation
+'member1'     Name.Other
+','           Punctuation
+'\n'          Text.Whitespace
+
+'member2'     Name.Other
+')'           Punctuation
+'\n'          Text.Whitespace

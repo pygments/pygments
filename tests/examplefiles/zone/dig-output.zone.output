@@ -1,0 +1,58 @@
+'; <<>> DiG 9.18.16-1-Debian <<>> A www.example.com' Comment.Single
+'\n'          Text.Whitespace
+
+';; global options: +cmd' Comment.Single
+'\n'          Text.Whitespace
+
+';; Got answer:' Comment.Single
+'\n'          Text.Whitespace
+
+';; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 27048' Comment.Single
+'\n'          Text.Whitespace
+
+';; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+';; OPT PSEUDOSECTION:' Comment.Single
+'\n'          Text.Whitespace
+
+'; EDNS: version: 0, flags:; udp: 65494' Comment.Single
+'\n'          Text.Whitespace
+
+';; QUESTION SECTION:' Comment.Single
+'\n'          Text.Whitespace
+
+';www.example.com.               IN      A' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+';; ANSWER SECTION:' Comment.Single
+'\n'          Text.Whitespace
+
+'www.example.com.' Name
+'        '    Text.Whitespace
+'86144'       Literal.Number.Integer
+'   '         Text.Whitespace
+'IN'          Name.Class
+'      '      Text.Whitespace
+'A'           Keyword.Type
+'       '     Text.Whitespace
+'93.184.216.34' Literal
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+';; Query time: 20 msec' Comment.Single
+'\n'          Text.Whitespace
+
+';; SERVER: 127.0.0.53#53(127.0.0.53) (UDP)' Comment.Single
+'\n'          Text.Whitespace
+
+';; WHEN: Wed Jun 28 16:37:39 CEST 2023' Comment.Single
+'\n'          Text.Whitespace
+
+';; MSG SIZE  rcvd: 60' Comment.Single
+'\n'          Text.Whitespace

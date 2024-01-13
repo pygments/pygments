@@ -1,36 +1,34 @@
 ''            Text
-'// regex\n'  Comment.Single
-
-'\n'          Text
+'// regex'    Comment.Single
+'\n\n'        Text.Whitespace
 
 'blah'        Name.Other
 '('           Punctuation
 '/abc/'       Literal.String.Regex
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'x'           Name.Other
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/abc/'       Literal.String.Regex
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'x'           Name.Other
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '/abc/'       Literal.String.Regex
 '.'           Punctuation
 'match'       Name.Other
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'// math\n'   Comment.Single
-
-'\n'          Text
+'// math'     Comment.Single
+'\n\n'        Text.Whitespace
 
 'blah'        Name.Other
 '('           Punctuation
@@ -39,46 +37,46 @@
 '2'           Literal.Number.Float
 ')'           Punctuation
 ';'           Punctuation
-' '           Text
-'//comment\n' Comment.Single
+' '           Text.Whitespace
+'//comment'   Comment.Single
+'\n'          Text.Whitespace
 
 'x'           Name.Other
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Float
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'x'           Name.Other
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Float
 '/'           Operator
 '1'           Literal.Number.Float
 '/'           Operator
 '.1'          Literal.Number.Float
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'// broken\n' Comment.Single
-
-'\n'          Text
+'// broken'   Comment.Single
+'\n\n'        Text.Whitespace
 
 'x'           Name.Other
 '='           Operator
 '/1/'         Literal.String.Regex
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'x'           Name.Other
 '='           Operator
@@ -88,7 +86,7 @@
 '/'           Operator
 'g'           Name.Other
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'x'           Name.Other
 '='           Operator
@@ -98,18 +96,17 @@
 '/'           Operator
 'g'           Name.Other
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'// real-world\n' Comment.Single
-
-'\n'          Text
+'// real-world' Comment.Single
+'\n\n'        Text.Whitespace
 
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'x'           Name.Other
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Float
 '/'           Operator
 '('           Punctuation
@@ -123,28 +120,29 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-' '           Text
-'// convert to number between 1-0\n' Comment.Single
+' '           Text.Whitespace
+'// convert to number between 1-0' Comment.Single
+'\n'          Text.Whitespace
 
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Math'        Name.Builtin
 '.'           Punctuation
 'round'       Name.Other
 '('           Punctuation
 '('           Punctuation
 'num'         Name.Other
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 'den'         Name.Other
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 '100'         Literal.Number.Float
 ')'           Punctuation
 '/'           Operator
 '100'         Literal.Number.Float
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

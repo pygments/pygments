@@ -1,0 +1,14 @@
+---input---
+~(+ ,a 1)
+
+---tokens---
+'~'           Operator
+'('           Punctuation
+'+'           Name.Function
+' '           Text.Whitespace
+','           Operator
+'a'           Name.Variable
+' '           Text.Whitespace
+'1'           Literal.Number.Float
+')'           Punctuation
+'\n'          Text.Whitespace

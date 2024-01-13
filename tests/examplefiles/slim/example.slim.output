@@ -1,22 +1,22 @@
-''            Text
+''            Text.Whitespace
 'doctype'     Name.Tag
 ' html'       Text
 '\n'          Text
 
-''            Text
+''            Text.Whitespace
 'html'        Name.Tag
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'head'        Name.Tag
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'title'       Name.Tag
 ' Slim Examples' Text
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'meta'        Name.Tag
 ' name'       Name.Attribute
 '='           Punctuation
@@ -30,7 +30,7 @@
 '"'           Literal.String.Double
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'meta'        Name.Tag
 ' name'       Name.Attribute
 '='           Punctuation
@@ -42,7 +42,7 @@
 'author'      Text
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'javascript:\n' Text
 
 "      alert('Slim supports embedded javascript!')" Text
@@ -50,108 +50,108 @@
 
 '\n'          Text
 
-'  '          Text
+'  '          Text.Whitespace
 'body'        Name.Tag
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'h1'          Name.Tag
 ' Markup examples' Text
 '\n'          Text
 
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 '#content'    Name.Function
 '\n'          Text
 
-'      '      Text
+'      '      Text.Whitespace
 'p'           Name.Tag
 ' This example shows you how a basic Slim file looks like.' Text
 '\n'          Text
 
 '\n'          Text
 
-'      '      Text
+'      '      Text.Whitespace
 '=='          Punctuation
-' '           Text
+' '           Text.Whitespace
 'yield'       Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
-'      '      Text
+'      '      Text.Whitespace
 '-'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 'items'       Name
 '.'           Operator
 'empty?'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'table'       Name.Tag
 '\n'          Text
 
-'          '  Text
+'          '  Text.Whitespace
 '-'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 'item'        Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'items'       Name
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'tr'          Name.Tag
 '\n'          Text
 
-'              ' Text
+'              ' Text.Whitespace
 'td'          Name.Tag
 '.name'       Name.Class
 ' ='          Punctuation
-' '           Text
+' '           Text.Whitespace
 'item'        Name
 '.'           Operator
 'name'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'              ' Text
+'              ' Text.Whitespace
 'td'          Name.Tag
 '.price'      Name.Class
 ' ='          Punctuation
-' '           Text
+' '           Text.Whitespace
 'item'        Name
 '.'           Operator
 'price'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '-'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'        '    Text
+'        '    Text.Whitespace
 'p'           Name.Tag
 '\n'          Text
 
-'          '  Text
+'          '  Text.Whitespace
 '| No items found. Please add some inventory.\n' Text
 
-'            ' Text
+'            ' Text.Whitespace
 'Thank you!'  Text
 '\n'          Text
 
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'div'         Name.Tag
 ' id'         Name.Attribute
 '='           Punctuation
@@ -160,17 +160,17 @@
 '"'           Literal.String.Double
 '\n'          Text
 
-'      '      Text
+'      '      Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'render'      Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'footer'      Literal.String.Single
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '| Copyright (C) #{year} #{author}\n' Text
 
-''            Text
+''            Text.Whitespace

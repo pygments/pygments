@@ -4,35 +4,35 @@
 
     Lexers for APL.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 from pygments.lexer import RegexLexer
-from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation
+from pygments.token import Comment, Operator, Keyword, Name, String, \
+    Number, Punctuation, Whitespace
 
 __all__ = ['APLLexer']
 
 
 class APLLexer(RegexLexer):
     """
-    A simple `APL <https://en.m.wikipedia.org/wiki/APL_(programming_language)>`_ lexer.
-
-    .. versionadded:: 2.0
+    A simple APL lexer.
     """
     name = 'APL'
+    url = 'https://en.m.wikipedia.org/wiki/APL_(programming_language)'
     aliases = ['apl']
     filenames = [
         '*.apl', '*.aplf', '*.aplo', '*.apln',  
         '*.aplc', '*.apli', '*.dyalog',
     ]
+    version_added = '2.0'
 
     tokens = {
         'root': [
             # Whitespace
             # ==========
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             #
             # Comment
             # =======

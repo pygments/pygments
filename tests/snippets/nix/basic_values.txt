@@ -1,0 +1,125 @@
+---input---
+"hello world"
+
+"hello ${ { a = "world"; }.a }"
+
+"1 2 ${toString 3}"
+
+"${pkgs.bash}/bin/sh"
+
+true, false, null, 123, 3.141
+
+-1
+
+/etc
+./foo.png
+~/.config
+
+<nixpkgs>
+
+''
+  multi
+   line
+    string
+''
+
+''
+  multi
+   ${value}
+    string
+''
+
+---tokens---
+'"'           Literal.String.Double
+'hello world' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text
+
+'"'           Literal.String.Double
+'hello '      Literal.String.Double
+'${'          Literal.String.Interpol
+' '           Text
+'{'           Punctuation
+' '           Text
+'a'           Literal.String.Symbol
+' '           Text
+'='           Operator
+' '           Text
+'"'           Literal.String.Double
+'world'       Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'.'           Operator
+'a'           Text
+' '           Text
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n\n'        Text
+
+'"'           Literal.String.Double
+'1 2 '        Literal.String.Double
+'${'          Literal.String.Interpol
+'toString'    Name.Builtin
+' '           Text
+'3'           Literal.Number.Integer
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n\n'        Text
+
+'"'           Literal.String.Double
+'${'          Literal.String.Interpol
+'pkgs'        Text
+'.'           Operator
+'bash'        Text
+'}'           Literal.String.Interpol
+'/bin/sh'     Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text
+
+'true'        Name.Constant
+','           Punctuation
+' '           Text
+'false'       Name.Constant
+','           Punctuation
+' '           Text
+'null'        Name.Constant
+','           Punctuation
+' '           Text
+'123'         Literal.Number.Integer
+','           Punctuation
+' '           Text
+'3.141'       Literal.Number.Float
+'\n\n'        Text
+
+'-1'          Literal.Number.Integer
+'\n\n'        Text
+
+'/etc'        Literal
+'\n'          Text
+
+'./foo.png'   Literal
+'\n'          Text
+
+'~/.config'   Literal
+'\n\n'        Text
+
+'<nixpkgs>'   Literal
+'\n\n'        Text
+
+"''"          Literal.String.Multiline
+'\n  multi\n   line\n    string\n' Literal.String.Multiline
+
+"''"          Literal.String.Multiline
+'\n\n'        Text
+
+"''"          Literal.String.Multiline
+'\n  multi\n   ' Literal.String.Multiline
+'${'          Literal.String.Interpol
+'value'       Text
+'}'           Literal.String.Interpol
+'\n    string\n' Literal.String.Multiline
+
+"''"          Literal.String.Multiline
+'\n'          Text

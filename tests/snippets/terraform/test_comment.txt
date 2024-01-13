@@ -1,13 +1,19 @@
 ---input---
 # Single line comment
+// Non-idiomatic single line comment
 /* multiline
 
   comment
 
 */
+provider "azurerm" { # (1)
+  features {}
+} 
 
 ---tokens---
 '# Single line comment\n' Comment.Single
+
+'// Non-idiomatic single line comment\n' Comment.Single
 
 '/*'          Comment.Multiline
 ' '           Comment.Multiline
@@ -38,4 +44,21 @@
 '\n'          Comment.Multiline
 
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
+
+'provider'    Keyword.Reserved
+' '           Text.Whitespace
+'"azurerm"'   Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+' # (1)\n'    Comment.Single
+
+'  '          Text.Whitespace
+'features'    Name.Builtin
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' \n'         Text.Whitespace

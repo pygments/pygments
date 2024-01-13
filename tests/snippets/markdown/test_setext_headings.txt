@@ -1,0 +1,121 @@
+---input---
+Setext headings:
+
+Heading
+=
+
+Heading
+=======
+
+Heading
+==============
+
+
+These are NOT Setext headings:
+
+Heading
+
+Heading
+_
+
+Heading
+ =====
+
+Heading
+a======
+
+
+=
+
+Heading
+=======Text
+
+---tokens---
+'Setext'      Text
+' '           Text
+'headings:'   Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Heading'     Generic.Heading
+'\n'          Text
+
+'='           Generic.Heading
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'Heading'     Generic.Heading
+'\n'          Text
+
+'======='     Generic.Heading
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'Heading'     Generic.Heading
+'\n'          Text
+
+'==============' Generic.Heading
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'These'       Text
+' '           Text
+'are'         Text
+' '           Text
+'NOT'         Text
+' '           Text
+'Setext'      Text
+' '           Text
+'headings:'   Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Heading'     Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Heading'     Text
+'\n'          Text.Whitespace
+
+'_'           Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Heading'     Text
+'\n'          Text.Whitespace
+
+' '           Text
+'====='       Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Heading'     Text
+'\n'          Text.Whitespace
+
+'a======'     Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'='           Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Heading'     Text
+'\n'          Text.Whitespace
+
+'=======Text' Text
+'\n'          Text.Whitespace

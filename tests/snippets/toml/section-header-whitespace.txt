@@ -1,0 +1,16 @@
+---input---
+[ foo . bar ] # whitespace allowed in table headers
+
+---tokens---
+'['           Keyword
+' '           Text.Whitespace
+'foo'         Keyword
+' '           Text.Whitespace
+'.'           Keyword
+' '           Text.Whitespace
+'bar'         Keyword
+' '           Text.Whitespace
+']'           Keyword
+' '           Text.Whitespace
+'# whitespace allowed in table headers' Comment.Single
+'\n'          Text.Whitespace

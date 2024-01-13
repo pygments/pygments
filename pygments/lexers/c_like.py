@@ -4,7 +4,7 @@
 
     Lexers for other C-like languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -26,22 +26,22 @@ __all__ = ['PikeLexer', 'NesCLexer', 'ClayLexer', 'ECLexer', 'ValaLexer',
 class PikeLexer(CppLexer):
     """
     For `Pike <http://pike.lysator.liu.se/>`_ source code.
-
-    .. versionadded:: 2.0
     """
     name = 'Pike'
     aliases = ['pike']
     filenames = ['*.pike', '*.pmod']
     mimetypes = ['text/x-pike']
+    version_added = '2.0'
 
     tokens = {
         'statements': [
             (words((
                 'catch', 'new', 'private', 'protected', 'public', 'gauge',
-                'throw', 'throws', 'class', 'interface', 'implement', 'abstract', 'extends', 'from',
-                'this', 'super', 'constant', 'final', 'static', 'import', 'use', 'extern',
-                'inline', 'proto', 'break', 'continue', 'if', 'else', 'for',
-                'while', 'do', 'switch', 'case', 'as', 'in', 'version', 'return', 'true', 'false', 'null',
+                'throw', 'throws', 'class', 'interface', 'implement', 'abstract',
+                'extends', 'from', 'this', 'super', 'constant', 'final', 'static',
+                'import', 'use', 'extern', 'inline', 'proto', 'break', 'continue',
+                'if', 'else', 'for', 'while', 'do', 'switch', 'case', 'as', 'in',
+                'version', 'return', 'true', 'false', 'null',
                 '__VERSION__', '__MAJOR__', '__MINOR__', '__BUILD__', '__REAL_VERSION__',
                 '__REAL_MAJOR__', '__REAL_MINOR__', '__REAL_BUILD__', '__DATE__', '__TIME__',
                 '__FILE__', '__DIR__', '__LINE__', '__AUTO_BIGNUM__', '__NT__', '__PIKE__',
@@ -51,14 +51,14 @@ class PikeLexer(CppLexer):
              r'array|multiset|program|function|lambda|mixed|'
              r'[a-z_][a-z0-9_]*_t)\b',
              Keyword.Type),
-            (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
+            (r'(class)(\s+)', bygroups(Keyword, Whitespace), 'classname'),
             (r'[~!%^&*+=|?:<>/@-]', Operator),
             inherit,
         ],
         'classname': [
             (r'[a-zA-Z_]\w*', Name.Class, '#pop'),
             # template specification
-            (r'\s*(?=>)', Text, '#pop'),
+            (r'\s*(?=>)', Whitespace, '#pop'),
         ],
     }
 
@@ -67,13 +67,12 @@ class NesCLexer(CLexer):
     """
     For `nesC <https://github.com/tinyos/nesc>`_ source code with preprocessor
     directives.
-
-    .. versionadded:: 2.0
     """
     name = 'nesC'
     aliases = ['nesc']
     filenames = ['*.nc']
     mimetypes = ['text/x-nescsrc']
+    version_added = '2.0'
 
     tokens = {
         'statements': [
@@ -94,17 +93,18 @@ class NesCLexer(CLexer):
 
 class ClayLexer(RegexLexer):
     """
-    For `Clay <http://claylabs.com/clay/>`_ source.
-
-    .. versionadded:: 2.0
+    For Clay source.
     """
     name = 'Clay'
     filenames = ['*.clay']
     aliases = ['clay']
     mimetypes = ['text/x-clay']
+    url = 'http://claylabs.com/clay'
+    version_added = '2.0'
+
     tokens = {
         'root': [
-            (r'\s', Text),
+            (r'\s+', Whitespace),
             (r'//.*?$', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
             (r'\b(public|private|import|as|record|variant|instance'
@@ -126,7 +126,7 @@ class ClayLexer(RegexLexer):
         ],
         'strings': [
             (r'(?i)\\(x[0-9a-f]{2}|.)', String.Escape),
-            (r'.', String),
+            (r'[^\\"]+', String),
         ],
         'nl': [
             (r'\n', String),
@@ -146,13 +146,13 @@ class ClayLexer(RegexLexer):
 class ECLexer(CLexer):
     """
     For eC source code with preprocessor directives.
-
-    .. versionadded:: 1.5
     """
     name = 'eC'
     aliases = ['ec']
     filenames = ['*.ec', '*.eh']
     mimetypes = ['text/x-echdr', 'text/x-ecsrc']
+    url = 'https://ec-lang.org'
+    version_added = '1.5'
 
     tokens = {
         'statements': [
@@ -169,7 +169,7 @@ class ECLexer(CLexer):
             (words(('uint', 'uint16', 'uint32', 'uint64', 'bool', 'byte',
                     'unichar', 'int64'), suffix=r'\b'),
              Keyword.Type),
-            (r'(class)(\s+)', bygroups(Keyword, Text), 'classname'),
+            (r'(class)(\s+)', bygroups(Keyword, Whitespace), 'classname'),
             (r'(null|value|this)\b', Name.Builtin),
             inherit,
         ]
@@ -179,19 +179,19 @@ class ECLexer(CLexer):
 class ValaLexer(RegexLexer):
     """
     For Vala source code with preprocessor directives.
-
-    .. versionadded:: 1.1
     """
     name = 'Vala'
     aliases = ['vala', 'vapi']
     filenames = ['*.vala', '*.vapi']
     mimetypes = ['text/x-vala']
+    url = 'https://vala.dev'
+    version_added = '1.1'
 
     tokens = {
         'whitespace': [
             (r'^\s*#if\s+0', Comment.Preproc, 'if0'),
-            (r'\n', Text),
-            (r'\s+', Text),
+            (r'\n', Whitespace),
+            (r'\s+', Whitespace),
             (r'\\\n', Text),  # line continuation
             (r'//(\n|(.|\n)*?[^\\]\n)', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
@@ -226,10 +226,10 @@ class ValaLexer(RegexLexer):
                 'public', 'ref', 'requires', 'signal', 'static', 'throws', 'unowned',
                 'var', 'virtual', 'volatile', 'weak', 'yields'), suffix=r'\b'),
              Keyword.Declaration),
-            (r'(namespace|using)(\s+)', bygroups(Keyword.Namespace, Text),
+            (r'(namespace|using)(\s+)', bygroups(Keyword.Namespace, Whitespace),
              'namespace'),
             (r'(class|errordomain|interface|struct)(\s+)',
-             bygroups(Keyword.Declaration, Text), 'class'),
+             bygroups(Keyword.Declaration, Whitespace), 'class'),
             (r'(\.)([a-zA-Z_]\w*)',
              bygroups(Operator, Name.Attribute)),
             # void is an actual keyword, others are in glib-2.0.vapi
@@ -276,15 +276,14 @@ class ValaLexer(RegexLexer):
 
 class CudaLexer(CLexer):
     """
-    For NVIDIA `CUDA™ <http://developer.nvidia.com/category/zone/cuda-zone>`_
-    source.
-
-    .. versionadded:: 1.6
+    For NVIDIA CUDA™ source.
     """
     name = 'CUDA'
     filenames = ['*.cu', '*.cuh']
     aliases = ['cuda', 'cu']
     mimetypes = ['text/x-cuda']
+    url = 'https://developer.nvidia.com/category/zone/cuda-zone'
+    version_added = '1.6'
 
     function_qualifiers = {'__device__', '__global__', '__host__',
                            '__noinline__', '__forceinline__'}
@@ -304,8 +303,8 @@ class CudaLexer(CLexer):
                  '__syncthreads_or'}
     execution_confs = {'<<<', '>>>'}
 
-    def get_tokens_unprocessed(self, text):
-        for index, token, value in CLexer.get_tokens_unprocessed(self, text):
+    def get_tokens_unprocessed(self, text, stack=('root',)):
+        for index, token, value in CLexer.get_tokens_unprocessed(self, text, stack):
             if token is Name:
                 if value in self.variable_qualifiers:
                     token = Keyword.Type
@@ -325,13 +324,12 @@ class CudaLexer(CLexer):
 class SwigLexer(CppLexer):
     """
     For `SWIG <http://www.swig.org/>`_ source code.
-
-    .. versionadded:: 2.0
     """
     name = 'SWIG'
     aliases = ['swig']
     filenames = ['*.swg', '*.i']
     mimetypes = ['text/swig']
+    version_added = '2.0'
     priority = 0.04  # Lower than C/C++ and Objective C/C++
 
     tokens = {
@@ -392,13 +390,12 @@ class MqlLexer(CppLexer):
     """
     For `MQL4 <http://docs.mql4.com/>`_ and
     `MQL5 <http://www.mql5.com/en/docs>`_ source code.
-
-    .. versionadded:: 2.0
     """
     name = 'MQL'
     aliases = ['mql', 'mq4', 'mq5', 'mql4', 'mql5']
     filenames = ['*.mq4', '*.mq5', '*.mqh']
     mimetypes = ['text/x-mql']
+    version_added = '2.0'
 
     tokens = {
         'statements': [
@@ -419,14 +416,13 @@ class ArduinoLexer(CppLexer):
 
     This is an extension of the CppLexer, as the Arduino® Language is a superset
     of C++
-
-    .. versionadded:: 2.1
     """
 
     name = 'Arduino'
     aliases = ['arduino']
     filenames = ['*.ino']
     mimetypes = ['text/x-arduino']
+    version_added = '2.1'
 
     # Language sketch main structure functions
     structure = {'setup', 'loop'}
@@ -525,8 +521,8 @@ class ArduinoLexer(CppLexer):
         'typename', 'this', 'alignof', 'constexpr', 'decltype', 'noexcept',
         'static_assert', 'thread_local', 'restrict'}
 
-    def get_tokens_unprocessed(self, text):
-        for index, token, value in CppLexer.get_tokens_unprocessed(self, text):
+    def get_tokens_unprocessed(self, text, stack=('root',)):
+        for index, token, value in CppLexer.get_tokens_unprocessed(self, text, stack):
             if value in self.structure:
                 yield index, Name.Builtin, value
             elif value in self.operators:
@@ -544,13 +540,12 @@ class ArduinoLexer(CppLexer):
 class CharmciLexer(CppLexer):
     """
     For `Charm++ <https://charm.cs.illinois.edu>`_ interface files (.ci).
-
-    .. versionadded:: 2.4
     """
 
     name = 'Charmci'
     aliases = ['charmci']
     filenames = ['*.ci']
+    version_added = '2.4'
 
     mimetypes = []
 
@@ -573,15 +568,15 @@ class CharmciLexer(CppLexer):
 
 class OmgIdlLexer(CLexer):
     """
-    Lexer for `Object Management Group Interface Definition Language <https://www.omg.org/spec/IDL/About-IDL/>`_.
-
-    .. versionadded:: 2.9
+    Lexer for Object Management Group Interface Definition Language.
     """
 
     name = 'OMG Interface Definition Language'
+    url = 'https://www.omg.org/spec/IDL/About-IDL/'
     aliases = ['omg-idl']
     filenames = ['*.idl', '*.pidl']
     mimetypes = []
+    version_added = '2.9'
 
     scoped_name = r'((::)?\w+)+'
 

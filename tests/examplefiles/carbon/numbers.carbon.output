@@ -1,0 +1,88 @@
+'package'     Keyword.Namespace
+' '           Text.Whitespace
+'ExplorerTest' Name.Other
+' '           Text.Whitespace
+'api'         Keyword.Namespace
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'fn'          Keyword.Declaration
+' '           Text.Whitespace
+'Main'        Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'i32'         Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'i'           Name.Other
+':'           Punctuation
+' '           Text.Whitespace
+'auto'        Keyword.Type
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'1234567'     Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'h'           Name.Other
+':'           Punctuation
+' '           Text.Whitespace
+'auto'        Keyword.Type
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'0x1234abcd'  Literal.Number.Hex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'b'           Name.Other
+':'           Punctuation
+' '           Text.Whitespace
+'auto'        Keyword.Type
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'0o1234567'   Literal.Number.Oct
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'o'           Name.Other
+':'           Punctuation
+' '           Text.Whitespace
+'auto'        Keyword.Type
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'0b111000'    Literal.Number.Bin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'x'           Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

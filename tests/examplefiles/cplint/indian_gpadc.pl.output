@@ -1,0 +1,342 @@
+'/*'          Comment.Multiline
+'\nThe Indian GPA Problem. From \nhttp:' Comment.Multiline
+'/'           Comment.Multiline
+'/'           Comment.Multiline
+'www.robots.ox.ac.uk' Comment.Multiline
+'/'           Comment.Multiline
+'~fwood'      Comment.Multiline
+'/'           Comment.Multiline
+'anglican'    Comment.Multiline
+'/'           Comment.Multiline
+'examples'    Comment.Multiline
+'/'           Comment.Multiline
+'viewer'      Comment.Multiline
+'/'           Comment.Multiline
+'?worksheet=indian-gpa \n"This example was inspired by Stuart Russell...the problem is: if you observe \nthat a student GPA is exactly 4.04.0 in a model of transcripts of students \nfrom the USA (GPA\'s from 0.00.0 to 4.04.0 and India (GPA\'s from 0.00.0 to \n10.010.0) what is the probability that the student is from India?... \nAs we know from statistics, given the mixture distribution and given the \nfact that his' Comment.Multiline
+'/'           Comment.Multiline
+'her GPA is exactly 4.0, the probability that the student \nis American must be 1.0.\n(i.e. zero probability that the student is from India)."\nProbabilistic logic program from \nhttps:' Comment.Multiline
+'/'           Comment.Multiline
+'/'           Comment.Multiline
+'github.com'  Comment.Multiline
+'/'           Comment.Multiline
+'davidenitti' Comment.Multiline
+'/'           Comment.Multiline
+'DC'          Comment.Multiline
+'/'           Comment.Multiline
+'blob'        Comment.Multiline
+'/'           Comment.Multiline
+'master'      Comment.Multiline
+'/'           Comment.Multiline
+'examples'    Comment.Multiline
+'/'           Comment.Multiline
+'indian-gpa.pl\n' Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n'          Text
+
+':-'          Operator
+' '           Text
+'use_module'  Name.Function
+'('           Punctuation
+'library'     Name.Function
+'('           Punctuation
+'mcintyre'    Literal.String.Atom
+')'           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'\n\n'        Text
+
+':-'          Operator
+' '           Text
+'if'          Name.Function
+'('           Punctuation
+'current_predicate' Name.Function
+'('           Punctuation
+'use_rendering' Literal.String.Atom
+'/'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+':-'          Operator
+' '           Text
+'use_rendering' Name.Function
+'('           Punctuation
+'c3'          Literal.String.Atom
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+':-'          Operator
+' '           Text
+'endif'       Literal.String.Atom
+'.'           Punctuation
+'\n'          Text
+
+':-'          Operator
+' '           Text
+'mc'          Literal.String.Atom
+'.'           Punctuation
+'\n'          Text
+
+':-'          Operator
+' '           Text
+'begin_lpad'  Literal.String.Atom
+'.'           Punctuation
+'\n'          Text
+
+'coin'        Literal.String.Atom
+' '           Text
+'~'           Operator
+' '           Text
+'finite'      Name.Builtin
+'('           Punctuation
+'['           Punctuation
+'0.95'        Literal.Number.Float
+':'           Operator
+'true'        Literal.String.Atom
+','           Punctuation
+'0.05'        Literal.Number.Float
+':'           Operator
+'false'       Literal.String.Atom
+']'           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+'agpa'        Literal.String.Atom
+' '           Text
+'~'           Operator
+' '           Text
+'beta'        Name.Builtin
+'('           Punctuation
+'8'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+':='          Operator
+' '           Text
+'coin'        Literal.String.Atom
+'~='          Operator
+'true'        Literal.String.Atom
+'.'           Punctuation
+'\n'          Text
+
+'american_gpa' Literal.String.Atom
+' '           Text
+'~'           Operator
+' '           Text
+'finite'      Name.Builtin
+'('           Punctuation
+'['           Punctuation
+'0.85'        Literal.Number.Float
+':'           Operator
+'4.0'         Literal.Number.Float
+','           Punctuation
+'0.15'        Literal.Number.Float
+':'           Operator
+'0.0'         Literal.Number.Float
+']'           Punctuation
+')'           Punctuation
+' '           Text
+':='          Operator
+' '           Text
+'coin'        Literal.String.Atom
+'~='          Operator
+'false'       Literal.String.Atom
+'.'           Punctuation
+'\n\n'        Text
+
+'american_gpa' Literal.String.Atom
+' '           Text
+'~'           Operator
+' '           Text
+'val'         Name.Builtin
+'('           Punctuation
+'V'           Name.Variable
+')'           Punctuation
+' '           Text
+':='          Operator
+' '           Text
+'agpa'        Literal.String.Atom
+' '           Text
+'~='          Operator
+'A'           Name.Variable
+','           Punctuation
+' '           Text
+'V'           Name.Variable
+' '           Text
+'is'          Operator
+' '           Text
+'A'           Name.Variable
+'*'           Operator
+'4.0'         Literal.Number.Float
+'.'           Punctuation
+'\n\n'        Text
+
+'coin2'       Literal.String.Atom
+' '           Text
+'~'           Operator
+' '           Text
+'finite'      Name.Builtin
+'('           Punctuation
+'['           Punctuation
+'0.99'        Literal.Number.Float
+':'           Operator
+'true'        Literal.String.Atom
+','           Punctuation
+'0.01'        Literal.Number.Float
+':'           Operator
+'false'       Literal.String.Atom
+']'           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'\n'          Text
+
+'igpa'        Literal.String.Atom
+' '           Text
+'~'           Operator
+' '           Text
+'beta'        Name.Builtin
+'('           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+':='          Operator
+' '           Text
+'coin2'       Literal.String.Atom
+'~='          Operator
+'true'        Literal.String.Atom
+'.'           Punctuation
+'\n'          Text
+
+'indian_gpa'  Literal.String.Atom
+' '           Text
+'~'           Operator
+' '           Text
+'finite'      Name.Builtin
+'('           Punctuation
+'['           Punctuation
+'0.1'         Literal.Number.Float
+':'           Operator
+'0.0'         Literal.Number.Float
+','           Punctuation
+'0.9'         Literal.Number.Float
+':'           Operator
+'10.0'        Literal.Number.Float
+']'           Punctuation
+')'           Punctuation
+' '           Text
+':='          Operator
+' '           Text
+'coin2'       Literal.String.Atom
+'~='          Operator
+'false'       Literal.String.Atom
+'.'           Punctuation
+'\n\n'        Text
+
+'indian_gpa'  Literal.String.Atom
+' '           Text
+'~'           Operator
+' '           Text
+'val'         Name.Builtin
+'('           Punctuation
+'V'           Name.Variable
+')'           Punctuation
+' '           Text
+':='          Operator
+' '           Text
+'igpa'        Literal.String.Atom
+' '           Text
+'~='          Operator
+'A'           Name.Variable
+','           Punctuation
+' '           Text
+'V'           Name.Variable
+' '           Text
+'is'          Operator
+' '           Text
+'A'           Name.Variable
+'*'           Operator
+'10.0'        Literal.Number.Float
+'.'           Punctuation
+'\n\n'        Text
+
+'nation'      Literal.String.Atom
+' '           Text
+'~'           Operator
+' '           Text
+'finite'      Name.Builtin
+'('           Punctuation
+'['           Punctuation
+'0.25'        Literal.Number.Float
+':'           Operator
+'a'           Literal.String.Atom
+','           Punctuation
+'0.75'        Literal.Number.Float
+':'           Operator
+'i'           Literal.String.Atom
+']'           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'\n\n'        Text
+
+'student_gpa' Literal.String.Atom
+' '           Text
+'~'           Operator
+' '           Text
+'val'         Name.Builtin
+'('           Punctuation
+'A'           Name.Variable
+')'           Punctuation
+' '           Text
+':='          Operator
+' '           Text
+'nation'      Literal.String.Atom
+'~='          Operator
+'a'           Literal.String.Atom
+','           Punctuation
+'american_gpa' Literal.String.Atom
+'~='          Operator
+'A'           Name.Variable
+'.'           Punctuation
+'\n'          Text
+
+'student_gpa' Literal.String.Atom
+' '           Text
+'~'           Operator
+' '           Text
+'val'         Name.Builtin
+'('           Punctuation
+'I'           Name.Variable
+')'           Punctuation
+' '           Text
+':='          Operator
+' '           Text
+'nation'      Literal.String.Atom
+'~='          Operator
+'i'           Literal.String.Atom
+','           Punctuation
+'indian_gpa'  Literal.String.Atom
+'~='          Operator
+'I'           Name.Variable
+'.'           Punctuation
+'\n\n\n'      Text
+
+':-'          Operator
+' '           Text
+'end_lpad'    Literal.String.Atom
+'.'           Punctuation
+'\n\n\n'      Text
+
+'/*'          Comment.Multiline
+'*'           Comment.Multiline
+' <examples>\n?- mc_lw_sample(nation(a),student_gpa(4.0),1000,PPost).\n% probability that the nation is America given that the student got 4.0\n% in his GPA\n% expected result: 1.0\n?- mc_sample(nation(a),1000,PPrior).\n% prior probability that the nation is America \n% expected result: 0.25\n' Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n \n'       Text

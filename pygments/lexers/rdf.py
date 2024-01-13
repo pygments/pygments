@@ -4,29 +4,29 @@
 
     Lexers for semantic web and RDF query languages and markup.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
 from pygments.lexer import RegexLexer, bygroups, default
-from pygments.token import Keyword, Punctuation, String, Number, Operator, Generic, \
-    Whitespace, Name, Literal, Comment, Text
+from pygments.token import Keyword, Punctuation, String, Number, Operator, \
+    Generic, Whitespace, Name, Literal, Comment, Text
 
 __all__ = ['SparqlLexer', 'TurtleLexer', 'ShExCLexer']
 
 
 class SparqlLexer(RegexLexer):
     """
-    Lexer for `SPARQL <https://www.w3.org/TR/sparql11-query/>`_ query language.
-
-    .. versionadded:: 2.0
+    Lexer for SPARQL query language.
     """
     name = 'SPARQL'
     aliases = ['sparql']
     filenames = ['*.rq', '*.sparql']
     mimetypes = ['application/sparql-query']
+    url = 'https://www.w3.org/TR/sparql11-query'
+    version_added = '2.0'
 
     # character group definitions ::
 
@@ -177,14 +177,14 @@ class SparqlLexer(RegexLexer):
 
 class TurtleLexer(RegexLexer):
     """
-    Lexer for `Turtle <http://www.w3.org/TR/turtle/>`_ data language.
-
-    .. versionadded:: 2.1
+    Lexer for Turtle data language.
     """
     name = 'Turtle'
     aliases = ['turtle']
     filenames = ['*.ttl']
     mimetypes = ['text/turtle', 'application/x-turtle']
+    url = 'https://www.w3.org/TR/turtle'
+    version_added = '2.1'
 
     # character group definitions ::
     PN_CHARS_BASE_GRP = ('a-zA-Z'
@@ -260,6 +260,10 @@ class TurtleLexer(RegexLexer):
             (r'(' + PN_PREFIX + r')?(\:)(' + PN_LOCAL + r')?',
              bygroups(Name.Namespace, Punctuation, Name.Tag)),
 
+            # BlankNodeLabel
+            (r'(_)(:)([' + PN_CHARS_U_GRP + r'0-9]([' + PN_CHARS_GRP + r'.]*' + PN_CHARS + ')?)',
+             bygroups(Name.Namespace, Punctuation, Name.Tag)),
+
             # Comment
             (r'#[^\n]+', Comment),
 
@@ -318,12 +322,14 @@ class TurtleLexer(RegexLexer):
 
 class ShExCLexer(RegexLexer):
     """
-    Lexer for `ShExC <https://shex.io/shex-semantics/#shexc>`_ shape expressions language syntax.
+    Lexer for ShExC shape expressions language syntax.
     """
     name = 'ShExC'
     aliases = ['shexc', 'shex']
     filenames = ['*.shex']
     mimetypes = ['text/shex']
+    url = 'https://shex.io/shex-semantics/#shexc'
+    version_added = ''
 
     # character group definitions ::
 

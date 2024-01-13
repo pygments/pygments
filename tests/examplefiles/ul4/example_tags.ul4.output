@@ -1,0 +1,193 @@
+'<?'          Comment.Preproc
+'ul4'         Keyword
+' '           Text.Whitespace
+'templatename' Name.Function
+'('           Operator
+')'           Operator
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'whitespace'  Keyword
+' '           Text.Whitespace
+'keep'        Comment.Preproc
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?doc UL4 example for all the available tags?>' Literal.String.Doc
+'\n\n'        Other
+
+'<?'          Comment.Preproc
+'def'         Keyword
+' '           Text.Whitespace
+'gurk'        Name.Function
+'('           Operator
+'a'           Name
+','           Operator
+' '           Text.Whitespace
+'b'           Name
+','           Operator
+' '           Text.Whitespace
+'c'           Name
+','           Operator
+' '           Text.Whitespace
+'d'           Name
+')'           Operator
+'?>'          Comment.Preproc
+'\n\t'        Other
+'<?doc?>'     Literal.String.Doc
+'\n\tFunction `gurk`\n\t' Literal.String.Doc
+'<?doc?>'     Literal.String.Doc
+'\n\tFoo\n\t' Literal.String.Doc
+'<?end doc?>' Literal.String.Doc
+'\n\t'        Literal.String.Doc
+'<?end doc?>' Literal.String.Doc
+'\n\t'        Other
+'<?'          Comment.Preproc
+'for'         Keyword
+' '           Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'range'       Name
+'('           Operator
+'10'          Literal.Number.Integer
+')'           Operator
+'?>'          Comment.Preproc
+'\n\t\t'      Other
+'<?'          Comment.Preproc
+'print'       Keyword
+' '           Text.Whitespace
+'a'           Name
+'?>'          Comment.Preproc
+'\n\t\t'      Other
+'<?'          Comment.Preproc
+'if'          Keyword
+' '           Text.Whitespace
+'b'           Name
+'?>'          Comment.Preproc
+'\n\t\t\t'    Other
+'<?'          Comment.Preproc
+'printx'      Keyword
+' '           Text.Whitespace
+'b'           Name
+'?>'          Comment.Preproc
+'\n\t\t'      Other
+'<?'          Comment.Preproc
+'elif'        Keyword
+' '           Text.Whitespace
+'c'           Name
+'?>'          Comment.Preproc
+'\n\t\t\t'    Other
+'<?'          Comment.Preproc
+'render'      Keyword
+' '           Text.Whitespace
+'c'           Name
+'('           Operator
+')'           Operator
+'?>'          Comment.Preproc
+'\n\t\t'      Other
+'<?'          Comment.Preproc
+'else'        Keyword
+'?>'          Comment.Preproc
+'\n\t\t\t'    Other
+'<'           Other
+'?renderx d()?>\n\t\t' Other
+'<?'          Comment.Preproc
+'end'         Keyword
+' '           Text
+'if'          Keyword
+'?>'          Comment.Preproc
+'\n\t\t'      Other
+'<?'          Comment.Preproc
+'code'        Keyword
+' '           Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'?>'          Comment.Preproc
+'\n\t\t'      Other
+'<?'          Comment.Preproc
+'while'       Keyword
+' '           Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'42'          Literal.Number.Integer
+'?>'          Comment.Preproc
+'\n\t\t\t'    Other
+'<?'          Comment.Preproc
+'code'        Keyword
+' '           Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+'+='          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'?>'          Comment.Preproc
+'\n\t\t'      Other
+'<?'          Comment.Preproc
+'end'         Keyword
+' '           Text
+'while'       Keyword
+'?>'          Comment.Preproc
+'\n\t'        Other
+'<?'          Comment.Preproc
+'end'         Keyword
+' '           Text
+'for'         Keyword
+'?>'          Comment.Preproc
+'\n'          Other
+
+'<?'          Comment.Preproc
+'end'         Keyword
+' '           Text
+'def'         Keyword
+'?>'          Comment.Preproc
+'\n\n'        Other
+
+'<?'          Comment.Preproc
+'renderblock' Keyword
+' '           Text.Whitespace
+'hinz'        Name
+'('           Operator
+')'           Operator
+'?>'          Comment.Preproc
+'\n\t'        Other
+'<?note Note?>' Comment
+'\n\t...\n'   Other
+
+'<?'          Comment.Preproc
+'end'         Keyword
+' '           Text
+'renderblock' Keyword
+'?>'          Comment.Preproc
+'\n\n'        Other
+
+'<?'          Comment.Preproc
+'renderblocks' Keyword
+' '           Text.Whitespace
+'kunz'        Name
+'('           Operator
+')'           Operator
+'?>'          Comment.Preproc
+'\n\t'        Other
+'<?note?>'    Comment
+'\n\tNote\n\t' Comment
+'<?note?>'    Comment
+'\n\tSubnote\n\t' Comment
+'<?end note?>' Comment
+'\n\t'        Comment
+'<?end note?>' Comment
+'\n\t...\n'   Other
+
+'<?'          Comment.Preproc
+'end'         Keyword
+' '           Text
+'renderblocks' Keyword
+'?>'          Comment.Preproc
+'\n'          Other

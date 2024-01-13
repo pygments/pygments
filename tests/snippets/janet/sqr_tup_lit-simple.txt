@@ -1,0 +1,12 @@
+---input---
+[:alice :bob :carol]
+
+---tokens---
+'['           Punctuation
+':alice'      Name.Constant
+' '           Text.Whitespace
+':bob'        Name.Constant
+' '           Text.Whitespace
+':carol'      Name.Constant
+']'           Punctuation
+'\n'          Text.Whitespace

@@ -1,106 +1,120 @@
 '/* Vertex shader */' Comment.Multiline
-'\n'          Text
+'\n\n'        Text.Whitespace
+
+'// Macro inside a single-line comment: #define COMMENT_MACRO 1' Comment.Single
+'\n\n'        Text.Whitespace
+
+'/* Macro inside a block comment: #define COMMENT_MACRO 2 */' Comment.Multiline
+'\n\n    '    Text.Whitespace
+'# define INDENTED_MACRO 5.0' Comment.Preproc
+'\n\n'        Text.Whitespace
+
+'#define SINGLELINE_MACRO 10.0' Comment.Preproc
+'\n\n'        Text.Whitespace
+
+'#define MULTILINE_MACRO(a, b) vec2( \\\n    a, \\\n    b \\\n)' Comment.Preproc
+'\n\n'        Text.Whitespace
 
 'uniform'     Keyword
-' '           Text
+' '           Text.Whitespace
 'float'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'waveTime'    Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'uniform'     Keyword
-' '           Text
+' '           Text.Whitespace
 'float'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'waveWidth'   Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'uniform'     Keyword
-' '           Text
+' '           Text.Whitespace
 'float'       Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'waveHeight'  Name
 ';'           Punctuation
-'\n \n'       Text
+'\n \n'       Text.Whitespace
 
 'void'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'main'        Name
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 'vec4'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'v'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'vec4'        Keyword.Type
 '('           Punctuation
 'gl_Vertex'   Name.Builtin
 ')'           Punctuation
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'v'           Name
 '.'           Punctuation
 'z'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'sin'         Name
 '('           Punctuation
 'waveWidth'   Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'v'           Name
 '.'           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'waveTime'    Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'cos'         Name
 '('           Punctuation
 'waveWidth'   Name
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'v'           Name
 '.'           Punctuation
 'y'           Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'waveTime'    Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'waveHeight'  Name
 ';'           Punctuation
-'\n\n    '    Text
+'\n\n    '    Text.Whitespace
 'gl_Position' Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'gl_ModelViewProjectionMatrix' Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 'v'           Name
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

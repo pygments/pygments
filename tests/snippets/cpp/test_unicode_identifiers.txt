@@ -1,0 +1,146 @@
+---input---
+namespace 𝐨𝐩𝐭𝐢𝐨𝐧 {
+  int _hello();
+}
+
+int cześć = 2;
+
+class 𝐨𝐩𝐭𝐢𝐨𝐧𝐬 final {
+  𝐨𝐩𝐭𝐢𝐨𝐧𝐬() {
+    爴:
+      int a = 𝐨𝐩𝐭𝐢𝐨𝐧::hello();
+  };
+  
+  static 𝐨𝐩𝐭𝐢𝐨𝐧𝐬 𝔡𝔢𝔣𝔞𝔲𝔩𝔱;
+  static 𝐨𝐩𝐭𝐢𝐨𝐧𝐬 𝔢𝔵𝔠𝔢𝔭𝔱𝔦𝔬𝔫𝔰;
+};
+
+enum class ⅭⅤ { red, green = 15, blue };
+
+---tokens---
+'namespace'   Keyword
+' '           Text.Whitespace
+'𝐨𝐩𝐭𝐢𝐨𝐧'      Name.Namespace
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'_hello'      Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'cześć'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'class'       Keyword
+' '           Text.Whitespace
+'𝐨𝐩𝐭𝐢𝐨𝐧𝐬'     Name.Class
+' '           Text.Whitespace
+'final'       Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'𝐨𝐩𝐭𝐢𝐨𝐧𝐬'     Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'爴'           Name.Label
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'𝐨𝐩𝐭𝐢𝐨𝐧'      Name
+':'           Operator
+':'           Operator
+'hello'       Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'static'      Keyword
+' '           Text.Whitespace
+'𝐨𝐩𝐭𝐢𝐨𝐧𝐬'     Name
+' '           Text.Whitespace
+'𝔡𝔢𝔣𝔞𝔲𝔩𝔱'     Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'static'      Keyword
+' '           Text.Whitespace
+'𝐨𝐩𝐭𝐢𝐨𝐧𝐬'     Name
+' '           Text.Whitespace
+'𝔢𝔵𝔠𝔢𝔭𝔱𝔦𝔬𝔫𝔰'  Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'enum'        Keyword
+' '           Text.Whitespace
+'class'       Keyword
+' '           Text.Whitespace
+'ⅭⅤ'          Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'red'         Name
+','           Punctuation
+' '           Text.Whitespace
+'green'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'15'          Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'blue'        Name
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

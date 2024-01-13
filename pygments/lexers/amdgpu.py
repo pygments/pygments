@@ -4,7 +4,7 @@
 
     Lexers for the AMDGPU ISA assembly.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -19,12 +19,12 @@ __all__ = ['AMDGPULexer']
 class AMDGPULexer(RegexLexer):
     """
     For AMD GPU assembly.
-
-    .. versionadded:: 2.8
     """
     name = 'AMDGPU'
     aliases = ['amdgpu']
     filenames = ['*.isa']
+    url = 'https://gpuopen.com/amd-isa-documentation'
+    version_added = '2.8'
 
     flags = re.IGNORECASE
 
@@ -35,11 +35,12 @@ class AMDGPULexer(RegexLexer):
             (r'(([a-z_0-9])*:([a-z_0-9])*)', Name.Attribute),
             (r'(\[|\]|\(|\)|,|\:|\&)', Text),
             (r'([;#]|//).*?\n', Comment.Single),
-            (r'((s_)?(ds|buffer|flat|image)_[a-z0-9_]+)', Keyword.Reserved),
+            (r'((s_)?(scratch|ds|buffer|flat|image)_[a-z0-9_]+)', Keyword.Reserved),
             (r'(_lo|_hi)', Name.Variable),
             (r'(vmcnt|lgkmcnt|expcnt)', Name.Attribute),
+            (r'(attr[0-9].[a-z])', Name.Attribute),
             (words((
-                'op', 'vaddr', 'vdata', 'soffset', 'srsrc', 'format',
+                'op', 'vaddr', 'vdata', 'off', 'soffset', 'srsrc', 'format',
                 'offset', 'offen', 'idxen', 'glc', 'dlc', 'slc', 'tfe', 'lds',
                 'lit', 'unorm'), suffix=r'\b'), Name.Attribute),
             (r'(label_[a-z0-9]+)', Keyword),

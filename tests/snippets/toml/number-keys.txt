@@ -1,0 +1,64 @@
+---input---
+1234 = "foo" # 1234 is a name
+foo = 1234 # 1234 is a number
+foo2 = [
+  1234, # number
+  { 1234 = "foo", foo = 1234 } # name then number
+]
+
+---tokens---
+'1234'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'foo'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'# 1234 is a name' Comment.Single
+'\n'          Text.Whitespace
+
+'foo'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1234'        Literal.Number.Integer
+' '           Text.Whitespace
+'# 1234 is a number' Comment.Single
+'\n'          Text.Whitespace
+
+'foo2'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'\n  '        Text.Whitespace
+'1234'        Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'# number'    Comment.Single
+'\n  '        Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'1234'        Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'foo'         Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'foo'         Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'1234'        Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'# name then number' Comment.Single
+'\n'          Text.Whitespace
+
+']'           Punctuation
+'\n'          Text.Whitespace

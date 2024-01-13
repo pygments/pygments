@@ -7,10 +7,10 @@ f'{(lambda x: x*2)(3)}'
 '{'           Literal.String.Interpol
 '('           Punctuation
 'lambda'      Keyword
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 '*'           Operator
 '2'           Literal.Number.Integer
@@ -20,4 +20,4 @@ f'{(lambda x: x*2)(3)}'
 ')'           Punctuation
 '}'           Literal.String.Interpol
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace

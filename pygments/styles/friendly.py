@@ -4,7 +4,7 @@
 
     A modern style based on the VIM pyte theme.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -13,13 +13,16 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Whitespace
 
 
+__all__ = ['FriendlyStyle']
+
+
 class FriendlyStyle(Style):
     """
     A modern style based on the VIM pyte theme.
     """
+    name = 'friendly'
 
     background_color = "#f0f0f0"
-    default_style = ""
     line_number_color = "#666666"
 
     styles = {
@@ -64,6 +67,7 @@ class FriendlyStyle(Style):
         Generic.Error:             "#FF0000",
         Generic.Emph:              "italic",
         Generic.Strong:            "bold",
+        Generic.EmphStrong:        "bold italic",
         Generic.Prompt:            "bold #c65d09",
         Generic.Output:            "#888",
         Generic.Traceback:         "#04D",

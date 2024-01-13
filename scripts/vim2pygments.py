@@ -6,7 +6,7 @@
     This script converts vim colorscheme files to valid pygments
     style classes meant for putting into modules.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -740,7 +740,6 @@ COLORS = {
 TOKENS = {
     'normal':           '',
     'string':           'String',
-    'number':           'Number',
     'float':            'Number.Float',
     'constant':         'Name.Constant',
     'number':           'Number',

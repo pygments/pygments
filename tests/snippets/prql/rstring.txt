@@ -1,0 +1,11 @@
+---input---
+r"Not \n escaped"
+
+---tokens---
+'r'           Literal.String.Affix
+'"'           Literal.String.Double
+'Not '        Literal.String.Double
+'\\'          Literal.String.Double
+'n escaped'   Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace

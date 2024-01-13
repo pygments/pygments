@@ -1,0 +1,134 @@
+---input---
+@group(0) @binding(0) var texture_1d<f32>;
+@group(0) @binding(1) var texture_2d<f32>;
+@group(0) @binding(2) var texture_2d_array<f32>;
+@group(0) @binding(3) var texture_3d<f32>;
+@group(0) @binding(4) var texture_cube<f32>;
+@group(0) @binding(5) var texture_cube_array<f32>;
+
+---tokens---
+'@'           Name.Decorator
+'group'       Name.Decorator
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'@'           Name.Decorator
+'binding'     Name.Decorator
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'texture_1d'  Name.Builtin
+'<'           Operator
+'f32'         Name.Builtin
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@'           Name.Decorator
+'group'       Name.Decorator
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'@'           Name.Decorator
+'binding'     Name.Decorator
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'texture_2d'  Name.Builtin
+'<'           Operator
+'f32'         Name.Builtin
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@'           Name.Decorator
+'group'       Name.Decorator
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'@'           Name.Decorator
+'binding'     Name.Decorator
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'texture_2d_array' Name.Builtin
+'<'           Operator
+'f32'         Name.Builtin
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@'           Name.Decorator
+'group'       Name.Decorator
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'@'           Name.Decorator
+'binding'     Name.Decorator
+'('           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'texture_3d'  Name.Builtin
+'<'           Operator
+'f32'         Name.Builtin
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@'           Name.Decorator
+'group'       Name.Decorator
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'@'           Name.Decorator
+'binding'     Name.Decorator
+'('           Punctuation
+'4'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'texture_cube' Name.Builtin
+'<'           Operator
+'f32'         Name.Builtin
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@'           Name.Decorator
+'group'       Name.Decorator
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'@'           Name.Decorator
+'binding'     Name.Decorator
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'texture_cube_array' Name.Builtin
+'<'           Operator
+'f32'         Name.Builtin
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace

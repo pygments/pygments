@@ -4,7 +4,7 @@
 
     Lexer for Stata
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -20,16 +20,16 @@ __all__ = ['StataLexer']
 
 class StataLexer(RegexLexer):
     """
-    For `Stata <http://www.stata.com/>`_ do files.
-
-    .. versionadded:: 2.2
+    For Stata do files.
     """
     # Syntax based on
     # - http://fmwww.bc.edu/RePEc/bocode/s/synlightlist.ado
     # - https://github.com/isagalaev/highlight.js/blob/master/src/languages/stata.js
     # - https://github.com/jpitblado/vim-stata/blob/master/syntax/stata.vim
 
-    name      = 'Stata'
+    name = 'Stata'
+    url = 'http://www.stata.com/'
+    version_added = '2.2'
     aliases   = ['stata', 'do']
     filenames = ['*.do', '*.ado']
     mimetypes = ['text/x-stata', 'text/stata', 'application/x-stata']

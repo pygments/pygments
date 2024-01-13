@@ -13,7 +13,7 @@
     `TypoScriptHtmlDataLexer`
         Lexer that highlights markers, constants and registers within html tags.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -29,12 +29,12 @@ __all__ = ['TypoScriptLexer', 'TypoScriptCssDataLexer', 'TypoScriptHtmlDataLexer
 class TypoScriptCssDataLexer(RegexLexer):
     """
     Lexer that highlights markers, constants and registers within css blocks.
-
-    .. versionadded:: 2.2
     """
 
     name = 'TypoScriptCssData'
     aliases = ['typoscriptcssdata']
+    url = 'http://docs.typo3.org/typo3cms/TyposcriptReference/'
+    version_added = '2.2'
 
     tokens = {
         'root': [
@@ -64,12 +64,12 @@ class TypoScriptCssDataLexer(RegexLexer):
 class TypoScriptHtmlDataLexer(RegexLexer):
     """
     Lexer that highlights markers, constants and registers within html tags.
-
-    .. versionadded:: 2.2
     """
 
     name = 'TypoScriptHtmlData'
     aliases = ['typoscripthtmldata']
+    url = 'http://docs.typo3.org/typo3cms/TyposcriptReference/'
+    version_added = '2.2'
 
     tokens = {
         'root': [
@@ -99,16 +99,14 @@ class TypoScriptHtmlDataLexer(RegexLexer):
 class TypoScriptLexer(RegexLexer):
     """
     Lexer for TypoScript code.
-
-    http://docs.typo3.org/typo3cms/TyposcriptReference/
-
-    .. versionadded:: 2.2
     """
 
     name = 'TypoScript'
+    url = 'http://docs.typo3.org/typo3cms/TyposcriptReference/'
     aliases = ['typoscript']
     filenames = ['*.typoscript']
     mimetypes = ['text/x-typoscript']
+    version_added = '2.2'
 
     flags = re.DOTALL | re.MULTILINE
 

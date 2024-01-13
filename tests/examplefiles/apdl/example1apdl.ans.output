@@ -1,31 +1,27 @@
 'finish'      Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'/'           Operator
-'clear'       Name.Variable
-'\n\n'        Text
+'/clear'      Keyword
+'\n\n'        Text.Whitespace
 
-'/'           Operator
-'title'       Name.Variable
+'/title'      Keyword
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Thermal'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Stress'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Example'     Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
-'/'           Operator
-'prep7'       Name.Variable
-'\t\t\t\t\t'  Text
+'/prep7'      Keyword
+'\t\t\t\t\t'  Text.Whitespace
 '! Enter preprocessor\n' Comment
 
-'*'           Operator
-'VOPER'       Name.Variable
+'*VOPER'      Keyword
 ','           Punctuation
 'test'        Name.Variable
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'k'           Keyword
 ','           Punctuation
@@ -34,7 +30,7 @@
 '0'           Literal.Number.Integer
 ','           Punctuation
 '0'           Literal.Number.Integer
-'\t\t\t\t\t'  Text
+'\t\t\t\t\t'  Text.Whitespace
 '! Keypoints\n' Comment
 
 'k'           Keyword
@@ -44,24 +40,24 @@
 '1'           Literal.Number.Integer
 ','           Punctuation
 '0'           Literal.Number.Integer
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'l'           Keyword
 ','           Punctuation
 '1'           Literal.Number.Integer
 ','           Punctuation
 '2'           Literal.Number.Integer
-'\t\t\t\t\t'  Text
+'\t\t\t\t\t'  Text.Whitespace
 '! Line connecting keypoints\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'et'          Keyword
 ','           Punctuation
 '1'           Literal.Number.Integer
 ','           Punctuation
-'link33'      Name.Variable
-'\t\t\t\t'    Text
+'link33'      Name.Property
+'\t\t\t\t'    Text.Whitespace
 '! Element type\n' Comment
 
 'r'           Keyword
@@ -70,7 +66,7 @@
 ','           Punctuation
 '4e-4'        Literal.Number.Float
 ','           Punctuation
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 '! Area\n'    Comment
 
 'mp'          Keyword
@@ -79,45 +75,44 @@
 ','           Punctuation
 '1'           Literal.Number.Integer
 ','           Punctuation
-'6'           Literal.Number.Integer
-'0.5'         Literal.Number.Float
-'\t\t\t\t'    Text
+'60.5'        Literal.Number.Float
+'\t\t\t\t'    Text.Whitespace
 '! Thermal conductivity\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'esize'       Keyword
 ','           Punctuation
 '0.1'         Literal.Number.Float
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 '! Element size\n' Comment
 
 'lmesh'       Keyword
 ','           Punctuation
 'all'         Name.Variable
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 '! Mesh line\n' Comment
 
 'physics'     Keyword
 ','           Punctuation
-'write'       Keyword
+'write'       Name.Variable
 ','           Punctuation
 'thermal'     Name.Variable
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '! Write physics environment as thermal\n' Comment
 
 'physics'     Keyword
 ','           Punctuation
 'clear'       Name.Variable
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 '! Clear the environment\n' Comment
 
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'etchg'       Keyword
 ','           Punctuation
 'tts'         Name.Variable
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 '! Element type\t\t\t\t\n' Comment
 
 'mp'          Keyword
@@ -126,9 +121,8 @@
 ','           Punctuation
 '1'           Literal.Number.Integer
 ','           Punctuation
-'20'          Literal.Number.Integer
-'0e9'         Literal.Number.Float
-'\t\t\t\t'    Text
+'200e9'       Literal.Number.Float
+'\t\t\t\t'    Text.Whitespace
 "! Young's modulus\n" Comment
 
 'mp'          Keyword
@@ -138,7 +132,7 @@
 '1'           Literal.Number.Integer
 ','           Punctuation
 '0.3'         Literal.Number.Float
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 "! Poisson's ratio\n" Comment
 
 'mp'          Keyword
@@ -147,44 +141,42 @@
 ','           Punctuation
 '1'           Literal.Number.Integer
 ','           Punctuation
-'1'           Literal.Number.Integer
-'2e-6'        Literal.Number.Float
-'\t\t\t\t'    Text
+'12e-6'       Literal.Number.Float
+'\t\t\t\t'    Text.Whitespace
 '! Expansion coefficient\n' Comment
 
 'physics'     Keyword
 ','           Punctuation
-'write'       Keyword
+'write'       Name.Variable
 ','           Punctuation
 'struct'      Name.Variable
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '! Write physics environment as struct\n' Comment
 
 'physics'     Keyword
 ','           Punctuation
 'clear'       Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 'finish'      Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'/'           Operator
-'solu'        Keyword
-'\t\t\t\t\t'  Text
+'/solu'       Keyword
+'\t\t\t\t\t'  Text.Whitespace
 '! Enter the solution phase\n' Comment
 
 'antype'      Keyword
 ','           Punctuation
 '0'           Literal.Number.Integer
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 '! Static analysis\n' Comment
 
 'physics'     Keyword
 ','           Punctuation
-'read'        Keyword
+'read'        Name.Variable
 ','           Punctuation
 'thermal'     Name.Variable
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '! Read in the thermal environment\n' Comment
 
 'dk'          Keyword
@@ -194,31 +186,30 @@
 'temp'        Name.Variable
 ','           Punctuation
 '348'         Literal.Number.Integer
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 '! Apply a temp of 75 to keypoint 1\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'solve'       Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'finish'      Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'/'           Operator
-'solu'        Keyword
-'\t\t\t\t\t'  Text
+'/solu'       Keyword
+'\t\t\t\t\t'  Text.Whitespace
 '! Re-enter the solution phase\n' Comment
 
 'physics'     Keyword
 ','           Punctuation
-'read'        Keyword
+'read'        Name.Variable
 ','           Punctuation
 'struct'      Name.Variable
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '! Read in the struct environment\n' Comment
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ldread'      Keyword
 ','           Punctuation
@@ -230,13 +221,13 @@
 ','           Punctuation
 ','           Punctuation
 'rth'         Name.Variable
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '! Apply loads derived from thermal environment\n' Comment
 
 'tref'        Keyword
 ','           Punctuation
 '273'         Literal.Number.Integer
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'dk'          Keyword
 ','           Punctuation
@@ -245,7 +236,7 @@
 'all'         Name.Variable
 ','           Punctuation
 '0'           Literal.Number.Integer
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 '! Apply structural constraints\n' Comment
 
 'dk'          Keyword
@@ -255,17 +246,16 @@
 'UX'          Name.Variable
 ','           Punctuation
 '0'           Literal.Number.Integer
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'solve'       Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'finish'      Keyword
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'/'           Operator
-'post1'       Name.Variable
-'\t\t\t\t\t'  Text
+'/post1'      Keyword
+'\t\t\t\t\t'  Text.Whitespace
 '! Enter postprocessor\n' Comment
 
 'etable'      Keyword
@@ -275,11 +265,11 @@
 'LS'          Name.Variable
 ','           Punctuation
 '1'           Literal.Number.Integer
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '! Create an element table for link stress\n' Comment
 
 'PRETAB'      Keyword
 ','           Punctuation
 'CompStress'  Name.Variable
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '! Print the element table\n' Comment

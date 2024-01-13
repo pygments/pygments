@@ -1091,6 +1091,30 @@
 
 '\n'          Text.Whitespace
 
+'unsigned'    Keyword.Type
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'contains'    Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'unsigned'    Keyword.Type
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'contains'    Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
 '// Names with namespaces\n' Comment.Single
 
 '\n'          Text.Whitespace
@@ -1326,7 +1350,7 @@
 '\n'          Text.Whitespace
 
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 'raz'         Name.Class
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -1403,3 +1427,76 @@
 '}'           Punctuation
 ' '           Text.Whitespace
 '// so int is lexed as type and not function.name\n' Comment.Single
+
+'\n'          Text.Whitespace
+
+'class'       Keyword
+' '           Text.Whitespace
+'foo'         Name.Class
+' '           Text.Whitespace
+'bar'         Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'public'      Keyword
+' '           Text.Whitespace
+'raz'         Name
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'Q_OBJECT'    Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'/// \\cond INCLUDE_QPROPERTIES\n' Comment.Single
+
+'  '          Text.Whitespace
+'Q_PROPERTY'  Name
+'('           Punctuation
+'arg1'        Name
+' '           Text.Whitespace
+'arg2'        Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'/// \\endcond\n' Comment.Single
+
+'\n'          Text.Whitespace
+
+'public'      Keyword
+':'           Operator
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'/*!\n    Lorem ipsum core vanditi.\n  */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'enum'        Keyword
+' '           Text.Whitespace
+'duck'        Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'dog'         Name
+','           Punctuation
+' '           Text.Whitespace
+'// Comment.\n' Comment.Single
+
+'              ' Text.Whitespace
+'cat'         Name
+'  '          Text.Whitespace
+'// Comment (see \\ref replot).\n' Comment.Single
+
+'  '          Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

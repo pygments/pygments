@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/home/tb.py", line 13, in <module>
+    in_Python_3_11()
+    ^^^^^^^^^^^^^^^^
+  File "/home/tb.py", line 2, in in_Python_3_11
+    return error_locations()
+           ^^^^^^^^^^^^^^^^^
+  File "/home/tb.py", line 5, in error_locations
+    return are_provided() is True
+           ^^^^^^^^^^^^^^
+  File "/home/tb.py", line 8, in are_provided
+    return in_tracebacks()
+           ^^^^^^^^^^^^^^^
+  File "/home/tb.py", line 11, in in_tracebacks
+    return 1/0
+           ~^~
+ZeroDivisionError: division by zero

@@ -1,0 +1,218 @@
+'package'     Keyword.Namespace
+' '           Text.Whitespace
+'Sorting'     Name.Other
+' '           Text.Whitespace
+'api'         Keyword.Namespace
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'fn'          Keyword.Declaration
+' '           Text.Whitespace
+'Partition'   Name.Other
+'['           Punctuation
+'T'           Name.Other
+':'           Punctuation
+' '           Text.Whitespace
+'!'           Punctuation
+'Comparable'  Name.Other
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+'Movable'     Name.Other
+']'           Punctuation
+'('           Punctuation
+'s'           Name.Other
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Slice'       Name.Other
+'('           Punctuation
+'T'           Name.Other
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'i64'         Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'i'           Name.Other
+':'           Punctuation
+' '           Text.Whitespace
+'i64'         Keyword.Type
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'e'           Name.Other
+':'           Punctuation
+' '           Text.Whitespace
+'T'           Name.Other
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'s'           Name.Other
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'++'          Operator
+'i'           Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'Swap'        Name.Other
+'('           Punctuation
+'&'           Operator
+'s'           Name.Other
+'['           Punctuation
+'i'           Name.Other
+']'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'&'           Operator
+'e'           Name.Other
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'i'           Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'fn'          Keyword.Declaration
+' '           Text.Whitespace
+'QuickSort'   Name.Other
+'['           Punctuation
+'T'           Name.Other
+':'           Punctuation
+' '           Text.Whitespace
+'!'           Punctuation
+'Comparable'  Name.Other
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+'Movable'     Name.Other
+']'           Punctuation
+'('           Punctuation
+'s'           Name.Other
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Slice'       Name.Other
+'('           Punctuation
+'T'           Name.Other
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'s'           Name.Other
+'.'           Punctuation
+'Size'        Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'<='          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'       '     Text.Whitespace
+'return'      Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'p'           Name.Other
+':'           Punctuation
+' '           Text.Whitespace
+'i64'         Keyword.Type
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'Partition'   Name.Other
+'('           Punctuation
+'s'           Name.Other
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'QuickSort'   Name.Other
+'('           Punctuation
+'s'           Name.Other
+'['           Punctuation
+':'           Punctuation
+'p'           Name.Other
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'QuickSort'   Name.Other
+'('           Punctuation
+'s'           Name.Other
+'['           Punctuation
+'p'           Name.Other
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+':'           Punctuation
+']'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

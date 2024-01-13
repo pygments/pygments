@@ -1,0 +1,19 @@
+---input---
+// Test literals that should be tokenized as hexadecimal literals.
+0x01
+0Xefn
+0x0EF
+
+---tokens---
+''            Text
+'// Test literals that should be tokenized as hexadecimal literals.' Comment.Single
+'\n'          Text.Whitespace
+
+'0x01'        Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'0Xefn'       Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'0x0EF'       Literal.Number.Hex
+'\n'          Text.Whitespace

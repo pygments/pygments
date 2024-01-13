@@ -12,9 +12,9 @@
 'sample'      Text
 ' '           Text
 'task'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '* '          Keyword
 '[ ]'         Keyword
@@ -22,13 +22,13 @@
 'sample'      Text
 ' '           Text
 'task'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n  '        Text
+'\n  '        Text.Whitespace
 '* '          Keyword
 '[ ]'         Keyword
 ' '           Text
 'sample'      Text
 ' '           Text
 'task'        Text
-'\n'          Text
+'\n'          Text.Whitespace

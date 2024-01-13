@@ -28,8 +28,9 @@ Pygments documentation
    unicode
    tokens
    api
+   terminal-sessions
 
-**Hacking for Pygments**
+**Hacking with Pygments**
 
 .. toctree::
    :maxdepth: 1
@@ -45,6 +46,7 @@ Pygments documentation
 .. toctree::
    :maxdepth: 1
 
+   terminaltips
    rstdirective
    moinmoin
    java
@@ -55,8 +57,10 @@ Pygments documentation
 .. toctree::
    :maxdepth: 1
 
+   contributing
    changelog
    authors
+   security
 
 If you find bugs or have suggestions for the documentation, please submit them
 on `GitHub <https://github.com/pygments/pygments>`_.

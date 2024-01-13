@@ -1,0 +1,25 @@
+---input---
+<button onClick={e => e.preventDefault ()} />
+
+---tokens---
+'<'           Punctuation
+'button'      Name.Tag
+' '           Text.Whitespace
+'onClick'     Name.Attribute
+'='           Operator
+'{'           Punctuation
+'e'           Name.Other
+' '           Text.Whitespace
+'=>'          Punctuation
+' '           Text.Whitespace
+'e'           Name.Other
+'.'           Punctuation
+'preventDefault' Name.Other
+' '           Text.Whitespace
+'('           Punctuation
+')'           Punctuation
+'}'           Punctuation
+' '           Text.Whitespace
+'/'           Punctuation
+'>'           Punctuation
+'\n'          Text.Whitespace

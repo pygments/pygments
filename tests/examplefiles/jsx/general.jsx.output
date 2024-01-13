@@ -1,0 +1,361 @@
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'isOldEnough' Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'value'       Name.Other
+','           Punctuation
+' '           Text.Whitespace
+'ownProps'    Name.Other
+')'           Punctuation
+' '           Text.Whitespace
+'=>'          Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'parseInt'    Name.Builtin
+'('           Punctuation
+'value'       Name.Other
+','           Punctuation
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+')'           Punctuation
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'14'          Literal.Number.Float
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'"Only 14yo and older can register to the site."' Literal.String.Double
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'// functional component' Comment.Single
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'BlogTitle'   Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'{'           Punctuation
+' '           Text.Whitespace
+'children'    Name.Other
+' '           Text.Whitespace
+'}'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'=>'          Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'\n  '        Text.Whitespace
+'<'           Punctuation
+'h3'          Name.Tag
+'>'           Punctuation
+'{'           Punctuation
+'children'    Name.Other
+'}'           Punctuation
+'</'          Punctuation
+'h3'          Name.Tag
+'>'           Punctuation
+'\n'          Text.Whitespace
+
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'// class component' Comment.Single
+'\n'          Text.Whitespace
+
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'BlogPost'    Name.Other
+' '           Text.Whitespace
+'extends'     Keyword
+' '           Text.Whitespace
+'React'       Name.Other
+'.'           Punctuation
+'Component'   Name.Other
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'renderTitle' Name.Other
+'('           Punctuation
+'title'       Name.Other
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'<'           Punctuation
+'BlogTitle'   Name.Tag
+'>'           Punctuation
+'{'           Punctuation
+'title'       Name.Other
+'}'           Punctuation
+'</'          Punctuation
+'BlogTitle'   Name.Tag
+'>'           Punctuation
+'\n  '        Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'render'      Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'\n    '      Text.Whitespace
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text.Whitespace
+'className'   Name.Attribute
+'='           Operator
+'"blog-body"' Literal.String
+'>'           Punctuation
+'\n      '    Text.Whitespace
+'{'           Punctuation
+'this'        Keyword
+'.'           Punctuation
+'renderTitle' Name.Other
+'('           Punctuation
+'this'        Keyword
+'.'           Punctuation
+'props'       Name.Other
+'.'           Punctuation
+'title'       Name.Other
+')'           Punctuation
+'}'           Punctuation
+'\n      '    Text.Whitespace
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'{'           Punctuation
+'this'        Keyword
+'.'           Punctuation
+'props'       Name.Other
+'.'           Punctuation
+'body'        Name.Other
+'}'           Punctuation
+'</'          Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n      '    Text.Whitespace
+'<'           Punctuation
+'CustomComponent' Name.Tag
+'>'           Punctuation
+'text'        Name.Other
+'</'          Punctuation
+'CustomComponent' Name.Tag
+'>'           Punctuation
+'\n      '    Text.Whitespace
+'<'           Punctuation
+'input'       Name.Tag
+' '           Text.Whitespace
+'type'        Name.Attribute
+'='           Operator
+'"text"'      Literal.String
+' '           Text.Whitespace
+'{'           Punctuation
+'...props.inputProps' Name.Attribute
+'}'           Punctuation
+' '           Text.Whitespace
+'/'           Punctuation
+'>'           Punctuation
+'\n      '    Text.Whitespace
+'<'           Punctuation
+'button'      Name.Tag
+' '           Text.Whitespace
+'aria-label'  Name.Attribute
+'='           Operator
+'"Submit"'    Literal.String
+'>'           Punctuation
+'Submit'      Name.Other
+'</'          Punctuation
+'button'      Name.Tag
+'>'           Punctuation
+'\n    '      Text.Whitespace
+'</'          Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n    '      Text.Whitespace
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'body'        Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"Hello World!"' Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'blogNode'    Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'<'           Punctuation
+'BlogPost'    Name.Tag
+' '           Text.Whitespace
+'title'       Name.Attribute
+'='           Operator
+'"What\'s going on?"' Literal.String
+' '           Text.Whitespace
+'body'        Name.Attribute
+'='           Operator
+'{'           Punctuation
+'body'        Name.Other
+'}'           Punctuation
+' '           Text.Whitespace
+'/'           Punctuation
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+"// some comment. Tags shouldn't be lexed in here" Comment.Single
+'\n'          Text.Whitespace
+
+'// <div class="blog-body">' Comment.Single
+'\n'          Text.Whitespace
+
+"// <h3>What's going on?</h3>" Comment.Single
+'\n'          Text.Whitespace
+
+'// <p>Hello World!</p>' Comment.Single
+'\n'          Text.Whitespace
+
+'// </div>'   Comment.Single
+'\n\n'        Text.Whitespace
+
+'/*\n  Some comment. Tags shouldn\'t be lexed in here either\n  <div class="blog-body">\n  <h3>What\'s going on?</h3>\n  <p>Hello World!</p>\n  </div>\n*/' Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'shortSyntaxfragmentEmptyBody' Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'<>'          Punctuation
+'</>'         Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'shortSyntaxfragmentFullBody' Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'<>'          Punctuation
+'<'           Punctuation
+'div'         Name.Tag
+'/'           Punctuation
+'>'           Punctuation
+'</>'         Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'reactDotFragment' Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'<'           Punctuation
+'React'       Name.Tag
+'.'           Punctuation
+'Fragment'    Name.Attribute
+'>'           Punctuation
+'<'           Punctuation
+'div'         Name.Tag
+'/'           Punctuation
+'>'           Punctuation
+'</'          Punctuation
+'React'       Name.Tag
+'.'           Punctuation
+'Fragment'    Name.Attribute
+'>'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'reactDotContext' Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'<'           Punctuation
+'Context'     Name.Tag
+'.'           Punctuation
+'Provider'    Name.Attribute
+'>'           Punctuation
+'<'           Punctuation
+'div'         Name.Tag
+'/'           Punctuation
+'>'           Punctuation
+'</'          Punctuation
+'Context'     Name.Tag
+'.'           Punctuation
+'Provider'    Name.Attribute
+'>'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'reactDotContextValue' Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'<'           Punctuation
+'Context'     Name.Tag
+'.'           Punctuation
+'Provider'    Name.Attribute
+' '           Text.Whitespace
+'value'       Name.Attribute
+'='           Operator
+'"Hello"'     Literal.String
+'>'           Punctuation
+'<'           Punctuation
+'div'         Name.Tag
+'/'           Punctuation
+'>'           Punctuation
+'</'          Punctuation
+'Context'     Name.Tag
+'.'           Punctuation
+'Provider'    Name.Attribute
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

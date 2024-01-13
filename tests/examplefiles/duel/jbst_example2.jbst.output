@@ -1,16 +1,16 @@
 '<%@'         Name.Tag
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'Control'     Name.Other
-' '           Text
+' '           Text.Whitespace
 'Name'        Name.Other
 '='           Operator
 '"Foo.MyZebraList"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 'Language'    Name.Other
 '='           Operator
 '"JavaScript"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '%>'          Name.Tag
 '\n\n'        Text
 
@@ -22,109 +22,107 @@
 '"text/javascript"' Literal.String
 '>'           Punctuation
 ''            Text
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 '/* private members ------------------------------------------ */' Comment.Multiline
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 '/*int*/'     Comment.Multiline
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'digits'      Name.Other
 '('           Punctuation
 '/*int*/'     Comment.Multiline
-' '           Text
+' '           Text.Whitespace
 'n'           Name.Other
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'n'           Name.Other
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 '10'          Literal.Number.Float
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '?'           Operator
-' '           Text
+' '           Text.Whitespace
 "'0'"         Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Name.Other
-' '           Text
+' '           Text.Whitespace
 ':'           Operator
-' '           Text
+' '           Text.Whitespace
 'n'           Name.Other
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '}'           Punctuation
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 '/* public members ------------------------------------------- */' Comment.Multiline
-'\n\n\t'      Text
-'// use the item index to alternate colors and highlight\n' Comment.Single
-
-''            Text
-'\t'          Text
+'\n\n\t'      Text.Whitespace
+'// use the item index to alternate colors and highlight' Comment.Single
+'\n\t'        Text.Whitespace
 '/*string*/'  Comment.Multiline
-' '           Text
+' '           Text.Whitespace
 'this'        Keyword
 '.'           Punctuation
 'zebraStripe' Name.Other
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
 '('           Punctuation
 '/*bool*/'    Comment.Multiline
-' '           Text
+' '           Text.Whitespace
 'selected'    Name.Other
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '/*int*/'     Comment.Multiline
-' '           Text
+' '           Text.Whitespace
 'index'       Name.Other
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '/*int*/'     Comment.Multiline
-' '           Text
+' '           Text.Whitespace
 'count'       Name.Other
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'css'         Name.Other
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"item"'      Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 ']'           Punctuation
 ';'           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'index'       Name.Other
-' '           Text
+' '           Text.Whitespace
 '%'           Operator
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '==='         Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Float
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'css'         Name.Other
 '.'           Punctuation
 'push'        Name.Other
@@ -132,17 +130,17 @@
 '"item-alt"'  Literal.String.Double
 ')'           Punctuation
 ';'           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '}'           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'selected'    Name.Other
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'css'         Name.Other
 '.'           Punctuation
 'push'        Name.Other
@@ -150,11 +148,11 @@
 '"item-selected"' Literal.String.Double
 ')'           Punctuation
 ';'           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '}'           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'css'         Name.Other
 '.'           Punctuation
 'join'        Name.Other
@@ -162,41 +160,41 @@
 '" "'         Literal.String.Double
 ')'           Punctuation
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 '/*string*/'  Comment.Multiline
-' '           Text
+' '           Text.Whitespace
 'this'        Keyword
 '.'           Punctuation
 'formatTime'  Name.Other
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'function'    Keyword.Declaration
 '('           Punctuation
 '/*Date*/'    Comment.Multiline
-' '           Text
+' '           Text.Whitespace
 'time'        Name.Other
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'time'        Name.Other
 '.'           Punctuation
 'getHours'    Name.Other
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 "':'"         Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'digits'      Name.Other
 '('           Punctuation
 'time'        Name.Other
@@ -205,13 +203,13 @@
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 "':'"         Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'digits'      Name.Other
 '('           Punctuation
 'time'        Name.Other
@@ -221,10 +219,10 @@
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '<'           Punctuation
 '/'           Punctuation
@@ -245,18 +243,18 @@
 '>'           Punctuation
 '<%='         Name.Tag
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'this'        Keyword
 '.'           Punctuation
 'data'        Name.Other
 '.'           Punctuation
 'title'       Name.Other
-' '           Text
+' '           Text.Whitespace
 '%>'          Name.Tag
 ' as of '     Text
 '<%='         Name.Tag
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'this'        Keyword
 '.'           Punctuation
 'formatTime'  Name.Other
@@ -267,7 +265,7 @@
 '.'           Punctuation
 'timestamp'   Name.Other
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '%>'          Name.Tag
 '!'           Text
 '<'           Punctuation
@@ -280,13 +278,13 @@
 '>'           Punctuation
 '<%='         Name.Tag
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'this'        Keyword
 '.'           Punctuation
 'data'        Name.Other
 '.'           Punctuation
 'description' Name.Other
-' '           Text
+' '           Text.Whitespace
 '%>'          Name.Tag
 '<'           Punctuation
 '/'           Punctuation
@@ -305,7 +303,7 @@
 '"'           Literal.String
 '<%='         Name.Tag
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'this'        Keyword
 '.'           Punctuation
 'data'        Name.Other
@@ -313,16 +311,14 @@
 'children'    Name.Other
 '.'           Punctuation
 'length'      Name.Other
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '%>'          Name.Tag
 '">\n\n\t\t'  Text
-'<!--'        Comment
-' anonymous inner template ' Comment
-'-->'         Comment
+'<!-- anonymous inner template -->' Comment.Multiline
 '\n\t\t'      Text
 '<'           Punctuation
 'jbst:control' Name.Tag
@@ -332,18 +328,16 @@
 '"'           Literal.String
 '<%='         Name.Tag
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'this'        Keyword
 '.'           Punctuation
 'data'        Name.Other
 '.'           Punctuation
 'children'    Name.Other
-' '           Text
+' '           Text.Whitespace
 '%>'          Name.Tag
 '">\n\t\t\t'  Text
-'<!--'        Comment
-" populate list item for each item of the parent's children property " Comment
-'-->'         Comment
+"<!-- populate list item for each item of the parent's children property -->" Comment.Multiline
 '\n\t\t\t'    Text
 '<'           Punctuation
 'li'          Name.Tag
@@ -353,7 +347,7 @@
 '"'           Literal.String
 '<%='         Name.Tag
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'Foo'         Name.Other
 '.'           Punctuation
 'MyZebraList' Name.Other
@@ -366,48 +360,48 @@
 '.'           Punctuation
 'selected'    Name.Other
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'this'        Keyword
 '.'           Punctuation
 'index'       Name.Other
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'this'        Keyword
 '.'           Punctuation
 'count'       Name.Other
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '%>'          Name.Tag
 '">\n\t\t\t\t' Text
 '<%='         Name.Tag
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'this'        Keyword
 '.'           Punctuation
 'data'        Name.Other
 '.'           Punctuation
 'label'       Name.Other
-' '           Text
+' '           Text.Whitespace
 '%>'          Name.Tag
 ' ('          Text
 '<%='         Name.Tag
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'this'        Keyword
 '.'           Punctuation
 'index'       Name.Other
 '+'           Operator
 '1'           Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '%>'          Name.Tag
 ' of '        Text
 '<%='         Name.Tag
 ''            Text
-' '           Text
+' '           Text.Whitespace
 'this'        Keyword
 '.'           Punctuation
 'count'       Name.Other
-' '           Text
+' '           Text.Whitespace
 '%>'          Name.Tag
 ')\n\t\t\t'   Text
 '<'           Punctuation

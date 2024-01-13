@@ -1,0 +1,17 @@
+---input---
+{
+	"tabs": "here",
+}
+
+---tokens---
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'"tabs"'      Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'"here"'      Literal.String.Double
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

@@ -4,49 +4,52 @@
 
     Lexers for theorem-proving languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    See also :mod:`pygments.lexers.lean`
+
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-import re
-
 from pygments.lexer import RegexLexer, default, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Generic
+    Number, Punctuation, Generic, Whitespace
+# compatibility import
+from pygments.lexers.lean import LeanLexer # noqa: F401
 
-__all__ = ['CoqLexer', 'IsabelleLexer', 'LeanLexer']
+__all__ = ['CoqLexer', 'IsabelleLexer']
 
 
 class CoqLexer(RegexLexer):
     """
-    For the `Coq <http://coq.inria.fr/>`_ theorem prover.
-
-    .. versionadded:: 1.5
+    For the Coq theorem prover.
     """
 
     name = 'Coq'
+    url = 'http://coq.inria.fr/'
     aliases = ['coq']
     filenames = ['*.v']
     mimetypes = ['text/x-coq']
+    version_added = '1.5'
 
-    flags = re.UNICODE
+    flags = 0 # no re.MULTILINE
 
     keywords1 = (
         # Vernacular commands
         'Section', 'Module', 'End', 'Require', 'Import', 'Export', 'Variable',
-        'Variables', 'Parameter', 'Parameters', 'Axiom', 'Hypothesis',
+        'Variables', 'Parameter', 'Parameters', 'Axiom', 'Axioms', 'Hypothesis',
         'Hypotheses', 'Notation', 'Local', 'Tactic', 'Reserved', 'Scope',
-        'Open', 'Close', 'Bind', 'Delimit', 'Definition', 'Let', 'Ltac',
-        'Fixpoint', 'CoFixpoint', 'Morphism', 'Relation', 'Implicit',
-        'Arguments', 'Set', 'Unset', 'Contextual', 'Strict', 'Prenex',
+        'Open', 'Close', 'Bind', 'Delimit', 'Definition', 'Example', 'Let',
+        'Ltac', 'Fixpoint', 'CoFixpoint', 'Morphism', 'Relation', 'Implicit',
+        'Arguments', 'Types', 'Unset', 'Contextual', 'Strict', 'Prenex',
         'Implicits', 'Inductive', 'CoInductive', 'Record', 'Structure',
-        'Canonical', 'Coercion', 'Theorem', 'Lemma', 'Corollary',
-        'Proposition', 'Fact', 'Remark', 'Example', 'Proof', 'Goal', 'Save',
-        'Qed', 'Defined', 'Hint', 'Resolve', 'Rewrite', 'View', 'Search',
-        'Abort', 'Admitted',
+        'Variant', 'Canonical', 'Coercion', 'Theorem', 'Lemma', 'Fact',
+        'Remark', 'Corollary', 'Proposition', 'Property', 'Goal',
+        'Proof', 'Restart', 'Save', 'Qed', 'Defined', 'Abort', 'Admitted',
+        'Hint', 'Resolve', 'Rewrite', 'View', 'Search', 'Compute', 'Eval',
         'Show', 'Print', 'Printing', 'All', 'Graph', 'Projections', 'inside',
         'outside', 'Check', 'Global', 'Instance', 'Class', 'Existing',
-        'Universe', 'Polymorphic', 'Monomorphic', 'Context'
+        'Universe', 'Polymorphic', 'Monomorphic', 'Context', 'Scheme', 'From',
+        'Undo', 'Fail', 'Function',
     )
     keywords2 = (
         # Gallina
@@ -56,7 +59,7 @@ class CoqLexer(RegexLexer):
     )
     keywords3 = (
         # Sorts
-        'Type', 'Prop', 'SProp',
+        'Type', 'Prop', 'SProp', 'Set',
     )
     keywords4 = (
         # Tactics
@@ -74,9 +77,10 @@ class CoqLexer(RegexLexer):
     )
     keywords5 = (
         # Terminators
-        'by', 'done', 'exact', 'reflexivity', 'tauto', 'romega', 'omega',
+        'by', 'now', 'done', 'exact', 'reflexivity',
+        'tauto', 'romega', 'omega', 'lia', 'nia', 'lra', 'nra', 'psatz',
         'assumption', 'solve', 'contradiction', 'discriminate',
-        'congruence',
+        'congruence', 'admit'
     )
     keywords6 = (
         # Control
@@ -107,6 +111,10 @@ class CoqLexer(RegexLexer):
             (r'\s+', Text),
             (r'false|true|\(\)|\[\]', Name.Builtin.Pseudo),
             (r'\(\*', Comment, 'comment'),
+            (r'\b(?:[^\W\d][\w\']*\.)+[^\W\d][\w\']*\b', Name),
+            (r'\bEquations\b\??', Keyword.Namespace),
+            # Very weak heuristic to distinguish the Set vernacular from the Set sort
+            (r'\bSet(?=[ \t]+[A-Z][a-z][^\n]*?\.)', Keyword.Namespace),
             (words(keywords1, prefix=r'\b', suffix=r'\b'), Keyword.Namespace),
             (words(keywords2, prefix=r'\b', suffix=r'\b'), Keyword),
             (words(keywords3, prefix=r'\b', suffix=r'\b'), Keyword.Type),
@@ -164,15 +172,15 @@ class CoqLexer(RegexLexer):
 
 class IsabelleLexer(RegexLexer):
     """
-    For the `Isabelle <http://isabelle.in.tum.de/>`_ proof assistant.
-
-    .. versionadded:: 2.0
+    For the Isabelle proof assistant.
     """
 
     name = 'Isabelle'
+    url = 'https://isabelle.in.tum.de/'
     aliases = ['isabelle']
     filenames = ['*.thy']
     mimetypes = ['text/x-isabelle']
+    version_added = '2.0'
 
     keyword_minor = (
         'and', 'assumes', 'attach', 'avoids', 'binder', 'checking',
@@ -302,9 +310,10 @@ class IsabelleLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'\(\*', Comment, 'comment'),
-            (r'\{\*', Comment, 'text'),
+            (r'\\<open>', String.Symbol, 'cartouche'),
+            (r'\{\*|‹', String, 'cartouche'),
 
             (words(operators), Operator),
             (words(proof_operators), Operator.Word),
@@ -335,19 +344,17 @@ class IsabelleLexer(RegexLexer):
 
             (words(keyword_proof_script, prefix=r'\b', suffix=r'\b'), Keyword.Pseudo),
 
-            (r'\\<\w*>', Text.Symbol),
+            (r'\\<(\w|\^)*>', Text.Symbol),
 
-            (r"[^\W\d][.\w']*", Name),
-            (r"\?[^\W\d][.\w']*", Name),
             (r"'[^\W\d][.\w']*", Name.Type),
 
-            (r'\d[\d_]*', Name),  # display numbers as name
             (r'0[xX][\da-fA-F][\da-fA-F_]*', Number.Hex),
             (r'0[oO][0-7][0-7_]*', Number.Oct),
             (r'0[bB][01][01_]*', Number.Bin),
 
             (r'"', String, 'string'),
             (r'`', String.Other, 'fact'),
+            (r'[^\s:|\[\]\-()=,+!?{}._][^\s:|\[\]\-()=,+!?{}]*', Name),
         ],
         'comment': [
             (r'[^(*)]+', Comment),
@@ -355,124 +362,27 @@ class IsabelleLexer(RegexLexer):
             (r'\*\)', Comment, '#pop'),
             (r'[(*)]', Comment),
         ],
-        'text': [
-            (r'[^*}]+', Comment),
-            (r'\*\}', Comment, '#pop'),
-            (r'\*', Comment),
-            (r'\}', Comment),
+        'cartouche': [
+            (r'[^{*}\\‹›]+', String),
+            (r'\\<open>', String.Symbol, '#push'),
+            (r'\{\*|‹', String, '#push'),
+            (r'\\<close>', String.Symbol, '#pop'),
+            (r'\*\}|›', String, '#pop'),
+            (r'\\<(\w|\^)*>', String.Symbol),
+            (r'[{*}\\]', String),
         ],
         'string': [
             (r'[^"\\]+', String),
-            (r'\\<\w*>', String.Symbol),
+            (r'\\<(\w|\^)*>', String.Symbol),
             (r'\\"', String),
             (r'\\', String),
             (r'"', String, '#pop'),
         ],
         'fact': [
             (r'[^`\\]+', String.Other),
-            (r'\\<\w*>', String.Symbol),
+            (r'\\<(\w|\^)*>', String.Symbol),
             (r'\\`', String.Other),
             (r'\\', String.Other),
             (r'`', String.Other, '#pop'),
-        ],
-    }
-
-
-class LeanLexer(RegexLexer):
-    """
-    For the `Lean <https://github.com/leanprover/lean>`_
-    theorem prover.
-
-    .. versionadded:: 2.0
-    """
-    name = 'Lean'
-    aliases = ['lean']
-    filenames = ['*.lean']
-    mimetypes = ['text/x-lean']
-
-    flags = re.MULTILINE | re.UNICODE
-
-    tokens = {
-        'root': [
-            (r'\s+', Text),
-            (r'/--', String.Doc, 'docstring'),
-            (r'/-', Comment, 'comment'),
-            (r'--.*?$', Comment.Single),
-            (words((
-                'import', 'renaming', 'hiding',
-                'namespace',
-                'local',
-                'private', 'protected', 'section',
-                'include', 'omit', 'section',
-                'protected', 'export',
-                'open',
-                'attribute',
-            ), prefix=r'\b', suffix=r'\b'), Keyword.Namespace),
-            (words((
-                'lemma', 'theorem', 'def', 'definition', 'example',
-                'axiom', 'axioms', 'constant', 'constants',
-                'universe', 'universes',
-                'inductive', 'coinductive', 'structure', 'extends',
-                'class', 'instance',
-                'abbreviation',
-
-                'noncomputable theory',
-
-                'noncomputable', 'mutual', 'meta',
-
-                'attribute',
-
-                'parameter', 'parameters',
-                'variable', 'variables',
-
-                'reserve', 'precedence',
-                'postfix', 'prefix', 'notation', 'infix', 'infixl', 'infixr',
-
-                'begin', 'by', 'end',
-
-                'set_option',
-                'run_cmd',
-            ), prefix=r'\b', suffix=r'\b'), Keyword.Declaration),
-            (r'@\[[^\]]*\]', Keyword.Declaration),
-            (words((
-                'forall', 'fun', 'Pi', 'from', 'have', 'show', 'assume', 'suffices',
-                'let', 'if', 'else', 'then', 'in', 'with', 'calc', 'match',
-                'do'
-            ), prefix=r'\b', suffix=r'\b'), Keyword),
-            (words(('sorry', 'admit'), prefix=r'\b', suffix=r'\b'), Generic.Error),
-            (words(('Sort', 'Prop', 'Type'), prefix=r'\b', suffix=r'\b'), Keyword.Type),
-            (words((
-                '#eval', '#check', '#reduce', '#exit',
-                '#print', '#help',
-            ), suffix=r'\b'), Keyword),
-            (words((
-                '(', ')', ':', '{', '}', '[', ']', '⟨', '⟩', '‹', '›', '⦃', '⦄', ':=', ',',
-            )), Operator),
-            (r'[A-Za-z_\u03b1-\u03ba\u03bc-\u03fb\u1f00-\u1ffe\u2100-\u214f]'
-             r'[.A-Za-z_\'\u03b1-\u03ba\u03bc-\u03fb\u1f00-\u1ffe\u2070-\u2079'
-             r'\u207f-\u2089\u2090-\u209c\u2100-\u214f0-9]*', Name),
-            (r'0x[A-Za-z0-9]+', Number.Integer),
-            (r'0b[01]+', Number.Integer),
-            (r'\d+', Number.Integer),
-            (r'"', String.Double, 'string'),
-            (r"'(?:(\\[\\\"'nt])|(\\x[0-9a-fA-F]{2})|(\\u[0-9a-fA-F]{4})|.)'", String.Char),
-            (r'[~?][a-z][\w\']*:', Name.Variable),
-            (r'\S', Name.Builtin.Pseudo),
-        ],
-        'comment': [
-            (r'[^/-]', Comment.Multiline),
-            (r'/-', Comment.Multiline, '#push'),
-            (r'-/', Comment.Multiline, '#pop'),
-            (r'[/-]', Comment.Multiline)
-        ],
-        'docstring': [
-            (r'[^/-]', String.Doc),
-            (r'-/', String.Doc, '#pop'),
-            (r'[/-]', String.Doc)
-        ],
-        'string': [
-            (r'[^\\"]+', String.Double),
-            (r"(?:(\\[\\\"'nt])|(\\x[0-9a-fA-F]{2})|(\\u[0-9a-fA-F]{4}))", String.Escape),
-            ('"', String.Double, '#pop'),
         ],
     }

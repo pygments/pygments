@@ -1,0 +1,27 @@
+---input---
+// Test text that should **not** be tokenized as binary literals.
+0b0N
+0b
+0bb
+0b2
+
+---tokens---
+''            Text
+'// Test text that should **not** be tokenized as binary literals.' Comment.Single
+'\n'          Text.Whitespace
+
+'0b0'         Literal.Number.Bin
+'N'           Name.Other
+'\n'          Text.Whitespace
+
+'0'           Literal.Number.Float
+'b'           Name.Other
+'\n'          Text.Whitespace
+
+'0'           Literal.Number.Float
+'bb'          Name.Other
+'\n'          Text.Whitespace
+
+'0'           Literal.Number.Float
+'b2'          Name.Other
+'\n'          Text.Whitespace

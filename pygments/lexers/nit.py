@@ -4,7 +4,7 @@
 
     Lexer for the Nit language.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -17,14 +17,14 @@ __all__ = ['NitLexer']
 
 class NitLexer(RegexLexer):
     """
-    For `nit <http://nitlanguage.org>`_ source.
-
-    .. versionadded:: 2.0
+    For nit source.
     """
 
     name = 'Nit'
+    url = 'http://nitlanguage.org'
     aliases = ['nit']
     filenames = ['*.nit']
+    version_added = '2.0'
     tokens = {
         'root': [
             (r'#.*?$', Comment.Single),

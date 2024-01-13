@@ -1,0 +1,21 @@
+''            Generic.Traceback
+'  File '     Text
+'"<stdin>"'   Name.Builtin
+', line '     Text
+'1'           Literal.Number
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'mismatch'    Name
+'('           Punctuation
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'           ' Text.Whitespace
+'^'           Punctuation.Marker
+'\n'          Text.Whitespace
+
+'SyntaxError' Generic.Error
+': '          Text
+"closing parenthesis ']' does not match opening parenthesis '('" Name
+'\n'          Text.Whitespace

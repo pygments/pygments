@@ -1,0 +1,19 @@
+'irb(main):001:0> ' Generic.Prompt
+'a'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'=> 1\n'      Generic.Output
+
+'irb(main):002:0> ' Generic.Prompt
+'puts'        Name.Builtin
+' '           Text.Whitespace
+'a'           Name
+'\n'          Text.Whitespace
+
+'1\n'         Generic.Output
+
+'=> nil\n'    Generic.Output

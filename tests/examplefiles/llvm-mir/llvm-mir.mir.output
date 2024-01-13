@@ -2,46 +2,46 @@
 '\n\n'        Text
 
 '--- |'       Keyword
-'\n  '        Text
+'\n  '        Text.Whitespace
 '; LLVM-IR line comment\n' Comment
 
-'  '          Text
+'  '          Text.Whitespace
 'define'      Keyword
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword
-' '           Text
+' '           Text.Whitespace
 '@myfunction' Name.Variable.Global
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ret'         Keyword
-' '           Text
+' '           Text.Whitespace
 'void'        Keyword
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '...'         Keyword
 '\n\n'        Text
 
 '---'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'name:'       Keyword
 ' myfunction' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'legalized:'  Keyword
 ' true'       Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 'registers:'  Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  - { id: 0, class: gpr }' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'body: |'     Keyword
 '\n  '        Text
@@ -145,9 +145,10 @@
 ' '           Text
 'G_CONSTANT'  Name.Builtin
 ' '           Text
-'i32 '        Keyword.Type
+'i32'         Keyword.Type
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '%5'          Name.Variable
@@ -162,7 +163,7 @@
 ' '           Text
 'float '      Keyword.Type
 '1.0'         Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    '        Text
 '%6'          Name.Variable
@@ -181,18 +182,19 @@
 ')'           Text
 ''            Text
 ' '           Text
-':: '         Operator
+'::'          Operator
+' '           Text.Whitespace
 '('           Text
 'load'        Keyword
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'from'        Keyword
-' '           Text
+' '           Text.Whitespace
 '%ir.myvar'   Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number.Integer
 ')'           Text
 '\n\n  '      Text
@@ -205,7 +207,7 @@
 'COPY'        Name.Builtin
 ' '           Text
 '%3'          Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace
 
 '...'         Keyword
 '\n'          Text

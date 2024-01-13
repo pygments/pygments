@@ -4,28 +4,28 @@
 
     Lexer for the Ride programming language.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 from pygments.lexer import RegexLexer, words, include
-from pygments.token import Comment, Keyword, Name, Number, Punctuation, String, Text
+from pygments.token import Comment, Keyword, Name, Number, Punctuation, \
+    String, Text
 
 __all__ = ['RideLexer']
 
 
 class RideLexer(RegexLexer):
     """
-    For `Ride <https://docs.wavesplatform.com/en/ride/about-ride.html>`_
-    source code.
-
-    .. versionadded:: 2.6
+    For Ride source code.
     """
 
     name = 'Ride'
     aliases = ['ride']
     filenames = ['*.ride']
     mimetypes = ['text/x-ride']
+    url = 'https://docs.waves.tech/en/ride'
+    version_added = '2.6'
 
     validName = r'[a-zA-Z_][a-zA-Z0-9_\']*'
 

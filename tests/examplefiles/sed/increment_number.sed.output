@@ -1,0 +1,169 @@
+'#!/usr/bin/sed -f' Comment.Single
+'\n\n'        Text.Whitespace
+
+'/'           Punctuation
+'[^0-9]'      Literal.String.Regex
+'/'           Punctuation
+' '           Text.Whitespace
+'d'           Keyword
+'\n\n'        Text.Whitespace
+
+'# replace all trailing 9s by _ (any other character except digits, could' Comment.Single
+'\n'          Text.Whitespace
+
+'# be used)'  Comment.Single
+'\n'          Text.Whitespace
+
+':'           Keyword
+'d'           Literal.String.Single
+'\n'          Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'9\\(_*\\)$'  Literal.String.Regex
+'/'           Punctuation
+'_\\1'        Literal.String.Single
+'/'           Punctuation
+'\n'          Text.Whitespace
+
+'t'           Keyword
+'d'           Literal.String.Single
+'\n\n'        Text.Whitespace
+
+'# incr last digit only.  The first line adds a most-significant' Comment.Single
+'\n'          Text.Whitespace
+
+'# digit of 1 if we have to add a digit.' Comment.Single
+'\n\n'        Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'^\\(_*\\)$'  Literal.String.Regex
+'/'           Punctuation
+'1\\1'        Literal.String.Single
+'/'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'t'           Keyword
+'n'           Literal.String.Single
+'\n'          Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'8\\(_*\\)$'  Literal.String.Regex
+'/'           Punctuation
+'9\\1'        Literal.String.Single
+'/'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'t'           Keyword
+'n'           Literal.String.Single
+'\n'          Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'7\\(_*\\)$'  Literal.String.Regex
+'/'           Punctuation
+'8\\1'        Literal.String.Single
+'/'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'t'           Keyword
+'n'           Literal.String.Single
+'\n'          Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'6\\(_*\\)$'  Literal.String.Regex
+'/'           Punctuation
+'7\\1'        Literal.String.Single
+'/'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'t'           Keyword
+'n'           Literal.String.Single
+'\n'          Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'5\\(_*\\)$'  Literal.String.Regex
+'/'           Punctuation
+'6\\1'        Literal.String.Single
+'/'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'t'           Keyword
+'n'           Literal.String.Single
+'\n'          Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'4\\(_*\\)$'  Literal.String.Regex
+'/'           Punctuation
+'5\\1'        Literal.String.Single
+'/'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'t'           Keyword
+'n'           Literal.String.Single
+'\n'          Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'3\\(_*\\)$'  Literal.String.Regex
+'/'           Punctuation
+'4\\1'        Literal.String.Single
+'/'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'t'           Keyword
+'n'           Literal.String.Single
+'\n'          Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'2\\(_*\\)$'  Literal.String.Regex
+'/'           Punctuation
+'3\\1'        Literal.String.Single
+'/'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'t'           Keyword
+'n'           Literal.String.Single
+'\n'          Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'1\\(_*\\)$'  Literal.String.Regex
+'/'           Punctuation
+'2\\1'        Literal.String.Single
+'/'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'t'           Keyword
+'n'           Literal.String.Single
+'\n'          Text.Whitespace
+
+'s'           Keyword
+'/'           Punctuation
+'0\\(_*\\)$'  Literal.String.Regex
+'/'           Punctuation
+'1\\1'        Literal.String.Single
+'/'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'t'           Keyword
+'n'           Literal.String.Single
+'\n\n'        Text.Whitespace
+
+':'           Keyword
+'n'           Literal.String.Single
+'\n'          Text.Whitespace
+
+'y'           Keyword
+'/'           Punctuation
+'_'           Literal.String.Single
+'/'           Punctuation
+'0'           Literal.String.Single
+'/'           Punctuation
+'\n'          Text.Whitespace

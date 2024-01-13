@@ -1,0 +1,32 @@
+'# Single line comment' Comment.Single
+'\n'          Text.Whitespace
+
+'URI'         Keyword
+'     '       Text.Whitespace
+'ldaps://ad.bridoulou.fr/' Literal
+'\n'          Text.Whitespace
+
+'BINDDN'      Keyword
+'  '          Text.Whitespace
+'cn=admin,ou=users,dc=bridoulou,dc=fr' Literal
+'\n'          Text.Whitespace
+
+'TLS_REQCERT' Keyword
+' '           Text.Whitespace
+'hard'        Keyword.Constant
+'\n'          Text.Whitespace
+
+'NETWORK_TIMEOUT' Keyword
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'TIMEOUT'     Keyword
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'REFERRALS'   Keyword
+' '           Text.Whitespace
+'off'         Keyword.Constant
+'\n'          Text.Whitespace

@@ -44,125 +44,115 @@
 
 ---tokens---
 "8'b10101010" Literal.Number.Bin
-'\n'          Text
+'\n'          Text.Whitespace
 
 "8 'b10101010" Literal.Number.Bin
-'\n'          Text
+'\n'          Text.Whitespace
 
 "8'b 10101010" Literal.Number.Bin
-'\n'          Text
+'\n'          Text.Whitespace
 
 "8'sb10101010" Literal.Number.Bin
-'\n'          Text
+'\n'          Text.Whitespace
 
 "8'Sb10101010" Literal.Number.Bin
-'\n'          Text
+'\n'          Text.Whitespace
 
 "8'B10101010" Literal.Number.Bin
-'\n'          Text
+'\n'          Text.Whitespace
 
 "8'b1010_1010" Literal.Number.Bin
-'\n'          Text
+'\n'          Text.Whitespace
 
 "8'b10xXzZ?10" Literal.Number.Bin
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 "24'o01234567" Literal.Number.Oct
-'\n'          Text
+'\n'          Text.Whitespace
 
 "24 'o01234567" Literal.Number.Oct
-'\n'          Text
+'\n'          Text.Whitespace
 
 "24'o 01234567" Literal.Number.Oct
-'\n'          Text
+'\n'          Text.Whitespace
 
 "24'so01234567" Literal.Number.Oct
-'\n'          Text
+'\n'          Text.Whitespace
 
 "24'So01234567" Literal.Number.Oct
-'\n'          Text
+'\n'          Text.Whitespace
 
 "24'O01234567" Literal.Number.Oct
-'\n'          Text
+'\n'          Text.Whitespace
 
 "24'o0123_4567" Literal.Number.Oct
-'\n'          Text
+'\n'          Text.Whitespace
 
 "24'o01xXzZ?7" Literal.Number.Oct
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 "32'd27182818" Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 "32 'd27182818" Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 "32'd 27182818" Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 "32'sd27182818" Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 "32'Sd27182818" Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 "32'D27182818" Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 "32'd2718_2818" Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 "32'd27xXzZ?8" Literal.Number.Integer
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 "32'hdeadbeef" Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
 "32 'hdeadbeef" Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
 "32'h deadbeef" Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
 "32'shdeadbeef" Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
 "32'Shdeadbeef" Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
 "32'Hdeadbeef" Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
 "32'hdead_beef" Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
 "32'hdexXzZ?f" Literal.Number.Hex
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 "'0"          Literal.Number
-' '           Text
+' '           Text.Whitespace
 "'1"          Literal.Number
-' '           Text
+' '           Text.Whitespace
 "'x"          Literal.Number
-' '           Text
+' '           Text.Whitespace
 "'X"          Literal.Number
-' '           Text
+' '           Text.Whitespace
 "'z"          Literal.Number
-' '           Text
+' '           Text.Whitespace
 "'Z"          Literal.Number
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text.Whitespace
 
 '42'          Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '1234_5678'   Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace

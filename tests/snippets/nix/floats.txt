@@ -1,0 +1,26 @@
+---input---
+0.3
+.1
+0.1e4
+-3.0
+0.1E-4
+0.2e+4
+
+---tokens---
+'0.3'         Literal.Number.Float
+'\n'          Text
+
+'.1'          Literal.Number.Float
+'\n'          Text
+
+'0.1e4'       Literal.Number.Float
+'\n'          Text
+
+'-3.0'        Literal.Number.Float
+'\n'          Text
+
+'0.1E-4'      Literal.Number.Float
+'\n'          Text
+
+'0.2e+4'      Literal.Number.Float
+'\n'          Text

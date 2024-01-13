@@ -3,9 +3,9 @@ var = -15e4
 
 ---tokens---
 'var'         Text
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
 '15e4'        Literal.Number
-'\n'          Text
+'\n'          Text.Whitespace

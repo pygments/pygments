@@ -1,0 +1,285 @@
+---input---
+<script type="text/javascript">
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+// Note the missing </script> tag; this should not cause catastrophic backtracking
+
+---tokens---
+'<'           Punctuation
+'script'      Name.Tag
+' '           Text
+'type'        Name.Attribute
+'='           Operator
+'"text/javascript"' Literal.String
+'>'           Punctuation
+''            Text
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'// Note the missing ' Comment.Single
+'<'           Punctuation
+'/'           Punctuation
+'script'      Name.Tag
+'>'           Punctuation
+' tag; this should not cause catastrophic backtracking\n' Text

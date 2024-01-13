@@ -1,4 +1,4 @@
-*.egg
+*.egg-info/
 *.pyc
 *.pyo
 .*.sw[op]
@@ -8,7 +8,6 @@
 /.tags
 /.tox/
 /.cache/
-/Pygments.egg-info/*
 /TAGS
 /build/*
 /dist/*
@@ -20,3 +19,4 @@ venv/
 .venv/
 desktop.ini
 *.code-workspace
+.DS_Store

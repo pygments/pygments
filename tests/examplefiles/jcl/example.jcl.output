@@ -31,7 +31,7 @@
 'B'           Literal.String
 "'"           Literal.String
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//'          Keyword.Pseudo
 '  '          Text.Whitespace
@@ -50,7 +50,7 @@
 ','           Punctuation
 '10'          Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 "//* Copy 'OLDFILE' to 'NEWFILE'.\n" Comment.Single
 
@@ -62,7 +62,7 @@
 'PGM'         Name
 '='           Operator
 'IEBGENER'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//'          Keyword.Pseudo
 'SYSPRINT'    Name.Variable
@@ -70,7 +70,7 @@
 'SYSOUT'      Name
 '='           Operator
 '*'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//'          Keyword.Pseudo
 'SYSUT1'      Name.Variable
@@ -82,7 +82,7 @@
 'DISP'        Name
 '='           Operator
 'SHR'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//'          Keyword.Pseudo
 'SYSUT2'      Name.Variable
@@ -91,7 +91,7 @@
 '='           Operator
 'NEWFILE'     Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//'          Keyword.Pseudo
 '            ' Text.Whitespace
@@ -105,7 +105,7 @@
 'DELETE'      Name
 ')'           Punctuation
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//'          Keyword.Pseudo
 '            ' Text.Whitespace
@@ -125,7 +125,7 @@
 ','           Punctuation
 '      '      Text.Whitespace
 'Some comment' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//'          Keyword.Pseudo
 '            ' Text.Whitespace
@@ -140,13 +140,13 @@
 '='           Operator
 '1150'        Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//'          Keyword.Pseudo
 'SYSIN'       Name.Variable
 '    DD '     Keyword.Reserved
 'DUMMY'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*'          Keyword.Pseudo
 '\n'          Text.Whitespace
@@ -266,7 +266,7 @@
 'R'           Literal.String
 'D'           Literal.String
 "'"           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//* Sort a couple of lines and show the result in the job log.\n' Comment.Single
 
@@ -278,13 +278,13 @@
 'PGM'         Name
 '='           Operator
 'IEFBR14'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//'          Keyword.Pseudo
 'SORTIN'      Name.Variable
 '   DD '      Keyword.Reserved
 '*'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 'spam\n'      Other
 
@@ -301,7 +301,7 @@
 'SYSOUT'      Name
 '='           Operator
 '*'           Name.Builtin
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*'          Keyword.Pseudo
 '\n'          Text.Whitespace
@@ -333,7 +333,7 @@
 'EVEN'        Name
 ')'           Punctuation
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//'          Keyword.Pseudo
 '         '   Text.Whitespace
@@ -349,7 +349,7 @@
 'FIND'        Name
 ')'           Punctuation
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//'          Keyword.Pseudo
 '         '   Text.Whitespace
@@ -374,18 +374,18 @@
 ')'           Punctuation
 '  '          Text.Whitespace
 'THIS STATEMENT CALLS THE X' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//'          Keyword.Pseudo
 '         '   Text.Whitespace
 'BILLING'     Name
 ' '           Text.Whitespace
 'PROCEDURE AND SPECIFIES RETURN CODE TESTS FOR THREEX' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//'          Keyword.Pseudo
 '         '   Text.Whitespace
 'PROCEDURE'   Name
 ' '           Text.Whitespace
 'STEPS.'      Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace

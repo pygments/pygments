@@ -2,5 +2,7 @@
 just\ key
 
 ---tokens---
-'just\\ key'  Name.Attribute
-'\n'          Text
+'just'        Name.Attribute
+'\\ '         Literal.String.Escape
+'key'         Name.Attribute
+'\n'          Text.Whitespace

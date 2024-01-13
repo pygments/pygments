@@ -4,7 +4,7 @@
 
     Lexers for BASIC like languages (other than VB.net).
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -22,15 +22,15 @@ __all__ = ['BlitzBasicLexer', 'BlitzMaxLexer', 'MonkeyLexer', 'CbmBasicV2Lexer',
 
 class BlitzMaxLexer(RegexLexer):
     """
-    For `BlitzMax <http://blitzbasic.com>`_ source code.
-
-    .. versionadded:: 1.4
+    For BlitzMax source code.
     """
 
     name = 'BlitzMax'
+    url = 'http://blitzbasic.com'
     aliases = ['blitzmax', 'bmax']
     filenames = ['*.bmx']
     mimetypes = ['text/x-bmx']
+    version_added = '1.4'
 
     bmax_vopwords = r'\b(Shl|Shr|Sar|Mod)\b'
     bmax_sktypes = r'@{1,2}|[!#$%]'
@@ -45,8 +45,8 @@ class BlitzMaxLexer(RegexLexer):
     tokens = {
         'root': [
             # Text
-            (r'[ \t]+', Text),
-            (r'\.\.\n', Text),  # Line continuation
+            (r'\s+', Whitespace),
+            (r'(\.\.)(\n)', bygroups(Text, Whitespace)),  # Line continuation
             # Comments
             (r"'.*?\n", Comment.Single),
             (r'([ \t]*)\bRem\n(\n|.)*?\s*\bEnd([ \t]*)Rem', Comment.Multiline),
@@ -66,19 +66,19 @@ class BlitzMaxLexer(RegexLexer):
             (r'(?:\?[\w \t]*)', Comment.Preproc),
             # Identifiers
             (r'\b(New)\b([ \t]?)([(]?)(%s)' % (bmax_name),
-             bygroups(Keyword.Reserved, Text, Punctuation, Name.Class)),
+             bygroups(Keyword.Reserved, Whitespace, Punctuation, Name.Class)),
             (r'\b(Import|Framework|Module)([ \t]+)(%s\.%s)' %
              (bmax_name, bmax_name),
-             bygroups(Keyword.Reserved, Text, Keyword.Namespace)),
-            (bmax_func, bygroups(Name.Function, Text, Keyword.Type,
-                                 Operator, Text, Punctuation, Text,
-                                 Keyword.Type, Name.Class, Text,
-                                 Keyword.Type, Text, Punctuation)),
-            (bmax_var, bygroups(Name.Variable, Text, Keyword.Type, Operator,
-                                Text, Punctuation, Text, Keyword.Type,
-                                Name.Class, Text, Keyword.Type)),
+             bygroups(Keyword.Reserved, Whitespace, Keyword.Namespace)),
+            (bmax_func, bygroups(Name.Function, Whitespace, Keyword.Type,
+                                 Operator, Whitespace, Punctuation, Whitespace,
+                                 Keyword.Type, Name.Class, Whitespace,
+                                 Keyword.Type, Whitespace, Punctuation)),
+            (bmax_var, bygroups(Name.Variable, Whitespace, Keyword.Type, Operator,
+                                Whitespace, Punctuation, Whitespace, Keyword.Type,
+                                Name.Class, Whitespace, Keyword.Type)),
             (r'\b(Type|Extends)([ \t]+)(%s)' % (bmax_name),
-             bygroups(Keyword.Reserved, Text, Name.Class)),
+             bygroups(Keyword.Reserved, Whitespace, Name.Class)),
             # Keywords
             (r'\b(Ptr)\b', Keyword.Type),
             (r'\b(Pi|True|False|Null|Self|Super)\b', Keyword.Constant),
@@ -113,15 +113,15 @@ class BlitzMaxLexer(RegexLexer):
 
 class BlitzBasicLexer(RegexLexer):
     """
-    For `BlitzBasic <http://blitzbasic.com>`_ source code.
-
-    .. versionadded:: 2.0
+    For BlitzBasic source code.
     """
 
     name = 'BlitzBasic'
+    url = 'http://blitzbasic.com'
     aliases = ['blitzbasic', 'b3d', 'bplus']
     filenames = ['*.bb', '*.decls']
     mimetypes = ['text/x-bb']
+    version_added = '2.0'
 
     bb_sktypes = r'@{1,2}|[#$%]'
     bb_name = r'[a-z]\w*'
@@ -132,7 +132,7 @@ class BlitzBasicLexer(RegexLexer):
     tokens = {
         'root': [
             # Text
-            (r'[ \t]+', Text),
+            (r'\s+', Whitespace),
             # Comments
             (r";.*?\n", Comment.Single),
             # Data types
@@ -154,19 +154,19 @@ class BlitzBasicLexer(RegexLexer):
             (r'\.([ \t]*)(%s)' % bb_name, Name.Label),
             # Identifiers
             (r'\b(New)\b([ \t]+)(%s)' % (bb_name),
-             bygroups(Keyword.Reserved, Text, Name.Class)),
+             bygroups(Keyword.Reserved, Whitespace, Name.Class)),
             (r'\b(Gosub|Goto)\b([ \t]+)(%s)' % (bb_name),
-             bygroups(Keyword.Reserved, Text, Name.Label)),
+             bygroups(Keyword.Reserved, Whitespace, Name.Label)),
             (r'\b(Object)\b([ \t]*)([.])([ \t]*)(%s)\b' % (bb_name),
-             bygroups(Operator, Text, Punctuation, Text, Name.Class)),
+             bygroups(Operator, Whitespace, Punctuation, Whitespace, Name.Class)),
             (r'\b%s\b([ \t]*)(\()' % bb_var,
-             bygroups(Name.Function, Text, Keyword.Type, Text, Punctuation,
-                      Text, Name.Class, Text, Punctuation)),
+             bygroups(Name.Function, Whitespace, Keyword.Type, Whitespace, Punctuation,
+                      Whitespace, Name.Class, Whitespace, Punctuation)),
             (r'\b(Function)\b([ \t]+)%s' % bb_var,
-             bygroups(Keyword.Reserved, Text, Name.Function, Text, Keyword.Type,
-                      Text, Punctuation, Text, Name.Class)),
+             bygroups(Keyword.Reserved, Whitespace, Name.Function, Whitespace, Keyword.Type,
+                      Whitespace, Punctuation, Whitespace, Name.Class)),
             (r'\b(Type)([ \t]+)(%s)' % (bb_name),
-             bygroups(Keyword.Reserved, Text, Name.Class)),
+             bygroups(Keyword.Reserved, Whitespace, Name.Class)),
             # Keywords
             (r'\b(Pi|True|False|Null)\b', Keyword.Constant),
             (r'\b(Local|Global|Const|Field|Dim)\b', Keyword.Declaration),
@@ -179,30 +179,28 @@ class BlitzBasicLexer(RegexLexer):
              Keyword.Reserved),
             # Final resolve (for variable names and such)
             # (r'(%s)' % (bb_name), Name.Variable),
-            (bb_var, bygroups(Name.Variable, Text, Keyword.Type,
-                              Text, Punctuation, Text, Name.Class)),
+            (bb_var, bygroups(Name.Variable, Whitespace, Keyword.Type,
+                              Whitespace, Punctuation, Whitespace, Name.Class)),
         ],
         'string': [
             (r'""', String.Double),
             (r'"C?', String.Double, '#pop'),
-            (r'[^"]+', String.Double),
+            (r'[^"\n]+', String.Double),
         ],
     }
 
 
 class MonkeyLexer(RegexLexer):
     """
-    For
-    `Monkey <https://en.wikipedia.org/wiki/Monkey_(programming_language)>`_
-    source code.
-
-    .. versionadded:: 1.6
+    For Monkey source code.
     """
 
     name = 'Monkey'
     aliases = ['monkey']
     filenames = ['*.monkey']
     mimetypes = ['text/x-monkey']
+    url = 'https://blitzresearch.itch.io/monkeyx'
+    version_added = '1.6'
 
     name_variable = r'[a-z_]\w*'
     name_function = r'[A-Z]\w*'
@@ -219,7 +217,7 @@ class MonkeyLexer(RegexLexer):
     tokens = {
         'root': [
             # Text
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             # Comments
             (r"'.*", Comment),
             (r'(?i)^#rem\b', Comment.Multiline, 'comment'),
@@ -246,14 +244,14 @@ class MonkeyLexer(RegexLexer):
             (r'\b(?:HOST|LANG|TARGET|CONFIG)\b', Name.Constant),
             # Keywords
             (r'(?i)^(Import)(\s+)(.*)(\n)',
-             bygroups(Keyword.Namespace, Text, Name.Namespace, Text)),
+             bygroups(Keyword.Namespace, Whitespace, Name.Namespace, Whitespace)),
             (r'(?i)^Strict\b.*\n', Keyword.Reserved),
             (r'(?i)(Const|Local|Global|Field)(\s+)',
-             bygroups(Keyword.Declaration, Text), 'variables'),
+             bygroups(Keyword.Declaration, Whitespace), 'variables'),
             (r'(?i)(New|Class|Interface|Extends|Implements)(\s+)',
-             bygroups(Keyword.Reserved, Text), 'classname'),
+             bygroups(Keyword.Reserved, Whitespace), 'classname'),
             (r'(?i)(Function|Method)(\s+)',
-             bygroups(Keyword.Reserved, Text), 'funcname'),
+             bygroups(Keyword.Reserved, Whitespace), 'funcname'),
             (r'(?i)(?:End|Return|Public|Private|Extern|Property|'
              r'Final|Abstract)\b', Keyword.Reserved),
             # Flow Control stuff
@@ -262,7 +260,7 @@ class MonkeyLexer(RegexLexer):
              r'While|Wend|'
              r'Repeat|Until|Forever|'
              r'For|To|Until|Step|EachIn|Next|'
-             r'Exit|Continue)\s+', Keyword.Reserved),
+             r'Exit|Continue)(?=\s)', Keyword.Reserved),
             # not used yet
             (r'(?i)\b(?:Module|Inline)\b', Keyword.Reserved),
             # Array
@@ -279,7 +277,7 @@ class MonkeyLexer(RegexLexer):
         'funcname': [
             (r'(?i)%s\b' % name_function, Name.Function),
             (r':', Punctuation, 'classname'),
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'\(', Punctuation, 'variables'),
             (r'\)', Punctuation, '#pop')
         ],
@@ -289,19 +287,19 @@ class MonkeyLexer(RegexLexer):
             (r'%s\b' % name_class, Name.Class),
             # array (of given size)
             (r'(\[)(\s*)(\d*)(\s*)(\])',
-             bygroups(Punctuation, Text, Number.Integer, Text, Punctuation)),
+             bygroups(Punctuation, Whitespace, Number.Integer, Whitespace, Punctuation)),
             # generics
-            (r'\s+(?!<)', Text, '#pop'),
+            (r'\s+(?!<)', Whitespace, '#pop'),
             (r'<', Punctuation, '#push'),
             (r'>', Punctuation, '#pop'),
-            (r'\n', Text, '#pop'),
+            (r'\n', Whitespace, '#pop'),
             default('#pop')
         ],
         'variables': [
             (r'%s\b' % name_constant, Name.Constant),
             (r'%s\b' % name_variable, Name.Variable),
             (r'%s' % keyword_type_special, Keyword.Type),
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r':', Punctuation, 'classname'),
             (r',', Punctuation, '#push'),
             default('#pop')
@@ -323,19 +321,19 @@ class MonkeyLexer(RegexLexer):
 class CbmBasicV2Lexer(RegexLexer):
     """
     For CBM BASIC V2 sources.
-
-    .. versionadded:: 1.6
     """
     name = 'CBM BASIC V2'
     aliases = ['cbmbas']
     filenames = ['*.bas']
+    url = 'https://en.wikipedia.org/wiki/Commodore_BASIC'
+    version_added = '1.6'
 
     flags = re.IGNORECASE
 
     tokens = {
         'root': [
             (r'rem.*\n', Comment.Single),
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'new|run|end|for|to|next|step|go(to|sub)?|on|return|stop|cont'
              r'|if|then|input#?|read|wait|load|save|verify|poke|sys|print#?'
              r'|list|clr|cmd|open|close|get#?', Keyword.Reserved),
@@ -360,17 +358,15 @@ class CbmBasicV2Lexer(RegexLexer):
 
 class QBasicLexer(RegexLexer):
     """
-    For
-    `QBasic <http://en.wikipedia.org/wiki/QBasic>`_
-    source code.
-
-    .. versionadded:: 2.0
+    For QBasic source code.
     """
 
     name = 'QBasic'
     aliases = ['qbasic', 'basic']
     filenames = ['*.BAS', '*.bas']
     mimetypes = ['text/basic']
+    url = 'https://en.wikipedia.org/wiki/QBasic'
+    version_added = '2.0'
 
     declarations = ('DATA', 'LET')
 
@@ -504,12 +500,13 @@ class QBasicLexer(RegexLexer):
 class VBScriptLexer(RegexLexer):
     """
     VBScript is scripting language that is modeled on Visual Basic.
-
-    .. versionadded:: 2.4
     """
     name = 'VBScript'
     aliases = ['vbscript']
     filenames = ['*.vbs', '*.VBS']
+    url = 'https://learn.microsoft.com/en-us/previous-versions/t0aew7h6(v=vs.85)'
+    version_added = '2.4'
+
     flags = re.IGNORECASE
 
     tokens = {
@@ -571,8 +568,6 @@ class BBCBasicLexer(RegexLexer):
     """
     BBC Basic was supplied on the BBC Micro, and later Acorn RISC OS.
     It is also used by BBC Basic For Windows.
-
-    .. versionadded:: 2.4
     """
     base_keywords = ['OTHERWISE', 'AND', 'DIV', 'EOR', 'MOD', 'OR', 'ERROR',
                      'LINE', 'OFF', 'STEP', 'SPC', 'TAB', 'ELSE', 'THEN',
@@ -605,6 +600,8 @@ class BBCBasicLexer(RegexLexer):
     name = 'BBC Basic'
     aliases = ['bbcbasic']
     filenames = ['*.bbc']
+    url = 'https://www.bbcbasic.co.uk/bbcbasic.html'
+    version_added = '2.4'
 
     tokens = {
         'root': [
@@ -623,7 +620,8 @@ class BBCBasicLexer(RegexLexer):
 
             # Some special cases to make functions come out nicer
             (r'(DEF)(\s*)(FN|PROC)([A-Za-z_@][\w@]*)',
-             bygroups(Keyword.Declaration, Whitespace, Keyword.Declaration, Name.Function)),
+             bygroups(Keyword.Declaration, Whitespace,
+                      Keyword.Declaration, Name.Function)),
             (r'(FN|PROC)([A-Za-z_@][\w@]*)',
              bygroups(Keyword, Name.Function)),
 
@@ -631,7 +629,8 @@ class BBCBasicLexer(RegexLexer):
              bygroups(Keyword, Whitespace, Name.Label)),
 
             (r'(TRUE|FALSE)', Keyword.Constant),
-            (r'(PAGE|LOMEM|HIMEM|TIME|WIDTH|ERL|ERR|REPORT\$|POS|VPOS|VOICES)', Keyword.Pseudo),
+            (r'(PAGE|LOMEM|HIMEM|TIME|WIDTH|ERL|ERR|REPORT\$|POS|VPOS|VOICES)',
+             Keyword.Pseudo),
 
             (words(base_keywords), Keyword),
             (words(basic5_keywords), Keyword),

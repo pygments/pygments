@@ -1,0 +1,79 @@
+---input---
+"\""
+"\\"
+"\/"
+"\b"
+"\f"
+"\n"
+"\r"
+"\t"
+"\u0123"
+"\u4567"
+"\u89ab"
+"\ucdef"
+"\uABCD"
+"\uEF01"
+
+// Incomplete sequences
+"\uz"
+"\u1z"
+"\u12z"
+"\u123z"
+
+---tokens---
+'"\\""'       Literal.String.Double
+'\n'          Text.Whitespace
+
+'"\\\\"'      Literal.String.Double
+'\n'          Text.Whitespace
+
+'"\\/"'       Literal.String.Double
+'\n'          Text.Whitespace
+
+'"\\b"'       Literal.String.Double
+'\n'          Text.Whitespace
+
+'"\\f"'       Literal.String.Double
+'\n'          Text.Whitespace
+
+'"\\n"'       Literal.String.Double
+'\n'          Text.Whitespace
+
+'"\\r"'       Literal.String.Double
+'\n'          Text.Whitespace
+
+'"\\t"'       Literal.String.Double
+'\n'          Text.Whitespace
+
+'"\\u0123"'   Literal.String.Double
+'\n'          Text.Whitespace
+
+'"\\u4567"'   Literal.String.Double
+'\n'          Text.Whitespace
+
+'"\\u89ab"'   Literal.String.Double
+'\n'          Text.Whitespace
+
+'"\\ucdef"'   Literal.String.Double
+'\n'          Text.Whitespace
+
+'"\\uABCD"'   Literal.String.Double
+'\n'          Text.Whitespace
+
+'"\\uEF01"'   Literal.String.Double
+'\n\n'        Text.Whitespace
+
+'// Incomplete sequences' Comment.Single
+'\n'          Text.Whitespace
+
+'"\\uz"'      Literal.String.Double
+'\n'          Text.Whitespace
+
+'"\\u1z"'     Literal.String.Double
+'\n'          Text.Whitespace
+
+'"\\u12z"'    Literal.String.Double
+'\n'          Text.Whitespace
+
+'"\\u123z"'   Literal.String.Double
+'\n'          Text.Whitespace

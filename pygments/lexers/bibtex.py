@@ -4,7 +4,7 @@
 
     Lexers for BibTeX bibliography data and styles
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -12,8 +12,8 @@ import re
 
 from pygments.lexer import RegexLexer, ExtendedRegexLexer, include, default, \
     words
-from pygments.token import Name, Comment, String, Error, Number, Text, \
-    Keyword, Punctuation
+from pygments.token import Name, Comment, String, Error, Number, Keyword, \
+    Punctuation, Whitespace
 
 __all__ = ['BibTeXLexer', 'BSTLexer']
 
@@ -21,15 +21,15 @@ __all__ = ['BibTeXLexer', 'BSTLexer']
 class BibTeXLexer(ExtendedRegexLexer):
     """
     A lexer for BibTeX bibliography data format.
-
-    .. versionadded:: 2.2
     """
 
     name = 'BibTeX'
     aliases = ['bibtex', 'bib']
     filenames = ['*.bib']
     mimetypes = ["text/x-bibtex"]
+    version_added = '2.2'
     flags = re.IGNORECASE
+    url = 'https://texfaq.org/FAQ-BibTeXing'
 
     ALLOWED_CHARS = r'@!$&*+\-./:;<>?\[\\\]^`|~'
     IDENTIFIER = '[{}][{}]*'.format('a-z_' + ALLOWED_CHARS, r'\w' + ALLOWED_CHARS)
@@ -55,7 +55,7 @@ class BibTeXLexer(ExtendedRegexLexer):
     tokens = {
         'root': [
             include('whitespace'),
-            ('@comment', Comment),
+            (r'@comment(?!ary)', Comment),
             ('@preamble', Name.Class, ('closing-brace', 'value', 'opening-brace')),
             ('@string', Name.Class, ('closing-brace', 'field', 'opening-brace')),
             ('@' + IDENTIFIER, Name.Class,
@@ -108,7 +108,7 @@ class BibTeXLexer(ExtendedRegexLexer):
             (r'[^\{\}]+', String),
         ],
         'whitespace': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
         ],
     }
 
@@ -116,14 +116,14 @@ class BibTeXLexer(ExtendedRegexLexer):
 class BSTLexer(RegexLexer):
     """
     A lexer for BibTeX bibliography styles.
-
-    .. versionadded:: 2.2
     """
 
     name = 'BST'
     aliases = ['bst', 'bst-pybtex']
     filenames = ['*.bst']
+    version_added = '2.2'
     flags = re.IGNORECASE | re.MULTILINE
+    url = 'https://texfaq.org/FAQ-BibTeXing'
 
     tokens = {
         'root': [
@@ -153,7 +153,7 @@ class BSTLexer(RegexLexer):
             default('#pop'),
         ],
         'whitespace': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             ('%.*?$', Comment.Single),
         ],
     }

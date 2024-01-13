@@ -1,0 +1,45 @@
+---input---
+<?php
+${'whatever'} = '';
+${$whatever} = '';
+${${'whatever' . 'whatever'}} = '';
+
+---tokens---
+'<?php'       Comment.Preproc
+'\n'          Text
+
+'${'          Name.Variable
+"'whatever'"  Literal.String.Single
+'}'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+"''"          Literal.String.Single
+';'           Punctuation
+'\n'          Text
+
+'${'          Name.Variable
+'$whatever'   Name.Variable
+'}'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+"''"          Literal.String.Single
+';'           Punctuation
+'\n'          Text
+
+'${'          Name.Variable
+'${'          Name.Variable
+"'whatever'"  Literal.String.Single
+' '           Text
+'.'           Operator
+' '           Text
+"'whatever'"  Literal.String.Single
+'}'           Name.Variable
+'}'           Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+"''"          Literal.String.Single
+';'           Punctuation
+'\n'          Text

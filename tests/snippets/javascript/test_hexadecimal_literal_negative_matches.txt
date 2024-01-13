@@ -1,0 +1,32 @@
+---input---
+// Test text that should **not** be tokenized as hexadecimal literals.
+0x0N
+0x
+0Xx
+0xg
+0xhn
+
+---tokens---
+''            Text
+'// Test text that should **not** be tokenized as hexadecimal literals.' Comment.Single
+'\n'          Text.Whitespace
+
+'0x0'         Literal.Number.Hex
+'N'           Name.Other
+'\n'          Text.Whitespace
+
+'0'           Literal.Number.Float
+'x'           Name.Other
+'\n'          Text.Whitespace
+
+'0'           Literal.Number.Float
+'Xx'          Name.Other
+'\n'          Text.Whitespace
+
+'0'           Literal.Number.Float
+'xg'          Name.Other
+'\n'          Text.Whitespace
+
+'0'           Literal.Number.Float
+'xhn'         Name.Other
+'\n'          Text.Whitespace

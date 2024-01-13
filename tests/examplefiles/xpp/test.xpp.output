@@ -1,0 +1,581 @@
+'public'      Keyword
+' '           Text.Whitespace
+'class'       Keyword
+' '           Text.Whitespace
+'ExampleSummaryTmpTable' Name.Class
+' '           Text.Whitespace
+'extends'     Keyword
+' '           Text.Whitespace
+'common'      Name.Class
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'const'       Name.Variable.Class
+' '           Text.Whitespace
+'str'         Keyword.Type
+' '           Text.Whitespace
+'TestConstStr' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"this_is_a_test"' Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'Test'        Name.Variable.Class
+' '           Text.Whitespace
+'classInt'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'/// <summary>\n' Comment.Single
+
+'    '        Text.Whitespace
+'/// Populates the table with data from hcmWorker, aggregating counts of email domains\n' Comment.Single
+
+'    '        Text.Whitespace
+'/// </summary>\n' Comment.Single
+
+'    '        Text.Whitespace
+'/// <param name="directReportsOnly">\n' Comment.Single
+
+'    '        Text.Whitespace
+'/// Whether to get the whole reporting structure or just direct reports\n' Comment.Single
+
+'    '        Text.Whitespace
+'/// </param>\n' Comment.Single
+
+'    '        Text.Whitespace
+'['           Name.Attribute
+'Hookable(False)' Name.Variable.Class
+']'           Name.Attribute
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'public'      Keyword
+' '           Text.Whitespace
+'void'        Keyword
+' '           Text.Whitespace
+'populateTable' Name.Function
+'('           Punctuation
+'boolean'     Keyword.Type
+' '           Text.Whitespace
+'directReportsOnly' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'true'        Keyword
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'DirPersonBaseEntity' Name.Variable.Class
+' '           Text.Whitespace
+'dirPerson'   Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'// Set up Query for Course fetch\n' Comment.Single
+
+'        '    Text.Whitespace
+'QueryRun'    Name.Variable.Class
+' '           Text.Whitespace
+'qr'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'new'         Keyword
+' '           Text.Whitespace
+'QueryRun'    Name
+'('           Punctuation
+'new'         Keyword
+' '           Text.Whitespace
+'Query'       Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'QueryBuildDataSource' Name.Variable.Class
+' '           Text.Whitespace
+'qdbsWorker'  Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'qr'          Name
+'.'           Punctuation
+'query'       Name
+'('           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'addDataSource' Name
+'('           Punctuation
+'tableNum'    Name.Function.Magic
+'('           Punctuation
+'HcmWorker'   Name.Variable.Class
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'QueryBuildDataSource' Name.Variable.Class
+' '           Text.Whitespace
+'qdbsDirPersonEntity' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'qdbsWorker'  Name
+'.'           Punctuation
+'addDataSource' Name
+'('           Punctuation
+'tableNum'    Name.Function.Magic
+'('           Punctuation
+'DirPersonBaseEntity' Name.Variable.Class
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'qdbsDirPersonEntity' Name
+'.'           Punctuation
+'joinMode'    Name
+'('           Punctuation
+'JoinMode'    Name.Variable.Class
+'::'          Punctuation
+'InnerJoin'   Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'qdbsDirPersonEntity' Name
+'.'           Punctuation
+'addLink'     Name
+'('           Punctuation
+'fieldNum'    Name.Function.Magic
+'('           Punctuation
+'HcmWorker'   Name.Variable.Class
+','           Punctuation
+' '           Text.Whitespace
+'Person'      Name.Property
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'fieldNum'    Name.Function.Magic
+'('           Punctuation
+'DirPersonBaseEntity' Name.Variable.Class
+','           Punctuation
+' '           Text.Whitespace
+'RecId'       Name.Property
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'qdbsDirPersonEntity' Name
+'.'           Punctuation
+'addOrderByField' Name
+'('           Punctuation
+'fieldNum'    Name.Function.Magic
+'('           Punctuation
+'DirPersonBaseEntity' Name.Variable.Class
+','           Punctuation
+' '           Text.Whitespace
+'BirthYear'   Name.Property
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'// Setup ranges to include only reporting structure\n' Comment.Single
+
+'        '    Text.Whitespace
+'HcmWorker'   Name.Variable.Class
+'::'          Punctuation
+'rangeFilterReports' Name
+'('           Punctuation
+'HcmWorkerLookup' Name.Variable.Class
+'::'          Punctuation
+'currentWorker' Name
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'qdbsWorker'  Name
+' '           Text.Whitespace
+','           Punctuation
+' '           Text.Whitespace
+'directReportsOnly' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'while'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'qr'          Name
+'.'           Punctuation
+'next'        Keyword
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'// Process each record and add to count in each bucket. \n' Comment.Single
+
+'            ' Text.Whitespace
+'dirPerson'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'qr'          Name
+'.'           Punctuation
+'get'         Name
+'('           Punctuation
+'tableNum'    Name.Function.Magic
+'('           Punctuation
+'DirPersonBaseEntity' Name.Variable.Class
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\n            ' Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'this'        Keyword
+'.'           Punctuation
+'BirthYear'   Name
+' '           Text.Whitespace
+'!='          Operator
+' '           Text.Whitespace
+'dirPerson'   Name
+'.'           Punctuation
+'BirthYear'   Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'                ' Text.Whitespace
+'//when finished with a particular birth year, write the aggregate values to the tmp table\n' Comment.Single
+
+'                ' Text.Whitespace
+'this'        Keyword
+'.'           Punctuation
+'writeCurrentRecord' Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'this'        Keyword
+'.'           Punctuation
+'BirthYear'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'dirPerson'   Name
+'.'           Punctuation
+'BirthYear'   Name
+';'           Punctuation
+'\n            ' Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'strFind'     Name.Function.Magic
+'('           Punctuation
+'dirPerson'   Name
+'.'           Punctuation
+'PrimaryContactEmail' Name
+','           Punctuation
+' '           Text.Whitespace
+'"@gmail.com"' Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'                ' Text.Whitespace
+'this'        Keyword
+'.'           Punctuation
+'Completed'   Name
+'++'          Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'}'           Punctuation
+'\n            ' Text.Whitespace
+'else'        Keyword
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'strFind'     Name.Function.Magic
+'('           Punctuation
+'dirPerson'   Name
+'.'           Punctuation
+'PrimaryContactEmail' Name
+','           Punctuation
+' '           Text.Whitespace
+'"@yahoo.com"' Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'                ' Text.Whitespace
+'this'        Keyword
+'.'           Punctuation
+'Yahoo'       Name
+'++'          Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'}'           Punctuation
+'\n            ' Text.Whitespace
+'else'        Keyword
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'strFind'     Name.Function.Magic
+'('           Punctuation
+'dirPerson'   Name
+'.'           Punctuation
+'PrimaryContactEmail' Name
+','           Punctuation
+' '           Text.Whitespace
+'"@outlook.com"' Literal.String
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'                ' Text.Whitespace
+'this'        Keyword
+'.'           Punctuation
+'Outlook'     Name
+'++'          Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'else'        Keyword
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'                ' Text.Whitespace
+'this'        Keyword
+'.'           Punctuation
+'Other'       Name
+'++'          Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'this'        Keyword
+'.'           Punctuation
+'Total'       Name
+'++'          Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'// write last record\n' Comment.Single
+
+'        '    Text.Whitespace
+'this'        Keyword
+'.'           Punctuation
+'writeCurrentRecord' Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'private'     Keyword
+' '           Text.Whitespace
+'void'        Keyword
+' '           Text.Whitespace
+'writeCurrentRecord' Name.Function
+'('           Punctuation
+')'           Punctuation
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'if'          Keyword
+'('           Punctuation
+'this'        Keyword
+'.'           Punctuation
+'BirthYear'   Name
+' '           Text.Whitespace
+'!='          Operator
+' '           Text.Whitespace
+'""'          Literal.String
+')'           Punctuation
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'ttsbegin'    Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'this'        Keyword
+'.'           Punctuation
+'write'       Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'ttscommit'   Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'this'        Keyword
+'.'           Punctuation
+'clear'       Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'this'        Keyword
+'.'           Punctuation
+'Gmail'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'this'        Keyword
+'.'           Punctuation
+'Yahoo'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'this'        Keyword
+'.'           Punctuation
+'Outlook'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'this'        Keyword
+'.'           Punctuation
+'Other'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

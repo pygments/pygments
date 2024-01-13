@@ -2,19 +2,21 @@
     Pygments basic API tests
     ~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import random
 from io import StringIO, BytesIO
 from os import path
+import re
 
 import pytest
 
-from pygments import lexers, formatters, lex, format
+from pygments import lexers, formatters, lex, format, __version__
 from pygments.token import _TokenType, Text
 from pygments.lexer import RegexLexer
+from pygments.formatter import Formatter
 from pygments.formatters.img import FontNotFound
 from pygments.util import ClassNotFound
 
@@ -31,15 +33,29 @@ def test_lexer_instantiate_all(name):
     # instantiate every lexer, to see if the token type defs are correct
     getattr(lexers, name)
 
+major, minor, micro = (int(x) for x in __version__.split("."))
 
 @pytest.mark.parametrize('cls', lexers._iter_lexerclasses(plugins=False))
 def test_lexer_classes(cls):
     # test that every lexer class has the correct public API
-    assert type(cls.name) is str
+    assert isinstance(cls.name, str)
     for attr in 'aliases', 'filenames', 'alias_filenames', 'mimetypes':
         assert hasattr(cls, attr)
-        assert type(getattr(cls, attr)) is list, \
+        assert isinstance(getattr(cls, attr), list), \
             "%s: %s attribute wrong" % (cls, attr)
+    assert isinstance(cls.url, str), \
+        (f"Lexer class {cls.__name__} is missing the `url` attribute. "
+         "Please add it to provide a link to the language's homepage "
+         "for the Pygments documentation (or set it to an empty "
+         "string if this doesn't make sense for the lexer).")
+    assert isinstance(cls.version_added, str), \
+        (f"Lexer class {cls.__name__} is missing the `version_added` attribute. "
+         f"Please add `version_added = '{major}.{minor+1}'` to the class definition.")
+    if cls.version_added:
+        assert re.fullmatch(r"\d+\.\d+", cls.version_added), \
+            (f"Lexer class {cls.__name__} has a wrong version_added attribute. "
+             "It should be a version number like <major>.<minor> (but not "
+             "<major>.<minor>.<micro>).")
     result = cls.analyse_text("abc")
     assert isinstance(result, float) and 0.0 <= result <= 1.0
     result = cls.analyse_text(".abc")
@@ -48,7 +64,7 @@ def test_lexer_classes(cls):
     assert all(al.lower() == al for al in cls.aliases)
 
     if issubclass(cls, RegexLexer):
-        inst = cls(opt1="val1", opt2="val2")
+        cls(opt1="val1", opt2="val2") # should not raise
         if not hasattr(cls, '_tokens'):
             # if there's no "_tokens", the lexer has to be one with
             # multiple tokendef variants
@@ -174,7 +190,7 @@ def test_formatter_encodings():
     fmt = HtmlFormatter()
     tokens = [(Text, "ä")]
     out = format(tokens, fmt)
-    assert type(out) is str
+    assert isinstance(out, str)
     assert "ä" in out
 
     # encoding option
@@ -204,17 +220,17 @@ def test_formatter_unicode_handling(cls):
     if cls.name != 'Raw tokens':
         out = format(tokens, inst)
         if cls.unicodeoutput:
-            assert type(out) is str, '%s: %r' % (cls, out)
+            assert isinstance(out, str), '%s: %r' % (cls, out)
 
         inst = cls(encoding='utf-8')
         out = format(tokens, inst)
-        assert type(out) is bytes, '%s: %r' % (cls, out)
+        assert isinstance(out, bytes), '%s: %r' % (cls, out)
         # Cannot test for encoding, since formatters may have to escape
         # non-ASCII characters.
     else:
         inst = cls()
         out = format(tokens, inst)
-        assert type(out) is bytes, '%s: %r' % (cls, out)
+        assert isinstance(out, bytes), '%s: %r' % (cls, out)
 
 
 def test_get_formatters():
@@ -250,6 +266,27 @@ def test_bare_class_handler():
     else:
         assert False, 'nothing raised'
 
+    # These cases should not trigger this heuristic.
+    class BuggyLexer(RegexLexer):
+        def get_tokens(self, text, extra_argument):
+            pass
+        tokens = {'root': []}
+    try:
+        list(lex('dummy', BuggyLexer()))
+    except TypeError as e:
+        assert 'lex() argument must be a lexer instance' not in str(e)
+    else:
+        assert False, 'no error raised by buggy lexer?'
+
+    class BuggyFormatter(Formatter):
+        def format(self, tokensource, outfile, extra_argument):
+            pass
+    try:
+        format([], BuggyFormatter())
+    except TypeError as e:
+        assert 'format() argument must be a formatter instance' not in str(e)
+    else:
+        assert False, 'no error raised by buggy formatter?'
 
 class TestFilters:
 

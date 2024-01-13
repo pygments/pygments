@@ -1,0 +1,59 @@
+/* ---------------------------------
+This is an example file containing qlik script
+--------------------------------- */
+
+LET vFilePath = '/home';
+
+FOR EACH vFolder IN 'folder_1', 'folder_2'
+
+    // Check the file exists
+    IF FILESIZE('$(vFilePath)/$(vFolder)/file.qvd') >0 THEN
+
+        TABLE_NAME:
+        NoConcatenate
+        LOAD
+            [Field 1]   AS FIELD_1,
+            "Field 2"   AS FIELD_2,
+            FIELD_3,
+            FileName()      AS SOURCE_FILE_$(vFilePath),
+            '$(vFilePath)/$(vFolder)/file.qvd'  AS [Expand_Brackets],
+            '(This is a string)'            AS brackets_in_string
+            'This costs $10'                AS dollar_in_string
+        FROM
+            [$(vFilePath)/$(vFolder)/file.qvd] (qvd);
+
+        MAP_FIELD_1:
+        MAPPING LOAD
+            FIELD_1,
+            SUM(FIELD_2)
+        RESIDENT
+            TABLE_NAME
+        GROUP BY
+            FIELD_1;
+
+        LEFT JOIN(TABLE_NAME)
+        load distinct
+            FIELD_1,
+            FIELD_2,
+            FIELD_3,
+            applymap('MAP_FIELD_1', FIELD_1, 0)     AS FIELD_2_SUM,
+            'String' & ' ' & 'Concatenation'        AS single_quote_test,
+            'Token String ''Name'''                 AS [String Field $(vFilePath)],
+            3.14159                                 AS "Number Field $(vFilePath)",
+            3 * 10 + 6 / 2 - 5                      AS OPERATION_FIELD
+        Resident
+            TABLE_NAME
+        ORDER BY
+            FIELD_3 DESC;
+
+        STORE TABLE_NAME INTO [$(vFilePath)/$(vFolder)/file_output.qvd] (qvd);
+
+        DROP TABLE TABLE_NAME;
+
+    ELSE
+
+        TRACE No file found in $(vFilePath)/file.qvd;
+
+    END IF
+
+NEXT vFolder

@@ -1,0 +1,22 @@
+---input---
+#REDIRECT [[Test]]
+
+#REDIRECT [[Test]]
+
+---tokens---
+'#REDIRECT'   Keyword
+' '           Text.Whitespace
+'[['          Punctuation
+'Test'        Name.Tag
+']]'          Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text
+
+'#'           Keyword
+'REDIRECT'    Text
+' '           Text
+'[['          Punctuation
+'Test'        Name.Tag
+']]'          Punctuation
+'\n'          Text

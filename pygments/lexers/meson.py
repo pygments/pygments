@@ -1,54 +1,38 @@
 """
     pygments.lexers.meson
-    ~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~
 
     Pygments lexer for the Meson build system
 
-    :copyright: Copyright 2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-import re
-
-from pygments.lexer import (
-    RegexLexer,
-    words,
-    include,
-)
-from pygments.token import (
-    Comment,
-    Name,
-    Number,
-    Punctuation,
-    Operator,
-    Keyword,
-    String,
-    Whitespace,
-)
+from pygments.lexer import RegexLexer, words, include
+from pygments.token import Comment, Name, Number, Punctuation, Operator, \
+    Keyword, String, Whitespace
 
 __all__ = ['MesonLexer']
 
 
 class MesonLexer(RegexLexer):
-    """
-    `meson <https://mesonbuild.com/>`_ language lexer.
-    The grammar definition use to transcribe the syntax was retrieved from
-    https://mesonbuild.com/Syntax.html#grammar for version 0.58
-    Some of those definitions are improperly transcribed so the Meson++
-    implementation was also checked: https://github.com/dcbaker/meson-plus-plus
+    """Meson language lexer.
 
-    .. versionadded:: 2.10
+    The grammar definition use to transcribe the syntax was retrieved from
+    https://mesonbuild.com/Syntax.html#grammar for version 0.58.
+    Some of those definitions are improperly transcribed, so the Meson++
+    implementation was also checked: https://github.com/dcbaker/meson-plus-plus.
     """
 
     # TODO String interpolation @VARNAME@ inner matches
     # TODO keyword_arg: value inner matches
 
     name = 'Meson'
+    url = 'https://mesonbuild.com/'
     aliases = ['meson', 'meson.build']
     filenames = ['meson.build', 'meson_options.txt']
     mimetypes = ['text/x-meson']
-
-    flags = re.MULTILINE | re.UNICODE
+    version_added = '2.10'
 
     tokens = {
         'root': [

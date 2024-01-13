@@ -1,0 +1,185 @@
+---input---
+Mr.&nbsp;Smith or 400&nbsp;km/h
+
+&Agrave; &Aacute; &Acirc; &Atilde; &Auml; &Aring; &AElig;
+
+&Ccedil; &Egrave; &Eacute; &Ecirc; &Euml;
+
+&Igrave; &Iacute; &Icirc; &Iuml; &Ntilde;
+
+&Ograve; &Oacute; &Ocirc; &Otilde; &Ouml; &Oslash; &OElig;
+
+&Ugrave; &Uacute; &Ucirc; &Uuml; &Yuml; &szlig;
+
+&agrave; &aacute; &acirc; &atilde; &auml; &aring; &aelig; &ccedil;
+
+&egrave; &eacute; &ecirc; &euml;
+
+&igrave; &iacute; &icirc; &iuml; &ntilde;
+
+&ograve; &oacute; &ocirc; &otilde; &ouml; &oslash; &oelig;
+
+&ugrave; &uacute; &ucirc; &uuml; &yuml;
+
+---tokens---
+'Mr'          Text
+'.'           Text
+'&nbsp;'      Name.Entity
+'Smith'       Text
+' '           Text
+'or'          Text
+' '           Text
+'400'         Text
+'&nbsp;'      Name.Entity
+'km'          Text
+'/'           Text
+'h'           Text
+'\n'          Text
+
+'\n'          Text
+
+'&Agrave;'    Name.Entity
+' '           Text
+'&Aacute;'    Name.Entity
+' '           Text
+'&Acirc;'     Name.Entity
+' '           Text
+'&Atilde;'    Name.Entity
+' '           Text
+'&Auml;'      Name.Entity
+' '           Text
+'&Aring;'     Name.Entity
+' '           Text
+'&AElig;'     Name.Entity
+'\n'          Text
+
+'\n'          Text
+
+'&Ccedil;'    Name.Entity
+' '           Text
+'&Egrave;'    Name.Entity
+' '           Text
+'&Eacute;'    Name.Entity
+' '           Text
+'&Ecirc;'     Name.Entity
+' '           Text
+'&Euml;'      Name.Entity
+'\n'          Text
+
+'\n'          Text
+
+'&Igrave;'    Name.Entity
+' '           Text
+'&Iacute;'    Name.Entity
+' '           Text
+'&Icirc;'     Name.Entity
+' '           Text
+'&Iuml;'      Name.Entity
+' '           Text
+'&Ntilde;'    Name.Entity
+'\n'          Text
+
+'\n'          Text
+
+'&Ograve;'    Name.Entity
+' '           Text
+'&Oacute;'    Name.Entity
+' '           Text
+'&Ocirc;'     Name.Entity
+' '           Text
+'&Otilde;'    Name.Entity
+' '           Text
+'&Ouml;'      Name.Entity
+' '           Text
+'&Oslash;'    Name.Entity
+' '           Text
+'&OElig;'     Name.Entity
+'\n'          Text
+
+'\n'          Text
+
+'&Ugrave;'    Name.Entity
+' '           Text
+'&Uacute;'    Name.Entity
+' '           Text
+'&Ucirc;'     Name.Entity
+' '           Text
+'&Uuml;'      Name.Entity
+' '           Text
+'&Yuml;'      Name.Entity
+' '           Text
+'&szlig;'     Name.Entity
+'\n'          Text
+
+'\n'          Text
+
+'&agrave;'    Name.Entity
+' '           Text
+'&aacute;'    Name.Entity
+' '           Text
+'&acirc;'     Name.Entity
+' '           Text
+'&atilde;'    Name.Entity
+' '           Text
+'&auml;'      Name.Entity
+' '           Text
+'&aring;'     Name.Entity
+' '           Text
+'&aelig;'     Name.Entity
+' '           Text
+'&ccedil;'    Name.Entity
+'\n'          Text
+
+'\n'          Text
+
+'&egrave;'    Name.Entity
+' '           Text
+'&eacute;'    Name.Entity
+' '           Text
+'&ecirc;'     Name.Entity
+' '           Text
+'&euml;'      Name.Entity
+'\n'          Text
+
+'\n'          Text
+
+'&igrave;'    Name.Entity
+' '           Text
+'&iacute;'    Name.Entity
+' '           Text
+'&icirc;'     Name.Entity
+' '           Text
+'&iuml;'      Name.Entity
+' '           Text
+'&ntilde;'    Name.Entity
+'\n'          Text
+
+'\n'          Text
+
+'&ograve;'    Name.Entity
+' '           Text
+'&oacute;'    Name.Entity
+' '           Text
+'&ocirc;'     Name.Entity
+' '           Text
+'&otilde;'    Name.Entity
+' '           Text
+'&ouml;'      Name.Entity
+' '           Text
+'&oslash;'    Name.Entity
+' '           Text
+'&oelig;'     Name.Entity
+'\n'          Text
+
+'\n'          Text
+
+'&ugrave;'    Name.Entity
+' '           Text
+'&uacute;'    Name.Entity
+' '           Text
+'&ucirc;'     Name.Entity
+' '           Text
+'&uuml;'      Name.Entity
+' '           Text
+'&yuml;'      Name.Entity
+'\n'          Text

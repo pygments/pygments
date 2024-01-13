@@ -4,35 +4,34 @@
 
     Lexers for the Io language.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 from pygments.lexer import RegexLexer
-from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number
+from pygments.token import Comment, Operator, Keyword, Name, String, Number, \
+    Whitespace
 
 __all__ = ['IoLexer']
 
 
 class IoLexer(RegexLexer):
     """
-    For `Io <http://iolanguage.com/>`_ (a small, prototype-based
-    programming language) source.
-
-    .. versionadded:: 0.10
+    For Io (a small, prototype-based programming language) source.
     """
     name = 'Io'
+    url = 'http://iolanguage.com/'
     filenames = ['*.io']
     aliases = ['io']
     mimetypes = ['text/x-iosrc']
+    version_added = '0.10'
     tokens = {
         'root': [
-            (r'\n', Text),
-            (r'\s+', Text),
+            (r'\n', Whitespace),
+            (r'\s+', Whitespace),
             # Comments
-            (r'//(.*?)\n', Comment.Single),
-            (r'#(.*?)\n', Comment.Single),
+            (r'//(.*?)$', Comment.Single),
+            (r'#(.*?)$', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
             (r'/\+', Comment.Multiline, 'nestedcomment'),
             # DoubleQuotedString

@@ -1,0 +1,49 @@
+---input---
+foo = "this string should" # not extend into the comment that contains "quotes"
+bar = 'same with a' # basic 'string'
+baz = """same with a""" # multiline """basic string"""
+spam = '''same with a''' # multiline '''literal string'''
+
+---tokens---
+'foo'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'this string should' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'# not extend into the comment that contains "quotes"' Comment.Single
+'\n'          Text.Whitespace
+
+'bar'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Single
+"same with a'" Literal.String.Single
+' '           Text.Whitespace
+"# basic 'string'" Comment.Single
+'\n'          Text.Whitespace
+
+'baz'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"""'         Literal.String.Double
+'same with a' Literal.String.Double
+'"""'         Literal.String.Double
+' '           Text.Whitespace
+'# multiline """basic string"""' Comment.Single
+'\n'          Text.Whitespace
+
+'spam'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'''"         Literal.String.Single
+'same with a' Literal.String.Single
+"'''"         Literal.String.Single
+' '           Text.Whitespace
+"# multiline '''literal string'''" Comment.Single
+'\n'          Text.Whitespace

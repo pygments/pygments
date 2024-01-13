@@ -2,10 +2,11 @@
 
 'Enter ".help" for instructions\n' Generic.Output
 
-'sqlite> '    Generic.Prompt
+'sqlite>'     Generic.Prompt
+' '           Text.Whitespace
 '.'           Punctuation
 'schema'      Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'CREATE TABLE paste (paste_id integer, code text, parsed_code text, pub_date\n' Generic.Output
 
@@ -13,63 +14,69 @@
 
 'CREATE TABLE vars (key varchar(24), value varchar(128));\n' Generic.Output
 
-'sqlite> '    Generic.Prompt
+'sqlite>'     Generic.Prompt
+' '           Text.Whitespace
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 "'\n"         Literal.String.Single
 
-'   ...> '    Generic.Prompt
+'   ...>'     Generic.Prompt
+' '           Text.Whitespace
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   ...> '    Generic.Prompt
+'   ...>'     Generic.Prompt
+' '           Text.Whitespace
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SQL error: near "a": syntax error\n' Generic.Traceback
 
-'sqlite> '    Generic.Prompt
+'sqlite>'     Generic.Prompt
+' '           Text.Whitespace
 '%'           Operator
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SQL error: near "%": syntax error\n' Generic.Traceback
 
-'sqlite> '    Generic.Prompt
+'sqlite>'     Generic.Prompt
+' '           Text.Whitespace
 'select'      Keyword
-' '           Text
+' '           Text.Whitespace
 'count'       Keyword
 '('           Punctuation
 'language'    Keyword
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'language'    Keyword
-' '           Text
+' '           Text.Whitespace
 'from'        Keyword
-' '           Text
+' '           Text.Whitespace
 'paste'       Name
-' '           Text
+' '           Text.Whitespace
 'group'       Keyword
-' '           Text
+' '           Text.Whitespace
 'by'          Keyword
-' '           Text
+' '           Text.Whitespace
 'language'    Keyword
-' '           Text
+' '           Text.Whitespace
 'order'       Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'   ...> '    Generic.Prompt
+'   ...>'     Generic.Prompt
+' '           Text.Whitespace
 'by'          Keyword
-' '           Text
+' '           Text.Whitespace
 'count'       Keyword
 '('           Punctuation
 'language'    Keyword
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'desc'        Keyword
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '144|python\n' Generic.Output
 
@@ -95,5 +102,6 @@
 
 '1|scheme\n'  Generic.Output
 
-'sqlite> '    Generic.Prompt
-'\n'          Text
+'sqlite>'     Generic.Prompt
+' '           Text.Whitespace
+'\n'          Text.Whitespace

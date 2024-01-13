@@ -1,0 +1,40 @@
+---input---
+<script type="text/javascript">
+alert("hi");
+alert("hi");
+alert("hi");
+alert("hi");
+<div>
+hi
+</div>
+
+---tokens---
+'<'           Punctuation
+'script'      Name.Tag
+' '           Text
+'type'        Name.Attribute
+'='           Operator
+'"text/javascript"' Literal.String
+'>'           Punctuation
+''            Text
+'\n'          Text.Whitespace
+
+'alert'       Name.Other
+'('           Punctuation
+'"hi"'        Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'alert("hi");\nalert("hi");\nalert("hi");\n' Text
+
+'<'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\nhi\n'      Text
+
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n'          Text

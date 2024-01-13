@@ -3,8 +3,10 @@ key = doubleword\ value
 
 ---tokens---
 'key'         Name.Attribute
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
-'doubleword\\ value' Literal.String
-'\n'          Text
+' '           Text.Whitespace
+'doubleword'  Literal.String
+'\\ '         Literal.String.Escape
+'value'       Literal.String
+'\n'          Text.Whitespace

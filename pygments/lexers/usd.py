@@ -4,7 +4,7 @@
 
     The module that parses Pixar's Universal Scene Description file format.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -30,13 +30,13 @@ _WHITESPACE = r"([ \t]+)"
 class UsdLexer(RegexLexer):
     """
     A lexer that parses Pixar's Universal Scene Description file format.
-
-    .. versionadded:: 2.6
     """
 
     name = "USD"
+    url = 'https://graphics.pixar.com/usd/release/index.html'
     aliases = ["usd", "usda"]
     filenames = ["*.usd", "*.usda"]
+    version_added = '2.6'
 
     tokens = {
         "root": [

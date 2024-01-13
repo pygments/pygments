@@ -4,7 +4,7 @@
 
     Formatter for SVG output.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -60,11 +60,11 @@ class SvgFormatter(Formatter):
 
     `linenostep`
         If set to a number n > 1, only every nth line number is printed.
-        
+
     `linenowidth`
         Maximum width devoted to line numbers (default: ``3*ystep``, sufficient
-        for up to 4-digit line numbers. Increase width for longer code blocks).  
-        
+        for up to 4-digit line numbers. Increase width for longer code blocks).
+
     `xoffset`
         Starting offset in X direction, defaults to ``0``.
 
@@ -97,10 +97,11 @@ class SvgFormatter(Formatter):
         self.fontsize = options.get('fontsize', '14px')
         self.xoffset = get_int_opt(options, 'xoffset', 0)
         fs = self.fontsize.strip()
-        if fs.endswith('px'): fs = fs[:-2].strip()
+        if fs.endswith('px'):
+            fs = fs[:-2].strip()
         try:
             int_fs = int(fs)
-        except:
+        except ValueError:
             int_fs = 20
         self.yoffset = get_int_opt(options, 'yoffset', int_fs)
         self.ystep = get_int_opt(options, 'ystep', int_fs + 5)
@@ -132,12 +133,12 @@ class SvgFormatter(Formatter):
             outfile.write('<svg xmlns="http://www.w3.org/2000/svg">\n')
             outfile.write('<g font-family="%s" font-size="%s">\n' %
                           (self.fontfamily, self.fontsize))
-        
-        counter = self.linenostart 
+
+        counter = self.linenostart
         counter_step = self.linenostep
         counter_style = self._get_style(Comment)
         line_x = x
-        
+
         if self.linenos:
             if counter % counter_step == 0:
                 outfile.write('<text x="%s" y="%s" %s text-anchor="end">%s</text>' %
@@ -161,7 +162,7 @@ class SvgFormatter(Formatter):
                 if self.linenos and counter % counter_step == 0:
                     outfile.write('<text x="%s" y="%s" text-anchor="end" %s>%s</text>' %
                         (x+self.linenowidth,y,counter_style,counter))
-                
+
                 counter += 1
                 outfile.write('<text x="%s" y="%s" ' 'xml:space="preserve">' % (line_x,y))
             outfile.write(tspan + parts[-1] + tspanend)

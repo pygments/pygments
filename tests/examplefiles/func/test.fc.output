@@ -1,0 +1,429 @@
+'#include'    Keyword
+' '           Text.Whitespace
+'"../"'       Literal.String
+';'           Text
+'\n'          Text.Whitespace
+
+'#pragma'     Keyword
+' '           Text.Whitespace
+'version'     Keyword
+' '           Text.Whitespace
+'>=1.0.0'     Literal.Number
+';'           Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'global'      Keyword.Constant
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'k_const'     Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Constant
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'k'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'recv_internal' Name.Function
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text.Whitespace
+'my_balance'  Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'msg_value'   Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'cell'        Keyword.Type
+' '           Text.Whitespace
+'in_msg_full' Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'slice'       Keyword.Type
+' '           Text.Whitespace
+'in_msg_body' Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'impure'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'slice'       Keyword.Type
+' '           Text.Whitespace
+'cs'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'in_msg_full' Name.Variable
+'.'           Punctuation
+'begin_parse' Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'flags'       Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'cs'          Name.Variable
+'~'           Punctuation
+'load_uint'   Name.Function
+'('           Punctuation
+'0x4_1_0'     Literal.Number
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'('           Punctuation
+'flags'       Name.Variable
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Punctuation
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'true'        Keyword.Constant
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+';; ignore all bounced messages' Comment.Singleline
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'slice'       Keyword.Type
+' '           Text.Whitespace
+'sender_address' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'cs'          Name.Variable
+'~'           Punctuation
+'load_msg_addr' Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'{-'          Comment.Multiline
+'\n    '      Comment.Multiline
+'{-'          Comment.Multiline
+'\n    test ' Comment.Multiline
+'-'           Comment.Multiline
+' is test\n    ' Comment.Multiline
+'-}'          Comment.Multiline
+'\n    '      Comment.Multiline
+'-}'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+';; Send message' Comment.Singleline
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'var'         Keyword.Type
+' '           Text.Whitespace
+'message'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'begin_cell'  Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'.'           Punctuation
+'store_uint'  Name.Function
+'('           Punctuation
+'0x18'        Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'6'           Literal.Number
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'.'           Punctuation
+'store_slice' Name.Function
+'('           Punctuation
+'sender_address' Name.Variable
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'.'           Punctuation
+'store_coins' Name.Function
+'('           Punctuation
+'0'           Literal.Number
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'.'           Punctuation
+'store_uint'  Name.Function
+'('           Punctuation
+'0'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'4'           Literal.Number
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'4'           Literal.Number
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'64'          Literal.Number
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'32'          Literal.Number
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'.'           Punctuation
+'store_slice' Name.Function
+'('           Punctuation
+'"Hello, world!"s' Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'.'           Punctuation
+'end_cell'    Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'send_raw_message' Name.Function
+'('           Punctuation
+'message'     Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'64'          Literal.Number
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+';; Update counter' Comment.Singleline
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'var'         Keyword.Type
+' '           Text.Whitespace
+'cs'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'get_data'    Name.Function
+'('           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'begin_parse' Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'var'         Keyword.Type
+' '           Text.Whitespace
+'counter'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'data'        Name.Variable
+'~'           Punctuation
+'load_uint'   Name.Function
+'('           Punctuation
+'32'          Literal.Number
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'store_data'  Name.Function
+'('           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'begin_cell'  Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'.'           Punctuation
+'store_uint'  Name.Function
+'('           Punctuation
+'counter'     Name.Variable
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'32'          Literal.Number
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'.'           Punctuation
+'end_cell'    Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'recv_external' Name.Function
+'('           Punctuation
+'slice'       Keyword.Type
+' '           Text.Whitespace
+'in_msg'      Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'impure'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'throw'       Name.Function
+'('           Punctuation
+'0xffff'      Literal.Number
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'counter'     Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'method_id'   Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'var'         Keyword.Type
+' '           Text.Whitespace
+'data'        Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'get_data'    Name.Function
+'('           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'begin_parse' Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'data'        Name.Variable
+'~'           Punctuation
+'load_uint'   Name.Function
+'('           Punctuation
+'32'          Literal.Number
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

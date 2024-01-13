@@ -9,7 +9,7 @@
 '.'           Comment.Preproc
 'i'           Comment.Preproc
 '}'           Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Comment.Preproc
 'n'           Comment.Preproc
@@ -34,47 +34,47 @@
 '}'           Comment.Preproc
 '}'           Comment.Preproc
 '\n\n&SCOPED-DEFINE MY_NAME "Abe"' Comment.Preproc
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'DEF'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'VAR'         Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'i'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'AS'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'INT'         Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'NO-UNDO'     Name.Builtin
 '.'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'i'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '0xABE'       Literal.Number.Hex
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '1337'        Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 '1.00'        Literal.Number.Float
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'def'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'var'         Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'c'           Name.Variable
 'l'           Name.Variable
 'o'           Name.Variable
@@ -89,19 +89,19 @@
 'e'           Name.Variable
 's'           Name.Variable
 't'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'as'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'char'        Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'no-undo'     Name.Builtin
 '.'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'DEF'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'VAR'         Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'v'           Name.Variable
 'a'           Name.Variable
 'r'           Name.Variable
@@ -113,19 +113,19 @@
 'e'           Name.Variable
 's'           Name.Variable
 't'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'AS'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'DATETIME-TZ' Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'NO-UNDO'     Name.Builtin
 '.'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'DEFINE'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'TEMP-TABLE'  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 't'           Name.Variable
 't'           Name.Variable
 'N'           Name.Variable
@@ -133,23 +133,23 @@
 'm'           Name.Variable
 'e'           Name.Variable
 's'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'NO-UNDO\n '  Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'FIELD'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'c'           Name.Variable
 'N'           Name.Variable
 'a'           Name.Variable
 'm'           Name.Variable
 'e'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'AS'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'CHAR\n '     Keyword.Type
-' '           Text
+' '           Text.Whitespace
 'INDEX'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'I'           Name.Variable
 'X'           Name.Variable
 'P'           Name.Variable
@@ -162,20 +162,20 @@
 'm'           Name.Variable
 'e'           Name.Variable
 's'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'IS'          Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'PRIMARY'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'UNIQUE'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'c'           Name.Variable
 'N'           Name.Variable
 'a'           Name.Variable
 'm'           Name.Variable
 'e'           Name.Variable
 '.'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '/*'          Comment.Multiline
 ' '           Comment.Multiline
@@ -197,7 +197,7 @@
 't'           Comment.Multiline
 ' '           Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*'          Comment.Multiline
 ' '           Comment.Multiline
@@ -224,7 +224,7 @@
 ' '           Comment.Multiline
 ' '           Comment.Multiline
 '*/'          Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/*'          Comment.Multiline
 '\n'          Comment.Multiline
@@ -294,10 +294,10 @@
 '\n'          Comment.Multiline
 
 '*/'          Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'CREATE'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 't'           Name.Variable
 't'           Name.Variable
 'N'           Name.Variable
@@ -306,10 +306,10 @@
 'e'           Name.Variable
 's'           Name.Variable
 '.'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ASSIGN'      Name.Builtin
-' '           Text
+' '           Text.Whitespace
 't'           Name.Variable
 't'           Name.Variable
 'N'           Name.Variable
@@ -323,9 +323,9 @@
 'a'           Name.Variable
 'm'           Name.Variable
 'e'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Comment.Preproc
 '&'           Comment.Preproc
 'M'           Comment.Preproc
@@ -337,12 +337,12 @@
 'E'           Comment.Preproc
 '}'           Comment.Preproc
 '.'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'FOR'         Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'EACH'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 't'           Name.Variable
 't'           Name.Variable
 'N'           Name.Variable
@@ -351,12 +351,12 @@
 'e'           Name.Variable
 's'           Name.Variable
 ':'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 'MESSAGE '    Name.Builtin
 '"Hello, "'   Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 't'           Name.Variable
 't'           Name.Variable
 'N'           Name.Variable
@@ -370,17 +370,17 @@
 'a'           Name.Variable
 'm'           Name.Variable
 'e'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 "'!'"         Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'VIEW-AS'     Name.Builtin
-' '           Text
+' '           Text.Whitespace
 'ALERT-BOX'   Name.Builtin
 '.'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'END'         Name.Builtin
 '.'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

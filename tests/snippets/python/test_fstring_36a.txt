@@ -8,9 +8,9 @@ f'''{foo
 "'''"         Literal.String.Single
 '{'           Literal.String.Interpol
 'foo'         Name
-'\n      '    Text
+'\n      '    Text.Whitespace
 '= !s:'       Literal.String.Interpol
 '20'          Literal.String.Single
 '}'           Literal.String.Interpol
 "'''"         Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace

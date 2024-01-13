@@ -1,0 +1,20 @@
+---input---
+[example] # A comment can appear on the same line as a section header
+foo = "bar"
+
+---tokens---
+'['           Keyword
+'example'     Keyword
+']'           Keyword
+' '           Text.Whitespace
+'# A comment can appear on the same line as a section header' Comment.Single
+'\n'          Text.Whitespace
+
+'foo'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'bar'         Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace

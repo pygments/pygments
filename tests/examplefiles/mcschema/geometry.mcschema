@@ -1,0 +1,225 @@
+geometry:1.16.0:{
+    version "format_version"
+    bool "debug" : opt
+    array "minecraft:geometry"[1,*]
+    {
+        object "<any array element>"
+        {
+            object "description"
+            {
+                string "identifier" // Entity definition and Client Block definition files refer to this geometry via this identifier.
+                float "visible_bounds_width" : opt // Width of the visibility bounding box (in model space units).
+                float "visible_bounds_height" : opt // Height of the visible bounding box (in model space units).
+                array "visible_bounds_offset"[3] : opt
+                {
+                    float "<any array element>" // Offset of the visibility bounding box from the entity location point (in model space units).
+                }
+                int "texture_width" : opt // Assumed width in texels of the texture that will be bound to this geometry.
+                int "texture_height" : opt // Assumed height in texels of the texture that will be bound to this geometry.
+            }
+            string "cape" : opt
+            array "bones" : opt // Bones define the 'skeleton' of the mob: the parts that can be animated, and to which geometry and other bones are attached.
+            {
+                object "<any array element>" : opt
+                {
+                    string "name" // Animation files refer to this bone via this identifier.
+                    string "parent" : opt // Bone that this bone is relative to.  If the parent bone moves, this bone will move along with it.
+                    array "pivot"[3] : opt
+                    {
+                        float "<any array element>" // The bone pivots around this point (in model space units).
+                    }
+                    array "rotation"[3] : opt
+                    {
+                        float "<any array element>" // This is the initial rotation of the bone around the pivot, pre-animation (in degrees, x-then-y-then-z order).
+                    }
+                    bool "mirror" : opt // Mirrors the UV's of the unrotated cubes along the x axis, also causes the east/west faces to get flipped.
+                    float "inflate" : opt // Grow this box by this additive amount in all directions (in model space units).
+                    bool "debug" : opt
+                    int "render_group_id"<0-*> : opt
+                    array "cubes" : opt // This is the list of cubes associated with this bone.
+                    {
+                        object "<any array element>" : opt
+                        {
+                            array "origin"[3] : opt
+                            {
+                                float "<any array element>" // This point declares the unrotated lower corner of cube (smallest x/y/z value in model space units).
+                            }
+                            array "size"[3] : opt
+                            {
+                                float "<any array element>" // The cube extends this amount relative to its origin (in model space units).
+                            }
+                            array "rotation"[3] : opt
+                            {
+                                float "<any array element>" // The cube is rotated by this amount (in degrees, x-then-y-then-z order) around the pivot.
+                            }
+                            array "pivot"[3] : opt
+                            {
+                                float "<any array element>" // If this field is specified, rotation of this cube occurs around this point, otherwise its rotation is around the center of the box.
+                            }
+                            float "inflate" : opt // Grow this box by this additive amount in all directions (in model space units), this field overrides the bone's inflate field for this cube only.
+                            bool "mirror" : opt // Mirrors this cube about the unrotated x axis (effectively flipping the east / west faces), overriding the bone's 'mirror' setting for this cube.
+                            array "uv"[2] : opt
+                            {
+                                float "<any array element>" // Specifies the upper-left corner on the texture for the start of the texture mapping for this box.
+                            }
+                            object "uv" : opt // This is an alternate per-face uv mapping which specifies each face of the cube.  Omitting a face will cause that face to not get drawn.
+                            {
+                                object "north" : opt // Specifies the UV's for the face that stretches along the x and y axes, and faces the -z axis.
+                                {
+                                    array "uv"[2]
+                                    {
+                                        float "<any array element>" // Specifies the uv origin for the face. For this face, it is the upper-left corner, when looking at the face with y being up.
+                                    }
+                                    array "uv_size"[2] : opt
+                                    {
+                                        float "<any array element>" // The face maps this many texels from the uv origin. If not specified, the box dimensions are used instead.
+                                    }
+                                    string "material_instance" : opt
+                                }
+                                object "south" : opt // Specifies the UV's for the face that stretches along the x and y axes, and faces the z axis
+                                {
+                                    array "uv"[2]
+                                    {
+                                        float "<any array element>" // Specifies the uv origin for the face. For this face, it is the upper-left corner, when looking at the face with y being up.
+                                    }
+                                    array "uv_size"[2] : opt
+                                    {
+                                        float "<any array element>" // The face maps this many texels from the uv origin. If not specified, the box dimensions are used instead.
+                                    }
+                                    string "material_instance" : opt
+                                }
+                                object "east" : opt // Specifies the UV's for the face that stretches along the z and y axes, and faces the x axis
+                                {
+                                    array "uv"[2]
+                                    {
+                                        float "<any array element>" // Specifies the uv origin for the face. For this face, it is the upper-left corner, when looking at the face with y being up.
+                                    }
+                                    array "uv_size"[2] : opt
+                                    {
+                                        float "<any array element>" // The face maps this many texels from the uv origin. If not specified, the box dimensions are used instead.
+                                    }
+                                    string "material_instance" : opt
+                                }
+                                object "west" : opt // Specifies the UV's for the face that stretches along the z and y axes, and faces the -x axis
+                                {
+                                    array "uv"[2]
+                                    {
+                                        float "<any array element>" // Specifies the uv origin for the face. For this face, it is the upper-left corner, when looking at the face with y being up.
+                                    }
+                                    array "uv_size"[2] : opt
+                                    {
+                                        float "<any array element>" // The face maps this many texels from the uv origin. If not specified, the box dimensions are used instead.
+                                    }
+                                    string "material_instance" : opt
+                                }
+                                object "up" : opt // Specifies the UV's for the face that stretches along the x and z axes, and faces the y axis
+                                {
+                                    array "uv"[2]
+                                    {
+                                        float "<any array element>" // Specifies the uv origin for the face. For this face, it is the back-upper-left corner, assuming you're facing 'north' relative to the cube.
+                                    }
+                                    array "uv_size"[2] : opt
+                                    {
+                                        float "<any array element>" // The face maps this many texels from the uv origin. If not specified, the box dimensions are used instead.
+                                    }
+                                    string "material_instance" : opt
+                                }
+                                object "down" : opt // Specifies the UV's for the face that stretches along the x and z axes, and faces the -y axis
+                                {
+                                    array "uv"[2]
+                                    {
+                                        float "<any array element>" // Specifies the uv origin for the face. For this face, it is the back-down-right corner, assuming you're facing 'north' relative to the cube.
+                                    }
+                                    array "uv_size"[2] : opt
+                                    {
+                                        float "<any array element>" // The face maps this many texels from the uv origin. If not specified, the box dimensions are used instead.
+                                    }
+                                    string "material_instance" : opt
+                                }
+                            }
+                        }
+                    }
+                    molang "binding" : opt // useful for items.  A molang expression specifying the bone name of the parent skeletal hierarchy that this bone should use as the root transform.  Without this field it will look for a bone in the parent entity with the same name as this bone.  If both are missing, it will assume a local skeletal hierarchy (via the "parent" field).  If that is also missing, it will attach to the owning entity's root transform.
+                    object "locators" : opt
+                    {
+                        array "<identifier>" : opt // This is a list of locators associated with this bone.  A locator is a point in model space that tracks a particular bone as the bone animates (by maintaining it's relationship to the bone through the animation).
+                        {
+                            float "<any array element>" : opt // Position of the locator in model space.
+                        }
+                        object "<identifier>" : opt // This is a list of locators associated with this bone.  A locator is a point in model space that tracks a particular bone as the bone animates (by maintaining it's relationship to the bone through the animation).
+                        {
+                            array "offset"
+                            {
+                                float "<any array element>" : opt // Position of the locator in model space.
+                            }
+                            array "rotation"
+                            {
+                                float "<any array element>" : opt // Rotation of the locator in model space.
+                            }
+                            bool "ignore_inherited_scale" : opt // Discard scale inherited from parent bone.
+                        }
+                    }
+                    object "poly_mesh" : opt // ***EXPERIMENTAL*** A triangle or quad mesh object.  Can be used in conjunction with cubes and texture geometry.
+                    {
+                        bool "normalized_uvs" : opt // If true, UVs are assumed to be [0-1].  If false, UVs are assumed to be [0-texture_width] and [0-texture_height] respectively.
+                        array "positions" : opt
+                        {
+                            array "<any array element>"[3] : opt
+                            {
+                                float "<any array element>" // Vertex positions for the mesh.  Can be either indexed via the "polys" section, or be a quad-list if mapped 1-to-1 to the normals and UVs sections.
+                            }
+                        }
+                        array "normals" : opt
+                        {
+                            array "<any array element>"[3] : opt
+                            {
+                                float "<any array element>" // Vertex normals.  Can be either indexed via the "polys" section, or be a quad-list if mapped 1-to-1 to the positions and UVs sections.
+                            }
+                        }
+                        array "uvs" : opt
+                        {
+                            array "<any array element>"[2] : opt
+                            {
+                                float "<any array element>" // Vertex UVs.  Can be either indexed via the "polys" section, or be a quad-list if mapped 1-to-1 to the positions and normals sections.
+                            }
+                        }
+                        array "polys"
+                        {
+                            array "<any array element>"[3,4] : opt
+                            {
+                                array "<any array element>"[3]
+                                {
+                                    float "<any array element>" // Poly element indices, as an array of polygons, each an array of either three or four vertices, each an array of indices into positions, normals, and UVs (in that order).
+                                }
+                            }
+                        }
+                        string "polys"<"tri_list", "quad_list"> // If not specifying vertex indices, arrays of data must be a list of tris or quads, set by making this property either "tri_list" or "quad_list"
+                    }
+                    array "texture_meshes" : opt // ***EXPERIMENTAL*** Adds a mesh to the bone's geometry by converting texels in a texture into boxes
+                    {
+                        object "<any array element>"
+                        {
+                            string "texture" // The friendly-named texture to use.
+                            array "position"[3] : opt
+                            {
+                                float "<any array element>" // The position of the pivot point after rotation (in *entity space* not texture or bone space) of the texture geometry
+                            }
+                            array "local_pivot"[3] : opt
+                            {
+                                float "<any array element>" // The pivot point on the texture (in *texture space* not entity or bone space) of the texture geometry
+                            }
+                            array "rotation"[3] : opt
+                            {
+                                float "<any array element>" // The rotation (in degrees) of the texture geometry relative to the offset
+                            }
+                            array "scale"[3] : opt
+                            {
+                                float "<any array element>" // The scale (in degrees) of the texture geometry relative to the offset
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

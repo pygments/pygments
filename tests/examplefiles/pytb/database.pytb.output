@@ -1,6 +1,6 @@
 'Text before\n' Other
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Traceback (most recent call last):\n' Generic.Traceback
 
@@ -10,16 +10,16 @@
 '314'         Literal.Number
 ', in '       Text
 'dispatch_request' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'dispatcher'  Name
 '.'           Operator
 'dispatch'    Name
 '('           Punctuation
 'req'         Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  File '     Text
 '"/usr/lib/python2.3/site-packages/trac/web/main.py"' Name.Builtin
@@ -27,9 +27,9 @@
 '186'         Literal.Number
 ', in '       Text
 'dispatch'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'req'         Name
 '.'           Operator
 'session'     Name
@@ -45,7 +45,7 @@
 ' '           Text
 'req'         Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  File '     Text
 '"/usr/lib/python2.3/site-packages/trac/web/session.py"' Name.Builtin
@@ -53,16 +53,16 @@
 '52'          Literal.Number
 ', in '       Text
 '__init__'    Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'self'        Name.Builtin.Pseudo
 '.'           Operator
 'promote_session' Name
 '('           Punctuation
 'sid'         Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  File '     Text
 '"/usr/lib/python2.3/site-packages/trac/web/session.py"' Name.Builtin
@@ -70,9 +70,9 @@
 '125'         Literal.Number
 ', in '       Text
 'promote_session' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '"'           Literal.String.Double
 'AND authenticated=0' Literal.String.Double
 '"'           Literal.String.Double
@@ -83,7 +83,7 @@
 ','           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  File '     Text
 '"/usr/lib/python2.3/site-packages/trac/db/util.py"' Name.Builtin
@@ -91,9 +91,9 @@
 '47'          Literal.Number
 ', in '       Text
 'execute'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
 ' '           Text
 'self'        Name.Builtin.Pseudo
@@ -110,7 +110,7 @@
 ' '           Text
 'args'        Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  File '     Text
 '"/usr/lib/python2.3/site-packages/trac/db/sqlite_backend.py"' Name.Builtin
@@ -118,9 +118,9 @@
 '44'          Literal.Number
 ', in '       Text
 'execute'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'args'        Name
 ' '           Text
 'or'          Operator.Word
@@ -128,7 +128,7 @@
 '['           Punctuation
 ']'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  File '     Text
 '"/usr/lib/python2.3/site-packages/trac/db/sqlite_backend.py"' Name.Builtin
@@ -136,9 +136,9 @@
 '36'          Literal.Number
 ', in '       Text
 '_rollback_on_error' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
 ' '           Text
 'function'    Name
@@ -154,13 +154,13 @@
 '*'           Operator
 'kwargs'      Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'OperationalError' Generic.Error
 ': '          Text
 'database is locked' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Text after\n' Other

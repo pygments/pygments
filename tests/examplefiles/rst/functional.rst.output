@@ -4,38 +4,38 @@
 '================================' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '**Version 0.30**' Generic.Strong
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '(This is a first draft.  Please send comments/error' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'reports/suggestions to amk@amk.ca.  This URL is probably not going to' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'be the final location of the document, so be careful about linking to' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'it -- you may want to add a disclaimer.)' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "In this document, we'll take a tour of Python's features suitable for" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'implementing programs in a functional style.  After an introduction to' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "the concepts of functional programming, we'll look at language" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'features such as iterators and generators and relevant library modules' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'such as '    Text
 '``'          Literal.String
@@ -46,19 +46,19 @@
 'functools'   Literal.String
 '``'          Literal.String
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '..'          Punctuation
 ' '           Text
 'contents'    Operator.Word
 '::'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Introduction' Generic.Heading
 '\n'          Text
@@ -66,25 +66,25 @@
 '----------------------' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'This section explains the basic concept of functional programming; if' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "you're just interested in learning about Python language features," Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'skip to the next section.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Programming languages support decomposing problems in several different ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'ways'        Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
@@ -93,16 +93,16 @@
 '**procedural**' Generic.Strong
 ':'           Text
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  programs are lists of instructions that tell the computer what to' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "  do with the program's input." Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  C, Pascal, and even Unix shells are procedural languages.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
@@ -110,25 +110,25 @@
 ' In '        Text
 '**declarative**' Generic.Strong
 ' languages, you write a specification that describes ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  the problem to be solved, and the language implementation figures out ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  how to perform the computation efficiently.  SQL is the declarative ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "  language you're most likely to be familiar with; a SQL query describes" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  the data set you want to retrieve, and the SQL engine decides whether to ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  scan tables or use indexes, which subclauses should be performed first,' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  etc.'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
@@ -136,22 +136,22 @@
 ' '           Text
 '**Object-oriented**' Generic.Strong
 ' programs manipulate  collections of objects.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  Objects have internal state and support methods that query or modify' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  this internal state in some way. Smalltalk and Java are' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  object-oriented languages.  C++ and Python are languages that' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "  support object-oriented programming, but don't force the use " Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  of object-oriented features.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
@@ -159,84 +159,84 @@
 ' '           Text
 '**Functional**' Generic.Strong
 ' programming decomposes a problem into a set of functions.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "  Ideally, functions only take inputs and produce outputs, and don't have any " Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  internal state that affects the output produced for a given input.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  Well-known functional languages include the ML family (Standard ML,' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  OCaml, and other variants) and Haskell.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The designers of some computer languages have chosen one approach to ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "programming that's emphasized.  This often makes it difficult to" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'write programs that use a different approach.  Other languages are' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'multi-paradigm languages that support several different approaches.  Lisp,' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'C++, and Python are multi-paradigm; you can write programs or' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'libraries that are largely procedural, object-oriented, or functional' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'in all of these languages.  In a large program, different sections' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'might be written using different approaches; the GUI might be object-oriented' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'while the processing logic is procedural or functional, for example.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'In a functional program, input flows through a set of functions. Each' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'function operates on its input and produces some output.  Functional' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'style frowns upon functions with side effects that modify internal' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "state or make other changes that aren't visible in the function's" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'return value.  Functions that have no side effects at all are ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'called '     Text
 '**purely functional**' Generic.Strong
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Avoiding side effects means not using data structures' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "that get updated as a program runs; every function's output " Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'must only depend on its input.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "Some languages are very strict about purity and don't even have" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'assignment statements such as ' Text
 '``'          Literal.String
@@ -247,13 +247,13 @@
 'c = a + b'   Literal.String
 '``'          Literal.String
 ", but it's"  Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'difficult to avoid all side effects.  Printing to the screen or' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'writing to a disk file are side effects, for example.  For example, in' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Python a '   Text
 '``'          Literal.String
@@ -264,94 +264,94 @@
 'time.sleep(1)' Literal.String
 '``'          Literal.String
 ' both return no' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "useful value; they're only called for their side effects of sending" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'some text to the screen or pausing execution for a second.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "Python programs written in functional style usually won't go to the" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "extreme of avoiding all I/O or all assignments; instead, they'll" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'provide a functional-appearing interface but will use non-functional' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'features internally.  For example, the implementation of a function' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "will still use assignments to local variables, but won't modify global" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'variables or have other side effects.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Functional programming can be considered the opposite of' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'object-oriented programming.  Objects are little capsules containing' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'some internal state along with a collection of method calls that let' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'you modify this state, and programs consist of making the right set of' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'state changes.  Functional programming wants to avoid state changes as' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'much as possible and works with data flowing between functions.  In' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Python you might combine the two approaches by writing functions that' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'take and return instances representing objects in your application' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '(e-mail messages, transactions, etc.).' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Functional design may seem like an odd constraint to work under.  Why' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'should you avoid objects and side effects?  There are theoretical and' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'practical advantages to the functional style' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
 '*'           Literal.Number
 ' Formal provability.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Literal.Number
 ' Modularity.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Literal.Number
 ' Composability.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Literal.Number
 ' Ease of debugging and testing.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Formal provability' Generic.Heading
 '\n'          Text
@@ -359,108 +359,108 @@
 "''''''''''''''''''''''" Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "A theoretical benefit is that it's easier to construct a mathematical proof" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'that a functional program is correct.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'For a long time researchers have been interested in finding ways to' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'mathematically prove programs correct.  This is different from testing' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a program on numerous inputs and concluding that its output is usually' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "correct, or reading a program's source code and concluding that the" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'code looks right; the goal is instead a rigorous proof that a program' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'produces the right result for all possible inputs.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The technique used to prove programs correct is to write down ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '**invariants**' Generic.Strong
 ", properties of the input data and of the program's " Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'variables that are always true.  For each line of code, you then show ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'that if invariants X and Y are true ' Text
 '**before**'  Generic.Strong
 ' the line is executed, ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "the slightly different invariants X' and Y' are true " Text
 '**after**'   Generic.Strong
-'\n'          Text
+'\n'          Text.Whitespace
 
 'the line is executed.  This continues until you reach the end of the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'program, at which point the invariants should match the desired ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "conditions on the program's output." Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "Functional programming's avoidance of assignments arose because " Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'assignments are difficult to handle with this technique; ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'assignments can break invariants that were true before the assignment' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'without producing any new invariants that can be propagated onward.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Unfortunately, proving programs correct is largely impractical and not' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'relevant to Python software. Even trivial programs require proofs that' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'are several pages long; the proof of correctness for a moderately' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'complicated program would be enormous, and few or none of the programs' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'you use daily (the Python interpreter, your XML parser, your web' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'browser) could be proven correct.  Even if you wrote down or generated' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a proof, there would then be the question of verifying the proof;' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "maybe there's an error in it, and you wrongly believe you've proved" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'the program correct.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Modularity'  Generic.Heading
 '\n'          Text
@@ -468,29 +468,29 @@
 "''''''''''''''''''''''" Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'A more practical benefit of functional programming is that it forces' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'you to break apart your problem into small pieces.  Programs are more' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "modular as a result.  It's easier to specify and write a small" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'function that does one thing than a large function that performs a' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'complicated transformation.  Small functions are also easier to read' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'and to check for errors.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Ease of debugging and testing ' Generic.Heading
 '\n'          Text
@@ -498,47 +498,47 @@
 "''''''''''''''''''''''''''''''''''" Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Testing and debugging a functional-style program is easier.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Debugging is simplified because functions are generally small and' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "clearly specified.  When a program doesn't work, each function is an" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'interface point where you can check that the data are correct.  You' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'can look at the intermediate inputs and outputs to quickly isolate the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "function that's responsible for a bug." Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Testing is easier because each function is a potential subject for a' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "unit test.  Functions don't depend on system state that needs to be" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'replicated before running a test; instead you only have to synthesize' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'the right input and then check that the output matches expectations.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Composability' Generic.Heading
 '\n'          Text
@@ -546,48 +546,48 @@
 "''''''''''''''''''''''" Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "As you work on a functional-style program, you'll write a number of" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'functions with varying inputs and outputs.  Some of these functions' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'will be unavoidably specialized to a particular application, but' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'others will be useful in a wide variety of programs.  For example, a' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'function that takes a directory path and returns all the XML files in' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'the directory, or a function that takes a filename and returns its' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'contents, can be applied to many different situations.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "Over time you'll form a personal library of utilities.  Often you'll" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'assemble new programs by arranging existing functions in a new' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'configuration and writing a few functions specialized for the current' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'task.'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Iterators'   Generic.Heading
 '\n'          Text
@@ -595,33 +595,33 @@
 '-----------------------' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "I'll start by looking at a Python language feature that's an important" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'foundation for writing functional-style programs' Text
 ':'           Text
 ' iterators.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'An iterator is an object representing a stream of data; this object' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'returns the data one element at a time.  A Python iterator must' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'support a method called ' Text
 '``'          Literal.String
 'next()'      Literal.String
 '``'          Literal.String
 ' that takes no arguments and always' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'returns the next element of the stream.  If there are no more elements' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'in the stream, ' Text
 '``'          Literal.String
@@ -632,45 +632,45 @@
 'StopIteration' Literal.String
 '``'          Literal.String
 ' exception.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "Iterators don't have to be finite, though; it's perfectly reasonable" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'to write an iterator that produces an infinite stream of data.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The built-in ' Text
 '``'          Literal.String
 'iter()'      Literal.String
 '``'          Literal.String
 ' function takes an arbitrary object and tries' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "to return an iterator that will return the object's contents or" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'elements, raising ' Text
 '``'          Literal.String
 'TypeError'   Literal.String
 '``'          Literal.String
 " if the object doesn't support" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "iteration.  Several of Python's built-in data types support iteration," Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'the most common being lists and dictionaries.  An object is called ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'an '         Text
 '**iterable**' Generic.Strong
 ' object if you can get an iterator for it.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'You can experiment with the iteration interface manually' Text
 '::'          Literal.String.Escape
@@ -683,7 +683,7 @@
 '    >>> it = iter(L)\n    >>> print it\n    <iterator object at 0x8116870>\n    >>> it.next()\n    1\n    >>> it.next()\n    2\n    >>> it.next()\n    3\n    >>> it.next()\n    Traceback (most recent call last):\n      File "<stdin>", line 1, in ?\n    StopIteration\n    >>>      \n\n' Literal.String
 
 'Python expects iterable objects in several different contexts, the ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'most important being the ' Text
 '``'          Literal.String
@@ -694,14 +694,14 @@
 'for X in Y'  Literal.String
 '``'          Literal.String
 ','           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Y must be an iterator or some object for which ' Text
 '``'          Literal.String
 'iter()'      Literal.String
 '``'          Literal.String
 ' can create ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'an iterator.  These two statements are equivalent' Text
 '::'          Literal.String.Escape
@@ -714,7 +714,7 @@
 '            print i\n\n        for i in obj:\n            print i\n\n' Literal.String
 
 'Iterators can be materialized as lists or tuples by using the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'list()'      Literal.String
@@ -736,7 +736,7 @@
 'Sequence unpacking also supports iterators' Text
 ':'           Text
 ' if you know an iterator ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'will return N elements, you can unpack them into an N-tuple' Text
 '::'          Literal.String.Escape
@@ -757,10 +757,10 @@
 'min()'       Literal.String
 '``'          Literal.String
 ' can take a single' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'iterator argument and will return the largest or smallest element.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The '        Text
 '``'          Literal.String
@@ -777,10 +777,10 @@
 'X in\niterator' Literal.String
 '``'          Literal.String
 ' is true if X is found in the stream returned by the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "iterator.  You'll run into obvious problems if the iterator is" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'infinite; '  Text
 '``'          Literal.String
@@ -795,50 +795,50 @@
 '"not in"'    Literal.String
 '``'          Literal.String
 ' will never return, and' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'if the element X never appears in the stream, the ' Text
 '``'          Literal.String
 '"in"'        Literal.String
 '``'          Literal.String
 ' operator'   Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "won't return either." Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "Note that you can only go forward in an iterator; there's no way to" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'get the previous element, reset the iterator, or make a copy of it.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Iterator objects can optionally provide these additional capabilities,' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'but the iterator protocol only specifies the ' Text
 '``'          Literal.String
 'next()'      Literal.String
 '``'          Literal.String
 ' method.'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "Functions may therefore consume all of the iterator's output, and if" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "you need to do something different with the same stream, you'll have" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'to create a new iterator.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Data Types That Support Iterators' Generic.Heading
 '\n'          Text
@@ -846,25 +846,25 @@
 "'''''''''''''''''''''''''''''''''''" Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "We've already seen how lists and tuples support iterators.  In fact," Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'any Python sequence type, such as strings, will automatically support' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'creation of an iterator.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Calling '    Text
 '``'          Literal.String
 'iter()'      Literal.String
 '``'          Literal.String
 ' on a dictionary returns an iterator that will loop' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "over the dictionary's keys" Text
 '::'          Literal.String.Escape
@@ -877,25 +877,25 @@
 "    ...      'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12}\n    >>> for key in m:\n    ...     print key, m[key]\n    Mar 3\n    Feb 2\n    Aug 8\n    Sep 9\n    May 5\n    Jun 6\n    Jul 7\n    Jan 1\n    Apr 4\n    Nov 11\n    Dec 12\n    Oct 10\n\n" Literal.String
 
 "Note that the order is essentially random, because it's based on the" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'hash ordering of the objects in the dictionary.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Applying '   Text
 '``'          Literal.String
 'iter()'      Literal.String
 '``'          Literal.String
 ' to a dictionary always loops over the keys, but' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'dictionaries have methods that return other iterators.  If you want to' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'iterate over keys, values, or key/value pairs, you can explicitly call' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'the '        Text
 '``'          Literal.String
@@ -910,19 +910,19 @@
 'iteritems()' Literal.String
 '``'          Literal.String
 ' methods to' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'get an appropriate iterator.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The '        Text
 '``'          Literal.String
 'dict()'      Literal.String
 '``'          Literal.String
 ' constructor can accept an iterator that returns a' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'finite stream of ' Text
 '``'          Literal.String
@@ -942,10 +942,10 @@
 '``'          Literal.String
 'readline()'  Literal.String
 '``'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'method until there are no more lines in the file.  This means you can' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'read each line of a file like this' Text
 '::'          Literal.String.Escape
@@ -958,7 +958,7 @@
 '        # do something for each line\n        ...\n\n' Literal.String
 
 'Sets can take their contents from an iterable and let you iterate over' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "the set's elements" Text
 '::'          Literal.String.Escape
@@ -976,40 +976,40 @@
 '----------------------------------------------------' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "Two common operations on an iterator's output are 1) performing some" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'operation for every element, 2) selecting a subset of elements that' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'meet some condition.  For example, given a list of strings, you might' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'want to strip off trailing whitespace from each line or extract all' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'the strings containing a given substring.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'List comprehensions and generator expressions (short form' Text
 ':'           Text
 ' "listcomps"' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'and "genexps") are a concise notation for such operations, borrowed' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'from the functional programming language Haskell' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '(http'       Text
 ':'           Text
 '//www.haskell.org).  You can strip all the whitespace from a' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'stream of strings with the following code' Text
 '::'          Literal.String.Escape
@@ -1036,41 +1036,41 @@
 '                         if line != ""]\n\n' Literal.String
 
 'With a list comprehension, you get back a Python list;' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'stripped_list' Literal.String
 '``'          Literal.String
 ' is a list containing the resulting lines, not an' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'iterator.  Generator expressions return an iterator that computes the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'values as necessary, not needing to materialize all the values at' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "once.  This means that list comprehensions aren't useful if you're" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'working with iterators that return an infinite stream or a very large' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'amount of data.  Generator expressions are preferable in these' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'situations.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Generator expressions are surrounded by parentheses ("()") and list' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'comprehensions are surrounded by square brackets ("' Text
 '['           Text
 ']").  Generator' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'expressions have the form' Text
 '::'          Literal.String.Escape
@@ -1083,15 +1083,15 @@
 '                 if condition1\n                 for expr2 in sequence2\n                 if condition2\n                 for expr3 in sequence3 ...\n                 if condition3\n                 for exprN in sequenceN\n                 if conditionN )\n\n' Literal.String
 
 'Again, for a list comprehension only the outside brackets are' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'different (square brackets instead of parentheses).' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The elements of the generated output will be the successive values of' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'expression'  Literal.String
@@ -1101,30 +1101,30 @@
 'if'          Literal.String
 '``'          Literal.String
 ' clauses are all optional; if present,' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'expression'  Literal.String
 '``'          Literal.String
 ' is only evaluated and added to the result when' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'condition'   Literal.String
 '``'          Literal.String
 ' is true.'   Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Generator expressions always have to be written inside parentheses,' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'but the parentheses signalling a function call also count.  If you' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'want to create an iterator that will be immediately passed to a' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'function you can write' Text
 '::'          Literal.String.Escape
@@ -1141,15 +1141,15 @@
 'for...in'    Literal.String
 '``'          Literal.String
 ' clauses contain the sequences to be iterated over.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The sequences do not have to be the same length, because they are' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'iterated over from left to right, ' Text
 '**not**'     Generic.Strong
 ' in parallel.  For each' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'element in ' Text
 '``'          Literal.String
@@ -1160,14 +1160,14 @@
 'sequence2'   Literal.String
 '``'          Literal.String
 ' is looped over from the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'beginning.  ' Text
 '``'          Literal.String
 'sequence3'   Literal.String
 '``'          Literal.String
 '  is then looped over for each ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'resulting pair of elements from ' Text
 '``'          Literal.String
@@ -1178,12 +1178,12 @@
 'sequence2'   Literal.String
 '``'          Literal.String
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'To put it another way, a list comprehension or generator expression is' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'equivalent to the following Python code' Text
 '::'          Literal.String.Escape
@@ -1200,16 +1200,16 @@
 'for...in'    Literal.String
 '``'          Literal.String
 ' clauses but no' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'if'          Literal.String
 '``'          Literal.String
 ' clauses, the length of the resulting output will be equal to' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'the product of the lengths of all the sequences.  If you have two' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'lists of length 3, the output list is 9 elements long' Text
 '::'          Literal.String.Escape
@@ -1222,16 +1222,16 @@
 "    seq2 = (1,2,3)\n    >>> [ (x,y) for x in seq1 for y in seq2]\n    [('a', 1), ('a', 2), ('a', 3), \n     ('b', 1), ('b', 2), ('b', 3), \n     ('c', 1), ('c', 2), ('c', 3)]\n\n" Literal.String
 
 "To avoid introducing an ambiguity into Python's grammar, if" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'expression'  Literal.String
 '``'          Literal.String
 ' is creating a tuple, it must be surrounded with' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'parentheses.  The first list comprehension below is a syntax error,' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'while the second one is correct' Text
 '::'          Literal.String.Escape
@@ -1249,53 +1249,53 @@
 '-----------------------' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Generators are a special class of functions that simplify the task of' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'writing iterators.  Regular functions compute a value and return it,' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'but generators return an iterator that returns a stream of values.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "You're doubtless familiar with how regular function calls work in" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Python or C.  When you call a function, it gets a private namespace' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'where its local variables are created.  When the function reaches a' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'return'      Literal.String
 '``'          Literal.String
 ' statement, the local variables are destroyed and the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'value is returned to the caller.  A later call to the same function' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'creates a new private namespace and a fresh set of local' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "variables. But, what if the local variables weren't thrown away on" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'exiting a function?  What if you could later resume the function where' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'it left off?  This is what generators provide; they can be thought of' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'as resumable functions.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "Here's the simplest example of a generator function" Text
 '::'          Literal.String.Escape
@@ -1312,28 +1312,28 @@
 'yield'       Literal.String
 '``'          Literal.String
 ' keyword is a generator function;' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "this is detected by Python's bytecode compiler which compiles the" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'function specially as a result.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "When you call a generator function, it doesn't return a single value;" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'instead it returns a generator object that supports the iterator' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'protocol.  On executing the ' Text
 '``'          Literal.String
 'yield'       Literal.String
 '``'          Literal.String
 ' expression, the generator' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'outputs the value of ' Text
 '``'          Literal.String
@@ -1343,14 +1343,14 @@
 '``'          Literal.String
 'return'      Literal.String
 '``'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'statement.  The big difference between ' Text
 '``'          Literal.String
 'yield'       Literal.String
 '``'          Literal.String
 ' and a'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'return'      Literal.String
@@ -1360,22 +1360,22 @@
 'yield'       Literal.String
 '``'          Literal.String
 ' the'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "generator's state of execution is suspended and local variables are" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "preserved.  On the next call to the generator's " Text
 '``'          Literal.String
 '.next()'     Literal.String
 '``'          Literal.String
 ' method,'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'the function will resume executing.  ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "Here's a sample usage of the " Text
 '``'          Literal.String
@@ -1396,32 +1396,32 @@
 'for i in generate_ints(5)' Literal.String
 '``'          Literal.String
 ', or'        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'a,b,c = generate_ints(3)' Literal.String
 '``'          Literal.String
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Inside a generator function, the ' Text
 '``'          Literal.String
 'return'      Literal.String
 '``'          Literal.String
 ' statement can only be used' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'without a value, and signals the end of the procession of values;' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'after executing a ' Text
 '``'          Literal.String
 'return'      Literal.String
 '``'          Literal.String
 ' the generator cannot return any further' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'values.  '   Text
 '``'          Literal.String
@@ -1432,41 +1432,41 @@
 'return 5'    Literal.String
 '``'          Literal.String
 ', is a syntax' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "error inside a generator function.  The end of the generator's results" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'can also be indicated by raising ' Text
 '``'          Literal.String
 'StopIteration' Literal.String
 '``'          Literal.String
 ' manually, or by' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'just letting the flow of execution fall off the bottom of the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'function.'   Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'You could achieve the effect of generators manually by writing your' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'own class and storing all the local variables of the generator as' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'instance variables.  For example, returning a list of integers could' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'be done by setting ' Text
 '``'          Literal.String
 'self.count'  Literal.String
 '``'          Literal.String
 ' to 0, and having the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'next()'      Literal.String
@@ -1476,33 +1476,33 @@
 'self.count'  Literal.String
 '``'          Literal.String
 ' and return it.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'However, for a moderately complicated generator, writing a' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'corresponding class can be much messier.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "The test suite included with Python's library, " Text
 '``'          Literal.String
 'test_generators.py' Literal.String
 '``'          Literal.String
 ','           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "contains a number of more interesting examples.  Here's one generator" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'that implements an in-order traversal of a tree using generators' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'recursively.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
 '\n\n'        Text
@@ -1518,25 +1518,25 @@
 'test_generators.py' Literal.String
 '``'          Literal.String
 ' produce'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'solutions for the N-Queens problem (placing N queens on an NxN' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "chess board so that no queen threatens another) and the Knight's Tour" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '(finding a route that takes a knight to every square of an NxN chessboard' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'without visiting any square twice).' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Passing values into a generator' Generic.Heading
 '\n'          Text
@@ -1544,36 +1544,36 @@
 "''''''''''''''''''''''''''''''''''''''''''''''" Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'In Python 2.4 and earlier, generators only produced output.  Once a' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "generator's code was invoked to create an iterator, there was no way to" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'pass any new information into the function when its execution is' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'resumed.  You could hack together this ability by making the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'generator look at a global variable or by passing in some mutable object' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'that callers then modify, but these approaches are messy.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "In Python 2.5 there's a simple way to pass values into a generator." Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'yield'       Literal.String
 '``'          Literal.String
 ' became an expression, returning a value that can be assigned' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'to a variable or otherwise operated on' Text
 '::'          Literal.String.Escape
@@ -1591,72 +1591,72 @@
 '``'          Literal.String
 'yield'       Literal.String
 '``'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 "expression when you're doing something with the returned value, as in" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "the above example.  The parentheses aren't always necessary, but it's" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "easier to always add them instead of having to remember when they're" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'needed.'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '(PEP 342 explains the exact rules, which are that a' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'yield'       Literal.String
 '``'          Literal.String
 '-expression must always be parenthesized except when it' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'occurs at the top-level expression on the right-hand side of an' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'assignment.  This means you can write ' Text
 '``'          Literal.String
 'val = yield i' Literal.String
 '``'          Literal.String
 ' but have to' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "use parentheses when there's an operation, as in " Text
 '``'          Literal.String
 'val = (yield i)\n+ 12' Literal.String
 '``'          Literal.String
 '.)'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Values are sent into a generator by calling its' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'send(value)' Literal.String
 '``'          Literal.String
 ' method.  This method resumes the ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "generator's code and the " Text
 '``'          Literal.String
 'yield'       Literal.String
 '``'          Literal.String
 ' expression returns the specified' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'value.  If the regular ' Text
 '``'          Literal.String
 'next()'      Literal.String
 '``'          Literal.String
 ' method is called, the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'yield'       Literal.String
@@ -1666,17 +1666,17 @@
 'None'        Literal.String
 '``'          Literal.String
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "Here's a simple counter that increments by 1 and allows changing the" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'value of the internal counter.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
 '\n\n'        Text
@@ -1689,43 +1689,43 @@
 
 "And here's an example of changing the counter" Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    >>> it = counter(10)' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    >>> print it.next()' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    0'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    >>> print it.next()' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    1'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    >>> print it.send(8)' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    8'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    >>> print it.next()' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    9'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    >>> print it.next()' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '    Traceback (most recent call last)' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '      File ' Text
 '``'          Literal.String
@@ -1739,33 +1739,33 @@
 'None'        Literal.String
 '``'          Literal.String
 ', you'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "should always check for this case.  Don't just use its value in" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "expressions unless you're sure that the " Text
 '``'          Literal.String
 'send()'      Literal.String
 '``'          Literal.String
 ' method'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'will be the only method used resume your generator function.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'In addition to ' Text
 '``'          Literal.String
 'send()'      Literal.String
 '``'          Literal.String
 ', there are two other new methods on' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'generators'  Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
@@ -1775,17 +1775,17 @@
 'throw(type, value=None, traceback=None)' Literal.String
 '``'          Literal.String
 ' is used to raise an exception inside the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  generator; the exception is raised by the ' Text
 '``'          Literal.String
 'yield'       Literal.String
 '``'          Literal.String
 ' expression' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "  where the generator's execution is paused." Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
@@ -1798,16 +1798,16 @@
 '``'          Literal.String
 'GeneratorExit' Literal.String
 '``'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  exception inside the generator to terminate the iteration.  ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  On receiving this' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "  exception, the generator's code must either raise" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 '``'          Literal.String
@@ -1818,10 +1818,10 @@
 'StopIteration' Literal.String
 '``'          Literal.String
 '; catching the ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  exception and doing anything else is illegal and will trigger' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  a '        Text
 '``'          Literal.String
@@ -1832,71 +1832,71 @@
 'close()'     Literal.String
 '``'          Literal.String
 ' will also be called by ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "  Python's garbage collector when the generator is garbage-collected." Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  If you need to run cleanup code when a ' Text
 '``'          Literal.String
 'GeneratorExit' Literal.String
 '``'          Literal.String
 ' occurs,'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  I suggest using a ' Text
 '``'          Literal.String
 'try: ... finally:' Literal.String
 '``'          Literal.String
 ' suite instead of ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  catching ' Text
 '``'          Literal.String
 'GeneratorExit' Literal.String
 '``'          Literal.String
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The cumulative effect of these changes is to turn generators from' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'one-way producers of information into both producers and consumers.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Generators also become ' Text
 '**coroutines**' Generic.Strong
 ', a more generalized form of' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'subroutines.  Subroutines are entered at one point and exited at' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'another point (the top of the function, and a ' Text
 '``'          Literal.String
 'return'      Literal.String
 '``'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'statement), but coroutines can be entered, exited, and resumed at' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'many different points (the ' Text
 '``'          Literal.String
 'yield'       Literal.String
 '``'          Literal.String
 ' statements).  ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Built-in functions' Generic.Heading
 '\n'          Text
@@ -1904,12 +1904,12 @@
 '----------------------------------------------' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "Let's look in more detail at built-in functions often used with iterators." Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "Two Python's built-in functions, " Text
 '``'          Literal.String
@@ -1920,15 +1920,15 @@
 'filter()'    Literal.String
 '``'          Literal.String
 ', are'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'somewhat obsolete; they duplicate the features of list comprehensions' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'but return actual lists instead of iterators.  ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'map(f, iterA, iterB, ...)' Literal.String
@@ -1938,9 +1938,9 @@
 'f(iterA[0],\niterB[0]), f(iterA[1], iterB[1]), f(iterA[2], iterB[2]), ...' Literal.String
 '``'          Literal.String
 '.  '         Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
 '\n\n'        Text
@@ -1952,55 +1952,55 @@
 "        return s.upper()\n    map(upper, ['sentence', 'fragment']) =>\n      ['SENTENCE', 'FRAGMENT']\n\n    [upper(s) for s in ['sentence', 'fragment']] =>\n      ['SENTENCE', 'FRAGMENT']\n\n" Literal.String
 
 'As shown above, you can achieve the same effect with a list' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'comprehension.  The ' Text
 '``'          Literal.String
 'itertools.imap()' Literal.String
 '``'          Literal.String
 ' function does the same thing' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "but can handle infinite iterators; it'll be discussed later, in the section on " Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'the '        Text
 '``'          Literal.String
 'itertools'   Literal.String
 '``'          Literal.String
 ' module.'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'filter(predicate, iter)' Literal.String
 '``'          Literal.String
 ' returns a list ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'that contains all the sequence elements that meet a certain condition,' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'and is similarly duplicated by list comprehensions.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'A '          Text
 '**predicate**' Generic.Strong
 ' is a function that returns the truth value of' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'some condition; for use with ' Text
 '``'          Literal.String
 'filter()'    Literal.String
 '``'          Literal.String
 ', the predicate must take a ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'single value.  ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
 '\n\n'        Text
@@ -2029,87 +2029,87 @@
 'itertools'   Literal.String
 '``'          Literal.String
 ' module,'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'itertools.ifilter()' Literal.String
 '``'          Literal.String
 ', that returns an iterator and ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'can therefore handle infinite sequences just as ' Text
 '``'          Literal.String
 'itertools.imap()' Literal.String
 '``'          Literal.String
 ' can.'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'reduce(func, iter, [initial_value])' Literal.String
 '``'          Literal.String
 " doesn't have a counterpart in" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'the '        Text
 '``'          Literal.String
 'itertools'   Literal.String
 '``'          Literal.String
 ' module because it cumulatively performs an operation' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "on all the iterable's elements and therefore can't be applied to" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'infinite iterables.  ' Text
 '``'          Literal.String
 'func'        Literal.String
 '``'          Literal.String
 ' must be a function that takes two elements' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'and returns a single value.  ' Text
 '``'          Literal.String
 'reduce()'    Literal.String
 '``'          Literal.String
 ' takes the first two elements' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'A and B returned by the iterator and calculates ' Text
 '``'          Literal.String
 'func(A, B)'  Literal.String
 '``'          Literal.String
 '.  It'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'then requests the third element, C, calculates ' Text
 '``'          Literal.String
 'func(func(A, B),\nC)' Literal.String
 '``'          Literal.String
 ', combines this result with the fourth element returned, and' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'continues until the iterable is exhausted.  If the iterable returns no' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'values at all, a ' Text
 '``'          Literal.String
 'TypeError'   Literal.String
 '``'          Literal.String
 ' exception is raised.  If the initial' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "value is supplied, it's used as a starting point and" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'func(initial_value, A)' Literal.String
 '``'          Literal.String
 ' is the first calculation.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
 '\n\n'        Text
@@ -2129,10 +2129,10 @@
 'reduce()'    Literal.String
 '``'          Literal.String
 ", you'll add up all the " Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "elements of the iterable.  This case is so common that there's a special" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'built-in called ' Text
 '``'          Literal.String
@@ -2153,7 +2153,7 @@
 'reduce()'    Literal.String
 '``'          Literal.String
 ', though, it can be clearer to just write' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'the obvious ' Text
 '``'          Literal.String
@@ -2173,12 +2173,12 @@
 'enumerate(iter)' Literal.String
 '``'          Literal.String
 ' counts off the elements in the iterable, returning' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '2-tuples containing the count and each element.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
 '\n\n'        Text
@@ -2193,7 +2193,7 @@
 'enumerate()' Literal.String
 '``'          Literal.String
 ' is often used when looping through a list ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'and recording the indexes at which certain conditions are met' Text
 '::'          Literal.String.Escape
@@ -2209,10 +2209,10 @@
 'sorted(iterable, [cmp=None], [key=None], [reverse=False)' Literal.String
 '``'          Literal.String
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'collects all the elements of the iterable into a list, sorts ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'the list, and returns the sorted result.  The ' Text
 '``'          Literal.String
@@ -2223,23 +2223,23 @@
 'key'         Literal.String
 '``'          Literal.String
 ', '          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'and '        Text
 '``'          Literal.String
 'reverse'     Literal.String
 '``'          Literal.String
 ' arguments are passed through to the ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "constructed list's " Text
 '``'          Literal.String
 '.sort()'     Literal.String
 '``'          Literal.String
 ' method.'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
 '\n\n'        Text
@@ -2251,14 +2251,14 @@
 '    # Generate 8 random numbers between [0, 10000)\n    rand_list = random.sample(range(10000), 8)\n    rand_list =>\n      [769, 7953, 9828, 6431, 8442, 9878, 6213, 2207]\n    sorted(rand_list) =>\n      [769, 2207, 6213, 6431, 7953, 8442, 9828, 9878]\n    sorted(rand_list, reverse=True) =>\n      [9878, 9828, 8442, 7953, 6431, 6213, 2207, 769]\n\n' Literal.String
 
 '(For a more detailed discussion of sorting, see the Sorting mini-HOWTO' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'in the Python wiki at http' Text
 ':'           Text
 '//wiki.python.org/moin/HowTo/Sorting.)' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The '        Text
 '``'          Literal.String
@@ -2269,21 +2269,21 @@
 'all(iter)'   Literal.String
 '``'          Literal.String
 ' built-ins look at ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "the truth values of an iterable's contents.  " Text
 '``'          Literal.String
 'any()'       Literal.String
 '``'          Literal.String
 ' returns '   Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'True if any element in the iterable is a true value, and ' Text
 '``'          Literal.String
 'all()'       Literal.String
 '``'          Literal.String
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'returns True if all of the elements are true values' Text
 '::'          Literal.String.Escape
@@ -2301,18 +2301,18 @@
 '----------------------------------------------' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "When writing functional-style programs, you'll often need little" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'functions that act as predicates or that combine elements in some way.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "If there's a Python built-in or a module function that's suitable, you" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "don't need to define a new function at all" Text
 '::'          Literal.String.Escape
@@ -2325,7 +2325,7 @@
 '        existing_files = filter(os.path.exists, file_list)\n\n' Literal.String
 
 "If the function you need doesn't exist, you need to write it.  One way" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'to write small functions is to use the ' Text
 '``'          Literal.String
@@ -2335,10 +2335,10 @@
 '``'          Literal.String
 'lambda'      Literal.String
 '``'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'takes a number of parameters and an expression combining these parameters,' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'and creates a small function that returns the value of the expression' Text
 '::'          Literal.String.Escape
@@ -2355,7 +2355,7 @@
 'def'         Literal.String
 '``'          Literal.String
 ' statement and define a' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'function in the usual way' Text
 '::'          Literal.String.Escape
@@ -2368,29 +2368,29 @@
 "            return x.lower()\n\n        def print_assign(name, value):\n            return name + '=' + str(value)\n\n        def adder(x,y):\n            return x + y\n\n" Literal.String
 
 "Which alternative is preferable?  That's a style question; my usual" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'course is to avoid using ' Text
 '``'          Literal.String
 'lambda'      Literal.String
 '``'          Literal.String
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'One reason for my preference is that ' Text
 '``'          Literal.String
 'lambda'      Literal.String
 '``'          Literal.String
 ' is quite limited in' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'the functions it can define.  The result has to be computable as a' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "single expression, which means you can't have multiway" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'if... elif... else' Literal.String
@@ -2400,22 +2400,22 @@
 'try... except' Literal.String
 '``'          Literal.String
 ' statements.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'If you try to do too much in a ' Text
 '``'          Literal.String
 'lambda'      Literal.String
 '``'          Literal.String
 " statement, you'll end up" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "with an overly complicated expression that's hard to read.  Quick," Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "what's the following code doing?" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
 '\n\n'        Text
@@ -2427,10 +2427,10 @@
 '\n'          Literal.String
 
 'You can figure it out, but it takes time to disentangle the expression' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "to figure out what's going on.  Using a short nested" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'def'         Literal.String
@@ -2482,56 +2482,56 @@
 'for'         Literal.String
 '``'          Literal.String
 ' loops.'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Fredrik Lundh once suggested the following set of rules for refactoring ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'uses of '    Text
 '``'          Literal.String
 'lambda'      Literal.String
 '``'          Literal.String
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
 '1)'          Literal.Number
 ' Write a lambda function.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '2)'          Literal.Number
 ' Write a comment explaining what the heck that lambda does.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '3)'          Literal.Number
 ' Study the comment for a while, and think of a name that captures' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '   the essence of the comment.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '4)'          Literal.Number
 ' Convert the lambda to a def statement, using that name.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '5)'          Literal.Number
 ' Remove the comment.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "I really like these rules, but you're free to disagree that this " Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'lambda-free style is better.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The itertools module' Generic.Heading
 '\n'          Text
@@ -2539,46 +2539,46 @@
 '-----------------------' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The '        Text
 '``'          Literal.String
 'itertools'   Literal.String
 '``'          Literal.String
 ' module contains a number of commonly-used iterators' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'as well as functions for combining several iterators.  This section' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "will introduce the module's contents by showing small examples." Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "The module's functions fall into a few broad classes" Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
 '*'           Literal.Number
 ' Functions that create a new iterator based on an existing iterator.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Literal.Number
 " Functions for treating an iterator's elements as function arguments." Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Literal.Number
 " Functions for selecting portions of an iterator's output." Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Literal.Number
 " A function for grouping an iterator's output." Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Creating new iterators' Generic.Heading
 '\n'          Text
@@ -2586,16 +2586,16 @@
 "''''''''''''''''''''''" Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'itertools.count(n)' Literal.String
 '``'          Literal.String
 ' returns an infinite stream of' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'integers, increasing by 1 each time.  You can optionally supply the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'starting number, which defaults to 0' Text
 '::'          Literal.String.Escape
@@ -2611,15 +2611,15 @@
 'itertools.cycle(iter)' Literal.String
 '``'          Literal.String
 ' saves a copy of the contents of a provided' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'iterable and returns a new iterator that returns its elements from' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'first to last.  The new iterator will repeat these elements infinitely.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
 '\n\n'        Text
@@ -2637,16 +2637,16 @@
 '``'          Literal.String
 'n'           Literal.String
 '``'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'times, or returns the element endlessly if ' Text
 '``'          Literal.String
 'n'           Literal.String
 '``'          Literal.String
 ' is not provided.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
 '\n\n'        Text
@@ -2661,18 +2661,18 @@
 'itertools.chain(iterA, iterB, ...)' Literal.String
 '``'          Literal.String
 ' takes an arbitrary number of' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'iterables as input, and returns all the elements of the first' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'iterator, then all the elements of the second, and so on, until all of' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'the iterables have been exhausted.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
 '\n\n'        Text
@@ -2687,7 +2687,7 @@
 'itertools.izip(iterA, iterB, ...)' Literal.String
 '``'          Literal.String
 ' takes one element from each iterable' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'and returns them in a tuple' Text
 '::'          Literal.String.Escape
@@ -2704,35 +2704,35 @@
 'zip()'       Literal.String
 '``'          Literal.String
 " function, but doesn't" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'construct an in-memory list and exhaust all the input iterators before' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "returning; instead tuples are constructed and returned only if they're" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'requested.  (The technical term for this behaviour is ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '`lazy evaluation ' Literal.String
 '<http://en.wikipedia.org/wiki/Lazy_evaluation>' Literal.String.Interpol
 '`__'         Literal.String
 '.)'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'This iterator is intended to be used with iterables that are all of' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'the same length.  If the iterables are of different lengths, the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'resulting stream will be the same length as the shortest iterable.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
 '\n\n'        Text
@@ -2744,53 +2744,53 @@
 "      ('a', 1), ('b', 2)\n\n" Literal.String
 
 'You should avoid doing this, though, because an element may be taken' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "from the longer iterators and discarded.  This means you can't go on" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'to use the iterators further because you risk skipping a discarded' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'element.'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'itertools.islice(iter, [start], stop, [step])' Literal.String
 '``'          Literal.String
 ' returns a stream' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "that's a slice of the iterator.  With a single " Text
 '``'          Literal.String
 'stop'        Literal.String
 '``'          Literal.String
 ' argument, ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'it will return the first ' Text
 '``'          Literal.String
 'stop'        Literal.String
 '``'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 "elements.  If you supply a starting index, you'll get " Text
 '``'          Literal.String
 'stop-start'  Literal.String
 '``'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'elements, and if you supply a value for ' Text
 '``'          Literal.String
 'step'        Literal.String
 '``'          Literal.String
 ', elements will be' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "skipped accordingly.  Unlike Python's string and list slicing, you" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "can't use negative values for " Text
 '``'          Literal.String
@@ -2805,9 +2805,9 @@
 'step'        Literal.String
 '``'          Literal.String
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
 '\n\n'        Text
@@ -2825,28 +2825,28 @@
 '``'          Literal.String
 'n'           Literal.String
 '``'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'independent iterators that will all return the contents of the source' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "iterator.  If you don't supply a value for " Text
 '``'          Literal.String
 'n'           Literal.String
 '``'          Literal.String
 ', the default is 2.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Replicating iterators requires saving some of the contents of the source' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'iterator, so this can consume significant memory if the iterator is large' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'and one of the new iterators is consumed more than the others.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
 '\n\n'        Text
@@ -2863,21 +2863,21 @@
 "'''''''''''''''''''''''''''''" Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Two functions are used for calling other functions on the contents of an' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'iterable.'   Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'itertools.imap(f, iterA, iterB, ...)' Literal.String
 '``'          Literal.String
 ' returns '   Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a stream containing ' Text
 '``'          Literal.String
@@ -2897,16 +2897,16 @@
 'operator'    Literal.String
 '``'          Literal.String
 ' module contains a set of functions ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "corresponding to Python's operators.  Some examples are " Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'operator.add(a, b)' Literal.String
 '``'          Literal.String
 ' (adds two values), ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'operator.ne(a, b)' Literal.String
@@ -2916,38 +2916,38 @@
 'a!=b'        Literal.String
 '``'          Literal.String
 '),'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'and '        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 "operator.attrgetter('id')" Literal.String
 '``'          Literal.String
 ' (returns a callable that' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'fetches the ' Text
 '``'          Literal.String
 '"id"'        Literal.String
 '``'          Literal.String
 ' attribute).' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'itertools.starmap(func, iter)' Literal.String
 '``'          Literal.String
 ' assumes that the iterable will ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'return a stream of tuples, and calls ' Text
 '``'          Literal.String
 'f()'         Literal.String
 '``'          Literal.String
 ' using these tuples as the ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'arguments'   Text
 '::'          Literal.String.Escape
@@ -2965,21 +2965,21 @@
 "''''''''''''''''''" Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "Another group of functions chooses a subset of an iterator's elements" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'based on a predicate.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'itertools.ifilter(predicate, iter)' Literal.String
 '``'          Literal.String
 ' returns all the elements for' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'which the predicate returns true' Text
 '::'          Literal.String.Escape
@@ -2995,7 +2995,7 @@
 'itertools.ifilterfalse(predicate, iter)' Literal.String
 '``'          Literal.String
 ' is the opposite, ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'returning all elements for which the predicate returns false' Text
 '::'          Literal.String.Escape
@@ -3011,15 +3011,15 @@
 'itertools.takewhile(predicate, iter)' Literal.String
 '``'          Literal.String
 ' returns elements for as long' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'as the predicate returns true.  Once the predicate returns false, ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'the iterator will signal the end of its results.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
 '\n\n'        Text
@@ -3034,15 +3034,15 @@
 'itertools.dropwhile(predicate, iter)' Literal.String
 '``'          Literal.String
 ' discards elements while the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "predicate returns true, and then returns the rest of the iterable's" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'results.'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
 '\n\n'        Text
@@ -3059,7 +3059,7 @@
 "'''''''''''''''''" Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "The last function I'll discuss, " Text
 '``'          Literal.String
@@ -3070,35 +3070,35 @@
 'key_func(elem)' Literal.String
 '``'          Literal.String
 ' is a'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'function that can compute a key value for each element returned by the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "iterable.  If you don't supply a key function, the key is simply each" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'element itself.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'groupby()'   Literal.String
 '``'          Literal.String
 ' collects all the consecutive elements from the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'underlying iterable that have the same key value, and returns a stream' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'of 2-tuples containing a key value and an iterator for the elements' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'with that key.  ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
 '\n\n'        Text
@@ -3113,20 +3113,20 @@
 'groupby()'   Literal.String
 '``'          Literal.String
 " assumes that the underlying iterable's contents will" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'already be sorted based on the key.  Note that the returned iterators' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'also use the underlying iterable, so you have to consume the results' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'of iterator-1 before requesting iterator-2 and its corresponding key.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The functools module' Generic.Heading
 '\n'          Text
@@ -3134,51 +3134,51 @@
 '----------------------------------------------' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The '        Text
 '``'          Literal.String
 'functools'   Literal.String
 '``'          Literal.String
 ' module in Python 2.5 contains some higher-order' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'functions.  A ' Text
 '**higher-order function**' Generic.Strong
 ' takes one or more functions as' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'input and returns a new function.  The most useful tool in this module' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'is the '     Text
 '``'          Literal.String
 'partial()'   Literal.String
 '``'          Literal.String
 ' function.'  Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "For programs written in a functional style, you'll sometimes want to" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'construct variants of existing functions that have some of the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'parameters filled in.  Consider a Python function ' Text
 '``'          Literal.String
 'f(a, b, c)'  Literal.String
 '``'          Literal.String
 '; you'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'may wish to create a new function ' Text
 '``'          Literal.String
 'g(b, c)'     Literal.String
 '``'          Literal.String
 " that's equivalent to" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'f(1, b, c)'  Literal.String
@@ -3188,12 +3188,12 @@
 'f()'         Literal.String
 '``'          Literal.String
 "'s parameters.  " Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'This is called "partial function application".' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The constructor for ' Text
 '``'          Literal.String
@@ -3204,19 +3204,19 @@
 '(function, arg1,\narg2, ... kwarg1=value1, kwarg2=value2)' Literal.String
 '``'          Literal.String
 '.  The resulting object is' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'callable, so you can just call it to invoke ' Text
 '``'          Literal.String
 'function'    Literal.String
 '``'          Literal.String
 ' with the'   Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'filled-in arguments.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "Here's a small but realistic example" Text
 '::'          Literal.String.Escape
@@ -3234,29 +3234,29 @@
 '-------------------' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The '        Text
 '``'          Literal.String
 'operator'    Literal.String
 '``'          Literal.String
 ' module was mentioned earlier.  It contains a set of' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "functions corresponding to Python's operators.  These functions " Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'are often useful in functional-style code because they save you ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'from writing trivial functions that perform a single operation.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Some of the functions in this module are' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
@@ -3284,14 +3284,14 @@
 'floordiv()'  Literal.String
 '``'          Literal.String
 ','           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '  '          Text
 '``'          Literal.String
 'abs()'       Literal.String
 '``'          Literal.String
 ', ...'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Literal.Number
 ' Logical operations' Text
@@ -3305,7 +3305,7 @@
 'truth()'     Literal.String
 '``'          Literal.String
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Literal.Number
 ' Bitwise operations' Text
@@ -3323,7 +3323,7 @@
 'invert()'    Literal.String
 '``'          Literal.String
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Literal.Number
 ' Comparisons' Text
@@ -3353,7 +3353,7 @@
 'ge()'        Literal.String
 '``'          Literal.String
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*'           Literal.Number
 ' Object identity' Text
@@ -3367,25 +3367,25 @@
 'is_not()'    Literal.String
 '``'          Literal.String
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Consult '    Text
 "`the operator module's documentation " Literal.String
 '<http://docs.python.org/lib/module-operator.html>' Literal.String.Interpol
 '`__'         Literal.String
 ' for a complete' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'list.'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The functional module' Generic.Heading
 '\n'          Text
@@ -3393,31 +3393,31 @@
 '---------------------' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "Collin Winter's " Text
 '`functional module ' Literal.String
 '<http://oakwinter.com/code/functional/>' Literal.String.Interpol
 '`__'         Literal.String
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'provides a number of more' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'advanced tools for functional programming. It also reimplements' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'several Python built-ins, trying to make them more intuitive to those' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'used to functional programming in other languages.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'This section contains an introduction to some of the most important' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'functions in ' Text
 '``'          Literal.String
@@ -3426,30 +3426,30 @@
 '; full documentation can be found at ' Text
 '`'           Text
 'the'         Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "project's website <http" Text
 ':'           Text
 '//oakwinter.com/code/functional/documentation/>' Text
 '`'           Text
 '__.'         Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'compose(outer, inner, unpack=False)' Literal.String
 '``'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The '        Text
 '``'          Literal.String
 'compose()'   Literal.String
 '``'          Literal.String
 ' function implements function composition.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'In other words, it returns a wrapper around the ' Text
 '``'          Literal.String
@@ -3460,7 +3460,7 @@
 'inner'       Literal.String
 '``'          Literal.String
 ' callables, such' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'that the return value from ' Text
 '``'          Literal.String
@@ -3471,9 +3471,9 @@
 'outer'       Literal.String
 '``'          Literal.String
 '.  That is,' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
 '\n\n'        Text
@@ -3485,9 +3485,9 @@
 '        ...     return a + b\n        ...\n        >>> def double(a):\n        ...     return 2 * a\n        ...\n        >>> compose(double, add)(5, 6)\n        22\n\n' Literal.String
 
 'is equivalent to' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
 '\n\n'        Text
@@ -3503,13 +3503,13 @@
 'unpack'      Literal.String
 '``'          Literal.String
 ' keyword is provided to work around the fact that Python functions are not always' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '`fully curried ' Literal.String
 '<http://en.wikipedia.org/wiki/Currying>' Literal.String.Interpol
 '`__'         Literal.String
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'By default, it is expected that the ' Text
 '``'          Literal.String
@@ -3519,7 +3519,7 @@
 '``'          Literal.String
 'outer'       Literal.String
 '``'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 'function will take a single argument. Setting the ' Text
 '``'          Literal.String
@@ -3530,7 +3530,7 @@
 'compose'     Literal.String
 '``'          Literal.String
 ' to expect a' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'tuple from ' Text
 '``'          Literal.String
@@ -3541,9 +3541,9 @@
 'outer'       Literal.String
 '``'          Literal.String
 '. Put simply,' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
 '\n\n'        Text
@@ -3565,9 +3565,9 @@
 '                    \n' Literal.String
 
 'while'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
 '\n\n'        Text
@@ -3593,10 +3593,10 @@
 'compose()'   Literal.String
 '``'          Literal.String
 " only accepts two functions, it's trivial to" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "build up a version that will compose any number of functions. We'll" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'use '        Text
 '``'          Literal.String
@@ -3611,7 +3611,7 @@
 'partial()'   Literal.String
 '``'          Literal.String
 ' (the last of which' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'is provided by both ' Text
 '``'          Literal.String
@@ -3622,9 +3622,9 @@
 'functools'   Literal.String
 '``'          Literal.String
 ').'          Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
 '\n\n'        Text
@@ -3636,7 +3636,7 @@
 '        \n        multi_compose = partial(reduce, compose)\n        \n' Literal.String
 
 '    '        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'We can also use ' Text
 '``'          Literal.String
@@ -3651,7 +3651,7 @@
 'partial()'   Literal.String
 '``'          Literal.String
 ' to craft a' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'version of ' Text
 '``'          Literal.String
@@ -3670,10 +3670,10 @@
 '``'          Literal.String
 'flip(func)'  Literal.String
 '``'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '                    ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'flip()'      Literal.String
@@ -3683,12 +3683,12 @@
 'func'        Literal.String
 '``'          Literal.String
 ' and  '      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'causes it to receive its non-keyword arguments in reverse order.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '::'          Literal.String.Escape
 '\n\n'        Text
@@ -3702,27 +3702,27 @@
 '``'          Literal.String
 'foldl(func, start, iterable)' Literal.String
 '``'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '                    ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'foldl()'     Literal.String
 '``'          Literal.String
 " takes a binary function, a starting value (usually some kind of 'zero'), and an iterable." Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The function is applied to the starting value and the first element of the list, then the result of' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'that and the second element of the list, then the result of that and the third element of the list,' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'and so on.'  Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'This means that a call such as' Text
 '::'          Literal.String.Escape
@@ -3745,7 +3745,7 @@
 '\n'          Literal.String
 
 '    '        Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 'foldl()'     Literal.String
@@ -3769,7 +3769,7 @@
 'reduce'      Literal.String
 '``'          Literal.String
 ' like'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'so'          Text
 '::'          Literal.String.Escape
@@ -3794,10 +3794,10 @@
 'partial()'   Literal.String
 '``'          Literal.String
 ' to'         Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "write a cleaner, more aesthetically-pleasing version of Python's" Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '``'          Literal.String
 '"".join(...)' Literal.String
@@ -3818,57 +3818,57 @@
 '------------------------------------------------' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'The author would like to thank the following people for offering' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'suggestions, corrections and assistance with various drafts of this' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'article'     Text
 ':'           Text
 ' Ian Bicking, Nick Coghlan, Nick Efford, Raymond Hettinger,' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Jim Jewett, Mike Krell, Leandro Lameiro, Jussi Salmela, ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Collin Winter, Blake Winton.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Version 0.1' Text
 ':'           Text
 ' posted June 30 2006.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Version 0.11' Text
 ':'           Text
 ' posted July 1 2006.  Typo fixes.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Version 0.2' Text
 ':'           Text
 ' posted July 10 2006.  Merged genexp and listcomp' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sections into one.  Typo fixes.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Version 0.21' Text
 ':'           Text
 ' Added more references suggested on the tutor mailing list.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Version 0.30' Text
 ':'           Text
@@ -3877,17 +3877,17 @@
 'functional'  Literal.String
 '``'          Literal.String
 ' module written by' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Collin Winter; adds short section on the operator module; a few other' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'edits.'      Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'References'  Generic.Heading
 '\n'          Text
@@ -3895,7 +3895,7 @@
 '--------------------' Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'General'     Generic.Heading
 '\n'          Text
@@ -3903,84 +3903,84 @@
 "'''''''''''''''" Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '**Structure and Interpretation of Computer Programs**' Generic.Strong
 ', by '       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Harold Abelson and Gerald Jay Sussman with Julie Sussman.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Full text at http' Text
 ':'           Text
 '//mitpress.mit.edu/sicp/.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'In this classic textbook of computer science,  chapters 2 and 3 discuss the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'use of sequences and streams to organize the data flow inside a' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'program.  The book uses Scheme for its examples, but many of the' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'design approaches described in these chapters are applicable to' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'functional-style Python code.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'http'        Text
 ':'           Text
 '//www.defmacro.org/ramblings/fp.html' Text
 ':'           Text
 ' A general ' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'introduction to functional programming that uses Java examples' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'and has a lengthy historical introduction.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'http'        Text
 ':'           Text
 '//en.wikipedia.org/wiki/Functional_programming' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'General Wikipedia entry describing functional programming.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'http'        Text
 ':'           Text
 '//en.wikipedia.org/wiki/Coroutine' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Entry for coroutines.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'http'        Text
 ':'           Text
 '//en.wikipedia.org/wiki/Currying' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Entry for the concept of currying.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Python-specific' Generic.Heading
 '\n'          Text
@@ -3988,55 +3988,55 @@
 "'''''''''''''''''''''''''''" Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'http'        Text
 ':'           Text
 '//gnosis.cx/TPiP/' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "The first chapter of David Mertz's book " Text
 ':title-reference:' Name.Attribute
 '`Text Processing in Python`' Name.Variable
 ' '           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'discusses functional programming for text processing, in the section titled' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"Utilizing Higher-Order Functions in Text Processing".' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Mertz also wrote a 3-part series of articles on functional programming' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 "for IBM's DeveloperWorks site; see " Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '`part 1 '    Literal.String
 '<http://www-128.ibm.com/developerworks/library/l-prog.html>' Literal.String.Interpol
 '`__'         Literal.String
 ','           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '`part 2 '    Literal.String
 '<http://www-128.ibm.com/developerworks/library/l-prog2.html>' Literal.String.Interpol
 '`__'         Literal.String
 ', and'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '`part 3 '    Literal.String
 '<http://www-128.ibm.com/developerworks/linux/library/l-prog3.html>' Literal.String.Interpol
 '`__'         Literal.String
 ','           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Python documentation' Generic.Heading
 '\n'          Text
@@ -4044,68 +4044,70 @@
 "'''''''''''''''''''''''''''" Generic.Heading
 '\n'          Text
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'http'        Text
 ':'           Text
 '//docs.python.org/lib/module-itertools.html' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Documentation for the ' Text
 '``'          Literal.String
 'itertools'   Literal.String
 '``'          Literal.String
 ' module.'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'http'        Text
 ':'           Text
 '//docs.python.org/lib/module-operator.html' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Documentation for the ' Text
 '``'          Literal.String
 'operator'    Literal.String
 '``'          Literal.String
 ' module.'    Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'http'        Text
 ':'           Text
 '//www.python.org/dev/peps/pep-0289/' Text
 ':'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'PEP 289'     Text
 ':'           Text
 ' "Generator Expressions"' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'http'        Text
 ':'           Text
 '//www.python.org/dev/peps/pep-0342/' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'PEP 342'     Text
 ':'           Text
 ' "Coroutines via Enhanced Generators" describes the new generator' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'features in Python 2.5.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-".. comment\n\n    Topics to place\n    -----------------------------\n\n    XXX os.walk()\n\n    XXX Need a large example.\n\n    But will an example add much?  I'll post a first draft and see\n    what the comments say.\n\n" Comment.Preproc
+".. comment\n\n    Topics to place\n    -----------------------------\n\n    XXX os.walk()\n\n    XXX Need a large example.\n\n    But will an example add much?  I'll post a first draft and see\n    what the comments say.\n\n" Comment
 
-'.. comment\n\n    Original outline:\n    Introduction\n            Idea of FP\n                    Programs built out of functions\n                    Functions are strictly input-output, no internal state\n            Opposed to OO programming, where objects have state\n\n            Why FP?\n                    Formal provability\n                            Assignment is difficult to reason about\n                            Not very relevant to Python\n                    Modularity\n                            Small functions that do one thing\n                    Debuggability:\n                            Easy to test due to lack of state\n                            Easy to verify output from intermediate steps\n                    Composability\n                            You assemble a toolbox of functions that can be mixed\n\n    Tackling a problem\n            Need a significant example\n\n    Iterators\n    Generators\n    The itertools module\n    List comprehensions\n    Small functions and the lambda statement\n    Built-in functions\n            map\n            filter\n            reduce\n\n' Comment.Preproc
+'.. comment\n\n    Original outline:\n    Introduction\n            Idea of FP\n                    Programs built out of functions\n                    Functions are strictly input-output, no internal state\n            Opposed to OO programming, where objects have state\n\n            Why FP?\n                    Formal provability\n                            Assignment is difficult to reason about\n                            Not very relevant to Python\n                    Modularity\n                            Small functions that do one thing\n                    Debuggability:\n                            Easy to test due to lack of state\n                            Easy to verify output from intermediate steps\n                    Composability\n                            You assemble a toolbox of functions that can be mixed\n\n    Tackling a problem\n            Need a significant example\n\n    Iterators\n    Generators\n    The itertools module\n    List comprehensions\n    Small functions and the lambda statement\n    Built-in functions\n            map\n            filter\n            reduce\n\n' Comment
 
-".. comment\n\n    Handy little function for printing part of an iterator -- used\n    while writing this document.\n\n    import itertools\n    def print_iter(it):\n         slice = itertools.islice(it, 10)\n         for elem in slice[:-1]:\n             sys.stdout.write(str(elem))\n             sys.stdout.write(', ')\n        print elem[-1]\n" Comment.Preproc
+".. comment\n\n    Handy little function for printing part of an iterator -- used\n    while writing this document.\n\n    import itertools\n    def print_iter(it):\n         slice = itertools.islice(it, 10)\n         for elem in slice[:-1]:\n             sys.stdout.write(str(elem))\n             sys.stdout.write(', ')\n        print elem[-1]\n\n\n" Comment
+
+'..\n    This is a comment,\n\n    as is this line, and the next,\n    and also the last line.\n\n    Goodbye from the comment block.\n' Comment

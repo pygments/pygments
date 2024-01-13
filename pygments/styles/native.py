@@ -4,7 +4,7 @@
 
     pygments version of my "native" vim theme.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -13,11 +13,15 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Token, Whitespace
 
 
+__all__ = ['NativeStyle']
+
+
 class NativeStyle(Style):
     """
     Pygments version of the "native" vim theme.
     """
-
+    name = 'native'
+    
     background_color = '#202020'
     highlight_color = '#404040'
     line_number_color = '#aaaaaa'
@@ -26,40 +30,41 @@ class NativeStyle(Style):
         Token:              '#d0d0d0',
         Whitespace:         '#666666',
 
-        Comment:            'italic #999999',
-        Comment.Preproc:    'noitalic bold #cd2828',
+        Comment:            'italic #ababab',
+        Comment.Preproc:    'noitalic bold #ff3a3a',
         Comment.Special:    'noitalic bold #e50808 bg:#520000',
 
-        Keyword:            'bold #6ab825',
+        Keyword:            'bold #6ebf26',
         Keyword.Pseudo:     'nobold',
-        Operator.Word:      'bold #6ab825',
+        Operator.Word:      'bold #6ebf26',
 
         String:             '#ed9d13',
         String.Other:       '#ffa500',
 
-        Number:             '#3677a9',
+        Number:             '#51b2fd',
 
-        Name.Builtin:       '#24909d',
+        Name.Builtin:       '#2fbccd',
         Name.Variable:      '#40ffff',
         Name.Constant:      '#40ffff',
-        Name.Class:         'underline #447fcf',
-        Name.Function:      '#447fcf',
-        Name.Namespace:     'underline #447fcf',
+        Name.Class:         'underline #71adff',
+        Name.Function:      '#71adff',
+        Name.Namespace:     'underline #71adff',
         Name.Exception:     '#bbbbbb',
-        Name.Tag:           'bold #6ab825',
+        Name.Tag:           'bold #6ebf26',
         Name.Attribute:     '#bbbbbb',
         Name.Decorator:     '#ffa500',
 
         Generic.Heading:    'bold #ffffff',
         Generic.Subheading: 'underline #ffffff',
-        Generic.Deleted:    '#d22323',
+        Generic.Deleted:    '#ff3a3a',
         Generic.Inserted:   '#589819',
-        Generic.Error:      '#d22323',
+        Generic.Error:      '#ff3a3a',
         Generic.Emph:       'italic',
         Generic.Strong:     'bold',
+        Generic.EmphStrong: 'bold italic',
         Generic.Prompt:     '#aaaaaa',
         Generic.Output:     '#cccccc',
-        Generic.Traceback:  '#d22323',
+        Generic.Traceback:  '#ff3a3a',
 
         Error:              'bg:#e3d2d2 #a61717'
     }

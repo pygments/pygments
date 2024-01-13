@@ -32,7 +32,7 @@
     have been chosen to have the same style.  Similarly, keywords (Keyword.*),
     and Operator.Word (and, or, in) have been assigned the same style.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -41,21 +41,23 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Whitespace, Punctuation, Other, Literal
 
 
+__all__ = ['TangoStyle']
+
+
 class TangoStyle(Style):
     """
     The Crunchy default Style inspired from the color palette from
     the Tango Icon Theme Guidelines.
     """
 
-    # work in progress...
-
+    name = 'tango'
+    
     background_color = "#f8f8f8"
-    default_style = ""
 
     styles = {
         # No corresponding class for the following:
         #Text:                     "", # class:  ''
-        Whitespace:                "underline #f8f8f8",      # class: 'w'
+        Whitespace:                "#f8f8f8",      # class: 'w'
         Error:                     "#a40000 border:#ef2929", # class: 'err'
         Other:                     "#000000",                # class 'x'
 
@@ -135,6 +137,7 @@ class TangoStyle(Style):
         Generic.Output:            "italic #000000", # class: 'go'
         Generic.Prompt:            "#8f5902",        # class: 'gp'
         Generic.Strong:            "bold #000000",   # class: 'gs'
+        Generic.EmphStrong:        "bold italic #000000",  # class: 'ges'
         Generic.Subheading:        "bold #800080",   # class: 'gu'
         Generic.Traceback:         "bold #a40000",   # class: 'gt'
     }

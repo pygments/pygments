@@ -1,214 +1,214 @@
 'module'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'examples'    Name
 '/'           Operator
 'systems'     Name
 '/'           Operator
 'views'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-"/*\n * Model of views in object-oriented programming.\n *\n * Two object references, called the view and the backing,\n * are related by a view mechanism when changes to the\n * backing are automatically propagated to the view. Note\n * that the state of a view need not be a projection of the\n * state of the backing; the keySet method of Map, for\n * example, produces two view relationships, and for the\n * one in which the map is modified by changes to the key\n * set, the value of the new map cannot be determined from\n * the key set. Note that in the iterator view mechanism,\n * the iterator is by this definition the backing object,\n * since changes are propagated from iterator to collection\n * and not vice versa. Oddly, a reference may be a view of\n * more than one backing: there can be two iterators on the\n * same collection, eg. A reference cannot be a view under\n * more than one view type.\n *\n * A reference is made dirty when it is a backing for a view\n * with which it is no longer related by the view invariant.\n * This usually happens when a view is modified, either\n * directly or via another backing. For example, changing a\n * collection directly when it has an iterator invalidates\n * it, as does changing the collection through one iterator\n * when there are others.\n *\n * More work is needed if we want to model more closely the\n * failure of an iterator when its collection is invalidated.\n *\n * As a terminological convention, when there are two\n * complementary view relationships, we will give them types\n * t and t'. For example, KeySetView propagates from map to\n * set, and KeySetView' propagates from set to map.\n *\n * author: Daniel Jackson\n */" Comment.Multiline
-'\n'          Text
+'/*\n * Model of views in object-oriented programming.\n *\n * Two object references, called the view and the backing,\n * are related by a view mechanism when changes to the\n * backing are automatically propagated to the view. Note\n * that the state of a view need not be a projection of the\n * state of the backing; the keySet method of Map, for\n * example, produces two view relationships, and for the\n * one in which the map is modified by changes to the key\n * set, the value of the new map cannot be determined from\n * the key set. Note that in the iterator view mechanism,\n * the iterator is by this definition the backing object,\n * since changes are propagated from iterator to collection\n * and not vice versa. Oddly, a reference may be a view of\n * more than one backing: there can be two iterators on the\n * same collection, eg. A reference cannot be a view under\n * more than one view type.\n *\n * A reference is made dirty when it is a backing for a view\n * with which it is no longer related by the view invariant.\n * This usually happens when a view is modified, either\n * directly or via another backing. For example, changing a\n * collection directly when it has an iterator invalidates\n * it, as does changing the collection through one iterator\n * when there are others.\n *\n * More work is needed if we want to model more closely the\n * failure of an iterator when its collection is invalidated.\n *\n * As a terminological convention, when there are two\n * complementary view relationships, we will give them types\n * t and t". For example, KeySetView propagates from map to\n * set, and KeySetView" propagates from set to map.\n *\n * author: Daniel Jackson\n */' Comment.Multiline
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'open'        Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'util'        Name
 '/'           Operator
 'ordering'    Name
 '['           Operator
 'State'       Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'so'          Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'open'        Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'util'        Name
 '/'           Operator
 'relation'    Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'rel'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sig'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Ref'         Name
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sig'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Object'      Name
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- t->b->v in views when v is view of type t of backing b' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- dirty contains refs that have been invalidated' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sig'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'State'       Name
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'refs'        Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Ref'         Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'obj'         Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'refs'        Name
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 'one'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Object'      Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'views'       Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ViewType'    Name
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 'refs'        Name
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 'refs'        Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'dirty'       Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'refs'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--  , anyviews: Ref -> Ref -- for visualization' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- {anyviews = ViewType.views}' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sig'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Map'         Name
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
-' '           Text
+' '           Text.Whitespace
 'Object'      Name
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'keys'        Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Ref'         Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'map'         Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'keys'        Name
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 'one'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Ref'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Operator
 '{'           Operator
 'all'         Keyword
-' '           Text
+' '           Text.Whitespace
 's'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'State'       Name
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-'  '          Text
+'  '          Text.Whitespace
 'keys'        Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'Ref'         Name
 '.'           Operator
 'map'         Name
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 's'           Name
 '.'           Operator
 'refs'        Name
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sig'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'MapRef'      Name
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
-' '           Text
+' '           Text.Whitespace
 'Ref'         Name
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'fact'        Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
 'State'       Name
 '.'           Operator
@@ -216,92 +216,92 @@
 '['           Operator
 'MapRef'      Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Map'         Name
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sig'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Iterator'    Name
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
-' '           Text
+' '           Text.Whitespace
 'Object'      Name
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'left'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'done'        Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Ref'         Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'lastRef'     Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'lone'        Keyword
-' '           Text
+' '           Text.Whitespace
 'done'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Operator
 '{'           Operator
 'all'         Keyword
-' '           Text
+' '           Text.Whitespace
 's'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'State'       Name
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'done'        Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'left'        Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'lastRef'     Name
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 's'           Name
 '.'           Operator
 'refs'        Name
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sig'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'IteratorRef' Name
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
-' '           Text
+' '           Text.Whitespace
 'Ref'         Name
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'fact'        Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
 'State'       Name
 '.'           Operator
@@ -309,71 +309,71 @@
 '['           Operator
 'IteratorRef' Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Iterator'    Name
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sig'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'Set'         Name
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
-' '           Text
+' '           Text.Whitespace
 'Object'      Name
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'elts'        Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Ref'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Operator
 '{'           Operator
 'all'         Keyword
-' '           Text
+' '           Text.Whitespace
 's'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'State'       Name
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'elts'        Name
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 's'           Name
 '.'           Operator
 'refs'        Name
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'sig'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'SetRef'      Name
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
-' '           Text
+' '           Text.Whitespace
 'Ref'         Name
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'fact'        Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
 'State'       Name
 '.'           Operator
@@ -381,174 +381,174 @@
 '['           Operator
 'SetRef'      Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'Set'         Name
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'abstract'    Keyword
-' '           Text
+' '           Text.Whitespace
 'sig'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'ViewType'    Name
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'one'         Keyword
-' '           Text
+' '           Text.Whitespace
 'sig'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'KeySetView'  Name
 ','           Punctuation
-' '           Text
-"KeySetView'" Name
+' '           Text.Whitespace
+'KeySetView"' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'IteratorView' Name
-' '           Text
+' '           Text.Whitespace
 'extends'     Keyword
-' '           Text
+' '           Text.Whitespace
 'ViewType'    Name
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
 'fact'        Keyword
-' '           Text
+' '           Text.Whitespace
 'ViewTypes'   Name
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'State'       Name
 '.'           Operator
 'views'       Name
 '['           Operator
 'KeySetView'  Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'MapRef'      Name
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 'SetRef'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'State'       Name
 '.'           Operator
 'views'       Name
 '['           Operator
-"KeySetView'" Name
+'KeySetView"' Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'SetRef'      Name
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 'MapRef'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'State'       Name
 '.'           Operator
 'views'       Name
 '['           Operator
 'IteratorView' Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'IteratorRef' Name
-' '           Text
+' '           Text.Whitespace
 '->'          Operator
-' '           Text
+' '           Text.Whitespace
 'SetRef'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'all'         Keyword
-' '           Text
+' '           Text.Whitespace
 's'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'State'       Name
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 's'           Name
 '.'           Operator
 'views'       Name
 '['           Operator
 'KeySetView'  Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '~'           Operator
 '('           Operator
 's'           Name
 '.'           Operator
 'views'       Name
 '['           Operator
-"KeySetView'" Name
+'KeySetView"' Name
 ']'           Operator
 ')'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 "/**\n * mods is refs modified directly or by view mechanism\n * doesn't handle possibility of modifying an object and its view at once?\n * should we limit frame conds to non-dirty refs?\n */" Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 'pred'        Keyword
-' '           Text
+' '           Text.Whitespace
 'modifies'    Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 'pre'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'State'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'rs'          Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Ref'         Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 'vr'          Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'pre'         Name
 '.'           Operator
 'views'       Name
@@ -556,100 +556,100 @@
 'ViewType'    Name
 ']'           Operator
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mods'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'rs'          Name
 '.'           Operator
 '*'           Operator
 'vr'          Name
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'all'         Keyword
-' '           Text
+' '           Text.Whitespace
 'r'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pre'         Name
 '.'           Operator
 'refs'        Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'mods'        Name
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'pre'         Name
 '.'           Operator
 'obj'         Name
 '['           Operator
 'r'           Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 '.'           Operator
 'obj'         Name
 '['           Operator
 'r'           Name
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'all'         Keyword
-' '           Text
+' '           Text.Whitespace
 'b'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'mods'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'v'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pre'         Name
 '.'           Operator
 'refs'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 't'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ViewType'    Name
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 'b'           Name
 '->'          Operator
 'v'           Name
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'pre'         Name
 '.'           Operator
 'views'       Name
 '['           Operator
 't'           Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'viewFrame'   Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 't'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pre'         Name
 '.'           Operator
 'obj'         Name
@@ -657,7 +657,7 @@
 'v'           Name
 ']'           Operator
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 '.'           Operator
 'obj'         Name
@@ -665,7 +665,7 @@
 'v'           Name
 ']'           Operator
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 '.'           Operator
 'obj'         Name
@@ -673,72 +673,72 @@
 'b'           Name
 ']'           Operator
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'post'        Name
 '.'           Operator
 'dirty'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'pre'         Name
 '.'           Operator
 'dirty'       Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '{'           Operator
 'b'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pre'         Name
 '.'           Operator
 'refs'        Name
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'some'        Keyword
-' '           Text
+' '           Text.Whitespace
 'v'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Ref'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 't'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ViewType'    Name
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'          '  Text
+'          '  Text.Whitespace
 'b'           Name
 '->'          Operator
 'v'           Name
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'pre'         Name
 '.'           Operator
 'views'       Name
 '['           Operator
 't'           Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '&&'          Operator
-' '           Text
+' '           Text.Whitespace
 '!'           Operator
 'viewFrame'   Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 't'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pre'         Name
 '.'           Operator
 'obj'         Name
@@ -746,7 +746,7 @@
 'v'           Name
 ']'           Operator
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 '.'           Operator
 'obj'         Name
@@ -754,7 +754,7 @@
 'v'           Name
 ']'           Operator
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 '.'           Operator
 'obj'         Name
@@ -762,262 +762,262 @@
 'b'           Name
 ']'           Operator
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'pred'        Keyword
-' '           Text
+' '           Text.Whitespace
 'allocates'   Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 'pre'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'State'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'rs'          Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'set'         Keyword
-' '           Text
+' '           Text.Whitespace
 'Ref'         Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'no'          Keyword
-' '           Text
+' '           Text.Whitespace
 'rs'          Name
-' '           Text
+' '           Text.Whitespace
 '&'           Operator
-' '           Text
+' '           Text.Whitespace
 'pre'         Name
 '.'           Operator
 'refs'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'post'        Name
 '.'           Operator
 'refs'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'pre'         Name
 '.'           Operator
 'refs'        Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'rs'          Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-"/** \n * models frame condition that limits change to view object from v to v' when backing object changes to b'\n */" Comment.Multiline
-'\n'          Text
+'/** \n * models frame condition that limits change to view object from v to v" when backing object changes to b"\n */' Comment.Multiline
+'\n'          Text.Whitespace
 
 'pred'        Keyword
-' '           Text
+' '           Text.Whitespace
 'viewFrame'   Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 't'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ViewType'    Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'v'           Name
 ','           Punctuation
-' '           Text
-"v'"          Name
+' '           Text.Whitespace
+'v"'          Name
 ','           Punctuation
-' '           Text
-"b'"          Name
+' '           Text.Whitespace
+'b"'          Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Object'      Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 't'           Name
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'KeySetView'  Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
-"v'"          Name
+' '           Text.Whitespace
+'v"'          Name
 '.'           Operator
 'elts'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'dom'         Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
-"b'"          Name
+'b"'          Name
 '.'           Operator
 'map'         Name
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 't'           Name
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
-"KeySetView'" Name
-' '           Text
+' '           Text.Whitespace
+'KeySetView"' Name
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
-"b'"          Name
+' '           Text.Whitespace
+'b"'          Name
 '.'           Operator
 'elts'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'dom'         Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
-"v'"          Name
+'v"'          Name
 '.'           Operator
 'map'         Name
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 't'           Name
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
-"KeySetView'" Name
-' '           Text
+' '           Text.Whitespace
+'KeySetView"' Name
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Operator
-"b'"          Name
+'b"'          Name
 '.'           Operator
 'elts'        Name
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Operator
 'v'           Name
 '.'           Operator
 'map'         Name
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Operator
-"b'"          Name
+'b"'          Name
 '.'           Operator
 'elts'        Name
 ')'           Operator
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Operator
-"v'"          Name
+'v"'          Name
 '.'           Operator
 'map'         Name
 ')'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 't'           Name
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'IteratorView' Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
-"v'"          Name
+' '           Text.Whitespace
+'v"'          Name
 '.'           Operator
 'elts'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
-"b'"          Name
+' '           Text.Whitespace
+'b"'          Name
 '.'           Operator
 'left'        Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
-"b'"          Name
+' '           Text.Whitespace
+'b"'          Name
 '.'           Operator
 'done'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'pred'        Keyword
-' '           Text
+' '           Text.Whitespace
 'MapRef'      Name
 '.'           Operator
 'keySet'      Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 'pre'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'State'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'setRefs'     Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'SetRef'      Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'post'        Name
 '.'           Operator
 'obj'         Name
@@ -1026,11 +1026,11 @@
 ']'           Operator
 '.'           Operator
 'elts'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'dom'         Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 'pre'         Name
 '.'           Operator
@@ -1041,99 +1041,99 @@
 '.'           Operator
 'map'         Name
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'modifies'    Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 'pre'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'none'        Keyword.Constant
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'allocates'   Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 'pre'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'setRefs'     Name
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'post'        Name
 '.'           Operator
 'views'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'pre'         Name
 '.'           Operator
 'views'       Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'KeySetView'  Name
 '->'          Operator
 'this'        Keyword
 '->'          Operator
 'setRefs'     Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
-"KeySetView'" Name
+' '           Text.Whitespace
+'KeySetView"' Name
 '->'          Operator
 'setRefs'     Name
 '->'          Operator
 'this'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'pred'        Keyword
-' '           Text
+' '           Text.Whitespace
 'MapRef'      Name
 '.'           Operator
 'put'         Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 'pre'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'State'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'k'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'v'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Ref'         Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'post'        Name
 '.'           Operator
 'obj'         Name
@@ -1142,9 +1142,9 @@
 ']'           Operator
 '.'           Operator
 'map'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'pre'         Name
 '.'           Operator
 'obj'         Name
@@ -1153,109 +1153,109 @@
 ']'           Operator
 '.'           Operator
 'map'         Name
-' '           Text
+' '           Text.Whitespace
 '++'          Operator
-' '           Text
+' '           Text.Whitespace
 'k'           Name
 '->'          Operator
 'v'           Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'modifies'    Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 'pre'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'this'        Keyword
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'allocates'   Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 'pre'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'none'        Keyword.Constant
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'post'        Name
 '.'           Operator
 'views'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'pre'         Name
 '.'           Operator
 'views'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'pred'        Keyword
-' '           Text
+' '           Text.Whitespace
 'SetRef'      Name
 '.'           Operator
 'iterator'    Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 'pre'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'State'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'iterRef'     Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'IteratorRef' Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 '.'           Operator
 'obj'         Name
 '['           Operator
 'iterRef'     Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'i'           Name
 '.'           Operator
 'left'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'pre'         Name
 '.'           Operator
 'obj'         Name
@@ -1264,29 +1264,29 @@
 ']'           Operator
 '.'           Operator
 'elts'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'no'          Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 '.'           Operator
 'done'        Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 '.'           Operator
 'lastRef'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'modifies'    Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 'pre'         Name
 ','           Punctuation
@@ -1294,74 +1294,74 @@
 ','           Punctuation
 'none'        Keyword.Constant
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'allocates'   Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 'pre'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'iterRef'     Name
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'post'        Name
 '.'           Operator
 'views'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'pre'         Name
 '.'           Operator
 'views'       Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'IteratorView' Name
 '->'          Operator
 'iterRef'     Name
 '->'          Operator
 'this'        Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'pred'        Keyword
-' '           Text
+' '           Text.Whitespace
 'IteratorRef' Name
 '.'           Operator
 'remove'      Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 'pre'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'State'       Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'pre'         Name
 '.'           Operator
 'obj'         Name
@@ -1369,66 +1369,66 @@
 'this'        Keyword
 ']'           Operator
 ','           Punctuation
-' '           Text
-"i'"          Name
-' '           Text
+' '           Text.Whitespace
+'i"'          Name
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 '.'           Operator
 'obj'         Name
 '['           Operator
 'this'        Keyword
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
-"i'"          Name
+'    '        Text.Whitespace
+'i"'          Name
 '.'           Operator
 'left'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 '.'           Operator
 'left'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
-"i'"          Name
+'    '        Text.Whitespace
+'i"'          Name
 '.'           Operator
 'done'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 '.'           Operator
 'done'        Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 '.'           Operator
 'lastRef'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'no'          Keyword
-' '           Text
-"i'"          Name
+' '           Text.Whitespace
+'i"'          Name
 '.'           Operator
 'lastRef'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'modifies'    Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 'pre'         Name
 ','           Punctuation
@@ -1436,72 +1436,72 @@
 ','           Punctuation
 'this'        Keyword
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'allocates'   Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 'pre'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'none'        Keyword.Constant
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'pre'         Name
 '.'           Operator
 'views'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 '.'           Operator
 'views'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'pred'        Keyword
-' '           Text
+' '           Text.Whitespace
 'IteratorRef' Name
 '.'           Operator
 'next'        Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 'pre'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'State'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ref'         Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Ref'         Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'pre'         Name
 '.'           Operator
 'obj'         Name
@@ -1509,142 +1509,142 @@
 'this'        Keyword
 ']'           Operator
 ','           Punctuation
-' '           Text
-"i'"          Name
-' '           Text
+' '           Text.Whitespace
+'i"'          Name
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 '.'           Operator
 'obj'         Name
 '['           Operator
 'this'        Keyword
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ref'         Name
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 '.'           Operator
 'left'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
-"i'"          Name
+'    '        Text.Whitespace
+'i"'          Name
 '.'           Operator
 'left'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 '.'           Operator
 'left'        Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'ref'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
-"i'"          Name
+'    '        Text.Whitespace
+'i"'          Name
 '.'           Operator
 'done'        Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 '.'           Operator
 'done'        Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'ref'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
-"i'"          Name
+'    '        Text.Whitespace
+'i"'          Name
 '.'           Operator
 'lastRef'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'ref'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'modifies'    Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 'pre'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'this'        Keyword
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'allocates'   Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 'pre'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'none'        Keyword.Constant
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'pre'         Name
 '.'           Operator
 'views'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'post'        Name
 '.'           Operator
 'views'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'pred'        Keyword
-' '           Text
+' '           Text.Whitespace
 'IteratorRef' Name
 '.'           Operator
 'hasNext'     Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 's'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'State'       Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'some'        Keyword
-' '           Text
+' '           Text.Whitespace
 's'           Name
 '.'           Operator
 'obj'         Name
@@ -1653,79 +1653,79 @@
 ']'           Operator
 '.'           Operator
 'left'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'assert'      Keyword
-' '           Text
+' '           Text.Whitespace
 'zippishOK'   Name
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 'all'         Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ks'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'vs'          Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'SetRef'      Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'm'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'MapRef'      Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ki'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'vi'          Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'IteratorRef' Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'k'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'v'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Ref'         Name
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'let'         Keyword
-' '           Text
+' '           Text.Whitespace
 's0'          Name
 '='           Operator
 'so'          Name
 '/'           Operator
 'first'       Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 's1'          Name
 '='           Operator
 'so'          Name
@@ -1735,9 +1735,9 @@
 's0'          Name
 ']'           Operator
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 's2'          Name
 '='           Operator
 'so'          Name
@@ -1747,9 +1747,9 @@
 's1'          Name
 ']'           Operator
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 's3'          Name
 '='           Operator
 'so'          Name
@@ -1759,9 +1759,9 @@
 's2'          Name
 ']'           Operator
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 's4'          Name
 '='           Operator
 'so'          Name
@@ -1771,9 +1771,9 @@
 's3'          Name
 ']'           Operator
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 's5'          Name
 '='           Operator
 'so'          Name
@@ -1783,9 +1783,9 @@
 's4'          Name
 ']'           Operator
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 's6'          Name
 '='           Operator
 'so'          Name
@@ -1795,9 +1795,9 @@
 's5'          Name
 ']'           Operator
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 's7'          Name
 '='           Operator
 'so'          Name
@@ -1806,273 +1806,273 @@
 '['           Operator
 's6'          Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '('           Operator
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'precondition' Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 's0'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ks'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'vs'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'm'           Name
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'no'          Keyword
-' '           Text
+' '           Text.Whitespace
 's0'          Name
 '.'           Operator
 'dirty'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ks'          Name
 '.'           Operator
 'iterator'    Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 's0'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 's1'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ki'          Name
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'vs'          Name
 '.'           Operator
 'iterator'    Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 's1'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 's2'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'vi'          Name
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ki'          Name
 '.'           Operator
 'hasNext'     Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 's2'          Name
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'vi'          Name
 '.'           Operator
 'hasNext'     Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 's2'          Name
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ki'          Name
 '.'           Operator
 'this'        Keyword
 '/'           Operator
 'next'        Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 's2'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 's3'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'k'           Name
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'vi'          Name
 '.'           Operator
 'this'        Keyword
 '/'           Operator
 'next'        Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 's3'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 's4'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'v'           Name
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'm'           Name
 '.'           Operator
 'put'         Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 's4'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 's5'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'k'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'v'           Name
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'ki'          Name
 '.'           Operator
 'remove'      Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 's5'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 's6'          Name
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'vi'          Name
 '.'           Operator
 'remove'      Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 's6'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 's7'          Name
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Operator
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'no'          Keyword
-' '           Text
+' '           Text.Whitespace
 'State'       Name
 '.'           Operator
 'dirty'       Name
 ')'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'pred'        Keyword
-' '           Text
+' '           Text.Whitespace
 'precondition' Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 'pre'         Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'State'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ks'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'vs'          Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'm'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Ref'         Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// all these conditions and other errors discovered in scope of 6 but 8,3' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// in initial state, must have view invariants hold' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '('           Operator
 'all'         Keyword
-' '           Text
+' '           Text.Whitespace
 't'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ViewType'    Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'b'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'v'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pre'         Name
 '.'           Operator
 'refs'        Name
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'b'           Name
 '->'          Operator
 'v'           Name
-' '           Text
+' '           Text.Whitespace
 'in'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 'pre'         Name
 '.'           Operator
 'views'       Name
 '['           Operator
 't'           Name
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'viewFrame'   Name
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 't'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pre'         Name
 '.'           Operator
 'obj'         Name
@@ -2080,7 +2080,7 @@
 'v'           Name
 ']'           Operator
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pre'         Name
 '.'           Operator
 'obj'         Name
@@ -2088,7 +2088,7 @@
 'v'           Name
 ']'           Operator
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pre'         Name
 '.'           Operator
 'obj'         Name
@@ -2097,83 +2097,83 @@
 ']'           Operator
 ']'           Operator
 ')'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// sets are not aliases' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--  ks != vs' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// sets are not views of map' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--  no (ks+vs)->m & ViewType.pre.views' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '// no iterator currently on either set' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--  no Ref->(ks+vs) & ViewType.pre.views' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 'check'       Keyword
-' '           Text
+' '           Text.Whitespace
 'zippishOK'   Name
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 '6'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'but'         Keyword
-' '           Text
+' '           Text.Whitespace
 '8'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'State'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'ViewType'    Name
-' '           Text
+' '           Text.Whitespace
 'expect'      Keyword
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '/** \n * experiment with controlling heap size\n */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 'fact'        Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Operator
 'all'         Keyword
-' '           Text
+' '           Text.Whitespace
 's'           Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'State'       Name
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 '#'           Operator
 's'           Name
 '.'           Operator
 'obj'         Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number.Integer
 '}'           Operator
-'\n'          Text
+'\n'          Text.Whitespace

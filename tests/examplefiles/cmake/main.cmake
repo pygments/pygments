@@ -20,6 +20,11 @@ MESSAGE( Welc"ome)" ) # rule 2
 MESSAGE( ""Thanks ) # rule 1
 MESSAGE( Thanks"" ) # rule 3
 
+message([==[
+this is a
+multiline argument
+]==])
+
 SET( x y A B C )              # stores "y;A;B;C" in x (without quote)
 SET( ${x} )                   # => SET( y;A;B;C ) => SET( y A B C)
 MESSAGE( ${y} )               # prints "ABC" to stdout (without quotes)
@@ -43,3 +48,13 @@ ANOTHER_COMMAND() # this command has no arguments
 YET_ANOTHER_COMMAND( these
   arguments are spread         # another comment
   over several lines )
+
+#[[ multiline
+CMake comment
+]]
+
+#[==[ another multiline
+CMake comment
+]==]
+
+#[==[ #[[ A "nested" comment ]] ]==]

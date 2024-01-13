@@ -1,0 +1,52 @@
+---input---
+RFC 1
+RFC 2
+RFC 3f
+rfc 4
+PMID&nbsp;&#160;   &#x0a0;114514
+ISBN 978-3-16-148410-0
+ISBN 978&nbsp;3 16-148410&#160;0
+https://example.com
+irc://example.com
+nolink://example.com
+
+---tokens---
+'RFC 1'       Name.Function.Magic
+'\n'          Text
+
+'RFC 2'       Name.Function.Magic
+'\n'          Text
+
+'RFC'         Text
+' '           Text
+'3f'          Text
+'\n'          Text
+
+'rfc'         Text
+' '           Text
+'4'           Text
+'\n'          Text
+
+'PMID&nbsp;&#160;   &#x0a0;114514' Name.Function.Magic
+'\n'          Text
+
+'ISBN 978-3-16-148410-0' Name.Function.Magic
+'\n'          Text
+
+'ISBN 978&nbsp;3 16-148410&#160;0' Name.Function.Magic
+'\n'          Text
+
+'https://example.com' Name.Label
+'\n'          Text
+
+'irc://example.com' Name.Label
+'\n'          Text
+
+'nolink'      Text
+':'           Text
+'/'           Text
+'/'           Text
+'example'     Text
+'.'           Text
+'com'         Text
+'\n'          Text

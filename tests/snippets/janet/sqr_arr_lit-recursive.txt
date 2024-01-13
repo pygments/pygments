@@ -1,0 +1,24 @@
+---input---
+@[1 @[2 @[3 8]] @[9 0]]
+
+---tokens---
+'@['          Punctuation
+'1'           Literal.Number.Float
+' '           Text.Whitespace
+'@['          Punctuation
+'2'           Literal.Number.Float
+' '           Text.Whitespace
+'@['          Punctuation
+'3'           Literal.Number.Float
+' '           Text.Whitespace
+'8'           Literal.Number.Float
+']'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'@['          Punctuation
+'9'           Literal.Number.Float
+' '           Text.Whitespace
+'0'           Literal.Number.Float
+']'           Punctuation
+']'           Punctuation
+'\n'          Text.Whitespace

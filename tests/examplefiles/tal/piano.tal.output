@@ -1,0 +1,4447 @@
+'('           Comment.Multiline
+' Piano:\n\tPlay notes with the keyboard or the controller ' Comment.Multiline
+')'           Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'|00'         Keyword.Declaration
+' '           Text.Whitespace
+'@System'     Name.Function
+' '           Text.Whitespace
+'&vector'     Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&wst'        Name.Label
+' '           Text.Whitespace
+'$1'          Keyword.Declaration
+' '           Text.Whitespace
+'&rst'        Name.Label
+' '           Text.Whitespace
+'$1'          Keyword.Declaration
+' '           Text.Whitespace
+'&pad'        Name.Label
+' '           Text.Whitespace
+'$4'          Keyword.Declaration
+' '           Text.Whitespace
+'&r'          Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&g'          Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&b'          Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&debug'      Name.Label
+' '           Text.Whitespace
+'$1'          Keyword.Declaration
+' '           Text.Whitespace
+'&halt'       Name.Label
+' '           Text.Whitespace
+'$1'          Keyword.Declaration
+'\n'          Text.Whitespace
+
+'|10'         Keyword.Declaration
+' '           Text.Whitespace
+'@Console'    Name.Function
+' '           Text.Whitespace
+'&vector'     Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&read'       Name.Label
+' '           Text.Whitespace
+'$1'          Keyword.Declaration
+' '           Text.Whitespace
+'&pad'        Name.Label
+' '           Text.Whitespace
+'$5'          Keyword.Declaration
+' '           Text.Whitespace
+'&write'      Name.Label
+' '           Text.Whitespace
+'$1'          Keyword.Declaration
+' '           Text.Whitespace
+'&error'      Name.Label
+' '           Text.Whitespace
+'$1'          Keyword.Declaration
+'\n'          Text.Whitespace
+
+'|20'         Keyword.Declaration
+' '           Text.Whitespace
+'@Screen'     Name.Function
+' '           Text.Whitespace
+'&vector'     Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&width'      Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&height'     Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&auto'       Name.Label
+' '           Text.Whitespace
+'$1'          Keyword.Declaration
+' '           Text.Whitespace
+'&pad'        Name.Label
+' '           Text.Whitespace
+'$1'          Keyword.Declaration
+' '           Text.Whitespace
+'&x'          Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&y'          Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&addr'       Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&pixel'      Name.Label
+' '           Text.Whitespace
+'$1'          Keyword.Declaration
+' '           Text.Whitespace
+'&sprite'     Name.Label
+' '           Text.Whitespace
+'$1'          Keyword.Declaration
+'\n'          Text.Whitespace
+
+'|30'         Keyword.Declaration
+' '           Text.Whitespace
+'@Audio0'     Name.Function
+' '           Text.Whitespace
+'&vector'     Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&position'   Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&output'     Name.Label
+' '           Text.Whitespace
+'$1'          Keyword.Declaration
+' '           Text.Whitespace
+'&pad'        Name.Label
+' '           Text.Whitespace
+'$3'          Keyword.Declaration
+' '           Text.Whitespace
+'&adsr'       Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&length'     Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&addr'       Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&volume'     Name.Label
+' '           Text.Whitespace
+'$1'          Keyword.Declaration
+' '           Text.Whitespace
+'&pitch'      Name.Label
+' '           Text.Whitespace
+'$1'          Keyword.Declaration
+'\n'          Text.Whitespace
+
+'|40'         Keyword.Declaration
+' '           Text.Whitespace
+'@Audio1'     Name.Function
+' '           Text.Whitespace
+'&vector'     Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&position'   Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&output'     Name.Label
+' '           Text.Whitespace
+'$1'          Keyword.Declaration
+' '           Text.Whitespace
+'&pad'        Name.Label
+' '           Text.Whitespace
+'$3'          Keyword.Declaration
+' '           Text.Whitespace
+'&adsr'       Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&length'     Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&addr'       Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&volume'     Name.Label
+' '           Text.Whitespace
+'$1'          Keyword.Declaration
+' '           Text.Whitespace
+'&pitch'      Name.Label
+' '           Text.Whitespace
+'$1'          Keyword.Declaration
+'\n'          Text.Whitespace
+
+'|80'         Keyword.Declaration
+' '           Text.Whitespace
+'@Controller' Name.Function
+' '           Text.Whitespace
+'&vector'     Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&button'     Name.Label
+' '           Text.Whitespace
+'$1'          Keyword.Declaration
+' '           Text.Whitespace
+'&key'        Name.Label
+' '           Text.Whitespace
+'$1'          Keyword.Declaration
+'\n'          Text.Whitespace
+
+'|90'         Keyword.Declaration
+' '           Text.Whitespace
+'@Mouse'      Name.Function
+' '           Text.Whitespace
+'&vector'     Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&x'          Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&y'          Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&state'      Name.Label
+' '           Text.Whitespace
+'$1'          Keyword.Declaration
+' '           Text.Whitespace
+'&pad'        Name.Label
+' '           Text.Whitespace
+'$3'          Keyword.Declaration
+' '           Text.Whitespace
+'&modx'       Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&mody'       Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+'\n\n'        Text.Whitespace
+
+'%HALT'       Name.Decorator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'#010f'       Literal.Number.Hex
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'|0000'       Keyword.Declaration
+'\n\n\t'      Text.Whitespace
+'@octave'     Name.Function
+' '           Text.Whitespace
+'$1'          Keyword.Declaration
+'\n\t'        Text.Whitespace
+'@center'     Name.Function
+' '           Text.Whitespace
+'&x'          Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&y'          Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+'\n\t'        Text.Whitespace
+'@adsr-view'  Name.Function
+' '           Text.Whitespace
+'&x1'         Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&y1'         Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&x2'         Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&y2'         Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+'\n\t'        Text.Whitespace
+'@wave-view'  Name.Function
+' '           Text.Whitespace
+'&x1'         Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&y1'         Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&x2'         Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&y2'         Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+'\n\t'        Text.Whitespace
+'@octave-view' Name.Function
+' '           Text.Whitespace
+'&x1'         Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&y1'         Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&x2'         Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+'&y2'         Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+'\n\n'        Text.Whitespace
+
+'|0100'       Keyword.Declaration
+' '           Text.Whitespace
+'('           Comment.Multiline
+' -> '        Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'('           Comment.Multiline
+' theme '     Comment.Multiline
+')'           Comment.Multiline
+'\n\t'        Text.Whitespace
+'#0fe3'       Literal.Number.Hex
+' '           Text.Whitespace
+'.System/r'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'#0fc3'       Literal.Number.Hex
+' '           Text.Whitespace
+'.System/g'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'#0f23'       Literal.Number.Hex
+' '           Text.Whitespace
+'.System/b'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' resize '    Comment.Multiline
+')'           Comment.Multiline
+'\n\t'        Text.Whitespace
+'#0180'       Literal.Number.Hex
+' '           Text.Whitespace
+'.Screen/width' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'#00e0'       Literal.Number.Hex
+' '           Text.Whitespace
+'.Screen/height' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' find center ' Comment.Multiline
+')'           Comment.Multiline
+'\n\t'        Text.Whitespace
+'.Screen/width' Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+'#01'         Literal.Number.Hex
+' '           Text.Whitespace
+'SFT2'        Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'DUP2'        Keyword.Reserved
+' '           Text.Whitespace
+'.center/x'   Name.Variable.Magic
+' '           Text.Whitespace
+'STZ2'        Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'#0080'       Literal.Number.Hex
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'DUP2'        Keyword.Reserved
+' '           Text.Whitespace
+'.octave-view/x1' Name.Variable.Magic
+' '           Text.Whitespace
+'STZ2'        Keyword.Reserved
+'\n\t\t\t'    Text.Whitespace
+'#0050'       Literal.Number.Hex
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'.octave-view/x2' Name.Variable.Magic
+' '           Text.Whitespace
+'STZ2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.Screen/height' Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+'#01'         Literal.Number.Hex
+' '           Text.Whitespace
+'SFT2'        Keyword.Reserved
+' '           Text.Whitespace
+'#0010'       Literal.Number.Hex
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'DUP2'        Keyword.Reserved
+' '           Text.Whitespace
+'.center/y'   Name.Variable.Magic
+' '           Text.Whitespace
+'STZ2'        Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'#0010'       Literal.Number.Hex
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'DUP2'        Keyword.Reserved
+' '           Text.Whitespace
+'.octave-view/y1' Name.Variable.Magic
+' '           Text.Whitespace
+'STZ2'        Keyword.Reserved
+'\n\t\t\t'    Text.Whitespace
+'#0018'       Literal.Number.Hex
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'.octave-view/y2' Name.Variable.Magic
+' '           Text.Whitespace
+'STZ2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' place adsr ' Comment.Multiline
+')'           Comment.Multiline
+'\n\t'        Text.Whitespace
+'.center/x'   Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'#0020'       Literal.Number.Hex
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+' '           Text.Whitespace
+'.adsr-view/x1' Name.Variable.Magic
+' '           Text.Whitespace
+'STZ2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.center/y'   Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'#0010'       Literal.Number.Hex
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'.adsr-view/y1' Name.Variable.Magic
+' '           Text.Whitespace
+'STZ2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.adsr-view/x1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'#00a0'       Literal.Number.Hex
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'.adsr-view/x2' Name.Variable.Magic
+' '           Text.Whitespace
+'STZ2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.adsr-view/y1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'#0018'       Literal.Number.Hex
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'.adsr-view/y2' Name.Variable.Magic
+' '           Text.Whitespace
+'STZ2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' place waveform ' Comment.Multiline
+')'           Comment.Multiline
+'\n\t'        Text.Whitespace
+'.center/x'   Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'#0080'       Literal.Number.Hex
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+' '           Text.Whitespace
+'.wave-view/x1' Name.Variable.Magic
+' '           Text.Whitespace
+'STZ2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.center/y'   Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'#0040'       Literal.Number.Hex
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+' '           Text.Whitespace
+'.wave-view/y1' Name.Variable.Magic
+' '           Text.Whitespace
+'STZ2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.wave-view/x1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'#0100'       Literal.Number.Hex
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'.wave-view/x2' Name.Variable.Magic
+' '           Text.Whitespace
+'STZ2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.wave-view/y1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'#0040'       Literal.Number.Hex
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'.wave-view/y2' Name.Variable.Magic
+' '           Text.Whitespace
+'STZ2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' setup synth ' Comment.Multiline
+')'           Comment.Multiline
+'\n\t'        Text.Whitespace
+'#041c'       Literal.Number.Hex
+' '           Text.Whitespace
+'set-env'     Name.Function
+'\n\t'        Text.Whitespace
+'#dd'         Literal.Number.Hex
+' '           Text.Whitespace
+'set-vol'     Name.Function
+'\n\t'        Text.Whitespace
+';sin-pcm'    Name.Variable.Global
+' '           Text.Whitespace
+'.Audio0/addr' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+';sin-pcm'    Name.Variable.Global
+' '           Text.Whitespace
+'.Audio1/addr' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'#0100'       Literal.Number.Hex
+'\n\t\t'      Text.Whitespace
+'DUP2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Audio0/length' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'.Audio1/length' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' inital drawing ' Comment.Multiline
+')'           Comment.Multiline
+'\n\t'        Text.Whitespace
+'draw-octave' Name.Function
+'\n\t'        Text.Whitespace
+'draw-adsr'   Name.Function
+'\n\t'        Text.Whitespace
+'draw-wave'   Name.Function
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' unlock '    Comment.Multiline
+')'           Comment.Multiline
+'\n\t'        Text.Whitespace
+';on-frame'   Name.Variable.Global
+' '           Text.Whitespace
+'.Screen/vector' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+';on-control' Name.Variable.Global
+' '           Text.Whitespace
+'.Controller/vector' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+';on-mouse'   Name.Variable.Global
+' '           Text.Whitespace
+'.Mouse/vector' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+';on-message' Name.Variable.Global
+' '           Text.Whitespace
+'.Console/vector' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'BRK'         Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'('           Comment.Multiline
+'\n@|vectors ' Comment.Multiline
+')'           Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'@on-frame'   Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' -> '        Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'.Mouse/state' Name.Variable.Magic
+' '           Text.Whitespace
+'DEI'         Keyword.Reserved
+' '           Text.Whitespace
+'?&skip-sft'  Name.Function
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT2'        Keyword.Reserved
+' '           Text.Whitespace
+'00'          Literal
+' '           Text.Whitespace
+'&soft'       Name.Label
+' '           Text.Whitespace
+'$1'          Keyword.Declaration
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'EQUk'        Keyword.Reserved
+' '           Text.Whitespace
+'?&no-soft'   Name.Function
+'\n\t\t'      Text.Whitespace
+'soften'      Name.Function
+'\n\t\t'      Text.Whitespace
+'DUP'         Keyword.Reserved
+' '           Text.Whitespace
+'#01'         Literal.Number.Hex
+' '           Text.Whitespace
+'SUB'         Keyword.Reserved
+' '           Text.Whitespace
+',&soft'      Name.Variable.Instance
+' '           Text.Whitespace
+'STR'         Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'&no-soft'    Name.Label
+'\n\t'        Text.Whitespace
+'POP2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'&skip-sft'   Name.Label
+'\n\n\t'      Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT'         Keyword.Reserved
+' '           Text.Whitespace
+'&last'       Name.Label
+' '           Text.Whitespace
+'$1'          Keyword.Declaration
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'.Audio0/output' Name.Variable.Magic
+' '           Text.Whitespace
+'DEI'         Keyword.Reserved
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'?&changed'   Name.Function
+'\n\t\t'      Text.Whitespace
+'POP2'        Keyword.Reserved
+' '           Text.Whitespace
+'BRK'         Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'&changed'    Name.Label
+'\n\t'        Text.Whitespace
+',&last'      Name.Variable.Instance
+' '           Text.Whitespace
+'STR'         Keyword.Reserved
+' '           Text.Whitespace
+'POP'         Keyword.Reserved
+'\n\n\t'      Text.Whitespace
+'('           Comment.Multiline
+' redraw '    Comment.Multiline
+')'           Comment.Multiline
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT2'        Keyword.Reserved
+' '           Text.Whitespace
+'00'          Literal
+' '           Text.Whitespace
+'-Screen/auto' Literal
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.adsr-view/y2' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'#0020'       Literal.Number.Hex
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/y'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'#1000'       Literal.Number.Hex
+'\n\t'        Text.Whitespace
+'&loop'       Name.Label
+'\n\t\t'      Text.Whitespace
+'.adsr-view/x2' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'#003a'       Literal.Number.Hex
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/x'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'#10'         Literal.Number.Hex
+' '           Text.Whitespace
+'OVR'         Keyword.Reserved
+' '           Text.Whitespace
+'SUB'         Keyword.Reserved
+' '           Text.Whitespace
+'.Audio0/output' Name.Variable.Magic
+' '           Text.Whitespace
+'DEI'         Keyword.Reserved
+'\n\t\t\t'    Text.Whitespace
+'DUP2'        Keyword.Reserved
+' '           Text.Whitespace
+'#0f'         Literal.Number.Hex
+' '           Text.Whitespace
+'AND'         Keyword.Reserved
+' '           Text.Whitespace
+'LTH'         Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/pixel' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'.Screen/x'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2k'       Keyword.Reserved
+' '           Text.Whitespace
+'INC2'        Keyword.Reserved
+' '           Text.Whitespace
+'INC2'        Keyword.Reserved
+' '           Text.Whitespace
+'ROT'         Keyword.Reserved
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t\t\t'    Text.Whitespace
+'#04'         Literal.Number.Hex
+' '           Text.Whitespace
+'SFT'         Keyword.Reserved
+' '           Text.Whitespace
+'LTH'         Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/pixel' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'.Screen/y'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2k'       Keyword.Reserved
+' '           Text.Whitespace
+'INC2'        Keyword.Reserved
+' '           Text.Whitespace
+'INC2'        Keyword.Reserved
+' '           Text.Whitespace
+'ROT'         Keyword.Reserved
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'INC'         Keyword.Reserved
+' '           Text.Whitespace
+'GTHk'        Keyword.Reserved
+' '           Text.Whitespace
+'?&loop'      Name.Function
+'\n\t'        Text.Whitespace
+'POP2'        Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'BRK'         Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'@on-control' Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' -> '        Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'.Controller/key' Name.Variable.Magic
+' '           Text.Whitespace
+'DEI'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' octave '    Comment.Multiline
+')'           Comment.Multiline
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT'         Keyword.Reserved
+' '           Text.Whitespace
+'"a'          Literal.String
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&no-c'      Name.Function
+' '           Text.Whitespace
+'#30'         Literal.Number.Hex
+' '           Text.Whitespace
+'.octave'     Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ'         Keyword.Reserved
+' '           Text.Whitespace
+'#0c'         Literal.Number.Hex
+' '           Text.Whitespace
+'MUL'         Keyword.Reserved
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&no-c'       Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT'         Keyword.Reserved
+' '           Text.Whitespace
+'"w'          Literal.String
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&no-c#'     Name.Function
+' '           Text.Whitespace
+'#31'         Literal.Number.Hex
+' '           Text.Whitespace
+'.octave'     Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ'         Keyword.Reserved
+' '           Text.Whitespace
+'#0c'         Literal.Number.Hex
+' '           Text.Whitespace
+'MUL'         Keyword.Reserved
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&no-c#'      Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT'         Keyword.Reserved
+' '           Text.Whitespace
+'"s'          Literal.String
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&no-d'      Name.Function
+' '           Text.Whitespace
+'#32'         Literal.Number.Hex
+' '           Text.Whitespace
+'.octave'     Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ'         Keyword.Reserved
+' '           Text.Whitespace
+'#0c'         Literal.Number.Hex
+' '           Text.Whitespace
+'MUL'         Keyword.Reserved
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&no-d'       Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT'         Keyword.Reserved
+' '           Text.Whitespace
+'"e'          Literal.String
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&no-d#'     Name.Function
+' '           Text.Whitespace
+'#33'         Literal.Number.Hex
+' '           Text.Whitespace
+'.octave'     Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ'         Keyword.Reserved
+' '           Text.Whitespace
+'#0c'         Literal.Number.Hex
+' '           Text.Whitespace
+'MUL'         Keyword.Reserved
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&no-d#'      Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT'         Keyword.Reserved
+' '           Text.Whitespace
+'"d'          Literal.String
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&no-e'      Name.Function
+' '           Text.Whitespace
+'#34'         Literal.Number.Hex
+' '           Text.Whitespace
+'.octave'     Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ'         Keyword.Reserved
+' '           Text.Whitespace
+'#0c'         Literal.Number.Hex
+' '           Text.Whitespace
+'MUL'         Keyword.Reserved
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&no-e'       Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT'         Keyword.Reserved
+' '           Text.Whitespace
+'"f'          Literal.String
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&no-f'      Name.Function
+' '           Text.Whitespace
+'#35'         Literal.Number.Hex
+' '           Text.Whitespace
+'.octave'     Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ'         Keyword.Reserved
+' '           Text.Whitespace
+'#0c'         Literal.Number.Hex
+' '           Text.Whitespace
+'MUL'         Keyword.Reserved
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&no-f'       Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT'         Keyword.Reserved
+' '           Text.Whitespace
+'"t'          Literal.String
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&no-f#'     Name.Function
+' '           Text.Whitespace
+'#36'         Literal.Number.Hex
+' '           Text.Whitespace
+'.octave'     Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ'         Keyword.Reserved
+' '           Text.Whitespace
+'#0c'         Literal.Number.Hex
+' '           Text.Whitespace
+'MUL'         Keyword.Reserved
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&no-f#'      Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT'         Keyword.Reserved
+' '           Text.Whitespace
+'"g'          Literal.String
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&no-g'      Name.Function
+' '           Text.Whitespace
+'#37'         Literal.Number.Hex
+' '           Text.Whitespace
+'.octave'     Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ'         Keyword.Reserved
+' '           Text.Whitespace
+'#0c'         Literal.Number.Hex
+' '           Text.Whitespace
+'MUL'         Keyword.Reserved
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&no-g'       Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT'         Keyword.Reserved
+' '           Text.Whitespace
+'"y'          Literal.String
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&no-g#'     Name.Function
+' '           Text.Whitespace
+'#38'         Literal.Number.Hex
+' '           Text.Whitespace
+'.octave'     Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ'         Keyword.Reserved
+' '           Text.Whitespace
+'#0c'         Literal.Number.Hex
+' '           Text.Whitespace
+'MUL'         Keyword.Reserved
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&no-g#'      Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT'         Keyword.Reserved
+' '           Text.Whitespace
+'"h'          Literal.String
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&no-a'      Name.Function
+' '           Text.Whitespace
+'#39'         Literal.Number.Hex
+' '           Text.Whitespace
+'.octave'     Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ'         Keyword.Reserved
+' '           Text.Whitespace
+'#0c'         Literal.Number.Hex
+' '           Text.Whitespace
+'MUL'         Keyword.Reserved
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&no-a'       Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT'         Keyword.Reserved
+' '           Text.Whitespace
+'"u'          Literal.String
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&no-a#'     Name.Function
+' '           Text.Whitespace
+'#3a'         Literal.Number.Hex
+' '           Text.Whitespace
+'.octave'     Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ'         Keyword.Reserved
+' '           Text.Whitespace
+'#0c'         Literal.Number.Hex
+' '           Text.Whitespace
+'MUL'         Keyword.Reserved
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&no-a#'      Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT'         Keyword.Reserved
+' '           Text.Whitespace
+'"j'          Literal.String
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&no-b'      Name.Function
+' '           Text.Whitespace
+'#3b'         Literal.Number.Hex
+' '           Text.Whitespace
+'.octave'     Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ'         Keyword.Reserved
+' '           Text.Whitespace
+'#0c'         Literal.Number.Hex
+' '           Text.Whitespace
+'MUL'         Keyword.Reserved
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&no-b'       Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT'         Keyword.Reserved
+' '           Text.Whitespace
+'"k'          Literal.String
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&no-c2'     Name.Function
+' '           Text.Whitespace
+'#3c'         Literal.Number.Hex
+' '           Text.Whitespace
+'.octave'     Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ'         Keyword.Reserved
+' '           Text.Whitespace
+'#0c'         Literal.Number.Hex
+' '           Text.Whitespace
+'MUL'         Keyword.Reserved
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&no-c2'      Name.Label
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' controls '  Comment.Multiline
+')'           Comment.Multiline
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT'         Keyword.Reserved
+' '           Text.Whitespace
+'"z'          Literal.String
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&no-dec'    Name.Function
+' '           Text.Whitespace
+'.octave'     Name.Variable.Magic
+' '           Text.Whitespace
+'LDZk'        Keyword.Reserved
+' '           Text.Whitespace
+'#01'         Literal.Number.Hex
+' '           Text.Whitespace
+'SUB'         Keyword.Reserved
+' '           Text.Whitespace
+'SWP'         Keyword.Reserved
+' '           Text.Whitespace
+'STZ'         Keyword.Reserved
+' '           Text.Whitespace
+'&no-dec'     Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT'         Keyword.Reserved
+' '           Text.Whitespace
+'"x'          Literal.String
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&no-inc'    Name.Function
+' '           Text.Whitespace
+'.octave'     Name.Variable.Magic
+' '           Text.Whitespace
+'LDZk'        Keyword.Reserved
+' '           Text.Whitespace
+'INC'         Keyword.Reserved
+' '           Text.Whitespace
+'SWP'         Keyword.Reserved
+' '           Text.Whitespace
+'STZ'         Keyword.Reserved
+' '           Text.Whitespace
+'&no-inc'     Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'#1b'         Literal.Number.Hex
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&no-esc'    Name.Function
+' '           Text.Whitespace
+'HALT'        Name.Function
+' '           Text.Whitespace
+'&no-esc'     Name.Label
+'\n\t'        Text.Whitespace
+'POP'         Keyword.Reserved
+'\n\n\t'      Text.Whitespace
+'('           Comment.Multiline
+' release '   Comment.Multiline
+')'           Comment.Multiline
+'\n\t'        Text.Whitespace
+'#00'         Literal.Number.Hex
+' '           Text.Whitespace
+'.Controller/key' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\n\t'      Text.Whitespace
+'.Controller/button' Name.Variable.Magic
+' '           Text.Whitespace
+'DEI'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'#11'         Literal.Number.Hex
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&cu'        Name.Function
+' '           Text.Whitespace
+'#3c'         Literal.Number.Hex
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&cu'         Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'#21'         Literal.Number.Hex
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&cd'        Name.Function
+' '           Text.Whitespace
+'#3d'         Literal.Number.Hex
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&cd'         Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'#41'         Literal.Number.Hex
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&cl'        Name.Function
+' '           Text.Whitespace
+'#3e'         Literal.Number.Hex
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&cl'         Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'#81'         Literal.Number.Hex
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&cr'        Name.Function
+' '           Text.Whitespace
+'#3f'         Literal.Number.Hex
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&cr'         Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'#12'         Literal.Number.Hex
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&au'        Name.Function
+' '           Text.Whitespace
+'#40'         Literal.Number.Hex
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&au'         Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'#22'         Literal.Number.Hex
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&ad'        Name.Function
+' '           Text.Whitespace
+'#41'         Literal.Number.Hex
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&ad'         Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'#42'         Literal.Number.Hex
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&al'        Name.Function
+' '           Text.Whitespace
+'#42'         Literal.Number.Hex
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&al'         Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'#82'         Literal.Number.Hex
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&ar'        Name.Function
+' '           Text.Whitespace
+'#43'         Literal.Number.Hex
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&ar'         Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'#14'         Literal.Number.Hex
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&su'        Name.Function
+' '           Text.Whitespace
+'#44'         Literal.Number.Hex
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&su'         Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'#24'         Literal.Number.Hex
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&sd'        Name.Function
+' '           Text.Whitespace
+'#45'         Literal.Number.Hex
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&sd'         Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'#44'         Literal.Number.Hex
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&sl'        Name.Function
+' '           Text.Whitespace
+'#46'         Literal.Number.Hex
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&sl'         Name.Label
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'#84'         Literal.Number.Hex
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&sr'        Name.Function
+' '           Text.Whitespace
+'#47'         Literal.Number.Hex
+' '           Text.Whitespace
+'play'        Name.Function
+' '           Text.Whitespace
+'&sr'         Name.Label
+'\n\t'        Text.Whitespace
+'POP'         Keyword.Reserved
+'\n\n\t'      Text.Whitespace
+'draw-octave' Name.Function
+'\n\n'        Text.Whitespace
+
+'BRK'         Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'@on-message' Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' -> '        Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'.Console/read' Name.Variable.Magic
+' '           Text.Whitespace
+'DEI'         Keyword.Reserved
+' '           Text.Whitespace
+'play'        Name.Function
+'\n\t'        Text.Whitespace
+'draw-octave' Name.Function
+'\n\n'        Text.Whitespace
+
+'BRK'         Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'@on-mouse'   Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' -> '        Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'#00'         Literal.Number.Hex
+' '           Text.Whitespace
+'.Mouse/state' Name.Variable.Magic
+' '           Text.Whitespace
+'DEI'         Keyword.Reserved
+' '           Text.Whitespace
+'NEQ'         Keyword.Reserved
+' '           Text.Whitespace
+'#41'         Literal.Number.Hex
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+';cursor-icn' Name.Variable.Global
+' '           Text.Whitespace
+'update-cursor' Name.Function
+'\n\n\t'      Text.Whitespace
+'.Mouse/state' Name.Variable.Magic
+' '           Text.Whitespace
+'DEI'         Keyword.Reserved
+' '           Text.Whitespace
+'?on-mouse-touch' Name.Function
+'\n\n'        Text.Whitespace
+
+'BRK'         Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'@on-mouse-touch' Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' -> '        Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'.Mouse/x'    Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Mouse/y'    Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+'.wave-view'  Name.Variable.Magic
+' '           Text.Whitespace
+'within-rect' Name.Function
+'\n\t\t'      Text.Whitespace
+'?on-touch-wave-view' Name.Function
+'\n\t'        Text.Whitespace
+'.Mouse/x'    Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Mouse/y'    Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+'.adsr-view'  Name.Variable.Magic
+' '           Text.Whitespace
+'within-rect' Name.Function
+'\n\t\t'      Text.Whitespace
+'?on-touch-knobs-view' Name.Function
+'\n\t'        Text.Whitespace
+'.Mouse/x'    Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Mouse/y'    Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+'.octave-view' Name.Variable.Magic
+' '           Text.Whitespace
+'within-rect' Name.Function
+'\n\t\t'      Text.Whitespace
+'?on-touch-octave-view' Name.Function
+'\n\n'        Text.Whitespace
+
+'BRK'         Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'@on-touch-wave-view' Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' -> '        Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'.Mouse/state' Name.Variable.Magic
+' '           Text.Whitespace
+'DEI'         Keyword.Reserved
+' '           Text.Whitespace
+'#01'         Literal.Number.Hex
+' '           Text.Whitespace
+'GTH'         Keyword.Reserved
+' '           Text.Whitespace
+'?&paint'     Name.Function
+'\n\t'        Text.Whitespace
+'.Mouse/x'    Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+'.wave-view/x1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'('           Comment.Multiline
+' min '       Comment.Multiline
+')'           Comment.Multiline
+' '           Text.Whitespace
+'#0010'       Literal.Number.Hex
+' '           Text.Whitespace
+'GTH2k'       Keyword.Reserved
+' '           Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'JMP'         Keyword.Reserved
+' '           Text.Whitespace
+'SWP2'        Keyword.Reserved
+' '           Text.Whitespace
+'POP2'        Keyword.Reserved
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'set-length'  Name.Function
+'\n\n'        Text.Whitespace
+
+'BRK'         Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'&paint'      Name.Label
+' '           Text.Whitespace
+'('           Comment.Multiline
+' -> '        Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'.Mouse/y'    Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+'.wave-view/y1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+' '           Text.Whitespace
+'#20'         Literal.Number.Hex
+' '           Text.Whitespace
+'SFT2'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.Mouse/x'    Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+'.wave-view/x1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+' '           Text.Whitespace
+';sin-pcm'    Name.Variable.Global
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'STA'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'draw-wave'   Name.Function
+'\n\t'        Text.Whitespace
+'#10'         Literal.Number.Hex
+' '           Text.Whitespace
+';on-frame/soft' Name.Variable.Global
+' '           Text.Whitespace
+'STA'         Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'BRK'         Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'@on-touch-octave-view' Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' -> '        Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'.Mouse/x'    Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+'.octave-view/x1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+' '           Text.Whitespace
+'#03'         Literal.Number.Hex
+' '           Text.Whitespace
+'SFT2'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'#09'         Literal.Number.Hex
+' '           Text.Whitespace
+'NEQ'         Keyword.Reserved
+' '           Text.Whitespace
+'?&no-mod'    Name.Function
+'\n\t\t'      Text.Whitespace
+'.Mouse/y'    Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+'.octave-view/y1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+' '           Text.Whitespace
+'#03'         Literal.Number.Hex
+' '           Text.Whitespace
+'SFT2'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'#00'         Literal.Number.Hex
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&no-incr'   Name.Function
+'\n\t\t\t'    Text.Whitespace
+'.octave'     Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ'         Keyword.Reserved
+' '           Text.Whitespace
+'#03'         Literal.Number.Hex
+' '           Text.Whitespace
+'EQU'         Keyword.Reserved
+' '           Text.Whitespace
+'?&no-incr'   Name.Function
+'\n\t\t\t'    Text.Whitespace
+'.octave'     Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ'         Keyword.Reserved
+' '           Text.Whitespace
+'INC'         Keyword.Reserved
+' '           Text.Whitespace
+'.octave'     Name.Variable.Magic
+' '           Text.Whitespace
+'STZ'         Keyword.Reserved
+' '           Text.Whitespace
+'&no-incr'    Name.Label
+'\n\t\t'      Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'#02'         Literal.Number.Hex
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'NEQk'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&no-decr'   Name.Function
+'\n\t\t\t'    Text.Whitespace
+'.octave'     Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ'         Keyword.Reserved
+' '           Text.Whitespace
+'#ff'         Literal.Number.Hex
+' '           Text.Whitespace
+'EQU'         Keyword.Reserved
+' '           Text.Whitespace
+'?&no-decr'   Name.Function
+'\n\t\t\t'    Text.Whitespace
+'.octave'     Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ'         Keyword.Reserved
+' '           Text.Whitespace
+'#01'         Literal.Number.Hex
+' '           Text.Whitespace
+'SUB'         Keyword.Reserved
+' '           Text.Whitespace
+'.octave'     Name.Variable.Magic
+' '           Text.Whitespace
+'STZ'         Keyword.Reserved
+' '           Text.Whitespace
+'&no-decr'    Name.Label
+'\n\t\t'      Text.Whitespace
+'POP'         Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'('           Comment.Multiline
+' release '   Comment.Multiline
+')'           Comment.Multiline
+' '           Text.Whitespace
+'#00'         Literal.Number.Hex
+' '           Text.Whitespace
+'.Mouse/state' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'draw-octave' Name.Function
+'\n\t\t'      Text.Whitespace
+'BRK'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'&no-mod'     Name.Label
+'\n\n\t'      Text.Whitespace
+'.Mouse/x'    Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+'.octave-view/x1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+' '           Text.Whitespace
+'#03'         Literal.Number.Hex
+' '           Text.Whitespace
+'SFT2'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'#06'         Literal.Number.Hex
+' '           Text.Whitespace
+'GTH'         Keyword.Reserved
+' '           Text.Whitespace
+'?&no-key'    Name.Function
+'\n\t\t'      Text.Whitespace
+'.Mouse/x'    Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+'.octave-view/x1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+' '           Text.Whitespace
+'#03'         Literal.Number.Hex
+' '           Text.Whitespace
+'SFT2'        Keyword.Reserved
+' '           Text.Whitespace
+';notes-lut'  Name.Variable.Global
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'LDA'         Keyword.Reserved
+' '           Text.Whitespace
+'.octave'     Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ'         Keyword.Reserved
+' '           Text.Whitespace
+'#0c'         Literal.Number.Hex
+' '           Text.Whitespace
+'MUL'         Keyword.Reserved
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+'play'        Name.Function
+'\n\t\t'      Text.Whitespace
+'('           Comment.Multiline
+' release '   Comment.Multiline
+')'           Comment.Multiline
+' '           Text.Whitespace
+'#00'         Literal.Number.Hex
+' '           Text.Whitespace
+'.Mouse/state' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'draw-octave' Name.Function
+'\n\t'        Text.Whitespace
+'&no-key'     Name.Label
+'\n\n'        Text.Whitespace
+
+'BRK'         Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'@on-touch-knobs-view' Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' -> '        Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'.Mouse/x'    Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+'.adsr-view/x1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+' '           Text.Whitespace
+'#03'         Literal.Number.Hex
+' '           Text.Whitespace
+'SFT2'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'#03'         Literal.Number.Hex
+' '           Text.Whitespace
+'DIV'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.Mouse/y'    Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+'.adsr-view/y1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'OVR'         Keyword.Reserved
+' '           Text.Whitespace
+'#04'         Literal.Number.Hex
+' '           Text.Whitespace
+'LTH'         Keyword.Reserved
+' '           Text.Whitespace
+'?on-touch-adsr' Name.Function
+'\n\t'        Text.Whitespace
+'OVR'         Keyword.Reserved
+' '           Text.Whitespace
+'#04'         Literal.Number.Hex
+' '           Text.Whitespace
+'GTH'         Keyword.Reserved
+' '           Text.Whitespace
+'?on-touch-vol' Name.Function
+'\n\t'        Text.Whitespace
+'POP2'        Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'BRK'         Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'@on-touch-adsr' Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' knob value -> ' Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'STH2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' mask '      Comment.Multiline
+')'           Comment.Multiline
+' '           Text.Whitespace
+'#ffff'       Literal.Number.Hex
+' '           Text.Whitespace
+'#000f'       Literal.Number.Hex
+' '           Text.Whitespace
+'#03'         Literal.Number.Hex
+' '           Text.Whitespace
+'OVRr'        Keyword.Reserved
+' '           Text.Whitespace
+'STHr'        Keyword.Reserved
+' '           Text.Whitespace
+'SUB'         Keyword.Reserved
+' '           Text.Whitespace
+'#60'         Literal.Number.Hex
+' '           Text.Whitespace
+'SFT'         Keyword.Reserved
+' '           Text.Whitespace
+'SFT2'        Keyword.Reserved
+' '           Text.Whitespace
+'EOR2'        Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'.Audio0/adsr' Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+'AND2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' value '     Comment.Multiline
+')'           Comment.Multiline
+' '           Text.Whitespace
+'#000f'       Literal.Number.Hex
+' '           Text.Whitespace
+'STHr'        Keyword.Reserved
+' '           Text.Whitespace
+'OVR'         Keyword.Reserved
+' '           Text.Whitespace
+'LTHk'        Keyword.Reserved
+' '           Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'JMP'         Keyword.Reserved
+' '           Text.Whitespace
+'SWP'         Keyword.Reserved
+' '           Text.Whitespace
+'POP'         Keyword.Reserved
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'SUB'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' shift '     Comment.Multiline
+')'           Comment.Multiline
+' '           Text.Whitespace
+'#03'         Literal.Number.Hex
+' '           Text.Whitespace
+'STHr'        Keyword.Reserved
+' '           Text.Whitespace
+'SUB'         Keyword.Reserved
+' '           Text.Whitespace
+'#60'         Literal.Number.Hex
+' '           Text.Whitespace
+'SFT'         Keyword.Reserved
+' '           Text.Whitespace
+'SFT2'        Keyword.Reserved
+' '           Text.Whitespace
+'ORA2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'set-env'     Name.Function
+'\n\n'        Text.Whitespace
+
+'BRK'         Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'@on-touch-vol' Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' knob value -> ' Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'SWP'         Keyword.Reserved
+' '           Text.Whitespace
+'#03'         Literal.Number.Hex
+' '           Text.Whitespace
+'SUB'         Keyword.Reserved
+' '           Text.Whitespace
+'INC'         Keyword.Reserved
+' '           Text.Whitespace
+'INC'         Keyword.Reserved
+' '           Text.Whitespace
+'SWP'         Keyword.Reserved
+' '           Text.Whitespace
+'STH2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' mask '      Comment.Multiline
+')'           Comment.Multiline
+' '           Text.Whitespace
+'#0f'         Literal.Number.Hex
+' '           Text.Whitespace
+'OVRr'        Keyword.Reserved
+' '           Text.Whitespace
+'STHr'        Keyword.Reserved
+' '           Text.Whitespace
+'#60'         Literal.Number.Hex
+' '           Text.Whitespace
+'SFT'         Keyword.Reserved
+' '           Text.Whitespace
+'SFT'         Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'.Audio0/volume' Name.Variable.Magic
+' '           Text.Whitespace
+'DEI'         Keyword.Reserved
+' '           Text.Whitespace
+'AND'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' value '     Comment.Multiline
+')'           Comment.Multiline
+' '           Text.Whitespace
+'#0f'         Literal.Number.Hex
+' '           Text.Whitespace
+'STHr'        Keyword.Reserved
+' '           Text.Whitespace
+'OVR'         Keyword.Reserved
+' '           Text.Whitespace
+'LTHk'        Keyword.Reserved
+' '           Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'JMP'         Keyword.Reserved
+' '           Text.Whitespace
+'SWP'         Keyword.Reserved
+' '           Text.Whitespace
+'POP'         Keyword.Reserved
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'SUB'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' shift '     Comment.Multiline
+')'           Comment.Multiline
+' '           Text.Whitespace
+'#01'         Literal.Number.Hex
+' '           Text.Whitespace
+'STHr'        Keyword.Reserved
+' '           Text.Whitespace
+'SUB'         Keyword.Reserved
+' '           Text.Whitespace
+'#60'         Literal.Number.Hex
+' '           Text.Whitespace
+'SFT'         Keyword.Reserved
+' '           Text.Whitespace
+'SFT'         Keyword.Reserved
+' '           Text.Whitespace
+'ORA'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'set-vol'     Name.Function
+'\n\n'        Text.Whitespace
+
+'BRK'         Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'('           Comment.Multiline
+'\n@|core '   Comment.Multiline
+')'           Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'@play'       Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' pitch -- '  Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'DUP'         Keyword.Reserved
+' '           Text.Whitespace
+'#0c'         Literal.Number.Hex
+' '           Text.Whitespace
+'DIVk'        Keyword.Reserved
+' '           Text.Whitespace
+'MUL'         Keyword.Reserved
+' '           Text.Whitespace
+'SUB'         Keyword.Reserved
+' '           Text.Whitespace
+';draw-octave/last' Name.Variable.Global
+' '           Text.Whitespace
+'STA'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'DUP'         Keyword.Reserved
+' '           Text.Whitespace
+'.Audio0/pitch' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'#0c'         Literal.Number.Hex
+' '           Text.Whitespace
+'SUB'         Keyword.Reserved
+' '           Text.Whitespace
+'.Audio1/pitch' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'JMP2r'       Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'@set-length' Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' length* -- ' Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'DUP2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Audio0/length' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'.Audio1/length' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'!draw-wave'  Name.Function
+'\n\n'        Text.Whitespace
+
+'@set-vol'    Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' vol -- '    Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'DUP'         Keyword.Reserved
+' '           Text.Whitespace
+'.Audio0/volume' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'.Audio1/volume' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'!draw-adsr'  Name.Function
+'\n\n'        Text.Whitespace
+
+'@set-env'    Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' adsr* -- '  Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'DUP2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Audio0/adsr' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'.Audio1/adsr' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'!draw-adsr'  Name.Function
+'\n\n'        Text.Whitespace
+
+'@soften'     Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' -- '        Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'#0100'       Literal.Number.Hex
+' '           Text.Whitespace
+'#0000'       Literal.Number.Hex
+'\n\t'        Text.Whitespace
+'&l'          Name.Label
+'\n\t\t'      Text.Whitespace
+'DUP2'        Keyword.Reserved
+' '           Text.Whitespace
+';sin-pcm'    Name.Variable.Global
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'get-average' Name.Function
+' '           Text.Whitespace
+'SWP2'        Keyword.Reserved
+' '           Text.Whitespace
+'STA'         Keyword.Reserved
+' '           Text.Whitespace
+'POP'         Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'INC2'        Keyword.Reserved
+' '           Text.Whitespace
+'GTH2k'       Keyword.Reserved
+' '           Text.Whitespace
+'?&l'         Name.Function
+'\n\t'        Text.Whitespace
+'POP2'        Keyword.Reserved
+' '           Text.Whitespace
+'POP2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'draw-wave'   Name.Function
+'\n\n'        Text.Whitespace
+
+'JMP2r'       Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'@get-average' Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' addr* -- addr* average* ' Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT2r'       Keyword.Reserved
+' '           Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'DUP2'        Keyword.Reserved
+' '           Text.Whitespace
+'#0001'       Literal.Number.Hex
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+' '           Text.Whitespace
+'DUP2'        Keyword.Reserved
+' '           Text.Whitespace
+'#0002'       Literal.Number.Hex
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'SWP2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'&l'          Name.Label
+'\n\t\t'      Text.Whitespace
+'LDAk'        Keyword.Reserved
+' '           Text.Whitespace
+'LITr'        Keyword.Reserved
+' '           Text.Whitespace
+'00'          Literal
+' '           Text.Whitespace
+'STH'         Keyword.Reserved
+' '           Text.Whitespace
+'ADD2r'       Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'INC2'        Keyword.Reserved
+' '           Text.Whitespace
+'GTH2k'       Keyword.Reserved
+' '           Text.Whitespace
+'?&l'         Name.Function
+'\n\t'        Text.Whitespace
+'POP2'        Keyword.Reserved
+' '           Text.Whitespace
+'POP2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'LDAk'        Keyword.Reserved
+' '           Text.Whitespace
+'#00'         Literal.Number.Hex
+' '           Text.Whitespace
+'SWP'         Keyword.Reserved
+' '           Text.Whitespace
+'DUP2'        Keyword.Reserved
+' '           Text.Whitespace
+'DUP2'        Keyword.Reserved
+' '           Text.Whitespace
+'STH2r'       Keyword.Reserved
+'\n\t'        Text.Whitespace
+'#01'         Literal.Number.Hex
+' '           Text.Whitespace
+'SFT2'        Keyword.Reserved
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'#02'         Literal.Number.Hex
+' '           Text.Whitespace
+'SFT2'        Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'JMP2r'       Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'('           Comment.Multiline
+'\n@|drawing ' Comment.Multiline
+')'           Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'@update-cursor' Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' color addr* -- ' Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT2'        Keyword.Reserved
+' '           Text.Whitespace
+'00'          Literal
+' '           Text.Whitespace
+'-Screen/auto' Literal
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'#40'         Literal.Number.Hex
+' '           Text.Whitespace
+'draw-cursor' Name.Function
+'\n\t'        Text.Whitespace
+'.Mouse/x'    Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+',draw-cursor/x' Name.Variable.Instance
+' '           Text.Whitespace
+'STR2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.Mouse/y'    Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+',draw-cursor/y' Name.Variable.Instance
+' '           Text.Whitespace
+'STR2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.Screen/addr' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'@draw-cursor' Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' color -- '  Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT2'        Keyword.Reserved
+' '           Text.Whitespace
+'&x'          Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'.Screen/x'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT2'        Keyword.Reserved
+' '           Text.Whitespace
+'&y'          Name.Label
+' '           Text.Whitespace
+'$2'          Keyword.Declaration
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'.Screen/y'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.Screen/sprite' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'JMP2r'       Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'@draw-octave' Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' -- '        Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'('           Comment.Multiline
+' arrows '    Comment.Multiline
+')'           Comment.Multiline
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT2'        Keyword.Reserved
+' '           Text.Whitespace
+'02'          Literal
+' '           Text.Whitespace
+'-Screen/auto' Literal
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.octave-view/x1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'#0048'       Literal.Number.Hex
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/x'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.octave-view/y1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/y'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+';arrow-icns' Name.Variable.Global
+' '           Text.Whitespace
+'.Screen/addr' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT2'        Keyword.Reserved
+' '           Text.Whitespace
+'01'          Literal
+' '           Text.Whitespace
+'-Screen/sprite' Literal
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+';font-hex'   Name.Variable.Global
+' '           Text.Whitespace
+'.octave'     Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ'         Keyword.Reserved
+' '           Text.Whitespace
+'#03'         Literal.Number.Hex
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+'#00'         Literal.Number.Hex
+' '           Text.Whitespace
+'SWP'         Keyword.Reserved
+' '           Text.Whitespace
+'#30'         Literal.Number.Hex
+' '           Text.Whitespace
+'SFT2'        Keyword.Reserved
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/addr' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT2'        Keyword.Reserved
+' '           Text.Whitespace
+'02'          Literal
+' '           Text.Whitespace
+'-Screen/sprite' Literal
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+';arrow-icns/down' Name.Variable.Global
+' '           Text.Whitespace
+'.Screen/addr' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT2'        Keyword.Reserved
+' '           Text.Whitespace
+'01'          Literal
+' '           Text.Whitespace
+'-Screen/sprite' Literal
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' octave '    Comment.Multiline
+')'           Comment.Multiline
+'\n\t'        Text.Whitespace
+'.octave-view/x1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/x'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.octave-view/y1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/y'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT2'        Keyword.Reserved
+' '           Text.Whitespace
+'06'          Literal
+' '           Text.Whitespace
+'-Screen/auto' Literal
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LITr'        Keyword.Reserved
+' '           Text.Whitespace
+'&last'       Name.Label
+' '           Text.Whitespace
+'ff'          Literal
+' '           Text.Whitespace
+']'           Punctuation
+'\n\t'        Text.Whitespace
+';keys-left-icns' Name.Variable.Global
+' '           Text.Whitespace
+'STHkr'       Keyword.Reserved
+' '           Text.Whitespace
+'#00'         Literal.Number.Hex
+' '           Text.Whitespace
+'EQU'         Keyword.Reserved
+' '           Text.Whitespace
+'INC'         Keyword.Reserved
+' '           Text.Whitespace
+'draw-key'    Name.Function
+'\n\t'        Text.Whitespace
+';keys-middle-icns' Name.Variable.Global
+' '           Text.Whitespace
+'STHkr'       Keyword.Reserved
+' '           Text.Whitespace
+'#02'         Literal.Number.Hex
+' '           Text.Whitespace
+'EQU'         Keyword.Reserved
+' '           Text.Whitespace
+'INC'         Keyword.Reserved
+' '           Text.Whitespace
+'draw-key'    Name.Function
+'\n\t'        Text.Whitespace
+';keys-right-icns' Name.Variable.Global
+' '           Text.Whitespace
+'STHkr'       Keyword.Reserved
+' '           Text.Whitespace
+'#04'         Literal.Number.Hex
+' '           Text.Whitespace
+'EQU'         Keyword.Reserved
+' '           Text.Whitespace
+'INC'         Keyword.Reserved
+' '           Text.Whitespace
+'draw-key'    Name.Function
+'\n\t'        Text.Whitespace
+';keys-left-icns' Name.Variable.Global
+' '           Text.Whitespace
+'STHkr'       Keyword.Reserved
+' '           Text.Whitespace
+'#05'         Literal.Number.Hex
+' '           Text.Whitespace
+'EQU'         Keyword.Reserved
+' '           Text.Whitespace
+'INC'         Keyword.Reserved
+' '           Text.Whitespace
+'draw-key'    Name.Function
+'\n\t'        Text.Whitespace
+';keys-middle-icns' Name.Variable.Global
+' '           Text.Whitespace
+'STHkr'       Keyword.Reserved
+' '           Text.Whitespace
+'#07'         Literal.Number.Hex
+' '           Text.Whitespace
+'EQU'         Keyword.Reserved
+' '           Text.Whitespace
+'INC'         Keyword.Reserved
+' '           Text.Whitespace
+'draw-key'    Name.Function
+'\n\t'        Text.Whitespace
+';keys-middle-icns' Name.Variable.Global
+' '           Text.Whitespace
+'STHkr'       Keyword.Reserved
+' '           Text.Whitespace
+'#09'         Literal.Number.Hex
+' '           Text.Whitespace
+'EQU'         Keyword.Reserved
+' '           Text.Whitespace
+'INC'         Keyword.Reserved
+' '           Text.Whitespace
+'draw-key'    Name.Function
+'\n\t'        Text.Whitespace
+';keys-right-icns' Name.Variable.Global
+' '           Text.Whitespace
+'STHr'        Keyword.Reserved
+' '           Text.Whitespace
+'#0b'         Literal.Number.Hex
+' '           Text.Whitespace
+'EQU'         Keyword.Reserved
+' '           Text.Whitespace
+'INC'         Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'('           Comment.Multiline
+' >> '        Comment.Multiline
+')'           Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'@draw-key'   Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' addr* color -- ' Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'STH'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.Screen/addr' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.Screen/y'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'STHr'        Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/sprite' Name.Variable.Magic
+' '           Text.Whitespace
+'DEOk'        Keyword.Reserved
+' '           Text.Whitespace
+'DEOk'        Keyword.Reserved
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.Screen/x'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2k'       Keyword.Reserved
+' '           Text.Whitespace
+'#0008'       Literal.Number.Hex
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'ROT'         Keyword.Reserved
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.Screen/y'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'JMP2r'       Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'@draw-adsr'  Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' -- '        Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'('           Comment.Multiline
+' adsr '      Comment.Multiline
+')'           Comment.Multiline
+'\n\t'        Text.Whitespace
+'.adsr-view/x1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'.adsr-view/y1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'.Audio0/adsr' Name.Variable.Magic
+' '           Text.Whitespace
+'DEI'         Keyword.Reserved
+' '           Text.Whitespace
+'#04'         Literal.Number.Hex
+' '           Text.Whitespace
+'SFT'         Keyword.Reserved
+' '           Text.Whitespace
+'draw-knob'   Name.Function
+'\n\t'        Text.Whitespace
+'.adsr-view/x1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'#0018'       Literal.Number.Hex
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'.adsr-view/y1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'.Audio0/adsr' Name.Variable.Magic
+' '           Text.Whitespace
+'DEI'         Keyword.Reserved
+' '           Text.Whitespace
+'#0f'         Literal.Number.Hex
+' '           Text.Whitespace
+'AND'         Keyword.Reserved
+' '           Text.Whitespace
+'draw-knob'   Name.Function
+'\n\t'        Text.Whitespace
+'.adsr-view/x1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'#0030'       Literal.Number.Hex
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'.adsr-view/y1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'.Audio0/adsr' Name.Variable.Magic
+' '           Text.Whitespace
+'INC'         Keyword.Reserved
+' '           Text.Whitespace
+'DEI'         Keyword.Reserved
+' '           Text.Whitespace
+'#04'         Literal.Number.Hex
+' '           Text.Whitespace
+'SFT'         Keyword.Reserved
+' '           Text.Whitespace
+'draw-knob'   Name.Function
+'\n\t'        Text.Whitespace
+'.adsr-view/x1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'#0048'       Literal.Number.Hex
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'.adsr-view/y1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'.Audio0/adsr' Name.Variable.Magic
+' '           Text.Whitespace
+'INC'         Keyword.Reserved
+' '           Text.Whitespace
+'DEI'         Keyword.Reserved
+' '           Text.Whitespace
+'#0f'         Literal.Number.Hex
+' '           Text.Whitespace
+'AND'         Keyword.Reserved
+' '           Text.Whitespace
+'draw-knob'   Name.Function
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' volume '    Comment.Multiline
+')'           Comment.Multiline
+'\n\t'        Text.Whitespace
+'.adsr-view/x2' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'#0028'       Literal.Number.Hex
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+' '           Text.Whitespace
+'.adsr-view/y1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'.Audio0/volume' Name.Variable.Magic
+' '           Text.Whitespace
+'DEI'         Keyword.Reserved
+' '           Text.Whitespace
+'#04'         Literal.Number.Hex
+' '           Text.Whitespace
+'SFT'         Keyword.Reserved
+' '           Text.Whitespace
+'draw-knob'   Name.Function
+'\n\t'        Text.Whitespace
+'.adsr-view/x2' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'#0010'       Literal.Number.Hex
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+' '           Text.Whitespace
+'.adsr-view/y1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'.Audio0/volume' Name.Variable.Magic
+' '           Text.Whitespace
+'DEI'         Keyword.Reserved
+' '           Text.Whitespace
+'#0f'         Literal.Number.Hex
+' '           Text.Whitespace
+'AND'         Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'!draw-knob'  Name.Function
+'\n\n'        Text.Whitespace
+
+'@draw-wave'  Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' -- '        Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'('           Comment.Multiline
+' background ' Comment.Multiline
+')'           Comment.Multiline
+'\n\t'        Text.Whitespace
+'.wave-view/x1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/x'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.wave-view/y1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/y'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+';fill-icn'   Name.Variable.Global
+' '           Text.Whitespace
+'.Screen/addr' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT2'        Keyword.Reserved
+' '           Text.Whitespace
+'75'          Literal
+' '           Text.Whitespace
+'-Screen/auto' Literal
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'#e0'         Literal.Number.Hex
+' '           Text.Whitespace
+'&lbg'        Name.Label
+'\n\t\t'      Text.Whitespace
+';dotted-icn' Name.Variable.Global
+' '           Text.Whitespace
+'.Screen/addr' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT2'        Keyword.Reserved
+' '           Text.Whitespace
+'0c'          Literal
+' '           Text.Whitespace
+'-Screen/sprite' Literal
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'INC'         Keyword.Reserved
+' '           Text.Whitespace
+'DUP'         Keyword.Reserved
+' '           Text.Whitespace
+'?&lbg'       Name.Function
+'\n\t'        Text.Whitespace
+'POP'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.wave-view/x1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/x'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' waveform '  Comment.Multiline
+')'           Comment.Multiline
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT2'        Keyword.Reserved
+' '           Text.Whitespace
+'01'          Literal
+' '           Text.Whitespace
+'-Screen/auto' Literal
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+';sin-pcm/end' Name.Variable.Global
+' '           Text.Whitespace
+';sin-pcm'    Name.Variable.Global
+'\n\t'        Text.Whitespace
+'&loop'       Name.Label
+'\n\t\t'      Text.Whitespace
+'DUP2'        Keyword.Reserved
+' '           Text.Whitespace
+';sin-pcm'    Name.Variable.Global
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Audio0/length' Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+'DIV2k'       Keyword.Reserved
+' '           Text.Whitespace
+'MUL2'        Keyword.Reserved
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+' '           Text.Whitespace
+';sin-pcm'    Name.Variable.Global
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'LDA'         Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'#00'         Literal.Number.Hex
+' '           Text.Whitespace
+'SWP'         Keyword.Reserved
+' '           Text.Whitespace
+'#02'         Literal.Number.Hex
+' '           Text.Whitespace
+'SFT2'        Keyword.Reserved
+' '           Text.Whitespace
+'.wave-view/y1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/y'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'('           Comment.Multiline
+' draw '      Comment.Multiline
+')'           Comment.Multiline
+' '           Text.Whitespace
+'DUP2'        Keyword.Reserved
+' '           Text.Whitespace
+';sin-pcm'    Name.Variable.Global
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'.Audio0/length' Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+'NIP'         Keyword.Reserved
+' '           Text.Whitespace
+'#01'         Literal.Number.Hex
+' '           Text.Whitespace
+'SUB'         Keyword.Reserved
+' '           Text.Whitespace
+'GTH'         Keyword.Reserved
+' '           Text.Whitespace
+'INC'         Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/pixel' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'INC2'        Keyword.Reserved
+' '           Text.Whitespace
+'GTH2k'       Keyword.Reserved
+' '           Text.Whitespace
+'?&loop'      Name.Function
+'\n\t'        Text.Whitespace
+'POP2'        Keyword.Reserved
+' '           Text.Whitespace
+'POP2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' length line ' Comment.Multiline
+')'           Comment.Multiline
+'\n\t'        Text.Whitespace
+'.wave-view/x1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Audio0/length' Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+'#0001'       Literal.Number.Hex
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/x'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.wave-view/y1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/y'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+';line-icn'   Name.Variable.Global
+' '           Text.Whitespace
+'.Screen/addr' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT2'        Keyword.Reserved
+' '           Text.Whitespace
+'71'          Literal
+' '           Text.Whitespace
+'-Screen/auto' Literal
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT2'        Keyword.Reserved
+' '           Text.Whitespace
+'05'          Literal
+' '           Text.Whitespace
+'-Screen/sprite' Literal
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' range '     Comment.Multiline
+')'           Comment.Multiline
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT2'        Keyword.Reserved
+' '           Text.Whitespace
+'01'          Literal
+' '           Text.Whitespace
+'-Screen/auto' Literal
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.wave-view/x1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/x'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.wave-view/y1' Name.Variable.Magic
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'#0018'       Literal.Number.Hex
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/y'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.Audio0/length' Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'!draw-short' Name.Function
+'\n\n'        Text.Whitespace
+
+'@draw-knob'  Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' x* y* value -- ' Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'STH'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'OVR2'        Keyword.Reserved
+' '           Text.Whitespace
+'OVR2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/y'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/x'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' circle '    Comment.Multiline
+')'           Comment.Multiline
+'\n\t'        Text.Whitespace
+';knob-icns'  Name.Variable.Global
+' '           Text.Whitespace
+'.Screen/addr' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT2'        Keyword.Reserved
+' '           Text.Whitespace
+'16'          Literal
+' '           Text.Whitespace
+'-Screen/auto' Literal
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT2'        Keyword.Reserved
+' '           Text.Whitespace
+'01'          Literal
+' '           Text.Whitespace
+'-Screen/sprite' Literal
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'DEOk'        Keyword.Reserved
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' value '     Comment.Multiline
+')'           Comment.Multiline
+'\n\t'        Text.Whitespace
+'#0010'       Literal.Number.Hex
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/y'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'#0004'       Literal.Number.Hex
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/x'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+';font-hex'   Name.Variable.Global
+' '           Text.Whitespace
+'#00'         Literal.Number.Hex
+' '           Text.Whitespace
+'STHkr'       Keyword.Reserved
+' '           Text.Whitespace
+'#30'         Literal.Number.Hex
+' '           Text.Whitespace
+'SFT'         Keyword.Reserved
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/addr' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT2'        Keyword.Reserved
+' '           Text.Whitespace
+'00'          Literal
+' '           Text.Whitespace
+'-Screen/auto' Literal
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT2'        Keyword.Reserved
+' '           Text.Whitespace
+'01'          Literal
+' '           Text.Whitespace
+'-Screen/sprite' Literal
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' marker '    Comment.Multiline
+')'           Comment.Multiline
+'\n\t'        Text.Whitespace
+'.Screen/x'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+'#0004'       Literal.Number.Hex
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+' '           Text.Whitespace
+'#0000'       Literal.Number.Hex
+' '           Text.Whitespace
+'STHkr'       Keyword.Reserved
+' '           Text.Whitespace
+';knob-offsetx' Name.Variable.Global
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'LDA'         Keyword.Reserved
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/x'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'.Screen/y'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEI2'        Keyword.Reserved
+' '           Text.Whitespace
+'#0010'       Literal.Number.Hex
+' '           Text.Whitespace
+'SUB2'        Keyword.Reserved
+' '           Text.Whitespace
+'#0000'       Literal.Number.Hex
+' '           Text.Whitespace
+'STHr'        Keyword.Reserved
+' '           Text.Whitespace
+';knob-offsety' Name.Variable.Global
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'LDA'         Keyword.Reserved
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/y'   Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+';knob-icns/index' Name.Variable.Global
+' '           Text.Whitespace
+'.Screen/addr' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT2'        Keyword.Reserved
+' '           Text.Whitespace
+'05'          Literal
+' '           Text.Whitespace
+'-Screen/sprite' Literal
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'JMP2r'       Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'@draw-short' Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' short* -- ' Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'SWP'         Keyword.Reserved
+' '           Text.Whitespace
+'draw-byte'   Name.Function
+'\n\n'        Text.Whitespace
+
+'@draw-byte'  Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' byte -- '   Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'DUP'         Keyword.Reserved
+' '           Text.Whitespace
+'#04'         Literal.Number.Hex
+' '           Text.Whitespace
+'SFT'         Keyword.Reserved
+' '           Text.Whitespace
+'draw-hex'    Name.Function
+' '           Text.Whitespace
+'#0f'         Literal.Number.Hex
+' '           Text.Whitespace
+'AND'         Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'@draw-hex'   Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' char -- '   Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'#00'         Literal.Number.Hex
+' '           Text.Whitespace
+'SWP'         Keyword.Reserved
+' '           Text.Whitespace
+'#30'         Literal.Number.Hex
+' '           Text.Whitespace
+'SFT2'        Keyword.Reserved
+' '           Text.Whitespace
+';font-hex'   Name.Variable.Global
+' '           Text.Whitespace
+'ADD2'        Keyword.Reserved
+' '           Text.Whitespace
+'.Screen/addr' Name.Variable.Magic
+' '           Text.Whitespace
+'DEO2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'LIT2'        Keyword.Reserved
+' '           Text.Whitespace
+'02'          Literal
+' '           Text.Whitespace
+'-Screen/sprite' Literal
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'JMP2r'       Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'@within-rect' Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' x* y* rect -- flag ' Comment.Multiline
+')'           Comment.Multiline
+'\n\n\t'      Text.Whitespace
+'STH'         Keyword.Reserved
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' y < rect.y1 ' Comment.Multiline
+')'           Comment.Multiline
+' '           Text.Whitespace
+'DUP2'        Keyword.Reserved
+' '           Text.Whitespace
+'STHkr'       Keyword.Reserved
+' '           Text.Whitespace
+'INC'         Keyword.Reserved
+' '           Text.Whitespace
+'INC'         Keyword.Reserved
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'LTH2'        Keyword.Reserved
+' '           Text.Whitespace
+'?&skip'      Name.Function
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' y > rect.y2 ' Comment.Multiline
+')'           Comment.Multiline
+' '           Text.Whitespace
+'DUP2'        Keyword.Reserved
+' '           Text.Whitespace
+'STHkr'       Keyword.Reserved
+' '           Text.Whitespace
+'#06'         Literal.Number.Hex
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'GTH2'        Keyword.Reserved
+' '           Text.Whitespace
+'?&skip'      Name.Function
+'\n\t'        Text.Whitespace
+'SWP2'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' x < rect.x1 ' Comment.Multiline
+')'           Comment.Multiline
+' '           Text.Whitespace
+'DUP2'        Keyword.Reserved
+' '           Text.Whitespace
+'STHkr'       Keyword.Reserved
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'LTH2'        Keyword.Reserved
+' '           Text.Whitespace
+'?&skip'      Name.Function
+'\n\t'        Text.Whitespace
+'('           Comment.Multiline
+' x > rect.x2 ' Comment.Multiline
+')'           Comment.Multiline
+' '           Text.Whitespace
+'DUP2'        Keyword.Reserved
+' '           Text.Whitespace
+'STHkr'       Keyword.Reserved
+' '           Text.Whitespace
+'#04'         Literal.Number.Hex
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+'LDZ2'        Keyword.Reserved
+' '           Text.Whitespace
+'GTH2'        Keyword.Reserved
+' '           Text.Whitespace
+'?&skip'      Name.Function
+'\n\t'        Text.Whitespace
+'POP2'        Keyword.Reserved
+' '           Text.Whitespace
+'POP2'        Keyword.Reserved
+' '           Text.Whitespace
+'POPr'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'#01'         Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'JMP2r'       Keyword.Reserved
+'\n\t'        Text.Whitespace
+'&skip'       Name.Label
+'\n\t'        Text.Whitespace
+'POP2'        Keyword.Reserved
+' '           Text.Whitespace
+'POP2'        Keyword.Reserved
+' '           Text.Whitespace
+'POPr'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+'#00'         Literal.Number.Hex
+'\n\n'        Text.Whitespace
+
+'JMP2r'       Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'@phex'       Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' short* -- ' Comment.Multiline
+')'           Comment.Multiline
+' '           Text.Whitespace
+'SWP'         Keyword.Reserved
+' '           Text.Whitespace
+'phex/b'      Name.Function
+' '           Text.Whitespace
+'&b'          Name.Label
+' '           Text.Whitespace
+'DUP'         Keyword.Reserved
+' '           Text.Whitespace
+'#04'         Literal.Number.Hex
+' '           Text.Whitespace
+'SFT'         Keyword.Reserved
+' '           Text.Whitespace
+'phex/c'      Name.Function
+' '           Text.Whitespace
+'&c'          Name.Label
+' '           Text.Whitespace
+'#0f'         Literal.Number.Hex
+' '           Text.Whitespace
+'AND'         Keyword.Reserved
+' '           Text.Whitespace
+'DUP'         Keyword.Reserved
+' '           Text.Whitespace
+'#09'         Literal.Number.Hex
+' '           Text.Whitespace
+'GTH'         Keyword.Reserved
+' '           Text.Whitespace
+'#27'         Literal.Number.Hex
+' '           Text.Whitespace
+'MUL'         Keyword.Reserved
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+'#30'         Literal.Number.Hex
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+'#18'         Literal.Number.Hex
+' '           Text.Whitespace
+'DEO'         Keyword.Reserved
+' '           Text.Whitespace
+'JMP2r'       Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'('           Comment.Multiline
+'\n@|assets ' Comment.Multiline
+')'           Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'@notes-lut'  Name.Function
+' '           Text.Whitespace
+'['           Punctuation
+'\n\t'        Text.Whitespace
+'30'          Literal
+' '           Text.Whitespace
+'32'          Literal
+' '           Text.Whitespace
+'34'          Literal
+' '           Text.Whitespace
+'35'          Literal
+' '           Text.Whitespace
+'37'          Literal
+' '           Text.Whitespace
+'39'          Literal
+' '           Text.Whitespace
+'3b'          Literal
+' '           Text.Whitespace
+'3c'          Literal
+' '           Text.Whitespace
+']'           Punctuation
+'\n\n'        Text.Whitespace
+
+'@dotted-icn' Name.Function
+' '           Text.Whitespace
+'['           Punctuation
+'\n\t'        Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+'\n\t'        Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+'\n\t'        Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+'\n\t'        Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+'\n\t'        Text.Whitespace
+'aa00'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+'\n\t'        Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+'\n\t'        Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+'\n\t'        Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'@line-icn'   Name.Function
+' '           Text.Whitespace
+'['           Punctuation
+'\n\t'        Text.Whitespace
+'8080'        Literal
+' '           Text.Whitespace
+'8080'        Literal
+' '           Text.Whitespace
+'8080'        Literal
+' '           Text.Whitespace
+'8080'        Literal
+'\n\t'        Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'@fill-icn'   Name.Function
+' '           Text.Whitespace
+'['           Punctuation
+'\n\t'        Text.Whitespace
+'ffff'        Literal
+' '           Text.Whitespace
+'ffff'        Literal
+' '           Text.Whitespace
+'ffff'        Literal
+' '           Text.Whitespace
+'ffff'        Literal
+' '           Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'@cursor-icn' Name.Function
+' '           Text.Whitespace
+'['           Punctuation
+'\n\t'        Text.Whitespace
+'80c0'        Literal
+' '           Text.Whitespace
+'e0f0'        Literal
+' '           Text.Whitespace
+'f8e0'        Literal
+' '           Text.Whitespace
+'1000'        Literal
+' '           Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'@arrow-icns' Name.Function
+' '           Text.Whitespace
+'['           Punctuation
+'\n\t'        Text.Whitespace
+'0010'        Literal
+' '           Text.Whitespace
+'387c'        Literal
+' '           Text.Whitespace
+'fe10'        Literal
+' '           Text.Whitespace
+'1000'        Literal
+'\n'          Text.Whitespace
+
+'&down'       Name.Label
+'\n\t'        Text.Whitespace
+'0010'        Literal
+' '           Text.Whitespace
+'1010'        Literal
+' '           Text.Whitespace
+'fe7c'        Literal
+' '           Text.Whitespace
+'3810'        Literal
+' '           Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'@keys-left-icns' Name.Function
+' '           Text.Whitespace
+'['           Punctuation
+'\n\t'        Text.Whitespace
+'7c7c'        Literal
+' '           Text.Whitespace
+'7c7c'        Literal
+' '           Text.Whitespace
+'7c7c'        Literal
+' '           Text.Whitespace
+'7c7c'        Literal
+'\n\t'        Text.Whitespace
+'7c7c'        Literal
+' '           Text.Whitespace
+'7c7c'        Literal
+' '           Text.Whitespace
+'7c7c'        Literal
+' '           Text.Whitespace
+'7e7f'        Literal
+'\n\t'        Text.Whitespace
+'7f7f'        Literal
+' '           Text.Whitespace
+'7f7f'        Literal
+' '           Text.Whitespace
+'7f7f'        Literal
+' '           Text.Whitespace
+'3e00'        Literal
+' '           Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'@keys-middle-icns' Name.Function
+' '           Text.Whitespace
+'['           Punctuation
+'\n\t'        Text.Whitespace
+'1c1c'        Literal
+' '           Text.Whitespace
+'1c1c'        Literal
+' '           Text.Whitespace
+'1c1c'        Literal
+' '           Text.Whitespace
+'1c1c'        Literal
+'\n\t'        Text.Whitespace
+'1c1c'        Literal
+' '           Text.Whitespace
+'1c1c'        Literal
+' '           Text.Whitespace
+'1c1c'        Literal
+' '           Text.Whitespace
+'3e7f'        Literal
+'\n\t'        Text.Whitespace
+'7f7f'        Literal
+' '           Text.Whitespace
+'7f7f'        Literal
+' '           Text.Whitespace
+'7f7f'        Literal
+' '           Text.Whitespace
+'3e00'        Literal
+' '           Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'@keys-right-icns' Name.Function
+' '           Text.Whitespace
+'['           Punctuation
+'\n\t'        Text.Whitespace
+'1f1f'        Literal
+' '           Text.Whitespace
+'1f1f'        Literal
+' '           Text.Whitespace
+'1f1f'        Literal
+' '           Text.Whitespace
+'1f1f'        Literal
+'\n\t'        Text.Whitespace
+'1f1f'        Literal
+' '           Text.Whitespace
+'1f1f'        Literal
+' '           Text.Whitespace
+'1f1f'        Literal
+' '           Text.Whitespace
+'3f7f'        Literal
+'\n\t'        Text.Whitespace
+'7f7f'        Literal
+' '           Text.Whitespace
+'7f7f'        Literal
+' '           Text.Whitespace
+'7f7f'        Literal
+' '           Text.Whitespace
+'3e00'        Literal
+' '           Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'@knob-icns'  Name.Function
+' '           Text.Whitespace
+'['           Punctuation
+'\n\t'        Text.Whitespace
+'0003'        Literal
+' '           Text.Whitespace
+'0c10'        Literal
+' '           Text.Whitespace
+'2020'        Literal
+' '           Text.Whitespace
+'4040'        Literal
+'\n\t'        Text.Whitespace
+'00c0'        Literal
+' '           Text.Whitespace
+'3008'        Literal
+' '           Text.Whitespace
+'0404'        Literal
+' '           Text.Whitespace
+'0202'        Literal
+'\n\t'        Text.Whitespace
+'4040'        Literal
+' '           Text.Whitespace
+'2020'        Literal
+' '           Text.Whitespace
+'100c'        Literal
+' '           Text.Whitespace
+'0300'        Literal
+'\n\t'        Text.Whitespace
+'0202'        Literal
+' '           Text.Whitespace
+'0404'        Literal
+' '           Text.Whitespace
+'0830'        Literal
+' '           Text.Whitespace
+'c000'        Literal
+'\n\t'        Text.Whitespace
+'&index'      Name.Label
+'\n\t'        Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+'183c'        Literal
+' '           Text.Whitespace
+'3c18'        Literal
+' '           Text.Whitespace
+'0000'        Literal
+' '           Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'@knob-offsetx' Name.Function
+' '           Text.Whitespace
+'['           Punctuation
+'\n\t'        Text.Whitespace
+'01'          Literal
+' '           Text.Whitespace
+'00'          Literal
+' '           Text.Whitespace
+'00'          Literal
+' '           Text.Whitespace
+'00'          Literal
+' '           Text.Whitespace
+'00'          Literal
+' '           Text.Whitespace
+'01'          Literal
+' '           Text.Whitespace
+'02'          Literal
+' '           Text.Whitespace
+'03'          Literal
+'\n\t'        Text.Whitespace
+'05'          Literal
+' '           Text.Whitespace
+'06'          Literal
+' '           Text.Whitespace
+'07'          Literal
+' '           Text.Whitespace
+'08'          Literal
+' '           Text.Whitespace
+'08'          Literal
+' '           Text.Whitespace
+'08'          Literal
+' '           Text.Whitespace
+'08'          Literal
+' '           Text.Whitespace
+'07'          Literal
+' '           Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'@knob-offsety' Name.Function
+' '           Text.Whitespace
+'['           Punctuation
+'\n\t'        Text.Whitespace
+'07'          Literal
+' '           Text.Whitespace
+'06'          Literal
+' '           Text.Whitespace
+'05'          Literal
+' '           Text.Whitespace
+'03'          Literal
+' '           Text.Whitespace
+'02'          Literal
+' '           Text.Whitespace
+'01'          Literal
+' '           Text.Whitespace
+'00'          Literal
+' '           Text.Whitespace
+'00'          Literal
+'\n\t'        Text.Whitespace
+'00'          Literal
+' '           Text.Whitespace
+'00'          Literal
+' '           Text.Whitespace
+'01'          Literal
+' '           Text.Whitespace
+'02'          Literal
+' '           Text.Whitespace
+'03'          Literal
+' '           Text.Whitespace
+'05'          Literal
+' '           Text.Whitespace
+'06'          Literal
+' '           Text.Whitespace
+'07'          Literal
+' '           Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'@font-hex'   Name.Function
+' '           Text.Whitespace
+'['           Punctuation
+'\n\t'        Text.Whitespace
+'007c'        Literal
+' '           Text.Whitespace
+'8282'        Literal
+' '           Text.Whitespace
+'8282'        Literal
+' '           Text.Whitespace
+'827c'        Literal
+' '           Text.Whitespace
+'0030'        Literal
+' '           Text.Whitespace
+'1010'        Literal
+' '           Text.Whitespace
+'1010'        Literal
+' '           Text.Whitespace
+'1010'        Literal
+'\n\t'        Text.Whitespace
+'007c'        Literal
+' '           Text.Whitespace
+'8202'        Literal
+' '           Text.Whitespace
+'7c80'        Literal
+' '           Text.Whitespace
+'80fe'        Literal
+' '           Text.Whitespace
+'007c'        Literal
+' '           Text.Whitespace
+'8202'        Literal
+' '           Text.Whitespace
+'1c02'        Literal
+' '           Text.Whitespace
+'827c'        Literal
+'\n\t'        Text.Whitespace
+'000c'        Literal
+' '           Text.Whitespace
+'1424'        Literal
+' '           Text.Whitespace
+'4484'        Literal
+' '           Text.Whitespace
+'fe04'        Literal
+' '           Text.Whitespace
+'00fe'        Literal
+' '           Text.Whitespace
+'8080'        Literal
+' '           Text.Whitespace
+'7c02'        Literal
+' '           Text.Whitespace
+'827c'        Literal
+'\n\t'        Text.Whitespace
+'007c'        Literal
+' '           Text.Whitespace
+'8280'        Literal
+' '           Text.Whitespace
+'fc82'        Literal
+' '           Text.Whitespace
+'827c'        Literal
+' '           Text.Whitespace
+'007c'        Literal
+' '           Text.Whitespace
+'8202'        Literal
+' '           Text.Whitespace
+'1e02'        Literal
+' '           Text.Whitespace
+'0202'        Literal
+'\n\t'        Text.Whitespace
+'007c'        Literal
+' '           Text.Whitespace
+'8282'        Literal
+' '           Text.Whitespace
+'7c82'        Literal
+' '           Text.Whitespace
+'827c'        Literal
+' '           Text.Whitespace
+'007c'        Literal
+' '           Text.Whitespace
+'8282'        Literal
+' '           Text.Whitespace
+'7e02'        Literal
+' '           Text.Whitespace
+'827c'        Literal
+'\n\t'        Text.Whitespace
+'007c'        Literal
+' '           Text.Whitespace
+'8202'        Literal
+' '           Text.Whitespace
+'7e82'        Literal
+' '           Text.Whitespace
+'827e'        Literal
+' '           Text.Whitespace
+'00fc'        Literal
+' '           Text.Whitespace
+'8282'        Literal
+' '           Text.Whitespace
+'fc82'        Literal
+' '           Text.Whitespace
+'82fc'        Literal
+'\n\t'        Text.Whitespace
+'007c'        Literal
+' '           Text.Whitespace
+'8280'        Literal
+' '           Text.Whitespace
+'8080'        Literal
+' '           Text.Whitespace
+'827c'        Literal
+' '           Text.Whitespace
+'00fc'        Literal
+' '           Text.Whitespace
+'8282'        Literal
+' '           Text.Whitespace
+'8282'        Literal
+' '           Text.Whitespace
+'82fc'        Literal
+'\n\t'        Text.Whitespace
+'007c'        Literal
+' '           Text.Whitespace
+'8280'        Literal
+' '           Text.Whitespace
+'f080'        Literal
+' '           Text.Whitespace
+'827c'        Literal
+' '           Text.Whitespace
+'007c'        Literal
+' '           Text.Whitespace
+'8280'        Literal
+' '           Text.Whitespace
+'f080'        Literal
+' '           Text.Whitespace
+'8080'        Literal
+' '           Text.Whitespace
+']'           Punctuation
+'\n\n'        Text.Whitespace
+
+'('           Comment.Multiline
+' pad '       Comment.Multiline
+')'           Comment.Multiline
+' '           Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'8080'        Literal
+' '           Text.Whitespace
+'8080'        Literal
+' '           Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'@sin-pcm'    Name.Function
+' '           Text.Whitespace
+'['           Punctuation
+'\n\t'        Text.Whitespace
+'8083'        Literal
+' '           Text.Whitespace
+'8689'        Literal
+' '           Text.Whitespace
+'8c8f'        Literal
+' '           Text.Whitespace
+'9295'        Literal
+' '           Text.Whitespace
+'989b'        Literal
+' '           Text.Whitespace
+'9ea1'        Literal
+' '           Text.Whitespace
+'a4a7'        Literal
+' '           Text.Whitespace
+'aaad'        Literal
+'\n\t'        Text.Whitespace
+'b0b3'        Literal
+' '           Text.Whitespace
+'b6b9'        Literal
+' '           Text.Whitespace
+'bbbe'        Literal
+' '           Text.Whitespace
+'c1c3'        Literal
+' '           Text.Whitespace
+'c6c9'        Literal
+' '           Text.Whitespace
+'cbce'        Literal
+' '           Text.Whitespace
+'d0d2'        Literal
+' '           Text.Whitespace
+'d5d7'        Literal
+'\n\t'        Text.Whitespace
+'d9db'        Literal
+' '           Text.Whitespace
+'dee0'        Literal
+' '           Text.Whitespace
+'e2e4'        Literal
+' '           Text.Whitespace
+'e6e7'        Literal
+' '           Text.Whitespace
+'e9eb'        Literal
+' '           Text.Whitespace
+'ecee'        Literal
+' '           Text.Whitespace
+'f0f1'        Literal
+' '           Text.Whitespace
+'f2f4'        Literal
+'\n\t'        Text.Whitespace
+'f5f6'        Literal
+' '           Text.Whitespace
+'f7f8'        Literal
+' '           Text.Whitespace
+'f9fa'        Literal
+' '           Text.Whitespace
+'fbfb'        Literal
+' '           Text.Whitespace
+'fcfd'        Literal
+' '           Text.Whitespace
+'fdfe'        Literal
+' '           Text.Whitespace
+'fefe'        Literal
+' '           Text.Whitespace
+'fefe'        Literal
+'\n\t'        Text.Whitespace
+'fffe'        Literal
+' '           Text.Whitespace
+'fefe'        Literal
+' '           Text.Whitespace
+'fefe'        Literal
+' '           Text.Whitespace
+'fdfd'        Literal
+' '           Text.Whitespace
+'fcfb'        Literal
+' '           Text.Whitespace
+'fbfa'        Literal
+' '           Text.Whitespace
+'f9f8'        Literal
+' '           Text.Whitespace
+'f7f6'        Literal
+'\n\t'        Text.Whitespace
+'f5f4'        Literal
+' '           Text.Whitespace
+'f2f1'        Literal
+' '           Text.Whitespace
+'f0ee'        Literal
+' '           Text.Whitespace
+'eceb'        Literal
+' '           Text.Whitespace
+'e9e7'        Literal
+' '           Text.Whitespace
+'e6e4'        Literal
+' '           Text.Whitespace
+'e2e0'        Literal
+' '           Text.Whitespace
+'dedb'        Literal
+'\n\t'        Text.Whitespace
+'d9d7'        Literal
+' '           Text.Whitespace
+'d5d2'        Literal
+' '           Text.Whitespace
+'d0ce'        Literal
+' '           Text.Whitespace
+'cbc9'        Literal
+' '           Text.Whitespace
+'c6c3'        Literal
+' '           Text.Whitespace
+'c1be'        Literal
+' '           Text.Whitespace
+'bbb9'        Literal
+' '           Text.Whitespace
+'b6b3'        Literal
+'\n\t'        Text.Whitespace
+'b0ad'        Literal
+' '           Text.Whitespace
+'aaa7'        Literal
+' '           Text.Whitespace
+'a4a1'        Literal
+' '           Text.Whitespace
+'9e9b'        Literal
+' '           Text.Whitespace
+'9895'        Literal
+' '           Text.Whitespace
+'928f'        Literal
+' '           Text.Whitespace
+'8c89'        Literal
+' '           Text.Whitespace
+'8683'        Literal
+'\n\t'        Text.Whitespace
+'807d'        Literal
+' '           Text.Whitespace
+'7a77'        Literal
+' '           Text.Whitespace
+'7471'        Literal
+' '           Text.Whitespace
+'6e6b'        Literal
+' '           Text.Whitespace
+'6865'        Literal
+' '           Text.Whitespace
+'625f'        Literal
+' '           Text.Whitespace
+'5c59'        Literal
+' '           Text.Whitespace
+'5653'        Literal
+'\n\t'        Text.Whitespace
+'504d'        Literal
+' '           Text.Whitespace
+'4a47'        Literal
+' '           Text.Whitespace
+'4542'        Literal
+' '           Text.Whitespace
+'3f3d'        Literal
+' '           Text.Whitespace
+'3a37'        Literal
+' '           Text.Whitespace
+'3532'        Literal
+' '           Text.Whitespace
+'302e'        Literal
+' '           Text.Whitespace
+'2b29'        Literal
+'\n\t'        Text.Whitespace
+'2725'        Literal
+' '           Text.Whitespace
+'2220'        Literal
+' '           Text.Whitespace
+'1e1c'        Literal
+' '           Text.Whitespace
+'1a19'        Literal
+' '           Text.Whitespace
+'1715'        Literal
+' '           Text.Whitespace
+'1412'        Literal
+' '           Text.Whitespace
+'100f'        Literal
+' '           Text.Whitespace
+'0e0c'        Literal
+'\n\t'        Text.Whitespace
+'0b0a'        Literal
+' '           Text.Whitespace
+'0908'        Literal
+' '           Text.Whitespace
+'0706'        Literal
+' '           Text.Whitespace
+'0505'        Literal
+' '           Text.Whitespace
+'0403'        Literal
+' '           Text.Whitespace
+'0302'        Literal
+' '           Text.Whitespace
+'0202'        Literal
+' '           Text.Whitespace
+'0202'        Literal
+'\n\t'        Text.Whitespace
+'0102'        Literal
+' '           Text.Whitespace
+'0202'        Literal
+' '           Text.Whitespace
+'0202'        Literal
+' '           Text.Whitespace
+'0303'        Literal
+' '           Text.Whitespace
+'0405'        Literal
+' '           Text.Whitespace
+'0506'        Literal
+' '           Text.Whitespace
+'0708'        Literal
+' '           Text.Whitespace
+'090a'        Literal
+'\n\t'        Text.Whitespace
+'0b0c'        Literal
+' '           Text.Whitespace
+'0e0f'        Literal
+' '           Text.Whitespace
+'1012'        Literal
+' '           Text.Whitespace
+'1415'        Literal
+' '           Text.Whitespace
+'1719'        Literal
+' '           Text.Whitespace
+'1a1c'        Literal
+' '           Text.Whitespace
+'1e20'        Literal
+' '           Text.Whitespace
+'2225'        Literal
+'\n\t'        Text.Whitespace
+'2729'        Literal
+' '           Text.Whitespace
+'2b2e'        Literal
+' '           Text.Whitespace
+'3032'        Literal
+' '           Text.Whitespace
+'3537'        Literal
+' '           Text.Whitespace
+'3a3d'        Literal
+' '           Text.Whitespace
+'3f42'        Literal
+' '           Text.Whitespace
+'4547'        Literal
+' '           Text.Whitespace
+'4a4d'        Literal
+'\n\t'        Text.Whitespace
+'5053'        Literal
+' '           Text.Whitespace
+'5659'        Literal
+' '           Text.Whitespace
+'5c5f'        Literal
+' '           Text.Whitespace
+'6265'        Literal
+' '           Text.Whitespace
+'686b'        Literal
+' '           Text.Whitespace
+'6e71'        Literal
+' '           Text.Whitespace
+'7477'        Literal
+' '           Text.Whitespace
+'7a7d'        Literal
+' '           Text.Whitespace
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'&end'        Name.Label
+'\n'          Text.Whitespace
+
+'('           Comment.Multiline
+' pad '       Comment.Multiline
+')'           Comment.Multiline
+' '           Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'8080'        Literal
+' '           Text.Whitespace
+'8080'        Literal
+' '           Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace

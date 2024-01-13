@@ -1,0 +1,345 @@
+'import'      Keyword.Declaration
+' '           Text.Whitespace
+'pe'          Name
+'\n'          Text.Whitespace
+
+'/*'          Comment.Multiline
+'\n    Test multi-line comment\n' Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'rule'        Keyword.Declaration
+' '           Text.Whitespace
+'S'           Text
+'yntaxExample' Name
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'meta'        Keyword
+':'           Punctuation
+'\n        '  Text.Whitespace
+'// Useful meta information examples to add' Comment.Single
+'\n        '  Text.Whitespace
+'description' Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"Test"'      Literal.String.Double
+'\n        '  Text.Whitespace
+'author'      Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"Test"'      Literal.String.Double
+'\n        '  Text.Whitespace
+'reference'   Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"https://github.com/infosec-intern/vscode-yara/wiki"' Literal.String.Double
+'\n        '  Text.Whitespace
+'os'          Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"mswindows"' Literal.String.Double
+'\n        '  Text.Whitespace
+'filetype'    Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"pe"'        Literal.String.Double
+'\n        '  Text.Whitespace
+'maltype'     Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"trojan"'    Literal.String.Double
+'\n        '  Text.Whitespace
+'date'        Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"2016-06"'   Literal.String.Double
+'\n    '      Text.Whitespace
+'strings'     Keyword
+':'           Punctuation
+'\n        '  Text.Whitespace
+'$true'       Name.Variable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'true'        Keyword.Constant
+'\n        '  Text.Whitespace
+'$false'      Name.Variable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'false'       Keyword.Constant
+'\n        '  Text.Whitespace
+'$hex_string' Name.Variable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'{ E2 34 ?? C8 A? FB [2-4] }' Literal.Number.Hex
+'\n        '  Text.Whitespace
+'$hex_string2' Name.Variable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'{ F4 23 ( 62 B4 | 56 ) 45 }' Literal.Number.Hex
+'\n        '  Text.Whitespace
+'$dstring'    Name.Variable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"double # string"' Literal.String.Double
+' '           Text.Whitespace
+'wide'        Name.Builtin
+' '           Text.Whitespace
+'nocase'      Name.Builtin
+' '           Text.Whitespace
+'fullword'    Name.Builtin
+'\n        '  Text.Whitespace
+'$reg_ex'     Name.Variable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'/md5: [0-9a-zA-Z]{32}/' Literal.String.Regex
+'    '        Text.Whitespace
+'// greedy test comment' Comment.Single
+'\n    '      Text.Whitespace
+'condition'   Keyword
+':'           Punctuation
+'\n        '  Text.Whitespace
+'$hex_string' Name.Variable
+'\n        '  Text.Whitespace
+'for'         Name.Builtin
+' '           Text.Whitespace
+'any'         Operator.Word
+' '           Text.Whitespace
+'of'          Name.Builtin
+' '           Text.Whitespace
+'('           Punctuation
+'$a'          Name.Variable
+','           Punctuation
+'$b'          Name.Variable
+','           Punctuation
+'$c'          Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'$'           Punctuation
+' '           Text.Whitespace
+')'           Punctuation
+'\n        '  Text.Whitespace
+'1'           Text
+'7'           Text
+' '           Text.Whitespace
+'or'          Operator.Word
+' '           Text.Whitespace
+'none'        Name.Builtin
+' '           Text.Whitespace
+'of'          Name.Builtin
+' '           Text.Whitespace
+'them'        Name.Builtin
+'\n        '  Text.Whitespace
+'filesize'    Name.Builtin
+' '           Text.Whitespace
+'<'           Text
+' '           Text.Whitespace
+'2'           Text
+'0'           Text
+'0'           Text
+'M'           Text
+'B'           Text
+'\n        '  Text.Whitespace
+'#dstring == 8' Comment.Single
+'\n        '  Text.Whitespace
+'@'           Text
+'dstring'     Name
+'['           Punctuation
+'1'           Text
+']'           Punctuation
+'\n        '  Text.Whitespace
+'$hex_'       Name.Variable
+'*'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'// test single-line comment' Comment.Single
+'\n'          Text.Whitespace
+
+'rule'        Keyword.Declaration
+' '           Text.Whitespace
+'R'           Text
+'uleReferenceExample' Name
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'meta'        Keyword
+':'           Punctuation
+'\n        '  Text.Whitespace
+'description' Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"Rule Reference Example {this should not be here}"' Literal.String.Double
+'\n        '  Text.Whitespace
+'author'      Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"Test"'      Literal.String.Double
+'\n        '  Text.Whitespace
+'reference'   Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"https://github.com/infosec-intern/vscode-yara/wiki"' Literal.String.Double
+'\n    '      Text.Whitespace
+'strings'     Keyword
+':'           Punctuation
+'\n        '  Text.Whitespace
+'$hex_string' Name.Variable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"test"'      Literal.String.Double
+'    '        Text.Whitespace
+'/*'          Comment.Multiline
+'greedy comment' Comment.Multiline
+'*/'          Comment.Multiline
+'\n    '      Text.Whitespace
+'condition'   Keyword
+':'           Punctuation
+'\n        '  Text.Whitespace
+'S'           Text
+'yntaxExample' Name
+' '           Text.Whitespace
+'and'         Operator.Word
+' '           Text.Whitespace
+'$hex_string' Name.Variable
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'rule'        Keyword.Declaration
+' '           Text.Whitespace
+'Y'           Text
+'ara4Example' Name
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'meta'        Keyword
+':'           Punctuation
+'\n        '  Text.Whitespace
+'description' Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"Example rule to test features added in version 4.0"' Literal.String.Double
+'\n        '  Text.Whitespace
+'author'      Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"test /test/"' Literal.String.Double
+'\n    '      Text.Whitespace
+'strings'     Keyword
+':'           Punctuation
+'\n        '  Text.Whitespace
+'$b64name'    Name.Variable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"string"'    Literal.String.Double
+' '           Text.Whitespace
+'base64'      Name.Builtin
+' '           Text.Whitespace
+'# some more comments' Comment.Single
+'\n        '  Text.Whitespace
+'$b64wname'   Name.Variable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"string"'    Literal.String.Double
+' '           Text.Whitespace
+'base64wide'  Name.Builtin
+'\n    '      Text.Whitespace
+'condition'   Keyword
+':'           Punctuation
+'\n        '  Text.Whitespace
+'any'         Operator.Word
+' '           Text.Whitespace
+'of'          Name.Builtin
+' '           Text.Whitespace
+'them'        Name.Builtin
+'\n        '  Text.Whitespace
+'and'         Operator.Word
+' '           Text.Whitespace
+'pe'          Name
+'.'           Punctuation
+'pdb_path'    Name
+' '           Text.Whitespace
+'='           Punctuation
+'='           Punctuation
+' '           Text.Whitespace
+'"C:\\\\fake_pdb_path"' Literal.String.Double
+'\n        '  Text.Whitespace
+'and'         Operator.Word
+' '           Text.Whitespace
+'pe'          Name
+'.'           Punctuation
+'dll_name'    Name
+' '           Text.Whitespace
+'='           Punctuation
+'='           Punctuation
+' '           Text.Whitespace
+'"library.dll"' Literal.String.Double
+'\n        '  Text.Whitespace
+'and'         Operator.Word
+' '           Text.Whitespace
+'pe'          Name
+'.'           Punctuation
+'export_timestamp' Name
+' '           Text.Whitespace
+'='           Punctuation
+'='           Punctuation
+' '           Text.Whitespace
+'0'           Text
+'0'           Text
+'0'           Text
+'0'           Text
+'0'           Text
+'0'           Text
+'0'           Text
+'0'           Text
+'0'           Text
+'\n        '  Text.Whitespace
+'and'         Operator.Word
+' '           Text.Whitespace
+'pe'          Name
+'.'           Punctuation
+'exports_index' Name
+'('           Punctuation
+'4'           Text
+'0'           Text
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'# another comment' Comment.Single
+'\n'          Text.Whitespace

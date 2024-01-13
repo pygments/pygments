@@ -1,0 +1,255 @@
+':actor'      Name.Tag
+' '           Text.Whitespace
+'Main'        Name.Class
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+':new'        Name.Tag
+' '           Text.Whitespace
+'('           Punctuation
+'env'         Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Spec'        Name.Class
+'.'           Punctuation
+'Process'     Name.Class
+'.'           Punctuation
+'run'         Name.Function
+'('           Punctuation
+'env'         Name
+','           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'Spec'        Name.Class
+'.'           Punctuation
+'Run'         Name.Class
+'('           Punctuation
+'AdditionSpec' Name.Class
+')'           Punctuation
+'.'           Punctuation
+'new'         Name.Function
+'('           Punctuation
+'env'         Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+']'           Punctuation
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+':class'      Name.Tag
+' '           Text.Whitespace
+'AdditionSpec' Name.Class
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+':is'         Name.Tag
+' '           Text.Whitespace
+'Spec'        Name.Class
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+':const'      Name.Tag
+' '           Text.Whitespace
+'describes'   Keyword.Declaration
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Addition'    Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text.Whitespace
+
+'  '          Text.Whitespace
+':: Return the number 2 (written in hex, just for fun).' Comment.Single
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+':const'      Name.Tag
+' '           Text.Whitespace
+'_two'        Keyword.Declaration
+' '           Text.Whitespace
+'U64'         Name.Class
+"'"           Operator
+'val'         Name
+':'           Punctuation
+' '           Text.Whitespace
+'0x02'        Literal.Number.Hex
+'\n\n'        Text.Whitespace
+
+'  '          Text.Whitespace
+':it'         Name.Tag
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'adds two twos' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'assert'      Name
+':'           Punctuation
+' '           Text.Whitespace
+'@'           Punctuation
+'_two'        Name.Function
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'\\x02'       Literal.String.Escape
+"'"           Literal.String.Char
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'4'           Literal.Number
+'\n\n'        Text.Whitespace
+
+'  '          Text.Whitespace
+':: Raise an error if the argument is positive.' Comment.Single
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+':fun'        Name.Tag
+' '           Text.Whitespace
+'non'         Keyword.Declaration
+' '           Text.Whitespace
+'add_overflow!' Generic.Deleted
+'('           Punctuation
+'a'           Name
+' '           Text.Whitespace
+'U64'         Name.Class
+"'"           Operator
+'val'         Name
+','           Punctuation
+' '           Text.Whitespace
+'b'           Name
+' '           Text.Whitespace
+'U64'         Name.Class
+"'"           Operator
+'val'         Name
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'+!'          Generic.Deleted
+' '           Text.Whitespace
+'b'           Name
+'\n\n'        Text.Whitespace
+
+'  '          Text.Whitespace
+':it'         Name.Tag
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'can error on overflow' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'integers'    Name
+' '           Text.Whitespace
+'Array'       Name.Class
+'('           Punctuation
+'U64'         Name.Class
+')'           Punctuation
+"'"           Operator
+'val'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'99'          Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'100'         Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'101'         Literal.Number
+']'           Punctuation
+'\n\n'        Text.Whitespace
+
+'    '        Text.Whitespace
+'// Check addition overflow for various pairs of addends.' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'assert'      Name
+' '           Text.Whitespace
+'error'       Name
+':'           Punctuation
+' '           Text.Whitespace
+'add_overflow!' Generic.Deleted
+'('           Punctuation
+'U64'         Name.Class
+'.'           Punctuation
+'max_value'   Name.Function
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'assert'      Name
+' '           Text.Whitespace
+'no_error'    Name
+':'           Punctuation
+' '           Text.Whitespace
+'add_overflow!' Generic.Deleted
+'('           Punctuation
+'U64'         Name.Class
+'.'           Punctuation
+'max_value'   Name.Function
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'assert'      Name
+' '           Text.Whitespace
+'no_error'    Name
+':'           Punctuation
+' '           Text.Whitespace
+'add_overflow!' Generic.Deleted
+'('           Punctuation
+'integers'    Name
+'['           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+'!'           Generic.Deleted
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'    '        Text.Whitespace
+'// Print a bit of extra information using string interpolation.' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'@'           Punctuation
+'env'         Name.Function
+'.'           Punctuation
+'out'         Name.Function
+'.'           Punctuation
+'print'       Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'The first integer is ' Literal.String.Double
+'\\('         Literal.String.Interpol
+'integers'    Name
+'['           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+'!'           Generic.Deleted
+')'           Literal.String.Interpol
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text.Whitespace

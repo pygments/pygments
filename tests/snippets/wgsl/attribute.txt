@@ -1,0 +1,87 @@
+---input---
+@id(0) override x:i32 = 1;
+@ id(1) override y:i32 = 2;
+@//comment
+id(1) override z:i32 = 3;
+@must_use fn foo() -> i32 { return 32; }
+
+---tokens---
+'@'           Name.Decorator
+'id'          Name.Decorator
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'override'    Keyword.Declaration
+' '           Text.Whitespace
+'x'           Name
+':'           Punctuation
+'i32'         Name.Builtin
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@'           Name.Decorator
+' '           Text.Whitespace
+'id'          Name.Decorator
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'override'    Keyword.Declaration
+' '           Text.Whitespace
+'y'           Name
+':'           Punctuation
+'i32'         Name.Builtin
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@'           Name.Decorator
+'//comment\n' Comment.Single
+
+'id'          Name.Decorator
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'override'    Keyword.Declaration
+' '           Text.Whitespace
+'z'           Name
+':'           Punctuation
+'i32'         Name.Builtin
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@'           Name.Decorator
+'must_use'    Name.Decorator
+' '           Text.Whitespace
+'fn'          Keyword
+' '           Text.Whitespace
+'foo'         Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Punctuation
+' '           Text.Whitespace
+'i32'         Name.Builtin
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'32'          Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace

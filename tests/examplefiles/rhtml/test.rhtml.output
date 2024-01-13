@@ -3,17 +3,17 @@
 '>'           Punctuation
 '\n '         Text
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'rows'        Name
 '.'           Operator
 'each'        Name
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
 'row'         Name
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n  '        Text
 '<'           Punctuation
@@ -23,11 +23,11 @@
 '='           Operator
 '"'           Literal.String
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'row'         Name
 '.'           Operator
 'cls'         Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '"'           Literal.String
 '>'           Punctuation
@@ -42,20 +42,20 @@
 '='           Operator
 '"'           Literal.String
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'item'        Name
 '.'           Operator
 'href'        Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '"'           Literal.String
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'item'        Name
 '.'           Operator
 'title'       Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 '/'           Punctuation
@@ -70,11 +70,11 @@
 'td'          Name.Tag
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'item'        Name
 '.'           Operator
 'description' Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 '/'           Punctuation
@@ -87,9 +87,9 @@
 '>'           Punctuation
 '\n '         Text
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n'          Text
 
@@ -200,27 +200,27 @@
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '@homepage'   Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n'          Text
 
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'render_node' Name
-' '           Text
+' '           Text.Whitespace
 '@homepage'   Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n  '        Text
 '<'           Punctuation
@@ -251,9 +251,9 @@
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n  '        Text
 '<'           Punctuation
@@ -275,21 +275,21 @@
 '='           Operator
 '"text/javascript"' Literal.String
 '>'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'// <![CDATA[\n' Comment.Single
-
-'  '          Text
-'new'         Keyword
-' '           Text
+'// <![CDATA[' Comment.Single
+'\n  '        Text.Whitespace
+'new'         Operator.Word
+' '           Text.Whitespace
 'SiteMap'     Name.Other
 '('           Punctuation
 "'site-map'"  Literal.String.Single
 ')'           Punctuation
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'// ]]>\n'    Comment.Single
+'// ]]>'      Comment.Single
+'\n'          Text.Whitespace
 
 '<'           Punctuation
 '/'           Punctuation
@@ -304,9 +304,9 @@
 '='           Operator
 '"'           Literal.String
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'clear_cache_url' Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '"'           Literal.String
 ' '           Text
@@ -321,54 +321,54 @@
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 '@homepage'   Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n    '      Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'link_to'     Name
-' '           Text
+' '           Text.Whitespace
 'image_tag'   Name
 '('           Punctuation
 "'"           Literal.String.Single
 'new-homepage' Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':alt'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'New Homepage' Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'homepage_new_url' Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n    '      Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'image_submit_tag' Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'clear-page-cache' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n  '        Text
 '<'           Punctuation

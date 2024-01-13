@@ -1,0 +1,44 @@
+---input---
+""
+"abc"
+"ひらがな"
+"123"
+"\\"
+"\t"
+"\""
+
+---tokens---
+'"'           Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'"'           Literal.String
+'abc'         Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'"'           Literal.String
+'ひらがな'        Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'"'           Literal.String
+'123'         Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'"'           Literal.String
+'\\\\'        Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'"'           Literal.String
+'\\'          Literal.String
+'t'           Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'"'           Literal.String
+'\\"'         Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace

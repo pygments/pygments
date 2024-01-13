@@ -1,156 +1,156 @@
 ';   Copyright (c) Rich Hickey. All rights reserved.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';   The use and distribution terms for this software are covered by the' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';   Common Public License 1.0 (http://opensource.org/licenses/cpl.php)' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';   which can be found in the file CPL.TXT at the root of this distribution.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';   By using this software in any fashion, you are agreeing to be bound by' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';   the terms of this license.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';   You must not remove this notice, or any other, from this software.' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'in-ns '      Name.Builtin
 "'clojure"    Literal.String.Symbol
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'import '     Name.Builtin
 "'"           Operator
 '('           Punctuation
 'java.lang.reflect' Name.Function
-' '           Text
+' '           Text.Whitespace
 'Modifier'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Constructor' Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'"           Operator
 '('           Punctuation
 'clojure.asm' Name.Function
-' '           Text
+' '           Text.Whitespace
 'ClassWriter' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ClassVisitor' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Opcodes'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Type'        Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'"           Operator
 '('           Punctuation
 'clojure.asm.commons' Name.Function
-' '           Text
+' '           Text.Whitespace
 'Method'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'GeneratorAdapter' Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 "'"           Operator
 '('           Punctuation
 'clojure.lang' Name.Function
-' '           Text
+' '           Text.Whitespace
 'IPersistentMap' Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ';(defn method-sig [#^java.lang.reflect.Method meth]' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';  [(. meth (getName)) (seq (. meth (getParameterTypes)))])' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'defn- '      Keyword.Declaration
 'non-private-methods' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '#'           Operator
 '^'           Operator
 'Class'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'c'           Name.Variable
 ']'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'loop '       Keyword
 '['           Punctuation
 'mm'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '}'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 'considered'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '#'           Operator
 '{'           Punctuation
 '}'           Punctuation
-'\n         ' Text
+'\n         ' Text.Whitespace
 'c'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'c'           Name.Variable
 ']'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'if '         Keyword
 'c'           Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'let '        Keyword
 '['           Punctuation
 '['           Punctuation
 'mm'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 'considered'  Name.Variable
 ']'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'loop '       Keyword
 '['           Punctuation
 'mm'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 'mm'          Name.Variable
-'\n                   ' Text
+'\n                   ' Text.Whitespace
 'considered'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 'considered'  Name.Variable
-'\n                   ' Text
+'\n                   ' Text.Whitespace
 'meths'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'concat'      Name.Function
-'\n                          ' Text
+'\n                          ' Text.Whitespace
 '('           Punctuation
 'seq '        Name.Builtin
 '('           Punctuation
 '. '          Keyword
 'c'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'getDeclaredMethods' Name.Function
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n                          ' Text
+'\n                          ' Text.Whitespace
 '('           Punctuation
 'seq '        Name.Builtin
 '('           Punctuation
 '. '          Keyword
 'c'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'getMethods'  Name.Function
 ')'           Punctuation
@@ -158,126 +158,126 @@
 ')'           Punctuation
 ')'           Punctuation
 ']'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 'if '         Keyword
 'meths'       Name.Variable
-'\n                ' Text
+'\n                ' Text.Whitespace
 '('           Punctuation
 'let '        Keyword
 '['           Punctuation
 '#'           Operator
 '^'           Operator
 'Method'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'meth'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'first '      Name.Builtin
 'meths'       Name.Variable
 ')'           Punctuation
-'\n                      ' Text
+'\n                      ' Text.Whitespace
 'mods'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'meth'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'getModifiers' Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n                      ' Text
+'\n                      ' Text.Whitespace
 'mk'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'method-sig'  Name.Function
-' '           Text
+' '           Text.Whitespace
 'meth'        Name.Variable
 ')'           Punctuation
 ']'           Punctuation
-'\n                  ' Text
+'\n                  ' Text.Whitespace
 '('           Punctuation
 'if '         Keyword
 '('           Punctuation
 'or '         Name.Builtin
 '('           Punctuation
 'considered'  Name.Function
-' '           Text
+' '           Text.Whitespace
 'mk'          Name.Variable
 ')'           Punctuation
-'\n                          ' Text
+'\n                          ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Modifier'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'isPrivate'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'mods'        Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n                          ' Text
+'\n                          ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Modifier'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'isStatic'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'mods'        Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n                          ' Text
+'\n                          ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Modifier'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'isFinal'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'mods'        Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 '('           Punctuation
 'recur'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'mm'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'conj '       Name.Builtin
 'considered'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 'mk'          Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'rest '       Name.Builtin
 'meths'       Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n                    ' Text
+'\n                    ' Text.Whitespace
 '('           Punctuation
 'recur'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'assoc '      Name.Builtin
 'mm'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 'mk'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 'meth'        Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'conj '       Name.Builtin
 'considered'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 'mk'          Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'rest '       Name.Builtin
 'meths'       Name.Variable
@@ -285,81 +285,81 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '['           Punctuation
 'mm'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 'considered'  Name.Variable
 ']'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ']'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'recur'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'mm'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 'considered'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'c'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'getSuperclass' Name.Function
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 'mm'          Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'defn- '      Keyword.Declaration
 'ctor-sigs'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'super'       Name.Variable
 ']'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'for '        Name.Builtin
 '['           Punctuation
 '#'           Operator
 '^'           Operator
 'Constructor' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ctor'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'super'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'getDeclaredConstructors' Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 ':when'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'not '        Name.Builtin
 '('           Punctuation
 '. '          Keyword
 'Modifier'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'isPrivate'   Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'ctor'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'getModifiers' Name.Function
 ')'           Punctuation
@@ -368,14 +368,14 @@
 ')'           Punctuation
 ')'           Punctuation
 ']'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'apply '      Name.Builtin
 'vector '     Name.Builtin
 '('           Punctuation
 '. '          Keyword
 'ctor'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'getParameterTypes' Name.Function
 ')'           Punctuation
@@ -383,99 +383,99 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'defn- '      Keyword.Declaration
 'escape-class-name' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'c'           Name.Variable
 ']'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 '.. '         Name.Builtin
 '('           Punctuation
 '.getSimpleName' Name.Function
-' '           Text
+' '           Text.Whitespace
 'c'           Name.Variable
 ')'           Punctuation
-' \n      '   Text
+' \n      '   Text.Whitespace
 '('           Punctuation
 'replace '    Name.Builtin
 '"[]"'        Literal.String
-' '           Text
+' '           Text.Whitespace
 '"<>"'        Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'defn- '      Keyword.Declaration
 'overload-name' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'mname'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'pclasses'    Name.Variable
 ']'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'if '         Keyword
 '('           Punctuation
 'seq '        Name.Builtin
 'pclasses'    Name.Variable
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'apply '      Name.Builtin
 'str '        Name.Builtin
 'mname'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'interleave ' Name.Builtin
 '('           Punctuation
 'repeat '     Name.Builtin
 '\\-'         Literal.String.Char
 ')'           Punctuation
-' \n                                 ' Text
+' \n                                 ' Text.Whitespace
 '('           Punctuation
 'map '        Name.Builtin
 'escape-class-name' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'pclasses'    Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'str '        Name.Builtin
 'mname'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"-void"'     Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ';(distinct (map first(keys (mapcat non-private-methods [Object IPersistentMap]))))' Comment.Single
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'defn '       Keyword.Declaration
 'gen-class'   Name.Variable
-' \n  '       Text
+' \n  '       Text.Whitespace
 '"Generates compiled bytecode for a class with the given\n  package-qualified cname (which, as all names in these parameters, can\n  be a string or symbol). The gen-class construct contains no\n  implementation, as the implementation will be dynamically sought by\n  the generated class in functions in a corresponding Clojure\n  namespace. Given a generated class org.mydomain.MyClass, methods\n  will be implemented that look for same-named functions in a Clojure\n  namespace called org.domain.MyClass. The init and main\n  functions (see below) will be found similarly. The static\n  initializer for the generated class will attempt to load the Clojure\n  support code for the class as a resource from the claspath, e.g. in\n  the example case, org/mydomain/MyClass.clj\n\n  Returns a map containing :name and :bytecode. Most uses will be\n  satisfied by the higher-level gen-and-load-class and\n  gen-and-store-class functions, which generate and immediately load,\n  or generate and store to disk, respectively.\n\n  Options should be a set of key/value pairs, all of which are optional:\n\n  :extends aclass\n\n  Specifies the superclass, the non-private methods of which will be\n  overridden by the class. If not provided, defaults to Object.\n\n  :implements [interface ...]\n\n  One or more interfaces, the methods of which will be implemented by the class.\n\n  :init name\n\n  If supplied, names a function that will be called with the arguments\n  to the constructor. Must return [[superclass-constructor-args] state] \n  If not supplied, the constructor args are passed directly to\n  the superclass constructor and the state will be nil\n\n  :constructors {[param-types] [super-param-types], ...}\n\n  By default, constructors are created for the generated class which\n  match the signature(s) of the constructors for the superclass. This\n  parameter may be used to explicitly specify constructors, each entry\n  providing a mapping from a constructor signature to a superclass\n  constructor signature. When you supply this, you must supply an :init\n  specifier.\n\n  :methods [[name [param-types] return-type], ...]\n\n  The generated class automatically defines all of the non-private\n  methods of its superclasses/interfaces. This parameter can be used\n  to specify the signatures of additional methods of the generated\n  class. Do not repeat superclass/interface signatures here.\n\n  :main boolean\n\n  If supplied and true, a static public main function will be\n  generated. It will pass each string of the String[] argument as a\n  separate argument to a function called \'main.\n\n  :factory name\n\n  If supplied, a (set of) public static factory function(s) will be\n  created with the given name, and the same signature(s) as the\n  constructor(s).\n  \n  :state name\n\n  If supplied, a public final instance field with the given name will be\n  created. You must supply an :init function in order to provide a\n  value for the state. Note that, though final, the state can be a ref\n  or agent, supporting the creation of Java objects with transactional\n  or asynchronous mutation semantics.\n\n  :exposes {protected-field-name {:get name :set name}, ...}\n\n  Since the implementations of the methods of the generated class\n  occur in Clojure functions, they have no access to the inherited\n  protected fields of the superclass. This parameter can be used to\n  generate public getter/setter methods exposing the protected field(s)\n  for use in the implementation."' Literal.String
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 '['           Punctuation
 'cname'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '&'           Operator
-' '           Text
+' '           Text.Whitespace
 'options'     Name.Variable
 ']'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'let '        Keyword
 '['           Punctuation
@@ -484,176 +484,176 @@
 'str '        Name.Builtin
 'cname'       Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '{'           Punctuation
 ':keys'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'extends'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'implements'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 'constructors' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'methods'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'main'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'factory'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'state'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'init'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'exposes'     Name.Variable
 ']'           Punctuation
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'apply '      Name.Builtin
 'hash-map '   Name.Builtin
 'options'     Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'super'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'or '         Name.Builtin
 'extends'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'Object'      Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'interfaces'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 'implements'  Name.Variable
-'\n        '  Text
+'\n        '  Text.Whitespace
 'supers'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'cons '       Name.Builtin
 'super'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'seq '        Name.Builtin
 'interfaces'  Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'ctor-sig-map' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'or '         Name.Builtin
 'constructors' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'zipmap '     Name.Builtin
 '('           Punctuation
 'ctor-sigs'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'super'       Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ctor-sigs'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'super'       Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'cv'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'new '        Keyword
 'ClassWriter' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'ClassWriter' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'COMPUTE_MAXS' Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'cname'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'name '       Name.Builtin
 '('           Punctuation
 'replace '    Name.Builtin
 '"."'         Literal.String
-' '           Text
+' '           Text.Whitespace
 '"/"'         Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'ctype'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Type'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'getObjectType' Name.Function
-' '           Text
+' '           Text.Whitespace
 'cname'       Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'iname'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'fn '         Keyword
 '['           Punctuation
 'c'           Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '.. '         Name.Builtin
 'Type'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'getType'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'c'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'getInternalName' Name.Function
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'totype'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'fn '         Keyword
 '['           Punctuation
 'c'           Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Type'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'getType'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'c'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'to-types'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'fn '         Keyword
 '['           Punctuation
 'cs'          Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'if '         Keyword
 '('           Punctuation
@@ -663,159 +663,159 @@
 'cs'          Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n                            ' Text
+'\n                            ' Text.Whitespace
 '('           Punctuation
 'into-array ' Name.Builtin
 '('           Punctuation
 'map '        Name.Builtin
 'totype'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'cs'          Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n                            ' Text
+'\n                            ' Text.Whitespace
 '('           Punctuation
 'make-array ' Name.Builtin
 'Type'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'obj-type'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'totype'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'Object'      Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'arg-types'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'fn '         Keyword
 '['           Punctuation
 'n'           Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'if '         Keyword
 '('           Punctuation
 'pos? '       Name.Builtin
 'n'           Name.Variable
 ')'           Punctuation
-'\n                            ' Text
+'\n                            ' Text.Whitespace
 '('           Punctuation
 'into-array ' Name.Builtin
 '('           Punctuation
 'replicate '  Name.Builtin
 'n'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'obj-type'    Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n                            ' Text
+'\n                            ' Text.Whitespace
 '('           Punctuation
 'make-array ' Name.Builtin
 'Type'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'super-type'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'totype'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'super'       Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'init-name'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'str '        Name.Builtin
 'init'        Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'factory-name' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'str '        Name.Builtin
 'factory'     Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'state-name'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'str '        Name.Builtin
 'state'       Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'main-name'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"main"'      Literal.String
-'\n        '  Text
+'\n        '  Text.Whitespace
 'var-name'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'fn '         Keyword
 '['           Punctuation
 's'           Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'str '        Name.Builtin
 's'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"__var"'     Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'rt-type'     Name.Variable
-'  '          Text
+'  '          Text.Whitespace
 '('           Punctuation
 'totype'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'clojure.lang.RT' Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'var-type'    Name.Variable
-'  '          Text
+'  '          Text.Whitespace
 '('           Punctuation
 'totype'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'clojure.lang.Var' Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'ifn-type'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'totype'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'clojure.lang.IFn' Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'iseq-type'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'totype'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'clojure.lang.ISeq' Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'ex-type'     Name.Variable
-'  '          Text
+'  '          Text.Whitespace
 '('           Punctuation
 'totype'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'java.lang.UnsupportedOperationException' Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'all-sigs'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'distinct '   Name.Builtin
 '('           Punctuation
@@ -828,33 +828,33 @@
 '['           Punctuation
 '['           Punctuation
 'm'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'p'           Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'key '        Name.Builtin
 '%'           Name.Variable
 ')'           Punctuation
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'm'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'p'           Name.Variable
 ']'           Punctuation
 '}'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'mapcat '     Name.Builtin
 'non-private-methods' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'supers'      Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n                                   ' Text
+'\n                                   ' Text.Whitespace
 '('           Punctuation
 'map '        Name.Builtin
 '('           Punctuation
@@ -862,47 +862,47 @@
 '['           Punctuation
 '['           Punctuation
 'm'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'p'           Name.Variable
 ']'           Punctuation
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '('           Punctuation
 'str '        Name.Builtin
 'm'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'p'           Name.Variable
 ']'           Punctuation
 '}'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'methods'     Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'sigs-by-name' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'apply '      Name.Builtin
 'merge-with ' Name.Builtin
 'concat '     Name.Builtin
 '{'           Punctuation
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'all-sigs'    Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'overloads'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'into '       Name.Builtin
 '{'           Punctuation
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'filter '     Name.Builtin
 '('           Punctuation
@@ -910,43 +910,43 @@
 '['           Punctuation
 '['           Punctuation
 'm'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 's'           Name.Variable
 ']'           Punctuation
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'rest '       Name.Builtin
 's'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'sigs-by-name' Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'var-fields'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'concat '     Name.Builtin
 '('           Punctuation
 'and '        Name.Builtin
 'init'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'init-name'   Name.Variable
 ']'           Punctuation
 ')'           Punctuation
-' \n                           ' Text
+' \n                           ' Text.Whitespace
 '('           Punctuation
 'and '        Name.Builtin
 'main'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'main-name'   Name.Variable
 ']'           Punctuation
 ')'           Punctuation
-'\n                           ' Text
+'\n                           ' Text.Whitespace
 '('           Punctuation
 'distinct '   Name.Builtin
 '('           Punctuation
@@ -955,7 +955,7 @@
 'keys '       Name.Builtin
 'sigs-by-name' Name.Variable
 ')'           Punctuation
-'\n                                             ' Text
+'\n                                             ' Text.Whitespace
 '('           Punctuation
 'mapcat '     Name.Builtin
 '('           Punctuation
@@ -963,29 +963,29 @@
 '['           Punctuation
 '['           Punctuation
 'm'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 's'           Name.Variable
 ']'           Punctuation
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'map '        Name.Builtin
 '#'           Operator
 '('           Punctuation
 'overload-name' Name.Function
-' '           Text
+' '           Text.Whitespace
 'm'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '%'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 's'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'overloads'   Name.Variable
 ')'           Punctuation
-'\n                                             ' Text
+'\n                                             ' Text.Whitespace
 '('           Punctuation
 'mapcat '     Name.Builtin
 '('           Punctuation
@@ -995,476 +995,476 @@
 'map '        Name.Builtin
 'str'         Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'vals '       Name.Builtin
 'val'         Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'exposes'     Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'emit-get-var' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'fn '         Keyword
 '['           Punctuation
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'v'           Name.Variable
 ']'           Punctuation
-'\n                       ' Text
+'\n                       ' Text.Whitespace
 '('           Punctuation
 'let '        Keyword
 '['           Punctuation
 'false-label' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'newLabel'    Name.Variable
 ')'           Punctuation
-'\n                             ' Text
+'\n                             ' Text.Whitespace
 'end-label'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'newLabel'    Name.Variable
 ')'           Punctuation
 ']'           Punctuation
-'\n                         ' Text
+'\n                         ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'getStatic'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ctype'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'var-name'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'v'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'var-type'    Name.Variable
 ')'           Punctuation
-'\n                         ' Text
+'\n                         ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'dup'         Name.Variable
 ')'           Punctuation
-'\n                         ' Text
+'\n                         ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'invokeVirtual' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'var-type'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Method'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'getMethod'   Name.Function
-' '           Text
+' '           Text.Whitespace
 '"boolean isBound()"' Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n                         ' Text
+'\n                         ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ifZCmp'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'GeneratorAdapter' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'EQ'          Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'false-label' Name.Variable
 ')'           Punctuation
-'\n                         ' Text
+'\n                         ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'invokeVirtual' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'var-type'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Method'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'getMethod'   Name.Function
-' '           Text
+' '           Text.Whitespace
 '"Object get()"' Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n                         ' Text
+'\n                         ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'goTo'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'end-label'   Name.Variable
 ')'           Punctuation
-'\n                         ' Text
+'\n                         ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'mark'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'false-label' Name.Variable
 ')'           Punctuation
-'\n                         ' Text
+'\n                         ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'pop'         Name.Variable
 ')'           Punctuation
-'\n                         ' Text
+'\n                         ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'visitInsn'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Opcodes'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ACONST_NULL' Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n                         ' Text
+'\n                         ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'mark'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'end-label'   Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'emit-forwarding-method' Name.Variable
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'fn '         Keyword
 '['           Punctuation
 'mname'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'pclasses'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'rclass'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'else-gen'    Name.Variable
 ']'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 '('           Punctuation
 'let '        Keyword
 '['           Punctuation
 'ptypes'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'to-types'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'pclasses'    Name.Variable
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 'rtype'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'totype'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'rclass'      Name.Variable
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 'm'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'new '        Keyword
 'Method'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'mname'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'rtype'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ptypes'      Name.Variable
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 'is-overload' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'overloads'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'mname'       Name.Variable
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'new '        Keyword
 'GeneratorAdapter' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Opcodes'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ACC_PUBLIC'  Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'm'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nil'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nil'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'cv'          Name.Variable
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 'found-label' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'newLabel'    Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 'else-label'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'newLabel'    Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 'end-label'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'newLabel'    Name.Function
 ')'           Punctuation
 ')'           Punctuation
 ']'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'visitCode'   Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'when '       Name.Builtin
 'is-overload' Name.Variable
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 'emit-get-var' Name.Function
-' '           Text
+' '           Text.Whitespace
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'overload-name' Name.Function
-' '           Text
+' '           Text.Whitespace
 'mname'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'pclasses'    Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'dup'         Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ifNonNull'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'found-label' Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'pop'         Name.Function
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'emit-get-var' Name.Function
-' '           Text
+' '           Text.Whitespace
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'mname'       Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'dup'         Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'ifNull'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'else-label'  Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'when '       Name.Builtin
 'is-overload' Name.Variable
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'mark'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'found-label' Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 ';if found'   Comment.Single
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'loadThis'    Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 ';box args'   Comment.Single
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'dotimes '    Name.Builtin
 'i'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'count '      Name.Builtin
 'ptypes'      Name.Variable
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'loadArg'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'i'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'clojure.lang.Compiler$HostExpr' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'emitBoxReturn' Name.Function
-' '           Text
+' '           Text.Whitespace
 'nil'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'nth '        Name.Builtin
 'pclasses'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'i'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 ';call fn'    Comment.Single
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'invokeInterface' Name.Function
-' '           Text
+' '           Text.Whitespace
 'ifn-type'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'new '        Keyword
 'Method'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"invoke"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'obj-type'    Name.Variable
-' \n                                                  ' Text
+' \n                                                  ' Text.Whitespace
 '('           Punctuation
 'into-array ' Name.Builtin
 '('           Punctuation
 'cons '       Name.Builtin
 'obj-type'    Name.Variable
-' \n                                                                    ' Text
+' \n                                                                    ' Text.Whitespace
 '('           Punctuation
 'replicate '  Name.Builtin
 '('           Punctuation
 'count '      Name.Builtin
 'ptypes'      Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'obj-type'    Name.Variable
 ')'           Punctuation
 ')'           Punctuation
@@ -1472,20 +1472,20 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 ';unbox return' Comment.Single
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'unbox'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'rtype'       Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'when '       Name.Builtin
 '('           Punctuation
@@ -1493,392 +1493,392 @@
 '('           Punctuation
 '. '          Keyword
 'rtype'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'getSort'     Name.Function
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Type'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'VOID'        Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'pop'         Name.Function
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'goTo'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'end-label'   Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n            \n                                        ' Text
+'\n            \n                                        ' Text.Whitespace
 ';else call supplied alternative generator' Comment.Single
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'mark'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'else-label'  Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'pop'         Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n            \n            ' Text
+'\n            \n            ' Text.Whitespace
 '('           Punctuation
 'else-gen'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'm'           Name.Variable
 ')'           Punctuation
-'\n            \n            ' Text
+'\n            \n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'mark'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'end-label'   Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'returnValue' Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'endMethod'   Name.Function
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 ']'           Punctuation
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 ';start class definition' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'cv'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'visit'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Opcodes'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'V1_5'        Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Opcodes'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ACC_PUBLIC'  Name.Variable
 ')'           Punctuation
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 'cname'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nil'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'iname'       Name.Function
-' '           Text
+' '           Text.Whitespace
 'super'       Name.Variable
 ')'           Punctuation
-'\n                 ' Text
+'\n                 ' Text.Whitespace
 '('           Punctuation
 'when '       Name.Builtin
 'interfaces'  Name.Variable
-'\n                   ' Text
+'\n                   ' Text.Whitespace
 '('           Punctuation
 'into-array ' Name.Builtin
 '('           Punctuation
 'map '        Name.Builtin
 'iname'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'interfaces'  Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n    \n                                        ' Text
+'\n    \n                                        ' Text.Whitespace
 ';static fields for vars' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'doseq '      Name.Builtin
 'v'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'var-fields'  Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'cv'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'visitField'  Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '+ '          Name.Builtin
 '('           Punctuation
 '. '          Keyword
 'Opcodes'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ACC_PUBLIC'  Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Opcodes'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ACC_FINAL'   Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Opcodes'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ACC_STATIC'  Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n                        ' Text
+'\n                        ' Text.Whitespace
 '('           Punctuation
 'var-name'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'v'           Name.Variable
 ')'           Punctuation
-' \n                        ' Text
+' \n                        ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'var-type'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'getDescriptor' Name.Variable
 ')'           Punctuation
-'\n                        ' Text
+'\n                        ' Text.Whitespace
 'nil'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nil'         Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n    \n                                        ' Text
+'\n    \n                                        ' Text.Whitespace
 ';instance field for state' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'when '       Name.Builtin
 'state'       Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'cv'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'visitField'  Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '+ '          Name.Builtin
 '('           Punctuation
 '. '          Keyword
 'Opcodes'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ACC_PUBLIC'  Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Opcodes'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ACC_FINAL'   Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n                        ' Text
+'\n                        ' Text.Whitespace
 'state-name'  Name.Variable
-' \n                        ' Text
+' \n                        ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'obj-type'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'getDescriptor' Name.Variable
 ')'           Punctuation
-'\n                        ' Text
+'\n                        ' Text.Whitespace
 'nil'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nil'         Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n    \n                                        ' Text
+'\n    \n                                        ' Text.Whitespace
 ';static init to set up var fields and load clj' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'let '        Keyword
 '['           Punctuation
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'new '        Keyword
 'GeneratorAdapter' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '+ '          Name.Builtin
 '('           Punctuation
 '. '          Keyword
 'Opcodes'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ACC_PUBLIC'  Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Opcodes'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ACC_STATIC'  Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-' \n                   ' Text
+' \n                   ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Method'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'getMethod'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"void <clinit> ()"' Literal.String
 ')'           Punctuation
-'\n                   ' Text
+'\n                   ' Text.Whitespace
 'nil'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nil'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'cv'          Name.Variable
 ')'           Punctuation
 ']'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'visitCode'   Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'doseq '      Name.Builtin
 'v'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'var-fields'  Name.Variable
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'push'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'push'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'v'           Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'invokeStatic' Name.Function
-' '           Text
+' '           Text.Whitespace
 'rt-type'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Method'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'getMethod'   Name.Function
-' '           Text
+' '           Text.Whitespace
 '"clojure.lang.Var var(String,String)"' Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'putStatic'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ctype'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'var-name'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'v'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'var-type'    Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n      \n      ' Text
+'\n      \n      ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'push'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ctype'       Name.Variable
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'push'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'str '        Name.Builtin
 '('           Punctuation
@@ -1886,297 +1886,297 @@
 'name '       Name.Builtin
 'replace '    Name.Builtin
 '\\.'         Literal.String.Char
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'java.io.File' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'separatorChar' Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '".clj"'      Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'invokeStatic' Name.Function
-' '           Text
+' '           Text.Whitespace
 'rt-type'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Method'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'getMethod'   Name.Function
-' '           Text
+' '           Text.Whitespace
 '"void loadResourceScript(Class,String)"' Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n      \n      ' Text
+'\n      \n      ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'returnValue' Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'endMethod'   Name.Function
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n    \n                                        ' Text
+'\n    \n                                        ' Text.Whitespace
 ';ctors'      Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'doseq '      Name.Builtin
 '['           Punctuation
 'pclasses'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'super-pclasses' Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ctor-sig-map' Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'let '        Keyword
 '['           Punctuation
 'ptypes'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'to-types'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'pclasses'    Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'super-ptypes' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'to-types'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'super-pclasses' Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'm'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'new '        Keyword
 'Method'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"<init>"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Type'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'VOID_TYPE'   Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ptypes'      Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'super-m'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'new '        Keyword
 'Method'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"<init>"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Type'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'VOID_TYPE'   Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'super-ptypes' Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'new '        Keyword
 'GeneratorAdapter' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Opcodes'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ACC_PUBLIC'  Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'm'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nil'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nil'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'cv'          Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'no-init-label' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'newLabel'    Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'end-label'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'newLabel'    Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'nth-method'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Method'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'getMethod'   Name.Function
-' '           Text
+' '           Text.Whitespace
 '"Object nth(Object,int)"' Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'local'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'newLocal'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'obj-type'    Name.Variable
 ')'           Punctuation
 ']'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'visitCode'   Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n        \n        ' Text
+'\n        \n        ' Text.Whitespace
 '('           Punctuation
 'if '         Keyword
 'init'        Name.Variable
-'\n          ' Text
+'\n          ' Text.Whitespace
 '('           Punctuation
 'do'          Name.Function
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'emit-get-var' Name.Function
-' '           Text
+' '           Text.Whitespace
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'init-name'   Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'dup'         Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ifNull'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'no-init-label' Name.Variable
 ')'           Punctuation
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 ';box init args' Comment.Single
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'dotimes '    Name.Builtin
 'i'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'count '      Name.Builtin
 'pclasses'    Name.Variable
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'loadArg'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'i'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'clojure.lang.Compiler$HostExpr' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'emitBoxReturn' Name.Function
-' '           Text
+' '           Text.Whitespace
 'nil'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'nth '        Name.Builtin
 'pclasses'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'i'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 ';call init fn' Comment.Single
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'invokeInterface' Name.Function
-' '           Text
+' '           Text.Whitespace
 'ifn-type'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'new '        Keyword
 'Method'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"invoke"'    Literal.String
-' '           Text
+' '           Text.Whitespace
 'obj-type'    Name.Variable
-' \n                                                  ' Text
+' \n                                                  ' Text.Whitespace
 '('           Punctuation
 'arg-types'   Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'count '      Name.Builtin
 'ptypes'      Name.Variable
@@ -2185,428 +2185,428 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 ';expecting [[super-ctor-args] state] returned' Comment.Single
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'dup'         Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'push'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'invokeStatic' Name.Function
-' '           Text
+' '           Text.Whitespace
 'rt-type'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nth-method'  Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'storeLocal'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 'local'       Name.Variable
 ')'           Punctuation
-'\n            \n            ' Text
+'\n            \n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'loadThis'    Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'dupX1'       Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'dotimes '    Name.Builtin
 'i'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'count '      Name.Builtin
 'super-pclasses' Name.Variable
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'loadLocal'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 'local'       Name.Variable
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'push'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'i'           Name.Variable
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'invokeStatic' Name.Function
-' '           Text
+' '           Text.Whitespace
 'rt-type'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nth-method'  Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'clojure.lang.Compiler$HostExpr' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'emitUnboxArg' Name.Function
-' '           Text
+' '           Text.Whitespace
 'nil'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'nth '        Name.Builtin
 'super-pclasses' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'i'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'invokeConstructor' Name.Function
-' '           Text
+' '           Text.Whitespace
 'super-type'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 'super-m'     Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n            \n            ' Text
+'\n            \n            ' Text.Whitespace
 '('           Punctuation
 'if '         Keyword
 'state'       Name.Variable
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 'do'          Name.Function
-'\n                ' Text
+'\n                ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'push'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'invokeStatic' Name.Function
-' '           Text
+' '           Text.Whitespace
 'rt-type'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nth-method'  Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'putField'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'ctype'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'state-name'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 'obj-type'    Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'pop'         Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n            \n            ' Text
+'\n            \n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'goTo'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'end-label'   Name.Variable
 ')'           Punctuation
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 ';no init found' Comment.Single
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'mark'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'no-init-label' Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'throwException' Name.Function
-' '           Text
+' '           Text.Whitespace
 'ex-type'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'str '        Name.Builtin
 'init-name'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '" not defined"' Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'mark'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'end-label'   Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n          ' Text
+'\n          ' Text.Whitespace
 '('           Punctuation
 'if '         Keyword
 '('           Punctuation
 '= '          Name.Builtin
 'pclasses'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'super-pclasses' Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'do'          Name.Function
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'loadThis'    Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'loadArgs'    Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'invokeConstructor' Name.Function
-' '           Text
+' '           Text.Whitespace
 'super-type'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 'super-m'     Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 'throw'       Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'new '        Keyword
 'Exception'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '":init not specified, but ctor and super ctor args differ"' Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'returnValue' Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'endMethod'   Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 ';factory'    Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'when '       Name.Builtin
 'factory'     Name.Variable
-'\n          ' Text
+'\n          ' Text.Whitespace
 '('           Punctuation
 'let '        Keyword
 '['           Punctuation
 'fm'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'new '        Keyword
 'Method'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'factory-name' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ctype'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ptypes'      Name.Variable
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'new '        Keyword
 'GeneratorAdapter' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '+ '          Name.Builtin
 '('           Punctuation
 '. '          Keyword
 'Opcodes'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ACC_PUBLIC'  Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Opcodes'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ACC_STATIC'  Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-' \n                         ' Text
+' \n                         ' Text.Whitespace
 'fm'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nil'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nil'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'cv'          Name.Variable
 ')'           Punctuation
 ']'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'visitCode'   Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'newInstance' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ctype'       Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'dup'         Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'loadArgs'    Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'invokeConstructor' Name.Function
-' '           Text
+' '           Text.Whitespace
 'ctype'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'm'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'            \n            ' Text
+'            \n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'returnValue' Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'endMethod'   Name.Function
 ')'           Punctuation
@@ -2615,121 +2615,121 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n    \n                                        ' Text
+'\n    \n                                        ' Text.Whitespace
 ";add methods matching supers', if no fn -> call super" Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'let '        Keyword
 '['           Punctuation
 'mm'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'non-private-methods' Name.Function
-' '           Text
+' '           Text.Whitespace
 'super'       Name.Variable
 ')'           Punctuation
 ']'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'doseq '      Name.Builtin
 '#'           Operator
 '^'           Operator
 'java.lang.reflect.Method' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'meth'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'vals '       Name.Builtin
 'mm'          Name.Variable
 ')'           Punctuation
-'\n             ' Text
+'\n             ' Text.Whitespace
 '('           Punctuation
 'emit-forwarding-method' Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '.getName'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'meth'        Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '.getParameterTypes' Name.Function
-' '           Text
+' '           Text.Whitespace
 'meth'        Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '.getReturnType' Name.Function
-' '           Text
+' '           Text.Whitespace
 'meth'        Name.Variable
 ')'           Punctuation
-' \n                                     ' Text
+' \n                                     ' Text.Whitespace
 '('           Punctuation
 'fn '         Keyword
 '['           Punctuation
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'm'           Name.Variable
 ']'           Punctuation
-'\n                                       ' Text
+'\n                                       ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'loadThis'    Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 ';push args'  Comment.Single
-'\n                                       ' Text
+'\n                                       ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'loadArgs'    Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 ';call super' Comment.Single
-'\n                                       ' Text
+'\n                                       ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'visitMethodInsn' Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Opcodes'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'INVOKESPECIAL' Name.Variable
 ')'           Punctuation
-' \n                                                               ' Text
+' \n                                                               ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'super-type'  Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'getInternalName' Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n                                                               ' Text
+'\n                                                               ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'm'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'getName'     Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n                                                               ' Text
+'\n                                                               ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'm'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'getDescriptor' Name.Function
 ')'           Punctuation
@@ -2739,91 +2739,91 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 ";add methods matching interfaces', if no fn -> throw" Comment.Single
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'doseq '      Name.Builtin
 '#'           Operator
 '^'           Operator
 'Class'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'iface'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'interfaces'  Name.Variable
-'\n              ' Text
+'\n              ' Text.Whitespace
 '('           Punctuation
 'doseq '      Name.Builtin
 '#'           Operator
 '^'           Operator
 'java.lang.reflect.Method' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'meth'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'iface'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'getMethods'  Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n                     ' Text
+'\n                     ' Text.Whitespace
 '('           Punctuation
 'when-not '   Name.Builtin
 '('           Punctuation
 'contains? '  Name.Builtin
 'mm'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'method-sig'  Name.Function
-' '           Text
+' '           Text.Whitespace
 'meth'        Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n                       ' Text
+'\n                       ' Text.Whitespace
 '('           Punctuation
 'emit-forwarding-method' Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '.getName'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'meth'        Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '.getParameterTypes' Name.Function
-' '           Text
+' '           Text.Whitespace
 'meth'        Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '.getReturnType' Name.Function
-' '           Text
+' '           Text.Whitespace
 'meth'        Name.Variable
 ')'           Punctuation
-' \n                                               ' Text
+' \n                                               ' Text.Whitespace
 '('           Punctuation
 'fn '         Keyword
 '['           Punctuation
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'm'           Name.Variable
 ']'           Punctuation
-'\n                                                 ' Text
+'\n                                                 ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'throwException' Name.Function
-' '           Text
+' '           Text.Whitespace
 'ex-type'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'm'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'getName'     Name.Function
 ')'           Punctuation
@@ -2835,58 +2835,58 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 ';extra methods' Comment.Single
-'\n       '   Text
+'\n       '   Text.Whitespace
 '('           Punctuation
 'doseq '      Name.Builtin
 '['           Punctuation
 'mname'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 'pclasses'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'rclass'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':as'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'msig'        Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'methods'     Name.Variable
-'\n         ' Text
+'\n         ' Text.Whitespace
 '('           Punctuation
 'emit-forwarding-method' Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'str '        Name.Builtin
 'mname'       Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'pclasses'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'rclass'      Name.Variable
-' \n                                 ' Text
+' \n                                 ' Text.Whitespace
 '('           Punctuation
 'fn '         Keyword
 '['           Punctuation
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'm'           Name.Variable
 ']'           Punctuation
-'\n                                     ' Text
+'\n                                     ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'throwException' Name.Function
-' '           Text
+' '           Text.Whitespace
 'ex-type'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'm'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'getName'     Name.Function
 ')'           Punctuation
@@ -2897,157 +2897,157 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n                                        ' Text
+'\n\n                                        ' Text.Whitespace
 ';main'       Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'when '       Name.Builtin
 'main'        Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'let '        Keyword
 '['           Punctuation
 'm'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Method'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'getMethod'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"void main (String[])"' Literal.String
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'new '        Keyword
 'GeneratorAdapter' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '+ '          Name.Builtin
 '('           Punctuation
 '. '          Keyword
 'Opcodes'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ACC_PUBLIC'  Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Opcodes'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ACC_STATIC'  Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-' \n                     ' Text
+' \n                     ' Text.Whitespace
 'm'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nil'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nil'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'cv'          Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'no-main-label' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'newLabel'    Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'end-label'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'newLabel'    Name.Variable
 ')'           Punctuation
 ']'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'visitCode'   Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n\n        ' Text
+'\n\n        ' Text.Whitespace
 '('           Punctuation
 'emit-get-var' Name.Function
-' '           Text
+' '           Text.Whitespace
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'main-name'   Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'dup'         Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ifNull'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 'no-main-label' Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'loadArgs'    Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'invokeStatic' Name.Function
-' '           Text
+' '           Text.Whitespace
 'rt-type'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Method'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'getMethod'   Name.Function
-' '           Text
+' '           Text.Whitespace
 '"clojure.lang.ISeq seq(Object)"' Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'invokeInterface' Name.Function
-' '           Text
+' '           Text.Whitespace
 'ifn-type'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'new '        Keyword
 'Method'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '"applyTo"'   Literal.String
-' '           Text
+' '           Text.Whitespace
 'obj-type'    Name.Variable
-' \n                                              ' Text
+' \n                                              ' Text.Whitespace
 '('           Punctuation
 'into-array ' Name.Builtin
 '['           Punctuation
@@ -3057,258 +3057,258 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'pop'         Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'goTo'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'end-label'   Name.Variable
 ')'           Punctuation
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 ';no main found' Comment.Single
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'mark'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'no-main-label' Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'throwException' Name.Function
-' '           Text
+' '           Text.Whitespace
 'ex-type'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'str '        Name.Builtin
 'main-name'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '" not defined"' Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'mark'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'end-label'   Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'returnValue' Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'endMethod'   Name.Function
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 ';field exposers' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'doseq '      Name.Builtin
 '['           Punctuation
 'f'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'getter'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':get'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'setter'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':set'        Literal.String.Symbol
 '}'           Punctuation
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'exposes'     Name.Variable
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 'let '        Keyword
 '['           Punctuation
 'fld'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '.getField'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'super'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'str '        Name.Builtin
 'f'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 'ftype'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'totype'      Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '.getType'    Name.Function
-' '           Text
+' '           Text.Whitespace
 'fld'         Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ']'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'when '       Name.Builtin
 'getter'      Name.Variable
-'\n          ' Text
+'\n          ' Text.Whitespace
 '('           Punctuation
 'let '        Keyword
 '['           Punctuation
 'm'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'new '        Keyword
 'Method'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'str '        Name.Builtin
 'getter'      Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ftype'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'to-types'    Name.Function
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 ']'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'new '        Keyword
 'GeneratorAdapter' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Opcodes'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ACC_PUBLIC'  Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'm'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nil'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nil'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'cv'          Name.Variable
 ')'           Punctuation
 ']'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'visitCode'   Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'loadThis'    Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'getField'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ctype'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'str '        Name.Builtin
 'f'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ftype'       Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'returnValue' Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'endMethod'   Name.Function
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'when '       Name.Builtin
 'setter'      Name.Variable
-'\n          ' Text
+'\n          ' Text.Whitespace
 '('           Punctuation
 'let '        Keyword
 '['           Punctuation
 'm'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'new '        Keyword
 'Method'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'str '        Name.Builtin
 'setter'      Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Type'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'VOID_TYPE'   Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'into-array ' Name.Builtin
 '['           Punctuation
@@ -3316,82 +3316,82 @@
 ']'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n                ' Text
+'\n                ' Text.Whitespace
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'new '        Keyword
 'GeneratorAdapter' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'Opcodes'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ACC_PUBLIC'  Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'm'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nil'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'nil'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'cv'          Name.Variable
 ')'           Punctuation
 ']'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'visitCode'   Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'loadThis'    Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'loadArgs'    Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 'putField'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ctype'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'str '        Name.Builtin
 'f'           Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ftype'       Name.Variable
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'returnValue' Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n            ' Text
+'\n            ' Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'gen'         Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'endMethod'   Name.Function
 ')'           Punctuation
@@ -3400,28 +3400,28 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 ';finish class def' Comment.Single
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'cv'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'visitEnd'    Name.Function
 ')'           Punctuation
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '{'           Punctuation
 ':name'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'name '       Name.Builtin
 ':bytecode'   Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'cv'          Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'toByteArray' Name.Function
 ')'           Punctuation
@@ -3429,110 +3429,110 @@
 '}'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'defn '       Keyword.Declaration
 'gen-and-load-class' Name.Variable
-' \n  '       Text
+' \n  '       Text.Whitespace
 '"Generates and immediately loads the bytecode for the specified\n  class. Note that a class generated this way can be loaded only once\n  - the JVM supports only one class with a given name per\n  classloader. Subsequent to generation you can import it into any\n  desired namespaces just like any other class. See gen-class for a\n  description of the options."' Literal.String
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 '['           Punctuation
 'name '       Name.Builtin
 '&'           Operator
-' '           Text
+' '           Text.Whitespace
 'options'     Name.Variable
 ']'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'let '        Keyword
 '['           Punctuation
 '{'           Punctuation
 ':keys'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'name '       Name.Builtin
 'bytecode'    Name.Variable
 ']'           Punctuation
 '}'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '('           Punctuation
 'apply '      Name.Builtin
 'gen-class'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'str '        Name.Builtin
 'name'        Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'options'     Name.Variable
 ')'           Punctuation
 ']'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 '.. '         Name.Builtin
 'clojure.lang.RT' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'ROOT_CLASSLOADER' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'defineClass' Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'str '        Name.Builtin
 'name'        Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'bytecode'    Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'defn '       Keyword.Declaration
 'gen-and-save-class' Name.Variable
-' \n  '       Text
+' \n  '       Text.Whitespace
 '"Generates the bytecode for the named class and stores in a .class\n  file in a subpath of the supplied path, the directories for which\n  must already exist. See gen-class for a description of the options"' Literal.String
-'\n\n  '      Text
+'\n\n  '      Text.Whitespace
 '['           Punctuation
 'path '       Name.Builtin
 'name '       Name.Builtin
 '&'           Operator
-' '           Text
+' '           Text.Whitespace
 'options'     Name.Variable
 ']'           Punctuation
-'\n  '        Text
+'\n  '        Text.Whitespace
 '('           Punctuation
 'let '        Keyword
 '['           Punctuation
 '{'           Punctuation
 ':keys'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'name '       Name.Builtin
 'bytecode'    Name.Variable
 ']'           Punctuation
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'apply '      Name.Builtin
 'gen-class'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'str '        Name.Builtin
 'name'        Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'options'     Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'file'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'java.io.File.' Name.Function
-' '           Text
+' '           Text.Whitespace
 'path '       Name.Builtin
 '('           Punctuation
 'str '        Name.Builtin
@@ -3541,227 +3541,230 @@
 'name '       Name.Builtin
 'replace '    Name.Builtin
 '\\.'         Literal.String.Char
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 '. '          Keyword
 'java.io.File' Name.Variable
-' '           Text
+' '           Text.Whitespace
 'separatorChar' Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '".class"'    Literal.String
 ')'           Punctuation
 ')'           Punctuation
 ']'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 '.createNewFile' Name.Function
-' '           Text
+' '           Text.Whitespace
 'file'        Name.Variable
 ')'           Punctuation
-'\n    '      Text
+'\n    '      Text.Whitespace
 '('           Punctuation
 'with-open '  Name.Builtin
 'f'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'java.io.FileOutputStream.' Name.Function
-' '           Text
+' '           Text.Whitespace
 'file'        Name.Variable
 ')'           Punctuation
-'\n      '    Text
+'\n      '    Text.Whitespace
 '('           Punctuation
 '.write'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'f'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'bytecode'    Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'comment'     Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 ';usage'      Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 'gen-class'   Name.Function
-' \n '        Text
+' \n '        Text.Whitespace
 'package-qualified-name' Name.Variable
-'\n  '        Text
+'\n  '        Text.Whitespace
 ';all below are optional' Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 ':extends'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'aclass'      Name.Variable
-'\n '         Text
+'\n '         Text.Whitespace
 ':implements' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'interface'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '...'         Name.Variable
 ']'           Punctuation
-'\n '         Text
+'\n '         Text.Whitespace
 ':constructors' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '['           Punctuation
 'param-types' Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'super-param-types' Name.Variable
 ']'           Punctuation
-', '          Text
+','           Text
+' '           Text.Whitespace
 '}'           Punctuation
-'\n '         Text
+'\n '         Text.Whitespace
 ':methods'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '['           Punctuation
 'name '       Name.Builtin
 '['           Punctuation
 'param-types' Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'return-type' Name.Variable
 ']'           Punctuation
-', '          Text
+','           Text
+' '           Text.Whitespace
 ']'           Punctuation
-'\n '         Text
+'\n '         Text.Whitespace
 ':main'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'boolean'     Name.Variable
-'\n '         Text
+'\n '         Text.Whitespace
 ':factory'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Variable
-'\n '         Text
+'\n '         Text.Whitespace
 ':state'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Variable
-'\n '         Text
+'\n '         Text.Whitespace
 ':init'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Variable
-'\n '         Text
+'\n '         Text.Whitespace
 ':exposes'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'protected-field' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 ':get'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'name '       Name.Builtin
 ':set'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Variable
 '}'           Punctuation
-', '          Text
+','           Text
+' '           Text.Whitespace
 '}'           Punctuation
 ')'           Punctuation
-'\n \n'       Text
+'\n \n'       Text.Whitespace
 
 ';(gen-and-load-class ' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 'clojure/gen-and-save-class' Name.Function
-' \n '        Text
+' \n '        Text.Whitespace
 '"/Users/rich/Downloads"' Literal.String
-'\n '         Text
+'\n '         Text.Whitespace
 "'fred.lucy.Ethel" Literal.String.Symbol
-' \n '        Text
+' \n '        Text.Whitespace
 ':extends'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'clojure.lang.Box' Name.Variable
-' '           Text
+' '           Text.Whitespace
 ';APersistentMap' Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 ':implements' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'clojure.lang.IPersistentMap' Name.Variable
 ']'           Punctuation
-'\n '         Text
+'\n '         Text.Whitespace
 ':state'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 "'state"      Literal.String.Symbol
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 ';:constructors {[Object] [Object]}' Comment.Single
-'\n                                        ' Text
+'\n                                        ' Text.Whitespace
 ";:init 'init" Comment.Single
-'\n '         Text
+'\n '         Text.Whitespace
 ':main'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'true'        Name.Variable
-'\n '         Text
+'\n '         Text.Whitespace
 ':factory'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 "'create"     Literal.String.Symbol
-'\n '         Text
+'\n '         Text.Whitespace
 ':methods'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '['           Punctuation
 "'foo"        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'Object'      Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Object'      Name.Variable
 ']'           Punctuation
-'\n           ' Text
+'\n           ' Text.Whitespace
 '['           Punctuation
 "'foo"        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Object'      Name.Variable
 ']'           Punctuation
 ']'           Punctuation
-'\n '         Text
+'\n '         Text.Whitespace
 ':exposes'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 "'val"        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 ':get'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 "'getVal"     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 ':set'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 "'setVal"     Literal.String.Symbol
 '}'           Punctuation
 '}'           Punctuation
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'in-ns '      Name.Builtin
 "'fred.lucy.Ethel__2276" Literal.String.Symbol
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 'clojure/refer' Name.Function
-' '           Text
+' '           Text.Whitespace
 "'clojure"    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 ':exclude'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 "'"           Operator
 '('           Punctuation
 'assoc '      Name.Builtin
@@ -3770,205 +3773,205 @@
 'cons'        Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 'defn '       Keyword.Declaration
 'init'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'n'           Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '['           Punctuation
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'n'           Name.Variable
 ']'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 'defn '       Keyword.Declaration
 'foo'         Name.Variable
-' \n  '       Text
+' \n  '       Text.Whitespace
 '('           Punctuation
 '['           Punctuation
 'this'        Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':foo'        Literal.String.Symbol
 ')'           Punctuation
-' \n  '       Text
+' \n  '       Text.Whitespace
 '('           Punctuation
 '['           Punctuation
 'this'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'x'           Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'x'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 'defn '       Keyword.Declaration
 'main'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'x'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'y'           Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'println '    Name.Builtin
 'x'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'y'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 'in-ns '      Name.Builtin
 "'user"       Literal.String.Symbol
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 'def '        Keyword
 'ethel'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'new '        Keyword
 'fred.lucy.Ethel__2276' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '42'          Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 'def '        Keyword
 'ethel'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'fred.lucy.Ethel__2276.create' Name.Function
-' '           Text
+' '           Text.Whitespace
 '21'          Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 'fred.lucy.Ethel__2276.main' Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'into-array ' Name.Builtin
 '['           Punctuation
 '"lucy"'      Literal.String
-' '           Text
+' '           Text.Whitespace
 '"ricky"'     Literal.String
 ']'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 '.state'      Name.Function
-' '           Text
+' '           Text.Whitespace
 'ethel'       Name.Variable
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 '.foo'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'ethel'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '7'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 '.foo'        Name.Function
-' '           Text
+' '           Text.Whitespace
 'ethel'       Name.Variable
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 '.getVal'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'ethel'       Name.Variable
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 '.setVal'     Name.Function
-' '           Text
+' '           Text.Whitespace
 'ethel'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '12'          Literal.Number.Integer
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'gen-class'   Name.Function
-' '           Text
+' '           Text.Whitespace
 'org.clojure.MyComparator' Name.Variable
-' '           Text
+' '           Text.Whitespace
 ':implements' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'Comparator'  Name.Variable
 ']'           Punctuation
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 'in-ns '      Name.Builtin
 "'org.clojure.MyComparator" Literal.String.Symbol
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '('           Punctuation
 'defn '       Keyword.Declaration
 'compare'     Name.Variable
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'this'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 'x'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'y'           Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '...'         Name.Variable
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'load-file '  Name.Builtin
 '"/Users/rich/dev/clojure/src/genclass.clj"' Literal.String
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '('           Punctuation
 'clojure/gen-and-save-class' Name.Function
-' '           Text
+' '           Text.Whitespace
 '"/Users/rich/dev/clojure/gen/"' Literal.String
-' \n '        Text
+' \n '        Text.Whitespace
 "'org.clojure.ClojureServlet" Literal.String.Symbol
-' \n '        Text
+' \n '        Text.Whitespace
 ':extends'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 'javax.servlet.http.HttpServlet' Name.Variable
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace

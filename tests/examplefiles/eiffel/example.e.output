@@ -1,300 +1,302 @@
 'note'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'description' Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"[\n\t\t\t\t\t\tThis is use to have almost every language element."\n\t\t\t\t\t\t\n\t\t\t\t\t\tThat way, I can correctly test the lexer. %]"\n\t\t\t\t\t\t\n\t\t\t\t\t\tDon\'t try to understand what it does. It\'s not even compilling.\n\t\t\t\t\t]"' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'date'        Name
-'        '    Text
+'        '    Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"August 6, 2013"' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'revision'    Name
-'    '        Text
+'    '        Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"0.1"'       Literal.String
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'class'       Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'SAMPLE'      Name.Class
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'inherit'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'ARGUMENTS'   Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'rename'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'Command_line' Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Caller_command' Name
 ','           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'command_name' Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Application_name' Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'undefine'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'out'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'end'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'ANY'         Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'export'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '{'           Punctuation
 'ANY'         Name.Class
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'out'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'redefine'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'out'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'end'         Keyword.Reserved
-'\n\n\n\n'    Text
+'\n\n\n\n'    Text.Whitespace
 
 'create'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'make'        Name
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'convert'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'as_boolean'  Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'BOOLEAN'     Name.Class
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'feature'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'NONE'        Keyword.Reserved
 '}'           Punctuation
-' '           Text
-'-- Initialization\n' Comment.Single
+' '           Text.Whitespace
+'-- Initialization' Comment.Single
+'\n\n'        Text.Whitespace
 
-'\n'          Text
-
-'\t'          Text
+'\t'          Text.Whitespace
 'make'        Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
-'-- Run application.\n' Comment.Single
+'\t\t\t'      Text.Whitespace
+'-- Run application.' Comment.Single
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'local'       Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'i1_'         Name
 ':'           Punctuation
 'expanded'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'INTEGER'     Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'f_1'         Name
 ':'           Punctuation
 'REAL_64'     Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'l_char'      Name
 ':'           Punctuation
 'CHARACTER_8' Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'do'          Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'l_char'      Name
 ':='          Operator
 "'!'"         Literal.String.Char
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'l_char'      Name
 ':='          Operator
 "'%''"        Literal.String.Char
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'l_char'      Name
 ':='          Operator
 "'%%'"        Literal.String.Char
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'i1_'         Name
 ':='          Operator
 '80'          Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 '0x2F0C'      Literal.Number.Hex
-' '           Text
+' '           Text.Whitespace
 '//'          Operator
-' '           Text
+' '           Text.Whitespace
 '0C70'        Literal.Number.Oct
-' '           Text
+' '           Text.Whitespace
 '\\\\'        Operator
-' '           Text
+' '           Text.Whitespace
 '0b10110'     Literal.Number.Bin
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'f_1'         Name
 ':='          Operator
 '0.1'         Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '/'           Operator
-' '           Text
+' '           Text.Whitespace
 '.567'        Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'f_1'         Name
 ':='          Operator
 '34.'         Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'f_1'         Name
 ':='          Operator
 '12345.67890' Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'inspect'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'i1_'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'when'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'io'          Name
 '.'           Punctuation
 'output'      Name
 '.'           Punctuation
 'put_integer' Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'i1_'         Name
 ')'           Punctuation
-'\t\t'        Text
-'-- Comment\n' Comment.Single
+'\t\t'        Text.Whitespace
+'-- Comment'  Comment.Single
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'else'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'io'          Name
 '.'           Punctuation
 'output'      Name
 '.'           Punctuation
 'put_real'    Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'f_1'         Name
 '.'           Punctuation
 'truncated_to_real' Name
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'end'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'io'          Name
 '.'           Punctuation
 'output'      Name
 '.'           Punctuation
 'put_string'  Name
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'CuRrEnt'     Keyword.Constant
 '.'           Punctuation
 'out'         Name
 ')'           Punctuation
-'\t\t'        Text
-'-- Comment\n' Comment.Single
+'\t\t'        Text.Whitespace
+'-- Comment'  Comment.Single
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '('           Punctuation
 'agent'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'funct_1'     Name
 ')'           Punctuation
 '.'           Punctuation
@@ -308,19 +310,18 @@
 '"Coucou"'    Literal.String
 ']'           Operator
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'end'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'feature'     Keyword.Reserved
-' '           Text
-'-- Access\n' Comment.Single
+' '           Text.Whitespace
+'-- Access'   Comment.Single
+'\n\n'        Text.Whitespace
 
-'\n'          Text
-
-'\t'          Text
+'\t'          Text.Whitespace
 'funct_1'     Name
 '('           Punctuation
 'x'           Name
@@ -328,7 +329,7 @@
 'y'           Name
 ':'           Punctuation
 'separate'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'INTEGER'     Name.Class
 ';'           Punctuation
 'a_text'      Name
@@ -337,370 +338,373 @@
 ')'           Punctuation
 ':'           Punctuation
 'detachable'  Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'BOOLEAN'     Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'obsolete'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '"This function is obsolete"' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'require'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'Is_Attached' Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'AttAched'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'a_text'      Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'local'       Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'l_list'      Name
 ':'           Punctuation
 'LIST'        Name.Class
 '['           Operator
 'like'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 ']'           Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'do'          Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'if'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'NOT'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'a_text'      Name
 '.'           Punctuation
 'is_empty'    Name
 '='           Operator
 'TrUe'        Keyword.Constant
-' '           Text
-'or elSe'     Operator.Word
-' '           Text
+' '           Text.Whitespace
+'or'          Operator.Word
+' '           Text.Whitespace
+'elSe'        Keyword.Reserved
+' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
 'x'           Name
 '<'           Operator
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'aNd'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 '>'           Operator
 '10'          Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'oR'          Operator.Word
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'y'           Name
 '>'           Operator
 '0'           Literal.Number.Integer
-' '           Text
-'and then'    Operator.Word
-' '           Text
+' '           Text.Whitespace
+'and'         Operator.Word
+' '           Text.Whitespace
+'then'        Operator.Word
+' '           Text.Whitespace
 'y'           Name
 '<'           Operator
 '10'          Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'xor'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'True'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 'thEn'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'ResuLT'      Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'FalSe'       Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'elseif'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'acROss'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'l_list'      Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'la_list'     Name
-' '           Text
+' '           Text.Whitespace
 'SoMe'        Name
-'\t'          Text
+'\t'          Text.Whitespace
 'la_list'     Name
 '.'           Punctuation
 'item'        Name
 '<'           Operator
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword.Reserved
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'implies'     Operator.Word
-' '           Text
+' '           Text.Whitespace
 'a_text'      Name
 '.'           Punctuation
 'is_boolean'  Name
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'ResuLT'      Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'FalSe'       Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'else'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'Result'      Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'TruE'        Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'eND'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'from'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'l_list'      Name
 '.'           Punctuation
 'start'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'until'       Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'l_list'      Name
 '.'           Punctuation
 'exhausted'   Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'loop'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'l_list'      Name
 '.'           Punctuation
 'forth'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'variant'     Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t\t'    Text
+'\t\t\t\t'    Text.Whitespace
 'l_list'      Name
 '.'           Punctuation
 'count'       Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'l_list'      Name
 '.'           Punctuation
 'index'       Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'end'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'check'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'Current'     Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 '/='          Operator
-' '           Text
+' '           Text.Whitespace
 'Void'        Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'debug'       Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'print'       Name
 '('           Punctuation
 '"%"Here%"%N"' Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'ensure'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'Is_Cool_Not_Change' Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'is_cool'     Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'old'         Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'is_cool'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'end'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'is_cool'     Name
 ':'           Punctuation
 'BOOLEAN'     Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'attribute'   Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'Result'      Keyword.Constant
 ':='          Operator
 'False'       Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'end'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'froZen'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'c_malloc'    Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'POINTER'     Name.Class
-' '           Text
+' '           Text.Whitespace
 'is'          Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'exTErnal'    Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '"C inline use <stdlib.h>"' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'alIAs'       Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 '"malloc (1)"' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'end'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'as_boolean'  Name
 ':'           Punctuation
 'BOOLEAN'     Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'do'          Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'Result'      Keyword.Constant
 ':='          Operator
 'True'        Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'rescue'      Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'retry'       Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'end'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'feature'     Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'ANY'         Name.Class
 '}'           Punctuation
-' '           Text
-'-- The redefine feature\n' Comment.Single
+' '           Text.Whitespace
+'-- The redefine feature' Comment.Single
+'\n\n'        Text.Whitespace
 
-'\n'          Text
-
-'\t'          Text
+'\t'          Text.Whitespace
 'out'         Name
 ':'           Punctuation
 'STRING_8'    Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'once'        Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'reSUlt'      Keyword.Constant
 ':='          Operator
 'PrecursOr'   Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 'ANY'         Name.Class
 '}'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t\t'      Text
+'\t\t\t'      Text.Whitespace
 'Result'      Keyword.Constant
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '"Hello Worl"' Literal.String
 '+'           Operator
 '('           Punctuation
@@ -708,21 +712,21 @@
 ')'           Punctuation
 '.'           Punctuation
 'out'         Name
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t\t'        Text
+'\t\t'        Text.Whitespace
 'end'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'invariant'   Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\t'          Text
+'\t'          Text.Whitespace
 'Always_Cool' Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'is_cool'     Name
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace

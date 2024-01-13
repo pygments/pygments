@@ -4,13 +4,13 @@
 
     Lexers for misc console output.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 from pygments.lexer import RegexLexer, include, bygroups
 from pygments.token import Generic, Comment, String, Text, Keyword, Name, \
-    Punctuation, Number
+    Punctuation, Number, Whitespace
 
 __all__ = ['VCTreeStatusLexer', 'PyPyLogLexer']
 
@@ -19,13 +19,13 @@ class VCTreeStatusLexer(RegexLexer):
     """
     For colorizing output of version control status commands, like "hg
     status" or "svn status".
-
-    .. versionadded:: 2.0
     """
     name = 'VCTreeStatus'
     aliases = ['vctreestatus']
     filenames = []
     mimetypes = []
+    url = ""
+    version_added = '2.0'
 
     tokens = {
         'root': [
@@ -36,7 +36,8 @@ class VCTreeStatusLexer(RegexLexer):
             (r'^D\s+', Generic.Deleted),
             (r'^[?!]\s+', Comment.Preproc),
             (r'      >\s+.*\n', Comment.Preproc),
-            (r'.*\n', Text)
+            (r'\S+', Text),
+            (r'\s+', Whitespace),
         ]
     }
 
@@ -44,13 +45,13 @@ class VCTreeStatusLexer(RegexLexer):
 class PyPyLogLexer(RegexLexer):
     """
     Lexer for PyPy log files.
-
-    .. versionadded:: 1.5
     """
     name = "PyPy Log"
     aliases = ["pypylog", "pypy"]
     filenames = ["*.pypylog"]
     mimetypes = ['application/x-pypylog']
+    url = 'pypy.org'
+    version_added = '1.5'
 
     tokens = {
         "root": [
@@ -107,7 +108,7 @@ class PyPyLogLexer(RegexLexer):
             include("extra-stuff"),
         ],
         "extra-stuff": [
-            (r"\s+", Text),
+            (r"\s+", Whitespace),
             (r"#.*?$", Comment),
         ],
     }

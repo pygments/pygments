@@ -1,50 +1,170 @@
-'foo'         Name.Attribute
-' '           Text
+'#https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.htm' Comment.Single
+'\n'          Text.Whitespace
+
+'# mixing spaces' Comment.Single
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'Truth'       Name.Attribute
+' '           Text.Whitespace
 '='           Operator
-' '           Text
-'bar'         Literal.String
-'\n'          Text
+' '           Text.Whitespace
+'Beauty'      Literal.String
+'\n'          Text.Whitespace
 
-'foo'         Name.Attribute
+'  '          Text.Whitespace
+'Truth'       Name.Attribute
 ':'           Operator
-' '           Text
-'bar'         Literal.String
-'\n'          Text
+'Beauty'      Literal.String
+'\n'          Text.Whitespace
 
-'foo.oof'     Name.Attribute
+'Truth'       Name.Attribute
+'\t'          Text.Whitespace
+'Beauty'      Literal.String
+'\n'          Text.Whitespace
+
+'Truth'       Name.Attribute
+'                    ' Text.Whitespace
 ':'           Operator
-' '           Text
-'\\\n    bar=baz; \\\n    asdf' Literal.String
-'\n'          Text
+'Beauty'      Literal.String
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'// comment'  Comment
-'\n'          Text
+'! line continuations and escapes' Comment.Single
+'\n'          Text.Whitespace
 
-'# comment'   Comment
-'\n'          Text
+' '           Text.Whitespace
+'fruits'      Name.Attribute
+'                           ' Text.Whitespace
+'apple, banana, pear, ' Literal.String
+'\\\n'        Literal.String.Escape
 
-'; comment'   Comment
-'\n'          Text
+'                                  ' Text.Whitespace
+'cantaloupe, watermelon, ' Literal.String
+'\\\n'        Literal.String.Escape
 
-'\n'          Text
+'                                  ' Text.Whitespace
+'kiwi, mango' Literal.String
+'\n'          Text.Whitespace
 
-'x'           Name.Attribute
-':'           Operator
-'a\\\nb'      Literal.String
-'\n'          Text
-
-'x'           Name.Attribute
-':'           Operator
-' '           Text
-'a \\\n  b'   Literal.String
-'\n'          Text
-
-'\n'          Text
-
-'x'           Name.Attribute
-' '           Text
+'key'         Name.Attribute
+' '           Text.Whitespace
 '='           Operator
-' '           Text
-'\\\n'        Literal.String
+' '           Text.Whitespace
+'\\\n'        Literal.String.Escape
+
+'    '        Text.Whitespace
+'value1 '     Literal.String
+'\\\\'        Literal.String.Escape
+'\\\n'        Literal.String.Escape
+
+'    '        Text.Whitespace
+'and value2'  Literal.String
+'\\\\'        Literal.String.Escape
+'\n'          Text.Whitespace
+
+'key'         Name.Attribute
+'\\ '         Literal.String.Escape
+'2'           Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'value'       Literal.String
+'\n'          Text.Whitespace
+
+'key'         Name.Attribute
+'\\\\'        Literal.String.Escape
+' '           Text.Whitespace
+'3 = value3'  Literal.String
+'\n'          Text.Whitespace
+
+'key'         Name.Attribute
+' '           Text.Whitespace
+'\\\n'        Literal.String.Escape
+
+'  '          Text.Whitespace
+'= value'     Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'! empty keys and edge cases' Comment.Single
+'\n'          Text.Whitespace
+
+'key1'        Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+'\n'          Text.Whitespace
+
+'key2'        Name.Attribute
+'\n'          Text.Whitespace
+
+'key3'        Name.Attribute
+' '           Text.Whitespace
+'the value3'  Literal.String
+'\n'          Text.Whitespace
+
+'key4'        Name.Attribute
+' '           Text.Whitespace
+'the:value4'  Literal.String
+'\n'          Text.Whitespace
+
+'key5'        Name.Attribute
+' '           Text.Whitespace
+'the=value5'  Literal.String
+'\n'          Text.Whitespace
+
+'key6'        Name.Attribute
+'='           Operator
+'the value6'  Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'! escapes in keys' Comment.Single
+'\n'          Text.Whitespace
+
+'key'         Name.Attribute
+'\\ '         Literal.String.Escape
+'with'        Name.Attribute
+'\\ '         Literal.String.Escape
+'spaces'      Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'value'       Literal.String
+'\n'          Text.Whitespace
+
+'key'         Name.Attribute
+'\\n'         Literal.String.Escape
+'with'        Name.Attribute
+'\\n'         Literal.String.Escape
+'newlines'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'value'       Literal.String
+'\\n'         Literal.String.Escape
+'with'        Literal.String
+'\\n'         Literal.String.Escape
+'newlines'    Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'! indented comment' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'! line continuations do \\' Comment.Single
+'\n'          Text.Whitespace
+
+'not'         Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'work for comments' Literal.String
+'\n'          Text.Whitespace

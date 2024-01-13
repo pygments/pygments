@@ -1,151 +1,151 @@
 '/*\n * comment\n */' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '; comment'   Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '// comment'  Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'a'           Keyword
-' '           Text
+' '           Text.Whitespace
 'B'           Keyword
-' '           Text
+' '           Text.Whitespace
 'b'           Keyword
-' '           Text
+' '           Text.Whitespace
 'C'           Keyword
-' '           Text
+' '           Text.Whitespace
 'd'           Keyword
-' '           Text
+' '           Text.Whitespace
 'e'           Keyword
-' '           Text
+' '           Text.Whitespace
 'f'           Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Keyword
-' '           Text
+' '           Text.Whitespace
 'q'           Keyword
-' '           Text
+' '           Text.Whitespace
 's'           Keyword
-' '           Text
+' '           Text.Whitespace
 't'           Keyword
-' '           Text
+' '           Text.Whitespace
 'v'           Keyword
-' '           Text
+' '           Text.Whitespace
 'x'           Keyword
-' '           Text
+' '           Text.Whitespace
 'y'           Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'z'           Keyword.Constant
-'\n'          Text
+'\n'          Text.Whitespace
 
 'np'          Keyword
 '0'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'nP'          Keyword
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'Np'          Keyword
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'NP'          Keyword
 '3'           Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 'm'           Keyword
 '/**/'        Comment.Multiline
 'label'       Name.Label
 ';'           Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'n'           Keyword
-' '           Text
+' '           Text.Whitespace
 'label'       Name.Label
-'\n'          Text
+'\n'          Text.Whitespace
 
 '123'         Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '0123456789'  Literal.Number.Integer
-'\n'          Text
+'\n'          Text.Whitespace
 
 '0x'          Keyword.Type
 'abcdef0123456789' Literal.Number.Hex
-' '           Text
+' '           Text.Whitespace
 '0X'          Keyword.Type
 'ABCDEF'      Literal.Number.Hex
-'\n'          Text
+'\n'          Text.Whitespace
 
 '1e2'         Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '3e+4'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '5e-6'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '7E8'         Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '9E+0'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '1E-2'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '3.'          Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '4.56'        Literal.Number.Float
-' '           Text
+' '           Text.Whitespace
 '.789'        Literal.Number.Float
-'\n'          Text
+'\n'          Text.Whitespace
 
 '"'           Literal.String
 'characters'  Literal.String
 '$MACRO.'     Comment.Preproc
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{'           Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'I'           Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '{'           Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'J'           Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '{'           Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 'K'           Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
-'      '      Text
+'      '      Text.Whitespace
 '$I'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '$J'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '$K'          Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
-'  '          Text
+'  '          Text.Whitespace
 '}'           Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#include'    Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '"score.sco"' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#includestr' Comment.Preproc
 '/**/'        Comment.Multiline
@@ -153,4 +153,4 @@
 '$MACRO.'     Comment.Preproc
 '.sco'        Literal.String
 '"'           Literal.String
-'\n'          Text
+'\n'          Text.Whitespace

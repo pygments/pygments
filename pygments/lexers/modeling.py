@@ -4,7 +4,7 @@
 
     Lexers for modeling languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -22,14 +22,14 @@ __all__ = ['ModelicaLexer', 'BugsLexer', 'JagsLexer', 'StanLexer']
 
 class ModelicaLexer(RegexLexer):
     """
-    For `Modelica <http://www.modelica.org/>`_ source code.
-
-    .. versionadded:: 1.1
+    For Modelica source code.
     """
     name = 'Modelica'
+    url = 'http://www.modelica.org/'
     aliases = ['modelica']
     filenames = ['*.mo']
     mimetypes = ['text/x-modelica']
+    version_added = '1.1'
 
     flags = re.DOTALL | re.MULTILINE
 
@@ -97,15 +97,15 @@ class ModelicaLexer(RegexLexer):
 
 class BugsLexer(RegexLexer):
     """
-    Pygments Lexer for `OpenBugs <http://www.openbugs.net/>`_ and WinBugs
+    Pygments Lexer for OpenBugs and WinBugs
     models.
-
-    .. versionadded:: 1.6
     """
 
     name = 'BUGS'
     aliases = ['bugs', 'winbugs', 'openbugs']
     filenames = ['*.bug']
+    url = 'https://www.mrc-bsu.cam.ac.uk/software/bugs/openbugs'
+    version_added = '1.6'
 
     _FUNCTIONS = (
         # Scalar functions
@@ -194,13 +194,13 @@ class BugsLexer(RegexLexer):
 class JagsLexer(RegexLexer):
     """
     Pygments Lexer for JAGS.
-
-    .. versionadded:: 1.6
     """
 
     name = 'JAGS'
     aliases = ['jags']
     filenames = ['*.jag', '*.bug']
+    url = 'https://mcmc-jags.sourceforge.io'
+    version_added = '1.6'
 
     # JAGS
     _FUNCTIONS = (
@@ -285,13 +285,13 @@ class StanLexer(RegexLexer):
     The Stan modeling language is specified in the *Stan Modeling Language
     User's Guide and Reference Manual, v2.17.0*,
     `pdf <https://github.com/stan-dev/stan/releases/download/v2.17.0/stan-reference-2.17.0.pdf>`__.
-
-    .. versionadded:: 1.6
     """
 
     name = 'Stan'
     aliases = ['stan']
     filenames = ['*.stan']
+    url = 'https://mc-stan.org'
+    version_added = '1.6'
 
     tokens = {
         'whitespace': [
@@ -303,7 +303,6 @@ class StanLexer(RegexLexer):
             (r'(//|#).*$', Comment.Single),
         ],
         'root': [
-            # Stan is more restrictive on strings than this regex
             (r'"[^"]*"', String),
             # Comments
             include('comments'),
@@ -325,7 +324,7 @@ class StanLexer(RegexLexer):
             (r'(%s)\b' % r'|'.join(_stan_builtins.TYPES), Keyword.Type),
              # < should be punctuation, but elsewhere I can't tell if it is in
              # a range constraint
-            (r'(<)(\s*)(upper|lower)(\s*)(=)',
+            (r'(<)(\s*)(upper|lower|offset|multiplier)(\s*)(=)',
              bygroups(Operator, Whitespace, Keyword, Whitespace, Punctuation)),
             (r'(,)(\s*)(upper)(\s*)(=)',
              bygroups(Punctuation, Whitespace, Keyword, Whitespace, Punctuation)),
@@ -340,17 +339,21 @@ class StanLexer(RegexLexer):
             (r'(%s)\b' % r'|'.join(_stan_builtins.RESERVED), Keyword.Reserved),
             # user-defined functions
             (r'[A-Za-z]\w*(?=\s*\()]', Name.Function),
-            # Regular variable names
-            (r'[A-Za-z]\w*\b', Name),
+            # Imaginary Literals
+            (r'[0-9]+(\.[0-9]*)?([eE][+-]?[0-9]+)?i', Number.Float),
+            (r'\.[0-9]+([eE][+-]?[0-9]+)?i', Number.Float),
+            (r'[0-9]+i', Number.Float),
             # Real Literals
             (r'[0-9]+(\.[0-9]*)?([eE][+-]?[0-9]+)?', Number.Float),
             (r'\.[0-9]+([eE][+-]?[0-9]+)?', Number.Float),
             # Integer Literals
             (r'[0-9]+', Number.Integer),
+            # Regular variable names
+            (r'[A-Za-z]\w*\b', Name),
             # Assignment operators
             (r'<-|(?:\+|-|\.?/|\.?\*|=)?=|~', Operator),
             # Infix, prefix and postfix operators (and = )
-            (r"\+|-|\.?\*|\.?/|\\|'|\^|!=?|<=?|>=?|\|\||&&|%|\?|:", Operator),
+            (r"\+|-|\.?\*|\.?/|\\|'|\.?\^|!=?|<=?|>=?|\|\||&&|%|\?|:|%/%|!", Operator),
             # Block delimiters
             (r'[{}]', Punctuation),
             # Distribution |

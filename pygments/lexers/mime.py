@@ -4,7 +4,7 @@
 
     Lexer for Multipurpose Internet Mail Extensions (MIME) data.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -46,8 +46,6 @@ class MIMELexer(RegexLexer):
     `Content-Transfer-Encoding`
         Treat the data as a specific encoding. Or this lexer would try to parse
         from header by default. (default: None)
-
-    .. versionadded:: 2.5
     """
 
     name = "MIME"
@@ -55,6 +53,8 @@ class MIMELexer(RegexLexer):
     mimetypes = ["multipart/mixed",
                  "multipart/related",
                  "multipart/alternative"]
+    url = 'https://en.wikipedia.org/wiki/MIME'
+    version_added = '2.5'
 
     def __init__(self, **options):
         super().__init__(**options)
@@ -88,7 +88,7 @@ class MIMELexer(RegexLexer):
             pos_body_start = pos_body_start + 1
             entire_body = entire_body[1:]
 
-        # if it is not a mulitpart
+        # if it is not a multipart
         if not self.content_type.startswith("multipart") or not self.boundary:
             for i, t, v in self.get_bodypart_tokens(entire_body):
                 yield pos_body_start + i, t, v

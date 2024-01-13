@@ -249,7 +249,7 @@
 'Pool'        Name
 '<'           Operator
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'send_info'   Name.Class
 '>'           Operator
 ' '           Text.Whitespace
@@ -265,7 +265,7 @@
 'Pool'        Name
 '<'           Operator
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'send_entry'  Name.Class
 '>'           Operator
 ' '           Text.Whitespace
@@ -281,7 +281,7 @@
 'Queue'       Name
 '<'           Operator
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'send_entry'  Name.Class
 ' '           Text.Whitespace
 '*'           Operator
@@ -355,7 +355,7 @@
 'lowpan_extern_read_context' Name.Function
 '('           Punctuation
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'in6_addr'    Name.Class
 ' '           Text.Whitespace
 '*'           Operator
@@ -397,7 +397,7 @@
 'lowpan_extern_match_context' Name.Function
 '('           Punctuation
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'in6_addr'    Name.Class
 ' '           Text.Whitespace
 '*'           Operator
@@ -582,7 +582,7 @@
 
 '  '          Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'lowpan_reconstruct' Name.Class
 ' '           Text.Whitespace
 'recon_data'  Name
@@ -626,7 +626,7 @@
 
 '    '        Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'lowpan_reconstruct' Name.Class
 ' '           Text.Whitespace
 '*'           Operator
@@ -636,7 +636,7 @@
 ' '           Text.Whitespace
 '('           Punctuation
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'lowpan_reconstruct' Name.Class
 ' '           Text.Whitespace
 '*'           Operator
@@ -663,7 +663,7 @@
 'sizeof'      Keyword
 '('           Punctuation
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'ip6_metadata' Name.Class
 ')'           Punctuation
 ')'           Punctuation
@@ -702,7 +702,7 @@
 
 '  '          Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'send_info'   Name.Class
 ' '           Text.Whitespace
 '*'           Operator
@@ -715,7 +715,7 @@
 
 '    '        Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'send_info'   Name.Class
 ' '           Text.Whitespace
 '*'           Operator
@@ -843,7 +843,7 @@
 'SENDINFO_DECR' Name
 '('           Punctuation
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'send_info'   Name.Class
 ' '           Text.Whitespace
 '*'           Operator
@@ -1254,7 +1254,7 @@
 'sizeof'      Keyword
 '('           Punctuation
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'lowpan_reconstruct' Name.Class
 ')'           Punctuation
 ','           Punctuation
@@ -1306,7 +1306,7 @@
 'deliver'     Name
 '('           Punctuation
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'lowpan_reconstruct' Name.Class
 ' '           Text.Whitespace
 '*'           Operator
@@ -1318,7 +1318,7 @@
 
 '    '        Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'ip6_hdr'     Name.Class
 ' '           Text.Whitespace
 '*'           Operator
@@ -1328,7 +1328,7 @@
 ' '           Text.Whitespace
 '('           Punctuation
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'ip6_hdr'     Name.Class
 ' '           Text.Whitespace
 '*'           Operator
@@ -1374,7 +1374,7 @@
 'sizeof'      Keyword
 '('           Punctuation
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'ip6_hdr'     Name.Class
 ')'           Punctuation
 ')'           Punctuation
@@ -1481,7 +1481,7 @@
 
 '    '        Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'lowpan_reconstruct' Name.Class
 ' '           Text.Whitespace
 '*'           Operator
@@ -1491,7 +1491,7 @@
 ' '           Text.Whitespace
 '('           Punctuation
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'lowpan_reconstruct' Name.Class
 ' '           Text.Whitespace
 '*'           Operator
@@ -1580,7 +1580,7 @@
 '    '        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'T_ACTIVE'    Name.Label
+'T_ACTIVE'    Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -1603,7 +1603,7 @@
 '    '        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'T_FAILED1'   Name.Label
+'T_FAILED1'   Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -1626,14 +1626,14 @@
 '    '        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'T_ZOMBIE'    Name.Label
+'T_ZOMBIE'    Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
-'T_FAILED2'   Name.Label
+'T_FAILED2'   Name.Constant
 ':'           Punctuation
 '\n'          Text.Whitespace
 
@@ -2040,7 +2040,7 @@
 
 '  '          Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'lowpan_reconstruct' Name.Class
 ' '           Text.Whitespace
 '*'           Operator
@@ -2061,7 +2061,7 @@
 
 '    '        Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'lowpan_reconstruct' Name.Class
 ' '           Text.Whitespace
 '*'           Operator
@@ -2115,7 +2115,7 @@
 
 '      '      Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'lowpan_reconstruct' Name.Class
 ' '           Text.Whitespace
 '*'           Operator
@@ -2125,7 +2125,7 @@
 ' '           Text.Whitespace
 '('           Punctuation
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'lowpan_reconstruct' Name.Class
 ' '           Text.Whitespace
 '*'           Operator
@@ -2357,7 +2357,7 @@
 
 '    '        Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'packed_lowmsg' Name.Class
 ' '           Text.Whitespace
 'lowmsg'      Name
@@ -2366,7 +2366,7 @@
 
 '    '        Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'ieee154_frame_addr' Name.Class
 ' '           Text.Whitespace
 'frame_address' Name
@@ -2551,7 +2551,7 @@
 
 '      '      Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'lowpan_reconstruct' Name.Class
 ' '           Text.Whitespace
 '*'           Operator
@@ -2946,7 +2946,7 @@
 
 '      '      Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'lowpan_reconstruct' Name.Class
 ' '           Text.Whitespace
 'recon'       Name
@@ -3206,7 +3206,7 @@
 
 '    '        Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'send_entry'  Name.Class
 ' '           Text.Whitespace
 '*'           Operator
@@ -3583,7 +3583,7 @@
 'send'        Name
 '('           Punctuation
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'ieee154_frame_addr' Name.Class
 ' '           Text.Whitespace
 '*'           Operator
@@ -3593,7 +3593,7 @@
 
 '                               ' Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'ip6_packet'  Name.Class
 ' '           Text.Whitespace
 '*'           Operator
@@ -3613,7 +3613,7 @@
 
 '    '        Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'lowpan_ctx'  Name.Class
 ' '           Text.Whitespace
 'ctx'         Name
@@ -3622,7 +3622,7 @@
 
 '    '        Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'send_info'   Name.Class
 '  '          Text.Whitespace
 '*'           Operator
@@ -3632,7 +3632,7 @@
 
 '    '        Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'send_entry'  Name.Class
 ' '           Text.Whitespace
 '*'           Operator
@@ -4483,7 +4483,7 @@
 
 '    '        Text.Whitespace
 'struct'      Keyword
-' '           Text
+' '           Text.Whitespace
 'send_entry'  Name.Class
 ' '           Text.Whitespace
 '*'           Operator

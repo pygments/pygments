@@ -1,0 +1,630 @@
+'0010'        Literal.Number.Integer
+' '           Text.Whitespace
+'// This is a line comment.\n' Comment.Single
+
+'0020'        Literal.Number.Integer
+' \n'         Text.Whitespace
+
+'0030'        Literal.Number.Integer
+' '           Text.Whitespace
+"a_name'with←very[strange]characters\\in£it" Name
+'\n'          Text.Whitespace
+
+'0040'        Literal.Number.Integer
+' '           Text.Whitespace
+'// Are keywords and word operators at start of names safe?\n' Comment.Single
+
+'0050'        Literal.Number.Integer
+' '           Text.Whitespace
+"do'something" Name
+'\n'          Text.Whitespace
+
+'0060'        Literal.Number.Integer
+' '           Text.Whitespace
+"and←then'something'different" Name
+'\n'          Text.Whitespace
+
+'0070'        Literal.Number.Integer
+' '           Text.Whitespace
+'case[closed' Name
+'\n'          Text.Whitespace
+
+'0080'        Literal.Number.Integer
+' '           Text.Whitespace
+"closed]it'is" Name
+'\n'          Text.Whitespace
+
+'0090'        Literal.Number.Integer
+' '           Text.Whitespace
+'eod\\really' Name
+'\n'          Text.Whitespace
+
+'0100'        Literal.Number.Integer
+' '           Text.Whitespace
+"true£or'false" Name
+'\n'          Text.Whitespace
+
+'0110'        Literal.Number.Integer
+' '           Text.Whitespace
+"false_and'true" Name
+'\n'          Text.Whitespace
+
+'0120'        Literal.Number.Integer
+' '           Text.Whitespace
+'IF'          Keyword.Reserved
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'AND'         Operator.Word
+' '           Text.Whitespace
+'then←some'   Name
+' '           Text.Whitespace
+'THEN'        Keyword.Reserved
+' '           Text.Whitespace
+'NULL'        Keyword.Reserved
+'\n'          Text.Whitespace
+
+'0130'        Literal.Number.Integer
+' \n'         Text.Whitespace
+
+'0140'        Literal.Number.Integer
+' '           Text.Whitespace
+'text$'       Name
+':='          Operator
+'"'           Literal.String
+'some text'   Literal.String
+'"'           Literal.String
+';'           Punctuation
+' '           Text.Whitespace
+'a'           Name
+':='          Operator
+'42'          Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'b'           Name
+':='          Operator
+'TRUE'        Keyword.Constant
+';'           Punctuation
+' '           Text.Whitespace
+'c'           Name
+':='          Operator
+'FALSE'       Keyword.Constant
+';'           Punctuation
+' '           Text.Whitespace
+"full'circle" Name
+':='          Operator
+'2'           Literal.Number.Integer
+'*'           Operator
+'PI'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'0150'        Literal.Number.Integer
+' '           Text.Whitespace
+'address#'    Name
+':='          Operator
+'$d020'       Literal.Number.Hex
+';'           Punctuation
+' '           Text.Whitespace
+'mask#'       Name
+':='          Operator
+'%00001111'   Literal.Number.Bin
+' '           Text.Whitespace
+'// Hex & bin numbers.\n' Comment.Single
+
+'0160'        Literal.Number.Integer
+' '           Text.Whitespace
+'DIM'         Keyword.Declaration
+' '           Text.Whitespace
+'field'       Name
+'('           Punctuation
+'-'           Operator
+'1'           Literal.Number.Integer
+':'           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'-'           Operator
+'1'           Literal.Number.Integer
+':'           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'// 3x3 array with 0,0 at the center.\n' Comment.Single
+
+'0170'        Literal.Number.Integer
+' '           Text.Whitespace
+'DIM'         Keyword.Declaration
+' '           Text.Whitespace
+'buffer$'     Name
+' '           Text.Whitespace
+'OF'          Keyword.Reserved
+' '           Text.Whitespace
+'1024'        Literal.Number.Integer
+','           Punctuation
+'lines$'      Name
+'('           Punctuation
+'100'         Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'OF'          Keyword.Reserved
+' '           Text.Whitespace
+'80'          Literal.Number.Integer
+','           Punctuation
+'xs'          Name
+'('           Punctuation
+'low'         Name
+':'           Punctuation
+'high'        Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'0180'        Literal.Number.Integer
+' \n'         Text.Whitespace
+
+'0190'        Literal.Number.Integer
+' '           Text.Whitespace
+'PRINT'       Keyword.Reserved
+' '           Text.Whitespace
+'"'           Literal.String
+'She said '   Literal.String
+'""'          Literal.String.Escape
+'Hello!'      Literal.String
+'""'          Literal.String.Escape
+' to the world.' Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'0200'        Literal.Number.Integer
+' '           Text.Whitespace
+'PRINT'       Keyword.Reserved
+' '           Text.Whitespace
+'"'           Literal.String
+'Embedding '  Literal.String
+'"18"'        Literal.String.Escape
+'byte values' Literal.String
+'"146"'       Literal.String.Escape
+' into a string.' Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'0210'        Literal.Number.Integer
+' '           Text.Whitespace
+'PRINT'       Keyword.Reserved
+' '           Text.Whitespace
+'"'           Literal.String
+'42'          Literal.String
+'"'           Literal.String
+';'           Punctuation
+'"'           Literal.String
+'"'           Literal.String
+';'           Punctuation
+'"'           Literal.String
+'Hallo'       Literal.String
+'"'           Literal.String
+';'           Punctuation
+'"'           Literal.String
+'"0"'         Literal.String.Escape
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'0220'        Literal.Number.Integer
+' \n'         Text.Whitespace
+
+'0230'        Literal.Number.Integer
+' '           Text.Whitespace
+'// Short circuit operators OR ELSE and AND THEN contain keywords.\n' Comment.Single
+
+'0240'        Literal.Number.Integer
+' '           Text.Whitespace
+'IF'          Keyword.Reserved
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'OR ELSE'     Operator.Word
+' '           Text.Whitespace
+'b'           Name
+' '           Text.Whitespace
+'AND THEN'    Operator.Word
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'THEN'        Keyword.Reserved
+' '           Text.Whitespace
+"do'something" Name
+'\n'          Text.Whitespace
+
+'0250'        Literal.Number.Integer
+' \n'         Text.Whitespace
+
+'0260'        Literal.Number.Integer
+' '           Text.Whitespace
+'// Optional keywords.\n' Comment.Single
+
+'0270'        Literal.Number.Integer
+' '           Text.Whitespace
+'EXEC'        Keyword.Reserved
+' '           Text.Whitespace
+"some'procedure" Name
+'\n'          Text.Whitespace
+
+'0280'        Literal.Number.Integer
+' '           Text.Whitespace
+'LET'         Keyword.Reserved
+' '           Text.Whitespace
+'answer'      Name
+':='          Operator
+'42'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'0290'        Literal.Number.Integer
+' \n'         Text.Whitespace
+
+'0300'        Literal.Number.Integer
+' '           Text.Whitespace
+'FOR'         Keyword.Reserved
+' '           Text.Whitespace
+'i'           Name
+':='          Operator
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'TO'          Keyword.Reserved
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'0310'        Literal.Number.Integer
+'   '         Text.Whitespace
+'PRINT'       Keyword.Reserved
+' '           Text.Whitespace
+'"'           Literal.String
+'fib('        Literal.String
+'"'           Literal.String
+','           Punctuation
+'i'           Name
+','           Punctuation
+'"'           Literal.String
+') ='         Literal.String
+'"'           Literal.String
+';'           Punctuation
+'fib'         Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'0320'        Literal.Number.Integer
+' '           Text.Whitespace
+'ENDFOR'      Keyword.Reserved
+' '           Text.Whitespace
+'i'           Name
+'\n'          Text.Whitespace
+
+'0330'        Literal.Number.Integer
+' \n'         Text.Whitespace
+
+'0340'        Literal.Number.Integer
+' '           Text.Whitespace
+'RESTORE'     Keyword.Reserved
+' '           Text.Whitespace
+"this'is'a'label" Name
+'\n'          Text.Whitespace
+
+'0350'        Literal.Number.Integer
+' '           Text.Whitespace
+'WHILE'       Keyword.Reserved
+' '           Text.Whitespace
+'NOT'         Operator.Word
+' '           Text.Whitespace
+'EOD'         Name.Builtin
+'\n'          Text.Whitespace
+
+'0360'        Literal.Number.Integer
+'   '         Text.Whitespace
+'READ'        Keyword.Reserved
+' '           Text.Whitespace
+'language$'   Name
+','           Punctuation
+'version'     Name
+'\n'          Text.Whitespace
+
+'0370'        Literal.Number.Integer
+'   '         Text.Whitespace
+'PRINT'       Keyword.Reserved
+' '           Text.Whitespace
+'language$'   Name
+';'           Punctuation
+'"'           Literal.String
+'version'     Literal.String
+'"'           Literal.String
+';'           Punctuation
+'version'     Name
+'\n'          Text.Whitespace
+
+'0380'        Literal.Number.Integer
+' '           Text.Whitespace
+'ENDWHILE'    Keyword.Reserved
+'\n'          Text.Whitespace
+
+'0390'        Literal.Number.Integer
+' \n'         Text.Whitespace
+
+'0400'        Literal.Number.Integer
+' '           Text.Whitespace
+'t$'          Name
+'='           Operator
+'"'           Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'0410'        Literal.Number.Integer
+' '           Text.Whitespace
+'REPEAT'      Keyword.Reserved
+'\n'          Text.Whitespace
+
+'0420'        Literal.Number.Integer
+'   '         Text.Whitespace
+"max'length"  Name
+':='          Operator
+'LEN'         Name.Builtin
+'('           Punctuation
+'t$'          Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'0430'        Literal.Number.Integer
+'   '         Text.Whitespace
+'t$'          Name
+':+'          Operator
+'"'           Literal.String
+'x'           Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'0440'        Literal.Number.Integer
+' '           Text.Whitespace
+'UNTIL'       Keyword.Reserved
+' '           Text.Whitespace
+'LEN'         Name.Builtin
+'('           Punctuation
+'t$'          Name
+')'           Punctuation
+'='           Operator
+"max'length"  Name
+'\n'          Text.Whitespace
+
+'0450'        Literal.Number.Integer
+' '           Text.Whitespace
+'PRINT'       Keyword.Reserved
+' '           Text.Whitespace
+'"'           Literal.String
+'UnDIMed strings have a max length of' Literal.String
+'"'           Literal.String
+';'           Punctuation
+"max'length"  Name
+'\n'          Text.Whitespace
+
+'0460'        Literal.Number.Integer
+' \n'         Text.Whitespace
+
+'0470'        Literal.Number.Integer
+' '           Text.Whitespace
+'PROC'        Keyword.Declaration
+' '           Text.Whitespace
+'swap'        Name
+'('           Punctuation
+'REF'         Keyword.Declaration
+' '           Text.Whitespace
+'a'           Name
+','           Punctuation
+' '           Text.Whitespace
+'REF'         Keyword.Declaration
+' '           Text.Whitespace
+'b'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'CLOSED'      Keyword.Declaration
+'\n'          Text.Whitespace
+
+'0480'        Literal.Number.Integer
+'   '         Text.Whitespace
+'tmp'         Name
+':='          Operator
+'a'           Name
+';'           Punctuation
+' '           Text.Whitespace
+'a'           Name
+':='          Operator
+'b'           Name
+';'           Punctuation
+' '           Text.Whitespace
+'b'           Name
+':='          Operator
+'tmp'         Name
+'\n'          Text.Whitespace
+
+'0490'        Literal.Number.Integer
+' '           Text.Whitespace
+'ENDPROC'     Keyword.Declaration
+' '           Text.Whitespace
+'swap'        Name
+'\n'          Text.Whitespace
+
+'0500'        Literal.Number.Integer
+' \n'         Text.Whitespace
+
+'0510'        Literal.Number.Integer
+' '           Text.Whitespace
+'PROC'        Keyword.Declaration
+' '           Text.Whitespace
+'shuffle'     Name
+'('           Punctuation
+'n'           Name
+','           Punctuation
+' '           Text.Whitespace
+'REF'         Keyword.Declaration
+' '           Text.Whitespace
+'values'      Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'CLOSED'      Keyword.Declaration
+'\n'          Text.Whitespace
+
+'0520'        Literal.Number.Integer
+'   '         Text.Whitespace
+'IMPORT'      Keyword.Declaration
+' '           Text.Whitespace
+'swap'        Name
+'\n'          Text.Whitespace
+
+'0530'        Literal.Number.Integer
+'   '         Text.Whitespace
+'FOR'         Keyword.Reserved
+' '           Text.Whitespace
+'i'           Name
+':='          Operator
+'n'           Name
+' '           Text.Whitespace
+'TO'          Keyword.Reserved
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'STEP'        Keyword.Reserved
+' '           Text.Whitespace
+'-'           Operator
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'DO'          Keyword.Reserved
+' '           Text.Whitespace
+'swap'        Name
+'('           Punctuation
+'values'      Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'values'      Name
+'('           Punctuation
+'RND'         Name.Builtin
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'i'           Name
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'0540'        Literal.Number.Integer
+' '           Text.Whitespace
+'ENDPROC'     Keyword.Declaration
+' '           Text.Whitespace
+'shuffle'     Name
+'\n'          Text.Whitespace
+
+'0550'        Literal.Number.Integer
+' \n'         Text.Whitespace
+
+'0560'        Literal.Number.Integer
+' '           Text.Whitespace
+'FUNC'        Keyword.Declaration
+' '           Text.Whitespace
+'fib'         Name
+'('           Punctuation
+'n'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'CLOSED'      Keyword.Declaration
+'\n'          Text.Whitespace
+
+'0570'        Literal.Number.Integer
+'   '         Text.Whitespace
+'IF'          Keyword.Reserved
+' '           Text.Whitespace
+'n'           Name
+'<'           Operator
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'THEN'        Keyword.Reserved
+'\n'          Text.Whitespace
+
+'0580'        Literal.Number.Integer
+'     '       Text.Whitespace
+'RETURN'      Keyword.Reserved
+' '           Text.Whitespace
+'n'           Name
+'\n'          Text.Whitespace
+
+'0590'        Literal.Number.Integer
+'   '         Text.Whitespace
+'ELSE'        Keyword.Reserved
+'\n'          Text.Whitespace
+
+'0600'        Literal.Number.Integer
+'     '       Text.Whitespace
+'RETURN'      Keyword.Reserved
+' '           Text.Whitespace
+'fib'         Name
+'('           Punctuation
+'n'           Name
+'-'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'+'           Operator
+'fib'         Name
+'('           Punctuation
+'n'           Name
+'-'           Operator
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'0610'        Literal.Number.Integer
+'   '         Text.Whitespace
+'ENDIF'       Keyword.Reserved
+'\n'          Text.Whitespace
+
+'0620'        Literal.Number.Integer
+' '           Text.Whitespace
+'ENDFUNC'     Keyword.Declaration
+' '           Text.Whitespace
+'fib'         Name
+'\n'          Text.Whitespace
+
+'0630'        Literal.Number.Integer
+' \n'         Text.Whitespace
+
+'0640'        Literal.Number.Integer
+' '           Text.Whitespace
+"this'is'a'label:" Name.Label
+'\n'          Text.Whitespace
+
+'0650'        Literal.Number.Integer
+' '           Text.Whitespace
+"and'a'label:" Name.Label
+' '           Text.Whitespace
+'// with comment.\n' Comment.Single
+
+'0660'        Literal.Number.Integer
+' '           Text.Whitespace
+'DATA'        Keyword.Reserved
+' '           Text.Whitespace
+'"'           Literal.String
+'CBM BASIC'   Literal.String
+'"'           Literal.String
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'"'           Literal.String
+'Comal'       Literal.String
+'"'           Literal.String
+','           Punctuation
+'80'          Literal.Number.Integer
+','           Punctuation
+'"'           Literal.String
+'Python'      Literal.String
+'"'           Literal.String
+','           Punctuation
+'3.7'         Literal.Number.Float
+'\n'          Text.Whitespace

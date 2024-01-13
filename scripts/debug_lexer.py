@@ -7,7 +7,7 @@
     the text where Error tokens are being generated, along
     with some context.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -20,9 +20,8 @@ srcpath = os.path.join(os.path.dirname(__file__), '..')
 if os.path.isdir(os.path.join(srcpath, 'pygments')):
     sys.path.insert(0, srcpath)
 
-
-from pygments.lexer import RegexLexer, ExtendedRegexLexer, LexerContext, \
-    ProfilingRegexLexer, ProfilingRegexLexerMeta
+# ruff: noqa: E402
+from pygments.lexer import ExtendedRegexLexer, LexerContext
 from pygments.lexers import get_lexer_by_name, find_lexer_class, \
     find_lexer_class_for_filename, guess_lexer
 from pygments.token import Error, Text, _TokenType
@@ -36,7 +35,7 @@ class DebuggingRegexLexer(ExtendedRegexLexer):
         """
         Split ``text`` into (tokentype, text) pairs.
 
-        ``stack`` is the inital stack (default: ``['root']``)
+        ``stack`` is the initial stack (default: ``['root']``)
         """
         tokendefs = self._tokens
         self.ctx = ctx = LexerContext(text, 0)

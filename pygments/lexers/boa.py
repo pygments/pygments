@@ -4,30 +4,26 @@
 
     Lexers for the Boa language.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-import re
-
 from pygments.lexer import RegexLexer, words
-from pygments.token import String, Comment, Keyword, Name, Number, Text, \
-    Operator, Punctuation
+from pygments.token import String, Comment, Keyword, Name, Number, Operator, \
+    Punctuation, Whitespace
 
 __all__ = ['BoaLexer']
-
-line_re = re.compile('.*?\n')
 
 
 class BoaLexer(RegexLexer):
     """
-    Lexer for the `Boa <http://boa.cs.iastate.edu/docs/>`_ language.
-
-    .. versionadded:: 2.4
+    Lexer for the Boa language.
     """
     name = 'Boa'
     aliases = ['boa']
     filenames = ['*.boa']
+    url = 'https://boa.cs.iastate.edu/docs'
+    version_added = '2.4'
 
     reserved = words(
         ('input', 'output', 'of', 'weight', 'before', 'after', 'stop',
@@ -96,6 +92,6 @@ class BoaLexer(RegexLexer):
             (words(string_sep), String.Delimiter),
             (r'[a-zA-Z_]+', Name.Variable),
             (r'[0-9]+', Number.Integer),
-            (r'\s+?', Text),  # Whitespace
+            (r'\s+', Whitespace),  # Whitespace
         ]
     }

@@ -4,15 +4,15 @@
 
     Lexers for the R/S languages.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
-from pygments.lexer import Lexer, RegexLexer, include, do_insertions, bygroups
+from pygments.lexer import Lexer, RegexLexer, include, do_insertions
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Generic
+    Number, Punctuation, Generic, Whitespace
 
 __all__ = ['RConsoleLexer', 'SLexer', 'RdLexer']
 
@@ -28,6 +28,8 @@ class RConsoleLexer(Lexer):
     name = 'RConsole'
     aliases = ['rconsole', 'rout']
     filenames = ['*.Rout']
+    url = 'https://www.r-project.org'
+    version_added = ''
 
     def get_tokens_unprocessed(self, text):
         slexer = SLexer(**self.options)
@@ -67,8 +69,6 @@ class RConsoleLexer(Lexer):
 class SLexer(RegexLexer):
     """
     For S, S-plus, and R source code.
-
-    .. versionadded:: 0.10
     """
 
     name = 'S'
@@ -76,6 +76,8 @@ class SLexer(RegexLexer):
     filenames = ['*.S', '*.R', '.Rhistory', '.Rprofile', '.Renviron']
     mimetypes = ['text/S-plus', 'text/S', 'text/x-r-source', 'text/x-r',
                  'text/x-R', 'text/x-r-history', 'text/x-r-profile']
+    url = 'https://www.r-project.org'
+    version_added = '0.10'
 
     valid_name = r'`[^`\\]*(?:\\.[^`\\]*)*`|(?:[a-zA-Z]|\.[A-Za-z_.])[\w.]*|\.'
     tokens = {
@@ -114,7 +116,7 @@ class SLexer(RegexLexer):
         'statements': [
             include('comments'),
             # whitespaces
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'\'', String, 'string_squote'),
             (r'\"', String, 'string_dquote'),
             include('builtin_symbols'),
@@ -159,13 +161,13 @@ class RdLexer(RegexLexer):
     than the macros. A description of Rd syntax is found in `Writing R
     Extensions <http://cran.r-project.org/doc/manuals/R-exts.html>`_
     and `Parsing Rd files <http://developer.r-project.org/parseRd.pdf>`_.
-
-    .. versionadded:: 1.6
     """
     name = 'Rd'
     aliases = ['rd']
     filenames = ['*.Rd']
     mimetypes = ['text/x-r-doc']
+    url = 'http://cran.r-project.org/doc/manuals/R-exts.html'
+    version_added = '1.6'
 
     # To account for verbatim / LaTeX-like / and R-like areas
     # would require parsing.

@@ -1,19 +1,18 @@
-# -*- coding: utf-8 -*-
 """
     pygments.lexers.apdlexer
     ~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for ANSYS Parametric Design Language.
 
-    :copyright: Copyright 2006-2021 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 
-from pygments.lexer import RegexLexer, include, words
-from pygments.token import Comment, Keyword, Name, Text, Number, Operator, \
-    String, Generic, Punctuation
+from pygments.lexer import RegexLexer, include, words, default
+from pygments.token import Comment, Keyword, Name, Number, Operator, \
+    String, Generic, Punctuation, Whitespace, Escape
 
 __all__ = ['apdlexer']
 
@@ -21,12 +20,13 @@ __all__ = ['apdlexer']
 class apdlexer(RegexLexer):
     """
     For APDL source code.
-
-    .. versionadded:: 2.9
     """
     name = 'ANSYS parametric design language'
     aliases = ['ansys', 'apdl']
     filenames = ['*.ans']
+    url = 'https://www.ansys.com'
+    version_added = '2.9'
+
     flags = re.IGNORECASE
 
     # list of elements
@@ -145,7 +145,7 @@ class apdlexer(RegexLexer):
                "CMDELE", "CMDOMEGA", "CMEDIT", "CMGRP", "CMLIST",
                "CMMOD", "CMOMEGA", "CMPLOT", "CMROTATE", "CMSEL",
                "CMSFILE", "CMSOPT", "CMWRITE", "CNCHECK", "CNKMOD",
-               "CNTR", "CNVTOL", "/COLOR", "/COM", "*COMP", "COMBINE",
+               "CNTR", "CNVTOL", "/COLOR", "*COMP", "COMBINE",
                "COMPRESS", "CON4", "CONE", "/CONFIG", "CONJUG",
                "/CONTOUR", "/COPY", "CORIOLIS", "COUPLE", "COVAL",
                "CP", "CPCYC", "CPDELE", "CPINTF", "/CPLANE", "CPLGEN",
@@ -159,7 +159,7 @@ class apdlexer(RegexLexer):
                "DADELE", "DALIST", "DAMORPH", "DATA", "DATADEF",
                "DCGOMG", "DCUM", "DCVSWP", "DDASPEC", "DDELE",
                "DDOPTION", "DEACT", "DEFINE", "*DEL", "DELETE",
-               "/DELETE", "DELTIM", "DEMORPH", "DERIV", "DESIZE",
+               "/DELETE", "DELTIM", "DELTIME", "DEMORPH", "DERIV", "DESIZE",
                "DESOL", "DETAB", "/DEVDISP", "/DEVICE", "/DFLAB",
                "DFLX", "DFSWAVE", "DIG", "DIGIT", "*DIM",
                "/DIRECTORY", "DISPLAY", "/DIST", "DJ", "DJDELE",
@@ -351,7 +351,7 @@ class apdlexer(RegexLexer):
                "SSBT", "/SSCALE", "SSLN", "SSMT", "SSPA", "SSPB",
                "SSPD", "SSPE", "SSPM", "SSUM", "SSTATE", "STABILIZE",
                "STAOPT", "STAT", "*STATUS", "/STATUS", "STEF",
-               "/STITLE", "STORE", "SUBOPT", "SUBSET", "SUCALC",
+               "STORE", "SUBOPT", "SUBSET", "SUCALC",
                "SUCR", "SUDEL", "SUEVAL", "SUGET", "SUMAP", "SUMTYPE",
                "SUPL", "SUPR", "SURESU", "SUSAVE", "SUSEL", "SUVECT",
                "SV", "SVPLOT", "SVTYP", "SWADD", "SWDEL", "SWGEN",
@@ -360,13 +360,13 @@ class apdlexer(RegexLexer):
                "TBEO", "TBIN", "TBFIELD", "TBFT", "TBLE", "TBLIST",
                "TBMODIF", "TBPLOT", "TBPT", "TBTEMP", "TCHG", "/TEE",
                "TERM", "THEXPAND", "THOPT", "TIFF", "TIME",
-               "TIMERANGE", "TIMINT", "TIMP", "TINTP", "/TITLE",
+               "TIMERANGE", "TIMINT", "TIMP", "TINTP",
                "/TLABEL", "TOFFST", "*TOPER", "TORQ2D", "TORQC2D",
                "TORQSUM", "TORUS", "TRANS", "TRANSFER", "*TREAD",
                "TREF", "/TRIAD", "/TRLCY", "TRNOPT", "TRPDEL",
                "TRPLIS", "TRPOIN", "TRTIME", "TSHAP", "/TSPEC",
                "TSRES", "TUNIF", "TVAR", "/TXTRE", "/TYPE", "TYPE",
-               "/UCMD", "/UDOC", "/UI", "UIMP", "/UIS", "*ULIB",
+               "/UCMD", "/UDOC", "/UI", "UIMP", "/UIS", "*ULIB", "/UPF",
                "UNDELETE", "UNDO", "/UNITS", "UNPAUSE", "UPCOORD",
                "UPGEOM", "*USE", "/USER", "USRCAL", "USRDOF",
                "USRELEM", "V", "V2DOPT", "VA", "*VABS", "VADD",
@@ -417,23 +417,168 @@ class apdlexer(RegexLexer):
                "/ANNOT", "ANORM", "ANPRES", "ANSOL", "ANSTOAQWA",
                "ANSTOASAS", "ANTIME", "ANTYPE")
 
+    special = ("/COM", "/TITLE", "STITLE")
+
+    elements = ("SOLID5",
+                "LINK11",
+                "PLANE13",
+                "COMBIN14",
+                "MASS2",
+                "PLANE25",
+                "MATRIX27",
+                "FLUID29",
+                "FLUID30",
+                "LINK31",
+                "LINK33",
+                "LINK34",
+                "PLANE35",
+                "SOURC36",
+                "COMBIN37",
+                "FLUID38",
+                "COMBIN39",
+                "COMBIN40",
+                "INFIN47",
+                "MATRIX50",
+                "PLANE55",
+                "SHELL61",
+                "LINK68",
+                "SOLID70",
+                "MASS71",
+                "PLANE75",
+                "PLANE77",
+                "PLANE78",
+                "PLANE83",
+                "SOLID87",
+                "SOLID90",
+                "CIRCU94",
+                "SOLID96",
+                "SOLID98",
+                "INFIN110",
+                "INFIN111",
+                "FLUID116",
+                "PLANE121",
+                "SOLID122",
+                "SOLID123",
+                "CIRCU124",
+                "CIRCU125",
+                "TRANS126",
+                "FLUID129",
+                "FLUID130",
+                "SHELL131",
+                "SHELL132",
+                "FLUID136",
+                "FLUID138",
+                "FLUID139",
+                "SURF151",
+                "SURF152",
+                "SURF153",
+                "SURF154",
+                "SURF155",
+                "SURF156",
+                "SHELL157",
+                "SURF159",
+                "TARGE169",
+                "TARGE170",
+                "CONTA172",
+                "CONTA174",
+                "CONTA175",
+                "CONTA177",
+                "CONTA178",
+                "PRETS179",
+                "LINK180",
+                "SHELL181",
+                "PLANE182",
+                "PLANE183",
+                "MPC184",
+                "SOLID185",
+                "SOLID186",
+                "SOLID187",
+                "BEAM188",
+                "BEAM189",
+                "SOLSH190",
+                "INTER192",
+                "INTER193",
+                "INTER194",
+                "INTER195",
+                "MESH200",
+                "FOLLW201",
+                "INTER202",
+                "INTER203",
+                "INTER204",
+                "INTER205",
+                "SHELL208",
+                "SHELL209",
+                "CPT212",
+                "CPT213",
+                "COMBI214",
+                "CPT215",
+                "CPT216",
+                "CPT217",
+                "FLUID218",
+                "FLUID220",
+                "FLUID221",
+                "PLANE222",
+                "PLANE223",
+                "SOLID225",
+                "SOLID226",
+                "SOLID227",
+                "PLANE230",
+                "SOLID231",
+                "SOLID232",
+                "PLANE233",
+                "SOLID236",
+                "SOLID237",
+                "PLANE238",
+                "SOLID239",
+                "SOLID240",
+                "HSFLD241",
+                "HSFLD242",
+                "COMBI250",
+                "SURF251",
+                "SURF252",
+                "INFIN257",
+                "REINF263",
+                "REINF264",
+                "REINF265",
+                "SOLID272",
+                "SOLID273",
+                "SOLID278",
+                "SOLID279",
+                "CABLE280",
+                "SHELL281",
+                "SOLID285",
+                "PIPE288",
+                "PIPE289",
+                "ELBOW290",
+                "SOLID291",
+                "PLANE292",
+                "PLANE293",
+                "USER300")
+
     tokens = {
         'root': [
-            (r'!.*\n', Comment),
+            (r'[^\S\n]+', Whitespace),
+            (words((elafunb+elafunc+elafund+elafune+elafunh+special), suffix=r'\b'), Keyword, 'non-keyword'),
+            default('non-keyword'),
+        ],
+        'non-keyword': [
+            (r'!.*\n', Comment, '#pop'),
+            (r'%.*?%', Escape),
             include('strings'),
-            include('core'),
             include('nums'),
-            (words((elafunb+elafunc+elafund+elafune+elafunh), suffix=r'\b'), Keyword),
             (words((elafunf+elafung), suffix=r'\b'), Name.Builtin),
+            (words((elements), suffix=r'\b'), Name.Property),
+            include('core'),
             (r'AR[0-9]+', Name.Variable.Instance),
-            (r'[a-z][a-z0-9_]*', Name.Variable),
-            (r'[\s]+', Text),
+            (r'[a-z_][a-z0-9_]*', Name.Variable),
+            (r'\n+', Whitespace, '#pop'),
+            (r'[^\S\n]+', Whitespace),
         ],
         'core': [
             # Operators
-            (r'(\*\*|\*|\+|-|\/|<|>|<=|>=|==|\/=|=)', Operator),
+            (r'(\*\*|\*|\+|-|\/|<|>|<=|>=|==|\/=|=|\(|\))', Operator),
             (r'/EOF', Generic.Emph),
-            (r'[(),:&;]', Punctuation),
+            (r'[\.(),:&;]', Punctuation),
         ],
         'strings': [
             (r'(?s)"(\\\\|\\[0-7]+|\\.|[^"\\])*"', String.Double),
@@ -441,8 +586,8 @@ class apdlexer(RegexLexer):
             (r'[$%]', String.Symbol),
         ],
         'nums': [
-            (r'\d+(?![.ef])', Number.Integer),
-            (r'[+-]?\d*\.?\d+([ef][-+]?\d+)?', Number.Float),
-            (r'[+-]?\d+\.?\d*([ef][-+]?\d+)?', Number.Float),
+            (r'[+-]?\d*\.\d+([efEF][-+]?\d+)?', Number.Float), # with dot
+            (r'([+-]?\d+([efEF][-+]?\d+))', Number.Float), # With scientific notation
+            (r'\b\d+(?![.ef])', Number.Integer), # integer simple
         ]
     }

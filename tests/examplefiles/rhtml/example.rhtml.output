@@ -1,13 +1,13 @@
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '@title'      Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Moderatoren-Interface' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\n'        Text
 
@@ -19,23 +19,23 @@
 'dt'          Name.Tag
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'link_to'     Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Proben'      Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':controller' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '/admin/proben' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 '/'           Punctuation
@@ -55,23 +55,23 @@
 'dt'          Name.Tag
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'link_to'     Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Auftritte'   Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':controller' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '/admin/proben' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 '/'           Punctuation
@@ -88,40 +88,40 @@
 '>'           Punctuation
 '\n\t'        Text
 '<%-'         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '@valid_user' Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 'and'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 '@valid_user' Name.Variable.Instance
 '.'           Operator
 'admin?'      Name
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n\t'        Text
 '<'           Punctuation
 'dt'          Name.Tag
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'link_to'     Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Benutzer'    Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':controller' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '/admin/user' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 '/'           Punctuation
@@ -138,9 +138,9 @@
 '>'           Punctuation
 '\n\t'        Text
 '<%-'         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n'          Text
 
@@ -151,83 +151,83 @@
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '@title'      Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Anmeldung'   Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\n'        Text
 
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'render'      Name
-' '           Text
+' '           Text.Whitespace
 ':partial'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'user_form'   Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':object'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '@user'       Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '@title'      Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Administrator erstellen' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\n'        Text
 
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'render'      Name
-' '           Text
+' '           Text.Whitespace
 ':partial'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'user_form'   Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':object'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '@user'       Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n'          Text
 
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'form_tag'    Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n'          Text
 
@@ -252,18 +252,18 @@
 'td'          Name.Tag
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'text_field'  Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'user'        Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'name'        Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 '/'           Punctuation
@@ -292,18 +292,18 @@
 'td'          Name.Tag
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'password_field' Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'user'        Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'password'    Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 '/'           Punctuation
@@ -331,13 +331,13 @@
 'td'          Name.Tag
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'submit_tag'  Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Anmelden'    Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 '/'           Punctuation
@@ -352,62 +352,62 @@
 '\n'          Text
 
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'end_form_tag' Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '@title'      Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Neuer Benutzer' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n'          Text
 
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'error_messages_for' Name
-' '           Text
+' '           Text.Whitespace
 ':user'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n'          Text
 
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'render'      Name
-' '           Text
+' '           Text.Whitespace
 ':partial'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'form'        Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':object'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '@user'       Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n'          Text
 
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'form_tag'    Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n'          Text
 
@@ -432,18 +432,18 @@
 'td'          Name.Tag
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'text_field'  Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'user'        Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'name'        Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 '/'           Punctuation
@@ -472,18 +472,18 @@
 'td'          Name.Tag
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'password_field' Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'user'        Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'password'    Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 '/'           Punctuation
@@ -511,13 +511,13 @@
 'td'          Name.Tag
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'submit_tag'  Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Anlegen'     Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 '/'           Punctuation
@@ -532,22 +532,22 @@
 '\n'          Text
 
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'end_form_tag' Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '@title'      Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Auftritte'   Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\n'        Text
 
@@ -564,41 +564,41 @@
 '>'           Punctuation
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'render'      Name
-' '           Text
+' '           Text.Whitespace
 ':partial'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'head'        Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'render'      Name
-' '           Text
+' '           Text.Whitespace
 ':partial'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'day'         Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':collection' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '@days'       Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n'          Text
 
@@ -609,30 +609,30 @@
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'day'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'auftritte'   Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'day'         Name
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n'          Text
 
 '<%'          Comment.Preproc
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 'auftritt'    Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'auftritte'   Name
-' \n'         Text
+' \n'         Text.Whitespace
 
 '-%>'         Comment.Preproc
 '\n\n'        Text
@@ -650,38 +650,38 @@
 '>'           Punctuation
 '\n\t\t'      Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'colorize'    Name
-' '           Text
+' '           Text.Whitespace
 'day'         Name
 '.'           Operator
 'to_s'        Name
 '('           Punctuation
 ':dots'       Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'day'         Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t\t'      Text
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'day'         Name
-' '           Text
+' '           Text.Whitespace
 'and'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'day'         Name
 '.'           Operator
 'wday'        Name
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '6'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 'br'          Name.Tag
@@ -697,9 +697,9 @@
 'em'          Name.Tag
 '>'           Punctuation
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<'           Punctuation
@@ -716,13 +716,13 @@
 '>'           Punctuation
 '\n\t\t'      Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'colorize'    Name
-' '           Text
+' '           Text.Whitespace
 'auftritt'    Name
 '.'           Operator
 'time'        Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<'           Punctuation
@@ -739,49 +739,49 @@
 '>'           Punctuation
 '\n\t\t'      Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'colorize'    Name
-' '           Text
+' '           Text.Whitespace
 'auftritt'    Name
 '.'           Operator
 'program'     Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t\t'      Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'link_to'     Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'E'           Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':controller' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'admin/auftritte' Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':action'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 ':edit'       Literal.String.Symbol
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':id'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'auftritt'    Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<'           Punctuation
@@ -798,33 +798,33 @@
 '>'           Punctuation
 '\n\t\t'      Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'colorize'    Name
 '('           Punctuation
 'auftritt'    Name
 '.'           Operator
 'place'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Ort: '       Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '<br />'      Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 'auftritt'    Name
 '.'           Operator
 'place'       Name
 '.'           Operator
 'blank?'      Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<'           Punctuation
@@ -840,15 +840,15 @@
 '\n\n'        Text
 
 '<%'          Comment.Preproc
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'day'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'nil'         Keyword.Pseudo
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'end'         Keyword
-' \n'         Text
+' \n'         Text.Whitespace
 
 '-%>'         Comment.Preproc
 '\n'          Text
@@ -933,11 +933,11 @@
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '@title'      Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'Besetzung - ' Literal.String.Double
 '#{'          Literal.String.Interpol
@@ -946,7 +946,7 @@
 'name'        Name
 '}'           Literal.String.Interpol
 '"'           Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\n'        Text
 
@@ -956,34 +956,34 @@
 '\n'          Text
 
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'pluralize'   Name
 '('           Punctuation
 '@members'    Name.Variable.Instance
 '.'           Operator
 'size'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Schüler spielt' Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Schüler spielen' Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 ' '           Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'h'           Name
-' '           Text
+' '           Text.Whitespace
 '@instrument' Name.Variable.Instance
 '.'           Operator
 'name'        Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 ':\n'         Text
 
@@ -1002,26 +1002,26 @@
 '>'           Punctuation
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'render'      Name
-' '           Text
+' '           Text.Whitespace
 ':partial'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'member'      Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':collection' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '@members'    Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n'          Text
 
@@ -1032,21 +1032,21 @@
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '@title'      Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Besetzung: %d Mitglieder' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%'           Operator
-' '           Text
+' '           Text.Whitespace
 'Member'      Name.Constant
 '.'           Operator
 'count'       Name
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n\n'        Text
 
@@ -1060,149 +1060,149 @@
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'params'      Name
 '['           Operator
 ':action'     Literal.String.Symbol
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'all'         Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n'          Text
 
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'link_to'     Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'seitenweise' Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':action'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 ':index'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n'          Text
 
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'link_to_if'  Name
-' '           Text
+' '           Text.Whitespace
 '@member_pages' Name.Variable.Instance
 '.'           Operator
 'current'     Name
 '.'           Operator
 'previous'    Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '<<'          Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':page'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '@member_pages' Name.Variable.Instance
 '.'           Operator
 'current'     Name
 '.'           Operator
 'previous'    Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n| '        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'link_to'     Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'alle'        Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':action'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 ':all'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 ' |\n'        Text
 
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'link_to_if'  Name
-' '           Text
+' '           Text.Whitespace
 '@member_pages' Name.Variable.Instance
 '.'           Operator
 'current'     Name
 '.'           Operator
 'next'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '>>'          Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':page'       Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '@member_pages' Name.Variable.Instance
 '.'           Operator
 'current'     Name
 '.'           Operator
 'next'        Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n| '        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'link_to'     Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Nach Instrumenten' Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':action'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 ':select_instrument' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n'          Text
 
@@ -1222,26 +1222,26 @@
 '\n'          Text
 
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'render'      Name
-' '           Text
+' '           Text.Whitespace
 ':partial'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'member'      Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':collection' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '@members'    Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n'          Text
 
@@ -1252,15 +1252,15 @@
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '@title'      Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'Besetzung - Instrument wählen' Literal.String.Double
 '"'           Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\n'        Text
 
@@ -1270,15 +1270,15 @@
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 'instr'       Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '@instruments' Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n'          Text
 
@@ -1287,9 +1287,9 @@
 '>'           Punctuation
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'link_to'     Name
-' '           Text
+' '           Text.Whitespace
 'h'           Name
 '('           Punctuation
 'instr'       Name
@@ -1297,24 +1297,24 @@
 'name'        Name
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':action'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 ':instrument' Literal.String.Symbol
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':id'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'instr'       Name
 '.'           Operator
 'name'        Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<'           Punctuation
@@ -1326,15 +1326,15 @@
 '>'           Punctuation
 '('           Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'h'           Name
-' '           Text
+' '           Text.Whitespace
 'instr'       Name
 '.'           Operator
 'members'     Name
 '.'           Operator
 'size'        Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 ')'           Text
 '<'           Punctuation
@@ -1350,9 +1350,9 @@
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n'          Text
 
@@ -1363,11 +1363,11 @@
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '@title'      Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'Besetzung: ' Literal.String.Double
 '#{'          Literal.String.Interpol
@@ -1376,7 +1376,7 @@
 'name'        Name
 '}'           Literal.String.Interpol
 '"'           Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n\n'        Text
 
@@ -1399,11 +1399,11 @@
 'dd'          Name.Tag
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'link_to_instruments_of' Name
-' '           Text
+' '           Text.Whitespace
 '@member'     Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 '/'           Punctuation
@@ -1425,9 +1425,9 @@
 'dd'          Name.Tag
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'h'           Name
-' '           Text
+' '           Text.Whitespace
 '@member'     Name.Variable.Instance
 '.'           Operator
 'birthday'    Name
@@ -1436,7 +1436,7 @@
 '('           Punctuation
 ':dots'       Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 '/'           Punctuation
@@ -1458,13 +1458,13 @@
 'dd'          Name.Tag
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'h'           Name
-' '           Text
+' '           Text.Whitespace
 '@member'     Name.Variable.Instance
 '.'           Operator
 'street'      Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 'br'          Name.Tag
@@ -1472,13 +1472,13 @@
 '/'           Punctuation
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'h'           Name
-' '           Text
+' '           Text.Whitespace
 '@member'     Name.Variable.Instance
 '.'           Operator
 'plz'         Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 '/'           Punctuation
@@ -1500,13 +1500,13 @@
 'dd'          Name.Tag
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'h'           Name
-' '           Text
+' '           Text.Whitespace
 '@member'     Name.Variable.Instance
 '.'           Operator
 'phone'       Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 '/'           Punctuation
@@ -1528,28 +1528,28 @@
 'dd'          Name.Tag
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'mail_to'     Name
-' '           Text
+' '           Text.Whitespace
 '@member'     Name.Variable.Instance
 '.'           Operator
 'email'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '@member'     Name.Variable.Instance
 '.'           Operator
 'email'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':encode'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'javascript'  Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 '/'           Punctuation
@@ -1575,37 +1575,37 @@
 'td'          Name.Tag
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'link_to'     Name
-' '           Text
+' '           Text.Whitespace
 'member'      Name
 '.'           Operator
 'name'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':action'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 ':show'       Literal.String.Symbol
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':id'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'member'      Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 ':\n\t\t'     Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'link_to_instruments_of' Name
-' '           Text
+' '           Text.Whitespace
 'member'      Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<'           Punctuation
@@ -1621,15 +1621,15 @@
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '@title'      Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Arbeitsgruppen' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n'          Text
 
@@ -1945,15 +1945,15 @@
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '@title'      Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Chronik'     Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n'          Text
 
@@ -2006,15 +2006,15 @@
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '@title'      Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Dirigent - Jobst Liebrecht' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n'          Text
 
@@ -2023,43 +2023,43 @@
 '>'           Punctuation
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'image_tag'   Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'jobstliebrecht.jpg' Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':alt'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Jobst Liebrecht' Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':title'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Jobst Liebrecht' Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':class'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'pic_right'   Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\tJobst Liebrecht studierte Dirigieren an der Musikhochschule in München und bei Peter Eötvös. Sein spezielles Interesse \n\tfür neue Musik führte schnell zur Zusammenarbeit mit renommierten Ensembles auf dem Gebiet wie dem Ensemble Modern, \n\tFrankfurt, dem Klangforum-Ensemble, Wien, dem Ensemble Köln sowie dem Ensemble United Berlin. Aufnahmen entstanden beim \n\tWDR, beim DeutschlandRadio Berlin, beim BR und beim SFB. Er dirigierte u.a. das Rundfunk Sinfonieorchester Berlin, die \n\tDuisburger Philharmoniker und das Münchner Kammerorchester sowie in den Opernhäusern in Halle und Giessen. Tourneen im \n\tAusland führten ihn nach Argentinien, Georgien, Südkorea und in die USA.\n' Text
 
@@ -2103,34 +2103,34 @@
 '\t\n'        Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'message'     Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'backtrace'   Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'session'     Name
 '['           Operator
 ':boom'       Literal.String.Symbol
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '@title'      Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Fehler in Zeile %d' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%'           Operator
-' '           Text
+' '           Text.Whitespace
 '['           Operator
 'backtrace'   Name
 '['           Operator
@@ -2147,7 +2147,7 @@
 '1'           Literal.Number.Integer
 ']'           Operator
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n'          Text
 
@@ -2168,11 +2168,11 @@
 '"error"'     Literal.String
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'h'           Name
-' '           Text
+' '           Text.Whitespace
 'message'     Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 '/'           Punctuation
@@ -2187,36 +2187,36 @@
 '\n'          Text
 
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'debug'       Name
-' '           Text
+' '           Text.Whitespace
 'backtrace'   Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'cache'       Name
-' '           Text
+' '           Text.Whitespace
 ':action_suffix' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'action'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'params'      Name
 '['           Operator
 ':action'     Literal.String.Symbol
 ']'           Operator
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n'          Text
 
@@ -2225,13 +2225,13 @@
 '>'           Punctuation
 '\nDer Inhalt für die Aktion ' Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'h'           Name
-' '           Text
+' '           Text.Whitespace
 'action'      Name
 '.'           Operator
 'inspect'     Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 ' fehlt noch.\n' Text
 
@@ -2242,22 +2242,22 @@
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '@title'      Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Schulferien Berlin' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n'          Text
 
@@ -2754,15 +2754,15 @@
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '@title'      Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Termine'     Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n\n'        Text
 
@@ -2774,23 +2774,23 @@
 'li'          Name.Tag
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'link_to'     Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Auftritte'   Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':controller' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '/auftritte'  Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 '/'           Punctuation
@@ -2801,31 +2801,31 @@
 'li'          Name.Tag
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'link_to'     Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Schulferien' Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':controller' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '/content'    Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':action'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 ':schulferien' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 '/'           Punctuation
@@ -2860,63 +2860,63 @@
 '>'           Punctuation
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'tag'         Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'meta'        Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ":'http-equiv'" Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'content-language' Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':content'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'de'          Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'tag'         Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'meta'        Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ":'http-equiv'" Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'content-type' Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':content'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'text/html; charset=UTF-8' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<'           Punctuation
@@ -3065,21 +3065,21 @@
 'JSO'         Text
 '<%-'         Comment.Preproc
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '@title'      Name.Variable.Instance
 '-%>'         Comment.Preproc
 ' - '         Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'h'           Name
-' '           Text
+' '           Text.Whitespace
 '@title'      Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<%-'         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '<'           Punctuation
 '/'           Punctuation
@@ -3087,13 +3087,13 @@
 '>'           Punctuation
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'stylesheet_link_tag' Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '/rcss/main'  Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<%#'         Comment.Preproc
@@ -3101,13 +3101,13 @@
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'javascript_include_tag' Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'nospam'      Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<%#'         Comment.Preproc
@@ -3151,23 +3151,23 @@
 '>'           Punctuation
 '\n\t\t\t'    Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'image_tag'   Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'JSO-Logo.gif' Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':alt'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'JSO-Logo'    Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t\t'      Text
 '<'           Punctuation
@@ -3270,11 +3270,11 @@
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'valid_user'  Name
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n'          Text
 
@@ -3290,9 +3290,9 @@
 '"menu2"'     Literal.String
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'link_to'     Name
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'Logout '     Literal.String.Double
 '#{'          Literal.String.Interpol
@@ -3302,24 +3302,24 @@
 '}'           Literal.String.Interpol
 '"'           Literal.String.Double
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':controller' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '/admin/admin' Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':action'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 ':logout'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 '/'           Punctuation
@@ -3334,69 +3334,69 @@
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'cache'       Name
-' '           Text
+' '           Text.Whitespace
 ':controller' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'menu'        Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':action'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'main_menu'   Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'render_component' Name
-' '           Text
+' '           Text.Whitespace
 ':controller' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'menu'        Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':action'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'index'       Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n\t\t'      Text
 '<'           Punctuation
@@ -3414,15 +3414,15 @@
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 '@flash'      Name.Variable.Instance
 '.'           Operator
 'keys'        Name
 '.'           Operator
 'empty?'      Name
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n'          Text
 
@@ -3435,18 +3435,18 @@
 '>'           Punctuation
 '\n\t'        Text
 '<%-'         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 'kind'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'msg'         Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '@flash'      Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n\t\t'      Text
 '<'           Punctuation
@@ -3456,20 +3456,20 @@
 '='           Operator
 '"'           Literal.String
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'h'           Name
-' '           Text
+' '           Text.Whitespace
 'kind'        Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '"'           Literal.String
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'h'           Name
-' '           Text
+' '           Text.Whitespace
 'msg'         Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 '/'           Punctuation
@@ -3477,9 +3477,9 @@
 '>'           Punctuation
 '\n\t'        Text
 '<%-'         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n'          Text
 
@@ -3490,37 +3490,37 @@
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n'          Text
 
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'content_tag' Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'h3'          Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'h'           Name
 '('           Punctuation
 '@title'      Name.Variable.Instance
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '@title'      Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n'          Text
 
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '@content_for_layout' Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t\t'      Text
 '<'           Punctuation
@@ -3580,7 +3580,7 @@
 '>'           Punctuation
 ' '           Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'Rails'       Name.Constant
 '::'          Operator
 'Info'        Name.Constant
@@ -3588,104 +3588,104 @@
 'properties'  Name
 '.'           Operator
 'value_for'   Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Rails version' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 ' ['          Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'h'           Name
-' '           Text
+' '           Text.Whitespace
 'RAILS_ENV'   Name.Constant
 '['           Operator
 '/'           Literal.String.Regex
 '^.'          Literal.String.Regex
 '/'           Literal.String.Regex
 ']'           Operator
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 ']\n\t\t\t\t' Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'image_tag'   Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'css.png'     Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':alt'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'valid CSS'   Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':title'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'valid Cascading Style Sheet' Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':style'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'display: inline; vertical-align: middle' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t\t\t\t'  Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'image_tag'   Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'xhtml11.png' Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':alt'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'valid XHTML 1.1' Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':title'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'valid eXtensible Hypertext Markup Language 1.1' Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':style'      Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'display: inline; vertical-align: middle' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t\t\t'    Text
 '<'           Punctuation
@@ -3723,15 +3723,15 @@
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '@title'      Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Übersicht'   Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n\n'        Text
 
@@ -3762,41 +3762,41 @@
 '>'           Punctuation
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'render'      Name
-' '           Text
+' '           Text.Whitespace
 ':partial'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'proben/head' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'render'      Name
-' '           Text
+' '           Text.Whitespace
 ':partial'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'proben/day'  Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':object'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '@next_probe' Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n'          Text
 
@@ -3810,23 +3810,23 @@
 'h4'          Name.Tag
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'link_to'     Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'weitere Proben...' Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':controller' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'proben'      Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 '/'           Punctuation
@@ -3861,41 +3861,41 @@
 '>'           Punctuation
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'render'      Name
-' '           Text
+' '           Text.Whitespace
 ':partial'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'auftritte/head' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'render'      Name
-' '           Text
+' '           Text.Whitespace
 ':partial'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'auftritte/day' Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':object'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '@next_auftritt' Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n'          Text
 
@@ -3909,23 +3909,23 @@
 'h4'          Name.Tag
 '>'           Punctuation
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'link_to'     Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'mehr Auftritte...' Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':controller' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'auftritte'   Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 '/'           Punctuation
@@ -3938,269 +3938,269 @@
 '>'           Punctuation
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'category'    Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Übersicht'   Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'home_url'    Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'subcat'      Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Wer sind wir?' Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':wer'        Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'subcat'      Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Dirigent'    Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'subcat'      Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Besetzung'   Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'url_for'     Name
 '('           Punctuation
 ':controller' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '/besetzung'  Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'subcat'      Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Repertoire'  Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\n\t'      Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'category'    Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Termine'     Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'subcat'      Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Auftritte'   Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'url_for'     Name
 '('           Punctuation
 ':controller' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '/auftritte'  Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':action'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 ':plan'       Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'subcat'      Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Schulferien' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\n\t'      Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'category'    Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Probenplan'  Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'url_for'     Name
 '('           Punctuation
 ':controller' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '/proben'     Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':action'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 ':plan'       Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\n\t'      Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'category'    Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Organisation' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'subcat'      Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Orchesterrat' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'subcat'      Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Arbeitsgruppen' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\n\t'      Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'category'    Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Chronik'     Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'subcat'      Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Konzerte'    Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'subcat'      Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Audio'       Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'subcat'      Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Presse'      Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\n\t'      Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'category'    Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Links'       Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '#'           Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'subcat'      Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Bilderseite' Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'http://musikschule.iden04.de' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'subcat'      Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Musikschule' Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'http://www.musikschule-marzahn-hellersdorf.de' Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\n\t'      Text
 '<'           Punctuation
@@ -4217,13 +4217,13 @@
 '>'           Punctuation
 '\n\n\t'      Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'category'    Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Kontakt'     Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n'          Text
 
@@ -4234,15 +4234,15 @@
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 '@title'      Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Probenplan'  Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\n'        Text
 
@@ -4259,41 +4259,41 @@
 '>'           Punctuation
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'render'      Name
-' '           Text
+' '           Text.Whitespace
 ':partial'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'head'        Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'render'      Name
-' '           Text
+' '           Text.Whitespace
 ':partial'    Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'day'         Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':collection' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '@days'       Name.Variable.Instance
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n'          Text
 
@@ -4319,41 +4319,41 @@
 '\t\n\n'      Text
 
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'render_partial' Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'raum'        Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n'          Text
 
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'day'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'proben'      Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '*'           Operator
 'day'         Name
-' '           Text
+' '           Text.Whitespace
 '-%>'         Comment.Preproc
 '\n'          Text
 
 '<%'          Comment.Preproc
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'for'         Keyword
-' '           Text
+' '           Text.Whitespace
 'probe'       Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'proben'      Name
-' \n'         Text
+' \n'         Text.Whitespace
 
 '-%>'         Comment.Preproc
 '\n\n'        Text
@@ -4371,38 +4371,38 @@
 '>'           Punctuation
 '\n\t\t'      Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'colorize'    Name
-' '           Text
+' '           Text.Whitespace
 'day'         Name
 '.'           Operator
 'to_s'        Name
 '('           Punctuation
 ':dots'       Literal.String.Symbol
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'day'         Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t\t'      Text
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'day'         Name
-' '           Text
+' '           Text.Whitespace
 'and'         Operator.Word
-' '           Text
+' '           Text.Whitespace
 'day'         Name
 '.'           Operator
 'wday'        Name
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '6'           Literal.Number.Integer
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '<'           Punctuation
 'br'          Name.Tag
@@ -4418,9 +4418,9 @@
 'em'          Name.Tag
 '>'           Punctuation
 '<%'          Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<'           Punctuation
@@ -4437,13 +4437,13 @@
 '>'           Punctuation
 '\n\t\t'      Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'colorize'    Name
-' '           Text
+' '           Text.Whitespace
 'probe'       Name
 '.'           Operator
 'time'        Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<'           Punctuation
@@ -4460,79 +4460,79 @@
 '>'           Punctuation
 '\n\t\t'      Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'colorize'    Name
 '('           Punctuation
 'probe'       Name
 '.'           Operator
 'place'       Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'Ort: '       Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '<br />'      Literal.String.Single
 "'"           Literal.String.Single
-' '           Text
+' '           Text.Whitespace
 'unless'      Keyword
-' '           Text
+' '           Text.Whitespace
 'probe'       Name
 '.'           Operator
 'place'       Name
 '.'           Operator
 'blank?'      Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t\t'      Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'colorize'    Name
-' '           Text
+' '           Text.Whitespace
 'probe'       Name
 '.'           Operator
 'program'     Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t\t'      Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'link_to'     Name
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'E'           Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':controller' Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 'admin/proben' Literal.String.Single
 "'"           Literal.String.Single
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':action'     Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 ':edit'       Literal.String.Symbol
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':id'         Literal.String.Symbol
-' '           Text
+' '           Text.Whitespace
 '='           Operator
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 'probe'       Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<'           Punctuation
@@ -4549,13 +4549,13 @@
 '>'           Punctuation
 '\n\t\t'      Text
 '<%='         Comment.Preproc
-' '           Text
+' '           Text.Whitespace
 'h'           Name
-' '           Text
+' '           Text.Whitespace
 'probe'       Name
 '.'           Operator
 'instrumentation' Name
-' '           Text
+' '           Text.Whitespace
 '%>'          Comment.Preproc
 '\n\t'        Text
 '<'           Punctuation
@@ -4571,15 +4571,15 @@
 '\n\n'        Text
 
 '<%'          Comment.Preproc
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'day'         Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'nil'         Keyword.Pseudo
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'end'         Keyword
-' \n'         Text
+' \n'         Text.Whitespace
 
 '-%>'         Comment.Preproc
 '\n'          Text
