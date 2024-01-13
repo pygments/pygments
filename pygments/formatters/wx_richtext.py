@@ -11,7 +11,7 @@ class WxRichTextCtrlFormatter(Formatter):
     """ 
     Formatter for applying a pygments style to a 
     ``wx.richtext.RichTextCtrl``. Each time `format` is 
-    called, the ctrl's text is stored against its handle 
+    called, the ctrl's text is stored against its ID 
     so that subsequent calls to `format` won't style 
     unchanged text again. This means the function is fast 
     enough to call on each new character with minimal lag.
@@ -118,7 +118,7 @@ class WxRichTextCtrlFormatter(Formatter):
             # move forward to next token
             i = rng.End
             # skip if token text has not changed...
-            last_styled_text = self._last_text_cache.get(outfile, "")
+            last_styled_text = self._last_text_cache.get(outfile.GetId(), "")
             if (
                 len(last_styled_text) > rng.End and 
                 outfile.GetValue()[rng.Start:rng.End] == last_styled_text[rng.Start:rng.End]
@@ -129,7 +129,7 @@ class WxRichTextCtrlFormatter(Formatter):
             # apply format object
             outfile.SetStyleEx(rng, fmt)
         # store text
-        self._last_text_cache[outfile] = outfile.GetValue()
+        self._last_text_cache[outfile.GetId()] = outfile.GetValue()
         
         # thaw once done
         outfile.GetBuffer().EndSuppressUndo()
