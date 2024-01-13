@@ -30,7 +30,7 @@ class WxRichTextCtrlFormatter(Formatter):
             style = pygments.styles.get_style_by_name(style)
         # make sure theme is a pygments style
         assert isinstance(style, PygmentsStyle), (
-            "Expcted PygmentsStyledTextCtrl theme to be a PygmentsStyle object or the name of a pygments style, but instead received {val} ({cls})"
+            "Expcted WxRichTextCtrlFormatter style to be a PygmentsStyle object or the name of a pygments style, but instead received {val} ({cls})"
         ).format(val=style, cls=type(style).__name__)
         # if style has changed, clear caches
         if style != self.style:
