@@ -733,6 +733,6 @@ class PromelaLexer(CLexer):
                 'inline', 'ltl', 'select'), suffix=r'\b'),
              Keyword.Declaration),
             # MetaTerms (keywords)
-            (r'(skip)\b', Keyword),
+            (r'skip\b', Keyword),
         ],
     }
