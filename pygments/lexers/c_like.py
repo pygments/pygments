@@ -666,7 +666,7 @@ class PromelaLexer(CLexer):
     
     name = 'Promela'
     aliases = ['promela']
-    filenames = ['*.pml', '*.prom', '*.prm', '*.promela', '*pr', '*.pm']
+    filenames = ['*.pml', '*.prom', '*.prm', '*.promela', '*.pr', '*.pm']
     mimetypes = ['text/x-promela']
     url = 'https://spinroot.com/spin/whatispin.html'
     version_added = '2.18'
