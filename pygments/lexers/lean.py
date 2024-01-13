@@ -193,7 +193,7 @@ class Lean4Lexer(RegexLexer):
             (r'\s+', Whitespace),
             (r'/--', String.Doc, 'docstring'),
             (r'/-', Comment, 'comment'),
-            (r'--.*?$', Comment.Single),
+            (r'--.*$', Comment.Single),
             (words(keywords3, prefix=r'\b', suffix=r'\b'), Keyword.Type),
             (words(operators), Name.Builtin.Pseudo),
             (words(punctuation), Operator),
