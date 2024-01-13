@@ -1,3 +1,10 @@
+':- '         Punctuation
+'encoding'    Keyword
+'('           Text
+'Encoding'    Name.Variable
+')'           Text
+'.'           Text
+'\t'          Text
 '% this is a single-line comment\n' Comment
 
 '\n'          Text
@@ -6,9 +13,44 @@
 '\n'          Text
 
 '\n\n:- '     Punctuation
-'encoding'    Keyword
+'if'          Keyword
 '('           Text
-'some_encoding' Text
+'Goal'        Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\t'          Text
+'% conditional\n' Comment
+
+':- '         Punctuation
+'elif'        Keyword
+'('           Text
+'Goal'        Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\t'          Text
+'% compilation\n' Comment
+
+':- '         Punctuation
+'else'        Keyword
+'.'           Text
+'\n'          Text
+
+'\t'          Text
+'% directives\n' Comment
+
+':- '         Punctuation
+'endif'       Keyword
+'.'           Text
+'\n'          Text
+
+'\n\n:- '     Punctuation
+'initialization' Keyword
+'('           Text
+'Goal'        Name.Variable
 ')'           Text
 '.'           Text
 '\n'          Text
@@ -23,6 +65,44 @@
 ','           Text
 ' '           Text
 'Operator'    Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+':- '         Punctuation
+'ensure_loaded' Keyword
+'('           Text
+'File'        Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+':- '         Punctuation
+'include'     Keyword
+'('           Text
+'File'        Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+':- '         Punctuation
+'set_prolog_flag' Keyword
+'('           Text
+'Flag'        Name.Variable
+','           Text
+' '           Text
+'Value'       Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+':- '         Punctuation
+'set_logtalk_flag' Keyword
+'('           Text
+'Flag'        Name.Variable
+','           Text
+' '           Text
+'Value'       Name.Variable
 ')'           Text
 '.'           Text
 '\n'          Text
@@ -69,7 +149,11 @@
 ' '           Text
 'is'          Keyword
 ' '           Text
-'1.0'         Literal.Number
+'1'           Literal.Number
+':'           Operator
+'49'          Literal.Number
+':'           Operator
+'0'           Literal.Number
 ','           Text
 '\n'          Text
 
@@ -89,11 +173,11 @@
 ' '           Text
 'is'          Keyword
 ' '           Text
-'2008'        Literal.Number
-'/'           Operator
-'5'           Literal.Number
-'/'           Operator
-'1'           Literal.Number
+'2022'        Literal.Number
+'-'           Operator
+'11'          Literal.Number
+'-'           Operator
+'04'          Literal.Number
 ','           Text
 '\n'          Text
 
@@ -105,8 +189,16 @@
 "'"           Literal.String
 'Sample prototype for testing syntax coloring.' Literal.String
 "'"           Literal.String
+'\n'          Text
+
+'\t'          Text
 ']'           Text
 ')'           Text
+'.'           Text
+'\n'          Text
+
+'\n\t:- '     Punctuation
+'built_in'    Keyword
 '.'           Text
 '\n'          Text
 
@@ -116,16 +208,11 @@
 '\n'          Text
 
 '\t:- '       Punctuation
-'synchronized' Keyword
-'.'           Text
-'\n'          Text
-
-'\t:- '       Punctuation
 'dynamic'     Keyword
 '.'           Text
 '\n'          Text
 
-'\t:- '       Punctuation
+'\n\t:- '     Punctuation
 'initialization' Keyword
 '('           Text
 'some_goal'   Text
@@ -139,18 +226,22 @@
 '.'           Text
 '\n'          Text
 
-'\t:- '       Punctuation
-'calls'       Keyword
-'('           Text
-'some_other_protocol' Text
-')'           Text
-'.'           Text
-'\n'          Text
-
-'\t:- '       Punctuation
+'\n\t:- '     Punctuation
 'uses'        Keyword
 '('           Text
-'another_object' Text
+'['           Text
+'\n'          Text
+
+'\t\t'        Text
+'foobar'      Text
+' '           Text
+'as'          Operator
+' '           Text
+'fb'          Text
+'\n'          Text
+
+'\t'          Text
+']'           Text
 ')'           Text
 '.'           Text
 '\n'          Text
@@ -161,14 +252,17 @@
 'set'         Text
 ','           Text
 ' '           Text
+'['           Text
 'member'      Text
 '/'           Operator
 '2'           Literal.Number
-','           Text
+' '           Text
+'as'          Operator
 ' '           Text
 'set_member'  Text
 '/'           Operator
 '2'           Literal.Number
+']'           Text
 ')'           Text
 '.'           Text
 '\n'          Text
@@ -179,14 +273,17 @@
 'words'       Text
 ','           Text
 ' '           Text
+'['           Text
 'singular'    Text
 '//'          Operator
 '0'           Literal.Number
-','           Text
+' '           Text
+'as'          Operator
 ' '           Text
 'peculiar'    Text
 '//'          Operator
 '0'           Literal.Number
+']'           Text
 ')'           Text
 '.'           Text
 '\n'          Text
@@ -221,11 +318,130 @@
 'new'         Text
 '/'           Operator
 '1'           Literal.Number
-'::'          Operator
+' '           Text
+'as'          Operator
+' '           Text
 'new_queue'   Text
 '/'           Operator
 '1'           Literal.Number
 ']'           Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n\t:- '     Punctuation
+'use_module'  Keyword
+'('           Text
+'module'      Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\t:- '       Punctuation
+'use_module'  Keyword
+'('           Text
+'module'      Text
+','           Text
+' '           Text
+'['           Text
+'append'      Text
+'/'           Operator
+'3'           Literal.Number
+','           Text
+' '           Text
+'member'      Text
+'/'           Operator
+'2'           Literal.Number
+']'           Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n\t:- '     Punctuation
+'multifile'   Keyword
+'('           Text
+'zzz'         Text
+'/'           Operator
+'1'           Literal.Number
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\t:- '       Punctuation
+'multifile'   Keyword
+'('           Text
+'module'      Text
+':'           Operator
+'zzz'         Text
+'/'           Operator
+'1'           Literal.Number
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\t:- '       Punctuation
+'multifile'   Keyword
+'('           Text
+'object'      Text
+'::'          Operator
+'zzz'         Text
+'/'           Operator
+'1'           Literal.Number
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n\t:- '     Punctuation
+'coinductive' Keyword
+'('           Text
+'comember'    Text
+'/'           Operator
+'1'           Literal.Number
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n\t:- '     Punctuation
+'use_module'  Keyword
+'('           Text
+'module'      Text
+','           Text
+' '           Text
+'['           Text
+'xxx'         Text
+'/'           Operator
+'1'           Literal.Number
+','           Text
+' '           Text
+'yyy'         Text
+'/'           Operator
+'2'           Literal.Number
+','           Text
+' '           Text
+'zzz'         Text
+'/'           Operator
+'3'           Literal.Number
+']'           Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\t:- '       Punctuation
+'export'      Keyword
+'('           Text
+'bbb'         Text
+'/'           Operator
+'3'           Literal.Number
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\t:- '       Punctuation
+'reexport'    Keyword
+'('           Text
+'cccc'        Text
+'/'           Operator
+'4'           Literal.Number
 ')'           Text
 '.'           Text
 '\n'          Text
@@ -328,7 +544,34 @@
 'Arg2 description' Literal.String
 "'"           Literal.String
 ']'           Text
+'\n'          Text
+
+'\t'          Text
 ']'           Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n\t:- '     Punctuation
+'public'      Keyword
+'('           Text
+'nt'          Text
+'//'          Operator
+'2'           Literal.Number
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\t:- '       Punctuation
+'meta_non_terminal' Keyword
+'('           Text
+'nt'          Text
+'('           Text
+'1'           Literal.Number
+','           Text
+' '           Text
+'*'           Operator
+')'           Text
 ')'           Text
 '.'           Text
 '\n'          Text
@@ -409,6 +652,9 @@
 'Arg2'        Literal.String
 "'"           Literal.String
 ']'           Text
+'\n'          Text
+
+'\t'          Text
 ']'           Text
 ')'           Text
 '.'           Text
@@ -445,6 +691,16 @@
 ' '           Text
 '?'           Operator
 'atom'        Text
+','           Text
+' '           Text
+'+'           Operator
+'+'           Operator
+'list'        Text
+','           Text
+' '           Text
+'-'           Operator
+'-'           Operator
+'ground'      Text
 ')'           Text
 ','           Text
 ' '           Text
@@ -490,6 +746,9 @@
 'Arg2'        Literal.String
 "'"           Literal.String
 ']'           Text
+'\n'          Text
+
+'\t'          Text
 ']'           Text
 ')'           Text
 '.'           Text
@@ -802,6 +1061,20 @@
 ' '           Text
 'Object'      Name.Variable
 ')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'conforms_to_protocol' Keyword
+'('           Text
+'ObjOrCtg'    Name.Variable
+','           Text
+' '           Text
+'Protocol'    Name.Variable
+','           Text
+' '           Text
+'Scope'       Name.Variable
+')'           Text
 '.'           Text
 '\n'          Text
 
@@ -900,9 +1173,31 @@
 '\n'          Text
 
 '\t\t'        Text
+'threaded_call' Keyword
+'('           Text
+'Goal'        Name.Variable
+','           Text
+' '           Text
+'Tag'         Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
 'threaded_once' Keyword
 '('           Text
 'Goal'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'threaded_once' Keyword
+'('           Text
+'Goal'        Name.Variable
+','           Text
+' '           Text
+'Tag'         Name.Variable
 ')'           Text
 ','           Text
 '\n'          Text
@@ -924,6 +1219,17 @@
 '\n'          Text
 
 '\t\t'        Text
+'threaded_exit' Keyword
+'('           Text
+'Goal'        Name.Variable
+','           Text
+' '           Text
+'Tag'         Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
 'threaded_peek' Keyword
 '('           Text
 'Goal'        Name.Variable
@@ -932,9 +1238,28 @@
 '\n'          Text
 
 '\t\t'        Text
-'threaded_wait' Keyword
+'threaded_peek' Keyword
 '('           Text
 'Goal'        Name.Variable
+','           Text
+' '           Text
+'Tag'         Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'threaded_cancel' Keyword
+'('           Text
+'Tag'         Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'threaded_wait' Keyword
+'('           Text
+'Notification' Name.Variable
 ')'           Text
 ','           Text
 '\n'          Text
@@ -943,6 +1268,102 @@
 'threaded_notify' Keyword
 '('           Text
 'Notification' Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'engines'     Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'threaded_engine' Keyword
+'('           Text
+'Engine'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'threaded_engine_create' Keyword
+'('           Text
+'AnswerTemplate' Name.Variable
+','           Text
+' '           Text
+'Goal'        Name.Variable
+','           Text
+' '           Text
+'Engine'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'threaded_engine_destroy' Keyword
+'('           Text
+'Engine'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'threaded_engine_self' Keyword
+'('           Text
+'Engine'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'threaded_engine_next' Keyword
+'('           Text
+'Engine'      Name.Variable
+','           Text
+' '           Text
+'Answer'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'threaded_engine_next_reified' Keyword
+'('           Text
+'Engine'      Name.Variable
+','           Text
+' '           Text
+'Answer'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'threaded_engine_yield' Keyword
+'('           Text
+'Answer'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'threaded_engine_post' Keyword
+'('           Text
+'Engine'      Name.Variable
+','           Text
+' '           Text
+'Term'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'threaded_engine_fetch' Keyword
+'('           Text
+'Term'        Name.Variable
 ')'           Text
 '.'           Text
 '\n'          Text
@@ -986,6 +1407,38 @@
 ' '           Text
 'Path'        Name.Variable
 ')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'logtalk_load_context' Keyword
+'('           Text
+'Key'         Name.Variable
+','           Text
+' '           Text
+'Value'       Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'logtalk_make' Keyword
+'('           Text
+'Action'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'logtalk_make' Keyword
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'logtalk_make_target_action' Keyword
+'('           Text
+'Target'      Name.Variable
+')'           Text
 '.'           Text
 '\n'          Text
 
@@ -1017,6 +1470,20 @@
 ' '           Text
 'Value'       Name.Variable
 ')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'create_logtalk_flag' Keyword
+'('           Text
+'Flag'        Name.Variable
+','           Text
+' '           Text
+'Value'       Name.Variable
+','           Text
+' '           Text
+'Options'     Name.Variable
+')'           Text
 '.'           Text
 '\n'          Text
 
@@ -1027,6 +1494,14 @@
 ' '           Text
 ':'           Operator
 '-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'context'     Keyword
+'('           Text
+'Context'     Name.Variable
+')'           Text
+','           Text
 '\n'          Text
 
 '\t\t'        Text
@@ -1104,7 +1579,7 @@
 '\t\t'        Text
 'abolish'     Keyword
 '('           Text
-'Functor'     Name.Variable
+'Name'        Name.Variable
 '/'           Operator
 'Arity'       Name.Variable
 ')'           Text
@@ -1157,17 +1632,128 @@
 '\n'          Text
 
 '\t'          Text
-'meta_call_methods' Text
+'exception_methods' Text
 ' '           Text
 ':'           Operator
 '-'           Operator
 '\n'          Text
 
 '\t\t'        Text
-'call'        Keyword
+'catch'       Keyword
 '('           Text
 'Goal'        Name.Variable
+','           Text
+' '           Text
+'Error'       Name.Variable
+','           Text
+' '           Text
+'Catcher'     Name.Variable
 ')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'throw'       Keyword
+'('           Text
+'Error'       Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'instantiation_error' Keyword
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'uninstantiation_error' Keyword
+'('           Text
+'Culprit'     Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'type_error'  Keyword
+'('           Text
+'Type'        Name.Variable
+','           Text
+' '           Text
+'Culprit'     Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'domain_error' Keyword
+'('           Text
+'Domain'      Name.Variable
+','           Text
+' '           Text
+'Culprit'     Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'existence_error' Keyword
+'('           Text
+'Thing'       Name.Variable
+','           Text
+' '           Text
+'Culprit'     Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'permission_error' Keyword
+'('           Text
+'Operation'   Name.Variable
+','           Text
+' '           Text
+'Permission'  Name.Variable
+','           Text
+' '           Text
+'Culprit'     Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'representation_error' Keyword
+'('           Text
+'Flag'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'evaluation_error' Keyword
+'('           Text
+'Exception'   Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'resource_error' Keyword
+'('           Text
+'Resource'    Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'syntax_error' Keyword
+'('           Text
+'Description' Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'system_error' Keyword
 '.'           Text
 '\n'          Text
 
@@ -1186,6 +1772,22 @@
 'Term'        Name.Variable
 ','           Text
 ' '           Text
+'Goal'        Name.Variable
+','           Text
+' '           Text
+'List'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'bagof'       Keyword
+'('           Text
+'Term'        Name.Variable
+','           Text
+' '           Text
+'Var'         Name.Variable
+'^'           Operator
 'Goal'        Name.Variable
 ','           Text
 ' '           Text
@@ -1225,6 +1827,24 @@
 'Term'        Name.Variable
 ','           Text
 ' '           Text
+'Goal'        Name.Variable
+','           Text
+' '           Text
+'List'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'setof'       Keyword
+'('           Text
+'Term'        Name.Variable
+','           Text
+' '           Text
+'Var1'        Name.Variable
+'^'           Operator
+'Var2'        Name.Variable
+'^'           Operator
 'Goal'        Name.Variable
 ','           Text
 ' '           Text
@@ -1273,6 +1893,23 @@
 '\n'          Text
 
 '\t'          Text
+'message_forwarding_method' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'forward'     Keyword
+'('           Text
+'Message'     Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
 'dcg_rules_parsing_methods' Text
 ' '           Text
 ':'           Operator
@@ -1306,6 +1943,17 @@
 'expand_term' Keyword
 '('           Text
 'Term'        Name.Variable
+','           Text
+' '           Text
+'Expanded'    Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'expand_goal' Keyword
+'('           Text
+'Goal'        Name.Variable
 ','           Text
 ' '           Text
 'Expanded'    Name.Variable
@@ -1404,13 +2052,42 @@
 '\n'          Text
 
 '\t'          Text
-'direct_calls_of_category_predicates' Text
+'lambda_expressions' Text
 ' '           Text
 ':'           Operator
 '-'           Operator
 '\n'          Text
 
 '\t\t'        Text
+'{'           Keyword
+'X'           Name.Variable
+','           Text
+'Y'           Name.Variable
+','           Text
+'Z'           Name.Variable
+'}'           Keyword
+'/'           Operator
+'['           Text
+'P'           Name.Variable
+','           Text
+'Q'           Name.Variable
+']'           Text
+'>>'          Operator
+'Goal'        Name.Variable
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'explicitly_qualified_module_calls' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'Module'      Name.Variable
 ':'           Operator
 'Goal'        Name.Variable
 '.'           Text
@@ -1459,28 +2136,76 @@
 '\n'          Text
 
 '\t\t'        Text
-'X'           Name.Variable
+'X1'          Name.Variable
 ' '           Text
 'is'          Keyword
 ' '           Text
 '13'          Literal.Number
 ','           Text
+' '           Text
+'X2'          Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'-'           Operator
+'13'          Literal.Number
+','           Text
+' '           Text
+'X3'          Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'+'           Operator
+'13'          Literal.Number
+','           Text
 '\n'          Text
 
 '\t\t'        Text
-'Y'           Name.Variable
+'Y1'          Name.Variable
 ' '           Text
 'is'          Keyword
 ' '           Text
 '13.13'       Literal.Number
 ','           Text
-'\n'          Text
-
-'\t\t'        Text
-'Z'           Name.Variable
+' '           Text
+'Y2'          Name.Variable
 ' '           Text
 'is'          Keyword
 ' '           Text
+'-'           Operator
+'13.13'       Literal.Number
+','           Text
+' '           Text
+'Y3'          Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'+'           Operator
+'13.13'       Literal.Number
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'Z1'          Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'13.13e-23'   Literal.Number
+','           Text
+' '           Text
+'Z2'          Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'-'           Operator
+'13.13e-23'   Literal.Number
+','           Text
+' '           Text
+'Z3'          Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'+'           Operator
 '13.13e-23'   Literal.Number
 ','           Text
 '\n'          Text
@@ -1497,19 +2222,70 @@
 ' '           Text
 'is'          Keyword
 ' '           Text
-"0''"         Literal.Number
+"0'a"         Literal.Number
 ','           Text
 ' '           Text
 'C3'          Name.Variable
 ' '           Text
 'is'          Keyword
 ' '           Text
-'0\'"'        Literal.Number
+"0'-"         Literal.Number
+','           Text
+' '           Text
+'C4'          Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+"0'*"         Literal.Number
+','           Text
+' '           Text
+'C5'          Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+"0'%"         Literal.Number
 ','           Text
 '\n'          Text
 
 '\t\t'        Text
-'B'           Name.Variable
+'C6'          Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+"0'\\n"       Literal.Number
+','           Text
+' '           Text
+'C7'          Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+"0'\\\\"      Literal.Number
+','           Text
+' '           Text
+'C8'          Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+"0'\\'"       Literal.Number
+','           Text
+' '           Text
+'C9'          Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'0\'\\"'      Literal.Number
+','           Text
+' '           Text
+'C10'         Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+"0'\\`"       Literal.Number
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'B1'          Name.Variable
 ' '           Text
 'is'          Keyword
 ' '           Text
@@ -1518,7 +2294,7 @@
 '\n'          Text
 
 '\t\t'        Text
-'O'           Name.Variable
+'O1'          Name.Variable
 ' '           Text
 'is'          Keyword
 ' '           Text
@@ -1527,7 +2303,7 @@
 '\n'          Text
 
 '\t\t'        Text
-'H'           Name.Variable
+'H1'          Name.Variable
 ' '           Text
 'is'          Keyword
 ' '           Text
@@ -1556,6 +2332,30 @@
 ' '           Text
 '+'           Operator
 ' '           Text
+'atan2'       Keyword
+'('           Text
+'1'           Literal.Number
+','           Text
+' '           Text
+'0'           Literal.Number
+')'           Text
+' '           Text
+'+'           Operator
+' '           Text
+'acos'        Keyword
+'('           Text
+'0.5'         Literal.Number
+')'           Text
+' '           Text
+'+'           Operator
+' '           Text
+'asin'        Keyword
+'('           Text
+'0.5'         Literal.Number
+')'           Text
+' '           Text
+'+'           Operator
+' '           Text
 'sin'         Keyword
 '('           Text
 '0.77'        Literal.Number
@@ -1566,6 +2366,13 @@
 'cos'         Keyword
 '('           Text
 '123.23'      Literal.Number
+')'           Text
+' '           Text
+'-'           Operator
+' '           Text
+'tan'         Keyword
+'('           Text
+'0.33'        Literal.Number
 ')'           Text
 ','           Text
 '\n'          Text
@@ -1651,6 +2458,12 @@
 '*'           Operator
 ' '           Text
 '4'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'12345'       Literal.Number
+'^'           Operator
+'2'           Literal.Number
 ','           Text
 '\n'          Text
 
@@ -1677,6 +2490,16 @@
 '3'           Literal.Number
 ')'           Text
 ' '           Text
+'-'           Operator
+' '           Text
+'div'         Keyword
+'('           Text
+'8'           Literal.Number
+','           Text
+' '           Text
+'4'           Literal.Number
+')'           Text
+' '           Text
 '*'           Operator
 ' '           Text
 '2'           Literal.Number
@@ -1692,6 +2515,22 @@
 'mod'         Operator
 ' '           Text
 '3'           Literal.Number
+' '           Text
+'-'           Operator
+' '           Text
+'8'           Literal.Number
+' '           Text
+'div'         Operator
+' '           Text
+'4'           Literal.Number
+' '           Text
+'+'           Operator
+' '           Text
+'pi'          Operator
+' '           Text
+'*'           Operator
+' '           Text
+'e'           Operator
 ','           Text
 '\n'          Text
 
@@ -1729,6 +2568,29 @@
 'floor'       Keyword
 '('           Text
 '99.99'       Literal.Number
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'I'           Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'min'         Keyword
+'('           Text
+'3'           Literal.Number
+','           Text
+'4'           Literal.Number
+')'           Text
+' '           Text
+'+'           Operator
+' '           Text
+'max'         Keyword
+'('           Text
+'4'           Literal.Number
+','           Text
+'5'           Literal.Number
 ')'           Text
 '.'           Text
 '\n'          Text
@@ -1802,7 +2664,23 @@
 ' '           Text
 '\\'          Operator
 ' '           Text
-'10.'         Literal.Number
+'10'          Literal.Number
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'F'           Name.Variable
+' '           Text
+'is'          Keyword
+' '           Text
+'xor'         Keyword
+'('           Text
+'13'          Literal.Number
+','           Text
+' '           Text
+'7'           Literal.Number
+')'           Text
+'.'           Text
 '\n'          Text
 
 '\n'          Text
@@ -1840,6 +2718,17 @@
 ','           Text
 ' '           Text
 'Term2'       Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'subsumes_term' Keyword
+'('           Text
+'General'     Name.Variable
+','           Text
+' '           Text
+'Specific'    Name.Variable
 ')'           Text
 '.'           Text
 '\n'          Text
@@ -1886,6 +2775,14 @@
 '\n'          Text
 
 '\t\t'        Text
+'callable'    Keyword
+'('           Text
+'Term'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
 'compound'    Keyword
 '('           Text
 'Term'        Name.Variable
@@ -1914,6 +2811,22 @@
 '('           Text
 'Number'      Name.Variable
 ')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'ground'      Keyword
+'('           Text
+'Term'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'acyclic_term' Keyword
+'('           Text
+'Term'        Name.Variable
+')'           Text
 '.'           Text
 '\n'          Text
 
@@ -1924,6 +2837,20 @@
 ' '           Text
 ':'           Operator
 '-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'compare'     Keyword
+'('           Text
+'Order'       Name.Variable
+','           Text
+' '           Text
+'Term1'       Name.Variable
+','           Text
+' '           Text
+'Term2'       Name.Variable
+')'           Text
+','           Text
 '\n'          Text
 
 '\t\t'        Text
@@ -1998,7 +2925,7 @@
 'Term'        Name.Variable
 ','           Text
 ' '           Text
-'Functor'     Name.Variable
+'Name'        Name.Variable
 ','           Text
 ' '           Text
 'Arity'       Name.Variable
@@ -2042,13 +2969,38 @@
 ' '           Text
 'Copy'        Name.Variable
 ')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'numbervars'  Keyword
+'('           Text
+'Term'        Name.Variable
+','           Text
+' '           Text
+'Start'       Name.Variable
+','           Text
+' '           Text
+'End'         Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'term_variables' Keyword
+'('           Text
+'Term'        Name.Variable
+','           Text
+' '           Text
+'Variables'   Name.Variable
+')'           Text
 '.'           Text
 '\n'          Text
 
 '\n'          Text
 
 '\t'          Text
-'arithemtic_evaluation' Text
+'arithmetic_evaluation' Text
 ' '           Text
 ':'           Operator
 '-'           Operator
@@ -2066,7 +3018,7 @@
 '\n'          Text
 
 '\t'          Text
-'arithemtic_comparison' Text
+'arithmetic_comparison' Text
 ' '           Text
 ':'           Operator
 '-'           Operator
@@ -2363,7 +3315,13 @@
 '\t\t'        Text
 'read_term'   Keyword
 '('           Text
+'Stream'      Name.Variable
+','           Text
+' '           Text
 'Term'        Name.Variable
+','           Text
+' '           Text
+'Options'     Name.Variable
 ')'           Text
 ','           Text
 '\n'          Text
@@ -2474,10 +3432,41 @@
 '\n'          Text
 
 '\t\t'        Text
+'call'        Keyword
+'('           Text
+'Goal'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
 'once'        Keyword
 '('           Text
 'Goal'        Name.Variable
 ')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'ignore'      Keyword
+'('           Text
+'Goal'        Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'true'        Keyword
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'fail'        Keyword
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'false'       Keyword
 ','           Text
 '\n'          Text
 
@@ -2647,6 +3636,37 @@
 '\n'          Text
 
 '\t'          Text
+'sorting'     Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'keysort'     Keyword
+'('           Text
+'List'        Name.Variable
+','           Text
+' '           Text
+'Sorted'      Name.Variable
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'sort'        Keyword
+'('           Text
+'List'        Name.Variable
+','           Text
+' '           Text
+'Sorted'      Name.Variable
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
 'number'      Keyword
 '('           Text
 'C'           Name.Variable
@@ -2656,7 +3676,9 @@
 '-'           Operator
 '>'           Operator
 ' '           Text
-'"+"'         Literal.String
+'"'           Literal.String
+'+'           Literal.String
+'"'           Literal.String
 ','           Text
 ' '           Text
 'number'      Keyword
@@ -2676,7 +3698,9 @@
 '-'           Operator
 '>'           Operator
 ' '           Text
-'"-"'         Literal.String
+'"'           Literal.String
+'-'           Literal.String
+'"'           Literal.String
 ','           Text
 ' '           Text
 'number'      Keyword
@@ -2739,12 +3763,228 @@
 '.'           Text
 '\n'          Text
 
+'\n'          Text
+
+'\t'          Text
+'escape_sequences' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'write'       Keyword
+'('           Text
+"'"           Literal.String
+'Quoted atom with a quote (' Literal.String
+"''"          Literal.String
+') inside.'   Literal.String
+"'"           Literal.String
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'write'       Keyword
+'('           Text
+"'"           Literal.String
+'Quoted atom with a quote (' Literal.String
+"\\'"         Literal.String.Escape
+') inside using a control escape sequence.' Literal.String
+"'"           Literal.String
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'write'       Keyword
+'('           Text
+"'"           Literal.String
+'Quoted atom with a backslash (' Literal.String
+'\\\\'        Literal.String.Escape
+') inside.'   Literal.String
+"'"           Literal.String
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'write'       Keyword
+'('           Text
+"'"           Literal.String
+'Quoted atom with control escape sequences: ' Literal.String
+'\\a'         Literal.String.Escape
+' '           Literal.String
+'\\b'         Literal.String.Escape
+' '           Literal.String
+'\\r'         Literal.String.Escape
+' '           Literal.String
+'\\f'         Literal.String.Escape
+' '           Literal.String
+'\\t'         Literal.String.Escape
+' '           Literal.String
+'\\n'         Literal.String.Escape
+' '           Literal.String
+'\\v'         Literal.String.Escape
+"'"           Literal.String
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'write'       Keyword
+'('           Text
+"'"           Literal.String
+'Quoted atom with an octal escape sequence: ' Literal.String
+'\\123\\'     Literal.String.Escape
+'.'           Literal.String
+"'"           Literal.String
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'write'       Keyword
+'('           Text
+"'"           Literal.String
+'Quoted atom with an hexadecimal escape sequence: ' Literal.String
+'\\x123f\\'   Literal.String.Escape
+'.'           Literal.String
+"'"           Literal.String
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'escape_sequences' Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'write'       Keyword
+'('           Text
+'"'           Literal.String
+'Double-quoted term with a double-quote (' Literal.String
+'""'          Literal.String
+') inside.'   Literal.String
+'"'           Literal.String
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'write'       Keyword
+'('           Text
+'"'           Literal.String
+'Double-quoted term with a double-quote (' Literal.String
+'\\"'         Literal.String.Escape
+') inside using a control escape sequence.' Literal.String
+'"'           Literal.String
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'write'       Keyword
+'('           Text
+'"'           Literal.String
+'Double-quoted term with a backslash (' Literal.String
+'\\\\'        Literal.String.Escape
+') inside.'   Literal.String
+'"'           Literal.String
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'write'       Keyword
+'('           Text
+'"'           Literal.String
+'Double-quoted term with control escape sequences: ' Literal.String
+'\\a'         Literal.String.Escape
+' '           Literal.String
+'\\b'         Literal.String.Escape
+' '           Literal.String
+'\\r'         Literal.String.Escape
+' '           Literal.String
+'\\f'         Literal.String.Escape
+' '           Literal.String
+'\\t'         Literal.String.Escape
+' '           Literal.String
+'\\n'         Literal.String.Escape
+' '           Literal.String
+'\\v'         Literal.String.Escape
+'"'           Literal.String
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'write'       Keyword
+'('           Text
+'"'           Literal.String
+'Double-quoted term with an octal escape sequence: ' Literal.String
+'\\123\\'     Literal.String.Escape
+'.'           Literal.String
+'"'           Literal.String
+')'           Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'write'       Keyword
+'('           Text
+'"'           Literal.String
+'Double-quoted term with an hexadecimal escape sequence: ' Literal.String
+'\\x123f\\'   Literal.String.Escape
+'.'           Literal.String
+'"'           Literal.String
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\t'          Text
+'% nothing in the following predicate definition should be highlighted\n' Comment
+
+'\t'          Text
+'sort'        Text
+' '           Text
+':'           Operator
+'-'           Operator
+'\n'          Text
+
+'\t\t'        Text
+'forall'      Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'object'      Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'write'       Text
+','           Text
+'\n'          Text
+
+'\t\t'        Text
+'number'      Text
+'.'           Text
+'\n'          Text
+
 '\n:- '       Punctuation
 'end_object'  Keyword
 '.'           Text
 '\n'          Text
 
-'\n\n\n:- '   Punctuation
+'\n\n:- '     Punctuation
 'object'      Keyword
 '('           Text
 'class'       Text
@@ -2754,6 +3994,8 @@
 '\t'          Text
 'implements'  Keyword
 '('           Text
+'protected'   Text
+'::'          Operator
 'protocol'    Text
 ')'           Text
 ','           Text
@@ -2762,6 +4004,8 @@
 '\t'          Text
 'imports'     Keyword
 '('           Text
+'private'     Text
+'::'          Operator
 'category'    Text
 ')'           Text
 ','           Text
@@ -2783,20 +4027,25 @@
 ').'          Text
 '\n'          Text
 
-'\n\n:- '     Punctuation
+'\n:- '       Punctuation
 'end_object'  Keyword
 '.'           Text
 '\n'          Text
 
-'\n\n\n:- '   Punctuation
+'\n\n:- '     Punctuation
 'object'      Keyword
 '('           Text
 'parametric'  Text
 '('           Text
-'_Par1'       Name.Variable
+'Parameter'   Name.Variable
 ','           Text
 ' '           Text
-'_Par2'       Name.Variable
+'"'           Literal.String
+'String'      Literal.String
+'"'           Literal.String
+','           Text
+' '           Text
+'33.78'       Literal.Number
 ')'           Text
 ','           Text
 '\n'          Text
@@ -2822,18 +4071,18 @@
 '('           Text
 'parent'      Text
 '('           Text
-'_Par'        Name.Variable
+'Parameter'   Name.Variable
 ')'           Text
 ')'           Text
 ').'          Text
 '\n'          Text
 
-'\n\n:- '     Punctuation
+'\n:- '       Punctuation
 'end_object'  Keyword
 '.'           Text
 '\n'          Text
 
-'\n\n\n:- '   Punctuation
+'\n\n:- '     Punctuation
 'category'    Keyword
 '('           Text
 'category'    Text
@@ -2856,12 +4105,12 @@
 ').'          Text
 '\n'          Text
 
-'\n\n:- '     Punctuation
+'\n:- '       Punctuation
 'end_category' Keyword
 '.'           Text
 '\n'          Text
 
-'\n\n\n:- '   Punctuation
+'\n\n:- '     Punctuation
 'protocol'    Keyword
 '('           Text
 'extended'    Text
@@ -2876,7 +4125,83 @@
 ').'          Text
 '\n'          Text
 
-'\n\n:- '     Punctuation
+'\n:- '       Punctuation
 'end_protocol' Keyword
+'.'           Text
+'\n'          Text
+
+'\n\n:- '     Punctuation
+'module'      Keyword
+'('           Text
+'module'      Text
+','           Text
+' '           Text
+'['           Text
+'foo'         Text
+'/'           Operator
+'1'           Literal.Number
+','           Text
+' '           Text
+'bar'         Text
+'/'           Operator
+'2'           Literal.Number
+']'           Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n:- '       Punctuation
+'use_module'  Keyword
+'('           Text
+'library'     Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+':- '         Punctuation
+'use_module'  Keyword
+'('           Text
+'library'     Text
+','           Text
+' '           Text
+'['           Text
+'baz'         Text
+'/'           Operator
+'3'           Literal.Number
+']'           Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n:- '       Punctuation
+'reexport'    Keyword
+'('           Text
+'library'     Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+':- '         Punctuation
+'reexport'    Keyword
+'('           Text
+'library'     Text
+','           Text
+' '           Text
+'['           Text
+'qux'         Text
+'/'           Operator
+'4'           Literal.Number
+']'           Text
+')'           Text
+'.'           Text
+'\n'          Text
+
+'\n:- '       Punctuation
+'export'      Keyword
+'('           Text
+'quux'        Text
+'/'           Operator
+'5'           Literal.Number
+')'           Text
 '.'           Text
 '\n'          Text
