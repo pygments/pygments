@@ -136,6 +136,7 @@ class Lean4Lexer(RegexLexer):
     """
     For the Lean 4 theorem prover.
     """
+    
     name = 'Lean4'
     url = 'https://github.com/leanprover/lean4'
     aliases = ['lean4']
