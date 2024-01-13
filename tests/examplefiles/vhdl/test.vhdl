@@ -1,3 +1,7 @@
+/*
+ * Multi-line comment, supported in VHDL-2008.
+ */
+
 library ieee;
 use ieee.std_logic_unsigned.all;
 use ieee.std_logic_1164.all;   
