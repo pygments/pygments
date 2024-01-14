@@ -195,6 +195,7 @@ class Lean4Lexer(RegexLexer):
             (r'/-', Comment, 'comment'),
             (r'--.*$', Comment.Single),
             (words(keywords3, prefix=r'\b', suffix=r'\b'), Keyword.Type),
+            (words(('sorry', 'admit'), prefix=r'\b', suffix=r'\b'), Generic.Error),
             (words(operators), Name.Builtin.Pseudo),
             (words(punctuation), Operator),
             (_name_segment, Name),
