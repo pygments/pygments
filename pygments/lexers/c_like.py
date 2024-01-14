@@ -679,7 +679,7 @@ class PromelaLexer(CLexer):
     tokens = {
         'statements': [
             (r'(\[\]|<>|/\\|\\/)|(U|W|V)\b', Operator), # LTL Operators
-            (r'[@]', Punctuation), #remoterefs
+            (r'@', Punctuation), #remoterefs
             (r'(\.)([a-zA-Z_]\w*)', bygroups(Operator, Name.Attribute)),
             inherit
         ],
