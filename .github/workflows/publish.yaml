@@ -1,0 +1,45 @@
+# When triggered, this workflow publishes a release to PyPI.
+# https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/
+
+name: Publish release to PyPI
+
+on: workflow_dispatch # only runs when manually triggered
+
+jobs:
+  build:
+    name: Build distributions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+      - name: Install the build tool
+        run: pipx install build
+      - name: Do the build
+        run: pyproject-build
+      - name: Store the distributions
+        uses: actions/upload-artifact@v4
+        with:
+          name: distributions
+          path: dist/
+  publish:
+    name: Publish distributions to PyPI
+    needs:
+      - build
+    runs-on: ubuntu-latest
+    environment:
+      name: testpypi #### TEMP: replace with pypi
+      url: https://pypi.org/p/pygments-publishing-test #### TEMP: replace with pygments
+    permissions:
+      id-token: write
+    steps:
+      - name: Download distributions
+        uses: actions/download-artifact@v4
+        with:
+          name: distributions
+          path: dist/
+      - name: Publish to PyPI!
+        uses: pypa/gh-action-pypi-publish@release/v1
