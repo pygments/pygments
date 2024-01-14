@@ -35,11 +35,11 @@ nil;  // nil
 
 'single quote string';
 "double quote string";
+`backtick string`;
 
 nodes_info();
 id();
 .id();
-.add(#12, #42);
 
 variable;
 .property;
@@ -74,3 +74,5 @@ a == b;
 a += 1;
 
 bool = (a == b || (a == c && c != d));
+
+INT_MIN;  // name constant
