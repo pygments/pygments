@@ -43,3 +43,6 @@ jobs:
           path: dist/
       - name: Publish to PyPI!
         uses: pypa/gh-action-pypi-publish@release/v1
+        #### TEMP: delete
+        with:
+          repository-url: https://test.pypi.org/legacy/
