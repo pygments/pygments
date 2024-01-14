@@ -717,7 +717,7 @@ class PromelaLexer(CLexer):
                 'pc_value'), suffix=r'\b'),
              Name.Function),
             # Predefined (operators)
-            (r'(run)\b', Operator.Word),
+            (r'run\b', Operator.Word),
             # Declarators
             (words((
                 'active', 'chan', 'D_proctype', 'hidden', 'init', 'local',
