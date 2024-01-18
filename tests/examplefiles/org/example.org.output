@@ -1,0 +1,1263 @@
+'# -*- org -*-' Comment
+'\n'          Text
+
+'#+title'     Comment.Special
+': Single Post with TOML front matter' Comment
+'\n'          Text
+
+'#+author'    Comment.Special
+':'           Comment
+'\n'          Text
+
+'#+date'      Comment.Special
+': 2017-07-20' Comment
+'\n'          Text
+
+'#+options'   Comment.Special
+': creator:t toc:2' Comment
+'\n'          Text
+
+'\n'          Text
+
+'#+hugo_base_dir' Comment.Special
+': ../../'    Comment
+'\n'          Text
+
+'#+hugo_categories' Comment.Special
+': cat1 cat2' Comment
+'\n'          Text
+
+'#+hugo_menu' Comment.Special
+': :menu "foo" :weight 10 :parent main :identifier single-toml' Comment
+'\n'          Text
+
+'#+description' Comment.Special
+': Some description for this post.' Comment
+'\n'          Text
+
+'\n'          Text
+
+'T'           Text
+'h'           Text
+'i'           Text
+'s'           Text
+' '           Text
+'i'           Text
+'s'           Text
+' '           Text
+'a'           Text
+' '           Text
+'s'           Text
+'i'           Text
+'n'           Text
+'g'           Text
+'l'           Text
+'e'           Text
+' '           Text
+'p'           Text
+'o'           Text
+'s'           Text
+'t'           Text
+'.'           Text
+' '           Text
+'Y'           Text
+'o'           Text
+'u'           Text
+' '           Text
+'d'           Text
+'o'           Text
+' '           Text
+'n'           Text
+'o'           Text
+'t'           Text
+' '           Text
+'n'           Text
+'e'           Text
+'e'           Text
+'d'           Text
+' '           Text
+'t'           Text
+'o'           Text
+' '           Text
+'s'           Text
+'e'           Text
+'t'           Text
+' '           Text
+'t'           Text
+'h'           Text
+'e'           Text
+' '           Text
+'=EXPORT_FILE_NAME=' Name.Class
+'\n'          Text
+
+'p'           Text
+'r'           Text
+'o'           Text
+'p'           Text
+'e'           Text
+'r'           Text
+'t'           Text
+'y'           Text
+' '           Text
+'i'           Text
+'n'           Text
+' '           Text
+'h'           Text
+'e'           Text
+'r'           Text
+'e'           Text
+'.'           Text
+' '           Text
+'B'           Text
+'u'           Text
+'t'           Text
+' '           Text
+'t'           Text
+'h'           Text
+'e'           Text
+'n'           Text
+' '           Text
+'y'           Text
+'o'           Text
+'u'           Text
+' '           Text
+'a'           Text
+'l'           Text
+'s'           Text
+'o'           Text
+' '           Text
+'l'           Text
+'o'           Text
+'s'           Text
+'e'           Text
+' '           Text
+'t'           Text
+'h'           Text
+'e'           Text
+' '           Text
+'t'           Text
+'a'           Text
+'g'           Text
+' '           Text
+'a'           Text
+'n'           Text
+'d'           Text
+' '           Text
+'p'           Text
+'r'           Text
+'o'           Text
+'p'           Text
+'e'           Text
+'r'           Text
+'t'           Text
+'y'           Text
+'\n'          Text
+
+'i'           Text
+'n'           Text
+'h'           Text
+'e'           Text
+'r'           Text
+'i'           Text
+'t'           Text
+'a'           Text
+'n'           Text
+'c'           Text
+'e'           Text
+' '           Text
+'O'           Text
+'r'           Text
+'g'           Text
+' '           Text
+'a'           Text
+'w'           Text
+'e'           Text
+'s'           Text
+'o'           Text
+'m'           Text
+'e'           Text
+'n'           Text
+'e'           Text
+'s'           Text
+'s'           Text
+'.'           Text
+'\n'          Text
+
+'\n'          Text
+
+'l'           Text
+'i'           Text
+'n'           Text
+'e'           Text
+' '           Text
+'o'           Text
+'n'           Text
+'e'           Text
+' '           Text
+'\\\\'        Operator
+'\n'          Text
+
+'l'           Text
+'i'           Text
+'n'           Text
+'e'           Text
+' '           Text
+'t'           Text
+'w'           Text
+'o'           Text
+'\n'          Text
+
+'\n'          Text
+
+'*bold*'      Generic.Strong
+' '           Text
+'/italics/'   Generic.Emph
+' '           Text
+'=verbatim='  Name.Class
+' '           Text
+'~code~'      Name.Class
+' '           Text
+'+strikethrough+' Generic.Deleted
+' '           Text
+'_underline_' Generic.Underline
+'\n'          Text
+
+'*'           Generic.Heading
+' First heading in this post' Generic.Strong
+'\n'          Text
+
+'T'           Text
+'h'           Text
+'i'           Text
+'s'           Text
+' '           Text
+'i'           Text
+'s'           Text
+' '           Text
+'a'           Text
+' '           Text
+'u'           Text
+'n'           Text
+'d'           Text
+'e'           Text
+'r'           Text
+' '           Text
+'f'           Text
+'i'           Text
+'r'           Text
+'s'           Text
+'t'           Text
+' '           Text
+'h'           Text
+'e'           Text
+'a'           Text
+'d'           Text
+'i'           Text
+'n'           Text
+'g'           Text
+'.'           Text
+' '           Text
+'<'           Text
+'2018-07-27 Fri' Literal.String
+'>'           Text
+'\n'          Text
+
+'**'          Generic.Subheading
+' COMMENT'    Name.Entity
+' comment header' Text
+'\n'          Text
+
+'**'          Generic.Subheading
+' TODO'       Generic.Error
+' something'  Text
+'\n'          Text
+
+'**'          Generic.Subheading
+' DONE'       Literal.String.Regex
+' anything'   Text
+'\n'          Text
+
+'CLOSED: '    Comment
+'[2018-08-01 Wed 16:17]' Comment.Special
+'\n'          Text
+
+'\n'          Text
+
+'{{{n}}}'     Name.Builtin
+' '           Text
+'a'           Text
+'b'           Text
+'c'           Text
+' '           Text
+'{{{n(,10)}}}' Name.Builtin
+' '           Text
+'d'           Text
+'e'           Text
+'f'           Text
+' '           Text
+'{{{n(x,5)}}}' Name.Builtin
+'\n'          Text
+
+'*'           Generic.Heading
+' Second heading in this post' Generic.Strong
+'\n'          Text
+
+'- '          Keyword
+'u'           Text
+'n'           Text
+'o'           Text
+'r'           Text
+'d'           Text
+'e'           Text
+'r'           Text
+'e'           Text
+'d'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'s'           Text
+'t'           Text
+' '           Text
+'i'           Text
+'t'           Text
+'e'           Text
+'m'           Text
+' '           Text
+'1'           Text
+'\n'          Text
+
+'- '          Keyword
+'u'           Text
+'n'           Text
+'o'           Text
+'r'           Text
+'d'           Text
+'e'           Text
+'r'           Text
+'e'           Text
+'d'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'s'           Text
+'t'           Text
+' '           Text
+'i'           Text
+'t'           Text
+'e'           Text
+'m'           Text
+' '           Text
+'2'           Text
+'\n'          Text
+
+'- '          Keyword
+'Desc1 ::'    Keyword
+' '           Text
+'D'           Text
+'e'           Text
+'s'           Text
+'c'           Text
+'r'           Text
+'i'           Text
+'p'           Text
+'t'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'s'           Text
+'t'           Text
+' '           Text
+'i'           Text
+'t'           Text
+'e'           Text
+'m'           Text
+' '           Text
+'1'           Text
+'\n'          Text
+
+'- '          Keyword
+'Desc2 ::'    Keyword
+' '           Text
+'D'           Text
+'e'           Text
+'s'           Text
+'c'           Text
+'r'           Text
+'i'           Text
+'p'           Text
+'t'           Text
+'i'           Text
+'o'           Text
+'n'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'s'           Text
+'t'           Text
+' '           Text
+'i'           Text
+'t'           Text
+'e'           Text
+'m'           Text
+' '           Text
+'2'           Text
+'\n'          Text
+
+'\n'          Text
+
+'1.'          Keyword
+' '           Text
+'o'           Text
+'r'           Text
+'d'           Text
+'e'           Text
+'r'           Text
+'e'           Text
+'d'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'s'           Text
+'t'           Text
+' '           Text
+'i'           Text
+'t'           Text
+'e'           Text
+'m'           Text
+' '           Text
+'1'           Text
+'\n'          Text
+
+'2.'          Keyword
+' '           Text
+'o'           Text
+'r'           Text
+'d'           Text
+'e'           Text
+'r'           Text
+'e'           Text
+'d'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'s'           Text
+'t'           Text
+' '           Text
+'i'           Text
+'t'           Text
+'e'           Text
+'m'           Text
+' '           Text
+'2'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'1)'          Keyword
+' '           Text
+'o'           Text
+'r'           Text
+'d'           Text
+'e'           Text
+'r'           Text
+'e'           Text
+'d'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'s'           Text
+'t'           Text
+' '           Text
+'i'           Text
+'t'           Text
+'e'           Text
+'m'           Text
+' '           Text
+'1'           Text
+'\n'          Text
+
+'2)'          Keyword
+' '           Text
+'o'           Text
+'r'           Text
+'d'           Text
+'e'           Text
+'r'           Text
+'e'           Text
+'d'           Text
+' '           Text
+'l'           Text
+'i'           Text
+'s'           Text
+'t'           Text
+' '           Text
+'i'           Text
+'t'           Text
+'e'           Text
+'m'           Text
+' '           Text
+'2'           Text
+'\n'          Text
+
+'3)'          Keyword
+' [@20]'      Generic.Emph
+' '           Text
+'a'           Text
+'s'           Text
+'d'           Text
+'f'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'- '          Keyword
+'*bold*'      Generic.Strong
+'\n'          Text
+
+'- '          Keyword
+'/italics/'   Generic.Emph
+'\n'          Text
+
+'- '          Keyword
+'=verbatim='  Name.Class
+'\n'          Text
+
+'- '          Keyword
+'~code~'      Name.Class
+'\n'          Text
+
+'- '          Keyword
+'+strikethrough+' Generic.Deleted
+'\n'          Text
+
+'- '          Keyword
+'_underline_' Generic.Underline
+'\n'          Text
+
+'\n'          Text
+
+'#+begin_comment\n' Comment
+
+'this is a\ncomment\n' Comment
+
+'#+end_comment' Comment
+'\n'          Text
+
+'\n'          Text
+
+'- '          Keyword
+'09 ::'       Keyword
+' '           Text
+'a'           Text
+'s'           Text
+'d'           Text
+'f'           Text
+'\n'          Text
+
+'- '          Keyword
+'09 ::'       Keyword
+' '           Text
+'a'           Text
+'s'           Text
+'d'           Text
+'f'           Text
+'\n'          Text
+
+'**'          Generic.Subheading
+' Checkbox lists                                            ' Text
+' :checkbox:list:' Generic.Emph
+'\n'          Text
+
+'- '          Keyword
+'[ ]'         Keyword
+' '           Text
+'a'           Text
+'s'           Text
+'d'           Text
+'f'           Text
+'\n'          Text
+
+'- '          Keyword
+'[X]'         Keyword
+' '           Text
+'d'           Text
+'e'           Text
+'f'           Text
+'\n'          Text
+
+'*'           Generic.Heading
+' Dates'      Generic.Strong
+'\n'          Text
+
+'**'          Generic.Subheading
+' deadline'   Text
+'\n'          Text
+
+'DEADLINE: '  Comment
+'<2018-07-31 Tue>' Comment.Special
+'\n'          Text
+
+'s'           Text
+'o'           Text
+'m'           Text
+'e'           Text
+'t'           Text
+'h'           Text
+'i'           Text
+'n'           Text
+'g'           Text
+'\n'          Text
+
+'**'          Generic.Subheading
+' scheduled'  Text
+'\n'          Text
+
+'SCHEDULED: ' Comment
+'<2018-07-31 Tue>' Comment.Special
+'\n'          Text
+
+'s'           Text
+'o'           Text
+'m'           Text
+'e'           Text
+'t'           Text
+'h'           Text
+'i'           Text
+'n'           Text
+'g'           Text
+'\n'          Text
+
+'*'           Generic.Heading
+' Blocks'     Generic.Strong
+'\n'          Text
+
+'#+BEGIN_'    Comment
+'QUOTE'       Comment
+'\n'          Text
+
+'quote\nblock\n' Text
+
+'#+END_QUOTE' Comment
+'\n'          Text
+
+'\n'          Text
+
+'#+begin_'    Comment
+'example'     Comment
+'\n'          Text
+
+'example\nblock\n' Text
+
+'#+end_example' Comment
+'\n'          Text
+
+'\n'          Text
+
+'#+begin_src ' Comment
+'emacs-lisp'  Comment.Special
+'\n'          Comment
+
+'('           Text
+'m'           Text
+'e'           Text
+'s'           Text
+'s'           Text
+'a'           Text
+'g'           Text
+'e'           Text
+' '           Text
+'"'           Text
+'h'           Text
+'e'           Text
+'l'           Text
+'l'           Text
+'o'           Text
+'"'           Text
+')'           Text
+'\n'          Text
+
+'#+end_src'   Comment
+'\n'          Text
+
+'\n'          Text
+
+'#+begin_'    Comment
+'details'     Comment
+'\n'          Text
+
+'#+begin_summary\nWhy is this in *green*?\n#+end_summary\nYou will learn that later below in [[#details-css][CSS]] section.\n' Text
+
+'#+end_details' Comment
+'\n'          Text
+
+'\n'          Text
+
+'#'           Text
+'+'           Text
+'b'           Text
+'e'           Text
+'g'           Text
+'i'           Text
+'n'           Text
+'_'           Text
+'e'           Text
+'x'           Text
+'p'           Text
+'o'           Text
+'r'           Text
+'t'           Text
+' '           Text
+'h'           Text
+'t'           Text
+'m'           Text
+'l'           Text
+'\n'          Text
+
+'<'           Text
+'style'       Literal.String
+'>'           Text
+'\n'          Text
+
+'.'           Text
+'m'           Text
+'y'           Text
+'-'           Text
+'t'           Text
+'a'           Text
+'b'           Text
+'l'           Text
+'e'           Text
+' '           Text
+'t'           Text
+'h'           Text
+','           Text
+'\n'          Text
+
+'.'           Text
+'m'           Text
+'y'           Text
+'-'           Text
+'t'           Text
+'a'           Text
+'b'           Text
+'l'           Text
+'e'           Text
+' '           Text
+'t'           Text
+'d'           Text
+' '           Text
+'{'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'p'           Text
+'a'           Text
+'d'           Text
+'d'           Text
+'i'           Text
+'n'           Text
+'g'           Text
+':'           Text
+' '           Text
+'2'           Text
+'0'           Text
+'p'           Text
+'x'           Text
+';'           Text
+'\n'          Text
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'t'           Text
+'e'           Text
+'x'           Text
+'t'           Text
+'-'           Text
+'a'           Text
+'l'           Text
+'i'           Text
+'g'           Text
+'n'           Text
+':'           Text
+' '           Text
+'l'           Text
+'e'           Text
+'f'           Text
+'t'           Text
+';'           Text
+'\n'          Text
+
+'}'           Text
+'\n'          Text
+
+'<'           Text
+'/style'      Literal.String
+'>'           Text
+'\n'          Text
+
+'#'           Text
+'+'           Text
+'e'           Text
+'n'           Text
+'d'           Text
+'_'           Text
+'e'           Text
+'x'           Text
+'p'           Text
+'o'           Text
+'r'           Text
+'t'           Text
+'\n'          Text
+
+'\n'          Text
+
+'- '          Keyword
+'{{{latex}}}' Name.Builtin
+'\n'          Text
+
+'- '          Keyword
+'{{{xetex}}}' Name.Builtin
+'\n'          Text
+
+'#+caption'   Comment.Special
+': Declaring Constants' Comment
+'\n'          Text
+
+'#+name'      Comment.Special
+': code__decl_constants' Comment
+'\n'          Text
+
+'#+begin_src ' Comment
+'systemverilog' Comment.Special
+'\n'          Comment
+
+'c'           Text
+'o'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+' '           Text
+'b'           Text
+'i'           Text
+'t'           Text
+' '           Text
+'['           Text
+'7'           Text
+':'           Text
+'0'           Text
+']'           Text
+' '           Text
+'R'           Text
+'_'           Text
+'C'           Text
+'H'           Text
+'A'           Text
+'R'           Text
+'A'           Text
+'C'           Text
+'T'           Text
+'E'           Text
+'R'           Text
+' '           Text
+'='           Text
+' '           Text
+'8'           Text
+"'"           Text
+'b'           Text
+'0'           Text
+'0'           Text
+'0'           Text
+'_'           Text
+'1'           Text
+'1'           Text
+'1'           Text
+'0'           Text
+'0'           Text
+';'           Text
+' '           Text
+'/'           Text
+'/'           Text
+' '           Text
+'T'           Text
+'h'           Text
+'e'           Text
+' '           Text
+'/K28.0/'     Generic.Emph
+' '           Text
+'c'           Text
+'h'           Text
+'a'           Text
+'r'           Text
+'a'           Text
+'c'           Text
+'t'           Text
+'e'           Text
+'r'           Text
+'\n'          Text
+
+'c'           Text
+'o'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+' '           Text
+'b'           Text
+'i'           Text
+'t'           Text
+' '           Text
+'['           Text
+'7'           Text
+':'           Text
+'0'           Text
+']'           Text
+' '           Text
+'A'           Text
+'_'           Text
+'C'           Text
+'H'           Text
+'A'           Text
+'R'           Text
+'A'           Text
+'C'           Text
+'T'           Text
+'E'           Text
+'R'           Text
+' '           Text
+'='           Text
+' '           Text
+'8'           Text
+"'"           Text
+'b'           Text
+'0'           Text
+'1'           Text
+'1'           Text
+'_'           Text
+'1'           Text
+'1'           Text
+'1'           Text
+'0'           Text
+'0'           Text
+';'           Text
+' '           Text
+'/'           Text
+'/'           Text
+' '           Text
+'T'           Text
+'h'           Text
+'e'           Text
+' '           Text
+'/K28.3/'     Generic.Emph
+' '           Text
+'c'           Text
+'h'           Text
+'a'           Text
+'r'           Text
+'a'           Text
+'c'           Text
+'t'           Text
+'e'           Text
+'r'           Text
+'\n'          Text
+
+'c'           Text
+'o'           Text
+'n'           Text
+'s'           Text
+'t'           Text
+' '           Text
+'b'           Text
+'i'           Text
+'t'           Text
+' '           Text
+'['           Text
+'7'           Text
+':'           Text
+'0'           Text
+']'           Text
+' '           Text
+'Q'           Text
+'_'           Text
+'C'           Text
+'H'           Text
+'A'           Text
+'R'           Text
+'A'           Text
+'C'           Text
+'T'           Text
+'E'           Text
+'R'           Text
+' '           Text
+'='           Text
+' '           Text
+'8'           Text
+"'"           Text
+'b'           Text
+'1'           Text
+'0'           Text
+'0'           Text
+'_'           Text
+'1'           Text
+'1'           Text
+'1'           Text
+'0'           Text
+'0'           Text
+';'           Text
+' '           Text
+'/'           Text
+'/'           Text
+' '           Text
+'T'           Text
+'h'           Text
+'e'           Text
+' '           Text
+'/K28.4/'     Generic.Emph
+' '           Text
+'c'           Text
+'h'           Text
+'a'           Text
+'r'           Text
+'a'           Text
+'c'           Text
+'t'           Text
+'e'           Text
+'r'           Text
+'\n'          Text
+
+'#+end_src'   Comment
+'\n'          Text
+
+'C'           Text
+'h'           Text
+'e'           Text
+'c'           Text
+'k'           Text
+' '           Text
+'o'           Text
+'u'           Text
+'t'           Text
+' '           Text
+'c'           Text
+'o'           Text
+'d'           Text
+'e'           Text
+' '           Text
+'s'           Text
+'n'           Text
+'i'           Text
+'p'           Text
+'p'           Text
+'e'           Text
+'t'           Text
+' '           Text
+'[['          Text
+'code__decl_constants' Name.Attribute
+']]'          Text
+'.'           Text
+'\n'          Text
+
+'*'           Generic.Heading
+' Links                                                           ' Generic.Strong
+' :some_tag:' Generic.Emph
+'\n'          Text
+
+':properties:\n' Comment
+
+':CUSTOM_ID: links\n' Comment.Special
+
+':end:'       Comment
+'\n'          Text
+
+'- '          Keyword
+'[['          Text
+'file:post-yaml.org' Name.Attribute
+']]'          Text
+'\n'          Text
+
+'- '          Keyword
+'[['          Text
+'file:post-yaml.org' Name.Attribute
+']['          Text
+'Post exported with YAML front-matter' Name.Tag
+']]'          Text
+'.'           Text
+'\n'          Text
+
+'- '          Keyword
+'<<'          Text
+'target'      Name.Attribute
+'>>'          Text
+'\n'          Text
+
+'*'           Generic.Heading
+' Tables'     Generic.Strong
+'\n'          Text
+
+':PROPERTIES:\n' Comment
+
+':CUSTOM_ID: tables\n' Comment.Special
+
+':END:'       Comment
+'\n'          Text
+
+'| a | b |'   Literal.String
+'\n'          Text
+
+'| c | d |'   Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'|---+---|'   Literal.String
+'\n'          Text
+
+'| a | b |'   Literal.String
+'\n'          Text
+
+'|---+---|'   Literal.String
+'\n'          Text
+
+'| c | d |'   Literal.String
+'\n'          Text
+
+'|---+---|'   Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'S'           Text
+'o'           Text
+'m'           Text
+'e'           Text
+' '           Text
+'t'           Text
+'e'           Text
+'x'           Text
+'t'           Text
+' '           Text
+'[fn:'        Name.Builtin.Pseudo
+'2'           Literal.String
+']'           Name.Builtin.Pseudo
+'\n'          Text
+
+'\n'          Text
+
+'#+BEGIN: '   Comment
+'aggregate'   Comment.Special
+' :table "original" :cols "Color count()"\n' Comment
+
+'| Color | count() |' Literal.String
+'\n'          Text
+
+'|-------+---------|' Literal.String
+'\n'          Text
+
+'| Red   |       7 |' Literal.String
+'\n'          Text
+
+'| Blue  |       7 |' Literal.String
+'\n'          Text
+
+'#+END:'      Comment
+'\n'          Text
+
+'*'           Generic.Heading
+' Footnotes'  Generic.Strong
+'\n'          Text
+
+'\n'          Text
+
+'[fn:'        Name.Builtin.Pseudo
+'2'           Literal.String
+']'           Name.Builtin.Pseudo
+' '           Text
+'f'           Text
+'o'           Text
+'o'           Text
+'t'           Text
+'n'           Text
+'o'           Text
+'t'           Text
+'e'           Text
+' '           Text
+'2'           Text
+'\n'          Text
+
+'[fn:'        Name.Builtin.Pseudo
+'1'           Literal.String
+']'           Name.Builtin.Pseudo
+' '           Text
+'F'           Text
+'o'           Text
+'r'           Text
+' '           Text
+'m'           Text
+'o'           Text
+'r'           Text
+'e'           Text
+' '           Text
+'d'           Text
+'e'           Text
+'t'           Text
+'a'           Text
+'i'           Text
+'l'           Text
+','           Text
+' '           Text
+'c'           Text
+'h'           Text
+'e'           Text
+'c'           Text
+'k'           Text
+' '           Text
+'o'           Text
+'u'           Text
+'t'           Text
+' '           Text
+'t'           Text
+'h'           Text
+'e'           Text
+' '           Text
+'O'           Text
+'r'           Text
+'g'           Text
+' '           Text
+'m'           Text
+'a'           Text
+'n'           Text
+'u'           Text
+'a'           Text
+'l'           Text
+' '           Text
+'[['          Text
+'http://orgmode.org/\nmanual/Footnotes.html' Name.Attribute
+']['          Text
+'page for footnotes' Name.Tag
+']]'          Text
+'.'           Text
+'\n'          Text
+
+'*'           Generic.Heading
+' Local Variables' Generic.Strong
+' :ARCHIVE:'  Generic.Emph
+'\n'          Text
+
+'# Local Variables:' Comment
+'\n'          Text
+
+'# org-link-file-path-type: relative' Comment
+'\n'          Text
+
+'# End:'      Comment
+'\n'          Text
