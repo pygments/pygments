@@ -170,6 +170,7 @@ LEXERS = {
     'FiftLexer': ('pygments.lexers.fift', 'Fift', ('fift', 'fif'), ('*.fif',), ()),
     'FishShellLexer': ('pygments.lexers.shell', 'Fish', ('fish', 'fishshell'), ('*.fish', '*.load'), ('application/x-fish',)),
     'FlatlineLexer': ('pygments.lexers.dsls', 'Flatline', ('flatline',), (), ('text/x-flatline',)),
+    'FlexLexer': ('pygments.lexers.c_like', 'Flex', ('flex',), ('*.lex', '*.l'), ('text/x-lex',)),
     'FloScriptLexer': ('pygments.lexers.floscript', 'FloScript', ('floscript', 'flo'), ('*.flo',), ()),
     'ForthLexer': ('pygments.lexers.forth', 'Forth', ('forth',), ('*.frt', '*.fs'), ('application/x-forth',)),
     'FortranFixedLexer': ('pygments.lexers.fortran', 'FortranFixed', ('fortranfixed',), ('*.f', '*.F'), ()),

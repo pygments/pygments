@@ -10,9 +10,9 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups, inherit, words, \
-    default
-from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
+from pygments.lexer import RegexLexer, using, include, bygroups, inherit, words, \
+    default, using, this
+from pygments.token import Token, Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
 
 from pygments.lexers.c_cpp import CLexer, CppLexer
@@ -20,13 +20,14 @@ from pygments.lexers import _mql_builtins
 
 __all__ = ['PikeLexer', 'NesCLexer', 'ClayLexer', 'ECLexer', 'ValaLexer',
            'CudaLexer', 'SwigLexer', 'MqlLexer', 'ArduinoLexer', 'CharmciLexer',
-           'OmgIdlLexer']
+           'OmgIdlLexer', 'FlexLexer']
 
 
 class PikeLexer(CppLexer):
     """
     For `Pike <http://pike.lysator.liu.se/>`_ source code.
     """
+
     name = 'Pike'
     aliases = ['pike']
     filenames = ['*.pike', '*.pmod']
@@ -68,6 +69,7 @@ class NesCLexer(CLexer):
     For `nesC <https://github.com/tinyos/nesc>`_ source code with preprocessor
     directives.
     """
+
     name = 'nesC'
     aliases = ['nesc']
     filenames = ['*.nc']
@@ -95,6 +97,7 @@ class ClayLexer(RegexLexer):
     """
     For Clay source.
     """
+
     name = 'Clay'
     filenames = ['*.clay']
     aliases = ['clay']
@@ -147,6 +150,7 @@ class ECLexer(CLexer):
     """
     For eC source code with preprocessor directives.
     """
+
     name = 'eC'
     aliases = ['ec']
     filenames = ['*.ec', '*.eh']
@@ -180,6 +184,7 @@ class ValaLexer(RegexLexer):
     """
     For Vala source code with preprocessor directives.
     """
+
     name = 'Vala'
     aliases = ['vala', 'vapi']
     filenames = ['*.vala', '*.vapi']
@@ -278,6 +283,7 @@ class CudaLexer(CLexer):
     """
     For NVIDIA CUDA™ source.
     """
+
     name = 'CUDA'
     filenames = ['*.cu', '*.cuh']
     aliases = ['cuda', 'cu']
@@ -325,6 +331,7 @@ class SwigLexer(CppLexer):
     """
     For `SWIG <http://www.swig.org/>`_ source code.
     """
+
     name = 'SWIG'
     aliases = ['swig']
     filenames = ['*.swg', '*.i']
@@ -391,6 +398,7 @@ class MqlLexer(CppLexer):
     For `MQL4 <http://docs.mql4.com/>`_ and
     `MQL5 <http://www.mql5.com/en/docs>`_ source code.
     """
+
     name = 'MQL'
     aliases = ['mql', 'mq4', 'mq5', 'mql4', 'mql5']
     filenames = ['*.mq4', '*.mq5', '*.mqh']
@@ -655,5 +663,86 @@ class OmgIdlLexer(CLexer):
             (r'[\(\)]', Punctuation),
             include('values'),
             include('annotation_appl'),
+        ],
+    }
+
+
+class FlexLexer(RegexLexer):
+    """
+    Lexer for `Flex <http://github.com/westes/flex>`_,
+
+    .. versionadded:: 2.13
+    """
+
+    name = 'Flex'
+    aliases = ['flex']
+    filenames = ['*.lex', '*.l']
+    mimetypes = ['text/x-lex']
+    url = 'http://github.com/westes/flex'
+
+    tokens = {
+        # Handle the definitions section
+        'root': [
+            (r'(%[{}])', String.Delimiter),
+            (r'%%', String.Delimiter, 'rules'),
+            (r'(#include)(\s)(<\w*\.*\w*>)', bygroups(Comment.Preproc, Whitespace, Comment.PreprocFile)),
+            (r'(#define)(\s)(\w*\.*\w*)', bygroups(Comment.Preproc, Whitespace, Name)),
+            (words(('bool', 'int', 'long', 'float', 'short', 'double', 'char',
+                'unsigned', 'signed', 'void'), suffix=r'\b'), Keyword.Type),
+            (r'\n', Whitespace),
+            (r'\s+', Whitespace),
+            (r'\\\n', Text),  # line continuation
+            include('whitespace'),
+            (r'[|/*+?^$.\-=]', Operator),
+            (r'[,;]', Punctuation),
+            (r'(%[sx])(\s)(\w+)', bygroups(Keyword, Whitespace, Name)),
+            (r'((?!\d)(?:[\w$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8})+)(\s*)(=)(\s*)([^,;\s])', bygroups(Name.Variable, Whitespace, Operator, Whitespace, using(this, state='assign'))),
+            (r'(\b[_a-zA-Z0-9][\w\-]+)(\s+)', bygroups(Name, Whitespace), 'regex'),
+        ],
+        # Handle the thing assigned to a variable
+        'assign': [
+            (r'\'.{0,2}\'', String.Char, '#pop'),
+            (r'"', String, ('string', '#pop')),
+            (r'\d+', Number.Integer, '#pop'),
+            (r'\d*\.\d+', Number.Float, '#pop'),
+        ],
+        # Handle the rules section
+        'rules': [
+            (r'%%', String.Delimiter, ('usercode', '#pop')),
+            (r'\n', Whitespace),
+            (r'(/\*)(.)+(\*/)', Comment.Single),
+            (r'(.+?)(\s+)(.+)(\n)', bygroups(using(this, state='regex'), Whitespace, using(CLexer), Whitespace)),
+        ],
+        # Handle the user code section
+        'usercode': [
+            (r'(.+?)', using(CLexer)),
+            include('whitespace'),
+        ],
+        # Handle whitespace
+        'whitespace': [
+            (r'\s+', Whitespace),
+            (r'(/\*)(.)+(\*/)', Comment.Single),
+        ],
+        # Handle regular expressions
+        'regex': [
+            (r'\n', Whitespace, '#pop'),
+            (r'"', String, 'string'),
+            (r'\[:(alnum|alpha|blank|cntrl|digit|graph|lower|print|punct|space|upper|xdigit):\]', Name.Builtin),
+            (r'\{[\w_]+\}', Name.Variable),
+            (r'\d+', Number),
+            (r'\w', Name),
+            (r'[|/*+?^$.-]', Operator),
+            (r'\\[abfnrtv]', String.Esacpe),
+            (r'\\[AbBdDsSwWZ]', String.Regex),
+            (r'\\.', String.Literal),
+            (r'[\[\]{},\(\)]', Punctuation),
+            (r' ', Whitespace),
+        ],
+        # Handle strings
+        'string': [
+            (r'"', String, '#pop'),
+            (r'\\[abfnrtv]', String.Esacpe),
+            (r'\\.', String.Literal),
+            (r'.', String),
         ],
     }
