@@ -887,7 +887,7 @@ class HtmlFormatter(Formatter):
                     yield 1, ''.join(line)
                     line = []
                 elif part:
-                    yield 1, ''.join((cspan, part, (cspan and '</span>'), lsep))
+                    yield 1, ''.join((cspan, part, lsep, (cspan and '</span>')))
                 else:
                     yield 1, lsep
             # for the last line
