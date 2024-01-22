@@ -639,7 +639,7 @@ class ImageFormatter(Formatter):
                 if version.parse(PIL.__version__) < version.Version('9.2.0'):
                     text_size = draw.textsize(text=value, font=font)
                 else:
-                    text_size = draw.textlength(text=value, font=font)
+                    text_size = font.getbbox(value)[2:]
                 draw.rectangle([pos[0], pos[1], pos[0] + text_size[0], pos[1] + text_size[1]], fill=text_bg)
             draw.text(pos, value, font=font, fill=text_fg)
         im.save(outfile, self.image_format.upper())
