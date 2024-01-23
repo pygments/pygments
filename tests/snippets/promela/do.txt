@@ -1,0 +1,31 @@
+---input---
+init {
+  a ? b -> a ! b;
+}
+
+---tokens---
+'init'        Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'?'           Operator
+' '           Text.Whitespace
+'b'           Name
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'!'           Operator
+' '           Text.Whitespace
+'b'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

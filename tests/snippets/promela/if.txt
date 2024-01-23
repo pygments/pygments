@@ -1,0 +1,38 @@
+---input---
+init {
+    if 
+    :: skip;
+    fi;
+    skip
+}
+
+---tokens---
+'init'        Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'skip'        Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'fi'          Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'skip'        Keyword
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

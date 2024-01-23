@@ -1,0 +1,48 @@
+---input---
+init {
+  intercepted.key = data.key
+  r.b[a] = a * 4 + 7;
+}
+
+---tokens---
+'init'        Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'intercepted' Name
+'.'           Operator
+'key'         Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'data'        Name
+'.'           Operator
+'key'         Name.Attribute
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'r'           Name
+'.'           Operator
+'b'           Name.Attribute
+'['           Punctuation
+'a'           Name
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'7'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

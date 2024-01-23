@@ -1,0 +1,15 @@
+---input---
+active proctype cr() {}
+
+---tokens---
+'active'      Keyword.Declaration
+' '           Text.Whitespace
+'proctype'    Keyword.Declaration
+' '           Text.Whitespace
+'cr'          Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
