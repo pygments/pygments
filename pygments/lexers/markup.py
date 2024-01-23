@@ -626,18 +626,18 @@ class OrgLexer(RegexLexer):
     """
     name = 'Org Mode'
     url = 'https://orgmode.org'
-    aliases = ['org', 'orgmode']
+    aliases = ['org', 'orgmode', 'org-mode']
     filenames = ['*.org']
     mimetypes = ["text/org"]
-    version_added = '2.2'
+    version_added = '2.18'
     flags = re.MULTILINE
     tokens = {
         'root': [
             (r'^# .*$', Comment),
 
             # Headings
-            (r'^(\*)( COMMENT)( .*)$', bygroups(Generic.Heading, Name.Entity, Generic.Strong)),
-            (r'^(\*\*+)( COMMENT)( .*)$', bygroups(Generic.Subheading, Name.Entity, Text)),
+            (r'^(\*)( COMMENT)( .*)$', bygroups(Generic.Heading, Name.Entity, Generic.Heading)),
+            (r'^(\*\*+)( COMMENT)( .*)$', bygroups(Generic.Subheading, Name.Entity, Generic.Subheading)),
             (r'^(\*)( DONE)( .*)$', bygroups(Generic.Heading, String.Regex, Generic.Strong)),
             (r'^(\*\*+)( DONE)( .*)$', bygroups(Generic.Subheading, String.Regex, Text)),
             (r'^(\*)( TODO)( .*)$', bygroups(Generic.Heading, Generic.Error, Generic.Strong)),
