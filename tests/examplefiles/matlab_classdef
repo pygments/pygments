@@ -1,0 +1,40 @@
+classdef SomeClass < SomeOtherClass & YetAnotherClass
+  
+  properties
+    x (1,1) double = 42
+    y
+  end
+  
+  methods
+    
+    function this = SomeClass()
+    end
+    
+    function method(this)
+      localFunction(this.x)
+    end
+    
+    function method2(this, foo, bar, baz)
+      arguments
+        this
+        foo (1,1) double
+        bar string  {mustBeMember(bar, {'a','b','c'})} = "a"
+        baz categorical = missing
+      end
+      
+      fprintf('%f %s %d %f\n', foo, bar, baz, this.x);
+    end
+    
+  end
+  
+end
+  
+function localFunction(foo, bar)
+  arguments
+    foo (1,1) double
+    bar string = "whatever"
+  end
+  
+  fprintf('Hello, world!\n')
+  fprintf('foo=%f, bar=%s\n', foo, bar)
+end
