@@ -7,7 +7,6 @@
     :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
-from packaging import version
 import os
 import sys
 
@@ -636,7 +635,7 @@ class ImageFormatter(Formatter):
         for pos, value, font, text_fg, text_bg in self.drawables:
             if text_bg:
                 # see deprecations https://pillow.readthedocs.io/en/stable/releasenotes/9.2.0.html#font-size-and-offset-methods
-                if version.parse(PIL.__version__) < version.Version('9.2.0'):
+                if hasattr(draw, 'textsize'):
                     text_size = draw.textsize(text=value, font=font)
                 else:
                     text_size = font.getbbox(value)[2:]
