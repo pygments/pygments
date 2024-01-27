@@ -1,0 +1,13 @@
+---input---
+use std::collections::BtreeMap;
+
+---tokens---
+'use'         Keyword
+' '           Text.Whitespace
+'std'         Name
+'::'          Operator
+'collections' Name
+'::'          Operator
+'BtreeMap'    Name
+';'           Punctuation
+'\n'          Text.Whitespace

@@ -105,7 +105,7 @@ class RustLexer(RegexLexer):
             builtin_funcs_types,
             builtin_macros,
             # Path separators, so types don't catch them.
-            (r'::\b', Text),
+            (r'::\b', Operator),
             # Types in positions.
             (r'(?::|->)', Text, 'typename'),
             # Labels
