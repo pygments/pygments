@@ -98,7 +98,7 @@ class RustLexer(RegexLexer):
             (r'let\b', Keyword.Declaration),
             (r'fn\b', Keyword, 'funcname'),
             (r'(struct|enum|type|union)\b', Keyword, 'typename'),
-            (r'(default)(\s+)(type|fn)\b', bygroups(Keyword, Text, Keyword)),
+            (r'(default)(\s+)(type|fn)\b', bygroups(Keyword, Whitespace, Keyword)),
             keyword_types,
             (r'[sS]elf\b', Name.Builtin.Pseudo),
             # Prelude (taken from Rust's src/libstd/prelude.rs)
@@ -171,17 +171,17 @@ class RustLexer(RegexLexer):
             (r'[*/]', String.Doc),
         ],
         'modname': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'[a-zA-Z_]\w*', Name.Namespace, '#pop'),
             default('#pop'),
         ],
         'funcname': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'[a-zA-Z_]\w*', Name.Function, '#pop'),
             default('#pop'),
         ],
         'typename': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'&', Keyword.Pseudo),
             (r"'", Operator, 'lifetime'),
             builtin_funcs_types,
