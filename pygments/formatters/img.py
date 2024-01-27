@@ -19,7 +19,6 @@ import subprocess
 # Import this carefully
 try:
     from PIL import Image, ImageDraw, ImageFont
-    import PIL
     pil_available = True
 except ImportError:
     pil_available = False
