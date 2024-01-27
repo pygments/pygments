@@ -107,7 +107,7 @@ class RustLexer(RegexLexer):
             # Path separators, so types don't catch them.
             (r'::\b', Operator),
             # Types in positions.
-            (r'(?::|->)', Text, 'typename'),
+            (r'(?::|->)', Punctuation, 'typename'),
             # Labels
             (r'(break|continue)(\b\s*)(\'[A-Za-z_]\w*)?',
              bygroups(Keyword, Text.Whitespace, Name.Label)),
@@ -156,7 +156,7 @@ class RustLexer(RegexLexer):
             # Misc
             # Lone hashes: not used in Rust syntax, but allowed in macro
             # arguments, most famously for quote::quote!()
-            (r'#', Text),
+            (r'#', Punctuation),
         ],
         'comment': [
             (r'[^*/]+', Comment.Multiline),

@@ -1,0 +1,21 @@
+---input---
+fn func(x: u32) -> None {}
+
+---tokens---
+'fn'          Keyword
+' '           Text.Whitespace
+'func'        Name.Function
+'('           Punctuation
+'x'           Name
+':'           Punctuation
+' '           Text.Whitespace
+'u32'         Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Punctuation
+' '           Text.Whitespace
+'None'        Name.Builtin
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
