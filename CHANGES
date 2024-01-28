@@ -23,6 +23,9 @@ Version 2.18.0
   * Python: fix highlighting of soft keywords before ``None``/``True``/``False``
   * reStructuredText: use ``Token.Comment`` for comments instead of
     ``Comment.Preproc`` (#2598)
+  * Rust: highlight ``:``, ``::`` and ``->`` as ``Punctuation``
+    and whitespace as ``Whitespace``, instead of ``Text``
+    in both cases (#2631)
   * SQL Explain: allow negative numbers (#2610)
   * ThingsDB: add constants and new functions; support template
     strings (#2624)
