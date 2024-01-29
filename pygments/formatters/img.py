@@ -633,7 +633,11 @@ class ImageFormatter(Formatter):
                                fill=self.hl_color)
         for pos, value, font, text_fg, text_bg in self.drawables:
             if text_bg:
-                text_size = draw.textsize(text=value, font=font)
+                # see deprecations https://pillow.readthedocs.io/en/stable/releasenotes/9.2.0.html#font-size-and-offset-methods
+                if hasattr(draw, 'textsize'):
+                    text_size = draw.textsize(text=value, font=font)
+                else:
+                    text_size = font.getbbox(value)[2:]
                 draw.rectangle([pos[0], pos[1], pos[0] + text_size[0], pos[1] + text_size[1]], fill=text_bg)
             draw.text(pos, value, font=font, fill=text_fg)
         im.save(outfile, self.image_format.upper())

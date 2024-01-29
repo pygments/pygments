@@ -1,0 +1,17 @@
+---input---
+struct X { x: u32 }
+
+---tokens---
+'struct'      Keyword
+' '           Text.Whitespace
+'X'           Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'x'           Name
+':'           Punctuation
+' '           Text.Whitespace
+'u32'         Keyword.Type
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace

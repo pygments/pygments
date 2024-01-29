@@ -1,0 +1,12 @@
+---input---
+init { skip }
+
+---tokens---
+'init'        Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'skip'        Keyword
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace

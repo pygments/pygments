@@ -1,0 +1,37 @@
+---input---
+ltl alwayserr { [] ((statusa == err) || (statusb == err)) }
+
+---tokens---
+'ltl'         Keyword.Declaration
+' '           Text.Whitespace
+'alwayserr'   Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'[]'          Operator
+' '           Text.Whitespace
+'('           Punctuation
+'('           Punctuation
+'statusa'     Name
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'err'         Name
+')'           Punctuation
+' '           Text.Whitespace
+'|'           Operator
+'|'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'statusb'     Name
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'err'         Name
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace

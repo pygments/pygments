@@ -393,6 +393,7 @@ LEXERS = {
     'ProcfileLexer': ('pygments.lexers.procfile', 'Procfile', ('procfile',), ('Procfile',), ()),
     'PrologLexer': ('pygments.lexers.prolog', 'Prolog', ('prolog',), ('*.ecl', '*.prolog', '*.pro', '*.pl'), ('text/x-prolog',)),
     'PromQLLexer': ('pygments.lexers.promql', 'PromQL', ('promql',), ('*.promql',), ()),
+    'PromelaLexer': ('pygments.lexers.c_like', 'Promela', ('promela',), ('*.pml', '*.prom', '*.prm', '*.promela', '*.pr', '*.pm'), ('text/x-promela',)),
     'PropertiesLexer': ('pygments.lexers.configs', 'Properties', ('properties', 'jproperties'), ('*.properties',), ('text/x-java-properties',)),
     'ProtoBufLexer': ('pygments.lexers.dsls', 'Protocol Buffer', ('protobuf', 'proto'), ('*.proto',), ()),
     'PrqlLexer': ('pygments.lexers.prql', 'PRQL', ('prql',), ('*.prql',), ('application/prql', 'application/x-prql')),

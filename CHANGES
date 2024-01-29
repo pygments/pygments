@@ -12,6 +12,7 @@ Version 2.18.0
   * Janet (#2557)
   * Typst (#2596)
   * Lean 4 (#2618, #2626)
+  * Promela (#2620)
 
 - Updated lexers:
 
@@ -22,6 +23,9 @@ Version 2.18.0
   * Python: fix highlighting of soft keywords before ``None``/``True``/``False``
   * reStructuredText: use ``Token.Comment`` for comments instead of
     ``Comment.Preproc`` (#2598)
+  * Rust: highlight ``:``, ``::`` and ``->`` as ``Punctuation``
+    and whitespace as ``Whitespace``, instead of ``Text``
+    in both cases (#2631)
   * SQL Explain: allow negative numbers (#2610)
   * ThingsDB: add constants and new functions; support template
     strings (#2624)
@@ -32,6 +36,7 @@ Version 2.18.0
 
   * Coffee (#2609)
 
+- Make background colors in the image formatter work with Pillow 10.0 (#2623)
 - Require Python 3.8. As a result, the ``importlib-metadata`` package
   is no longer needed for fast plugin discovery on Python 3.7.
   The ``plugins`` extra (used as, e.g., ``pip install pygments[plugins]``)
