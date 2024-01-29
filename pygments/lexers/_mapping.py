@@ -364,7 +364,7 @@ LEXERS = {
     'OpaLexer': ('pygments.lexers.ml', 'Opa', ('opa',), ('*.opa',), ('text/x-opa',)),
     'OpenEdgeLexer': ('pygments.lexers.business', 'OpenEdge ABL', ('openedge', 'abl', 'progress'), ('*.p', '*.cls'), ('text/x-openedge', 'application/x-openedge')),
     'OpenScadLexer': ('pygments.lexers.openscad', 'OpenSCAD', ('openscad',), ('*.scad',), ('application/x-openscad',)),
-    'OrgLexer': ('pygments.lexers.markup', 'Org Mode', ('org', 'orgmode'), ('*.org',), ('text/org',)),
+    'OrgLexer': ('pygments.lexers.markup', 'Org Mode', ('org', 'orgmode', 'org-mode'), ('*.org',), ('text/org',)),
     'OutputLexer': ('pygments.lexers.special', 'Text output', ('output',), (), ()),
     'PacmanConfLexer': ('pygments.lexers.configs', 'PacmanConf', ('pacmanconf',), ('pacman.conf',), ()),
     'PanLexer': ('pygments.lexers.dsls', 'Pan', ('pan',), ('*.pan',), ()),
