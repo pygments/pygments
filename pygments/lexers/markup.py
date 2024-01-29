@@ -688,12 +688,12 @@ class OrgLexer(RegexLexer):
         ],
         'inline': [
             # Bold, Italics, Verbatim, Code, Strikethrough, Underline
-            (r'([ \t])*(\*[^ \n*][^*]+?[^ \n*]\*)((?=\W|\n|$))', bygroups(Text, Generic.Strong, Text)),
-            (r'([ \t])*(/[^/]+?/)((?=\W|\n|$))', bygroups(Text, Generic.Emph, Text)),
-            (r'([ \t])*(=[^\n=]+?=)((?=\W|\n|$))', bygroups(Text, Name.Class, Text)),
-            (r'([ \t])*(~[^\n~]+?~)((?=\W|\n|$))', bygroups(Text, Name.Class, Text)),
-            (r'([ \t])*(\+[^+]+?\+)((?=\W|\n|$))', bygroups(Text, Generic.Deleted, Text)),
-            (r'([ \t])*(_[^_]+?_)((?=\W|\n|$))', bygroups(Text, Generic.Underline, Text)),
+            (r'([ \t]*)(\*[^ \n*][^*]+?[^ \n*]\*)((?=\W|\n|$))', bygroups(Text, Generic.Strong, Text)),
+            (r'([ \t]*)(/[^/]+?/)((?=\W|\n|$))', bygroups(Text, Generic.Emph, Text)),
+            (r'([ \t]*)(=[^\n=]+?=)((?=\W|\n|$))', bygroups(Text, Name.Class, Text)),
+            (r'([ \t]*)(~[^\n~]+?~)((?=\W|\n|$))', bygroups(Text, Name.Class, Text)),
+            (r'([ \t]*)(\+[^+]+?\+)((?=\W|\n|$))', bygroups(Text, Generic.Deleted, Text)),
+            (r'([ \t]*)(_[^_]+?_)((?=\W|\n|$))', bygroups(Text, Generic.Underline, Text)),
 
             # Dates, Macros, Footnotes, Links
             (r'(<)([^<>]+?)(>)', bygroups(Text, String, Text)),
