@@ -620,6 +620,7 @@ class MarkdownLexer(RegexLexer):
         self.handlecodeblocks = get_bool_opt(options, 'handlecodeblocks', True)
         RegexLexer.__init__(self, **options)
 
+
 class OrgLexer(RegexLexer):
     """
     For Org Mode markup.
@@ -631,9 +632,10 @@ class OrgLexer(RegexLexer):
     mimetypes = ["text/org"]
     version_added = '2.18'
     flags = re.MULTILINE
+
     tokens = {
         'root': [
-            (r'^# .*$', Comment),
+            (r'^# .*', Comment.Single),
 
             # Headings
             (r'^(\*)( COMMENT)( .*)$', bygroups(Generic.Heading, Name.Entity, Generic.Heading)),
