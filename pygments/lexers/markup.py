@@ -638,16 +638,15 @@ class OrgLexer(RegexLexer):
             (r'^# .*', Comment.Single),
 
             # Headings
-            (r'^(\*)( COMMENT)( .*)$', bygroups(Generic.Heading, Name.Entity, Generic.Heading)),
-            (r'^(\*\*+)( COMMENT)( .*)$', bygroups(Generic.Subheading, Name.Entity, Generic.Subheading)),
-            (r'^(\*)( DONE)( .*)$', bygroups(Generic.Heading, String.Regex, Generic.Strong)),
-            (r'^(\*\*+)( DONE)( .*)$', bygroups(Generic.Subheading, String.Regex, Text)),
-            (r'^(\*)( TODO)( .*)$', bygroups(Generic.Heading, Generic.Error, Generic.Strong)),
-            (r'^(\*\*+)( TODO)( .*)$', bygroups(Generic.Subheading, Generic.Error, Text)),
-            (r'^(\*)( .+?)( :[a-zA-Z0-9_@:]+:)$', bygroups(Generic.Heading, Generic.Strong, Generic.Emph)),
-            (r'^(\*)( .+)$', bygroups(Generic.Heading, Generic.Strong)),
-            (r'^(\*\*+)( .+?)( :[a-zA-Z0-9_@:]+:)$', bygroups(Generic.Subheading, Text, Generic.Emph)),
-            (r'^(\*\*+)( .+)$', bygroups(Generic.Subheading, Text)),
+            (r'^(\*)( COMMENT)( .*)', bygroups(Generic.Heading, Name.Entity, Generic.Heading)),
+            (r'^(\*\*+)( COMMENT)( .*)', bygroups(Generic.Subheading, Name.Entity, Generic.Subheading)),
+            (r'^(\*)( DONE)( .*)', bygroups(Generic.Heading, String.Regex, Generic.Subheading)),
+            (r'^(\*\*+)( DONE)( .*)', bygroups(Generic.Subheading, String.Regex, Generic.Subheading)),
+            (r'^(\*)( TODO)( .*)', bygroups(Generic.Heading, Generic.Error, Generic.Subheading)),
+            (r'^(\*\*+)( TODO)( .*)', bygroups(Generic.Subheading, Generic.Error, Generic.Subheading)),
+
+            (r'^(\* .+?)( :[a-zA-Z0-9_@:]+:)?$', bygroups(Generic.Heading, Generic.Emph)),
+            (r'^(\*\*+ .+?)( :[a-zA-Z0-9_@:]+:)?$', bygroups(Generic.Subheading, Generic.Emph)),
 
             # Lists
             (r'^( *)([+-] )(\[[ X]\])( .+)$', bygroups(Text, Keyword, Keyword, using(this))),
