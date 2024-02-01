@@ -1,210 +1,58 @@
-'# -*- org -*-' Comment
+'# -*- org -*-' Comment.Single
 '\n'          Text
 
-'#+title'     Comment.Special
-': Single Post with TOML front matter' Comment
+'#+title:'    Name.Namespace
+' Single Post with TOML front matter' Text
 '\n'          Text
 
-'#+author'    Comment.Special
-':'           Comment
+'#+author:'   Name.Namespace
 '\n'          Text
 
-'#+date'      Comment.Special
-': 2017-07-20' Comment
+'#+date:'     Name.Namespace
+' 2017-07-20' Text
 '\n'          Text
 
-'#+options'   Comment.Special
-': creator:t toc:2' Comment
-'\n'          Text
-
-'\n'          Text
-
-'#+hugo_base_dir' Comment.Special
-': ../../'    Comment
-'\n'          Text
-
-'#+hugo_categories' Comment.Special
-': cat1 cat2' Comment
-'\n'          Text
-
-'#+hugo_menu' Comment.Special
-': :menu "foo" :weight 10 :parent main :identifier single-toml' Comment
-'\n'          Text
-
-'#+description' Comment.Special
-': Some description for this post.' Comment
+'#+options:'  Name.Namespace
+' creator:t toc:2' Text
 '\n'          Text
 
 '\n'          Text
 
-'T'           Text
-'h'           Text
-'i'           Text
-'s'           Text
-' '           Text
-'i'           Text
-'s'           Text
-' '           Text
-'a'           Text
-' '           Text
-'s'           Text
-'i'           Text
-'n'           Text
-'g'           Text
-'l'           Text
-'e'           Text
-' '           Text
-'p'           Text
-'o'           Text
-'s'           Text
-'t'           Text
-'.'           Text
-' '           Text
-'Y'           Text
-'o'           Text
-'u'           Text
-' '           Text
-'d'           Text
-'o'           Text
-' '           Text
-'n'           Text
-'o'           Text
-'t'           Text
-' '           Text
-'n'           Text
-'e'           Text
-'e'           Text
-'d'           Text
-' '           Text
-'t'           Text
-'o'           Text
-' '           Text
-'s'           Text
-'e'           Text
-'t'           Text
-' '           Text
-'t'           Text
-'h'           Text
-'e'           Text
-' '           Text
-'=EXPORT_FILE_NAME=' Name.Class
+'#+hugo_base_dir:' Name.Namespace
+' ../../'     Text
 '\n'          Text
 
-'p'           Text
-'r'           Text
-'o'           Text
-'p'           Text
-'e'           Text
-'r'           Text
-'t'           Text
-'y'           Text
-' '           Text
-'i'           Text
-'n'           Text
-' '           Text
-'h'           Text
-'e'           Text
-'r'           Text
-'e'           Text
-'.'           Text
-' '           Text
-'B'           Text
-'u'           Text
-'t'           Text
-' '           Text
-'t'           Text
-'h'           Text
-'e'           Text
-'n'           Text
-' '           Text
-'y'           Text
-'o'           Text
-'u'           Text
-' '           Text
-'a'           Text
-'l'           Text
-'s'           Text
-'o'           Text
-' '           Text
-'l'           Text
-'o'           Text
-'s'           Text
-'e'           Text
-' '           Text
-'t'           Text
-'h'           Text
-'e'           Text
-' '           Text
-'t'           Text
-'a'           Text
-'g'           Text
-' '           Text
-'a'           Text
-'n'           Text
-'d'           Text
-' '           Text
-'p'           Text
-'r'           Text
-'o'           Text
-'p'           Text
-'e'           Text
-'r'           Text
-'t'           Text
-'y'           Text
+'#+hugo_categories:' Name.Namespace
+' cat1 cat2'  Text
 '\n'          Text
 
-'i'           Text
-'n'           Text
-'h'           Text
-'e'           Text
-'r'           Text
-'i'           Text
-'t'           Text
-'a'           Text
-'n'           Text
-'c'           Text
-'e'           Text
-' '           Text
-'O'           Text
-'r'           Text
-'g'           Text
-' '           Text
-'a'           Text
-'w'           Text
-'e'           Text
-'s'           Text
-'o'           Text
-'m'           Text
-'e'           Text
-'n'           Text
-'e'           Text
-'s'           Text
-'s'           Text
-'.'           Text
+'#+hugo_menu:' Name.Namespace
+' :menu "foo" :weight 10 :parent main :identifier single-toml' Text
+'\n'          Text
+
+'#+description:' Name.Namespace
+' Some description for this post.' Text
 '\n'          Text
 
 '\n'          Text
 
-'l'           Text
-'i'           Text
-'n'           Text
-'e'           Text
-' '           Text
-'o'           Text
-'n'           Text
-'e'           Text
-' '           Text
+'This is a single post. You do not need to set the ' Text
+'=EXPORT_FILE_NAME=' Literal.String
+'\n'          Text
+
+'property in here. But then you also lose the tag and property' Text
+'\n'          Text
+
+'inheritance Org awesomeness.' Text
+'\n'          Text
+
+'\n'          Text
+
+'line one '   Text
 '\\\\'        Operator
 '\n'          Text
 
-'l'           Text
-'i'           Text
-'n'           Text
-'e'           Text
-' '           Text
-'t'           Text
-'w'           Text
-'o'           Text
+'line two'    Text
 '\n'          Text
 
 '\n'          Text
@@ -213,244 +61,102 @@
 ' '           Text
 '/italics/'   Generic.Emph
 ' '           Text
-'=verbatim='  Name.Class
+'=verbatim='  Literal.String
 ' '           Text
-'~code~'      Name.Class
+'~code~'      Literal.String
 ' '           Text
 '+strikethrough+' Generic.Deleted
 ' '           Text
-'_underline_' Generic.Underline
+'_underline_' Generic.EmphStrong
 '\n'          Text
 
-'*'           Generic.Heading
-' First heading in this post' Generic.Strong
+'* First heading in this post' Generic.Heading
 '\n'          Text
 
-'T'           Text
-'h'           Text
-'i'           Text
-'s'           Text
-' '           Text
-'i'           Text
-'s'           Text
-' '           Text
-'a'           Text
-' '           Text
-'u'           Text
-'n'           Text
-'d'           Text
-'e'           Text
-'r'           Text
-' '           Text
-'f'           Text
-'i'           Text
-'r'           Text
-'s'           Text
-'t'           Text
-' '           Text
-'h'           Text
-'e'           Text
-'a'           Text
-'d'           Text
-'i'           Text
-'n'           Text
-'g'           Text
-'.'           Text
-' '           Text
-'<'           Text
-'2018-07-27 Fri' Literal.String
-'>'           Text
+'** Subheading' Generic.Subheading
+' :TAG:'      Generic.Emph
 '\n'          Text
 
-'**'          Generic.Subheading
-' COMMENT'    Name.Entity
-' comment header' Generic.Subheading
+'This is a under first heading. ' Text
+'<2018-07-27 Fri>' Literal.Date
 '\n'          Text
 
-'**'          Generic.Subheading
-' TODO'       Generic.Error
-' something'  Text
+'* '          Generic.Heading
+'COMMENT'     Comment.Preproc
+' heading'    Generic.Heading
 '\n'          Text
 
-'**'          Generic.Subheading
-' DONE'       Literal.String.Regex
-' anything'   Text
+'** '         Generic.Subheading
+'COMMENT'     Comment.Preproc
+' subheading' Generic.Subheading
 '\n'          Text
 
-'CLOSED: '    Comment
-'[2018-08-01 Wed 16:17]' Comment.Special
+'* '          Generic.Heading
+'TODO'        Generic.Error
+' heading'    Generic.Heading
+'\n'          Text
+
+'** '         Generic.Subheading
+'TODO'        Generic.Error
+' subheading' Generic.Subheading
+'\n'          Text
+
+'* '          Generic.Heading
+'DONE'        Generic.Deleted
+' heading'    Generic.Heading
+'\n'          Text
+
+'** '         Generic.Subheading
+'DONE'        Generic.Deleted
+' subheading' Generic.Subheading
+'\n'          Text
+
+'CLOSED: '    Generic.Deleted
+'[2018-08-01 Wed 16:17]' Literal.Date
 '\n'          Text
 
 '\n'          Text
 
-'{{{n}}}'     Name.Builtin
-' '           Text
-'a'           Text
-'b'           Text
-'c'           Text
-' '           Text
-'{{{n(,10)}}}' Name.Builtin
-' '           Text
-'d'           Text
-'e'           Text
-'f'           Text
-' '           Text
-'{{{n(x,5)}}}' Name.Builtin
+'{{{n}}}'     Comment.Preproc
+' abc '       Text
+'{{{n(,10)}}}' Comment.Preproc
+' def '       Text
+'{{{n(x,5)}}}' Comment.Preproc
 '\n'          Text
 
-'*'           Generic.Heading
-' Second heading in this post' Generic.Strong
 '\n'          Text
 
 '- '          Keyword
-'u'           Text
-'n'           Text
-'o'           Text
-'r'           Text
-'d'           Text
-'e'           Text
-'r'           Text
-'e'           Text
-'d'           Text
-' '           Text
-'l'           Text
-'i'           Text
-'s'           Text
-'t'           Text
-' '           Text
-'i'           Text
-'t'           Text
-'e'           Text
-'m'           Text
-' '           Text
+'unordered list item ' Text
 '1'           Text
 '\n'          Text
 
 '- '          Keyword
-'u'           Text
-'n'           Text
-'o'           Text
-'r'           Text
-'d'           Text
-'e'           Text
-'r'           Text
-'e'           Text
-'d'           Text
-' '           Text
-'l'           Text
-'i'           Text
-'s'           Text
-'t'           Text
-' '           Text
-'i'           Text
-'t'           Text
-'e'           Text
-'m'           Text
-' '           Text
+'unordered list item ' Text
 '2'           Text
 '\n'          Text
 
 '- '          Keyword
-'Desc1 ::'    Keyword
-' '           Text
-'D'           Text
-'e'           Text
-'s'           Text
-'c'           Text
-'r'           Text
-'i'           Text
-'p'           Text
-'t'           Text
-'i'           Text
-'o'           Text
-'n'           Text
-' '           Text
-'l'           Text
-'i'           Text
-'s'           Text
-'t'           Text
-' '           Text
-'i'           Text
-'t'           Text
-'e'           Text
-'m'           Text
-' '           Text
+'Desc1 ::'    Name.Label
+' Description list item ' Text
 '1'           Text
 '\n'          Text
 
 '- '          Keyword
-'Desc2 ::'    Keyword
-' '           Text
-'D'           Text
-'e'           Text
-'s'           Text
-'c'           Text
-'r'           Text
-'i'           Text
-'p'           Text
-'t'           Text
-'i'           Text
-'o'           Text
-'n'           Text
-' '           Text
-'l'           Text
-'i'           Text
-'s'           Text
-'t'           Text
-' '           Text
-'i'           Text
-'t'           Text
-'e'           Text
-'m'           Text
-' '           Text
+'Desc2 ::'    Name.Label
+' Description list item ' Text
 '2'           Text
 '\n'          Text
 
 '\n'          Text
 
 '1.'          Keyword
-' '           Text
-'o'           Text
-'r'           Text
-'d'           Text
-'e'           Text
-'r'           Text
-'e'           Text
-'d'           Text
-' '           Text
-'l'           Text
-'i'           Text
-'s'           Text
-'t'           Text
-' '           Text
-'i'           Text
-'t'           Text
-'e'           Text
-'m'           Text
-' '           Text
+' ordered list item ' Text
 '1'           Text
 '\n'          Text
 
 '2.'          Keyword
-' '           Text
-'o'           Text
-'r'           Text
-'d'           Text
-'e'           Text
-'r'           Text
-'e'           Text
-'d'           Text
-' '           Text
-'l'           Text
-'i'           Text
-'s'           Text
-'t'           Text
-' '           Text
-'i'           Text
-'t'           Text
-'e'           Text
-'m'           Text
-' '           Text
+' ordered list item ' Text
 '2'           Text
 '\n'          Text
 
@@ -459,58 +165,18 @@
 '\n'          Text
 
 '1)'          Keyword
-' '           Text
-'o'           Text
-'r'           Text
-'d'           Text
-'e'           Text
-'r'           Text
-'e'           Text
-'d'           Text
-' '           Text
-'l'           Text
-'i'           Text
-'s'           Text
-'t'           Text
-' '           Text
-'i'           Text
-'t'           Text
-'e'           Text
-'m'           Text
-' '           Text
+' ordered list item ' Text
 '1'           Text
 '\n'          Text
 
 '2)'          Keyword
-' '           Text
-'o'           Text
-'r'           Text
-'d'           Text
-'e'           Text
-'r'           Text
-'e'           Text
-'d'           Text
-' '           Text
-'l'           Text
-'i'           Text
-'s'           Text
-'t'           Text
-' '           Text
-'i'           Text
-'t'           Text
-'e'           Text
-'m'           Text
-' '           Text
+' ordered list item ' Text
 '2'           Text
 '\n'          Text
 
 '3)'          Keyword
 ' [@20]'      Generic.Emph
-' '           Text
-'a'           Text
-'s'           Text
-'d'           Text
-'f'           Text
+' asdf'       Text
 '\n'          Text
 
 '\n'          Text
@@ -526,11 +192,11 @@
 '\n'          Text
 
 '- '          Keyword
-'=verbatim='  Name.Class
+'=verbatim='  Literal.String
 '\n'          Text
 
 '- '          Keyword
-'~code~'      Name.Class
+'~code~'      Literal.String
 '\n'          Text
 
 '- '          Keyword
@@ -538,577 +204,219 @@
 '\n'          Text
 
 '- '          Keyword
-'_underline_' Generic.Underline
+'_underline_' Generic.EmphStrong
 '\n'          Text
 
 '\n'          Text
 
-'#+begin_comment\n' Comment
+'#+begin_comment\n' Operator.Word
 
-'this is a\ncomment\n' Comment
+'this is a\ncomment\n' Comment.Multiline
 
-'#+end_comment' Comment
+'#+end_comment' Operator.Word
 '\n'          Text
 
 '\n'          Text
 
 '- '          Keyword
-'09 ::'       Keyword
-' '           Text
-'a'           Text
-'s'           Text
-'d'           Text
-'f'           Text
+'09 ::'       Name.Label
+' asdf'       Text
 '\n'          Text
 
 '- '          Keyword
-'09 ::'       Keyword
-' '           Text
-'a'           Text
-'s'           Text
-'d'           Text
-'f'           Text
+'09 ::'       Name.Label
+' asdf'       Text
 '\n'          Text
 
-'**'          Generic.Subheading
-' Checkbox lists                                            ' Text
+'** Checkbox lists                                            ' Generic.Subheading
 ' :checkbox:list:' Generic.Emph
 '\n'          Text
 
 '- '          Keyword
-'[ ]'         Keyword
-' '           Text
-'a'           Text
-'s'           Text
-'d'           Text
-'f'           Text
+'[ ]'         Generic.Prompt
+' asdf'       Text
 '\n'          Text
 
 '- '          Keyword
-'[X]'         Keyword
-' '           Text
-'d'           Text
-'e'           Text
-'f'           Text
+'[X]'         Generic.Prompt
+' def'        Text
 '\n'          Text
 
-'*'           Generic.Heading
-' Dates'      Generic.Strong
+'* Dates'     Generic.Heading
 '\n'          Text
 
-'**'          Generic.Subheading
-' deadline'   Text
+'** deadline' Generic.Subheading
 '\n'          Text
 
-'DEADLINE: '  Comment
-'<2018-07-31 Tue>' Comment.Special
+'DEADLINE: '  Generic.Error
+'<2018-07-31 Tue>' Literal.Date
 '\n'          Text
 
-'s'           Text
-'o'           Text
-'m'           Text
-'e'           Text
-'t'           Text
-'h'           Text
-'i'           Text
-'n'           Text
-'g'           Text
+'something'   Text
 '\n'          Text
 
-'**'          Generic.Subheading
-' scheduled'  Text
+'** scheduled' Generic.Subheading
 '\n'          Text
 
-'SCHEDULED: ' Comment
-'<2018-07-31 Tue>' Comment.Special
+'SCHEDULED: ' Generic.Error
+'<2018-07-31 Tue>' Literal.Date
 '\n'          Text
 
-'s'           Text
-'o'           Text
-'m'           Text
-'e'           Text
-'t'           Text
-'h'           Text
-'i'           Text
-'n'           Text
-'g'           Text
+'something'   Text
 '\n'          Text
 
-'*'           Generic.Heading
-' Blocks'     Generic.Strong
+'* Blocks'    Generic.Heading
 '\n'          Text
 
-'#+BEGIN_'    Comment
-'QUOTE'       Comment
-'\n'          Text
+'#+BEGIN_QUOTE' Operator.Word
+'\n'          Text.Whitespace
 
 'quote\nblock\n' Text
 
-'#+END_QUOTE' Comment
+'#+END_QUOTE' Operator.Word
 '\n'          Text
 
 '\n'          Text
 
-'#+begin_'    Comment
-'example'     Comment
-'\n'          Text
+'#+begin_example' Operator.Word
+'\n'          Text.Whitespace
 
 'example\nblock\n' Text
 
-'#+end_example' Comment
+'#+end_example' Operator.Word
 '\n'          Text
 
 '\n'          Text
 
-'#+begin_src ' Comment
-'emacs-lisp'  Comment.Special
-'\n'          Comment
+'#+begin_src emacs-lisp' Operator.Word
+'\n(message "hello")\n' Text
 
-'('           Text
-'m'           Text
-'e'           Text
-'s'           Text
-'s'           Text
-'a'           Text
-'g'           Text
-'e'           Text
-' '           Text
-'"'           Text
-'h'           Text
-'e'           Text
-'l'           Text
-'l'           Text
-'o'           Text
-'"'           Text
-')'           Text
-'\n'          Text
-
-'#+end_src'   Comment
+'#+end_src'   Operator.Word
 '\n'          Text
 
 '\n'          Text
 
-'#+begin_'    Comment
-'details'     Comment
+'#+begin_details' Operator.Word
+'\n'          Text.Whitespace
+
+'#+begin_summary\nWhy is this in *green*?\n' Text
+
+'#+end_summary' Operator.Word
 '\n'          Text
 
-'#+begin_summary\nWhy is this in *green*?\n#+end_summary\nYou will learn that later below in [[#details-css][CSS]] section.\n' Text
+'You will learn that later below in ' Text
+'[['          Punctuation
+'#details-css' Name.Attribute
+']['          Punctuation
+'CSS'         Name.Tag
+']]'          Punctuation
+' section.'   Text
+'\n'          Text
 
-'#+end_details' Comment
+'#'           Text
+'+'           Text
+'end'         Text
+'_'           Text
+'details'     Text
 '\n'          Text
 
 '\n'          Text
 
 '#'           Text
 '+'           Text
-'b'           Text
-'e'           Text
-'g'           Text
-'i'           Text
-'n'           Text
+'begin'       Text
 '_'           Text
-'e'           Text
-'x'           Text
-'p'           Text
-'o'           Text
-'r'           Text
-'t'           Text
-' '           Text
-'h'           Text
-'t'           Text
-'m'           Text
-'l'           Text
+'export html' Text
 '\n'          Text
 
-'<'           Text
-'style'       Literal.String
-'>'           Text
+'<style>'     Literal.Date
 '\n'          Text
 
-'.'           Text
-'m'           Text
-'y'           Text
+'.my'         Text
 '-'           Text
-'t'           Text
-'a'           Text
-'b'           Text
-'l'           Text
-'e'           Text
-' '           Text
-'t'           Text
-'h'           Text
-','           Text
+'table th,'   Text
 '\n'          Text
 
-'.'           Text
-'m'           Text
-'y'           Text
+'.my'         Text
 '-'           Text
-'t'           Text
-'a'           Text
-'b'           Text
-'l'           Text
-'e'           Text
-' '           Text
-'t'           Text
-'d'           Text
-' '           Text
+'table td '   Text
 '{'           Text
 '\n'          Text
 
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'p'           Text
-'a'           Text
-'d'           Text
-'d'           Text
-'i'           Text
-'n'           Text
-'g'           Text
+'    padding' Text
 ':'           Text
 ' '           Text
 '2'           Text
 '0'           Text
-'p'           Text
-'x'           Text
-';'           Text
+'px;'         Text
 '\n'          Text
 
-' '           Text
-' '           Text
-' '           Text
-' '           Text
-'t'           Text
-'e'           Text
-'x'           Text
-'t'           Text
+'    text'    Text
 '-'           Text
-'a'           Text
-'l'           Text
-'i'           Text
-'g'           Text
-'n'           Text
+'align'       Text
 ':'           Text
-' '           Text
-'l'           Text
-'e'           Text
-'f'           Text
-'t'           Text
-';'           Text
+' left;'      Text
 '\n'          Text
 
 '}'           Text
 '\n'          Text
 
-'<'           Text
-'/style'      Literal.String
-'>'           Text
+'</style>'    Literal.Date
 '\n'          Text
 
 '#'           Text
 '+'           Text
-'e'           Text
-'n'           Text
-'d'           Text
+'end'         Text
 '_'           Text
-'e'           Text
-'x'           Text
-'p'           Text
-'o'           Text
-'r'           Text
-'t'           Text
+'export'      Text
 '\n'          Text
 
 '\n'          Text
 
 '- '          Keyword
-'{{{latex}}}' Name.Builtin
+'{{{latex}}}' Comment.Preproc
 '\n'          Text
 
 '- '          Keyword
-'{{{xetex}}}' Name.Builtin
+'{{{xetex}}}' Comment.Preproc
 '\n'          Text
 
-'#+caption'   Comment.Special
-': Declaring Constants' Comment
+'#+caption:'  Name.Namespace
+' Declaring Constants' Text
 '\n'          Text
 
-'#+name'      Comment.Special
-': code__decl_constants' Comment
+'#+name:'     Name.Namespace
+' code__decl_constants' Text
 '\n'          Text
 
-'#+begin_src ' Comment
-'systemverilog' Comment.Special
-'\n'          Comment
+'#+begin_src systemverilog' Operator.Word
+"\nconst bit [7:0] R_CHARACTER = 8'b000_11100; // The /K28.0/ character\nconst bit [7:0] A_CHARACTER = 8'b011_11100; // The /K28.3/ character\nconst bit [7:0] Q_CHARACTER = 8'b100_11100; // The /K28.4/ character\n" Text
 
-'c'           Text
-'o'           Text
-'n'           Text
-'s'           Text
-'t'           Text
-' '           Text
-'b'           Text
-'i'           Text
-'t'           Text
-' '           Text
-'['           Text
-'7'           Text
-':'           Text
-'0'           Text
-']'           Text
-' '           Text
-'R'           Text
-'_'           Text
-'C'           Text
-'H'           Text
-'A'           Text
-'R'           Text
-'A'           Text
-'C'           Text
-'T'           Text
-'E'           Text
-'R'           Text
-' '           Text
-'='           Text
-' '           Text
-'8'           Text
-"'"           Text
-'b'           Text
-'0'           Text
-'0'           Text
-'0'           Text
-'_'           Text
-'1'           Text
-'1'           Text
-'1'           Text
-'0'           Text
-'0'           Text
-';'           Text
-' '           Text
-'/'           Text
-'/'           Text
-' '           Text
-'T'           Text
-'h'           Text
-'e'           Text
-' '           Text
-'/K28.0/'     Generic.Emph
-' '           Text
-'c'           Text
-'h'           Text
-'a'           Text
-'r'           Text
-'a'           Text
-'c'           Text
-'t'           Text
-'e'           Text
-'r'           Text
+'#+end_src'   Operator.Word
 '\n'          Text
 
-'c'           Text
-'o'           Text
-'n'           Text
-'s'           Text
-'t'           Text
-' '           Text
-'b'           Text
-'i'           Text
-'t'           Text
-' '           Text
-'['           Text
-'7'           Text
-':'           Text
-'0'           Text
-']'           Text
-' '           Text
-'A'           Text
-'_'           Text
-'C'           Text
-'H'           Text
-'A'           Text
-'R'           Text
-'A'           Text
-'C'           Text
-'T'           Text
-'E'           Text
-'R'           Text
-' '           Text
-'='           Text
-' '           Text
-'8'           Text
-"'"           Text
-'b'           Text
-'0'           Text
-'1'           Text
-'1'           Text
-'_'           Text
-'1'           Text
-'1'           Text
-'1'           Text
-'0'           Text
-'0'           Text
-';'           Text
-' '           Text
-'/'           Text
-'/'           Text
-' '           Text
-'T'           Text
-'h'           Text
-'e'           Text
-' '           Text
-'/K28.3/'     Generic.Emph
-' '           Text
-'c'           Text
-'h'           Text
-'a'           Text
-'r'           Text
-'a'           Text
-'c'           Text
-'t'           Text
-'e'           Text
-'r'           Text
-'\n'          Text
-
-'c'           Text
-'o'           Text
-'n'           Text
-'s'           Text
-'t'           Text
-' '           Text
-'b'           Text
-'i'           Text
-'t'           Text
-' '           Text
-'['           Text
-'7'           Text
-':'           Text
-'0'           Text
-']'           Text
-' '           Text
-'Q'           Text
-'_'           Text
-'C'           Text
-'H'           Text
-'A'           Text
-'R'           Text
-'A'           Text
-'C'           Text
-'T'           Text
-'E'           Text
-'R'           Text
-' '           Text
-'='           Text
-' '           Text
-'8'           Text
-"'"           Text
-'b'           Text
-'1'           Text
-'0'           Text
-'0'           Text
-'_'           Text
-'1'           Text
-'1'           Text
-'1'           Text
-'0'           Text
-'0'           Text
-';'           Text
-' '           Text
-'/'           Text
-'/'           Text
-' '           Text
-'T'           Text
-'h'           Text
-'e'           Text
-' '           Text
-'/K28.4/'     Generic.Emph
-' '           Text
-'c'           Text
-'h'           Text
-'a'           Text
-'r'           Text
-'a'           Text
-'c'           Text
-'t'           Text
-'e'           Text
-'r'           Text
-'\n'          Text
-
-'#+end_src'   Comment
-'\n'          Text
-
-'C'           Text
-'h'           Text
-'e'           Text
-'c'           Text
-'k'           Text
-' '           Text
-'o'           Text
-'u'           Text
-'t'           Text
-' '           Text
-'c'           Text
-'o'           Text
-'d'           Text
-'e'           Text
-' '           Text
-'s'           Text
-'n'           Text
-'i'           Text
-'p'           Text
-'p'           Text
-'e'           Text
-'t'           Text
-' '           Text
-'[['          Text
-'code__decl_constants' Name.Attribute
-']]'          Text
-'.'           Text
-'\n'          Text
-
-'*'           Generic.Heading
-' Links                                                           ' Generic.Strong
-' :some_tag:' Generic.Emph
-'\n'          Text
-
-':properties:\n' Comment
-
-':CUSTOM_ID: links\n' Comment.Special
-
-':end:'       Comment
-'\n'          Text
-
-'- '          Keyword
-'[['          Text
-'file:post-yaml.org' Name.Attribute
-']]'          Text
-'\n'          Text
-
-'- '          Keyword
-'[['          Text
-'file:post-yaml.org' Name.Attribute
-']['          Text
+'Check out code snippet ' Text
+'[['          Punctuation
+'code__decl_constants]].\n* Links                                                            :some_tag:\n:properties:\n:CUSTOM_ID: links\n:end:\n- [[file:post-yaml.org]]\n- [[file:post-yaml.org' Name.Attribute
+']['          Punctuation
 'Post exported with YAML front-matter' Name.Tag
-']]'          Text
+']]'          Punctuation
 '.'           Text
 '\n'          Text
 
 '- '          Keyword
-'<<'          Text
-'target'      Name.Attribute
-'>>'          Text
+'<<target>'   Literal.Date
+'>'           Text
 '\n'          Text
 
-'*'           Generic.Heading
-' Tables'     Generic.Strong
+'* Tables'    Generic.Heading
 '\n'          Text
 
-':PROPERTIES:\n' Comment
+':PROPERTIES:\n' Name.Decorator
 
 ':CUSTOM_ID: tables\n' Comment.Special
 
-':END:'       Comment
+':END:'       Name.Decorator
 '\n'          Text
 
 '| a | b |'   Literal.String
@@ -1136,26 +444,19 @@
 
 '\n'          Text
 
-'S'           Text
-'o'           Text
-'m'           Text
-'e'           Text
-' '           Text
-'t'           Text
-'e'           Text
-'x'           Text
-'t'           Text
-' '           Text
-'[fn:'        Name.Builtin.Pseudo
-'2'           Literal.String
-']'           Name.Builtin.Pseudo
+'Some text '  Text
+'[fn:2]'      Name.Tag
 '\n'          Text
 
 '\n'          Text
 
-'#+BEGIN: '   Comment
-'aggregate'   Comment.Special
-' :table "original" :cols "Color count()"\n' Comment
+'#+BEGIN: '   Operator.Word
+'aggregate '  Text
+':'           Text
+'table "original" ' Text
+':'           Text
+'cols "Color count()"' Text
+'\n'          Text
 
 '| Color | count() |' Literal.String
 '\n'          Text
@@ -1169,95 +470,38 @@
 '| Blue  |       7 |' Literal.String
 '\n'          Text
 
-'#+END:'      Comment
+'#+END:'      Operator.Word
 '\n'          Text
 
-'*'           Generic.Heading
-' Footnotes'  Generic.Strong
+'* Footnotes' Generic.Heading
 '\n'          Text
 
 '\n'          Text
 
-'[fn:'        Name.Builtin.Pseudo
-'2'           Literal.String
-']'           Name.Builtin.Pseudo
-' '           Text
-'f'           Text
-'o'           Text
-'o'           Text
-'t'           Text
-'n'           Text
-'o'           Text
-'t'           Text
-'e'           Text
-' '           Text
+'[fn:2]'      Name.Tag
+' footnote '  Text
 '2'           Text
 '\n'          Text
 
-'[fn:'        Name.Builtin.Pseudo
-'1'           Literal.String
-']'           Name.Builtin.Pseudo
-' '           Text
-'F'           Text
-'o'           Text
-'r'           Text
-' '           Text
-'m'           Text
-'o'           Text
-'r'           Text
-'e'           Text
-' '           Text
-'d'           Text
-'e'           Text
-'t'           Text
-'a'           Text
-'i'           Text
-'l'           Text
-','           Text
-' '           Text
-'c'           Text
-'h'           Text
-'e'           Text
-'c'           Text
-'k'           Text
-' '           Text
-'o'           Text
-'u'           Text
-'t'           Text
-' '           Text
-'t'           Text
-'h'           Text
-'e'           Text
-' '           Text
-'O'           Text
-'r'           Text
-'g'           Text
-' '           Text
-'m'           Text
-'a'           Text
-'n'           Text
-'u'           Text
-'a'           Text
-'l'           Text
-' '           Text
-'[['          Text
+'[fn:1]'      Name.Tag
+' For more detail, check out the Org manual ' Text
+'[['          Punctuation
 'http://orgmode.org/\nmanual/Footnotes.html' Name.Attribute
-']['          Text
+']['          Punctuation
 'page for footnotes' Name.Tag
-']]'          Text
+']]'          Punctuation
 '.'           Text
 '\n'          Text
 
-'*'           Generic.Heading
-' Local Variables' Generic.Strong
+'* Local Variables' Generic.Heading
 ' :ARCHIVE:'  Generic.Emph
 '\n'          Text
 
-'# Local Variables:' Comment
+'# Local Variables:' Comment.Single
 '\n'          Text
 
-'# org-link-file-path-type: relative' Comment
+'# org-link-file-path-type: relative' Comment.Single
 '\n'          Text
 
-'# End:'      Comment
+'# End:'      Comment.Single
 '\n'          Text

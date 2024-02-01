@@ -18,14 +18,18 @@ line two
 
 *bold* /italics/ =verbatim= ~code~ +strikethrough+ _underline_
 * First heading in this post
+** Subheading :TAG:
 This is a under first heading. <2018-07-27 Fri>
-** COMMENT comment header
-** TODO something
-** DONE anything
+* COMMENT heading
+** COMMENT subheading
+* TODO heading
+** TODO subheading
+* DONE heading
+** DONE subheading
 CLOSED: [2018-08-01 Wed 16:17]
 
 {{{n}}} abc {{{n(,10)}}} def {{{n(x,5)}}}
-* Second heading in this post
+
 - unordered list item 1
 - unordered list item 2
 - Desc1 :: Description list item 1
