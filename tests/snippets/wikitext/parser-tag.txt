@@ -561,10 +561,11 @@ e f g a|b c' d' e'|f' g' a' b'|]
 '<'           Punctuation
 'chem'        Name.Tag
 '>'           Punctuation
-'Y'           Text
+'Y'           Name.Builtin
 '^'           Name.Builtin
 '{'           Name.Builtin
-'99+'         Text
+'99'          Literal.Number
+'+'           Operator
 '}'           Name.Builtin
 '</'          Punctuation
 'chem'        Name.Tag
@@ -574,9 +575,33 @@ e f g a|b c' d' e'|f' g' a' b'|]
 '<'           Punctuation
 'chem'        Name.Tag
 '>'           Punctuation
-'CaSO4.1/2H2O + 1' Text
-'\\!'         Keyword
-'1/2 H2O -> CaSO4.2H2O' Text
+'CaSO'        Name.Builtin
+'4'           Literal.Number
+'.'           Name.Builtin
+'1'           Literal.Number
+'/'           Operator
+'2'           Literal.Number
+'H'           Name.Builtin
+'2'           Literal.Number
+'O '          Name.Builtin
+'+'           Operator
+' '           Name.Builtin
+'1'           Literal.Number
+'\\!'         Name.Variable
+'1'           Literal.Number
+'/'           Operator
+'2'           Literal.Number
+' H'          Name.Builtin
+'2'           Literal.Number
+'O '          Name.Builtin
+'-'           Operator
+'> CaSO'      Name.Builtin
+'4'           Literal.Number
+'.'           Name.Builtin
+'2'           Literal.Number
+'H'           Name.Builtin
+'2'           Literal.Number
+'O'           Name.Builtin
 '</'          Punctuation
 'chem'        Name.Tag
 '>'           Punctuation
@@ -586,44 +611,55 @@ e f g a|b c' d' e'|f' g' a' b'|]
 'chem'        Name.Tag
 '>'           Punctuation
 '{'           Name.Builtin
-'C'           Text
+'C'           Name.Builtin
 '_'           Name.Builtin
-'\\mathit'    Keyword
+'\\mathit'    Name.Variable
 '{'           Name.Builtin
-'x'           Text
+'x'           Name.Builtin
 '}'           Name.Builtin
-'H'           Text
+'H'           Name.Builtin
 '_'           Name.Builtin
-'\\mathit'    Keyword
+'\\mathit'    Name.Variable
 '{'           Name.Builtin
-'y'           Text
+'y'           Name.Builtin
 '}'           Name.Builtin
 '}'           Name.Builtin
-' + '         Text
-'\\mathit'    Keyword
+' '           Name.Builtin
+'+'           Operator
+' '           Name.Builtin
+'\\mathit'    Name.Variable
 '{'           Name.Builtin
-'z'           Text
+'z'           Name.Builtin
 '}'           Name.Builtin
-'O2 -> '      Text
+'O'           Name.Builtin
+'2'           Literal.Number
+' '           Name.Builtin
+'-'           Operator
+'> '          Name.Builtin
 '{'           Name.Builtin
-'\\mathit'    Keyword
+'\\mathit'    Name.Variable
 '{'           Name.Builtin
-'x'           Text
+'x'           Name.Builtin
 '}'           Name.Builtin
-'CO2'         Text
+'CO'          Name.Builtin
+'2'           Literal.Number
 '}'           Name.Builtin
-' + '         Text
-'\\frac'      Keyword
+' '           Name.Builtin
+'+'           Operator
+' '           Name.Builtin
+'\\frac'      Name.Variable
 '{'           Name.Builtin
-'\\mathit'    Keyword
+'\\mathit'    Name.Variable
 '{'           Name.Builtin
-'y'           Text
+'y'           Name.Builtin
 '}'           Name.Builtin
 '}'           Name.Builtin
 '{'           Name.Builtin
-'2'           Text
+'2'           Literal.Number
 '}'           Name.Builtin
-'H2O'         Text
+'H'           Name.Builtin
+'2'           Literal.Number
+'O'           Name.Builtin
 '</'          Punctuation
 'chem'        Name.Tag
 '>'           Punctuation
@@ -633,44 +669,55 @@ e f g a|b c' d' e'|f' g' a' b'|]
 'ce'          Name.Tag
 '>'           Punctuation
 '{'           Name.Builtin
-'C'           Text
+'C'           Name.Builtin
 '_'           Name.Builtin
-'\\mathit'    Keyword
+'\\mathit'    Name.Variable
 '{'           Name.Builtin
-'x'           Text
+'x'           Name.Builtin
 '}'           Name.Builtin
-'H'           Text
+'H'           Name.Builtin
 '_'           Name.Builtin
-'\\mathit'    Keyword
+'\\mathit'    Name.Variable
 '{'           Name.Builtin
-'y'           Text
+'y'           Name.Builtin
 '}'           Name.Builtin
 '}'           Name.Builtin
-' + '         Text
-'\\mathit'    Keyword
+' '           Name.Builtin
+'+'           Operator
+' '           Name.Builtin
+'\\mathit'    Name.Variable
 '{'           Name.Builtin
-'z'           Text
+'z'           Name.Builtin
 '}'           Name.Builtin
-'O2 -> '      Text
+'O'           Name.Builtin
+'2'           Literal.Number
+' '           Name.Builtin
+'-'           Operator
+'> '          Name.Builtin
 '{'           Name.Builtin
-'\\mathit'    Keyword
+'\\mathit'    Name.Variable
 '{'           Name.Builtin
-'x'           Text
+'x'           Name.Builtin
 '}'           Name.Builtin
-'CO2'         Text
+'CO'          Name.Builtin
+'2'           Literal.Number
 '}'           Name.Builtin
-' + '         Text
-'\\frac'      Keyword
+' '           Name.Builtin
+'+'           Operator
+' '           Name.Builtin
+'\\frac'      Name.Variable
 '{'           Name.Builtin
-'\\mathit'    Keyword
+'\\mathit'    Name.Variable
 '{'           Name.Builtin
-'y'           Text
+'y'           Name.Builtin
 '}'           Name.Builtin
 '}'           Name.Builtin
 '{'           Name.Builtin
-'2'           Text
+'2'           Literal.Number
 '}'           Name.Builtin
-'H2O'         Text
+'H'           Name.Builtin
+'2'           Literal.Number
+'O'           Name.Builtin
 '</'          Punctuation
 'ce'          Name.Tag
 '>'           Punctuation
@@ -1405,22 +1452,36 @@ e f g a|b c' d' e'|f' g' a' b'|]
 '<'           Punctuation
 'math'        Name.Tag
 '>'           Punctuation
-'2x '         Text
-'\\times'     Keyword
-' 4y '        Text
-'\\div'       Keyword
-' 6z + 8 - '  Text
-'\\frac'      Keyword
-' '           Text
+'2'           Literal.Number
+'x '          Name.Builtin
+'\\times'     Name.Variable
+' '           Name.Builtin
+'4'           Literal.Number
+'y '          Name.Builtin
+'\\div'       Name.Variable
+' '           Name.Builtin
+'6'           Literal.Number
+'z '          Name.Builtin
+'+'           Operator
+' '           Name.Builtin
+'8'           Literal.Number
+' '           Name.Builtin
+'-'           Operator
+' '           Name.Builtin
+'\\frac'      Name.Variable
+' '           Name.Builtin
 '{'           Name.Builtin
-'y'           Text
+'y'           Name.Builtin
 '}'           Name.Builtin
 '{'           Name.Builtin
-'z'           Text
+'z'           Name.Builtin
 '^'           Name.Builtin
-'2'           Text
+'2'           Literal.Number
 '}'           Name.Builtin
-' = 0'        Text
+' '           Name.Builtin
+'='           Operator
+' '           Name.Builtin
+'0'           Literal.Number
 '</'          Punctuation
 'math'        Name.Tag
 '>'           Punctuation
@@ -1429,12 +1490,15 @@ e f g a|b c' d' e'|f' g' a' b'|]
 '<'           Punctuation
 'math'        Name.Tag
 '>'           Punctuation
-'\\sin'       Keyword
-' 2'          Text
-'\\pi'        Keyword
-' x + '       Text
-'\\ln'        Keyword
-' e'          Text
+'\\sin'       Name.Variable
+' '           Name.Builtin
+'2'           Literal.Number
+'\\pi'        Name.Variable
+' x '         Name.Builtin
+'+'           Operator
+' '           Name.Builtin
+'\\ln'        Name.Variable
+' e'          Name.Builtin
 '</'          Punctuation
 'math'        Name.Tag
 '>'           Punctuation
@@ -1447,22 +1511,25 @@ e f g a|b c' d' e'|f' g' a' b'|]
 '='           Operator
 'block'       Literal.String
 '>'           Punctuation
-'\\sum'       Keyword
+'\\sum'       Name.Variable
 '_'           Name.Builtin
 '{'           Name.Builtin
-'n=0'         Text
+'n'           Name.Builtin
+'='           Operator
+'0'           Literal.Number
 '}'           Name.Builtin
 '^'           Name.Builtin
-'\\infty'     Keyword
-' '           Text
-'\\frac'      Keyword
+'\\infty'     Name.Variable
+' '           Name.Builtin
+'\\frac'      Name.Variable
 '{'           Name.Builtin
-'x'           Text
+'x'           Name.Builtin
 '^'           Name.Builtin
-'n'           Text
+'n'           Name.Builtin
 '}'           Name.Builtin
 '{'           Name.Builtin
-'n!'          Text
+'n'           Name.Builtin
+'!'           Operator
 '}'           Name.Builtin
 '</'          Punctuation
 'math'        Name.Tag
