@@ -809,11 +809,11 @@ class WikitextLexer(RegexLexer):
              Punctuation, Name.Tag, Whitespace, Punctuation), '#pop'),
         ]
 
-    def delegate_tag_rules(tag_name, lexer):
+    def delegate_tag_rules(tag_name, lexer, **lexer_kwargs):
         return [
             (r'(?i)(</)({})(\s*)(>)'.format(tag_name), bygroups(Punctuation,
              Name.Tag, Whitespace, Punctuation), '#pop'),
-            (r'(?si).+?(?=</{}\s*>)'.format(tag_name), using(lexer)),
+            (r'(?si).+?(?=</{}\s*>)'.format(tag_name), using(lexer, **lexer_kwargs)),
         ]
 
     def text_rules(token):
@@ -1538,9 +1538,9 @@ class WikitextLexer(RegexLexer):
         'tag-gallery': plaintext_tag_rules('gallery'),
         'tag-graph': plaintext_tag_rules('graph'),
         'tag-rss': plaintext_tag_rules('rss'),
-        'tag-math': delegate_tag_rules('math', TexLexer),
-        'tag-chem': delegate_tag_rules('chem', TexLexer),
-        'tag-ce': delegate_tag_rules('ce', TexLexer),
+        'tag-math': delegate_tag_rules('math', TexLexer, state='math'),
+        'tag-chem': delegate_tag_rules('chem', TexLexer, state='math'),
+        'tag-ce': delegate_tag_rules('ce', TexLexer, state='math'),
         'tag-templatedata': delegate_tag_rules('templatedata', JsonLexer),
         'text-italic': text_rules(Generic.Emph),
         'text-bold': text_rules(Generic.Strong),
