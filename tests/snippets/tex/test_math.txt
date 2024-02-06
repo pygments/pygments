@@ -1,0 +1,93 @@
+---input---
+$\alpha_i\in\{\alpha:\alpha\leq3\}\ \text{something}$
+
+$$\alpha_i\in\{\alpha:\alpha\leq3\}\ \text{something}$$
+
+\[\alpha_i\in\{\alpha:\alpha\leq3\}\ \text{something}\]
+
+\(\alpha_i\in\{\alpha:\alpha\leq3\}\ \text{something}\)
+
+---tokens---
+'$'           Literal.String
+'\\alpha'     Name.Variable
+'_'           Name.Builtin
+'i'           Name.Builtin
+'\\in'        Name.Variable
+'\\{'         Name.Variable
+'\\alpha'     Name.Variable
+':'           Name.Builtin
+'\\alpha'     Name.Variable
+'\\leq'       Name.Variable
+'3'           Literal.Number
+'\\}'         Name.Variable
+'\\'          Name.Variable
+' '           Name.Builtin
+'\\text'      Name.Variable
+'{'           Name.Builtin
+'something'   Name.Builtin
+'}'           Name.Builtin
+'$'           Literal.String
+'\n\n'        Text
+
+'$$'          Literal.String.Backtick
+'\\alpha'     Name.Variable
+'_'           Name.Builtin
+'i'           Name.Builtin
+'\\in'        Name.Variable
+'\\{'         Name.Variable
+'\\alpha'     Name.Variable
+':'           Name.Builtin
+'\\alpha'     Name.Variable
+'\\leq'       Name.Variable
+'3'           Literal.Number
+'\\}'         Name.Variable
+'\\'          Name.Variable
+' '           Name.Builtin
+'\\text'      Name.Variable
+'{'           Name.Builtin
+'something'   Name.Builtin
+'}'           Name.Builtin
+'$$'          Literal.String
+'\n\n'        Text
+
+'\\['         Literal.String.Backtick
+'\\alpha'     Name.Variable
+'_'           Name.Builtin
+'i'           Name.Builtin
+'\\in'        Name.Variable
+'\\{'         Name.Variable
+'\\alpha'     Name.Variable
+':'           Name.Builtin
+'\\alpha'     Name.Variable
+'\\leq'       Name.Variable
+'3'           Literal.Number
+'\\}'         Name.Variable
+'\\'          Name.Variable
+' '           Name.Builtin
+'\\text'      Name.Variable
+'{'           Name.Builtin
+'something'   Name.Builtin
+'}'           Name.Builtin
+'\\]'         Literal.String
+'\n\n'        Text
+
+'\\('         Literal.String
+'\\alpha'     Name.Variable
+'_'           Name.Builtin
+'i'           Name.Builtin
+'\\in'        Name.Variable
+'\\{'         Name.Variable
+'\\alpha'     Name.Variable
+':'           Name.Builtin
+'\\alpha'     Name.Variable
+'\\leq'       Name.Variable
+'3'           Literal.Number
+'\\}'         Name.Variable
+'\\'          Name.Variable
+' '           Name.Builtin
+'\\text'      Name.Variable
+'{'           Name.Builtin
+'something'   Name.Builtin
+'}'           Name.Builtin
+'\\)'         Literal.String
+'\n'          Text
