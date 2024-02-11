@@ -8,8 +8,8 @@ Switches d2SDq;
 Constant Story "Informal Testing";
 Constant Headline "^Not a game.^";!% This is a comment, not ICL.
 
-Release 5;
-Serial "220125";
+Release 6;
+Serial "240210";
 Version 5;
 
 Ifndef TARGET_ZCODE;
@@ -167,7 +167,7 @@ Verb"acquire"'collect'='take';
     switch (scope_stage) {
     1: rtrue;
     2: objectloop (obj in compass) PlaceInScope(obj);
-    3: "Nothing is in scope.";
+    (Constant4 + Constant6): "Nothing is in scope.";
     }
 ];
 
@@ -228,6 +228,9 @@ Extend only 'feel' 'touch' replace * noun -> Feel;
     'quit', 'q//':
         quit;
         return 2; rtrue; rfalse; return;
+        #Ifdef TARGET_ZCODE;
+        @ -> $8B $04 $D2;
+        #Endif;
     'print', 'p//':
         print "Print:^",
             " (string): ", (string) "xyzzy^",
