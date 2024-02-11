@@ -231,7 +231,7 @@ Extend only 'feel' 'touch' replace * noun -> Feel;
         #Ifdef TARGET_ZCODE;
         @ -> $8B $04 $D2;
         #Endif;
-    'print', 'p//':
+    'print', 'p//~p':
         print "Print:^",
             " (string): ", (string) "xyzzy^",
             " (number): ", (number) 123, "^",
