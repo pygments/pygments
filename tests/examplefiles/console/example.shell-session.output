@@ -94,7 +94,9 @@
 'platform.'   Text
 '\n'          Text.Whitespace
 
-'> test\n'    Generic.Output
+'> '          Generic.Prompt
+'test'        Name.Builtin
+'\n'          Text.Whitespace
 
 '$ '          Generic.Prompt
 'test'        Name.Builtin
