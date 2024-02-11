@@ -490,6 +490,7 @@ class Inform6Lexer(RegexLexer):
         'opcode': [
             include('_whitespace'),
             (r'[%s]' % _dquote, String.Double, ('operands', 'plain-string')),
+            (r'[%s]{1,2}>' % _dash, Punctuation, 'operands'),
             (_name, Keyword, 'operands')
         ],
         'operands': [
