@@ -181,9 +181,9 @@ class Inform6Lexer(RegexLexer):
         ],
         # Strings
         'dictionary-word': [
-            (r'[~^]+', String.Escape),
-            (r'[^~^\\@({%s]+' % _squote, String.Single),
-            (r'[({]', String.Single),
+            (r'[~^]+|//[^%s]*' % _squote, String.Escape),
+            (r'[^~^/\\@({%s]+' % _squote, String.Single),
+            (r'[/({]', String.Single),
             (r'@\{[0-9a-fA-F]*\}', String.Escape),
             (r'@.{2}', String.Escape),
             (r'[%s]' % _squote, String.Single, '#pop')

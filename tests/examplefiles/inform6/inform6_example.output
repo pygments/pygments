@@ -1954,7 +1954,8 @@
 ' '           Text
 ''            Text
 "'"           Literal.String.Single
-'q//'         Literal.String.Single
+'q'           Literal.String.Single
+'//'          Literal.String.Escape
 "'"           Literal.String.Single
 ':'           Punctuation
 '\n        '  Text
@@ -2016,7 +2017,8 @@
 ' '           Text
 ''            Text
 "'"           Literal.String.Single
-'p//'         Literal.String.Single
+'p'           Literal.String.Single
+'//~p'        Literal.String.Escape
 "'"           Literal.String.Single
 ':'           Punctuation
 '\n        '  Text
@@ -2106,7 +2108,8 @@
 ' '           Text
 ''            Text
 "'"           Literal.String.Single
-'plugh//p'    Literal.String.Single
+'plugh'       Literal.String.Single
+'//p'         Literal.String.Escape
 "'"           Literal.String.Single
 ','           Punctuation
 ' '           Text
