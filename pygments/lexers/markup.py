@@ -945,8 +945,6 @@ class WikitextLexer(RegexLexer):
         'sh-latn', 'sh-cyrl',
         # KuConverter.php
         'ku', 'ku-arab', 'ku-latn',
-        # KkConverter.php
-        'kk', 'kk-cyrl', 'kk-latn', 'kk-arab', 'kk-kz', 'kk-tr', 'kk-cn',
         # IuConverter.php
         'iu', 'ike-cans', 'ike-latn',
         # GanConverter.php
