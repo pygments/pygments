@@ -1,6 +1,6 @@
 """
     pygments.styles.onedark_vivid
-    ~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     One Dark Vivid Theme for Pygments by Tristan Partin (https://github.com/tristan957).
 
