@@ -33,6 +33,7 @@ STYLES = {
     'NordDarkerStyle': ('pygments.styles.nord', 'nord-darker', ()),
     'NordStyle': ('pygments.styles.nord', 'nord', ()),
     'OneDarkStyle': ('pygments.styles.onedark', 'one-dark', ()),
+    'OneDarkVividStyle': ('pygments.styles.onedark_vivid', 'one-dark-vivid', ()),
     'ParaisoDarkStyle': ('pygments.styles.paraiso_dark', 'paraiso-dark', ()),
     'ParaisoLightStyle': ('pygments.styles.paraiso_light', 'paraiso-light', ()),
     'PastieStyle': ('pygments.styles.pastie', 'pastie', ()),
