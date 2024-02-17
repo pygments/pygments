@@ -1,0 +1,440 @@
+'--[[\n\tCopyright (c) 2023 Roblox Corporation\n\n\tPermission is hereby granted, free of charge, to any person obtaining a copy\n\tof this software and associated documentation files (the "Software"), to deal\n\tin the Software without restriction, including without limitation the rights\n\tto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n\tcopies of the Software, and to permit persons to whom the Software is\n\tfurnished to do so, subject to the following conditions:\n\n\tThe above copyright notice and this permission notice shall be included in all\n\tcopies or substantial portions of the Software.\n\n\tTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n\tIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n\tFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n\tAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n\tLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n\tOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n\tSOFTWARE.\n]]' Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'--!strict'   Comment.Single
+'\n'          Text.Whitespace
+
+'local'       Keyword.Declaration
+' '           Text.Whitespace
+'types'       Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'require'     Name.Function
+'('           Punctuation
+'script'      Name.Variable
+'.'           Punctuation
+'Parent'      Name.Variable
+'.'           Punctuation
+'types'       Name.Variable
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'type'        Keyword.Reserved
+' '           Text.Whitespace
+'Callback'    Name.Class
+'<'           Punctuation
+'T'           Name.Class
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'types'       Name.Class
+'.'           Punctuation
+'Callback'    Name.Class
+'<'           Punctuation
+'T'           Name.Class
+'>'           Punctuation
+'\n'          Text.Whitespace
+
+'type'        Keyword.Reserved
+' '           Text.Whitespace
+'Subscription' Name.Class
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'types'       Name.Class
+'.'           Punctuation
+'Subscription' Name.Class
+'\n'          Text.Whitespace
+
+'type'        Keyword.Reserved
+' '           Text.Whitespace
+'Signal'      Name.Class
+'<'           Punctuation
+'T'           Name.Class
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'types'       Name.Class
+'.'           Punctuation
+'Signal'      Name.Class
+'<'           Punctuation
+'T'           Name.Class
+'>'           Punctuation
+'\n'          Text.Whitespace
+
+'type'        Keyword.Reserved
+' '           Text.Whitespace
+'FireSignal'  Name.Class
+'<'           Punctuation
+'T'           Name.Class
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'types'       Name.Class
+'.'           Punctuation
+'FireSignal'  Name.Class
+'<'           Punctuation
+'T'           Name.Class
+'>'           Punctuation
+'\n\n'        Text.Whitespace
+
+'type'        Keyword.Reserved
+' '           Text.Whitespace
+'InternalSubscription' Name.Class
+'<'           Punctuation
+'T'           Name.Class
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'callback'    Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'Callback'    Name.Class
+'<'           Punctuation
+'T'           Name.Class
+'>'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'unsubscribed' Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'boolean'     Name.Class
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'local'       Keyword.Declaration
+' '           Text.Whitespace
+'function'    Keyword.Reserved
+' '           Text.Whitespace
+'createSignal' Name.Function
+'<'           Punctuation
+'T'           Name.Class
+'>'           Punctuation
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'Signal'      Name.Class
+'<'           Punctuation
+'T'           Name.Class
+'>'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'FireSignal'  Name.Class
+'<'           Punctuation
+'T'           Name.Class
+'>'           Punctuation
+')'           Punctuation
+'\n\t'        Text.Whitespace
+'local'       Keyword.Declaration
+' '           Text.Whitespace
+'subscriptions' Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'Callback'    Name.Class
+'<'           Punctuation
+'T'           Name.Class
+'>'           Punctuation
+']:'          Punctuation
+' '           Text.Whitespace
+'InternalSubscription' Name.Class
+'<'           Punctuation
+'T'           Name.Class
+'>'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n\t'        Text.Whitespace
+'local'       Keyword.Declaration
+' '           Text.Whitespace
+'suspendedSubscriptions' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n\n\t'      Text.Whitespace
+'local'       Keyword.Declaration
+' '           Text.Whitespace
+'firing'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'false'       Keyword.Constant
+'\n\n\t'      Text.Whitespace
+'local'       Keyword.Declaration
+' '           Text.Whitespace
+'function'    Keyword.Reserved
+' '           Text.Whitespace
+'subscribe'   Name.Function
+'('           Punctuation
+'_self'       Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Signal'      Name.Class
+'<'           Punctuation
+'T'           Name.Class
+'>'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'callback'    Name.Variable
+')'           Punctuation
+'\n\t\t'      Text.Whitespace
+'local'       Keyword.Declaration
+' '           Text.Whitespace
+'subscription' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t\t\t'    Text.Whitespace
+'callback'    Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'callback'    Name.Variable
+','           Punctuation
+'\n\t\t\t'    Text.Whitespace
+'unsubscribed' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'false'       Keyword.Constant
+','           Punctuation
+'\n\t\t'      Text.Whitespace
+'}'           Punctuation
+'\n\n\t\t'    Text.Whitespace
+"-- If the callback is already registered, don't add to the" Comment.Single
+'\n\t\t'      Text.Whitespace
+'-- suspendedConnection. Otherwise, this will disable the existing one.' Comment.Single
+'\n\t\t'      Text.Whitespace
+'if'          Keyword.Reserved
+' '           Text.Whitespace
+'firing'      Name.Variable
+' '           Text.Whitespace
+'and'         Operator.Word
+' '           Text.Whitespace
+'not'         Name.Variable
+' '           Text.Whitespace
+'subscriptions' Name.Variable
+'['           Punctuation
+'callback'    Name.Variable
+']'           Punctuation
+' '           Text.Whitespace
+'then'        Keyword.Reserved
+'\n\t\t\t'    Text.Whitespace
+'suspendedSubscriptions' Name.Variable
+'['           Punctuation
+'callback'    Name.Variable
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'subscription' Name.Variable
+'\n\t\t'      Text.Whitespace
+'else'        Keyword.Reserved
+'\n\t\t\t'    Text.Whitespace
+'subscriptions' Name.Variable
+'['           Punctuation
+'callback'    Name.Variable
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'subscription' Name.Variable
+'\n\t\t'      Text.Whitespace
+'end'         Keyword.Reserved
+'\n\n\t\t'    Text.Whitespace
+'local'       Keyword.Declaration
+' '           Text.Whitespace
+'function'    Keyword.Reserved
+' '           Text.Whitespace
+'unsubscribe' Name.Function
+'('           Punctuation
+'_self'       Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Subscription' Name.Class
+')'           Punctuation
+'\n\t\t\t'    Text.Whitespace
+'subscription' Name.Variable
+'.'           Punctuation
+'unsubscribed' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'true'        Keyword.Constant
+'\n\t\t\t'    Text.Whitespace
+'subscriptions' Name.Variable
+'['           Punctuation
+'callback'    Name.Variable
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'nil'         Keyword.Constant
+'\n\t\t\t'    Text.Whitespace
+'suspendedSubscriptions' Name.Variable
+'['           Punctuation
+'callback'    Name.Variable
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'nil'         Keyword.Constant
+'\n\t\t'      Text.Whitespace
+'end'         Keyword.Reserved
+'\n\n\t\t'    Text.Whitespace
+'return'      Keyword.Reserved
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t\t\t'    Text.Whitespace
+'unsubscribe' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'unsubscribe' Name.Variable
+','           Punctuation
+'\n\t\t'      Text.Whitespace
+'}'           Punctuation
+'\n\t'        Text.Whitespace
+'end'         Keyword.Reserved
+'\n\n\t'      Text.Whitespace
+'local'       Keyword.Declaration
+' '           Text.Whitespace
+'function'    Keyword.Reserved
+' '           Text.Whitespace
+'fire'        Name.Function
+'('           Punctuation
+'value'       Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'T'           Name.Class
+')'           Punctuation
+'\n\t\t'      Text.Whitespace
+'firing'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'true'        Keyword.Constant
+'\n\t\t'      Text.Whitespace
+'for'         Keyword.Reserved
+' '           Text.Whitespace
+'callback'    Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'subscription' Name.Variable
+' '           Text.Whitespace
+'in'          Keyword.Reserved
+' '           Text.Whitespace
+'subscriptions' Name.Variable
+' '           Text.Whitespace
+'do'          Keyword.Reserved
+'\n\t\t\t'    Text.Whitespace
+'if'          Keyword.Reserved
+' '           Text.Whitespace
+'not'         Name.Variable
+' '           Text.Whitespace
+'subscription' Name.Variable
+'.'           Punctuation
+'unsubscribed' Name.Variable
+' '           Text.Whitespace
+'and'         Operator.Word
+' '           Text.Whitespace
+'not'         Name.Variable
+' '           Text.Whitespace
+'suspendedSubscriptions' Name.Variable
+'['           Punctuation
+'callback'    Name.Variable
+']'           Punctuation
+' '           Text.Whitespace
+'then'        Keyword.Reserved
+'\n\t\t\t\t'  Text.Whitespace
+'callback'    Name.Function
+'('           Punctuation
+'value'       Name.Variable
+')'           Punctuation
+'\n\t\t\t'    Text.Whitespace
+'end'         Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'end'         Keyword.Reserved
+'\n\n\t\t'    Text.Whitespace
+'firing'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'false'       Keyword.Constant
+'\n\t\t'      Text.Whitespace
+'for'         Keyword.Reserved
+' '           Text.Whitespace
+'callback'    Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'subscription' Name.Variable
+' '           Text.Whitespace
+'in'          Keyword.Reserved
+' '           Text.Whitespace
+'suspendedSubscriptions' Name.Variable
+' '           Text.Whitespace
+'do'          Keyword.Reserved
+'\n\t\t\t'    Text.Whitespace
+'subscriptions' Name.Variable
+'['           Punctuation
+'callback'    Name.Variable
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'subscription' Name.Variable
+'\n\t\t'      Text.Whitespace
+'end'         Keyword.Reserved
+'\n\t\t'      Text.Whitespace
+'table'       Name.Builtin
+'.'           Punctuation
+'clear'       Name.Function
+'('           Punctuation
+'suspendedSubscriptions' Name.Variable
+')'           Punctuation
+'\n\t'        Text.Whitespace
+'end'         Keyword.Reserved
+'\n\n\t'      Text.Whitespace
+'return'      Keyword.Reserved
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t\t'      Text.Whitespace
+'subscribe'   Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'subscribe'   Name.Variable
+','           Punctuation
+'\n\t'        Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'fire'        Name.Variable
+'\n'          Text.Whitespace
+
+'end'         Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'return'      Keyword.Reserved
+' '           Text.Whitespace
+'createSignal' Name.Variable
+'\n'          Text.Whitespace
