@@ -1,0 +1,85 @@
+'EXAMPLE'     Name.Namespace
+'\n'          Text
+
+' '           Text.Whitespace
+'; This is an example routine to test Pygments parsing' Comment
+'\n'          Text
+
+' '           Text.Whitespace
+'write'       Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Hello, world!"' Literal.String
+'\n'          Text
+
+' '           Text.Whitespace
+'quit'        Keyword
+'\n'          Text
+
+'gcd'         Name.Function
+'('           Punctuation
+'a'           Name.Variable
+','           Punctuation
+'b'           Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+"; Euclid's algorithm for greatest common denominator" Comment
+'\n'          Text
+
+' '           Text.Whitespace
+'n'           Keyword
+' '           Text.Whitespace
+'R'           Name.Variable
+'\n'          Text
+
+' '           Text.Whitespace
+'f'           Keyword
+'  '          Text.Whitespace
+'d'           Keyword
+'  '          Text.Whitespace
+'q'           Keyword
+':'           Punctuation
+'R'           Name.Variable
+'='           Operator
+'0'           Literal.Number
+'\n'          Text
+
+' '           Text.Whitespace
+'.'           Punctuation
+' '           Text.Whitespace
+'s'           Keyword
+' '           Text.Whitespace
+'R'           Name.Variable
+'='           Operator
+'a'           Name.Variable
+'#'           Operator
+'b'           Name.Variable
+'\n'          Text
+
+' '           Text.Whitespace
+'.'           Punctuation
+' '           Text.Whitespace
+'i'           Keyword
+' '           Text.Whitespace
+'R'           Name.Variable
+"'"           Operator
+'='           Operator
+'0'           Literal.Number
+' '           Text.Whitespace
+'s'           Keyword
+' '           Text.Whitespace
+'a'           Name.Variable
+'='           Operator
+'b'           Name.Variable
+','           Punctuation
+'b'           Name.Variable
+'='           Operator
+'R'           Name.Variable
+'\n'          Text
+
+' '           Text.Whitespace
+'q'           Keyword
+' '           Text.Whitespace
+'b'           Name.Variable
+'\n'          Text

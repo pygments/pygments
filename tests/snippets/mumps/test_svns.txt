@@ -1,0 +1,200 @@
+---input---
+ w !,"Device status: "_$device
+ w !,"Error code: "_$EC
+ w !,"Error stack: "_$EStack
+ w !,"Error trap: "_$et
+ w !,"Date and time: "_$h
+ w !,"Current device: "_$io
+ w !,"Current job: "_$j
+ w !,"Last key: "_$key
+ w !,"Principal device: "_$p
+ w !,"Called as function? "_$quit
+ w !,"Stack level: "_$st
+ w !,"Storage: "_$s
+ w !,"M Implementation: "_$system
+ w !,"ELSE state: "_$test
+ w !,"Transaction level: "_$tl
+ w !,"Transaction restart count: "_$tr
+ w !,"X position: "_$x
+ w !,"Y position: "_$y
+
+---tokens---
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Device status: "' Literal.String
+'_'           Operator
+'$device'     Name.Variable.Magic
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Error code: "' Literal.String
+'_'           Operator
+'$EC'         Name.Variable.Magic
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Error stack: "' Literal.String
+'_'           Operator
+'$EStack'     Name.Variable.Magic
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Error trap: "' Literal.String
+'_'           Operator
+'$et'         Name.Variable.Magic
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Date and time: "' Literal.String
+'_'           Operator
+'$h'          Name.Variable.Magic
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Current device: "' Literal.String
+'_'           Operator
+'$io'         Name.Variable.Magic
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Current job: "' Literal.String
+'_'           Operator
+'$j'          Name.Variable.Magic
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Last key: "' Literal.String
+'_'           Operator
+'$key'        Name.Variable.Magic
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Principal device: "' Literal.String
+'_'           Operator
+'$p'          Name.Variable.Magic
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Called as function? "' Literal.String
+'_'           Operator
+'$quit'       Name.Variable.Magic
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Stack level: "' Literal.String
+'_'           Operator
+'$st'         Name.Variable.Magic
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Storage: "' Literal.String
+'_'           Operator
+'$s'          Name.Variable.Magic
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"M Implementation: "' Literal.String
+'_'           Operator
+'$system'     Name.Variable.Magic
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"ELSE state: "' Literal.String
+'_'           Operator
+'$test'       Name.Variable.Magic
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Transaction level: "' Literal.String
+'_'           Operator
+'$tl'         Name.Variable.Magic
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Transaction restart count: "' Literal.String
+'_'           Operator
+'$tr'         Name.Variable.Magic
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"X position: "' Literal.String
+'_'           Operator
+'$x'          Name.Variable.Magic
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Y position: "' Literal.String
+'_'           Operator
+'$y'          Name.Variable.Magic
+'\n'          Text

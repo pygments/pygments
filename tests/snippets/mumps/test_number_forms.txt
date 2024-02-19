@@ -1,0 +1,56 @@
+---input---
+MATHCONTANTS
+pi() q 3.14159265
+half() q .5
+avogadro() q 60.2214E22
+c() q 3E+8
+Gravity() q 6.674E-11
+
+---tokens---
+'MATHCONTANTS' Name.Namespace
+'\n'          Text
+
+'pi'          Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'q'           Keyword
+' '           Text.Whitespace
+'3.14159265'  Literal.Number
+'\n'          Text
+
+'half'        Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'q'           Keyword
+' '           Text.Whitespace
+'.5'          Literal.Number
+'\n'          Text
+
+'avogadro'    Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'q'           Keyword
+' '           Text.Whitespace
+'60.2214E22'  Literal.Number
+'\n'          Text
+
+'c'           Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'q'           Keyword
+' '           Text.Whitespace
+'3E+8'        Literal.Number
+'\n'          Text
+
+'Gravity'     Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'q'           Keyword
+' '           Text.Whitespace
+'6.674E-11'   Literal.Number
+'\n'          Text

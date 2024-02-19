@@ -1,0 +1,32 @@
+---input---
+abs(value) ; Returns the absolute value of a number
+ q:value<0 -value
+ q +value
+
+
+---tokens---
+'abs'         Name.Function
+'('           Punctuation
+'value'       Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'; Returns the absolute value of a number' Comment
+'\n'          Text
+
+' '           Text.Whitespace
+'q'           Keyword
+':'           Punctuation
+'value'       Name.Variable
+'<'           Operator
+'0'           Literal.Number
+' '           Text.Whitespace
+'-'           Operator
+'value'       Name.Variable
+'\n'          Text
+
+' '           Text.Whitespace
+'q'           Keyword
+' '           Text.Whitespace
+'+'           Operator
+'value'       Name.Variable
+'\n'          Text

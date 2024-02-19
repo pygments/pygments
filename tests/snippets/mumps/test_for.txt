@@ -1,0 +1,45 @@
+---input---
+primes ;
+ n number
+ for number=2,3:2:7,11,13 w !,number
+ q
+
+---tokens---
+'primes'      Name.Label
+' '           Text.Whitespace
+';'           Comment
+'\n'          Text
+
+' '           Text.Whitespace
+'n'           Keyword
+' '           Text.Whitespace
+'number'      Name.Variable
+'\n'          Text
+
+' '           Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'number'      Name.Variable
+'='           Operator
+'2'           Literal.Number
+','           Punctuation
+'3'           Literal.Number
+':'           Punctuation
+'2'           Literal.Number
+':'           Punctuation
+'7'           Literal.Number
+','           Punctuation
+'11'          Literal.Number
+','           Punctuation
+'13'          Literal.Number
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'number'      Name.Variable
+'\n'          Text
+
+' '           Text.Whitespace
+'q'           Keyword
+'\n'          Text
