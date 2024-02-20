@@ -51,7 +51,7 @@ class ElpiLexer(RegexLexer):
             (r"(:before|:after|:if|:name)(\s*)(\")",
              bygroups(Keyword.Mode, Text.Whitespace, String.Double),
              'elpi-string'),
-            (r"(:index)(\s*\()", bygroups(Keyword.Mode, Text.Whitespace),
+            (r"(:index)(\s*)", bygroups(Keyword.Mode, Text.Whitespace),
              'elpi-indexing-expr'),
             (rf"\b(external pred|pred)(\s+)({const_sym_re})",
              bygroups(Keyword.Declaration, Text.Whitespace, Name.Function),
@@ -87,7 +87,7 @@ class ElpiLexer(RegexLexer):
             (r'"', String.Double, 'elpi-string'),
             (r'`', String.Double, 'elpi-btick'),
             (r'\'', String.Double, 'elpi-tick'),
-            (r'\{\{', Punctuation, 'elpi-quote'),
+            (r'\{\{', Text, 'elpi-quote'),
             (r'\{[^\{]', Text, 'elpi-spill'),
             (r"\(", Text, 'elpi-in-parens'),
             (r'\d[\d_]*', Number.Integer),
@@ -104,8 +104,9 @@ class ElpiLexer(RegexLexer):
             (r'.', Comment)
         ],
         'elpi-indexing-expr':[
+            (r'\(', Punctuation, '#push'),
             (r'[0-9 _]+', Number.Integer),
-            (r'\)', Text, '#pop'),
+            (r'\)', Punctuation, '#pop'),
         ],
         'elpi-type': [
             (r"(ctype\s+)(\")", bygroups(Keyword.Type, String.Double), 'elpi-string'),
@@ -152,11 +153,11 @@ class ElpiLexer(RegexLexer):
             (r'"', String.Double, '#pop'),
         ],
         'elpi-quote': [
-            (r'\{\{', Punctuation, '#push'),
-            (r'\}\}', Punctuation, '#pop'),
+            (r'\{\{', Text, '#push'),
+            (r'\}\}', Text, '#pop'),
+            (r"\s", Text.Whitespace),
             (rf"(lp:)((?=[A-Z_]){constant_re})", bygroups(Keyword, Name.Variable)),
-            (r"[^l\}]+", Text),
-            (r"l|\}", Text),
+            (r".", Text.Comment),
         ],
         'elpi-spill': [
             (r'\{[^\{]', Text, '#push'),
@@ -164,9 +165,10 @@ class ElpiLexer(RegexLexer):
             include('elpi'),
         ],
         'elpi-in-parens': [
-            (r"\(", Operator, '#push'),
-            (r"\)", Operator, '#pop'),
+            (r"\(", Punctuation, '#push'),
             include('elpi'),
+            (r"\)", Punctuation, '#pop'),
         ],
+
 
     }
