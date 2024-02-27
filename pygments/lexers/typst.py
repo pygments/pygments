@@ -10,7 +10,7 @@
 
 from pygments.lexer import RegexLexer, words, bygroups, include
 from pygments.token import Comment, Keyword, Name, String, Punctuation, \
-    Whitespace, Generic, Operator, Number, Text
+    Whitespace, Generic, Operator, Number, Text, Literal
 
 __all__ = ['TypstLexer']
 
@@ -82,6 +82,7 @@ class TypstLexer(RegexLexer):
             (r'\)|\}', Punctuation, '#pop'),
             (r'"[^"]*"', String.Double),
             (r'[=,]', Operator),
+            (r'[0-9]+', Literal),
             (words(('and', 'or', 'not'), suffix=r'\b'), Operator.Word),
             (r'=>|<=|==|!=|>|<|-=|\+=|\*=|/=|\+|-|\\|\*', Operator), # comparisons
             (r'([a-zA-Z_][a-zA-Z0-9_]*)(:)', bygroups(Name.Variable, Punctuation), '#push'),
