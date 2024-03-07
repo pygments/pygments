@@ -1,0 +1,51 @@
+---input---
+module_name {
+    name: "foo",
+    // A comment inside a rule
+    shared_libs: ["libfoo"],
+    stl: "none",
+}
+
+// Make sure this works
+some_var = 42
+
+---tokens---
+'module_name' Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'name'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'"foo"'       Literal.String
+','           Punctuation
+'\n    '      Text.Whitespace
+'// A comment inside a rule' Comment.Single
+'\n    '      Text.Whitespace
+'shared_libs' Name
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'"libfoo"'    Literal.String
+']'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'stl'         Name
+':'           Punctuation
+' '           Text.Whitespace
+'"none"'      Literal.String
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'// Make sure this works' Comment.Single
+'\n'          Text.Whitespace
+
+'some_var'    Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'42'          Literal.Number.Integer
+'\n'          Text.Whitespace
