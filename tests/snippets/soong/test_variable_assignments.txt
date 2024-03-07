@@ -1,0 +1,136 @@
+---input---
+an_int = 42
+
+a_hex_int = 0xC001
+
+a_string = "cool"
+
+a_list = ["put", "stuff", "here"]
+
+a_map = {key1: "value1", key2: ["value2"]}
+
+test_append = ["a", "b"]
+test_append += ["c", "d"]
+
+multiline_list = [
+    "snap",
+    // With comments
+    "crackle",
+    /* more comments */ "pop",
+]
+
+---tokens---
+'an_int'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'42'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'a_hex_int'   Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0xC001'      Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'a_string'    Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"cool"'      Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'a_list'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'"put"'       Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'"stuff"'     Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'"here"'      Literal.String
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'a_map'       Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'key1'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'"value1"'    Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'key2'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'"value2"'    Literal.String
+']'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'test_append' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'"a"'         Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'"b"'         Literal.String
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'test_append' Name.Variable
+' '           Text.Whitespace
+'+='          Operator
+' '           Text.Whitespace
+'['           Punctuation
+'"c"'         Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'"d"'         Literal.String
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'multiline_list' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'\n    '      Text.Whitespace
+'"snap"'      Literal.String
+','           Punctuation
+'\n    '      Text.Whitespace
+'// With comments' Comment.Single
+'\n    '      Text.Whitespace
+'"crackle"'   Literal.String
+','           Punctuation
+'\n    '      Text.Whitespace
+'/* more comments */' Comment.Multiline
+' '           Text.Whitespace
+'"pop"'       Literal.String
+','           Punctuation
+'\n'          Text.Whitespace
+
+']'           Punctuation
+'\n'          Text.Whitespace
