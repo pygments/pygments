@@ -878,7 +878,7 @@ class StyleWriter:
         self.write_header(out)
         default_token, tokens = find_colors(self.code)
         tokens = list(tokens.items())
-        tokens.sort(lambda a, b: cmp(len(a[0]), len(a[1])))
+        tokens.sort(key=lambda x: (len(x[0]), len(x[1])))
         bg_color = [x[3:] for x in default_token.split() if x.startswith('bg:')]
         if bg_color:
             out.write('    background_color = %r\n' % bg_color[0])
@@ -899,7 +899,7 @@ def convert(filename, stream=None):
     name = path.basename(filename)
     if name.endswith('.vim'):
         name = name[:-4]
-    f = file(filename)
+    f = open(filename)
     code = f.read()
     f.close()
     writer = StyleWriter(code, name)
@@ -917,7 +917,7 @@ def main():
         print('Usage: %s <filename.vim>' % sys.argv[0])
         return 2
     if sys.argv[1] in ('-v', '--version'):
-        print('%s %s' % (SCRIPT_NAME, SCRIPT_VERSION))
+        print(f'{SCRIPT_NAME} {SCRIPT_VERSION}')
         return
     filename = sys.argv[1]
     if not (path.exists(filename) and path.isfile(filename)):
