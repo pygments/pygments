@@ -57,7 +57,7 @@ class FutharkLexer(RegexLexer):
 
             # Identifiers
             (r'#\[([a-zA-Z_\(\) ]*)\]', Comment.Preproc),
-            (r'[#!]?(%s\.)*%s' % (identifier_re, identifier_re), Name),
+            (rf'[#!]?({identifier_re}\.)*{identifier_re}', Name),
 
             (r'\\', Operator),
             (r'[-+/%=!><|&*^][-+/%=!><|&*^.]*', Operator),

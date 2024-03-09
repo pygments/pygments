@@ -80,13 +80,13 @@ class XQueryLexer(ExtendedRegexLexer):
     # ncnamechar = ncnamestartchar + (r"|-|\.|[0-9]|\u00B7|[\u0300-\u036F]|"
     #                                 r"[\u203F-\u2040]")
     ncnamechar = r"(?:" + ncnamestartchar + r"|-|\.|[0-9])"
-    ncname = "(?:%s+%s*)" % (ncnamestartchar, ncnamechar)
+    ncname = f"(?:{ncnamestartchar}+{ncnamechar}*)"
     pitarget_namestartchar = r"(?:[A-KN-WYZ]|_|:|[a-kn-wyz])"
     pitarget_namechar = r"(?:" + pitarget_namestartchar + r"|-|\.|[0-9])"
-    pitarget = "%s+%s*" % (pitarget_namestartchar, pitarget_namechar)
-    prefixedname = "%s:%s" % (ncname, ncname)
+    pitarget = f"{pitarget_namestartchar}+{pitarget_namechar}*"
+    prefixedname = f"{ncname}:{ncname}"
     unprefixedname = ncname
-    qname = "(?:%s|%s)" % (prefixedname, unprefixedname)
+    qname = f"(?:{prefixedname}|{unprefixedname})"
 
     entityref = r'(?:&(?:lt|gt|amp|quot|apos|nbsp);)'
     charref = r'(?:&#[0-9]+;|&#x[0-9a-fA-F]+;)'

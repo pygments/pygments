@@ -41,7 +41,7 @@ if __name__ == '__main__':  # pragma: no cover
                 with open(headerFilePath, encoding='utf-8') as f:
                     content = f.read()
             except UnicodeDecodeError:
-                print("Decoding error for file: {0}".format(headerFilePath))
+                print(f"Decoding error for file: {headerFilePath}")
                 continue
                 
             res = re.findall(r'(?<=@interface )\w+', content)

@@ -175,12 +175,12 @@ class ScalaLexer(RegexLexer):
     letterOrDigit = '(?:%s|[0-9])' % letter
     letterOrDigitNoDollarSign = '(?:%s|[0-9])' % letter.replace('\\$', '')
     alphaId = '%s+' % letter
-    simpleInterpolatedVariable  = '%s%s*' % (letter, letterOrDigitNoDollarSign)
-    idrest = '%s%s*(?:(?<=_)%s+)?' % (letter, letterOrDigit, opchar)
-    idUpper = '%s%s*(?:(?<=_)%s+)?' % (upperLetter, letterOrDigit, opchar)
-    plainid = '(?:%s|%s+)' % (idrest, opchar)
+    simpleInterpolatedVariable  = f'{letter}{letterOrDigitNoDollarSign}*'
+    idrest = f'{letter}{letterOrDigit}*(?:(?<=_){opchar}+)?'
+    idUpper = f'{upperLetter}{letterOrDigit}*(?:(?<=_){opchar}+)?'
+    plainid = f'(?:{idrest}|{opchar}+)'
     backQuotedId = r'`[^`]+`'
-    anyId = r'(?:%s|%s)' % (plainid, backQuotedId)
+    anyId = rf'(?:{plainid}|{backQuotedId})'
     notStartOfComment = r'(?!//|/\*)'
     endOfLineMaybeWithComment = r'(?=\s*(//|$))'
 
@@ -265,18 +265,16 @@ class ScalaLexer(RegexLexer):
             (r'(\()(\s*)(using)(\s)', bygroups(Punctuation, Whitespace, Keyword, Whitespace)),
         ],
         'declarations': [
-            (r'\b(def)\b(\s*)%s(%s)?' % (notStartOfComment, anyId),
+            (rf'\b(def)\b(\s*){notStartOfComment}({anyId})?',
              bygroups(Keyword, Whitespace, Name.Function)),
-            (r'\b(trait)\b(\s*)%s(%s)?' % (notStartOfComment, anyId),
+            (rf'\b(trait)\b(\s*){notStartOfComment}({anyId})?',
                 bygroups(Keyword, Whitespace, Name.Class)),
-            (r'\b(?:(case)(\s+))?(class|object|enum)\b(\s*)%s(%s)?' %
-                (notStartOfComment, anyId),
+            (rf'\b(?:(case)(\s+))?(class|object|enum)\b(\s*){notStartOfComment}({anyId})?',
                 bygroups(Keyword, Whitespace, Keyword, Whitespace, Name.Class)),
-            (r'(?<!\.)\b(type)\b(\s*)%s(%s)?' % (notStartOfComment, anyId),
+            (rf'(?<!\.)\b(type)\b(\s*){notStartOfComment}({anyId})?',
                 bygroups(Keyword, Whitespace, Name.Class)),
             (r'\b(val|var)\b', Keyword.Declaration),
-            (r'\b(package)(\s+)(object)\b(\s*)%s(%s)?' %
-                (notStartOfComment, anyId),
+            (rf'\b(package)(\s+)(object)\b(\s*){notStartOfComment}({anyId})?',
                 bygroups(Keyword, Whitespace, Keyword, Whitespace, Name.Namespace)),
             (r'\b(package)(\s+)', bygroups(Keyword, Whitespace), 'package'),
             (r'\b(given)\b(\s*)(%s)' % idUpper,
@@ -286,8 +284,7 @@ class ScalaLexer(RegexLexer):
         ],
         'inheritance': [
             (r'\b(extends|with|derives)\b(\s*)'
-             r'(%s|%s|(?=\([^\)]+=>)|(?=%s)|(?="))?' %
-                (idUpper, backQuotedId, plainid),
+             rf'({idUpper}|{backQuotedId}|(?=\([^\)]+=>)|(?={plainid})|(?="))?',
                 bygroups(Keyword, Whitespace, Name.Class)),
         ],
         'extension': [
@@ -297,10 +294,9 @@ class ScalaLexer(RegexLexer):
             # end is a soft keyword, should only be highlighted in certain cases
             (r'\b(end)(\s+)(if|while|for|match|new|extension|val|var)\b',
                 bygroups(Keyword, Whitespace, Keyword)),
-            (r'\b(end)(\s+)(%s)%s' % (idUpper, endOfLineMaybeWithComment),
+            (rf'\b(end)(\s+)({idUpper}){endOfLineMaybeWithComment}',
                 bygroups(Keyword, Whitespace, Name.Class)),
-            (r'\b(end)(\s+)(%s|%s)?%s' %
-                (backQuotedId, plainid, endOfLineMaybeWithComment),
+            (rf'\b(end)(\s+)({backQuotedId}|{plainid})?{endOfLineMaybeWithComment}',
                 bygroups(Keyword, Whitespace, Name.Namespace)),
         ],
         'punctuation': [
@@ -314,7 +310,7 @@ class ScalaLexer(RegexLexer):
             (r'(%s{2,})(\s+)' % opchar, bygroups(Operator, Whitespace)),
             (r'/(?![/*])', Operator),
             (words(operators), Operator),
-            (r'(?<!%s)(!|&&|\|\|)(?!%s)' % (opchar, opchar), Operator),
+            (rf'(?<!{opchar})(!|&&|\|\|)(?!{opchar})', Operator),
         ],
         'constants': [
             (r'\b(this|super)\b', Name.Builtin.Pseudo),
@@ -345,7 +341,7 @@ class ScalaLexer(RegexLexer):
         'inline': [
             # inline is a soft modifier, only highlighted if followed by if,
             # match or parameters.
-            (r'\b(inline)(?=\s+(%s|%s)\s*:)' % (plainid, backQuotedId),
+            (rf'\b(inline)(?=\s+({plainid}|{backQuotedId})\s*:)',
                 Keyword),
             (r'\b(inline)\b(?=(?:.(?!\b(?:val|def|given)\b))*\b(if|match)\b)',
                 Keyword),
@@ -1636,25 +1632,25 @@ class JasminLexer(RegexLexer):
         ],
         'class/convert-dots': [
             include('default'),
-            (r'(L)((?:%s[/.])*)(%s)(;)' % (_unqualified_name, _name),
+            (rf'(L)((?:{_unqualified_name}[/.])*)({_name})(;)',
              bygroups(Keyword.Type, Name.Namespace, Name.Class, Punctuation),
              '#pop'),
-            (r'((?:%s[/.])*)(%s)' % (_unqualified_name, _name),
+            (rf'((?:{_unqualified_name}[/.])*)({_name})',
              bygroups(Name.Namespace, Name.Class), '#pop')
         ],
         'class/no-dots': [
             include('default'),
             (r'\[+', Punctuation, ('#pop', 'descriptor/no-dots')),
-            (r'(L)((?:%s/)*)(%s)(;)' % (_unqualified_name, _name),
+            (rf'(L)((?:{_unqualified_name}/)*)({_name})(;)',
              bygroups(Keyword.Type, Name.Namespace, Name.Class, Punctuation),
              '#pop'),
-            (r'((?:%s/)*)(%s)' % (_unqualified_name, _name),
+            (rf'((?:{_unqualified_name}/)*)({_name})',
              bygroups(Name.Namespace, Name.Class), '#pop')
         ],
         'descriptor/convert-dots': [
             include('default'),
             (r'\[+', Punctuation),
-            (r'(L)((?:%s[/.])*)(%s?)(;)' % (_unqualified_name, _name),
+            (rf'(L)((?:{_unqualified_name}[/.])*)({_name}?)(;)',
              bygroups(Keyword.Type, Name.Namespace, Name.Class, Punctuation),
              '#pop'),
             (r'[^%s\[)L]+' % _separator, Keyword.Type, '#pop'),
@@ -1663,7 +1659,7 @@ class JasminLexer(RegexLexer):
         'descriptor/no-dots': [
             include('default'),
             (r'\[+', Punctuation),
-            (r'(L)((?:%s/)*)(%s)(;)' % (_unqualified_name, _name),
+            (rf'(L)((?:{_unqualified_name}/)*)({_name})(;)',
              bygroups(Keyword.Type, Name.Namespace, Name.Class, Punctuation),
              '#pop'),
             (r'[^%s\[)L]+' % _separator, Keyword.Type, '#pop'),
@@ -1680,21 +1676,19 @@ class JasminLexer(RegexLexer):
         ],
         'exception': [
             include('default'),
-            (r'((?:%s[/.])*)(%s)' % (_unqualified_name, _name),
+            (rf'((?:{_unqualified_name}[/.])*)({_name})',
              bygroups(Name.Namespace, Name.Exception), '#pop')
         ],
         'field': [
             (r'static%s' % _break, Keyword.Reserved, ('#pop', 'static')),
             include('default'),
-            (r'((?:%s[/.](?=[^%s]*[/.]))*)(%s[/.])?(%s)' %
-             (_unqualified_name, _separator, _unqualified_name, _name),
+            (rf'((?:{_unqualified_name}[/.](?=[^{_separator}]*[/.]))*)({_unqualified_name}[/.])?({_name})',
              bygroups(Name.Namespace, Name.Class, Name.Variable.Instance),
              '#pop')
         ],
         'invocation': [
             include('default'),
-            (r'((?:%s[/.](?=[^%s(]*[/.]))*)(%s[/.])?(%s)(\()' %
-             (_unqualified_name, _separator, _unqualified_name, _name),
+            (rf'((?:{_unqualified_name}[/.](?=[^{_separator}(]*[/.]))*)({_unqualified_name}[/.])?({_name})(\()',
              bygroups(Name.Namespace, Name.Class, Name.Function, Punctuation),
              ('#pop', 'descriptor/convert-dots', 'descriptors/convert-dots',
               'descriptor/convert-dots'))
@@ -1715,8 +1709,7 @@ class JasminLexer(RegexLexer):
         ],
         'static': [
             include('default'),
-            (r'((?:%s[/.](?=[^%s]*[/.]))*)(%s[/.])?(%s)' %
-             (_unqualified_name, _separator, _unqualified_name, _name),
+            (rf'((?:{_unqualified_name}[/.](?=[^{_separator}]*[/.]))*)({_unqualified_name}[/.])?({_name})',
              bygroups(Name.Namespace, Name.Class, Name.Variable.Class), '#pop')
         ],
         'table': [

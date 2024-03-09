@@ -530,7 +530,7 @@ class HtmlFormatter(Formatter):
         styles.sort()
 
         lines = [
-            '%s { %s } /* %s */' % (prefix(cls), style, repr(ttype)[6:])
+            f'{prefix(cls)} {{ {style} }} /* {repr(ttype)[6:]} */'
             for (level, ttype, cls, style) in styles
         ]
 
@@ -548,13 +548,13 @@ class HtmlFormatter(Formatter):
             if Text in self.ttype2class:
                 text_style = ' ' + self.class2style[self.ttype2class[Text]][0]
             lines.insert(
-                0, '%s{ background: %s;%s }' % (
+                0, '{}{{ background: {};{} }}'.format(
                     prefix(''), bg_color, text_style
                 )
             )
         if hl_color is not None:
             lines.insert(
-                0, '%s { background-color: %s }' % (prefix('hll'), hl_color)
+                0, '{} {{ background-color: {} }}'.format(prefix('hll'), hl_color)
             )
 
         return lines
@@ -594,17 +594,11 @@ class HtmlFormatter(Formatter):
 
     @property
     def _linenos_style(self):
-        return 'color: %s; background-color: %s; padding-left: 5px; padding-right: 5px;' % (
-            self.style.line_number_color,
-            self.style.line_number_background_color
-        )
+        return f'color: {self.style.line_number_color}; background-color: {self.style.line_number_background_color}; padding-left: 5px; padding-right: 5px;'
 
     @property
     def _linenos_special_style(self):
-        return 'color: %s; background-color: %s; padding-left: 5px; padding-right: 5px;' % (
-            self.style.line_number_special_color,
-            self.style.line_number_special_background_color
-        )
+        return f'color: {self.style.line_number_special_color}; background-color: {self.style.line_number_special_background_color}; padding-left: 5px; padding-right: 5px;'
 
     def _decodeifneeded(self, value):
         if isinstance(value, bytes):
@@ -695,7 +689,7 @@ class HtmlFormatter(Formatter):
                     style = ' class="normal"'
 
             if style:
-                line = '<span%s>%s</span>' % (style, line)
+                line = f'<span{style}>{line}</span>'
 
             lines.append(line)
 
@@ -754,7 +748,7 @@ class HtmlFormatter(Formatter):
                     style = ' class="linenos"'
 
             if style:
-                linenos = '<span%s>%s</span>' % (style, line)
+                linenos = f'<span{style}>{line}</span>'
             else:
                 linenos = line
 
@@ -791,7 +785,7 @@ class HtmlFormatter(Formatter):
         style = []
         if (self.noclasses and not self.nobackground and
                 self.style.background_color is not None):
-            style.append('background: %s' % (self.style.background_color,))
+            style.append(f'background: {self.style.background_color}')
         if self.cssstyles:
             style.append(self.cssstyles)
         style = '; '.join(style)
@@ -848,13 +842,13 @@ class HtmlFormatter(Formatter):
                     css_style = self._get_css_inline_styles(ttype)
                     if css_style:
                         css_style = self.class2style[css_style][0]
-                        cspan = '<span style="%s"%s>' % (css_style, title)
+                        cspan = f'<span style="{css_style}"{title}>'
                     else:
                         cspan = ''
                 else:
                     css_class = self._get_css_classes(ttype)
                     if css_class:
-                        cspan = '<span class="%s"%s>' % (css_class, title)
+                        cspan = f'<span class="{css_class}"{title}>'
                     else:
                         cspan = ''
                 self.span_element_openers[ttype] = cspan
@@ -927,9 +921,8 @@ class HtmlFormatter(Formatter):
                 if self.noclasses:
                     style = ''
                     if self.style.highlight_color is not None:
-                        style = (' style="background-color: %s"' %
-                                 (self.style.highlight_color,))
-                    yield 1, '<span%s>%s</span>' % (style, value)
+                        style = (f' style="background-color: {self.style.highlight_color}"')
+                    yield 1, f'<span{style}>{value}</span>'
                 else:
                     yield 1, '<span class="hll">%s</span>' % value
             else:

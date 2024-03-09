@@ -87,7 +87,7 @@ def test_contrasts(fail_if_improved=True):
             bar,
             "\n".join(
                 [
-                    "* {:.2f} {}".format(contrast, ttype)
+                    f"* {contrast:.2f} {ttype}"
                     for contrast, ttype in contrasts
                     if contrast < bar
                 ]

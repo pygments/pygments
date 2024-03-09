@@ -17,7 +17,7 @@ def test_cats_exist_and_compilable():
         s = getattr(uni, cat)
         if s == '':  # Probably Cs on Jython
             continue
-        print("%s %r" % (cat, s))
+        print(f"{cat} {s!r}")
         re.compile('[%s]' % s)
 
 
