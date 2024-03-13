@@ -1,0 +1,85 @@
+---input---
+import gleam/io
+
+pub fn main() {
+  let _var: Int = 2
+
+  // Print to the console
+  io.println("Hello, Joe!")
+
+  io.debug(
+    "multi
+    line
+    string",
+  )
+}
+
+---tokens---
+'import'      Keyword
+' '           Text.Whitespace
+'gleam'       Name
+'/'           Operator
+'io'          Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'pub'         Keyword
+' '           Text.Whitespace
+'fn'          Keyword
+' '           Text.Whitespace
+'main'        Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'_var'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'Int'         Name
+' '           Text.Whitespace
+'='           Error
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'// Print to the console' Comment.Single
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'io'          Keyword
+'.'           Operator
+'println'     Name
+'('           Punctuation
+'"Hello, Joe!"' Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'io'          Keyword
+'.'           Operator
+'debug'       Name
+'('           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'"multi\n    line\n    string"' Literal.String
+','           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
