@@ -68,7 +68,6 @@ class GleamLexer(RegexLexer):
             (r'\d+((_\d+)+)?', Number.Integer),
 
             # Whitespace
-            (r'\n', Whitespace),
             (r'\s+', Whitespace),
 
         ],

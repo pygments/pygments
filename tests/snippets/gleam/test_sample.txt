@@ -23,9 +23,7 @@ fn format_pair(name: String, value: String) -> String {
 'gleam'       Name
 '/'           Operator
 'io'          Name
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'pub'         Keyword
 ' '           Text.Whitespace
@@ -36,9 +34,7 @@ fn format_pair(name: String, value: String) -> String {
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'let'         Keyword
 ' '           Text.Whitespace
 '_var'        Name
@@ -46,49 +42,42 @@ fn format_pair(name: String, value: String) -> String {
 ' '           Text.Whitespace
 'Int'         Name
 ' '           Text.Whitespace
-'='           Error
+'='           Punctuation
 ' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ' '           Text.Whitespace
-'+'           Error
+'+'           Operator
 ' '           Text.Whitespace
 '3'           Literal.Number.Integer
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'let'         Keyword
 ' '           Text.Whitespace
 'value'       Name
 ' '           Text.Whitespace
-'='           Error
+'='           Punctuation
 ' '           Text.Whitespace
 'envoy'       Keyword
-'.'           Operator
+'.'           Punctuation
 'get'         Name
 '('           Punctuation
 'name'        Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'|'           Error
-'>'           Error
+'|>'          Punctuation
 ' '           Text.Whitespace
 'result'      Keyword
-'.'           Operator
+'.'           Punctuation
 'unwrap'      Name
 '('           Punctuation
 '""'          Literal.String
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Print to the console' Comment.Single
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'io'          Keyword
-'.'           Operator
+'.'           Punctuation
 'println'     Name
 '('           Punctuation
 '"Hello, Joe!"' Literal.String
@@ -97,16 +86,12 @@ fn format_pair(name: String, value: String) -> String {
 '// an inline comment' Comment.Single
 '\n'          Text.Whitespace
 
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '"multi\n   line\n   string"' Literal.String
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'fn'          Keyword
 ' '           Text.Whitespace
@@ -124,24 +109,19 @@ fn format_pair(name: String, value: String) -> String {
 'String'      Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'-'           Error
-'>'           Error
+'->'          Punctuation
 ' '           Text.Whitespace
 'String'      Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'name'        Name
 ' '           Text.Whitespace
-'<'           Error
-'>'           Error
+'<>'          Operator
 ' '           Text.Whitespace
 '"="'         Literal.String
 ' '           Text.Whitespace
-'<'           Error
-'>'           Error
+'<>'          Operator
 ' '           Text.Whitespace
 'value'       Name
 '\n'          Text.Whitespace

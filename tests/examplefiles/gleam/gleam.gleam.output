@@ -66,9 +66,7 @@
 ' '           Text.Whitespace
 'Some'        Name
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'const'       Keyword
 ' '           Text.Whitespace
@@ -91,9 +89,7 @@
 ' '           Text.Whitespace
 '3'           Literal.Number.Integer
 ']'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'const'       Keyword
 ' '           Text.Whitespace
@@ -110,9 +106,7 @@
 ' '           Text.Whitespace
 '3.0'         Literal.Number.Float
 ']'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'pub'         Keyword
 ' '           Text.Whitespace
@@ -121,13 +115,9 @@
 'UserId'      Name
 ' '           Text.Whitespace
 '='           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'Int'         Name
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'pub'         Keyword
 ' '           Text.Whitespace
@@ -136,28 +126,18 @@
 'Season'      Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'Spring'      Name
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'Summer'      Name
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'Autumn'      Name
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'Winter'      Name
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'pub'         Keyword
 ' '           Text.Whitespace
@@ -166,9 +146,7 @@
 'SchoolPerson' Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'Teacher'     Name
 '('           Punctuation
 'name'        Name
@@ -182,9 +160,7 @@
 ' '           Text.Whitespace
 'String'      Name
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'Student'     Name
 '('           Punctuation
 'String'      Name
@@ -192,9 +168,7 @@
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'pub'         Keyword
 ' '           Text.Whitespace
@@ -206,23 +180,17 @@
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'Some'        Name
 '('           Punctuation
 'inner'       Name
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'None'        Name
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 '// An option of string' Comment.Single
 '\n'          Text.Whitespace
@@ -245,9 +213,7 @@
 '('           Punctuation
 '"Annah"'     Literal.String
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 '// An option of int' Comment.Single
 '\n'          Text.Whitespace
@@ -270,9 +236,7 @@
 '('           Punctuation
 '10'          Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'pub'         Keyword
 ' '           Text.Whitespace
@@ -283,9 +247,7 @@
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '// Print to the console' Comment.Single
 '\n'          Text.Whitespace
 
@@ -296,11 +258,7 @@
 '('           Punctuation
 '"Hello, Joe!"' Literal.String
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Use the function in a qualified fashion' Comment.Single
 '\n'          Text.Whitespace
 
@@ -311,11 +269,7 @@
 '('           Punctuation
 '"This is qualified"' Literal.String
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Or an unqualified fashion' Comment.Single
 '\n'          Text.Whitespace
 
@@ -324,11 +278,7 @@
 '('           Punctuation
 '"This is unqualified"' Literal.String
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -339,9 +289,7 @@
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -352,9 +300,7 @@
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -365,9 +311,7 @@
 ' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -378,9 +322,7 @@
 ' '           Text.Whitespace
 '3'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -391,11 +333,7 @@
 ' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Int comparisons' Comment.Single
 '\n'          Text.Whitespace
 
@@ -410,9 +348,7 @@
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -423,9 +359,7 @@
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -436,9 +370,7 @@
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -449,11 +381,7 @@
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Equality works for any type' Comment.Single
 '\n'          Text.Whitespace
 
@@ -468,9 +396,7 @@
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -481,11 +407,7 @@
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Standard library int functions' Comment.Single
 '\n'          Text.Whitespace
 
@@ -504,9 +426,7 @@
 '77'          Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -524,11 +444,7 @@
 '20'          Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Float arithmetic' Comment.Single
 '\n'          Text.Whitespace
 
@@ -543,9 +459,7 @@
 ' '           Text.Whitespace
 '1.5'         Literal.Number.Float
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -556,9 +470,7 @@
 ' '           Text.Whitespace
 '1.5'         Literal.Number.Float
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -569,9 +481,7 @@
 ' '           Text.Whitespace
 '2.5'         Literal.Number.Float
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -582,11 +492,7 @@
 ' '           Text.Whitespace
 '3.5'         Literal.Number.Float
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Float comparisons' Comment.Single
 '\n'          Text.Whitespace
 
@@ -601,9 +507,7 @@
 ' '           Text.Whitespace
 '1.3'         Literal.Number.Float
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -614,9 +518,7 @@
 ' '           Text.Whitespace
 '1.3'         Literal.Number.Float
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -627,9 +529,7 @@
 ' '           Text.Whitespace
 '1.3'         Literal.Number.Float
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -640,11 +540,7 @@
 ' '           Text.Whitespace
 '1.3'         Literal.Number.Float
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Equality works for any type' Comment.Single
 '\n'          Text.Whitespace
 
@@ -659,9 +555,7 @@
 ' '           Text.Whitespace
 '1.1'         Literal.Number.Float
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -672,11 +566,7 @@
 ' '           Text.Whitespace
 '1.2'         Literal.Number.Float
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Division by zero is not an error' Comment.Single
 '\n'          Text.Whitespace
 
@@ -691,11 +581,7 @@
 ' '           Text.Whitespace
 '0.0'         Literal.Number.Float
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Standard library float functions' Comment.Single
 '\n'          Text.Whitespace
 
@@ -714,9 +600,7 @@
 '9.5'         Literal.Number.Float
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -728,11 +612,7 @@
 '5.4'         Literal.Number.Float
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Underscores' Comment.Single
 '\n'          Text.Whitespace
 
@@ -743,20 +623,14 @@
 '('           Punctuation
 '1_000_000'   Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
 '('           Punctuation
 '10_000.01'   Literal.Number.Float
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Binary, octal, and hex Int literals' Comment.Single
 '\n'          Text.Whitespace
 
@@ -767,29 +641,21 @@
 '('           Punctuation
 '0b00001111'  Literal.Number.Bin
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
 '('           Punctuation
 '0o17'        Literal.Number.Oct
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
 '('           Punctuation
 '0xF'         Literal.Number.Hex
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Scientific notation Float literals' Comment.Single
 '\n'          Text.Whitespace
 
@@ -800,20 +666,14 @@
 '('           Punctuation
 '7.0e7'       Literal.Number.Float
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
 '('           Punctuation
 '3.0e-4'      Literal.Number.Float
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -824,9 +684,7 @@
 ' '           Text.Whitespace
 '100'         Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -837,11 +695,7 @@
 ' '           Text.Whitespace
 '0.1'         Literal.Number.Float
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// String literals' Comment.Single
 '\n'          Text.Whitespace
 
@@ -852,36 +706,24 @@
 '('           Punctuation
 '"👩\u200d💻 こんにちは Gleam 🏳️\u200d🌈"' Literal.String
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
 '('           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '"multi\n    line\n    string"' Literal.String
 ','           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
 '('           Punctuation
 '"\\u{1F600}"' Literal.String
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Double quote can be escaped' Comment.Single
 '\n'          Text.Whitespace
 
@@ -892,11 +734,7 @@
 '('           Punctuation
 '"\\"X\\" marks the spot"' Literal.String
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// String concatenation' Comment.Single
 '\n'          Text.Whitespace
 
@@ -911,11 +749,7 @@
 ' '           Text.Whitespace
 '"Two"'       Literal.String
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// String functions' Comment.Single
 '\n'          Text.Whitespace
 
@@ -931,9 +765,7 @@
 '"1 2 3 4 5"' Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -948,11 +780,7 @@
 '"def"'       Literal.String
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Bool operators' Comment.Single
 '\n'          Text.Whitespace
 
@@ -967,9 +795,7 @@
 ' '           Text.Whitespace
 'False'       Name
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -980,9 +806,7 @@
 ' '           Text.Whitespace
 'True'        Name
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -993,9 +817,7 @@
 ' '           Text.Whitespace
 'False'       Name
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -1006,11 +828,7 @@
 ' '           Text.Whitespace
 'True'        Name
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Bool functions' Comment.Single
 '\n'          Text.Whitespace
 
@@ -1026,9 +844,7 @@
 'True'        Name
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -1040,11 +856,7 @@
 'False'       Name
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 'let'         Keyword
 ' '           Text.Whitespace
 'x'           Name
@@ -1052,20 +864,14 @@
 '='           Punctuation
 ' '           Text.Whitespace
 '"Original"'  Literal.String
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
 '('           Punctuation
 'x'           Name
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Assign `y` to the value of `x`' Comment.Single
 '\n'          Text.Whitespace
 
@@ -1077,20 +883,14 @@
 '='           Punctuation
 ' '           Text.Whitespace
 'x'           Name
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
 '('           Punctuation
 'y'           Name
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Assign `x` to a new value' Comment.Single
 '\n'          Text.Whitespace
 
@@ -1102,20 +902,14 @@
 '='           Punctuation
 ' '           Text.Whitespace
 '"New"'       Literal.String
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
 '('           Punctuation
 'x'           Name
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// The `y` still refers to the original value' Comment.Single
 '\n'          Text.Whitespace
 
@@ -1126,11 +920,7 @@
 '('           Punctuation
 'y'           Name
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// This variable is never used' Comment.Single
 '\n'          Text.Whitespace
 
@@ -1142,11 +932,7 @@
 '='           Punctuation
 ' '           Text.Whitespace
 '1000'        Literal.Number.Integer
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 'let'         Keyword
 ' '           Text.Whitespace
 '_name'       Name
@@ -1157,11 +943,7 @@
 '='           Punctuation
 ' '           Text.Whitespace
 '"Gleam"'     Literal.String
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 'let'         Keyword
 ' '           Text.Whitespace
 '_is_cool'    Name
@@ -1172,11 +954,7 @@
 '='           Punctuation
 ' '           Text.Whitespace
 'True'        Name
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 'let'         Keyword
 ' '           Text.Whitespace
 '_version'    Name
@@ -1187,11 +965,7 @@
 '='           Punctuation
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 'let'         Keyword
 ' '           Text.Whitespace
 'one'         Name
@@ -1202,9 +976,7 @@
 '='           Punctuation
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'let'         Keyword
 ' '           Text.Whitespace
 'two'         Name
@@ -1215,11 +987,7 @@
 '='           Punctuation
 ' '           Text.Whitespace
 '2'           Literal.Number.Integer
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// UserId and Int are the same type' Comment.Single
 '\n'          Text.Whitespace
 
@@ -1234,11 +1002,7 @@
 ' '           Text.Whitespace
 'two'         Name
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 'let'         Keyword
 ' '           Text.Whitespace
 'fahrenheit'  Name
@@ -1246,9 +1010,7 @@
 '='           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 'let'         Keyword
 ' '           Text.Whitespace
 'degrees'     Name
@@ -1256,23 +1018,15 @@
 '='           Punctuation
 ' '           Text.Whitespace
 '64'          Literal.Number.Integer
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 'degrees'     Name
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '// io.debug(degrees) // <- This will not compile' Comment.Single
 '\n'          Text.Whitespace
 
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '// Changing order of evaluation' Comment.Single
 '\n'          Text.Whitespace
 
@@ -1300,20 +1054,14 @@
 '/'           Operator
 ' '           Text.Whitespace
 '9'           Literal.Number.Integer
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
 '('           Punctuation
 'celsius'     Name
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 'let'         Keyword
 ' '           Text.Whitespace
 'ints'        Name
@@ -1329,22 +1077,14 @@
 ' '           Text.Whitespace
 '3'           Literal.Number.Integer
 ']'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
 '('           Punctuation
 'ints'        Name
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Immutably prepend' Comment.Single
 '\n'          Text.Whitespace
 
@@ -1365,11 +1105,7 @@
 'ints'        Name
 ']'           Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Uncomment this to see the error' Comment.Single
 '\n'          Text.Whitespace
 
@@ -1377,9 +1113,7 @@
 '// io.debug(["zero", ..ints])' Comment.Single
 '\n'          Text.Whitespace
 
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '// The original lists are unchanged' Comment.Single
 '\n'          Text.Whitespace
 
@@ -1390,20 +1124,14 @@
 '('           Punctuation
 'ints'        Name
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
 '('           Punctuation
 'ints'        Name
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -1422,20 +1150,14 @@
 '3'           Literal.Number.Integer
 ']'           Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
 '('           Punctuation
 'floats'      Name
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -1454,11 +1176,7 @@
 '3.0'         Literal.Number.Float
 ']'           Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -1468,11 +1186,7 @@
 '10'          Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -1486,11 +1200,7 @@
 ')'           Punctuation
 '>>'          Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// A bit array of UTF8 data' Comment.Single
 '\n'          Text.Whitespace
 
@@ -1505,11 +1215,7 @@
 'utf8'        Name
 '>>'          Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Assign an anonymous function to a variable' Comment.Single
 '\n'          Text.Whitespace
 
@@ -1534,9 +1240,7 @@
 '1'           Literal.Number.Integer
 ' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
@@ -1549,11 +1253,7 @@
 'add_one'     Name
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Pass an anonymous function as an argument' Comment.Single
 '\n'          Text.Whitespace
 
@@ -1583,11 +1283,7 @@
 '}'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// These two statements are equivalent' Comment.Single
 '\n'          Text.Whitespace
 
@@ -1614,9 +1310,7 @@
 ')'           Punctuation
 ' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'let'         Keyword
 ' '           Text.Whitespace
 'add_one_v2'  Name
@@ -1630,9 +1324,7 @@
 ' '           Text.Whitespace
 '_'           Name
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'let'         Keyword
 ' '           Text.Whitespace
 'add_one'     Name
@@ -1653,9 +1345,7 @@
 '1'           Literal.Number.Integer
 ' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'let'         Keyword
 ' '           Text.Whitespace
 'exclaim'     Name
@@ -1676,11 +1366,7 @@
 '"!"'         Literal.String
 ' '           Text.Whitespace
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Without the pipe operator' Comment.Single
 '\n'          Text.Whitespace
 
@@ -1707,19 +1393,13 @@
 '7'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// With the pipe operator' Comment.Single
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '"Hello, Mike!"' Literal.String
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '|>'          Punctuation
 ' '           Text.Whitespace
 'string'      Keyword
@@ -1728,9 +1408,7 @@
 '('           Punctuation
 '1'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '|>'          Punctuation
 ' '           Text.Whitespace
 'string'      Keyword
@@ -1739,27 +1417,19 @@
 '('           Punctuation
 '7'           Literal.Number.Integer
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '|>'          Punctuation
 ' '           Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Changing order with function capturing' Comment.Single
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '"1"'         Literal.String
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '|>'          Punctuation
 ' '           Text.Whitespace
 'string'      Keyword
@@ -1768,9 +1438,7 @@
 '('           Punctuation
 '"2"'         Literal.String
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '|>'          Punctuation
 ' '           Text.Whitespace
 'string'      Keyword
@@ -1782,19 +1450,13 @@
 ' '           Text.Whitespace
 '_'           Name
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '|>'          Punctuation
 ' '           Text.Whitespace
 'io'          Keyword
 '.'           Punctuation
 'debug'       Name
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// Using labelled arguments' Comment.Single
 '\n'          Text.Whitespace
 
@@ -1820,11 +1482,7 @@
 '3'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// case expressions' Comment.Single
 '\n'          Text.Whitespace
 
@@ -1840,9 +1498,7 @@
 'x'           Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '// Match specific values' Comment.Single
 '\n'          Text.Whitespace
 
@@ -1852,19 +1508,13 @@
 '->'          Punctuation
 ' '           Text.Whitespace
 '"Zero"'      Literal.String
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '1'           Literal.Number.Integer
 ' '           Text.Whitespace
 '->'          Punctuation
 ' '           Text.Whitespace
 '"One"'       Literal.String
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n\n    '    Text.Whitespace
 '// Match any other value' Comment.Single
 '\n'          Text.Whitespace
 
@@ -1874,15 +1524,9 @@
 '->'          Punctuation
 ' '           Text.Whitespace
 '"Other"'     Literal.String
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 'let'         Keyword
 ' '           Text.Whitespace
 'result'      Name
@@ -1899,9 +1543,7 @@
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '// Match specific values' Comment.Single
 '\n'          Text.Whitespace
 
@@ -1911,19 +1553,13 @@
 '->'          Punctuation
 ' '           Text.Whitespace
 '"Zero"'      Literal.String
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '1'           Literal.Number.Integer
 ' '           Text.Whitespace
 '->'          Punctuation
 ' '           Text.Whitespace
 '"One"'       Literal.String
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n\n    '    Text.Whitespace
 '// Match any other value and assign it to a variable' Comment.Single
 '\n'          Text.Whitespace
 
@@ -1942,23 +1578,15 @@
 '('           Punctuation
 'other'       Name
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
 'x'           Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '"Hello, "'   Literal.String
 ' '           Text.Whitespace
 '<>'          Operator
@@ -1968,23 +1596,15 @@
 '->'          Punctuation
 ' '           Text.Whitespace
 'name'        Name
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '_'           Name
 ' '           Text.Whitespace
 '->'          Punctuation
 ' '           Text.Whitespace
 '"Unknown"'   Literal.String
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// list patterns' Comment.Single
 '\n'          Text.Whitespace
 
@@ -2000,18 +1620,14 @@
 'x'           Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '['           Punctuation
 ']'           Punctuation
 ' '           Text.Whitespace
 '->'          Punctuation
 ' '           Text.Whitespace
 '"Empty list"' Literal.String
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '['           Punctuation
 '1'           Literal.Number.Integer
 ']'           Punctuation
@@ -2019,9 +1635,7 @@
 '->'          Punctuation
 ' '           Text.Whitespace
 '"List of just 1"' Literal.String
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '['           Punctuation
 '4'           Literal.Number.Integer
 ','           Punctuation
@@ -2032,9 +1646,7 @@
 '->'          Punctuation
 ' '           Text.Whitespace
 '"List starting with 4"' Literal.String
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '['           Punctuation
 '_'           Name
 ','           Punctuation
@@ -2045,23 +1657,15 @@
 '->'          Punctuation
 ' '           Text.Whitespace
 '"List of 2 elements"' Literal.String
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '_'           Name
 ' '           Text.Whitespace
 '->'          Punctuation
 ' '           Text.Whitespace
 '"Some other list"' Literal.String
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// multiple subjects' Comment.Single
 '\n'          Text.Whitespace
 
@@ -2080,9 +1684,7 @@
 'y'           Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '0'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text.Whitespace
@@ -2091,9 +1693,7 @@
 '->'          Punctuation
 ' '           Text.Whitespace
 '"Both are zero"' Literal.String
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '0'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text.Whitespace
@@ -2102,9 +1702,7 @@
 '->'          Punctuation
 ' '           Text.Whitespace
 '"First is zero"' Literal.String
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '_'           Name
 ','           Punctuation
 ' '           Text.Whitespace
@@ -2113,9 +1711,7 @@
 '->'          Punctuation
 ' '           Text.Whitespace
 '"Second is zero"' Literal.String
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '_'           Name
 ','           Punctuation
 ' '           Text.Whitespace
@@ -2124,15 +1720,9 @@
 '->'          Punctuation
 ' '           Text.Whitespace
 '"Neither are zero"' Literal.String
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// alternative patterns' Comment.Single
 '\n'          Text.Whitespace
 
@@ -2148,9 +1738,7 @@
 'number'      Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '2'           Literal.Number.Integer
 ' '           Text.Whitespace
 '|'           Punctuation
@@ -2168,9 +1756,7 @@
 '->'          Punctuation
 ' '           Text.Whitespace
 '"This is an even number"' Literal.String
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '1'           Literal.Number.Integer
 ' '           Text.Whitespace
 '|'           Punctuation
@@ -2188,23 +1774,15 @@
 '->'          Punctuation
 ' '           Text.Whitespace
 '"This is an odd number"' Literal.String
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '_'           Name
 ' '           Text.Whitespace
 '->'          Punctuation
 ' '           Text.Whitespace
 '"I\'m not sure"' Literal.String
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// pattern aliases' Comment.Single
 '\n'          Text.Whitespace
 
@@ -2214,9 +1792,7 @@
 'lists'       Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '['           Punctuation
 '['           Punctuation
 '_'           Name
@@ -2236,9 +1812,7 @@
 '->'          Punctuation
 ' '           Text.Whitespace
 'first'       Name
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '['           Punctuation
 '_'           Name
 ','           Punctuation
@@ -2253,9 +1827,7 @@
 '('           Punctuation
 'rest'        Name
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '['           Punctuation
 ']'           Punctuation
 ' '           Text.Whitespace
@@ -2263,15 +1835,9 @@
 ' '           Text.Whitespace
 '['           Punctuation
 ']'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// guards'   Comment.Single
 '\n'          Text.Whitespace
 
@@ -2281,9 +1847,7 @@
 'lists'       Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '['           Punctuation
 'first'       Name
 ','           Punctuation
@@ -2302,9 +1866,7 @@
 '->'          Punctuation
 ' '           Text.Whitespace
 'first'       Name
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '['           Punctuation
 '_'           Name
 ','           Punctuation
@@ -2322,24 +1884,16 @@
 ' '           Text.Whitespace
 'limit'       Name
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '['           Punctuation
 ']'           Punctuation
 ' '           Text.Whitespace
 '->'          Punctuation
 ' '           Text.Whitespace
 '0'           Literal.Number.Integer
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 '// tuples'   Comment.Single
 '\n'          Text.Whitespace
 
@@ -2360,9 +1914,7 @@
 ' '           Text.Whitespace
 '"three"'     Literal.String
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'let'         Keyword
 ' '           Text.Whitespace
 '#'           Punctuation
@@ -2379,57 +1931,39 @@
 '='           Punctuation
 ' '           Text.Whitespace
 'triple'      Name
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
 'season'      Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 'Spring'      Name
 ' '           Text.Whitespace
 '->'          Punctuation
 ' '           Text.Whitespace
 '"Mild"'      Literal.String
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 'Summer'      Name
 ' '           Text.Whitespace
 '->'          Punctuation
 ' '           Text.Whitespace
 '"Hot"'       Literal.String
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 'Autumn'      Name
 ' '           Text.Whitespace
 '->'          Punctuation
 ' '           Text.Whitespace
 '"Windy"'     Literal.String
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 'Winter'      Name
 ' '           Text.Whitespace
 '->'          Punctuation
 ' '           Text.Whitespace
 '"Cold"'      Literal.String
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 'let'         Keyword
 ' '           Text.Whitespace
 'teacher'     Name
@@ -2449,11 +1983,7 @@
 ' '           Text.Whitespace
 '"Physics"'   Literal.String
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 'let'         Keyword
 ' '           Text.Whitespace
 'scores'      Name
@@ -2486,9 +2016,7 @@
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'fn'          Keyword
 ' '           Text.Whitespace
@@ -2505,9 +2033,7 @@
 'Int'         Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'multiply'    Name
 '('           Punctuation
 'a'           Name
@@ -2518,9 +2044,7 @@
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'fn'          Keyword
 ' '           Text.Whitespace
@@ -2543,9 +2067,7 @@
 'Int'         Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'a'           Name
 ' '           Text.Whitespace
 '*'           Operator
@@ -2554,9 +2076,7 @@
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'fn'          Keyword
 ' '           Text.Whitespace
@@ -2586,9 +2106,7 @@
 'Int'         Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'passed_function' Name
 '('           Punctuation
 'passed_function' Name
@@ -2599,9 +2117,7 @@
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'fn'          Keyword
 ' '           Text.Whitespace
@@ -2618,9 +2134,7 @@
 'Int'         Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'argument'    Name
 ' '           Text.Whitespace
 '+'           Operator
@@ -2629,9 +2143,7 @@
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'fn'          Keyword
 ' '           Text.Whitespace
@@ -2661,9 +2173,7 @@
 'Int'         Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'function'    Name
 '('           Punctuation
 'function'    Name
@@ -2674,9 +2184,7 @@
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 '// Labelled arguments' Comment.Single
 '\n'          Text.Whitespace
@@ -2708,9 +2216,7 @@
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'value'       Name
 ' '           Text.Whitespace
 '*'           Operator
@@ -2723,9 +2229,7 @@
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 '@'           Punctuation
 'deprecated'  Name
@@ -2741,16 +2245,12 @@
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'Nil'         Name
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'fn'          Keyword
 ' '           Text.Whitespace
@@ -2776,17 +2276,13 @@
 'Int'         Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
 'list'        Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '['           Punctuation
 'first'       Name
 ','           Punctuation
@@ -2808,25 +2304,19 @@
 ' '           Text.Whitespace
 'first'       Name
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '['           Punctuation
 ']'           Punctuation
 ' '           Text.Whitespace
 '->'          Punctuation
 ' '           Text.Whitespace
 'total'       Name
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '}'           Punctuation
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'pub'         Keyword
 ' '           Text.Whitespace
@@ -2837,9 +2327,7 @@
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'result'      Keyword
 '.'           Punctuation
 'try'         Name
@@ -2855,9 +2343,7 @@
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 'result'      Keyword
 '.'           Punctuation
 'try'         Name
@@ -2873,9 +2359,7 @@
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'      '      Text.Whitespace
+'\n      '    Text.Whitespace
 'result'      Keyword
 '.'           Punctuation
 'map'         Name
@@ -2895,9 +2379,7 @@
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'        '    Text.Whitespace
+'\n        '  Text.Whitespace
 'greeting'    Name
 ' '           Text.Whitespace
 '<>'          Operator
@@ -2907,27 +2389,19 @@
 '<>'          Operator
 ' '           Text.Whitespace
 'username'    Name
-'\n'          Text.Whitespace
-
-'      '      Text.Whitespace
+'\n      '    Text.Whitespace
 '}'           Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '}'           Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '}'           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'pub'         Keyword
 ' '           Text.Whitespace
@@ -2938,9 +2412,7 @@
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'use'         Keyword
 ' '           Text.Whitespace
 'username'    Name
@@ -2955,9 +2427,7 @@
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'use'         Keyword
 ' '           Text.Whitespace
 'password'    Name
@@ -2972,9 +2442,7 @@
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'use'         Keyword
 ' '           Text.Whitespace
 'greeting'    Name
@@ -2993,9 +2461,7 @@
 'password'    Name
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'greeting'    Name
 ' '           Text.Whitespace
 '<>'          Operator
@@ -3008,9 +2474,7 @@
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'pub'         Keyword
 ' '           Text.Whitespace
@@ -3021,9 +2485,7 @@
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'let'         Keyword
 ' '           Text.Whitespace
 'x'           Name
@@ -3031,9 +2493,7 @@
 '='           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 'use'         Keyword
 ' '           Text.Whitespace
 'username'    Name
@@ -3048,9 +2508,7 @@
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 'use'         Keyword
 ' '           Text.Whitespace
 'password'    Name
@@ -3065,9 +2523,7 @@
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 'use'         Keyword
 ' '           Text.Whitespace
 'greeting'    Name
@@ -3086,9 +2542,7 @@
 'password'    Name
 ')'           Punctuation
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 'greeting'    Name
 ' '           Text.Whitespace
 '<>'          Operator
@@ -3098,23 +2552,15 @@
 '<>'          Operator
 ' '           Text.Whitespace
 'username'    Name
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n\n  '      Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
 'x'           Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 'Ok'          Name
 '('           Punctuation
 'greeting'    Name
@@ -3128,9 +2574,7 @@
 '('           Punctuation
 'greeting'    Name
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 'Error'       Name
 '('           Punctuation
 'error'       Name
@@ -3148,16 +2592,12 @@
 ' '           Text.Whitespace
 'error'       Name
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '}'           Punctuation
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'pub'         Keyword
 ' '           Text.Whitespace
@@ -3168,9 +2608,7 @@
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'todo'        Keyword
 ' '           Text.Whitespace
 'as'          Keyword
@@ -3179,9 +2617,7 @@
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 'pub'         Keyword
 ' '           Text.Whitespace
@@ -3192,16 +2628,12 @@
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'todo'        Keyword
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 '// panic'    Comment.Single
 '\n'          Text.Whitespace
@@ -3219,17 +2651,13 @@
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'case'        Keyword
 ' '           Text.Whitespace
 'score'       Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 'score'       Name
 ' '           Text.Whitespace
 'if'          Keyword
@@ -3248,9 +2676,7 @@
 '('           Punctuation
 '"High score!"' Literal.String
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 'score'       Name
 ' '           Text.Whitespace
 'if'          Keyword
@@ -3269,9 +2695,7 @@
 '('           Punctuation
 '"Still working on it"' Literal.String
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
+'\n    '      Text.Whitespace
 '_'           Name
 ' '           Text.Whitespace
 '->'          Punctuation
@@ -3281,16 +2705,12 @@
 'as'          Keyword
 ' '           Text.Whitespace
 '"Scores should never be negative!"' Literal.String
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '}'           Punctuation
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 '// let assert' Comment.Single
 '\n'          Text.Whitespace
@@ -3315,9 +2735,7 @@
 'a'           Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 '// This will panic if the list is empty.' Comment.Single
 '\n'          Text.Whitespace
 
@@ -3340,16 +2758,12 @@
 '='           Punctuation
 ' '           Text.Whitespace
 'items'       Name
-'\n'          Text.Whitespace
-
-'  '          Text.Whitespace
+'\n  '        Text.Whitespace
 'first'       Name
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
+'\n\n'        Text.Whitespace
 
 '// externals' Comment.Single
 '\n'          Text.Whitespace
