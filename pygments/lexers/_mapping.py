@@ -189,7 +189,7 @@ LEXERS = {
     'GenshiTextLexer': ('pygments.lexers.templates', 'Genshi Text', ('genshitext',), (), ('application/x-genshi-text', 'text/x-genshi')),
     'GettextLexer': ('pygments.lexers.textfmts', 'Gettext Catalog', ('pot', 'po'), ('*.pot', '*.po'), ('application/x-gettext', 'text/x-gettext', 'text/gettext')),
     'GherkinLexer': ('pygments.lexers.testing', 'Gherkin', ('gherkin', 'cucumber'), ('*.feature',), ('text/x-gherkin',)),
-    'GleamLexer': ('pygments.lexers.gleam', 'Gleam', ('gleam',), ('*.gleam',), ('text/gleam', 'text/x-gleam')),
+    'GleamLexer': ('pygments.lexers.gleam', 'Gleam', ('gleam',), ('*.gleam',), ('text/x-gleam',)),
     'GnuplotLexer': ('pygments.lexers.graphics', 'Gnuplot', ('gnuplot',), ('*.plot', '*.plt'), ('text/x-gnuplot',)),
     'GoLexer': ('pygments.lexers.go', 'Go', ('go', 'golang'), ('*.go',), ('text/x-gosrc',)),
     'GoloLexer': ('pygments.lexers.jvm', 'Golo', ('golo',), ('*.golo',), ()),

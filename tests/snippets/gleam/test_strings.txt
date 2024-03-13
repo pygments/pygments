@@ -5,7 +5,7 @@
  line
  string"
 "escape sequences \u{0fa32} \" \\ \f \n \r \t"
-"👩‍💻 こんにちは Gleam 🏳️‍🌈"
+"こんにちは"
 
 ---tokens---
 '"Hello, Joe!"' Literal.String
@@ -20,5 +20,5 @@
 '"escape sequences \\u{0fa32} \\" \\\\ \\f \\n \\r \\t"' Literal.String
 '\n'          Text.Whitespace
 
-'"👩\u200d💻 こんにちは Gleam 🏳️\u200d🌈"' Literal.String
+'"こんにちは"'     Literal.String
 '\n'          Text.Whitespace

@@ -1,0 +1,74 @@
+---input---
+:
+,
+#
+!
+=
+==
+!=
+|
+||
+&&
+<<
+>>
+|>
+.
+->
+<-
+..
+@
+
+---tokens---
+':'           Punctuation
+'\n'          Text.Whitespace
+
+','           Punctuation
+'\n'          Text.Whitespace
+
+'#'           Punctuation
+'\n'          Text.Whitespace
+
+'!'           Punctuation
+'\n'          Text.Whitespace
+
+'='           Punctuation
+'\n'          Text.Whitespace
+
+'=='          Punctuation
+'\n'          Text.Whitespace
+
+'!='          Punctuation
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+'\n'          Text.Whitespace
+
+'||'          Punctuation
+'\n'          Text.Whitespace
+
+'&&'          Punctuation
+'\n'          Text.Whitespace
+
+'<<'          Punctuation
+'\n'          Text.Whitespace
+
+'>>'          Punctuation
+'\n'          Text.Whitespace
+
+'|>'          Punctuation
+'\n'          Text.Whitespace
+
+'.'           Punctuation
+'\n'          Text.Whitespace
+
+'->'          Punctuation
+'\n'          Text.Whitespace
+
+'<-'          Punctuation
+'\n'          Text.Whitespace
+
+'..'          Punctuation
+'\n'          Text.Whitespace
+
+'@'           Punctuation
+'\n'          Text.Whitespace

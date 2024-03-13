@@ -9,7 +9,7 @@
 """
 
 from pygments.lexer import RegexLexer, words, bygroups
-from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
+from pygments.token import Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
 
 __all__ = ['GleamLexer']
@@ -24,8 +24,8 @@ class GleamLexer(RegexLexer):
     url = 'https://gleam.run/'
     filenames = ['*.gleam']
     aliases = ['gleam']
-    mimetypes = ['text/gleam', 'text/x-gleam']
-    version_added = '2.17.2'
+    mimetypes = ['text/x-gleam']
+    version_added = '2.17'
 
     keywords = words((
         'as', 'assert', 'auto', 'case', 'const', 'delegate', 'derive', 'echo',
@@ -33,37 +33,29 @@ class GleamLexer(RegexLexer):
         'panic', 'pub', 'test', 'todo', 'type', 'use',
     ), suffix=r'\b')
 
-    operators = words((
-        '+', '-', '*', '/', '%', '<', '>', '<=', '>=',
-        '+.', '-.', '*.', '/.', '<.', '>.', '<=.', '>=.',
-        '<>', '#', '!', '=', '==', '!=', '|', '.',
-        '||', '&&', '<<', '>>', '|>', '->', '<-', '..',
-        '@'
-    ), suffix=r'\b')
-
-    punctuation = words((
-        ':', ';', ','
-    ), suffix=r'\b')
-
     tokens = {
         'root': [
             # Comments
-            (r'//.*', Comment.Single),
+            (r'(///.*?)(\n)', bygroups(String.Doc, Whitespace)),
+            (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace)),
 
             # Keywords
             (keywords, Keyword),
-            (r'([a-zA-Z_]*)(\.)', bygroups(Keyword, Operator)),
-
-            # Operators
-            (operators, Operator),
+            (r'([a-zA-Z_]+)(\.)', bygroups(Keyword, Punctuation)),
 
             # Punctuation
-            (r'[,()\[\]{}:;,]', Punctuation),
+            (r'[()\[\]{}:;,@]', Punctuation),
+            (r'(#|!=|!|==|\|>|\|\||\||\->|<\-|&&|<<|>>|\.\.|\.|=)', Punctuation),
+
+            # Operators
+            (r'(<>|\+\.?|\-\.?|\*\.?|/\.?|%\.?|<=\.?|>=\.?|<\.?|>\.?|=)', Operator),
 
             # Strings
             (r'(?s)"(\\"|[^"])*"', String),
 
             # Identifiers
+            (r'\b(let)(\s+)(\w+)', bygroups(Keyword, Whitespace, Name.Variable)),
+            (r'\b(fn)(\s+)(\w+)', bygroups(Keyword, Whitespace, Name.Function)),
             (r'[a-zA-Z_/]\w*', Name),
 
             # numbers

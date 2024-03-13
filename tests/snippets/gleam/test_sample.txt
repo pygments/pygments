@@ -2,16 +2,19 @@
 import gleam/io
 
 pub fn main() {
-  let _var: Int = 2
+  let _var: Int = 2 + 3
+  let value = envoy.get(name) |> result.unwrap("")
 
   // Print to the console
-  io.println("Hello, Joe!")
+  io.println("Hello, Joe!") // an inline comment
 
-  io.debug(
-    "multi
-    line
-    string",
-  )
+  "multi
+   line
+   string"
+}
+
+fn format_pair(name: String, value: String) -> String {
+  name <> "=" <> value
 }
 
 ---tokens---
@@ -46,6 +49,35 @@ pub fn main() {
 '='           Error
 ' '           Text.Whitespace
 '2'           Literal.Number.Integer
+' '           Text.Whitespace
+'+'           Error
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'value'       Name
+' '           Text.Whitespace
+'='           Error
+' '           Text.Whitespace
+'envoy'       Keyword
+'.'           Operator
+'get'         Name
+'('           Punctuation
+'name'        Name
+')'           Punctuation
+' '           Text.Whitespace
+'|'           Error
+'>'           Error
+' '           Text.Whitespace
+'result'      Keyword
+'.'           Operator
+'unwrap'      Name
+'('           Punctuation
+'""'          Literal.String
+')'           Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -61,24 +93,57 @@ pub fn main() {
 '('           Punctuation
 '"Hello, Joe!"' Literal.String
 ')'           Punctuation
+' '           Text.Whitespace
+'// an inline comment' Comment.Single
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'io'          Keyword
-'.'           Operator
-'debug'       Name
+'"multi\n   line\n   string"' Literal.String
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'fn'          Keyword
+' '           Text.Whitespace
+'format_pair' Name
 '('           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text.Whitespace
-'"multi\n    line\n    string"' Literal.String
+'name'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'String'      Name
 ','           Punctuation
+' '           Text.Whitespace
+'value'       Name
+':'           Punctuation
+' '           Text.Whitespace
+'String'      Name
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Error
+'>'           Error
+' '           Text.Whitespace
+'String'      Name
+' '           Text.Whitespace
+'{'           Punctuation
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-')'           Punctuation
+'name'        Name
+' '           Text.Whitespace
+'<'           Error
+'>'           Error
+' '           Text.Whitespace
+'"="'         Literal.String
+' '           Text.Whitespace
+'<'           Error
+'>'           Error
+' '           Text.Whitespace
+'value'       Name
 '\n'          Text.Whitespace
 
 '}'           Punctuation
