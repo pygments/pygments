@@ -51,7 +51,7 @@ class GleamLexer(RegexLexer):
             (r'(<>|\+\.?|\-\.?|\*\.?|/\.?|%\.?|<=\.?|>=\.?|<\.?|>\.?|=)', Operator),
 
             # Strings
-            (r'(?s)"(\\"|[^"])*"', String),
+            (r'"(\\"|[^"])*"', String),
 
             # Identifiers
             (r'\b(let)(\s+)(\w+)', bygroups(Keyword, Whitespace, Name.Variable)),
