@@ -519,7 +519,7 @@ class HyLexer(RegexLexer):
     # valid names for identifiers
     # well, names can only not consist fully of numbers
     # but this should be good enough for now
-    valid_name = r'(?!#)[\w!$%*+<=>?/.#:-]+'
+    valid_name = r"[^ \t\n\r\f\v()[\]{};\"'`~]+"
 
     def _multi_escape(entries):
         return words(entries, suffix=' ')
@@ -531,8 +531,7 @@ class HyLexer(RegexLexer):
             (r';.*$', Comment.Single),
 
             # whitespaces - usually not relevant
-            (r',+', Text),
-            (r'\s+', Whitespace),
+            (r'[ \t\n\r\f\v]+', Whitespace),
 
             # numbers
             (r'-?\d+\.\d+', Number.Float),
