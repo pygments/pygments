@@ -1179,8 +1179,8 @@ class HybrisLexer(RegexLexer):
     """
 
     name = 'Hybris'
-    aliases = ['hybris', 'hy']
-    filenames = ['*.hy', '*.hyb']
+    aliases = ['hybris']
+    filenames = ['*.hyb']
     mimetypes = ['text/x-hybris', 'application/x-hybris']
     url = 'https://github.com/evilsocket/hybris'
     version_added = '1.4'

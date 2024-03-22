@@ -486,7 +486,7 @@ class HyLexer(RegexLexer):
     """
     name = 'Hy'
     url = 'http://hylang.org/'
-    aliases = ['hylang']
+    aliases = ['hylang', 'hy']
     filenames = ['*.hy']
     mimetypes = ['text/x-hy', 'application/x-hy']
     version_added = '2.0'
