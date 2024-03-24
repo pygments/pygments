@@ -31,5 +31,6 @@ from pygments.lexers.ooc import OocLexer
 from pygments.lexers.felix import FelixLexer
 from pygments.lexers.nimrod import NimrodLexer
 from pygments.lexers.crystal import CrystalLexer
+from pygments.lexers.holyc import HolyCLexer
 
 __all__ = []
