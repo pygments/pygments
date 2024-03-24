@@ -44,7 +44,7 @@ class GleamLexer(RegexLexer):
             (r'([a-zA-Z_]+)(\.)', bygroups(Keyword, Punctuation)),
 
             # Punctuation
-            (r'[()\[\]{}:;,@]', Punctuation),
+            (r'[()\[\]{}:;,@]+', Punctuation),
             (r'(#|!=|!|==|\|>|\|\||\||\->|<\-|&&|<<|>>|\.\.|\.|=)', Punctuation),
 
             # Operators
