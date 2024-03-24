@@ -25,7 +25,7 @@ class GleamLexer(RegexLexer):
     filenames = ['*.gleam']
     aliases = ['gleam']
     mimetypes = ['text/x-gleam']
-    version_added = '2.17'
+    version_added = '2.18'
 
     keywords = words((
         'as', 'assert', 'auto', 'case', 'const', 'delegate', 'derive', 'echo',
