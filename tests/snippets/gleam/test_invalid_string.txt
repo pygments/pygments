@@ -1,0 +1,31 @@
+---input---
+pub fn main() {
+  let s = "Hello, Joe!
+}
+
+---tokens---
+'pub'         Keyword
+' '           Text.Whitespace
+'fn'          Keyword
+' '           Text.Whitespace
+'main'        Name
+'()'          Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'s'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"'           Error
+'Hello'       Name
+','           Punctuation
+' '           Text.Whitespace
+'Joe'         Name
+'!'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
