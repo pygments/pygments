@@ -47,7 +47,6 @@ def _build_message(*args, **kwargs):
 def format_rtf(t, options=None, lexer=TextLexer):
     if options is None:
         options = {}
-    #tokensource = list(lexer().get_tokens(t))
     tokensource = lexer().get_tokens(t)
     fmt = RtfFormatter(**options)
     buf = StringIO()
@@ -178,8 +177,6 @@ def test_linenos_python():
                 r'{\cf1 1  }{\cf3 s} = {\cf2 "}{\cf2 line1}{\cf2 \\n}{\cf2 line2}{\cf2 "}\par' + '\n'
                 r'}' + '\n')
     msg = _build_message(t=t, result=result, expected=expected)
-    print(result)
-    print(repr(result))
     assert result.endswith(expected), msg
 
 
