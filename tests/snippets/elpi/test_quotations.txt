@@ -1,25 +1,40 @@
 ---input---
-tc {{ Eq lp:A }} {{ f lp:B l } }} :- foo A B.
+tc {{ Eq lp:A }} {{ f lp:B l lp:{{f Elpi {{Coq}}}}}} :- foo A B.
 
 ---tokens---
 'tc'          Text
 ' '           Text.Whitespace
 '{{'          Punctuation
-' Eq '        Text
-'lp:'         Keyword
+' '           Text.Whitespace
+'E'           Text
+'q'           Text
+' '           Text.Whitespace
+'lp:'         Literal.Number
 'A'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 '}}'          Punctuation
 ' '           Text.Whitespace
 '{{'          Punctuation
-' f '         Text
-'lp:'         Keyword
+' '           Text.Whitespace
+'f'           Text
+' '           Text.Whitespace
+'lp:'         Literal.Number
 'B'           Name.Variable
-' '           Text
+' '           Text.Whitespace
 'l'           Text
-' '           Text
-'}'           Text
-' '           Text
+' '           Text.Whitespace
+'lp:'         Literal.Number
+'{{'          Punctuation
+'f'           Text
+' '           Text.Whitespace
+'Elpi'        Name.Variable
+' '           Text.Whitespace
+'{{'          Punctuation
+'C'           Text
+'o'           Text
+'q'           Text
+'}}'          Punctuation
+'}}'          Punctuation
 '}}'          Punctuation
 ' '           Text.Whitespace
 ':-'          Keyword.Declaration
