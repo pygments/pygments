@@ -10,7 +10,7 @@
 
 from pygments.lexer import RegexLexer, words, bygroups, include
 from pygments.token import Comment, Keyword, Name, String, Punctuation, \
-    Whitespace, Generic, Operator, Number, Text
+    Whitespace, Generic, Operator, Number, Text, Literal
 
 __all__ = ['TypstLexer']
 
@@ -44,12 +44,13 @@ class TypstLexer(RegexLexer):
             (r'`[^`]*`', String.Backtick),  # inline code
             (r'^\s*-', Punctuation),  # unnumbered list
             (r'^\s*\+', Punctuation),  # numbered list
-            (r'^\s*[0-9.]+', Punctuation),  # numbered list variant
+            (r'^\s*[0-9]+\.', Punctuation),  # numbered list variant
             (r'^(\s*/\s+)([^:]+)(:)', bygroups(Punctuation, Name.Variable, Punctuation)),  # definitions
             (r'<[a-zA-Z_][a-zA-Z0-9_-]*>', Name.Label),  # label
             (r'@[a-zA-Z_][a-zA-Z0-9_-]*', Name.Label),  # reference
             (r'\\#', Text), # escaped
             (words(('#let', '#set', '#show'), suffix=r'\b'), Keyword.Declaration, 'inline_code'),
+            (r'#\{', Punctuation, 'inline_code'),
             (r'(#[a-zA-Z_][a-zA-Z0-9_]*)(\[)', bygroups(Name.Function, Punctuation), 'markup'),
             (r'(#[a-zA-Z_][a-zA-Z0-9_]*)(\()', bygroups(Name.Function, Punctuation), 'inline_code'),
             (r'#[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
@@ -82,6 +83,7 @@ class TypstLexer(RegexLexer):
             (r'\)|\}', Punctuation, '#pop'),
             (r'"[^"]*"', String.Double),
             (r'[=,]', Operator),
+            (r'[0-9]+', Literal),
             (words(('and', 'or', 'not'), suffix=r'\b'), Operator.Word),
             (r'=>|<=|==|!=|>|<|-=|\+=|\*=|/=|\+|-|\\|\*', Operator), # comparisons
             (r'([a-zA-Z_][a-zA-Z0-9_]*)(:)', bygroups(Name.Variable, Punctuation), '#push'),
