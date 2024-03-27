@@ -153,10 +153,10 @@ class ElpiLexer(RegexLexer):
         ],
         'elpi-quote': [
             (r'\}\}', Punctuation, '#pop'),
-            (r"\s", Text.Whitespace),
-            (r"(lp:)({})".format("{{"), bygroups(Number, Punctuation), 'elpi-quote-exit'),
+            (r"\s+", Text.Whitespace),
+            (r"(lp:)(\{\{)", bygroups(Number, Punctuation), 'elpi-quote-exit'),
             (r"(lp:)((?=[A-Z_]){})".format(constant_re), bygroups(Number, Name.Variable)),
-            (r".", Text),
+            (r"((?!lp:|\s|\}\}).)+", Text),
         ],
         'elpi-quote-exit': [
             include('elpi'),
