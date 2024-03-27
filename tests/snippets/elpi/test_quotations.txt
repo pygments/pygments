@@ -6,8 +6,7 @@ tc {{ Eq lp:A }} {{ f lp:B l lp:{{f Elpi {{Coq}}}}}} :- foo A B.
 ' '           Text.Whitespace
 '{{'          Punctuation
 ' '           Text.Whitespace
-'E'           Text
-'q'           Text
+'Eq'          Text
 ' '           Text.Whitespace
 'lp:'         Literal.Number
 'A'           Name.Variable
@@ -30,9 +29,7 @@ tc {{ Eq lp:A }} {{ f lp:B l lp:{{f Elpi {{Coq}}}}}} :- foo A B.
 'Elpi'        Name.Variable
 ' '           Text.Whitespace
 '{{'          Punctuation
-'C'           Text
-'o'           Text
-'q'           Text
+'Coq'         Text
 '}}'          Punctuation
 '}}'          Punctuation
 '}}'          Punctuation
