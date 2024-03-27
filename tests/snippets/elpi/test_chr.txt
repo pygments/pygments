@@ -11,7 +11,7 @@ rule. % not a kwd
 'constraint'  Keyword.Declaration
 ' '           Text.Whitespace
 'foo, bar '   Name.Function
-'{'           Text
+'{'           Punctuation
 '\n\n  '      Text.Whitespace
 ':name'       Keyword.Mode
 ' '           Text.Whitespace
@@ -21,19 +21,19 @@ rule. % not a kwd
 '\n  '        Text.Whitespace
 'rule'        Keyword.Declaration
 ' '           Text.Whitespace
-'('           Text
+'('           Punctuation
 'odd'         Text
 ' '           Text.Whitespace
 'X'           Name.Variable
-')'           Operator
+')'           Punctuation
 ' '           Text.Whitespace
 '\\'          Keyword.Declaration
 ' '           Text.Whitespace
-'('           Text
+'('           Punctuation
 'even'        Text
 ' '           Text.Whitespace
 'X'           Name.Variable
-')'           Operator
+')'           Punctuation
 ' '           Text.Whitespace
 '|'           Keyword.Declaration
 ' '           Text.Whitespace
@@ -45,7 +45,7 @@ rule. % not a kwd
 '.'           Operator
 '\n\n'        Text.Whitespace
 
-'}'           Text
+'}'           Punctuation
 '\n'          Text.Whitespace
 
 'rule'        Text
