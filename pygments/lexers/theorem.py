@@ -124,7 +124,7 @@ class CoqLexer(RegexLexer):
             # (r'\b([A-Z][\w\']*)(\.)', Name.Namespace, 'dotted'),
             (r'\b([A-Z][\w\']*)', Name),
             (r'(%s)' % '|'.join(keyopts[::-1]), Operator),
-            (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
+            (rf'({infix_syms}|{prefix_syms})?{operators}', Operator),
 
             (r"[^\W\d][\w']*", Name),
 

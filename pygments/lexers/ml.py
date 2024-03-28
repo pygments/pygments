@@ -239,9 +239,9 @@ class SMLLexer(RegexLexer):
             (r'\'[\w\']*', Name.Decorator),
             (r'\(', Punctuation, 'tyvarseq'),
 
-            (r'(%s)(\s*)(=(?!%s))' % (alphanumid_re, symbolicid_re),
+            (rf'({alphanumid_re})(\s*)(=(?!{symbolicid_re}))',
              bygroups(Name.Variable, Text, Punctuation), '#pop'),
-            (r'(%s)(\s*)(=(?!%s))' % (symbolicid_re, symbolicid_re),
+            (rf'({symbolicid_re})(\s*)(=(?!{symbolicid_re}))',
              bygroups(Name.Variable, Text, Punctuation), '#pop'),
             (r'(%s)' % alphanumid_re, Name.Variable, '#pop'),
             (r'(%s)' % symbolicid_re, Name.Variable, '#pop'),
@@ -319,7 +319,7 @@ class SMLLexer(RegexLexer):
             (r'(and\b)(\s*)(%s)' % symbolicid_re,
              bygroups(Keyword.Reserved, Text, Name.Class)),
             (r'\b(of)\b(?!\')', Keyword.Reserved),
-            (r'(%s)|(%s)' % (alphanumid_re, symbolicid_re), Name.Class),
+            (rf'({alphanumid_re})|({symbolicid_re})', Name.Class),
 
             default('#pop'),
         ],
@@ -400,7 +400,7 @@ class OcamlLexer(RegexLexer):
             (r'\(\*(?![)])', Comment, 'comment'),
             (r'\b(%s)\b' % '|'.join(keywords), Keyword),
             (r'(%s)' % '|'.join(keyopts[::-1]), Operator),
-            (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
+            (rf'({infix_syms}|{prefix_syms})?{operators}', Operator),
             (r'\b(%s)\b' % '|'.join(word_operators), Operator.Word),
             (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
 
@@ -815,7 +815,7 @@ class ReasonLexer(RegexLexer):
             (r'\/\*(?!/)', Comment.Multiline, 'comment'),
             (r'\b(%s)\b' % '|'.join(keywords), Keyword),
             (r'(%s)' % '|'.join(keyopts[::-1]), Operator.Word),
-            (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
+            (rf'({infix_syms}|{prefix_syms})?{operators}', Operator),
             (r'\b(%s)\b' % '|'.join(word_operators), Operator.Word),
             (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
 
@@ -914,7 +914,7 @@ class FStarLexer(RegexLexer):
             (r'\b(%s)\b' % '|'.join(assume_keywords), Name.Exception),
             (r'\b(%s)\b' % '|'.join(decl_keywords), Keyword.Declaration),
             (r'(%s)' % '|'.join(keyopts[::-1]), Operator),
-            (r'(%s|%s)?%s' % (infix_syms, prefix_syms, operators), Operator),
+            (rf'({infix_syms}|{prefix_syms})?{operators}', Operator),
             (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
 
             (r"[^\W\d][\w']*", Name),

@@ -858,7 +858,7 @@ class TasmLexer(RegexLexer):
             include('whitespace'),
             (identifier + ':', Name.Label),
             (directives, Keyword, 'instruction-args'),
-            (r'(%s)(\s+)(%s)' % (identifier, datatype),
+            (rf'({identifier})(\s+)({datatype})',
                 bygroups(Name.Constant, Whitespace, Keyword.Declaration),
                 'instruction-args'),
             (declkw, Keyword.Declaration, 'instruction-args'),

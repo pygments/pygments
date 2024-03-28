@@ -103,13 +103,12 @@ def load_formatter_from_file(filename, formattername="CustomFormatter", **option
             exec(f.read(), custom_namespace)
         # Retrieve the class `formattername` from that namespace
         if formattername not in custom_namespace:
-            raise ClassNotFound('no valid %s class found in %s' %
-                                (formattername, filename))
+            raise ClassNotFound(f'no valid {formattername} class found in {filename}')
         formatter_class = custom_namespace[formattername]
         # And finally instantiate it with the options
         return formatter_class(**options)
     except OSError as err:
-        raise ClassNotFound('cannot read %s: %s' % (filename, err))
+        raise ClassNotFound(f'cannot read {filename}: {err}')
     except ClassNotFound:
         raise
     except Exception as err:

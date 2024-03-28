@@ -97,7 +97,7 @@ def _print_list(what):
             info.append(tup)
         info.sort()
         for i in info:
-            print(('* %s\n    %s %s') % i)
+            print(('* {}\n    {} {}').format(*i))
 
     elif what == 'formatter':
         print()
@@ -112,7 +112,7 @@ def _print_list(what):
             info.append(tup)
         info.sort()
         for i in info:
-            print(('* %s\n    %s %s') % i)
+            print(('* {}\n    {} {}').format(*i))
 
     elif what == 'filter':
         print()

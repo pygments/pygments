@@ -46,8 +46,7 @@ def get_choice_opt(options, optname, allowed, default=None, normcase=False):
     if normcase:
         string = string.lower()
     if string not in allowed:
-        raise OptionError('Value for option %s must be one of %s' %
-                          (optname, ', '.join(map(str, allowed))))
+        raise OptionError('Value for option {} must be one of {}'.format(optname, ', '.join(map(str, allowed))))
     return string
 
 
@@ -69,17 +68,15 @@ def get_bool_opt(options, optname, default=None):
     elif isinstance(string, int):
         return bool(string)
     elif not isinstance(string, str):
-        raise OptionError('Invalid type %r for option %s; use '
-                          '1/0, yes/no, true/false, on/off' % (
-                              string, optname))
+        raise OptionError(f'Invalid type {string!r} for option {optname}; use '
+                          '1/0, yes/no, true/false, on/off')
     elif string.lower() in ('1', 'yes', 'true', 'on'):
         return True
     elif string.lower() in ('0', 'no', 'false', 'off'):
         return False
     else:
-        raise OptionError('Invalid value %r for option %s; use '
-                          '1/0, yes/no, true/false, on/off' % (
-                              string, optname))
+        raise OptionError(f'Invalid value {string!r} for option {optname}; use '
+                          '1/0, yes/no, true/false, on/off')
 
 
 def get_int_opt(options, optname, default=None):
@@ -88,13 +85,11 @@ def get_int_opt(options, optname, default=None):
     try:
         return int(string)
     except TypeError:
-        raise OptionError('Invalid type %r for option %s; you '
-                          'must give an integer value' % (
-                              string, optname))
+        raise OptionError(f'Invalid type {string!r} for option {optname}; you '
+                          'must give an integer value')
     except ValueError:
-        raise OptionError('Invalid value %r for option %s; you '
-                          'must give an integer value' % (
-                              string, optname))
+        raise OptionError(f'Invalid value {string!r} for option {optname}; you '
+                          'must give an integer value')
 
 def get_list_opt(options, optname, default=None):
     """
@@ -108,9 +103,8 @@ def get_list_opt(options, optname, default=None):
     elif isinstance(val, (list, tuple)):
         return list(val)
     else:
-        raise OptionError('Invalid type %r for option %s; you '
-                          'must give a list value' % (
-                              val, optname))
+        raise OptionError(f'Invalid type {val!r} for option {optname}; you '
+                          'must give a list value')
 
 
 def docstring_headline(obj):

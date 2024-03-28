@@ -243,10 +243,10 @@ class TurtleLexer(RegexLexer):
             (r'\s+', Text),
 
             # Base / prefix
-            (r'(@base|BASE)(\s+)%(IRIREF)s(\s*)(\.?)' % patterns,
+            (r'(@base|BASE)(\s+){IRIREF}(\s*)(\.?)'.format(**patterns),
              bygroups(Keyword, Whitespace, Name.Variable, Whitespace,
                       Punctuation)),
-            (r'(@prefix|PREFIX)(\s+)%(PNAME_NS)s(\s+)%(IRIREF)s(\s*)(\.?)' % patterns,
+            (r'(@prefix|PREFIX)(\s+){PNAME_NS}(\s+){IRIREF}(\s*)(\.?)'.format(**patterns),
              bygroups(Keyword, Whitespace, Name.Namespace, Whitespace,
                       Name.Variable, Whitespace, Punctuation)),
 
@@ -254,7 +254,7 @@ class TurtleLexer(RegexLexer):
             (r'(?<=\s)a(?=\s)', Keyword.Type),
 
             # IRIREF
-            (r'%(IRIREF)s' % patterns, Name.Variable),
+            (r'{IRIREF}'.format(**patterns), Name.Variable),
 
             # PrefixedName
             (r'(' + PN_PREFIX + r')?(\:)(' + PN_LOCAL + r')?',
@@ -305,7 +305,7 @@ class TurtleLexer(RegexLexer):
             (r'(@)([a-zA-Z]+(?:-[a-zA-Z0-9]+)*)',
              bygroups(Operator, Generic.Emph), '#pop:2'),
 
-            (r'(\^\^)%(IRIREF)s' % patterns, bygroups(Operator, Generic.Emph), '#pop:2'),
+            (r'(\^\^){IRIREF}'.format(**patterns), bygroups(Operator, Generic.Emph), '#pop:2'),
 
             default('#pop:2'),
 

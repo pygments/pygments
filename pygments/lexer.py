@@ -174,8 +174,7 @@ class Lexer(metaclass=LexerMeta):
 
     def __repr__(self):
         if self.options:
-            return '<pygments.lexers.%s with %r>' % (self.__class__.__name__,
-                                                     self.options)
+            return f'<pygments.lexers.{self.__class__.__name__} with {self.options!r}>'
         else:
             return '<pygments.lexers.%s>' % self.__class__.__name__
 
@@ -511,7 +510,7 @@ class RegexLexerMeta(LexerMeta):
     def _process_token(cls, token):
         """Preprocess the token component of a token definition."""
         assert type(token) is _TokenType or callable(token), \
-            'token type must be simple type or callable, not %r' % (token,)
+            f'token type must be simple type or callable, not {token!r}'
         return token
 
     def _process_new_state(cls, new_state, unprocessed, processed):
@@ -579,8 +578,7 @@ class RegexLexerMeta(LexerMeta):
             try:
                 rex = cls._process_regex(tdef[0], rflags, state)
             except Exception as err:
-                raise ValueError("uncompilable regex %r in state %r of %r: %s" %
-                                 (tdef[0], state, cls, err)) from err
+                raise ValueError(f"uncompilable regex {tdef[0]!r} in state {state!r} of {cls!r}: {err}") from err
 
             token = cls._process_token(tdef[1])
 
@@ -773,8 +771,7 @@ class LexerContext:
         self.stack = stack or ['root']
 
     def __repr__(self):
-        return 'LexerContext(%r, %r, %r)' % (
-            self.text, self.pos, self.stack)
+        return f'LexerContext({self.text!r}, {self.pos!r}, {self.stack!r})'
 
 
 class ExtendedRegexLexer(RegexLexer):

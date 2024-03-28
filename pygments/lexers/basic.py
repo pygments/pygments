@@ -36,9 +36,8 @@ class BlitzMaxLexer(RegexLexer):
     bmax_sktypes = r'@{1,2}|[!#$%]'
     bmax_lktypes = r'\b(Int|Byte|Short|Float|Double|Long)\b'
     bmax_name = r'[a-z_]\w*'
-    bmax_var = (r'(%s)(?:(?:([ \t]*)(%s)|([ \t]*:[ \t]*\b(?:Shl|Shr|Sar|Mod)\b)'
-                r'|([ \t]*)(:)([ \t]*)(?:%s|(%s)))(?:([ \t]*)(Ptr))?)') % \
-        (bmax_name, bmax_sktypes, bmax_lktypes, bmax_name)
+    bmax_var = (rf'({bmax_name})(?:(?:([ \t]*)({bmax_sktypes})|([ \t]*:[ \t]*\b(?:Shl|Shr|Sar|Mod)\b)'
+                rf'|([ \t]*)(:)([ \t]*)(?:{bmax_lktypes}|({bmax_name})))(?:([ \t]*)(Ptr))?)')
     bmax_func = bmax_var + r'?((?:[ \t]|\.\.\n)*)([(])'
 
     flags = re.MULTILINE | re.IGNORECASE
@@ -67,8 +66,7 @@ class BlitzMaxLexer(RegexLexer):
             # Identifiers
             (r'\b(New)\b([ \t]?)([(]?)(%s)' % (bmax_name),
              bygroups(Keyword.Reserved, Whitespace, Punctuation, Name.Class)),
-            (r'\b(Import|Framework|Module)([ \t]+)(%s\.%s)' %
-             (bmax_name, bmax_name),
+            (rf'\b(Import|Framework|Module)([ \t]+)({bmax_name}\.{bmax_name})',
              bygroups(Keyword.Reserved, Whitespace, Keyword.Namespace)),
             (bmax_func, bygroups(Name.Function, Whitespace, Keyword.Type,
                                  Operator, Whitespace, Punctuation, Whitespace,
@@ -125,8 +123,7 @@ class BlitzBasicLexer(RegexLexer):
 
     bb_sktypes = r'@{1,2}|[#$%]'
     bb_name = r'[a-z]\w*'
-    bb_var = (r'(%s)(?:([ \t]*)(%s)|([ \t]*)([.])([ \t]*)(?:(%s)))?') % \
-             (bb_name, bb_sktypes, bb_name)
+    bb_var = (rf'({bb_name})(?:([ \t]*)({bb_sktypes})|([ \t]*)([.])([ \t]*)(?:({bb_name})))?')
 
     flags = re.MULTILINE | re.IGNORECASE
     tokens = {

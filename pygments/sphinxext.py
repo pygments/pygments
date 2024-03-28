@@ -204,7 +204,7 @@ class PygmentsDoc(Directive):
 
         for module, lexers in sorted(modules.items(), key=lambda x: x[0]):
             if moduledocstrings[module] is None:
-                raise Exception("Missing docstring for %s" % (module,))
+                raise Exception(f"Missing docstring for {module}")
             heading = moduledocstrings[module].splitlines()[4].strip().rstrip('.')
             out.append(MODULEDOC % (module, heading, '-'*len(heading)))
             for data in lexers:

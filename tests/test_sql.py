@@ -104,12 +104,6 @@ def test_can_analyze_text():
         best_rating, best_lexer_name  = sorted(ratings_and_lexers, reverse=True)[0]
         expected_rating = expected_lexer.analyse_text(code)
         message = (
-            'lexer must be %s (rating %.2f) instead of '
-            '%s (rating %.2f) for analyse_text() on code:\n%s') % (
-            expected_lexer.name,
-            expected_rating,
-            best_lexer_name,
-            best_rating,
-            code
-        )
+            f'lexer must be {expected_lexer.name} (rating {expected_rating:.2f}) instead of '
+            f'{best_lexer_name} (rating {best_rating:.2f}) for analyse_text() on code:\n{code}')
         assert expected_lexer.name == best_lexer_name, message
