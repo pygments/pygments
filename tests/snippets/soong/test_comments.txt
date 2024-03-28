@@ -1,0 +1,20 @@
+---input---
+// C++ Style comment
+
+/* C-style comment on one line */
+
+/**
+ * C-style comments
+ * covering multiple lines
+ * are totally cool
+ */
+
+---tokens---
+'// C++ Style comment' Comment.Single
+'\n\n'        Text.Whitespace
+
+'/* C-style comment on one line */' Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'/**\n * C-style comments\n * covering multiple lines\n * are totally cool\n */' Comment.Multiline
+'\n'          Text.Whitespace

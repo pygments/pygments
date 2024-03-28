@@ -1,0 +1,122 @@
+---input---
+package {
+    default_applicable_licenses: ["example"],
+}
+
+module_name {
+    name: "foo",
+    // A comment inside a rule
+    shared_libs: ["libfoo"],
+    stl: "none",
+    srcs: my_srcs_var,  // A comment following a property
+    level: 42,
+    arch: {
+        arm: {
+            srcs: ["arm.cpp"],
+        },
+        x86: {
+            srcs: ["x86.cpp"],
+        },
+    },
+}
+
+---tokens---
+'package'     Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'default_applicable_licenses' Name
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'"example"'   Literal.String
+']'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'module_name' Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'name'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'"foo"'       Literal.String
+','           Punctuation
+'\n    '      Text.Whitespace
+'// A comment inside a rule' Comment.Single
+'\n    '      Text.Whitespace
+'shared_libs' Name
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'"libfoo"'    Literal.String
+']'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'stl'         Name
+':'           Punctuation
+' '           Text.Whitespace
+'"none"'      Literal.String
+','           Punctuation
+'\n    '      Text.Whitespace
+'srcs'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'my_srcs_var' Name
+','           Punctuation
+'  '          Text.Whitespace
+'// A comment following a property' Comment.Single
+'\n    '      Text.Whitespace
+'level'       Name
+':'           Punctuation
+' '           Text.Whitespace
+'42'          Literal.Number.Integer
+','           Punctuation
+'\n    '      Text.Whitespace
+'arch'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'arm'         Name
+':'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'srcs'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'"arm.cpp"'   Literal.String
+']'           Punctuation
+','           Punctuation
+'\n        '  Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+'\n        '  Text.Whitespace
+'x86'         Name
+':'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'srcs'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'"x86.cpp"'   Literal.String
+']'           Punctuation
+','           Punctuation
+'\n        '  Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
