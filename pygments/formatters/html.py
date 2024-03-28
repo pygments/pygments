@@ -594,11 +594,15 @@ class HtmlFormatter(Formatter):
 
     @property
     def _linenos_style(self):
-        return f'color: {self.style.line_number_color}; background-color: {self.style.line_number_background_color}; padding-left: 5px; padding-right: 5px;'
+        color = self.style.line_number_color
+        background_color = self.style.line_number_background_color
+        return f'color: {color}; background-color: {background_color}; padding-left: 5px; padding-right: 5px;'
 
     @property
     def _linenos_special_style(self):
-        return f'color: {self.style.line_number_special_color}; background-color: {self.style.line_number_special_background_color}; padding-left: 5px; padding-right: 5px;'
+        color = self.style.line_number_special_color
+        background_color = self.style.line_number_special_background_color
+        return f'color: {color}; background-color: {background_color}; padding-left: 5px; padding-right: 5px;'
 
     def _decodeifneeded(self, value):
         if isinstance(value, bytes):
