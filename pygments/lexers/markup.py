@@ -25,7 +25,8 @@ from pygments.util import get_bool_opt, ClassNotFound
 __all__ = ['BBCodeLexer', 'MoinWikiLexer', 'RstLexer', 'TexLexer', 'GroffLexer',
            'MozPreprocHashLexer', 'MozPreprocPercentLexer',
            'MozPreprocXulLexer', 'MozPreprocJavascriptLexer',
-           'MozPreprocCssLexer', 'MarkdownLexer', 'TiddlyWiki5Lexer', 'WikitextLexer']
+           'MozPreprocCssLexer', 'MarkdownLexer', 'OrgLexer', 'TiddlyWiki5Lexer',
+           'WikitextLexer']
 
 
 class BBCodeLexer(RegexLexer):
@@ -619,6 +620,101 @@ class MarkdownLexer(RegexLexer):
         self.handlecodeblocks = get_bool_opt(options, 'handlecodeblocks', True)
         RegexLexer.__init__(self, **options)
 
+
+class OrgLexer(RegexLexer):
+    """
+    For Org Mode markup.
+    """
+    name = 'Org Mode'
+    url = 'https://orgmode.org'
+    aliases = ['org', 'orgmode', 'org-mode']
+    filenames = ['*.org']
+    mimetypes = ["text/org"]
+    version_added = '2.18'
+    flags = re.MULTILINE
+
+    tokens = {
+        'root': [
+            (r'^# .*', Comment.Single),
+
+            # Headings
+            (r'^(\*)( COMMENT)( .*)', bygroups(Generic.Heading, Name.Entity, Generic.Heading)),
+            (r'^(\*\*+)( COMMENT)( .*)', bygroups(Generic.Subheading, Name.Entity, Generic.Subheading)),
+            (r'^(\*)( DONE)( .*)', bygroups(Generic.Heading, String.Regex, Generic.Subheading)),
+            (r'^(\*\*+)( DONE)( .*)', bygroups(Generic.Subheading, String.Regex, Generic.Subheading)),
+            (r'^(\*)( TODO)( .*)', bygroups(Generic.Heading, Generic.Error, Generic.Subheading)),
+            (r'^(\*\*+)( TODO)( .*)', bygroups(Generic.Subheading, Generic.Error, Generic.Subheading)),
+
+            (r'^(\* .+?)( :[a-zA-Z0-9_@:]+:)?$', bygroups(Generic.Heading, Generic.Emph)),
+            (r'^(\*\*+ .+?)( :[a-zA-Z0-9_@:]+:)?$', bygroups(Generic.Subheading, Generic.Emph)),
+
+            # Lists
+            (r'^( *)([+-] )(\[[ X]\])( .+)$', bygroups(Text, Keyword, Keyword, using(this))),
+            (r'^( +)(\* )(\[[ X]\])( .+)$', bygroups(Text, Keyword, Keyword, using(this))),
+            # Definition lists
+            (r'^( *)([+-] )([^ \n]+ ::)( .+)$', bygroups(Text, Keyword, Keyword, using(this))),
+            (r'^( +)(\* )([^ \n]+ ::)( .+)$', bygroups(Text, Keyword, Keyword, using(this))),
+            # Unordered lists
+            (r'^( *)([+-] )(.+)$', bygroups(Text, Keyword, using(this))),
+            (r'^( +)(\* )(.+)$', bygroups(Text, Keyword, using(this))),
+            # Ordered lists
+            (r'^( *)([0-9]+[.)])( \[@[0-9]+\])( .+)$', bygroups(Text, Keyword, Generic.Emph, using(this))),
+            (r'^( *)([0-9]+[.)])( .+)$', bygroups(Text, Keyword, using(this))),
+
+            # Dynamic Blocks
+            (r'(?i)^( *#\+begin: )([^ ]+)([\w\W]*?\n)([\w\W]*?)(^ *#\+end: *$)', bygroups(Comment, Comment.Special, Comment, using(this), Comment)),
+
+            # Comment Blocks
+            (r'(?i)^( *#\+begin_comment *\n)([\w\W]*?)(^ *#\+end_comment *$)', bygroups(Comment, Comment, Comment)),
+            # Source Code Blocks
+            (r'(?i)^( *#\+begin_src )([^ \n]+)(.*?\n)([\w\W]*?)(^ *#\+end_src *$)', bygroups(Comment, Comment.Special, Comment, using(this), Comment)),
+            # Other Blocks
+            (r'(?i)^( *#\+begin_)(\w+)( *\n)([\w\W]*?)(^ *#\+end_\2)( *$)', bygroups(Comment, Comment, Text, Text, Comment, Text)),
+
+            # Keywords
+            (r'^(#\+\w+)(:.*)$', bygroups(Comment.Special, Comment)),
+
+            # Properties and Drawers
+            (r'(?i)^( *:\w+: *\n)([\w\W]*?)(^ *:end: *$)', bygroups(Comment, Comment.Special, Comment)),
+
+            # Line break operator
+            (r'^(.*)(\\\\)$', bygroups(using(this), Operator)),
+
+            # Deadline, Scheduled, CLOSED
+            (r'(?i)^( *(?:DEADLINE|SCHEDULED): )(<[^<>]+?> *)$', bygroups(Comment, Comment.Special)),
+            (r'(?i)^( *CLOSED: )(\[[^][]+?\] *)$', bygroups(Comment, Comment.Special)),
+
+            # All other lines
+            include('inline'),
+        ],
+        'inline': [
+            # Bold, Italics, Verbatim, Code, Strikethrough, Underline
+            (r'([ \t]*)(\*[^ \n*][^*]+?[^ \n*]\*)((?=\W|\n|$))', bygroups(Text, Generic.Strong, Text)),
+            (r'([ \t]*)(/[^/]+?/)((?=\W|\n|$))', bygroups(Text, Generic.Emph, Text)),
+            (r'([ \t]*)(=[^\n=]+?=)((?=\W|\n|$))', bygroups(Text, Name.Class, Text)),
+            (r'([ \t]*)(~[^\n~]+?~)((?=\W|\n|$))', bygroups(Text, Name.Class, Text)),
+            (r'([ \t]*)(\+[^+]+?\+)((?=\W|\n|$))', bygroups(Text, Generic.Deleted, Text)),
+            (r'([ \t]*)(_[^_]+?_)((?=\W|\n|$))', bygroups(Text, Generic.Underline, Text)),
+
+            # Dates, Macros, Footnotes, Links
+            (r'(<)([^<>]+?)(>)', bygroups(Text, String, Text)),
+            (r'[{]{3}[^}]+[}]{3}',
+             Name.Builtin),
+            (r'([^[])(\[fn:)([^]]+?)(\])([^]])', bygroups(Text, Name.Builtin.Pseudo, String, Name.Builtin.Pseudo, Text)),
+            (r'(\[\[)([^][]+?)(\]\[)([^][]+)(\]\])', bygroups(Text, Name.Attribute, Text, Name.Tag, Text)),
+            (r'(\[\[)([^][]+?)(\]\])', bygroups(Text, Name.Attribute, Text)),
+            (r'(<<)([^<>]+?)(>>)', bygroups(Text, Name.Attribute, Text)),
+
+            # Tables
+            (r'^( *)(\|[ -].*?[ -]\|)$', bygroups(Text, String)),
+
+            # Blank lines, newlines
+            (r'\n', Text),
+
+            # Any other text
+            (r'.', Text),
+        ],
+    }
 
 class TiddlyWiki5Lexer(RegexLexer):
     """
