@@ -76,7 +76,7 @@ class RobotFrameworkLexer(Lexer):
         index = 0
         for row in text.splitlines():
             for value, token in row_tokenizer.tokenize(row):
-                for value, token in var_tokenizer.tokenize(value, token):
+                for value, token in var_tokenizer.tokenize(value, token):  # noqa: B020
                     if value:
                         yield index, token, str(value)
                         index += len(value)
@@ -89,7 +89,7 @@ class VariableTokenizer:
         if var.start < 0 or token in (COMMENT, ERROR):
             yield string, token
             return
-        for value, token in self._tokenize(var, string, token):
+        for value, token in self._tokenize(var, string, token):  # noqa: B020
             if value:
                 yield value, token
 

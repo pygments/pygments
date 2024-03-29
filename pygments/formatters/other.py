@@ -26,7 +26,7 @@ class NullFormatter(Formatter):
 
     def format(self, tokensource, outfile):
         enc = self.encoding
-        for ttype, value in tokensource:
+        for _ttype, value in tokensource:
             if enc:
                 outfile.write(value.encode(enc))
             else:
@@ -73,16 +73,16 @@ class RawTokenFormatter(Formatter):
         if self.error_color is not None:
             try:
                 colorize(self.error_color, '')
-            except KeyError:
+            except KeyError as e:
                 raise ValueError("Invalid color %r specified" %
-                                 self.error_color)
+                                 self.error_color) from e
 
     def format(self, tokensource, outfile):
         try:
             outfile.write(b'')
-        except TypeError:
+        except TypeError as e:
             raise TypeError('The raw tokens formatter needs a binary '
-                            'output file')
+                            'output file') from e
         if self.compress == 'gz':
             import gzip
             outfile = gzip.GzipFile('', 'wb', 9, outfile)

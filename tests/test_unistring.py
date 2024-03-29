@@ -35,7 +35,7 @@ def _cats_that_match(c):
 def test_spot_check_types():
     # Each char should match one, and precisely one, category
     random.seed(0)
-    for i in range(1000):
+    for _i in range(1000):
         o = random.randint(0, 65535)
         c = chr(o)
         if o > 0xd800 and o <= 0xdfff and not uni.Cs:

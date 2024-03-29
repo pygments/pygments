@@ -19,7 +19,7 @@ if __name__ == '__main__':
         if not os.path.exists(directory):
             continue
 
-        for root, dirs, files in os.walk(directory):
+        for root, _dirs, files in os.walk(directory):
             for filename in files:
                 if not filename.endswith('.py') and not filename.endswith('.bashcomp'):
                     continue

@@ -821,10 +821,9 @@ class HtmlFormatter(Formatter):
         yield from inner
         yield 0, '</code>'
 
-    @functools.lru_cache(maxsize=100)
     def _translate_parts(self, value):
         """HTML-escape a value and split it by newlines."""
-        return value.translate(_escape_html_table).split('\n')
+        return _translate_parts(value)
 
     def _format_lines(self, tokensource):
         """
@@ -983,5 +982,10 @@ class HtmlFormatter(Formatter):
             if self.full:
                 source = self._wrap_full(source, outfile)
 
-        for t, piece in source:
+        for _t, piece in source:
             outfile.write(piece)
+
+@functools.lru_cache(maxsize=100)
+def _translate_parts(value):
+    """HTML-escape a value and split it by newlines."""
+    return value.translate(_escape_html_table).split('\n')

@@ -526,7 +526,7 @@ class RegexLexerMeta(LexerMeta):
             elif new_state[:5] == '#pop:':
                 return -int(new_state[5:])
             else:
-                assert False, 'unknown new state %r' % new_state
+                raise AssertionError('unknown new state %r' % new_state)
         elif isinstance(new_state, combined):
             # combine a new state from existing ones
             tmp_state = '_tmp_%d' % cls._tmpname
@@ -546,7 +546,7 @@ class RegexLexerMeta(LexerMeta):
                     'unknown new state ' + istate
             return new_state
         else:
-            assert False, 'unknown new state def %r' % new_state
+            raise AssertionError('unknown new state def %r' % new_state)
 
     def _process_state(cls, unprocessed, processed, state):
         """Preprocess a single state definition."""
@@ -739,7 +739,7 @@ class RegexLexer(Lexer, metaclass=RegexLexerMeta):
                         elif new_state == '#push':
                             statestack.append(statestack[-1])
                         else:
-                            assert False, "wrong state def: %r" % new_state
+                            raise AssertionError('wrong state def: %r' % new_state)
                         statetokens = tokendefs[statestack[-1]]
                     break
             else:
@@ -826,7 +826,7 @@ class ExtendedRegexLexer(RegexLexer):
                         elif new_state == '#push':
                             ctx.stack.append(ctx.stack[-1])
                         else:
-                            assert False, "wrong state def: %r" % new_state
+                            raise AssertionError('wrong state def: %r' % new_state)
                         statetokens = tokendefs[ctx.stack[-1]]
                     break
             else:
@@ -883,7 +883,7 @@ def do_insertions(insertions, tokens):
             if tmpval:
                 yield realpos, t, tmpval
                 realpos += len(tmpval)
-            for it_index, it_token, it_value in itokens:
+            for _it_index, it_token, it_value in itokens:
                 yield realpos, it_token, it_value
                 realpos += len(it_value)
             oldi = index - i
@@ -900,7 +900,7 @@ def do_insertions(insertions, tokens):
     while insleft:
         # no normal tokens, set realpos to zero
         realpos = realpos or 0
-        for p, t, v in itokens:
+        for _p, t, v in itokens:
             yield realpos, t, v
             realpos += len(v)
         try:

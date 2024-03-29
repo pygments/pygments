@@ -224,7 +224,7 @@ def test_unicode_options():
                         cssclass='bär',
                         cssstyles='div:before { content: \'bäz\' }',
                         encoding='utf-8')
-    handle, pathname = tempfile.mkstemp('.html')
+    handle, _pathname = tempfile.mkstemp('.html')
     with os.fdopen(handle, 'w+b') as tfile:
         fmt.format(tokensource, tfile)
 

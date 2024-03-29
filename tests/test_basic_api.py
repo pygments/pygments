@@ -81,9 +81,9 @@ def test_random_input(cls):
     inst = cls()
     try:
         tokens = list(inst.get_tokens(test_content))
-    except KeyboardInterrupt:
+    except KeyboardInterrupt as e:
         raise KeyboardInterrupt(
-            f'interrupted {cls.__name__}.get_tokens(): test_content={test_content!r}')
+            f'interrupted {cls.__name__}.get_tokens(): test_content={test_content!r}') from e
     txt = ""
     for token in tokens:
         assert isinstance(token, tuple)
@@ -129,7 +129,7 @@ def test_get_lexers():
                        (lexers.guess_lexer, ("#!/usr/bin/python3 -O\nprint",)),
                        (lexers.guess_lexer_for_filename, ("a.py", "<%= @foo %>"))
                        ]:
-        x = func(opt='val', *args)
+        x = func(opt='val', *args)  # noqa: B026
         assert isinstance(x, lexers.PythonLexer)
         assert x.options["opt"] == "val"
 
@@ -256,13 +256,13 @@ def test_bare_class_handler():
     except TypeError as e:
         assert 'lex() argument must be a lexer instance' in str(e)
     else:
-        assert False, 'nothing raised'
+        raise AssertionError('nothing raised')
     try:
         format([], HtmlFormatter)
     except TypeError as e:
         assert 'format() argument must be a formatter instance' in str(e)
     else:
-        assert False, 'nothing raised'
+        raise AssertionError('nothing raised')
 
     # These cases should not trigger this heuristic.
     class BuggyLexer(RegexLexer):
@@ -274,7 +274,7 @@ def test_bare_class_handler():
     except TypeError as e:
         assert 'lex() argument must be a lexer instance' not in str(e)
     else:
-        assert False, 'no error raised by buggy lexer?'
+        raise AssertionError('no error raised by buggy lexer?')
 
     class BuggyFormatter(Formatter):
         def format(self, tokensource, outfile, extra_argument):
@@ -284,7 +284,7 @@ def test_bare_class_handler():
     except TypeError as e:
         assert 'format() argument must be a formatter instance' not in str(e)
     else:
-        assert False, 'no error raised by buggy formatter?'
+        raise AssertionError('no error raised by buggy formatter?')
 
 class TestFilters:
 

@@ -40,12 +40,12 @@ def lex(code, lexer):
     """
     try:
         return lexer.get_tokens(code)
-    except TypeError:
+    except TypeError as e:
         # Heuristic to catch a common mistake.
         from pygments.lexer import RegexLexer
         if isinstance(lexer, type) and issubclass(lexer, RegexLexer):
             raise TypeError('lex() argument must be a lexer instance, '
-                            'not a class')
+                            'not a class') from e
         raise
 
 
@@ -65,12 +65,12 @@ def format(tokens, formatter, outfile=None):  # pylint: disable=redefined-builti
             return realoutfile.getvalue()
         else:
             formatter.format(tokens, outfile)
-    except TypeError:
+    except TypeError as e:
         # Heuristic to catch a common mistake.
         from pygments.formatter import Formatter
         if isinstance(formatter, type) and issubclass(formatter, Formatter):
             raise TypeError('format() argument must be a formatter instance, '
-                            'not a class')
+                            'not a class') from e
         raise
 
 

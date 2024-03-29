@@ -94,7 +94,7 @@ class RawTokenLexer(Lexer):
 
         # do not call Lexer.get_tokens() because stripping is not optional.
         text = text.strip('\n') + '\n'
-        for i, t, v in self.get_tokens_unprocessed(text):
+        for _i, t, v in self.get_tokens_unprocessed(text):
             yield t, v
 
     def get_tokens_unprocessed(self, text):

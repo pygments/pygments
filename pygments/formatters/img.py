@@ -552,7 +552,7 @@ class ImageFormatter(Formatter):
             value = value.expandtabs(4)
             lines = value.splitlines(True)
             # print lines
-            for i, line in enumerate(lines):
+            for line in lines:
                 temp = line.rstrip('\n')
                 if temp:
                     self._draw_text(

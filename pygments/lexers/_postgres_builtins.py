@@ -679,7 +679,7 @@ if __name__ == '__main__':  # pragma: no cover
             line = re.sub("<[^>]+>", "", line)
 
             # Drop the parts containing braces
-            for tmp in [t for tmp in line.split('[')
+            for tmp in [t for tmp in line.split('[')  # noqa: B020
                         for t in tmp.split(']') if "(" not in t]:
                 for t in tmp.split(','):
                     t = t.strip()

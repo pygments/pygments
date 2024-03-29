@@ -84,12 +84,12 @@ def get_int_opt(options, optname, default=None):
     string = options.get(optname, default)
     try:
         return int(string)
-    except TypeError:
+    except TypeError as e:
         raise OptionError(f'Invalid type {string!r} for option {optname}; you '
-                          'must give an integer value')
-    except ValueError:
+                          'must give an integer value') from e
+    except ValueError as e:
         raise OptionError(f'Invalid value {string!r} for option {optname}; you '
-                          'must give an integer value')
+                          'must give an integer value') from e
 
 def get_list_opt(options, optname, default=None):
     """

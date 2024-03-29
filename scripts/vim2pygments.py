@@ -763,10 +763,10 @@ TOKENS = {
 }
 
 TOKEN_TYPES = set()
-for token in TOKENS.values():
-    if not isinstance(token, tuple):
-        token = (token,)
-    for token in token:
+for tokens in TOKENS.values():
+    if not isinstance(tokens, tuple):
+        tokens = (tokens,)
+    for token in tokens:
         if token:
             TOKEN_TYPES.add(token.split('.')[0])
 
