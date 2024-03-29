@@ -23,13 +23,27 @@ from pygments.lexers.ruby import RubyLexer
 from pygments.lexers.python import PythonLexer
 from pygments.lexers.perl import PerlLexer
 
-__all__ = ['RagelLexer', 'RagelEmbeddedLexer', 'RagelCLexer', 'RagelDLexer',
-           'RagelCppLexer', 'RagelObjectiveCLexer', 'RagelRubyLexer',
-           'RagelJavaLexer', 'AntlrLexer', 'AntlrPythonLexer',
-           'AntlrPerlLexer', 'AntlrRubyLexer', 'AntlrCppLexer',
-           'AntlrCSharpLexer', 'AntlrObjectiveCLexer',
-           'AntlrJavaLexer', 'AntlrActionScriptLexer',
-           'TreetopLexer', 'EbnfLexer']
+__all__ = [
+    'AntlrActionScriptLexer',
+    'AntlrCSharpLexer',
+    'AntlrCppLexer',
+    'AntlrJavaLexer',
+    'AntlrLexer',
+    'AntlrObjectiveCLexer',
+    'AntlrPerlLexer',
+    'AntlrPythonLexer',
+    'AntlrRubyLexer',
+    'EbnfLexer',
+    'RagelCLexer',
+    'RagelCppLexer',
+    'RagelDLexer',
+    'RagelEmbeddedLexer',
+    'RagelJavaLexer',
+    'RagelLexer',
+    'RagelObjectiveCLexer',
+    'RagelRubyLexer',
+    'TreetopLexer',
+]
 
 
 class RagelLexer(RegexLexer):

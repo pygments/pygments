@@ -17,12 +17,30 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 from pygments.lexers.shell import BashLexer
 from pygments.lexers.data import JsonLexer
 
-__all__ = ['IniLexer', 'SystemdLexer', 'DesktopLexer', 'RegeditLexer', 'PropertiesLexer',
-           'KconfigLexer', 'Cfengine3Lexer', 'ApacheConfLexer', 'SquidConfLexer',
-           'NginxConfLexer', 'LighttpdConfLexer', 'DockerLexer',
-           'TerraformLexer', 'TermcapLexer', 'TerminfoLexer',
-           'PkgConfigLexer', 'PacmanConfLexer', 'AugeasLexer', 'TOMLLexer',
-           'NestedTextLexer', 'SingularityLexer', 'UnixConfigLexer']
+__all__ = [
+    'ApacheConfLexer',
+    'AugeasLexer',
+    'Cfengine3Lexer',
+    'DesktopLexer',
+    'DockerLexer',
+    'IniLexer',
+    'KconfigLexer',
+    'LighttpdConfLexer',
+    'NestedTextLexer',
+    'NginxConfLexer',
+    'PacmanConfLexer',
+    'PkgConfigLexer',
+    'PropertiesLexer',
+    'RegeditLexer',
+    'SingularityLexer',
+    'SquidConfLexer',
+    'SystemdLexer',
+    'TOMLLexer',
+    'TermcapLexer',
+    'TerminfoLexer',
+    'TerraformLexer',
+    'UnixConfigLexer',
+]
 
 
 class IniLexer(RegexLexer):

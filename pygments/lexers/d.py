@@ -12,7 +12,7 @@ from pygments.lexer import RegexLexer, include, words, bygroups
 from pygments.token import Comment, Keyword, Name, String, Number, \
     Punctuation, Whitespace
 
-__all__ = ['DLexer', 'CrocLexer', 'MiniDLexer']
+__all__ = ['CrocLexer', 'DLexer', 'MiniDLexer']
 
 
 class DLexer(RegexLexer):

@@ -244,7 +244,7 @@ class Terminal256Formatter(Formatter):
 
     def _write_lineno(self, outfile):
         self._lineno += 1
-        outfile.write("%s%04d: " % (self._lineno != 1 and '\n' or '', self._lineno))
+        outfile.write("%s%04d: " % ((self._lineno != 1 and '\n') or '', self._lineno))
 
     def format(self, tokensource, outfile):
         return Formatter.format(self, tokensource, outfile)

@@ -13,7 +13,7 @@ from pygments.lexer import Lexer, ExtendedRegexLexer, LexerContext, \
 from pygments.token import Comment, Error, Keyword, Literal, Name, Number, \
     Punctuation, String, Whitespace
 
-__all__ = ['YamlLexer', 'JsonLexer', 'JsonBareObjectLexer', 'JsonLdLexer']
+__all__ = ['JsonBareObjectLexer', 'JsonLdLexer', 'JsonLexer', 'YamlLexer']
 
 
 class YamlLexerContext(LexerContext):

@@ -16,9 +16,18 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Whitespace
 from pygments import unistring as uni
 
-__all__ = ['HaskellLexer', 'HspecLexer', 'IdrisLexer', 'AgdaLexer', 'CryptolLexer',
-           'LiterateHaskellLexer', 'LiterateIdrisLexer', 'LiterateAgdaLexer',
-           'LiterateCryptolLexer', 'KokaLexer']
+__all__ = [
+    'AgdaLexer',
+    'CryptolLexer',
+    'HaskellLexer',
+    'HspecLexer',
+    'IdrisLexer',
+    'KokaLexer',
+    'LiterateAgdaLexer',
+    'LiterateCryptolLexer',
+    'LiterateHaskellLexer',
+    'LiterateIdrisLexer',
+]
 
 
 class HaskellLexer(RegexLexer):
@@ -517,7 +526,7 @@ class LiterateLexer(Lexer):
     def get_tokens_unprocessed(self, text):
         style = self.options.get('litstyle')
         if style is None:
-            style = (text.lstrip()[0:1] in '%\\') and 'latex' or 'bird'
+            style = ((text.lstrip()[0:1] in '%\\') and 'latex') or 'bird'
 
         code = ''
         insertions = []
@@ -541,12 +550,12 @@ class LiterateLexer(Lexer):
             for match in line_re.finditer(text):
                 line = match.group()
                 if codelines:
-                    if line.lstrip().startswith('\\end{code}'):
+                    if line.lstrip().startswith(f'\\end{code}'):
                         codelines = 0
                         latex += line
                     else:
                         code += line
-                elif line.lstrip().startswith('\\begin{code}'):
+                elif line.lstrip().startswith(f'\\begin{code}'):
                     codelines = 1
                     latex += line
                     insertions.append((len(code),

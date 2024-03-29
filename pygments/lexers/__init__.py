@@ -25,8 +25,7 @@ COMPAT = {
     'LeanLexer': 'Lean3Lexer',
 }
 
-__all__ = ['get_lexer_by_name', 'get_lexer_for_filename', 'find_lexer_class',
-           'guess_lexer', 'load_lexer_from_file'] + list(LEXERS) + list(COMPAT)
+__all__ = ['get_lexer_by_name', 'get_lexer_for_filename', 'find_lexer_class', 'guess_lexer', 'load_lexer_from_file', *list(LEXERS), *list(COMPAT)]
 
 _lexer_cache = {}
 _pattern_cache = {}
@@ -194,7 +193,7 @@ def find_lexer_class_for_filename(_fn, code=None):
     def get_rating(info):
         cls, filename = info
         # explicit patterns get a bonus
-        bonus = '*' not in filename and 0.5 or 0
+        bonus = ('*' not in filename and 0.5) or 0
         # The class _always_ defines analyse_text because it's included in
         # the Lexer class.  The default implementation returns None which
         # gets turned into 0.0.  Run scripts/detect_missing_analyse_text.py

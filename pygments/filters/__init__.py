@@ -87,8 +87,8 @@ class CodeTagFilter(Filter):
         regex = self.tag_re
         for ttype, value in stream:
             if ttype in String.Doc or \
-               ttype in Comment and \
-               ttype not in Comment.Preproc:
+               (ttype in Comment and \
+               ttype not in Comment.Preproc):
                 yield from _replace_special(ttype, value, regex, Comment.Special)
             else:
                 yield ttype, value
@@ -825,7 +825,7 @@ class VisibleWhitespaceFilter(Filter):
             if isinstance(opt, str) and len(opt) == 1:
                 setattr(self, name, opt)
             else:
-                setattr(self, name, (opt and default or ''))
+                setattr(self, name, ((opt and default) or ''))
         tabsize = get_int_opt(options, 'tabsize', 8)
         if self.tabs:
             self.tabs += ' ' * (tabsize - 1)

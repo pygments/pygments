@@ -31,8 +31,12 @@ except ImportError:
     except ImportError:
         _winreg = None
 
-__all__ = ['ImageFormatter', 'GifImageFormatter', 'JpgImageFormatter',
-           'BmpImageFormatter']
+__all__ = [
+    'BmpImageFormatter',
+    'GifImageFormatter',
+    'ImageFormatter',
+    'JpgImageFormatter',
+]
 
 
 # For some unknown reason every font calls it something different

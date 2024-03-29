@@ -15,9 +15,20 @@ from pygments.lexer import ExtendedRegexLexer, RegexLexer, bygroups, words, \
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
 
-__all__ = ['ProtoBufLexer', 'ZeekLexer', 'PuppetLexer', 'RslLexer',
-           'MscgenLexer', 'VGLLexer', 'AlloyLexer', 'PanLexer',
-           'CrmshLexer', 'ThriftLexer', 'FlatlineLexer', 'SnowballLexer']
+__all__ = [
+    'AlloyLexer',
+    'CrmshLexer',
+    'FlatlineLexer',
+    'MscgenLexer',
+    'PanLexer',
+    'ProtoBufLexer',
+    'PuppetLexer',
+    'RslLexer',
+    'SnowballLexer',
+    'ThriftLexer',
+    'VGLLexer',
+    'ZeekLexer',
+]
 
 
 class ProtoBufLexer(RegexLexer):

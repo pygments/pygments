@@ -14,7 +14,7 @@ from pygments.lexer import RegexLexer, bygroups, using, this, words, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
 
-__all__ = ['ActionScriptLexer', 'ActionScript3Lexer', 'MxmlLexer']
+__all__ = ['ActionScript3Lexer', 'ActionScriptLexer', 'MxmlLexer']
 
 
 class ActionScriptLexer(RegexLexer):

@@ -13,7 +13,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
 from pygments.util import get_bool_opt
 
-__all__ = ['SourcePawnLexer', 'PawnLexer']
+__all__ = ['PawnLexer', 'SourcePawnLexer']
 
 
 class SourcePawnLexer(RegexLexer):

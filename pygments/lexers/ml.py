@@ -14,7 +14,7 @@ from pygments.lexer import RegexLexer, include, bygroups, default, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Error
 
-__all__ = ['SMLLexer', 'OcamlLexer', 'OpaLexer', 'ReasonLexer', 'FStarLexer']
+__all__ = ['FStarLexer', 'OcamlLexer', 'OpaLexer', 'ReasonLexer', 'SMLLexer']
 
 
 class SMLLexer(RegexLexer):

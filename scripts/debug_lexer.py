@@ -154,7 +154,7 @@ def main(fn, lexer=None, options={}):
     else:
         lxcls = find_lexer_class_for_filename(os.path.basename(fn))
         if lxcls is None:
-            name, rest = fn.split('_', 1)
+            name, _rest = fn.split('_', 1)
             lxcls = find_lexer_class(name)
             if lxcls is None:
                 raise AssertionError('no lexer found for file %r' % fn)
@@ -197,7 +197,7 @@ def main(fn, lexer=None, options={}):
         if type == Error and not ignerror:
             print('Error parsing', fn, 'on line', lno)
             if not showall:
-                print('Previous tokens' + (debug_lexer and ' and states' or '') + ':')
+                print('Previous tokens' + ((debug_lexer and ' and states') or '') + ':')
                 for i in range(max(len(tokens) - num, 0), len(tokens)):
                     if debug_lexer:
                         show_token(tokens[i], states[i])

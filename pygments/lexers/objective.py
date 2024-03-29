@@ -17,7 +17,7 @@ from pygments.token import Text, Keyword, Name, String, Operator, \
 
 from pygments.lexers.c_cpp import CLexer, CppLexer
 
-__all__ = ['ObjectiveCLexer', 'ObjectiveCppLexer', 'LogosLexer', 'SwiftLexer']
+__all__ = ['LogosLexer', 'ObjectiveCLexer', 'ObjectiveCppLexer', 'SwiftLexer']
 
 
 def objective(baselexer):

@@ -21,8 +21,16 @@ from pygments.lexers.jvm import ScalaLexer
 from pygments.lexers.css import CssLexer, _indentation, _starts_block
 from pygments.lexers.ruby import RubyLexer
 
-__all__ = ['HtmlLexer', 'DtdLexer', 'XmlLexer', 'XsltLexer', 'HamlLexer',
-           'ScamlLexer', 'PugLexer', 'UrlEncodedLexer']
+__all__ = [
+    'DtdLexer',
+    'HamlLexer',
+    'HtmlLexer',
+    'PugLexer',
+    'ScamlLexer',
+    'UrlEncodedLexer',
+    'XmlLexer',
+    'XsltLexer',
+]
 
 
 class HtmlLexer(RegexLexer):

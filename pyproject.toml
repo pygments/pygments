@@ -63,10 +63,22 @@ path = "pygments/__init__.py"
 [tool.ruff]
 target-version = "py38"
 lint.extend-select = [
+  "RUF", # ruff-specific
   "UP",  # "pyupgrade"
+]
+lint.ignore = [
+  "RUF012",  # Mutable class attributes should be annotated with `typing.ClassVar`
 ]
 extend-exclude = [
     # These Python tests are purposefully invalid.
     "tests/snippets",
     "tests/examplefiles",
+]
+[tool.ruff.lint.per-file-ignores]
+"pygments/lexers/*" = [
+  "RUF001",  # String contains ambiguous characters
+]
+"tests/*" = [
+  "RUF001",  # String contains ambiguous characters
+  "RUF001",  # String contains ambiguous characters
 ]

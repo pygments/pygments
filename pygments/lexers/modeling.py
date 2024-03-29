@@ -17,7 +17,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 from pygments.lexers.html import HtmlLexer
 from pygments.lexers import _stan_builtins
 
-__all__ = ['ModelicaLexer', 'BugsLexer', 'JagsLexer', 'StanLexer']
+__all__ = ['BugsLexer', 'JagsLexer', 'ModelicaLexer', 'StanLexer']
 
 
 class ModelicaLexer(RegexLexer):

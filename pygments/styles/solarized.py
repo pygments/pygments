@@ -16,7 +16,7 @@ from pygments.token import Comment, Error, Generic, Keyword, Name, Number, \
     Operator, String, Token
 
 
-__all__ = ['SolarizedLightStyle', 'SolarizedDarkStyle']
+__all__ = ['SolarizedDarkStyle', 'SolarizedLightStyle']
 
 
 def make_style(colors):

@@ -15,8 +15,12 @@ from pygments.lexer import Lexer, RegexLexer, bygroups, words, do_insertions, \
 from pygments.token import Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Whitespace
 
-__all__ = ['ErlangLexer', 'ErlangShellLexer', 'ElixirConsoleLexer',
-           'ElixirLexer']
+__all__ = [
+    'ElixirConsoleLexer',
+    'ElixirLexer',
+    'ErlangLexer',
+    'ErlangShellLexer',
+]
 
 
 class ErlangLexer(RegexLexer):

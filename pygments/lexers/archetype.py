@@ -17,7 +17,7 @@ from pygments.lexer import RegexLexer, include, bygroups, using, default
 from pygments.token import Text, Comment, Name, Literal, Number, String, \
     Punctuation, Keyword, Operator, Generic, Whitespace
 
-__all__ = ['OdinLexer', 'CadlLexer', 'AdlLexer']
+__all__ = ['AdlLexer', 'CadlLexer', 'OdinLexer']
 
 
 class AtomsLexer(RegexLexer):

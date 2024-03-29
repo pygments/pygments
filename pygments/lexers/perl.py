@@ -16,7 +16,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
 from pygments.util import shebang_matches
 
-__all__ = ['PerlLexer', 'Perl6Lexer']
+__all__ = ['Perl6Lexer', 'PerlLexer']
 
 
 class PerlLexer(RegexLexer):

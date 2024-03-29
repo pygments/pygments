@@ -14,7 +14,7 @@ from pygments.lexer import RegexLexer, bygroups, include, using, this, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
 
-__all__ = ['VerilogLexer', 'SystemVerilogLexer', 'VhdlLexer']
+__all__ = ['SystemVerilogLexer', 'VerilogLexer', 'VhdlLexer']
 
 
 class VerilogLexer(RegexLexer):

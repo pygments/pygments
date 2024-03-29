@@ -96,8 +96,8 @@ class RtfFormatter(Formatter):
         # rtf 1.8 header
         outfile.write('{\\rtf1\\ansi\\uc0\\deff0'
                       '{\\fonttbl{\\f0\\fmodern\\fprq1\\fcharset0%s;}}'
-                      '{\\colortbl;' % (self.fontface and
-                                        ' ' + self._escape(self.fontface) or
+                      '{\\colortbl;' % ((self.fontface and
+                                        ' ' + self._escape(self.fontface)) or
                                         ''))
 
         # convert colors and save them in a mapping to access them later.

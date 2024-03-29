@@ -12,7 +12,7 @@ from pygments.lexer import RegexLexer, include, bygroups, combined
 from pygments.token import Text, Comment, Operator, Name, String, \
     Number, Punctuation, Generic
 
-__all__ = ['AutohotkeyLexer', 'AutoItLexer']
+__all__ = ['AutoItLexer', 'AutohotkeyLexer']
 
 
 class AutohotkeyLexer(RegexLexer):

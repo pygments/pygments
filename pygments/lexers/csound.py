@@ -18,7 +18,7 @@ from pygments.lexers.html import HtmlLexer
 from pygments.lexers.python import PythonLexer
 from pygments.lexers.scripting import LuaLexer
 
-__all__ = ['CsoundScoreLexer', 'CsoundOrchestraLexer', 'CsoundDocumentLexer']
+__all__ = ['CsoundDocumentLexer', 'CsoundOrchestraLexer', 'CsoundScoreLexer']
 
 newline = (r'((?:(?:;|//).*)*)(\n)', bygroups(Comment.Single, Text))
 
@@ -336,13 +336,13 @@ class CsoundOrchestraLexer(CsoundLexer):
         #   prints          https://csound.com/docs/manual/prints.html
         #   sprintf         https://csound.com/docs/manual/sprintf.html
         #   sprintfk        https://csound.com/docs/manual/sprintfk.html
-        # work with strings that contain format specifiers. In addition, these opcodes’
+        # work with strings that contain format specifiers. In addition, these opcodes'
         # handling of format specifiers is inconsistent:
         #   - fprintks and fprints accept %a and %A specifiers, and accept %s specifiers
         #     starting in Csound 6.15.0.
-        #   - printks and prints accept %a and %A specifiers, but don’t accept %s
+        #   - printks and prints accept %a and %A specifiers, but don't accept %s
         #     specifiers.
-        #   - printf, printf_i, sprintf, and sprintfk don’t accept %a and %A specifiers,
+        #   - printf, printf_i, sprintf, and sprintfk don't accept %a and %A specifiers,
         #     but accept %s specifiers.
         # See https://github.com/csound/csound/issues/747 for more information.
         'format specifiers': [

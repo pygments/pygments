@@ -15,7 +15,7 @@ from pygments.lexer import Lexer, RegexLexer, bygroups, do_insertions, \
 from pygments.token import Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Literal, Whitespace
 
-__all__ = ['DylanLexer', 'DylanConsoleLexer', 'DylanLidLexer']
+__all__ = ['DylanConsoleLexer', 'DylanLexer', 'DylanLidLexer']
 
 
 class DylanLexer(RegexLexer):

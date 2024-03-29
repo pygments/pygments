@@ -18,9 +18,19 @@ from pygments.lexers.python import PythonLexer
 
 from pygments.lexers._scheme_builtins import scheme_keywords, scheme_builtins
 
-__all__ = ['SchemeLexer', 'CommonLispLexer', 'HyLexer', 'RacketLexer',
-           'NewLispLexer', 'EmacsLispLexer', 'ShenLexer', 'CPSALexer',
-           'XtlangLexer', 'FennelLexer', 'JanetLexer']
+__all__ = [
+    'CPSALexer',
+    'CommonLispLexer',
+    'EmacsLispLexer',
+    'FennelLexer',
+    'HyLexer',
+    'JanetLexer',
+    'NewLispLexer',
+    'RacketLexer',
+    'SchemeLexer',
+    'ShenLexer',
+    'XtlangLexer',
+]
 
 
 class SchemeLexer(RegexLexer):
@@ -2355,7 +2365,7 @@ class ShenLexer(RegexLexer):
 
     BUILTINS_ANYWHERE = ('where', 'skip', '>>', '_', '!', '<e>', '<!>')
 
-    MAPPINGS = {s: Keyword for s in DECLARATIONS}
+    MAPPINGS = dict.fromkeys(DECLARATIONS, Keyword)
     MAPPINGS.update((s, Name.Builtin) for s in BUILTINS)
     MAPPINGS.update((s, Keyword) for s in SPECIAL_FORMS)
 

@@ -14,8 +14,13 @@ from pygments.lexer import Lexer, RegexLexer, bygroups, do_insertions, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Whitespace
 
-__all__ = ['GAPLexer', 'GAPConsoleLexer', 'MathematicaLexer', 'MuPADLexer',
-           'BCLexer']
+__all__ = [
+    'BCLexer',
+    'GAPConsoleLexer',
+    'GAPLexer',
+    'MathematicaLexer',
+    'MuPADLexer',
+]
 
 
 class GAPLexer(RegexLexer):

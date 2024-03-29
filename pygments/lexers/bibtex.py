@@ -15,7 +15,7 @@ from pygments.lexer import RegexLexer, ExtendedRegexLexer, include, default, \
 from pygments.token import Name, Comment, String, Error, Number, Keyword, \
     Punctuation, Whitespace
 
-__all__ = ['BibTeXLexer', 'BSTLexer']
+__all__ = ['BSTLexer', 'BibTeXLexer']
 
 
 class BibTeXLexer(ExtendedRegexLexer):
@@ -43,8 +43,8 @@ class BibTeXLexer(ExtendedRegexLexer):
     def close_brace_callback(self, match, ctx):
         closing_brace = match.group()
         if (
-            ctx.opening_brace == '{' and closing_brace != '}' or
-            ctx.opening_brace == '(' and closing_brace != ')'
+            (ctx.opening_brace == '{' and closing_brace != '}') or
+            (ctx.opening_brace == '(' and closing_brace != ')')
         ):
             yield match.start(), Error, closing_brace
         else:

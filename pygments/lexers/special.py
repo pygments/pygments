@@ -15,7 +15,7 @@ from pygments.token import Token, Error, Text, Generic
 from pygments.util import get_choice_opt
 
 
-__all__ = ['TextLexer', 'OutputLexer', 'RawTokenLexer']
+__all__ = ['OutputLexer', 'RawTokenLexer', 'TextLexer']
 
 
 class TextLexer(Lexer):

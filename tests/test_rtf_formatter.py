@@ -26,9 +26,9 @@ def _build_message(*args, **kwargs):
     result = _escape(kwargs.get('result', ''))
 
     if string is None:
-        string = ("The expected output of '{t}'\n"
-                  "\t\tShould be '{expected}'\n"
-                  "\t\tActually outputs '{result}'\n"
+        string = (f"The expected output of '{t}'\n"
+                  f"\t\tShould be '{expected}'\n"
+                  f"\t\tActually outputs '{result}'\n"
                   "\t(WARNING: Partial Output of Result!)")
 
     end = -len(_escape(foot))

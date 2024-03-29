@@ -22,10 +22,21 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Other, Whitespace
 from pygments.util import get_bool_opt, ClassNotFound
 
-__all__ = ['BBCodeLexer', 'MoinWikiLexer', 'RstLexer', 'TexLexer', 'GroffLexer',
-           'MozPreprocHashLexer', 'MozPreprocPercentLexer',
-           'MozPreprocXulLexer', 'MozPreprocJavascriptLexer',
-           'MozPreprocCssLexer', 'MarkdownLexer', 'TiddlyWiki5Lexer', 'WikitextLexer']
+__all__ = [
+    'BBCodeLexer',
+    'GroffLexer',
+    'MarkdownLexer',
+    'MoinWikiLexer',
+    'MozPreprocCssLexer',
+    'MozPreprocHashLexer',
+    'MozPreprocJavascriptLexer',
+    'MozPreprocPercentLexer',
+    'MozPreprocXulLexer',
+    'RstLexer',
+    'TexLexer',
+    'TiddlyWiki5Lexer',
+    'WikitextLexer',
+]
 
 
 class BBCodeLexer(RegexLexer):

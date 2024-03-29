@@ -14,7 +14,7 @@ from pygments.lexer import RegexLexer, bygroups, default
 from pygments.token import Keyword, Punctuation, String, Number, Operator, \
     Generic, Whitespace, Name, Literal, Comment, Text
 
-__all__ = ['SparqlLexer', 'TurtleLexer', 'ShExCLexer']
+__all__ = ['ShExCLexer', 'SparqlLexer', 'TurtleLexer']
 
 
 class SparqlLexer(RegexLexer):

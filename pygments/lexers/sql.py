@@ -59,9 +59,17 @@ from pygments.lexers._mysql_builtins import \
 from pygments.lexers import _tsql_builtins
 
 
-__all__ = ['PostgresLexer', 'PlPgsqlLexer', 'PostgresConsoleLexer',
-           'PostgresExplainLexer', 'SqlLexer', 'TransactSqlLexer',
-           'MySqlLexer', 'SqliteConsoleLexer', 'RqlLexer']
+__all__ = [
+    'MySqlLexer',
+    'PlPgsqlLexer',
+    'PostgresConsoleLexer',
+    'PostgresExplainLexer',
+    'PostgresLexer',
+    'RqlLexer',
+    'SqlLexer',
+    'SqliteConsoleLexer',
+    'TransactSqlLexer',
+]
 
 line_re  = re.compile('.*?\n')
 sqlite_prompt_re = re.compile(r'^(?:sqlite|   ...)>(?= )')

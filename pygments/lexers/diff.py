@@ -14,7 +14,7 @@ from pygments.lexer import RegexLexer, include, bygroups
 from pygments.token import Text, Comment, Operator, Keyword, Name, Generic, \
     Literal, Whitespace
 
-__all__ = ['DiffLexer', 'DarcsPatchLexer', 'WDiffLexer']
+__all__ = ['DarcsPatchLexer', 'DiffLexer', 'WDiffLexer']
 
 
 class DiffLexer(RegexLexer):

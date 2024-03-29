@@ -16,10 +16,19 @@ from pygments.token import Punctuation, Whitespace, \
     Text, Comment, Operator, Keyword, Name, String, Number, Generic
 from pygments.util import shebang_matches
 
-__all__ = ['BashLexer', 'BashSessionLexer', 'TcshLexer', 'BatchLexer',
-           'SlurmBashLexer', 'MSDOSSessionLexer', 'PowerShellLexer',
-           'PowerShellSessionLexer', 'TcshSessionLexer', 'FishShellLexer',
-           'ExeclineLexer']
+__all__ = [
+    'BashLexer',
+    'BashSessionLexer',
+    'BatchLexer',
+    'ExeclineLexer',
+    'FishShellLexer',
+    'MSDOSSessionLexer',
+    'PowerShellLexer',
+    'PowerShellSessionLexer',
+    'SlurmBashLexer',
+    'TcshLexer',
+    'TcshSessionLexer',
+]
 
 
 class BashLexer(RegexLexer):

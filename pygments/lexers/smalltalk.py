@@ -12,7 +12,7 @@ from pygments.lexer import RegexLexer, include, bygroups, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
 
-__all__ = ['SmalltalkLexer', 'NewspeakLexer']
+__all__ = ['NewspeakLexer', 'SmalltalkLexer']
 
 
 class SmalltalkLexer(RegexLexer):

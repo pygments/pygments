@@ -17,10 +17,22 @@ from pygments.lexers.d import DLexer
 from pygments.token import Text, Name, Number, String, Comment, Punctuation, \
     Other, Keyword, Operator, Whitespace
 
-__all__ = ['GasLexer', 'ObjdumpLexer', 'DObjdumpLexer', 'CppObjdumpLexer',
-           'CObjdumpLexer', 'HsailLexer', 'LlvmLexer', 'LlvmMirBodyLexer',
-           'LlvmMirLexer', 'NasmLexer', 'NasmObjdumpLexer', 'TasmLexer',
-           'Ca65Lexer', 'Dasm16Lexer']
+__all__ = [
+    'CObjdumpLexer',
+    'Ca65Lexer',
+    'CppObjdumpLexer',
+    'DObjdumpLexer',
+    'Dasm16Lexer',
+    'GasLexer',
+    'HsailLexer',
+    'LlvmLexer',
+    'LlvmMirBodyLexer',
+    'LlvmMirLexer',
+    'NasmLexer',
+    'NasmObjdumpLexer',
+    'ObjdumpLexer',
+    'TasmLexer',
+]
 
 
 class GasLexer(RegexLexer):

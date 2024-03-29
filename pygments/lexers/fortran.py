@@ -14,7 +14,7 @@ from pygments.lexer import RegexLexer, bygroups, include, words, using, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic
 
-__all__ = ['FortranLexer', 'FortranFixedLexer']
+__all__ = ['FortranFixedLexer', 'FortranLexer']
 
 
 class FortranLexer(RegexLexer):

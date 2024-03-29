@@ -14,7 +14,7 @@ from pygments.token import Keyword, Name, Comment, String, Error, Number, \
     Operator, Generic, Whitespace, Punctuation, Text, Token
 
 
-__all__ = ['NordStyle', 'NordDarkerStyle']
+__all__ = ['NordDarkerStyle', 'NordStyle']
 
 
 class NordStyle(Style):
