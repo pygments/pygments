@@ -27,7 +27,7 @@ class SoongLexer(RegexLexer):
             # A variable assignment
             (r'(\w*)(\s*)(\+?=)(\s*)',
              bygroups(Name.Variable, Whitespace, Operator, Whitespace),
-             'expr'),
+             'assign-rhs'),
 
             # A top-level module
             (r'(\w*)(\s*)(\{)',
@@ -37,6 +37,10 @@ class SoongLexer(RegexLexer):
             # Everything else
             include('comments'),
             (r'\s+', Whitespace),  # newlines okay
+        ],
+        'assign-rhs': [
+            include('expr'),
+            (r'\n', Whitespace, '#pop'),
         ],
         'in-list': [
             include('expr'),
