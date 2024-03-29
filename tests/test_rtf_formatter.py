@@ -53,11 +53,9 @@ def test_rtf_header():
     t = ''
     result = format_rtf(t)
     expected = r'{\rtf1\ansi\uc0'
-    msg = ("RTF documents are expected to start with '{expected}'\n"
-           "\t\tStarts intead with '{result}'\n"
-           "\t(WARNING: Partial Output of Result!)".format(
-               expected=expected,
-               result=result[:len(expected)]))
+    msg = (f"RTF documents are expected to start with '{expected}'\n"
+           f"\t\tStarts intead with '{result[:len(expected)]}'\n"
+           "\t(WARNING: Partial Output of Result!)")
     assert result.startswith(expected), msg
 
 
@@ -65,11 +63,9 @@ def test_rtf_footer():
     t = ''
     result = format_rtf(t)
     expected = ''
-    msg = ("RTF documents are expected to end with '{expected}'\n"
-           "\t\tEnds intead with '{result}'\n"
-           "\t(WARNING: Partial Output of Result!)".format(
-               expected=_escape(expected),
-               result=_escape(result[-len(expected):])))
+    msg = (f"RTF documents are expected to end with '{_escape(expected)}'\n"
+           f"\t\tEnds intead with '{_escape(result[-len(expected):])}'\n"
+           "\t(WARNING: Partial Output of Result!)")
     assert result.endswith(expected+foot), msg
 
 

@@ -154,13 +154,12 @@ def load_lexer_from_file(filename, lexername="CustomLexer", **options):
             exec(f.read(), custom_namespace)
         # Retrieve the class `lexername` from that namespace
         if lexername not in custom_namespace:
-            raise ClassNotFound('no valid %s class found in %s' %
-                                (lexername, filename))
+            raise ClassNotFound(f'no valid {lexername} class found in {filename}')
         lexer_class = custom_namespace[lexername]
         # And finally instantiate it with the options
         return lexer_class(**options)
     except OSError as err:
-        raise ClassNotFound('cannot read %s: %s' % (filename, err))
+        raise ClassNotFound(f'cannot read {filename}: {err}')
     except ClassNotFound:
         raise
     except Exception as err:

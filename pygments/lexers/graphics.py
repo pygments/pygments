@@ -317,7 +317,7 @@ class PostScriptLexer(RegexLexer):
     delimiter_end = r'(?=[%s])' % delimiter
 
     valid_name_chars = r'[^%s]' % delimiter
-    valid_name = r"%s+%s" % (valid_name_chars, delimiter_end)
+    valid_name = rf"{valid_name_chars}+{delimiter_end}"
 
     tokens = {
         'root': [

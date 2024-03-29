@@ -172,9 +172,7 @@ class RstLexer(RegexLexer):
     # from docutils.parsers.rst.states
     closers = '\'")]}>\u2019\u201d\xbb!?'
     unicode_delimiters = '\u2010\u2011\u2012\u2013\u2014\u00a0'
-    end_string_suffix = (r'((?=$)|(?=[-/:.,; \n\x00%s%s]))'
-                         % (re.escape(unicode_delimiters),
-                            re.escape(closers)))
+    end_string_suffix = (rf'((?=$)|(?=[-/:.,; \n\x00{re.escape(unicode_delimiters)}{re.escape(closers)}]))')
 
     tokens = {
         'root': [
@@ -797,7 +795,7 @@ class WikitextLexer(RegexLexer):
 
     def nowiki_tag_rules(tag_name):
         return [
-            (r'(?i)(</)({})(\s*)(>)'.format(tag_name), bygroups(Punctuation,
+            (rf'(?i)(</)({tag_name})(\s*)(>)', bygroups(Punctuation,
              Name.Tag, Whitespace, Punctuation), '#pop'),
             include('entity'),
             include('text'),
@@ -805,15 +803,15 @@ class WikitextLexer(RegexLexer):
 
     def plaintext_tag_rules(tag_name):
         return [
-            (r'(?si)(.*?)(</)({})(\s*)(>)'.format(tag_name), bygroups(Text,
+            (rf'(?si)(.*?)(</)({tag_name})(\s*)(>)', bygroups(Text,
              Punctuation, Name.Tag, Whitespace, Punctuation), '#pop'),
         ]
 
     def delegate_tag_rules(tag_name, lexer, **lexer_kwargs):
         return [
-            (r'(?i)(</)({})(\s*)(>)'.format(tag_name), bygroups(Punctuation,
+            (rf'(?i)(</)({tag_name})(\s*)(>)', bygroups(Punctuation,
              Name.Tag, Whitespace, Punctuation), '#pop'),
-            (r'(?si).+?(?=</{}\s*>)'.format(tag_name), using(lexer, **lexer_kwargs)),
+            (rf'(?si).+?(?=</{tag_name}\s*>)', using(lexer, **lexer_kwargs)),
         ]
 
     def text_rules(token):
@@ -1017,7 +1015,7 @@ class WikitextLexer(RegexLexer):
             (r'(?i)\b(?:{}){}{}*'.format('|'.join(protocols),
              link_address, link_char_class), Name.Label),
             # Magic links
-            (r'\b(?:RFC|PMID){}+[0-9]+\b'.format(nbsp_char),
+            (rf'\b(?:RFC|PMID){nbsp_char}+[0-9]+\b',
              Name.Function.Magic),
             (r"""(?x)
                 \bISBN {nbsp_char}
@@ -1032,7 +1030,7 @@ class WikitextLexer(RegexLexer):
         'redirect-inner': [
             (r'(\]\])(\s*?\n)', bygroups(Punctuation, Whitespace), '#pop'),
             (r'(\#)([^#]*?)', bygroups(Punctuation, Name.Label)),
-            (r'(?i)[{}]+'.format(title_char), Name.Tag),
+            (rf'(?i)[{title_char}]+', Name.Tag),
         ],
         'list': [
             # Description lists
@@ -1059,9 +1057,9 @@ class WikitextLexer(RegexLexer):
                 r"""(?xi)
                 (\[\[)
                     (File|Image) (:)
-                    ((?: [%s] | \{{2,3}[^{}]*?\}{2,3} | <!--[\s\S]*?--> )*)
-                    (?: (\#) ([%s]*?) )?
-                """ % (title_char, f'{title_char}#'),
+                    ((?: [{}] | \{{{{2,3}}[^{{}}]*?\}}{{2,3}} | <!--[\s\S]*?--> )*)
+                    (?: (\#) ([{}]*?) )?
+                """.format(title_char, f'{title_char}#'),
                 bygroups(Punctuation, Name.Namespace,  Punctuation,
                          using(this, state=['wikilink-name']), Punctuation, Name.Label),
                 'medialink-inner'
@@ -1069,24 +1067,24 @@ class WikitextLexer(RegexLexer):
             # Wikilinks
             (
                 r"""(?xi)
-                (\[\[)(?!%s) # Should not contain URLs
-                    (?: ([%s]*) (:))?
-                    ((?: [%s] | \{{2,3}[^{}]*?\}{2,3} | <!--[\s\S]*?--> )*?)
-                    (?: (\#) ([%s]*?) )?
+                (\[\[)(?!{}) # Should not contain URLs
+                    (?: ([{}]*) (:))?
+                    ((?: [{}] | \{{{{2,3}}[^{{}}]*?\}}{{2,3}} | <!--[\s\S]*?--> )*?)
+                    (?: (\#) ([{}]*?) )?
                 (\]\])
-                """ % ('|'.join(protocols), title_char.replace('/', ''),
+                """.format('|'.join(protocols), title_char.replace('/', ''),
                        title_char, f'{title_char}#'),
                 bygroups(Punctuation, Name.Namespace,  Punctuation,
                          using(this, state=['wikilink-name']), Punctuation, Name.Label, Punctuation)
             ),
             (
                 r"""(?xi)
-                (\[\[)(?!%s)
-                    (?: ([%s]*) (:))?
-                    ((?: [%s] | \{{2,3}[^{}]*?\}{2,3} | <!--[\s\S]*?--> )*?)
-                    (?: (\#) ([%s]*?) )?
+                (\[\[)(?!{})
+                    (?: ([{}]*) (:))?
+                    ((?: [{}] | \{{{{2,3}}[^{{}}]*?\}}{{2,3}} | <!--[\s\S]*?--> )*?)
+                    (?: (\#) ([{}]*?) )?
                     (\|)
-                """ % ('|'.join(protocols), title_char.replace('/', ''),
+                """.format('|'.join(protocols), title_char.replace('/', ''),
                        title_char, f'{title_char}#'),
                 bygroups(Punctuation, Name.Namespace,  Punctuation,
                          using(this, state=['wikilink-name']), Punctuation, Name.Label, Punctuation),
@@ -1347,7 +1345,7 @@ class WikitextLexer(RegexLexer):
             (r'\s+', Whitespace),
             # Parser functions
             (
-                r'(?i)(\#[%s]*?|%s)(:)' % (title_char,
+                r'(?i)(\#[{}]*?|{})(:)'.format(title_char,
                                            '|'.join(parser_functions_i)),
                 bygroups(Name.Function, Punctuation), ('#pop', 'template-inner')
             ),
