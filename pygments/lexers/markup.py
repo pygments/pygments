@@ -724,8 +724,8 @@ class OrgLexer(RegexLexer):
             (r'^( *)(\|[ -].*?[ -]\|)$', bygroups(Whitespace, String)),
 
             # Any other text
-            (r'[^#*+\-0-9:\\/=~_<{\[<|\n]+', Text),
-            (r'[#*+\-0-9:\\/=~_<{\[<|\n]', Text),
+            (r'[^#*+\-0-9:\\/=~_<{\[|\n]+', Text),
+            (r'[#*+\-0-9:\\/=~_<{\[|\n]', Text),
         ],
     }
 
