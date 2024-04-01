@@ -23,15 +23,35 @@
 'Implicit'    Keyword.Namespace
 ' '           Text
 'Arguments'   Keyword.Namespace
-'.'           Operator
+'.'           Punctuation
 '\n'          Text
 
 'Set'         Keyword.Namespace
 ' '           Text
-'Primitive'   Name
+'Primitive'   Keyword.Namespace
 ' '           Text
 'Projections' Keyword.Namespace
-'.'           Operator
+'.'           Punctuation
+'\n'          Text
+
+'Set'         Keyword.Namespace
+' '           Text
+'Warnings'    Keyword.Namespace
+' '           Text
+'"'           Literal.String.Double
+'-extraction' Literal.String.Double
+'"'           Literal.String.Double
+'.'           Punctuation
+'\n'          Text
+
+'Set'         Keyword.Namespace
+' '           Text
+'Typeclasses' Keyword.Namespace
+' '           Text
+'Depth'       Keyword.Namespace
+' '           Text
+'14'          Literal.Number.Integer
+'.'           Punctuation
 '\n'          Text
 
 'Unset'       Keyword.Namespace
@@ -39,7 +59,7 @@
 'Printing'    Keyword.Namespace
 ' '           Text
 'All'         Keyword.Namespace
-'.'           Operator
+'.'           Punctuation
 '\n'          Text
 
 'Scheme'      Keyword.Namespace
@@ -132,5 +152,74 @@
 ':='          Operator
 ' '           Text
 'true'        Name.Builtin.Pseudo
+'.'           Operator
+'\n'          Text
+
+'String Notation' Keyword.Namespace
+' '           Text
+'foo'         Name
+' '           Text
+'bar'         Name
+' '           Text
+'baz'         Name
+' '           Text
+'['           Operator
+' '           Text
+'via'         Keyword
+' '           Text
+'nat'         Name
+' '           Text
+'mapping'     Keyword
+' '           Text
+'['           Operator
+' '           Text
+'S'           Name
+' '           Text
+'=>'          Operator
+' '           Text
+'s'           Name
+','           Operator
+' '           Text
+'['           Operator
+'O'           Name
+']'           Operator
+' '           Text
+'=>'          Operator
+' '           Text
+'o'           Name
+' '           Text
+']'           Operator
+','           Operator
+' '           Text
+'abstract'    Keyword
+' '           Text
+'after'       Keyword
+' '           Text
+'10'          Literal.Number.Integer
+' '           Text
+']'           Operator
+'\n  '        Text
+':'           Operator
+' '           Text
+'w_scope'     Name
+'.'           Punctuation
+'\n'          Text
+
+'Elpi'        Keyword.Namespace
+' '           Text
+'Program'     Keyword.Namespace
+' '           Text
+'b'           Name
+' '           Text
+'lp:{{'       Operator
+' '           Text
+'}'           Operator
+'}'           Operator
+'.'           Operator
+'\n'          Text
+
+'Elpi'        Keyword.Namespace
+' '           Text
+'test'        Name
 '.'           Operator
 '\n'          Text
