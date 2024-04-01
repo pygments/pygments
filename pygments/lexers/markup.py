@@ -19,13 +19,14 @@ from pygments.lexers.data import JsonLexer
 from pygments.lexer import RegexLexer, DelegatingLexer, include, bygroups, \
     using, this, do_insertions, default, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Generic, Other, Whitespace
+    Number, Punctuation, Generic, Other, Whitespace, Literal
 from pygments.util import get_bool_opt, ClassNotFound
 
 __all__ = ['BBCodeLexer', 'MoinWikiLexer', 'RstLexer', 'TexLexer', 'GroffLexer',
            'MozPreprocHashLexer', 'MozPreprocPercentLexer',
            'MozPreprocXulLexer', 'MozPreprocJavascriptLexer',
-           'MozPreprocCssLexer', 'MarkdownLexer', 'TiddlyWiki5Lexer', 'WikitextLexer']
+           'MozPreprocCssLexer', 'MarkdownLexer', 'OrgLexer', 'TiddlyWiki5Lexer',
+           'WikitextLexer']
 
 
 class BBCodeLexer(RegexLexer):
@@ -617,6 +618,114 @@ class MarkdownLexer(RegexLexer):
         self.handlecodeblocks = get_bool_opt(options, 'handlecodeblocks', True)
         RegexLexer.__init__(self, **options)
 
+class OrgLexer(RegexLexer):
+    """
+    For Org Mode markup.
+    """
+    name = 'Org Mode'
+    url = 'https://orgmode.org'
+    aliases = ['org', 'orgmode', 'org-mode']
+    filenames = ['*.org']
+    mimetypes = ["text/org"]
+    version_added = '2.18'
+
+    def _inline(start, end):
+        return rf'(?<!\w){start}(.|\n(?!\n))+?{end}(?!\w)'
+
+    tokens = {
+        'root': [
+            (r'^# .*', Comment.Single),
+
+            # Headings
+            (r'^(\* )(COMMENT)( .*)',
+             bygroups(Generic.Heading, Comment.Preproc, Generic.Heading)),
+            (r'^(\*\*+ )(COMMENT)( .*)',
+             bygroups(Generic.Subheading, Comment.Preproc, Generic.Subheading)),
+            (r'^(\* )(DONE)( .*)',
+             bygroups(Generic.Heading, Generic.Deleted, Generic.Heading)),
+            (r'^(\*\*+ )(DONE)( .*)',
+             bygroups(Generic.Subheading, Generic.Deleted, Generic.Subheading)),
+            (r'^(\* )(TODO)( .*)',
+             bygroups(Generic.Heading, Generic.Error, Generic.Heading)),
+            (r'^(\*\*+ )(TODO)( .*)',
+             bygroups(Generic.Subheading, Generic.Error, Generic.Subheading)),
+
+            (r'^(\* .+?)( :[a-zA-Z0-9_@:]+:)?$', bygroups(Generic.Heading, Generic.Emph)),
+            (r'^(\*\*+ .+?)( :[a-zA-Z0-9_@:]+:)?$', bygroups(Generic.Subheading, Generic.Emph)),
+
+            # Unordered lists items, including TODO items and description items
+            (r'^(?:( *)([+-] )|( +)(\* ))(\[[ X-]\])?(.+ ::)?',
+             bygroups(Whitespace, Keyword, Whitespace, Keyword, Generic.Prompt, Name.Label)),
+
+            # Ordered list items
+            (r'^( *)([0-9]+[.)])( \[@[0-9]+\])?', bygroups(Whitespace, Keyword, Generic.Emph)),
+
+            # Dynamic blocks
+            (r'(?i)^( *#\+begin: *)((?:.|\n)*?)(^ *#\+end: *$)',
+             bygroups(Operator.Word, using(this), Operator.Word)),
+
+            # Comment blocks
+            (r'(?i)^( *#\+begin_comment *\n)((?:.|\n)*?)(^ *#\+end_comment *$)',
+             bygroups(Operator.Word, Comment.Multiline, Operator.Word)),
+
+            # Source code blocks
+            # TODO: language-dependent syntax highlighting (see Markdown lexer)
+            (r'(?i)^( *#\+begin_src .*)((?:.|\n)*?)(^ *#\+end_src *$)',
+             bygroups(Operator.Word, Text, Operator.Word)),
+
+            # Other blocks
+            (r'(?i)^( *#\+begin_\w+)( *\n)((?:.|\n)*?)(^ *#\+end_\w+)( *$)',
+             bygroups(Operator.Word, Whitespace, Text, Operator.Word, Whitespace)),
+
+            # Keywords
+            (r'^(#\+\w+:)(.*)$', bygroups(Name.Namespace, Text)),
+
+            # Properties and drawers
+            (r'(?i)^( *:\w+: *\n)((?:.|\n)*?)(^ *:end: *$)',
+             bygroups(Name.Decorator, Comment.Special, Name.Decorator)),
+
+            # Line break operator
+            (r'\\\\$', Operator),
+
+            # Deadline, Scheduled, CLOSED
+            (r'(?i)^( *(?:DEADLINE|SCHEDULED): )(<.+?> *)$',
+             bygroups(Generic.Error, Literal.Date)),
+            (r'(?i)^( *CLOSED: )(\[.+?\] *)$',
+             bygroups(Generic.Deleted, Literal.Date)),
+
+            # Bold
+            (_inline(r'\*', r'\*+'), Generic.Strong),
+            # Italic
+            (_inline(r'/', r'/'), Generic.Emph),
+            # Verbatim
+            (_inline(r'=', r'='), String), # TODO token
+            # Code
+            (_inline(r'~', r'~'), String),
+            # Strikethrough
+            (_inline(r'\+', r'\+'), Generic.Deleted),
+            # Underline
+            (_inline(r'_', r'_+'), Generic.EmphStrong),
+
+            # Dates
+            (r'<.+?>', Literal.Date),
+            # Macros
+            (r'\{\{\{.+?\}\}\}', Comment.Preproc),
+            # Footnotes
+            (r'(?<!\[)\[fn:.+?\]', Name.Tag),
+            # Links
+            (r'(?s)(\[\[)(.*?)(\]\[)(.*?)(\]\])',
+             bygroups(Punctuation, Name.Attribute, Punctuation, Name.Tag, Punctuation)),
+            (r'(?s)(\[\[)(.+?)(\]\])', bygroups(Punctuation, Name.Attribute, Punctuation)),
+            (r'(<<)(.+?)(>>)', bygroups(Punctuation, Name.Attribute, Punctuation)),
+
+            # Tables
+            (r'^( *)(\|[ -].*?[ -]\|)$', bygroups(Whitespace, String)),
+
+            # Any other text
+            (r'[^#*+\-0-9:\\/=~_<{\[|\n]+', Text),
+            (r'[#*+\-0-9:\\/=~_<{\[|\n]', Text),
+        ],
+    }
 
 class TiddlyWiki5Lexer(RegexLexer):
     """
