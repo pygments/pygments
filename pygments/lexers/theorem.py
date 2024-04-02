@@ -152,7 +152,7 @@ class CoqLexer(RegexLexer):
             (r'[A-Z]\w*', Keyword.Namespace),
             (r'"', String.Double, 'string'),
             (r'\d+', Number.Integer),
-            (r'.', Punctuation, '#pop'),
+            (r'\.', Punctuation, '#pop'),
         ],
         'sn-notation': [
             (r'\s+', Text),
@@ -166,6 +166,7 @@ class CoqLexer(RegexLexer):
             (r'\.', Punctuation, '#pop'),
         ],
         'comment': [
+            # Consume comments like ***** as one token
             (r'([^(*)]+|\*+(?!\)))+', Comment),
             (r'\(\*', Comment, '#push'),
             (r'\*\)', Comment, '#pop'),
