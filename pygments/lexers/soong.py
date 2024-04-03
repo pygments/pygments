@@ -64,7 +64,7 @@ class SoongLexer(RegexLexer):
             include('in-map'),
         ],
         'comments': [
-            (r'//.*?$', Comment.Single),
+            (r'//.*', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
         ],
         'expr': [
