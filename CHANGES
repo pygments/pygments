@@ -18,6 +18,8 @@ Version 2.18.0
 - Updated lexers:
 
   * Bash: add ``openrc`` alias (#2599)
+  * Coq: add keywords, lex more vernacular command arguments, produce
+    fewer tokens on heading comments (#2678)
   * lean: Fix name handling (#2614)
   * Logtalk: add ``uninstantiation`` keyword and recognize
     escape sequences (#2619)
