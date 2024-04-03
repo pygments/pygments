@@ -584,4 +584,5 @@ LEXERS = {
     'ZephirLexer': ('pygments.lexers.php', 'Zephir', ('zephir',), ('*.zep',), ()),
     'ZigLexer': ('pygments.lexers.zig', 'Zig', ('zig',), ('*.zig',), ('text/zig',)),
     'apdlexer': ('pygments.lexers.apdlexer', 'ANSYS parametric design language', ('ansys', 'apdl'), ('*.ans',), ()),
+    'HolyCLexer': ('pygments.lexers.holyc', 'HolyC', ('holyc',), ('*.hc', '*.zc', '*.HC', '*.ZC'), ('text/x-holyc',)),
 }
