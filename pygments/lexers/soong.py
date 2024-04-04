@@ -7,6 +7,7 @@
     :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+
 from pygments.lexer import RegexLexer, bygroups, include
 from pygments.token import Comment, Name, Number, Operator, Punctuation, \
         String, Whitespace
@@ -18,9 +19,7 @@ class SoongLexer(RegexLexer):
     version_added = '2.18'
     url = 'https://source.android.com/docs/setup/reference/androidbp'
     aliases = ['androidbp', 'bp', 'soong']
-    filenames = [
-        'Android.bp',
-    ]
+    filenames = ['Android.bp']
 
     tokens = {
         'root': [
