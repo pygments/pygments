@@ -478,6 +478,7 @@ LEXERS = {
     'SnobolLexer': ('pygments.lexers.snobol', 'Snobol', ('snobol',), ('*.snobol',), ('text/x-snobol',)),
     'SnowballLexer': ('pygments.lexers.dsls', 'Snowball', ('snowball',), ('*.sbl',), ()),
     'SolidityLexer': ('pygments.lexers.solidity', 'Solidity', ('solidity',), ('*.sol',), ()),
+    'SoongLexer': ('pygments.lexers.soong', 'Soong', ('androidbp', 'bp', 'soong'), ('Android.bp',), ()),
     'SophiaLexer': ('pygments.lexers.sophia', 'Sophia', ('sophia',), ('*.aes',), ()),
     'SourcePawnLexer': ('pygments.lexers.pawn', 'SourcePawn', ('sp',), ('*.sp',), ('text/x-sourcepawn',)),
     'SourcesListLexer': ('pygments.lexers.installers', 'Debian Sourcelist', ('debsources', 'sourceslist', 'sources.list'), ('sources.list',), ()),
