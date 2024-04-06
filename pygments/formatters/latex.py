@@ -293,19 +293,29 @@ class LatexFormatter(Formatter):
             cmndef = ''
             if ndef['bold']:
                 cmndef += r'\let\$$@bf=\textbf'
+            else:
+                cmndef += r'\let\$$@bf=\relax '
             if ndef['italic']:
                 cmndef += r'\let\$$@it=\textit'
+            else:
+                cmndef += r'\let\$$@it=\relax '
             if ndef['underline']:
                 cmndef += r'\let\$$@ul=\underline'
+            else:
+                cmndef += r'\let\$$@ul=\relax '
             if ndef['roman']:
                 cmndef += r'\let\$$@ff=\textrm'
-            if ndef['sans']:
+            elif ndef['sans']:
                 cmndef += r'\let\$$@ff=\textsf'
-            if ndef['mono']:
+            elif ndef['mono']:
                 cmndef += r'\let\$$@ff=\textsf'
+            else:
+                cmndef += r'\let\$$@ff=\relax '
             if ndef['color']:
                 cmndef += (r'\def\$$@tc##1{\textcolor[rgb]{%s}{##1}}' %
                            rgbcolor(ndef['color']))
+            else:
+                cmndef += r'\let\$$@tc=\relax '
             if ndef['border']:
                 cmndef += (r'\def\$$@bc##1{{{{\setlength{{\fboxsep}}{{\string -\fboxrule}}'
                            r'\fcolorbox[rgb]{{{}}}{{{}}}{{\strut ##1}}}}}}'.format(rgbcolor(ndef['border']),
@@ -314,6 +324,8 @@ class LatexFormatter(Formatter):
                 cmndef += (r'\def\$$@bc##1{{\setlength{\fboxsep}{0pt}'
                            r'\colorbox[rgb]{%s}{\strut ##1}}}' %
                            rgbcolor(ndef['bgcolor']))
+            else:
+                cmndef += r'\let\$$@bc=\relax '
             if cmndef == '':
                 continue
             cmndef = cmndef.replace('$$', cp)
