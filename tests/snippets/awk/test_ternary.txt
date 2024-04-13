@@ -1,0 +1,34 @@
+---input---
+BEGIN {a = 5;b=6; print (a==b)? "a==b" : "a!=b"}
+
+---tokens---
+'BEGIN'       Name.Builtin
+' '           Text
+'{'           Punctuation
+'a'           Name.Other
+' '           Text
+'='           Operator
+' '           Text
+'5'           Literal.Number.Integer
+';'           Punctuation
+'b'           Name.Other
+'='           Operator
+'6'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'print'       Keyword.Reserved
+' '           Text
+'('           Punctuation
+'a'           Name.Other
+'=='          Operator
+'b'           Name.Other
+')'           Punctuation
+'?'           Operator
+' '           Text
+'"a==b"'      Literal.String.Double
+' '           Text
+':'           Operator
+' '           Text
+'"a!=b"'      Literal.String.Double
+'}'           Punctuation
+'\n'          Text
