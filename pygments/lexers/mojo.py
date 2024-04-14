@@ -40,7 +40,7 @@ __all__ = ["MojoLexer"]
 
 class MojoLexer(RegexLexer):
     """
-    For Mojo source code (version 24.2).
+    For Mojo source code (version 24.2.1).
     """
 
     name = "Mojo"
@@ -697,5 +697,5 @@ class MojoLexer(RegexLexer):
 
     def analyse_text(text):
         return (
-                shebang_matches(text, r"mojo?") or "import " in text[:1000]
+            shebang_matches(text, r"mojo?") or "import " in text[:1000]
         )  # TODO supported?
