@@ -23,7 +23,7 @@ from pygments.lexer import (
 )
 from pygments.token import (
     Comment,
-    Error,
+    # Error,
     Keyword,
     Name,
     Number,
