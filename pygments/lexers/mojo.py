@@ -1,10 +1,10 @@
 """
     pygments.lexers.mojo
-    ~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~
 
     Lexers for Mojo and related languages.
 
-    :copyright: Copyright 2024-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
