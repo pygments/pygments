@@ -59,13 +59,13 @@ class GleamLexer(RegexLexer):
             (r'[a-zA-Z_/]\w*', Name),
 
             # numbers
-            (r'(\d+((_\d+)+)?\.(?!\.)(\d+((_\d+)+)?)?|\.\d+((_\d+)+)?)([eEf][+-]?[0-9]+)?', Number.Float),
-            (r'\d+((_\d+)+)?[eEf][+-]?[0-9]+', Number.Float),
-            (r'0[xX][a-fA-F0-9]+((_[a-fA-F0-9]+)+)?(\.([a-fA-F0-9]+((_[a-fA-F0-9]+)+)?)?)?p[+-]?\d+', Number.Float),
-            (r'0[bB][01]+((_[01]+)+)?', Number.Bin),
-            (r'0[oO][0-7]+((_[0-7]+)+)?', Number.Oct),
-            (r'0[xX][a-fA-F0-9]+((_[a-fA-F0-9]+)+)?', Number.Hex),
-            (r'\d+((_\d+)+)?', Number.Integer),
+            (r'(\d+(_\d+)*\.(?!\.)(\d+(_\d+)*)?|\.\d+(_\d+)*)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'\d+(_\d+)*[eEf][+-]?[0-9]+', Number.Float),
+            (r'0[xX][a-fA-F0-9]+(_[a-fA-F0-9]+)*(\.([a-fA-F0-9]+(_[a-fA-F0-9]+)*)?)?p[+-]?\d+', Number.Float),
+            (r'0[bB][01]+(_[01]+)*', Number.Bin),
+            (r'0[oO][0-7]+(_[0-7]+)*', Number.Oct),
+            (r'0[xX][a-fA-F0-9]+(_[a-fA-F0-9]+)*', Number.Hex),
+            (r'\d+(_\d+)*', Number.Integer),
 
             # Whitespace
             (r'\s+', Whitespace),
