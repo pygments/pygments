@@ -1,259 +1,45 @@
 '(*'          Comment
-' -'          Comment
-'*'           Comment
-'- coding: utf-8 -' Comment
-'*'           Comment
-'- '          Comment
+' -*- coding: utf-8 -*- ' Comment
 '*)'          Comment
 '\n'          Text
 
 '(*'          Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
+'**********************************************************************' Comment
 '*)'          Comment
 '\n'          Text
 
 '(*'          Comment
-'  v      '   Comment
-'*'           Comment
-'   The Coq Proof Assistant  /  The Coq Development Team     ' Comment
+'  v      *   The Coq Proof Assistant  /  The Coq Development Team     ' Comment
 '*)'          Comment
 '\n'          Text
 
 '(*'          Comment
-' <O___,, '   Comment
-'*'           Comment
-'   INRIA - CNRS - LIX - LRI - PPS - Copyright 1999-2011     ' Comment
+' <O___,, *   INRIA - CNRS - LIX - LRI - PPS - Copyright 1999-2011     ' Comment
 '*)'          Comment
 '\n'          Text
 
 '(*'          Comment
-'   \\VV/  '  Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
+'   \\VV/  *************************************************************' Comment
 '*)'          Comment
 '\n'          Text
 
 '(*'          Comment
-'    //   '   Comment
-'*'           Comment
-'      This file is distributed under the terms of the       ' Comment
+'    //   *      This file is distributed under the terms of the       ' Comment
 '*)'          Comment
 '\n'          Text
 
 '(*'          Comment
-'         '   Comment
-'*'           Comment
-'       GNU Lesser General Public License Version 2.1        ' Comment
+'         *       GNU Lesser General Public License Version 2.1        ' Comment
 '*)'          Comment
 '\n'          Text
 
 '(*'          Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
+'**********************************************************************' Comment
 '*)'          Comment
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' '           Comment
-'*'           Comment
-'  Typeclass-based relations, tactics and standard instances\n\n   This is the basic theory needed to formalize morphisms and setoids.\n\n   Author: Matthieu Sozeau\n   Institution: LRI, CNRS UMR 8623 - University Paris Sud\n' Comment
+'* *  Typeclass-based relations, tactics and standard instances\n\n   This is the basic theory needed to formalize morphisms and setoids.\n\n   Author: Matthieu Sozeau\n   Institution: LRI, CNRS UMR 8623 - University Paris Sud\n' Comment
 
 '*)'          Comment
 '\n\n'        Text
@@ -296,8 +82,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' We allow to unfold the [relation] definition while doing morphism search. ' Comment
+'* We allow to unfold the [relation] definition while doing morphism search. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -376,22 +161,20 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' Opaque for proof-search. ' Comment
+'* Opaque for proof-search. ' Comment
 '*)'          Comment
 '\n'          Text
 
 'Typeclasses' Name
 ' '           Text
-'Opaque'      Name
+'Opaque'      Keyword.Namespace
 ' '           Text
 'complement'  Name
 '.'           Operator
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' These are convertible. ' Comment
+'* These are convertible. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -447,8 +230,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' We rebind relations in separate classes to be able to overload each proof. ' Comment
+'* We rebind relations in separate classes to be able to overload each proof. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -457,7 +239,7 @@
 'Implicit'    Keyword.Namespace
 ' '           Text
 'Arguments'   Keyword.Namespace
-'.'           Operator
+'.'           Punctuation
 '\n'          Text
 
 'Unset'       Keyword.Namespace
@@ -465,7 +247,7 @@
 'Strict'      Keyword.Namespace
 ' '           Text
 'Implicit'    Keyword.Namespace
-'.'           Operator
+'.'           Punctuation
 '\n\n'        Text
 
 'Class'       Keyword.Namespace
@@ -741,12 +523,11 @@
 'Implicit'    Keyword.Namespace
 ' '           Text
 'Arguments'   Keyword.Namespace
-'.'           Operator
+'.'           Punctuation
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' A HintDb for relations. ' Comment
+'* A HintDb for relations. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -846,8 +627,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' We can already dualize all these properties. ' Comment
+'* We can already dualize all these properties. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -946,7 +726,7 @@
 '.'           Operator
 '\n\n'        Text
 
-'Program'     Name
+'Program'     Keyword.Namespace
 ' '           Text
 'Definition'  Keyword.Namespace
 ' '           Text
@@ -983,7 +763,7 @@
 '.'           Operator
 '\n\n'        Text
 
-'Program'     Name
+'Program'     Keyword.Namespace
 ' '           Text
 'Definition'  Keyword.Namespace
 ' '           Text
@@ -1032,7 +812,7 @@
 '.'           Operator
 '\n\n'        Text
 
-'Program'     Name
+'Program'     Keyword.Namespace
 ' '           Text
 'Definition'  Keyword.Namespace
 ' '           Text
@@ -1085,7 +865,7 @@
 '.'           Operator
 '\n\n'        Text
 
-'Program'     Name
+'Program'     Keyword.Namespace
 ' '           Text
 'Definition'  Keyword.Namespace
 ' '           Text
@@ -1395,10 +1175,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' '           Comment
-'*'           Comment
-' Standard instances. ' Comment
+'* * Standard instances. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -1753,12 +1530,11 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' Logical implication. ' Comment
+'* Logical implication. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
-'Program'     Name
+'Program'     Keyword.Namespace
 ' '           Text
 'Instance'    Keyword.Namespace
 ' '           Text
@@ -1772,7 +1548,7 @@
 '.'           Operator
 '\n'          Text
 
-'Program'     Name
+'Program'     Keyword.Namespace
 ' '           Text
 'Instance'    Keyword.Namespace
 ' '           Text
@@ -1787,12 +1563,11 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' Logical equivalence. ' Comment
+'* Logical equivalence. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
-'Program'     Name
+'Program'     Keyword.Namespace
 ' '           Text
 'Instance'    Keyword.Namespace
 ' '           Text
@@ -1806,7 +1581,7 @@
 '.'           Operator
 '\n'          Text
 
-'Program'     Name
+'Program'     Keyword.Namespace
 ' '           Text
 'Instance'    Keyword.Namespace
 ' '           Text
@@ -1820,7 +1595,7 @@
 '.'           Operator
 '\n'          Text
 
-'Program'     Name
+'Program'     Keyword.Namespace
 ' '           Text
 'Instance'    Keyword.Namespace
 ' '           Text
@@ -1835,8 +1610,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' Leibniz equality. ' Comment
+'* Leibniz equality. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -1925,14 +1699,12 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' Various combinations of reflexivity, symmetry and transitivity. ' Comment
+'* Various combinations of reflexivity, symmetry and transitivity. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' A [PreOrder] is both Reflexive and Transitive. ' Comment
+'* A [PreOrder] is both Reflexive and Transitive. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -1985,8 +1757,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' A partial equivalence relation is Symmetric and Transitive. ' Comment
+'* A partial equivalence relation is Symmetric and Transitive. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -2039,8 +1810,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' Equivalence relations. ' Comment
+'* Equivalence relations. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -2103,8 +1873,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' An Equivalence is a PER plus reflexivity. ' Comment
+'* An Equivalence is a PER plus reflexivity. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -2154,8 +1923,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' We can now define antisymmetry w.r.t. an equivalence relation on the carrier. ' Comment
+'* We can now define antisymmetry w.r.t. an equivalence relation on the carrier. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -2229,7 +1997,7 @@
 '.'           Operator
 '\n\n'        Text
 
-'Program'     Name
+'Program'     Keyword.Namespace
 ' '           Text
 'Definition'  Keyword.Namespace
 ' '           Text
@@ -2273,12 +2041,11 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' Leibinz equality [eq] is an equivalence relation.\n   The instance has low priority as it is always applicable\n   if only the type is constrained. ' Comment
+'* Leibinz equality [eq] is an equivalence relation.\n   The instance has low priority as it is always applicable\n   if only the type is constrained. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
-'Program'     Name
+'Program'     Keyword.Namespace
 ' '           Text
 'Instance'    Keyword.Namespace
 ' '           Text
@@ -2302,12 +2069,11 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' Logical equivalence [iff] is an equivalence relation. ' Comment
+'* Logical equivalence [iff] is an equivalence relation. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
-'Program'     Name
+'Program'     Keyword.Namespace
 ' '           Text
 'Instance'    Keyword.Namespace
 ' '           Text
@@ -2322,8 +2088,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' We now develop a generalization of results on relations for arbitrary predicates.\n   The resulting theory can be applied to homogeneous binary relations but also to\n   arbitrary n-ary predicates. ' Comment
+'* We now develop a generalization of results on relations for arbitrary predicates.\n   The resulting theory can be applied to homogeneous binary relations but also to\n   arbitrary n-ary predicates. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -2360,8 +2125,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' A compact representation of non-dependent arities, with the codomain singled-out. ' Comment
+'* A compact representation of non-dependent arities, with the codomain singled-out. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -2432,8 +2196,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' We can define abbreviations for operation and relation types based on [arrows]. ' Comment
+'* We can define abbreviations for operation and relation types based on [arrows]. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -2504,8 +2267,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' We define n-ary [predicate]s as functions into [Prop]. ' Comment
+'* We define n-ary [predicate]s as functions into [Prop]. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -2528,8 +2290,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' Unary predicates, or sets. ' Comment
+'* Unary predicates, or sets. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -2552,8 +2313,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' Homogeneous binary relations, equivalent to [relation A]. ' Comment
+'* Homogeneous binary relations, equivalent to [relation A]. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -2578,8 +2338,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' We can close a predicate by universal or existential quantification. ' Comment
+'* We can close a predicate by universal or existential quantification. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -2754,8 +2513,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' Pointwise extension of a binary operation on [T] to a binary operation\n   on functions whose codomain is [T].\n   For an operator on [Prop] this lifts the operator to a binary operation. ' Comment
+'* Pointwise extension of a binary operation on [T] to a binary operation\n   on functions whose codomain is [T].\n   For an operator on [Prop] this lifts the operator to a binary operation. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -2878,8 +2636,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' Pointwise lifting, equivalent to doing [pointwise_extension] and closing using [predicate_all]. ' Comment
+'* Pointwise lifting, equivalent to doing [pointwise_extension] and closing using [predicate_all]. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -2991,8 +2748,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' The n-ary equivalence relation, defined by lifting the 0-ary [iff] relation. ' Comment
+'* The n-ary equivalence relation, defined by lifting the 0-ary [iff] relation. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -3031,8 +2787,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' The n-ary implication relation, defined by lifting the 0-ary [impl] relation. ' Comment
+'* The n-ary implication relation, defined by lifting the 0-ary [impl] relation. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -3061,8 +2816,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' Notations for pointwise equivalence and implication of predicates. ' Comment
+'* Notations for pointwise equivalence and implication of predicates. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -3135,8 +2889,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' The pointwise liftings of conjunction and disjunctions.\n   Note that these are [binary_operation]s, building new relations out of old ones. ' Comment
+'* The pointwise liftings of conjunction and disjunctions.\n   Note that these are [binary_operation]s, building new relations out of old ones. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -3223,8 +2976,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' The always [True] and always [False] predicates. ' Comment
+'* The always [True] and always [False] predicates. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -3395,12 +3147,11 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' Predicate equivalence is an equivalence, and predicate implication defines a preorder. ' Comment
+'* Predicate equivalence is an equivalence, and predicate implication defines a preorder. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
-'Program'     Name
+'Program'     Keyword.Namespace
 ' '           Text
 'Instance'    Keyword.Namespace
 ' '           Text
@@ -3418,9 +3169,7 @@
 ')'           Operator
 '.'           Operator
 '\n  '        Text
-'Next'        Name
-' '           Text
-'Obligation'  Name
+'Next Obligation' Keyword.Namespace
 '.'           Operator
 '\n    '      Text
 'induction'   Keyword
@@ -3435,9 +3184,7 @@
 'Qed'         Keyword.Namespace
 '.'           Operator
 '\n  '        Text
-'Next'        Name
-' '           Text
-'Obligation'  Name
+'Next Obligation' Keyword.Namespace
 '.'           Operator
 '\n    '      Text
 'induction'   Keyword
@@ -3452,9 +3199,7 @@
 'Qed'         Keyword.Namespace
 '.'           Operator
 '\n  '        Text
-'Next'        Name
-' '           Text
-'Obligation'  Name
+'Next Obligation' Keyword.Namespace
 '.'           Operator
 '\n    '      Text
 'fold'        Keyword
@@ -3512,7 +3257,7 @@
 '.'           Operator
 '\n\n'        Text
 
-'Program'     Name
+'Program'     Keyword.Namespace
 ' '           Text
 'Instance'    Keyword.Namespace
 ' '           Text
@@ -3530,9 +3275,7 @@
 ')'           Operator
 '.'           Operator
 '\n  '        Text
-'Next'        Name
-' '           Text
-'Obligation'  Name
+'Next Obligation' Keyword.Namespace
 '.'           Operator
 '\n    '      Text
 'induction'   Keyword
@@ -3547,9 +3290,7 @@
 'Qed'         Keyword.Namespace
 '.'           Operator
 '\n  '        Text
-'Next'        Name
-' '           Text
-'Obligation'  Name
+'Next Obligation' Keyword.Namespace
 '.'           Operator
 '\n    '      Text
 'induction'   Keyword
@@ -3612,8 +3353,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' We define the various operations which define the algebra on binary relations,\n   from the general ones. ' Comment
+'* We define the various operations which define the algebra on binary relations,\n   from the general ones. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -3824,17 +3564,16 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' Relation equivalence is an equivalence, and subrelation defines a partial order. ' Comment
+'* Relation equivalence is an equivalence, and subrelation defines a partial order. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
 'Set'         Keyword.Namespace
 ' '           Text
-'Automatic'   Name
+'Automatic'   Keyword.Namespace
 ' '           Text
-'Introduction' Name
-'.'           Operator
+'Introduction' Keyword.Namespace
+'.'           Punctuation
 '\n\n'        Text
 
 'Instance'    Keyword.Namespace
@@ -3928,12 +3667,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' '           Comment
-'*'           Comment
-'*'           Comment
-'*'           Comment
-' Partial Order.\n   A partial order is a preorder which is additionally antisymmetric.\n   We give an equivalent definition, up-to an equivalence relation\n   on the carrier. ' Comment
+'* *** Partial Order.\n   A partial order is a preorder which is additionally antisymmetric.\n   We give an equivalent definition, up-to an equivalence relation\n   on the carrier. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -4000,8 +3734,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' The equivalence proof is sufficient for proving that [R] must be a morphism\n   for equivalence ' Comment
+'* The equivalence proof is sufficient for proving that [R] must be a morphism\n   for equivalence ' Comment
 '('           Comment
 'see Morphisms' Comment
 ')'           Comment
@@ -4086,12 +3819,11 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' The partial order defined by subrelation and relation equivalence. ' Comment
+'* The partial order defined by subrelation and relation equivalence. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
-'Program'     Name
+'Program'     Keyword.Namespace
 ' '           Text
 'Instance'    Keyword.Namespace
 ' '           Text
@@ -4114,9 +3846,7 @@
 'subrelation' Name
 '.'           Operator
 '\n\n  '      Text
-'Next'        Name
-' '           Text
-'Obligation'  Name
+'Next Obligation' Keyword.Namespace
 '.'           Operator
 '\n  '        Text
 'Proof'       Keyword.Namespace
@@ -4140,7 +3870,7 @@
 
 'Typeclasses' Name
 ' '           Text
-'Opaque'      Name
+'Opaque'      Keyword.Namespace
 ' '           Text
 'arrows'      Name
 ' '           Text
@@ -4155,8 +3885,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' Rewrite relation on a given support: declares a relation as a rewrite\n   relation for use by the generalized rewriting tactic.\n   It helps choosing if a rewrite should be handled\n   by the generalized or the regular rewriting tactic using leibniz equality.\n   Users can declare an [RewriteRelation A RA] anywhere to declare default\n   relations. This is also done automatically by the [Declare Relation A RA]\n   commands. ' Comment
+'* Rewrite relation on a given support: declares a relation as a rewrite\n   relation for use by the generalized rewriting tactic.\n   It helps choosing if a rewrite should be handled\n   by the generalized or the regular rewriting tactic using leibniz equality.\n   Users can declare an [RewriteRelation A RA] anywhere to declare default\n   relations. This is also done automatically by the [Declare Relation A RA]\n   commands. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -4217,8 +3946,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' Any [Equivalence] declared in the context is automatically considered\n   a rewrite relation. ' Comment
+'* Any [Equivalence] declared in the context is automatically considered\n   a rewrite relation. ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -4244,8 +3972,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' Strict Order ' Comment
+'* Strict Order ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -4330,8 +4057,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' Inversing a [StrictOrder] gives another [StrictOrder] ' Comment
+'* Inversing a [StrictOrder] gives another [StrictOrder] ' Comment
 '*)'          Comment
 '\n\n'        Text
 
@@ -4371,8 +4097,7 @@
 '\n\n'        Text
 
 '(*'          Comment
-'*'           Comment
-' Same for [PartialOrder]. ' Comment
+'* Same for [PartialOrder]. ' Comment
 '*)'          Comment
 '\n\n'        Text
 

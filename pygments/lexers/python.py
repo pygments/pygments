@@ -60,7 +60,7 @@ class PythonLexer(RegexLexer):
                  'text/x-python3', 'application/x-python3']
     version_added = '0.10'
 
-    uni_name = "[%s][%s]*" % (uni.xid_start, uni.xid_continue)
+    uni_name = f"[{uni.xid_start}][{uni.xid_continue}]*"
 
     def innerstring_rules(ttype):
         return [
