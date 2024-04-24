@@ -592,6 +592,7 @@ class LessCssLexer(CssLexer):
     tokens = {
         'root': [
             (r'@\w+', Name.Variable),
+            (r'@import', Keyword, 'value'), 
             inherit,
         ],
         'content': [
