@@ -234,25 +234,24 @@ class SourcesListLexer(RegexLexer):
             (r'\s+', Whitespace),
             (r'#.*?$', Comment),
             (r'^(deb(?:-src)?)(\s+)',
-             bygroups(Keyword, Whitespace), 'distribution')
+             bygroups(Keyword, Whitespace), 'uri')
         ],
-        'distribution': [
-            (r'#.*?$', Comment, '#pop'),
+        'uri': [
+            (r'(\[[^]]*\])(\s+)', bygroups(String.Other, Whitespace)),
             (r'\$\(ARCH\)', Name.Variable),
-            (r'[^\s$[]+', String),
-            (r'\[', String.Other, 'escaped-distribution'),
+            (r'[^\s$]+', String),
             (r'\$', String),
-            (r'\s+', Whitespace, 'components')
+            (r'\s+', Whitespace, 'suites')
         ],
-        'escaped-distribution': [
-            (r'\]', String.Other, '#pop'),
-            (r'\$\(ARCH\)', Name.Variable),
-            (r'[^\]$]+', String.Other),
-            (r'\$', String.Other)
-        ],
-        'components': [
+        'suites': [
             (r'#.*?$', Comment, '#pop:2'),
             (r'$', Text, '#pop:2'),
+            (r'\s+', Whitespace, 'components'),
+            (r'\S+', Keyword),
+        ],
+        'components': [
+            (r'#.*?$', Comment, '#pop:3'),
+            (r'$', Text, '#pop:3'),
             (r'\s+', Whitespace),
             (r'\S+', Keyword.Pseudo),
         ]
