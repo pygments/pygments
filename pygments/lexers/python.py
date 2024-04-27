@@ -637,7 +637,7 @@ class Python2Lexer(RegexLexer):
 
 class _PythonConsoleLexerBase(RegexLexer):
     name = 'Python console session'
-    aliases = ['pycon']
+    aliases = ['pycon', 'python-console']
     mimetypes = ['text/x-python-doctest']
 
     """Auxiliary lexer for `PythonConsoleLexer`.
@@ -696,7 +696,7 @@ class PythonConsoleLexer(DelegatingLexer):
     """
 
     name = 'Python console session'
-    aliases = ['pycon']
+    aliases = ['pycon', 'python-console']
     mimetypes = ['text/x-python-doctest']
     url = 'https://python.org'
     version_added = ''
