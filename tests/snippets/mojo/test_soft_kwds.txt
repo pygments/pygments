@@ -9,22 +9,17 @@ match spam:
 
 ---tokens---
 'match'       Keyword
-' '           Text
+' '           Text.Whitespace
 'spam'        Name
 ':'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text
-'case'        Keyword
-' '           Text
+'\n    '      Text.Whitespace
+'case'        Name
+' '           Text.Whitespace
 'Some'        Name
 '('           Punctuation
 'x'           Name
-')'           Punctuation
-':'           Punctuation
-'\n'          Text.Whitespace
-
-'        '    Text
+'):'          Punctuation
+'\n        '  Text.Whitespace
 'print'       Name.Builtin
 '('           Punctuation
 'f'           Literal.String.Affix
@@ -35,33 +30,25 @@ match spam:
 '}'           Literal.String.Interpol
 '"'           Literal.String.Double
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text
-'case'        Keyword
-' '           Text
+'\n    '      Text.Whitespace
+'case'        Name
+' '           Text.Whitespace
 'None'        Keyword.Constant
 ':'           Punctuation
-'\n'          Text.Whitespace
-
-'        '    Text
+'\n        '  Text.Whitespace
 'print'       Name.Builtin
 '('           Punctuation
 '"'           Literal.String.Double
 'found nothing' Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
-'\n'          Text.Whitespace
-
-'    '        Text
-'case'        Keyword
+'\n    '      Text.Whitespace
+'case'        Name
 ' '           Text.Whitespace
-'_'           Keyword
+'_'           Name
 ':'           Punctuation
-'\n'          Text.Whitespace
-
-'        '    Text
+'\n        '  Text.Whitespace
 'assert'      Keyword
-' '           Text
+' '           Text.Whitespace
 'False'       Keyword.Constant
 '\n'          Text.Whitespace

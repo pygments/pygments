@@ -5,51 +5,51 @@ S = (H @ beta - r).T @ inv(H @ V @ H.T) @ (H @ beta - r)
 
 ---tokens---
 'S'           Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'H'           Name
-' '           Text
+' '           Text.Whitespace
 '@'           Operator
-' '           Text
+' '           Text.Whitespace
 'beta'        Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'r'           Name
 ')'           Punctuation
 '.'           Operator
 'T'           Name
-' '           Text
+' '           Text.Whitespace
 '@'           Operator
-' '           Text
+' '           Text.Whitespace
 'inv'         Name
 '('           Punctuation
 'H'           Name
-' '           Text
+' '           Text.Whitespace
 '@'           Operator
-' '           Text
+' '           Text.Whitespace
 'V'           Name
-' '           Text
+' '           Text.Whitespace
 '@'           Operator
-' '           Text
+' '           Text.Whitespace
 'H'           Name
 '.'           Operator
 'T'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '@'           Operator
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'H'           Name
-' '           Text
+' '           Text.Whitespace
 '@'           Operator
-' '           Text
+' '           Text.Whitespace
 'beta'        Name
-' '           Text
+' '           Text.Whitespace
 '-'           Operator
-' '           Text
+' '           Text.Whitespace
 'r'           Name
 ')'           Punctuation
 '\n'          Text.Whitespace

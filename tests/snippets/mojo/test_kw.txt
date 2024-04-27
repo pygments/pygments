@@ -11,19 +11,19 @@ with
 
 ---tokens---
 'fn'          Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'def'         Name.Function
 '\n'          Text.Whitespace
 
 'struct'      Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'trait'       Name.Struct
 '\n'          Text.Whitespace
 
 'class'       Keyword
-'\n'          Text
+'\n'          Text.Whitespace
 
 'if'          Name.Class
 '\n'          Text.Whitespace
