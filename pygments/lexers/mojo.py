@@ -99,7 +99,7 @@ class MojoLexer(RegexLexer):
 
     tokens = {
         "root": [
-            (r"\n", Whitespace),
+            (r"\s+", Whitespace),
             (
                 r'^(\s*)([rRuUbB]{,2})("""(?:.|\n)*?""")',
                 bygroups(Whitespace, String.Affix, String.Doc),
@@ -110,27 +110,30 @@ class MojoLexer(RegexLexer):
             ),
             (r"\A#!.+$", Comment.Hashbang),
             (r"#.*$", Comment.Single),
-            (r"\\\n", Text),
-            (r"\\", Text),
+            (r"\\\n", Whitespace),
+            (r"\\", Whitespace),
             include("keywords"),
             include("soft-keywords"),
+            # In the original PR, all the below here used ((?:\s|\\\s)+) to
+            # designate whitespace, but I can't find any example of this being
+            # needed in the example file, so we're replacing it with `\s+`.
             (
-                r"(alias)((?:\s|\\\s)+)",
-                bygroups(Keyword, Text),
+                r"(alias)(\s+)",
+                bygroups(Keyword, Whitespace),
                 "varname",  # TODO varname the right fit?
             ),
-            (r"(var)((?:\s|\\\s)+)", bygroups(Keyword, Text), "varname"),
-            (r"(def)((?:\s|\\\s)+)", bygroups(Keyword, Text), "funcname"),
-            (r"(fn)((?:\s|\\\s)+)", bygroups(Keyword, Text), "funcname"),
+            (r"(var)(\s+)", bygroups(Keyword, Whitespace), "varname"),
+            (r"(def)(\s+)", bygroups(Keyword, Whitespace), "funcname"),
+            (r"(fn)(\s+)", bygroups(Keyword, Whitespace), "funcname"),
             (
-                r"(class)((?:\s|\\\s)+)",
-                bygroups(Keyword, Text),
+                r"(class)(\s+)",
+                bygroups(Keyword, Whitespace),
                 "classname",
             ),  # not implemented yet
-            (r"(struct)((?:\s|\\\s)+)", bygroups(Keyword, Text), "structname"),
-            (r"(trait)((?:\s|\\\s)+)", bygroups(Keyword, Text), "structname"),
-            (r"(from)((?:\s|\\\s)+)", bygroups(Keyword.Namespace, Text), "fromimport"),
-            (r"(import)((?:\s|\\\s)+)", bygroups(Keyword.Namespace, Text), "import"),
+            (r"(struct)(\s+)", bygroups(Keyword, Whitespace), "structname"),
+            (r"(trait)(\s+)", bygroups(Keyword, Whitespace), "structname"),
+            (r"(from)(\s+)", bygroups(Keyword.Namespace, Whitespace), "fromimport"),
+            (r"(import)(\s+)", bygroups(Keyword.Namespace, Whitespace), "import"),
             include("expr"),
         ],
         "expr": [
@@ -226,7 +229,7 @@ class MojoLexer(RegexLexer):
             (r"[^\S\n]+", Text),
             include("numbers"),
             (r"!=|==|<<|>>|:=|[-~+/*%=<>&^|.]", Operator),
-            (r"[]{}:(),;[]", Punctuation),
+            (r"([]{}:\(\),;[])+", Punctuation),
             (r"(in|is|and|or|not)\b", Operator.Word),
             include("expr-keywords"),
             include("builtins"),
@@ -329,7 +332,7 @@ class MojoLexer(RegexLexer):
                 # pattern matching (but None/True/False is ok)
                 r"|".join(k for k in keyword.kwlist if k[0].islower())
                 + r")\b))",
-                bygroups(Text, Keyword),
+                bygroups(Whitespace, Keyword),
                 "soft-keywords-inner",
             ),
         ],
@@ -619,14 +622,14 @@ class MojoLexer(RegexLexer):
             (uni_name, Name.Struct, "#pop"),
         ],
         "import": [
-            (r"(\s+)(as)(\s+)", bygroups(Text, Keyword, Text)),
+            (r"(\s+)(as)(\s+)", bygroups(Whitespace, Keyword, Whitespace)),
             (r"\.", Name.Namespace),
             (uni_name, Name.Namespace),
-            (r"(\s*)(,)(\s*)", bygroups(Text, Operator, Text)),
+            (r"(\s*)(,)(\s*)", bygroups(Whitespace, Operator, Whitespace)),
             default("#pop"),  # all else: go back
         ],
         "fromimport": [
-            (r"(\s+)(import)\b", bygroups(Text, Keyword.Namespace), "#pop"),
+            (r"(\s+)(import)\b", bygroups(Whitespace, Keyword.Namespace), "#pop"),
             (r"\.", Name.Namespace),
             # if None occurs here, it's "raise x from None", since None can
             # never be a module name
