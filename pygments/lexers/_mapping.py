@@ -317,6 +317,7 @@ LEXERS = {
     'ModelicaLexer': ('pygments.lexers.modeling', 'Modelica', ('modelica',), ('*.mo',), ('text/x-modelica',)),
     'Modula2Lexer': ('pygments.lexers.modula2', 'Modula-2', ('modula2', 'm2'), ('*.def', '*.mod'), ('text/x-modula2',)),
     'MoinWikiLexer': ('pygments.lexers.markup', 'MoinMoin/Trac Wiki markup', ('trac-wiki', 'moin'), (), ('text/x-trac-wiki',)),
+    'MojoLexer': ('pygments.lexers.mojo', 'Mojo', ('mojo', '🔥'), ('*.mojo', '*.🔥'), ('text/x-mojo', 'application/x-mojo')),
     'MonkeyLexer': ('pygments.lexers.basic', 'Monkey', ('monkey',), ('*.monkey',), ('text/x-monkey',)),
     'MonteLexer': ('pygments.lexers.monte', 'Monte', ('monte',), ('*.mt',), ()),
     'MoonScriptLexer': ('pygments.lexers.scripting', 'MoonScript', ('moonscript', 'moon'), ('*.moon',), ('text/x-moonscript', 'application/x-moonscript')),
