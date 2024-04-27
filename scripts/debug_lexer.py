@@ -74,7 +74,7 @@ class DebuggingRegexLexer(ExtendedRegexLexer):
                         elif new_state == '#push':
                             ctx.stack.append(ctx.stack[-1])
                         else:
-                            assert False, 'wrong state def: %r' % new_state
+                            assert False, f'wrong state def: {new_state!r}'
                         statetokens = tokendefs[ctx.stack[-1]]
                     break
             else:
@@ -157,7 +157,7 @@ def main(fn, lexer=None, options={}):
             name, rest = fn.split('_', 1)
             lxcls = find_lexer_class(name)
             if lxcls is None:
-                raise AssertionError('no lexer found for file %r' % fn)
+                raise AssertionError(f'no lexer found for file {fn!r}')
         print(f'Using lexer: {lxcls.name} ({lxcls.__module__}.{lxcls.__name__})')
     debug_lexer = False
     # if profile:

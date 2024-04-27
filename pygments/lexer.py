@@ -176,7 +176,7 @@ class Lexer(metaclass=LexerMeta):
         if self.options:
             return f'<pygments.lexers.{self.__class__.__name__} with {self.options!r}>'
         else:
-            return '<pygments.lexers.%s>' % self.__class__.__name__
+            return f'<pygments.lexers.{self.__class__.__name__}>'
 
     def add_filter(self, filter_, **options):
         """
@@ -526,14 +526,14 @@ class RegexLexerMeta(LexerMeta):
             elif new_state[:5] == '#pop:':
                 return -int(new_state[5:])
             else:
-                assert False, 'unknown new state %r' % new_state
+                assert False, f'unknown new state {new_state!r}'
         elif isinstance(new_state, combined):
             # combine a new state from existing ones
             tmp_state = '_tmp_%d' % cls._tmpname
             cls._tmpname += 1
             itokens = []
             for istate in new_state:
-                assert istate != new_state, 'circular state ref %r' % istate
+                assert istate != new_state, f'circular state ref {istate!r}'
                 itokens.extend(cls._process_state(unprocessed,
                                                   processed, istate))
             processed[tmp_state] = itokens
@@ -546,12 +546,12 @@ class RegexLexerMeta(LexerMeta):
                     'unknown new state ' + istate
             return new_state
         else:
-            assert False, 'unknown new state def %r' % new_state
+            assert False, f'unknown new state def {new_state!r}'
 
     def _process_state(cls, unprocessed, processed, state):
         """Preprocess a single state definition."""
-        assert isinstance(state, str), "wrong state name %r" % state
-        assert state[0] != '#', "invalid state name %r" % state
+        assert isinstance(state, str), f"wrong state name {state!r}"
+        assert state[0] != '#', f"invalid state name {state!r}"
         if state in processed:
             return processed[state]
         tokens = processed[state] = []
@@ -559,7 +559,7 @@ class RegexLexerMeta(LexerMeta):
         for tdef in unprocessed[state]:
             if isinstance(tdef, include):
                 # it's a state reference
-                assert tdef != state, "circular state reference %r" % state
+                assert tdef != state, f"circular state reference {state!r}"
                 tokens.extend(cls._process_state(unprocessed, processed,
                                                  str(tdef)))
                 continue
@@ -573,7 +573,7 @@ class RegexLexerMeta(LexerMeta):
                 tokens.append((re.compile('').match, None, new_state))
                 continue
 
-            assert type(tdef) is tuple, "wrong rule def %r" % tdef
+            assert type(tdef) is tuple, f"wrong rule def {tdef!r}"
 
             try:
                 rex = cls._process_regex(tdef[0], rflags, state)
@@ -739,7 +739,7 @@ class RegexLexer(Lexer, metaclass=RegexLexerMeta):
                         elif new_state == '#push':
                             statestack.append(statestack[-1])
                         else:
-                            assert False, "wrong state def: %r" % new_state
+                            assert False, f"wrong state def: {new_state!r}"
                         statetokens = tokendefs[statestack[-1]]
                     break
             else:
@@ -826,7 +826,7 @@ class ExtendedRegexLexer(RegexLexer):
                         elif new_state == '#push':
                             ctx.stack.append(ctx.stack[-1])
                         else:
-                            assert False, "wrong state def: %r" % new_state
+                            assert False, f"wrong state def: {new_state!r}"
                         statetokens = tokendefs[ctx.stack[-1]]
                     break
             else:

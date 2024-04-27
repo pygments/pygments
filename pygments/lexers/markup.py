@@ -1426,9 +1426,9 @@ class WikitextLexer(RegexLexer):
                 'parameter-inner',
             ),
             # Magic variables
-            (r'(?i)(\{\{)(\s*)(%s)(\s*)(\}\})' % '|'.join(magic_vars_i),
+            (r'(?i)(\{{\{{)(\s*)({})(\s*)(\}}\}})'.format('|'.join(magic_vars_i)),
              bygroups(Punctuation, Whitespace, Name.Function, Whitespace, Punctuation)),
-            (r'(\{\{)(\s*)(%s)(\s*)(\}\})' % '|'.join(magic_vars),
+            (r'(\{{\{{)(\s*)({})(\s*)(\}}\}})'.format('|'.join(magic_vars)),
                 bygroups(Punctuation, Whitespace, Name.Function, Whitespace, Punctuation)),
             # Parser functions & templates
             (r'\{\{', Punctuation, 'template-begin-space'),
@@ -1459,12 +1459,12 @@ class WikitextLexer(RegexLexer):
                 bygroups(Name.Function, Punctuation), ('#pop', 'template-inner')
             ),
             (
-                r'(%s)(:)' % ('|'.join(parser_functions)),
+                r'({})(:)'.format('|'.join(parser_functions)),
                 bygroups(Name.Function, Punctuation), ('#pop', 'template-inner')
             ),
             # Templates
             (
-                r'(?i)([%s]*?)(:)' % title_char,
+                rf'(?i)([{title_char}]*?)(:)',
                 bygroups(Name.Namespace, Punctuation), ('#pop', 'template-name')
             ),
             default(('#pop', 'template-name'),),

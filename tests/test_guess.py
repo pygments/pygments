@@ -148,7 +148,7 @@ def test_guess_cmake_lexer_from_header():
         ])
         lexer = guess_lexer(code)
         assert lexer.__class__.__name__ == 'CMakeLexer', \
-            "header must be detected as CMake: %r" % header
+            f"header must be detected as CMake: {header!r}"
 
 
 def test_guess_c_lexer():

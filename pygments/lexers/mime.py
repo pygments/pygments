@@ -95,7 +95,7 @@ class MIMELexer(RegexLexer):
             return
 
         # find boundary
-        bdry_pattern = r"^--%s(--)?\n" % re.escape(self.boundary)
+        bdry_pattern = rf"^--{re.escape(self.boundary)}(--)?\n"
         bdry_matcher = re.compile(bdry_pattern, re.MULTILINE)
 
         # some data has prefix text before first boundary

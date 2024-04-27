@@ -771,11 +771,11 @@ class CrmshLexer(RegexLexer):
             # builtin attributes (e.g. #uname)
             (r'#[a-z]+(?![\w#$-])', Name.Builtin),
             # acl_mod:blah
-            (r'(%s)(:)("(?:""|[^"])*"|\S+)' % acl_mod,
+            (rf'({acl_mod})(:)("(?:""|[^"])*"|\S+)',
              bygroups(Keyword, Punctuation, Name)),
             # rsc_id[:(role|action)]
             # NB: this matches all other identifiers
-            (r'([\w#$-]+)(?:(:)(%s))?(?![\w#$-])' % rsc_role_action,
+            (rf'([\w#$-]+)(?:(:)({rsc_role_action}))?(?![\w#$-])',
              bygroups(Name, Punctuation, Operator.Word)),
             # punctuation
             (r'(\\(?=\n)|[\[\](){}/:@])', Punctuation),
@@ -885,8 +885,8 @@ class SnowballLexer(ExtendedRegexLexer):
         def callback(lexer, match, ctx):
             s = match.start()
             text = match.group()
-            string = re.compile(r'([^%s]*)(.)' % re.escape(lexer._start)).match
-            escape = re.compile(r'([^%s]*)(.)' % re.escape(lexer._end)).match
+            string = re.compile(rf'([^{re.escape(lexer._start)}]*)(.)').match
+            escape = re.compile(rf'([^{re.escape(lexer._end)}]*)(.)').match
             pos = 0
             do_string = do_string_first
             while pos < len(text):
@@ -922,7 +922,7 @@ class SnowballLexer(ExtendedRegexLexer):
             include('root1'),
         ],
         'root1': [
-            (r'[%s]+' % _ws, Whitespace),
+            (rf'[{_ws}]+', Whitespace),
             (r'\d+', Number.Integer),
             (r"'", String.Single, 'string'),
             (r'[()]', Punctuation),

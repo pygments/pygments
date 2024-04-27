@@ -77,7 +77,7 @@ def get_formatter_by_name(_alias, **options):
     """
     cls = find_formatter_class(_alias)
     if cls is None:
-        raise ClassNotFound("no formatter found for name %r" % _alias)
+        raise ClassNotFound(f"no formatter found for name {_alias!r}")
     return cls(**options)
 
 
@@ -112,7 +112,7 @@ def load_formatter_from_file(filename, formattername="CustomFormatter", **option
     except ClassNotFound:
         raise
     except Exception as err:
-        raise ClassNotFound('error when loading custom formatter: %s' % err)
+        raise ClassNotFound(f'error when loading custom formatter: {err}')
 
 
 def get_formatter_for_filename(fn, **options):
@@ -134,7 +134,7 @@ def get_formatter_for_filename(fn, **options):
         for filename in cls.filenames:
             if _fn_matches(fn, filename):
                 return cls(**options)
-    raise ClassNotFound("no formatter found for file name %r" % fn)
+    raise ClassNotFound(f"no formatter found for file name {fn!r}")
 
 
 class _automodule(types.ModuleType):

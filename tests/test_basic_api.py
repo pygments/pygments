@@ -73,7 +73,7 @@ def test_lexer_classes(cls):
                 assert 'root' in cls.tokens[variant]
         else:
             assert 'root' in cls._tokens, \
-                   '%s has no root state' % cls
+                   f'{cls} has no root state'
 
 
 @pytest.mark.parametrize('cls', lexers._iter_lexerclasses(plugins=False))
@@ -310,12 +310,12 @@ class TestFilters:
                 text = fp.read()
             tokens = list(lx.get_tokens(text))
             assert all(isinstance(t[1], str) for t in tokens), \
-                '%s filter did not return Unicode' % x
+                f'{x} filter did not return Unicode'
             roundtext = ''.join([t[1] for t in tokens])
             if x not in ('whitespace', 'keywordcase', 'gobble'):
                 # these filters change the text
                 assert roundtext == text, \
-                    "lexer roundtrip with %s filter failed" % x
+                    f"lexer roundtrip with {x} filter failed"
 
     def test_raiseonerror(self):
         lx = lexers.PythonLexer()

@@ -85,7 +85,7 @@ class DarcsPatchLexer(RegexLexer):
             (r'New patches:', Generic.Heading),
             (r'Context:', Generic.Heading),
             (r'Patch bundle hash:', Generic.Heading),
-            (r'(\s*)(%s)(.*)(\n)' % '|'.join(DPATCH_KEYWORDS),
+            (r'(\s*)({})(.*)(\n)'.format('|'.join(DPATCH_KEYWORDS)),
                 bygroups(Whitespace, Keyword, Text, Whitespace)),
             (r'\+', Generic.Inserted, "insert"),
             (r'-', Generic.Deleted, "delete"),

@@ -252,8 +252,8 @@ class RedcodeLexer(RegexLexer):
             (r';.*$', Comment.Single),
             # Lexemes:
             #  Identifiers
-            (r'\b(%s)\b' % '|'.join(opcodes), Name.Function),
-            (r'\b(%s)\b' % '|'.join(modifiers), Name.Decorator),
+            (r'\b({})\b'.format('|'.join(opcodes)), Name.Function),
+            (r'\b({})\b'.format('|'.join(modifiers)), Name.Decorator),
             (r'[A-Za-z_]\w+', Name),
             #  Operators
             (r'[-+*/%]', Operator),

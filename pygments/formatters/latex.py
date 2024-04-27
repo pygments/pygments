@@ -23,21 +23,21 @@ def escape_tex(text, commandprefix):
     return text.replace('\\', '\x00'). \
                 replace('{', '\x01'). \
                 replace('}', '\x02'). \
-                replace('\x00', r'\%sZbs{}' % commandprefix). \
-                replace('\x01', r'\%sZob{}' % commandprefix). \
-                replace('\x02', r'\%sZcb{}' % commandprefix). \
-                replace('^', r'\%sZca{}' % commandprefix). \
-                replace('_', r'\%sZus{}' % commandprefix). \
-                replace('&', r'\%sZam{}' % commandprefix). \
-                replace('<', r'\%sZlt{}' % commandprefix). \
-                replace('>', r'\%sZgt{}' % commandprefix). \
-                replace('#', r'\%sZsh{}' % commandprefix). \
-                replace('%', r'\%sZpc{}' % commandprefix). \
-                replace('$', r'\%sZdl{}' % commandprefix). \
-                replace('-', r'\%sZhy{}' % commandprefix). \
-                replace("'", r'\%sZsq{}' % commandprefix). \
-                replace('"', r'\%sZdq{}' % commandprefix). \
-                replace('~', r'\%sZti{}' % commandprefix)
+                replace('\x00', rf'\{commandprefix}Zbs{{}}'). \
+                replace('\x01', rf'\{commandprefix}Zob{{}}'). \
+                replace('\x02', rf'\{commandprefix}Zcb{{}}'). \
+                replace('^', rf'\{commandprefix}Zca{{}}'). \
+                replace('_', rf'\{commandprefix}Zus{{}}'). \
+                replace('&', rf'\{commandprefix}Zam{{}}'). \
+                replace('<', rf'\{commandprefix}Zlt{{}}'). \
+                replace('>', rf'\{commandprefix}Zgt{{}}'). \
+                replace('#', rf'\{commandprefix}Zsh{{}}'). \
+                replace('%', rf'\{commandprefix}Zpc{{}}'). \
+                replace('$', rf'\{commandprefix}Zdl{{}}'). \
+                replace('-', rf'\{commandprefix}Zhy{{}}'). \
+                replace("'", rf'\{commandprefix}Zsq{{}}'). \
+                replace('"', rf'\{commandprefix}Zdq{{}}'). \
+                replace('~', rf'\{commandprefix}Zti{{}}')
 
 
 DOC_TEMPLATE = r'''
@@ -304,16 +304,14 @@ class LatexFormatter(Formatter):
             if ndef['mono']:
                 cmndef += r'\let\$$@ff=\textsf'
             if ndef['color']:
-                cmndef += (r'\def\$$@tc##1{\textcolor[rgb]{%s}{##1}}' %
-                           rgbcolor(ndef['color']))
+                cmndef += (r'\def\$$@tc##1{{\textcolor[rgb]{{{}}}{{##1}}}}'.format(rgbcolor(ndef['color'])))
             if ndef['border']:
                 cmndef += (r'\def\$$@bc##1{{{{\setlength{{\fboxsep}}{{\string -\fboxrule}}'
                            r'\fcolorbox[rgb]{{{}}}{{{}}}{{\strut ##1}}}}}}'.format(rgbcolor(ndef['border']),
                             rgbcolor(ndef['bgcolor'])))
             elif ndef['bgcolor']:
-                cmndef += (r'\def\$$@bc##1{{\setlength{\fboxsep}{0pt}'
-                           r'\colorbox[rgb]{%s}{\strut ##1}}}' %
-                           rgbcolor(ndef['bgcolor']))
+                cmndef += (r'\def\$$@bc##1{{{{\setlength{{\fboxsep}}{{0pt}}'
+                           r'\colorbox[rgb]{{{}}}{{\strut ##1}}}}}}'.format(rgbcolor(ndef['bgcolor'])))
             if cmndef == '':
                 continue
             cmndef = cmndef.replace('$$', cp)

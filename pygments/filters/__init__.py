@@ -39,7 +39,7 @@ def get_filter_by_name(filtername, **options):
     if cls:
         return cls(**options)
     else:
-        raise ClassNotFound('filter %r not found' % filtername)
+        raise ClassNotFound(f'filter {filtername!r} not found')
 
 
 def get_all_filters():
@@ -79,9 +79,9 @@ class CodeTagFilter(Filter):
         Filter.__init__(self, **options)
         tags = get_list_opt(options, 'codetags',
                             ['XXX', 'TODO', 'FIXME', 'BUG', 'NOTE'])
-        self.tag_re = re.compile(r'\b(%s)\b' % '|'.join([
+        self.tag_re = re.compile(r'\b({})\b'.format('|'.join([
             re.escape(tag) for tag in tags if tag
-        ]))
+        ])))
 
     def filter(self, lexer, stream):
         regex = self.tag_re

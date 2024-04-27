@@ -105,7 +105,7 @@ class Parser:
 
     def format(self, formatter):
         codeid[0] += 1
-        id = "pygments_%s" % codeid[0]
+        id = f"pygments_{codeid[0]}"
         w = self.req.write
         w(formatter.code_area(1, id, start=1, step=1))
         w(formatter.rawHTML(highlight(self.raw, self.lexer, htmlformatter)))

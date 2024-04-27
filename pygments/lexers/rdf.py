@@ -316,7 +316,7 @@ class TurtleLexer(RegexLexer):
     # but each has a recognizable and distinct syntax.
     def analyse_text(text):
         for t in ('@base ', 'BASE ', '@prefix ', 'PREFIX '):
-            if re.search(r'^\s*%s' % t, text):
+            if re.search(rf'^\s*{t}', text):
                 return 0.80
 
 

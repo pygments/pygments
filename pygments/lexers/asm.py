@@ -758,7 +758,7 @@ class NasmLexer(RegexLexer):
             (r'^\s*%', Comment.Preproc, 'preproc'),
             include('whitespace'),
             (identifier + ':', Name.Label),
-            (r'(%s)(\s+)(equ)' % identifier,
+            (rf'({identifier})(\s+)(equ)',
                 bygroups(Name.Constant, Whitespace, Keyword.Declaration),
                 'instruction-args'),
             (directives, Keyword, 'instruction-args'),

@@ -110,8 +110,7 @@ class FontManager:
                 self.fonts['NORMAL'] = ImageFont.truetype(path, self.font_size)
                 break
         else:
-            raise FontNotFound('No usable fonts named: "%s"' %
-                               self.font_name)
+            raise FontNotFound(f'No usable fonts named: "{self.font_name}"')
         for style in ('ITALIC', 'BOLD', 'BOLDITALIC'):
             for stylename in STYLES[style]:
                 path = self._get_nix_font_path(self.font_name, stylename)
@@ -142,8 +141,7 @@ class FontManager:
                 self.fonts['NORMAL'] = ImageFont.truetype(path, self.font_size)
                 break
         else:
-            raise FontNotFound('No usable fonts named: "%s"' %
-                               self.font_name)
+            raise FontNotFound(f'No usable fonts named: "{self.font_name}"')
         for style in ('ITALIC', 'BOLD', 'BOLDITALIC'):
             for stylename in STYLES[style]:
                 path = self._get_mac_font_path(font_map, self.font_name, stylename)

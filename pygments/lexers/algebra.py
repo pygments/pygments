@@ -169,7 +169,7 @@ class MathematicaLexer(RegexLexer):
     punctuation = (",", ";", "(", ")", "[", "]", "{", "}")
 
     def _multi_escape(entries):
-        return '(%s)' % ('|'.join(re.escape(entry) for entry in entries))
+        return '({})'.format('|'.join(re.escape(entry) for entry in entries))
 
     tokens = {
         'root': [

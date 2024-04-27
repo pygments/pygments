@@ -128,7 +128,7 @@ class SLexer(RegexLexer):
         ],
         'root': [
             # calls:
-            (r'(%s)\s*(?=\()' % valid_name, Name.Function),
+            (rf'({valid_name})\s*(?=\()', Name.Function),
             include('statements'),
             # blocks:
             (r'\{|\}', Punctuation),

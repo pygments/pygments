@@ -126,7 +126,7 @@ class CoqLexer(RegexLexer):
             (words(keywords6, prefix=r'\b', suffix=r'\b'), Keyword.Reserved),
             # (r'\b([A-Z][\w\']*)(\.)', Name.Namespace, 'dotted'),
             (r'\b([A-Z][\w\']*)', Name),
-            (r'(%s)' % '|'.join(keyopts[::-1]), Operator),
+            (r'({})'.format('|'.join(keyopts[::-1])), Operator),
             (rf'({infix_syms}|{prefix_syms})?{operators}', Operator),
 
             (r"[^\W\d][\w']*", Name),

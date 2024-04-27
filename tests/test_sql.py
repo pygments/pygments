@@ -39,7 +39,7 @@ def _assert_tokens_match(lexer, text, expected_tokens_without_trailing_newline):
     if (len(actual_tokens) >= 1) and (actual_tokens[-1] == (Whitespace, '\n')):
         actual_tokens = tuple(actual_tokens[:-1])
     assert expected_tokens_without_trailing_newline == actual_tokens, \
-        'text must yield expected tokens: %s' % text
+        f'text must yield expected tokens: {text}'
 
 
 def test_can_lex_float(lexer):

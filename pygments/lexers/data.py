@@ -727,7 +727,7 @@ class JsonLdLexer(JsonLexer):
     version_added = '2.0'
 
     json_ld_keywords = {
-        '"@%s"' % keyword
+        f'"@{keyword}"'
         for keyword in (
             'base',
             'container',

@@ -18,7 +18,7 @@ def test_cats_exist_and_compilable():
         if s == '':  # Probably Cs on Jython
             continue
         print(f"{cat} {s!r}")
-        re.compile('[%s]' % s)
+        re.compile(f'[{s}]')
 
 
 def _cats_that_match(c):
@@ -27,7 +27,7 @@ def _cats_that_match(c):
         s = getattr(uni, cat)
         if s == '':  # Probably Cs on Jython
             continue
-        if re.compile('[%s]' % s).match(c):
+        if re.compile(f'[{s}]').match(c):
             matching_cats.append(cat)
     return matching_cats
 

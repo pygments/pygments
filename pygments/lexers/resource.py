@@ -36,7 +36,7 @@ class ResourceLexer(RegexLexer):
             (r'"', String, 'string'),
             (r'-?\d+', Number.Integer),
             (r'[,{}]', Operator),
-            (r'([^\s{:]+)(\s*)(%s?)' % '|'.join(_types),
+            (r'([^\s{{:]+)(\s*)({}?)'.format('|'.join(_types)),
              bygroups(Name, Text, Keyword)),
             (r'\s+', Text),
             (words(_types), Keyword),

@@ -1387,12 +1387,12 @@ class RacketLexer(RegexLexer):
     _opening_parenthesis = r'[([{]'
     _closing_parenthesis = r'[)\]}]'
     _delimiters = r'()[\]{}",\'`;\s'
-    _symbol = r'(?:\|[^|]*\||\\[\w\W]|[^|\\%s]+)+' % _delimiters
+    _symbol = rf'(?:\|[^|]*\||\\[\w\W]|[^|\\{_delimiters}]+)+'
     _exact_decimal_prefix = r'(?:#e)?(?:#d)?(?:#e)?'
     _exponent = r'(?:[defls][-+]?\d+)'
     _inexact_simple_no_hashes = r'(?:\d+(?:/\d+|\.\d*)?|\.\d+)'
-    _inexact_simple = (r'(?:%s|(?:\d+#+(?:\.#*|/\d+#*)?|\.\d+#+|'
-                       r'\d+(?:\.\d*#+|/\d+#+)))' % _inexact_simple_no_hashes)
+    _inexact_simple = (rf'(?:{_inexact_simple_no_hashes}|(?:\d+#+(?:\.#*|/\d+#*)?|\.\d+#+|'
+                       r'\d+(?:\.\d*#+|/\d+#+)))')
     _inexact_normal_no_hashes = rf'(?:{_inexact_simple_no_hashes}{_exponent}?)'
     _inexact_normal = rf'(?:{_inexact_simple}{_exponent}?)'
     _inexact_special = r'(?:(?:inf|nan)\.[0f])'
@@ -1430,16 +1430,16 @@ class RacketLexer(RegexLexer):
             (rf'(?i)(([-+]?{_inexact_simple}t[-+]?\d+)|[-+](inf|nan)\.t)(?=[{_delimiters}])', Number.Float, '#pop'),
 
             # #b
-            (r'(?iu)(#[ei])?#b%s' % _symbol, Number.Bin, '#pop'),
+            (rf'(?iu)(#[ei])?#b{_symbol}', Number.Bin, '#pop'),
 
             # #o
-            (r'(?iu)(#[ei])?#o%s' % _symbol, Number.Oct, '#pop'),
+            (rf'(?iu)(#[ei])?#o{_symbol}', Number.Oct, '#pop'),
 
             # #x
-            (r'(?iu)(#[ei])?#x%s' % _symbol, Number.Hex, '#pop'),
+            (rf'(?iu)(#[ei])?#x{_symbol}', Number.Hex, '#pop'),
 
             # #i is always inexact, i.e. float
-            (r'(?iu)(#d)?#i%s' % _symbol, Number.Float, '#pop'),
+            (rf'(?iu)(#d)?#i{_symbol}', Number.Float, '#pop'),
 
             # Strings and characters
             (r'#?"', String.Double, ('#pop', 'string')),
@@ -1452,7 +1452,7 @@ class RacketLexer(RegexLexer):
             (r'#(true|false|[tTfF])', Name.Constant, '#pop'),
 
             # Keyword argument names (e.g. #:keyword)
-            (r'#:%s' % _symbol, Keyword.Declaration, '#pop'),
+            (rf'#:{_symbol}', Keyword.Declaration, '#pop'),
 
             # Reader extensions
             (r'(#lang |#!)(\S+)',
@@ -1460,8 +1460,8 @@ class RacketLexer(RegexLexer):
             (r'#reader', Keyword.Namespace, 'quoted-datum'),
 
             # Other syntax
-            (r"(?i)\.(?=[%s])|#c[is]|#['`]|#,@?" % _delimiters, Operator),
-            (r"'|#[s&]|#hash(eqv?)?|#\d*(?=%s)" % _opening_parenthesis,
+            (rf"(?i)\.(?=[{_delimiters}])|#c[is]|#['`]|#,@?", Operator),
+            (rf"'|#[s&]|#hash(eqv?)?|#\d*(?={_opening_parenthesis})",
              Operator, ('#pop', 'quoted-datum'))
         ],
         'datum*': [
@@ -1475,15 +1475,15 @@ class RacketLexer(RegexLexer):
         ],
         'unquoted-datum': [
             include('datum'),
-            (r'quote(?=[%s])' % _delimiters, Keyword,
+            (rf'quote(?=[{_delimiters}])', Keyword,
              ('#pop', 'quoted-datum')),
             (r'`', Operator, ('#pop', 'quasiquoted-datum')),
-            (r'quasiquote(?=[%s])' % _delimiters, Keyword,
+            (rf'quasiquote(?=[{_delimiters}])', Keyword,
              ('#pop', 'quasiquoted-datum')),
             (_opening_parenthesis, Punctuation, ('#pop', 'unquoted-list')),
-            (words(_keywords, suffix='(?=[%s])' % _delimiters),
+            (words(_keywords, suffix=f'(?=[{_delimiters}])'),
              Keyword, '#pop'),
-            (words(_builtins, suffix='(?=[%s])' % _delimiters),
+            (words(_builtins, suffix=f'(?=[{_delimiters}])'),
              Name.Builtin, '#pop'),
             (_symbol, Name, '#pop'),
             include('datum*')
@@ -1495,7 +1495,7 @@ class RacketLexer(RegexLexer):
         'quasiquoted-datum': [
             include('datum'),
             (r',@?', Operator, ('#pop', 'unquoted-datum')),
-            (r'unquote(-splicing)?(?=[%s])' % _delimiters, Keyword,
+            (rf'unquote(-splicing)?(?=[{_delimiters}])', Keyword,
              ('#pop', 'unquoted-datum')),
             (_opening_parenthesis, Punctuation, ('#pop', 'quasiquoted-list')),
             include('datum*')
@@ -2294,7 +2294,7 @@ class EmacsLispLexer(RegexLexer):
         ],
         'string': [
             (r'[^"\\`]+', String),
-            (r'`%s\'' % symbol, String.Symbol),
+            (rf'`{symbol}\'', String.Symbol),
             (r'`', String),
             (r'\\.', String),
             (r'\\\n', String),
@@ -2360,9 +2360,9 @@ class ShenLexer(RegexLexer):
     MAPPINGS.update((s, Keyword) for s in SPECIAL_FORMS)
 
     valid_symbol_chars = r'[\w!$%*+,<=>?/.\'@&#:-]'
-    valid_name = '%s+' % valid_symbol_chars
-    symbol_name = r'[a-z!$%%*+,<=>?/.\'@&#_-]%s*' % valid_symbol_chars
-    variable = r'[A-Z]%s*' % valid_symbol_chars
+    valid_name = f'{valid_symbol_chars}+'
+    symbol_name = rf'[a-z!$%*+,<=>?/.\'@&#_-]{valid_symbol_chars}*'
+    variable = rf'[A-Z]{valid_symbol_chars}*'
 
     tokens = {
         'string': [

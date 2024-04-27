@@ -146,7 +146,7 @@ if __name__ == '__main__':  # pragma: no cover
         cats = sorted(categories)
         cats.remove('xid_start')
         cats.remove('xid_continue')
-        fp.write('cats = %r\n\n' % cats)
+        fp.write(f'cats = {cats!r}\n\n')
 
         fp.write(f'# Generated from unidata {unicodedata.unidata_version}\n\n')
 

@@ -725,7 +725,7 @@ if __name__ == '__main__':  # pragma: no cover
             data = f.read()
 
         # Line to start/end inserting
-        re_match = re.compile(r'^%s\s*=\s*\($.*?^\s*\)$' % constname, re.M | re.S)
+        re_match = re.compile(rf'^{constname}\s*=\s*\($.*?^\s*\)$', re.M | re.S)
         m = re_match.search(data)
         if not m:
             raise ValueError(f'Could not find existing definition for {constname}')

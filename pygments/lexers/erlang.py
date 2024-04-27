@@ -338,7 +338,7 @@ class ElixirLexer(RegexLexer):
     ops_re = rf'(?:{op3_re}|{op2_re}|{op1_re})'
     punctuation_re = "|".join(re.escape(s) for s in PUNCTUATION)
     alnum = r'\w'
-    name_re = r'(?:\.\.\.|[a-z_]%s*[!?]?)' % alnum
+    name_re = rf'(?:\.\.\.|[a-z_]{alnum}*[!?]?)'
     modname_re = rf'[A-Z]{alnum}*(?:\.[A-Z]{alnum}*)*'
     complex_name_re = rf'(?:{name_re}|{modname_re}|{ops_re})'
     special_atom_re = r'(?:\.\.\.|<<>>|%\{\}|%|\{\})'

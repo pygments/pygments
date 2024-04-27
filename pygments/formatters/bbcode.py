@@ -60,7 +60,7 @@ class BBCodeFormatter(Formatter):
         for ttype, ndef in self.style:
             start = end = ''
             if ndef['color']:
-                start += '[color=#%s]' % ndef['color']
+                start += '[color=#{}]'.format(ndef['color'])
                 end = '[/color]' + end
             if ndef['bold']:
                 start += '[b]'

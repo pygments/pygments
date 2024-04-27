@@ -125,7 +125,7 @@ class RubyLexer(ExtendedRegexLexer):
                                 ('backtick', String.Backtick, '`'):
             states['simple-'+name] = [
                 include('string-intp-escaped'),
-                (r'[^\\%s#]+' % end, ttype),
+                (rf'[^\\{end}#]+', ttype),
                 (r'[\\#]', ttype),
                 (end, ttype, '#pop'),
             ]

@@ -52,7 +52,7 @@ def check_syntax(fn, lines):
     try:
         compile('\n'.join(lines), fn, "exec")
     except SyntaxError as err:
-        yield 0, "not compilable: %s" % err
+        yield 0, f"not compilable: {err}"
 
 
 @checker('.py')
@@ -124,7 +124,7 @@ def main(argv):
     try:
         gopts, args = getopt.getopt(argv[1:], "vi:")
     except getopt.GetoptError:
-        print("Usage: %s [-v] [-i ignorepath]* [path]" % argv[0])
+        print(f"Usage: {argv[0]} [-v] [-i ignorepath]* [path]")
         return 2
     opts = {}
     for opt, val in gopts:
@@ -137,7 +137,7 @@ def main(argv):
     elif len(args) == 1:
         path = args[0]
     else:
-        print("Usage: %s [-v] [-i ignorepath]* [path]" % argv[0])
+        print(f"Usage: {argv[0]} [-v] [-i ignorepath]* [path]")
         return 2
 
     verbose = '-v' in opts
@@ -170,7 +170,7 @@ def main(argv):
                 continue
 
             if verbose:
-                print("Checking %s..." % fn)
+                print(f"Checking {fn}...")
 
             try:
                 with open(fn, 'rb') as f:

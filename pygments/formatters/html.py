@@ -488,7 +488,7 @@ class HtmlFormatter(Formatter):
             name = self._get_css_class(ttype)
             style = ''
             if ndef['color']:
-                style += 'color: %s; ' % webify(ndef['color'])
+                style += 'color: {}; '.format(webify(ndef['color']))
             if ndef['bold']:
                 style += 'font-weight: bold; '
             if ndef['italic']:
@@ -496,9 +496,9 @@ class HtmlFormatter(Formatter):
             if ndef['underline']:
                 style += 'text-decoration: underline; '
             if ndef['bgcolor']:
-                style += 'background-color: %s; ' % webify(ndef['bgcolor'])
+                style += 'background-color: {}; '.format(webify(ndef['bgcolor']))
             if ndef['border']:
-                style += 'border: 1px solid %s; ' % webify(ndef['border'])
+                style += 'border: 1px solid {}; '.format(webify(ndef['border']))
             if style:
                 t2c[ttype] = name
                 # save len(ttype) to enable ordering the styles by
@@ -561,11 +561,11 @@ class HtmlFormatter(Formatter):
 
     def get_linenos_style_defs(self):
         lines = [
-            'pre { %s }' % self._pre_style,
-            'td.linenos .normal { %s }' % self._linenos_style,
-            'span.linenos { %s }' % self._linenos_style,
-            'td.linenos .special { %s }' % self._linenos_special_style,
-            'span.linenos.special { %s }' % self._linenos_special_style,
+            f'pre {{ {self._pre_style} }}',
+            f'td.linenos .normal {{ {self._linenos_style} }}',
+            f'span.linenos {{ {self._linenos_style} }}',
+            f'td.linenos .special {{ {self._linenos_special_style} }}',
+            f'span.linenos.special {{ {self._linenos_special_style} }}',
         ]
 
         return lines
@@ -683,9 +683,9 @@ class HtmlFormatter(Formatter):
 
             if nocls:
                 if special_line:
-                    style = ' style="%s"' % self._linenos_special_style
+                    style = f' style="{self._linenos_special_style}"'
                 else:
-                    style = ' style="%s"' % self._linenos_style
+                    style = f' style="{self._linenos_style}"'
             else:
                 if special_line:
                     style = ' class="special"'
@@ -742,9 +742,9 @@ class HtmlFormatter(Formatter):
 
             if nocls:
                 if special_line:
-                    style = ' style="%s"' % self._linenos_special_style
+                    style = f' style="{self._linenos_special_style}"'
                 else:
-                    style = ' style="%s"' % self._linenos_style
+                    style = f' style="{self._linenos_style}"'
             else:
                 if special_line:
                     style = ' class="linenos special"'
@@ -794,8 +794,8 @@ class HtmlFormatter(Formatter):
             style.append(self.cssstyles)
         style = '; '.join(style)
 
-        yield 0, ('<div' + (self.cssclass and ' class="%s"' % self.cssclass) +
-                  (style and (' style="%s"' % style)) + '>')
+        yield 0, ('<div' + (self.cssclass and f' class="{self.cssclass}"') +
+                  (style and (f' style="{style}"')) + '>')
         yield from inner
         yield 0, '</div>\n'
 
@@ -812,7 +812,7 @@ class HtmlFormatter(Formatter):
 
         # the empty span here is to keep leading empty lines from being
         # ignored by HTML parsers
-        yield 0, ('<pre' + (style and ' style="%s"' % style) + '><span></span>')
+        yield 0, ('<pre' + (style and f' style="{style}"') + '><span></span>')
         yield from inner
         yield 0, '</pre>'
 
@@ -841,7 +841,7 @@ class HtmlFormatter(Formatter):
             try:
                 cspan = self.span_element_openers[ttype]
             except KeyError:
-                title = ' title="%s"' % '.'.join(ttype) if self.debug_token_types else ''
+                title = ' title="{}"'.format('.'.join(ttype)) if self.debug_token_types else ''
                 if nocls:
                     css_style = self._get_css_inline_styles(ttype)
                     if css_style:
@@ -928,7 +928,7 @@ class HtmlFormatter(Formatter):
                         style = (f' style="background-color: {self.style.highlight_color}"')
                     yield 1, f'<span{style}>{value}</span>'
                 else:
-                    yield 1, '<span class="hll">%s</span>' % value
+                    yield 1, f'<span class="hll">{value}</span>'
             else:
                 yield 1, value
 

@@ -123,8 +123,7 @@ class SvgFormatter(Formatter):
         y = self.yoffset
         if not self.nowrap:
             if self.encoding:
-                outfile.write('<?xml version="1.0" encoding="%s"?>\n' %
-                              self.encoding)
+                outfile.write(f'<?xml version="1.0" encoding="{self.encoding}"?>\n')
             else:
                 outfile.write('<?xml version="1.0"?>\n')
             outfile.write('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" '

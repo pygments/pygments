@@ -52,7 +52,7 @@ class HaskellLexer(RegexLexer):
             (r'\bimport\b', Keyword.Reserved, 'import'),
             (r'\bmodule\b', Keyword.Reserved, 'module'),
             (r'\berror\b', Name.Exception),
-            (r'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
+            (r'\b({})(?!\')\b'.format('|'.join(reserved)), Keyword.Reserved),
             (r"'[^\\]'", String.Char),  # this has to come before the TH quote
             (r'^[_' + uni.Ll + r'][\w\']*', Name.Function),
             (r"'?[_" + uni.Ll + r"][\w']*", Name),
@@ -208,7 +208,7 @@ class IdrisLexer(RegexLexer):
     tokens = {
         'root': [
             # Comments
-            (r'^(\s*)(%%(%s))' % '|'.join(directives),
+            (r'^(\s*)(%({}))'.format('|'.join(directives)),
              bygroups(Whitespace, Keyword.Reserved)),
             (r'(\s*)(--(?![!#$%&*+./<=>?@^|_~:\\]).*?)$', bygroups(Whitespace, Comment.Single)),
             (r'(\s*)(\|{3}.*?)$', bygroups(Whitespace, Comment.Single)),
@@ -217,7 +217,7 @@ class IdrisLexer(RegexLexer):
             (r'^(\s*)([^\s(){}]+)(\s*)(:)(\s*)',
              bygroups(Whitespace, Name.Function, Whitespace, Operator.Word, Whitespace)),
             #  Identifiers
-            (r'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
+            (r'\b({})(?!\')\b'.format('|'.join(reserved)), Keyword.Reserved),
             (r'(import|module)(\s+)', bygroups(Keyword.Reserved, Whitespace), 'module'),
             (r"('')?[A-Z][\w\']*", Keyword.Type),
             (r'[a-z][\w\']*', Text),
@@ -321,7 +321,7 @@ class AgdaLexer(RegexLexer):
             (r'\{!', Comment.Directive, 'hole'),
             # Lexemes:
             #  Identifiers
-            (r'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
+            (r'\b({})(?!\')\b'.format('|'.join(reserved)), Keyword.Reserved),
             (r'(import|module)(\s+)', bygroups(Keyword.Reserved, Whitespace),
              'module'),
             (r'\b(Set|Prop)[\u2080-\u2089]*\b', Keyword.Type),
@@ -390,7 +390,7 @@ class CryptolLexer(RegexLexer):
             (r'\bimport\b', Keyword.Reserved, 'import'),
             (r'\bmodule\b', Keyword.Reserved, 'module'),
             (r'\berror\b', Name.Exception),
-            (r'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
+            (r'\b({})(?!\')\b'.format('|'.join(reserved)), Keyword.Reserved),
             (r'^[_a-z][\w\']*', Name.Function),
             (r"'?[_a-z][\w']*", Name),
             (r"('')?[A-Z][\w\']*", Keyword.Type),
@@ -721,7 +721,7 @@ class KokaLexer(RegexLexer):
              'alias-type'),
             (r'(struct)(\s+)([a-z]\w*)?', bygroups(Keyword, Whitespace, tokenTypeDef),
              'struct-type'),
-            ((r'(%s)' % '|'.join(typeStartKeywords)) +
+            ((r'({})'.format('|'.join(typeStartKeywords))) +
              r'(\s+)([a-z]\w*)?', bygroups(Keyword, Whitespace, tokenTypeDef),
              'type'),
 
@@ -743,9 +743,9 @@ class KokaLexer(RegexLexer):
              bygroups(Keyword, Whitespace, Keyword, Whitespace, Keyword, Whitespace, Name.Function)),
 
             # keywords
-            (r'(%s)' % '|'.join(typekeywords) + boundary, Keyword.Type),
-            (r'(%s)' % '|'.join(keywords) + boundary, Keyword),
-            (r'(%s)' % '|'.join(builtin) + boundary, Keyword.Pseudo),
+            (r'({})'.format('|'.join(typekeywords)) + boundary, Keyword.Type),
+            (r'({})'.format('|'.join(keywords)) + boundary, Keyword),
+            (r'({})'.format('|'.join(builtin)) + boundary, Keyword.Pseudo),
             (r'::?|:=|\->|[=.]' + sboundary, Keyword),
 
             # names
@@ -806,8 +806,8 @@ class KokaLexer(RegexLexer):
             include('whitespace'),
 
             # keywords
-            (r'(%s)' % '|'.join(typekeywords) + boundary, Keyword),
-            (r'(?=((%s)' % '|'.join(keywords) + boundary + '))',
+            (r'({})'.format('|'.join(typekeywords)) + boundary, Keyword),
+            (r'(?=(({})'.format('|'.join(keywords)) + boundary + '))',
              Keyword, '#pop'),  # need to match because names overlap...
 
             # kinds

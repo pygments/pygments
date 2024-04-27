@@ -237,18 +237,16 @@ class RtfFormatter(Formatter):
     @property
     def _lineno_template(self):
         if self.lineno_fontsize != self.fontsize:
-            return '{\\fs%s \\cf%s %%s%s}' \
-                       % (self.lineno_fontsize,
+            return '{{\\fs{} \\cf{} %s{}}}'.format(self.lineno_fontsize,
                           self.color_mapping[self.lineno_color],
                           " " * self.lineno_padding)
 
-        return '{\\cf%s %%s%s}' \
-                   % (self.color_mapping[self.lineno_color],
+        return '{{\\cf{} %s{}}}'.format(self.color_mapping[self.lineno_color],
                       " " * self.lineno_padding)
 
     @property
     def _hl_open_str(self):
-        return r'{\highlight%s ' % self.color_mapping[self.hl_color]
+        return rf'{{\highlight{self.color_mapping[self.hl_color]} '
 
     @property
     def _rtf_header(self):
@@ -331,7 +329,7 @@ class RtfFormatter(Formatter):
                            self.color_mapping[style['border']])
             start = ''.join(buf)
             if start:
-                outfile.write('{%s ' % start)
+                outfile.write(f'{{{start} ')
             outfile.write(self._escape_text(value))
             if start:
                 outfile.write('}')

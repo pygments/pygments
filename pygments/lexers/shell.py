@@ -260,10 +260,10 @@ class BatchLexer(RegexLexer):
     _space = rf'(?:(?:(?:\^[{_nl}])?[{_ws}])+)'
     _keyword_terminator = (rf'(?=(?:\^[{_nl}]?)?[{_ws}+./:[\\\]]|[{_nl}{_punct}(])')
     _token_terminator = rf'(?=\^?[{_ws}]|[{_punct}{_nl}])'
-    _start_label = r'((?:(?<=^[^:])|^[^:]?)[%s]*)(:)' % _ws
+    _start_label = rf'((?:(?<=^[^:])|^[^:]?)[{_ws}]*)(:)'
     _label = rf'(?:(?:[^{_nlws}{_punct}+:^]|\^[{_nl}]?[\w\W])*)'
     _label_compound = rf'(?:(?:[^{_nlws}{_punct}+:^)]|\^[{_nl}]?[^)])*)'
-    _number = r'(?:-?(?:0[0-7]+|0x[\da-f]+|\d+)%s)' % _token_terminator
+    _number = rf'(?:-?(?:0[0-7]+|0x[\da-f]+|\d+){_token_terminator})'
     _opword = r'(?:equ|geq|gtr|leq|lss|neq)'
     _string = rf'(?:"[^{_nl}"]*(?:"|(?=[{_nl}])))'
     _variable = (r'(?:(?:%(?:\*|(?:~[a-z]*(?:\$[^:]+:)?)?\d|'
@@ -288,67 +288,67 @@ class BatchLexer(RegexLexer):
                                             ')' if compound else '')
         rest_of_line = rf'(?:(?:[^{_nl}^]|\^[{_nl}]?[\w\W])*)'
         rest_of_line_compound = rf'(?:(?:[^{_nl}^)]|\^[{_nl}]?[^)])*)'
-        set_space = r'((?:(?:\^[%s]?)?[^\S\n])*)' % _nl
+        set_space = rf'((?:(?:\^[{_nl}]?)?[^\S\n])*)'
         suffix = ''
         if compound:
-            _keyword_terminator = r'(?:(?=\))|%s)' % _keyword_terminator
-            _token_terminator = r'(?:(?=\))|%s)' % _token_terminator
+            _keyword_terminator = rf'(?:(?=\))|{_keyword_terminator})'
+            _token_terminator = rf'(?:(?=\))|{_token_terminator})'
             suffix = '/compound'
         return [
             ((r'\)', Punctuation, '#pop') if compound else
              (rf'\)((?=\()|{_token_terminator}){rest_of_line}',
               Comment.Single)),
-            (r'(?=%s)' % _start_label, Text, 'follow%s' % suffix),
+            (rf'(?={_start_label})', Text, f'follow{suffix}'),
             (_space, using(this, state='text')),
-            include('redirect%s' % suffix),
-            (r'[%s]+' % _nl, Text),
+            include(f'redirect{suffix}'),
+            (rf'[{_nl}]+', Text),
             (r'\(', Punctuation, 'root/compound'),
             (r'@+', Punctuation),
             (rf'((?:for|if|rem)(?:(?=(?:\^[{_nl}]?)?/)|(?:(?!\^)|'
              rf'(?<=m))(?:(?=\()|{_token_terminator})))({_space}?{_core_token_compound if compound else _core_token}?(?:\^[{_nl}]?)?/(?:\^[{_nl}]?)?\?)',
              bygroups(Keyword, using(this, state='text')),
-             'follow%s' % suffix),
+             f'follow{suffix}'),
             (rf'(goto{_keyword_terminator})({rest}(?:\^[{_nl}]?)?/(?:\^[{_nl}]?)?\?{rest})',
              bygroups(Keyword, using(this, state='text')),
-             'follow%s' % suffix),
+             f'follow{suffix}'),
             (words(('assoc', 'break', 'cd', 'chdir', 'cls', 'color', 'copy',
                     'date', 'del', 'dir', 'dpath', 'echo', 'endlocal', 'erase',
                     'exit', 'ftype', 'keys', 'md', 'mkdir', 'mklink', 'move',
                     'path', 'pause', 'popd', 'prompt', 'pushd', 'rd', 'ren',
                     'rename', 'rmdir', 'setlocal', 'shift', 'start', 'time',
                     'title', 'type', 'ver', 'verify', 'vol'),
-                   suffix=_keyword_terminator), Keyword, 'follow%s' % suffix),
-            (r'(call)(%s?)(:)' % _space,
+                   suffix=_keyword_terminator), Keyword, f'follow{suffix}'),
+            (rf'(call)({_space}?)(:)',
              bygroups(Keyword, using(this, state='text'), Punctuation),
-             'call%s' % suffix),
-            (r'call%s' % _keyword_terminator, Keyword),
+             f'call{suffix}'),
+            (rf'call{_keyword_terminator}', Keyword),
             (rf'(for{_token_terminator}(?!\^))({_space})(/f{_token_terminator})',
              bygroups(Keyword, using(this, state='text'), Keyword),
              ('for/f', 'for')),
             (rf'(for{_token_terminator}(?!\^))({_space})(/l{_token_terminator})',
              bygroups(Keyword, using(this, state='text'), Keyword),
              ('for/l', 'for')),
-            (r'for%s(?!\^)' % _token_terminator, Keyword, ('for2', 'for')),
+            (rf'for{_token_terminator}(?!\^)', Keyword, ('for2', 'for')),
             (rf'(goto{_keyword_terminator})({_space}?)(:?)',
              bygroups(Keyword, using(this, state='text'), Punctuation),
-             'label%s' % suffix),
+             f'label{suffix}'),
             (rf'(if(?:(?=\()|{_token_terminator})(?!\^))({_space}?)((?:/i{_token_terminator})?)({_space}?)((?:not{_token_terminator})?)({_space}?)',
              bygroups(Keyword, using(this, state='text'), Keyword,
                       using(this, state='text'), Keyword,
                       using(this, state='text')), ('(?', 'if')),
             (rf'rem(((?=\()|{_token_terminator}){_space}?{_stoken}?.*|{_keyword_terminator}{rest_of_line_compound if compound else rest_of_line})',
-             Comment.Single, 'follow%s' % suffix),
+             Comment.Single, f'follow{suffix}'),
             (rf'(set{_keyword_terminator}){set_space}(/a)',
              bygroups(Keyword, using(this, state='text'), Keyword),
-             'arithmetic%s' % suffix),
+             f'arithmetic{suffix}'),
             (r'(set{}){}((?:/p)?){}((?:(?:(?:\^[{}]?)?[^"{}{}^={}]|'
              r'\^[{}]?[^"=])+)?)((?:(?:\^[{}]?)?=)?)'.format(_keyword_terminator, set_space, set_space, _nl, _nl, _punct,
               ')' if compound else '', _nl, _nl),
              bygroups(Keyword, using(this, state='text'), Keyword,
                       using(this, state='text'), using(this, state='variable'),
                       Punctuation),
-             'follow%s' % suffix),
-            default('follow%s' % suffix)
+             f'follow{suffix}'),
+            default(f'follow{suffix}')
         ]
 
     def _make_follow_state(compound, _label=_label,
@@ -363,8 +363,8 @@ class BatchLexer(RegexLexer):
         state += [
             (rf'{_start_label}([{_ws}]*)({_label_compound if compound else _label})(.*)',
              bygroups(Text, Punctuation, Text, Name.Label, Comment.Single)),
-            include('redirect%s' % suffix),
-            (r'(?=[%s])' % _nl, Text, '#pop'),
+            include(f'redirect{suffix}'),
+            (rf'(?=[{_nl}])', Text, '#pop'),
             (r'\|\|?|&&?', Punctuation, '#pop'),
             include('text')
         ]
@@ -382,7 +382,7 @@ class BatchLexer(RegexLexer):
             (r'0x[\da-f]+', Number.Hex),
             (r'\d+', Number.Integer),
             (r'[(),]+', Punctuation),
-            (r'([%s]|%%|\^\^)+' % op, Operator),
+            (rf'([{op}]|%|\^\^)+', Operator),
             (r'({}|{}|(\^[{}]?)?[^(){}%\^"{}{}]|\^[{}]?{})+'.format(_string, _variable, _nl, op, _nlws, _punct, _nlws,
               r'[^)]' if compound else r'[\w\W]'),
              using(this, state='variable')),
@@ -440,13 +440,13 @@ class BatchLexer(RegexLexer):
         'redirect/compound': _make_redirect_state(True),
         'variable-or-escape': [
             (_variable, Name.Variable),
-            (r'%%%%|\^[%s]?(\^!|[\w\W])' % _nl, String.Escape)
+            (rf'%%|\^[{_nl}]?(\^!|[\w\W])', String.Escape)
         ],
         'string': [
             (r'"', String.Double, '#pop'),
             (_variable, Name.Variable),
             (r'\^!|%%', String.Escape),
-            (r'[^"%%^%s]+|[%%^]' % _nl, String.Double),
+            (rf'[^"%^{_nl}]+|[%^]', String.Double),
             default('#pop')
         ],
         'sqstring': [
@@ -465,7 +465,7 @@ class BatchLexer(RegexLexer):
         'variable': [
             (r'"', String.Double, 'string'),
             include('variable-or-escape'),
-            (r'[^"%%^%s]+|.' % _nl, Name.Variable)
+            (rf'[^"%^{_nl}]+|.', Name.Variable)
         ],
         'for': [
             (rf'({_space})(in)({_space})(\()',
@@ -477,7 +477,7 @@ class BatchLexer(RegexLexer):
             (r'\)', Punctuation),
             (rf'({_space})(do{_token_terminator})',
              bygroups(using(this, state='text'), Keyword), '#pop'),
-            (r'[%s]+' % _nl, Text),
+            (rf'[{_nl}]+', Text),
             include('follow')
         ],
         'for/f': [
@@ -524,7 +524,7 @@ class BatchLexer(RegexLexer):
         ],
         'else?': [
             (_space, using(this, state='text')),
-            (r'else%s' % _token_terminator, Keyword, '#pop'),
+            (rf'else{_token_terminator}', Keyword, '#pop'),
             default('#pop')
         ]
     }
@@ -700,7 +700,7 @@ class PowerShellLexer(RegexLexer):
             # of '$(...)' blocks in strings
             (r'\(', Punctuation, 'child'),
             (r'\s+', Text),
-            (r'^(\s*#[#\s]*)(\.(?:%s))([^\n]*$)' % '|'.join(commenthelp),
+            (r'^(\s*#[#\s]*)(\.(?:{}))([^\n]*$)'.format('|'.join(commenthelp)),
              bygroups(Comment, String.Doc, Comment)),
             (r'#[^\n]*?$', Comment),
             (r'(&lt;|<)#', Comment.Multiline, 'multline'),
@@ -712,10 +712,10 @@ class PowerShellLexer(RegexLexer):
             (r"'([^']|'')*'", String.Single),
             (r'(\$|@@|@)((global|script|private|env):)?\w+',
              Name.Variable),
-            (r'(%s)\b' % '|'.join(keywords), Keyword),
-            (r'-(%s)\b' % '|'.join(operators), Operator),
-            (r'(%s)-[a-z_]\w*\b' % '|'.join(verbs), Name.Builtin),
-            (r'(%s)\s' % '|'.join(aliases_), Name.Builtin),
+            (r'({})\b'.format('|'.join(keywords)), Keyword),
+            (r'-({})\b'.format('|'.join(operators)), Operator),
+            (r'({})-[a-z_]\w*\b'.format('|'.join(verbs)), Name.Builtin),
+            (r'({})\s'.format('|'.join(aliases_)), Name.Builtin),
             (r'\[[a-z_\[][\w. `,\[\]]*\]', Name.Constant),  # .net [type]s
             (r'-[a-z_]\w*', Name),
             (r'\w+', Name),
@@ -728,7 +728,7 @@ class PowerShellLexer(RegexLexer):
         'multline': [
             (r'[^#&.]+', Comment.Multiline),
             (r'#(>|&gt;)', Comment.Multiline, '#pop'),
-            (r'\.(%s)' % '|'.join(commenthelp), String.Doc),
+            (r'\.({})'.format('|'.join(commenthelp)), String.Doc),
             (r'[#&.]', Comment.Multiline),
         ],
         'string': [

@@ -74,8 +74,7 @@ class RawTokenFormatter(Formatter):
             try:
                 colorize(self.error_color, '')
             except KeyError:
-                raise ValueError("Invalid color %r specified" %
-                                 self.error_color)
+                raise ValueError(f"Invalid color {self.error_color!r} specified")
 
     def format(self, tokensource, outfile):
         try:

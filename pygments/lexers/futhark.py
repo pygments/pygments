@@ -41,7 +41,7 @@ class FutharkLexer(RegexLexer):
              'DC[1-4]', 'NAK', 'SYN', 'ETB', 'CAN',
              'EM', 'SUB', 'ESC', '[FGRU]S', 'SP', 'DEL')
 
-    num_postfix = r'(%s)?' % '|'.join(num_types)
+    num_postfix = r'({})?'.format('|'.join(num_types))
 
     identifier_re = '[a-zA-Z_][a-zA-Z_0-9\']*'
 
@@ -52,8 +52,8 @@ class FutharkLexer(RegexLexer):
             (r'--(.*?)$', Comment.Single),
             (r'\s+', Whitespace),
             (r'\(\)', Punctuation),
-            (r'\b(%s)(?!\')\b' % '|'.join(reserved), Keyword.Reserved),
-            (r'\b(%s)(?!\')\b' % '|'.join(num_types + other_types), Keyword.Type),
+            (r'\b({})(?!\')\b'.format('|'.join(reserved)), Keyword.Reserved),
+            (r'\b({})(?!\')\b'.format('|'.join(num_types + other_types)), Keyword.Type),
 
             # Identifiers
             (r'#\[([a-zA-Z_\(\) ]*)\]', Comment.Preproc),

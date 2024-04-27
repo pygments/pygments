@@ -1136,13 +1136,13 @@ if __name__ == '__main__':  # pragma: no cover
 
     def run():
         version = get_version()
-        print('> Downloading function index for SourceMod %s' % version)
+        print(f'> Downloading function index for SourceMod {version}')
         functions = get_sm_functions()
         print('> %d functions found:' % len(functions))
 
         functionlist = []
         for full_function_name in functions:
-            print('>> %s' % full_function_name)
+            print(f'>> {full_function_name}')
             functionlist.append(full_function_name)
 
         regenerate(__file__, functionlist)

@@ -258,7 +258,7 @@ def _rx_indent(level):
     if level == 1:
         level_repeat = ''
     else:
-        level_repeat = '{%s}' % level
+        level_repeat = f'{{{level}}}'
     return rf'(?:\t| {space_repeat}\t| {{{tab_width}}}){level_repeat}.*\n'
 
 
@@ -281,7 +281,7 @@ class KconfigLexer(RegexLexer):
 
     def call_indent(level):
         # If indentation >= {level} is detected, enter state 'indent{level}'
-        return (_rx_indent(level), String.Doc, 'indent%s' % level)
+        return (_rx_indent(level), String.Doc, f'indent{level}')
 
     def do_indent(level):
         # Print paragraphs of indentation level >= {level} as String.Doc,
@@ -675,7 +675,7 @@ class DockerLexer(RegexLexer):
                 bygroups(Keyword, Whitespace, using(BashLexer), using(JsonLexer))),
             (rf'(LABEL|ENV|ARG)(\s+)(({_lb}\w+=\w+{_lb})*)',
                 bygroups(Keyword, Whitespace, using(BashLexer))),
-            (r'(%s|VOLUME)\b(\s+)(.*)' % (_keywords), bygroups(Keyword, Whitespace, String)),
+            (rf'({_keywords}|VOLUME)\b(\s+)(.*)', bygroups(Keyword, Whitespace, String)),
             (rf'({_bash_keywords})(\s+)', bygroups(Keyword, Whitespace)),
             (r'(.*\\\n)*.+', using(BashLexer)),
         ]

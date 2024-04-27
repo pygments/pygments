@@ -121,7 +121,7 @@ class SMLLexer(RegexLexer):
 
         'core': [
             # Punctuation that doesn't overlap symbolic identifiers
-            (r'(%s)' % '|'.join(re.escape(z) for z in nonid_reserved),
+            (r'({})'.format('|'.join(re.escape(z) for z in nonid_reserved)),
              Punctuation),
 
             # Special constants: strings, floats, numbers in decimal and hex
@@ -137,8 +137,8 @@ class SMLLexer(RegexLexer):
 
             # Labels
             (r'#\s*[1-9][0-9]*', Name.Label),
-            (r'#\s*(%s)' % alphanumid_re, Name.Label),
-            (r'#\s+(%s)' % symbolicid_re, Name.Label),
+            (rf'#\s*({alphanumid_re})', Name.Label),
+            (rf'#\s+({symbolicid_re})', Name.Label),
             # Some reserved words trigger a special, local lexer state change
             (r'\b(datatype|abstype)\b(?!\')', Keyword.Reserved, 'dname'),
             (r'\b(exception)\b(?!\')', Keyword.Reserved, 'ename'),
@@ -148,14 +148,14 @@ class SMLLexer(RegexLexer):
 
             # Regular identifiers, long and otherwise
             (r'\'[\w\']*', Name.Decorator),
-            (r'(%s)(\.)' % alphanumid_re, long_id_callback, "dotted"),
-            (r'(%s)' % alphanumid_re, id_callback),
-            (r'(%s)' % symbolicid_re, id_callback),
+            (rf'({alphanumid_re})(\.)', long_id_callback, "dotted"),
+            (rf'({alphanumid_re})', id_callback),
+            (rf'({symbolicid_re})', id_callback),
         ],
         'dotted': [
-            (r'(%s)(\.)' % alphanumid_re, long_id_callback),
-            (r'(%s)' % alphanumid_re, end_id_callback, "#pop"),
-            (r'(%s)' % symbolicid_re, end_id_callback, "#pop"),
+            (rf'({alphanumid_re})(\.)', long_id_callback),
+            (rf'({alphanumid_re})', end_id_callback, "#pop"),
+            (rf'({symbolicid_re})', end_id_callback, "#pop"),
             (r'\s+', Error),
             (r'\S+', Error),
         ],
@@ -208,7 +208,7 @@ class SMLLexer(RegexLexer):
         'string': stringy(String.Double),
 
         'breakout': [
-            (r'(?=\b(%s)\b(?!\'))' % '|'.join(alphanumid_reserved), Text, '#pop'),
+            (r'(?=\b({})\b(?!\'))'.format('|'.join(alphanumid_reserved)), Text, '#pop'),
         ],
 
         # Dealing with what comes after module system keywords
@@ -216,7 +216,7 @@ class SMLLexer(RegexLexer):
             include('whitespace'),
             include('breakout'),
 
-            (r'(%s)' % alphanumid_re, Name.Namespace),
+            (rf'({alphanumid_re})', Name.Namespace),
             default('#pop'),
         ],
 
@@ -226,8 +226,8 @@ class SMLLexer(RegexLexer):
             (r'\'[\w\']*', Name.Decorator),
             (r'\(', Punctuation, 'tyvarseq'),
 
-            (r'(%s)' % alphanumid_re, Name.Function, '#pop'),
-            (r'(%s)' % symbolicid_re, Name.Function, '#pop'),
+            (rf'({alphanumid_re})', Name.Function, '#pop'),
+            (rf'({symbolicid_re})', Name.Function, '#pop'),
 
             # Ignore interesting function declarations like "fun (x + y) = ..."
             default('#pop'),
@@ -243,8 +243,8 @@ class SMLLexer(RegexLexer):
              bygroups(Name.Variable, Text, Punctuation), '#pop'),
             (rf'({symbolicid_re})(\s*)(=(?!{symbolicid_re}))',
              bygroups(Name.Variable, Text, Punctuation), '#pop'),
-            (r'(%s)' % alphanumid_re, Name.Variable, '#pop'),
-            (r'(%s)' % symbolicid_re, Name.Variable, '#pop'),
+            (rf'({alphanumid_re})', Name.Variable, '#pop'),
+            (rf'({symbolicid_re})', Name.Variable, '#pop'),
 
             # Ignore interesting patterns like 'val (x, y)'
             default('#pop'),
@@ -257,10 +257,10 @@ class SMLLexer(RegexLexer):
 
             (r'\'[\w\']*', Name.Decorator),
             (r'\(', Punctuation, 'tyvarseq'),
-            (r'=(?!%s)' % symbolicid_re, Punctuation, ('#pop', 'typbind')),
+            (rf'=(?!{symbolicid_re})', Punctuation, ('#pop', 'typbind')),
 
-            (r'(%s)' % alphanumid_re, Keyword.Type),
-            (r'(%s)' % symbolicid_re, Keyword.Type),
+            (rf'({alphanumid_re})', Keyword.Type),
+            (rf'({symbolicid_re})', Keyword.Type),
             (r'\S+', Error, '#pop'),
         ],
 
@@ -284,11 +284,11 @@ class SMLLexer(RegexLexer):
             (r'\(', Punctuation, 'tyvarseq'),
             (r'(=)(\s*)(datatype)',
              bygroups(Punctuation, Text, Keyword.Reserved), '#pop'),
-            (r'=(?!%s)' % symbolicid_re, Punctuation,
+            (rf'=(?!{symbolicid_re})', Punctuation,
              ('#pop', 'datbind', 'datcon')),
 
-            (r'(%s)' % alphanumid_re, Keyword.Type),
-            (r'(%s)' % symbolicid_re, Keyword.Type),
+            (rf'({alphanumid_re})', Keyword.Type),
+            (rf'({symbolicid_re})', Keyword.Type),
             (r'\S+', Error, '#pop'),
         ],
 
@@ -300,9 +300,9 @@ class SMLLexer(RegexLexer):
             (r'\b(withtype)\b(?!\')', Keyword.Reserved, ('#pop', 'tname')),
             (r'\b(of)\b(?!\')', Keyword.Reserved),
 
-            (r'(\|)(\s*)(%s)' % alphanumid_re,
+            (rf'(\|)(\s*)({alphanumid_re})',
              bygroups(Punctuation, Text, Name.Class)),
-            (r'(\|)(\s+)(%s)' % symbolicid_re,
+            (rf'(\|)(\s+)({symbolicid_re})',
              bygroups(Punctuation, Text, Name.Class)),
 
             include('breakout'),
@@ -314,9 +314,9 @@ class SMLLexer(RegexLexer):
         'ename': [
             include('whitespace'),
 
-            (r'(and\b)(\s+)(%s)' % alphanumid_re,
+            (rf'(and\b)(\s+)({alphanumid_re})',
              bygroups(Keyword.Reserved, Text, Name.Class)),
-            (r'(and\b)(\s*)(%s)' % symbolicid_re,
+            (rf'(and\b)(\s*)({symbolicid_re})',
              bygroups(Keyword.Reserved, Text, Name.Class)),
             (r'\b(of)\b(?!\')', Keyword.Reserved),
             (rf'({alphanumid_re})|({symbolicid_re})', Name.Class),
@@ -326,8 +326,8 @@ class SMLLexer(RegexLexer):
 
         'datcon': [
             include('whitespace'),
-            (r'(%s)' % alphanumid_re, Name.Class, '#pop'),
-            (r'(%s)' % symbolicid_re, Name.Class, '#pop'),
+            (rf'({alphanumid_re})', Name.Class, '#pop'),
+            (rf'({symbolicid_re})', Name.Class, '#pop'),
             (r'\S+', Error, '#pop'),
         ],
 
@@ -398,11 +398,11 @@ class OcamlLexer(RegexLexer):
             (r'\b([A-Z][\w\']*)(?=\s*\.)', Name.Namespace, 'dotted'),
             (r'\b([A-Z][\w\']*)', Name.Class),
             (r'\(\*(?![)])', Comment, 'comment'),
-            (r'\b(%s)\b' % '|'.join(keywords), Keyword),
-            (r'(%s)' % '|'.join(keyopts[::-1]), Operator),
+            (r'\b({})\b'.format('|'.join(keywords)), Keyword),
+            (r'({})'.format('|'.join(keyopts[::-1])), Operator),
             (rf'({infix_syms}|{prefix_syms})?{operators}', Operator),
-            (r'\b(%s)\b' % '|'.join(word_operators), Operator.Word),
-            (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
+            (r'\b({})\b'.format('|'.join(word_operators)), Operator.Word),
+            (r'\b({})\b'.format('|'.join(primitives)), Keyword.Type),
 
             (r"[^\W\d][\w']*", Name),
 
@@ -556,8 +556,8 @@ class OpaLexer(RegexLexer):
             # way to syntactic distinguish binding constructions
             # unfortunately, this colors the equal in {x=2} too
             (r'=(?!'+op_re+r')', Keyword),
-            (r'(%s)+' % op_re, Operator),
-            (r'(%s)+' % punc_re, Operator),
+            (rf'({op_re})+', Operator),
+            (rf'({punc_re})+', Operator),
 
             # coercions
             (r':', Operator, 'type'),
@@ -813,11 +813,11 @@ class ReasonLexer(RegexLexer):
             (r'\b([A-Z][\w\']*)', Name.Class),
             (r'//.*?\n', Comment.Single),
             (r'\/\*(?!/)', Comment.Multiline, 'comment'),
-            (r'\b(%s)\b' % '|'.join(keywords), Keyword),
-            (r'(%s)' % '|'.join(keyopts[::-1]), Operator.Word),
+            (r'\b({})\b'.format('|'.join(keywords)), Keyword),
+            (r'({})'.format('|'.join(keyopts[::-1])), Operator.Word),
             (rf'({infix_syms}|{prefix_syms})?{operators}', Operator),
-            (r'\b(%s)\b' % '|'.join(word_operators), Operator.Word),
-            (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
+            (r'\b({})\b'.format('|'.join(word_operators)), Operator.Word),
+            (r'\b({})\b'.format('|'.join(primitives)), Keyword.Type),
 
             (r"[^\W\d][\w']*", Name),
 
@@ -910,12 +910,12 @@ class FStarLexer(RegexLexer):
             (r'\b([A-Z][\w\']*)', Name.Class),
             (r'\(\*(?![)])', Comment, 'comment'),
             (r'\/\/.+$', Comment),
-            (r'\b(%s)\b' % '|'.join(keywords), Keyword),
-            (r'\b(%s)\b' % '|'.join(assume_keywords), Name.Exception),
-            (r'\b(%s)\b' % '|'.join(decl_keywords), Keyword.Declaration),
-            (r'(%s)' % '|'.join(keyopts[::-1]), Operator),
+            (r'\b({})\b'.format('|'.join(keywords)), Keyword),
+            (r'\b({})\b'.format('|'.join(assume_keywords)), Name.Exception),
+            (r'\b({})\b'.format('|'.join(decl_keywords)), Keyword.Declaration),
+            (r'({})'.format('|'.join(keyopts[::-1])), Operator),
             (rf'({infix_syms}|{prefix_syms})?{operators}', Operator),
-            (r'\b(%s)\b' % '|'.join(primitives), Keyword.Type),
+            (r'\b({})\b'.format('|'.join(primitives)), Keyword.Type),
 
             (r"[^\W\d][\w']*", Name),
 

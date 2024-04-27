@@ -2190,7 +2190,7 @@ class TwigLexer(RegexLexer):
                       Other, Comment.Preproc, Text, Keyword, Text,
                       Comment.Preproc)),
             # filter blocks
-            (r'(\{%%)(-?\s*)(filter)(\s+)(%s)' % _ident_inner,
+            (rf'(\{{%)(-?\s*)(filter)(\s+)({_ident_inner})',
              bygroups(Comment.Preproc, Text, Keyword, Text, Name.Function),
              'tag'),
             (r'(\{%)(-?\s*)([a-zA-Z_]\w*)',
@@ -2198,9 +2198,9 @@ class TwigLexer(RegexLexer):
             (r'\{', Other),
         ],
         'varnames': [
-            (r'(\|)(\s*)(%s)' % _ident_inner,
+            (rf'(\|)(\s*)({_ident_inner})',
              bygroups(Operator, Text, Name.Function)),
-            (r'(is)(\s+)(not)?(\s*)(%s)' % _ident_inner,
+            (rf'(is)(\s+)(not)?(\s*)({_ident_inner})',
              bygroups(Keyword, Text, Keyword, Text, Name.Function)),
             (r'(?i)(true|false|none|null)\b', Keyword.Pseudo),
             (r'(in|not|and|b-and|or|b-or|b-xor|is'

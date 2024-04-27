@@ -3311,7 +3311,7 @@ if __name__ == '__main__':  # pragma: no cover
 
         with open(filename, 'w', encoding='utf-8') as fp:
             fp.write(header)
-            fp.write('MODULES = %s\n\n' % pprint.pformat(modules))
+            fp.write(f'MODULES = {pprint.pformat(modules)}\n\n')
             fp.write(footer)
 
     def run():

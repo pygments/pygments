@@ -93,7 +93,7 @@ def find_lexer_class_by_name(_alias):
     .. versionadded:: 2.2
     """
     if not _alias:
-        raise ClassNotFound('no lexer for alias %r found' % _alias)
+        raise ClassNotFound(f'no lexer for alias {_alias!r} found')
     # lookup builtin lexers
     for module_name, name, aliases, _, _ in LEXERS.values():
         if _alias.lower() in aliases:
@@ -104,7 +104,7 @@ def find_lexer_class_by_name(_alias):
     for cls in find_plugin_lexers():
         if _alias.lower() in cls.aliases:
             return cls
-    raise ClassNotFound('no lexer for alias %r found' % _alias)
+    raise ClassNotFound(f'no lexer for alias {_alias!r} found')
 
 
 def get_lexer_by_name(_alias, **options):
@@ -117,7 +117,7 @@ def get_lexer_by_name(_alias, **options):
     found.
     """
     if not _alias:
-        raise ClassNotFound('no lexer for alias %r found' % _alias)
+        raise ClassNotFound(f'no lexer for alias {_alias!r} found')
 
     # lookup builtin lexers
     for module_name, name, aliases, _, _ in LEXERS.values():
@@ -129,7 +129,7 @@ def get_lexer_by_name(_alias, **options):
     for cls in find_plugin_lexers():
         if _alias.lower() in cls.aliases:
             return cls(**options)
-    raise ClassNotFound('no lexer for alias %r found' % _alias)
+    raise ClassNotFound(f'no lexer for alias {_alias!r} found')
 
 
 def load_lexer_from_file(filename, lexername="CustomLexer", **options):
@@ -163,7 +163,7 @@ def load_lexer_from_file(filename, lexername="CustomLexer", **options):
     except ClassNotFound:
         raise
     except Exception as err:
-        raise ClassNotFound('error when loading custom lexer: %s' % err)
+        raise ClassNotFound(f'error when loading custom lexer: {err}')
 
 
 def find_lexer_class_for_filename(_fn, code=None):
@@ -224,7 +224,7 @@ def get_lexer_for_filename(_fn, code=None, **options):
     """
     res = find_lexer_class_for_filename(_fn, code)
     if not res:
-        raise ClassNotFound('no lexer for filename %r found' % _fn)
+        raise ClassNotFound(f'no lexer for filename {_fn!r} found')
     return res(**options)
 
 
@@ -244,7 +244,7 @@ def get_lexer_for_mimetype(_mime, **options):
     for cls in find_plugin_lexers():
         if _mime in cls.mimetypes:
             return cls(**options)
-    raise ClassNotFound('no lexer for mimetype %r found' % _mime)
+    raise ClassNotFound(f'no lexer for mimetype {_mime!r} found')
 
 
 def _iter_lexerclasses(plugins=True):
@@ -279,7 +279,7 @@ def guess_lexer_for_filename(_fn, _text, **options):
                 matching_lexers.add(lexer)
                 primary[lexer] = False
     if not matching_lexers:
-        raise ClassNotFound('no lexer for filename %r found' % fn)
+        raise ClassNotFound(f'no lexer for filename {fn!r} found')
     if len(matching_lexers) == 1:
         return matching_lexers.pop()(**options)
     result = []

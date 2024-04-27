@@ -175,7 +175,7 @@ def shebang_matches(text, regex):
                      if x and not x.startswith('-')][-1]
         except IndexError:
             return False
-        regex = re.compile(r'^%s(\.(exe|cmd|bat|bin))?$' % regex, re.IGNORECASE)
+        regex = re.compile(rf'^{regex}(\.(exe|cmd|bat|bin))?$', re.IGNORECASE)
         if regex.search(found) is not None:
             return True
     return False
