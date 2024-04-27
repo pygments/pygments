@@ -11,7 +11,7 @@
 import keyword
 
 from pygments.lexer import DelegatingLexer, RegexLexer, include, \
-    bygroups, using, default, words, combined, this
+    bygroups, using, default, words, combined, this, inherit
 from pygments.util import get_bool_opt, shebang_matches
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Other, Error, Whitespace
@@ -19,7 +19,7 @@ from pygments import unistring as uni
 
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
            'Python2Lexer', 'Python2TracebackLexer',
-           'CythonLexer', 'DgLexer', 'NumPyLexer']
+           'CythonLexer', 'DgLexer', 'NumPyLexer', 'XonshLexer']
 
 
 class PythonLexer(RegexLexer):
@@ -1196,3 +1196,85 @@ class NumPyLexer(PythonLexer):
         return (shebang_matches(text, r'pythonw?(3(\.\d)?)?') or
                 'import ' in ltext) \
             and ('import numpy' in ltext or 'from numpy import' in ltext)
+
+class XonshLexer(PythonLexer):
+    """
+    For Xonsh source code.
+    Based on internal XonshLexer: https://github.com/xonsh/xonsh/blob/main/xonsh/pyghooks.py
+    """
+
+    name = 'Xonsh'
+    url = 'https://xon.sh'
+    aliases = ['xonsh', 'xonshrc', 'xsh']
+    filenames = ['*.xsh', '*xonshrc']
+    mimetypes = ['text/x-xonsh', 'application/x-xonsh']
+    version_added = '0.16'
+
+    COMMAND_TOKEN_RE = r'[^=\s\[\]{}()$"\'`<&|;!]+(?=\s|$|\)|\]|\}|!)'
+
+    tokens = {
+        "mode_switch_brackets": [
+            (r"(\$)(\{)", bygroups(Keyword, Punctuation), "py_curly_bracket"),
+            (r"(@)(\()", bygroups(Keyword, Punctuation), "py_bracket"),
+            (
+                r"([\!\$])(\()",
+                bygroups(Keyword, Punctuation),
+                ("subproc_bracket", "subproc_start"),
+            ),
+            (
+                r"(@\$)(\()",
+                bygroups(Keyword, Punctuation),
+                ("subproc_bracket", "subproc_start"),
+            ),
+            (
+                r"([\!\$])(\[)",
+                bygroups(Keyword, Punctuation),
+                ("subproc_square_bracket", "subproc_start"),
+            ),
+            (r"(g?)(`)", bygroups(String.Affix, String.Backtick), "backtick_re"),
+        ],
+        "subproc_bracket": [(r"\)", Punctuation, "#pop"), include("subproc")],
+        "subproc_square_bracket": [(r"\]", Punctuation, "#pop"), include("subproc")],
+        "py_bracket": [(r"\)", Punctuation, "#pop"), include("root")],
+        "py_curly_bracket": [(r"\}", Punctuation, "#pop"), include("root")],
+        "backtick_re": [
+            (r"[\.\^\$\*\+\?\[\]\|]", String.Regex),
+            (r"({[0-9]+}|{[0-9]+,[0-9]+})\??", String.Regex),
+            (r"\\([0-9]+|[AbBdDsSwWZabfnrtuUvx\\])", String.Escape),
+            (r"`", String.Backtick, "#pop"),
+            (r"[^`\.\^\$\*\+\?\[\]\|]+", String.Backtick),
+        ],
+        "root": [
+            (r"\?", Keyword),
+            (r"(?<=\w)!", Keyword),
+            (r"\$\w+", Name.Variable),
+            (r"\(", Punctuation, "py_bracket"),
+            (r"\{", Punctuation, "py_curly_bracket"),
+            include("mode_switch_brackets"),
+            inherit,
+        ],
+        "subproc_start": [
+            (r"\s+", Whitespace),
+            (COMMAND_TOKEN_RE, Name.Builtin, "#pop"),
+            (r"", Whitespace, "#pop"),
+        ],
+        "subproc": [
+            include("mode_switch_brackets"),
+            (r"&&|\|\||\band\b|\bor\b", Operator, "subproc_start"),
+            (r'"(\\\\|\\[0-7]+|\\.|[^"\\])*"', String.Double),
+            (r"'(\\\\|\\[0-7]+|\\.|[^'\\])*'", String.Single),
+            (r"(?<=\w|\s)!", Keyword, "subproc_macro"),
+            (r"^!", Keyword, "subproc_macro"),
+            (r";", Punctuation, "subproc_start"),
+            (r"&|=", Punctuation),
+            (r"\|", Punctuation, "subproc_start"),
+            (r"\s+", Text),
+            (r'[^=\s\[\]{}()$"\'`<&|;]+', Text),
+            (r"<", Text),
+            (r"\$\w+", Name.Variable),
+        ],
+        "subproc_macro": [
+            (r"(\s*)([^\n]+)", bygroups(Whitespace, String)),
+            (r"", Whitespace, "#pop"),
+        ],
+    }
