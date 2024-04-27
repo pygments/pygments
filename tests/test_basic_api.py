@@ -42,7 +42,7 @@ def test_lexer_classes(cls):
     for attr in 'aliases', 'filenames', 'alias_filenames', 'mimetypes':
         assert hasattr(cls, attr)
         assert isinstance(getattr(cls, attr), list), \
-            "%s: %s attribute wrong" % (cls, attr)
+            f"{cls}: {attr} attribute wrong"
     assert isinstance(cls.url, str), \
         (f"Lexer class {cls.__name__} is missing the `url` attribute. "
          "Please add it to provide a link to the language's homepage "
@@ -83,16 +83,14 @@ def test_random_input(cls):
         tokens = list(inst.get_tokens(test_content))
     except KeyboardInterrupt:
         raise KeyboardInterrupt(
-            'interrupted %s.get_tokens(): test_content=%r' %
-            (cls.__name__, test_content))
+            f'interrupted {cls.__name__}.get_tokens(): test_content={test_content!r}')
     txt = ""
     for token in tokens:
         assert isinstance(token, tuple)
         assert isinstance(token[0], _TokenType)
         assert isinstance(token[1], str)
         txt += token[1]
-    assert txt == test_content, "%s lexer roundtrip failed: %r != %r" % \
-        (cls.name, test_content, txt)
+    assert txt == test_content, f"{cls.name} lexer roundtrip failed: {test_content!r} != {txt!r}"
 
 
 @pytest.mark.parametrize('cls', lexers._iter_lexerclasses(plugins=False))
@@ -105,7 +103,7 @@ def test_lexer_options(cls):
     def ensure(tokens, output):
         concatenated = ''.join(token[1] for token in tokens)
         assert concatenated == output, \
-            '%s: %r != %r' % (cls, concatenated, output)
+            f'{cls}: {concatenated!r} != {output!r}'
 
     inst = cls(stripnl=False)
     ensure(inst.get_tokens('a\nb'), 'a\nb\n')
@@ -220,17 +218,17 @@ def test_formatter_unicode_handling(cls):
     if cls.name != 'Raw tokens':
         out = format(tokens, inst)
         if cls.unicodeoutput:
-            assert isinstance(out, str), '%s: %r' % (cls, out)
+            assert isinstance(out, str), f'{cls}: {out!r}'
 
         inst = cls(encoding='utf-8')
         out = format(tokens, inst)
-        assert isinstance(out, bytes), '%s: %r' % (cls, out)
+        assert isinstance(out, bytes), f'{cls}: {out!r}'
         # Cannot test for encoding, since formatters may have to escape
         # non-ASCII characters.
     else:
         inst = cls()
         out = format(tokens, inst)
-        assert isinstance(out, bytes), '%s: %r' % (cls, out)
+        assert isinstance(out, bytes), f'{cls}: {out!r}'
 
 
 def test_get_formatters():

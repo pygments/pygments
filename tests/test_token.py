@@ -40,7 +40,7 @@ def test_sanity_check():
 
     for k, v in t.items():
         if len(v) > 1:
-            pytest.fail("%r has more than one key: %r" % (k, v))
+            pytest.fail(f"{k!r} has more than one key: {v!r}")
 
 
 def test_copying():

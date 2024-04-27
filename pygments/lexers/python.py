@@ -60,7 +60,7 @@ class PythonLexer(RegexLexer):
                  'text/x-python3', 'application/x-python3']
     version_added = '0.10'
 
-    uni_name = "[%s][%s]*" % (uni.xid_start, uni.xid_continue)
+    uni_name = f"[{uni.xid_start}][{uni.xid_continue}]*"
 
     def innerstring_rules(ttype):
         return [
@@ -637,7 +637,7 @@ class Python2Lexer(RegexLexer):
 
 class _PythonConsoleLexerBase(RegexLexer):
     name = 'Python console session'
-    aliases = ['pycon']
+    aliases = ['pycon', 'python-console']
     mimetypes = ['text/x-python-doctest']
 
     """Auxiliary lexer for `PythonConsoleLexer`.
@@ -696,7 +696,7 @@ class PythonConsoleLexer(DelegatingLexer):
     """
 
     name = 'Python console session'
-    aliases = ['pycon']
+    aliases = ['pycon', 'python-console']
     mimetypes = ['text/x-python-doctest']
     url = 'https://python.org'
     version_added = ''

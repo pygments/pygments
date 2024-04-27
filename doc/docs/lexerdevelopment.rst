@@ -39,7 +39,7 @@ To add a lexer, you have to perform the following steps:
 
     __all__ = ['AutohotkeyLexer', 'AutoItLexer']
 
-  Add the name of your lexer class to this list (or create the list if your 
+  Add the name of your lexer class to this list (or create the list if your
   lexer   is the only class in the module).
 
 * Finally the lexer can be made publicly known by rebuilding the lexer mapping.
@@ -96,7 +96,7 @@ state.
 .. note::
 
     This means you're always jumping back to the first entry, i.e. you cannot match states in a particular order. For example, a state with the following rules won't work as intended:
-    
+
     .. code:: python
 
         'state': [
@@ -251,9 +251,9 @@ sections, comments and ``key = value`` pairs::
         tokens = {
             'root': [
                 (r'\s+', Text),
-                (r';.*?$', Comment),
+                (r';.*', Comment),
                 (r'\[.*?\]$', Keyword),
-                (r'(.*?)(\s*)(=)(\s*)(.*?)$',
+                (r'(.*?)(\s*)(=)(\s*)(.*)',
                  bygroups(Name.Attribute, Text, Operator, Text, String))
             ]
         }

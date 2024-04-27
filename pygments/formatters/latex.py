@@ -307,9 +307,8 @@ class LatexFormatter(Formatter):
                 cmndef += (r'\def\$$@tc##1{\textcolor[rgb]{%s}{##1}}' %
                            rgbcolor(ndef['color']))
             if ndef['border']:
-                cmndef += (r'\def\$$@bc##1{{\setlength{\fboxsep}{\string -\fboxrule}'
-                           r'\fcolorbox[rgb]{%s}{%s}{\strut ##1}}}' %
-                           (rgbcolor(ndef['border']),
+                cmndef += (r'\def\$$@bc##1{{{{\setlength{{\fboxsep}}{{\string -\fboxrule}}'
+                           r'\fcolorbox[rgb]{{{}}}{{{}}}{{\strut ##1}}}}}}'.format(rgbcolor(ndef['border']),
                             rgbcolor(ndef['bgcolor'])))
             elif ndef['bgcolor']:
                 cmndef += (r'\def\$$@bc##1{{\setlength{\fboxsep}{0pt}'
@@ -329,7 +328,7 @@ class LatexFormatter(Formatter):
         cp = self.commandprefix
         styles = []
         for name, definition in self.cmd2def.items():
-            styles.append(r'\@namedef{%s@tok@%s}{%s}' % (cp, name, definition))
+            styles.append(rf'\@namedef{{{cp}@tok@{name}}}{{{definition}}}')
         return STYLE_TEMPLATE % {'cp': self.commandprefix,
                                  'styles': '\n'.join(styles)}
 
@@ -410,10 +409,10 @@ class LatexFormatter(Formatter):
                 spl = value.split('\n')
                 for line in spl[:-1]:
                     if line:
-                        outfile.write("\\%s{%s}{%s}" % (cp, styleval, line))
+                        outfile.write(f"\\{cp}{{{styleval}}}{{{line}}}")
                     outfile.write('\n')
                 if spl[-1]:
-                    outfile.write("\\%s{%s}{%s}" % (cp, styleval, spl[-1]))
+                    outfile.write(f"\\{cp}{{{styleval}}}{{{spl[-1]}}}")
             else:
                 outfile.write(value)
 

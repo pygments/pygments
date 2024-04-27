@@ -1,0 +1,55 @@
+# Tests that '@' is recognized as an Operator
+
+---input---
+S = (H @ beta - r).T @ inv(H @ V @ H.T) @ (H @ beta - r)
+
+---tokens---
+'S'           Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'H'           Name
+' '           Text
+'@'           Operator
+' '           Text
+'beta'        Name
+' '           Text
+'-'           Operator
+' '           Text
+'r'           Name
+')'           Punctuation
+'.'           Operator
+'T'           Name
+' '           Text
+'@'           Operator
+' '           Text
+'inv'         Name
+'('           Punctuation
+'H'           Name
+' '           Text
+'@'           Operator
+' '           Text
+'V'           Name
+' '           Text
+'@'           Operator
+' '           Text
+'H'           Name
+'.'           Operator
+'T'           Name
+')'           Punctuation
+' '           Text
+'@'           Operator
+' '           Text
+'('           Punctuation
+'H'           Name
+' '           Text
+'@'           Operator
+' '           Text
+'beta'        Name
+' '           Text
+'-'           Operator
+' '           Text
+'r'           Name
+')'           Punctuation
+'\n'          Text.Whitespace

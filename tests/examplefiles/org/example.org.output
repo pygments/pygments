@@ -1,0 +1,507 @@
+'# -*- org -*-' Comment.Single
+'\n'          Text
+
+'#+title:'    Name.Namespace
+' Single Post with TOML front matter' Text
+'\n'          Text
+
+'#+author:'   Name.Namespace
+'\n'          Text
+
+'#+date:'     Name.Namespace
+' 2017-07-20' Text
+'\n'          Text
+
+'#+options:'  Name.Namespace
+' creator:t toc:2' Text
+'\n'          Text
+
+'\n'          Text
+
+'#+hugo_base_dir:' Name.Namespace
+' ../../'     Text
+'\n'          Text
+
+'#+hugo_categories:' Name.Namespace
+' cat1 cat2'  Text
+'\n'          Text
+
+'#+hugo_menu:' Name.Namespace
+' :menu "foo" :weight 10 :parent main :identifier single-toml' Text
+'\n'          Text
+
+'#+description:' Name.Namespace
+' Some description for this post.' Text
+'\n'          Text
+
+'\n'          Text
+
+'This is a single post. You do not need to set the ' Text
+'=EXPORT_FILE_NAME=' Literal.String
+'\n'          Text
+
+'property in here. But then you also lose the tag and property' Text
+'\n'          Text
+
+'inheritance Org awesomeness.' Text
+'\n'          Text
+
+'\n'          Text
+
+'line one '   Text
+'\\\\'        Operator
+'\n'          Text
+
+'line two'    Text
+'\n'          Text
+
+'\n'          Text
+
+'*bold*'      Generic.Strong
+' '           Text
+'/italics/'   Generic.Emph
+' '           Text
+'=verbatim='  Literal.String
+' '           Text
+'~code~'      Literal.String
+' '           Text
+'+strikethrough+' Generic.Deleted
+' '           Text
+'_underline_' Generic.EmphStrong
+'\n'          Text
+
+'* First heading in this post' Generic.Heading
+'\n'          Text
+
+'** Subheading' Generic.Subheading
+' :TAG:'      Generic.Emph
+'\n'          Text
+
+'This is a under first heading. ' Text
+'<2018-07-27 Fri>' Literal.Date
+'\n'          Text
+
+'* '          Generic.Heading
+'COMMENT'     Comment.Preproc
+' heading'    Generic.Heading
+'\n'          Text
+
+'** '         Generic.Subheading
+'COMMENT'     Comment.Preproc
+' subheading' Generic.Subheading
+'\n'          Text
+
+'* '          Generic.Heading
+'TODO'        Generic.Error
+' heading'    Generic.Heading
+'\n'          Text
+
+'** '         Generic.Subheading
+'TODO'        Generic.Error
+' subheading' Generic.Subheading
+'\n'          Text
+
+'* '          Generic.Heading
+'DONE'        Generic.Deleted
+' heading'    Generic.Heading
+'\n'          Text
+
+'** '         Generic.Subheading
+'DONE'        Generic.Deleted
+' subheading' Generic.Subheading
+'\n'          Text
+
+'CLOSED: '    Generic.Deleted
+'[2018-08-01 Wed 16:17]' Literal.Date
+'\n'          Text
+
+'\n'          Text
+
+'{{{n}}}'     Comment.Preproc
+' abc '       Text
+'{{{n(,10)}}}' Comment.Preproc
+' def '       Text
+'{{{n(x,5)}}}' Comment.Preproc
+'\n'          Text
+
+'\n'          Text
+
+'- '          Keyword
+'unordered list item ' Text
+'1'           Text
+'\n'          Text
+
+'- '          Keyword
+'unordered list item ' Text
+'2'           Text
+'\n'          Text
+
+'- '          Keyword
+'Desc1 ::'    Name.Label
+' Description list item ' Text
+'1'           Text
+'\n'          Text
+
+'- '          Keyword
+'Desc2 ::'    Name.Label
+' Description list item ' Text
+'2'           Text
+'\n'          Text
+
+'\n'          Text
+
+'1.'          Keyword
+' ordered list item ' Text
+'1'           Text
+'\n'          Text
+
+'2.'          Keyword
+' ordered list item ' Text
+'2'           Text
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'1)'          Keyword
+' ordered list item ' Text
+'1'           Text
+'\n'          Text
+
+'2)'          Keyword
+' ordered list item ' Text
+'2'           Text
+'\n'          Text
+
+'3)'          Keyword
+' [@20]'      Generic.Emph
+' asdf'       Text
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'- '          Keyword
+'*bold*'      Generic.Strong
+'\n'          Text
+
+'- '          Keyword
+'/italics/'   Generic.Emph
+'\n'          Text
+
+'- '          Keyword
+'=verbatim='  Literal.String
+'\n'          Text
+
+'- '          Keyword
+'~code~'      Literal.String
+'\n'          Text
+
+'- '          Keyword
+'+strikethrough+' Generic.Deleted
+'\n'          Text
+
+'- '          Keyword
+'_underline_' Generic.EmphStrong
+'\n'          Text
+
+'\n'          Text
+
+'#+begin_comment\n' Operator.Word
+
+'this is a\ncomment\n' Comment.Multiline
+
+'#+end_comment' Operator.Word
+'\n'          Text
+
+'\n'          Text
+
+'- '          Keyword
+'09 ::'       Name.Label
+' asdf'       Text
+'\n'          Text
+
+'- '          Keyword
+'09 ::'       Name.Label
+' asdf'       Text
+'\n'          Text
+
+'** Checkbox lists                                            ' Generic.Subheading
+' :checkbox:list:' Generic.Emph
+'\n'          Text
+
+'- '          Keyword
+'[ ]'         Generic.Prompt
+' asdf'       Text
+'\n'          Text
+
+'- '          Keyword
+'[X]'         Generic.Prompt
+' def'        Text
+'\n'          Text
+
+'* Dates'     Generic.Heading
+'\n'          Text
+
+'** deadline' Generic.Subheading
+'\n'          Text
+
+'DEADLINE: '  Generic.Error
+'<2018-07-31 Tue>' Literal.Date
+'\n'          Text
+
+'something'   Text
+'\n'          Text
+
+'** scheduled' Generic.Subheading
+'\n'          Text
+
+'SCHEDULED: ' Generic.Error
+'<2018-07-31 Tue>' Literal.Date
+'\n'          Text
+
+'something'   Text
+'\n'          Text
+
+'* Blocks'    Generic.Heading
+'\n'          Text
+
+'#+BEGIN_QUOTE' Operator.Word
+'\n'          Text.Whitespace
+
+'quote\nblock\n' Text
+
+'#+END_QUOTE' Operator.Word
+'\n'          Text
+
+'\n'          Text
+
+'#+begin_example' Operator.Word
+'\n'          Text.Whitespace
+
+'example\nblock\n' Text
+
+'#+end_example' Operator.Word
+'\n'          Text
+
+'\n'          Text
+
+'#+begin_src emacs-lisp' Operator.Word
+'\n(message "hello")\n' Text
+
+'#+end_src'   Operator.Word
+'\n'          Text
+
+'\n'          Text
+
+'#+begin_details' Operator.Word
+'\n'          Text.Whitespace
+
+'#+begin_summary\nWhy is this in *green*?\n' Text
+
+'#+end_summary' Operator.Word
+'\n'          Text
+
+'You will learn that later below in ' Text
+'[['          Punctuation
+'#details-css' Name.Attribute
+']['          Punctuation
+'CSS'         Name.Tag
+']]'          Punctuation
+' section.'   Text
+'\n'          Text
+
+'#'           Text
+'+'           Text
+'end'         Text
+'_'           Text
+'details'     Text
+'\n'          Text
+
+'\n'          Text
+
+'#'           Text
+'+'           Text
+'begin'       Text
+'_'           Text
+'export html' Text
+'\n'          Text
+
+'<style>'     Literal.Date
+'\n'          Text
+
+'.my'         Text
+'-'           Text
+'table th,'   Text
+'\n'          Text
+
+'.my'         Text
+'-'           Text
+'table td '   Text
+'{'           Text
+'\n'          Text
+
+'    padding' Text
+':'           Text
+' '           Text
+'2'           Text
+'0'           Text
+'px;'         Text
+'\n'          Text
+
+'    text'    Text
+'-'           Text
+'align'       Text
+':'           Text
+' left;'      Text
+'\n'          Text
+
+'}'           Text
+'\n'          Text
+
+'</style>'    Literal.Date
+'\n'          Text
+
+'#'           Text
+'+'           Text
+'end'         Text
+'_'           Text
+'export'      Text
+'\n'          Text
+
+'\n'          Text
+
+'- '          Keyword
+'{{{latex}}}' Comment.Preproc
+'\n'          Text
+
+'- '          Keyword
+'{{{xetex}}}' Comment.Preproc
+'\n'          Text
+
+'#+caption:'  Name.Namespace
+' Declaring Constants' Text
+'\n'          Text
+
+'#+name:'     Name.Namespace
+' code__decl_constants' Text
+'\n'          Text
+
+'#+begin_src systemverilog' Operator.Word
+"\nconst bit [7:0] R_CHARACTER = 8'b000_11100; // The /K28.0/ character\nconst bit [7:0] A_CHARACTER = 8'b011_11100; // The /K28.3/ character\nconst bit [7:0] Q_CHARACTER = 8'b100_11100; // The /K28.4/ character\n" Text
+
+'#+end_src'   Operator.Word
+'\n'          Text
+
+'Check out code snippet ' Text
+'[['          Punctuation
+'code__decl_constants]].\n* Links                                                            :some_tag:\n:properties:\n:CUSTOM_ID: links\n:end:\n- [[file:post-yaml.org]]\n- [[file:post-yaml.org' Name.Attribute
+']['          Punctuation
+'Post exported with YAML front-matter' Name.Tag
+']]'          Punctuation
+'.'           Text
+'\n'          Text
+
+'- '          Keyword
+'<<target>'   Literal.Date
+'>'           Text
+'\n'          Text
+
+'* Tables'    Generic.Heading
+'\n'          Text
+
+':PROPERTIES:\n' Name.Decorator
+
+':CUSTOM_ID: tables\n' Comment.Special
+
+':END:'       Name.Decorator
+'\n'          Text
+
+'| a | b |'   Literal.String
+'\n'          Text
+
+'| c | d |'   Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'|---+---|'   Literal.String
+'\n'          Text
+
+'| a | b |'   Literal.String
+'\n'          Text
+
+'|---+---|'   Literal.String
+'\n'          Text
+
+'| c | d |'   Literal.String
+'\n'          Text
+
+'|---+---|'   Literal.String
+'\n'          Text
+
+'\n'          Text
+
+'Some text '  Text
+'[fn:2]'      Name.Tag
+'\n'          Text
+
+'\n'          Text
+
+'#+BEGIN: '   Operator.Word
+'aggregate '  Text
+':'           Text
+'table "original" ' Text
+':'           Text
+'cols "Color count()"' Text
+'\n'          Text
+
+'| Color | count() |' Literal.String
+'\n'          Text
+
+'|-------+---------|' Literal.String
+'\n'          Text
+
+'| Red   |       7 |' Literal.String
+'\n'          Text
+
+'| Blue  |       7 |' Literal.String
+'\n'          Text
+
+'#+END:'      Operator.Word
+'\n'          Text
+
+'* Footnotes' Generic.Heading
+'\n'          Text
+
+'\n'          Text
+
+'[fn:2]'      Name.Tag
+' footnote '  Text
+'2'           Text
+'\n'          Text
+
+'[fn:1]'      Name.Tag
+' For more detail, check out the Org manual ' Text
+'[['          Punctuation
+'http://orgmode.org/\nmanual/Footnotes.html' Name.Attribute
+']['          Punctuation
+'page for footnotes' Name.Tag
+']]'          Punctuation
+'.'           Text
+'\n'          Text
+
+'* Local Variables' Generic.Heading
+' :ARCHIVE:'  Generic.Emph
+'\n'          Text
+
+'# Local Variables:' Comment.Single
+'\n'          Text
+
+'# org-link-file-path-type: relative' Comment.Single
+'\n'          Text
+
+'# End:'      Comment.Single
+'\n'          Text

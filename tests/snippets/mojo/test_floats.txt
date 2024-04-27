@@ -1,0 +1,75 @@
+---input---
+123 -11 0 -0 0.5 .5 1. -0.5 +0.5 -.5 -1. 2e1 -2e1 2e -2e +2e e.3 -e.3 11.2e-3 -11.2e-3 5_6 5__6 _5 6_ 5.6_7 5.67_
+
+---tokens---
+'123'         Literal.Number.Integer
+' '           Text
+'-'           Operator
+'11'          Literal.Number.Integer
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'-'           Operator
+'0'           Literal.Number.Integer
+' '           Text
+'0.5'         Literal.Number.Float
+' '           Text
+'.5'          Literal.Number.Float
+' '           Text
+'1.'          Literal.Number.Float
+' '           Text
+'-'           Operator
+'0.5'         Literal.Number.Float
+' '           Text
+'+'           Operator
+'0.5'         Literal.Number.Float
+' '           Text
+'-'           Operator
+'.5'          Literal.Number.Float
+' '           Text
+'-'           Operator
+'1.'          Literal.Number.Float
+' '           Text
+'2e1'         Literal.Number.Float
+' '           Text
+'-'           Operator
+'2e1'         Literal.Number.Float
+' '           Text
+'2'           Literal.Number.Integer
+'e'           Name
+' '           Text
+'-'           Operator
+'2'           Literal.Number.Integer
+'e'           Name
+' '           Text
+'+'           Operator
+'2'           Literal.Number.Integer
+'e'           Name
+' '           Text
+'e'           Name
+'.3'          Literal.Number.Float
+' '           Text
+'-'           Operator
+'e'           Name
+'.3'          Literal.Number.Float
+' '           Text
+'11.2e-3'     Literal.Number.Float
+' '           Text
+'-'           Operator
+'11.2e-3'     Literal.Number.Float
+' '           Text
+'5_6'         Literal.Number.Integer
+' '           Text
+'5'           Literal.Number.Integer
+'__6'         Name
+' '           Text
+'_5'          Name
+' '           Text
+'6'           Literal.Number.Integer
+'_'           Name
+' '           Text
+'5.6_7'       Literal.Number.Float
+' '           Text
+'5.67'        Literal.Number.Float
+'_'           Name
+'\n'          Text.Whitespace

@@ -35,8 +35,7 @@ def checker(*suffixes, **kwds):
 name_mail_re = r'[\w ]+(<.*?>)?'
 copyright_re = re.compile(r'^    :copyright: Copyright 2006-2024 by '
                           r'the Pygments team, see AUTHORS\.$')
-copyright_2_re = re.compile(r'^                %s(, %s)*[,.]$' %
-                            (name_mail_re, name_mail_re))
+copyright_2_re = re.compile(rf'^                {name_mail_re}(, {name_mail_re})*[,.]$')
 is_const_re = re.compile(r'if.*?==\s+(None|False|True)\b')
 
 misspellings = ["developement", "adress", "verificate",  # ALLOW-MISSPELLING
@@ -177,7 +176,7 @@ def main(argv):
                 with open(fn, 'rb') as f:
                     lines = f.read().decode('utf-8').splitlines()
             except OSError as err:
-                print("%s: cannot open: %s" % (fn, err))
+                print(f"{fn}: cannot open: {err}")
                 num += 1
                 continue
 

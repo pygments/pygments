@@ -403,6 +403,7 @@ class SwiftLexer(RegexLexer):
              r'\.[0-9_]*|[eE][+\-]?[0-9_]+)', Number.Float),
             (r'[0-9][0-9_]*', Number.Integer),
             # String Literal
+            (r'"""', String, 'string-multi'),
             (r'"', String, 'string'),
 
             # Operators and Punctuation
@@ -477,8 +478,15 @@ class SwiftLexer(RegexLexer):
             include('root')
         ],
         'string': [
-            (r'\\\(', String.Interpol, 'string-intp'),
             (r'"', String, '#pop'),
+            include("string-common"),
+        ],
+        'string-multi': [
+            (r'"""', String, '#pop'),
+            include("string-common"),
+        ],
+        'string-common': [
+            (r'\\\(', String.Interpol, 'string-intp'),
             (r"""\\['"\\nrt]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
              r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}""", String.Escape),
             (r'[^\\"]+', String),

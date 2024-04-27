@@ -12,11 +12,17 @@ Version 2.18.0
   * Janet (#2557)
   * Typst (#2596)
   * Lean 4 (#2618, #2626)
+  * Mojo (#2691, #2515)
+  * org-mode (#2636)
   * Promela (#2620)
+  * Soong / ``Android.bp`` (#2659)
 
 - Updated lexers:
 
+  * Awk: recognize ternary operator (#2687)
   * Bash: add ``openrc`` alias (#2599)
+  * Coq: add keywords, lex more vernacular command arguments, produce
+    fewer tokens on heading comments (#2678)
   * lean: Fix name handling (#2614)
   * Logtalk: add ``uninstantiation`` keyword and recognize
     escape sequences (#2619)
