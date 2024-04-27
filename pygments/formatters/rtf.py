@@ -266,7 +266,7 @@ class RtfFormatter(Formatter):
         lines.append('}')
 
         # font and fontsize
-        lines.append('\\f0')
+        lines.append('\\f0\\sa0')
         if self.fontsize:
             lines.append('\\fs%d' % self.fontsize)
 

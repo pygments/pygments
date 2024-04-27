@@ -168,7 +168,7 @@ def test_linenos_python():
                 r'\red0\green255\blue0;' + '\n'
                 r'\red0\green0\blue255;' + '\n'
                 r'}' + '\n'
-                r'\f0' + '\n'
+                r'\f0\sa0' + '\n'
                 r'\dntblnsbdb' + '\n'
                 r'{\cf1 1  }{\cf3 s} = {\cf2 "}{\cf2 line1}{\cf2 \\n}{\cf2 line2}{\cf2 "}\par' + '\n'
                 r'}' + '\n')
