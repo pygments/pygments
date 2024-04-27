@@ -1,0 +1,629 @@
+'from'        Keyword.Namespace
+' '           Text.Whitespace
+'sys'         Name.Namespace
+'.'           Name.Namespace
+'info'        Name.Namespace
+' '           Text.Whitespace
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'('           Punctuation
+'\n    '      Text.Whitespace
+'os_is_linux' Name
+','           Punctuation
+'\n    '      Text.Whitespace
+'os_is_macos' Name
+','           Punctuation
+'\n    '      Text.Whitespace
+'has_sse4'    Name
+','           Punctuation
+'\n    '      Text.Whitespace
+'has_avx'     Name
+','           Punctuation
+'\n    '      Text.Whitespace
+'has_avx2'    Name
+','           Punctuation
+'\n    '      Text.Whitespace
+'num_physical_cores' Name
+','           Punctuation
+'\n    '      Text.Whitespace
+'num_logical_cores' Name
+','           Punctuation
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'from'        Keyword.Namespace
+' '           Text.Whitespace
+'sys'         Name.Namespace
+'.'           Name.Namespace
+'info'        Name.Namespace
+' '           Text.Whitespace
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'_current_cpu' Name
+','           Punctuation
+' '           Text.Whitespace
+'_current_target' Name
+','           Punctuation
+' '           Text.Whitespace
+'_triple_attr' Name
+'\n\n\n'      Text.Whitespace
+
+'def'         Keyword
+' '           Text.Whitespace
+'func'        Name.Function
+'()'          Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'None'        Keyword.Constant
+':'           Punctuation
+'\n    '      Text.Whitespace
+'variable'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'implicit variable' Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
+'print'       Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'def function' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'variable'    Name
+')'           Punctuation
+'\n\n\n'      Text.Whitespace
+
+'fn'          Keyword
+' '           Text.Whitespace
+'strict_func' Name.Function
+'():'         Punctuation
+'\n    '      Text.Whitespace
+'var'         Keyword
+' '           Text.Whitespace
+'variable'    Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'explicit variable' Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
+'print'       Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'fn function' Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'variable'    Name
+')'           Punctuation
+'\n\n\n'      Text.Whitespace
+
+'fn'          Keyword
+' '           Text.Whitespace
+'generic_func' Name.Function
+'['           Punctuation
+'a'           Name
+':'           Punctuation
+' '           Text.Whitespace
+'Int'         Name.Builtin
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'msg'         Name
+':'           Punctuation
+' '           Text.Whitespace
+'StringLiteral' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'woof'        Literal.String.Double
+'"'           Literal.String.Double
+']():'        Punctuation
+'\n    '      Text.Whitespace
+'"""'         Literal.String.Double
+'\n'          Literal.String.Double
+
+'    A generic function.' Literal.String.Double
+'\n'          Literal.String.Double
+
+'    '        Literal.String.Double
+'"""'         Literal.String.Double
+'\n    '      Text.Whitespace
+'print'       Name.Builtin
+'('           Punctuation
+'msg'         Name
+','           Punctuation
+' '           Text.Whitespace
+'a'           Name
+')'           Punctuation
+'\n\n\n'      Text.Whitespace
+
+'fn'          Keyword
+' '           Text.Whitespace
+'get_sys_info' Name.Function
+'()'          Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'String'      Name.Builtin
+':'           Punctuation
+'\n    '      Text.Whitespace
+'"""'         Literal.String.Double
+'\n'          Literal.String.Double
+
+'    Retrieves system information (based upon: https://github.com/modularml/mojo/blob/main/examples/deviceinfo.mojo).' Literal.String.Double
+'\n'          Literal.String.Double
+
+'    '        Literal.String.Double
+'"""'         Literal.String.Double
+'\n    '      Text.Whitespace
+'var'         Keyword
+' '           Text.Whitespace
+'os'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'os_is_linux' Name
+'():'         Punctuation
+'\n        '  Text.Whitespace
+'os'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'linux'       Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
+'elif'        Keyword
+' '           Text.Whitespace
+'os_is_macos' Name
+'():'         Punctuation
+'\n        '  Text.Whitespace
+'os'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'macOS'       Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
+'else'        Keyword
+':'           Punctuation
+'\n        '  Text.Whitespace
+'os'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'windows'     Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
+'var'         Keyword
+' '           Text.Whitespace
+'cpu'         Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'String'      Name.Builtin
+'('           Punctuation
+'_current_cpu' Name
+'())'         Punctuation
+'\n    '      Text.Whitespace
+'var'         Keyword
+' '           Text.Whitespace
+'arch'        Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'String'      Name.Builtin
+'('           Punctuation
+'_triple_attr' Name
+'())'         Punctuation
+'\n    '      Text.Whitespace
+'var'         Keyword
+' '           Text.Whitespace
+'cpu_features' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'String'      Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n    '      Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'has_sse4'    Name
+'():'         Punctuation
+'\n        '  Text.Whitespace
+'cpu_features' Name
+' '           Text.Whitespace
+'+'           Operator
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'sse4'        Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'has_avx'     Name
+'():'         Punctuation
+'\n        '  Text.Whitespace
+'cpu_features' Name
+' '           Text.Whitespace
+'+'           Operator
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+' avx'        Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'has_avx2'    Name
+'():'         Punctuation
+'\n        '  Text.Whitespace
+'cpu_features' Name
+' '           Text.Whitespace
+'+'           Operator
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+' avx2'       Literal.String.Double
+'"'           Literal.String.Double
+'\n\n    '    Text.Whitespace
+'var'         Keyword
+' '           Text.Whitespace
+'info'        Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'\n        '  Text.Whitespace
+'"""'         Literal.String.Double
+'System information:' Literal.String.Double
+'\n'          Literal.String.Double
+
+'    OS             : ' Literal.String.Double
+'"""'         Literal.String.Double
+'\n        '  Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'os'          Name
+'\n        '  Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'"""'         Literal.String.Double
+'\n'          Literal.String.Double
+
+'    CPU            : ' Literal.String.Double
+'"""'         Literal.String.Double
+'\n        '  Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'cpu'         Name
+'\n        '  Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'"""'         Literal.String.Double
+'\n'          Literal.String.Double
+
+'    Arch           : ' Literal.String.Double
+'"""'         Literal.String.Double
+'\n        '  Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'arch'        Name
+'\n        '  Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'"""'         Literal.String.Double
+'\n'          Literal.String.Double
+
+'    Physical Cores : ' Literal.String.Double
+'"""'         Literal.String.Double
+'\n        '  Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'num_physical_cores' Name
+'()'          Punctuation
+'\n        '  Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'"""'         Literal.String.Double
+'\n'          Literal.String.Double
+
+'    Logical Cores  : ' Literal.String.Double
+'"""'         Literal.String.Double
+'\n        '  Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'num_logical_cores' Name
+'()'          Punctuation
+'\n        '  Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'"""'         Literal.String.Double
+'\n'          Literal.String.Double
+
+'    CPU Features   : ' Literal.String.Double
+'"""'         Literal.String.Double
+'\n        '  Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'cpu_features' Name
+'\n    '      Text.Whitespace
+')'           Punctuation
+'\n\n    '    Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'info'        Name
+'\n\n\n'      Text.Whitespace
+
+'trait'       Keyword
+' '           Text.Whitespace
+'Greet'       Name.Struct
+':'           Punctuation
+'\n    '      Text.Whitespace
+'"""'         Literal.String.Double
+'\n'          Literal.String.Double
+
+'    A trait example.' Literal.String.Double
+'\n'          Literal.String.Double
+
+'    '        Literal.String.Double
+'"""'         Literal.String.Double
+'\n\n    '    Text.Whitespace
+'fn'          Keyword
+' '           Text.Whitespace
+'say_hello'   Name.Function
+'('           Punctuation
+'self'        Name.Builtin.Pseudo
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'None'        Keyword.Constant
+':'           Punctuation
+'\n        '  Text.Whitespace
+'"""'         Literal.String.Double
+'Says hello.' Literal.String.Double
+'"""'         Literal.String.Double
+'\n        '  Text.Whitespace
+'.'           Operator
+'.'           Operator
+'.'           Operator
+'\n\n\n'      Text.Whitespace
+
+'@value'      Name.Decorator
+'\n'          Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'Person'      Name.Struct
+'('           Punctuation
+'Greet'       Name
+'):'          Punctuation
+'\n    '      Text.Whitespace
+'"""'         Literal.String.Double
+'\n'          Literal.String.Double
+
+'    A person.' Literal.String.Double
+'\n'          Literal.String.Double
+
+'    '        Literal.String.Double
+'"""'         Literal.String.Double
+'\n\n    '    Text.Whitespace
+'var'         Keyword
+' '           Text.Whitespace
+'name'        Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'String'      Name.Builtin
+'\n\n    '    Text.Whitespace
+'fn'          Keyword
+' '           Text.Whitespace
+'__init__'    Name.Function.Magic
+'('           Punctuation
+'inout'       Name
+' '           Text.Whitespace
+'self'        Name.Builtin.Pseudo
+','           Punctuation
+' '           Text.Whitespace
+'name'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'String'      Name.Builtin
+'):'          Punctuation
+'\n        '  Text.Whitespace
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'name'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'name'        Name
+'\n\n    '    Text.Whitespace
+'fn'          Keyword
+' '           Text.Whitespace
+'__str__'     Name.Function.Magic
+'('           Punctuation
+'self'        Name.Builtin.Pseudo
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'String'      Name.Builtin
+':'           Punctuation
+'\n        '  Text.Whitespace
+'"""'         Literal.String.Double
+'\n'          Literal.String.Double
+
+'        Overridden __str__ method' Literal.String.Double
+'\n'          Literal.String.Double
+
+'        '    Literal.String.Double
+'"""'         Literal.String.Double
+'\n        '  Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Person named ' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'name'        Name
+'\n\n    '    Text.Whitespace
+'fn'          Keyword
+' '           Text.Whitespace
+'say_hello'   Name.Function
+'('           Punctuation
+'self'        Name.Builtin.Pseudo
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'None'        Keyword.Constant
+':'           Punctuation
+'\n        '  Text.Whitespace
+'print'       Name.Builtin
+'('           Punctuation
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'name'        Name
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'says hello!' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n\n\n'      Text.Whitespace
+
+'fn'          Keyword
+' '           Text.Whitespace
+'main'        Name.Function
+'():'         Punctuation
+'\n    '      Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+'in'          Operator.Word
+' '           Text.Whitespace
+'range'       Name.Builtin
+'('           Punctuation
+'3'           Literal.Number.Integer
+'):'          Punctuation
+'\n        '  Text.Whitespace
+'var'         Keyword
+' '           Text.Whitespace
+'pers'        Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Person'      Name
+'('           Punctuation
+'"'           Literal.String.Double
+'Per_'        Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'String'      Name.Builtin
+'('           Punctuation
+'i'           Name
+'))'          Punctuation
+'\n        '  Text.Whitespace
+'print'       Name.Builtin
+'('           Punctuation
+'pers'        Name
+')'           Punctuation
+'\n        '  Text.Whitespace
+'pers'        Name
+'.'           Operator
+'say_hello'   Name
+'()'          Punctuation
+'\n\n    '    Text.Whitespace
+'generic_func' Name
+'()'          Punctuation
+'  '          Text.Whitespace
+"# prints 'woof 3'" Comment.Single
+'\n    '      Text.Whitespace
+'generic_func' Name
+'['           Punctuation
+'5'           Literal.Number.Integer
+']()'         Punctuation
+'  '          Text.Whitespace
+"# prints 'woof 5'" Comment.Single
+'\n    '      Text.Whitespace
+'generic_func' Name
+'['           Punctuation
+'7'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'meow'        Literal.String.Double
+'"'           Literal.String.Double
+']()'         Punctuation
+'  '          Text.Whitespace
+"# prints 'meow 7'" Comment.Single
+'\n\n    '    Text.Whitespace
+'try'         Keyword
+':'           Punctuation
+'\n        '  Text.Whitespace
+'func'        Name
+'()'          Punctuation
+'\n        '  Text.Whitespace
+'strict_func' Name
+'()'          Punctuation
+'\n\n        ' Text.Whitespace
+'raise'       Keyword
+' '           Text.Whitespace
+'Error'       Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'fail'        Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n    '      Text.Whitespace
+'except'      Keyword
+':'           Punctuation
+'\n        '  Text.Whitespace
+'print'       Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'error was raised' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n\n    '    Text.Whitespace
+'print'       Name.Builtin
+'('           Punctuation
+'get_sys_info' Name
+'())'         Punctuation
+'\n'          Text.Whitespace
