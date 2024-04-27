@@ -35,7 +35,7 @@ def main():
                 elif key == 'styles':
                     pass
                 else:
-                    assert False
+                    raise AssertionError()
                 lines.append(f'    {obj_name!r}: {desc!r},')
         # Sort to make diffs minimal.
         lines.sort()

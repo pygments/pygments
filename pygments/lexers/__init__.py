@@ -70,7 +70,7 @@ def find_lexer_class(name):
     if name in _lexer_cache:
         return _lexer_cache[name]
     # lookup builtin lexers
-    for module_name, lname, aliases, _, _ in LEXERS.values():
+    for module_name, lname, _aliases, _, _ in LEXERS.values():
         if name == lname:
             _load_lexers(module_name)
             return _lexer_cache[name]
@@ -159,11 +159,11 @@ def load_lexer_from_file(filename, lexername="CustomLexer", **options):
         # And finally instantiate it with the options
         return lexer_class(**options)
     except OSError as err:
-        raise ClassNotFound(f'cannot read {filename}: {err}')
+        raise ClassNotFound(f'cannot read {filename}: {err}') from err
     except ClassNotFound:
         raise
     except Exception as err:
-        raise ClassNotFound('error when loading custom lexer: %s' % err)
+        raise ClassNotFound('error when loading custom lexer: %s' % err) from err
 
 
 def find_lexer_class_for_filename(_fn, code=None):

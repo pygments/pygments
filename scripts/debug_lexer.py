@@ -74,7 +74,7 @@ class DebuggingRegexLexer(ExtendedRegexLexer):
                         elif new_state == '#push':
                             ctx.stack.append(ctx.stack[-1])
                         else:
-                            assert False, 'wrong state def: %r' % new_state
+                            raise AssertionError('wrong state def: %r' % new_state)
                         statetokens = tokendefs[ctx.stack[-1]]
                     break
             else:
@@ -123,7 +123,9 @@ def decode_atheris(bstr):
     return ''.join(map(valid_codepoint), chars)
 
 
-def main(fn, lexer=None, options={}):
+def main(fn, lexer=None, options=None):
+    if options is None:
+        options = {}
     if fn == '-':
         text = sys.stdin.read()
     else:
@@ -154,7 +156,7 @@ def main(fn, lexer=None, options={}):
     else:
         lxcls = find_lexer_class_for_filename(os.path.basename(fn))
         if lxcls is None:
-            name, rest = fn.split('_', 1)
+            name, _rest = fn.split('_', 1)
             lxcls = find_lexer_class(name)
             if lxcls is None:
                 raise AssertionError('no lexer found for file %r' % fn)

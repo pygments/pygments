@@ -55,7 +55,7 @@ def getkw(input, output):
     output_info['option'].append("('inoremap','inoremap')")
     output_info['option'].append("('vnoremap','vnoremap')")
 
-    for key, keywordlist in output_info.items():
+    for keywordlist in output_info.values():
         keywordlist.sort()
         body = format_lines('var', keywordlist, raw=True, indent_level=1)
         print(METHOD % locals(), file=out)

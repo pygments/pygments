@@ -17,7 +17,7 @@ import argparse
 def main(args):
     uses = {}
 
-    for name, aliases, filenames, mimetypes in get_all_lexers(plugins=False):
+    for name, _aliases, filenames, _mimetypes in get_all_lexers(plugins=False):
         cls = find_lexer_class(name)
         if not cls.aliases and not args.skip_no_aliases:
             print(cls, "has no aliases")

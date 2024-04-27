@@ -43,14 +43,14 @@ def get_style_by_name(name):
 
     try:
         mod = __import__(mod, None, None, [cls])
-    except ImportError:
+    except ImportError as e:
         raise ClassNotFound("Could not find style module %r" % mod +
                             (builtin and ", though it should be builtin")
-                            + ".")
+                            + ".") from e
     try:
         return getattr(mod, cls)
-    except AttributeError:
-        raise ClassNotFound("Could not find style class %r in style module." % cls)
+    except AttributeError as e:
+        raise ClassNotFound("Could not find style class %r in style module." % cls) from e
 
 
 def get_all_styles():

@@ -755,9 +755,9 @@ class LassoLexer(RegexLexer):
         self._members = set()
         if self.builtinshighlighting:
             from pygments.lexers._lasso_builtins import BUILTINS, MEMBERS
-            for key, value in BUILTINS.items():
+            for value in BUILTINS.values():
                 self._builtins.update(value)
-            for key, value in MEMBERS.items():
+            for value in MEMBERS.values():
                 self._members.update(value)
         RegexLexer.__init__(self, **options)
 

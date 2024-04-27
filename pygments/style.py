@@ -76,7 +76,7 @@ class StyleMeta(type):
                 return ''
             elif text.startswith('var') or text.startswith('calc'):
                 return text
-            assert False, "wrong color format %r" % text
+            raise AssertionError('wrong color format %r' % text)
 
         _styles = obj._styles = {}
 
