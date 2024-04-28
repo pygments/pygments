@@ -22,7 +22,7 @@ class TactLexer(RegexLexer):
     aliases = ['tact']
     filenames = ['*.tact']
     url = "https://tact-lang.org"
-    version_added = '2.17'
+    version_added = '2.18'
 
     tokens = {
         'root': [

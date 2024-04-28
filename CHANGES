@@ -10,33 +10,42 @@ Version 2.18.0
 - New lexers:
 
   * Janet (#2557)
-  * Typst (#2596)
   * Lean 4 (#2618, #2626)
+  * Luau (#2605)
   * Mojo (#2691, #2515)
-  * org-mode (#2636)
+  * org-mode (#2628, #2636)
   * Promela (#2620)
   * Soong / ``Android.bp`` (#2659)
+  * Tact (#2571)
+  * Typst (#2596)
 
 - Updated lexers:
 
   * Awk: recognize ternary operator (#2687)
-  * Bash: add ``openrc`` alias (#2599)
+  * Bash: add ``openrc`` alias (#2599, #2371)
   * Coq: add keywords, lex more vernacular command arguments, produce
     fewer tokens on heading comments (#2678)
+  * DNS zone files: Fix comment parsing (#2595)
+  * Inform6: Update to Inform 6.42 (#2644)
   * lean: Fix name handling (#2614)
   * Logtalk: add ``uninstantiation`` keyword and recognize
     escape sequences (#2619)
+  * Macaulay2: Update to 1.23 (#2655)
   * Python: fix highlighting of soft keywords before ``None``/``True``/``False``
   * reStructuredText: use ``Token.Comment`` for comments instead of
     ``Comment.Preproc`` (#2598)
   * Rust: highlight ``:``, ``::`` and ``->`` as ``Punctuation``
     and whitespace as ``Whitespace``, instead of ``Text``
     in both cases (#2631)
+  * Spice: Add keywords (#2621)
   * SQL Explain: allow negative numbers (#2610)
+  * Swift: Support multiline strings (#2681)
   * ThingsDB: add constants and new functions; support template
     strings (#2624)
   * UL4: support nested ``<?doc?>`` and ``<?note?>`` tags (#2597)
   * VHDL: support multi-line comments of VHDL-2008 (#2622)
+  * Wikitext: Remove ``kk-*`` in ``variant_langs`` (#2647)
+  * Xtend: Add ``val`` and ``var`` (#2602)
 
 - New styles:
 
@@ -49,15 +58,21 @@ Version 2.18.0
   is kept for backwards compatibility but now has no effect. (#2601)
 - Require the ``url`` attribute for lexers inside Pygments, add
   it to many lexers (#2588)
-- Replace Pyflakes linter with Ruff
+- Replace Pyflakes linter with Ruff (#2592)
 - Add macOS CI (#2594)
 - Built-in lexers now declare the version of Pygments in which they were
   added in a required ``version_added`` lexer attribute, instead of a
-  ``.. versionadded::`` directive in the docstring (#2589)
+  ``.. versionadded::`` directive in the docstring (#2589, #2634)
 - The ``url`` attribute is now required for built-in lexers and
   has been added to all existing lexers (#2588)
 - The RTF formatter supports line number and line highlighting now (#1217, #2654)
 - Add ``\sa0`` keyword in the RTF formatter (#1111, #2607)
+- Register ``pycon`` as an alias for the Python console lexer (#2697)
+- Add MIME-Type for ``DesktopLexer`` (#2613)
+- Fix native style to meet WCAG AA guidelines (#2600)
+- Fix typo in documentation (#2672)
+- Use format strings consistently (#2661)
+- Add ``__class_getitem__`` to ``Formatter`` to improve typing support (#2665)
 
 Version 2.17.2
 --------------
