@@ -1208,7 +1208,7 @@ class XonshLexer(PythonLexer):
     aliases = ['xonsh', 'xonshrc', 'xsh']
     filenames = ['*.xsh', '*xonshrc']
     mimetypes = ['text/x-xonsh', 'application/x-xonsh']
-    version_added = '0.16.0'
+    version_added = '2.19'
 
     COMMAND_TOKEN_RE = r'[^=\s\[\]{}()$"\'`<&|;!]+(?=\s|$|\)|\]|\}|!)'
 
