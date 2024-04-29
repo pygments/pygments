@@ -250,11 +250,11 @@ sections, comments and ``key = value`` pairs::
 
         tokens = {
             'root': [
-                (r'\s+', Text),
+                (r'\s+', Whitespace),
                 (r';.*', Comment),
                 (r'\[.*?\]$', Keyword),
                 (r'(.*?)(\s*)(=)(\s*)(.*)',
-                 bygroups(Name.Attribute, Text, Operator, Text, String))
+                 bygroups(Name.Attribute, Whitespace, Operator, Whitespace, String))
             ]
         }
 
@@ -467,7 +467,7 @@ defined in the parent and child class are merged.  For example::
                   ('[a-z]+', Name),
                   (r'/\*', Comment, 'comment'),
                   ('"', String, 'string'),
-                  (r'\s+', Text),
+                  (r'\s+', Whitespace),
               ],
               'string': [
                   ('[^"]+', String),
@@ -824,7 +824,7 @@ contribute a new lexer, but you might find it useful in any case.
      r'"(\\?.)*?"'
 
   If the ending quote is missing, the regular expression engine will
-  find that it cannot match at the end, and try to backtrack with less
+  find that it cannot match at the end, and try to backtrack with fewer
   matches in the ``*?``.  When it finds a backslash, as it has already
   tried the possibility ``\\.``, it tries ``.`` (recognizing it as a
   simple character without meaning), which leads to the same
