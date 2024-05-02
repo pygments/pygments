@@ -134,6 +134,13 @@ class CFamilyLexer(RegexLexer):
         'root': [
             include('whitespace'),
             include('keywords'),
+            # constructor and destructor
+            (r'((?:' + _ident + r'(?:[&*\s])+)?)(~?' + _ident + r')'  #return type, destructor symbol and class name
+             r'(\s*\([^;]*?\))'            # signature
+             r'([^;{]*)(\{)',
+             bygroups(using(this), Name.Function, using(this), using(this),
+                      Punctuation),
+             'function'),
             # functions
             (r'(' + _namespaced_ident + r'(?:[&*\s])+)'  # return arguments
              r'(' + _possible_comments + r')'
