@@ -6,7 +6,7 @@ Release checklist
 * ``tox``
 * ``tox -e check``
 * LATER when configured properly: ``tox -e pylint``
-* Update version in ``pygments/__init__.py``
+* Update version in ``pygments/__init__.py`` (we use ``X.Y.Z``, so a new major release would be ``3.0.0``)
 * Check pyproject.toml metadata: long description, trove classifiers
 * Update release date/code name in ``CHANGES``
 * ``git commit``
