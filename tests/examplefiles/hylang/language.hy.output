@@ -12,7 +12,7 @@
 '_numeric-check' Name.Variable
 ' '           Text.Whitespace
 '['           Punctuation
-'x'           Name.Variable
+'↻'           Name.Variable
 ']'           Punctuation
 '\n  '        Text.Whitespace
 '('           Punctuation
@@ -23,7 +23,7 @@
 ' '           Text.Whitespace
 '('           Punctuation
 'numeric? '   Name.Builtin
-'x'           Name.Variable
+'↻'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 '\n    '      Text.Whitespace
@@ -36,9 +36,9 @@
 '('           Punctuation
 '.format'     Name.Function
 ' '           Text.Whitespace
-'"{0!r} is not a number"' Literal.String
+'"{0!r} (↻) is not a number"' Literal.String
 ' '           Text.Whitespace
-'x'           Name.Variable
+'↻'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
