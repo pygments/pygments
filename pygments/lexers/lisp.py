@@ -2838,7 +2838,7 @@ class JanetLexer(RegexLexer):
     aliases = ['janet']
     filenames = ['*.janet', '*.jdn']
     mimetypes = ['text/x-janet', 'application/x-janet']
-    version_added = '2.17'
+    version_added = '2.18'
 
     # XXX: gets too slow
     #flags = re.MULTILINE | re.VERBOSE
