@@ -166,6 +166,7 @@ class CFamilyLexer(RegexLexer):
                       Name.Function, using(this, state='whitespace'),
                       using(this), using(this, state='whitespace'),
                       using(this), Punctuation)),
+            include('function'),
             include('types'),
             default('statement'),
         ],
