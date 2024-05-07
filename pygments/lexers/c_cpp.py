@@ -134,13 +134,6 @@ class CFamilyLexer(RegexLexer):
         'root': [
             include('whitespace'),
             include('keywords'),
-            # constructor and destructor
-            (r'((?:' + _ident + r'(?:[&*\s])+)?)(~?' + _ident + r')'  #return type, destructor symbol and class name
-             r'(\s*\([^;]*?\))'            # signature
-             r'([^;{]*)(\{)',
-             bygroups(using(this), Name.Function, using(this), using(this),
-                      Punctuation),
-             'function'),
             # functions
             (r'(' + _namespaced_ident + r'(?:[&*\s])+)'  # return arguments
              r'(' + _possible_comments + r')'
@@ -369,6 +362,13 @@ class CppLexer(CFamilyLexer):
             inherit,
         ],
         'root': [
+             # constructor and destructor
+            (r'((?:' + CFamilyLexer._ident + r'(?:[&*\s])+)?)(~?' + CFamilyLexer._ident + r')'  #return type, destructor symbol and class name
+             r'(\s*\([^;]*?\))'            # signature
+             r'([^;{]*)(\{)',
+             bygroups(using(this), Name.Function, using(this), using(this),
+                      Punctuation),
+             'function'),
             inherit,
             # C++ Microsoft-isms
             (words(('virtual_inheritance', 'uuidof', 'super', 'single_inheritance',
