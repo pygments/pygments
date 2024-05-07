@@ -3,9 +3,13 @@ Pygments changelog
 
 Pull request numbers before 2.4.2 are not linked as they refer to the now defunct Bitbucket project.
 
-Version 2.18.0
+Version 2.19.0
 --------------
 (unreleased)
+
+Version 2.18.0
+--------------
+(released May 4th, 2024)
 
 - New lexers:
 
@@ -26,6 +30,7 @@ Version 2.18.0
   * Coq: add keywords, lex more vernacular command arguments, produce
     fewer tokens on heading comments (#2678)
   * DNS zone files: Fix comment parsing (#2595)
+  * Hy: Support unicode literals (#1126)
   * Inform6: Update to Inform 6.42 (#2644)
   * lean: Fix name handling (#2614)
   * Logtalk: add ``uninstantiation`` keyword and recognize

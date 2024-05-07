@@ -26,7 +26,7 @@
 """
 from io import StringIO, BytesIO
 
-__version__ = '2.17.2'
+__version__ = '2.18.0'
 __docformat__ = 'restructuredtext'
 
 __all__ = ['lex', 'format', 'highlight']

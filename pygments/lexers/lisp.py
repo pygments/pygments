@@ -486,7 +486,7 @@ class HyLexer(RegexLexer):
     """
     name = 'Hy'
     url = 'http://hylang.org/'
-    aliases = ['hylang']
+    aliases = ['hylang', 'hy']
     filenames = ['*.hy']
     mimetypes = ['text/x-hy', 'application/x-hy']
     version_added = '2.0'
@@ -519,7 +519,7 @@ class HyLexer(RegexLexer):
     # valid names for identifiers
     # well, names can only not consist fully of numbers
     # but this should be good enough for now
-    valid_name = r'(?!#)[\w!$%*+<=>?/.#:-]+'
+    valid_name = r"[^ \t\n\r\f\v()[\]{};\"'`~]+"
 
     def _multi_escape(entries):
         return words(entries, suffix=' ')
@@ -531,8 +531,7 @@ class HyLexer(RegexLexer):
             (r';.*$', Comment.Single),
 
             # whitespaces - usually not relevant
-            (r',+', Text),
-            (r'\s+', Whitespace),
+            (r'[ \t\n\r\f\v]+', Whitespace),
 
             # numbers
             (r'-?\d+\.\d+', Number.Float),
@@ -2839,7 +2838,7 @@ class JanetLexer(RegexLexer):
     aliases = ['janet']
     filenames = ['*.janet', '*.jdn']
     mimetypes = ['text/x-janet', 'application/x-janet']
-    version_added = '2.17'
+    version_added = '2.18'
 
     # XXX: gets too slow
     #flags = re.MULTILINE | re.VERBOSE
