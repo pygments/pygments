@@ -77,6 +77,8 @@ class TclLexer(RegexLexer):
             (r'\(', Keyword, 'paren'),
             (r'\[', Keyword, 'bracket'),
             (r'\{', Keyword, 'brace'),
+            (r'\\', Text), 
+            (r'\$', Text),
             (r'"', String.Double, 'string'),
             (r'(eq|ne|in|ni)\b', Operator.Word),
             (r'!=|==|<<|>>|<=|>=|&&|\|\||\*\*|[-+~!*/%<>&^|?:]', Operator),
