@@ -1,0 +1,39 @@
+---input---
+lowersub(a,b) q $s(a="":b,b']"":a,a]]b:b,1:a)
+
+---tokens---
+'lowersub'    Name.Function
+'('           Punctuation
+'a'           Name.Variable
+','           Punctuation
+'b'           Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'q'           Keyword
+' '           Text.Whitespace
+'$s'          Name.Function
+'('           Punctuation
+'a'           Name.Variable
+'='           Operator
+'""'          Literal.String
+':'           Punctuation
+'b'           Name.Variable
+','           Punctuation
+'b'           Name.Variable
+"'"           Operator
+']'           Operator
+'""'          Literal.String
+':'           Punctuation
+'a'           Name.Variable
+','           Punctuation
+'a'           Name.Variable
+']]'          Operator
+'b'           Name.Variable
+':'           Punctuation
+'b'           Name.Variable
+','           Punctuation
+'1'           Literal.Number
+':'           Punctuation
+'a'           Name.Variable
+')'           Punctuation
+'\n'          Text

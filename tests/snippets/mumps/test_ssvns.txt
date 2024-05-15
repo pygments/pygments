@@ -1,0 +1,126 @@
+---input---
+ w ^$Character(expr),^$C(expr,"PATCODE",patcode)
+ w ^$Device(dev),^$D(dev,"CHARACTER")
+ w ^$Global(gvn),^$G(gvn,"CHARACTER")
+ w ^$Job(pid),^$J(pid,"CHARACTER")
+ w ^$Lock(nref)
+ w ^$ROUTINE(rouexpr),^$R(rouexpr,"CHARACTER")
+ w ^$System(systemexpr),^$S(systemexpr,"CHARACTER")
+ w ^$ZCheese(cheddar)
+
+---tokens---
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'^$Character' Name.Variable.Magic
+'('           Punctuation
+'expr'        Name.Variable
+')'           Punctuation
+','           Punctuation
+'^$C'         Name.Variable.Magic
+'('           Punctuation
+'expr'        Name.Variable
+','           Punctuation
+'"PATCODE"'   Literal.String
+','           Punctuation
+'patcode'     Name.Variable
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'^$Device'    Name.Variable.Magic
+'('           Punctuation
+'dev'         Name.Variable
+')'           Punctuation
+','           Punctuation
+'^$D'         Name.Variable.Magic
+'('           Punctuation
+'dev'         Name.Variable
+','           Punctuation
+'"CHARACTER"' Literal.String
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'^$Global'    Name.Variable.Magic
+'('           Punctuation
+'gvn'         Name.Variable
+')'           Punctuation
+','           Punctuation
+'^$G'         Name.Variable.Magic
+'('           Punctuation
+'gvn'         Name.Variable
+','           Punctuation
+'"CHARACTER"' Literal.String
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'^$Job'       Name.Variable.Magic
+'('           Punctuation
+'pid'         Name.Variable
+')'           Punctuation
+','           Punctuation
+'^$J'         Name.Variable.Magic
+'('           Punctuation
+'pid'         Name.Variable
+','           Punctuation
+'"CHARACTER"' Literal.String
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'^$Lock'      Name.Variable.Magic
+'('           Punctuation
+'nref'        Name.Variable
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'^$ROUTINE'   Name.Variable.Magic
+'('           Punctuation
+'rouexpr'     Name.Variable
+')'           Punctuation
+','           Punctuation
+'^$R'         Name.Variable.Magic
+'('           Punctuation
+'rouexpr'     Name.Variable
+','           Punctuation
+'"CHARACTER"' Literal.String
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'^$System'    Name.Variable.Magic
+'('           Punctuation
+'systemexpr'  Name.Variable
+')'           Punctuation
+','           Punctuation
+'^$S'         Name.Variable.Magic
+'('           Punctuation
+'systemexpr'  Name.Variable
+','           Punctuation
+'"CHARACTER"' Literal.String
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'^$ZCheese'   Name.Variable.Magic
+'('           Punctuation
+'cheddar'     Name.Variable
+')'           Punctuation
+'\n'          Text

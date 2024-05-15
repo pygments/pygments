@@ -1,0 +1,595 @@
+---input---
+ w !,"A is "_$ascii("A")_", a is "_$a("play",3)
+ w !,"Newline could be "_$char(10)_" or "_$c(13,10)
+ w !,"The variable array is "_$s($data(array)=0:"undefined",$d(array)=1:"a scalar",$DATA(array)=10:"an array",1:"an array or a scalar")
+ w !,"The first letter is "_$Extract("ABCD")_", the second is "_$e("ABCD",2)_", so the first two are "_$EXTRACT("ABC",1,2)
+ s pos=$FIND(string,sub) w !,"The substring "_$s(pos=0:"is not present",$f(string,sub,pos)=0:"occurs once",1:"occurs more than once")
+ w !,"Format one: "_$FNumber(x,"-"),!,"Format two: "_$fn(x,"P",4)
+ w !,"Current value: "_$get(@varName),!,"Value with default: "_$g(@varName,1)
+ w !,$justify("Score",10),?15,$j(x*100,6,2)_"%" 
+ w !,"Character count: "_$LENGTH(str),!,"Word count: "_$l(str," ")
+ w !,"Node "_$NAME(@glo@(sub1,sub2))_" is a descendent of global "_$na(@glo,1)
+ for  set:leaf="" root=$ORDER(array(root)) q:root=""  s leaf=$o(array(root,leaf),-1)
+ s $piece(string,"|",3,4)=$p(str1,"|")_"|"_$p(str2,"|",7)
+ i $qlength(gloName)>$ql(otherGlo) w !,gloName_" is deeper than "_otherGlo
+ w !,"Environment: "_$QSUBSCRIPT(gloName,-1),!,"Variable: "_$qs(gloName,0)
+ f  s ptr=$query(ptr) q:ptr=""  w !,"At "_ptr_", next is "_$q(ptr)
+ w !,"2D6: "_(2+$random(6)+$r(6))
+ s lastFour=$reverse($e($re(str),1,4))
+ w !,"Code: "_$STACK($st(-1),"MCODE")
+ w !,"Third line of ROUTINE: "_$TEXT(+3^ROUTINE),!,"Your line: "_$t(@tagNRou)
+ w !,$TRANSLATE("Hellop","p")_$tr("sworld!","s"," ")
+
+---tokens---
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"A is "'     Literal.String
+'_'           Operator
+'$ascii'      Name.Function
+'('           Punctuation
+'"A"'         Literal.String
+')'           Punctuation
+'_'           Operator
+'", a is "'   Literal.String
+'_'           Operator
+'$a'          Name.Function
+'('           Punctuation
+'"play"'      Literal.String
+','           Punctuation
+'3'           Literal.Number
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Newline could be "' Literal.String
+'_'           Operator
+'$char'       Name.Function
+'('           Punctuation
+'10'          Literal.Number
+')'           Punctuation
+'_'           Operator
+'" or "'      Literal.String
+'_'           Operator
+'$c'          Name.Function
+'('           Punctuation
+'13'          Literal.Number
+','           Punctuation
+'10'          Literal.Number
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"The variable array is "' Literal.String
+'_'           Operator
+'$s'          Name.Function
+'('           Punctuation
+'$data'       Name.Function
+'('           Punctuation
+'array'       Name.Variable
+')'           Punctuation
+'='           Operator
+'0'           Literal.Number
+':'           Punctuation
+'"undefined"' Literal.String
+','           Punctuation
+'$d'          Name.Function
+'('           Punctuation
+'array'       Name.Variable
+')'           Punctuation
+'='           Operator
+'1'           Literal.Number
+':'           Punctuation
+'"a scalar"'  Literal.String
+','           Punctuation
+'$DATA'       Name.Function
+'('           Punctuation
+'array'       Name.Variable
+')'           Punctuation
+'='           Operator
+'10'          Literal.Number
+':'           Punctuation
+'"an array"'  Literal.String
+','           Punctuation
+'1'           Literal.Number
+':'           Punctuation
+'"an array or a scalar"' Literal.String
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"The first letter is "' Literal.String
+'_'           Operator
+'$Extract'    Name.Function
+'('           Punctuation
+'"ABCD"'      Literal.String
+')'           Punctuation
+'_'           Operator
+'", the second is "' Literal.String
+'_'           Operator
+'$e'          Name.Function
+'('           Punctuation
+'"ABCD"'      Literal.String
+','           Punctuation
+'2'           Literal.Number
+')'           Punctuation
+'_'           Operator
+'", so the first two are "' Literal.String
+'_'           Operator
+'$EXTRACT'    Name.Function
+'('           Punctuation
+'"ABC"'       Literal.String
+','           Punctuation
+'1'           Literal.Number
+','           Punctuation
+'2'           Literal.Number
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'s'           Keyword
+' '           Text.Whitespace
+'pos'         Name.Variable
+'='           Operator
+'$FIND'       Name.Function
+'('           Punctuation
+'string'      Name.Variable
+','           Punctuation
+'sub'         Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"The substring "' Literal.String
+'_'           Operator
+'$s'          Name.Function
+'('           Punctuation
+'pos'         Name.Variable
+'='           Operator
+'0'           Literal.Number
+':'           Punctuation
+'"is not present"' Literal.String
+','           Punctuation
+'$f'          Name.Function
+'('           Punctuation
+'string'      Name.Variable
+','           Punctuation
+'sub'         Name.Variable
+','           Punctuation
+'pos'         Name.Variable
+')'           Punctuation
+'='           Operator
+'0'           Literal.Number
+':'           Punctuation
+'"occurs once"' Literal.String
+','           Punctuation
+'1'           Literal.Number
+':'           Punctuation
+'"occurs more than once"' Literal.String
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Format one: "' Literal.String
+'_'           Operator
+'$FNumber'    Name.Function
+'('           Punctuation
+'x'           Name.Variable
+','           Punctuation
+'"-"'         Literal.String
+')'           Punctuation
+','           Punctuation
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Format two: "' Literal.String
+'_'           Operator
+'$fn'         Name.Function
+'('           Punctuation
+'x'           Name.Variable
+','           Punctuation
+'"P"'         Literal.String
+','           Punctuation
+'4'           Literal.Number
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Current value: "' Literal.String
+'_'           Operator
+'$get'        Name.Function
+'('           Punctuation
+'@'           Operator
+'varName'     Name.Variable
+')'           Punctuation
+','           Punctuation
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Value with default: "' Literal.String
+'_'           Operator
+'$g'          Name.Function
+'('           Punctuation
+'@'           Operator
+'varName'     Name.Variable
+','           Punctuation
+'1'           Literal.Number
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'$justify'    Name.Function
+'('           Punctuation
+'"Score"'     Literal.String
+','           Punctuation
+'10'          Literal.Number
+')'           Punctuation
+','           Punctuation
+'?'           Keyword.Pseudo
+'15'          Literal.Number
+','           Punctuation
+'$j'          Name.Function
+'('           Punctuation
+'x'           Name.Variable
+'*'           Operator
+'100'         Literal.Number
+','           Punctuation
+'6'           Literal.Number
+','           Punctuation
+'2'           Literal.Number
+')'           Punctuation
+'_'           Operator
+'"%"'         Literal.String
+' '           Text.Whitespace
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Character count: "' Literal.String
+'_'           Operator
+'$LENGTH'     Name.Function
+'('           Punctuation
+'str'         Name.Variable
+')'           Punctuation
+','           Punctuation
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Word count: "' Literal.String
+'_'           Operator
+'$l'          Name.Function
+'('           Punctuation
+'str'         Name.Variable
+','           Punctuation
+'" "'         Literal.String
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Node "'     Literal.String
+'_'           Operator
+'$NAME'       Name.Function
+'('           Punctuation
+'@'           Operator
+'glo'         Name.Variable
+'@'           Operator
+'('           Punctuation
+'sub1'        Name.Variable
+','           Punctuation
+'sub2'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+'_'           Operator
+'" is a descendent of global "' Literal.String
+'_'           Operator
+'$na'         Name.Function
+'('           Punctuation
+'@'           Operator
+'glo'         Name.Variable
+','           Punctuation
+'1'           Literal.Number
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'for'         Keyword
+'  '          Text.Whitespace
+'set'         Keyword
+':'           Punctuation
+'leaf'        Name.Variable
+'='           Operator
+'""'          Literal.String
+' '           Text.Whitespace
+'root'        Name.Variable
+'='           Operator
+'$ORDER'      Name.Function
+'('           Punctuation
+'array'       Name.Variable
+'('           Punctuation
+'root'        Name.Variable
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'q'           Keyword
+':'           Punctuation
+'root'        Name.Variable
+'='           Operator
+'""'          Literal.String
+'  '          Text.Whitespace
+'s'           Keyword
+' '           Text.Whitespace
+'leaf'        Name.Variable
+'='           Operator
+'$o'          Name.Function
+'('           Punctuation
+'array'       Name.Variable
+'('           Punctuation
+'root'        Name.Variable
+','           Punctuation
+'leaf'        Name.Variable
+')'           Punctuation
+','           Punctuation
+'-'           Operator
+'1'           Literal.Number
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'s'           Keyword
+' '           Text.Whitespace
+'$piece'      Name.Function.Magic
+'('           Punctuation
+'string'      Name.Variable
+','           Punctuation
+'"|"'         Literal.String
+','           Punctuation
+'3'           Literal.Number
+','           Punctuation
+'4'           Literal.Number
+')'           Punctuation
+'='           Operator
+'$p'          Name.Function
+'('           Punctuation
+'str1'        Name.Variable
+','           Punctuation
+'"|"'         Literal.String
+')'           Punctuation
+'_'           Operator
+'"|"'         Literal.String
+'_'           Operator
+'$p'          Name.Function
+'('           Punctuation
+'str2'        Name.Variable
+','           Punctuation
+'"|"'         Literal.String
+','           Punctuation
+'7'           Literal.Number
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'i'           Keyword
+' '           Text.Whitespace
+'$qlength'    Name.Function
+'('           Punctuation
+'gloName'     Name.Variable
+')'           Punctuation
+'>'           Operator
+'$ql'         Name.Function
+'('           Punctuation
+'otherGlo'    Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'gloName'     Name.Variable
+'_'           Operator
+'" is deeper than "' Literal.String
+'_'           Operator
+'otherGlo'    Name.Variable
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Environment: "' Literal.String
+'_'           Operator
+'$QSUBSCRIPT' Name.Function
+'('           Punctuation
+'gloName'     Name.Variable
+','           Punctuation
+'-'           Operator
+'1'           Literal.Number
+')'           Punctuation
+','           Punctuation
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Variable: "' Literal.String
+'_'           Operator
+'$qs'         Name.Function
+'('           Punctuation
+'gloName'     Name.Variable
+','           Punctuation
+'0'           Literal.Number
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'f'           Keyword
+'  '          Text.Whitespace
+'s'           Keyword
+' '           Text.Whitespace
+'ptr'         Name.Variable
+'='           Operator
+'$query'      Name.Function
+'('           Punctuation
+'ptr'         Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'q'           Keyword
+':'           Punctuation
+'ptr'         Name.Variable
+'='           Operator
+'""'          Literal.String
+'  '          Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"At "'       Literal.String
+'_'           Operator
+'ptr'         Name.Variable
+'_'           Operator
+'", next is "' Literal.String
+'_'           Operator
+'$q'          Name.Function
+'('           Punctuation
+'ptr'         Name.Variable
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"2D6: "'     Literal.String
+'_'           Operator
+'('           Punctuation
+'2'           Literal.Number
+'+'           Operator
+'$random'     Name.Function
+'('           Punctuation
+'6'           Literal.Number
+')'           Punctuation
+'+'           Operator
+'$r'          Name.Function
+'('           Punctuation
+'6'           Literal.Number
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'s'           Keyword
+' '           Text.Whitespace
+'lastFour'    Name.Variable
+'='           Operator
+'$reverse'    Name.Function
+'('           Punctuation
+'$e'          Name.Function
+'('           Punctuation
+'$re'         Name.Function
+'('           Punctuation
+'str'         Name.Variable
+')'           Punctuation
+','           Punctuation
+'1'           Literal.Number
+','           Punctuation
+'4'           Literal.Number
+')'           Punctuation
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Code: "'    Literal.String
+'_'           Operator
+'$STACK'      Name.Function
+'('           Punctuation
+'$st'         Name.Function
+'('           Punctuation
+'-'           Operator
+'1'           Literal.Number
+')'           Punctuation
+','           Punctuation
+'"MCODE"'     Literal.String
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Third line of ROUTINE: "' Literal.String
+'_'           Operator
+'$TEXT'       Name.Function
+'('           Punctuation
+'+'           Operator
+'3'           Literal.Number
+'^'           Punctuation
+'ROUTINE'     Name.Namespace
+')'           Punctuation
+','           Punctuation
+'!'           Keyword.Pseudo
+','           Punctuation
+'"Your line: "' Literal.String
+'_'           Operator
+'$t'          Name.Function
+'('           Punctuation
+'@'           Operator
+'tagNRou'     Name.Variable
+')'           Punctuation
+'\n'          Text
+
+' '           Text.Whitespace
+'w'           Keyword
+' '           Text.Whitespace
+'!'           Keyword.Pseudo
+','           Punctuation
+'$TRANSLATE'  Name.Function
+'('           Punctuation
+'"Hellop"'    Literal.String
+','           Punctuation
+'"p"'         Literal.String
+')'           Punctuation
+'_'           Operator
+'$tr'         Name.Function
+'('           Punctuation
+'"sworld!"'   Literal.String
+','           Punctuation
+'"s"'         Literal.String
+','           Punctuation
+'" "'         Literal.String
+')'           Punctuation
+'\n'          Text

@@ -1,0 +1,25 @@
+---input---
+ q 1_1+1/2-1*3#10**2\3
+
+---tokens---
+' '           Text.Whitespace
+'q'           Keyword
+' '           Text.Whitespace
+'1'           Literal.Number
+'_'           Operator
+'1'           Literal.Number
+'+'           Operator
+'1'           Literal.Number
+'/'           Operator
+'2'           Literal.Number
+'-'           Operator
+'1'           Literal.Number
+'*'           Operator
+'3'           Literal.Number
+'#'           Operator
+'10'          Literal.Number
+'**'          Operator
+'2'           Literal.Number
+'\\'          Operator
+'3'           Literal.Number
+'\n'          Text
