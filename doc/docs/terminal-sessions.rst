@@ -1,46 +1,54 @@
-Interactive terminal/shell sessions
------------------------------------
+=================
+Terminal sessions
+=================
 
-To highlight an interactive terminal or shell session, prefix your code snippet
-with a specially formatted prompt.
+Pygments support the parsing and highlighting of terminal sessions, like
+command-line shells, interactive consoles and language `REPL
+<https://en.wikipedia.org/wiki/Read–eval–print_loop>`_.
 
-Supported shells with examples are shown below. In each example, prompt parts in
-brackets ``[any]`` represent optional parts of the prompt, and prompt parts
-without brackets or in parenthesis ``(any)`` represent required parts of the
-prompt.
+They are typically command lines or code, mixed with generic output.
 
-* **Bash Session** (console, shell-session):
+Examples for each can be found in the :doc:`lexer <lexers>` documentation.
 
-  .. code-block:: console
 
-     [any@any]$ ls -lh
-     [any@any]# ls -lh
-     [any@any]% ls -lh
-     $ ls -lh
-     # ls -lh
-     % ls -lh
-     > ls -lh
+Operating system shells
+-----------------------
 
-* **MSDOS Session** (doscon):
+These lexers are expecting a prompt to identify user input. So to highlight a
+shell session, prefix your code snippet with a specially formatted prompt.
 
-  .. code-block:: doscon
+They are typically named ``<shell> Session``.
 
-     [any]> dir
-     > dir
-     More? dir
 
-* **Tcsh Session** (tcshcon):
+Interactive consoles
+--------------------
 
-  .. code-block:: tcshcon
+Similarly to systems shells, Pygments recognize a variety of interactive
+language sessions.
 
-     (any)> ls -lh
-     ? ls -lh
+Their IDs typically follow the ``<language>-console`` or
+``<language>-repl`` pattern.
 
-* **PowerShell Session** (ps1con):
 
-  .. code-block:: ps1con
+Generic output
+--------------
 
-     PS[any]> Get-ChildItem
-     PS> Get-ChildItem
-     >> Get-ChildItem
+To display standalone terminal output and keep styling consistent, you can use
+the generic ``output`` lexer.
 
+
+ANSI rendering
+--------------
+
+In all the lexers above, the command results are parsed as generic output.
+Which means they are rendered as-is, without any styling applied, for example by ANSI codes.
+
+Here is a couple of third-party projects covering this use-case:
+
+- `pygments-ansi-color
+  <https://github.com/chriskuehl/pygments-ansi-color>`_: implements
+  a new lexer and formatter to parse and render pure ANSI content.
+- `Click Extra <https://github.com/kdeldycke/click-extra>`_: adds
+  `ANSI-capable lexers
+  <https://kdeldycke.github.io/click-extra/pygments.html#ansi-language-lexers>`_
+  for each language listed above.

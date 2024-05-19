@@ -1,0 +1,22 @@
+julia> x = 2
+2
+
+julia> \"\"\"
+        The factorial function.
+
+        ```julia
+        @assert fac(3) == 1 * 2 * 3
+        ```
+        \"\"\"
+        function fac(n)
+            if n < 2
+                return 1
+            else
+                return n * fac(n - 1) # <-- recursive call
+            end
+        end
+
+
+        # Lets try the function out...
+        f(x + 1)
+6
