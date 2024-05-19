@@ -68,6 +68,7 @@ def test_lexer_classes(cls):
             / cls._example
         )
         assert p.is_file(), f"Example file {p} not found"
+        assert p.parent.name in cls.aliases, f"Example file {p} not in alias directory"
     result = cls.analyse_text("abc")
     assert isinstance(result, float) and 0.0 <= result <= 1.0
     result = cls.analyse_text(".abc")

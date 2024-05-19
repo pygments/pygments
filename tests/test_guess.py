@@ -10,7 +10,12 @@ from pathlib import Path
 
 import pytest
 
-from pygments.lexers import guess_lexer, get_lexer_by_name
+from pygments.lexers import (
+    _fn_matches,
+    find_lexer_class_by_name,
+    get_lexer_by_name,
+    guess_lexer,
+)
 from pygments.lexers.basic import CbmBasicV2Lexer
 from pygments.lexers.ecl import ECLLexer
 
@@ -198,3 +203,40 @@ def test_ecl_analyze_text():
             """
     res = ECLLexer.analyse_text(text)
     assert res == 0.01
+
+
+def all_example_files():
+    example_files = []
+    for dir in Path(TESTDIR, "examplefiles").iterdir():
+        # Skip directories that are not lexer aliases.
+        if not dir.is_dir() or dir.name.startswith("__") or dir.name.startswith("."):
+            continue
+
+        # Skip the srcinfo directory, whose example files are not strictly named ".SRCINFO".
+        if dir.name == "srcinfo":
+            continue
+
+        for f in dir.iterdir():
+            if f.is_file() and f.suffix != ".output":
+                example_files.append(pytest.param(f, id=f"{f.parent.name}/{f.name}"))
+
+    return example_files
+
+
+@pytest.mark.parametrize("example_file", all_example_files())
+def test_filename_matching(example_file):
+    """Check that each example file is correctly identified by its lexer from its filename pattern."""
+    # Example files are stored in subdirectories named after the lexer alias.
+    alias = example_file.parent.name
+    klass = find_lexer_class_by_name(alias)
+
+    # If the class defines no filename patterns, we can't check anything.
+    if not klass.filenames:
+        return
+
+    matches = []
+    for pattern in klass.filenames:
+        if _fn_matches(example_file.name, pattern):
+            matches.append(pattern)
+
+    assert matches, f"No {klass.filenames} patterns matches {example_file.name!r}"

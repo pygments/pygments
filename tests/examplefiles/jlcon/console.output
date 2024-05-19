@@ -1,0 +1,57 @@
+'julia>'      Generic.Prompt
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'2\n'         Generic.Output
+
+'\n'          Generic.Output
+
+'julia>'      Generic.Prompt
+' '           Text.Whitespace
+'\\'          Operator
+'"'           Literal.String
+'\\"'         Literal.String.Escape
+'\\"'         Literal.String.Escape
+'\n'          Literal.String
+
+'      '      Text.Whitespace
+'  The factorial function.\n' Literal.String
+
+'\n'          Generic.Output
+
+'        ```julia\n' Generic.Output
+
+'        @assert fac(3) == 1 * 2 * 3\n' Generic.Output
+
+'        ```\n' Generic.Output
+
+'        \\"\\"\\"\n' Generic.Output
+
+'        function fac(n)\n' Generic.Output
+
+'            if n < 2\n' Generic.Output
+
+'                return 1\n' Generic.Output
+
+'            else\n' Generic.Output
+
+'                return n * fac(n - 1) # <-- recursive call\n' Generic.Output
+
+'            end\n' Generic.Output
+
+'        end\n' Generic.Output
+
+'\n'          Generic.Output
+
+'\n'          Generic.Output
+
+'        # Lets try the function out...\n' Generic.Output
+
+'        f(x + 1)\n' Generic.Output
+
+'6\n'         Generic.Output
