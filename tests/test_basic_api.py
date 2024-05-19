@@ -6,6 +6,8 @@
     :license: BSD, see LICENSE for details.
 """
 
+import inspect
+import pathlib
 import random
 from io import StringIO, BytesIO
 from os import path
@@ -16,6 +18,7 @@ import pytest
 from pygments import lexers, formatters, lex, format, __version__
 from pygments.token import _TokenType, Text
 from pygments.lexer import RegexLexer
+import pygments
 from pygments.formatter import Formatter
 from pygments.formatters.img import FontNotFound
 from pygments.util import ClassNotFound
@@ -56,6 +59,15 @@ def test_lexer_classes(cls):
             (f"Lexer class {cls.__name__} has a wrong version_added attribute. "
              "It should be a version number like <major>.<minor> (but not "
              "<major>.<minor>.<micro>).")
+    if cls._example is not None:
+        assert isinstance(cls._example, str)
+        p = (
+            pathlib.Path(inspect.getabsfile(pygments)).parent.parent
+            / "tests"
+            / "examplefiles"
+            / cls._example
+        )
+        assert p.is_file(), f"Example file {p} not found"
     result = cls.analyse_text("abc")
     assert isinstance(result, float) and 0.0 <= result <= 1.0
     result = cls.analyse_text(".abc")

@@ -2747,6 +2747,7 @@ class MatlabSessionLexer(Lexer):
     aliases = ['matlabsession']
     url = 'https://www.mathworks.com/products/matlab.html'
     version_added = '0.10'
+    _example = "matlabsession/matlabsession_sample.txt"
 
     def get_tokens_unprocessed(self, text):
         mlexer = MatlabLexer(**self.options)

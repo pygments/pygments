@@ -242,7 +242,7 @@ class DylanConsoleLexer(Lexer):
     """
     For Dylan interactive console output.
 
-    This is based on a copy of the RubyConsoleLexer.
+    This is based on a copy of the ``RubyConsoleLexer``.
     """
     name = 'Dylan session'
     aliases = ['dylan-console', 'dylan-repl']
