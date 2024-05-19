@@ -21,6 +21,7 @@ from pygments.lexer import RegexLexer
 import pygments
 from pygments.formatter import Formatter
 from pygments.formatters.img import FontNotFound
+from pygments.lexers import LEXERS
 from pygments.util import ClassNotFound
 
 TESTDIR = path.dirname(path.abspath(__file__))
@@ -88,7 +89,35 @@ def test_lexer_classes(cls):
                    f'{cls} has no root state'
 
 
-@pytest.mark.parametrize('cls', lexers._iter_lexerclasses(plugins=False))
+def test_lexer_metadata_uniqueness():
+    """Check there is no overlapping metadata between lexers."""
+    # Build reverse indexes for each metadata type.
+    name_index = {}
+    alias_index = {}
+    mimetype_index = {}
+    for class_name, (_, name, aliases, _, mimetypes) in LEXERS.items():
+        name_index.setdefault(name, []).append(class_name)
+        for alias in aliases:
+            alias_index.setdefault(alias, []).append(class_name)
+        for mimetype in mimetypes:
+            mimetype_index.setdefault(mimetype, []).append(class_name)
+
+    # Check that each metadata is unique.
+    for class_name, (_, name, aliases, _, mimetypes) in LEXERS.items():
+        assert (
+            len(name_index[name]) == 1
+        ), f"Name {name} is not unique: {name_index[name]}"
+        for alias in aliases:
+            assert (
+                len(alias_index[alias]) == 1
+            ), f"Alias {alias} is not unique: {alias_index[alias]}"
+        for mimetype in mimetypes:
+            assert (
+                len(mimetype_index[mimetype]) == 1
+            ), f"Mimetype {mimetype} is not unique: {mimetype_index[mimetype]}"
+
+
+@pytest.mark.parametrize("cls", lexers._iter_lexerclasses(plugins=False))
 def test_random_input(cls):
     inst = cls()
     try:
