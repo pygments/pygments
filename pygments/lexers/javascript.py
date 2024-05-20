@@ -42,6 +42,7 @@ class JavascriptLexer(RegexLexer):
     mimetypes = ['application/javascript', 'application/x-javascript',
                  'text/x-javascript', 'text/javascript']
     version_added = ''
+    _example = 'js/general.js'
 
     flags = re.DOTALL | re.MULTILINE
 
@@ -146,6 +147,7 @@ class TypeScriptLexer(JavascriptLexer):
     filenames = ['*.ts']
     mimetypes = ['application/x-typescript', 'text/x-typescript']
     version_added = '1.6'
+    _example = 'ts/typescript_example.ts'
 
     # Higher priority than the TypoScriptLexer, as TypeScript is far more
     # common these days
@@ -183,6 +185,7 @@ class KalLexer(RegexLexer):
     filenames = ['*.kal']
     mimetypes = ['text/kal', 'application/kal']
     version_added = '2.0'
+    _example = 'kal/example.kal'
 
     flags = re.DOTALL
     tokens = {
@@ -316,6 +319,7 @@ class LiveScriptLexer(RegexLexer):
     filenames = ['*.ls']
     mimetypes = ['text/livescript']
     version_added = '1.6'
+    _example = 'live-script/livescript-demo.ls'
 
     flags = re.DOTALL
     tokens = {
@@ -428,6 +432,7 @@ class DartLexer(RegexLexer):
     filenames = ['*.dart']
     mimetypes = ['text/x-dart']
     version_added = '1.5'
+    _example = 'dart/test.dart'
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -540,6 +545,7 @@ class LassoLexer(RegexLexer):
     aliases = ['lasso', 'lassoscript']
     filenames = ['*.lasso', '*.lasso[89]']
     version_added = '1.6'
+    _example = 'lasso/json.lasso'
     alias_filenames = ['*.incl', '*.inc', '*.las']
     mimetypes = ['text/x-lasso']
     url = 'https://www.lassosoft.com'
@@ -796,6 +802,7 @@ class ObjectiveJLexer(RegexLexer):
     mimetypes = ['text/x-objective-j']
     url = 'https://www.cappuccino.dev/learn/objective-j.html'
     version_added = '1.3'
+    _example = 'objective-j/CPDictionary.j'
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//[^\n]*\n|/[*](?:[^*]|[*][^/])*[*]/)*'
@@ -1019,6 +1026,7 @@ class CoffeeScriptLexer(RegexLexer):
     filenames = ['*.coffee']
     mimetypes = ['text/coffeescript']
     version_added = '1.3'
+    _example = 'coffee-script/underscore.coffee'
 
     _operator_re = (
         r'\+\+|~|&&|\band\b|\bor\b|\bis\b|\bisnt\b|\bnot\b|\?|:|'
@@ -1131,6 +1139,7 @@ class MaskLexer(RegexLexer):
     filenames = ['*.mask']
     mimetypes = ['text/x-mask']
     version_added = '2.0'
+    _example = 'mask/test.mask'
 
     flags = re.MULTILINE | re.IGNORECASE | re.DOTALL
     tokens = {
@@ -1253,6 +1262,7 @@ class EarlGreyLexer(RegexLexer):
     mimetypes = ['text/x-earl-grey']
     url = 'https://github.com/breuleux/earl-grey'
     version_added = ''
+    _example = 'earl-grey/eg_example1.eg'
 
     tokens = {
         'root': [
@@ -1468,6 +1478,7 @@ class JuttleLexer(RegexLexer):
     mimetypes = ['application/juttle', 'application/x-juttle',
                  'text/x-juttle', 'text/juttle']
     version_added = '2.2'
+    _example = 'juttle/example.juttle'
 
     flags = re.DOTALL | re.MULTILINE
 
@@ -1547,6 +1558,7 @@ class NodeConsoleLexer(Lexer):
     mimetypes = ['text/x-nodejsrepl', ]
     url = 'https://nodejs.org'
     version_added = ''
+    _example = 'nodejsrepl/nodejsrepl_test.nodejsrepl'
 
     def get_tokens_unprocessed(self, text):
         jslexer = JavascriptLexer(**self.options)

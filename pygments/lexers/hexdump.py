@@ -38,6 +38,7 @@ class HexdumpLexer(RegexLexer):
     aliases = ['hexdump']
     url = 'https://en.wikipedia.org/wiki/Hex_dump'
     version_added = '2.1'
+    _example = 'hexdump/hexdump_debugexe'
 
     hd = r'[0-9A-Ha-h]'
 

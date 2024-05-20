@@ -25,6 +25,7 @@ class RNCCompactLexer(RegexLexer):
     aliases = ['rng-compact', 'rnc']
     filenames = ['*.rnc']
     version_added = '2.2'
+    _example = 'rnc/rnc_example.rnc'
 
     tokens = {
         'root': [

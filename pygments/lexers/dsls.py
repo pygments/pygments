@@ -30,6 +30,7 @@ class ProtoBufLexer(RegexLexer):
     aliases = ['protobuf', 'proto']
     filenames = ['*.proto']
     version_added = '1.4'
+    _example = 'protobuf/addressbook.proto'
 
     tokens = {
         'root': [
@@ -91,6 +92,7 @@ class ThriftLexer(RegexLexer):
     filenames = ['*.thrift']
     mimetypes = ['application/x-thrift']
     version_added = '2.1'
+    _example = 'thrift/demo.thrift'
 
     tokens = {
         'root': [
@@ -195,6 +197,7 @@ class ZeekLexer(RegexLexer):
     aliases = ['zeek', 'bro']
     filenames = ['*.zeek', '*.bro']
     version_added = '2.5'
+    _example = 'zeek/test.bro'
 
     _hex = r'[0-9a-fA-F]'
     _float = r'((\d*\.?\d+)|(\d+\.?\d*))([eE][-+]?\d+)?'
@@ -356,6 +359,7 @@ class PuppetLexer(RegexLexer):
     aliases = ['puppet']
     filenames = ['*.pp']
     version_added = '1.6'
+    _example = 'puppet/example.pp'
 
     tokens = {
         'root': [
@@ -446,6 +450,7 @@ class RslLexer(RegexLexer):
     filenames = ['*.rsl']
     mimetypes = ['text/rsl']
     version_added = '2.0'
+    _example = 'rsl/test.rsl'
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -506,6 +511,7 @@ class MscgenLexer(RegexLexer):
     aliases = ['mscgen', 'msc']
     filenames = ['*.msc']
     version_added = '1.6'
+    _example = 'mscgen/example2.msc'
 
     _var = r'(\w+|"(?:\\"|[^"])*")'
 
@@ -555,6 +561,7 @@ class VGLLexer(RegexLexer):
     aliases = ['vgl']
     filenames = ['*.rpf']
     version_added = '1.6'
+    _example = 'vgl/example.rpf'
 
     flags = re.MULTILINE | re.DOTALL | re.IGNORECASE
 
@@ -590,6 +597,7 @@ class AlloyLexer(RegexLexer):
     filenames = ['*.als']
     mimetypes = ['text/x-alloy']
     version_added = '2.0'
+    _example = 'alloy/example.als'
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -659,6 +667,7 @@ class PanLexer(RegexLexer):
     aliases = ['pan']
     filenames = ['*.pan']
     version_added = '2.0'
+    _example = 'pan/test.pan'
 
     tokens = {
         'root': [
@@ -725,6 +734,7 @@ class CrmshLexer(RegexLexer):
     filenames = ['*.crmsh', '*.pcmk']
     mimetypes = []
     version_added = '2.1'
+    _example = 'crmsh/example.pcmk'
 
     elem = words((
         'node', 'primitive', 'group', 'clone', 'ms', 'location',
@@ -794,6 +804,7 @@ class FlatlineLexer(RegexLexer):
     filenames = []
     mimetypes = ['text/x-flatline']
     version_added = '2.2'
+    _example = 'flatline/flatline_example'
 
     special_forms = ('let',)
 
@@ -870,6 +881,7 @@ class SnowballLexer(ExtendedRegexLexer):
     aliases = ['snowball']
     filenames = ['*.sbl']
     version_added = '2.2'
+    _example = 'snowball/example.sbl'
 
     _ws = r'\n\r\t '
 

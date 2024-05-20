@@ -41,6 +41,7 @@ class DnsZoneLexer(RegexLexer):
     url = "https://datatracker.ietf.org/doc/html/rfc1035"
     mimetypes = ['text/dns']
     version_added = '2.16'
+    _example = 'zone/example.zone'
 
     tokens = {
        'root': [

@@ -36,6 +36,7 @@ class SNBTLexer(RegexLexer):
     filenames = ["*.snbt"]
     mimetypes = ["text/snbt"]
     version_added = '2.12'
+    _example = 'snbt/main.snbt'
 
     tokens = {
         "root": [
@@ -109,6 +110,7 @@ class MCFunctionLexer(RegexLexer):
     filenames = ["*.mcfunction"]
     mimetypes = ["text/mcfunction"]
     version_added = '2.12'
+    _example = 'mcfunction/main.mcfunction'
 
     # Used to denotate the start of a block comment, borrowed from Github's mcfunction
     _block_comment_prefix = "[>!]"
@@ -327,6 +329,7 @@ class MCSchemaLexer(RegexLexer):
     filenames = ['*.mcschema']
     mimetypes = ['text/mcschema']
     version_added = '2.14'
+    _example = 'mcschema/geometry.mcschema'
 
     tokens = {
         'commentsandwhitespace': [

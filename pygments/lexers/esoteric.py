@@ -112,6 +112,7 @@ class CAmkESLexer(RegexLexer):
     aliases = ['camkes', 'idl4']
     filenames = ['*.camkes', '*.idl4']
     version_added = '2.1'
+    _example = 'camkes/simple.camkes'
 
     tokens = {
         'root': [
@@ -186,6 +187,7 @@ class CapDLLexer(RegexLexer):
     aliases = ['capdl']
     filenames = ['*.cdl']
     version_added = '2.2'
+    _example = 'capdl/capdl_example.cdl'
 
     tokens = {
         'root': [
@@ -239,6 +241,7 @@ class RedcodeLexer(RegexLexer):
     filenames = ['*.cw']
     url = 'https://en.wikipedia.org/wiki/Core_War'
     version_added = '0.8'
+    _example = 'redcode/dwarf.cw'
 
     opcodes = ('DAT', 'MOV', 'ADD', 'SUB', 'MUL', 'DIV', 'MOD',
                'JMP', 'JMZ', 'JMN', 'DJN', 'CMP', 'SLT', 'SPL',
@@ -275,6 +278,7 @@ class AheuiLexer(RegexLexer):
     aliases = ['aheui']
     filenames = ['*.aheui']
     version_added = ''
+    _example = 'aheui/durexmania.aheui'
 
     tokens = {
         'root': [

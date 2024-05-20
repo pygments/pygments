@@ -26,6 +26,7 @@ class CarbonLexer(RegexLexer):
     aliases = ['carbon']
     mimetypes = ['text/x-carbon']
     version_added = '2.15'
+    _example = 'carbon/declarations.carbon'
 
     flags = re.MULTILINE | re.DOTALL
 

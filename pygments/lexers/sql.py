@@ -161,6 +161,7 @@ class PostgresLexer(PostgresBase, RegexLexer):
     mimetypes = ['text/x-postgresql']
     url = 'https://www.postgresql.org'
     version_added = '1.5'
+    _example = 'postgresql/postgresql_test.txt'
 
     flags = re.IGNORECASE
     tokens = {
@@ -310,7 +311,7 @@ class PostgresConsoleLexer(Lexer):
     mimetypes = ['text/x-postgresql-psql']
     url = 'https://www.postgresql.org'
     version_added = '1.5'
-    _example = "psql/psql_session.txt"
+    _example = 'psql/psql_session.txt'
 
     def get_tokens_unprocessed(self, data):
         sql = PsqlRegexLexer(**self.options)
@@ -384,6 +385,7 @@ class PostgresExplainLexer(RegexLexer):
     mimetypes = ['text/x-postgresql-explain']
     url = 'https://www.postgresql.org/docs/current/using-explain.html'
     version_added = '2.15'
+    _example = 'postgres-explain/plan.explain'
 
     tokens = {
         'root': [
@@ -707,6 +709,7 @@ class TransactSqlLexer(RegexLexer):
     mimetypes = ['text/x-tsql']
     url = 'https://www.tsql.info'
     version_added = ''
+    _example = 'tsql/tsql_example.sql'
 
     flags = re.IGNORECASE
 
@@ -975,7 +978,7 @@ class SqliteConsoleLexer(Lexer):
     mimetypes = ['text/x-sqlite3-console']
     url = 'https://www.sqlite.org'
     version_added = '0.11'
-    _example = "sqlite3/sqlite3.sqlite3-console"
+    _example = 'sqlite3/sqlite3.sqlite3-console'
 
     def get_tokens_unprocessed(self, data):
         sql = SqlLexer(**self.options)
@@ -1016,6 +1019,7 @@ class RqlLexer(RegexLexer):
     filenames = ['*.rql']
     mimetypes = ['text/x-rql']
     version_added = '2.0'
+    _example = 'rql/rql-queries.rql'
 
     flags = re.IGNORECASE
     tokens = {

@@ -59,6 +59,7 @@ class PythonLexer(RegexLexer):
     mimetypes = ['text/x-python', 'application/x-python',
                  'text/x-python3', 'application/x-python3']
     version_added = '0.10'
+    _example = 'python/switch_case.py'
 
     uni_name = f"[{uni.xid_start}][{uni.xid_continue}]*"
 
@@ -429,6 +430,7 @@ class Python2Lexer(RegexLexer):
     filenames = []  # now taken over by PythonLexer (3.x)
     mimetypes = ['text/x-python2', 'application/x-python2']
     version_added = ''
+    version_added = ""
 
     def innerstring_rules(ttype):
         return [
@@ -700,6 +702,7 @@ class PythonConsoleLexer(DelegatingLexer):
     mimetypes = ['text/x-python-doctest']
     url = 'https://python.org'
     version_added = ''
+    _example = 'pycon/pycon_ctrlc_traceback'
 
     def __init__(self, **options):
         python3 = get_bool_opt(options, 'python3', True)
@@ -734,6 +737,7 @@ class PythonTracebackLexer(RegexLexer):
     mimetypes = ['text/x-python-traceback', 'text/x-python3-traceback']
     url = 'https://python.org'
     version_added = '1.0'
+    _example = 'pytb/database.pytb'
 
     tokens = {
         'root': [
@@ -791,6 +795,7 @@ class Python2TracebackLexer(RegexLexer):
     mimetypes = ['text/x-python2-traceback']
     url = 'https://python.org'
     version_added = '0.7'
+    _example = 'py2tb/syntax_error.py2tb'
 
     tokens = {
         'root': [
@@ -1015,6 +1020,7 @@ class DgLexer(RegexLexer):
     mimetypes = ['text/x-dg']
     url = 'http://pyos.github.io/dg'
     version_added = '1.6'
+    _example = 'dg/inet_pton6.dg'
 
     tokens = {
         'root': [
@@ -1111,6 +1117,7 @@ class NumPyLexer(PythonLexer):
     url = 'https://numpy.org/'
     aliases = ['numpy']
     version_added = '0.10'
+    _example = ""
 
     # override the mimetypes to not inherit them from python
     mimetypes = []

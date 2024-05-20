@@ -26,6 +26,7 @@ class TypstLexer(RegexLexer):
     mimetypes = ['text/x-typst']
     url = 'https://typst.app'
     version_added = '2.18'
+    _example = 'typst/test.typ'
 
     tokens = {
         'root': [

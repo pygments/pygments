@@ -29,6 +29,7 @@ class Inform6Lexer(RegexLexer):
     aliases = ['inform6', 'i6']
     filenames = ['*.inf']
     version_added = '2.0'
+    _example = 'inform6/inform6_example.inf'
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -549,6 +550,7 @@ class Inform7Lexer(RegexLexer):
     aliases = ['inform7', 'i7']
     filenames = ['*.ni', '*.i7x']
     version_added = '2.0'
+    _example = 'inform7/example.ni'
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -749,6 +751,7 @@ class Inform6TemplateLexer(Inform7Lexer):
     aliases = ['i6t']
     filenames = ['*.i6t']
     version_added = '2.0'
+    _example = 'i6t/example.i6t'
 
     def get_tokens_unprocessed(self, text, stack=('+i6t-root',)):
         return Inform7Lexer.get_tokens_unprocessed(self, text, stack)
@@ -764,6 +767,7 @@ class Tads3Lexer(RegexLexer):
     filenames = ['*.t']
     url = 'https://www.tads.org'
     version_added = ''
+    _example = 'tads3/tads3_example.t'
 
     flags = re.DOTALL | re.MULTILINE
 

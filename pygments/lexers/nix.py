@@ -28,6 +28,7 @@ class NixLexer(RegexLexer):
     filenames = ['*.nix']
     mimetypes = ['text/x-nix']
     version_added = '2.0'
+    _example = 'nixos/example.nix'
 
     keywords = ['rec', 'with', 'let', 'in', 'inherit', 'assert', 'if',
                 'else', 'then', '...']

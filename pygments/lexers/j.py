@@ -26,6 +26,7 @@ class JLexer(RegexLexer):
     filenames = ['*.ijs']
     mimetypes = ['text/x-j']
     version_added = '2.1'
+    _example = 'j/pacman.ijs'
 
     validName = r'\b[a-zA-Z]\w*'
 

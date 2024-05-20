@@ -26,6 +26,7 @@ class TlsLexer(RegexLexer):
     aliases = ['tls']
     mimetypes = []
     version_added = '2.16'
+    _example = 'tls/example.txt'
 
     flags = re.MULTILINE | re.DOTALL
 

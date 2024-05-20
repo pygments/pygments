@@ -33,6 +33,7 @@ class MesonLexer(RegexLexer):
     filenames = ['meson.build', 'meson_options.txt']
     mimetypes = ['text/x-meson']
     version_added = '2.10'
+    _example = 'meson/meson.build'
 
     tokens = {
         'root': [

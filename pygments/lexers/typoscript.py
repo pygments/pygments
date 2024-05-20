@@ -107,6 +107,7 @@ class TypoScriptLexer(RegexLexer):
     filenames = ['*.typoscript']
     mimetypes = ['text/x-typoscript']
     version_added = '2.2'
+    _example = 'typoscript/typoscript_example.typoscript'
 
     flags = re.DOTALL | re.MULTILINE
 

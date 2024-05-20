@@ -29,6 +29,7 @@ class CypherLexer(RegexLexer):
     aliases = ['cypher']
     filenames = ['*.cyp', '*.cypher']
     version_added = '2.0'
+    _example = 'cypher/test.cyp'
 
     flags = re.MULTILINE | re.IGNORECASE
 

@@ -33,6 +33,7 @@ class SieveLexer(RegexLexer):
     aliases = ['sieve']
     url = 'https://en.wikipedia.org/wiki/Sieve_(mail_filtering_language)'
     version_added = '2.6'
+    _example = 'sieve/example.sieve'
 
     tokens = {
         'root': [

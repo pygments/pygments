@@ -33,6 +33,7 @@ class MakefileLexer(Lexer):
     mimetypes = ['text/x-makefile']
     url = 'https://en.wikipedia.org/wiki/Make_(software)'
     version_added = ''
+    _example = 'make/Makefile'
 
     r_special = re.compile(
         r'^(?:'
@@ -138,6 +139,7 @@ class CMakeLexer(RegexLexer):
     filenames = ['*.cmake', 'CMakeLists.txt']
     mimetypes = ['text/x-cmake']
     version_added = '1.2'
+    _example = 'cmake/main.cmake'
 
     tokens = {
         'root': [

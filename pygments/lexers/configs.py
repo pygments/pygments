@@ -38,6 +38,7 @@ class IniLexer(RegexLexer):
     mimetypes = ['text/x-ini', 'text/inf']
     url = 'https://en.wikipedia.org/wiki/INI_file'
     version_added = ''
+    _example = 'ini/test.ini'
 
     tokens = {
         'root': [
@@ -155,6 +156,7 @@ class RegeditLexer(RegexLexer):
     filenames = ['*.reg']
     mimetypes = ['text/x-windows-registry']
     version_added = '1.6'
+    _example = 'registry/example.reg'
 
     tokens = {
         'root': [
@@ -199,6 +201,7 @@ class PropertiesLexer(RegexLexer):
     mimetypes = ['text/x-java-properties']
     url = 'https://en.wikipedia.org/wiki/.properties'
     version_added = '1.4'
+    _example = 'properties/java.properties'
 
     tokens = {
         'root': [
@@ -270,6 +273,7 @@ class KconfigLexer(RegexLexer):
     name = 'Kconfig'
     aliases = ['kconfig', 'menuconfig', 'linux-config', 'kernel-config']
     version_added = '1.6'
+    _example = 'kconfig/Config.in.cache'
     # Adjust this if new kconfig file names appear in your environment
     filenames = ['Kconfig*', '*Config.in*', 'external.in*',
                  'standard-modules.in']
@@ -413,6 +417,7 @@ class ApacheConfLexer(RegexLexer):
     mimetypes = ['text/x-apacheconf']
     url = 'https://httpd.apache.org/docs/current/configuring.html'
     version_added = '0.6'
+    _example = 'apacheconf/apache2.conf'
     flags = re.MULTILINE | re.IGNORECASE
 
     tokens = {
@@ -455,6 +460,7 @@ class SquidConfLexer(RegexLexer):
     filenames = ['squid.conf']
     mimetypes = ['text/x-squidconf']
     version_added = '0.9'
+    _example = 'squidconf/squid.conf'
     flags = re.IGNORECASE
 
     keywords = (
@@ -583,6 +589,7 @@ class NginxConfLexer(RegexLexer):
     filenames = ['nginx.conf']
     mimetypes = ['text/x-nginx-conf']
     version_added = '0.11'
+    _example = 'nginx/nginx.conf'
 
     tokens = {
         'root': [
@@ -629,6 +636,7 @@ class LighttpdConfLexer(RegexLexer):
     filenames = ['lighttpd.conf']
     mimetypes = ['text/x-lighttpd-conf']
     version_added = '0.11'
+    _example = 'lighty/lighttpd.conf'
 
     tokens = {
         'root': [
@@ -657,6 +665,7 @@ class DockerLexer(RegexLexer):
     filenames = ['Dockerfile', '*.docker']
     mimetypes = ['text/x-dockerfile-config']
     version_added = '2.0'
+    _example = 'docker/docker.docker'
 
     _keywords = (r'(?:MAINTAINER|EXPOSE|WORKDIR|USER|STOPSIGNAL)')
     _bash_keywords = (r'(?:RUN|CMD|ENTRYPOINT|ENV|ARG|LABEL|ADD|COPY)')
@@ -863,6 +872,7 @@ class TermcapLexer(RegexLexer):
     mimetypes = []
     url = 'https://en.wikipedia.org/wiki/Termcap'
     version_added = '2.1'
+    _example = 'termcap/termcap'
 
     # NOTE:
     #   * multiline with trailing backslash
@@ -910,6 +920,7 @@ class TerminfoLexer(RegexLexer):
     mimetypes = []
     url = 'https://en.wikipedia.org/wiki/Terminfo'
     version_added = '2.1'
+    _example = 'terminfo/terminfo'
 
     # NOTE:
     #   * multiline with leading whitespace
@@ -957,6 +968,7 @@ class PkgConfigLexer(RegexLexer):
     filenames = ['*.pc']
     mimetypes = []
     version_added = '2.1'
+    _example = 'pkgconfig/pkgconfig_example.pc'
 
     tokens = {
         'root': [
@@ -1025,6 +1037,7 @@ class PacmanConfLexer(RegexLexer):
     filenames = ['pacman.conf']
     mimetypes = []
     version_added = '2.1'
+    _example = 'pacmanconf/pacman.conf'
 
     tokens = {
         'root': [
@@ -1114,6 +1127,7 @@ class TOMLLexer(RegexLexer):
     mimetypes = ['application/toml']
     url = 'https://toml.io'
     version_added = '2.4'
+    _example = 'toml/example.toml'
 
     # Based on the TOML spec: https://toml.io/en/v1.0.0
 
@@ -1284,6 +1298,7 @@ class NestedTextLexer(RegexLexer):
     aliases = ['nestedtext', 'nt']
     filenames = ['*.nt']
     version_added = '2.9'
+    _example = 'nt/test2.nt'
 
     tokens = {
         'root': [
@@ -1363,6 +1378,7 @@ class SingularityLexer(RegexLexer):
     aliases = ['singularity']
     filenames = ['*.def', 'Singularity']
     version_added = '2.6'
+    _example = 'singularity/Singularity'
     flags = re.IGNORECASE | re.MULTILINE | re.DOTALL
 
     _headers = r'^(\s*)(bootstrap|from|osversion|mirrorurl|include|registry|namespace|includecmd)(:)'

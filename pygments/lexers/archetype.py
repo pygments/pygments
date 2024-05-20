@@ -142,6 +142,7 @@ class OdinLexer(AtomsLexer):
     mimetypes = ['text/odin']
     url = 'https://github.com/openEHR/odin'
     version_added = '2.1'
+    _example = 'odin/test.odin'
 
     tokens = {
         'path': [
@@ -190,6 +191,7 @@ class CadlLexer(AtomsLexer):
     filenames = ['*.cadl']
     url = 'https://specifications.openehr.org/releases/AM/latest/ADL2.html#_cadl_constraint_adl'
     version_added = '2.1'
+    _example = 'cadl/example1.cadl'
 
     tokens = {
         'path': [
@@ -256,6 +258,7 @@ class AdlLexer(AtomsLexer):
     filenames = ['*.adl', '*.adls', '*.adlf', '*.adlx']
     url = 'https://specifications.openehr.org/releases/AM/latest/ADL2.html'
     version_added = '2.1'
+    _example = 'adl/test.adls'
 
     tokens = {
         'whitespace': [

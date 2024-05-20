@@ -162,6 +162,7 @@ class Modula2Lexer(RegexLexer):
     filenames = ['*.def', '*.mod']
     mimetypes = ['text/x-modula2']
     version_added = '1.3'
+    _example = 'modula2/Sorting.mod'
 
     flags = re.MULTILINE | re.DOTALL
 

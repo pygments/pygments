@@ -28,6 +28,7 @@ class JsxLexer(JavascriptLexer):
     mimetypes = ["text/jsx", "text/typescript-jsx"]
     url = "https://facebook.github.io/jsx/"
     version_added = '2.17'
+    _example = 'jsx/general.jsx'
 
     flags = re.MULTILINE | re.DOTALL
 

@@ -47,6 +47,7 @@ class BnfLexer(RegexLexer):
     mimetypes = ['text/x-bnf']
     url = 'https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form'
     version_added = '2.1'
+    _example = 'bnf/bnf_example1.bnf'
 
     tokens = {
         'root': [
@@ -76,6 +77,7 @@ class AbnfLexer(RegexLexer):
     filenames = ['*.abnf']
     mimetypes = ['text/x-abnf']
     version_added = '2.1'
+    _example = 'abnf/abnf_example1.abnf'
 
     _core_rules = (
         'ALPHA', 'BIT', 'CHAR', 'CR', 'CRLF', 'CTL', 'DIGIT',
@@ -139,6 +141,7 @@ class JsgfLexer(RegexLexer):
     filenames = ['*.jsgf']
     mimetypes = ['application/jsgf', 'application/x-jsgf', 'text/jsgf']
     version_added = '2.2'
+    _example = 'jsgf/example.jsgf'
 
     tokens = {
         'root': [

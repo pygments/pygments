@@ -26,6 +26,7 @@ class CplintLexer(PrologLexer):
     filenames = ['*.ecl', '*.prolog', '*.pro', '*.pl', '*.P', '*.lpad', '*.cpl']
     mimetypes = ['text/x-cplint']
     version_added = '2.12'
+    _example = 'cplint/gaussian_mixture.pl'
 
     tokens = {
         'root': [

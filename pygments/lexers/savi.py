@@ -41,6 +41,7 @@ class SaviLexer(RegexLexer):
     aliases = ['savi']
     filenames = ['*.savi']
     version_added = ''
+    _example = 'savi/example.savi'
 
     tokens = {
       "root": [

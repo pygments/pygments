@@ -28,6 +28,7 @@ class FoxProLexer(RegexLexer):
     aliases = ['foxpro', 'vfp', 'clipper', 'xbase']
     filenames = ['*.PRG', '*.prg']
     version_added = '1.6'
+    _example = 'foxpro/example.prg'
     mimetype = []
     url = 'https://learn.microsoft.com/en-us/previous-versions/visualstudio/foxpro'
 

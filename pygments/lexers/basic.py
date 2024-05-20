@@ -31,6 +31,7 @@ class BlitzMaxLexer(RegexLexer):
     filenames = ['*.bmx']
     mimetypes = ['text/x-bmx']
     version_added = '1.4'
+    _example = 'blitzmax/test.bmx'
 
     bmax_vopwords = r'\b(Shl|Shr|Sar|Mod)\b'
     bmax_sktypes = r'@{1,2}|[!#$%]'
@@ -119,6 +120,7 @@ class BlitzBasicLexer(RegexLexer):
     filenames = ['*.bb', '*.decls']
     mimetypes = ['text/x-bb']
     version_added = '2.0'
+    _example = 'blitzbasic/test.bb'
 
     bb_sktypes = r'@{1,2}|[#$%]'
     bb_name = r'[a-z]\w*'
@@ -197,6 +199,7 @@ class MonkeyLexer(RegexLexer):
     mimetypes = ['text/x-monkey']
     url = 'https://blitzresearch.itch.io/monkeyx'
     version_added = '1.6'
+    _example = 'monkey/example.monkey'
 
     name_variable = r'[a-z_]\w*'
     name_function = r'[A-Z]\w*'
@@ -323,6 +326,7 @@ class CbmBasicV2Lexer(RegexLexer):
     filenames = ['*.bas']
     url = 'https://en.wikipedia.org/wiki/Commodore_BASIC'
     version_added = '1.6'
+    _example = 'cbmbas/cbmbas_example.bas'
 
     flags = re.IGNORECASE
 
@@ -363,6 +367,7 @@ class QBasicLexer(RegexLexer):
     mimetypes = ['text/basic']
     url = 'https://en.wikipedia.org/wiki/QBasic'
     version_added = '2.0'
+    _example = 'qbasic/qbasic_example.bas'
 
     declarations = ('DATA', 'LET')
 
@@ -502,6 +507,7 @@ class VBScriptLexer(RegexLexer):
     filenames = ['*.vbs', '*.VBS']
     url = 'https://learn.microsoft.com/en-us/previous-versions/t0aew7h6(v=vs.85)'
     version_added = '2.4'
+    _example = 'vbscript/example.vbs'
 
     flags = re.IGNORECASE
 
@@ -598,6 +604,7 @@ class BBCBasicLexer(RegexLexer):
     filenames = ['*.bbc']
     url = 'https://www.bbcbasic.co.uk/bbcbasic.html'
     version_added = '2.4'
+    _example = 'bbcbasic/example.bbc'
 
     tokens = {
         'root': [

@@ -50,6 +50,7 @@ class LuaLexer(RegexLexer):
     filenames = ['*.lua', '*.wlua']
     mimetypes = ['text/x-lua', 'application/x-lua']
     version_added = ''
+    _example = 'lua/example.lua'
 
     _comment_multiline = r'(?:--\[(?P<level>=*)\[[\w\W]*?\](?P=level)\])'
     _comment_single = r'(?:--.*$)'
@@ -223,6 +224,7 @@ class LuauLexer(RegexLexer):
     aliases = ['luau']
     filenames = ['*.luau']
     version_added = '2.18'
+    _example = 'luau/Guard.luau'
 
     _comment_multiline = r'(?:--\[(?P<level>=*)\[[\w\W]*?\](?P=level)\])'
     _comment_single = r'(?:--.*$)'
@@ -489,6 +491,7 @@ class MoonScriptLexer(LuaLexer):
     filenames = ['*.moon']
     mimetypes = ['text/x-moonscript', 'application/x-moonscript']
     version_added = '1.5'
+    _example = 'moon/example.moon'
 
     tokens = {
         'root': [
@@ -557,6 +560,7 @@ class ChaiscriptLexer(RegexLexer):
     filenames = ['*.chai']
     mimetypes = ['text/x-chaiscript', 'application/x-chaiscript']
     version_added = '2.0'
+    _example = 'chai/example.chai'
 
     flags = re.DOTALL | re.MULTILINE
 
@@ -623,6 +627,7 @@ class LSLLexer(RegexLexer):
     mimetypes = ['text/x-lsl']
     url = 'https://wiki.secondlife.com/wiki/Linden_Scripting_Language'
     version_added = '2.0'
+    _example = 'lsl/hello.lsl'
 
     flags = re.MULTILINE
 
@@ -710,6 +715,7 @@ class AppleScriptLexer(RegexLexer):
     aliases = ['applescript']
     filenames = ['*.applescript']
     version_added = '1.0'
+    _example = 'applescript/pppoe.applescript'
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -1030,6 +1036,7 @@ class RexxLexer(RegexLexer):
     filenames = ['*.rexx', '*.rex', '*.rx', '*.arexx']
     mimetypes = ['text/x-rexx']
     version_added = '2.0'
+    _example = 'rexx/example.rexx'
     flags = re.IGNORECASE
 
     tokens = {
@@ -1141,6 +1148,7 @@ class MOOCodeLexer(RegexLexer):
     aliases = ['moocode', 'moo']
     mimetypes = ['text/x-moocode']
     version_added = '0.9'
+    _example = 'moocode/test.moo'
 
     tokens = {
         'root': [
@@ -1184,6 +1192,7 @@ class HybrisLexer(RegexLexer):
     mimetypes = ['text/x-hybris', 'application/x-hybris']
     url = 'https://github.com/evilsocket/hybris'
     version_added = '1.4'
+    _example = 'hybris/hybris_File.hyb'
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -1281,6 +1290,7 @@ class EasytrieveLexer(RegexLexer):
     mimetypes = ['text/x-easytrieve']
     url = 'https://www.broadcom.com/products/mainframe/application-development/easytrieve-report-generator'
     version_added = '2.1'
+    _example = 'easytrieve/example.ezt'
     flags = 0
 
     # Note: We cannot use r'\b' at the start and end of keywords because
@@ -1473,6 +1483,7 @@ class JclLexer(RegexLexer):
     mimetypes = ['text/x-jcl']
     url = 'https://en.wikipedia.org/wiki/Job_Control_Language'
     version_added = '2.1'
+    _example = 'jcl/example.jcl'
 
     flags = re.IGNORECASE
 
@@ -1555,6 +1566,7 @@ class MiniScriptLexer(RegexLexer):
     filenames = ['*.ms']
     mimetypes = ['text/x-minicript', 'application/x-miniscript']
     version_added = '2.6'
+    _example = 'ms/example.ms'
 
     tokens = {
         'root': [

@@ -31,6 +31,7 @@ class HaskellLexer(RegexLexer):
     filenames = ['*.hs']
     mimetypes = ['text/x-haskell']
     version_added = '0.8'
+    _example = "haskell/SmallCheck.hs"
 
     reserved = ('case', 'class', 'data', 'default', 'deriving', 'do', 'else',
                 'family', 'if', 'in', 'infix[lr]?', 'instance',
@@ -163,6 +164,7 @@ class HspecLexer(HaskellLexer):
     filenames = ['*Spec.hs']
     mimetypes = []
     version_added = '2.4'
+    _example = ""
 
     tokens = {
         'root': [
@@ -297,6 +299,7 @@ class AgdaLexer(RegexLexer):
     filenames = ['*.agda']
     mimetypes = ['text/x-agda']
     version_added = '2.0'
+    _example = "agda/test.agda"
 
     reserved = (
         'abstract', 'codata', 'coinductive', 'constructor', 'data', 'do',
@@ -576,6 +579,7 @@ class LiterateHaskellLexer(LiterateLexer):
     mimetypes = ['text/x-literate-haskell']
     url = 'https://wiki.haskell.org/Literate_programming'
     version_added = '0.9'
+    _example = "lhs/DancingSudoku.lhs"
 
     def __init__(self, **options):
         hslexer = HaskellLexer(**options)
@@ -622,6 +626,7 @@ class LiterateAgdaLexer(LiterateLexer):
     mimetypes = ['text/x-literate-agda']
     url = 'https://agda.readthedocs.io/en/latest/tools/literate-programming.html'
     version_added = '2.0'
+    _example = "lagda/example.lagda"
 
     def __init__(self, **options):
         agdalexer = AgdaLexer(**options)
@@ -662,6 +667,7 @@ class KokaLexer(RegexLexer):
     filenames = ['*.kk', '*.kki']
     mimetypes = ['text/x-koka']
     version_added = '1.6'
+    _example = "koka/garcia-wachs.kk"
 
     keywords = [
         'infix', 'infixr', 'infixl',
