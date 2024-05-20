@@ -250,7 +250,7 @@ class DylanConsoleLexer(Lexer):
     mimetypes = ['text/x-dylan-console']
     url = 'http://www.opendylan.org/'
     version_added = '1.6'
-    _example = 'dylan-console/console'
+    _example = 'dylan-console/console.dylan-console'
 
     _prompt_re = re.compile(r'\?| ')
 
