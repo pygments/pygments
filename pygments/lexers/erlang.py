@@ -472,19 +472,6 @@ class ElixirLexer(RegexLexer):
 class ElixirConsoleLexer(Lexer):
     """
     For Elixir interactive console (iex) output like:
-
-    .. sourcecode:: iex
-
-        iex> [head | tail] = [1,2,3]
-        [1,2,3]
-        iex> head
-        1
-        iex> tail
-        [2,3]
-        iex> [head | tail]
-        [1,2,3]
-        iex> length [head | tail]
-        3
     """
 
     name = 'Elixir iex session'

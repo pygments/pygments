@@ -1536,20 +1536,7 @@ class JuttleLexer(RegexLexer):
 
 class NodeConsoleLexer(Lexer):
     """
-    For parsing within an interactive Node.js REPL, such as:
-
-    .. sourcecode:: nodejsrepl
-
-        > let a = 3
-        undefined
-        > a
-        3
-        > let b = '4'
-        undefined
-        > b
-        '4'
-        > b == a
-        false
+    For parsing within an interactive Node.js REPL.
 
     .. versionadded: 2.10
     """

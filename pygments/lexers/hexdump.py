@@ -17,12 +17,7 @@ __all__ = ['HexdumpLexer']
 class HexdumpLexer(RegexLexer):
     """
     For typical hex dump output formats by the UNIX and GNU/Linux tools ``hexdump``,
-    ``hd``, ``hexcat``, ``od`` and ``xxd``, and the DOS tool ``DEBUG``. For example:
-
-    .. sourcecode:: hexdump
-
-        00000000  7f 45 4c 46 02 01 01 00  00 00 00 00 00 00 00 00  |.ELF............|
-        00000010  02 00 3e 00 01 00 00 00  c5 48 40 00 00 00 00 00  |..>......H@.....|
+    ``hd``, ``hexcat``, ``od`` and ``xxd``, and the DOS tool ``DEBUG``.
 
     The specific supported formats are the outputs of:
 

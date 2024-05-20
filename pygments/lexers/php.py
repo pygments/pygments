@@ -87,16 +87,7 @@ class ZephirLexer(RegexLexer):
 
 class PsyshConsoleLexer(Lexer):
     """
-    For PsySH console output, such as:
-
-    .. sourcecode:: psysh
-
-        >>> $greeting = function($name): string {
-        ...     return "Hello, {$name}";
-        ... };
-        => Closure($name): string {#2371 …3}
-        >>> $greeting('World')
-        => "Hello, World"
+    For PsySH console output.
     """
     name = 'PsySH console session for PHP'
     url = 'https://psysh.org/'
