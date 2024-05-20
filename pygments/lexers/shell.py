@@ -630,7 +630,7 @@ class TcshSessionLexer(ShellSessionBaseLexer):
     mimetypes = []
     url = 'https://www.tcsh.org'
     version_added = '2.1'
-    _example = "tcsh/session"
+    _example = "tcshcon/session"
 
     _innerLexerCls = TcshLexer
     _ps1rgx = re.compile(r'^([^>]+>)(.*\n?)')
@@ -763,7 +763,7 @@ class PowerShellSessionLexer(ShellSessionBaseLexer):
     mimetypes = []
     url = 'https://learn.microsoft.com/en-us/powershell'
     version_added = '2.1'
-    _example = "powershell/session"
+    _example = "pwsh-session/session"
 
     _innerLexerCls = PowerShellLexer
     _bare_continuation = True
