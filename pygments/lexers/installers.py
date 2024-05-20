@@ -28,6 +28,7 @@ class NSISLexer(RegexLexer):
     filenames = ['*.nsi', '*.nsh']
     mimetypes = ['text/x-nsis']
     version_added = '1.6'
+    _example = 'nsis/bigtest.nsi'
 
     flags = re.IGNORECASE
 
@@ -154,6 +155,7 @@ class RPMSpecLexer(RegexLexer):
     mimetypes = ['text/x-rpm-spec']
     url = 'https://rpm-software-management.github.io/rpm/manual/spec.html'
     version_added = '1.6'
+    _example = 'spec/phpMyAdmin.spec'
 
     _directives = ('(?:package|prep|build|install|clean|check|pre[a-z]*|'
                    'post[a-z]*|trigger[a-z]*|files)')
@@ -226,6 +228,7 @@ class SourcesListLexer(RegexLexer):
     aliases = ['debsources', 'sourceslist', 'sources.list']
     filenames = ['sources.list']
     version_added = '0.7'
+    _example = 'sourceslist/sources.list'
     mimetype = ['application/x-debian-sourceslist']
     url = 'https://wiki.debian.org/SourcesList'
 
@@ -274,6 +277,7 @@ class DebianControlLexer(RegexLexer):
     aliases = ['debcontrol', 'control']
     filenames = ['control']
     version_added = '0.9'
+    _example = 'control/control'
 
     tokens = {
         'root': [

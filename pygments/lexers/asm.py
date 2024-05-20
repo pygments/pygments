@@ -231,6 +231,7 @@ class HsailLexer(RegexLexer):
     mimetypes = ['text/x-hsail']
     url = 'https://en.wikipedia.org/wiki/Heterogeneous_System_Architecture#HSA_Intermediate_Layer'
     version_added = '2.2'
+    _example = 'hsail/test.hsail'
 
     string = r'"[^"]*?"'
     identifier = r'[a-zA-Z_][\w.]*'
@@ -652,6 +653,7 @@ class LlvmMirLexer(RegexLexer):
     aliases = ['llvm-mir']
     filenames = ['*.mir']
     version_added = '2.6'
+    _example = 'llvm-mir/llvm-mir.mir'
 
     tokens = {
         'root': [
@@ -727,6 +729,7 @@ class NasmLexer(RegexLexer):
     mimetypes = ['text/x-nasm']
     url = 'https://nasm.us'
     version_added = ''
+    _example = 'nasm/nasm_aoutso.asm'
 
     # Tasm uses the same file endings, but TASM is not as common as NASM, so
     # we prioritize NASM higher by default
@@ -815,6 +818,7 @@ class NasmObjdumpLexer(ObjdumpLexer):
     mimetypes = ['text/x-nasm-objdump']
     url = 'https://www.gnu.org/software/binutils'
     version_added = '2.0'
+    _example = 'objdump-nasm/no-show-raw-isns.objdump-intel'
 
     tokens = _objdump_lexer_tokens(NasmLexer)
 
@@ -829,6 +833,7 @@ class TasmLexer(RegexLexer):
     mimetypes = ['text/x-tasm']
     url = 'https://en.wikipedia.org/wiki/Turbo_Assembler'
     version_added = ''
+    _example = 'tasm/example.tasm'
 
     identifier = r'[@a-z$._?][\w$.?#@~]*'
     hexn = r'(?:0x[0-9a-f]+|$0[0-9a-f]*|[0-9]+[0-9a-f]*h)'
@@ -916,6 +921,7 @@ class Ca65Lexer(RegexLexer):
     filenames = ['*.s']
     url = 'https://cc65.github.io'
     version_added = '1.6'
+    _example = 'ca65/ca65_example.s'
 
     flags = re.IGNORECASE
 
