@@ -1,0 +1,24 @@
+---input---
+"Hello, Joe!"
+"escaped \"quotes\""
+"multi
+ line
+ string"
+"escape sequences \u{0fa32} \" \\ \f \n \r \t"
+"こんにちは"
+
+---tokens---
+'"Hello, Joe!"' Literal.String
+'\n'          Text.Whitespace
+
+'"escaped \\"quotes\\""' Literal.String
+'\n'          Text.Whitespace
+
+'"multi\n line\n string"' Literal.String
+'\n'          Text.Whitespace
+
+'"escape sequences \\u{0fa32} \\" \\\\ \\f \\n \\r \\t"' Literal.String
+'\n'          Text.Whitespace
+
+'"こんにちは"'     Literal.String
+'\n'          Text.Whitespace
