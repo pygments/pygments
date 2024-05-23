@@ -61,7 +61,7 @@ class VyperLexer(RegexLexer):
             # Keywords
             (words(('def', 'event', 'pass', 'return', 'for', 'while', 'if', 'elif',
                     'else', 'assert', 'raise', 'import', 'in', 'struct', 'implements',
-                    'interface', 'from', 'indexed', 'log'),
+                    'interface', 'from', 'indexed', 'log', 'extcall', 'staticcall'),
                    prefix=r'\b', suffix=r'\b'), Keyword),
 
             # Visibility and State Mutability
