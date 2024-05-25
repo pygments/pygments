@@ -61,7 +61,7 @@ class TclLexer(RegexLexer):
             include('command'),
             include('basic'),
             include('data'),
-            (r'\}', Keyword),  # HACK: somehow we miscounted our braces
+            # (r'\}', Keyword),  # HACK: somehow we miscounted our braces
         ],
         'command': _gen_command_rules(keyword_cmds_re, builtin_cmds_re),
         'command-in-brace': _gen_command_rules(keyword_cmds_re,
@@ -77,7 +77,7 @@ class TclLexer(RegexLexer):
             (r'\(', Keyword, 'paren'),
             (r'\[', Keyword, 'bracket'),
             (r'\{', Keyword, 'brace'),
-            (r'\\', Text), 
+            (r'\\(.)', String.Escape),
             (r'\$', Text),
             (r'"', String.Double, 'string'),
             (r'(eq|ne|in|ni)\b', Operator.Word),
