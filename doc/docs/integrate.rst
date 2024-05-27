@@ -28,6 +28,12 @@ Bash completion
 The source distribution contains a file ``external/pygments.bashcomp`` that
 sets up completion for the ``pygmentize`` command in bash.
 
+wxPython
+--------
+The `pygments-gui <https://github.com/TEParsons/pygments-gui>`_ plugin adds 
+Pygments functionality to the wxPython package, making it easy to create a 
+wx text control with Pygments highlighting.
+
 Wrappers for other languages
 ----------------------------
 

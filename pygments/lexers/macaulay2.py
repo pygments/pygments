@@ -13,7 +13,7 @@ from pygments.token import Comment, Keyword, Name, String, Text
 
 __all__ = ['Macaulay2Lexer']
 
-# Auto-generated for Macaulay2-1.23. Do not modify this file manually.
+# Auto-generated for Macaulay2-1.24.05. Do not modify this file manually.
 
 M2KEYWORDS = (
     "and",
@@ -41,6 +41,7 @@ M2KEYWORDS = (
     "step",
     "symbol",
     "then",
+    "threadLocal",
     "threadVariable",
     "throw",
     "time",
@@ -531,6 +532,7 @@ M2FUNCTIONS = (
     "getChangeMatrix",
     "getenv",
     "getGlobalSymbol",
+    "getIOThreadMode",
     "getNetFile",
     "getNonUnit",
     "getPrimeWithRootOfUnity",
@@ -813,6 +815,7 @@ M2FUNCTIONS = (
     "pad",
     "pager",
     "pairs",
+    "parallelApply",
     "parent",
     "part",
     "partition",
@@ -1056,6 +1059,7 @@ M2FUNCTIONS = (
     "uniform",
     "uninstallAllPackages",
     "uninstallPackage",
+    "union",
     "unique",
     "uniquePermutations",
     "unsequence",
@@ -1432,6 +1436,7 @@ M2CONSTANTS = (
     "MonomialOrder",
     "Monomials",
     "MonomialSize",
+    "MultigradedBGG",
     "MultiGradedRationalMap",
     "MultiplicitySequence",
     "MultiplierIdeals",
@@ -1606,6 +1611,7 @@ M2CONSTANTS = (
     "SchurComplexes",
     "SchurFunctors",
     "SchurRings",
+    "SchurVeronese",
     "scriptCommandLine",
     "SCSCP",
     "SectionRing",
@@ -1701,6 +1707,7 @@ M2CONSTANTS = (
     "Trim",
     "Triplets",
     "Tropical",
+    "TropicalToric",
     "true",
     "Truncate",
     "Truncations",
@@ -1737,6 +1744,7 @@ M2CONSTANTS = (
     "viewHelp",
     "VirtualResolutions",
     "Visualize",
+    "VNumber",
     "WebApp",
     "Weights",
     "WeylAlgebra",
