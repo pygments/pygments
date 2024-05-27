@@ -205,20 +205,44 @@ def test_ecl_analyze_text():
     assert res == 0.01
 
 
+def iter_fixture_dir(sub_dir):
+    """Returns the sub-directories in any of the examplefiles/"snippets" fixture directory."""
+    for dir in Path(TESTDIR, sub_dir).iterdir():
+        # Only keep directories that are not special.
+        if (
+            dir.is_dir()
+            and not dir.name.startswith("__")
+            and not dir.name.startswith(".")
+        ):
+            yield dir
+
+
+@pytest.mark.parametrize("sub_dir", ["examplefiles", "snippets"])
+def test_lexer_fixtures(sub_dir):
+    """Check that example files and snippets fixtures are in a directory named after a lexer alias."""
+    for dir in iter_fixture_dir(sub_dir):
+        assert find_lexer_class_by_name(
+            dir.name
+        ), f"Alias {dir.name} not found in pygments"
+
+
 def all_example_files():
     example_files = []
-    for dir in Path(TESTDIR, "examplefiles").iterdir():
-        # Skip directories that are not lexer aliases.
-        if not dir.is_dir() or dir.name.startswith("__") or dir.name.startswith("."):
-            continue
-
-        # Skip the srcinfo directory, whose example files are not strictly named ".SRCINFO".
-        if dir.name == "srcinfo":
-            continue
-
+    for dir in iter_fixture_dir("examplefiles"):
         for f in dir.iterdir():
             if f.is_file() and f.suffix != ".output":
-                example_files.append(pytest.param(f, id=f"{f.parent.name}/{f.name}"))
+                # XXX Skip the srcinfo directory, whose example files are not strictly named ".SRCINFO".
+                marks = []
+                if dir.name == "srcinfo":
+                    marks = [
+                        pytest.mark.skip(
+                            reason="Example file not strictly named '.SRCINFO'"
+                        )
+                    ]
+
+                example_files.append(
+                    pytest.param(f, id=f"{f.parent.name}/{f.name}", marks=marks)
+                )
 
     return example_files
 
