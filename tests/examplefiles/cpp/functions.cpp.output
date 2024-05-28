@@ -1389,7 +1389,7 @@
 
 'else'        Keyword
 ' '           Text.Whitespace
-'if'          Keyword
+'if'          Name.Function
 '('           Punctuation
 'flag'        Name
 ' '           Text.Whitespace
@@ -1417,7 +1417,7 @@
 ' '           Text.Whitespace
 'operator'    Keyword
 ' '           Text.Whitespace
-'int'         Keyword.Type
+'int'         Name.Function
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -1454,7 +1454,7 @@
 '/// \\cond INCLUDE_QPROPERTIES\n' Comment.Single
 
 '  '          Text.Whitespace
-'Q_PROPERTY'  Name
+'Q_PROPERTY'  Name.Function
 '('           Punctuation
 'arg1'        Name
 ' '           Text.Whitespace

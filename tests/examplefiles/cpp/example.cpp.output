@@ -175,7 +175,7 @@
 'AnsiGenerator' Name
 ':'           Operator
 ':'           Operator
-'AnsiGenerator' Name
+'AnsiGenerator' Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -472,7 +472,7 @@
 'AnsiGenerator' Name
 ':'           Operator
 ':'           Operator
-'AnsiGenerator' Name
+'AnsiGenerator' Name.Function
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -483,8 +483,7 @@
 'AnsiGenerator' Name
 ':'           Operator
 ':'           Operator
-'~'           Operator
-'AnsiGenerator' Name
+'~AnsiGenerator' Name.Function
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -496,10 +495,7 @@
 
 'string'      Name
 ' '           Text.Whitespace
-'AnsiGenerator' Name
-':'           Operator
-':'           Operator
-'getHeader'   Name
+'AnsiGenerator::getHeader' Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -529,10 +525,7 @@
 
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'AnsiGenerator' Name
-':'           Operator
-':'           Operator
-'printBody'   Name
+'AnsiGenerator::printBody' Name.Function
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -553,10 +546,7 @@
 
 'string'      Name
 ' '           Text.Whitespace
-'AnsiGenerator' Name
-':'           Operator
-':'           Operator
-'getFooter'   Name
+'AnsiGenerator::getFooter' Name.Function
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -579,10 +569,7 @@
 
 'string'      Name
 ' '           Text.Whitespace
-'AnsiGenerator' Name
-':'           Operator
-':'           Operator
-'maskCharacter' Name
+'AnsiGenerator::maskCharacter' Name.Function
 '('           Punctuation
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -623,10 +610,7 @@
 
 'string'      Name
 ' '           Text.Whitespace
-'AnsiGenerator' Name
-':'           Operator
-':'           Operator
-'getMatchingOpenTag' Name
+'AnsiGenerator::getMatchingOpenTag' Name.Function
 '('           Punctuation
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -682,10 +666,7 @@
 
 'string'      Name
 ' '           Text.Whitespace
-'AnsiGenerator' Name
-':'           Operator
-':'           Operator
-'getMatchingCloseTag' Name
+'AnsiGenerator::getMatchingCloseTag' Name.Function
 '('           Punctuation
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -923,7 +904,7 @@
 ' '           Text.Whitespace
 'string'      Name
 ' '           Text.Whitespace
-'maskCharacter' Name
+'maskCharacter' Name.Function
 '('           Punctuation
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -2166,7 +2147,7 @@
 'ASBeautifier' Name
 ':'           Operator
 ':'           Operator
-'ASBeautifier' Name
+'ASBeautifier' Name.Function
 '('           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
@@ -2439,7 +2420,7 @@
 'ASBeautifier' Name
 ':'           Operator
 ':'           Operator
-'ASBeautifier' Name
+'ASBeautifier' Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -3394,8 +3375,7 @@
 'ASBeautifier' Name
 ':'           Operator
 ':'           Operator
-'~'           Operator
-'ASBeautifier' Name
+'~ASBeautifier' Name.Function
 '('           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
@@ -3512,10 +3492,7 @@
 '  '          Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'init'        Name
+'ASBeautifier::init' Name.Function
 '('           Punctuation
 'ASSourceIterator' Name
 ' '           Text.Whitespace
@@ -3559,10 +3536,7 @@
 '  '          Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'init'        Name
+'ASBeautifier::init' Name.Function
 '('           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
@@ -4154,10 +4128,7 @@
 '  '          Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'setCStyle'   Name
+'ASBeautifier::setCStyle' Name.Function
 '('           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
@@ -4188,10 +4159,7 @@
 '  '          Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'setJavaStyle' Name
+'ASBeautifier::setJavaStyle' Name.Function
 '('           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
@@ -4222,10 +4190,7 @@
 '  '          Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'setTabIndentation' Name
+'ASBeautifier::setTabIndentation' Name.Function
 '('           Punctuation
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -4308,10 +4273,7 @@
 '  '          Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'setSpaceIndentation' Name
+'ASBeautifier::setSpaceIndentation' Name.Function
 '('           Punctuation
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -4384,10 +4346,7 @@
 '  '          Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'setMaxInStatementIndentLength' Name
+'ASBeautifier::setMaxInStatementIndentLength' Name.Function
 '('           Punctuation
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -4421,10 +4380,7 @@
 '  '          Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'setMinConditionalIndentLength' Name
+'ASBeautifier::setMinConditionalIndentLength' Name.Function
 '('           Punctuation
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -4467,10 +4423,7 @@
 '  '          Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'setBracketIndent' Name
+'ASBeautifier::setBracketIndent' Name.Function
 '('           Punctuation
 'bool'        Keyword.Type
 ' '           Text.Whitespace
@@ -4504,10 +4457,7 @@
 '  '          Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'setBlockIndent' Name
+'ASBeautifier::setBlockIndent' Name.Function
 '('           Punctuation
 'bool'        Keyword.Type
 ' '           Text.Whitespace
@@ -4558,10 +4508,7 @@
 '  '          Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'setClassIndent' Name
+'ASBeautifier::setClassIndent' Name.Function
 '('           Punctuation
 'bool'        Keyword.Type
 ' '           Text.Whitespace
@@ -4595,10 +4542,7 @@
 '  '          Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'setSwitchIndent' Name
+'ASBeautifier::setSwitchIndent' Name.Function
 '('           Punctuation
 'bool'        Keyword.Type
 ' '           Text.Whitespace
@@ -4632,10 +4576,7 @@
 '  '          Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'setCaseIndent' Name
+'ASBeautifier::setCaseIndent' Name.Function
 '('           Punctuation
 'bool'        Keyword.Type
 ' '           Text.Whitespace
@@ -4667,10 +4608,7 @@
 '  '          Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'setNamespaceIndent' Name
+'ASBeautifier::setNamespaceIndent' Name.Function
 '('           Punctuation
 'bool'        Keyword.Type
 ' '           Text.Whitespace
@@ -4704,10 +4642,7 @@
 '  '          Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'setLabelIndent' Name
+'ASBeautifier::setLabelIndent' Name.Function
 '('           Punctuation
 'bool'        Keyword.Type
 ' '           Text.Whitespace
@@ -4741,10 +4676,7 @@
 '  '          Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'setPreprocessorIndent' Name
+'ASBeautifier::setPreprocessorIndent' Name.Function
 '('           Punctuation
 'bool'        Keyword.Type
 ' '           Text.Whitespace
@@ -4778,10 +4710,7 @@
 '  '          Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'setEmptyLineFill' Name
+'ASBeautifier::setEmptyLineFill' Name.Function
 '('           Punctuation
 'bool'        Keyword.Type
 ' '           Text.Whitespace
@@ -4815,10 +4744,7 @@
 '  '          Text.Whitespace
 'bool'        Keyword.Type
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'hasMoreLines' Name
+'ASBeautifier::hasMoreLines' Name.Function
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -4854,10 +4780,7 @@
 '  '          Text.Whitespace
 'string'      Name
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'nextLine'    Name
+'ASBeautifier::nextLine' Name.Function
 '('           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
@@ -4894,10 +4817,7 @@
 '  '          Text.Whitespace
 'string'      Name
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'beautify'    Name
+'ASBeautifier::beautify' Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -14373,10 +14293,7 @@
 '  '          Text.Whitespace
 'string'      Name
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'preLineWS'   Name
+'ASBeautifier::preLineWS' Name.Function
 '('           Punctuation
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -14491,10 +14408,7 @@
 '  '          Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'registerInStatementIndent' Name
+'ASBeautifier::registerInStatementIndent' Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -14878,10 +14792,7 @@
 '  '          Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'getNextProgramCharDistance' Name
+'ASBeautifier::getNextProgramCharDistance' Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -15239,10 +15150,7 @@
 '  '          Text.Whitespace
 'bool'        Keyword.Type
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'isLegalNameChar' Name
+'ASBeautifier::isLegalNameChar' Name.Function
 '('           Punctuation
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -15344,10 +15252,7 @@
 'string'      Name
 ' '           Text.Whitespace
 '*'           Operator
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'findHeader'  Name
+'ASBeautifier::findHeader' Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -15829,10 +15734,7 @@
 '  '          Text.Whitespace
 'bool'        Keyword.Type
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'isWhiteSpace' Name
+'ASBeautifier::isWhiteSpace' Name.Function
 '('           Punctuation
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -15887,10 +15789,7 @@
 '  '          Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'indexOf'     Name
+'ASBeautifier::indexOf' Name.Function
 '('           Punctuation
 'vector'      Name
 '<'           Operator
@@ -16016,10 +15915,7 @@
 '  '          Text.Whitespace
 'string'      Name
 ' '           Text.Whitespace
-'ASBeautifier' Name
-':'           Operator
-':'           Operator
-'trim'        Name
+'ASBeautifier::trim' Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -16136,7 +16032,7 @@
 '    '        Text.Whitespace
 'string'      Name
 ' '           Text.Whitespace
-'returnStr'   Name.Function
+'returnStr'   Name
 '('           Punctuation
 'str'         Name
 ','           Punctuation
@@ -16638,7 +16534,7 @@
 '      '      Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
-'getNextProgramCharDistance' Name
+'getNextProgramCharDistance' Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace

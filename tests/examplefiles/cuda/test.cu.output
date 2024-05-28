@@ -12,7 +12,7 @@
 ' '           Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'func'        Name
+'func'        Name.Function
 '('           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
@@ -70,7 +70,7 @@
 ' '           Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'reduction'   Name
+'reduction'   Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -235,7 +235,7 @@
 
 'int'         Keyword.Type
 ' '           Text.Whitespace
-'main'        Name
+'main'        Name.Function
 '('           Punctuation
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -256,7 +256,7 @@
 '    '        Text.Whitespace
 'dim3'        Keyword.Type
 ' '           Text.Whitespace
-'dimBlock'    Name.Function
+'dimBlock'    Name
 '('           Punctuation
 '8'           Literal.Number.Integer
 ','           Punctuation

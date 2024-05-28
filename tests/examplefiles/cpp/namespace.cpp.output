@@ -108,7 +108,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'QualifiedName' Name
+'QualifiedName' Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -133,7 +133,7 @@
 'FlyString'   Name
 '&'           Operator
 ' '           Text.Whitespace
-'local_name'  Name
+'local_name'  Name.Function
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace

@@ -46,7 +46,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'SWIG_PackData' Name
+'SWIG_PackData' Name.Function
 '('           Punctuation
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -268,7 +268,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'SWIG_UnpackData' Name
+'SWIG_UnpackData' Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -2597,7 +2597,7 @@
 'jni'         Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'SWIGTYPE'    Name
+'SWIGTYPE'    Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 'CLASS'       Name
@@ -3801,7 +3801,7 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'if'          Keyword
+'if'          Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 '!'           Operator
@@ -4098,7 +4098,7 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'if'          Keyword
+'if'          Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 '!'           Operator
@@ -4925,7 +4925,7 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'if'          Keyword
+'if'          Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 '$input'      Name
@@ -5013,7 +5013,7 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'if'          Keyword
+'if'          Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 '$input'      Name
@@ -5103,7 +5103,7 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'if'          Keyword
+'if'          Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 '$1'          Name
@@ -5326,7 +5326,7 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'if'          Keyword
+'if'          Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 '$input'      Name
@@ -7316,7 +7316,7 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'if'          Keyword
+'if'          Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 '!'           Operator
@@ -7640,7 +7640,7 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'if'          Keyword
+'if'          Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 '!'           Operator
@@ -8192,7 +8192,7 @@
 'in'          Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'SWIGTYPE'    Name
+'SWIGTYPE'    Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 '$&1_type'    Name
@@ -8277,7 +8277,7 @@
 'directorout' Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'SWIGTYPE'    Name
+'SWIGTYPE'    Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 '$&1_type'    Name
@@ -8588,7 +8588,7 @@
 '"'           Literal.String
 ')'           Punctuation
 ' '           Text.Whitespace
-'SWIGTYPE'    Name
+'SWIGTYPE'    Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 'CLASS'       Name
@@ -8716,7 +8716,7 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'if'          Keyword
+'if'          Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 '!'           Operator
@@ -8803,7 +8803,7 @@
 '1'           Literal.Number.Integer
 ')'           Punctuation
 ' '           Text.Whitespace
-'SWIGTYPE'    Name
+'SWIGTYPE'    Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 'CLASS'       Name
@@ -8964,7 +8964,7 @@
 'SWIGWARN_TYPEMAP_DIRECTOROUT_PTR_MSG' Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'SWIGTYPE'    Name
+'SWIGTYPE'    Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 'CLASS'       Name
@@ -9047,7 +9047,7 @@
 '"'           Literal.String
 ')'           Punctuation
 ' '           Text.Whitespace
-'SWIGTYPE'    Name
+'SWIGTYPE'    Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 'CLASS'       Name
@@ -9102,7 +9102,7 @@
 '%'           Operator
 '{'           Punctuation
 ' '           Text.Whitespace
-'if'          Keyword
+'if'          Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 '!'           Operator
@@ -9208,7 +9208,7 @@
 '*'           Operator
 ','           Punctuation
 ' '           Text.Whitespace
-'SWIGTYPE'    Name
+'SWIGTYPE'    Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 'CLASS'       Name
@@ -9388,7 +9388,7 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'if'          Keyword
+'if'          Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 '$input'      Name
@@ -9477,7 +9477,7 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'if'          Keyword
+'if'          Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 '$input'      Name
@@ -9573,7 +9573,7 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'if'          Keyword
+'if'          Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 '$1'          Name
@@ -11394,7 +11394,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'SWIGTYPE'    Name
+'SWIGTYPE'    Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 'CLASS'       Name
@@ -12019,7 +12019,7 @@
 'javain'      Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'SWIGTYPE'    Name
+'SWIGTYPE'    Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 'CLASS'       Name
@@ -12552,7 +12552,7 @@
 'javaout'     Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'SWIGTYPE'    Name
+'SWIGTYPE'    Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 'CLASS'       Name
@@ -12853,7 +12853,7 @@
 ']'           Punctuation
 ','           Punctuation
 ' '           Text.Whitespace
-'SWIGTYPE'    Name
+'SWIGTYPE'    Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 'CLASS'       Name
@@ -13108,7 +13108,7 @@
 '  '          Text.Whitespace
 'PTRCTOR_VISIBILITY' Name
 ' '           Text.Whitespace
-'$javaclassname' Name.Function
+'$javaclassname' Name
 '('           Punctuation
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -13278,7 +13278,7 @@
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
-'getCPtr'     Name
+'getCPtr'     Name.Function
 '('           Punctuation
 '$javaclassname' Name
 ' '           Text.Whitespace
@@ -13327,7 +13327,7 @@
 
 '%define'     Name.Function
 ' '           Text.Whitespace
-'SWIG_JAVABODY_TYPEWRAPPER' Name
+'SWIG_JAVABODY_TYPEWRAPPER' Name.Function
 '('           Punctuation
 'PTRCTOR_VISIBILITY' Name
 ','           Punctuation
@@ -13385,7 +13385,7 @@
 '  '          Text.Whitespace
 'PTRCTOR_VISIBILITY' Name
 ' '           Text.Whitespace
-'$javaclassname' Name.Function
+'$javaclassname' Name
 '('           Punctuation
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -13418,7 +13418,7 @@
 '  '          Text.Whitespace
 'DEFAULTCTOR_VISIBILITY' Name
 ' '           Text.Whitespace
-'$javaclassname' Name.Function
+'$javaclassname' Name
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -13496,7 +13496,7 @@
 'javabody'    Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'TYPE'        Name
+'TYPE'        Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 'CLASS'       Name
@@ -13523,7 +13523,7 @@
 '  '          Text.Whitespace
 'PTRCTOR_VISIBILITY' Name
 ' '           Text.Whitespace
-'$javaclassname' Name.Function
+'$javaclassname' Name
 '('           Punctuation
 'String'      Name
 ' '           Text.Whitespace
@@ -13556,7 +13556,7 @@
 '  '          Text.Whitespace
 'DEFAULTCTOR_VISIBILITY' Name
 ' '           Text.Whitespace
-'$javaclassname' Name.Function
+'$javaclassname' Name
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -13620,7 +13620,7 @@
 '/* Set the default javabody typemaps to use protected visibility.\n   Use the macros to change to public if using multiple modules. */' Comment.Multiline
 '\n'          Text.Whitespace
 
-'SWIG_JAVABODY_PROXY' Name
+'SWIG_JAVABODY_PROXY' Name.Function
 '('           Punctuation
 'protected'   Keyword
 ','           Punctuation
@@ -13665,7 +13665,7 @@
 ' '           Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'finalize'    Name.Function
+'finalize'    Name
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -13751,7 +13751,7 @@
 
 '%define'     Name.Function
 ' '           Text.Whitespace
-'SWIG_DIRECTOR_OWNED' Name
+'SWIG_DIRECTOR_OWNED' Name.Function
 '('           Punctuation
 'TYPENAME'    Name
 '.'           Punctuation
@@ -13904,7 +13904,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'if'          Keyword
+'if'          Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 'swigCPtr'    Name
@@ -14249,7 +14249,7 @@
 ' '           Text.Whitespace
 '{'           Punctuation
 ' '           Text.Whitespace
-'SWIGTYPE'    Name
+'SWIGTYPE'    Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
@@ -14419,7 +14419,7 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'if'          Keyword
+'if'          Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 '$input'      Name
