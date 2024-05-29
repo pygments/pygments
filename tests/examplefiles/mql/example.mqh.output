@@ -338,7 +338,7 @@
 ' '           Text.Whitespace
 'void'        Keyword.Type
 '      '      Text.Whitespace
-'QuickSort'   Name.Function
+'QuickSort'   Name
 '('           Punctuation
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -376,7 +376,7 @@
 'CArray'      Name
 ':'           Operator
 ':'           Operator
-'CArray'      Name.Function
+'CArray'      Name
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
@@ -430,7 +430,8 @@
 'CArray'      Name
 ':'           Operator
 ':'           Operator
-'~CArray'     Name.Function
+'~'           Operator
+'CArray'      Name
 '('           Punctuation
 'void'        Keyword.Type
 ')'           Punctuation
@@ -452,7 +453,10 @@
 
 'bool'        Keyword.Type
 ' '           Text.Whitespace
-'CArray::Step' Name.Function
+'CArray'      Name
+':'           Operator
+':'           Operator
+'Step'        Name
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -522,7 +526,10 @@
 
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'CArray::Sort' Name.Function
+'CArray'      Name
+':'           Operator
+':'           Operator
+'Sort'        Name
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -602,7 +609,10 @@
 
 'bool'        Keyword.Type
 ' '           Text.Whitespace
-'CArray::Save' Name.Function
+'CArray'      Name
+':'           Operator
+':'           Operator
+'Save'        Name
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -717,7 +727,10 @@
 
 'bool'        Keyword.Type
 ' '           Text.Whitespace
-'CArray::Load' Name.Function
+'CArray'      Name
+':'           Operator
+':'           Operator
+'Load'        Name
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace

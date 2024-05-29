@@ -566,7 +566,7 @@
 '.'           Punctuation
 'Stat'        Name
 ' '           Text.Whitespace
-'stat'        Name.Function
+'stat'        Name
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -652,7 +652,7 @@
 '.'           Punctuation
 'SplitIterator' Name
 ' '           Text.Whitespace
-'line_iterator' Name.Function
+'line_iterator' Name
 '('           Punctuation
 'int'         Keyword.Type
 '|'           Operator
@@ -781,7 +781,7 @@
 
 '//!   @[Stdio.File()->read_function()]\n' Comment.Single
 
-'function'    Name.Function
+'function'    Keyword.Type
 '('           Punctuation
 ':'           Operator
 'string'      Keyword.Type
@@ -827,7 +827,7 @@
 
 '//!   @[Stdio.File()->peek()]\n' Comment.Single
 
-'int'         Name.Function
+'int'         Keyword.Type
 '('           Punctuation
 '-'           Operator
 '1.'          Literal.Number.Float
@@ -902,7 +902,7 @@
 
 'string'      Keyword.Type
 ' '           Text.Whitespace
-'query_address' Name.Function
+'query_address' Name
 '('           Punctuation
 'void'        Keyword.Type
 '|'           Operator
@@ -933,7 +933,7 @@
 
 'string'      Keyword.Type
 ' '           Text.Whitespace
-'read'        Name.Function
+'read'        Name
 '('           Punctuation
 'void'        Keyword.Type
 '|'           Operator
@@ -1076,7 +1076,7 @@
 
 'string'      Keyword.Type
 ' '           Text.Whitespace
-'gets'        Name.Function
+'gets'        Name
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -1229,7 +1229,7 @@
 
 'int'         Keyword.Type
 ' '           Text.Whitespace
-'getchar'     Name.Function
+'getchar'     Name
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -1313,7 +1313,7 @@
 
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'unread'      Name.Function
+'unread'      Name
 '('           Punctuation
 'string'      Keyword.Type
 ' '           Text.Whitespace
@@ -1412,7 +1412,7 @@
 
 'int'         Keyword.Type
 ' '           Text.Whitespace
-'seek'        Name.Function
+'seek'        Name
 '('           Punctuation
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -1566,7 +1566,7 @@
 
 '//!   @[Stdio.File()->sync()]\n' Comment.Single
 
-'int'         Name.Function
+'int'         Keyword.Type
 '('           Punctuation
 '1.'          Literal.Number.Float
 '.1'          Literal.Number.Float
@@ -1594,7 +1594,7 @@
 
 'int'         Keyword.Type
 ' '           Text.Whitespace
-'tell'        Name.Function
+'tell'        Name
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -1614,7 +1614,7 @@
 
 '//!   @[Stdio.File()->truncate()]\n' Comment.Single
 
-'int'         Name.Function
+'int'         Keyword.Type
 '('           Punctuation
 '0.'          Literal.Number.Float
 '.1'          Literal.Number.Float
@@ -1668,7 +1668,7 @@
 
 '//!   @[Stdio.File()->write()]\n' Comment.Single
 
-'int'         Name.Function
+'int'         Keyword.Type
 '('           Punctuation
 '-'           Operator
 '1.'          Literal.Number.Float
@@ -1911,7 +1911,7 @@
 
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'set_blocking' Name.Function
+'set_blocking' Name
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -1974,7 +1974,7 @@
 
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'set_blocking_keep_callbacks' Name.Function
+'set_blocking_keep_callbacks' Name
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -1991,7 +1991,7 @@
 
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'set_nonblocking' Name.Function
+'set_nonblocking' Name
 '('           Punctuation
 'function'    Keyword.Type
 ' '           Text.Whitespace
@@ -2079,7 +2079,7 @@
 
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'set_nonblocking_keep_callbacks' Name.Function
+'set_nonblocking_keep_callbacks' Name
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -2098,7 +2098,7 @@
 
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'set_close_callback' Name.Function
+'set_close_callback' Name
 '('           Punctuation
 'function'    Keyword.Type
 ' '           Text.Whitespace
@@ -2125,7 +2125,7 @@
 
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'set_read_callback' Name.Function
+'set_read_callback' Name
 '('           Punctuation
 'function'    Keyword.Type
 ' '           Text.Whitespace
@@ -2152,7 +2152,7 @@
 
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'set_read_oob_callback' Name.Function
+'set_read_oob_callback' Name
 '('           Punctuation
 'function'    Keyword.Type
 ' '           Text.Whitespace
@@ -2179,7 +2179,7 @@
 
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'set_write_callback' Name.Function
+'set_write_callback' Name
 '('           Punctuation
 'function'    Keyword.Type
 ' '           Text.Whitespace
@@ -2206,7 +2206,7 @@
 
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'set_write_oob_callback' Name.Function
+'set_write_oob_callback' Name
 '('           Punctuation
 'function'    Keyword.Type
 ' '           Text.Whitespace
@@ -2235,7 +2235,7 @@
 
 'function'    Keyword.Type
 ' '           Text.Whitespace
-'query_close_callback' Name.Function
+'query_close_callback' Name
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -2257,7 +2257,7 @@
 
 'function'    Keyword.Type
 ' '           Text.Whitespace
-'query_read_callback' Name.Function
+'query_read_callback' Name
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -2279,7 +2279,7 @@
 
 'function'    Keyword.Type
 ' '           Text.Whitespace
-'query_read_oob_callback' Name.Function
+'query_read_oob_callback' Name
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -2301,7 +2301,7 @@
 
 'function'    Keyword.Type
 ' '           Text.Whitespace
-'query_write_callback' Name.Function
+'query_write_callback' Name
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -2323,7 +2323,7 @@
 
 'function'    Keyword.Type
 ' '           Text.Whitespace
-'query_write_oob_callback' Name.Function
+'query_write_oob_callback' Name
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -2341,7 +2341,7 @@
 
 'string'      Keyword.Type
 ' '           Text.Whitespace
-'_sprintf'    Name.Function
+'_sprintf'    Name
 '('           Punctuation
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -2404,7 +2404,7 @@
 
 'mixed'       Keyword.Type
 ' '           Text.Whitespace
-'cast'        Name.Function
+'cast'        Name
 '('           Punctuation
 'string'      Keyword.Type
 ' '           Text.Whitespace
@@ -2429,7 +2429,7 @@
 '"'           Literal.String
 'string'      Literal.String
 '"'           Literal.String
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
@@ -2443,7 +2443,7 @@
 '"'           Literal.String
 'object'      Literal.String
 '"'           Literal.String
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
@@ -2476,7 +2476,7 @@
 
 '//! Sizeof on a FakeFile returns the size of its contents.\n' Comment.Single
 
-'int'         Name.Function
+'int'         Keyword.Type
 '('           Punctuation
 '0.'          Literal.Number.Float
 '.'           Punctuation

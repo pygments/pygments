@@ -2277,7 +2277,7 @@
 'void'        Keyword.Type
 '\n'          Text.Whitespace
 
-'memfill'     Name.Function
+'memfill'     Name
 '('           Punctuation
 'mem'         Name
 ','           Punctuation
@@ -2366,7 +2366,7 @@
 'void'        Keyword.Type
 '\n'          Text.Whitespace
 
-'rb_ary_modify_check' Name.Function
+'rb_ary_modify_check' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -2475,7 +2475,7 @@
 'void'        Keyword.Type
 '\n'          Text.Whitespace
 
-'rb_ary_modify' Name.Function
+'rb_ary_modify' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -2636,7 +2636,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_freeze' Name.Function
+'rb_ary_freeze' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -2677,7 +2677,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_frozen_p' Name.Function
+'rb_ary_frozen_p' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -2744,7 +2744,7 @@
 ' '           Text.Whitespace
 'VALUE'       Name
 ' '           Text.Whitespace
-'ary_alloc'   Name.Function
+'ary_alloc'   Name
 '('           Punctuation
 'VALUE'       Name
 ')'           Punctuation
@@ -2861,7 +2861,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'ary_new'     Name.Function
+'ary_new'     Name
 '('           Punctuation
 'klass'       Name
 ','           Punctuation
@@ -2944,7 +2944,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'sizeof'      Name.Function
+'sizeof'      Keyword
 '('           Punctuation
 'VALUE'       Name
 ')'           Punctuation
@@ -3063,7 +3063,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_new2' Name.Function
+'rb_ary_new2' Name
 '('           Punctuation
 'len'         Name
 ')'           Punctuation
@@ -3102,7 +3102,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_new'  Name.Function
+'rb_ary_new'  Name
 '('           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
@@ -3348,7 +3348,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_new4' Name.Function
+'rb_ary_new4' Name
 '('           Punctuation
 'n'           Name
 ','           Punctuation
@@ -3663,7 +3663,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_values_new2' Name.Function
+'rb_values_new2' Name
 '('           Punctuation
 'n'           Name
 ','           Punctuation
@@ -3796,7 +3796,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'ary_make_shared' Name.Function
+'ary_make_shared' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -4004,7 +4004,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'ary_shared_array' Name.Function
+'ary_shared_array' Name
 '('           Punctuation
 'klass'       Name
 ','           Punctuation
@@ -4143,7 +4143,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_values_from_ary' Name.Function
+'rb_values_from_ary' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -4180,7 +4180,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_from_values' Name.Function
+'rb_ary_from_values' Name
 '('           Punctuation
 'val'         Name
 ')'           Punctuation
@@ -4217,7 +4217,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_assoc_new' Name.Function
+'rb_assoc_new' Name
 '('           Punctuation
 'car'         Name
 ','           Punctuation
@@ -4265,7 +4265,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'to_ary'      Name.Function
+'to_ary'      Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -4314,7 +4314,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'to_a'        Name.Function
+'to_a'        Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -4361,7 +4361,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_check_array_type' Name.Function
+'rb_check_array_type' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -4411,7 +4411,7 @@
 ' '           Text.Whitespace
 'rb_ary_replace' Name
 ' '           Text.Whitespace
-'_'           Name.Function
+'_'           Name
 '('           Punctuation
 '('           Punctuation
 'VALUE'       Name
@@ -5012,7 +5012,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_s_create' Name.Function
+'rb_ary_s_create' Name
 '('           Punctuation
 'argc'        Name
 ','           Punctuation
@@ -5171,7 +5171,7 @@
 'void'        Keyword.Type
 '\n'          Text.Whitespace
 
-'rb_ary_store' Name.Function
+'rb_ary_store' Name
 '('           Punctuation
 'ary'         Name
 ','           Punctuation
@@ -5604,7 +5604,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'ary_shared_first' Name.Function
+'ary_shared_first' Name
 '('           Punctuation
 'argc'        Name
 ','           Punctuation
@@ -5811,7 +5811,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'ary_shared_last' Name.Function
+'ary_shared_last' Name
 '('           Punctuation
 'argc'        Name
 ','           Punctuation
@@ -5922,7 +5922,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_push' Name.Function
+'rb_ary_push' Name
 '('           Punctuation
 'ary'         Name
 ','           Punctuation
@@ -5990,7 +5990,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_push_m' Name.Function
+'rb_ary_push_m' Name
 '('           Punctuation
 'argc'        Name
 ','           Punctuation
@@ -6072,7 +6072,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_pop'  Name.Function
+'rb_ary_pop'  Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -6167,7 +6167,7 @@
 '\n'          Text.Whitespace
 
 '\t    '      Text.Whitespace
-'RARRAY'      Name.Function
+'RARRAY'      Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -6283,7 +6283,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_pop_m' Name.Function
+'rb_ary_pop_m' Name
 '('           Punctuation
 'argc'        Name
 ','           Punctuation
@@ -6425,7 +6425,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_shift' Name.Function
+'rb_ary_shift' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -6560,7 +6560,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_shift_m' Name.Function
+'rb_ary_shift_m' Name
 '('           Punctuation
 'argc'        Name
 ','           Punctuation
@@ -6736,7 +6736,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_unshift' Name.Function
+'rb_ary_unshift' Name
 '('           Punctuation
 'ary'         Name
 ','           Punctuation
@@ -6997,7 +6997,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_unshift_m' Name.Function
+'rb_ary_unshift_m' Name
 '('           Punctuation
 'argc'        Name
 ','           Punctuation
@@ -7186,7 +7186,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_elt'  Name.Function
+'rb_ary_elt'  Name
 '('           Punctuation
 'ary'         Name
 ','           Punctuation
@@ -7301,7 +7301,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_entry' Name.Function
+'rb_ary_entry' Name
 '('           Punctuation
 'ary'         Name
 ','           Punctuation
@@ -7384,7 +7384,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_subseq' Name.Function
+'rb_ary_subseq' Name
 '('           Punctuation
 'ary'         Name
 ','           Punctuation
@@ -7719,7 +7719,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_aref' Name.Function
+'rb_ary_aref' Name
 '('           Punctuation
 'argc'        Name
 ','           Punctuation
@@ -8083,7 +8083,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_at'   Name.Function
+'rb_ary_at'   Name
 '('           Punctuation
 'ary'         Name
 ','           Punctuation
@@ -8136,7 +8136,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_first' Name.Function
+'rb_ary_first' Name
 '('           Punctuation
 'argc'        Name
 ','           Punctuation
@@ -8273,7 +8273,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_last' Name.Function
+'rb_ary_last' Name
 '('           Punctuation
 'argc'        Name
 ','           Punctuation
@@ -8417,7 +8417,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_fetch' Name.Function
+'rb_ary_fetch' Name
 '('           Punctuation
 'argc'        Name
 ','           Punctuation
@@ -8720,7 +8720,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_index' Name.Function
+'rb_ary_index' Name
 '('           Punctuation
 'argc'        Name
 ','           Punctuation
@@ -8975,7 +8975,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_rindex' Name.Function
+'rb_ary_rindex' Name
 '('           Punctuation
 'argc'        Name
 ','           Punctuation
@@ -9273,7 +9273,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_to_ary' Name.Function
+'rb_ary_to_ary' Name
 '('           Punctuation
 'obj'         Name
 ')'           Punctuation
@@ -9376,7 +9376,7 @@
 'void'        Keyword.Type
 '\n'          Text.Whitespace
 
-'rb_ary_splice' Name.Function
+'rb_ary_splice' Name
 '('           Punctuation
 'ary'         Name
 ','           Punctuation
@@ -10186,7 +10186,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_aset' Name.Function
+'rb_ary_aset' Name
 '('           Punctuation
 'argc'        Name
 ','           Punctuation
@@ -10513,7 +10513,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_insert' Name.Function
+'rb_ary_insert' Name
 '('           Punctuation
 'argc'        Name
 ','           Punctuation
@@ -10737,7 +10737,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_each' Name.Function
+'rb_ary_each' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -10833,7 +10833,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_each_index' Name.Function
+'rb_ary_each_index' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -10923,7 +10923,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_reverse_each' Name.Function
+'rb_ary_reverse_each' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -11052,7 +11052,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_length' Name.Function
+'rb_ary_length' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -11099,7 +11099,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_empty_p' Name.Function
+'rb_ary_empty_p' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -11156,7 +11156,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_dup'  Name.Function
+'rb_ary_dup'  Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -11378,7 +11378,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_join' Name.Function
+'rb_ary_join' Name
 '('           Punctuation
 'ary'         Name
 ','           Punctuation
@@ -11917,7 +11917,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_join_m' Name.Function
+'rb_ary_join_m' Name
 '('           Punctuation
 'argc'        Name
 ','           Punctuation
@@ -12030,7 +12030,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_to_s' Name.Function
+'rb_ary_to_s' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -12102,7 +12102,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'inspect_ary' Name.Function
+'inspect_ary' Name
 '('           Punctuation
 'ary'         Name
 ','           Punctuation
@@ -12357,7 +12357,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_inspect' Name.Function
+'rb_ary_inspect' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -12433,7 +12433,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_to_a' Name.Function
+'rb_ary_to_a' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -12531,7 +12531,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_to_ary_m' Name.Function
+'rb_ary_to_ary_m' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -12562,7 +12562,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_reverse' Name.Function
+'rb_ary_reverse' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -12748,7 +12748,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_reverse_bang' Name.Function
+'rb_ary_reverse_bang' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -12789,7 +12789,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_reverse_m' Name.Function
+'rb_ary_reverse_m' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -12958,7 +12958,7 @@
 'int'         Keyword.Type
 '\n'          Text.Whitespace
 
-'sort_1'      Name.Function
+'sort_1'      Name
 '('           Punctuation
 'a'           Name
 ','           Punctuation
@@ -13071,7 +13071,7 @@
 'int'         Keyword.Type
 '\n'          Text.Whitespace
 
-'sort_2'      Name.Function
+'sort_2'      Name
 '('           Punctuation
 'ap'          Name
 ','           Punctuation
@@ -13239,7 +13239,7 @@
 '&'           Operator
 '&'           Operator
 ' '           Text.Whitespace
-'TYPE'        Name.Function
+'TYPE'        Name
 '('           Punctuation
 'b'           Name
 ')'           Punctuation
@@ -13338,7 +13338,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'sort_internal' Name.Function
+'sort_internal' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -13469,7 +13469,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'sort_unlock' Name.Function
+'sort_unlock' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -13516,7 +13516,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_sort_bang' Name.Function
+'rb_ary_sort_bang' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -13614,7 +13614,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_sort' Name.Function
+'rb_ary_sort' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -13672,7 +13672,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_collect' Name.Function
+'rb_ary_collect' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -13847,7 +13847,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_collect_bang' Name.Function
+'rb_ary_collect_bang' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
@@ -13957,7 +13957,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_get_values_at' Name.Function
+'rb_get_values_at' Name
 '('           Punctuation
 'obj'         Name
 ','           Punctuation
@@ -14303,7 +14303,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_values_at' Name.Function
+'rb_ary_values_at' Name
 '('           Punctuation
 'argc'        Name
 ','           Punctuation
@@ -14383,7 +14383,7 @@
 'VALUE'       Name
 '\n'          Text.Whitespace
 
-'rb_ary_select' Name.Function
+'rb_ary_select' Name
 '('           Punctuation
 'ary'         Name
 ')'           Punctuation
