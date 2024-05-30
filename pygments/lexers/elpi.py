@@ -8,12 +8,13 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, bygroups, include
+from pygments.lexer import RegexLexer, bygroups, include, using
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
 
 __all__ = ['ElpiLexer']
 
+from pygments.lexers.theorem import CoqLexer
 
 class ElpiLexer(RegexLexer):
     """
@@ -155,7 +156,7 @@ class ElpiLexer(RegexLexer):
             (r"\s+", Text.Whitespace),
             (r"(lp:)(\{\{)", bygroups(Number, Punctuation), 'elpi-quote-exit'),
             (rf"(lp:)((?=[A-Z_]){constant_re})", bygroups(Number, Name.Variable)),
-            (r"((?!lp:|\s|\}\}).)+", Text),
+            (r"((?!lp:|\}\}).)+", using(CoqLexer)),
         ],
         'elpi-quote-exit': [
             include('elpi'),

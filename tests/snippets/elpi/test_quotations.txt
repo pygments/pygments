@@ -1,14 +1,29 @@
 ---input---
-tc {{ Eq lp:A }} {{ f lp:B l lp:{{f Elpi {{Coq}}}}}} :- foo A B.
+tc {{ Eq (fun x => 3) lp:A }} {{ f lp:B l lp:{{f Elpi {{Coq}}}}}} :- foo A B.
 tc {{ x lp:{{f Elpi "STRING" 3 {{Coq}}}}}} :- foo A B.
+pred int->nat i:int, o:term.
+int->nat 0 {{ 0 }}.
+int->nat N {{ S lp:X }} :- M is N - 1, int->nat M X.
+dummy :- {{Record coqWorld (T : Type) := 
+  {myFun : T -> nat -> bool}. lp:{{pred elpiAgain i:term, o:nat -> nat.}}}}.
 
 ---tokens---
 'tc'          Text
 ' '           Text.Whitespace
 '{{'          Punctuation
 ' '           Text.Whitespace
-'Eq'          Text
-' '           Text.Whitespace
+'Eq'          Name
+' '           Text
+'('           Operator
+'fun'         Keyword
+' '           Text
+'x'           Name
+' '           Text
+'=>'          Operator
+' '           Text
+'3'           Literal.Number.Integer
+')'           Operator
+' '           Text
 'lp:'         Literal.Number
 'A'           Name.Variable
 ' '           Text.Whitespace
@@ -16,13 +31,13 @@ tc {{ x lp:{{f Elpi "STRING" 3 {{Coq}}}}}} :- foo A B.
 ' '           Text.Whitespace
 '{{'          Punctuation
 ' '           Text.Whitespace
-'f'           Text
-' '           Text.Whitespace
+'f'           Name
+' '           Text
 'lp:'         Literal.Number
 'B'           Name.Variable
 ' '           Text.Whitespace
-'l'           Text
-' '           Text.Whitespace
+'l'           Name
+' '           Text
 'lp:'         Literal.Number
 '{{'          Punctuation
 'f'           Text
@@ -30,7 +45,7 @@ tc {{ x lp:{{f Elpi "STRING" 3 {{Coq}}}}}} :- foo A B.
 'Elpi'        Name.Variable
 ' '           Text.Whitespace
 '{{'          Punctuation
-'Coq'         Text
+'Coq'         Name
 '}}'          Punctuation
 '}}'          Punctuation
 '}}'          Punctuation
@@ -49,8 +64,8 @@ tc {{ x lp:{{f Elpi "STRING" 3 {{Coq}}}}}} :- foo A B.
 ' '           Text.Whitespace
 '{{'          Punctuation
 ' '           Text.Whitespace
-'x'           Text
-' '           Text.Whitespace
+'x'           Name
+' '           Text
 'lp:'         Literal.Number
 '{{'          Punctuation
 'f'           Text
@@ -64,7 +79,7 @@ tc {{ x lp:{{f Elpi "STRING" 3 {{Coq}}}}}} :- foo A B.
 '3'           Literal.Number.Integer
 ' '           Text.Whitespace
 '{{'          Punctuation
-'Coq'         Text
+'Coq'         Name
 '}}'          Punctuation
 '}}'          Punctuation
 '}}'          Punctuation
@@ -76,5 +91,123 @@ tc {{ x lp:{{f Elpi "STRING" 3 {{Coq}}}}}} :- foo A B.
 'A'           Name.Variable
 ' '           Text.Whitespace
 'B'           Name.Variable
+'.'           Operator
+'\n'          Text.Whitespace
+
+'pred'        Keyword.Declaration
+' '           Text.Whitespace
+'int->nat'    Name.Function
+' '           Text.Whitespace
+'i:'          Keyword.Mode
+'int'         Keyword.Type
+','           Text
+' '           Text.Whitespace
+'o:'          Keyword.Mode
+'term'        Keyword.Type
+'.'           Text
+'\n'          Text.Whitespace
+
+'int->nat'    Text
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'{{'          Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text
+'}}'          Punctuation
+'.'           Operator
+'\n'          Text.Whitespace
+
+'int->nat'    Text
+' '           Text.Whitespace
+'N'           Name.Variable
+' '           Text.Whitespace
+'{{'          Punctuation
+' '           Text.Whitespace
+'S'           Name
+' '           Text
+'lp:'         Literal.Number
+'X'           Name.Variable
+' '           Text.Whitespace
+'}}'          Punctuation
+' '           Text.Whitespace
+':-'          Keyword.Declaration
+' '           Text.Whitespace
+'M'           Name.Variable
+' '           Text.Whitespace
+'is'          Keyword.Declaration
+' '           Text.Whitespace
+'N'           Name.Variable
+' '           Text.Whitespace
+'-'           Keyword.Declaration
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Keyword.Declaration
+' '           Text.Whitespace
+'int->nat'    Text
+' '           Text.Whitespace
+'M'           Name.Variable
+' '           Text.Whitespace
+'X'           Name.Variable
+'.'           Operator
+'\n'          Text.Whitespace
+
+'dummy'       Text
+' '           Text.Whitespace
+':-'          Keyword.Declaration
+' '           Text.Whitespace
+'{{'          Punctuation
+'Record'      Keyword.Namespace
+' '           Text
+'coqWorld'    Name
+' '           Text
+'('           Operator
+'T'           Name
+' '           Text
+':'           Operator
+' '           Text
+'Type'        Keyword.Type
+')'           Operator
+' '           Text
+':='          Operator
+' '           Text
+'\n  '        Text.Whitespace
+'{'           Operator
+'myFun'       Name
+' '           Text
+':'           Operator
+' '           Text
+'T'           Name
+' '           Text
+'->'          Operator
+' '           Text
+'nat'         Name
+' '           Text
+'->'          Operator
+' '           Text
+'bool'        Name
+'}'           Operator
+'.'           Operator
+' '           Text
+'lp:'         Literal.Number
+'{{'          Punctuation
+'pred'        Keyword.Declaration
+' '           Text.Whitespace
+'elpiAgain'   Name.Function
+' '           Text.Whitespace
+'i:'          Keyword.Mode
+'term'        Keyword.Type
+','           Text
+' '           Text.Whitespace
+'o:'          Keyword.Mode
+'nat'         Keyword.Type
+' '           Text.Whitespace
+'->'          Keyword.Type
+' '           Text.Whitespace
+'nat'         Keyword.Type
+'.'           Text
+'}}'          Punctuation
+'}}'          Punctuation
 '.'           Operator
 '\n'          Text.Whitespace
