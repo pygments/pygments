@@ -1,5 +1,6 @@
 ---input---
 tc {{ Eq lp:A }} {{ f lp:B l lp:{{f Elpi {{Coq}}}}}} :- foo A B.
+tc {{ x lp:{{f Elpi "STRING" 3 {{Coq}}}}}} :- foo A B.
 
 ---tokens---
 'tc'          Text
@@ -27,6 +28,40 @@ tc {{ Eq lp:A }} {{ f lp:B l lp:{{f Elpi {{Coq}}}}}} :- foo A B.
 'f'           Text
 ' '           Text.Whitespace
 'Elpi'        Name.Variable
+' '           Text.Whitespace
+'{{'          Punctuation
+'Coq'         Text
+'}}'          Punctuation
+'}}'          Punctuation
+'}}'          Punctuation
+' '           Text.Whitespace
+':-'          Keyword.Declaration
+' '           Text.Whitespace
+'foo'         Text
+' '           Text.Whitespace
+'A'           Name.Variable
+' '           Text.Whitespace
+'B'           Name.Variable
+'.'           Operator
+'\n'          Text.Whitespace
+
+'tc'          Text
+' '           Text.Whitespace
+'{{'          Punctuation
+' '           Text.Whitespace
+'x'           Text
+' '           Text.Whitespace
+'lp:'         Literal.Number
+'{{'          Punctuation
+'f'           Text
+' '           Text.Whitespace
+'Elpi'        Name.Variable
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'STRING'      Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
 ' '           Text.Whitespace
 '{{'          Punctuation
 'Coq'         Text

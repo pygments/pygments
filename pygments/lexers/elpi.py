@@ -65,6 +65,9 @@ class ElpiLexer(RegexLexer):
             (rf"\b(typeabbrev)(\s+)({const_sym_re})",
              bygroups(Keyword.Declaration, Text.Whitespace, Name.Function),
              'elpi-type'),
+            (r"\b(typeabbrev)(\s+)(\([^)]+\))",
+             bygroups(Keyword.Declaration, Text.Whitespace, Name.Function),
+             'elpi-type'),
             (r"\b(accumulate)(\s+)(\")",
              bygroups(Keyword.Declaration, Text.Whitespace, String.Double),
              'elpi-string'),
@@ -96,12 +99,8 @@ class ElpiLexer(RegexLexer):
         ],
         '_elpi-comment': [
             (r'%[^\n]*\n', Comment),
-            (r'/\*', Comment, 'elpi-multiline-comment'),
+            (r'/(?:\\\n)?[*](?:[^*]|[*](?!(?:\\\n)?/))*[*](?:\\\n)?/', Comment),
             (r"\s+", Text.Whitespace),
-        ],
-        'elpi-multiline-comment': [
-            (r'\*/', Comment, '#pop'),
-            (r'.', Comment)
         ],
         'elpi-indexing-expr':[
             (r'[0-9 _]+', Number.Integer),
@@ -155,7 +154,7 @@ class ElpiLexer(RegexLexer):
             (r'\}\}', Punctuation, '#pop'),
             (r"\s+", Text.Whitespace),
             (r"(lp:)(\{\{)", bygroups(Number, Punctuation), 'elpi-quote-exit'),
-            (r"(lp:)((?=[A-Z_]){})".format(constant_re), bygroups(Number, Name.Variable)),
+            (rf"(lp:)((?=[A-Z_]){constant_re})", bygroups(Number, Name.Variable)),
             (r"((?!lp:|\s|\}\}).)+", Text),
         ],
         'elpi-quote-exit': [

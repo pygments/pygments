@@ -1,0 +1,18 @@
+---input---
+/* 
+  test !
+*/
+pred x  i:nat.
+
+---tokens---
+'/* \n  test !\n*/' Comment
+'\n'          Text.Whitespace
+
+'pred'        Keyword.Declaration
+' '           Text.Whitespace
+'x'           Name.Function
+'  '          Text.Whitespace
+'i:'          Keyword.Mode
+'nat'         Keyword.Type
+'.'           Text
+'\n'          Text.Whitespace
