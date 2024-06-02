@@ -1,0 +1,69 @@
+---input---
+sp {elaborate*AddTwoInts
+   (state <s> ^name test)
+   (<s> ^AddTwoInts <ati>)
+   (<ati> ^a <a>
+       ^b <a>)
+-->
+   (<ati> ^sum + <a> <b>)
+}
+
+---tokens---
+'sp'          Name
+' '           Text.Whitespace
+'{'           Punctuation
+'elaborate*AddTwoInts' Name
+'\n   '       Text.Whitespace
+'('           Punctuation
+'state'       Name
+' '           Text.Whitespace
+'<s>'         Name.Variable
+' '           Text.Whitespace
+'^'           Operator
+'name'        Name
+' '           Text.Whitespace
+'test'        Name
+')'           Punctuation
+'\n   '       Text.Whitespace
+'('           Punctuation
+'<s>'         Name.Variable
+' '           Text.Whitespace
+'^'           Operator
+'AddTwoInts'  Name
+' '           Text.Whitespace
+'<ati>'       Name.Variable
+')'           Punctuation
+'\n   '       Text.Whitespace
+'('           Punctuation
+'<ati>'       Name.Variable
+' '           Text.Whitespace
+'^'           Operator
+'a'           Name
+' '           Text.Whitespace
+'<a>'         Name.Variable
+'\n       '   Text.Whitespace
+'^'           Operator
+'b'           Name
+' '           Text.Whitespace
+'<a>'         Name.Variable
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'-->'         Punctuation
+'\n   '       Text.Whitespace
+'('           Punctuation
+'<ati>'       Name.Variable
+' '           Text.Whitespace
+'^'           Operator
+'sum'         Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'<a>'         Name.Variable
+' '           Text.Whitespace
+'<b>'         Name.Variable
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
