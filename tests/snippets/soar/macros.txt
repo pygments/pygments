@@ -1,0 +1,111 @@
+---input---
+sp {macro*test
+    @
+    abs
+    atan2
+    capitalize-symbol
+    compute-heading
+    compute-range
+    concat
+    cos
+    dc
+    deep-copy
+    div
+    dont-learn
+    exec
+    float
+    force-learn
+    ifeq
+    int
+    link-stm-to-ltm',
+    make-constant-symbol
+    max
+    min
+    mod
+    rand-float
+    rand-int
+    round-off
+    round-off-heading
+    sin
+    size
+    sqrt
+    strlen
+    timestamp
+    trim
+}
+
+---tokens---
+'sp'          Name
+' '           Text.Whitespace
+'{'           Punctuation
+'macro*test'  Name
+'\n    '      Text.Whitespace
+'@'           Operator
+'\n    '      Text.Whitespace
+'abs'         Name
+'\n    '      Text.Whitespace
+'atan2'       Name
+'\n    '      Text.Whitespace
+'capitalize-symbol' Name
+'\n    '      Text.Whitespace
+'compute-heading' Name
+'\n    '      Text.Whitespace
+'compute-range' Name
+'\n    '      Text.Whitespace
+'concat'      Name
+'\n    '      Text.Whitespace
+'cos'         Name
+'\n    '      Text.Whitespace
+'dc'          Name
+'\n    '      Text.Whitespace
+'deep-copy'   Name
+'\n    '      Text.Whitespace
+'div'         Name
+'\n    '      Text.Whitespace
+'dont-learn'  Name
+'\n    '      Text.Whitespace
+'exec'        Name
+'\n    '      Text.Whitespace
+'float'       Name
+'\n    '      Text.Whitespace
+'force-learn' Name
+'\n    '      Text.Whitespace
+'ifeq'        Name
+'\n    '      Text.Whitespace
+'int'         Name
+'\n    '      Text.Whitespace
+'link-stm-to-ltm' Name
+"'"           Error
+','           Error
+'\n    '      Text.Whitespace
+'make-constant-symbol' Name
+'\n    '      Text.Whitespace
+'max'         Name
+'\n    '      Text.Whitespace
+'min'         Name
+'\n    '      Text.Whitespace
+'mod'         Name
+'\n    '      Text.Whitespace
+'rand-float'  Name
+'\n    '      Text.Whitespace
+'rand-int'    Name
+'\n    '      Text.Whitespace
+'round-off'   Name
+'\n    '      Text.Whitespace
+'round-off-heading' Name
+'\n    '      Text.Whitespace
+'sin'         Name
+'\n    '      Text.Whitespace
+'size'        Name
+'\n    '      Text.Whitespace
+'sqrt'        Name
+'\n    '      Text.Whitespace
+'strlen'      Name
+'\n    '      Text.Whitespace
+'timestamp'   Name
+'\n    '      Text.Whitespace
+'trim'        Name
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
