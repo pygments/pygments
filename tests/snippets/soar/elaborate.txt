@@ -5,7 +5,7 @@ sp {elaborate*AddTwoInts
    (<ati> ^a <a>
        ^b <a>)
 -->
-   (<ati> ^sum + <a> <b>)
+   (<ati> ^sum (+ <a> <b>))
 }
 
 ---tokens---
@@ -57,11 +57,13 @@ sp {elaborate*AddTwoInts
 '^'           Operator
 'sum'         Name
 ' '           Text.Whitespace
+'('           Punctuation
 '+'           Operator
 ' '           Text.Whitespace
 '<a>'         Name.Variable
 ' '           Text.Whitespace
 '<b>'         Name.Variable
+')'           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
 

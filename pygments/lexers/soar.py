@@ -36,20 +36,63 @@ class SoarLexer(RegexLexer):
     )), Keyword.Type)
 
     builtin_macros = (words((
-        'write', 'log',
-        'sin', 'cos',
-    ), suffix=r'!'), Name.Function.Magic)
+        '@',
+        'abs',
+        'atan2',
+        'capitalize-symbol',
+        'compute-heading',
+        'compute-range',
+        'concat',
+        'cos',
+        'dc',
+        'deep-copy',
+        'div',
+        'dont-learn',
+        'exec',
+        'float',
+        'force-learn'
+        'ifeq',
+        'int',
+        'link-stm-to-ltm',
+        'make-constant-symbol',
+        'max',
+        'min',
+        'mod',
+        'rand-float',
+        'rand-int',
+        'round-off',
+        'round-off-heading',
+        'sin',
+        'size',
+        'sqrt',
+        'strlen',
+        'timestamp',
+        'trim',
+    )), Keyword)
+
+    builtins_functions = (
+        'crlf',
+        'halt',
+        'interrupt',
+        'log',
+        'wait',
+        'write',
+        'cmd',
+    )
 
     tokens = {
         'root': [
             (r'\s+', Whitespace),  # whitespace
             (r'#.*$', Comment.Single),  # single-line comment
+            (r'"[^"]*"', Comment.Single),  # documentation string
             (r'-->', Punctuation),  # the arrow
             (r'\{|\}', Punctuation),  # braces
             (r'\(|\)', Punctuation),  # parentheses
             (r'<[^>]+>', Name.Variable),  # variable names in <>
             # operators and other symbols
             (r'(\^|\+|=|<>|[{}])', Operator),
+            (r'(<=>|<>|<=|>=|<|>)', Operator),  # mathematical predicates
+            (r'(@|!@|@+|@-)', Operator),  # special predicates for LTI links
             (r'([a-zA-Z][a-zA-Z0-9_\-\*]*)', Name),  # identifiers
             (r'(\d+\.\d*|\.\d+|\d+)', Number),  # numbers
             (r'"[^"]*"', String),  # strings
