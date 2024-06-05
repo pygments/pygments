@@ -9,27 +9,25 @@ sp {elaborate*AddTwoInts
 }
 
 ---tokens---
-'sp'          Name
+'sp'          Keyword.Reserved
 ' '           Text.Whitespace
 '{'           Punctuation
-'elaborate*AddTwoInts' Name
+'elaborate*AddTwoInts' Name.Function
 '\n   '       Text.Whitespace
 '('           Punctuation
-'state'       Name
+'state'       Keyword.Reserved
 ' '           Text.Whitespace
 '<s>'         Name.Variable
 ' '           Text.Whitespace
-'^'           Operator
-'name'        Name
+'^name'       Name.Variable
 ' '           Text.Whitespace
-'test'        Name
+'test'        Literal
 ')'           Punctuation
 '\n   '       Text.Whitespace
 '('           Punctuation
 '<s>'         Name.Variable
 ' '           Text.Whitespace
-'^'           Operator
-'AddTwoInts'  Name
+'^AddTwoInts' Name.Variable
 ' '           Text.Whitespace
 '<ati>'       Name.Variable
 ')'           Punctuation
@@ -37,13 +35,11 @@ sp {elaborate*AddTwoInts
 '('           Punctuation
 '<ati>'       Name.Variable
 ' '           Text.Whitespace
-'^'           Operator
-'a'           Name
+'^a'          Name.Variable
 ' '           Text.Whitespace
 '<a>'         Name.Variable
 '\n       '   Text.Whitespace
-'^'           Operator
-'b'           Name
+'^b'          Name.Variable
 ' '           Text.Whitespace
 '<a>'         Name.Variable
 ')'           Punctuation
@@ -54,8 +50,7 @@ sp {elaborate*AddTwoInts
 '('           Punctuation
 '<ati>'       Name.Variable
 ' '           Text.Whitespace
-'^'           Operator
-'sum'         Name
+'^sum'        Name.Variable
 ' '           Text.Whitespace
 '('           Punctuation
 '+'           Operator

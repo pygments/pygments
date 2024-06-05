@@ -1,0 +1,62 @@
+---input---
+{
+    (<s> ^hello world)
+    -(<s> ^hello <> world)
+}
+
+-{
+    (<s> ^hello world)
+    -(<s> ^hello <> world)
+}
+
+---tokens---
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'('           Punctuation
+'<s>'         Name.Variable
+' '           Text.Whitespace
+'^hello'      Name.Variable
+' '           Text.Whitespace
+'world'       Literal
+')'           Punctuation
+'\n    '      Text.Whitespace
+'-'           Operator
+'('           Punctuation
+'<s>'         Name.Variable
+' '           Text.Whitespace
+'^hello'      Name.Variable
+' '           Text.Whitespace
+'<>'          Operator
+' '           Text.Whitespace
+'world'       Literal
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'-'           Operator
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'('           Punctuation
+'<s>'         Name.Variable
+' '           Text.Whitespace
+'^hello'      Name.Variable
+' '           Text.Whitespace
+'world'       Literal
+')'           Punctuation
+'\n    '      Text.Whitespace
+'-'           Operator
+'('           Punctuation
+'<s>'         Name.Variable
+' '           Text.Whitespace
+'^hello'      Name.Variable
+' '           Text.Whitespace
+'<>'          Operator
+' '           Text.Whitespace
+'world'       Literal
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

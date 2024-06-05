@@ -8,12 +8,9 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
-
-
-from pygments.lexer import RegexLexer, bygroups, default, words
+from pygments.lexer import RegexLexer, words, bygroups
 from pygments.token import Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Whitespace
+    Number, Punctuation, Whitespace, Text, Literal
 
 __all__ = ['SoarLexer']
 
@@ -21,22 +18,22 @@ __all__ = ['SoarLexer']
 class SoarLexer(RegexLexer):
 
     """
-    Lexer for Soar 
+    Lexer for Soar
     """
 
-    name = 'SOAR'
+    name = 'Soar'
     aliases = ['soar', 'Soar']
     filenames = ['*.soar']
-    mimetypes = ["text/soar", "text/x-soar"]
-    url = "https://soar.eecs.umich.edu/soar_manual/03_SyntaxOfSoarPrograms/"
+    url = "https://soar.eecs.umich.edu/soar_manual/03_SyntaxOfSoarPrograms/#grammar-of-soar-productions"
     version_added = '2.18'
 
     keyword_types = (words((
-        'sp', 'propose', 'apply', 'elaborate'
-    )), Keyword.Type)
+        # This will never be triggered due to the first match via bygroups.
+        'sp',
+        'state'
+    )), Keyword.Reserved)
 
     builtin_macros = (words((
-        '@',
         'abs',
         'atan2',
         'capitalize-symbol',
@@ -50,8 +47,8 @@ class SoarLexer(RegexLexer):
         'dont-learn',
         'exec',
         'float',
-        'force-learn'
-        'ifeq',
+        'force-learn'  # TODO (moschmdt) does not match; currently Literal
+        'ifeq',  # TODO(moschmdt) does not match; currently Literal
         'int',
         'link-stm-to-ltm',
         'make-constant-symbol',
@@ -68,9 +65,9 @@ class SoarLexer(RegexLexer):
         'strlen',
         'timestamp',
         'trim',
-    )), Keyword)
+    )), Name.Function)
 
-    builtins_functions = (
+    builtins_functions = (words((
         'crlf',
         'halt',
         'interrupt',
@@ -78,23 +75,28 @@ class SoarLexer(RegexLexer):
         'wait',
         'write',
         'cmd',
-    )
+    )), Name.Builtin)
 
     tokens = {
         'root': [
             (r'\s+', Whitespace),  # whitespace
-            (r'#.*$', Comment.Single),  # single-line comment
-            (r'"[^"]*"', Comment.Single),  # documentation string
+            (r'(^sp)(\s)(\{)([\S]+)',
+             bygroups(Keyword.Reserved, Whitespace, Punctuation, Name.Function)),
+            keyword_types,
+            builtin_macros,
+            builtins_functions,
+            (r'(#|").*', Comment.Single),  # single-line comments or docstring
+            (r':[a-z-]+', Name.Attribute),
             (r'-->', Punctuation),  # the arrow
-            (r'\{|\}', Punctuation),  # braces
-            (r'\(|\)', Punctuation),  # parentheses
+            (r'\{|\}|\(|\)', Punctuation),
             (r'<[^>]+>', Name.Variable),  # variable names in <>
+            (r'\^[^\s]+', Name.Variable),  # any path like ^test.<test>.any
             # operators and other symbols
-            (r'(\^|\+|=|<>|[{}])', Operator),
+            (r'(\-|\+|=|<>|[{}])', Operator),
             (r'(<=>|<>|<=|>=|<|>)', Operator),  # mathematical predicates
             (r'(@|!@|@+|@-)', Operator),  # special predicates for LTI links
-            (r'([a-zA-Z][a-zA-Z0-9_\-\*]*)', Name),  # identifiers
             (r'(\d+\.\d*|\.\d+|\d+)', Number),  # numbers
-            (r'"[^"]*"', String),  # strings
+            (r'(\b[a-zA-Z][a-zA-Z0-9_\-\*]*)', Literal),  # identifiers
+            (r'\|[^|]*\|', Literal.String),  # pipe-delimited strings
         ],
     }
