@@ -310,6 +310,7 @@ class PostgresConsoleLexer(Lexer):
     mimetypes = ['text/x-postgresql-psql']
     url = 'https://www.postgresql.org'
     version_added = '1.5'
+    _example = "psql/psql_session.txt"
 
     def get_tokens_unprocessed(self, data):
         sql = PsqlRegexLexer(**self.options)
@@ -974,6 +975,7 @@ class SqliteConsoleLexer(Lexer):
     mimetypes = ['text/x-sqlite3-console']
     url = 'https://www.sqlite.org'
     version_added = '0.11'
+    _example = "sqlite3/sqlite3.sqlite3-console"
 
     def get_tokens_unprocessed(self, data):
         sql = SqlLexer(**self.options)

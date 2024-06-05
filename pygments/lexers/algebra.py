@@ -97,6 +97,7 @@ class GAPConsoleLexer(Lexer):
     filenames = ['*.tst']
     url = 'https://www.gap-system.org'
     version_added = '2.14'
+    _example = "gap-repl/euclidean.tst"
 
     def get_tokens_unprocessed(self, text):
         gaplexer = GAPLexer(**self.options)

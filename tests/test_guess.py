@@ -10,7 +10,12 @@ from pathlib import Path
 
 import pytest
 
-from pygments.lexers import guess_lexer, get_lexer_by_name
+from pygments.lexers import (
+    _fn_matches,
+    find_lexer_class_by_name,
+    get_lexer_by_name,
+    guess_lexer,
+)
 from pygments.lexers.basic import CbmBasicV2Lexer
 from pygments.lexers.ecl import ECLLexer
 
@@ -198,3 +203,64 @@ def test_ecl_analyze_text():
             """
     res = ECLLexer.analyse_text(text)
     assert res == 0.01
+
+
+def iter_fixture_dir(sub_dir):
+    """Returns the sub-directories in any of the examplefiles/"snippets" fixture directory."""
+    for dir in Path(TESTDIR, sub_dir).iterdir():
+        # Only keep directories that are not special.
+        if (
+            dir.is_dir()
+            and not dir.name.startswith("__")
+            and not dir.name.startswith(".")
+        ):
+            yield dir
+
+
+@pytest.mark.parametrize("sub_dir", ["examplefiles", "snippets"])
+def test_lexer_fixtures(sub_dir):
+    """Check that example files and snippets fixtures are in a directory named after a lexer alias."""
+    for dir in iter_fixture_dir(sub_dir):
+        assert find_lexer_class_by_name(
+            dir.name
+        ), f"Alias {dir.name} not found in pygments"
+
+
+def all_example_files():
+    example_files = []
+    for dir in iter_fixture_dir("examplefiles"):
+        for f in dir.iterdir():
+            if f.is_file() and f.suffix != ".output":
+                # XXX Skip the srcinfo directory, whose example files are not strictly named ".SRCINFO".
+                marks = []
+                if dir.name == "srcinfo":
+                    marks = [
+                        pytest.mark.skip(
+                            reason="Example file not strictly named '.SRCINFO'"
+                        )
+                    ]
+
+                example_files.append(
+                    pytest.param(f, id=f"{f.parent.name}/{f.name}", marks=marks)
+                )
+
+    return example_files
+
+
+@pytest.mark.parametrize("example_file", all_example_files())
+def test_filename_matching(example_file):
+    """Check that each example file is correctly identified by its lexer from its filename pattern."""
+    # Example files are stored in subdirectories named after the lexer alias.
+    alias = example_file.parent.name
+    klass = find_lexer_class_by_name(alias)
+
+    # If the class defines no filename patterns, we can't check anything.
+    if not klass.filenames:
+        return
+
+    matches = []
+    for pattern in klass.filenames:
+        if _fn_matches(example_file.name, pattern):
+            matches.append(pattern)
+
+    assert matches, f"No {klass.filenames} patterns matches {example_file.name!r}"

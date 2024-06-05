@@ -5,10 +5,14 @@
 '1'           Literal.Number
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
-'^'           Operator
+'    '        Text
+'mismatch'    Name
+'('           Punctuation
+']'           Punctuation
 '\n'          Text.Whitespace
 
-'    '        Text.Whitespace
+'           ' Text
 '^'           Punctuation.Marker
 '\n'          Text.Whitespace
+
+"SyntaxError: closing parenthesis ']' does not match opening parenthesis '('\n" Other
