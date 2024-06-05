@@ -1,6 +1,5 @@
 ---input---
 sp {macro*test
-    @
     abs
     atan2
     capitalize-symbol
@@ -17,7 +16,7 @@ sp {macro*test
     force-learn
     ifeq
     int
-    link-stm-to-ltm',
+    link-stm-to-ltm
     make-constant-symbol
     max
     min
@@ -35,76 +34,72 @@ sp {macro*test
 }
 
 ---tokens---
-'sp'          Name
+'sp'          Keyword.Reserved
 ' '           Text.Whitespace
 '{'           Punctuation
-'macro*test'  Name
+'macro*test'  Name.Function
 '\n    '      Text.Whitespace
-'@'           Operator
+'abs'         Name.Function
 '\n    '      Text.Whitespace
-'abs'         Name
+'atan2'       Name.Function
 '\n    '      Text.Whitespace
-'atan2'       Name
+'capitalize-symbol' Name.Function
 '\n    '      Text.Whitespace
-'capitalize-symbol' Name
+'compute-heading' Name.Function
 '\n    '      Text.Whitespace
-'compute-heading' Name
+'compute-range' Name.Function
 '\n    '      Text.Whitespace
-'compute-range' Name
+'concat'      Name.Function
 '\n    '      Text.Whitespace
-'concat'      Name
+'cos'         Name.Function
 '\n    '      Text.Whitespace
-'cos'         Name
+'dc'          Name.Function
 '\n    '      Text.Whitespace
-'dc'          Name
+'deep-copy'   Name.Function
 '\n    '      Text.Whitespace
-'deep-copy'   Name
+'div'         Name.Function
 '\n    '      Text.Whitespace
-'div'         Name
+'dont-learn'  Name.Function
 '\n    '      Text.Whitespace
-'dont-learn'  Name
+'exec'        Name.Function
 '\n    '      Text.Whitespace
-'exec'        Name
+'float'       Name.Function
 '\n    '      Text.Whitespace
-'float'       Name
+'force-learn' Name.Function
 '\n    '      Text.Whitespace
-'force-learn' Name
+'ifeq'        Name.Function
 '\n    '      Text.Whitespace
-'ifeq'        Name
+'int'         Name.Function
 '\n    '      Text.Whitespace
-'int'         Name
+'link-stm-to-ltm' Name.Function
 '\n    '      Text.Whitespace
-'link-stm-to-ltm' Name
-"'"           Error
-','           Error
+'make-constant-symbol' Name.Function
 '\n    '      Text.Whitespace
-'make-constant-symbol' Name
+'max'         Name.Function
 '\n    '      Text.Whitespace
-'max'         Name
+'min'         Name.Function
 '\n    '      Text.Whitespace
-'min'         Name
+'mod'         Name.Function
 '\n    '      Text.Whitespace
-'mod'         Name
+'rand-float'  Name.Function
 '\n    '      Text.Whitespace
-'rand-float'  Name
+'rand-int'    Name.Function
 '\n    '      Text.Whitespace
-'rand-int'    Name
+'round-off'   Name.Function
 '\n    '      Text.Whitespace
-'round-off'   Name
+'round-off-heading' Name.Function
 '\n    '      Text.Whitespace
-'round-off-heading' Name
+'sin'         Name.Function
 '\n    '      Text.Whitespace
-'sin'         Name
+'size'        Name.Function
 '\n    '      Text.Whitespace
-'size'        Name
+'sqrt'        Name.Function
 '\n    '      Text.Whitespace
-'sqrt'        Name
+'strlen'      Name.Function
 '\n    '      Text.Whitespace
-'strlen'      Name
+'timestamp'   Name.Function
 '\n    '      Text.Whitespace
-'timestamp'   Name
-'\n    '      Text.Whitespace
-'trim'        Name
+'trim'        Name.Function
 '\n'          Text.Whitespace
 
 '}'           Punctuation

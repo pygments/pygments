@@ -8,18 +8,17 @@ sp {preferences*better
 }
 
 ---tokens---
-'sp'          Name
+'sp'          Keyword.Reserved
 ' '           Text.Whitespace
 '{'           Punctuation
-'preferences*better' Name
+'preferences*better' Name.Function
 '\n   '       Text.Whitespace
 '('           Punctuation
-'state'       Name
+'state'       Keyword.Reserved
 ' '           Text.Whitespace
 '<s>'         Name.Variable
 ' '           Text.Whitespace
-'^'           Operator
-'operator'    Name
+'^operator'   Name.Variable
 ' '           Text.Whitespace
 '<o1>'        Name.Variable
 ' '           Text.Whitespace
@@ -33,21 +32,19 @@ sp {preferences*better
 '('           Punctuation
 '<o1>'        Name.Variable
 ' '           Text.Whitespace
-'^'           Operator
-'name'        Name
+'^name'       Name.Variable
 ' '           Text.Whitespace
-'this_is_better' Name
+'this_is_better' Literal
 ')'           Punctuation
 '\n   '       Text.Whitespace
 '('           Punctuation
 '<o2>'        Name.Variable
 ' '           Text.Whitespace
-'^'           Operator
-'name'        Name
+'^name'       Name.Variable
 ' '           Text.Whitespace
 '<>'          Operator
 ' '           Text.Whitespace
-'this_is_better' Name
+'this_is_better' Literal
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -56,8 +53,7 @@ sp {preferences*better
 '('           Punctuation
 '<s>'         Name.Variable
 ' '           Text.Whitespace
-'^'           Operator
-'operator'    Name
+'^operator'   Name.Variable
 ' '           Text.Whitespace
 '<o1>'        Name.Variable
 ' '           Text.Whitespace

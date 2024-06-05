@@ -1,0 +1,40 @@
+---input---
+sp {rule
+   :default
+   (state <s> ^name any)
+-->
+   (<s> ^none none)
+}
+
+---tokens---
+'sp'          Keyword.Reserved
+' '           Text.Whitespace
+'{'           Punctuation
+'rule'        Name.Function
+'\n   '       Text.Whitespace
+':default'    Name.Attribute
+'\n   '       Text.Whitespace
+'('           Punctuation
+'state'       Keyword.Reserved
+' '           Text.Whitespace
+'<s>'         Name.Variable
+' '           Text.Whitespace
+'^name'       Name.Variable
+' '           Text.Whitespace
+'any'         Literal
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'-->'         Punctuation
+'\n   '       Text.Whitespace
+'('           Punctuation
+'<s>'         Name.Variable
+' '           Text.Whitespace
+'^none'       Name.Variable
+' '           Text.Whitespace
+'none'        Literal
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
