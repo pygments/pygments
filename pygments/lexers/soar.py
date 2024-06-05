@@ -83,8 +83,8 @@ class SoarLexer(RegexLexer):
             (r'(^sp)(\s)(\{)([\S]+)',
              bygroups(Keyword.Reserved, Whitespace, Punctuation, Name.Function)),
             keyword_types,
-            builtin_macros,
             builtins_functions,
+            builtin_macros,
             (r'(#|").*', Comment.Single),  # single-line comments or docstring
             (r':[a-z-]+', Name.Attribute),
             (r'-->', Punctuation),  # the arrow
