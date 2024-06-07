@@ -17,7 +17,7 @@ sp {rule
 '('           Punctuation
 'state'       Keyword.Reserved
 ' '           Text.Whitespace
-'<s>'         Name.Variable
+'<s>'         Name
 ' '           Text.Whitespace
 '^name'       Name.Variable
 ' '           Text.Whitespace
@@ -28,7 +28,7 @@ sp {rule
 '-->'         Punctuation
 '\n   '       Text.Whitespace
 '('           Punctuation
-'<s>'         Name.Variable
+'<s>'         Name
 ' '           Text.Whitespace
 '^none'       Name.Variable
 ' '           Text.Whitespace

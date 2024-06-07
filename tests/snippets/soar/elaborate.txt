@@ -17,7 +17,7 @@ sp {elaborate*AddTwoInts
 '('           Punctuation
 'state'       Keyword.Reserved
 ' '           Text.Whitespace
-'<s>'         Name.Variable
+'<s>'         Name
 ' '           Text.Whitespace
 '^name'       Name.Variable
 ' '           Text.Whitespace
@@ -25,39 +25,39 @@ sp {elaborate*AddTwoInts
 ')'           Punctuation
 '\n   '       Text.Whitespace
 '('           Punctuation
-'<s>'         Name.Variable
+'<s>'         Name
 ' '           Text.Whitespace
 '^AddTwoInts' Name.Variable
 ' '           Text.Whitespace
-'<ati>'       Name.Variable
+'<ati>'       Name
 ')'           Punctuation
 '\n   '       Text.Whitespace
 '('           Punctuation
-'<ati>'       Name.Variable
+'<ati>'       Name
 ' '           Text.Whitespace
 '^a'          Name.Variable
 ' '           Text.Whitespace
-'<a>'         Name.Variable
+'<a>'         Name
 '\n       '   Text.Whitespace
 '^b'          Name.Variable
 ' '           Text.Whitespace
-'<a>'         Name.Variable
+'<a>'         Name
 ')'           Punctuation
 '\n'          Text.Whitespace
 
 '-->'         Punctuation
 '\n   '       Text.Whitespace
 '('           Punctuation
-'<ati>'       Name.Variable
+'<ati>'       Name
 ' '           Text.Whitespace
 '^sum'        Name.Variable
 ' '           Text.Whitespace
 '('           Punctuation
 '+'           Operator
 ' '           Text.Whitespace
-'<a>'         Name.Variable
+'<a>'         Name
 ' '           Text.Whitespace
-'<b>'         Name.Variable
+'<b>'         Name
 ')'           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
