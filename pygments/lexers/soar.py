@@ -4,13 +4,13 @@
 
     Pygments lexers for Soar.
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 from pygments.lexer import RegexLexer, words, bygroups
-from pygments.token import Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Whitespace, Text, Literal
+from pygments.token import Comment, Operator, Keyword, Name, \
+    Number, Punctuation, Whitespace, Literal
 
 __all__ = ['SoarLexer']
 
