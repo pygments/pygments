@@ -89,7 +89,7 @@ class SoarLexer(RegexLexer):
             (r':[a-z-]+', Name.Attribute),
             (r'-->', Punctuation),  # the arrow
             (r'\{|\}|\(|\)', Punctuation),
-            (r'<[^>]+>', Name.Variable),  # variable names in <>
+            (r'<[^>]+>', Name),  # variable names in <>
             (r'\^[^\s]+', Name.Variable),  # any path like ^test.<test>.any
             # operators and other symbols
             (r'(\-|\+|=|<>|[{}])', Operator),

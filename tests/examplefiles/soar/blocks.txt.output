@@ -42,7 +42,7 @@
 '('           Punctuation
 'state'       Keyword.Reserved
 ' '           Text.Whitespace
-'<s>'         Name.Variable
+'<s>'         Name
 ' '           Text.Whitespace
 '^problem-space' Name.Variable
 ' '           Text.Whitespace
@@ -50,23 +50,23 @@
 '\n              ' Text.Whitespace
 '^thing'      Name.Variable
 ' '           Text.Whitespace
-'<thing1>'    Name.Variable
+'<thing1>'    Name
 ' '           Text.Whitespace
 '{'           Punctuation
 '<>'          Operator
 ' '           Text.Whitespace
-'<thing1>'    Name.Variable
+'<thing1>'    Name
 ' '           Text.Whitespace
-'<thing2>'    Name.Variable
+'<thing2>'    Name
 '}'           Punctuation
 '\n              ' Text.Whitespace
 '^ontop'      Name.Variable
 ' '           Text.Whitespace
-'<ontop>'     Name.Variable
+'<ontop>'     Name
 ')'           Punctuation
 '\n   '       Text.Whitespace
 '('           Punctuation
-'<thing1>'    Name.Variable
+'<thing1>'    Name
 ' '           Text.Whitespace
 '^type'       Name.Variable
 ' '           Text.Whitespace
@@ -78,7 +78,7 @@
 ')'           Punctuation
 '\n   '       Text.Whitespace
 '('           Punctuation
-'<thing2>'    Name.Variable
+'<thing2>'    Name
 ' '           Text.Whitespace
 '^clear'      Name.Variable
 ' '           Text.Whitespace
@@ -86,34 +86,34 @@
 ')'           Punctuation
 '\n   '       Text.Whitespace
 '('           Punctuation
-'<ontop>'     Name.Variable
+'<ontop>'     Name
 ' '           Text.Whitespace
 '^top-block'  Name.Variable
 ' '           Text.Whitespace
-'<thing1>'    Name.Variable
+'<thing1>'    Name
 '\n            ' Text.Whitespace
 '^bottom-block' Name.Variable
 ' '           Text.Whitespace
 '<>'          Operator
 ' '           Text.Whitespace
-'<thing2>'    Name.Variable
+'<thing2>'    Name
 ')'           Punctuation
 '\n'          Text.Whitespace
 
 '-->'         Punctuation
 '\n   '       Text.Whitespace
 '('           Punctuation
-'<s>'         Name.Variable
+'<s>'         Name
 ' '           Text.Whitespace
 '^operator'   Name.Variable
 ' '           Text.Whitespace
-'<o>'         Name.Variable
+'<o>'         Name
 ' '           Text.Whitespace
 '+'           Operator
 ')'           Punctuation
 '\n   '       Text.Whitespace
 '('           Punctuation
-'<o>'         Name.Variable
+'<o>'         Name
 ' '           Text.Whitespace
 '^name'       Name.Variable
 ' '           Text.Whitespace
@@ -121,11 +121,11 @@
 '\n        '  Text.Whitespace
 '^moving-block' Name.Variable
 ' '           Text.Whitespace
-'<thing1>'    Name.Variable
+'<thing1>'    Name
 '\n        '  Text.Whitespace
 '^destination' Name.Variable
 ' '           Text.Whitespace
-'<thing2>'    Name.Variable
+'<thing2>'    Name
 ')'           Punctuation
 '}'           Punctuation
 '\n\n'        Text.Whitespace
@@ -156,17 +156,17 @@
 '('           Punctuation
 'state'       Keyword.Reserved
 ' '           Text.Whitespace
-'<s>'         Name.Variable
+'<s>'         Name
 ' '           Text.Whitespace
 '^operator'   Name.Variable
 ' '           Text.Whitespace
-'<o>'         Name.Variable
+'<o>'         Name
 ' '           Text.Whitespace
 '+'           Operator
 ')'           Punctuation
 '\n   '       Text.Whitespace
 '('           Punctuation
-'<o>'         Name.Variable
+'<o>'         Name
 ' '           Text.Whitespace
 '^name'       Name.Variable
 ' '           Text.Whitespace
@@ -177,11 +177,11 @@
 '-->'         Punctuation
 '\n   '       Text.Whitespace
 '('           Punctuation
-'<s>'         Name.Variable
+'<s>'         Name
 ' '           Text.Whitespace
 '^operator'   Name.Variable
 ' '           Text.Whitespace
-'<o>'         Name.Variable
+'<o>'         Name
 ' '           Text.Whitespace
 '='           Operator
 ')'           Punctuation
