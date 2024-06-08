@@ -47,8 +47,8 @@ class SoarLexer(RegexLexer):
         'dont-learn',
         'exec',
         'float',
-        'force-learn'  # TODO (moschmdt) does not match; currently Literal
-        'ifeq',  # TODO(moschmdt) does not match; currently Literal
+        'force-learn',
+        'ifeq',
         'int',
         'link-stm-to-ltm',
         'make-constant-symbol',
