@@ -91,6 +91,8 @@ class SoarLexer(RegexLexer):
             (r'(#|").*', Comment.Single),  # single-line comments or docstring
             (r':[a-z-]+', Name.Attribute),
             (r'-->', Punctuation),  # the arrow
+            (r'(\()([A-Za-z]\d+)',
+                bygroups(Punctuation, Name)),  # identifier without <>
             (r'\{|\}|\(|\)', Punctuation),
             (r'<[^>]+>', Name),  # variable names in <>
             (r'\^[^\s]+', Name.Variable),  # any path like ^test.<test>.any
