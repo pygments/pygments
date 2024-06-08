@@ -49,6 +49,7 @@ class TypstLexer(RegexLexer):
             (r'@[a-zA-Z_][a-zA-Z0-9_-]*', Name.Label),  # reference
             (r'\\#', Text), # escaped
             (words(('#let', '#set', '#show'), suffix=r'\b'), Keyword.Declaration, 'inline_code'),
+            (words(('#import', '#include'), suffix=r'\b'), Keyword.Namespace, 'inline_code'),
             (r'#\{', Punctuation, 'code'),
             (r'(#[a-zA-Z_][a-zA-Z0-9_-]*)(\[)', bygroups(Name.Function, Punctuation), 'markup'),
             (r'(#[a-zA-Z_][a-zA-Z0-9_-]*)(\()', bygroups(Name.Function, Punctuation), 'inline_code'),
@@ -89,8 +90,9 @@ class TypstLexer(RegexLexer):
             (r'([a-zA-Z_][a-zA-Z0-9_-]*)(:)', bygroups(Name.Variable, Punctuation)),
             (r'([a-zA-Z_][a-zA-Z0-9_-]*)(\()', bygroups(Name.Function, Punctuation), 'code'),
             (words(('as', 'break', 'export', 'continue', 'else', 'for', 'if',
-                    'import', 'in', 'include', 'return', 'while'), suffix=r'\b'),
+                    'in', 'return', 'while'), suffix=r'\b'),
              Keyword.Reserved),
+             (words(('import', 'include'), suffix=r'\b'), Keyword.Namespace),
             (words(('auto', 'none', 'true', 'false'), suffix=r'\b'), Keyword.Constant),
             (r'([0-9.]+)(mm|pt|cm|in|em|fr|%)', bygroups(Number, Keyword.Reserved)),
             (r'[0-9]+', Number),
@@ -100,6 +102,7 @@ class TypstLexer(RegexLexer):
             ##  bygroups(Keyword.Reserved, Text, Punctuation, String.Double, Punctuation)),
             (r'([a-zA-Z_][a-zA-Z0-9_-]*)', Name.Variable),
             (r'[ \t\n]+', Whitespace),
+            (r':', Punctuation), # from imports like "import a: b"
         ],
         'inline_code': [
             (r';$', Punctuation, '#pop'),
