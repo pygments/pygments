@@ -49,7 +49,7 @@ class TypstLexer(RegexLexer):
             (r'@[a-zA-Z_][a-zA-Z0-9_-]*', Name.Label),  # reference
             (r'\\#', Text), # escaped
             (words(('#let', '#set', '#show'), suffix=r'\b'), Keyword.Declaration, 'inline_code'),
-            (r'#\{', Punctuation, 'inline_code'),
+            (r'#\{', Punctuation, 'code'),
             (r'(#[a-zA-Z_][a-zA-Z0-9_-]*)(\[)', bygroups(Name.Function, Punctuation), 'markup'),
             (r'(#[a-zA-Z_][a-zA-Z0-9_-]*)(\()', bygroups(Name.Function, Punctuation), 'inline_code'),
             (r'#[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
