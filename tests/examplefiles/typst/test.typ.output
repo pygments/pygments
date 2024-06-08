@@ -22,7 +22,8 @@
 'below'       Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
-'1.75'        Literal.Number
+'1'           Literal
+'.75'         Literal.Number
 'em'          Keyword.Reserved
 ')'           Punctuation
 '\n'          Text.Whitespace
@@ -61,14 +62,16 @@
 'x'           Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
-'1.5'         Literal.Number
+'1'           Literal
+'.5'          Literal.Number
 'cm'          Keyword.Reserved
 ','           Operator
 ' '           Text.Whitespace
 'y'           Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
-'2.5'         Literal.Number
+'2'           Literal
+'.5'          Literal.Number
 'cm'          Keyword.Reserved
 ')'           Punctuation
 ','           Operator
@@ -92,11 +95,11 @@
 '\n'          Text.Whitespace
 
 '      '      Text.Whitespace
-'text(darkgrey)[#date]' Text
+'text(darkgrey)[#date],' Text
 '\n'          Text.Whitespace
 
 '      '      Text.Whitespace
-'h(1fr)'      Text
+'h(1fr),'     Text
 '\n'          Text.Whitespace
 
 '      '      Text.Whitespace
@@ -128,16 +131,8 @@
 'length'      Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
-'100'         Literal.Number
-'%'           Keyword.Reserved
-','           Operator
-' '           Text.Whitespace
-'stroke'      Name.Variable
-':'           Punctuation
-' '           Text.Whitespace
-'0.2'         Literal.Number
-'mm'          Keyword.Reserved
-')'           Punctuation
+'100'         Literal
+'%, stroke: 0.2mm)' Text
 '\n'          Text.Whitespace
 
 '#section'    Name.Function
@@ -156,15 +151,15 @@
 'some text'   Text
 '\n'          Text.Whitespace
 
-'  '          Text.Whitespace
-']'           Punctuation
-'\n'          Text.Whitespace
-
 '  / '        Punctuation
 'Itemone'     Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
 '-- first item' Text
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+']'           Punctuation
 '\n'          Text.Whitespace
 
 ')'           Text
