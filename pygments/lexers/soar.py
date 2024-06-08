@@ -75,6 +75,9 @@ class SoarLexer(RegexLexer):
         'wait',
         'write',
         'cmd',
+        'load',
+        'file',
+        'source'
     )), Name.Builtin)
 
     tokens = {
