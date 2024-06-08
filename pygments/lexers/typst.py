@@ -33,7 +33,6 @@ class TypstLexer(RegexLexer):
         ],
         'common': [
             (r'[ \t]+', Whitespace),
-            (r'((?!=[*_$`\-+0-9/<@\\#\[]|https?://).)+', Text),
         ],
         'markup': [
             include('comment'),
@@ -62,6 +61,7 @@ class TypstLexer(RegexLexer):
             (r'\[', Punctuation, '#push'),
             (r'\]', Punctuation, '#pop'),
             include('common'),
+            (r'((?!=[*_$`\-+0-9/<@\\#\[]|https?://).)+', Text),
         ],
         'maths': [
             include('comment'),
@@ -79,24 +79,26 @@ class TypstLexer(RegexLexer):
         'code': [
             include('comment'),
             (r'\[', Punctuation, 'markup'),
-            (r'\(|\{', Punctuation, 'code'),
+            (r'\(|\{', Punctuation, '#push'),
             (r'\)|\}', Punctuation, '#pop'),
             (r'"[^"]*"', String.Double),
-            (r'[=,]', Operator),
-            (r'[0-9]+', Literal),
+            (r',', Punctuation),
+            (r'=', Operator),
             (words(('and', 'or', 'not'), suffix=r'\b'), Operator.Word),
             (r'=>|<=|==|!=|>|<|-=|\+=|\*=|/=|\+|-|\\|\*', Operator), # comparisons
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)(:)', bygroups(Name.Variable, Punctuation), '#push'),
+            (r'([a-zA-Z_][a-zA-Z0-9_]*)(:)', bygroups(Name.Variable, Punctuation)),
             (r'([a-zA-Z_][a-zA-Z0-9_]*)(\()', bygroups(Name.Function, Punctuation), '#push'),
             (words(('as', 'break', 'export', 'continue', 'else', 'for', 'if',
                     'import', 'in', 'include', 'return', 'while'), suffix=r'\b'),
              Keyword.Reserved),
             (words(('auto', 'none', 'true', 'false'), suffix=r'\b'), Keyword.Constant),
             (r'([0-9.]+)(mm|pt|cm|in|em|fr|%)', bygroups(Number, Keyword.Reserved)),
+            (r'[0-9]+', Number),
             (words(('let', 'set', 'show'), suffix=r'\b'), Keyword.Declaration),
             # FIXME: make this work
             ## (r'(import|include)( *)(")([^"])(")',
             ##  bygroups(Keyword.Reserved, Text, Punctuation, String.Double, Punctuation)),
+            (r'([a-zA-Z_][a-zA-Z0-9_]*)', Name.Variable),
             include('common'),
         ],
         'inline_code': [

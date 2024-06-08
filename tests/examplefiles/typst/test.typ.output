@@ -7,7 +7,8 @@
 ' '           Text.Whitespace
 'text'        Name.Function
 '('           Punctuation
-'navy)'       Text
+'navy'        Name.Variable
+')'           Punctuation
 '\n'          Text.Whitespace
 
 '#show'       Keyword.Declaration
@@ -22,8 +23,7 @@
 'below'       Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
-'1'           Literal
-'.75'         Literal.Number
+'1.75'        Literal.Number
 'em'          Keyword.Reserved
 ')'           Punctuation
 '\n'          Text.Whitespace
@@ -36,13 +36,13 @@
 ':'           Punctuation
 ' '           Text.Whitespace
 '"Palatino"'  Literal.String.Double
-','           Operator
+','           Punctuation
 ' '           Text.Whitespace
 'hyphenate'   Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
 'false'       Keyword.Constant
-','           Operator
+','           Punctuation
 ' '           Text.Whitespace
 'lang'        Name.Variable
 ':'           Punctuation
@@ -62,19 +62,17 @@
 'x'           Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
-'1'           Literal
-'.5'          Literal.Number
+'1.5'         Literal.Number
 'cm'          Keyword.Reserved
-','           Operator
+','           Punctuation
 ' '           Text.Whitespace
 'y'           Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
-'2'           Literal
-'.5'          Literal.Number
+'2.5'         Literal.Number
 'cm'          Keyword.Reserved
 ')'           Punctuation
-','           Operator
+','           Punctuation
 ' '           Text.Whitespace
 'numbering'   Name.Variable
 ':'           Punctuation
@@ -87,7 +85,16 @@
 ' '           Text.Whitespace
 'section'     Name.Function
 '('           Punctuation
-'title, content) = grid(' Text
+'title'       Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'content'     Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'grid'        Name.Function
+'('           Punctuation
 '\n'          Text.Whitespace
 
 '      '      Text.Whitespace
@@ -120,10 +127,13 @@
 
 '#text'       Name.Function
 '('           Punctuation
-'darkgrey)[ | ] #link("' Text
-'https'       Name.Variable
-':'           Punctuation
-'//example.com")[super example]' Comment.Single
+'darkgrey'    Name.Variable
+')'           Punctuation
+'['           Punctuation
+' '           Text.Whitespace
+'| ] #link("' Text
+'https://example.com' Generic.Emph
+'")[super example]' Text
 '\n'          Text.Whitespace
 
 '#line'       Name.Function
@@ -131,8 +141,16 @@
 'length'      Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
-'100'         Literal
-'%, stroke: 0.2mm)' Text
+'100'         Literal.Number
+'%'           Keyword.Reserved
+','           Punctuation
+' '           Text.Whitespace
+'stroke'      Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'0.2'         Literal.Number
+'mm'          Keyword.Reserved
+')'           Punctuation
 '\n'          Text.Whitespace
 
 '#section'    Name.Function

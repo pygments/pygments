@@ -4,5 +4,9 @@
 ---tokens---
 '#let'        Keyword.Declaration
 ' '           Text.Whitespace
-'a = 0'       Text
+'a'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number
 '\n'          Text.Whitespace
