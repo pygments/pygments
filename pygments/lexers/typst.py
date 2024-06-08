@@ -79,7 +79,7 @@ class TypstLexer(RegexLexer):
         'code': [
             include('comment'),
             (r'\[', Punctuation, 'markup'),
-            (r'\(|\{', Punctuation, '#push'),
+            (r'\(|\{', Punctuation, 'code'),
             (r'\)|\}', Punctuation, '#pop'),
             (r'"[^"]*"', String.Double),
             (r',', Punctuation),
@@ -87,7 +87,7 @@ class TypstLexer(RegexLexer):
             (words(('and', 'or', 'not'), suffix=r'\b'), Operator.Word),
             (r'=>|<=|==|!=|>|<|-=|\+=|\*=|/=|\+|-|\\|\*', Operator), # comparisons
             (r'([a-zA-Z_][a-zA-Z0-9_]*)(:)', bygroups(Name.Variable, Punctuation)),
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)(\()', bygroups(Name.Function, Punctuation), '#push'),
+            (r'([a-zA-Z_][a-zA-Z0-9_]*)(\()', bygroups(Name.Function, Punctuation), 'code'),
             (words(('as', 'break', 'export', 'continue', 'else', 'for', 'if',
                     'import', 'in', 'include', 'return', 'while'), suffix=r'\b'),
              Keyword.Reserved),
@@ -99,10 +99,11 @@ class TypstLexer(RegexLexer):
             ## (r'(import|include)( *)(")([^"])(")',
             ##  bygroups(Keyword.Reserved, Text, Punctuation, String.Double, Punctuation)),
             (r'([a-zA-Z_][a-zA-Z0-9_]*)', Name.Variable),
-            include('common'),
+            (r'[ \t\n]+', Whitespace),
         ],
         'inline_code': [
             (r';$', Punctuation, '#pop'),
+            (r'\n', Whitespace, '#pop'),
             include('code'),
         ],
     }

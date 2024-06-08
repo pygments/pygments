@@ -95,25 +95,40 @@
 ' '           Text.Whitespace
 'grid'        Name.Function
 '('           Punctuation
+'\n      '    Text.Whitespace
+'columns'     Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'55'          Literal.Number
+'pt'          Keyword.Reserved
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number
+'fr'          Keyword.Reserved
+')'           Punctuation
+','           Punctuation
+'\n      '    Text.Whitespace
+'text'        Name.Function
+'('           Punctuation
+'darkgrey'    Name.Variable
+')'           Punctuation
+'['           Punctuation
+'#date'       Name.Variable
+']'           Punctuation
+','           Punctuation
+'\n      '    Text.Whitespace
+'h'           Name.Function
+'('           Punctuation
+'1'           Literal.Number
+'fr'          Keyword.Reserved
+')'           Punctuation
+','           Punctuation
+'\n      '    Text.Whitespace
+'content'     Name.Variable
 '\n'          Text.Whitespace
 
-'      '      Text.Whitespace
-'columns: (55pt, 1fr),' Text
-'\n'          Text.Whitespace
-
-'      '      Text.Whitespace
-'text(darkgrey)[#date],' Text
-'\n'          Text.Whitespace
-
-'      '      Text.Whitespace
-'h(1fr),'     Text
-'\n'          Text.Whitespace
-
-'      '      Text.Whitespace
-'content'     Text
-'\n'          Text.Whitespace
-
-')'           Text
+')'           Punctuation
 '\n'          Text.Whitespace
 
 '\n== Title'  Generic.Heading
