@@ -146,9 +146,19 @@
 ')'           Punctuation
 '['           Punctuation
 ' '           Text.Whitespace
-'| ] #link("' Text
-'https://example.com' Generic.Emph
-'")[super example]' Text
+'|'           Text
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'#link'       Name.Function
+'('           Punctuation
+'"https://example.com"' Literal.String.Double
+')'           Punctuation
+'['           Punctuation
+'super'       Text
+' '           Text.Whitespace
+'example'     Text
+']'           Punctuation
 '\n'          Text.Whitespace
 
 '#line'       Name.Function
@@ -171,7 +181,15 @@
 '#section'    Name.Function
 '('           Punctuation
 '['           Punctuation
-'another \\ test], [' Text
+'another'     Text
+' '           Text.Whitespace
+'\\'          Punctuation
+' '           Text.Whitespace
+'test'        Text
+']'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
@@ -179,11 +197,26 @@
 ' '           Text.Whitespace
 '---'         Punctuation
 ' '           Text.Whitespace
-'bob #section_date([2022 -- present]) \\' Text
+'bob'         Text
+' '           Text.Whitespace
+'#section_date' Name.Function
+'('           Punctuation
+'['           Punctuation
+'2022'        Text
+' '           Text.Whitespace
+'--'          Punctuation
+' '           Text.Whitespace
+'present'     Text
+']'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'\\'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'some text'   Text
+'some'        Text
+' '           Text.Whitespace
+'text'        Text
 '\n'          Text.Whitespace
 
 '  / '        Punctuation
@@ -192,7 +225,9 @@
 ' '           Text.Whitespace
 '--'          Punctuation
 ' '           Text.Whitespace
-'first item'  Text
+'first'       Text
+' '           Text.Whitespace
+'item'        Text
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
@@ -204,6 +239,19 @@
 
 '\n'          Text.Whitespace
 
-'Another link, with http instead of https: ' Text
+'Another'     Text
+' '           Text.Whitespace
+'link,'       Text
+' '           Text.Whitespace
+'with'        Text
+' '           Text.Whitespace
+'http'        Text
+' '           Text.Whitespace
+'instead'     Text
+' '           Text.Whitespace
+'of'          Text
+' '           Text.Whitespace
+'https:'      Text
+' '           Text.Whitespace
 'http://example.com' Generic.Emph
 '\n'          Text.Whitespace

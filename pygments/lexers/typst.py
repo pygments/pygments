@@ -61,7 +61,7 @@ class TypstLexer(RegexLexer):
             (r'\[', Punctuation, '#push'),
             (r'\]', Punctuation, '#pop'),
             include('common'),
-            (r'((?!=[*_$`\-+0-9/<@\\#\[]|https?://).)+', Text),
+            (r'((?![*_$`/<@\\#\] ]|https?://).)+', Text),
         ],
         'maths': [
             include('comment'),
