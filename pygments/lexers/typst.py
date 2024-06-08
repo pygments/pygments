@@ -50,8 +50,8 @@ class TypstLexer(RegexLexer):
             (r'\\#', Text), # escaped
             (words(('#let', '#set', '#show'), suffix=r'\b'), Keyword.Declaration, 'inline_code'),
             (r'#\{', Punctuation, 'inline_code'),
-            (r'(#[a-zA-Z_][a-zA-Z0-9_]*)(\[)', bygroups(Name.Function, Punctuation), 'markup'),
-            (r'(#[a-zA-Z_][a-zA-Z0-9_]*)(\()', bygroups(Name.Function, Punctuation), 'inline_code'),
+            (r'(#[a-zA-Z_][a-zA-Z0-9_-]*)(\[)', bygroups(Name.Function, Punctuation), 'markup'),
+            (r'(#[a-zA-Z_][a-zA-Z0-9_-]*)(\()', bygroups(Name.Function, Punctuation), 'inline_code'),
             (r'#[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
             (r'```(?:.|\n)*?```', String.Backtick),  # code block
             (r'https?://[0-9a-zA-Z~/%#&=\',;.+?]*', Generic.Emph),  # links
@@ -86,8 +86,8 @@ class TypstLexer(RegexLexer):
             (r'=', Operator),
             (words(('and', 'or', 'not'), suffix=r'\b'), Operator.Word),
             (r'=>|<=|==|!=|>|<|-=|\+=|\*=|/=|\+|-|\\|\*', Operator), # comparisons
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)(:)', bygroups(Name.Variable, Punctuation)),
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)(\()', bygroups(Name.Function, Punctuation), 'code'),
+            (r'([a-zA-Z_][a-zA-Z0-9_-]*)(:)', bygroups(Name.Variable, Punctuation)),
+            (r'([a-zA-Z_][a-zA-Z0-9_-]*)(\()', bygroups(Name.Function, Punctuation), 'code'),
             (words(('as', 'break', 'export', 'continue', 'else', 'for', 'if',
                     'import', 'in', 'include', 'return', 'while'), suffix=r'\b'),
              Keyword.Reserved),
@@ -98,7 +98,7 @@ class TypstLexer(RegexLexer):
             # FIXME: make this work
             ## (r'(import|include)( *)(")([^"])(")',
             ##  bygroups(Keyword.Reserved, Text, Punctuation, String.Double, Punctuation)),
-            (r'([a-zA-Z_][a-zA-Z0-9_]*)', Name.Variable),
+            (r'([a-zA-Z_][a-zA-Z0-9_-]*)', Name.Variable),
             (r'[ \t\n]+', Whitespace),
         ],
         'inline_code': [
