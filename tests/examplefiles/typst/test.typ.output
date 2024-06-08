@@ -177,7 +177,9 @@
 '  '          Text.Whitespace
 '*#link("https://github.com/typst/typst")[typst]*' Generic.Strong
 ' '           Text.Whitespace
-'--- bob #section_date([2022 -- present]) \\' Text
+'---'         Punctuation
+' '           Text.Whitespace
+'bob #section_date([2022 -- present]) \\' Text
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -188,7 +190,9 @@
 'Itemone'     Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
-'-- first item' Text
+'--'          Punctuation
+' '           Text.Whitespace
+'first item'  Text
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
