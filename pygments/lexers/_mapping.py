@@ -246,6 +246,7 @@ LEXERS = {
     'JavascriptUL4Lexer': ('pygments.lexers.ul4', 'Javascript+UL4', ('js+ul4',), ('*.jsul4',), ()),
     'JclLexer': ('pygments.lexers.scripting', 'JCL', ('jcl',), ('*.jcl',), ('text/x-jcl',)),
     'JsgfLexer': ('pygments.lexers.grammar_notation', 'JSGF', ('jsgf',), ('*.jsgf',), ('application/jsgf', 'application/x-jsgf', 'text/jsgf')),
+    'Json5Lexer': ('pygments.lexers.json5', 'Json5', ('json5',), ('*.json5',), ()),
     'JsonBareObjectLexer': ('pygments.lexers.data', 'JSONBareObject', (), (), ()),
     'JsonLdLexer': ('pygments.lexers.data', 'JSON-LD', ('jsonld', 'json-ld'), ('*.jsonld',), ('application/ld+json',)),
     'JsonLexer': ('pygments.lexers.data', 'JSON', ('json', 'json-object'), ('*.json', '*.jsonl', '*.ndjson', 'Pipfile.lock'), ('application/json', 'application/json-object', 'application/x-ndjson', 'application/jsonl', 'application/json-seq')),
