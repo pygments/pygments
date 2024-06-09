@@ -54,10 +54,10 @@ class TypstLexer(RegexLexer):
             (r'_[^_]*_', Generic.Emph),
             (r'\$', Punctuation, 'math'),
             (r'`[^`]*`', String.Backtick),  # inline code
-            (r'^\s*-', Punctuation),  # unnumbered list
-            (r'^\s*\+', Punctuation),  # numbered list
-            (r'^\s*[0-9]+\.', Punctuation),  # numbered list variant
-            (r'^(\s*/\s+)([^:]+)(:)', bygroups(Punctuation, Name.Variable, Punctuation)),  # definitions
+            (r'^(\s*)(-)(\s+)', bygroups(Whitespace, Punctuation, Whitespace)),  # unnumbered list
+            (r'^(\s*)(\+)(\s+)', bygroups(Whitespace, Punctuation, Whitespace)),  # numbered list
+            (r'^(\s*)([0-9]+\.)', bygroups(Whitespace, Punctuation)),  # numbered list variant
+            (r'^(\s*)(/)(\s+)([^:]+)(:)', bygroups(Whitespace, Punctuation, Whitespace, Name.Variable, Punctuation)),  # definitions
             (r'<[a-zA-Z_][a-zA-Z0-9_-]*>', Name.Label),  # label
             (r'@[a-zA-Z_][a-zA-Z0-9_-]*', Name.Label),  # reference
             (r'\\#', Text), # escaped

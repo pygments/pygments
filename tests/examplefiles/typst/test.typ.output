@@ -219,7 +219,9 @@
 'text'        Text
 '\n'          Text.Whitespace
 
-'  / '        Punctuation
+'  '          Text.Whitespace
+'/'           Punctuation
+' '           Text.Whitespace
 'Itemone'     Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
