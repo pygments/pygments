@@ -36,7 +36,7 @@ class TypstLexer(RegexLexer):
 
     MATH_SHORTHANDS = (
         '[|', '|]', '||', '*', ':=', '::=', '...', '\'', '-', '=:', '!=', '>>',
-        '>=', '>>>', '<<', '<=', '<<<', '*', '->', '|->', '=>', '|=>', '==>',
+        '>=', '>>>', '<<', '<=', '<<<', '->', '|->', '=>', '|=>', '==>',
         '-->', '~~>', '~>', '>->', '->>', '<-', '<==', '<--', '<~~', '<~',
         '<-<','<<-','<->','<=>','<==>','<-->', '>', '<', '~', ':',
     )
@@ -84,7 +84,7 @@ class TypstLexer(RegexLexer):
             include('comment'),
             (words(('\\_', '\\^', '\\&')), Text), # escapes
             (words(('_', '^', '&', ';')), Punctuation),
-            (words(('+', '-', '*', '/', '=') + MATH_SHORTHANDS), Operator),
+            (words(('+', '/', '=') + MATH_SHORTHANDS), Operator),
             (r'\\', Punctuation), # line break
             (r'\\\$', Punctuation),  # escaped
             (r'\$', Punctuation, '#pop'),  # end of math mode
