@@ -28,10 +28,10 @@ class TypstLexer(RegexLexer):
     version_added = '2.18'
 
     MATH_SHORTHANDS = (
-        "[|", "|]", "||", "*", ":=", "::=", "...", "'", "-", "=:", "!=", ">>",
-        ">=", ">>>", "<<", "<=", "<<<", "*", "->", "|->", "=>", "|=>", "==>",
-        "-->", "~~>", "~>", ">->", "->>", "<-", "<==", "<--", "<~~", "<~",
-        "<-<","<<-","<->","<=>","<==>","<-->",
+        '[|', '|]', '||', '*', ':=', '::=', '...', '\'', '-', '=:', '!=', '>>',
+        '>=', '>>>', '<<', '<=', '<<<', '*', '->', '|->', '=>', '|=>', '==>',
+        '-->', '~~>', '~>', '>->', '->>', '<-', '<==', '<--', '<~~', '<~',
+        '<-<','<<-','<->','<=>','<==>','<-->', '>', '<', '~', ':',
     )
 
     tokens = {
@@ -45,6 +45,7 @@ class TypstLexer(RegexLexer):
             (r'#\{', Punctuation, 'code'),
             (r'(#[a-zA-Z_][a-zA-Z0-9_-]*)(\[)', bygroups(Name.Function, Punctuation), 'markup'),
             (r'(#[a-zA-Z_][a-zA-Z0-9_-]*)(\()', bygroups(Name.Function, Punctuation), 'inline_code'),
+            (words(('#true', '#false', '#none', '#auto'), suffix=r'\b'), Keyword.Constant),
             (r'#[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
         ],
         'markup': [
@@ -75,13 +76,14 @@ class TypstLexer(RegexLexer):
         'math': [
             include('comment'),
             (words(('\\_', '\\^', '\\&')), Text), # escapes
-            (words(('_', '^', '&')), Punctuation),
+            (words(('_', '^', '&', ';')), Punctuation),
             (words(('+', '-', '*', '/', '=') + MATH_SHORTHANDS), Operator),
             (r'\\', Punctuation), # line break
             (r'\\\$', Punctuation),  # escaped
             (r'\$', Punctuation, '#pop'),  # end of math mode
             include('into_code'),
-            (r'([a-zA-Z_][a-zA-Z0-9_-]*)(\s*)(\()', bygroups(Name.Function, Whitespace, Punctuation)),
+            (r'([a-zA-Z][a-zA-Z0-9-]*)(\s*)(\()', bygroups(Name.Function, Whitespace, Punctuation)),
+            (r'([a-zA-Z][a-zA-Z0-9-]*)(:)', bygroups(Name.Variable, Punctuation)), # named arguments in math functions
             (r'([a-zA-Z][a-zA-Z0-9-]*)', Name.Variable), # both variables and symbols (_ isn't supported for variables)
             (r'[0-9]+(\.[0-9]+)?', Number),
             (r'\.{1,3}|\(|\)|,', Punctuation),
