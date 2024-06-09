@@ -10,7 +10,7 @@
 
 from pygments.lexer import RegexLexer, words, bygroups, include
 from pygments.token import Comment, Keyword, Name, String, Punctuation, \
-    Whitespace, Generic, Operator, Number, Text, Literal
+    Whitespace, Generic, Operator, Number, Text
 
 __all__ = ['TypstLexer']
 
