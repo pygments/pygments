@@ -27,19 +27,32 @@ class TypstLexer(RegexLexer):
     url = 'https://typst.app'
     version_added = '2.18'
 
+    MATH_SHORTHANDS = (
+        "[|", "|]", "||", "*", ":=", "::=", "...", "'", "-", "=:", "!=", ">>",
+        ">=", ">>>", "<<", "<=", "<<<", "*", "->", "|->", "=>", "|=>", "==>",
+        "-->", "~~>", "~>", ">->", "->>", "<-", "<==", "<--", "<~~", "<~",
+        "<-<","<<-","<->","<=>","<==>","<-->",
+    )
+
     tokens = {
         'root': [
             include('markup'),
         ],
-        'common': [
-            (r'[ \t]+', Whitespace),
+        # common cases going from math/markup into code mode
+        'into_code': [
+            (words(('#let', '#set', '#show'), suffix=r'\b'), Keyword.Declaration, 'inline_code'),
+            (words(('#import', '#include'), suffix=r'\b'), Keyword.Namespace, 'inline_code'),
+            (r'#\{', Punctuation, 'code'),
+            (r'(#[a-zA-Z_][a-zA-Z0-9_-]*)(\[)', bygroups(Name.Function, Punctuation), 'markup'),
+            (r'(#[a-zA-Z_][a-zA-Z0-9_-]*)(\()', bygroups(Name.Function, Punctuation), 'inline_code'),
+            (r'#[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
         ],
         'markup': [
             include('comment'),
             (r'^\s*=+.*$', Generic.Heading),
             (r'[*][^*]*[*]', Generic.Strong),
             (r'_[^_]*_', Generic.Emph),
-            (r'\$', Punctuation, 'maths'),
+            (r'\$', Punctuation, 'math'),
             (r'`[^`]*`', String.Backtick),  # inline code
             (r'^\s*-', Punctuation),  # unnumbered list
             (r'^\s*\+', Punctuation),  # numbered list
@@ -48,12 +61,7 @@ class TypstLexer(RegexLexer):
             (r'<[a-zA-Z_][a-zA-Z0-9_-]*>', Name.Label),  # label
             (r'@[a-zA-Z_][a-zA-Z0-9_-]*', Name.Label),  # reference
             (r'\\#', Text), # escaped
-            (words(('#let', '#set', '#show'), suffix=r'\b'), Keyword.Declaration, 'inline_code'),
-            (words(('#import', '#include'), suffix=r'\b'), Keyword.Namespace, 'inline_code'),
-            (r'#\{', Punctuation, 'code'),
-            (r'(#[a-zA-Z_][a-zA-Z0-9_-]*)(\[)', bygroups(Name.Function, Punctuation), 'markup'),
-            (r'(#[a-zA-Z_][a-zA-Z0-9_-]*)(\()', bygroups(Name.Function, Punctuation), 'inline_code'),
-            (r'#[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
+            include('into_code'),
             (r'```(?:.|\n)*?```', String.Backtick),  # code block
             (r'https?://[0-9a-zA-Z~/%#&=\',;.+?]*', Generic.Emph),  # links
             (words(('---', '\\', '~', '--', '...'), suffix=r'\B'), Punctuation),  # special chars shorthand
@@ -61,17 +69,24 @@ class TypstLexer(RegexLexer):
             (r'\\\]', Punctuation),  # escaped
             (r'\[', Punctuation, '#push'),
             (r'\]', Punctuation, '#pop'),
-            include('common'),
+            (r'[ \t]+\n?|\n', Whitespace),
             (r'((?![*_$`/<@\\#\] ]|https?://).)+', Text),
         ],
-        'maths': [
+        'math': [
             include('comment'),
-            (words(('_', '^', '+', '-', '/', '*', '->', '<-', '!=', '=='),
-                   suffix=r'\b'), Operator),
-            (words((r'\\', '$='), suffix=r'\b'), Operator),  # maths markup operators
+            (words(('\\_', '\\^', '\\&')), Text), # escapes
+            (words(('_', '^', '&')), Punctuation),
+            (words(('+', '-', '*', '/', '=') + MATH_SHORTHANDS), Operator),
+            (r'\\', Punctuation), # line break
             (r'\\\$', Punctuation),  # escaped
             (r'\$', Punctuation, '#pop'),  # end of math mode
-            include('code'),
+            include('into_code'),
+            (r'([a-zA-Z_][a-zA-Z0-9_-]*)(\s*)(\()', bygroups(Name.Function, Whitespace, Punctuation)),
+            (r'([a-zA-Z][a-zA-Z0-9-]*)', Name.Variable), # both variables and symbols (_ isn't supported for variables)
+            (r'[0-9]+(\.[0-9]+)?', Number),
+            (r'\.{1,3}|\(|\)|,', Punctuation),
+            (r'"[^"]*"', String.Double),
+            (r'[ \t\n]+', Whitespace),
         ],
         'comment': [
             (r'//.*$', Comment.Single),
@@ -83,7 +98,7 @@ class TypstLexer(RegexLexer):
             (r'\(|\{', Punctuation, 'code'),
             (r'\)|\}', Punctuation, '#pop'),
             (r'"[^"]*"', String.Double),
-            (r',', Punctuation),
+            (r',|\.{1,2}', Punctuation),
             (r'=', Operator),
             (words(('and', 'or', 'not'), suffix=r'\b'), Operator.Word),
             (r'=>|<=|==|!=|>|<|-=|\+=|\*=|/=|\+|-|\\|\*', Operator), # comparisons
@@ -102,10 +117,10 @@ class TypstLexer(RegexLexer):
             ##  bygroups(Keyword.Reserved, Text, Punctuation, String.Double, Punctuation)),
             (r'([a-zA-Z_][a-zA-Z0-9_-]*)', Name.Variable),
             (r'[ \t\n]+', Whitespace),
-            (r':', Punctuation), # from imports like "import a: b"
+            (r':', Punctuation), # from imports like "import a: b" or "show: text.with(..)"
         ],
         'inline_code': [
-            (r';$', Punctuation, '#pop'),
+            (r';\b', Punctuation, '#pop'),
             (r'\n', Whitespace, '#pop'),
             include('code'),
         ],
