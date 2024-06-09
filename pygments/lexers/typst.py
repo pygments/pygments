@@ -70,7 +70,7 @@ class TypstLexer(RegexLexer):
             (r'\[', Punctuation, '#push'),
             (r'\]', Punctuation, '#pop'),
             (r'[ \t]+\n?|\n', Whitespace),
-            (r'((?![*_$`/<@\\#\] ]|https?://).)+', Text),
+            (r'((?![*_$`<@\\#\] ]|https?://).)+', Text),
         ],
         'math': [
             include('comment'),
