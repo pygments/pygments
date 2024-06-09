@@ -11,6 +11,7 @@
 from pygments.lexer import RegexLexer, words, bygroups, include
 from pygments.token import Comment, Keyword, Name, String, Punctuation, \
     Whitespace, Generic, Operator, Number, Text
+from pygments.util import get_choice_opt
 
 __all__ = ['TypstLexer']
 
@@ -18,6 +19,12 @@ __all__ = ['TypstLexer']
 class TypstLexer(RegexLexer):
     """
     For Typst code.
+
+    Additional options accepted:
+
+    `start`
+        Specifies the starting state of the lexer (one of 'markup', 'math',
+        'code'). The default is 'markup'.
     """
 
     name = 'Typst'
@@ -127,3 +134,16 @@ class TypstLexer(RegexLexer):
             include('code'),
         ],
     }
+
+    def __init__(self, **options):
+        self.start_state = get_choice_opt(
+            options, 'start', ['markup', 'code', 'math'], 'markup', True)
+
+        RegexLexer.__init__(self, **options)
+
+    def get_tokens_unprocessed(self, text):
+        stack = ['root']
+        if self.start_state != 'markup': # markup is equivalent to root
+            stack.append(self.start_state)
+
+        yield from RegexLexer.get_tokens_unprocessed(self, text, stack)
