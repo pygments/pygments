@@ -362,6 +362,9 @@ class CppLexer(CFamilyLexer):
             inherit,
         ],
         'root': [
+            include('whitespace'),
+            include('keywords'),
+            include('types'),
              # constructor and destructor
             (r'((?:' + CFamilyLexer._ident + r'(?:[&*\s])+)?)(~?' + CFamilyLexer._ident + r')'  #return type, destructor symbol and class name
              r'(\s*\([^;]*?\))'            # signature
