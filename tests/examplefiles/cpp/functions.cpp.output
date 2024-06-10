@@ -38,7 +38,7 @@
 'string'      Name
 '*'           Operator
 ' '           Text.Whitespace
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -69,7 +69,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -101,7 +101,7 @@
 '    '        Text.Whitespace
 '*'           Operator
 '    '        Text.Whitespace
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -132,7 +132,7 @@
 'string'      Name
 '   '         Text.Whitespace
 '*'           Operator
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -163,7 +163,7 @@
 '   '         Text.Whitespace
 '*'           Operator
 '*'           Operator
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -195,21 +195,6 @@
 '*'           Operator
 '*'           Operator
 ' '           Text.Whitespace
-'contains'    Name
-'('           Punctuation
-'const'       Keyword
-' '           Text.Whitespace
-'char'        Keyword.Type
-' '           Text.Whitespace
-'str'         Name
-')'           Punctuation
-';'           Punctuation
-'\n'          Text.Whitespace
-
-'string'      Name
-'*'           Operator
-'*'           Operator
-' '           Text.Whitespace
 'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
@@ -218,29 +203,10 @@
 ' '           Text.Whitespace
 'str'         Name
 ')'           Punctuation
-' '           Text.Whitespace
-'{'           Punctuation
-'}'           Punctuation
-'\n'          Text.Whitespace
-
-'string'      Name
-'  '          Text.Whitespace
-'*'           Operator
-'*'           Operator
-' '           Text.Whitespace
-'contains'    Name
-'('           Punctuation
-'const'       Keyword
-' '           Text.Whitespace
-'char'        Keyword.Type
-' '           Text.Whitespace
-'str'         Name
-')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
 
 'string'      Name
-'  '          Text.Whitespace
 '*'           Operator
 '*'           Operator
 ' '           Text.Whitespace
@@ -259,9 +225,10 @@
 
 'string'      Name
 '  '          Text.Whitespace
-'&'           Operator
-'  '          Text.Whitespace
-'contains'    Name
+'*'           Operator
+'*'           Operator
+' '           Text.Whitespace
+'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -274,6 +241,39 @@
 
 'string'      Name
 '  '          Text.Whitespace
+'*'           Operator
+'*'           Operator
+' '           Text.Whitespace
+'contains'    Name.Function
+'('           Punctuation
+'const'       Keyword
+' '           Text.Whitespace
+'char'        Keyword.Type
+' '           Text.Whitespace
+'str'         Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'string'      Name
+'  '          Text.Whitespace
+'&'           Operator
+'  '          Text.Whitespace
+'contains'    Name.Function
+'('           Punctuation
+'const'       Keyword
+' '           Text.Whitespace
+'char'        Keyword.Type
+' '           Text.Whitespace
+'str'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'string'      Name
+'  '          Text.Whitespace
 '&'           Operator
 '  '          Text.Whitespace
 'contains'    Name.Function
@@ -292,7 +292,7 @@
 'string'      Name
 '&'           Operator
 '   '         Text.Whitespace
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -322,7 +322,7 @@
 'string'      Name
 '   '         Text.Whitespace
 '&'           Operator
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -353,7 +353,7 @@
 '   '         Text.Whitespace
 '&'           Operator
 '&'           Operator
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -386,7 +386,7 @@
 '&'           Operator
 '&'           Operator
 '   '         Text.Whitespace
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -419,7 +419,7 @@
 '&'           Operator
 '&'           Operator
 '   '         Text.Whitespace
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -451,7 +451,7 @@
 ' '           Text.Whitespace
 'string'      Name
 ' '           Text.Whitespace
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -485,7 +485,7 @@
 ' '           Text.Whitespace
 'string'      Name
 ' '           Text.Whitespace
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -521,7 +521,7 @@
 ' '           Text.Whitespace
 'string'      Name
 ' '           Text.Whitespace
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -561,27 +561,6 @@
 ' '           Text.Whitespace
 'string'      Name
 ' '           Text.Whitespace
-'contains'    Name
-'('           Punctuation
-'const'       Keyword
-' '           Text.Whitespace
-'char'        Keyword.Type
-' '           Text.Whitespace
-'str'         Name
-')'           Punctuation
-' '           Text.Whitespace
-'noexcept'    Keyword
-' '           Text.Whitespace
-'const'       Keyword
-';'           Punctuation
-'\n'          Text.Whitespace
-
-'explicit'    Keyword
-' '           Text.Whitespace
-'const'       Keyword
-' '           Text.Whitespace
-'string'      Name
-' '           Text.Whitespace
 'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
@@ -594,6 +573,27 @@
 'noexcept'    Keyword
 ' '           Text.Whitespace
 'const'       Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'explicit'    Keyword
+' '           Text.Whitespace
+'const'       Keyword
+' '           Text.Whitespace
+'string'      Name
+' '           Text.Whitespace
+'contains'    Name.Function
+'('           Punctuation
+'const'       Keyword
+' '           Text.Whitespace
+'char'        Keyword.Type
+' '           Text.Whitespace
+'str'         Name
+')'           Punctuation
+' '           Text.Whitespace
+'noexcept'    Keyword
+' '           Text.Whitespace
+'const'       Keyword
 ' '           Text.Whitespace
 '{'           Punctuation
 '}'           Punctuation
@@ -609,7 +609,7 @@
 ' '           Text.Whitespace
 'string'      Name
 ' '           Text.Whitespace
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -645,7 +645,7 @@
 ' '           Text.Whitespace
 'string'      Name
 ' '           Text.Whitespace
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -683,7 +683,7 @@
 ' '           Text.Whitespace
 'string'      Name
 ' '           Text.Whitespace
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -719,47 +719,7 @@
 ' '           Text.Whitespace
 'string'      Name
 ' '           Text.Whitespace
-'contains'    Name
-'('           Punctuation
-'const'       Keyword
-' '           Text.Whitespace
-'char'        Keyword.Type
-'&'           Operator
-'&'           Operator
-'   '         Text.Whitespace
-'str'         Name
-')'           Punctuation
-';'           Punctuation
-'\n'          Text.Whitespace
-
-'explicit'    Keyword
-' '           Text.Whitespace
-'const'       Keyword
-' '           Text.Whitespace
-'string'      Name
-' '           Text.Whitespace
 'contains'    Name.Function
-'('           Punctuation
-'const'       Keyword
-' '           Text.Whitespace
-'char'        Keyword.Type
-'&'           Operator
-'&'           Operator
-'   '         Text.Whitespace
-'str'         Name
-')'           Punctuation
-' '           Text.Whitespace
-'{'           Punctuation
-'}'           Punctuation
-'\n'          Text.Whitespace
-
-'explicit'    Keyword
-' '           Text.Whitespace
-'const'       Keyword
-' '           Text.Whitespace
-'string'      Name
-' '           Text.Whitespace
-'contains'    Name
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -799,7 +759,47 @@
 ' '           Text.Whitespace
 'string'      Name
 ' '           Text.Whitespace
-'contains'    Name
+'contains'    Name.Function
+'('           Punctuation
+'const'       Keyword
+' '           Text.Whitespace
+'char'        Keyword.Type
+'&'           Operator
+'&'           Operator
+'   '         Text.Whitespace
+'str'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'explicit'    Keyword
+' '           Text.Whitespace
+'const'       Keyword
+' '           Text.Whitespace
+'string'      Name
+' '           Text.Whitespace
+'contains'    Name.Function
+'('           Punctuation
+'const'       Keyword
+' '           Text.Whitespace
+'char'        Keyword.Type
+'&'           Operator
+'&'           Operator
+'   '         Text.Whitespace
+'str'         Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'explicit'    Keyword
+' '           Text.Whitespace
+'const'       Keyword
+' '           Text.Whitespace
+'string'      Name
+' '           Text.Whitespace
+'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -839,7 +839,7 @@
 ' '           Text.Whitespace
 'string'      Name
 ' '           Text.Whitespace
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -887,7 +887,7 @@
 ' '           Text.Whitespace
 'string'      Name
 ' '           Text.Whitespace
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -933,7 +933,7 @@
 ' '           Text.Whitespace
 'string'      Name
 ' '           Text.Whitespace
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -979,7 +979,7 @@
 ' '           Text.Whitespace
 'string'      Name
 ' '           Text.Whitespace
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -1017,7 +1017,7 @@
 ' '           Text.Whitespace
 'string'      Name
 ' '           Text.Whitespace
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -1055,7 +1055,7 @@
 ' '           Text.Whitespace
 'string'      Name
 ' '           Text.Whitespace
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
@@ -1095,7 +1095,7 @@
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -1107,7 +1107,7 @@
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 ')'           Punctuation
 ';'           Punctuation
@@ -1156,7 +1156,7 @@
 ':'           Operator
 'string'      Name
 ' '           Text.Whitespace
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -1194,7 +1194,7 @@
 ':'           Operator
 'string'      Name
 ' '           Text.Whitespace
-'contains'    Name
+'contains'    Name.Function
 '('           Punctuation
 'std'         Name
 ':'           Operator
@@ -1244,13 +1244,7 @@
 ':'           Operator
 'string'      Name
 ' '           Text.Whitespace
-'std'         Name
-':'           Operator
-':'           Operator
-'vector'      Name
-':'           Operator
-':'           Operator
-'contains'    Name
+'std::vector::contains' Name.Function
 '('           Punctuation
 'std'         Name
 ':'           Operator
@@ -1302,13 +1296,7 @@
 ':'           Operator
 'string'      Name
 ' '           Text.Whitespace
-'std'         Name
-':'           Operator
-':'           Operator
-'vector'      Name
-':'           Operator
-':'           Operator
-'contains'    Name
+'std::vector::contains' Name.Function
 '('           Punctuation
 'std'         Name
 ':'           Operator
@@ -1338,13 +1326,7 @@
 ':'           Operator
 'string'      Name
 ' '           Text.Whitespace
-'std'         Name
-':'           Operator
-':'           Operator
-'vector'      Name
-':'           Operator
-':'           Operator
-'contains'    Name
+'std::vector::contains' Name.Function
 '('           Punctuation
 'std'         Name
 ':'           Operator

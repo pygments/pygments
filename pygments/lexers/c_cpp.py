@@ -159,6 +159,7 @@ class CFamilyLexer(RegexLexer):
                       Name.Function, using(this, state='whitespace'),
                       using(this), using(this, state='whitespace'),
                       using(this), Punctuation)),
+            include('function'),
             include('types'),
             default('statement'),
         ],
@@ -363,27 +364,14 @@ class CppLexer(CFamilyLexer):
         'root': [
             include('whitespace'),
             include('keywords'),
-            # function declarations start with [[using std: nodiscard]]
-            (r'([\[\[\s*using\s+\w+:\s*\w+\s*\]\]]*' + CFamilyLexer._namespaced_ident + r'(?:[&*\s])+)'  # return arguments
-             r'(' + CFamilyLexer._possible_comments + r')'
-             r'(' + CFamilyLexer._namespaced_ident + r')'             # method name
-             r'(' + CFamilyLexer._possible_comments + r')'
-             r'(\([^;"\')]*?\))'                         # signature
-             r'(' + CFamilyLexer._possible_comments + r')'
-             r'([^;/"\']*)(;)',
-             bygroups(using(this), using(this, state='whitespace'),
-                      Name.Function, using(this, state='whitespace'),
-                      using(this), using(this, state='whitespace'),
-                      using(this), Punctuation)),
             include('types'),
-            # constructor and destructor
+             # constructor and destructor
             (r'((?:' + CFamilyLexer._ident + r'(?:[&*\s])+)?)(~?' + CFamilyLexer._ident + r')'  #return type, destructor symbol and class name
              r'(\s*\([^;]*?\))'            # signature
              r'([^;{]*)(\{)',
              bygroups(using(this), Name.Function, using(this), using(this),
                       Punctuation),
              'function'),
-             
             inherit,
             # C++ Microsoft-isms
             (words(('virtual_inheritance', 'uuidof', 'super', 'single_inheritance',
