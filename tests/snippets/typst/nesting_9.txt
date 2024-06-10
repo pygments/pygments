@@ -26,7 +26,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'42'          Literal.Number
+'42'          Literal.Number.Integer
 '\n    '      Text.Whitespace
 'let'         Keyword.Declaration
 ' '           Text.Whitespace
@@ -89,7 +89,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'4'           Literal.Number
+'4'           Literal.Number.Integer
 ')'           Punctuation
 '\n\n        ' Text.Whitespace
 '['           Punctuation
@@ -100,11 +100,11 @@
 'is'          Text
 ' '           Text.Whitespace
 '#{'          Punctuation
-'40'          Literal.Number
+'40'          Literal.Number.Integer
 ' '           Text.Whitespace
 '+'           Operator
 ' '           Text.Whitespace
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 '}'           Punctuation
 ']'           Punctuation
 '\n    '      Text.Whitespace
