@@ -1,0 +1,139 @@
+---input---
+#import emoji: face
+#import "@preview/example:0.1.0": add
+#import "bar.typ": a as one, b as two
+#import "bar.typ": a, b
+#import "bar.typ" as baz
+#include "bar.typ"
+
+#{
+    import emoji: face
+    import "@preview/example:0.1.0": add
+    import "bar.typ": a as one, b as two
+    import "bar.typ": a, b
+    import "bar.typ" as baz
+    include "bar.typ"
+}
+
+---tokens---
+'#import'     Keyword.Namespace
+' '           Text.Whitespace
+'emoji'       Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'face'        Name.Variable
+'\n'          Text.Whitespace
+
+'#import'     Keyword.Namespace
+' '           Text.Whitespace
+'"@preview/example:0.1.0"' Literal.String.Double
+':'           Punctuation
+' '           Text.Whitespace
+'add'         Name.Variable
+'\n'          Text.Whitespace
+
+'#import'     Keyword.Namespace
+' '           Text.Whitespace
+'"bar.typ"'   Literal.String.Double
+':'           Punctuation
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'as'          Keyword.Reserved
+' '           Text.Whitespace
+'one'         Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'as'          Keyword.Reserved
+' '           Text.Whitespace
+'two'         Name.Variable
+'\n'          Text.Whitespace
+
+'#import'     Keyword.Namespace
+' '           Text.Whitespace
+'"bar.typ"'   Literal.String.Double
+':'           Punctuation
+' '           Text.Whitespace
+'a'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'b'           Name.Variable
+'\n'          Text.Whitespace
+
+'#import'     Keyword.Namespace
+' '           Text.Whitespace
+'"bar.typ"'   Literal.String.Double
+' '           Text.Whitespace
+'as'          Keyword.Reserved
+' '           Text.Whitespace
+'baz'         Name.Variable
+'\n'          Text.Whitespace
+
+'#include'    Keyword.Namespace
+' '           Text.Whitespace
+'"bar.typ"'   Literal.String.Double
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'#{'          Punctuation
+'\n    '      Text.Whitespace
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'emoji'       Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'face'        Name.Variable
+'\n    '      Text.Whitespace
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'"@preview/example:0.1.0"' Literal.String.Double
+':'           Punctuation
+' '           Text.Whitespace
+'add'         Name.Variable
+'\n    '      Text.Whitespace
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'"bar.typ"'   Literal.String.Double
+':'           Punctuation
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'as'          Keyword.Reserved
+' '           Text.Whitespace
+'one'         Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'as'          Keyword.Reserved
+' '           Text.Whitespace
+'two'         Name.Variable
+'\n    '      Text.Whitespace
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'"bar.typ"'   Literal.String.Double
+':'           Punctuation
+' '           Text.Whitespace
+'a'           Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'b'           Name.Variable
+'\n    '      Text.Whitespace
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'"bar.typ"'   Literal.String.Double
+' '           Text.Whitespace
+'as'          Keyword.Reserved
+' '           Text.Whitespace
+'baz'         Name.Variable
+'\n    '      Text.Whitespace
+'include'     Keyword.Namespace
+' '           Text.Whitespace
+'"bar.typ"'   Literal.String.Double
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
