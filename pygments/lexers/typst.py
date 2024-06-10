@@ -51,7 +51,7 @@ class TypstLexer(RegexLexer):
             (words(('#import', '#include'), suffix=r'\b'), Keyword.Namespace, 'inline_code'),
             (r'#\{', Punctuation, 'code'),
             (r'(#[a-zA-Z_][a-zA-Z0-9_-]*)(\[)', bygroups(Name.Function, Punctuation), 'markup'),
-            (r'(#[a-zA-Z_][a-zA-Z0-9_-]*)(\()', bygroups(Name.Function, Punctuation), 'inline_code'),
+            (r'(#[a-zA-Z_][a-zA-Z0-9_-]*)(\()', bygroups(Name.Function, Punctuation), 'code'),
             (words(('#true', '#false', '#none', '#auto'), suffix=r'\b'), Keyword.Constant),
             (r'#[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
         ],
