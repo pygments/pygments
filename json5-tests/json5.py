@@ -31,14 +31,13 @@ def quoted_field_name(quote_mark):
 
 
 class CustomLexer(RegexLexer):
-    """Lexer for JSON5 data structures. JSON5 is an extension of JSON."""
+    """Lexer for JSON5 data structures."""
 
     name = 'JSON5'
     aliases = ['json5']
     filenames = ['*.json5']
     url = "https://json5.org"
     version_added = ''
-
     tokens = {
         # Not used by itself
         '_comments': [
@@ -54,8 +53,8 @@ class CustomLexer(RegexLexer):
             (r'"', String, 'doublestring'),
             (r'\|\|\|(.|\n)*\|\|\|', String),
             # Jsonnet has no integers, only an IEEE754 64-bit float
-            (r'[+-]?[0-9]+(.[0-9])?', Number.Float),
-            (r'0x[0-9a-fA-F]+', Number.Hex,),
+            (r'[+-]?0[xX][0-9a-fA-F]+', Number.Hex),
+            (r'[+-.]?[0-9]+[.]?+[0-9]?+([eE][-]?[0-9])?', Number.Float),
             # Omit : despite spec because it appears to be used as a field
             # separator
             (r'[!$~+\-&|^=<>*/%]', Operator),
@@ -82,12 +81,12 @@ class CustomLexer(RegexLexer):
             (r'\]', Punctuation, '#pop'),
             include('root'),
         ],
-        # 'local_name': [
-        #     (jsonnet_function_token, Name.Function, 'function_params'),
-        #     (jsonnet_token, Name.Variable),
-        #     (r'\s+', Whitespace),
-        #     ('(?==)', Whitespace, ('#pop', 'local_value')),
-        # ],
+        'local_name': [
+            # (jsonnet_function_token, Name.Function, 'function_params'),
+            # (jsonnet_token, Name.Variable),
+            (r'\s+', Whitespace),
+            ('(?==)', Whitespace, ('#pop', 'local_value')),
+        ],
         'local_value': [
             (r'=', Operator),
             (r';', Punctuation, '#pop'),
@@ -99,24 +98,23 @@ class CustomLexer(RegexLexer):
             include('root'),
         ],
         # 'function_params': [
-        #     (jsonnet_token, Name.Variable),
+        #     # (jsonnet_token, Name.Variable),
         #     (r'\(', Punctuation),
         #     (r'\)', Punctuation, '#pop'),
         #     (r',', Punctuation),
         #     (r'\s+', Whitespace),
         #     (r'=', Operator, 'function_param_default'),
         # ],
-        'function_args': [
-            (r'\(', Punctuation),
-            (r'\)', Punctuation, '#pop'),
-            (r',', Punctuation),
-            (r'\s+', Whitespace),
-            include('root'),
-        ],
+        # 'function_args': [
+        #     (r'\(', Punctuation),
+        #     (r'\)', Punctuation, '#pop'),
+        #     (r',', Punctuation),
+        #     (r'\s+', Whitespace),
+        #     include('root'),
+        # ],
         'object': [
             (r'\s+', Whitespace),
-            # (r'local\b', Keyword, 'object_local_name'),
-            # (r'assert\b', Keyword, 'object_assert'),
+            (r'\b', Keyword, 'object_local_name'),
             (r'\[', Operator, 'field_name_expr'),
             # (fr'(?={jsonnet_token})', Text, 'field_name'),
             (r'\}', Punctuation, '#pop'),
@@ -125,10 +123,10 @@ class CustomLexer(RegexLexer):
             include('_comments'),
         ],
         # 'field_name': [
-        #     (jsonnet_function_token, Name.Function,
-        #         ('field_separator', 'function_params')
-        #      ),
-        #     (jsonnet_token, Name.Variable, 'field_separator'),
+            # (jsonnet_function_token, Name.Function,
+            #     ('field_separator', 'function_params')
+            #  ),
+            # (jsonnet_token, Name.Variable, 'field_separator'),
         # ],
         'double_field_name': quoted_field_name('"'),
         'single_field_name': quoted_field_name("'"),
@@ -136,10 +134,10 @@ class CustomLexer(RegexLexer):
             (r'\]', Operator, 'field_separator'),
             include('root'),
         ],
-        'function_param_default': [
-            (r'(?=[,\)])', Whitespace, '#pop'),
-            include('root'),
-        ],
+        # 'function_param_default': [
+        #     (r'(?=[,\)])', Whitespace, '#pop'),
+        #     include('root'),
+        # ],
         'field_separator': [
             (r'\s+', Whitespace),
             (r'\+?::?:?', Punctuation, ('#pop', '#pop', 'field_value')),
@@ -150,15 +148,15 @@ class CustomLexer(RegexLexer):
             (r'\}', Punctuation, '#pop:2'),
             include('root'),
         ],
-        'object_assert': [
-            (r':', Punctuation),
-            (r',', Punctuation, '#pop'),
-            include('root'),
-        ],
-        # 'object_local_name': [
-        #     (jsonnet_token, Name.Variable, ('#pop', 'object_local_value')),
-        #     (r'\s+', Whitespace),
+        # 'object_assert': [
+        #     (r':', Punctuation),
+        #     (r',', Punctuation, '#pop'),
+        #     include('root'),
         # ],
+        'object_local_name': [
+            (r'[^\W\d]\w*', Name.Variable, ('#pop', 'object_local_value')),
+            (r'\s+', Whitespace),
+        ],
         'object_local_value': [
             (r'=', Operator),
             (r',', Punctuation, '#pop'),
