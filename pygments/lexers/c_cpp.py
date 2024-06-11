@@ -159,7 +159,6 @@ class CFamilyLexer(RegexLexer):
                       Name.Function, using(this, state='whitespace'),
                       using(this), using(this, state='whitespace'),
                       using(this), Punctuation)),
-            include('function'),
             include('types'),
             default('statement'),
         ],
@@ -365,6 +364,20 @@ class CppLexer(CFamilyLexer):
             include('whitespace'),
             include('keywords'),
             include('types'),
+            # function declarations start with sth like [[using std: nodiscard]]
+            (r'((?:[\[\[\s*using\s+\w+:\s*\w+\s*\]\]\s+])+)'
+             r'(' + CFamilyLexer._namespaced_ident + r'(?:[&*\s])+)'  # return arguments
+             r'(' + CFamilyLexer._possible_comments + r')'
+             r'(' + CFamilyLexer._namespaced_ident + r')'             # method name
+             r'(' + CFamilyLexer._possible_comments + r')'
+             r'(\([^;"\')]*?\))'                         # signature
+             r'(' + CFamilyLexer._possible_comments + r')'
+             r'([^;/"\']*)(;)',
+             bygroups(using(this), using(this), using(this, state='whitespace'),
+                      Name.Function, using(this, state='whitespace'),
+                      using(this), using(this, state='whitespace'),
+                      using(this), Punctuation)),
+           
              # constructor and destructor
             (r'((?:' + CFamilyLexer._ident + r'(?:[&*\s])+)?)(~?' + CFamilyLexer._ident + r')'  #return type, destructor symbol and class name
              r'(\s*\([^;]*?\))'            # signature
