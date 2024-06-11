@@ -361,11 +361,18 @@ class CppLexer(CFamilyLexer):
             inherit,
         ],
         'root': [
-            include('whitespace'),
-            include('keywords'),
-            include('types'),
+            # include('whitespace'),
+            # include('keywords'),
+            # include('types'),
+            # constructor and destructor
+            (r'(~?' + CFamilyLexer._ident + r')'  #return type, destructor symbol and class name
+             r'(\([^;"\')]*?\))'           # signature
+             r'([^;{]*)(\{)',
+             bygroups(Name.Function, using(this), using(this),
+                      Punctuation),
+             'function'),
             # function declarations start with sth like [[using std: nodiscard]]
-            (r'((?:[\[\[\s*using\s+\w+:\s*\w+\s*\]\]\s+])+)'
+            (r'(\[\[\s*using\s+\w+:\s*\w+\s*\]\]\s*)'
              r'(' + CFamilyLexer._namespaced_ident + r'(?:[&*\s])+)'  # return arguments
              r'(' + CFamilyLexer._possible_comments + r')'
              r'(' + CFamilyLexer._namespaced_ident + r')'             # method name
@@ -373,18 +380,14 @@ class CppLexer(CFamilyLexer):
              r'(\([^;"\')]*?\))'                         # signature
              r'(' + CFamilyLexer._possible_comments + r')'
              r'([^;/"\']*)(;)',
-             bygroups(using(this), using(this), using(this, state='whitespace'),
+             bygroups(using(this), 
+                      using(this), using(this, state='whitespace'),
                       Name.Function, using(this, state='whitespace'),
                       using(this), using(this, state='whitespace'),
                       using(this), Punctuation)),
-           
-             # constructor and destructor
-            (r'((?:' + CFamilyLexer._ident + r'(?:[&*\s])+)?)(~?' + CFamilyLexer._ident + r')'  #return type, destructor symbol and class name
-             r'(\s*\([^;]*?\))'            # signature
-             r'([^;{]*)(\{)',
-             bygroups(using(this), Name.Function, using(this), using(this),
-                      Punctuation),
-             'function'),
+
+            # include('types'),
+            # include('function'),
             inherit,
             # C++ Microsoft-isms
             (words(('virtual_inheritance', 'uuidof', 'super', 'single_inheritance',
