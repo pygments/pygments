@@ -1,0 +1,20 @@
+---input---
+class test1 {
+    #testprop: string
+}
+
+---tokens---
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'test1'       Name.Other
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'#testprop'   Name
+':'           Operator
+' '           Text.Whitespace
+'string'      Keyword.Type
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
