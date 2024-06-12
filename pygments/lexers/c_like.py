@@ -53,7 +53,11 @@ class PikeLexer(CppLexer):
              Keyword.Type),
             (r'(class)(\s+)', bygroups(Keyword, Whitespace), 'classname'),
             (r'[~!%^&*+=|?:<>/@-]', Operator),
+            include('types_add'),
             inherit,
+        ],
+        'types_add': [ #in case function|lambda is recognized as function
+            (r'\b(function|lambda)\b(?=\()', Keyword.Type),
         ],
         'classname': [
             (r'[a-zA-Z_]\w*', Name.Class, '#pop'),
