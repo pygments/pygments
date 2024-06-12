@@ -56,7 +56,7 @@ class PikeLexer(CppLexer):
             include('types_add'),
             inherit,
         ],
-        'types_add': [ #in case function|lambda is recognized as function
+        'types_add': [ #in case function|lambda is recognized as function, while they are types
             (r'\b(function|lambda)\b(?=\()', Keyword.Type),
         ],
         'classname': [
