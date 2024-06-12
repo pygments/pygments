@@ -170,6 +170,8 @@ class TypeScriptLexer(JavascriptLexer):
             # Match stuff like: Decorators
             (r'@' + JS_IDENT, Keyword.Declaration),
             inherit,
+            # private identifier
+            (r'#[a-zA-Z_]\w*', Name),
         ],
     }
 

@@ -1,6 +1,6 @@
 ---input---
 class test1 {
-    #testprop: string
+    #testprop;
 }
 
 ---tokens---
@@ -11,9 +11,7 @@ class test1 {
 '{'           Punctuation
 '\n    '      Text.Whitespace
 '#testprop'   Name
-':'           Operator
-' '           Text.Whitespace
-'string'      Name.Other
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '}'           Punctuation
