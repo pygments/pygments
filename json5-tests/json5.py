@@ -17,8 +17,8 @@ __all__ = ['Json5Lexer']
 
 def string_rules(quote_mark):
     return [
-        (rf"[^{quote_mark}\\]", String),
-        (r"[\\\.]", String),
+        (rf"[^{quote_mark}\\]+", String),
+        (r"\\.", String.Escape),
         (quote_mark, String, '#pop'),
     ]
 
@@ -39,7 +39,6 @@ class CustomLexer(RegexLexer):
     url = "https://json5.org"
     version_added = ''
     tokens = {
-        # Not used by itself
         '_comments': [
             (r'(//|#).*\n', Comment.Single),
             (r'/\*\*([^/]|/(?!\*))*\*/', String.Doc),
@@ -49,14 +48,14 @@ class CustomLexer(RegexLexer):
             include('_comments'),
             (r"'", String, 'singlestring'),
             (r'"', String, 'doublestring'),
-            (r'\|\|\|(.|\n)*\|\|\|', String),
             (r'[+-]?0[xX][0-9a-fA-F]+', Number.Hex),
-            (r'[+-.]?[0-9]+[.]?+[0-9]?+([eE][-]?[0-9])?', Number.Float),
+            (r'[+-.]?[0-9]+[.]?+[0-9]?+([eE][-]?[0-9]+)?', Number.Float),
             (r'\{', Punctuation, 'object'),
             (r'\[', Punctuation, 'array'),
-            (words(['false', 'null', 'true',], suffix=r'\b'), Keyword),
+            (words(['false', 'Infinity', '+Infinity', '-Infinity', 'NaN', 
+                    'null', 'true',], suffix=r'\b'), Keyword),
             (r'\s+', Whitespace),
-            (r'[\.()]', Punctuation),
+            (r'[\.():]', Punctuation),
         ],
         'singlestring': string_rules("'"),
         'doublestring': string_rules('"'),
@@ -77,7 +76,7 @@ class CustomLexer(RegexLexer):
         'single_field_name': quoted_field_name("'"),
         'field_separator': [
             (r'\s+', Whitespace),
-            (r'\+?::?:?', Punctuation, ('#pop', '#pop', 'field_value')),
+            (r':?', Punctuation, ('#pop', '#pop', 'field_value')),
             include('_comments'),
         ],
         'field_value': [

@@ -1,0 +1,85 @@
+---input---
+{
+    integer: 123,
+    withFractionPart: 123.456,
+    onlyFractionPart: .456,
+    withExponent: 123e-456,
+    
+    positiveHex: 0xdecaf,
+    negativeHex: -0xC0FFEE,
+    
+    positiveInfinity: Infinity,
+    negativeInfinity: -Infinity,
+    notANumber: NaN,
+}
+
+---tokens---
+'{'           Punctuation
+'\n    '      Text.Whitespace
+''            Keyword
+'integer'     Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'123'         Literal.Number.Float
+','           Punctuation
+'\n    '      Text.Whitespace
+''            Keyword
+'withFractionPart' Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'123.4'       Literal.Number.Float
+'56'          Literal.Number.Float
+','           Punctuation
+'\n    '      Text.Whitespace
+''            Keyword
+'onlyFractionPart' Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'.456'        Literal.Number.Float
+','           Punctuation
+'\n    '      Text.Whitespace
+''            Keyword
+'withExponent' Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'123e-456'    Literal.Number.Float
+','           Punctuation
+'\n    \n    ' Text.Whitespace
+''            Keyword
+'positiveHex' Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'0xdecaf'     Literal.Number.Hex
+','           Punctuation
+'\n    '      Text.Whitespace
+''            Keyword
+'negativeHex' Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'-0xC0FFEE'   Literal.Number.Hex
+','           Punctuation
+'\n    \n    ' Text.Whitespace
+''            Keyword
+'positiveInfinity' Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Infinity'    Keyword
+','           Punctuation
+'\n    '      Text.Whitespace
+''            Keyword
+'negativeInfinity' Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'-Infinity'   Keyword
+','           Punctuation
+'\n    '      Text.Whitespace
+''            Keyword
+'notANumber'  Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'NaN'         Keyword
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
