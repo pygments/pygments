@@ -1,10 +1,10 @@
 name: Pygments
 
-on: push
-  # push:
-  #   branches: [master]
-  #   tags: ['*']
-  # pull_request:
+on:
+  push:
+    branches: [master]
+    tags: ['*']
+  pull_request:
 
 env:
   FORCE_COLOR: 1
