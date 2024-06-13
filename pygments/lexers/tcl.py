@@ -77,8 +77,12 @@ class TclLexer(RegexLexer):
             (r'\(', Keyword, 'paren'),
             (r'\[', Keyword, 'bracket'),
             (r'\{', Keyword, 'brace'),
-            (r'\\(.)', String.Escape),
-            (r'\$', Text),
+            (r'\\\s', String.Escape), #Handle \ at the end of line
+            (r'\$\s', Text), #Handle standalone $
+            (r'\\u[\da-fA-F]{1,4}', String.Escape),  # 16-bit Unicode escape sequences
+            (r'\\x[\da-fA-F]{1,2}', String.Escape),  # 8-bit Hexadecimal escape sequences
+            (r'\\[0-3]?[0-7]{1,2}', String.Escape),  # 8-bit Octal escape sequences
+            (r'\\.', String.Escape), 
             (r'"', String.Double, 'string'),
             (r'(eq|ne|in|ni)\b', Operator.Word),
             (r'!=|==|<<|>>|<=|>=|&&|\|\||\*\*|[-+~!*/%<>&^|?:]', Operator),
