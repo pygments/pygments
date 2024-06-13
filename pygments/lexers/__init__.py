@@ -31,6 +31,7 @@ __all__ = ['get_lexer_by_name', 'get_lexer_for_filename', 'find_lexer_class',
 _lexer_cache = {}
 _pattern_cache = {}
 
+from .nsis import NSISLexer
 
 def _fn_matches(fn, glob):
     """Return whether the supplied file name fn matches pattern filename."""
