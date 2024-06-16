@@ -31,7 +31,7 @@ def quoted_field_name(quote_mark):
     ]
 
 
-class Json5Lexer(RegexLexer):
+class CustomLexer(RegexLexer):
     """Lexer for JSON5 data structures."""
 
     name = 'JSON5'
