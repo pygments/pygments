@@ -1,5 +1,0 @@
-While in json5-test folder, use "pygmentize -l json5.py -x test.json5" to see output of the test lexer against the test.json5 file.
-
-Actual lexer is in pygments/lexers/json5.py. Any necessary changes to the test lexer need to be replicated to the proper file (this folder will be deleted before PR). Note that the test lexer has "class CustomLexer" while the actual lexer has "class Json5Lexer" (its required to run the command above).
-
-Proper tests need to be built by running "pytest --update-goldens tests/snippets/json5/" in root folder. Tests can/will be found in tests/snippets/json5/ Check that tokens mostly make sense and that there are no errors.

@@ -9,8 +9,8 @@
 """
 
 from pygments.lexer import include, RegexLexer, words
-from pygments.token import Comment, Keyword, Name, Number, Operator, \
-    Punctuation, String, Whitespace
+from pygments.token import Comment, Keyword, Name, Number, Punctuation, \
+    String, Whitespace
 
 __all__ = ['Json5Lexer']
 
