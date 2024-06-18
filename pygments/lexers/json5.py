@@ -27,7 +27,7 @@ def string_rules(quote_mark):
 def quoted_field_name(quote_mark):
     return [
         (rf'([^{quote_mark}\\]|\\.)*{quote_mark}',
-         Name.Variable, 'field_separator')
+         Name.Variable, ('#pop', 'object_value'))
     ]
 
 
@@ -56,7 +56,7 @@ class Json5Lexer(RegexLexer):
             (words(['false', 'Infinity', '+Infinity', '-Infinity', 'NaN',
                     'null', 'true',], suffix=r'\b'), Keyword),
             (r'\s+', Whitespace),
-            (r'[\.():]', Punctuation),
+            (r':', Punctuation),
         ],
         'singlestring': string_rules("'"),
         'doublestring': string_rules('"'),
@@ -67,28 +67,14 @@ class Json5Lexer(RegexLexer):
         ],
         'object': [
             (r'\s+', Whitespace),
-            (r'\b', Keyword, 'object_name'),
             (r'\}', Punctuation, '#pop'),
+            (r'\b([^:]+)', Name.Variable, 'object_value'),
             (r'"', Name.Variable, 'double_field_name'),
             (r"'", Name.Variable, 'single_field_name'),
             include('_comments'),
         ],
         'double_field_name': quoted_field_name('"'),
         'single_field_name': quoted_field_name("'"),
-        'field_separator': [
-            (r'\s+', Whitespace),
-            (r':?', Punctuation, ('#pop', '#pop', 'field_value')),
-            include('_comments'),
-        ],
-        'field_value': [
-            (r',', Punctuation, '#pop'),
-            (r'\}', Punctuation, '#pop:2'),
-            include('root'),
-        ],
-        'object_name': [
-            (r'[^\W\d]\w*', Name.Variable, ('#pop', 'object_value')),
-            (r'\s+', Whitespace),
-        ],
         'object_value': [
             (r',', Punctuation, '#pop'),
             (r'\}', Punctuation, '#pop:2'),

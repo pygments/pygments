@@ -18,7 +18,6 @@ No \\n's!",
 '// comments\n' Comment.Single
 
 '  '          Text.Whitespace
-''            Keyword
 'unquoted'    Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -27,7 +26,6 @@ No \\n's!",
 "'"           Literal.String
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Keyword
 'singleQuotes' Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -36,7 +34,6 @@ No \\n's!",
 "'"           Literal.String
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Keyword
 'lineBreaks'  Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -49,35 +46,30 @@ No \\n's!",
 '"'           Literal.String
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Keyword
 'hexadecimal' Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
 '0xdecaf'     Literal.Number.Hex
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Keyword
 'leadingDecimalPoint' Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
 '.8675309'    Literal.Number.Float
 ','           Punctuation
 ' '           Text.Whitespace
-''            Keyword
 'andTrailing' Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
 '8675309.'    Literal.Number.Float
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Keyword
 'positiveSign' Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
 '+1'          Literal.Number.Float
 ','           Punctuation
 '\n  '        Text.Whitespace
-''            Keyword
 'trailingComma' Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -86,7 +78,6 @@ No \\n's!",
 "'"           Literal.String
 ','           Punctuation
 ' '           Text.Whitespace
-''            Keyword
 'andIn'       Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
