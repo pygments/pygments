@@ -1,0 +1,134 @@
+---input---
+// An empty object
+{}
+
+// An object with two properties
+// and a trailing comma
+{
+    width: 1920,
+    height: 1080,
+}
+
+// Objects can be nested
+{
+    image: {
+        width: 1920,
+        height: 1080,
+        'aspect-ratio': '16:9',
+    }
+}
+
+// An array of objects
+[
+    { name: 'Joe', age: 27 },
+    { name: 'Jane', age: 32 },
+]
+
+---tokens---
+'// An empty object\n' Comment.Single
+
+'{'           Punctuation
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'// An object with two properties\n' Comment.Single
+
+'// and a trailing comma\n' Comment.Single
+
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'width'       Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'1920'        Literal.Number.Float
+','           Punctuation
+'\n    '      Text.Whitespace
+'height'      Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'1080'        Literal.Number.Float
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'// Objects can be nested\n' Comment.Single
+
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'image'       Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'width'       Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'1920'        Literal.Number.Float
+','           Punctuation
+'\n        '  Text.Whitespace
+'height'      Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'1080'        Literal.Number.Float
+','           Punctuation
+'\n        '  Text.Whitespace
+"'"           Name.Variable
+"aspect-ratio'" Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String
+'16:9'        Literal.String
+"'"           Literal.String
+','           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'// An array of objects\n' Comment.Single
+
+'['           Punctuation
+'\n    '      Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'name'        Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String
+'Joe'         Literal.String
+"'"           Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'age'         Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'27'          Literal.Number.Float
+' '           Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'name'        Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String
+'Jane'        Literal.String
+"'"           Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'age'         Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'32'          Literal.Number.Float
+' '           Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+']'           Punctuation
+'\n'          Text.Whitespace
