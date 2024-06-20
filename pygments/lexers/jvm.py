@@ -50,7 +50,7 @@ class JavaLexer(RegexLexer):
              r'if|goto|instanceof|new|return|switch|this|throw|try|while)\b',
              Keyword),
             # method names
-            (r'((?:(?:[^\W\d]|\$)[\w.\[\]$<>]*\s+)+?)'  # return arguments
+            (r'((?:(?:[^\W\d]|\$)[\w.\[\]$<>?]*\s+)+?)'  # return arguments
              r'((?:[^\W\d]|\$)[\w$]*)'                  # method name
              r'(\s*)(\()',                              # signature start
              bygroups(using(this), Name.Function, Whitespace, Punctuation)),
