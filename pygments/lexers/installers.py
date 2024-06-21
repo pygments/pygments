@@ -13,6 +13,7 @@ import re
 from pygments.lexer import RegexLexer, include, bygroups, using, this, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Punctuation, Generic, Number, Whitespace
+from pygments.lexers.custom_yaml import CustomYamlLexer
 
 __all__ = ['NSISLexer', 'RPMSpecLexer', 'SourcesListLexer',
            'DebianControlLexer']
