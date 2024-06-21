@@ -7,8 +7,7 @@
 """
 
 import pytest
-
-from pygments.token import Name
+from pygments.token import Name, Token
 from pygments.lexers.ruby import RubyLexer
 
 
@@ -51,3 +50,14 @@ def test_negative_method_names(lexer, method_name):
 
     text = 'def ' + method_name
     assert list(lexer.get_tokens(text))[-2] != (Name.Function, method_name)
+
+
+def testShiftLeftWithoutSpace(lexer):
+    fragment = u'[]<<a\n'
+    tokens = [
+        (Token.Operator, u'['),
+        (Token.Operator, u']'),
+        (Token.Operator, u'<<'),
+        (Token.Name, u'a'),
+        (Token.Text, u'\n'),
+    ]
