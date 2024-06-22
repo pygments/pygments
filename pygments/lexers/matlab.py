@@ -2671,7 +2671,8 @@ class MatlabLexer(RegexLexer):
             include('expressions')
         ],
         'blockcomment': [
-            (r'^\s*%\}', Comment.Multiline, '#pop'),
+            (r'%\{\s*\n', Comment.Multiline, '#push'), # Enter a new blockcomment state
+            (r'%\}', Comment.Multiline, '#pop'),
             (r'^.*\n', Comment.Multiline),
             (r'.', Comment.Multiline),
         ],
