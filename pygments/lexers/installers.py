@@ -312,7 +312,7 @@ class DebianControlLexer(RegexLexer):
              bygroups(Operator, Text, Name.Entity, Text)),
             (r'\(', Text, 'depend_vers'),
             (r'\|', Operator),
-            (r',\n', Text),
+            (r'\n\s', Text),
             (r'\n', Text, '#pop'),
             (r'[,\s]', Text),
             (r'[+.a-zA-Z0-9-]+', Name.Function),

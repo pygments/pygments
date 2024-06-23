@@ -34,13 +34,11 @@
 ' '           Text
 '13'          Literal.Number
 ')'           Text
-',\n'         Text
-
-' '           Text
+','           Text
+'\n '         Text
 'dh-python'   Name.Function
-',\n'         Text
-
-' '           Text
+','           Text
+'\n '         Text
 'otherbuilddependancies' Name.Function
 '\n'          Text
 
@@ -51,6 +49,7 @@
 '|'           Operator
 ' '           Text
 'p2'          Name.Function
+','           Text
 '\n'          Text
 
 'Build-Depends-Arch' Keyword
@@ -111,21 +110,18 @@
 'Depends'     Keyword
 ':\n '        Text
 'python3-bar' Name.Function
-',\n'         Text
-
-' '           Text
+','           Text
+'\n '         Text
 'p1'          Name.Function
 ' '           Text
 '|'           Operator
 ' '           Text
 'p2'          Name.Function
-',\n'         Text
-
-' '           Text
+','           Text
+'\n '         Text
 'otherdependancies' Name.Function
-',\n'         Text
-
-' '           Text
+','           Text
+'\n '         Text
 '$'           Operator
 '{'           Text
 'python3:Depends' Name.Entity
@@ -144,9 +140,8 @@
 '|'           Operator
 ' '           Text
 'p2'          Name.Function
-',\n'         Text
-
-' '           Text
+','           Text
+'\n '         Text
 'other-recommends' Name.Function
 '\n'          Text
 
