@@ -129,9 +129,9 @@
 '\n'          Text
 
 'Provides'    Keyword
-': '          Text.Whitespace
-'x-terminal-emulator' Literal.String
-'\n'          Text.Whitespace
+': '          Text
+'x-terminal-emulator' Name.Function
+'\n'          Text
 
 'Recommends'  Keyword
 ':\n '        Text
@@ -161,6 +161,18 @@
 '|'           Operator
 ' '           Text
 'p2'          Name.Function
+'\n'          Text
+
+'Conflicts'   Keyword
+': '          Text
+'p1'          Name.Function
+','           Text
+'\n '         Text
+'p2'          Name.Function
+','           Text
+'\n '         Text
+'p3'          Name.Function
+','           Text
 '\n'          Text
 
 'Description' Keyword
