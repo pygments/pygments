@@ -137,6 +137,8 @@ foo <<- 2 + 2
 2 + 2 ->> foo
 base:::sum
 base::sum
+## Forward pipe operator (since R version 4.1)
+mtcars |> head()
 
 ## Strings
 foo <- "hello, world!"

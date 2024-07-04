@@ -788,6 +788,18 @@
 'base'        Name
 '::'          Operator
 'sum'         Name
+'\n'          Text.Whitespace
+
+'## Forward pipe operator (since R version 4.1)' Comment.Single
+'\n'          Text.Whitespace
+
+'mtcars'      Name
+' '           Text.Whitespace
+'|>'          Operator
+' '           Text.Whitespace
+'head'        Name.Function
+'('           Punctuation
+')'           Punctuation
 '\n\n'        Text.Whitespace
 
 '## Strings'  Comment.Single

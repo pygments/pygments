@@ -100,7 +100,7 @@ class SLexer(RegexLexer):
              Keyword.Reserved),
         ],
         'operators': [
-            (r'<<?-|->>?|-|==|<=|>=|<|>|&&?|!=|\|\|?|\?', Operator),
+            (r'<<?-|->>?|-|==|<=|>=|\|>|<|>|&&?|!=|\|\|?|\?', Operator),
             (r'\*|\+|\^|/|!|%[^%]*%|=|~|\$|@|:{1,3}', Operator),
         ],
         'builtin_symbols': [
