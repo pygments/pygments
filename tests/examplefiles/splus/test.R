@@ -153,7 +153,7 @@ world!'
 ## Backtick strings
 `foo123 +!"bar'baz` <- 2 + 2
 
-## Builtin funcitons
+## Builtin functions
 file.create()
 gamma()
 grep()

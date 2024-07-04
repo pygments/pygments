@@ -88,6 +88,9 @@ class SLexer(RegexLexer):
         'valid_name': [
             (valid_name, Name),
         ],
+        'function_name': [
+            (rf'({valid_name})\s*(?=\()', Name.Function),
+        ],
         'punctuation': [
             (r'\[{1,2}|\]{1,2}|\(|\)|;|,', Punctuation),
         ],
@@ -121,15 +124,15 @@ class SLexer(RegexLexer):
             (r'\'', String, 'string_squote'),
             (r'\"', String, 'string_dquote'),
             include('builtin_symbols'),
+            include('keywords'),
+            include('function_name'),
             include('valid_name'),
             include('numbers'),
-            include('keywords'),
             include('punctuation'),
             include('operators'),
         ],
         'root': [
             # calls:
-            (rf'({valid_name})\s*(?=\()', Name.Function),
             include('statements'),
             # blocks:
             (r'\{|\}', Punctuation),
