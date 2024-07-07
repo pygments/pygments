@@ -501,6 +501,7 @@ LEXERS = {
     'TAPLexer': ('pygments.lexers.testing', 'TAP', ('tap',), ('*.tap',), ()),
     'TNTLexer': ('pygments.lexers.tnt', 'Typographic Number Theory', ('tnt',), ('*.tnt',), ()),
     'TOMLLexer': ('pygments.lexers.configs', 'TOML', ('toml',), ('*.toml', 'Pipfile', 'poetry.lock'), ('application/toml',)),
+    'TableGenLexer': ('pygments.lexers.tablegen', 'TableGen', ('tablegen', 'td'), ('*.td',), ()),
     'TactLexer': ('pygments.lexers.tact', 'Tact', ('tact',), ('*.tact',), ()),
     'Tads3Lexer': ('pygments.lexers.int_fiction', 'TADS 3', ('tads3',), ('*.t',), ()),
     'TalLexer': ('pygments.lexers.tal', 'Tal', ('tal', 'uxntal'), ('*.tal',), ('text/x-uxntal',)),
