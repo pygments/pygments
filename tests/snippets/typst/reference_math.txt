@@ -231,7 +231,7 @@ $ lim_x =
 ' '           Text.Whitespace
 ':='          Operator
 '\n    '      Text.Whitespace
-'{'           Error
+'{'           Punctuation
 ' '           Text.Whitespace
 'x'           Name.Variable
 ' '           Text.Whitespace
@@ -239,13 +239,13 @@ $ lim_x =
 ' '           Text.Whitespace
 'RR'          Name.Variable
 ' '           Text.Whitespace
-'|'           Error
+'|'           Operator
 ' '           Text.Whitespace
 'x'           Name.Variable
 ' '           Text.Whitespace
 '"is natural"' Literal.String.Double
 ' '           Text.Whitespace
-'}'           Error
+'}'           Punctuation
 ' '           Text.Whitespace
 '$'           Punctuation
 '\n'          Text.Whitespace

@@ -38,7 +38,7 @@ class TypstLexer(RegexLexer):
         '[|', '|]', '||', '*', ':=', '::=', '...', '\'', '-', '=:', '!=', '>>',
         '>=', '>>>', '<<', '<=', '<<<', '->', '|->', '=>', '|=>', '==>',
         '-->', '~~>', '~>', '>->', '->>', '<-', '<==', '<--', '<~~', '<~',
-        '<-<','<<-','<->','<=>','<==>','<-->', '>', '<', '~', ':',
+        '<-<','<<-','<->','<=>','<==>','<-->', '>', '<', '~', ':', '|'
     )
 
     tokens = {
@@ -100,7 +100,7 @@ class TypstLexer(RegexLexer):
             (r'([a-zA-Z][a-zA-Z0-9-]*)(:)', bygroups(Name.Variable, Punctuation)), # named arguments in math functions
             (r'([a-zA-Z][a-zA-Z0-9-]*)', Name.Variable), # both variables and symbols (_ isn't supported for variables)
             (r'[0-9]+(\.[0-9]+)?', Number),
-            (r'\.{1,3}|\(|\)|,', Punctuation),
+            (r'\.{1,3}|\(|\)|,|\{|\}', Punctuation),
             (r'"[^"]*"', String.Double),
             (r'[ \t\n]+', Whitespace),
         ],
