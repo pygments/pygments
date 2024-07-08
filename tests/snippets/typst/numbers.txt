@@ -30,7 +30,7 @@ $ #0.4 $
 '1234567890'  Literal.Number.Integer
 ','           Punctuation
 '\n    '      Text.Whitespace
-'0b10100'     Literal.Number.Binary
+'0b10100'     Literal.Number.Bin
 ','           Punctuation
 '\n    '      Text.Whitespace
 '0o01234567'  Literal.Number.Oct
@@ -58,7 +58,7 @@ $ #0.4 $
 '#1234567890' Literal.Number.Integer
 '\n'          Text.Whitespace
 
-'#0b10100'    Literal.Number.Binary
+'#0b10100'    Literal.Number.Bin
 '\n'          Text.Whitespace
 
 '#0o01234567' Literal.Number.Oct
@@ -85,7 +85,7 @@ $ #0.4 $
 
 '$'           Punctuation
 ' '           Text.Whitespace
-'#0b10100'    Literal.Number.Binary
+'#0b10100'    Literal.Number.Bin
 ' '           Text.Whitespace
 '$'           Punctuation
 '\n'          Text.Whitespace
