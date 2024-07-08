@@ -49,6 +49,7 @@ class TypstLexer(RegexLexer):
         'into_code': [
             (words(('#let', '#set', '#show'), suffix=r'\b'), Keyword.Declaration, 'inline_code'),
             (words(('#import', '#include'), suffix=r'\b'), Keyword.Namespace, 'inline_code'),
+            (words(('#if', '#for', '#while', '#export'), suffix=r'\b'), Keyword.Reserved, 'inline_code'),
             (r'#\{', Punctuation, 'code'),
             (r'#\(', Punctuation, 'code'),
             (r'(#[a-zA-Z_][a-zA-Z0-9_-]*)(\[)', bygroups(Name.Function, Punctuation), 'markup'),
