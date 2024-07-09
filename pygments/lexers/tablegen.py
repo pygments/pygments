@@ -1,5 +1,3 @@
-import re
-
 from pygments.lexer import RegexLexer, include, words, using
 from pygments.lexers.c_cpp import CppLexer
 from pygments.token import Comment, Keyword, Name, Number, Operator, \
@@ -164,6 +162,6 @@ class TableGenLexer(RegexLexer):
         # true in TableGen, but is the far most common scenario.
         'codeblock': [
             (r'\}\]', Text, '#pop'),
-            (r'([^}]+|}[^]])*', using(CppLexer)),
+            (r'([^}]+|\}[^]])*', using(CppLexer)),
         ],
     }
