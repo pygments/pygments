@@ -2,7 +2,7 @@
     pygments.lexers.tablegen
     ~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Lexers for LLVM's TableGen DSL.
+    Lexer for LLVM's TableGen DSL.
 
     :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
