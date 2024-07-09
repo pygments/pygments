@@ -1,3 +1,13 @@
+"""
+    pygments.lexers.tablegen
+    ~~~~~~~~~~~~~~~~~~~~~~~~
+
+    Lexers for LLVM's TableGen DSL.
+
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
+
 from pygments.lexer import RegexLexer, include, words, using
 from pygments.lexers.c_cpp import CppLexer
 from pygments.token import Comment, Keyword, Name, Number, Operator, \
