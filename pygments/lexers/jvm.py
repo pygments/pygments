@@ -43,7 +43,7 @@ class JavaLexer(RegexLexer):
              bygroups(Whitespace, using(this), Keyword.Declaration), 'class'),
             (r'[^\S\n]+', Whitespace),
             (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace)),
-            (r'/\*.*?\*/', Comment.Multiline),
+            (r'/*(.|\n)*\*/', Comment.Multiline),
             # keywords: go before method names to avoid lexing "throw new XYZ"
             # as a method signature
             (r'(assert|break|case|catch|continue|default|do|else|finally|for|'
