@@ -253,7 +253,8 @@ class RubyLexer(ExtendedRegexLexer):
              heredoc_callback),
             # empty string heredocs
             (r'(<<[-~]?)("|\')()(\2)(.*?\n)', heredoc_callback),
-            (r'__END__', Comment.Preproc, 'end-part'),
+            # ensure << without space is not treated as heredoc
+            (r'(?<!\w)(<<)(?=[^-\w])', Operator),
             # multiline regex (after keywords or assignments)
             (r'(?:^|(?<=[=<>~!:])|'
              r'(?<=(?:\s|;)when\s)|'
