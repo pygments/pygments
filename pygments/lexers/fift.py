@@ -24,6 +24,7 @@ class FiftLexer(RegexLexer):
     filenames = ['*.fif']
     url = 'https://ton-blockchain.github.io/docs/fiftbase.pdf'
     version_added = ''
+    _example = 'fift/new-wallet-v3.fif'
 
     tokens = {
         'root': [

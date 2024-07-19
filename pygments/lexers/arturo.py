@@ -31,6 +31,7 @@ class ArturoLexer(RegexLexer):
     filenames = ['*.art']
     url = 'https://arturo-lang.io/'
     version_added = '2.14'
+    _example = 'arturo/arturo_test.art'
 
     def __init__(self, **options):
         self.handle_annotateds = get_bool_opt(options, 'handle_annotateds',
