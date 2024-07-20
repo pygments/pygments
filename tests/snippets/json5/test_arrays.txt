@@ -1,0 +1,79 @@
+---input---
+// An empty array
+[]
+
+// An array with three elements
+// and a trailing comma
+[
+    1,
+    true,
+    'three',
+]
+
+// Arrays can be nested
+[
+    [1, true, 'three'],
+    [4, "five", 0x6],
+]
+
+---tokens---
+'// An empty array\n' Comment.Single
+
+'['           Punctuation
+']'           Punctuation
+'\n\n'        Text.Whitespace
+
+'// An array with three elements\n' Comment.Single
+
+'// and a trailing comma\n' Comment.Single
+
+'['           Punctuation
+'\n    '      Text.Whitespace
+'1'           Literal.Number.Float
+','           Punctuation
+'\n    '      Text.Whitespace
+'true'        Keyword
+','           Punctuation
+'\n    '      Text.Whitespace
+"'"           Literal.String
+'three'       Literal.String
+"'"           Literal.String
+','           Punctuation
+'\n'          Text.Whitespace
+
+']'           Punctuation
+'\n\n'        Text.Whitespace
+
+'// Arrays can be nested\n' Comment.Single
+
+'['           Punctuation
+'\n    '      Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'true'        Keyword
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String
+'three'       Literal.String
+"'"           Literal.String
+']'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'['           Punctuation
+'4'           Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'five'        Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'0x6'         Literal.Number.Hex
+']'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+']'           Punctuation
+'\n'          Text.Whitespace
