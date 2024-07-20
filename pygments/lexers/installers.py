@@ -281,9 +281,9 @@ class DebianControlLexer(RegexLexer):
             (r'^(Maintainer|Uploaders)(:\s*)', bygroups(Keyword, Text),
              'maintainer'),
             (r'^((?:Build-|Pre-)?Depends(?:-Indep|-Arch)?)(:\s*)',
-             bygroups(Keyword, Text), 'depends'),
-            (r'^(Recommends|Suggests|Enhances)(:\s*)', bygroups(Keyword, Text),
-             'depends'),
+             bygroups(Keyword, Text), 'package_list'),
+            (r'^(Recommends|Suggests|Enhances|Breaks|Replaces|Provides|Conflicts)(:\s*)',
+             bygroups(Keyword, Text), 'package_list'),
             (r'^((?:Python-)?Version)(:\s*)(\S+)$',
              bygroups(Keyword, Text, Number)),
             (r'^((?:Installed-)?Size)(:\s*)(\S+)$',
@@ -307,18 +307,18 @@ class DebianControlLexer(RegexLexer):
             (r' .*\n', Text),
             default('#pop'),
         ],
-        'depends': [
+        'package_list': [
             (r'(\$)(\{)(\w+\s*:\s*\w+)(\})',
              bygroups(Operator, Text, Name.Entity, Text)),
-            (r'\(', Text, 'depend_vers'),
+            (r'\(', Text, 'package_list_vers'),
             (r'\|', Operator),
-            (r',\n', Text),
+            (r'\n\s', Text),
             (r'\n', Text, '#pop'),
             (r'[,\s]', Text),
             (r'[+.a-zA-Z0-9-]+', Name.Function),
             (r'\[.*?\]', Name.Entity),
         ],
-        'depend_vers': [
+        'package_list_vers': [
             (r'\)', Text, '#pop'),
             (r'([><=]+)(\s*)([^)]+)', bygroups(Operator, Text, Number)),
         ]

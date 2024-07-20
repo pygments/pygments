@@ -7,7 +7,7 @@ Build-Depends: debhelper-compat (= 13),
  dh-python,
  otherbuilddependancies
 Build-Depends-Indep:
- p1 | p2
+ p1 | p2,
 Build-Depends-Arch:
  p1 | p2
 Rules-Requires-Root: no
@@ -33,6 +33,9 @@ Suggests:
  p1 | p2
 Enhances:
  p1 | p2
+Conflicts: p1,
+ p2,
+ p3,
 Description: title for this package
  First paragraph describing the packaged software.
  .
