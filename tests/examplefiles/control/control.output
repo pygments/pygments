@@ -1,32 +1,38 @@
 'Source'      Keyword
-': '          Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
 'foo'         Literal.String
 '\n'          Text.Whitespace
 
 'Section'     Keyword
-': '          Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
 'misc'        Literal.String
 '\n'          Text.Whitespace
 
 'Priority'    Keyword
-': '          Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
 'optional'    Literal.String
 '\n'          Text.Whitespace
 
 'Maintainer'  Keyword
-': '          Text
+':'           Punctuation
+' '           Text.Whitespace
 'Debian Python Team ' Text
 '<team+python@domain.tld>' Generic.Strong
 '\n'          Text.Whitespace
 
 'Uploaders'   Keyword
-': '          Text
+':'           Punctuation
+' '           Text.Whitespace
 'Alice '      Text
 '<alice@domain.tld>' Generic.Strong
 '\n'          Text.Whitespace
 
 'Build-Depends' Keyword
-': '          Text
+':'           Punctuation
+' '           Text.Whitespace
 'debhelper-compat' Name.Function
 ' '           Text
 '('           Text
@@ -40,75 +46,86 @@
 ','           Text
 '\n '         Text
 'otherbuilddependancies' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Build-Depends-Indep' Keyword
-':\n '        Text
+':'           Punctuation
+'\n '         Text.Whitespace
 'p1'          Name.Function
 ' '           Text
 '|'           Operator
 ' '           Text
 'p2'          Name.Function
 ','           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Build-Depends-Arch' Keyword
-':\n '        Text
+':'           Punctuation
+'\n '         Text.Whitespace
 'p1'          Name.Function
 ' '           Text
 '|'           Operator
 ' '           Text
 'p2'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Rules-Requires-Root' Keyword
-': '          Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
 'no'          Literal.String
 '\n'          Text.Whitespace
 
 'Standards-Version' Keyword
-': '          Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
 '4.5.1'       Literal.String
 '\n'          Text.Whitespace
 
 'Vcs-Git'     Keyword
-': '          Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
 'https://salsa.domain.tld/python-team/packages/foo.git' Literal.String
 '\n'          Text.Whitespace
 
 'Vcs-Browser' Keyword
-': '          Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
 'https://salsa.domain.tld/python-team/packages/foo' Literal.String
 '\n'          Text.Whitespace
 
 'Homepage'    Keyword
-': '          Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
 'https://domain.tld/owner/foo' Literal.String
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
 'Package'     Keyword
-': '          Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
 'foo'         Literal.String
 '\n'          Text.Whitespace
 
 'Architecture' Keyword
-': '          Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
 'all'         Literal.String
 '\n'          Text.Whitespace
 
 'Pre-Depends' Keyword
-':\n '        Text
+':'           Punctuation
+'\n '         Text.Whitespace
 'p1'          Name.Function
 ' '           Text
 '|'           Operator
 ' '           Text
 'p2'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Depends'     Keyword
-':\n '        Text
+':'           Punctuation
+'\n '         Text.Whitespace
 'python3-bar' Name.Function
 ','           Text
 '\n '         Text
@@ -126,15 +143,17 @@
 '{'           Text
 'python3:Depends' Name.Entity
 '}'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Provides'    Keyword
-': '          Text
+':'           Punctuation
+' '           Text.Whitespace
 'x-terminal-emulator' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Recommends'  Keyword
-':\n '        Text
+':'           Punctuation
+'\n '         Text.Whitespace
 'p1'          Name.Function
 ' '           Text
 '|'           Operator
@@ -143,28 +162,31 @@
 ','           Text
 '\n '         Text
 'other-recommends' Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Suggests'    Keyword
-':\n '        Text
+':'           Punctuation
+'\n '         Text.Whitespace
 'p1'          Name.Function
 ' '           Text
 '|'           Operator
 ' '           Text
 'p2'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Enhances'    Keyword
-':\n '        Text
+':'           Punctuation
+'\n '         Text.Whitespace
 'p1'          Name.Function
 ' '           Text
 '|'           Operator
 ' '           Text
 'p2'          Name.Function
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Conflicts'   Keyword
-': '          Text
+':'           Punctuation
+' '           Text.Whitespace
 'p1'          Name.Function
 ','           Text
 '\n '         Text
@@ -173,7 +195,7 @@
 '\n '         Text
 'p3'          Name.Function
 ','           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 'Description' Keyword
 ': title for this package\n' Generic.Strong
