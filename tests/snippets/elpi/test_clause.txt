@@ -3,6 +3,7 @@ true.
 stop :- !.
 of (fun F) :- pi x\ of x => of (F x).
 match (uvar as Y) :- print Y.
+f :- forall (_\ true) []. 
 
 ---tokens---
 'true'        Text
@@ -19,11 +20,11 @@ match (uvar as Y) :- print Y.
 
 'of'          Text
 ' '           Text.Whitespace
-'('           Text
+'('           Punctuation
 'fun'         Text
 ' '           Text.Whitespace
 'F'           Name.Variable
-')'           Operator
+')'           Punctuation
 ' '           Text.Whitespace
 ':-'          Keyword.Declaration
 ' '           Text.Whitespace
@@ -40,23 +41,23 @@ match (uvar as Y) :- print Y.
 ' '           Text.Whitespace
 'of'          Text
 ' '           Text.Whitespace
-'('           Text
+'('           Punctuation
 'F'           Name.Variable
 ' '           Text.Whitespace
 'x'           Text
-')'           Operator
+')'           Punctuation
 '.'           Operator
 '\n'          Text.Whitespace
 
 'match'       Text
 ' '           Text.Whitespace
-'('           Text
+'('           Punctuation
 'uvar'        Keyword.Declaration
 ' '           Text.Whitespace
 'as'          Keyword.Declaration
 ' '           Text.Whitespace
 'Y'           Name.Variable
-')'           Operator
+')'           Punctuation
 ' '           Text.Whitespace
 ':-'          Keyword.Declaration
 ' '           Text.Whitespace
@@ -65,3 +66,19 @@ match (uvar as Y) :- print Y.
 'Y'           Name.Variable
 '.'           Operator
 '\n'          Text.Whitespace
+
+'f'           Text
+' '           Text.Whitespace
+':-'          Keyword.Declaration
+' '           Text.Whitespace
+'forall'      Text
+' '           Text.Whitespace
+'('           Punctuation
+'_\\'         Name.Variable
+' '           Text.Whitespace
+'true'        Text
+')'           Punctuation
+' '           Text.Whitespace
+'[]'          Keyword.Declaration
+'.'           Operator
+' \n'         Text.Whitespace
