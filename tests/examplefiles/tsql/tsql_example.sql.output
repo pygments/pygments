@@ -1,25 +1,8 @@
-'-'           Operator
-'-'           Operator
-' '           Text.Whitespace
-'Example'     Name
-' '           Text.Whitespace
-'Transact'    Name
-'-'           Operator
-'SQL'         Keyword
-' '           Text.Whitespace
-'file'        Keyword
-'.'           Punctuation
-'\n\n'        Text.Whitespace
+'-- Example Transact-SQL file.\n' Comment.Single
 
-'-'           Operator
-'-'           Operator
-' '           Text.Whitespace
-'Single'      Name
-' '           Text.Whitespace
-'line'        Name
-' '           Text.Whitespace
-'comment'     Name
 '\n'          Text.Whitespace
+
+'-- Single line comment\n' Comment.Single
 
 '/*'          Comment.Multiline
 ' A comment \n ' Comment.Multiline
@@ -373,13 +356,7 @@
 ';'           Punctuation
 '\n\n'        Text.Whitespace
 
-'-'           Operator
-'-'           Operator
-' '           Text.Whitespace
-'Example'     Name
-' '           Text.Whitespace
-'transaction' Keyword
-'\n'          Text.Whitespace
+'-- Example transaction\n' Comment.Single
 
 'BEGIN'       Keyword
 ' '           Text.Whitespace

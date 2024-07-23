@@ -1,0 +1,9 @@
+---input---
+-- this is a single line comment
+select
+
+---tokens---
+'-- this is a single line comment\n' Comment.Single
+
+'select'      Keyword
+'\n'          Text.Whitespace
