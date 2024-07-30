@@ -117,7 +117,7 @@ class CSharpLexer(RegexLexer):
                  r'unchecked|unsafe|virtual|void|while|'
                  r'get|set|new|partial|yield|add|remove|value|alias|ascending|'
                  r'descending|from|group|into|orderby|select|thenby|where|'
-                 r'join|equals)\b', Keyword),
+                 r'join|equals|file)\b', Keyword),   #2710 Add the keyword 'file' here
                 (r'(global)(::)', bygroups(Keyword, Punctuation)),
                 (r'(bool|byte|char|decimal|double|dynamic|float|int|long|object|'
                  r'sbyte|short|string|uint|ulong|ushort|var)\b\??', Keyword.Type),
