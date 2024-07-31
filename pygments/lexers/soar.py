@@ -83,7 +83,7 @@ class SoarLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Whitespace),  # whitespace
-            (r'(^sp)(\s)(\{)([\S]+)',
+            (r'(^sp|gp)(\s)(\{)([\S]+)',
              bygroups(Keyword.Reserved, Whitespace, Punctuation, Name.Function)),
             keyword_types,
             builtins_functions,
