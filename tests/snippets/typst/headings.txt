@@ -1,0 +1,26 @@
+---input---
+= Heading
+== Heading
+=== Heading
+==== Heading
+===== Heading
+====== Heading
+
+---tokens---
+'= Heading'   Generic.Heading
+'\n'          Text.Whitespace
+
+'== Heading'  Generic.Heading
+'\n'          Text.Whitespace
+
+'=== Heading' Generic.Heading
+'\n'          Text.Whitespace
+
+'==== Heading' Generic.Heading
+'\n'          Text.Whitespace
+
+'===== Heading' Generic.Heading
+'\n'          Text.Whitespace
+
+'====== Heading' Generic.Heading
+'\n'          Text.Whitespace

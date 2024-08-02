@@ -1,0 +1,124 @@
+---input---
+#{
+    let a = 42
+    let my-fn(arg: none, arg2: "foo") = {
+        [#arg - #arg2]
+    }
+    do-smth(my-fn(arg: a))
+    do-smth({
+        set text(red)
+        my-fn(arg: a * 4)
+
+        [My number is #{40 + 2}]
+    })
+}
+
+== My Heading
+
+*Foo*
+
+---tokens---
+'#{'          Punctuation
+'\n    '      Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'42'          Literal.Number.Integer
+'\n    '      Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'my-fn'       Name.Function
+'('           Punctuation
+'arg'         Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'none'        Keyword.Constant
+','           Punctuation
+' '           Text.Whitespace
+'arg2'        Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'"foo"'       Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'['           Punctuation
+'#arg'        Name.Variable
+' '           Text.Whitespace
+'-'           Text
+' '           Text.Whitespace
+'#arg2'       Name.Variable
+']'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'do-smth'     Name.Function
+'('           Punctuation
+'my-fn'       Name.Function
+'('           Punctuation
+'arg'         Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'a'           Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text.Whitespace
+'do-smth'     Name.Function
+'('           Punctuation
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'set'         Keyword.Declaration
+' '           Text.Whitespace
+'text'        Name.Function
+'('           Punctuation
+'red'         Name.Variable
+')'           Punctuation
+'\n        '  Text.Whitespace
+'my-fn'       Name.Function
+'('           Punctuation
+'arg'         Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+')'           Punctuation
+'\n\n        ' Text.Whitespace
+'['           Punctuation
+'My'          Text
+' '           Text.Whitespace
+'number'      Text
+' '           Text.Whitespace
+'is'          Text
+' '           Text.Whitespace
+'#{'          Punctuation
+'40'          Literal.Number.Integer
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'}'           Punctuation
+']'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n== My Heading' Generic.Heading
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'*Foo*'       Generic.Strong
+'\n'          Text.Whitespace

@@ -1,0 +1,177 @@
+---input---
+some text #{
+    // some comment
+    let c = [
+        inline content
+        - My List
+        - Item
+        - A/B/C
+        
+        `some code` and #{
+            let a = 2
+            [a = $#a + 3$]
+        }
+    ]
+    let d = 42
+    d
+}
+$
+    5 / 6 + 4 &= 1 + 2 + 3 \
+    &= (3+4)/lambda
+$
+
+- A
+- B
+-C
+
+---tokens---
+'some'        Text
+' '           Text.Whitespace
+'text'        Text
+' '           Text.Whitespace
+'#{'          Punctuation
+'\n    '      Text.Whitespace
+'// some comment' Comment.Single
+'\n    '      Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'c'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'inline'      Text
+' '           Text.Whitespace
+'content'     Text
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'-'           Punctuation
+' '           Text.Whitespace
+'My'          Text
+' '           Text.Whitespace
+'List'        Text
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'-'           Punctuation
+' '           Text.Whitespace
+'Item'        Text
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'-'           Punctuation
+' '           Text.Whitespace
+'A/B/C'       Text
+'\n'          Text.Whitespace
+
+'        \n'  Text.Whitespace
+
+'        '    Text.Whitespace
+'`some code`' Literal.String.Backtick
+' '           Text.Whitespace
+'and'         Text
+' '           Text.Whitespace
+'#{'          Punctuation
+'\n            ' Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n            ' Text.Whitespace
+'['           Punctuation
+'a'           Text
+' '           Text.Whitespace
+'='           Text
+' '           Text.Whitespace
+'$'           Punctuation
+'#a'          Name.Variable
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'3'           Literal.Number
+'$'           Punctuation
+']'           Punctuation
+'\n        '  Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+']'           Punctuation
+'\n    '      Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'d'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'42'          Literal.Number.Integer
+'\n    '      Text.Whitespace
+'d'           Name.Variable
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+'\n    '      Text.Whitespace
+'5'           Literal.Number
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'6'           Literal.Number
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'4'           Literal.Number
+' '           Text.Whitespace
+'&'           Punctuation
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'3'           Literal.Number
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n    '      Text.Whitespace
+'&'           Punctuation
+'='           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'3'           Literal.Number
+'+'           Operator
+'4'           Literal.Number
+')'           Punctuation
+'/'           Operator
+'lambda'      Name.Variable
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'-'           Punctuation
+' '           Text.Whitespace
+'A'           Text
+'\n'          Text.Whitespace
+
+'-'           Punctuation
+' '           Text.Whitespace
+'B'           Text
+'\n'          Text.Whitespace
+
+'-C'          Text
+'\n'          Text.Whitespace

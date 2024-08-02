@@ -1,0 +1,125 @@
+---input---
+#let song(
+  header_display: (number, title, singer) => grid(
+    inset: 0b10,
+    grid.cell(fill: rgb(0xd0, 0xd0, 0xd0)),
+    [
+      #heading(title)
+      #if singer != none {
+        strong(singer) + "\n"
+      } else {
+        number
+      }
+    ],
+  ),
+  // comment
+  doc,
+)
+
+---tokens---
+'#let'        Keyword.Declaration
+' '           Text.Whitespace
+'song'        Name.Function
+'('           Punctuation
+'\n  '        Text.Whitespace
+'header_display' Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'number'      Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'title'       Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'singer'      Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+'>'           Operator
+' '           Text.Whitespace
+'grid'        Name.Function
+'('           Punctuation
+'\n    '      Text.Whitespace
+'inset'       Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'0b10'        Literal.Number.Bin
+','           Punctuation
+'\n    '      Text.Whitespace
+'grid'        Name.Variable
+'.'           Punctuation
+'cell'        Name.Function
+'('           Punctuation
+'fill'        Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'rgb'         Name.Function
+'('           Punctuation
+'0xd0'        Literal.Number.Hex
+','           Punctuation
+' '           Text.Whitespace
+'0xd0'        Literal.Number.Hex
+','           Punctuation
+' '           Text.Whitespace
+'0xd0'        Literal.Number.Hex
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'['           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'#heading'    Name.Function
+'('           Punctuation
+'title'       Name.Variable
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'#if'         Keyword.Reserved
+' '           Text.Whitespace
+'singer'      Name.Variable
+' '           Text.Whitespace
+'!='          Operator
+' '           Text.Whitespace
+'none'        Keyword.Constant
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'strong'      Name.Function
+'('           Punctuation
+'singer'      Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'"\\n"'       Literal.String.Double
+'\n      '    Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'else'        Keyword.Reserved
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'number'      Name.Variable
+'\n      '    Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+']'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+')'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'// comment'  Comment.Single
+'\n  '        Text.Whitespace
+'doc'         Name.Variable
+','           Punctuation
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace

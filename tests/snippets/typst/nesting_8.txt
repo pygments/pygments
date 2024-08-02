@@ -1,0 +1,12 @@
+---input---
+#let a = 0
+
+---tokens---
+'#let'        Keyword.Declaration
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
