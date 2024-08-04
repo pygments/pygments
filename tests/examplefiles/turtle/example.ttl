@@ -11,6 +11,11 @@ _:BlankNode1 a _:BlankNode2 .
 
 <#doc1> a <#document>;
 	dc:creator "Smith", "Jones"; 
+    dcterms:description """Test stuff
+single line""";
+    dcterms:identifier '''Single
+Quoted [multiline] string
+'''@fr;
 	:knows <http://getopenid.com/jsmith>;
 	dcterms:hasPart [ # A comment
 		dc:title "Some title", "Some other title";
