@@ -278,7 +278,7 @@ class DebianControlLexer(RegexLexer):
     tokens = {
         'root': [
             (r'^(Description)', Keyword, 'description'),
-            (r'^(Maintainer|Uploaders)(:)(\s*)',
+            (r'^(Maintainer|Uploaders|Changed-By)(:)(\s*)',
              bygroups(Keyword, Punctuation, Whitespace),
              'maintainer'),
             (r'^((?:Build-|Pre-)?Depends(?:-Indep|-Arch)?)(:)(\s*)',
