@@ -251,7 +251,7 @@ LEXERS = {
     'JsonLexer': ('pygments.lexers.data', 'JSON', ('json', 'json-object'), ('*.json', '*.jsonl', '*.ndjson', 'Pipfile.lock'), ('application/json', 'application/json-object', 'application/x-ndjson', 'application/jsonl', 'application/json-seq')),
     'JsonnetLexer': ('pygments.lexers.jsonnet', 'Jsonnet', ('jsonnet',), ('*.jsonnet', '*.libsonnet'), ()),
     'JspLexer': ('pygments.lexers.templates', 'Java Server Page', ('jsp',), ('*.jsp',), ('application/x-jsp',)),
-    'JsxLexer': ('pygments.lexers.jsx', 'JSX', ('jsx', 'react'), ('*.jsx', '*.react'), ('text/jsx', 'text/typescript-jsx')),
+    'JsxLexer': ('pygments.lexers.jsx', 'JSX', ('jsx', 'react', 'tsx'), ('*.jsx', '*.react', '*.tsx'), ('text/jsx', 'text/typescript-jsx', 'text/tsx')),
     'JuliaConsoleLexer': ('pygments.lexers.julia', 'Julia console', ('jlcon', 'julia-repl'), (), ()),
     'JuliaLexer': ('pygments.lexers.julia', 'Julia', ('julia', 'jl'), ('*.jl',), ('text/x-julia', 'application/x-julia')),
     'JuttleLexer': ('pygments.lexers.javascript', 'Juttle', ('juttle',), ('*.juttle',), ('application/juttle', 'application/x-juttle', 'text/x-juttle', 'text/juttle')),
