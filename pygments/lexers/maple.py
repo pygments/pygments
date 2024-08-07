@@ -8,7 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, words
+from pygments.lexer import RegexLexer, words, bygroups
 from pygments.token import Comment, Name, String, Whitespace, Operator, Punctuation, Number, Text, Keyword
 
 __all__ = ['MapleLexer']
@@ -260,6 +260,8 @@ class MapleLexer(RegexLexer):
             (r'`(\\`|.)*?`', Name),
             (r'(:=|\*\*|@@|<=|>=|<>|->|::|\.\.|&\+|[\+\-\*\.\^\$/@&,:=<>%~])', Operator),
             (r'[;^!@$\(\)\[\]{}|_\\#?]', Punctuation),
+            (r'(\d+)(\.\.)', bygroups(Number.Integer, Punctuation)),
+            (r'\d+', Number.Integer),
             (r'(\d*\.\d+|\d+\.\d*)([eE][+-]?\d+)?', Number.Float),
             (r'\d+', Number.Integer),
             (r'\n', Whitespace),
@@ -268,8 +270,8 @@ class MapleLexer(RegexLexer):
 
         ],
         'comment': [
-            (r'[^\*\)]*\(\*', Comment.Multiline, '#push'),
-            (r'[^\*\)]*\n', Comment.Multiline),
-            (r'[^\*\)]*\*\)', Comment.Multiline, '#pop')
+            (r'.*\(\*', Comment.Multiline, '#push'),
+            (r'.*\*\)', Comment.Multiline, '#pop'),
+            (r'.*\n', Comment.Multiline),
         ]
     }
