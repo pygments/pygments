@@ -261,7 +261,7 @@ class MapleLexer(RegexLexer):
             (r'(:=|\*\*|@@|<=|>=|<>|->|::|\.\.|&\+|[\+\-\*\.\^\$/@&,:=<>%~])', Operator),
             (r'[;^!@$\(\)\[\]{}|_\\#?]', Punctuation),
             (r'(\d*\.\d+|\d+\.\d*)([eE][+-]?\d+)?', Number.Float),
-            (r'[+-]?\d+', Number.Integer),
+            (r'\d+', Number.Integer),
             (r'\n', Whitespace),
             (r'[^\S\n]+', Whitespace),
             (r'\s+', Text),
