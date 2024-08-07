@@ -43,7 +43,9 @@
 ' '           Text.Whitespace
 'gensym'      Name
 '('           Punctuation
-"'h'"         Literal.String
+"'"           Punctuation
+'h'           Name
+"'"           Punctuation
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -174,7 +176,9 @@
 'Ints'        Name
 ','           Operator
 ' '           Text.Whitespace
-"'xx'"        Literal.String
+"'"           Punctuation
+'xx'          Name
+"'"           Punctuation
 ','           Operator
 ' '           Text.Whitespace
 'm'           Name
@@ -208,7 +212,9 @@
 'Sums'        Name
 ','           Operator
 ' '           Text.Whitespace
-"'kk'"        Literal.String
+"'"           Punctuation
+'kk'          Name
+"'"           Punctuation
 ','           Operator
 ' '           Text.Whitespace
 'm'           Name
@@ -228,7 +234,12 @@
 ' '           Text.Whitespace
 '::'          Operator
 ' '           Text.Whitespace
-"'Ret(anything)'" Literal.String
+"'"           Punctuation
+'Ret'         Name
+'('           Punctuation
+'anything'    Name
+')'           Punctuation
+"'"           Punctuation
 ' '           Text.Whitespace
 'then'        Keyword
 '\n'          Text.Whitespace
@@ -261,7 +272,18 @@
 ' '           Text.Whitespace
 '::'          Operator
 ' '           Text.Whitespace
-"'Bind(anything, name, anything)'" Literal.String
+"'"           Punctuation
+'Bind'        Name
+'('           Punctuation
+'anything'    Name
+','           Operator
+' '           Text.Whitespace
+'name'        Name
+','           Operator
+' '           Text.Whitespace
+'anything'    Name
+')'           Punctuation
+"'"           Punctuation
 ' '           Text.Whitespace
 'then'        Keyword
 '\n'          Text.Whitespace
@@ -323,7 +345,9 @@
 ')'           Punctuation
 ','           Operator
 ' '           Text.Whitespace
-"'integrate'" Literal.String
+"'"           Punctuation
+'integrate'   Name
+"'"           Punctuation
 '('           Punctuation
 'res'         Name
 ','           Operator
@@ -369,7 +393,12 @@
 ' '           Text.Whitespace
 '::'          Operator
 ' '           Text.Whitespace
-"'specfunc(Msum)'" Literal.String
+"'"           Punctuation
+'specfunc'    Name
+'('           Punctuation
+'Msum'        Name
+')'           Punctuation
+"'"           Punctuation
 ' '           Text.Whitespace
 'and'         Keyword
 ' '           Text.Whitespace
@@ -432,7 +461,15 @@
 ' '           Text.Whitespace
 '::'          Operator
 ' '           Text.Whitespace
-"'Weight(anything, anything)'" Literal.String
+"'"           Punctuation
+'Weight'      Name
+'('           Punctuation
+'anything'    Name
+','           Operator
+' '           Text.Whitespace
+'anything'    Name
+')'           Punctuation
+"'"           Punctuation
 ' '           Text.Whitespace
 'then'        Keyword
 '\n'          Text.Whitespace
@@ -568,7 +605,9 @@
 ','           Operator
 ' '           Text.Whitespace
 '['           Punctuation
-"'no_split_disj'" Literal.String
+"'"           Punctuation
+'no_split_disj' Name
+"'"           Punctuation
 ']'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
@@ -639,7 +678,9 @@
 '('           Punctuation
 '2'           Literal.Number.Integer
 '='           Operator
-"'integrate'" Literal.String
+"'"           Punctuation
+'integrate'   Name
+"'"           Punctuation
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
@@ -696,7 +737,15 @@
 ' '           Text.Whitespace
 '::'          Operator
 ' '           Text.Whitespace
-"'LO(name, anything)'" Literal.String
+"'"           Punctuation
+'LO'          Name
+'('           Punctuation
+'name'        Name
+','           Operator
+' '           Text.Whitespace
+'anything'    Name
+')'           Punctuation
+"'"           Punctuation
 ' '           Text.Whitespace
 'then'        Keyword
 '\n'          Text.Whitespace
@@ -732,7 +781,18 @@
 ' '           Text.Whitespace
 '::'          Operator
 ' '           Text.Whitespace
-"'Plate(nonnegint, name, anything)'" Literal.String
+"'"           Punctuation
+'Plate'       Name
+'('           Punctuation
+'nonnegint'   Name
+','           Operator
+' '           Text.Whitespace
+'name'        Name
+','           Operator
+' '           Text.Whitespace
+'anything'    Name
+')'           Punctuation
+"'"           Punctuation
 ' '           Text.Whitespace
 'then'        Keyword
 '\n'          Text.Whitespace
@@ -756,7 +816,9 @@
 ' '           Text.Whitespace
 'mk_sym'      Name
 '('           Punctuation
-"'pp'"        Literal.String
+"'"           Punctuation
+'pp'          Name
+"'"           Punctuation
 ','           Operator
 ' '           Text.Whitespace
 'h'           Name
@@ -926,7 +988,9 @@
 ' '           Text.Whitespace
 'mk_ary'      Name
 '('           Punctuation
-"'ary'"       Literal.String
+"'"           Punctuation
+'ary'         Name
+"'"           Punctuation
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
@@ -1049,7 +1113,18 @@
 ' '           Text.Whitespace
 '::'          Operator
 ' '           Text.Whitespace
-"'Plate(anything, name, anything)'" Literal.String
+"'"           Punctuation
+'Plate'       Name
+'('           Punctuation
+'anything'    Name
+','           Operator
+' '           Text.Whitespace
+'name'        Name
+','           Operator
+' '           Text.Whitespace
+'anything'    Name
+')'           Punctuation
+"'"           Punctuation
 ' '           Text.Whitespace
 'then'        Keyword
 '\n'          Text.Whitespace
@@ -1103,7 +1178,15 @@
 ' '           Text.Whitespace
 '::'          Operator
 ' '           Text.Whitespace
-"'Context(anything, anything)'" Literal.String
+"'"           Punctuation
+'Context'     Name
+'('           Punctuation
+'anything'    Name
+','           Operator
+' '           Text.Whitespace
+'anything'    Name
+')'           Punctuation
+"'"           Punctuation
 ' '           Text.Whitespace
 'then'        Keyword
 '\n'          Text.Whitespace
@@ -1146,13 +1229,17 @@
 ' '           Text.Whitespace
 'gensym'      Name
 '('           Punctuation
-"'xa'"        Literal.String
+"'"           Punctuation
+'xa'          Name
+"'"           Punctuation
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
 
 '      '      Text.Whitespace
-"'integrate'" Literal.String
+"'"           Punctuation
+'integrate'   Name
+"'"           Punctuation
 '('           Punctuation
 'm'           Name
 ','           Operator
@@ -1178,7 +1265,12 @@
 '\n'          Text.Whitespace
 
 '      '      Text.Whitespace
-"'procname(_passed)'" Literal.String
+"'"           Punctuation
+'procname'    Name
+'('           Punctuation
+'_passed'     Name
+')'           Punctuation
+"'"           Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace

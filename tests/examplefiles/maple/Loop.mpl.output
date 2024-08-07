@@ -42,7 +42,9 @@
 'bvar'        Name
 ','           Operator
 ' '           Text.Whitespace
-"'set'"       Literal.String
+"'"           Punctuation
+'set'         Name
+"'"           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
@@ -1057,7 +1059,27 @@
 ' '           Text.Whitespace
 ':='          Operator
 ' '           Text.Whitespace
-"'Binder(identical(product, Product, sum, Sum), t_kb)'" Literal.String
+"'"           Punctuation
+'Binder'      Name
+'('           Punctuation
+'identical'   Name
+'('           Punctuation
+'product'     Name
+','           Operator
+' '           Text.Whitespace
+'Product'     Name
+','           Operator
+' '           Text.Whitespace
+'sum'         Name
+','           Operator
+' '           Text.Whitespace
+'Sum'         Name
+')'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'t_kb'        Name
+')'           Punctuation
+"'"           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -1066,7 +1088,18 @@
 '   '         Text.Whitespace
 ':='          Operator
 ' '           Text.Whitespace
-"'Stmt(anything, list, list)'" Literal.String
+"'"           Punctuation
+'Stmt'        Name
+'('           Punctuation
+'anything'    Name
+','           Operator
+' '           Text.Whitespace
+'list'        Name
+','           Operator
+' '           Text.Whitespace
+'list'        Name
+')'           Punctuation
+"'"           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -1075,7 +1108,45 @@
 '    '        Text.Whitespace
 ':='          Operator
 ' '           Text.Whitespace
-"'{Stmt(identical(exp), [], []),\n                Stmt(identical(`^`), [anything], [])}'" Literal.String
+"'"           Punctuation
+'{'           Punctuation
+'Stmt'        Name
+'('           Punctuation
+'identical'   Name
+'('           Punctuation
+'exp'         Name
+')'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'['           Punctuation
+']'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'['           Punctuation
+']'           Punctuation
+')'           Punctuation
+','           Operator
+'\n'          Text.Whitespace
+
+'                ' Text.Whitespace
+'Stmt'        Name
+'('           Punctuation
+'identical'   Name
+'('           Punctuation
+'`^`'         Name
+')'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'anything'    Name
+']'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'['           Punctuation
+']'           Punctuation
+')'           Punctuation
+'}'           Punctuation
+"'"           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -1092,10 +1163,14 @@
 ' '           Text.Whitespace
 'intssums'    Name
 '('           Punctuation
-"'ints'"      Literal.String
+"'"           Punctuation
+'ints'        Name
+"'"           Punctuation
 ','           Operator
 ' '           Text.Whitespace
-"'int'"       Literal.String
+"'"           Punctuation
+'int'         Name
+"'"           Punctuation
 ','           Operator
 ' '           Text.Whitespace
 '_passed'     Name
@@ -1118,10 +1193,14 @@
 ' '           Text.Whitespace
 'intssums'    Name
 '('           Punctuation
-"'sums'"      Literal.String
+"'"           Punctuation
+'sums'        Name
+"'"           Punctuation
 ','           Operator
 ' '           Text.Whitespace
-"'sum'"       Literal.String
+"'"           Punctuation
+'sum'         Name
+"'"           Punctuation
 ','           Operator
 ' '           Text.Whitespace
 '_passed'     Name
@@ -1399,7 +1478,9 @@
 'kb'          Name
 ','           Operator
 ' '           Text.Whitespace
-"'Integrand'" Literal.String
+"'"           Punctuation
+'Integrand'   Name
+"'"           Punctuation
 '('           Punctuation
 'x'           Name
 ','           Operator
@@ -1448,7 +1529,21 @@
 '\n'          Text.Whitespace
 
 '      '      Text.Whitespace
-"'makes(e, x, rr, ll)'" Literal.String
+"'"           Punctuation
+'makes'       Name
+'('           Punctuation
+'e'           Name
+','           Operator
+' '           Text.Whitespace
+'x'           Name
+','           Operator
+' '           Text.Whitespace
+'rr'          Name
+','           Operator
+' '           Text.Whitespace
+'ll'          Name
+')'           Punctuation
+"'"           Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -1460,7 +1555,9 @@
 ' '           Text.Whitespace
 ':='          Operator
 ' '           Text.Whitespace
-"'make'"      Literal.String
+"'"           Punctuation
+'make'        Name
+"'"           Punctuation
 '('           Punctuation
 'pp'          Name
 ','           Operator
@@ -1487,7 +1584,9 @@
 ' '           Text.Whitespace
 ':='          Operator
 ' '           Text.Whitespace
-"'product'"   Literal.String
+"'"           Punctuation
+'product'     Name
+"'"           Punctuation
 '('           Punctuation
 'pp'          Name
 ','           Operator
@@ -1751,7 +1850,9 @@
 'ind'         Name
 ','           Operator
 ' '           Text.Whitespace
-"'pairs'"     Literal.String
+"'"           Punctuation
+'pairs'       Name
+"'"           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
@@ -1877,7 +1978,9 @@
 'ind'         Name
 ','           Operator
 ' '           Text.Whitespace
-"'nolist'"    Literal.String
+"'"           Punctuation
+'nolist'      Name
+"'"           Punctuation
 ')'           Punctuation
 ']'           Punctuation
 ','           Operator
@@ -1890,7 +1993,9 @@
 'rng'         Name
 ','           Operator
 ' '           Text.Whitespace
-"'nolist'"    Literal.String
+"'"           Punctuation
+'nolist'      Name
+"'"           Punctuation
 ')'           Punctuation
 ']'           Punctuation
 ')'           Punctuation
@@ -2064,10 +2169,14 @@
 'w1'          Name
 ','           Operator
 ' '           Text.Whitespace
-"'list'"      Literal.String
+"'"           Punctuation
+'list'        Name
+"'"           Punctuation
 ','           Operator
 ' '           Text.Whitespace
-"'`*`'"       Literal.String
+"'"           Punctuation
+'`*`'         Name
+"'"           Punctuation
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -2225,7 +2334,30 @@
 ' '           Text.Whitespace
 '::'          Operator
 ' '           Text.Whitespace
-"'And(specfunc(piecewise), anyfunc(freeof(x), anything, 1))'" Literal.String
+"'"           Punctuation
+'And'         Name
+'('           Punctuation
+'specfunc'    Name
+'('           Punctuation
+'piecewise'   Name.Builtin
+')'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'anyfunc'     Name
+'('           Punctuation
+'freeof'      Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'anything'    Name
+','           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+"'"           Punctuation
 ' '           Text.Whitespace
 'then'        Keyword
 '\n'          Text.Whitespace
@@ -2262,17 +2394,28 @@
 '::'          Operator
 ' '           Text.Whitespace
 '{'           Punctuation
-"'exp(anything)'" Literal.String
+"'"           Punctuation
+'exp'         Name
+'('           Punctuation
+'anything'    Name
+')'           Punctuation
+"'"           Punctuation
 ','           Operator
 ' '           Text.Whitespace
-"'`^`'"       Literal.String
+"'"           Punctuation
+'`^`'         Name
+"'"           Punctuation
 '('           Punctuation
-"'freeof'"    Literal.String
+"'"           Punctuation
+'freeof'      Name
+"'"           Punctuation
 '('           Punctuation
 'n'           Name
 ')'           Punctuation
 ','           Operator
-"'anything'"  Literal.String
+"'"           Punctuation
+'anything'    Name
+"'"           Punctuation
 ')'           Punctuation
 '}'           Punctuation
 ' '           Text.Whitespace
@@ -2306,9 +2449,13 @@
 'p'           Name
 ')'           Punctuation
 ','           Operator
-"'list'"      Literal.String
+"'"           Punctuation
+'list'        Name
+"'"           Punctuation
 ','           Operator
-"'`*`'"       Literal.String
+"'"           Punctuation
+'`*`'         Name
+"'"           Punctuation
 ')'           Punctuation
 ','           Operator
 ' '           Text.Whitespace
@@ -2389,9 +2536,13 @@
 'p'           Name
 ')'           Punctuation
 ','           Operator
-"'list'"      Literal.String
+"'"           Punctuation
+'list'        Name
+"'"           Punctuation
 ','           Operator
-"'`*`'"       Literal.String
+"'"           Punctuation
+'`*`'         Name
+"'"           Punctuation
 ')'           Punctuation
 ','           Operator
 ' '           Text.Whitespace
@@ -2693,7 +2844,18 @@
 'w'           Name
 ','           Operator
 ' '           Text.Whitespace
-"'idx(identical(var), anything)'" Literal.String
+"'"           Punctuation
+'idx'         Name
+'('           Punctuation
+'identical'   Name
+'('           Punctuation
+'var'         Name
+')'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'anything'    Name
+')'           Punctuation
+"'"           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
@@ -2742,7 +2904,9 @@
 'ind'         Name
 ','           Operator
 ' '           Text.Whitespace
-"'name'"      Literal.String
+"'"           Punctuation
+'name'        Name
+"'"           Punctuation
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -2808,7 +2972,18 @@
 ')'           Punctuation
 ','           Operator
 ' '           Text.Whitespace
-"'idx(identical(var), anything)'" Literal.String
+"'"           Punctuation
+'idx'         Name
+'('           Punctuation
+'identical'   Name
+'('           Punctuation
+'var'         Name
+')'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'anything'    Name
+')'           Punctuation
+"'"           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -3154,7 +3329,12 @@
 ' '           Text.Whitespace
 '::'          Operator
 ' '           Text.Whitespace
-"'specfunc(piecewise)'" Literal.String
+"'"           Punctuation
+'specfunc'    Name
+'('           Punctuation
+'piecewise'   Name.Builtin
+')'           Punctuation
+"'"           Punctuation
 ' '           Text.Whitespace
 'then'        Keyword
 '\n'          Text.Whitespace
@@ -3447,7 +3627,9 @@
 '('           Punctuation
 'w1'          Name
 ','           Operator
-"'nolist'"    Literal.String
+"'"           Punctuation
+'nolist'      Name
+"'"           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ','           Operator
@@ -3458,7 +3640,9 @@
 '('           Punctuation
 'pp'          Name
 ','           Operator
-"'nolist'"    Literal.String
+"'"           Punctuation
+'nolist'      Name
+"'"           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ']'           Punctuation
@@ -4053,7 +4237,22 @@
 ' '           Text.Whitespace
 '::'          Operator
 ' '           Text.Whitespace
-"'{`+`, specfunc({sum, Sum})}'" Literal.String
+"'"           Punctuation
+'{'           Punctuation
+'`+`'         Name
+','           Operator
+' '           Text.Whitespace
+'specfunc'    Name
+'('           Punctuation
+'{'           Punctuation
+'sum'         Name
+','           Operator
+' '           Text.Whitespace
+'Sum'         Name
+'}'           Punctuation
+')'           Punctuation
+'}'           Punctuation
+"'"           Punctuation
 ' '           Text.Whitespace
 'then'        Keyword
 '\n'          Text.Whitespace
@@ -4258,7 +4457,12 @@
 ' '           Text.Whitespace
 '::'          Operator
 ' '           Text.Whitespace
-"'specfunc(piecewise)'" Literal.String
+"'"           Punctuation
+'specfunc'    Name
+'('           Punctuation
+'piecewise'   Name.Builtin
+')'           Punctuation
+"'"           Punctuation
 ' '           Text.Whitespace
 'and'         Keyword
 ' '           Text.Whitespace
@@ -5007,7 +5211,9 @@
 'e'           Name
 ','           Operator
 ' '           Text.Whitespace
-"'list'"      Literal.String
+"'"           Punctuation
+'list'        Name
+"'"           Punctuation
 ','           Operator
 ' '           Text.Whitespace
 '`*`'         Name
@@ -5064,15 +5270,21 @@
 'e'           Name
 ','           Operator
 ' '           Text.Whitespace
-"'`^`'"       Literal.String
+"'"           Punctuation
+'`^`'         Name
+"'"           Punctuation
 '('           Punctuation
-"'freeof'"    Literal.String
+"'"           Punctuation
+'freeof'      Name
+"'"           Punctuation
 '('           Punctuation
 'var'         Name
 ')'           Punctuation
 ','           Operator
 ' '           Text.Whitespace
-"'anything'"  Literal.String
+"'"           Punctuation
+'anything'    Name
+"'"           Punctuation
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
@@ -5096,7 +5308,12 @@
 'e'           Name
 ','           Operator
 ' '           Text.Whitespace
-"'exp(anything)'" Literal.String
+"'"           Punctuation
+'exp'         Name
+'('           Punctuation
+'anything'    Name
+')'           Punctuation
+"'"           Punctuation
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -5188,7 +5405,9 @@
 't'           Name
 ','           Operator
 ' '           Text.Whitespace
-"'list'"      Literal.String
+"'"           Punctuation
+'list'        Name
+"'"           Punctuation
 ','           Operator
 ' '           Text.Whitespace
 '`*`'         Name
@@ -5734,14 +5953,21 @@
 'e'           Name
 ','           Operator
 ' '           Text.Whitespace
-"'list'"      Literal.String
+"'"           Punctuation
+'list'        Name
+"'"           Punctuation
 ','           Operator
 ' '           Text.Whitespace
 '`*`'         Name
 ')'           Punctuation
 ','           Operator
 ' '           Text.Whitespace
-"'exp(anything)'" Literal.String
+"'"           Punctuation
+'exp'         Name
+'('           Punctuation
+'anything'    Name
+')'           Punctuation
+"'"           Punctuation
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -5887,7 +6113,36 @@
 ' '           Text.Whitespace
 ':='          Operator
 ' '           Text.Whitespace
-"'And(specfunc({sum,Sum,product,Product}),\n                 anyfunc(anything, name=range))'" Literal.String
+"'"           Punctuation
+'And'         Name
+'('           Punctuation
+'specfunc'    Name
+'('           Punctuation
+'{'           Punctuation
+'sum'         Name
+','           Operator
+'Sum'         Name
+','           Operator
+'product'     Name
+','           Operator
+'Product'     Name
+'}'           Punctuation
+')'           Punctuation
+','           Operator
+'\n'          Text.Whitespace
+
+'                 ' Text.Whitespace
+'anyfunc'     Name
+'('           Punctuation
+'anything'    Name
+','           Operator
+' '           Text.Whitespace
+'name'        Name
+'='           Operator
+'range'       Name
+')'           Punctuation
+')'           Punctuation
+"'"           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -6017,7 +6272,15 @@
 ' '           Text.Whitespace
 'in'          Keyword
 ' '           Text.Whitespace
-"'{sum    ,Sum    }'" Literal.String
+"'"           Punctuation
+'{'           Punctuation
+'sum'         Name
+'    '        Text.Whitespace
+','           Operator
+'Sum'         Name
+'    '        Text.Whitespace
+'}'           Punctuation
+"'"           Punctuation
 ' '           Text.Whitespace
 'then'        Keyword
 ' '           Text.Whitespace
@@ -6041,7 +6304,13 @@
 ' '           Text.Whitespace
 'in'          Keyword
 ' '           Text.Whitespace
-"'{product,Product}'" Literal.String
+"'"           Punctuation
+'{'           Punctuation
+'product'     Name
+','           Operator
+'Product'     Name
+'}'           Punctuation
+"'"           Punctuation
 ' '           Text.Whitespace
 'then'        Keyword
 ' '           Text.Whitespace
@@ -6100,7 +6369,18 @@
 'body'        Name
 ','           Operator
 ' '           Text.Whitespace
-"'{`=`(algebraic),`<`,`<=`}'" Literal.String
+"'"           Punctuation
+'{'           Punctuation
+'`=`'         Name
+'('           Punctuation
+'algebraic'   Name
+')'           Punctuation
+','           Operator
+'`<`'         Name
+','           Operator
+'`<=`'        Name
+'}'           Punctuation
+"'"           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
 'do'          Keyword
@@ -6352,7 +6632,13 @@
 ' '           Text.Whitespace
 'in'          Keyword
 ' '           Text.Whitespace
-"'{true,false}'" Literal.String
+"'"           Punctuation
+'{'           Punctuation
+'true'        Name
+','           Operator
+'false'       Name
+'}'           Punctuation
+"'"           Punctuation
 '\n'          Text.Whitespace
 
 '                 ' Text.Whitespace
@@ -6700,7 +6986,45 @@
 'e'           Name
 ','           Operator
 ' '           Text.Whitespace
-"'And(specfunc({sum,Sum}),\n                       anyfunc(And(`*`,Not(`*`(Not(`+`)))),name=anything))'" Literal.String
+"'"           Punctuation
+'And'         Name
+'('           Punctuation
+'specfunc'    Name
+'('           Punctuation
+'{'           Punctuation
+'sum'         Name
+','           Operator
+'Sum'         Name
+'}'           Punctuation
+')'           Punctuation
+','           Operator
+'\n'          Text.Whitespace
+
+'                       ' Text.Whitespace
+'anyfunc'     Name
+'('           Punctuation
+'And'         Name
+'('           Punctuation
+'`*`'         Name
+','           Operator
+'Not'         Name
+'('           Punctuation
+'`*`'         Name
+'('           Punctuation
+'Not'         Name
+'('           Punctuation
+'`+`'         Name
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+','           Operator
+'name'        Name
+'='           Operator
+'anything'    Name
+')'           Punctuation
+')'           Punctuation
+"'"           Punctuation
 ','           Operator
 '\n'          Text.Whitespace
 
@@ -6778,7 +7102,9 @@
 '\n'          Text.Whitespace
 
 '                     ' Text.Whitespace
-"'list'"      Literal.String
+"'"           Punctuation
+'list'        Name
+"'"           Punctuation
 ','           Operator
 ' '           Text.Whitespace
 '`+`'         Name
@@ -6848,7 +7174,9 @@
 'term'        Name
 ','           Operator
 ' '           Text.Whitespace
-"'list'"      Literal.String
+"'"           Punctuation
+'list'        Name
+"'"           Punctuation
 ','           Operator
 ' '           Text.Whitespace
 '`*`'         Name
@@ -6930,7 +7258,61 @@
 'e'           Name
 ','           Operator
 ' '           Text.Whitespace
-"'Or(And(`*`,Not(`*`(Not(specfunc({product,Product}))))),\n                      And(`+`,Not(`+`(Not(specfunc({sum    ,Sum    }))))))'" Literal.String
+"'"           Punctuation
+'Or'          Name
+'('           Punctuation
+'And'         Name
+'('           Punctuation
+'`*`'         Name
+','           Operator
+'Not'         Name
+'('           Punctuation
+'`*`'         Name
+'('           Punctuation
+'Not'         Name
+'('           Punctuation
+'specfunc'    Name
+'('           Punctuation
+'{'           Punctuation
+'product'     Name
+','           Operator
+'Product'     Name
+'}'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+','           Operator
+'\n'          Text.Whitespace
+
+'                      ' Text.Whitespace
+'And'         Name
+'('           Punctuation
+'`+`'         Name
+','           Operator
+'Not'         Name
+'('           Punctuation
+'`+`'         Name
+'('           Punctuation
+'Not'         Name
+'('           Punctuation
+'specfunc'    Name
+'('           Punctuation
+'{'           Punctuation
+'sum'         Name
+'    '        Text.Whitespace
+','           Operator
+'Sum'         Name
+'    '        Text.Whitespace
+'}'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+"'"           Punctuation
 ','           Operator
 '\n'          Text.Whitespace
 
@@ -6989,12 +7371,26 @@
 '`*`'         Name
 ','           Operator
 ' '           Text.Whitespace
-"'{product,Product}'" Literal.String
+"'"           Punctuation
+'{'           Punctuation
+'product'     Name
+','           Operator
+'Product'     Name
+'}'           Punctuation
+"'"           Punctuation
 ','           Operator
 '\n'          Text.Whitespace
 
 '                            ' Text.Whitespace
-"'{sum    ,Sum    }'" Literal.String
+"'"           Punctuation
+'{'           Punctuation
+'sum'         Name
+'    '        Text.Whitespace
+','           Operator
+'Sum'         Name
+'    '        Text.Whitespace
+'}'           Punctuation
+"'"           Punctuation
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -7010,7 +7406,9 @@
 '('           Punctuation
 'e'           Name
 ','           Operator
-"'list'"      Literal.String
+"'"           Punctuation
+'list'        Name
+"'"           Punctuation
 ')'           Punctuation
 ','           Operator
 '\n'          Text.Whitespace
@@ -7096,9 +7494,13 @@
 ' '           Text.Whitespace
 '::'          Operator
 ' '           Text.Whitespace
-"'And'"       Literal.String
+"'"           Punctuation
+'And'         Name
+"'"           Punctuation
 '('           Punctuation
-"'specfunc'"  Literal.String
+"'"           Punctuation
+'specfunc'    Name
+"'"           Punctuation
 '('           Punctuation
 'produce'     Name
 ')'           Punctuation
@@ -7106,7 +7508,16 @@
 '\n'          Text.Whitespace
 
 '                                  ' Text.Whitespace
-"'anyfunc(anything,name=range)'" Literal.String
+"'"           Punctuation
+'anyfunc'     Name
+'('           Punctuation
+'anything'    Name
+','           Operator
+'name'        Name
+'='           Operator
+'range'       Name
+')'           Punctuation
+"'"           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
 'then'        Keyword
@@ -7388,7 +7799,49 @@
 'e'           Name
 ','           Operator
 ' '           Text.Whitespace
-"'And(specfunc({sum,Sum,product,Product}),\n                       anyfunc(anything,\n                         name=Not({0,SymbolicInfinity,undefined})..anything))'" Literal.String
+"'"           Punctuation
+'And'         Name
+'('           Punctuation
+'specfunc'    Name
+'('           Punctuation
+'{'           Punctuation
+'sum'         Name
+','           Operator
+'Sum'         Name
+','           Operator
+'product'     Name
+','           Operator
+'Product'     Name
+'}'           Punctuation
+')'           Punctuation
+','           Operator
+'\n'          Text.Whitespace
+
+'                       ' Text.Whitespace
+'anyfunc'     Name
+'('           Punctuation
+'anything'    Name
+','           Operator
+'\n'          Text.Whitespace
+
+'                         ' Text.Whitespace
+'name'        Name
+'='           Operator
+'Not'         Name
+'('           Punctuation
+'{'           Punctuation
+'0'           Literal.Number.Integer
+','           Operator
+'SymbolicInfinity' Name
+','           Operator
+'undefined'   Name
+'}'           Punctuation
+')'           Punctuation
+'..'          Operator
+'anything'    Name
+')'           Punctuation
+')'           Punctuation
+"'"           Punctuation
 ','           Operator
 '\n'          Text.Whitespace
 
@@ -7551,7 +8004,49 @@
 'e'           Name
 ','           Operator
 ' '           Text.Whitespace
-"'And(specfunc({sum,Sum,product,Product}),\n                       anyfunc(anything,\n                         name=anything..Not({0,SymbolicInfinity,undefined})))'" Literal.String
+"'"           Punctuation
+'And'         Name
+'('           Punctuation
+'specfunc'    Name
+'('           Punctuation
+'{'           Punctuation
+'sum'         Name
+','           Operator
+'Sum'         Name
+','           Operator
+'product'     Name
+','           Operator
+'Product'     Name
+'}'           Punctuation
+')'           Punctuation
+','           Operator
+'\n'          Text.Whitespace
+
+'                       ' Text.Whitespace
+'anyfunc'     Name
+'('           Punctuation
+'anything'    Name
+','           Operator
+'\n'          Text.Whitespace
+
+'                         ' Text.Whitespace
+'name'        Name
+'='           Operator
+'anything'    Name
+'..'          Operator
+'Not'         Name
+'('           Punctuation
+'{'           Punctuation
+'0'           Literal.Number.Integer
+','           Operator
+'SymbolicInfinity' Name
+','           Operator
+'undefined'   Name
+'}'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+"'"           Punctuation
 ','           Operator
 '\n'          Text.Whitespace
 
@@ -8576,7 +9071,9 @@
 ' '           Text.Whitespace
 '::'          Operator
 ' '           Text.Whitespace
-"'rational'"  Literal.String
+"'"           Punctuation
+'rational'    Name
+"'"           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -8591,7 +9088,11 @@
 'f'           Name
 ','           Operator
 ' '           Text.Whitespace
-"'anything^integer'" Literal.String
+"'"           Punctuation
+'anything'    Name
+'^'           Operator
+'integer'     Name
+"'"           Punctuation
 ','           Operator
 ' '           Text.Whitespace
 'f'           Name
@@ -8608,7 +9109,27 @@
 '                    ' Text.Whitespace
 '::'          Operator
 ' '           Text.Whitespace
-"'{`+`,And(`*`,Not(`*`(Not(`+`))))}'" Literal.String
+"'"           Punctuation
+'{'           Punctuation
+'`+`'         Name
+','           Operator
+'And'         Name
+'('           Punctuation
+'`*`'         Name
+','           Operator
+'Not'         Name
+'('           Punctuation
+'`*`'         Name
+'('           Punctuation
+'Not'         Name
+'('           Punctuation
+'`+`'         Name
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'}'           Punctuation
+"'"           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -8622,7 +9143,20 @@
 'f'           Name
 ','           Operator
 ' '           Text.Whitespace
-"'{specfunc(idx), specindex(idx)}'" Literal.String
+"'"           Punctuation
+'{'           Punctuation
+'specfunc'    Name
+'('           Punctuation
+'idx'         Name
+')'           Punctuation
+','           Operator
+' '           Text.Whitespace
+'specindex'   Name
+'('           Punctuation
+'idx'         Name
+')'           Punctuation
+'}'           Punctuation
+"'"           Punctuation
 ')'           Punctuation
 ','           Operator
 ' '           Text.Whitespace
@@ -8640,7 +9174,12 @@
 '\n'          Text.Whitespace
 
 '          '  Text.Whitespace
-"'procname(_passed)'" Literal.String
+"'"           Punctuation
+'procname'    Name
+'('           Punctuation
+'_passed'     Name
+')'           Punctuation
+"'"           Punctuation
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace

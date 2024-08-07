@@ -8,13 +8,13 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, words, bygroups
+from pygments.lexer import RegexLexer, words, bygroups, ExtendedRegexLexer
 from pygments.token import Comment, Name, String, Whitespace, Operator, Punctuation, Number, Text, Keyword
 
 __all__ = ['MapleLexer']
 
 
-class MapleLexer(RegexLexer):
+class MapleLexer(ExtendedRegexLexer):
     """
     Lexer for Maple.
     """
@@ -248,16 +248,30 @@ class MapleLexer(RegexLexer):
                 'xor',
                 'xormap',
                 'xorseq')
+
+    def delayed_callback(self, match, ctx):
+        yield match.start(1), Punctuation, match.group(1)  # quote
+
+        ctx.pos = match.start(2)
+        orig_end = ctx.end
+        ctx.end = match.end(2)
+
+        yield from self.get_tokens_unprocessed(context=ctx)
+        yield match.end(2), Punctuation, match.group(1)  # quote
+
+        ctx.pos = match.end()
+        ctx.end = orig_end
+
     tokens = {
         'root': [
             (r'#.*\n', Comment.Single),
             (r'\(\*', Comment.Multiline, 'comment'),
             (r'"(\\.|.|\s)*?"', String),
-            (r"('+)(.|\n)*?\1", String),
+            (r"('+)((.|\n)*?)\1", delayed_callback),
+            (r'`(\\`|.)*?`', Name),
             (words(keywords, prefix=r'\b', suffix=r'\b'), Keyword),
             (words(builtins, prefix=r'\b', suffix=r'\b'), Name.Builtin),
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
-            (r'`(\\`|.)*?`', Name),
             (r'(:=|\*\*|@@|<=|>=|<>|->|::|\.\.|&\+|[\+\-\*\.\^\$/@&,:=<>%~])', Operator),
             (r'[;^!@$\(\)\[\]{}|_\\#?]', Punctuation),
             (r'(\d+)(\.\.)', bygroups(Number.Integer, Punctuation)),
