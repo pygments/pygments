@@ -1,0 +1,19 @@
+---input---
+!add(), !eq(!cond()), !unknown
+
+---tokens---
+'!add'        Operator
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'!eq'         Operator
+'('           Punctuation
+'!cond'       Operator
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'!unknown'    Error
+'\n'          Text.Whitespace

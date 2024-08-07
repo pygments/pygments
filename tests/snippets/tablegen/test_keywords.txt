@@ -1,0 +1,57 @@
+---input---
+assert bit bits class code dag def dump else false foreach defm defset defvar field if in include int let list multiclass string then true truex
+
+
+---tokens---
+'assert'      Keyword
+' '           Text.Whitespace
+'bit'         Keyword.Type
+' '           Text.Whitespace
+'bits'        Keyword.Type
+' '           Text.Whitespace
+'class'       Keyword
+' '           Text.Whitespace
+'code'        Keyword
+' '           Text.Whitespace
+'dag'         Keyword.Type
+' '           Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'dump'        Keyword
+' '           Text.Whitespace
+'else'        Keyword
+' '           Text.Whitespace
+'false'       Keyword.Constant
+' '           Text.Whitespace
+'foreach'     Keyword
+' '           Text.Whitespace
+'defm'        Keyword
+' '           Text.Whitespace
+'defset'      Keyword
+' '           Text.Whitespace
+'defvar'      Keyword
+' '           Text.Whitespace
+'field'       Keyword
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'include'     Keyword
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'list'        Keyword.Type
+' '           Text.Whitespace
+'multiclass'  Keyword
+' '           Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'then'        Keyword
+' '           Text.Whitespace
+'true'        Keyword.Constant
+' '           Text.Whitespace
+'truex'       Name
+'\n'          Text.Whitespace

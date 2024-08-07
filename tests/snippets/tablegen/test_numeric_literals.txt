@@ -1,0 +1,26 @@
+---input---
+42 -1 +2 0123 0x0 0xA 0xb 0xaB1 0b0 0b1 0b1010
+
+---tokens---
+'42'          Literal.Number.Integer
+' '           Text.Whitespace
+'-1'          Literal.Number.Integer
+' '           Text.Whitespace
+'+2'          Literal.Number.Integer
+' '           Text.Whitespace
+'0123'        Literal.Number.Integer
+' '           Text.Whitespace
+'0x0'         Literal.Number.Hex
+' '           Text.Whitespace
+'0xA'         Literal.Number.Hex
+' '           Text.Whitespace
+'0xb'         Literal.Number.Hex
+' '           Text.Whitespace
+'0xaB1'       Literal.Number.Hex
+' '           Text.Whitespace
+'0b0'         Literal.Number.Bin
+' '           Text.Whitespace
+'0b1'         Literal.Number.Bin
+' '           Text.Whitespace
+'0b1010'      Literal.Number.Bin
+'\n'          Text.Whitespace

@@ -1,0 +1,53 @@
+---input---
+string woof = "woof";
+string escaped = "a \"woof\" and \'woof\',a \\, and a \tand not a \b...\n";
+let s = "
+
+---tokens---
+'string'      Keyword.Type
+' '           Text.Whitespace
+'woof'        Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'woof'        Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'string'      Keyword.Type
+' '           Text.Whitespace
+'escaped'     Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'a '          Literal.String
+'\\"'         Literal.String.Escape
+'woof'        Literal.String
+'\\"'         Literal.String.Escape
+' and '       Literal.String
+"\\'"         Literal.String.Escape
+'woof'        Literal.String
+"\\'"         Literal.String.Escape
+',a '         Literal.String
+'\\\\'        Literal.String.Escape
+', and a '    Literal.String
+'\\t'         Literal.String.Escape
+'and not a '  Literal.String
+'\\'          Error
+'b...'        Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'let'         Keyword
+' '           Text.Whitespace
+'s'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'\n'          Literal.String
