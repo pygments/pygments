@@ -10,8 +10,7 @@
 
 '`depends/forall`' Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
@@ -58,8 +57,7 @@
 
 '`depends/Ints`' Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
@@ -102,7 +100,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'5'           Literal.Number
+'5'           Literal.Number.Integer
 ' '           Text.Whitespace
 'then'        Keyword
 '\n'          Text.Whitespace
@@ -110,8 +108,7 @@
 '    '        Text.Whitespace
 'xx'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'x'           Name
 ';'           Punctuation
@@ -125,8 +122,7 @@
 '    '        Text.Whitespace
 'xx'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'y'           Name
 ';'           Punctuation
@@ -209,12 +205,12 @@
 ' '           Text.Whitespace
 'to'          Keyword
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ' '           Text.Whitespace
 'by'          Keyword
 ' '           Text.Whitespace
 '-'           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ' '           Text.Whitespace
 'do'          Keyword
 '\n'          Text.Whitespace
@@ -229,7 +225,7 @@
 '['           Punctuation
 'i'           Name
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'loops'       Name
@@ -254,8 +250,7 @@
 '    '        Text.Whitespace
 'xx'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'xx'          Name
 ' '           Text.Whitespace
@@ -267,7 +262,7 @@
 '['           Punctuation
 'i'           Name
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'loops'       Name
@@ -301,8 +296,7 @@
 
 '`depends/Sums`' Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'eval'        Name.Builtin
 '('           Punctuation
@@ -313,8 +307,7 @@
 
 '`depends/ints`' Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'eval'        Name.Builtin
 '('           Punctuation
@@ -325,8 +318,7 @@
 
 '`depends/sums`' Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'eval'        Name.Builtin
 '('           Punctuation
@@ -339,8 +331,7 @@
 
 '`eval/forall`' Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
@@ -370,8 +361,7 @@
 ' '           Text.Whitespace
 'pred'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
@@ -385,7 +375,7 @@
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'0'           Literal.Number
+'0'           Literal.Number.Integer
 ','           Operator
 'e'           Name
 ')'           Punctuation
@@ -420,8 +410,7 @@
 
 '`eval/Ints`' Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
@@ -469,14 +458,13 @@
 ' '           Text.Whitespace
 'loops'       Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
-'1.'          Literal.Number
+'1.'          Literal.Number.Float
 '.'           Operator
-'4'           Literal.Number
+'4'           Literal.Number.Integer
 ','           Operator
 ' '           Text.Whitespace
 'e'           Name
@@ -490,8 +478,7 @@
 ' '           Text.Whitespace
 'body'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'BindingTools' Name
 ':'           Operator
@@ -514,7 +501,7 @@
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'0'           Literal.Number
+'0'           Literal.Number.Integer
 ','           Operator
 'e'           Name
 ')'           Punctuation
@@ -550,10 +537,10 @@
 '                     ' Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
-'5.'          Literal.Number
+'5.'          Literal.Number.Float
 '.'           Operator
 '-'           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'e'           Name
 ')'           Punctuation
@@ -568,8 +555,7 @@
 
 '`eval/Sums`' Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'eval'        Name.Builtin
 '('           Punctuation
@@ -580,8 +566,7 @@
 
 '`eval/ints`' Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'eval'        Name.Builtin
 '('           Punctuation
@@ -592,8 +577,7 @@
 
 '`eval/sums`' Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'eval'        Name.Builtin
 '('           Punctuation
@@ -606,8 +590,7 @@
 
 '`eval/Int`'  Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
@@ -640,14 +623,13 @@
 ' '           Text.Whitespace
 'bound'       Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
-'1.'          Literal.Number
+'1.'          Literal.Number.Float
 '.'           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
 ' '           Text.Whitespace
 'e'           Name
@@ -660,8 +642,7 @@
 ' '           Text.Whitespace
 'bound'       Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 'name'        Name
 ' '           Text.Whitespace
@@ -674,8 +655,7 @@
 ' '           Text.Whitespace
 'body'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'BindingTools' Name
 ':'           Operator
@@ -698,8 +678,7 @@
 ' '           Text.Whitespace
 'bound'       Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 '`=`'         Name
 ' '           Text.Whitespace
@@ -709,8 +688,7 @@
 '    '        Text.Whitespace
 'bvar'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'lhs'         Name.Builtin
 '('           Punctuation
@@ -725,8 +703,7 @@
 ' '           Text.Whitespace
 'body'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'BindingTools' Name
 ':'           Operator
@@ -747,8 +724,7 @@
 '    '        Text.Whitespace
 'bound'       Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'bvar'        Name
 ' '           Text.Whitespace
@@ -777,8 +753,7 @@
 ' '           Text.Whitespace
 'bound'       Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'BindingTools' Name
 ':'           Operator
@@ -808,7 +783,7 @@
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'0'           Literal.Number
+'0'           Literal.Number.Integer
 ','           Operator
 'e'           Name
 ')'           Punctuation
@@ -830,10 +805,10 @@
 '['           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'3.'          Literal.Number
+'3.'          Literal.Number.Float
 '.'           Operator
 '-'           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'e'           Name
 ')'           Punctuation
@@ -854,8 +829,7 @@
 
 '`eval/Sum`'  Name
 '     '       Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'eval'        Name.Builtin
 '('           Punctuation
@@ -866,8 +840,7 @@
 
 '`eval/Product`' Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'eval'        Name.Builtin
 '('           Punctuation
@@ -878,8 +851,7 @@
 
 '`eval/int`'  Name
 '     '       Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'eval'        Name.Builtin
 '('           Punctuation
@@ -890,8 +862,7 @@
 
 '`eval/sum`'  Name
 '     '       Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'eval'        Name.Builtin
 '('           Punctuation
@@ -902,8 +873,7 @@
 
 '`eval/product`' Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'eval'        Name.Builtin
 '('           Punctuation
@@ -920,8 +890,7 @@
 
 'Loop'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'module'      Keyword
 ' '           Text.Whitespace
@@ -1086,8 +1055,7 @@
 '  '          Text.Whitespace
 't_binder'    Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 "'Binder(identical(product, Product, sum, Sum), t_kb)'" Literal.String
 ';'           Punctuation
@@ -1096,8 +1064,7 @@
 '  '          Text.Whitespace
 't_stmt'      Name
 '   '         Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 "'Stmt(anything, list, list)'" Literal.String
 ';'           Punctuation
@@ -1106,8 +1073,7 @@
 '  '          Text.Whitespace
 't_exp'       Name
 '    '        Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 "'{Stmt(identical(exp), [], []),\n                Stmt(identical(`^`), [anything], [])}'" Literal.String
 ';'           Punctuation
@@ -1118,8 +1084,7 @@
 '  '          Text.Whitespace
 'ints'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
@@ -1145,8 +1110,7 @@
 '  '          Text.Whitespace
 'sums'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
@@ -1174,14 +1138,12 @@
 '  '          Text.Whitespace
 'Print'       Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
 'kind'        Name
-':'           Operator
-':'           Operator
+'::'          Operator
 'identical'   Name
 '('           Punctuation
 'Ints'        Name
@@ -1196,18 +1158,15 @@
 'e'           Name
 ','           Operator
 'v'           Name
-':'           Operator
-':'           Operator
+'::'          Operator
 'name'        Name
 ','           Operator
 'r0'          Name
-':'           Operator
-':'           Operator
+'::'          Operator
 'range'       Name
 ','           Operator
 'rs'          Name
-':'           Operator
-':'           Operator
+'::'          Operator
 'list'        Name
 '('           Punctuation
 'name'        Name
@@ -1229,8 +1188,7 @@
 '    '        Text.Whitespace
 'k'           Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'StringTools' Name
 '['           Punctuation
@@ -1256,8 +1214,7 @@
 '    '        Text.Whitespace
 'k'           Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'parse'       Name.Builtin
 '('           Punctuation
@@ -1309,46 +1266,39 @@
 '  '          Text.Whitespace
 'intssums'    Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
 'makes'       Name
-':'           Operator
-':'           Operator
+'::'          Operator
 'name'        Name
 ','           Operator
 ' '           Text.Whitespace
 'make'        Name
-':'           Operator
-':'           Operator
+'::'          Operator
 'name'        Name
 ','           Operator
 '\n'          Text.Whitespace
 
 '                   ' Text.Whitespace
 'e'           Name
-':'           Operator
-':'           Operator
+'::'          Operator
 'anything'    Name
 ','           Operator
 ' '           Text.Whitespace
 'x'           Name
-':'           Operator
-':'           Operator
+'::'          Operator
 'name'        Name
 ','           Operator
 ' '           Text.Whitespace
 'rr'          Name
-':'           Operator
-':'           Operator
+'::'          Operator
 'range'       Name
 ','           Operator
 ' '           Text.Whitespace
 'll'          Name
-':'           Operator
-':'           Operator
+'::'          Operator
 'list'        Name
 '('           Punctuation
 'name'        Name
@@ -1360,11 +1310,9 @@
 
 '                   ' Text.Whitespace
 'kb'          Name
-':'           Operator
-':'           Operator
+'::'          Operator
 't_kb'        Name
-':'           Operator
-'='           Operator
+':='          Operator
 'empty'       Name
 ','           Operator
 ' '           Text.Whitespace
@@ -1400,8 +1348,7 @@
 '    '        Text.Whitespace
 't'           Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 '`if`'        Name
 '('           Punctuation
@@ -1439,8 +1386,7 @@
 ' '           Text.Whitespace
 'kb2'         Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'genLoop'     Name
 '('           Punctuation
@@ -1469,8 +1415,7 @@
 ' '           Text.Whitespace
 'pp'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'unproducts'  Name
 '('           Punctuation
@@ -1513,8 +1458,7 @@
 '      '      Text.Whitespace
 'pp'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 "'make'"      Literal.String
 '('           Punctuation
@@ -1541,8 +1485,7 @@
 ' '           Text.Whitespace
 'pp'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 "'product'"   Literal.String
 '('           Punctuation
@@ -1594,20 +1537,17 @@
 '  '          Text.Whitespace
 'mk_HArray'   Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
 't'           Name
-':'           Operator
-':'           Operator
+'::'          Operator
 't_type'      Name
 ','           Operator
 ' '           Text.Whitespace
 'loops'       Name
-':'           Operator
-':'           Operator
+'::'          Operator
 'list'        Name
 '('           Punctuation
 'name'        Name
@@ -1633,8 +1573,7 @@
 '    '        Text.Whitespace
 'res'         Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 't'           Name
 ';'           Punctuation
@@ -1653,8 +1592,7 @@
 ' '           Text.Whitespace
 'res'         Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'HArray'      Name
 '('           Punctuation
@@ -1683,8 +1621,7 @@
 '  '          Text.Whitespace
 'genLoop'     Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
@@ -1692,8 +1629,7 @@
 ','           Operator
 ' '           Text.Whitespace
 'loops'       Name
-':'           Operator
-':'           Operator
+'::'          Operator
 'list'        Name
 '('           Punctuation
 'name'        Name
@@ -1703,8 +1639,7 @@
 ','           Operator
 ' '           Text.Whitespace
 'kb'          Name
-':'           Operator
-':'           Operator
+'::'          Operator
 't_kb'        Name
 ')'           Punctuation
 '\n'          Text.Whitespace
@@ -1731,8 +1666,7 @@
 '    '        Text.Whitespace
 'kb1'         Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'kb'          Name
 ';'           Punctuation
@@ -1741,8 +1675,7 @@
 '    '        Text.Whitespace
 'rng'         Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'table'       Name.Builtin
 '('           Punctuation
@@ -1753,8 +1686,7 @@
 '    '        Text.Whitespace
 'ind'         Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'table'       Name.Builtin
 '('           Punctuation
@@ -1765,13 +1697,11 @@
 '    '        Text.Whitespace
 'do_subst'    Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'e'           Name
 ' '           Text.Whitespace
-'-'           Operator
-'>'           Operator
+'->'          Operator
 ' '           Text.Whitespace
 'foldl'       Name
 '('           Punctuation
@@ -1782,8 +1712,7 @@
 'eq'          Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'-'           Operator
-'>'           Operator
+'->'          Operator
 ' '           Text.Whitespace
 'eval'        Name.Builtin
 '('           Punctuation
@@ -1798,7 +1727,7 @@
 'eq'          Name
 ')'           Punctuation
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'loops'       Name
@@ -1842,12 +1771,12 @@
 ' '           Text.Whitespace
 'to'          Keyword
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ' '           Text.Whitespace
 'by'          Keyword
 ' '           Text.Whitespace
 '-'           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ' '           Text.Whitespace
 'do'          Keyword
 '\n'          Text.Whitespace
@@ -1858,8 +1787,7 @@
 'i'           Name
 ']'           Punctuation
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'do_subst'    Name
 '('           Punctuation
@@ -1868,7 +1796,7 @@
 '['           Punctuation
 'i'           Name
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'loops'       Name
@@ -1886,8 +1814,7 @@
 ' '           Text.Whitespace
 'kb1'         Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'genType'     Name
 '('           Punctuation
@@ -1896,7 +1823,7 @@
 '['           Punctuation
 'i'           Name
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'loops'       Name
@@ -1984,8 +1911,7 @@
 '  '          Text.Whitespace
 'unproducts'  Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
@@ -1993,14 +1919,12 @@
 ','           Operator
 ' '           Text.Whitespace
 'x'           Name
-':'           Operator
-':'           Operator
+'::'          Operator
 'name'        Name
 ','           Operator
 ' '           Text.Whitespace
 'loops'       Name
-':'           Operator
-':'           Operator
+'::'          Operator
 'list'        Name
 '('           Punctuation
 'name'        Name
@@ -2010,8 +1934,7 @@
 ','           Operator
 ' '           Text.Whitespace
 'kb'          Name
-':'           Operator
-':'           Operator
+'::'          Operator
 't_kb'        Name
 ','           Operator
 ' '           Text.Whitespace
@@ -2044,18 +1967,16 @@
 '    '        Text.Whitespace
 'w0'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ';'           Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
 'pp'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'w'           Name
 ';'           Punctuation
@@ -2075,12 +1996,12 @@
 ' '           Text.Whitespace
 'to'          Keyword
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ' '           Text.Whitespace
 'by'          Keyword
 ' '           Text.Whitespace
 '-'           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ' '           Text.Whitespace
 'do'          Keyword
 '\n'          Text.Whitespace
@@ -2091,8 +2012,7 @@
 ' '           Text.Whitespace
 'pp'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
@@ -2137,8 +2057,7 @@
 '      '      Text.Whitespace
 'w2'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'convert'     Name.Builtin
 '('           Punctuation
@@ -2165,10 +2084,10 @@
 '('           Punctuation
 'j'           Name
 '+'           Operator
-'1.'          Literal.Number
+'1.'          Literal.Number.Float
 '.'           Operator
 '-'           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 ' '           Text.Whitespace
 'loops'       Name
@@ -2181,16 +2100,14 @@
 '        '    Text.Whitespace
 'w2'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'map'         Name.Builtin
 '('           Punctuation
 '('           Punctuation
 'w'           Name
 ' '           Text.Whitespace
-'-'           Operator
-'>'           Operator
+'->'          Operator
 ' '           Text.Whitespace
 'product'     Name
 '('           Punctuation
@@ -2233,8 +2150,7 @@
 '      '      Text.Whitespace
 'w0'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'w0'          Name
 ' '           Text.Whitespace
@@ -2272,8 +2188,7 @@
 '    '        Text.Whitespace
 'pp'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'for_poly'    Name
 '('           Punctuation
@@ -2308,8 +2223,7 @@
 ' '           Text.Whitespace
 'p'           Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 "'And(specfunc(piecewise), anyfunc(freeof(x), anything, 1))'" Literal.String
 ' '           Text.Whitespace
@@ -2319,14 +2233,13 @@
 '          '  Text.Whitespace
 'n'           Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'indets'      Name.Builtin
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'p'           Name
 ')'           Punctuation
@@ -2341,13 +2254,12 @@
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
 'p'           Name
 ')'           Punctuation
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 '{'           Punctuation
 "'exp(anything)'" Literal.String
@@ -2373,8 +2285,7 @@
 ' '           Text.Whitespace
 'r'           Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'selectremove' Name.Builtin
 '('           Punctuation
@@ -2386,10 +2297,10 @@
 'op'          Name.Builtin
 '('           Punctuation
 '['           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
 '-'           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'p'           Name
@@ -2410,7 +2321,7 @@
 'subsop'      Name.Builtin
 '('           Punctuation
 '-'           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
@@ -2420,7 +2331,7 @@
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'p'           Name
 ')'           Punctuation
@@ -2445,7 +2356,7 @@
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
 'p'           Name
 ')'           Punctuation
@@ -2462,8 +2373,7 @@
 ' '           Text.Whitespace
 'r'           Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'selectremove' Name.Builtin
 '('           Punctuation
@@ -2474,7 +2384,7 @@
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
 'p'           Name
 ')'           Punctuation
@@ -2505,13 +2415,13 @@
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'p'           Name
 ')'           Punctuation
 ','           Operator
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -2527,14 +2437,14 @@
 ' '           Text.Whitespace
 '>'           Operator
 ' '           Text.Whitespace
-'0'           Literal.Number
+'0'           Literal.Number.Integer
 ','           Operator
 ' '           Text.Whitespace
 'piecewise'   Name.Builtin
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'p'           Name
 ')'           Punctuation
@@ -2549,11 +2459,11 @@
 ')'           Punctuation
 ','           Operator
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ')'           Punctuation
 ','           Operator
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -2622,8 +2532,7 @@
 '  '          Text.Whitespace
 'unproduct'   Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
@@ -2631,14 +2540,12 @@
 ','           Operator
 ' '           Text.Whitespace
 'var'         Name
-':'           Operator
-':'           Operator
+'::'          Operator
 'name'        Name
 ','           Operator
 ' '           Text.Whitespace
 'loop'        Name
-':'           Operator
-':'           Operator
+'::'          Operator
 '('           Punctuation
 'name'        Name
 '='           Operator
@@ -2649,14 +2556,12 @@
 
 '                    ' Text.Whitespace
 'heap'        Name
-':'           Operator
-':'           Operator
+'::'          Operator
 'list'        Name
 ','           Operator
 ' '           Text.Whitespace
 'mode'        Name
-':'           Operator
-':'           Operator
+'::'          Operator
 'identical'   Name
 '('           Punctuation
 '`*`'         Name
@@ -2668,14 +2573,12 @@
 
 '                    ' Text.Whitespace
 'kb1'         Name
-':'           Operator
-':'           Operator
+'::'          Operator
 't_kb'        Name
 ','           Operator
 ' '           Text.Whitespace
 'kb0'         Name
-':'           Operator
-':'           Operator
+'::'          Operator
 't_kb'        Name
 ','           Operator
 ' '           Text.Whitespace
@@ -2758,7 +2661,7 @@
 ')'           Punctuation
 ','           Operator
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 '\n'          Text.Whitespace
 
@@ -2775,15 +2678,14 @@
 '    '        Text.Whitespace
 'ind'         Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'map2'        Name
 '('           Punctuation
 'op'          Name.Builtin
 ','           Operator
 ' '           Text.Whitespace
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
 ' '           Text.Whitespace
 'indets'      Name.Builtin
@@ -2807,7 +2709,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ' '           Text.Whitespace
 'then'        Keyword
 '\n'          Text.Whitespace
@@ -2815,8 +2717,7 @@
 '      '      Text.Whitespace
 'ind'         Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
@@ -2834,8 +2735,7 @@
 '      '      Text.Whitespace
 's'           Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'indets'      Name.Builtin
 '('           Punctuation
@@ -2850,8 +2750,7 @@
 '      '      Text.Whitespace
 's'           Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'map'         Name.Builtin
 '('           Punctuation
@@ -2944,8 +2843,7 @@
 '        '    Text.Whitespace
 'kb'          Name
 '  '          Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'assert'      Name
 '('           Punctuation
@@ -3001,8 +2899,7 @@
 '        '    Text.Whitespace
 'res'         Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'subs'        Name.Builtin
 '('           Punctuation
@@ -3034,8 +2931,7 @@
 '        '    Text.Whitespace
 'res'         Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'wrap'        Name
 '('           Punctuation
@@ -3059,8 +2955,7 @@
 '        '    Text.Whitespace
 'res'         Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'subs'        Name.Builtin
 '('           Punctuation
@@ -3102,7 +2997,7 @@
 'return'      Keyword
 ' '           Text.Whitespace
 '['           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 ' '           Text.Whitespace
 'subs'        Name.Builtin
@@ -3144,8 +3039,7 @@
 ' '           Text.Whitespace
 'w'           Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 'mode'        Name
 ' '           Text.Whitespace
@@ -3155,8 +3049,7 @@
 '      '      Text.Whitespace
 'res'         Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'map'         Name.Builtin
 '('           Punctuation
@@ -3219,7 +3112,7 @@
 '('           Punctuation
 'op'          Name.Builtin
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'res'         Name
 ')'           Punctuation
@@ -3235,7 +3128,7 @@
 '('           Punctuation
 'op'          Name.Builtin
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
 'res'         Name
 ')'           Punctuation
@@ -3259,8 +3152,7 @@
 ' '           Text.Whitespace
 'w'           Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 "'specfunc(piecewise)'" Literal.String
 ' '           Text.Whitespace
@@ -3270,8 +3162,7 @@
 '      '      Text.Whitespace
 'kb'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'kb1'         Name
 ';'           Punctuation
@@ -3284,7 +3175,7 @@
 ' '           Text.Whitespace
 'from'        Keyword
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ' '           Text.Whitespace
 'to'          Keyword
 ' '           Text.Whitespace
@@ -3301,8 +3192,7 @@
 ' '           Text.Whitespace
 'i'           Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 'even'        Name
 ' '           Text.Whitespace
@@ -3312,8 +3202,7 @@
 '          '  Text.Whitespace
 'kbThen'      Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'assert'      Name
 '('           Punctuation
@@ -3322,7 +3211,7 @@
 '('           Punctuation
 'i'           Name
 '-'           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'w'           Name
 ')'           Punctuation
@@ -3340,8 +3229,7 @@
 '          '  Text.Whitespace
 'kb'          Name
 '     '       Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'assert'      Name
 '('           Punctuation
@@ -3351,7 +3239,7 @@
 '('           Punctuation
 'i'           Name
 '-'           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'w'           Name
 ')'           Punctuation
@@ -3404,8 +3292,7 @@
 'i'           Name
 ']'           Punctuation
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
@@ -3508,8 +3395,7 @@
 'i'           Name
 ']'           Punctuation
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
@@ -3602,8 +3488,7 @@
 ' '           Text.Whitespace
 'w'           Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 '('           Punctuation
 'anything'    Name
@@ -3624,7 +3509,7 @@
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'w'           Name
 ')'           Punctuation
@@ -3657,7 +3542,7 @@
 '['           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
 'w'           Name
 ')'           Punctuation
@@ -3681,8 +3566,7 @@
 ' '           Text.Whitespace
 'w'           Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 'exp'         Name
 '('           Punctuation
@@ -3699,7 +3583,7 @@
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'w'           Name
 ')'           Punctuation
@@ -3750,8 +3634,7 @@
 ' '           Text.Whitespace
 'w'           Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 '('           Punctuation
 'freeof'      Name
@@ -3772,7 +3655,7 @@
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
 'w'           Name
 ')'           Punctuation
@@ -3801,7 +3684,7 @@
 '['           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'w'           Name
 ')'           Punctuation
@@ -3850,8 +3733,7 @@
 ' '           Text.Whitespace
 'w'           Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 '`*`'         Name
 ' '           Text.Whitespace
@@ -3864,8 +3746,7 @@
 ' '           Text.Whitespace
 'r'           Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'selectremove' Name.Builtin
 '('           Punctuation
@@ -3885,8 +3766,7 @@
 ' '           Text.Whitespace
 's'           Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 '`*`'         Name
 ' '           Text.Whitespace
@@ -3967,8 +3847,7 @@
 ' '           Text.Whitespace
 'w'           Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 'And'         Name
 '('           Punctuation
@@ -4029,17 +3908,16 @@
 ' '           Text.Whitespace
 'kb'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'genType'     Name
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
 '['           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'w'           Name
@@ -4053,9 +3931,9 @@
 'op'          Name.Builtin
 '('           Punctuation
 '['           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'w'           Name
@@ -4092,7 +3970,7 @@
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'w'           Name
 ')'           Punctuation
@@ -4101,9 +3979,9 @@
 'op'          Name.Builtin
 '('           Punctuation
 '['           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'w'           Name
@@ -4132,7 +4010,7 @@
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'0'           Literal.Number
+'0'           Literal.Number.Integer
 ','           Operator
 'w'           Name
 ')'           Punctuation
@@ -4173,8 +4051,7 @@
 ' '           Text.Whitespace
 'w'           Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 "'{`+`, specfunc({sum, Sum})}'" Literal.String
 ' '           Text.Whitespace
@@ -4190,8 +4067,7 @@
 '      '      Text.Whitespace
 'w1'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'graft'       Name
 '('           Punctuation
@@ -4209,8 +4085,7 @@
 '      '      Text.Whitespace
 'w1'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'combine'     Name
 '('           Punctuation
@@ -4225,8 +4100,7 @@
 '      '      Text.Whitespace
 'w1'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'combine'     Name
 '('           Punctuation
@@ -4260,7 +4134,7 @@
 ')'           Punctuation
 ','           Operator
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 '\n'          Text.Whitespace
 
@@ -4293,7 +4167,7 @@
 ')'           Punctuation
 ','           Operator
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 '\n'          Text.Whitespace
 
@@ -4309,8 +4183,7 @@
 '  '          Text.Whitespace
 'enter_piecewise' Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
@@ -4318,14 +4191,12 @@
 ','           Operator
 ' '           Text.Whitespace
 'kb0'         Name
-':'           Operator
-':'           Operator
+'::'          Operator
 't_kb'        Name
 ','           Operator
 ' '           Text.Whitespace
 'mode'        Name
-':'           Operator
-':'           Operator
+'::'          Operator
 'identical'   Name
 '('           Punctuation
 '`*`'         Name
@@ -4354,8 +4225,7 @@
 '    '        Text.Whitespace
 'e'           Name
 '  '          Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'ee'          Name
 ';'           Punctuation
@@ -4364,8 +4234,7 @@
 '    '        Text.Whitespace
 'kb'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'kb0'         Name
 ';'           Punctuation
@@ -4374,8 +4243,7 @@
 '    '        Text.Whitespace
 'mo'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'mode'        Name
 '('           Punctuation
@@ -4388,8 +4256,7 @@
 ' '           Text.Whitespace
 'e'           Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 "'specfunc(piecewise)'" Literal.String
 ' '           Text.Whitespace
@@ -4402,7 +4269,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'3'           Literal.Number
+'3'           Literal.Number.Integer
 ' '           Text.Whitespace
 'do'          Keyword
 '\n'          Text.Whitespace
@@ -4412,7 +4279,7 @@
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
-'3'           Literal.Number
+'3'           Literal.Number.Integer
 ','           Operator
 'e'           Name
 ')'           Punctuation
@@ -4427,14 +4294,13 @@
 '        '    Text.Whitespace
 'kb'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'assert'      Name
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'e'           Name
 ')'           Punctuation
@@ -4448,12 +4314,11 @@
 '        '    Text.Whitespace
 'e'           Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
 'e'           Name
 ')'           Punctuation
@@ -4465,7 +4330,7 @@
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
 'e'           Name
 ')'           Punctuation
@@ -4480,8 +4345,7 @@
 '        '    Text.Whitespace
 'kb'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'assert'      Name
 '('           Punctuation
@@ -4489,7 +4353,7 @@
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'e'           Name
 ')'           Punctuation
@@ -4504,12 +4368,11 @@
 '        '    Text.Whitespace
 'e'           Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
-'3'           Literal.Number
+'3'           Literal.Number.Integer
 ','           Operator
 'e'           Name
 ')'           Punctuation
@@ -4596,14 +4459,12 @@
 '  '          Text.Whitespace
 'wrap'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
 'heap'        Name
-':'           Operator
-':'           Operator
+'::'          Operator
 'list'        Name
 ','           Operator
 ' '           Text.Whitespace
@@ -4611,8 +4472,7 @@
 ','           Operator
 ' '           Text.Whitespace
 'mode1'       Name
-':'           Operator
-':'           Operator
+'::'          Operator
 'identical'   Name
 '('           Punctuation
 '`*`'         Name
@@ -4624,14 +4484,12 @@
 
 '               ' Text.Whitespace
 'kb1'         Name
-':'           Operator
-':'           Operator
+'::'          Operator
 't_kb'        Name
 ','           Operator
 ' '           Text.Whitespace
 'kb0'         Name
-':'           Operator
-':'           Operator
+'::'          Operator
 't_kb'        Name
 ','           Operator
 ' '           Text.Whitespace
@@ -4693,8 +4551,7 @@
 '    '        Text.Whitespace
 'e'           Name
 '    '        Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'e1'          Name
 ';'           Punctuation
@@ -4703,8 +4560,7 @@
 '    '        Text.Whitespace
 'kb'          Name
 '   '         Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'kb1'         Name
 ';'           Punctuation
@@ -4713,8 +4569,7 @@
 '    '        Text.Whitespace
 'mode'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'mode1'       Name
 ';'           Punctuation
@@ -4734,12 +4589,12 @@
 ' '           Text.Whitespace
 'to'          Keyword
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ' '           Text.Whitespace
 'by'          Keyword
 ' '           Text.Whitespace
 '-'           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ' '           Text.Whitespace
 'do'          Keyword
 '\n'          Text.Whitespace
@@ -4747,8 +4602,7 @@
 '      '      Text.Whitespace
 'entry'       Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
@@ -4764,8 +4618,7 @@
 ' '           Text.Whitespace
 'entry'       Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 't_binder'    Name
 ' '           Text.Whitespace
@@ -4780,7 +4633,7 @@
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'entry'       Name
 ')'           Punctuation
@@ -4840,8 +4693,7 @@
 ' '           Text.Whitespace
 'kb'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'enter_piecewise' Name
 '('           Punctuation
@@ -4859,8 +4711,7 @@
 '        '    Text.Whitespace
 'rest'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'kb_subtract' Name
 '('           Punctuation
@@ -4869,7 +4720,7 @@
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
 'entry'       Name
 ')'           Punctuation
@@ -4883,8 +4734,7 @@
 ' '           Text.Whitespace
 'rest'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'selectremove' Name.Builtin
 '('           Punctuation
@@ -4941,8 +4791,7 @@
 '('           Punctuation
 'new_rng'     Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 '['           Punctuation
 'list'        Name
@@ -4968,8 +4817,7 @@
 '        '    Text.Whitespace
 'new_rng'     Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
@@ -4981,12 +4829,11 @@
 '        '    Text.Whitespace
 'var'         Name
 '     '       Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
 'new_rng'     Name
 ')'           Punctuation
@@ -4998,7 +4845,7 @@
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'new_rng'     Name
 ')'           Punctuation
@@ -5013,12 +4860,11 @@
 '          '  Text.Whitespace
 'make'        Name
 '    '        Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'entry'       Name
 ')'           Punctuation
@@ -5028,14 +4874,13 @@
 '          '  Text.Whitespace
 'new_rng'     Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'range_of_HInt' Name
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'3'           Literal.Number
+'3'           Literal.Number.Integer
 ','           Operator
 'new_rng'     Name
 ')'           Punctuation
@@ -5051,8 +4896,7 @@
 '          '  Text.Whitespace
 'make'        Name
 '    '        Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'eval'        Name.Builtin
 ';'           Punctuation
@@ -5061,12 +4905,11 @@
 '          '  Text.Whitespace
 'new_rng'     Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
-'3'           Literal.Number
+'3'           Literal.Number.Integer
 ','           Operator
 'new_rng'     Name
 ')'           Punctuation
@@ -5086,8 +4929,7 @@
 ' '           Text.Whitespace
 'rest'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'selectremove' Name.Builtin
 '('           Punctuation
@@ -5101,8 +4943,7 @@
 'proc'        Keyword
 '('           Punctuation
 'a'           Name
-':'           Operator
-':'           Operator
+'::'          Operator
 '['           Punctuation
 'identical'   Name
 '('           Punctuation
@@ -5117,7 +4958,7 @@
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
 'a'           Name
 ')'           Punctuation
@@ -5154,8 +4995,7 @@
 'w'           Name
 ')'           Punctuation
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'selectremove' Name.Builtin
 '('           Punctuation
@@ -5182,8 +5022,7 @@
 '        '    Text.Whitespace
 'w'           Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 '`*`'         Name
 '('           Punctuation
@@ -5215,8 +5054,7 @@
 'e'           Name
 ')'           Punctuation
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'selectremove' Name.Builtin
 '('           Punctuation
@@ -5248,8 +5086,7 @@
 'e'           Name
 ')'           Punctuation
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'selectremove' Name.Builtin
 '('           Punctuation
@@ -5267,8 +5104,7 @@
 '          '  Text.Whitespace
 'wExp'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 '`+`'         Name
 '('           Punctuation
@@ -5279,7 +5115,7 @@
 'op'          Name.Builtin
 ','           Operator
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 ' '           Text.Whitespace
 'wExp'        Name
@@ -5292,8 +5128,7 @@
 '          '  Text.Whitespace
 'wExp'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'expand'      Name.Builtin
 '('           Punctuation
@@ -5317,8 +5152,7 @@
 '          '  Text.Whitespace
 'logmake'     Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
@@ -5342,8 +5176,7 @@
 ' '           Text.Whitespace
 'r'           Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'selectremove' Name.Builtin
 '('           Punctuation
@@ -5406,7 +5239,7 @@
 ')'           Punctuation
 ','           Operator
 ' '           Text.Whitespace
-'0'           Literal.Number
+'0'           Literal.Number.Integer
 ')'           Punctuation
 ','           Operator
 ' '           Text.Whitespace
@@ -5428,8 +5261,7 @@
 '          '  Text.Whitespace
 'w'           Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 '`*`'         Name
 '('           Punctuation
@@ -5440,10 +5272,10 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 ' '           Text.Whitespace
 'w'           Name
@@ -5452,7 +5284,7 @@
 ' '           Text.Whitespace
 'logmake'     Name
 '('           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
@@ -5467,12 +5299,11 @@
 '('           Punctuation
 'f'           Name
 ' '           Text.Whitespace
-'-'           Operator
-'>'           Operator
+'->'          Operator
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'f'           Name
 ')'           Punctuation
@@ -5483,7 +5314,7 @@
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
 'f'           Name
 ')'           Punctuation
@@ -5505,10 +5336,10 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'0'           Literal.Number
+'0'           Literal.Number.Integer
 ','           Operator
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 ' '           Text.Whitespace
 'exp'         Name
@@ -5538,8 +5369,7 @@
 '        '    Text.Whitespace
 'e'           Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'w'           Name
 ' '           Text.Whitespace
@@ -5585,8 +5415,7 @@
 '        '    Text.Whitespace
 'kb'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'foldr'       Name
 '('           Punctuation
@@ -5595,7 +5424,7 @@
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
 'entry'       Name
 ')'           Punctuation
@@ -5632,8 +5461,7 @@
 ' '           Text.Whitespace
 'entry'       Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 't_stmt'      Name
 ' '           Text.Whitespace
@@ -5652,14 +5480,13 @@
 '        '    Text.Whitespace
 'arrrgs'      Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
 'entry'       Name
 ')'           Punctuation
@@ -5673,7 +5500,7 @@
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'3'           Literal.Number
+'3'           Literal.Number.Integer
 ','           Operator
 'entry'       Name
 ')'           Punctuation
@@ -5684,12 +5511,11 @@
 '        '    Text.Whitespace
 'e'           Name
 '      '      Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'entry'       Name
 ')'           Punctuation
@@ -5704,8 +5530,7 @@
 ' '           Text.Whitespace
 'entry'       Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 't_exp'       Name
 ' '           Text.Whitespace
@@ -5717,8 +5542,7 @@
 ' '           Text.Whitespace
 'mode'        Name
 ' '           Text.Whitespace
-'<'           Operator
-'>'           Operator
+'<>'          Operator
 ' '           Text.Whitespace
 '`+`'         Name
 ' '           Text.Whitespace
@@ -5748,8 +5572,7 @@
 '          '  Text.Whitespace
 'mode'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 '`*`'         Name
 ';'           Punctuation
@@ -5788,8 +5611,7 @@
 ' '           Text.Whitespace
 'mode'        Name
 ' '           Text.Whitespace
-'<'           Operator
-'>'           Operator
+'<>'          Operator
 ' '           Text.Whitespace
 '`*`'         Name
 ' '           Text.Whitespace
@@ -5822,8 +5644,7 @@
 ' '           Text.Whitespace
 'kb'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'enter_piecewise' Name
 '('           Punctuation
@@ -5841,8 +5662,7 @@
 '    '        Text.Whitespace
 'rest'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'kb_subtract' Name
 '('           Punctuation
@@ -5857,16 +5677,14 @@
 '    '        Text.Whitespace
 'rest'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'map'         Name.Builtin
 '('           Punctuation
 'proc'        Keyword
 '('           Punctuation
 'a'           Name
-':'           Operator
-':'           Operator
+'::'          Operator
 '['           Punctuation
 'identical'   Name
 '('           Punctuation
@@ -5881,7 +5699,7 @@
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
 'a'           Name
 ')'           Punctuation
@@ -5904,8 +5722,7 @@
 'e'           Name
 ')'           Punctuation
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'selectremove' Name.Builtin
 '('           Punctuation
@@ -5932,8 +5749,7 @@
 '    '        Text.Whitespace
 'wExp'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 '`+`'         Name
 '('           Punctuation
@@ -5944,7 +5760,7 @@
 'op'          Name.Builtin
 ','           Operator
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 ' '           Text.Whitespace
 'wExp'        Name
@@ -5957,8 +5773,7 @@
 '    '        Text.Whitespace
 'wExp'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'expand'      Name.Builtin
 '('           Punctuation
@@ -5982,14 +5797,12 @@
 '    '        Text.Whitespace
 'logmake'     Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 '('           Punctuation
 't'           Name
 ' '           Text.Whitespace
-'-'           Operator
-'>'           Operator
+'->'          Operator
 ' '           Text.Whitespace
 't'           Name
 ' '           Text.Whitespace
@@ -5999,9 +5812,9 @@
 '('           Punctuation
 'rest'        Name
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
-'0'           Literal.Number
+'0'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
@@ -6014,10 +5827,10 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'0'           Literal.Number
+'0'           Literal.Number.Integer
 ','           Operator
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 ' '           Text.Whitespace
 'exp'         Name
@@ -6049,7 +5862,7 @@
 ')'           Punctuation
 ')'           Punctuation
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -6072,8 +5885,7 @@
 '  '          Text.Whitespace
 't_peel'      Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 "'And(specfunc({sum,Sum,product,Product}),\n                 anyfunc(anything, name=range))'" Literal.String
 ';'           Punctuation
@@ -6082,8 +5894,7 @@
 '  '          Text.Whitespace
 'peel'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
@@ -6118,8 +5929,7 @@
 '  '          Text.Whitespace
 'do_peel'     Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
@@ -6178,8 +5988,7 @@
 '('           Punctuation
 'e'           Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 't_peel'      Name
 ')'           Punctuation
@@ -6201,7 +6010,7 @@
 '   '         Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
-'0'           Literal.Number
+'0'           Literal.Number.Integer
 ','           Operator
 'e'           Name
 ')'           Punctuation
@@ -6214,8 +6023,7 @@
 ' '           Text.Whitespace
 'make'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 '`+`'         Name
 ';'           Punctuation
@@ -6226,7 +6034,7 @@
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
-'0'           Literal.Number
+'0'           Literal.Number.Integer
 ','           Operator
 'e'           Name
 ')'           Punctuation
@@ -6239,8 +6047,7 @@
 ' '           Text.Whitespace
 'make'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 '`*`'         Name
 ';'           Punctuation
@@ -6257,8 +6064,7 @@
 ' '           Text.Whitespace
 'r'           Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
@@ -6273,8 +6079,7 @@
 ' '           Text.Whitespace
 'r'           Name
 '    '        Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
@@ -6304,8 +6109,7 @@
 '      '      Text.Whitespace
 'line'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 '`-`'         Name
 '('           Punctuation
@@ -6320,10 +6124,9 @@
 '      '      Text.Whitespace
 'if'          Keyword
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ' '           Text.Whitespace
-'<'           Operator
-'>'           Operator
+'<>'          Operator
 ' '           Text.Whitespace
 'degree'      Name.Builtin
 '('           Punctuation
@@ -6348,8 +6151,7 @@
 ' '           Text.Whitespace
 'cond'        Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 '`=`'         Name
 ' '           Text.Whitespace
@@ -6359,8 +6161,7 @@
 '        '    Text.Whitespace
 'cond0'       Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'true'        Name
 ';'           Punctuation
@@ -6391,8 +6192,7 @@
 '          '  Text.Whitespace
 'x0'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'lhs'         Name.Builtin
 '('           Punctuation
@@ -6402,21 +6202,20 @@
 ' '           Text.Whitespace
 'r0'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'applyop'     Name
 '('           Punctuation
 '`+`'         Name
 ','           Operator
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 ' '           Text.Whitespace
 'r'           Name
 ','           Operator
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -6446,8 +6245,7 @@
 '          '  Text.Whitespace
 'x0'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'rhs'         Name.Builtin
 '('           Punctuation
@@ -6457,21 +6255,20 @@
 ' '           Text.Whitespace
 'r0'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'applyop'     Name
 '('           Punctuation
 '`-`'         Name
 ','           Operator
 ' '           Text.Whitespace
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
 ' '           Text.Whitespace
 'r'           Name
 ','           Operator
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -6494,8 +6291,7 @@
 '        '    Text.Whitespace
 'test'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
@@ -6519,8 +6315,7 @@
 '          '  Text.Whitespace
 'res'         Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'evalb'       Name.Builtin
 '('           Punctuation
@@ -6528,7 +6323,7 @@
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
-'0'           Literal.Number
+'0'           Literal.Number.Integer
 ','           Operator
 'cond'        Name
 ')'           Punctuation
@@ -6544,7 +6339,7 @@
 ')'           Punctuation
 ','           Operator
 ' '           Text.Whitespace
-'0'           Literal.Number
+'0'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
@@ -6567,7 +6362,7 @@
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'0'           Literal.Number
+'0'           Literal.Number.Integer
 ','           Operator
 'cond'        Name
 ')'           Punctuation
@@ -6583,7 +6378,7 @@
 ')'           Punctuation
 ','           Operator
 ' '           Text.Whitespace
-'0'           Literal.Number
+'0'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -6613,8 +6408,7 @@
 '        '    Text.Whitespace
 'cond0'       Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'test'        Name
 '('           Punctuation
@@ -6629,7 +6423,7 @@
 'r'           Name
 ')'           Punctuation
 '+'           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -6639,8 +6433,7 @@
 ' '           Text.Whitespace
 'cond0'       Name
 ' '           Text.Whitespace
-'<'           Operator
-'>'           Operator
+'<>'          Operator
 ' '           Text.Whitespace
 'FAIL'        Name
 ' '           Text.Whitespace
@@ -6650,8 +6443,7 @@
 '          '  Text.Whitespace
 'x0'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'lhs'         Name.Builtin
 '('           Punctuation
@@ -6661,21 +6453,20 @@
 ' '           Text.Whitespace
 'r0'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'applyop'     Name
 '('           Punctuation
 '`+`'         Name
 ','           Operator
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 ' '           Text.Whitespace
 'r'           Name
 ','           Operator
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -6687,8 +6478,7 @@
 '          '  Text.Whitespace
 'cond0'       Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'test'        Name
 '('           Punctuation
@@ -6703,7 +6493,7 @@
 'r'           Name
 ')'           Punctuation
 '-'           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -6713,8 +6503,7 @@
 ' '           Text.Whitespace
 'cond0'       Name
 ' '           Text.Whitespace
-'<'           Operator
-'>'           Operator
+'<>'          Operator
 ' '           Text.Whitespace
 'FAIL'        Name
 ' '           Text.Whitespace
@@ -6724,8 +6513,7 @@
 '            ' Text.Whitespace
 'x0'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'rhs'         Name.Builtin
 '('           Punctuation
@@ -6735,21 +6523,20 @@
 ' '           Text.Whitespace
 'r0'          Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'applyop'     Name
 '('           Punctuation
 '`-`'         Name
 ','           Operator
 ' '           Text.Whitespace
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
 ' '           Text.Whitespace
 'r'           Name
 ','           Operator
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -6782,8 +6569,7 @@
 '      '      Text.Whitespace
 'here'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'subs'        Name.Builtin
 '('           Punctuation
@@ -6803,8 +6589,7 @@
 '      '      Text.Whitespace
 'rest'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'subs'        Name.Builtin
 '('           Punctuation
@@ -6847,15 +6632,15 @@
 '('           Punctuation
 'subsop'      Name.Builtin
 '('           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 '='           Operator
 'rest'        Name
 ','           Operator
 ' '           Text.Whitespace
 '['           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ']'           Punctuation
 '='           Operator
 'r0'          Name
@@ -6898,8 +6683,7 @@
 '  '          Text.Whitespace
 'split'       Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
@@ -6936,8 +6720,7 @@
 '  '          Text.Whitespace
 'do_split'    Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
@@ -6961,8 +6744,7 @@
 '    '        Text.Whitespace
 'terms'       Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'convert'     Name.Builtin
 '('           Punctuation
@@ -6970,7 +6752,7 @@
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'e'           Name
 ')'           Punctuation
@@ -6982,7 +6764,7 @@
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'e'           Name
 ')'           Punctuation
@@ -7007,15 +6789,14 @@
 '    '        Text.Whitespace
 'x'           Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
 '['           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'e'           Name
@@ -7055,8 +6836,7 @@
 ' '           Text.Whitespace
 'r'           Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'selectremove' Name.Builtin
 '('           Punctuation
@@ -7091,7 +6871,7 @@
 ' '           Text.Whitespace
 'subsop'      Name.Builtin
 '('           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 '='           Operator
 '`*`'         Name
 '('           Punctuation
@@ -7133,8 +6913,7 @@
 '  '          Text.Whitespace
 'graft'       Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
@@ -7171,8 +6950,7 @@
 '  '          Text.Whitespace
 'do_graft'    Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
@@ -7202,14 +6980,12 @@
 '    '        Text.Whitespace
 'produce'     Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 '`if`'        Name
 '('           Punctuation
 'e'           Name
-':'           Operator
-':'           Operator
+'::'          Operator
 '`*`'         Name
 ','           Operator
 ' '           Text.Whitespace
@@ -7226,8 +7002,7 @@
 '    '        Text.Whitespace
 'factors'     Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'sort'        Name.Builtin
 '('           Punctuation
@@ -7248,8 +7023,7 @@
 '('           Punctuation
 'factor'      Name
 ' '           Text.Whitespace
-'-'           Operator
-'>'           Operator
+'->'          Operator
 ' '           Text.Whitespace
 '-'           Operator
 'numboccur'   Name.Builtin
@@ -7277,12 +7051,12 @@
 ' '           Text.Whitespace
 'to'          Keyword
 ' '           Text.Whitespace
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ' '           Text.Whitespace
 'by'          Keyword
 ' '           Text.Whitespace
 '-'           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ' '           Text.Whitespace
 'do'          Keyword
 '\n'          Text.Whitespace
@@ -7296,16 +7070,16 @@
 ' '           Text.Whitespace
 'i'           Name
 '-'           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ' '           Text.Whitespace
 'to'          Keyword
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ' '           Text.Whitespace
 'by'          Keyword
 ' '           Text.Whitespace
 '-'           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ' '           Text.Whitespace
 'do'          Keyword
 '\n'          Text.Whitespace
@@ -7320,8 +7094,7 @@
 'factors'     Name
 ')'           Punctuation
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 "'And'"       Literal.String
 '('           Punctuation
@@ -7360,7 +7133,7 @@
 '['           Punctuation
 'j'           Name
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'factors'     Name
@@ -7374,9 +7147,9 @@
 '['           Punctuation
 'j'           Name
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'factors'     Name
@@ -7387,17 +7160,17 @@
 '['           Punctuation
 'j'           Name
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'factors'     Name
 ')'           Punctuation
 '-'           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -7407,8 +7180,7 @@
 '            ' Text.Whitespace
 'factors'     Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'subsop'      Name.Builtin
 '('           Punctuation
@@ -7423,16 +7195,16 @@
 '['           Punctuation
 'j'           Name
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'factors'     Name
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
@@ -7463,7 +7235,7 @@
 '['           Punctuation
 'j'           Name
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'factors'     Name
@@ -7477,9 +7249,9 @@
 '['           Punctuation
 'j'           Name
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'factors'     Name
@@ -7490,17 +7262,17 @@
 '['           Punctuation
 'j'           Name
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'factors'     Name
 ')'           Punctuation
 '+'           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -7510,8 +7282,7 @@
 '            ' Text.Whitespace
 'factors'     Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'subsop'      Name.Builtin
 '('           Punctuation
@@ -7526,16 +7297,16 @@
 '['           Punctuation
 'j'           Name
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'factors'     Name
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
@@ -7573,7 +7344,7 @@
 '    '        Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
-'0'           Literal.Number
+'0'           Literal.Number.Integer
 ','           Operator
 'e'           Name
 ')'           Punctuation
@@ -7600,8 +7371,7 @@
 '  '          Text.Whitespace
 'rebase_lower' Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
@@ -7638,8 +7408,7 @@
 '  '          Text.Whitespace
 'do_rebase_lower' Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
@@ -7654,14 +7423,14 @@
 'subsop'      Name.Builtin
 '('           Punctuation
 '['           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 '='           Operator
-'0'           Literal.Number
+'0'           Literal.Number.Integer
 ','           Operator
 '\n'          Text.Whitespace
 
@@ -7674,11 +7443,11 @@
 
 '                   ' Text.Whitespace
 '['           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 '\n'          Text.Whitespace
@@ -7689,7 +7458,7 @@
 'eval'        Name.Builtin
 ','           Operator
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 ' '           Text.Whitespace
 'e'           Name
@@ -7698,9 +7467,9 @@
 'op'          Name.Builtin
 '('           Punctuation
 '['           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'e'           Name
@@ -7709,9 +7478,9 @@
 'op'          Name.Builtin
 '('           Punctuation
 '['           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'e'           Name
@@ -7720,11 +7489,11 @@
 'op'          Name.Builtin
 '('           Punctuation
 '['           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'e'           Name
@@ -7737,11 +7506,11 @@
 'op'          Name.Builtin
 '('           Punctuation
 '['           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'e'           Name
@@ -7765,8 +7534,7 @@
 '  '          Text.Whitespace
 'rebase_upper' Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
@@ -7803,8 +7571,7 @@
 '  '          Text.Whitespace
 'do_rebase_upper' Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
@@ -7819,14 +7586,14 @@
 'subsop'      Name.Builtin
 '('           Punctuation
 '['           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ']'           Punctuation
 '='           Operator
-'0'           Literal.Number
+'0'           Literal.Number.Integer
 ','           Operator
 '\n'          Text.Whitespace
 
@@ -7839,11 +7606,11 @@
 
 '                   ' Text.Whitespace
 '['           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 '\n'          Text.Whitespace
@@ -7854,7 +7621,7 @@
 'eval'        Name.Builtin
 ','           Operator
 ' '           Text.Whitespace
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 ' '           Text.Whitespace
 'e'           Name
@@ -7863,9 +7630,9 @@
 'op'          Name.Builtin
 '('           Punctuation
 '['           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'e'           Name
@@ -7874,9 +7641,9 @@
 'op'          Name.Builtin
 '('           Punctuation
 '['           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'e'           Name
@@ -7885,11 +7652,11 @@
 'op'          Name.Builtin
 '('           Punctuation
 '['           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'e'           Name
@@ -7902,11 +7669,11 @@
 'op'          Name.Builtin
 '('           Punctuation
 '['           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'e'           Name
@@ -7927,8 +7694,7 @@
 '  '          Text.Whitespace
 'ModuleLoad'  Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'proc'        Keyword
 '('           Punctuation
@@ -7956,8 +7722,7 @@
 '    '        Text.Whitespace
 'csgn'        Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'overload'    Name
 '('           Punctuation
@@ -7972,8 +7737,7 @@
 '('           Punctuation
 'a'           Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 'specfunc'    Name
 '('           Punctuation
@@ -8005,8 +7769,7 @@
 '        '    Text.Whitespace
 'r'           Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 '{'           Punctuation
 'seq'         Name.Builtin
@@ -8014,8 +7777,7 @@
 '`if`'        Name
 '('           Punctuation
 'i'           Name
-':'           Operator
-':'           Operator
+'::'          Operator
 'even'        Name
 ' '           Text.Whitespace
 'or'          Keyword
@@ -8047,7 +7809,7 @@
 '                  ' Text.Whitespace
 'i'           Name
 '='           Operator
-'1.'          Literal.Number
+'1.'          Literal.Number.Float
 '.'           Operator
 'nops'        Name.Builtin
 '('           Punctuation
@@ -8066,7 +7828,7 @@
 'r'           Name
 ')'           Punctuation
 '='           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ' '           Text.Whitespace
 'then'        Keyword
 ' '           Text.Whitespace
@@ -8099,15 +7861,14 @@
 '          '  Text.Whitespace
 'r'           Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'r'           Name
 ' '           Text.Whitespace
 'minus'       Keyword
 ' '           Text.Whitespace
 '{'           Punctuation
-'0'           Literal.Number
+'0'           Literal.Number.Integer
 '}'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -8120,7 +7881,7 @@
 'r'           Name
 ')'           Punctuation
 '='           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ' '           Text.Whitespace
 'then'        Keyword
 ' '           Text.Whitespace
@@ -8169,8 +7930,7 @@
 '('           Punctuation
 'a'           Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 'And'         Name
 '('           Punctuation
@@ -8218,14 +7978,13 @@
 '        '    Text.Whitespace
 'r'           Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'csgn'        Name
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'a'           Name
 ')'           Punctuation
@@ -8245,9 +8004,9 @@
 'op'          Name.Builtin
 '('           Punctuation
 '['           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'a'           Name
@@ -8265,26 +8024,26 @@
 'op'          Name.Builtin
 '('           Punctuation
 '['           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'a'           Name
 ')'           Punctuation
 '+'           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 '-'           Operator
 'op'          Name.Builtin
 '('           Punctuation
 '['           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'a'           Name
@@ -8351,8 +8110,7 @@
 '    '        Text.Whitespace
 'signum'      Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'overload'    Name
 '('           Punctuation
@@ -8367,8 +8125,7 @@
 '('           Punctuation
 'a'           Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 'specfunc'    Name
 '('           Punctuation
@@ -8400,8 +8157,7 @@
 '        '    Text.Whitespace
 'r'           Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 '{'           Punctuation
 'seq'         Name.Builtin
@@ -8409,8 +8165,7 @@
 '`if`'        Name
 '('           Punctuation
 'i'           Name
-':'           Operator
-':'           Operator
+'::'          Operator
 'even'        Name
 ' '           Text.Whitespace
 'or'          Keyword
@@ -8442,7 +8197,7 @@
 '                  ' Text.Whitespace
 'i'           Name
 '='           Operator
-'1.'          Literal.Number
+'1.'          Literal.Number.Float
 '.'           Operator
 'nops'        Name.Builtin
 '('           Punctuation
@@ -8461,7 +8216,7 @@
 'r'           Name
 ')'           Punctuation
 '='           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ' '           Text.Whitespace
 'then'        Keyword
 ' '           Text.Whitespace
@@ -8494,15 +8249,14 @@
 '          '  Text.Whitespace
 'r'           Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'r'           Name
 ' '           Text.Whitespace
 'minus'       Keyword
 ' '           Text.Whitespace
 '{'           Punctuation
-'0'           Literal.Number
+'0'           Literal.Number.Integer
 '}'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -8515,7 +8269,7 @@
 'r'           Name
 ')'           Punctuation
 '='           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ' '           Text.Whitespace
 'then'        Keyword
 ' '           Text.Whitespace
@@ -8564,8 +8318,7 @@
 '('           Punctuation
 'a'           Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 'And'         Name
 '('           Punctuation
@@ -8613,14 +8366,13 @@
 '        '    Text.Whitespace
 'r'           Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'signum'      Name
 '('           Punctuation
 'op'          Name.Builtin
 '('           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'a'           Name
 ')'           Punctuation
@@ -8640,9 +8392,9 @@
 'op'          Name.Builtin
 '('           Punctuation
 '['           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'a'           Name
@@ -8660,26 +8412,26 @@
 'op'          Name.Builtin
 '('           Punctuation
 '['           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'a'           Name
 ')'           Punctuation
 '+'           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 '-'           Operator
 'op'          Name.Builtin
 '('           Punctuation
 '['           Punctuation
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'2'           Literal.Number
+'2'           Literal.Number.Integer
 ','           Operator
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ','           Operator
 'a'           Name
@@ -8746,8 +8498,7 @@
 '    '        Text.Whitespace
 'sum'         Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'overload'    Name
 '('           Punctuation
@@ -8759,8 +8510,7 @@
 '('           Punctuation
 'f'           Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 'Not'         Name
 '('           Punctuation
@@ -8778,8 +8528,7 @@
 '           ' Text.Whitespace
 'k'           Name
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 'name'        Name
 '='           Operator
@@ -8825,8 +8574,7 @@
 ')'           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 "'rational'"  Literal.String
 ')'           Punctuation
@@ -8847,11 +8595,10 @@
 ','           Operator
 ' '           Text.Whitespace
 'f'           Name
-'-'           Operator
-'>'           Operator
+'->'          Operator
 'op'          Name.Builtin
 '('           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'f'           Name
 ')'           Punctuation
@@ -8859,8 +8606,7 @@
 '\n'          Text.Whitespace
 
 '                    ' Text.Whitespace
-':'           Operator
-':'           Operator
+'::'          Operator
 ' '           Text.Whitespace
 "'{`+`,And(`*`,Not(`*`(Not(`+`))))}'" Literal.String
 ')'           Punctuation
@@ -8882,7 +8628,7 @@
 ' '           Text.Whitespace
 'op'          Name.Builtin
 '('           Punctuation
-'1'           Literal.Number
+'1'           Literal.Number.Integer
 ','           Operator
 'k'           Name
 ')'           Punctuation
@@ -8945,8 +8691,7 @@
 '-'           Operator
 '`print/Ints`' Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'curry'       Name
 '('           Punctuation
@@ -8965,8 +8710,7 @@
 '-'           Operator
 '`print/Sums`' Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'curry'       Name
 '('           Punctuation
@@ -8985,8 +8729,7 @@
 '-'           Operator
 '`print/ints`' Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'curry'       Name
 '('           Punctuation
@@ -9005,8 +8748,7 @@
 '-'           Operator
 '`print/sums`' Name
 ' '           Text.Whitespace
-':'           Operator
-'='           Operator
+':='          Operator
 ' '           Text.Whitespace
 'curry'       Name
 '('           Punctuation
