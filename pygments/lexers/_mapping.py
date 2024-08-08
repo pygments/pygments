@@ -303,6 +303,7 @@ LEXERS = {
     'MakoJavascriptLexer': ('pygments.lexers.templates', 'JavaScript+Mako', ('javascript+mako', 'js+mako'), (), ('application/x-javascript+mako', 'text/x-javascript+mako', 'text/javascript+mako')),
     'MakoLexer': ('pygments.lexers.templates', 'Mako', ('mako',), ('*.mao',), ('application/x-mako',)),
     'MakoXmlLexer': ('pygments.lexers.templates', 'XML+Mako', ('xml+mako',), (), ('application/xml+mako',)),
+    'MapleLexer': ('pygments.lexers.maple', 'Maple', ('maple',), ('*.mpl', '*.mi', '*.mm'), ('text/x-maple',)),
     'MaqlLexer': ('pygments.lexers.business', 'MAQL', ('maql',), ('*.maql',), ('text/x-gooddata-maql', 'application/x-gooddata-maql')),
     'MarkdownLexer': ('pygments.lexers.markup', 'Markdown', ('markdown', 'md'), ('*.md', '*.markdown'), ('text/x-markdown',)),
     'MaskLexer': ('pygments.lexers.javascript', 'Mask', ('mask',), ('*.mask',), ('text/x-mask',)),
