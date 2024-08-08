@@ -1,14 +1,14 @@
 """
     pygments.lexers.maple
-    ~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for Maple.
 
-    :copyright: Copyright 2024-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, words, bygroups, ExtendedRegexLexer
+from pygments.lexer import words, bygroups, ExtendedRegexLexer
 from pygments.token import Comment, Name, String, Whitespace, Operator, Punctuation, Number, Text, Keyword
 
 __all__ = ['MapleLexer']
@@ -288,3 +288,7 @@ class MapleLexer(ExtendedRegexLexer):
             (r'.*\n', Comment.Multiline),
         ]
     }
+
+    def analyse_text(text):
+        if ':=' in text:
+            return 0.1
