@@ -42,16 +42,16 @@
 ' '           Text.Whitespace
 'debhelper-compat' Name.Function
 ' '           Text
-'('           Text
+'('           Punctuation
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '13'          Literal.Number
-')'           Text
+')'           Punctuation
 ','           Text
-'\n '         Text
+'\n '         Text.Whitespace
 'dh-python'   Name.Function
 ','           Text
-'\n '         Text
+'\n '         Text.Whitespace
 'otherbuilddependancies' Name.Function
 '\n'          Text.Whitespace
 
@@ -135,21 +135,23 @@
 '\n '         Text.Whitespace
 'python3-bar' Name.Function
 ','           Text
-'\n '         Text
+'\n '         Text.Whitespace
 'p1'          Name.Function
 ' '           Text
 '|'           Operator
 ' '           Text
 'p2'          Name.Function
 ','           Text
-'\n '         Text
+'\n '         Text.Whitespace
 'otherdependancies' Name.Function
 ','           Text
-'\n '         Text
+'\n '         Text.Whitespace
 '$'           Operator
-'{'           Text
-'python3:Depends' Name.Entity
-'}'           Text
+'{'           Punctuation
+'python3'     Name.Entity
+':'           Punctuation
+'Depends'     Text
+'}'           Punctuation
 '\n'          Text.Whitespace
 
 'Provides'    Keyword
@@ -167,7 +169,7 @@
 ' '           Text
 'p2'          Name.Function
 ','           Text
-'\n '         Text
+'\n '         Text.Whitespace
 'other-recommends' Name.Function
 '\n'          Text.Whitespace
 
@@ -196,10 +198,10 @@
 ' '           Text.Whitespace
 'p1'          Name.Function
 ','           Text
-'\n '         Text
+'\n '         Text.Whitespace
 'p2'          Name.Function
 ','           Text
-'\n '         Text
+'\n '         Text.Whitespace
 'p3'          Name.Function
 ','           Text
 '\n'          Text.Whitespace

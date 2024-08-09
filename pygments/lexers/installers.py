@@ -297,7 +297,7 @@ class DebianControlLexer(RegexLexer):
         'maintainer': [
             (r'<[^>]+>$', Generic.Strong, '#pop'),
             (r'<[^>]+>', Generic.Strong),
-            (r',\n?', Text),
+            (r',\n?', Whitespace),
             (r'[^,<]+$', Text, '#pop'),
             (r'[^,<]+', Text),
         ],
@@ -309,18 +309,19 @@ class DebianControlLexer(RegexLexer):
             default('#pop'),
         ],
         'package_list': [
-            (r'(\$)(\{)(\w+\s*:\s*\w+)(\})',
-             bygroups(Operator, Text, Name.Entity, Text)),
-            (r'\(', Text, 'package_list_vers'),
+            (r'(\$)(\{)(\w+)(\s*)(:)(\s*)(\w+)(\})',
+             bygroups(Operator, Punctuation, Name.Entity, Whitespace,
+                      Punctuation, Whitespace, Text, Punctuation)),
+            (r'\(', Punctuation, 'package_list_vers'),
             (r'\|', Operator),
-            (r'\n\s', Text),
+            (r'\n\s', Whitespace),
             (r'\n', Whitespace, '#pop'),
             (r'[,\s]', Text),
             (r'[+.a-zA-Z0-9-]+', Name.Function),
             (r'\[.*?\]', Name.Entity),
         ],
         'package_list_vers': [
-            (r'\)', Text, '#pop'),
-            (r'([><=]+)(\s*)([^)]+)', bygroups(Operator, Text, Number)),
+            (r'\)', Punctuation, '#pop'),
+            (r'([><=]+)(\s*)([^)]+)', bygroups(Operator, Whitespace, Number)),
         ]
     }
