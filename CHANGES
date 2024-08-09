@@ -7,6 +7,15 @@ Version 2.19.0
 --------------
 (unreleased)
 
+- Updated lexers:
+
+  * C#: Fix number highlighting (#986, #2727), add ``file`` keyword (#2726)
+  * Elip: Improve punctuation handling (#2651)
+  * TransactSQL: Fix single-line comments (#2717)
+  * Vyper: Add ``staticcall`` and ``extcall`` (#2719)
+
+* Mark file extensions for ``HTML/XML+Evoque`` as aliases (#2743)
+
 Version 2.18.0
 --------------
 (released May 4th, 2024)
