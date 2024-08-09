@@ -42,9 +42,9 @@ pred p3 i:(bool -> prop).
 '\n'          Text.Whitespace
 
 ':index'      Keyword.Mode
-'('           Text.Whitespace
+'('           Punctuation
 '_ 2'         Literal.Number.Integer
-')'           Text
+')'           Punctuation
 ' '           Text.Whitespace
 'pred'        Keyword.Declaration
 ' '           Text.Whitespace
