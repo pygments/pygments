@@ -1501,7 +1501,7 @@ class EvoqueHtmlLexer(DelegatingLexer):
     """
     name = 'HTML+Evoque'
     aliases = ['html+evoque']
-    filenames = ['*.html']
+    alias_filenames = ['*.html']
     mimetypes = ['text/html+evoque']
     url = 'https://gizmojo.org/templating'
     version_added = '1.1'
@@ -1520,7 +1520,7 @@ class EvoqueXmlLexer(DelegatingLexer):
     """
     name = 'XML+Evoque'
     aliases = ['xml+evoque']
-    filenames = ['*.xml']
+    alias_filenames = ['*.xml']
     mimetypes = ['application/xml+evoque']
     url = 'https://gizmojo.org/templating'
     version_added = '1.1'
