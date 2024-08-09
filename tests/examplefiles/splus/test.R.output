@@ -262,7 +262,7 @@
 ' '           Text.Whitespace
 '<-'          Operator
 ' '           Text.Whitespace
-'function'    Name.Function
+'function'    Keyword.Reserved
 '('           Punctuation
 'x'           Name
 ','           Punctuation
@@ -290,7 +290,8 @@
 '## if, else' Comment.Single
 '\n'          Text.Whitespace
 
-'if '         Name.Function
+'if'          Keyword.Reserved
+' '           Text.Whitespace
 '('           Punctuation
 'TRUE'        Keyword.Constant
 ')'           Punctuation
@@ -301,7 +302,7 @@
 'foo"'        Literal.String
 ')'           Punctuation
 ' '           Text.Whitespace
-'else'        Name
+'else'        Keyword.Reserved
 ' '           Text.Whitespace
 'print'       Name.Function
 '('           Punctuation
@@ -313,11 +314,11 @@
 '## For, in'  Comment.Single
 '\n'          Text.Whitespace
 
-'for'         Name.Function
+'for'         Keyword.Reserved
 '('           Punctuation
 'i'           Name
 ' '           Text.Whitespace
-'in'          Name
+'in'          Keyword.Reserved
 ' '           Text.Whitespace
 '1'           Literal.Number
 ':'           Operator
@@ -345,7 +346,8 @@
 '1'           Literal.Number
 '\n'          Text.Whitespace
 
-'while '      Name.Function
+'while'       Keyword.Reserved
+' '           Text.Whitespace
 '('           Punctuation
 'TRUE'        Keyword.Constant
 ')'           Punctuation
@@ -362,7 +364,8 @@
 ' '           Text.Whitespace
 '1'           Literal.Number
 '\n    '      Text.Whitespace
-'if '         Name.Function
+'if'          Keyword.Reserved
+' '           Text.Whitespace
 '('           Punctuation
 'i'           Name
 ' '           Text.Whitespace
@@ -371,7 +374,7 @@
 '3'           Literal.Number
 ')'           Punctuation
 ' '           Text.Whitespace
-'break'       Name
+'break'       Keyword.Reserved
 '\n'          Text.Whitespace
 
 '}'           Punctuation
@@ -380,7 +383,7 @@
 '## Repeat'   Comment.Single
 '\n'          Text.Whitespace
 
-'repeat'      Name
+'repeat'      Keyword.Reserved
 ' '           Text.Whitespace
 '{'           Punctuation
 '1'           Literal.Number
@@ -398,7 +401,7 @@
 '3'           Literal.Number
 '\n'          Text.Whitespace
 
-'switch'      Name.Function
+'switch'      Keyword.Reserved
 '('           Punctuation
 'x'           Name
 ','           Punctuation
@@ -429,14 +432,14 @@
 ' '           Text.Whitespace
 '<-'          Operator
 ' '           Text.Whitespace
-'function'    Name.Function
+'function'    Keyword.Reserved
 '('           Punctuation
 '...'         Keyword.Constant
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n    '      Text.Whitespace
-'return'      Name.Function
+'return'      Keyword.Reserved
 '('           Punctuation
 'sum'         Name.Function
 '('           Punctuation
@@ -510,7 +513,7 @@
 ' '           Text.Whitespace
 '<-'          Operator
 ' '           Text.Whitespace
-'function'    Name.Function
+'function'    Keyword.Reserved
 '('           Punctuation
 'a'           Name
 ')'           Punctuation
@@ -785,6 +788,18 @@
 'base'        Name
 '::'          Operator
 'sum'         Name
+'\n'          Text.Whitespace
+
+'## Forward pipe operator (since R version 4.1)' Comment.Single
+'\n'          Text.Whitespace
+
+'mtcars'      Name
+' '           Text.Whitespace
+'|>'          Operator
+' '           Text.Whitespace
+'head'        Name.Function
+'('           Punctuation
+')'           Punctuation
 '\n\n'        Text.Whitespace
 
 '## Strings'  Comment.Single
@@ -868,7 +883,7 @@
 '2'           Literal.Number
 '\n\n'        Text.Whitespace
 
-'## Builtin funcitons' Comment.Single
+'## Builtin functions' Comment.Single
 '\n'          Text.Whitespace
 
 'file.create' Name.Function
