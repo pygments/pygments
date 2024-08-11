@@ -234,24 +234,45 @@ class SourcesListLexer(RegexLexer):
             (r'\s+', Whitespace),
             (r'#.*?$', Comment),
             (r'^(deb(?:-src)?)(\s+)',
-             bygroups(Keyword, Whitespace), 'uri')
+             bygroups(Keyword, Whitespace), 'options')
+        ],
+        'options': [
+            (r'\[', String.Other, 'options-inner'),
+            default('uri'),
+        ],
+        'options-inner': [
+            (r'(\])(\s+)', bygroups(String.Other, Whitespace), '#pop'),
+            (r'(\S+?)([-+]?=)', bygroups(Keyword.Pseudo, Operator), 'options-value'),
+            (r'\s+', Whitespace),
+        ],
+        'options-value': [
+            (r'[^]\s,]+', String),
+            (r',', Punctuation),
+            default('#pop'),
         ],
         'uri': [
-            (r'(\[[^]]*\])(\s+)', bygroups(String.Other, Whitespace)),
+            (r'#.*?$', Comment, '#pop:2'),
             (r'\$\(ARCH\)', Name.Variable),
-            (r'[^\s$]+', String),
+            (r'[^\s$[]+', String),
+            (r'\[', String.Other, 'escaped-uri'),
             (r'\$', String),
             (r'\s+', Whitespace, 'suites')
         ],
+        'escaped-uri': [
+            (r'\]', String.Other, '#pop'),
+            (r'\$\(ARCH\)', Name.Variable),
+            (r'[^\]$]+', String.Other),
+            (r'\$', String.Other)
+        ],
         'suites': [
-            (r'#.*?$', Comment, '#pop:2'),
-            (r'$', Text, '#pop:2'),
+            (r'#.*?$', Comment, '#pop:3'),
+            (r'$', Text, '#pop:3'),
             (r'\s+', Whitespace, 'components'),
             (r'\S+', Keyword),
         ],
         'components': [
-            (r'#.*?$', Comment, '#pop:3'),
-            (r'$', Text, '#pop:3'),
+            (r'#.*?$', Comment, '#pop:4'),
+            (r'$', Text, '#pop:4'),
             (r'\s+', Whitespace),
             (r'\S+', Keyword.Pseudo),
         ]
