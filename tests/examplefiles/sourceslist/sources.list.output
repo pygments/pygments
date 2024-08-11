@@ -356,4 +356,58 @@
 ' '           Text.Whitespace
 'i18n-de'     Keyword.Pseudo
 ''            Text
+'\n\n'        Text.Whitespace
+
+'deb'         Keyword
+' '           Text.Whitespace
+'['           Literal.String.Other
+'arch'        Keyword.Pseudo
+'='           Operator
+'amd64'       Literal.String
+' '           Text.Whitespace
+'arch'        Keyword.Pseudo
+'+='          Operator
+'arm64'       Literal.String
+','           Punctuation
+'armhf'       Literal.String
+' '           Text.Whitespace
+'arch'        Keyword.Pseudo
+'-='          Operator
+'arm64'       Literal.String
+','           Punctuation
+'armhf'       Literal.String
+']'           Literal.String.Other
+' '           Text.Whitespace
+'https://download.docker.com/linux/debian' Literal.String
+' '           Text.Whitespace
+'bookworm'    Keyword
+' '           Text.Whitespace
+'stable'      Keyword.Pseudo
+''            Text
+'\n\n'        Text.Whitespace
+
+'deb'         Keyword
+' '           Text.Whitespace
+'['           Literal.String.Other
+'signed-by'   Keyword.Pseudo
+'='           Operator
+'/usr/share/keyrings/ubuntu-archive-keyring.gpg' Literal.String
+' '           Text.Whitespace
+'trusted'     Keyword.Pseudo
+'='           Operator
+'yes'         Literal.String
+']'           Literal.String.Other
+' '           Text.Whitespace
+'cdrom:'      Literal.String
+'['           Literal.String.Other
+'Ubuntu-Server 16.04 LTS _Xenial Xerus_ - Release amd64 (20160420.3)' Literal.String.Other
+']'           Literal.String.Other
+'/'           Literal.String
+' '           Text.Whitespace
+'xenial'      Keyword
+' '           Text.Whitespace
+'main'        Keyword.Pseudo
+' '           Text.Whitespace
+'restricted'  Keyword.Pseudo
+''            Text
 '\n'          Text.Whitespace

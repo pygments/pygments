@@ -60,3 +60,7 @@ deb http://security.ubuntu.com/ubuntu edgy-security main restricted universe mul
 deb http://wine.budgetdedicated.com/apt edgy main
 
 deb http://archive.czessi.net/ubuntu edgy main restricted universe multiverse i18n-de
+
+deb [arch=amd64 arch+=arm64,armhf arch-=arm64,armhf] https://download.docker.com/linux/debian bookworm stable
+
+deb [signed-by=/usr/share/keyrings/ubuntu-archive-keyring.gpg trusted=yes] cdrom:[Ubuntu-Server 16.04 LTS _Xenial Xerus_ - Release amd64 (20160420.3)]/ xenial main restricted
