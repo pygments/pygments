@@ -302,9 +302,9 @@ class AgdaLexer(RegexLexer):
         'abstract', 'codata', 'coinductive', 'constructor', 'data', 'do',
         'eta-equality', 'field', 'forall', 'hiding', 'in', 'inductive', 'infix',
         'infixl', 'infixr', 'instance', 'interleaved', 'let', 'macro', 'mutual',
-        'no-eta-equality', 'open', 'overlap', 'pattern', 'postulate', 'primitive',
+        'no-eta-equality', 'opaque', 'open', 'overlap', 'pattern', 'postulate', 'primitive',
         'private', 'quote', 'quoteTerm', 'record', 'renaming', 'rewrite',
-        'syntax', 'tactic', 'unquote', 'unquoteDecl', 'unquoteDef', 'using',
+        'syntax', 'tactic', 'unfolding', 'unquote', 'unquoteDecl', 'unquoteDef', 'using',
         'variable', 'where', 'with',
     )
 
