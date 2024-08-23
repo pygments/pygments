@@ -1,0 +1,11 @@
+-- this file contains some OCL constraints,
+
+context UseCase::specificationPath:Set(Namespace)
+-- [1] The operation specificationPath results in a set containing all surrounding Namespaces that are not instances of Package.
+post: result = self.allSurroundingNamespaces->select(n | n.oclIsKindOf(Subsystem) or n.oclIsKindOf(Class))
+
+context ActivityGraph
+-- [1] An ActivityGraph specifies the dynamics of (i) a Package, or (ii) a Classifier (including UseCase), or (iii) a BehavioralFeature.
+inv: (self.context.oclIsTypeOf(Package) xor 
+	self.context.oclIsKindOf(Classifier) xor 
+	self.context.oclIsKindOf(BehavioralFeature))
