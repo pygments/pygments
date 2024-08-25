@@ -699,6 +699,9 @@ class MojoLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        return (
-            shebang_matches(text, r"mojo?") or "import " in text[:1000]
-        )  # TODO supported?
+        # TODO supported?
+        if shebang_matches(text, r"mojo?"):
+            return 1.0
+        if "import " in text[:1000]:
+            return 0.9
+        return 0
