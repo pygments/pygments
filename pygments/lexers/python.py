@@ -33,7 +33,7 @@ class PythonLexer(RegexLexer):
 
     name = 'Python'
     url = 'https://www.python.org'
-    aliases = ['python', 'py', 'sage', 'python3', 'py3', 'bazel', 'starlark']
+    aliases = ['python', 'py', 'sage', 'python3', 'py3', 'bazel', 'starlark', 'pyi']
     filenames = [
         '*.py',
         '*.pyw',
