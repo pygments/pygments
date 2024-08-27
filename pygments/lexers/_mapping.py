@@ -407,7 +407,7 @@ LEXERS = {
     'Python2Lexer': ('pygments.lexers.python', 'Python 2.x', ('python2', 'py2'), (), ('text/x-python2', 'application/x-python2')),
     'Python2TracebackLexer': ('pygments.lexers.python', 'Python 2.x Traceback', ('py2tb',), ('*.py2tb',), ('text/x-python2-traceback',)),
     'PythonConsoleLexer': ('pygments.lexers.python', 'Python console session', ('pycon', 'python-console'), (), ('text/x-python-doctest',)),
-    'PythonLexer': ('pygments.lexers.python', 'Python', ('python', 'py', 'sage', 'python3', 'py3', 'bazel', 'starlark'), ('*.py', '*.pyw', '*.pyi', '*.jy', '*.sage', '*.sc', 'SConstruct', 'SConscript', '*.bzl', 'BUCK', 'BUILD', 'BUILD.bazel', 'WORKSPACE', '*.tac'), ('text/x-python', 'application/x-python', 'text/x-python3', 'application/x-python3')),
+    'PythonLexer': ('pygments.lexers.python', 'Python', ('python', 'py', 'sage', 'python3', 'py3', 'bazel', 'starlark', 'pyi'), ('*.py', '*.pyw', '*.pyi', '*.jy', '*.sage', '*.sc', 'SConstruct', 'SConscript', '*.bzl', 'BUCK', 'BUILD', 'BUILD.bazel', 'WORKSPACE', '*.tac'), ('text/x-python', 'application/x-python', 'text/x-python3', 'application/x-python3')),
     'PythonTracebackLexer': ('pygments.lexers.python', 'Python Traceback', ('pytb', 'py3tb'), ('*.pytb', '*.py3tb'), ('text/x-python-traceback', 'text/x-python3-traceback')),
     'PythonUL4Lexer': ('pygments.lexers.ul4', 'Python+UL4', ('py+ul4',), ('*.pyul4',), ()),
     'QBasicLexer': ('pygments.lexers.basic', 'QBasic', ('qbasic', 'basic'), ('*.BAS', '*.bas'), ('text/basic',)),
