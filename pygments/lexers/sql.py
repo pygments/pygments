@@ -387,7 +387,7 @@ class PostgresExplainLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'(:|\(|\)|ms|kB|->|\.\.|\,)', Punctuation),
+            (r'(:|\(|\)|ms|kB|->|\.\.|\,|\/)', Punctuation),
             (r'(\s+)', Whitespace),
 
             # This match estimated cost and effectively measured counters with ANALYZE

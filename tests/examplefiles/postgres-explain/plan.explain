@@ -149,3 +149,33 @@ JIT:
   Timing: Inlining 289.335 ms, Optimization 2473.925 ms, Total 4530.841 ms, Generation 43.386 ms, Emission 1724.195 ms
 Execution time: 206882.405 ms
 
+Sort  (cost=4832642.89..4832642.89 rows=1 width=1312) (actual rows=453730 loops=1)
+    Sort Key: zulu1.seven
+    Sort Method: external merge  Disk: 257936kB
+  Buffers: shared hit=1783366 read=1426731 dirtied=4, temp read=323359 written=323429
+  I/O Timings: shared/local read=2032079.939, temp read=2193.583 write=5151.457
+  ->  Nested Loop Left Join  (cost=3051132.14..4832642.88 rows=1 width=1312) (actual rows=453730 loops=1)
+          ->  Index Scan using ix_id on claim claim_1  (cost=0.56..2.29 rows=1 width=717) (actual rows=1 loops=414998)
+        Buffers: shared hit=1783363 read=1426731 dirtied=4, temp read=258880 written=258880
+        I/O Timings: shared/local read=2032079.939, temp read=2044.248 write=4894.951
+        ->  Hash Right Join  (cost=3051131.58..4832640.58 rows=1 width=611) (actual rows=414998 loops=1)
+                Hash Cond: (papa.golf = six.quebec)
+                Filter: (papa.quebec five NULL)
+                Rows Removed by Filter: 13785035
+                Index Cond: (golf = six.quebec)
+              Buffers: shared hit=1694786 read=410168 dirtied=4
+              I/O Timings: shared/local read=1417404.480
+              ->  Seq Scan on papa  (cost=0.00..440581.94 rows=14974120 width=32) (actual rows=15046540 loops=1)
+                      Filter: ((tango_zulu)::text <> november ('two'::text[]))
+                      Rows Removed by Filter: 1492077
+                    Buffers: shared hit=15120 read=198856
+                    I/O Timings: shared/local read=109734.296
+              ->  Hash  (cost=1778734.66..1778734.66 rows=14040233 width=611) (actual rows=14200033 loops=1)
+                      Buckets: 16384  Batches: 2048  Memory Usage: 851kB
+                    Buffers: shared hit=73454 read=817707, temp written=160348
+                    I/O Timings: shared/local read=504941.162, temp write=3061.348
+                    ->  Seq Scan on six  (cost=0.00..1778734.66 rows=14040233 width=611) (actual rows=14200033 loops=1)
+                            Filter: (tango_sierra <> 0)
+                            Rows Removed by Filter: 57717321
+                          Buffers: shared hit=73454 read=817707
+                          I/O Timings: shared/local read=504941.162
