@@ -96,7 +96,7 @@ _keyword_values = (
     'padding-box', 'page', 'pan-down', 'pan-left', 'pan-right', 'pan-up',
     'pan-x', 'pan-y', 'paused', 'petite-caps', 'pixelated', 'pointer',
     'preserve-3d', 'progress', 'proximity', 'relative', 'repeat',
-    'repeat no-repeat', 'repeat-x', 'repeat-y', 'reverse', 'ridge', 'right',
+    'repeat no-repeat', 'repeat-x', 'repeat-y', 'reverse', 'revert', 'ridge', 'right',
     'round', 'row', 'row-resize', 'row-reverse', 'rtl', 'ruby', 'ruby-base',
     'ruby-base-container', 'ruby-text', 'ruby-text-container', 'run-in',
     'running', 's-resize', 'sans-serif', 'saturation', 'scale-down', 'screen',
