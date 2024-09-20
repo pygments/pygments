@@ -1,0 +1,146 @@
+'jshell> '    Generic.Prompt
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'2'           Literal.Number
+'\n'          Text.Whitespace
+'|  '         Generic.Traceback
+'Error:'      Generic.Error
+'\n'          Text.Whitespace
+'|  '         Generic.Traceback
+'cannot find symbol:' Generic.Error
+'\n'          Text.Whitespace
+'|  '         Generic.Traceback
+'  symbol:   variable x:' Generic.Error
+'\n'          Text.Whitespace
+'|  '         Generic.Traceback
+'x =:'        Generic.Error
+'\n'          Text.Whitespace
+'|  '         Generic.Traceback
+'^:'          Generic.Error
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'jshell> '    Generic.Prompt
+'int'         Keyword.Type
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number
+';'           Punctuation
+'\n'          Text.Whitespace
+'x ==&gt; 0'  Generic.Output
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'jshell> '    Generic.Prompt
+'1'           Literal.Number
+'/'           Operator
+'x'           Name
+'\n'          Text.Whitespace
+'|  '         Generic.Traceback
+'Exception java.lang.ArithmeticException: / by zero'  Generic.Error
+'\n'          Text.Whitespace
+'|  '         Generic.Traceback
+'      at (#2:1)'  Generic.Error
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'jshell> '    Generic.Prompt
+'x'           Name
+'\n'          Text.Whitespace
+'x ==&gt; 0'  Generic.Output
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'jshell> '    Generic.Prompt
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'-'           Operator
+'3'           Literal.Number
+'\n'          Text.Whitespace
+'x ==&gt; -3' Generic.Output
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'jshell> '    Generic.Prompt
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'x'           Name
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'0'           Literal.Number
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+'   ...> '    Generic.Prompt
+'    '        Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'-'           Operator
+'x'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+'   ...> '    Generic.Prompt
+'}'           Punctuation
+' '           Text.Whitespace
+'else'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+'   ...> '    Generic.Prompt
+'    '        Text.Whitespace
+'System'      Name
+'.'           Punctuation
+'out'         Name.Attribute
+'.'           Punctuation
+'println'     Name.Attribute
+'('           Punctuation
+'x'           Name
+');'          Punctuation
+'\n'          Text.Whitespace
+'   ...> '    Generic.Prompt
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'jshell> '    Generic.Prompt
+'System'      Name
+'.'           Punctuation
+'out'         Name.Attribute
+'.'           Punctuation
+'println'     Name.Attribute
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+'3'           Generic.Output
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'jshell> '    Generic.Prompt
+'1'           Literal.Number
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number
+'3'           Generic.Output
+'\n'          Text.Whitespace

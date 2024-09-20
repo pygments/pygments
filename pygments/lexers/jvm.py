@@ -10,17 +10,18 @@
 
 import re
 
-from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
+from pygments.lexer import DelegatingLexer, Lexer, RegexLexer, include, bygroups, using, \
     this, combined, default, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Whitespace
+    Number, Punctuation, Generic, Other, Error, Whitespace
 from pygments.util import shebang_matches
 from pygments import unistring as uni
 
 __all__ = ['JavaLexer', 'ScalaLexer', 'GosuLexer', 'GosuTemplateLexer',
            'GroovyLexer', 'IokeLexer', 'ClojureLexer', 'ClojureScriptLexer',
            'KotlinLexer', 'XtendLexer', 'AspectJLexer', 'CeylonLexer',
-           'PigLexer', 'GoloLexer', 'JasminLexer', 'SarlLexer']
+           'PigLexer', 'GoloLexer', 'JasminLexer', 'SarlLexer',
+           'JavaConsoleLexer']
 
 
 class JavaLexer(RegexLexer):
@@ -1800,3 +1801,76 @@ class SarlLexer(RegexLexer):
             (r'[\w.]+\*?', Name.Namespace, '#pop')
         ],
     }
+
+class _JavaConsoleLexerBase(RegexLexer):
+    name = 'JShell console session'
+    aliases = ['jshell']
+    mimetypes = ['text/x-java']
+
+    """Auxiliary lexer for `JavaConsoleLexer`.
+
+    Code tokens are output as ``Token.Other.Code``, traceback tokens as
+    ``Token.Other.Traceback``.
+
+    This is written in the spirit of `PythonConsoleLexer` but adapted to
+    `JavaConsoleLexer`.  Instead of >>>, we use jshell> as the prompt.
+    
+    Contributed by Adi Yoga S. Prabawa <dcsaysp@nus.edu.sg>.
+    """
+    tokens = {
+        'root': [
+            (r'(jshell> )(.*\n)', bygroups(Generic.Prompt, Other.Code), 'continuations'),
+            (r'(jshell>)(\n)', bygroups(Generic.Prompt, Whitespace)),
+            (r'\|  ', Other.Traceback, 'traceback'),
+            (r'.*\n', Generic.Output),
+        ],
+        'continuations': [
+            (r'(\ \ \ \.\.\.> )(.*\n)', bygroups(Generic.Prompt, Other.Code)),
+            # See above.
+            (r'(\ \ \ \.\.\.>)(\n)', bygroups(Generic.Prompt, Whitespace)),
+            default('#pop'),
+        ],
+        'traceback': [
+            # As soon as we see a traceback, consume everything until the next
+            # jshell> prompt.
+            (r'(?=(jshell>)( |$))', Text, '#pop'),
+        ],
+    }
+
+class JavaConsoleLexer(DelegatingLexer):
+    """
+    For JShell console output or doctests, such as:
+
+    .. sourcecode:: jshell
+
+        jshell> int x = -3
+        x ==> -3
+
+        jshell> if (x < 0) {
+        ...>     x = -x;
+        ...> } else {
+        ...>     System.out.println(x);
+        ...> }
+
+        jshell> System.out.println(x)
+        3
+
+        jshell> int x = 0;
+        x ==> 0
+
+        jshell> 1/x
+        |  Exception java.lang.ArithmeticException: / by zero
+        |        at (#2:1)
+
+        jshell> x
+        x ==> 0
+    """
+
+    name = 'JShell console session'
+    aliases = ['jshell']
+    mimetypes = ['text/x-java']
+    url = 'https://www.oracle.com/technetwork/java/'
+    version_added = ''
+
+    def __init__(self, **options):
+        super().__init__(JavaLexer, _JavaConsoleLexerBase, Other.Code, **options)
