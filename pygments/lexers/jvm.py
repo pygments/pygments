@@ -1821,7 +1821,7 @@ class _JavaConsoleLexerBase(RegexLexer):
         'root': [
             (r'(jshell> )(.*\n)', bygroups(Generic.Prompt, Other.Code), 'continuations'),
             (r'(jshell>)(\n)', bygroups(Generic.Prompt, Whitespace)),
-            (r'\|  ', Other.Traceback, 'traceback'),
+            (r'\|(\ )+(.*\n)', Other.Traceback),
             (r'.*\n', Generic.Output),
         ],
         'continuations': [
@@ -1829,11 +1829,6 @@ class _JavaConsoleLexerBase(RegexLexer):
             # See above.
             (r'(\ \ \ \.\.\.>)(\n)', bygroups(Generic.Prompt, Whitespace)),
             default('#pop'),
-        ],
-        'traceback': [
-            # As soon as we see a traceback, consume everything until the next
-            # jshell> prompt.
-            (r'(?=(jshell>)( |$))', Text, '#pop'),
         ],
     }
 
