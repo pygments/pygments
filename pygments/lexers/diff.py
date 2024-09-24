@@ -19,7 +19,7 @@ __all__ = ['DiffLexer', 'DarcsPatchLexer', 'WDiffLexer']
 
 class DiffLexer(RegexLexer):
     """
-    Lexer for unified or context-style diffs or patches.
+    Lexer for unified, context-style, or combined diffs or patches.
     """
 
     name = 'Diff'
@@ -41,6 +41,10 @@ class DiffLexer(RegexLexer):
             ),
             (r'((?:[Ii]ndex|diff).*)(\n)', bygroups(Generic.Heading, Whitespace)),
             (r'(=.*)(\n)', bygroups(Generic.Heading, Whitespace)),
+            (r'(\+\+\+.*)(\n)', bygroups(Generic.Strong, Whitespace)),  # Combined diff marker
+            (r'(---.*)(\n)', bygroups(Generic.Strong, Whitespace)),  # Combined diff marker
+            (r'(\s*\+.*)(\n)', bygroups(Generic.Inserted, Whitespace)),  # Combined diff addition
+            (r'(\s*-.*)(\n)', bygroups(Generic.Deleted, Whitespace)),  # Combined diff deletion
             (r'(.*)(\n)', bygroups(Text, Whitespace)),
         ]
     }
@@ -51,6 +55,8 @@ class DiffLexer(RegexLexer):
         if text[:5] == 'diff ':
             return True
         if text[:4] == '--- ':
+            return 0.9
+        if text[:4] == '+++ ':
             return 0.9
 
 
