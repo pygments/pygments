@@ -635,6 +635,7 @@ class Python2Lexer(RegexLexer):
     def analyse_text(text):
         return shebang_matches(text, r'pythonw?2(\.\d)?')
 
+
 class _PythonConsoleLexerBase(RegexLexer):
     name = 'Python console session'
     aliases = ['pycon', 'python-console']
@@ -670,6 +671,7 @@ class _PythonConsoleLexerBase(RegexLexer):
             (r'.*\n', Other.Traceback),
         ],
     }
+
 
 class PythonConsoleLexer(DelegatingLexer):
     """
@@ -718,6 +720,7 @@ class PythonConsoleLexer(DelegatingLexer):
             def __init__(self, **options):
                 super().__init__(pylexer, _PythonConsoleLexerBase, Other.Code, **options)
         super().__init__(tblexer, _ReplaceInnerCode, Other.Traceback, **options)
+
 
 class PythonTracebackLexer(RegexLexer):
     """
