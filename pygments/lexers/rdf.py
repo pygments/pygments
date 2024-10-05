@@ -280,7 +280,7 @@ class TurtleLexer(RegexLexer):
         ],
         'triple-double-quoted-string': [
             (r'"""', String, 'end-of-string'),
-            (r'[^\\]+', String),
+            (r'[^\\]+(?=""")', String),
             (r'\\', String, 'string-escape'),
         ],
         'single-double-quoted-string': [
@@ -290,7 +290,7 @@ class TurtleLexer(RegexLexer):
         ],
         'triple-single-quoted-string': [
             (r"'''", String, 'end-of-string'),
-            (r'[^\\]+', String),
+            (r"[^\\]+(?=''')", String),
             (r'\\', String, 'string-escape'),
         ],
         'single-single-quoted-string': [
