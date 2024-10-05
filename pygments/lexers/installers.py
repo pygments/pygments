@@ -14,7 +14,8 @@ from pygments.lexer import RegexLexer, include, bygroups, using, this, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Punctuation, Generic, Number, Whitespace
 
-__all__ = ['NSISLexer', 'RPMSpecLexer', 'SourcesListLexer',
+__all__ = ['NSISLexer', 'RPMSpecLexer',
+           'DebianSourcesLexer', 'SourcesListLexer',
            'DebianControlLexer']
 
 
@@ -214,6 +215,30 @@ class RPMSpecLexer(RegexLexer):
             (r'\$\{?RPM_[A-Z0-9_]+\}?', Name.Variable.Global),
             (r'%\{[a-zA-Z]\w+\}', Keyword.Constant),
         ]
+    }
+
+
+class DebianSourcesLexer(RegexLexer):
+    """
+    Lexer that highlights debian.sources files.
+    """
+
+    name = 'Debian Sources file'
+    aliases = ['debian.sources']
+    filenames = ['*.sources']
+    version_added = '2.19'
+    url = 'https://manpages.debian.org/bookworm/apt/sources.list.5.en.html#THE_DEB_AND_DEB-SRC_TYPES:_GENERAL_FORMAT'
+
+    tokens = {
+        'root': [
+            (r'^(Signed-By)(:)(\s*)', bygroups(Keyword, Punctuation, Whitespace), 'signed-by'),
+            (r'^([a-zA-Z\-0-9\.]*?)(:)(\s*)(.*?)$',
+             bygroups(Keyword, Punctuation, Whitespace, String)),
+        ],
+        'signed-by': [
+            (r' -----END PGP PUBLIC KEY BLOCK-----\n', Text, '#pop'),
+            (r'.+\n', Text),
+        ],        
     }
 
 

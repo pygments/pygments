@@ -1,0 +1,46 @@
+---input---
+Types: deb
+URIs: https://deb.test
+Suites: stable
+Components: main contrib non-free non-free-firmware
+Signed-By:
+ -----BEGIN PGP PUBLIC KEY BLOCK-----
+ mDMEYCQjIxYJKwYBBAHaRw8BAQdAD/P5Nvvnvk66SxBBHDbhRml9ORg1WV5CvzKY
+ snippedpgppublickey123456789
+ -----END PGP PUBLIC KEY BLOCK-----
+
+---tokens---
+'Types'       Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'deb'         Literal.String
+'\n'          Text.Whitespace
+
+'URIs'        Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'https://deb.test' Literal.String
+'\n'          Text.Whitespace
+
+'Suites'      Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'stable'      Literal.String
+'\n'          Text.Whitespace
+
+'Components'  Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'main contrib non-free non-free-firmware' Literal.String
+'\n'          Text.Whitespace
+
+'Signed-By'   Keyword
+':'           Punctuation
+'\n '         Text.Whitespace
+'-----BEGIN PGP PUBLIC KEY BLOCK-----\n' Text
+
+' mDMEYCQjIxYJKwYBBAHaRw8BAQdAD/P5Nvvnvk66SxBBHDbhRml9ORg1WV5CvzKY\n' Text
+
+' snippedpgppublickey123456789\n' Text
+
+' -----END PGP PUBLIC KEY BLOCK-----\n' Text
