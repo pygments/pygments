@@ -150,7 +150,7 @@ class TableGenLexer(RegexLexer):
             (r'\[\{', Text, 'codeblock'),
 
             # Misc. punctuation
-            (r'[-+\[\]{}()<>\.,;:=?#]', Punctuation),
+            (r'[-+\[\]{}()<>\.,;:=?#]+', Punctuation),
         ],
         'comment': [
             (r'[^*/]+', Comment.Multiline),
