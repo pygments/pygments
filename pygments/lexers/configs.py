@@ -44,6 +44,9 @@ class IniLexer(RegexLexer):
             (r'\s+', Whitespace),
             (r'[;#].*', Comment.Single),
             (r'(\[.*?\])([ \t]*)$', bygroups(Keyword, Whitespace)),
+            (r'''(.*?)([  \t]*)([=:])([ \t]*)(["'])''',
+             bygroups(Name.Attribute, Whitespace, Operator, Whitespace, String),
+             "quoted_value"),
             (r'(.*?)([  \t]*)([=:])([ \t]*)([^;#\n]*)(\\)(\s+)',
              bygroups(Name.Attribute, Whitespace, Operator, Whitespace, String,
                       Text, Whitespace),
@@ -52,6 +55,12 @@ class IniLexer(RegexLexer):
              bygroups(Name.Attribute, Whitespace, Operator, Whitespace, String)),
             # standalone option, supported by some INI parsers
             (r'(.+?)$', Name.Attribute),
+        ],
+        'quoted_value': [
+            (r'''([^"'\n]*)(["'])(\s*)''',
+             bygroups(String, String, Whitespace)),
+            (r'[;#].*', Comment.Single),
+            (r'$', String, "#pop"),
         ],
         'value': [     # line continuation
             (r'\s+', Whitespace),
