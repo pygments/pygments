@@ -396,9 +396,9 @@ class PostgresExplainLexer(RegexLexer):
             (r'(actual)( )(=?)', bygroups(Name.Class, Whitespace, Punctuation), 'instrumentation'),
 
             # Misc keywords
-            (words(('actual', 'Memory Usage', 'Memory', 'Buckets', 'Batches',
+            (words(('actual', 'Memory Usage', 'Disk Usage', 'Memory', 'Buckets', 'Batches',
                     'originally', 'row', 'rows', 'Hits', 'Misses',
-                    'Evictions', 'Overflows'), suffix=r'\b'),
+                    'Evictions', 'Overflows', 'Planned Partitions'), suffix=r'\b'),
              Comment.Single),
 
             (r'(hit|read|dirtied|written|write|time|calls)(=)', bygroups(Comment.Single, Operator)),
