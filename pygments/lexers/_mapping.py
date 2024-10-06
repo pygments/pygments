@@ -127,6 +127,7 @@ LEXERS = {
     'Dasm16Lexer': ('pygments.lexers.asm', 'DASM16', ('dasm16',), ('*.dasm16', '*.dasm'), ('text/x-dasm16',)),
     'DaxLexer': ('pygments.lexers.dax', 'Dax', ('dax',), ('*.dax',), ()),
     'DebianControlLexer': ('pygments.lexers.installers', 'Debian Control file', ('debcontrol', 'control'), ('control',), ()),
+    'DebianSourcesLexer': ('pygments.lexers.installers', 'Debian Sources file', ('debian.sources',), ('*.sources',), ()),
     'DelphiLexer': ('pygments.lexers.pascal', 'Delphi', ('delphi', 'pas', 'pascal', 'objectpascal'), ('*.pas', '*.dpr'), ('text/x-pascal',)),
     'DesktopLexer': ('pygments.lexers.configs', 'Desktop file', ('desktop',), ('*.desktop',), ('application/x-desktop',)),
     'DevicetreeLexer': ('pygments.lexers.devicetree', 'Devicetree', ('devicetree', 'dts'), ('*.dts', '*.dtsi'), ('text/x-c',)),
