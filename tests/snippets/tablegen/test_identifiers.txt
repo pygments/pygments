@@ -1,0 +1,20 @@
+---input---
+0x00 0xab 0abc 1abc abc9_9 $a $a_b $_A0Z
+
+---tokens---
+'0x00'        Literal.Number.Hex
+' '           Text.Whitespace
+'0xab'        Literal.Number.Hex
+' '           Text.Whitespace
+'0abc'        Name
+' '           Text.Whitespace
+'1abc'        Name
+' '           Text.Whitespace
+'abc9_9'      Name
+' '           Text.Whitespace
+'$a'          Name.Variable
+' '           Text.Whitespace
+'$a_b'        Name.Variable
+' '           Text.Whitespace
+'$_A0Z'       Name.Variable
+'\n'          Text.Whitespace
