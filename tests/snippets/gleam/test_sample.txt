@@ -1,0 +1,129 @@
+---input---
+import gleam/io
+
+pub fn main() {
+  let _var: Int = 2 + 3
+  let value = envoy.get(name) |> result.unwrap("")
+
+  // Print to the console
+  io.println("Hello, Joe!") // an inline comment
+
+  "multi
+   line
+   string"
+}
+
+fn format_pair(name: String, value: String) -> String {
+  name <> "=" <> value
+}
+
+---tokens---
+'import'      Keyword
+' '           Text.Whitespace
+'gleam'       Name
+'/'           Operator
+'io'          Name
+'\n\n'        Text.Whitespace
+
+'pub'         Keyword
+' '           Text.Whitespace
+'fn'          Keyword
+' '           Text.Whitespace
+'main'        Name
+'()'          Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'_var'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'Int'         Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+'\n  '        Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'value'       Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'envoy'       Keyword
+'.'           Punctuation
+'get'         Name
+'('           Punctuation
+'name'        Name
+')'           Punctuation
+' '           Text.Whitespace
+'|>'          Punctuation
+' '           Text.Whitespace
+'result'      Keyword
+'.'           Punctuation
+'unwrap'      Name
+'('           Punctuation
+'""'          Literal.String
+')'           Punctuation
+'\n\n  '      Text.Whitespace
+'// Print to the console' Comment.Single
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'io'          Keyword
+'.'           Punctuation
+'println'     Name
+'('           Punctuation
+'"Hello, Joe!"' Literal.String
+')'           Punctuation
+' '           Text.Whitespace
+'// an inline comment' Comment.Single
+'\n'          Text.Whitespace
+
+'\n  '        Text.Whitespace
+'"multi\n   line\n   string"' Literal.String
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'fn'          Keyword
+' '           Text.Whitespace
+'format_pair' Name
+'('           Punctuation
+'name'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'String'      Name
+','           Punctuation
+' '           Text.Whitespace
+'value'       Name
+':'           Punctuation
+' '           Text.Whitespace
+'String'      Name
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Punctuation
+' '           Text.Whitespace
+'String'      Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'name'        Name
+' '           Text.Whitespace
+'<>'          Operator
+' '           Text.Whitespace
+'"="'         Literal.String
+' '           Text.Whitespace
+'<>'          Operator
+' '           Text.Whitespace
+'value'       Name
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
