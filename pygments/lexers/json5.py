@@ -1,6 +1,6 @@
 """
     pygments.lexers.json5
-    ~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for Json5 file format.
 
