@@ -1,0 +1,45 @@
+---input---
+class C { public Class<?> foo() { Class<?> c = String.class; return c; }}
+
+---tokens---
+'class'       Keyword.Declaration
+' '           Text
+'C'           Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'public'      Keyword.Declaration
+' '           Text.Whitespace
+'Class'       Name
+'<'           Operator
+'?'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'foo'         Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'Class'       Name
+'<'           Operator
+'?'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'String'      Name
+'.'           Punctuation
+'class'       Name.Attribute
+';'           Punctuation
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'c'           Name
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
