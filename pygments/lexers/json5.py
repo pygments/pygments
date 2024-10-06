@@ -50,7 +50,7 @@ class Json5Lexer(RegexLexer):
             (r"'", String, 'singlestring'),
             (r'"', String, 'doublestring'),
             (r'[+-]?0[xX][0-9a-fA-F]+', Number.Hex),
-            (r'[+-.]?[0-9]+[.]?+[0-9]?+([eE][-]?[0-9]+)?', Number.Float),
+            (r'[+-.]?[0-9]+[.]?[0-9]?([eE][-]?[0-9]+)?', Number.Float),
             (r'\{', Punctuation, 'object'),
             (r'\[', Punctuation, 'array'),
             (words(['false', 'Infinity', '+Infinity', '-Infinity', 'NaN',
