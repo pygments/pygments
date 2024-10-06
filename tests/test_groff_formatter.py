@@ -51,7 +51,7 @@ import this
 \m[008000]\f[CB]for\f[CR]\m[] it \m[AA22FF]\f[CB]in\f[CR]\m[] that:
     do(it)
 
-\m[008000]\f[CB]import\f[CR]\m[] \m[0000FF]\f[CB]this\f[CR]\m[]
+\m[008000]\f[CB]import\f[CR]\m[]\m[bbbbbb] \m[]\m[0000FF]\f[CB]this\f[CR]\m[]
 
 .fi"""
     assert highlight(code, PythonLexer(), GroffFormatter()) == expected

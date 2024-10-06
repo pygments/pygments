@@ -41,43 +41,43 @@
 '\n'          Text.Whitespace
 
 'from'        Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'os'          Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'import'      Keyword.Namespace
 ' '           Text
 'path'        Name
 '\n'          Text.Whitespace
 
 'from'        Keyword.Namespace
-' \\\n        ' Text
+' \\\n        ' Text.Whitespace
 'os'          Name.Namespace
 ' '           Text
 '\\\n'        Text
 
 '        '    Text
 'import'      Keyword.Namespace
-' \\\n        ' Text
+' \\\n        ' Text.Whitespace
 'path'        Name.Namespace
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'os'          Name.Namespace
 '.'           Name.Namespace
 'path'        Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'something'   Name.Namespace
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
 'import'      Keyword.Namespace
-' \\\n        ' Text
+' \\\n        ' Text.Whitespace
 'os'          Name.Namespace
 '.'           Name.Namespace
 'path'        Name.Namespace
@@ -96,7 +96,7 @@
 '\n'          Text.Whitespace
 
 'class'       Keyword
-' \\\n '      Text
+' \\\n '      Text.Whitespace
 'Spam'        Name.Class
 ':'           Punctuation
 '\n'          Text.Whitespace
@@ -108,7 +108,7 @@
 '\n'          Text.Whitespace
 
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 'Spam'        Name.Class
 ':'           Punctuation
 ' '           Text
@@ -118,7 +118,7 @@
 '\n'          Text.Whitespace
 
 'class'       Keyword
-' '           Text
+' '           Text.Whitespace
 'Spam'        Name.Class
 '('           Punctuation
 'object'      Name.Builtin
@@ -133,7 +133,7 @@
 '\n'          Text.Whitespace
 
 'class'       Keyword
-' \\\n '      Text
+' \\\n '      Text.Whitespace
 'Spam'        Name.Class
 ' '           Text
 '\\\n'        Text
@@ -164,7 +164,7 @@
 '\n'          Text.Whitespace
 
 'def'         Keyword
-' \\\n '      Text
+' \\\n '      Text.Whitespace
 'spam'        Name.Function
 ' '           Text
 '\\\n'        Text

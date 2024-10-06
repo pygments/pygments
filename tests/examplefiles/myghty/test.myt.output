@@ -50,16 +50,16 @@
 
 '    '        Text
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'string'      Name.Namespace
 ','           Operator
-' '           Text
+' '           Text.Whitespace
 're'          Name.Namespace
 '\n'          Text.Whitespace
 
 '    '        Text
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'highlight'   Name.Namespace
 '\n'          Text.Whitespace
 
@@ -456,7 +456,7 @@
 
 '        '    Text
 'import'      Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 're'          Name.Namespace
 '\n'          Text.Whitespace
 
@@ -652,7 +652,7 @@
 
 '    '        Text
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'fix_indent'  Name.Function
 '('           Punctuation
 'f'           Name
@@ -913,7 +913,7 @@
 
 '    '        Text
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'hlight'      Name.Function
 '('           Punctuation
 'match'       Name
