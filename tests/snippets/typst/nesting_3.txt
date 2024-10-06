@@ -1,0 +1,17 @@
+---input---
+#rect()[
+= Heading
+]
+
+---tokens---
+'#rect'       Name.Function
+'('           Punctuation
+')'           Punctuation
+'['           Punctuation
+'\n'          Text.Whitespace
+
+'= Heading'   Generic.Heading
+'\n'          Text.Whitespace
+
+']'           Punctuation
+'\n'          Text.Whitespace

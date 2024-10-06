@@ -1,0 +1,419 @@
+---input---
+// From the math syntax reference
+$x^2$
+$ x^2 $
+$x_1$
+$x^2$
+$1 + (a+b)/5$
+$x \ y$
+$x &= 2 \ &= 3$
+$#x$
+$pi$
+$arrow.r.long$
+$x y$
+$->$, $!=$
+$a "is natural"$
+$floor(x)$
+$#rect(width: 1cm)$
+$x\^2$
+$/* comment */$
+
+// From the math overview
+$ A = pi r^2 $
+$ "area" = pi dot "radius"^2 $
+$ cal(A) :=
+    { x in RR | x "is natural" } $
+#let x = 5
+$ #x < 17 $
+$ x < y => x gt.eq.not y $
+$ sum_(k=0)^n k
+    &= 1 + ... + n \
+    &= (n(n+1)) / 2 $
+$ frac(a^2, 2) $
+$ vec(1, 2, delim: "[") $
+$ mat(1, 2; 3, 4) $
+$ lim_x =
+    op("lim", limits: #true)_x $
+
+---tokens---
+'// From the math syntax reference' Comment.Single
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+'x'           Name.Variable
+'^'           Punctuation
+'2'           Literal.Number
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+' '           Text.Whitespace
+'x'           Name.Variable
+'^'           Punctuation
+'2'           Literal.Number
+' '           Text.Whitespace
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+'x'           Name.Variable
+'_'           Punctuation
+'1'           Literal.Number
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+'x'           Name.Variable
+'^'           Punctuation
+'2'           Literal.Number
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+'1'           Literal.Number
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'a'           Name.Variable
+'+'           Operator
+'b'           Name.Variable
+')'           Punctuation
+'/'           Operator
+'5'           Literal.Number
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+'x'           Name.Variable
+' '           Text.Whitespace
+'\\'          Punctuation
+' '           Text.Whitespace
+'y'           Name.Variable
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+'x'           Name.Variable
+' '           Text.Whitespace
+'&'           Punctuation
+'='           Operator
+' '           Text.Whitespace
+'2'           Literal.Number
+' '           Text.Whitespace
+'\\'          Punctuation
+' '           Text.Whitespace
+'&'           Punctuation
+'='           Operator
+' '           Text.Whitespace
+'3'           Literal.Number
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+'#x'          Name.Variable
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+'pi'          Name.Variable
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+'arrow'       Name.Variable
+'.'           Punctuation
+'r'           Name.Variable
+'.'           Punctuation
+'long'        Name.Variable
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+'x'           Name.Variable
+' '           Text.Whitespace
+'y'           Name.Variable
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+'->'          Operator
+'$'           Punctuation
+','           Text
+' '           Text.Whitespace
+'$'           Punctuation
+'!='          Operator
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+'a'           Name.Variable
+' '           Text.Whitespace
+'"is natural"' Literal.String.Double
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+'floor'       Name.Function
+'('           Punctuation
+'x'           Name.Variable
+')'           Punctuation
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+'#rect'       Name.Function
+'('           Punctuation
+'width'       Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number
+'cm'          Keyword.Reserved
+')'           Punctuation
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+'x'           Name.Variable
+'\\^'         Text
+'2'           Literal.Number
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+'/* comment */' Comment.Multiline
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// From the math overview' Comment.Single
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+' '           Text.Whitespace
+'A'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'pi'          Name.Variable
+' '           Text.Whitespace
+'r'           Name.Variable
+'^'           Punctuation
+'2'           Literal.Number
+' '           Text.Whitespace
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+' '           Text.Whitespace
+'"area"'      Literal.String.Double
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'pi'          Name.Variable
+' '           Text.Whitespace
+'dot'         Name.Variable
+' '           Text.Whitespace
+'"radius"'    Literal.String.Double
+'^'           Punctuation
+'2'           Literal.Number
+' '           Text.Whitespace
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+' '           Text.Whitespace
+'cal'         Name.Function
+'('           Punctuation
+'A'           Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+':='          Operator
+'\n    '      Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'x'           Name.Variable
+' '           Text.Whitespace
+'in'          Name.Variable
+' '           Text.Whitespace
+'RR'          Name.Variable
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'x'           Name.Variable
+' '           Text.Whitespace
+'"is natural"' Literal.String.Double
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'#let'        Keyword.Declaration
+' '           Text.Whitespace
+'x'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+' '           Text.Whitespace
+'#x'          Name.Variable
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'17'          Literal.Number
+' '           Text.Whitespace
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+' '           Text.Whitespace
+'x'           Name.Variable
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'y'           Name.Variable
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'x'           Name.Variable
+' '           Text.Whitespace
+'gt'          Name.Variable
+'.'           Punctuation
+'eq'          Name.Variable
+'.'           Punctuation
+'not'         Name.Variable
+' '           Text.Whitespace
+'y'           Name.Variable
+' '           Text.Whitespace
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+' '           Text.Whitespace
+'sum'         Name.Variable
+'_'           Punctuation
+'('           Punctuation
+'k'           Name.Variable
+'='           Operator
+'0'           Literal.Number
+')'           Punctuation
+'^'           Punctuation
+'n'           Name.Variable
+' '           Text.Whitespace
+'k'           Name.Variable
+'\n    '      Text.Whitespace
+'&'           Punctuation
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'...'         Operator
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'n'           Name.Variable
+' '           Text.Whitespace
+'\\'          Punctuation
+'\n    '      Text.Whitespace
+'&'           Punctuation
+'='           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'n'           Name.Function
+'('           Punctuation
+'n'           Name.Variable
+'+'           Operator
+'1'           Literal.Number
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number
+' '           Text.Whitespace
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+' '           Text.Whitespace
+'frac'        Name.Function
+'('           Punctuation
+'a'           Name.Variable
+'^'           Punctuation
+'2'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number
+')'           Punctuation
+' '           Text.Whitespace
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+' '           Text.Whitespace
+'vec'         Name.Function
+'('           Punctuation
+'1'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'delim'       Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'"["'         Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+' '           Text.Whitespace
+'mat'         Name.Function
+'('           Punctuation
+'1'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number
+';'           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'4'           Literal.Number
+')'           Punctuation
+' '           Text.Whitespace
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+' '           Text.Whitespace
+'lim'         Name.Variable
+'_'           Punctuation
+'x'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+'\n    '      Text.Whitespace
+'op'          Name.Function
+'('           Punctuation
+'"lim"'       Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'limits'      Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'#true'       Keyword.Constant
+')'           Punctuation
+'_'           Punctuation
+'x'           Name.Variable
+' '           Text.Whitespace
+'$'           Punctuation
+'\n'          Text.Whitespace

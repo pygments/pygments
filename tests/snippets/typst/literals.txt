@@ -1,0 +1,86 @@
+---input---
+#{1}
+#{11}
+#{111}
+#{1111}
+#{11111}
+#{111111}
+#{1111111}
+#{11111111}
+#{111111111}
+#{1111111111}
+#{11111111111}
+#{111111111111}
+#{let a = 0}
+
+---tokens---
+'#{'          Punctuation
+'1'           Literal.Number.Integer
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'#{'          Punctuation
+'11'          Literal.Number.Integer
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'#{'          Punctuation
+'111'         Literal.Number.Integer
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'#{'          Punctuation
+'1111'        Literal.Number.Integer
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'#{'          Punctuation
+'11111'       Literal.Number.Integer
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'#{'          Punctuation
+'111111'      Literal.Number.Integer
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'#{'          Punctuation
+'1111111'     Literal.Number.Integer
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'#{'          Punctuation
+'11111111'    Literal.Number.Integer
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'#{'          Punctuation
+'111111111'   Literal.Number.Integer
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'#{'          Punctuation
+'1111111111'  Literal.Number.Integer
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'#{'          Punctuation
+'11111111111' Literal.Number.Integer
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'#{'          Punctuation
+'111111111111' Literal.Number.Integer
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'#{'          Punctuation
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'}'           Punctuation
+'\n'          Text.Whitespace

@@ -1,0 +1,126 @@
+---input---
+#(
+    1234567890,
+    0b10100,
+    0o01234567,
+    0x0123456789abcdef,
+    0x0123456789ABCDEF,
+    1e5,
+    -0.4,
+    0.123456789
+)
+#1234567890
+#0b10100
+#0o01234567
+#0x0123456789abcdef
+#0x0123456789ABCDEF
+#1e5
+#0.4
+$ #1234567890 $
+$ #0b10100 $
+$ #0o01234567 $
+$ #0x0123456789abcdef $
+$ #0x0123456789ABCDEF $
+$ #1e5 $
+$ #0.4 $
+
+---tokens---
+'#('          Punctuation
+'\n    '      Text.Whitespace
+'1234567890'  Literal.Number.Integer
+','           Punctuation
+'\n    '      Text.Whitespace
+'0b10100'     Literal.Number.Bin
+','           Punctuation
+'\n    '      Text.Whitespace
+'0o01234567'  Literal.Number.Oct
+','           Punctuation
+'\n    '      Text.Whitespace
+'0x0123456789abcdef' Literal.Number.Hex
+','           Punctuation
+'\n    '      Text.Whitespace
+'0x0123456789ABCDEF' Literal.Number.Hex
+','           Punctuation
+'\n    '      Text.Whitespace
+'1e5'         Literal.Number.Float
+','           Punctuation
+'\n    '      Text.Whitespace
+'-'           Operator
+'0.4'         Literal.Number.Float
+','           Punctuation
+'\n    '      Text.Whitespace
+'0.123456789' Literal.Number.Float
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'#1234567890' Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'#0b10100'    Literal.Number.Bin
+'\n'          Text.Whitespace
+
+'#0o01234567' Literal.Number.Oct
+'\n'          Text.Whitespace
+
+'#0x0123456789abcdef' Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'#0x0123456789ABCDEF' Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'#1e5'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'#0.4'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+' '           Text.Whitespace
+'#1234567890' Literal.Number.Integer
+' '           Text.Whitespace
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+' '           Text.Whitespace
+'#0b10100'    Literal.Number.Bin
+' '           Text.Whitespace
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+' '           Text.Whitespace
+'#0o01234567' Literal.Number.Oct
+' '           Text.Whitespace
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+' '           Text.Whitespace
+'#0x0123456789abcdef' Literal.Number.Hex
+' '           Text.Whitespace
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+' '           Text.Whitespace
+'#0x0123456789ABCDEF' Literal.Number.Hex
+' '           Text.Whitespace
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+' '           Text.Whitespace
+'#1e5'        Literal.Number.Float
+' '           Text.Whitespace
+'$'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+' '           Text.Whitespace
+'#0.4'        Literal.Number.Float
+' '           Text.Whitespace
+'$'           Punctuation
+'\n'          Text.Whitespace
