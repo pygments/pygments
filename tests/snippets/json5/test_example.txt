@@ -1,0 +1,103 @@
+---input---
+{
+  // comments
+  unquoted: 'and you can quote me on that',
+  singleQuotes: 'I can use "double quotes" here',
+  lineBreaks: "Look, Mom! \
+No \\n's!",
+  hexadecimal: 0xdecaf,
+  leadingDecimalPoint: .8675309, andTrailing: 8675309.,
+  positiveSign: +1,
+  trailingComma: 'in objects', andIn: ['arrays',],
+  "backwardsCompatible": "with JSON",
+}
+
+---tokens---
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'// comments\n' Comment.Single
+
+'  '          Text.Whitespace
+'unquoted'    Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String
+'and you can quote me on that' Literal.String
+"'"           Literal.String
+','           Punctuation
+'\n  '        Text.Whitespace
+'singleQuotes' Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String
+'I can use "double quotes" here' Literal.String
+"'"           Literal.String
+','           Punctuation
+'\n  '        Text.Whitespace
+'lineBreaks'  Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'Look, Mom! ' Literal.String
+'\\'          Punctuation
+'\nNo '       Literal.String
+'\\\\'        Literal.String.Escape
+"n's!"        Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n  '        Text.Whitespace
+'hexadecimal' Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'0xdecaf'     Literal.Number.Hex
+','           Punctuation
+'\n  '        Text.Whitespace
+'leadingDecimalPoint' Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'.8675309'    Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'andTrailing' Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'8675309.'    Literal.Number.Float
+','           Punctuation
+'\n  '        Text.Whitespace
+'positiveSign' Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'+1'          Literal.Number.Float
+','           Punctuation
+'\n  '        Text.Whitespace
+'trailingComma' Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String
+'in objects'  Literal.String
+"'"           Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'andIn'       Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+"'"           Literal.String
+'arrays'      Literal.String
+"'"           Literal.String
+','           Punctuation
+']'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'"'           Name.Variable
+'backwardsCompatible"' Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'with JSON'   Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
