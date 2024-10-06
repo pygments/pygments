@@ -107,7 +107,7 @@ class CSharpLexer(RegexLexer):
                           Comment.Preproc, Whitespace)),
                 (r'\b(extern)(\s+)(alias)\b', bygroups(Keyword, Whitespace,
                  Keyword)),
-                (words([
+                (words((
                     'abstract', 'as', 'async', 'await', 'base', 'break', 'by',
                     'case', 'catch', 'checked', 'const', 'continue', 'default',
                     'delegate', 'do', 'else', 'enum', 'event', 'explicit',
@@ -125,7 +125,7 @@ class CSharpLexer(RegexLexer):
                     'and', 'init', 'managed', 'nameof', 'nint', 'not',
                     'notnull', 'nuint', 'or', 'scoped', 'unmanaged', 'when',
                     'with'
-                ], suffix=r'\b'), Keyword),
+                ), suffix=r'\b'), Keyword),
                 (r'(global)(::)', bygroups(Keyword, Punctuation)),
                 (r'(bool|byte|char|decimal|double|dynamic|float|int|long|object|'
                  r'sbyte|short|string|uint|ulong|ushort|var)\b\??', Keyword.Type),

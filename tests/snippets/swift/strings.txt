@@ -11,33 +11,33 @@ func test() {
 
 ---tokens---
 'func'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'test'        Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'let'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'world'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'world'       Literal.String
 '"'           Literal.String
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'let'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'multi'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"""'         Literal.String
 '\n    hello\n    ' Literal.String
 '\\('         Literal.String.Interpol
@@ -47,9 +47,9 @@ func test() {
 '"""'         Literal.String
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'multi'       Name
 '\n'          Text
 
