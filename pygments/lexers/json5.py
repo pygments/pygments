@@ -38,7 +38,7 @@ class Json5Lexer(RegexLexer):
     aliases = ['json5']
     filenames = ['*.json5']
     url = "https://json5.org"
-    version_added = ''
+    version_added = '2.19'
     tokens = {
         '_comments': [
             (r'(//|#).*\n', Comment.Single),
