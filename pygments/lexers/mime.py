@@ -134,7 +134,7 @@ class MIMELexer(RegexLexer):
         #  * no content
         #  * no content type specific
         #  * content encoding is not readable
-        #  * max recurrsion exceed
+        #  * max recursion exceed
         if not text.strip() or not self.content_type:
             return [(0, Other, text)]
 
