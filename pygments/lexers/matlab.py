@@ -30,6 +30,7 @@ class MatlabLexer(RegexLexer):
     mimetypes = ['text/matlab']
     url = 'https://www.mathworks.com/products/matlab.html'
     version_added = '0.10'
+    _example = 'matlab/matlab_sample.m'
 
     _operators = r'-|==|~=|<=|>=|<|>|&&|&|~|\|\|?|\.\*|\*|\+|\.\^|\.\\|\./|/|\\'
 
@@ -2747,7 +2748,7 @@ class MatlabSessionLexer(Lexer):
     aliases = ['matlabsession']
     url = 'https://www.mathworks.com/products/matlab.html'
     version_added = '0.10'
-    _example = "matlabsession/matlabsession_sample.txt"
+    _example = 'matlabsession/matlabsession_sample.txt'
 
     def get_tokens_unprocessed(self, text):
         mlexer = MatlabLexer(**self.options)
@@ -3236,6 +3237,7 @@ class ScilabLexer(RegexLexer):
     filenames = ['*.sci', '*.sce', '*.tst']
     mimetypes = ['text/scilab']
     version_added = '1.5'
+    _example = 'scilab/scilab.sci'
 
     tokens = {
         'root': [

@@ -27,6 +27,7 @@ class Comal80Lexer(RegexLexer):
     aliases = ['comal', 'comal80']
     filenames = ['*.cml', '*.comal']
     version_added = ''
+    _example = 'comal80/test.comal'
     flags = re.IGNORECASE
     #
     # COMAL allows for some strange characters in names which we list here so

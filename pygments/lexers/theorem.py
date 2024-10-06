@@ -30,6 +30,7 @@ class CoqLexer(RegexLexer):
     filenames = ['*.v']
     mimetypes = ['text/x-coq']
     version_added = '1.5'
+    _example = 'coq/coq_RelationClasses.v'
 
     flags = 0 # no re.MULTILINE
 
@@ -203,6 +204,7 @@ class IsabelleLexer(RegexLexer):
     filenames = ['*.thy']
     mimetypes = ['text/x-isabelle']
     version_added = '2.0'
+    _example = 'isabelle/example_ascii.thy'
 
     keyword_minor = (
         'and', 'assumes', 'attach', 'avoids', 'binder', 'checking',

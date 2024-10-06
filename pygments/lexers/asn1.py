@@ -127,6 +127,7 @@ class Asn1Lexer(RegexLexer):
     filenames = ["*.asn1"]
     url = "https://www.itu.int/ITU-T/studygroups/com17/languages/X.680-0207.pdf"
     version_added = '2.16'
+    _example = 'asn1/x509.asn1'
 
     tokens = {
        'root': [

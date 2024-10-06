@@ -27,6 +27,7 @@ class FelixLexer(RegexLexer):
     filenames = ['*.flx', '*.flxh']
     mimetypes = ['text/x-felix']
     version_added = '1.2'
+    _example = 'felix/test.flx'
 
     preproc = (
         'elif', 'else', 'endif', 'if', 'ifdef', 'ifndef',
