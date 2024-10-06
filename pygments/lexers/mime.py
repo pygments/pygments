@@ -12,8 +12,8 @@ import re
 
 from pygments.lexer import RegexLexer, include
 from pygments.lexers import get_lexer_for_mimetype
-from pygments.token import Text, Name, String, Operator, Comment, Other
-from pygments.util import get_int_opt, ClassNotFound
+from pygments.token import Comment, Name, Operator, Other, String, Text
+from pygments.util import ClassNotFound, get_int_opt
 
 __all__ = ["MIMELexer"]
 
@@ -157,13 +157,11 @@ class MIMELexer(RegexLexer):
         return lexer.get_tokens_unprocessed(text)
 
     def store_content_type(self, match):
-        self.content_type = match.group(1)
-
-        prefix_len = match.start(1) - match.start(0)
-        yield match.start(0), Text.Whitespace, match.group(0)[:prefix_len]
-        yield match.start(1), Name.Label, match.group(2)
-        yield match.end(2), String.Delimiter, "/"
+        yield match.start(1), Text.Whitespace, match.group(1)
+        self.content_type = match.group(2)  # group 2 is the full content type
         yield match.start(3), Name.Label, match.group(3)
+        yield match.start(4), String.Delimiter, match.group(4)
+        yield match.start(5), Name.Label, match.group(5)
 
     def get_content_type_subtokens(self, match):
         yield match.start(1), Text, match.group(1)
@@ -189,26 +187,35 @@ class MIMELexer(RegexLexer):
             (r"^([\w-]+):( *)([\s\S]*?\n)(?![ \t])", get_header_tokens),
             (r"^$[\s\S]+", get_body_tokens),
         ],
-        "header": [
-            # folding
+        "folding": [
             (r"\n[ \t]", Text.Whitespace),
             (r"\n(?![ \t])", Text.Whitespace, "#pop"),
         ],
         "content-type": [
-            include("header"),
+            include("folding"),
             (
-                r"^\s*((multipart|application|audio|font|image|model|text|video"
-                r"|message)/([\w-]+))",
+                r"^"
+                r"(\s*)"
+                r"("
+                r"(multipart|application|audio|font|image|model|text|video|message)"
+                r"(/)"
+                r"([\w-]+)"
+                r")",
                 store_content_type,
             ),
             (
-                r"(;)((?:[ \t]|\n[ \t])*)([\w:-]+)(=)([\s\S]*?)(?=;|\n(?![ \t]))",
+                r"(;)"
+                r"((?:[ \t]|\n[ \t])*)"
+                r"([\w:-]+)"
+                r"(=)"
+                r"([\s\S]*?)"
+                r"(?=;|\n(?![ \t]))",
                 get_content_type_subtokens,
             ),
             (r";[ \t]*\n(?![ \t])", Text, "#pop"),
         ],
         "content-transfer-encoding": [
-            include("header"),
+            include("folding"),
             (r"([\w-]+)", store_content_transfer_encoding),
         ],
     }
