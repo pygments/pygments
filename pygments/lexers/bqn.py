@@ -87,7 +87,7 @@ class BQNLexer(RegexLexer):
             # =========
             # The monadic or dyadic function primitives and function
             # operands and arguments, along with function self-reference
-            (r'[+\-×÷\*√⌊⌈∧∨¬|≤<>≥=≠≡≢⊣⊢⥊∾≍⋈↑↓↕«»⌽⍉/⍋⍒⊏⊑⊐⊒∊⍷⊔!𝕎𝕏𝔽𝔾𝕊]',
+            (r'[+\-×÷\⋆√⌊⌈∧∨¬|≤<>≥=≠≡≢⊣⊢⥊∾≍⋈↑↓↕«»⌽⍉/⍋⍒⊏⊑⊐⊒∊⍷⊔!𝕎𝕏𝔽𝔾𝕊]',
              Operator),
             (r'[A-Z]' + _iwc + r'*|•' + _iwc + r'+', Operator),
             #
