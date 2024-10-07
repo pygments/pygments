@@ -26,6 +26,10 @@ class BQNLexer(RegexLexer):
     mimetypes = []
     version_added = '2.16'
 
+    # An inter_word_char. Necessary because \w matches all alphanumeric
+    # Unicode characters, including ones (e.g., 𝕊) that BQN treats special.
+    _iwc = r'((?=[^𝕎𝕏𝔽𝔾𝕊𝕨𝕩𝕗𝕘𝕤𝕣])\w)'
+
     tokens = {
         'root': [
             # Whitespace
@@ -66,7 +70,7 @@ class BQNLexer(RegexLexer):
             #
             # Variables
             # =========
-            (r'\b[a-z]\w*\b', Name.Variable),
+            (r'[a-z]' + _iwc + r'*', Name.Variable),
             #
             # 1-Modifiers
             # ===========
@@ -84,7 +88,7 @@ class BQNLexer(RegexLexer):
             # operands and arguments, along with function self-reference
             (r'[+\-×÷\*√⌊⌈∧∨¬|≤<>≥=≠≡≢⊣⊢⥊∾≍⋈↑↓↕«»⌽⍉/⍋⍒⊏⊑⊐⊒∊⍷⊔!𝕎𝕏𝔽𝔾𝕊]',
              Operator),
-            (r'[A-Z]\w*|•\w+\b', Operator),
+            (r'[A-Z]' + _iwc + r'*|•' + _iwc + r'+\b', Operator),
             #
             # Constant
             # ========
