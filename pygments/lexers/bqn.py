@@ -61,7 +61,7 @@ class BQNLexer(RegexLexer):
             # ===================
             # Since this token type is important in BQN, it is not included in
             # the punctuation token type but rather in the following one
-            (r'[\(\)]', String.Regex), 
+            (r'[\(\)]', String.Regex),
             #
             # Numbers
             # =======
@@ -75,12 +75,12 @@ class BQNLexer(RegexLexer):
             # 1-Modifiers
             # ===========
             (r'[˙˜˘¨⌜⁼´˝`𝕣]', Name.Attribute),
-            (r'\b_[a-zA-Z0-9]+\b', Name.Attribute),
+            (r'_[a-zA-Z0-9]+', Name.Attribute),
             #
             # 2-Modifiers
             # ===========
             (r'[∘○⊸⟜⌾⊘◶⎉⚇⍟⎊]', Name.Property),
-            (r'\b_[a-zA-Z0-9]+_\b', Name.Property),
+            (r'_[a-zA-Z0-9]+_', Name.Property),
             #
             # Functions
             # =========
@@ -88,7 +88,7 @@ class BQNLexer(RegexLexer):
             # operands and arguments, along with function self-reference
             (r'[+\-×÷\*√⌊⌈∧∨¬|≤<>≥=≠≡≢⊣⊢⥊∾≍⋈↑↓↕«»⌽⍉/⍋⍒⊏⊑⊐⊒∊⍷⊔!𝕎𝕏𝔽𝔾𝕊]',
              Operator),
-            (r'[A-Z]' + _iwc + r'*|•' + _iwc + r'+\b', Operator),
+            (r'[A-Z]' + _iwc + r'*|•' + _iwc + r'+', Operator),
             #
             # Constant
             # ========
@@ -106,8 +106,6 @@ class BQNLexer(RegexLexer):
             # ================
             (r'[;:?𝕨𝕩𝕗𝕘𝕤]', Name.Entity),
             #
-            
+
         ],
     }
-
-    
