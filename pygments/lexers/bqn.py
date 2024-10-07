@@ -72,15 +72,16 @@ class BQNLexer(RegexLexer):
             # =========
             (r'[a-z]' + _iwc + r'*', Name.Variable),
             #
+            # 2-Modifiers
+            # ===========
+            # Needs to come before the 1-modifiers due to _𝕣 and _𝕣_
+            (r'[∘○⊸⟜⌾⊘◶⎉⚇⍟⎊]', Name.Property),
+            (r'_(𝕣|[a-zA-Z0-9]+)_', Name.Property),
+            #
             # 1-Modifiers
             # ===========
             (r'[˙˜˘¨⌜⁼´˝`𝕣]', Name.Attribute),
-            (r'_[a-zA-Z0-9]+', Name.Attribute),
-            #
-            # 2-Modifiers
-            # ===========
-            (r'[∘○⊸⟜⌾⊘◶⎉⚇⍟⎊]', Name.Property),
-            (r'_[a-zA-Z0-9]+_', Name.Property),
+            (r'_(𝕣|[a-zA-Z0-9]+)', Name.Attribute),
             #
             # Functions
             # =========
