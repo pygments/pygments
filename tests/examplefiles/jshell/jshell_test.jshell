@@ -1,0 +1,31 @@
+jshell> x = 2
+|  Error:
+|  cannot find symbol
+|    symbol:   variable x
+|  x =
+|  ^
+
+jshell> int x = 0;
+x ==> 0
+
+jshell> 1/x
+|  Exception java.lang.ArithmeticException: / by zero
+|        at (#2:1)
+
+jshell> x
+x ==> 0
+
+jshell> int x = -3
+x ==> -3
+
+jshell> if (x < 0) {
+   ...>     x = -x;
+   ...> } else {
+   ...>     System.out.println(x);
+   ...> }
+
+jshell> System.out.println(x)
+3
+
+jshell> 1 | 2
+3
