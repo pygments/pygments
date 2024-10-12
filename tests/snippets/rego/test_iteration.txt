@@ -1,0 +1,392 @@
+---input---
+package example
+
+# Rego Policy References: https://www.openpolicyagent.org/docs/latest/policy-reference/
+
+### Arrays
+
+# iterate over indices i
+arr[i]
+
+# iterate over values
+val := arr[_]
+
+# iterate over index/value pairs
+val := arr[i]
+
+# with `import rego.v1` or `import future.keywords.in`
+some val in arr    # iterate over values
+some i, _ in arr   # iterate over indices
+some i, val in arr # iterate over index/value pairs
+
+
+### Objects
+
+# iterate over keys
+obj[key]
+
+# iterate over values
+val := obj[_]
+
+# iterate over key/value pairs
+val := obj[key]
+
+# with `import rego.v1` or `import future.keywords.in`
+some val in obj      # iterate over values
+some key, _ in obj   # iterate over keys
+some key, val in obj # key/value pairs
+
+
+### Sets
+
+# iterate over values
+set[val]
+
+# with `import rego.v1` or `import future.keywords.in`
+some val in set
+
+
+### Advanced
+
+# nested: find key k whose bar.baz array index i is 7
+foo[k].bar.baz[i] == 7
+
+# simultaneous: find keys in objects foo and bar with same value
+foo[k1] == bar[k2]
+
+# simultaneous self: find 2 keys in object foo with same value
+foo[k1] == foo[k2]; k1 != k2
+
+# multiple conditions: k has same value in both conditions
+foo[k].bar.baz[i] == 7; foo[k].qux > 3
+
+---tokens---
+'package'     Keyword
+' '           Text
+'example'     Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# Rego Policy References: https://www.openpolicyagent.org/docs/latest/policy-reference/' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'### Arrays'  Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# iterate over indices i' Comment.Single
+'\n'          Text.Whitespace
+
+'arr'         Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# iterate over values' Comment.Single
+'\n'          Text.Whitespace
+
+'val'         Name
+' '           Text
+':='          Operator
+' '           Text
+'arr'         Name
+'['           Punctuation
+'_'           Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# iterate over index/value pairs' Comment.Single
+'\n'          Text.Whitespace
+
+'val'         Name
+' '           Text
+':='          Operator
+' '           Text
+'arr'         Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# with `import rego.v1` or `import future.keywords.in`' Comment.Single
+'\n'          Text.Whitespace
+
+'some'        Keyword
+' '           Text
+'val'         Name
+' '           Text
+'in'          Keyword
+' '           Text
+'arr'         Name
+'    '        Text
+'# iterate over values' Comment.Single
+'\n'          Text.Whitespace
+
+'some'        Keyword
+' '           Text
+'i'           Name
+','           Punctuation
+' '           Text
+'_'           Name
+' '           Text
+'in'          Keyword
+' '           Text
+'arr'         Name
+'   '         Text
+'# iterate over indices' Comment.Single
+'\n'          Text.Whitespace
+
+'some'        Keyword
+' '           Text
+'i'           Name
+','           Punctuation
+' '           Text
+'val'         Name
+' '           Text
+'in'          Keyword
+' '           Text
+'arr'         Name
+' '           Text
+'# iterate over index/value pairs' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'### Objects' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# iterate over keys' Comment.Single
+'\n'          Text.Whitespace
+
+'obj'         Name
+'['           Punctuation
+'key'         Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# iterate over values' Comment.Single
+'\n'          Text.Whitespace
+
+'val'         Name
+' '           Text
+':='          Operator
+' '           Text
+'obj'         Name
+'['           Punctuation
+'_'           Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# iterate over key/value pairs' Comment.Single
+'\n'          Text.Whitespace
+
+'val'         Name
+' '           Text
+':='          Operator
+' '           Text
+'obj'         Name
+'['           Punctuation
+'key'         Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# with `import rego.v1` or `import future.keywords.in`' Comment.Single
+'\n'          Text.Whitespace
+
+'some'        Keyword
+' '           Text
+'val'         Name
+' '           Text
+'in'          Keyword
+' '           Text
+'obj'         Name
+'      '      Text
+'# iterate over values' Comment.Single
+'\n'          Text.Whitespace
+
+'some'        Keyword
+' '           Text
+'key'         Name
+','           Punctuation
+' '           Text
+'_'           Name
+' '           Text
+'in'          Keyword
+' '           Text
+'obj'         Name
+'   '         Text
+'# iterate over keys' Comment.Single
+'\n'          Text.Whitespace
+
+'some'        Keyword
+' '           Text
+'key'         Name
+','           Punctuation
+' '           Text
+'val'         Name
+' '           Text
+'in'          Keyword
+' '           Text
+'obj'         Name
+' '           Text
+'# key/value pairs' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'### Sets'    Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# iterate over values' Comment.Single
+'\n'          Text.Whitespace
+
+'set'         Name
+'['           Punctuation
+'val'         Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# with `import rego.v1` or `import future.keywords.in`' Comment.Single
+'\n'          Text.Whitespace
+
+'some'        Keyword
+' '           Text
+'val'         Name
+' '           Text
+'in'          Keyword
+' '           Text
+'set'         Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'### Advanced' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# nested: find key k whose bar.baz array index i is 7' Comment.Single
+'\n'          Text.Whitespace
+
+'foo'         Name
+'['           Punctuation
+'k'           Name
+']'           Punctuation
+'.'           Punctuation
+'bar'         Name
+'.'           Punctuation
+'baz'         Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'7'           Literal.Number
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# simultaneous: find keys in objects foo and bar with same value' Comment.Single
+'\n'          Text.Whitespace
+
+'foo'         Name
+'['           Punctuation
+'k1'          Name
+']'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'bar'         Name
+'['           Punctuation
+'k2'          Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# simultaneous self: find 2 keys in object foo with same value' Comment.Single
+'\n'          Text.Whitespace
+
+'foo'         Name
+'['           Punctuation
+'k1'          Name
+']'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'foo'         Name
+'['           Punctuation
+'k2'          Name
+']'           Punctuation
+';'           Punctuation
+' '           Text
+'k1'          Name
+' '           Text
+'!='          Operator
+' '           Text
+'k2'          Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# multiple conditions: k has same value in both conditions' Comment.Single
+'\n'          Text.Whitespace
+
+'foo'         Name
+'['           Punctuation
+'k'           Name
+']'           Punctuation
+'.'           Punctuation
+'bar'         Name
+'.'           Punctuation
+'baz'         Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'7'           Literal.Number
+';'           Punctuation
+' '           Text
+'foo'         Name
+'['           Punctuation
+'k'           Name
+']'           Punctuation
+'.'           Punctuation
+'qux'         Name
+' '           Text
+'>'           Operator
+' '           Text
+'3'           Literal.Number
+'\n'          Text.Whitespace

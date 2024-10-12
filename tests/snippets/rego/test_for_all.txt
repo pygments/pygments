@@ -1,0 +1,187 @@
+---input---
+package example
+
+# Rego Policy References: https://www.openpolicyagent.org/docs/latest/policy-reference/
+
+# assert no values in set match predicate
+count({x | set[x]; f(x)}) == 0
+
+# assert all values in set make function f true
+count({x | set[x]; f(x)}) == count(set)
+
+# assert no values in set make function f true (using negation and helper rule)
+not any_match
+
+# assert all values in set make function f true (using negation and helper rule)
+not any_not_match
+
+
+# with `import rego.v1`, or `import future.keywords.in` and `import future.keywords.if`
+any_match if {
+    some x in set
+    f(x)
+}
+
+any_not_match if {
+    some x in set
+    not f(x)
+}
+
+---tokens---
+'package'     Keyword
+' '           Text
+'example'     Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# Rego Policy References: https://www.openpolicyagent.org/docs/latest/policy-reference/' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# assert no values in set match predicate' Comment.Single
+'\n'          Text.Whitespace
+
+'count'       Name
+'('           Punctuation
+'{'           Punctuation
+'x'           Name
+' '           Text
+'|'           Operator
+' '           Text
+'set'         Name
+'['           Punctuation
+'x'           Name
+']'           Punctuation
+';'           Punctuation
+' '           Text
+'f'           Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+'}'           Punctuation
+')'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'0'           Literal.Number
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# assert all values in set make function f true' Comment.Single
+'\n'          Text.Whitespace
+
+'count'       Name
+'('           Punctuation
+'{'           Punctuation
+'x'           Name
+' '           Text
+'|'           Operator
+' '           Text
+'set'         Name
+'['           Punctuation
+'x'           Name
+']'           Punctuation
+';'           Punctuation
+' '           Text
+'f'           Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+'}'           Punctuation
+')'           Punctuation
+' '           Text
+'=='          Operator
+' '           Text
+'count'       Name
+'('           Punctuation
+'set'         Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# assert no values in set make function f true (using negation and helper rule)' Comment.Single
+'\n'          Text.Whitespace
+
+'not'         Keyword
+' '           Text
+'any_match'   Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# assert all values in set make function f true (using negation and helper rule)' Comment.Single
+'\n'          Text.Whitespace
+
+'not'         Keyword
+' '           Text
+'any_not_match' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# with `import rego.v1`, or `import future.keywords.in` and `import future.keywords.if`' Comment.Single
+'\n'          Text.Whitespace
+
+'any_match'   Name
+' '           Text
+'if'          Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'some'        Keyword
+' '           Text
+'x'           Name
+' '           Text
+'in'          Keyword
+' '           Text
+'set'         Name
+'\n'          Text.Whitespace
+
+'    '        Text
+'f'           Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'any_not_match' Name
+' '           Text
+'if'          Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'some'        Keyword
+' '           Text
+'x'           Name
+' '           Text
+'in'          Keyword
+' '           Text
+'set'         Name
+'\n'          Text.Whitespace
+
+'    '        Text
+'not'         Keyword
+' '           Text
+'f'           Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
