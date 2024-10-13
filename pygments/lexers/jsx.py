@@ -75,7 +75,7 @@ class JsxLexer(JavascriptLexer):
             include("jsx"),
             inherit,
         ],
-    } | _JSX_RULES
+    **_JSX_RULES}
 
 
 class TsxLexer(TypeScriptLexer):
@@ -97,4 +97,4 @@ class TsxLexer(TypeScriptLexer):
             include("jsx"),
             inherit,
         ],
-    } | _JSX_RULES
+    **_JSX_RULES}
