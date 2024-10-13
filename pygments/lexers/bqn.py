@@ -26,6 +26,10 @@ class BQNLexer(RegexLexer):
     mimetypes = []
     version_added = '2.16'
 
+    # An inter_word_char. Necessary because \w matches all alphanumeric
+    # Unicode characters, including ones (e.g., 𝕊) that BQN treats special.
+    _iwc = r'((?=[^𝕎𝕏𝔽𝔾𝕊𝕨𝕩𝕗𝕘𝕤𝕣])\w)'
+
     tokens = {
         'root': [
             # Whitespace
@@ -57,7 +61,7 @@ class BQNLexer(RegexLexer):
             # ===================
             # Since this token type is important in BQN, it is not included in
             # the punctuation token type but rather in the following one
-            (r'[\(\)]', String.Regex), 
+            (r'[\(\)]', String.Regex),
             #
             # Numbers
             # =======
@@ -66,25 +70,26 @@ class BQNLexer(RegexLexer):
             #
             # Variables
             # =========
-            (r'\b[a-z]\w*\b', Name.Variable),
+            (r'[a-z]' + _iwc + r'*', Name.Variable),
+            #
+            # 2-Modifiers
+            # ===========
+            # Needs to come before the 1-modifiers due to _𝕣 and _𝕣_
+            (r'[∘○⊸⟜⌾⊘◶⎉⚇⍟⎊]', Name.Property),
+            (r'_(𝕣|[a-zA-Z0-9]+)_', Name.Property),
             #
             # 1-Modifiers
             # ===========
             (r'[˙˜˘¨⌜⁼´˝`𝕣]', Name.Attribute),
-            (r'\b_[a-zA-Z0-9]+\b', Name.Attribute),
-            #
-            # 2-Modifiers
-            # ===========
-            (r'[∘○⊸⟜⌾⊘◶⎉⚇⍟⎊]', Name.Property),
-            (r'\b_[a-zA-Z0-9]+_\b', Name.Property),
+            (r'_(𝕣|[a-zA-Z0-9]+)', Name.Attribute),
             #
             # Functions
             # =========
             # The monadic or dyadic function primitives and function
             # operands and arguments, along with function self-reference
-            (r'[+\-×÷\*√⌊⌈∧∨¬|≤<>≥=≠≡≢⊣⊢⥊∾≍⋈↑↓↕«»⌽⍉/⍋⍒⊏⊑⊐⊒∊⍷⊔!𝕎𝕏𝔽𝔾𝕊]',
+            (r'[+\-×÷\⋆√⌊⌈∧∨¬|≤<>≥=≠≡≢⊣⊢⥊∾≍⋈↑↓↕«»⌽⍉/⍋⍒⊏⊑⊐⊒∊⍷⊔!𝕎𝕏𝔽𝔾𝕊]',
              Operator),
-            (r'[A-Z]\w*|•\w+\b', Operator),
+            (r'[A-Z]' + _iwc + r'*|•' + _iwc + r'+', Operator),
             #
             # Constant
             # ========
@@ -102,8 +107,6 @@ class BQNLexer(RegexLexer):
             # ================
             (r'[;:?𝕨𝕩𝕗𝕘𝕤]', Name.Entity),
             #
-            
+
         ],
     }
-
-    
