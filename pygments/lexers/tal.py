@@ -28,6 +28,7 @@ class TalLexer(RegexLexer):
     mimetypes = ['text/x-uxntal']
     url = 'https://wiki.xxiivv.com/site/uxntal.html'
     version_added = '2.12'
+    _example = 'tal/piano.tal'
 
     instructions = [
         'BRK', 'LIT', 'INC', 'POP', 'DUP', 'NIP', 'SWP', 'OVR', 'ROT',

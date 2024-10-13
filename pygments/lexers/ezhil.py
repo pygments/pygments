@@ -27,6 +27,7 @@ class EzhilLexer(RegexLexer):
     filenames = ['*.n']
     mimetypes = ['text/x-ezhil']
     version_added = '2.1'
+    _example = 'ezhil/ezhil_primefactors.n'
     # Refer to tamil.utf8.tamil_letters from open-tamil for a stricter version of this.
     # This much simpler version is close enough, and includes combining marks.
     _TALETTERS = '[a-zA-Z_]|[\u0b80-\u0bff]'
