@@ -68,7 +68,7 @@ class MIMELexer(RegexLexer):
     def get_header_tokens(self, match):
         field = match.group(1)
 
-        if field.lower() in self.attention_headers:
+        if field.lower() in ("content-type", "content-transfer-encoding"):
             yield match.start(1), Name.Tag, field + ":"
             yield match.start(2), Text.Whitespace, match.group(2)
 
@@ -179,8 +179,6 @@ class MIMELexer(RegexLexer):
     def store_content_transfer_encoding(self, match):
         self.content_transfer_encoding = match.group(0).lower()
         yield match.start(0), Name.Constant, match.group(0)
-
-    attention_headers = {"content-type", "content-transfer-encoding"}
 
     tokens = {
         "root": [
