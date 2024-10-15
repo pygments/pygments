@@ -8,12 +8,18 @@
     :license: BSD, see LICENSE for details.
 """
 
+from __future__ import annotations
+
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include
 from pygments.lexers import get_lexer_for_mimetype
 from pygments.token import Comment, Name, Operator, Other, String, Text
 from pygments.util import ClassNotFound, get_int_opt
+
+if typing.TYPE_CHECKING:
+    from pygments.lexer import Lexer
 
 __all__ = ["MIMELexer"]
 
@@ -129,6 +135,24 @@ class MIMELexer(RegexLexer):
         if lpos_start != len(entire_body):
             yield pos_part_start, Text, entire_body[lpos_start:]
 
+    def get_bodypart_lexer(self) -> Lexer:
+        possible_mime_types = [self.content_type]
+
+        if "+" in self.content_type:
+            # content type fallback
+            # application/calendar+xml can be treated as application/xml
+            # https://github.com/pygments/pygments/blob/2.2.0/pygments/lexers/textfmts.py#L155-L160
+            general_type = re.sub(r"^(.*)/.*\+(.*)$", r"\1/\2", self.content_type)
+            possible_mime_types.append(general_type)
+
+        for content_type in possible_mime_types:
+            try:
+                return get_lexer_for_mimetype(content_type)
+            except ClassNotFound:
+                pass
+
+        raise ClassNotFound(f"No lexer found for {self.content_type}")
+
     def get_bodypart_tokens(self, text):
         # return if:
         #  * no content
@@ -147,7 +171,7 @@ class MIMELexer(RegexLexer):
 
         # get lexer
         try:
-            lexer = get_lexer_for_mimetype(self.content_type)
+            lexer = self.get_bodypart_lexer()
         except ClassNotFound:
             return [(0, Other, text)]
 
