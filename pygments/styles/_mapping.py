@@ -14,6 +14,7 @@ STYLES = {
     'DefaultStyle': ('pygments.styles.default', 'default', ()),
     'DraculaStyle': ('pygments.styles.dracula', 'dracula', ()),
     'EmacsStyle': ('pygments.styles.emacs', 'emacs', ()),
+    'EverforestDarkStyle': ('pygments.styles.everforest', 'everforest-dark', ()),
     'FriendlyGrayscaleStyle': ('pygments.styles.friendly_grayscale', 'friendly_grayscale', ()),
     'FriendlyStyle': ('pygments.styles.friendly', 'friendly', ()),
     'FruityStyle': ('pygments.styles.fruity', 'fruity', ()),
