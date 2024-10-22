@@ -31,7 +31,7 @@ class MatlabLexer(RegexLexer):
     url = 'https://www.mathworks.com/products/matlab.html'
     version_added = '0.10'
 
-    _operators = r'-|==|~=|<=|>=|<|>|&&|&|~|\|\|?|\.\*|\*|\+|\.\^|\.\\|\./|/|\\'
+    _operators = r'-|==|~=|<=|>=|<|>|&&|&|~|\|\|?|\.\*|\*|\+|\.\^|\^|\.\\|\./|/|\\'
 
     tokens = {
         'expressions': [
@@ -3175,7 +3175,7 @@ class OctaveLexer(RegexLexer):
             # operators in Octave but not Matlab requiring escape for re:
             (r'\*=|\+=|\^=|\/=|\\=|\*\*|\+\+|\.\*\*', Operator),
             # operators requiring escape for re:
-            (r'\.\*|\*|\+|\.\^|\.\\|\.\/|\/|\\', Operator),
+            (r'\.\*|\*|\+|\.\^|\^|\.\\|\.\/|\/|\\', Operator),
 
 
             # punctuation:
@@ -3260,7 +3260,7 @@ class ScilabLexer(RegexLexer):
             # operators:
             (r'-|==|~=|<|>|<=|>=|&&|&|~|\|\|?', Operator),
             # operators requiring escape for re:
-            (r'\.\*|\*|\+|\.\^|\.\\|\.\/|\/|\\', Operator),
+            (r'\.\*|\*|\+|\.\^|\^|\.\\|\.\/|\/|\\', Operator),
 
             # punctuation:
             (r'[\[\](){}@.,=:;]+', Punctuation),
