@@ -14,7 +14,7 @@ a = rand(30);
 b = rand(30);
 
 c = a .* b ./ a \ ... comment at end of line and continuation
-    (b .* a + b - a);
+    (b .* a + b - a) ^ 2;
 
 c = a' * b';  % note: these ticks are for transpose, not quotes.
 
