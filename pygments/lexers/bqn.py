@@ -66,7 +66,7 @@ class BQNLexer(RegexLexer):
             # Numbers
             # =======
             # Includes the numeric literals and the Nothing character
-            (r'¯?([0-9]+\.?[0-9]+|[0-9]+)([Ee][¯]?[0-9]+)?|¯|∞|π|·', Number),
+            (r'¯?[0-9](([0-9]|_)*\.?([0-9]|_)+|([0-9]|_)*)([Ee][¯]?([0-9]|_)+)?|¯|∞|π|·', Number),
             #
             # Variables
             # =========
