@@ -38,7 +38,7 @@ class IgorLexer(RegexLexer):
     types = (
         'variable', 'string', 'constant', 'strconstant', 'NVAR', 'SVAR', 'WAVE',
         'STRUCT', 'dfref', 'funcref', 'char', 'uchar', 'int16', 'uint16', 'int32',
-        'uint32', 'int64', 'uint64', 'float', 'double'
+        'uint32', 'int64', 'uint64', 'float', 'double', 'int'
     )
     keywords = (
         'override', 'ThreadSafe', 'MultiThread', 'static',  'Proc',
