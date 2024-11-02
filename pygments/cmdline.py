@@ -463,7 +463,8 @@ def main_inner(parser, argns):
             fmter.encoding = terminal_encoding(sys.stdout)
 
     # provide coloring under Windows, if possible
-    if not outfn and sys.platform in ('win32', 'cygwin') and \
+    if not outfn and not argns.color and \
+       sys.platform in ('win32', 'cygwin') and \
        fmter.name in ('Terminal', 'Terminal256'):  # pragma: no cover
         # unfortunately colorama doesn't support binary streams on Py3
         outfile = UnclosingTextIOWrapper(outfile, encoding=fmter.encoding)
@@ -596,6 +597,12 @@ def main(args=sys.argv):
         'be only used in conjunction with -L.',
         default=False,
         action='store_true')
+    flags.add_argument(
+        '--color', action='store_true', default=False,
+        help=(
+            'Turn off fixes for Windows terminal, and use ANSI color '
+            'sequences.'
+        ))
 
     special_modes_group = parser.add_argument_group(
         'Special modes - do not do any highlighting')

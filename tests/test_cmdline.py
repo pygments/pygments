@@ -231,6 +231,22 @@ def test_C_opt():
     assert 'text' == o.strip()
 
 
+def test_color_opt():
+    # tests output of main using the --color option to the result of using the api
+    # near copy of test_normal
+    from pygments.lexers import PythonLexer
+    from pygments.formatters import TerminalFormatter
+
+    filename = TESTFILE
+    cmdline_output = check_success('--color', '-lpython', '-fterminal', filename)
+
+    with open(filename, 'rb') as fp:
+        code = fp.read()
+
+    highlight_output = highlight(code, PythonLexer(), TerminalFormatter())
+    assert cmdline_output == highlight_output
+
+
 @pytest.mark.parametrize('opts', [
     ('-X',),
     ('-L', '-lpy'),
