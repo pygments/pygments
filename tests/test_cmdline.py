@@ -231,18 +231,18 @@ def test_C_opt():
     assert 'text' == o.strip()
 
 
-def _nl_to_crnl(text):
-    """Converts *text* to have DOS line endings."""
-    return text.replace('\n', '\r\n')
+def _fix_line_endings(text):
+    """Converts *text* to have the correct line endings for os."""
+    return text.replace('\n', os.linesep)
 
 
 @pytest.mark.parametrize('opts,transform', [
     (('--color',), None),
     (('--strip-escapes=raw',), None),
-    (('--strip-escapes=semi-raw',), _nl_to_crnl),
-    (('--strip-escapes=off',), _nl_to_crnl),
+    (('--strip-escapes=semi-raw',), _fix_line_endings),
+    (('--strip-escapes=off',), _fix_line_endings),
 ])
-def test_color_opt(opts, transform):
+def test_strip_escapes_opt(opts, transform):
     # tests output of main using the --color option to the result of using the api
     # near copy of test_normal
     from pygments.lexers import PythonLexer
