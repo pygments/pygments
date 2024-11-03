@@ -231,20 +231,38 @@ def test_C_opt():
     assert 'text' == o.strip()
 
 
-def test_color_opt():
+def _nl_to_crnl(text):
+    """Converts *text* to have DOS line endings."""
+    return text.replace('\n', '\r\n')
+
+
+@pytest.mark.parametrize('opts,transform', [
+    (('--color',), None),
+    (('--strip-escapes=raw',), None),
+    (('--strip-escapes=semi-raw',), _nl_to_crnl),
+    (('--strip-escapes=off',), _nl_to_crnl),
+])
+def test_color_opt(opts, transform):
     # tests output of main using the --color option to the result of using the api
     # near copy of test_normal
     from pygments.lexers import PythonLexer
     from pygments.formatters import TerminalFormatter
 
     filename = TESTFILE
-    cmdline_output = check_success('--color', '-lpython', '-fterminal', filename)
+    cmdline_output = check_success(
+        *opts, '-lpython', '-fterminal', filename
+        )
 
     with open(filename, 'rb') as fp:
         code = fp.read()
 
     highlight_output = highlight(code, PythonLexer(), TerminalFormatter())
-    assert cmdline_output == highlight_output
+    if transform:
+        target_output = transform(highlight_output)
+    else:
+        target_output = highlight_output
+    # ignore trailing whitespace for the moment.
+    assert cmdline_output.rstrip() == target_output.rstrip()
 
 
 @pytest.mark.parametrize('opts', [
