@@ -179,6 +179,7 @@ def _print_list_as_json(requested_items):
 
     json.dump(result, sys.stdout)
 
+
 def main_inner(parser, argns):
     if argns.help:
         parser.print_help()
@@ -516,6 +517,8 @@ def main_inner(parser, argns):
         finally:
             if outfn:
                 outfile.close()
+            elif hasattr(outfile, 'flush'):
+                outfile.flush()
         return 0
     else:
         # line by line processing of stdin (eg: for 'tail -f')...

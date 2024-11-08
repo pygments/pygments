@@ -21,6 +21,7 @@ from pygments import cmdline, highlight
 
 TESTDIR = path.dirname(path.abspath(__file__))
 TESTFILE = path.join(TESTDIR, 'test_cmdline.py')
+TESTFILE_TINY = os.path.join(TESTDIR, "examplefiles", "python", "py3_test.py")
 
 TESTCODE = '''\
 def func(args):
@@ -248,7 +249,8 @@ def test_strip_escapes_opt(opts, transform):
     from pygments.lexers import PythonLexer
     from pygments.formatters import TerminalFormatter
 
-    filename = TESTFILE
+    # filename = TESTFILE
+    filename = TESTFILE_TINY
     cmdline_output = check_success(
         *opts, '-lpython', '-fterminal', filename
         )
