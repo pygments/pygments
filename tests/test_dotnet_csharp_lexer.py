@@ -7,17 +7,21 @@ from pygments import lex
 from pygments.lexers.dotnet import CSharpLexer
 from pygments.token import Name, Keyword
 
+
 KEYWORD_FILE_TESTS = [
-    ("file record X(int file);", True,
-        [Keyword, Name]),
+    ("file class X { }", True, [Keyword]),
+    ("file record X(int file);", True, [Keyword, Name]),
+    ("file abstract class X { }", True, [Keyword]),
+    ("file sealed class X { }", True, [Keyword]),
+    ("file static class X { }", True, [Keyword]),
+    ("file enum X { file }", True, [Keyword, Name]),
+    # Semantically invalid, but syntactically correct:
+    ("file new record X(int file);", True, [Keyword, Name]),
     ('int file(Func<int> file) => file();', True,
         [Name.Function, Name, Name]),
-    ('int file = Program.file(file => 42);', True,
-        [Name, Name, Name]),
-    ('await file()', False,
-        [Name]),
-    ('await someObject.file()', True,
-        [Name]),
+    ('int file = Program.file(file => 42);', True, [Name, Name, Name]),
+    ('await file()', False, [Name]),
+    ('await someObject.file()', True, [Name]),
 ]
 
 
