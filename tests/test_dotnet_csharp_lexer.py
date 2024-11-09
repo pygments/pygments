@@ -5,19 +5,19 @@ import pytest
 
 from pygments import lex
 from pygments.lexers.dotnet import CSharpLexer
-from pygments.token import Token
+from pygments.token import Name, Keyword
 
 KEYWORD_FILE_TESTS = [
-    ("file record X(int file);", False,
-        [Token.Keyword, Token.Name]),
-    ('int file(Func<int> file) => file();', False,
-        [Token.Name.Function, Token.Name, Token.Name]),
-    ('int file = Program.file(file => 42);', False,
-        [Token.Name, Token.Name, Token.Name]),
+    ("file record X(int file);", True,
+        [Keyword, Name]),
+    ('int file(Func<int> file) => file();', True,
+        [Name.Function, Name, Name]),
+    ('int file = Program.file(file => 42);', True,
+        [Name, Name, Name]),
     ('await file()', False,
-        [Token.Name]),
-    ('await someObject.file()', False,
-        [Token.Name]),
+        [Name]),
+    ('await someObject.file()', True,
+        [Name]),
 ]
 
 
