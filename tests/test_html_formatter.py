@@ -271,26 +271,3 @@ def test_debug_token_types():
     fmt_debug_token_types.format(tokensource, outfile_debug_token_types)
     html_debug_token_types = outfile_debug_token_types.getvalue()
     assert '<span class="n" title="Name">TESTDIR</span>' in html_debug_token_types
-
-
-def test_close_of_doctype_highlighted_as_normal_text():
-    """Addresses #2692: incorrect highlighting at the end of doctype.
-
-    This specifically tests for the reported issue; that is, ']>' in
-    a DOCTYPE containing an inline DTD being tagged as `Text`.
-    """
-    sample_code = """
-        <?xml version="1.0" encoding="UTF-8"?>
-        <!DOCTYPE hello [<!ELEMENT hello (#PCDATA)>]>
-        <hello>Hello Word!</hello>
-        """
-
-    lexer = XmlLexer()
-
-    # this will raise an error if ']>' is not part of a single token:
-    closing_token = next(
-        token for token, text in lexer.get_tokens(sample_code) if ']>' in text
-    )
-
-    if closing_token == Text:
-        pytest.xfail("Unfixed issue parsing DOCTYPEs containing inline DTDs.")

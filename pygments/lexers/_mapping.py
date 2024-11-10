@@ -578,6 +578,7 @@ LEXERS = {
     'XmlLexer': ('pygments.lexers.html', 'XML', ('xml',), ('*.xml', '*.xsl', '*.rss', '*.xslt', '*.xsd', '*.wsdl', '*.wsf'), ('text/xml', 'application/xml', 'image/svg+xml', 'application/rss+xml', 'application/atom+xml')),
     'XmlPhpLexer': ('pygments.lexers.templates', 'XML+PHP', ('xml+php',), (), ('application/xml+php',)),
     'XmlSmartyLexer': ('pygments.lexers.templates', 'XML+Smarty', ('xml+smarty',), (), ('application/xml+smarty',)),
+    'XmlWithInlineDtdLexer': ('pygments.lexers.html', 'XmlDtd', ('xml+dtd', 'xml-dtd'), (), ()),
     'XorgLexer': ('pygments.lexers.xorg', 'Xorg', ('xorg.conf',), ('xorg.conf',), ()),
     'XppLexer': ('pygments.lexers.dotnet', 'X++', ('xpp', 'x++'), ('*.xpp',), ()),
     'XsltLexer': ('pygments.lexers.html', 'XSLT', ('xslt',), ('*.xsl', '*.xslt', '*.xpl'), ('application/xsl+xml', 'application/xslt+xml')),
