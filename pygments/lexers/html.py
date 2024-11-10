@@ -11,9 +11,9 @@
 import re
 
 from pygments.lexer import RegexLexer, ExtendedRegexLexer, include, bygroups, \
-    default, using
+    default, using, DelegatingLexer
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Punctuation, Whitespace
+    Punctuation, Whitespace, Other
 from pygments.util import looks_like_xml, html_doctype_matches
 
 from pygments.lexers.javascript import JavascriptLexer
@@ -22,7 +22,7 @@ from pygments.lexers.css import CssLexer, _indentation, _starts_block
 from pygments.lexers.ruby import RubyLexer
 
 __all__ = ['HtmlLexer', 'DtdLexer', 'XmlLexer', 'XsltLexer', 'HamlLexer',
-           'ScamlLexer', 'PugLexer', 'UrlEncodedLexer']
+           'ScamlLexer', 'PugLexer', 'UrlEncodedLexer', 'XmlWithInlineDtdLexer']
 
 
 class HtmlLexer(RegexLexer):
@@ -210,6 +210,7 @@ class XmlLexer(RegexLexer):
 
     tokens = {
         'root': [
+            (r'<!(?i:doctype)\b', Comment.Preproc, 'doctype'),
             (r'[^<&\s]+', Text),
             (r'[^<&\S]+', Whitespace),
             (r'&\S*?;', Name.Entity),
@@ -231,11 +232,38 @@ class XmlLexer(RegexLexer):
             ("'.*?'", String, '#pop'),
             (r'[^\s>]+', String, '#pop'),
         ],
+        'doctype': [
+            (r'\s+', Comment.Preproc),
+            (r'\w+', Comment.Preproc),
+            (r'(?:"[^"]*"|'+r"'[^']*')", Comment.Preproc),
+            # now we just need a language that recognises the outermost
+            # square brackets and passes the rest to `DtdLexer`.
+            (r'\[', Other, 'embedded_dtd'),
+            (r'>', Comment.Preproc, '#pop')
+        ],
+        'embedded_dtd': [
+            ((r'[^]"\']+|"[^"]+' + r"'[^']+'"), Other),
+            (r'\[', Other, '#push'),
+            (r'\]', Other, '#pop')
+        ]
     }
 
     def analyse_text(text):
         if looks_like_xml(text):
             return 0.45  # less than HTML
+
+
+class XmlWithInlineDtdLexer(DelegatingLexer):
+    """
+    A delegating lexer that uses `:class:`pygments.lexers.XmlLexer` to process
+    all the document barring inline DTDs, which are delegated to
+    :class:`pygments.lexers.DtdLexer`.
+    """
+    name = 'XML_WITH_INLINE_DTD'
+    aliases = ['xml+dtd', 'xml-with-inline-dtd']
+
+    def __init__(self, **kwargs):
+        super(XmlWithInlineDtdLexer, self).__init__(DtdLexer, XmlLexer, **kwargs)
 
 
 class XsltLexer(XmlLexer):
