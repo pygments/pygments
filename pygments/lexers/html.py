@@ -192,21 +192,12 @@ class DtdLexer(RegexLexer):
             return 0.8
 
 
-class XmlLexer(RegexLexer):
+class XmlLexerBase(RegexLexer):
     """
     Generic lexer for XML (eXtensible Markup Language).
     """
 
     flags = re.MULTILINE | re.DOTALL
-
-    name = 'XML'
-    aliases = ['xml']
-    filenames = ['*.xml', '*.xsl', '*.rss', '*.xslt', '*.xsd',
-                 '*.wsdl', '*.wsf']
-    mimetypes = ['text/xml', 'application/xml', 'image/svg+xml',
-                 'application/rss+xml', 'application/atom+xml']
-    url = 'https://www.w3.org/XML'
-    version_added = ''
 
     tokens = {
         'root': [
@@ -248,9 +239,31 @@ class XmlLexer(RegexLexer):
         ]
     }
 
+
+class XmlLexer(XmlLexerBase):
+    """
+    Generic lexer for XML (eXtensible Markup Language).
+    """
+    name = 'XML'
+    aliases = ['xml']
+    filenames = ['*.xml', '*.xsl', '*.rss', '*.xslt', '*.xsd',
+                 '*.wsdl', '*.wsf']
+    mimetypes = ['text/xml', 'application/xml', 'image/svg+xml',
+                 'application/rss+xml', 'application/atom+xml']
+    url = 'https://www.w3.org/XML'
+    version_added = ''
+
     def analyse_text(text):
         if looks_like_xml(text):
             return 0.45  # less than HTML
+
+    def get_tokens_unprocessed(self, text):
+        tokens = XmlLexerBase.get_tokens_unprocessed(self, text)
+        for index, token, value in tokens:
+            if token == Other:
+                yield index, Comment.Preproc, value
+            else:
+                yield index, token, value
 
 
 class XmlWithInlineDtdLexer(DelegatingLexer):
@@ -259,11 +272,19 @@ class XmlWithInlineDtdLexer(DelegatingLexer):
     all the document barring inline DTDs, which are delegated to
     :class:`pygments.lexers.DtdLexer`.
     """
-    name = 'XML_WITH_INLINE_DTD'
-    aliases = ['xml+dtd', 'xml-with-inline-dtd']
+    name = 'XmlDtd'
+    aliases = ['xml+dtd', 'xml-dtd']
+    filenames = XmlLexer.filenames
+    mimetypes = XmlLexer.mimetypes
+    url = XmlLexer.url
+    version_added = ''
+
+    def analyse_text(text):
+        if looks_like_xml(text):
+            return 0.40  # less than XML
 
     def __init__(self, **kwargs):
-        super(XmlWithInlineDtdLexer, self).__init__(DtdLexer, XmlLexer, **kwargs)
+        super().__init__(DtdLexer, XmlLexerBase, **kwargs)
 
 
 class XsltLexer(XmlLexer):

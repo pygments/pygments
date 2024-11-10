@@ -9,7 +9,17 @@
 '%>'          Name.Tag
 '\n \n'       Text.Whitespace
 
-'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"\n"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">' Comment.Preproc
+'<!DOCTYPE'   Comment.Preproc
+' '           Comment.Preproc
+'html'        Comment.Preproc
+' '           Comment.Preproc
+'PUBLIC'      Comment.Preproc
+' '           Comment.Preproc
+'"-//W3C//DTD XHTML 1.0 Transitional//EN"' Comment.Preproc
+'\n'          Comment.Preproc
+
+'"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"' Comment.Preproc
+'>'           Comment.Preproc
 '\n \n'       Text.Whitespace
 
 '<script'     Name.Tag
