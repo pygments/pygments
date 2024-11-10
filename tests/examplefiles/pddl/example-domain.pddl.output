@@ -1,0 +1,132 @@
+'; a comment' Comment.Singleline
+'\n\n'        Text.Whitespace
+
+'('           Punctuation
+'define'      Name.Builtin
+' '           Text.Whitespace
+'('           Punctuation
+'domain'      Name.Builtin
+' '           Text.Whitespace
+'example-domain' Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+'('           Punctuation
+':requirements' Keyword
+' '           Text.Whitespace
+':typing'     Keyword
+' '           Text.Whitespace
+':action-costs' Keyword
+')'           Punctuation
+'\n    '      Text.Whitespace
+'('           Punctuation
+':types'      Keyword
+' '           Text.Whitespace
+'item'        Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+'('           Punctuation
+':predicates' Keyword
+'\n        '  Text.Whitespace
+'('           Punctuation
+'adjacent'    Name
+' '           Text.Whitespace
+'?a1'         Name.Variable
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'item'        Name
+' '           Text.Whitespace
+'?a2'         Name.Variable
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'item'        Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+')'           Punctuation
+'\n    '      Text.Whitespace
+'('           Punctuation
+':functions'  Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'total-cost'  Name
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'number'      Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+'('           Punctuation
+':action'     Keyword
+' '           Text.Whitespace
+'swap'        Name
+'\n        '  Text.Whitespace
+':parameters' Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'?a1'         Name.Variable
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'item'        Name
+' '           Text.Whitespace
+'?a2'         Name.Variable
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'item'        Name
+')'           Punctuation
+'\n        '  Text.Whitespace
+':precondition' Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'adjacent'    Name
+' '           Text.Whitespace
+'?a1'         Name.Variable
+' '           Text.Whitespace
+'?a2'         Name.Variable
+')'           Punctuation
+'\n        '  Text.Whitespace
+':effect'     Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'and'         Name.Builtin
+'\n            ' Text.Whitespace
+'('           Punctuation
+'adjacent'    Name
+' '           Text.Whitespace
+'?a2'         Name.Variable
+' '           Text.Whitespace
+'?a1'         Name.Variable
+')'           Punctuation
+'\n            ' Text.Whitespace
+'('           Punctuation
+'not'         Name.Builtin
+' '           Text.Whitespace
+'('           Punctuation
+'adjacent'    Name
+' '           Text.Whitespace
+'?a1'         Name.Variable
+' '           Text.Whitespace
+'?a2'         Name.Variable
+')'           Punctuation
+')'           Punctuation
+'\n            ' Text.Whitespace
+'('           Punctuation
+'increase'    Name.Builtin
+' '           Text.Whitespace
+'('           Punctuation
+'total-cost'  Name
+')'           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n        '  Text.Whitespace
+')'           Punctuation
+'\n    '      Text.Whitespace
+')'           Punctuation
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace
