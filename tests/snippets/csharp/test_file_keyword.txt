@@ -1,0 +1,141 @@
+---input---
+file class X { }
+file record X(int file);
+file abstract class X { }
+file sealed class X { }
+file static class X { }
+file enum X { file }
+file new record X(int file);
+int file(Func<int> file) => file();
+int file = Program.file(file => 42);
+
+---tokens---
+'file'        Keyword
+' '           Text.Whitespace
+'class'       Keyword
+' '           Text.Whitespace
+'X'           Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'file'        Keyword
+' '           Text.Whitespace
+'record'      Keyword
+' '           Text.Whitespace
+'X'           Name.Function
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text.Whitespace
+'file'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'file'        Keyword
+' '           Text.Whitespace
+'abstract'    Keyword
+' '           Text.Whitespace
+'class'       Keyword
+' '           Text.Whitespace
+'X'           Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'file'        Keyword
+' '           Text.Whitespace
+'sealed'      Keyword
+' '           Text.Whitespace
+'class'       Keyword
+' '           Text.Whitespace
+'X'           Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'file'        Keyword
+' '           Text.Whitespace
+'static'      Keyword
+' '           Text.Whitespace
+'class'       Keyword
+' '           Text.Whitespace
+'X'           Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'file'        Keyword
+' '           Text.Whitespace
+'enum'        Keyword
+' '           Text.Whitespace
+'X'           Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'file'        Name
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'file'        Keyword
+' '           Text.Whitespace
+'new'         Keyword
+' '           Text.Whitespace
+'record'      Keyword
+' '           Text.Whitespace
+'X'           Name.Function
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text.Whitespace
+'file'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'file'        Name.Function
+'('           Punctuation
+'Func'        Name
+'<'           Operator
+'int'         Keyword.Type
+'>'           Operator
+' '           Text.Whitespace
+'file'        Name
+')'           Punctuation
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'file'        Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'file'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Program'     Name
+'.'           Punctuation
+'file'        Name
+'('           Punctuation
+'file'        Name
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'42'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
