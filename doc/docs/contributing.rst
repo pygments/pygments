@@ -39,12 +39,12 @@ Python support
 --------------
 
 Pygments supports all supported Python versions as per the `Python
-Developer's Guide <devguide>`_. Additionally, the default Python
+Developer's Guide`_. Additionally, the default Python
 version of the latest stable version of RHEL, Ubuntu LTS, and Debian
 are supported, even if they're officially EOL. Supporting other
 end-of-life versions is a non-goal of Pygments.
 
-.. _devguide: https://devguide.python.org/versions/
+.. _Python Developer's Guide: https://devguide.python.org/versions/
 
 
 Validation
