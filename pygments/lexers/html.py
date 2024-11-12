@@ -22,7 +22,8 @@ from pygments.lexers.css import CssLexer, _indentation, _starts_block
 from pygments.lexers.ruby import RubyLexer
 
 __all__ = ['HtmlLexer', 'DtdLexer', 'XmlLexer', 'XsltLexer', 'HamlLexer',
-           'ScamlLexer', 'PugLexer', 'UrlEncodedLexer', 'XmlWithInlineDtdLexer']
+           'ScamlLexer', 'PugLexer', 'UrlEncodedLexer', 'XmlWithInlineDtdLexer',
+           'XmlLexerBase']
 
 
 class HtmlLexer(RegexLexer):
@@ -194,10 +195,21 @@ class DtdLexer(RegexLexer):
 
 class XmlLexerBase(RegexLexer):
     """
-    Generic lexer for XML (eXtensible Markup Language).
+    Base for the generic lexer for XML (eXtensible Markup Language).
+
+    This version tags everything within an inline (or embedded)
+    DTD as ``Other``, allowing it to either be reanalysed as a
+    DTD by ``XmlLexerWithInlineDtd`` or replaced by ``Comment.Preproc``
+    by ``XmlLexer``.
     """
 
     flags = re.MULTILINE | re.DOTALL
+    name = 'XmlDtdBase'
+    aliases = ['xml-dtd-other', 'xml+dtd-base']
+    filenames = ["*.xml"]
+    mimetypes = []
+    url = 'https://www.w3.org/XML'
+    version_added = ''
 
     tokens = {
         'root': [
@@ -227,17 +239,30 @@ class XmlLexerBase(RegexLexer):
             (r'\s+', Comment.Preproc),
             (r'\w+', Comment.Preproc),
             (r'(?:"[^"]*"|'+r"'[^']*')", Comment.Preproc),
-            # now we just need a language that recognises the outermost
-            # square brackets and passes the rest to `DtdLexer`.
             (r'\[', Other, 'embedded_dtd'),
             (r'>', Comment.Preproc, '#pop')
         ],
         'embedded_dtd': [
-            ((r'[^]"\']+|"[^"]+' + r"'[^']+'"), Other),
-            (r'\[', Other, '#push'),
-            (r'\]', Other, '#pop')
+            # TODO: cost of r'<!--.*?-->' vs r'<!--+[^-]+(?:-[^-]+|--+[^>-][^-]+)*-+->'
+            ((  r'[^\]<]+' # eg "  %HTMLsymbol;  "
+                r'|<!\[[^\[]+\[.*?\]\]>'  # eg "<[ <![ %HT.Res; [ ... ]]>"
+                r'|<!--.*?-->'  # eg "<!-- comment [ -->"
+                ), Other),
+            (r'<!(?![\[-])', Other, 'embedded_dtd_declaration'),
+            (r'\]', Other, '#pop'),
+        ],
+        'embedded_dtd_declaration': [
+            (r'"[^"]*"|\'[^\']*\'', Other), # quoted strings
+            (r'--.*?--+', Other), # comment in declaration
+            (r'(?:[^-\[\'">]+|-(?!-))+', Other), # miscellany
+            # (r'\[', Other, 'embedded_dtd'), # if recursion is allowed?
+            (r'>', Other, '#pop'),
         ]
     }
+
+    def analyse_text(text):
+        if looks_like_xml(text):
+            return 0.25  # less than XML
 
 
 class XmlLexer(XmlLexerBase):
@@ -246,12 +271,12 @@ class XmlLexer(XmlLexerBase):
     """
     name = 'XML'
     aliases = ['xml']
+    version_added = ''
     filenames = ['*.xml', '*.xsl', '*.rss', '*.xslt', '*.xsd',
                  '*.wsdl', '*.wsf']
     mimetypes = ['text/xml', 'application/xml', 'image/svg+xml',
                  'application/rss+xml', 'application/atom+xml']
     url = 'https://www.w3.org/XML'
-    version_added = ''
 
     def analyse_text(text):
         if looks_like_xml(text):
@@ -273,15 +298,15 @@ class XmlWithInlineDtdLexer(DelegatingLexer):
     :class:`pygments.lexers.DtdLexer`.
     """
     name = 'XmlDtd'
-    aliases = ['xml+dtd', 'xml-dtd']
-    filenames = XmlLexer.filenames
-    mimetypes = XmlLexer.mimetypes
+    aliases = ['xml+dtd']
+    filenames = ["*.xml"]
+    mimetypes = []
     url = XmlLexer.url
     version_added = ''
 
     def analyse_text(text):
         if looks_like_xml(text):
-            return 0.40  # less than XML
+            return 0.30  # less than XML
 
     def __init__(self, **kwargs):
         super().__init__(DtdLexer, XmlLexerBase, **kwargs)
