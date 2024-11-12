@@ -27,6 +27,7 @@ class FortranLexer(RegexLexer):
     filenames = ['*.f03', '*.f90', '*.F03', '*.F90']
     mimetypes = ['text/x-fortran']
     version_added = '0.10'
+    _example = 'fortran/zmlrpc.f90'
     flags = re.IGNORECASE | re.MULTILINE
 
     # Data Types: INTEGER, REAL, COMPLEX, LOGICAL, CHARACTER and DOUBLE PRECISION
@@ -178,6 +179,7 @@ class FortranFixedLexer(RegexLexer):
     filenames = ['*.f', '*.F']
     url = 'https://fortran-lang.org/'
     version_added = '2.1'
+    _example = 'fortranfixed/ahcon.f'
 
     flags = re.IGNORECASE
 
