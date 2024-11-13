@@ -179,6 +179,10 @@ def main(argv):
                 print(f"{fn}: cannot open: {err}")
                 num += 1
                 continue
+            except UnicodeDecodeError as err:
+                print(f"{fn}: error decoding: {err}")
+                num += 1
+                continue
 
             for checker in checkerlist:
                 if not in_pygments_pkg and checker.only_pkg:
