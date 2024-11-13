@@ -1,0 +1,123 @@
+---input---
+use fmt;
+
+export fn main() void = {
+	const greetings = [
+		"Hello, world!",
+		"¡Hola Mundo!",
+		"Γειά σου Κόσμε!",
+		"Привіт, світе!",
+		"こんにちは世界！",
+	];
+	for (let greeting .. greetings) {
+		fmt::println(greeting)!;
+	};
+};
+
+---tokens---
+'use fmt;'    Comment.Preproc
+'\n'          Text
+
+'\n'          Text
+
+'export'      Keyword
+' '           Text
+'fn'          Keyword
+' '           Text
+'main'        Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'void'        Keyword.Type
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'const'       Keyword
+' '           Text
+'greetings'   Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'"'           Literal.String
+'Hello, world!' Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'"'           Literal.String
+'¡Hola Mundo!' Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'"'           Literal.String
+'Γειά σου Κόσμε!' Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'"'           Literal.String
+'Привіт, світе!' Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'"'           Literal.String
+'こんにちは世界！'    Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n'          Text
+
+'\t'          Text
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'for'         Keyword
+' '           Text
+'('           Punctuation
+'let'         Keyword
+' '           Text
+'greeting'    Name
+' '           Text
+'..'          Operator
+' '           Text
+'greetings'   Name
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'\t\t'        Text
+'fmt'         Name
+':'           Operator
+':'           Operator
+'println'     Name
+'('           Punctuation
+'greeting'    Name
+')'           Punctuation
+'!'           Operator
+';'           Punctuation
+'\n'          Text
+
+'\t'          Text
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
