@@ -206,6 +206,7 @@ LEXERS = {
     'HamlLexer': ('pygments.lexers.html', 'Haml', ('haml',), ('*.haml',), ('text/x-haml',)),
     'HandlebarsHtmlLexer': ('pygments.lexers.templates', 'HTML+Handlebars', ('html+handlebars',), ('*.handlebars', '*.hbs'), ('text/html+handlebars', 'text/x-handlebars-template')),
     'HandlebarsLexer': ('pygments.lexers.templates', 'Handlebars', ('handlebars',), (), ()),
+    'HareLexer': ('pygments.lexers.hare', 'Hare', ('hare',), ('*.ha',), ('text/x-hare',)),
     'HaskellLexer': ('pygments.lexers.haskell', 'Haskell', ('haskell', 'hs'), ('*.hs',), ('text/x-haskell',)),
     'HaxeLexer': ('pygments.lexers.haxe', 'Haxe', ('haxe', 'hxsl', 'hx'), ('*.hx', '*.hxsl'), ('text/haxe', 'text/x-haxe', 'text/x-hx')),
     'HexdumpLexer': ('pygments.lexers.hexdump', 'Hexdump', ('hexdump',), (), ()),
