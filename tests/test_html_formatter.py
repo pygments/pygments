@@ -17,9 +17,7 @@ import pytest
 from pygments.formatters import HtmlFormatter, NullFormatter
 from pygments.formatters.html import escape_html
 from pygments.lexers import PythonLexer
-from pygments.lexers.html import XmlLexer
 from pygments.style import Style
-from pygments.token import Text
 
 TESTDIR = path.dirname(path.abspath(__file__))
 TESTFILE = path.join(TESTDIR, 'test_html_formatter.py')
