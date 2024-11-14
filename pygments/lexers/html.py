@@ -243,8 +243,8 @@ class XmlLexerBase(RegexLexer):
             (r'>', Comment.Preproc, '#pop')
         ],
         'embedded_dtd': [
-            # TODO: cost of r'<!--.*?-->' vs r'<!--+[^-]+(?:-[^-]+|--+[^>-][^-]+)*-+->'
-            ((  r'[^\]<]+' # eg "  %HTMLsymbol;  "
+            # Handles DTDs inside DOCTYPE declaration (embedded / inline use)
+            ((  r'[^\]<]+'  # eg "  %HTMLsymbol;  "
                 r'|<!\[[^\[]+\[.*?\]\]>'  # eg "<[ <![ %HT.Res; [ ... ]]>"
                 r'|<!--.*?-->'  # eg "<!-- comment [ -->"
                 ), Other),
@@ -252,10 +252,11 @@ class XmlLexerBase(RegexLexer):
             (r'\]', Other, '#pop'),
         ],
         'embedded_dtd_declaration': [
-            (r'"[^"]*"|\'[^\']*\'', Other), # quoted strings
-            (r'--.*?--+', Other), # comment in declaration
-            (r'(?:[^-\[\'">]+|-(?!-))+', Other), # miscellany
-            # (r'\[', Other, 'embedded_dtd'), # if recursion is allowed?
+            # Handles declarations in embedded / inline DTDs.
+            (r'"[^"]*"|\'[^\']*\'', Other),  # quoted strings
+            (r'--.*?--+', Other),  # comment in declaration
+            (r'(?:[^-\[\'">]+|-(?!-))+', Other),  # miscellany
+            # (r'\[', Other, 'embedded_dtd'),  # allow recursive embedding?
             (r'>', Other, '#pop'),
         ]
     }
