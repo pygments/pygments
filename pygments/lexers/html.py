@@ -213,7 +213,7 @@ class XmlLexerBase(RegexLexer):
 
     tokens = {
         'root': [
-            (r'<!(?i:doctype)\b', Comment.Preproc, 'doctype'),
+            (r'(?i)<!doctype\b', Comment.Preproc, 'doctype'),
             (r'[^<&\s]+', Text),
             (r'[^<&\S]+', Whitespace),
             (r'&\S*?;', Name.Entity),
@@ -248,7 +248,7 @@ class XmlLexerBase(RegexLexer):
                 r'|<!\[[^\[]+\[.*?\]\]>'  # eg "<[ <![ %HT.Res; [ ... ]]>"
                 r'|<!--.*?-->'  # eg "<!-- comment [ -->"
                 ), Other),
-            (r'<!(?![\[-])', Other, 'embedded_dtd_declaration'),
+            (r'<!(?!\[|-)', Other, 'embedded_dtd_declaration'),
             (r'\]', Other, '#pop'),
         ],
         'embedded_dtd_declaration': [
