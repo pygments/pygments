@@ -311,6 +311,7 @@ class PostgresConsoleLexer(Lexer):
     mimetypes = ['text/x-postgresql-psql']
     url = 'https://www.postgresql.org'
     version_added = '1.5'
+    _example = "psql/psql_session.txt"
 
     def get_tokens_unprocessed(self, data):
         sql = PsqlRegexLexer(**self.options)
@@ -387,7 +388,7 @@ class PostgresExplainLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'(:|\(|\)|ms|kB|->|\.\.|\,)', Punctuation),
+            (r'(:|\(|\)|ms|kB|->|\.\.|\,|\/)', Punctuation),
             (r'(\s+)', Whitespace),
 
             # This match estimated cost and effectively measured counters with ANALYZE
@@ -396,9 +397,9 @@ class PostgresExplainLexer(RegexLexer):
             (r'(actual)( )(=?)', bygroups(Name.Class, Whitespace, Punctuation), 'instrumentation'),
 
             # Misc keywords
-            (words(('actual', 'Memory Usage', 'Memory', 'Buckets', 'Batches',
+            (words(('actual', 'Memory Usage', 'Disk Usage', 'Memory', 'Buckets', 'Batches',
                     'originally', 'row', 'rows', 'Hits', 'Misses',
-                    'Evictions', 'Overflows'), suffix=r'\b'),
+                    'Evictions', 'Overflows', 'Planned Partitions'), suffix=r'\b'),
              Comment.Single),
 
             (r'(hit|read|dirtied|written|write|time|calls)(=)', bygroups(Comment.Single, Operator)),
@@ -713,7 +714,7 @@ class TransactSqlLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Whitespace),
-            (r'--.*?$\n?', Comment.Single),
+            (r'--.*[$|\n]?', Comment.Single),
             (r'/\*', Comment.Multiline, 'multiline-comments'),
             (words(_tsql_builtins.OPERATORS), Operator),
             (words(_tsql_builtins.OPERATOR_WORDS, suffix=r'\b'), Operator.Word),
@@ -1138,6 +1139,7 @@ class SqliteConsoleLexer(Lexer):
     mimetypes = ['text/x-sqlite3-console']
     url = 'https://www.sqlite.org'
     version_added = '0.11'
+    _example = "sqlite3/sqlite3.sqlite3-console"
 
     def get_tokens_unprocessed(self, data):
         sql = SqlLexer(**self.options)
