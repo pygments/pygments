@@ -146,7 +146,7 @@ def main(argv):
     out = io.StringIO()
 
     for root, dirs, files in os.walk(path):
-        for excl in ['.tox', '.git', 'examplefiles']:
+        for excl in ['.tox', '.git', '.venv', 'examplefiles']:
             if excl in dirs:
                 dirs.remove(excl)
         if '-i' in opts and abspath(root) in opts['-i']:
