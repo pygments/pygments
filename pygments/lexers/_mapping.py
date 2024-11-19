@@ -93,6 +93,7 @@ LEXERS = {
     'ClojureScriptLexer': ('pygments.lexers.jvm', 'ClojureScript', ('clojurescript', 'cljs'), ('*.cljs',), ('text/x-clojurescript', 'application/x-clojurescript')),
     'CobolFreeformatLexer': ('pygments.lexers.business', 'COBOLFree', ('cobolfree',), ('*.cbl', '*.CBL'), ()),
     'CobolLexer': ('pygments.lexers.business', 'COBOL', ('cobol',), ('*.cob', '*.COB', '*.cpy', '*.CPY'), ('text/x-cobol',)),
+    'CodeQLLexer': ('pygments.lexers.codeql', 'CodeQL', ('codeql', 'ql'), ('*.ql', '*.qll'), ()),
     'CoffeeScriptLexer': ('pygments.lexers.javascript', 'CoffeeScript', ('coffeescript', 'coffee-script', 'coffee'), ('*.coffee',), ('text/coffeescript',)),
     'ColdfusionCFCLexer': ('pygments.lexers.templates', 'Coldfusion CFC', ('cfc',), ('*.cfc',), ()),
     'ColdfusionHtmlLexer': ('pygments.lexers.templates', 'Coldfusion HTML', ('cfm',), ('*.cfm', '*.cfml'), ('application/x-coldfusion',)),
