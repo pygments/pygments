@@ -16,7 +16,7 @@ constants = [
 ]
 
 # Everything below this line is auto-generated from the GoogleSQL source code.
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 
 functionnames = [
     'ABS',
