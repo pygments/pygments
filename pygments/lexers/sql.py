@@ -1128,8 +1128,8 @@ class GoogleSqlLexer(RegexLexer):
 
     def analyse_text(text):
         tokens = collections.Counter(text.split())
-        return 0.01 * sum(count for t, count in tokens.items()
-                          if t in googlesql_identifiers)
+        return 0.001 * sum(count for t, count in tokens.items()
+                           if t in googlesql_identifiers)
 
 
 class SqliteConsoleLexer(Lexer):
