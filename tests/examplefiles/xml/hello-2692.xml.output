@@ -1,0 +1,22 @@
+'<?xml version="1.0" encoding="UTF-8"?>' Comment.Preproc
+'\n'          Text.Whitespace
+
+'<!DOCTYPE'   Comment.Preproc
+' '           Comment.Preproc
+'hello'       Comment.Preproc
+' '           Comment.Preproc
+'['           Comment.Preproc
+'<!'          Comment.Preproc
+'ELEMENT hello (#PCDATA)' Comment.Preproc
+'>'           Comment.Preproc
+']'           Comment.Preproc
+'>'           Comment.Preproc
+'\n'          Text.Whitespace
+
+'<hello'      Name.Tag
+'>'           Name.Tag
+'Hello'       Text
+' '           Text.Whitespace
+'Word!'       Text
+'</hello>'    Name.Tag
+'\n'          Text.Whitespace
