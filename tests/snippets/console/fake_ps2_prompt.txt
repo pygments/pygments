@@ -11,4 +11,10 @@ $ echo "> not a prompt"
 '"> not a prompt"' Literal.String.Double
 '\n'          Text.Whitespace
 
-'> not a prompt\n' Generic.Output
+'> '          Generic.Prompt
+'not'         Text
+' '           Text.Whitespace
+'a'           Text
+' '           Text.Whitespace
+'prompt'      Text
+'\n'          Text.Whitespace

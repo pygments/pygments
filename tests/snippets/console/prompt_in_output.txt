@@ -18,4 +18,12 @@ line1
 
 'line1\n'     Generic.Output
 
-'> file content, not prompt!\n' Generic.Output
+'> '          Generic.Prompt
+'file'        Text
+' '           Text.Whitespace
+'content,'    Text
+' '           Text.Whitespace
+'not'         Text
+' '           Text.Whitespace
+'prompt!'     Text
+'\n'          Text.Whitespace
