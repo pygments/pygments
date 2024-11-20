@@ -984,7 +984,7 @@ class GoogleSqlLexer(RegexLexer):
     filenames = ['*.googlesql', '*.googlesql.sql']
     mimetypes = ['text/x-google-sql', 'text/x-google-sql-aux']
     url = 'https://cloud.google.com/bigquery/googlesql'
-    version_added = '2.19.0'
+    version_added = '2.19'
 
     flags = re.IGNORECASE
     tokens = {
