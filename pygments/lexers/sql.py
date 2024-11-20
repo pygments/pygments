@@ -40,6 +40,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import collections
 import re
 
 from pygments.lexer import Lexer, RegexLexer, do_insertions, bygroups, words
@@ -55,8 +56,8 @@ from pygments.lexers._mysql_builtins import \
     MYSQL_FUNCTIONS, \
     MYSQL_KEYWORDS, \
     MYSQL_OPTIMIZER_HINTS
-import pygments.lexers._googlesql_builtins as googlesql_builtins
 
+from pygments.lexers import _googlesql_builtins
 from pygments.lexers import _tsql_builtins
 
 
@@ -77,6 +78,12 @@ name_between_backtick_re = re.compile(r'`[a-zA-Z_]\w*`')
 tsql_go_re = re.compile(r'\bgo\b', re.IGNORECASE)
 tsql_declare_re = re.compile(r'\bdeclare\s+@', re.IGNORECASE)
 tsql_variable_re = re.compile(r'@[a-zA-Z_]\w*\b')
+
+# Identifiers for analyse_text()
+googlesql_identifiers = (
+    _googlesql_builtins.functionnames
+    + _googlesql_builtins.keywords
+    + _googlesql_builtins.types)
 
 
 def language_callback(lexer, match):
@@ -975,7 +982,7 @@ class GoogleSqlLexer(RegexLexer):
     name = 'GoogleSQL'
     aliases = ['googlesql', 'zetasql']
     filenames = ['*.googlesql', '*.googlesql.sql']
-    mimetypes = ['text/x-google-sql', 'text/x-google-sql-aux', 'text/x-google-sql-plx']
+    mimetypes = ['text/x-google-sql', 'text/x-google-sql-aux']
     url = 'https://cloud.google.com/bigquery/googlesql'
     version_added = '2.19.0'
 
@@ -1037,12 +1044,12 @@ class GoogleSqlLexer(RegexLexer):
             (r'\b(character)(\s+)(set)\b', bygroups(Keyword, Whitespace, Keyword)),
 
             # Constants, types, keywords, functions, operators
-            (words(googlesql_builtins.constants, prefix=r'\b', suffix=r'\b'), Name.Constant),
-            (words(googlesql_builtins.types, prefix=r'\b', suffix=r'\b'), Keyword.Type),
-            (words(googlesql_builtins.keywords, prefix=r'\b', suffix=r'\b'), Keyword),
-            (words(googlesql_builtins.functionnames, prefix=r'\b', suffix=r'\b(\s*)(\()'),
+            (words(_googlesql_builtins.constants, prefix=r'\b', suffix=r'\b'), Name.Constant),
+            (words(_googlesql_builtins.types, prefix=r'\b', suffix=r'\b'), Keyword.Type),
+            (words(_googlesql_builtins.keywords, prefix=r'\b', suffix=r'\b'), Keyword),
+            (words(_googlesql_builtins.functionnames, prefix=r'\b', suffix=r'\b(\s*)(\()'),
              bygroups(Name.Function, Whitespace, Punctuation)),
-            (words(googlesql_builtins.operators, prefix=r'\b', suffix=r'\b'), Operator),
+            (words(_googlesql_builtins.operators, prefix=r'\b', suffix=r'\b'), Operator),
 
             # Schema object names
             #
@@ -1120,12 +1127,9 @@ class GoogleSqlLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        rating = 0
-        for reserved_identifiers in (googlesql_builtins.functionnames, googlesql_builtins.keywords, googlesql_builtins.types):
-            for reserved_identifier in reserved_identifiers:
-                if reserved_identifier in text:
-                    rating += 0.01
-        return rating
+        tokens = collections.Counter(text.split())
+        return 0.01 * sum(count for t, count in tokens.items()
+                          if t in googlesql_identifiers)
 
 
 class SqliteConsoleLexer(Lexer):
