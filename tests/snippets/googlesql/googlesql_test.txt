@@ -1,0 +1,75 @@
+---input---
+BEGIN TRANSACTION
+CREATE TEMP TABLE Flights(total INT64)  AS SELECT * FROM UNNEST([10,23,3,14,55]) AS a;
+SELECT *, SPLIT_SUBSTR('blah', 3||4) FROM Flights;
+
+---tokens---
+'BEGIN'       Keyword
+' '           Text.Whitespace
+'TRANSACTION' Keyword
+'\n'          Text.Whitespace
+
+'CREATE'      Keyword
+' '           Text.Whitespace
+'TEMP'        Keyword
+' '           Text.Whitespace
+'TABLE'       Keyword
+' '           Text.Whitespace
+'Flights'     Name
+'('           Punctuation
+'total'       Name
+' '           Text.Whitespace
+'INT64'       Keyword.Type
+')'           Punctuation
+'  '          Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'SELECT'      Keyword
+' '           Text.Whitespace
+'*'           Error
+' '           Text.Whitespace
+'FROM'        Keyword
+' '           Text.Whitespace
+'UNNEST'      Keyword
+'('           Punctuation
+'['           Error
+'10'          Literal.Number.Integer
+','           Punctuation
+'23'          Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+'14'          Literal.Number.Integer
+','           Punctuation
+'55'          Literal.Number.Integer
+']'           Error
+')'           Punctuation
+' '           Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'a'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'*'           Error
+','           Punctuation
+' '           Text.Whitespace
+'SPLIT_SUBSTR' Name.Function
+'('           Punctuation
+"'"           Literal.String.Single
+'blah'        Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+'||'          Operator
+'4'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'FROM'        Keyword
+' '           Text.Whitespace
+'Flights'     Name
+';'           Punctuation
+'\n'          Text.Whitespace
