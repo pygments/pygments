@@ -195,6 +195,7 @@ LEXERS = {
     'GoLexer': ('pygments.lexers.go', 'Go', ('go', 'golang'), ('*.go',), ('text/x-gosrc',)),
     'GoloLexer': ('pygments.lexers.jvm', 'Golo', ('golo',), ('*.golo',), ()),
     'GoodDataCLLexer': ('pygments.lexers.business', 'GoodData-CL', ('gooddata-cl',), ('*.gdc',), ('text/x-gooddata-cl',)),
+    'GoogleSqlLexer': ('pygments.lexers.sql', 'GoogleSQL', ('googlesql', 'zetasql'), ('*.googlesql', '*.googlesql.sql'), ('text/x-google-sql', 'text/x-google-sql-aux')),
     'GosuLexer': ('pygments.lexers.jvm', 'Gosu', ('gosu',), ('*.gs', '*.gsx', '*.gsp', '*.vark'), ('text/x-gosu',)),
     'GosuTemplateLexer': ('pygments.lexers.jvm', 'Gosu Template', ('gst',), ('*.gst',), ('text/x-gosu-template',)),
     'GraphQLLexer': ('pygments.lexers.graphql', 'GraphQL', ('graphql',), ('*.graphql',), ()),
