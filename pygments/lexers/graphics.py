@@ -566,9 +566,7 @@ class GnuplotLexer(RegexLexer):
             (r';', Keyword),
         ],
         'comment': [
-            (r'[^\\\n]+', Comment),
-            (r'\\\n', Comment),
-            (r'\\', Comment),
+            (r'(?:.|(?<=\\)\n)+', Comment),
             # don't add the newline to the Comment token
             default('#pop'),
         ],
