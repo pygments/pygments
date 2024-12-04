@@ -21,6 +21,10 @@ __all__ = ['LuaLexer', 'LuauLexer', 'MoonScriptLexer', 'ChaiscriptLexer', 'LSLLe
            'EasytrieveLexer', 'JclLexer', 'MiniScriptLexer']
 
 
+def all_lua_builtins():
+    from pygments.lexers._lua_builtins import MODULES
+    return [w for values in MODULES.values() for w in values]
+
 class LuaLexer(RegexLexer):
     """
     For Lua source code.
@@ -93,7 +97,8 @@ class LuaLexer(RegexLexer):
 
             (r'(function)\b', Keyword.Reserved, 'funcname'),
 
-            (r'[A-Za-z_]\w*(\.[A-Za-z_]\w*)?', Name),
+            (words(all_lua_builtins(), suffix=r"\b"), Name.Builtin),
+            (r'[A-Za-z_]\w*', Name),
 
             ("'", String.Single, combined('stringescape', 'sqs')),
             ('"', String.Double, combined('stringescape', 'dqs'))
@@ -151,16 +156,15 @@ class LuaLexer(RegexLexer):
     def get_tokens_unprocessed(self, text):
         for index, token, value in \
                 RegexLexer.get_tokens_unprocessed(self, text):
-            if token is Name:
-                if value in self._functions:
-                    yield index, Name.Builtin, value
-                    continue
-                elif '.' in value:
+            if token is Name.Builtin and value not in self._functions:
+                if '.' in value:
                     a, b = value.split('.')
                     yield index, Name, a
                     yield index + len(a), Punctuation, '.'
                     yield index + len(a) + 1, Name, b
-                    continue
+                else:
+                    yield index, Name, value
+                continue
             yield index, token, value
 
 def _luau_make_expression(should_pop, _s):
@@ -521,7 +525,8 @@ class MoonScriptLexer(LuaLexer):
             (r'(self)\b', Name.Builtin.Pseudo),
             (r'@@?([a-zA-Z_]\w*)?', Name.Variable.Class),
             (r'[A-Z]\w*', Name.Class),  # proper name
-            (r'[A-Za-z_]\w*(\.[A-Za-z_]\w*)?', Name),
+            (words(all_lua_builtins(), suffix=r"\b"), Name.Builtin),
+            (r'[A-Za-z_]\w*', Name),
             ("'", String.Single, combined('stringescape', 'sqs')),
             ('"', String.Double, combined('stringescape', 'dqs'))
         ],
