@@ -98,10 +98,20 @@ class LuaLexer(RegexLexer):
             (r'(function)\b', Keyword.Reserved, 'funcname'),
 
             (words(all_lua_builtins(), suffix=r"\b"), Name.Builtin),
-            (r'[A-Za-z_]\w*', Name),
+            (fr'[A-Za-z_]\w*(?={_s}*[.:])', Name.Variable, 'varname'),
+            (fr'[A-Za-z_]\w*(?={_s}*\()', Name.Function),
+            (r'[A-Za-z_]\w*', Name.Variable),
 
             ("'", String.Single, combined('stringescape', 'sqs')),
             ('"', String.Double, combined('stringescape', 'dqs'))
+        ],
+
+        'varname': [
+            include('ws'),
+            (r'[.:]', Punctuation),
+            (rf'{_name}(?={_s}*[.:])', Name.Property),
+            (rf'{_name}(?={_s}*\()', Name.Function, '#pop'),
+            (_name, Name.Property, '#pop'),
         ],
 
         'funcname': [

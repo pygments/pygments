@@ -9,12 +9,12 @@
 '('           Punctuation
 'not'         Operator.Word
 ' '           Text
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 ')'           Punctuation
 ' '           Text
 'then'        Keyword.Reserved
 ' '           Text
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 ' '           Text
 '='           Operator
 ' '           Text
@@ -29,12 +29,12 @@
 '('           Punctuation
 'not'         Operator.Word
 ' '           Text
-'AucAdvancedData' Name
+'AucAdvancedData' Name.Variable
 ')'           Punctuation
 ' '           Text
 'then'        Keyword.Reserved
 ' '           Text
-'AucAdvancedData' Name
+'AucAdvancedData' Name.Variable
 ' '           Text
 '='           Operator
 ' '           Text
@@ -49,12 +49,12 @@
 '('           Punctuation
 'not'         Operator.Word
 ' '           Text
-'AucAdvancedLocal' Name
+'AucAdvancedLocal' Name.Variable
 ')'           Punctuation
 ' '           Text
 'then'        Keyword.Reserved
 ' '           Text
-'AucAdvancedLocal' Name
+'AucAdvancedLocal' Name.Variable
 ' '           Text
 '='           Operator
 ' '           Text
@@ -69,12 +69,12 @@
 '('           Punctuation
 'not'         Operator.Word
 ' '           Text
-'AucAdvancedConfig' Name
+'AucAdvancedConfig' Name.Variable
 ')'           Punctuation
 ' '           Text
 'then'        Keyword.Reserved
 ' '           Text
-'AucAdvancedConfig' Name
+'AucAdvancedConfig' Name.Variable
 ' '           Text
 '='           Operator
 ' '           Text
@@ -84,9 +84,9 @@
 'end'         Keyword.Reserved
 '\n\n'        Text
 
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Version'     Name
+'Version'     Name.Property
 '='           Operator
 '"'           Literal.String.Double
 '<%version%>' Literal.String.Double
@@ -97,9 +97,9 @@
 'if'          Keyword.Reserved
 ' '           Text
 '('           Punctuation
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Version'     Name
+'Version'     Name.Property
 ' '           Text
 '=='          Operator
 ' '           Text
@@ -114,9 +114,9 @@
 ' '           Text
 'then'        Keyword.Reserved
 '\n\t'        Text
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Version'     Name
+'Version'     Name.Property
 ' '           Text
 '='           Operator
 ' '           Text
@@ -131,7 +131,7 @@
 
 'local'       Keyword.Declaration
 ' '           Text
-'private'     Name
+'private'     Name.Variable
 ' '           Text
 '='           Operator
 ' '           Text
@@ -153,31 +153,31 @@
 '('           Punctuation
 'not'         Operator.Word
 ' '           Text
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Modules'     Name
+'Modules'     Name.Property
 ')'           Punctuation
 ' '           Text
 'then'        Keyword.Reserved
 ' '           Text
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Modules'     Name
+'Modules'     Name.Property
 ' '           Text
 '='           Operator
 ' '           Text
 '{'           Punctuation
-'Stat'        Name
+'Stat'        Name.Variable
 '='           Operator
 '{'           Punctuation
 '}'           Punctuation
 ','           Punctuation
-'Util'        Name
+'Util'        Name.Variable
 '='           Operator
 '{'           Punctuation
 '}'           Punctuation
 ','           Punctuation
-'Filter'      Name
+'Filter'      Name.Variable
 '='           Operator
 '{'           Punctuation
 '}'           Punctuation
@@ -191,16 +191,16 @@
 '('           Punctuation
 'not'         Operator.Word
 ' '           Text
-'AucAdvancedData' Name
+'AucAdvancedData' Name.Variable
 '.'           Punctuation
-'Stats'       Name
+'Stats'       Name.Property
 ')'           Punctuation
 ' '           Text
 'then'        Keyword.Reserved
 ' '           Text
-'AucAdvancedData' Name
+'AucAdvancedData' Name.Variable
 '.'           Punctuation
-'Stats'       Name
+'Stats'       Name.Property
 ' '           Text
 '='           Operator
 ' '           Text
@@ -215,16 +215,16 @@
 '('           Punctuation
 'not'         Operator.Word
 ' '           Text
-'AucAdvancedLocal' Name
+'AucAdvancedLocal' Name.Variable
 '.'           Punctuation
-'Stats'       Name
+'Stats'       Name.Property
 ')'           Punctuation
 ' '           Text
 'then'        Keyword.Reserved
 ' '           Text
-'AucAdvancedLocal' Name
+'AucAdvancedLocal' Name.Variable
 '.'           Punctuation
-'Stats'       Name
+'Stats'       Name.Property
 ' '           Text
 '='           Operator
 ' '           Text
@@ -240,40 +240,40 @@
 '.'           Punctuation
 'TooltipHook' Name.Function
 '('           Punctuation
-'vars'        Name
+'vars'        Name.Variable
 ','           Punctuation
 ' '           Text
-'ret'         Name
+'ret'         Name.Variable
 ','           Punctuation
 ' '           Text
-'frame'       Name
+'frame'       Name.Variable
 ','           Punctuation
 ' '           Text
-'name'        Name
+'name'        Name.Variable
 ','           Punctuation
 ' '           Text
-'hyperlink'   Name
+'hyperlink'   Name.Variable
 ','           Punctuation
 ' '           Text
-'quality'     Name
+'quality'     Name.Variable
 ','           Punctuation
 ' '           Text
-'quantity'    Name
+'quantity'    Name.Variable
 ','           Punctuation
 ' '           Text
-'cost'        Name
+'cost'        Name.Variable
 ','           Punctuation
 ' '           Text
-'additional'  Name
+'additional'  Name.Variable
 ')'           Punctuation
 '\n\t'        Text
 'if'          Keyword.Reserved
 ' '           Text
-'EnhTooltip'  Name
+'EnhTooltip'  Name.Variable
 '.'           Punctuation
-'LinkType'    Name
+'LinkType'    Name.Function
 '('           Punctuation
-'hyperlink'   Name
+'hyperlink'   Name.Variable
 ')'           Punctuation
 ' '           Text
 '~='          Operator
@@ -294,20 +294,20 @@
 '\n\t'        Text
 'local'       Keyword.Declaration
 ' '           Text
-'getter'      Name
+'getter'      Name.Variable
 ' '           Text
 '='           Operator
 ' '           Text
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Settings'    Name
+'Settings'    Name.Property
 '.'           Punctuation
-'GetSetting'  Name
+'GetSetting'  Name.Property
 '\n\t'        Text
 'if'          Keyword.Reserved
 ' '           Text
 '('           Punctuation
-'getter'      Name
+'getter'      Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'scandata.tooltip.display' Literal.String.Double
@@ -316,7 +316,7 @@
 ' '           Text
 'and'         Operator.Word
 ' '           Text
-'getter'      Name
+'getter'      Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'scandata.force' Literal.String.Double
@@ -326,11 +326,11 @@
 ' '           Text
 'then'        Keyword.Reserved
 '\n\t\t'      Text
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Scan'        Name
+'Scan'        Name.Property
 '.'           Punctuation
-'GetImage'    Name
+'GetImage'    Name.Function
 '('           Punctuation
 ')'           Punctuation
 '\n\t'        Text
@@ -338,34 +338,34 @@
 '\n\n\t'      Text
 'for'         Keyword.Reserved
 ' '           Text
-'system'      Name
+'system'      Name.Variable
 ','           Punctuation
 ' '           Text
-'systemMods'  Name
+'systemMods'  Name.Variable
 ' '           Text
 'in'          Keyword.Reserved
 ' '           Text
 'pairs'       Name.Builtin
 '('           Punctuation
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Modules'     Name
+'Modules'     Name.Property
 ')'           Punctuation
 ' '           Text
 'do'          Keyword.Reserved
 '\n\t\t'      Text
 'for'         Keyword.Reserved
 ' '           Text
-'engine'      Name
+'engine'      Name.Variable
 ','           Punctuation
 ' '           Text
-'engineLib'   Name
+'engineLib'   Name.Variable
 ' '           Text
 'in'          Keyword.Reserved
 ' '           Text
 'pairs'       Name.Builtin
 '('           Punctuation
-'systemMods'  Name
+'systemMods'  Name.Variable
 ')'           Punctuation
 ' '           Text
 'do'          Keyword.Reserved
@@ -373,41 +373,41 @@
 'if'          Keyword.Reserved
 ' '           Text
 '('           Punctuation
-'engineLib'   Name
+'engineLib'   Name.Variable
 '.'           Punctuation
-'Processor'   Name
+'Processor'   Name.Property
 ')'           Punctuation
 ' '           Text
 'then'        Keyword.Reserved
 ' '           Text
-'engineLib'   Name
+'engineLib'   Name.Variable
 '.'           Punctuation
-'Processor'   Name
+'Processor'   Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'tooltip'     Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'frame'       Name
+'frame'       Name.Variable
 ','           Punctuation
 ' '           Text
-'name'        Name
+'name'        Name.Variable
 ','           Punctuation
 ' '           Text
-'hyperlink'   Name
+'hyperlink'   Name.Variable
 ','           Punctuation
 ' '           Text
-'quality'     Name
+'quality'     Name.Variable
 ','           Punctuation
 ' '           Text
-'quantity'    Name
+'quantity'    Name.Variable
 ','           Punctuation
 ' '           Text
-'cost'        Name
+'cost'        Name.Variable
 ','           Punctuation
 ' '           Text
-'additional'  Name
+'additional'  Name.Variable
 ')'           Punctuation
 ' '           Text
 'end'         Keyword.Reserved
@@ -428,50 +428,50 @@
 '('           Punctuation
 ')'           Punctuation
 '\n\t'        Text
-'hooksecurefunc' Name
+'hooksecurefunc' Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'AuctionFrameBrowse_Update' Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'API'         Name
+'API'         Name.Property
 '.'           Punctuation
-'ListUpdate'  Name
+'ListUpdate'  Name.Property
 ')'           Punctuation
 '\n\t'        Text
 'for'         Keyword.Reserved
 ' '           Text
-'system'      Name
+'system'      Name.Variable
 ','           Punctuation
 ' '           Text
-'systemMods'  Name
+'systemMods'  Name.Variable
 ' '           Text
 'in'          Keyword.Reserved
 ' '           Text
 'pairs'       Name.Builtin
 '('           Punctuation
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Modules'     Name
+'Modules'     Name.Property
 ')'           Punctuation
 ' '           Text
 'do'          Keyword.Reserved
 '\n\t\t'      Text
 'for'         Keyword.Reserved
 ' '           Text
-'engine'      Name
+'engine'      Name.Variable
 ','           Punctuation
 ' '           Text
-'engineLib'   Name
+'engineLib'   Name.Variable
 ' '           Text
 'in'          Keyword.Reserved
 ' '           Text
 'pairs'       Name.Builtin
 '('           Punctuation
-'systemMods'  Name
+'systemMods'  Name.Variable
 ')'           Punctuation
 ' '           Text
 'do'          Keyword.Reserved
@@ -479,16 +479,16 @@
 'if'          Keyword.Reserved
 ' '           Text
 '('           Punctuation
-'engineLib'   Name
+'engineLib'   Name.Variable
 '.'           Punctuation
-'Processor'   Name
+'Processor'   Name.Property
 ')'           Punctuation
 ' '           Text
 'then'        Keyword.Reserved
 '\n\t\t\t\t'  Text
-'engineLib'   Name
+'engineLib'   Name.Variable
 '.'           Punctuation
-'Processor'   Name
+'Processor'   Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'auctionui'   Literal.String.Double
@@ -511,16 +511,16 @@
 '.'           Punctuation
 'OnLoad'      Name.Function
 '('           Punctuation
-'addon'       Name
+'addon'       Name.Variable
 ')'           Punctuation
 '\n\t'        Text
-'addon'       Name
+'addon'       Name.Variable
 ' '           Text
 '='           Operator
 ' '           Text
-'addon'       Name
+'addon'       Name.Variable
 ':'           Punctuation
-'lower'       Name
+'lower'       Name.Function
 '('           Punctuation
 ')'           Punctuation
 '\n\n\t'      Text
@@ -529,7 +529,7 @@
 'if'          Keyword.Reserved
 ' '           Text
 '('           Punctuation
-'addon'       Name
+'addon'       Name.Variable
 ' '           Text
 '=='          Operator
 ' '           Text
@@ -540,9 +540,9 @@
 ' '           Text
 'then'        Keyword.Reserved
 '\n\t\t'      Text
-'Stubby'      Name
+'Stubby'      Name.Variable
 '.'           Punctuation
-'RegisterAddOnHook' Name
+'RegisterAddOnHook' Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'Blizzard_AuctionUi' Literal.String.Double
@@ -554,14 +554,14 @@
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'HookAH'      Name
+'HookAH'      Name.Property
 ')'           Punctuation
 '\n\t\t'      Text
-'Stubby'      Name
+'Stubby'      Name.Variable
 '.'           Punctuation
-'RegisterFunctionHook' Name
+'RegisterFunctionHook' Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'EnhTooltip.AddTooltip' Literal.String.Double
@@ -571,36 +571,36 @@
 '600'         Literal.Number.Integer
 ','           Punctuation
 ' '           Text
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'TooltipHook' Name
+'TooltipHook' Name.Property
 ')'           Punctuation
 '\n\t\t'      Text
 'for'         Keyword.Reserved
 ' '           Text
-'pos'         Name
+'pos'         Name.Variable
 ','           Punctuation
 ' '           Text
-'module'      Name
+'module'      Name.Variable
 ' '           Text
 'in'          Keyword.Reserved
 ' '           Text
 'ipairs'      Name.Builtin
 '('           Punctuation
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'EmbeddedModules' Name
+'EmbeddedModules' Name.Property
 ')'           Punctuation
 ' '           Text
 'do'          Keyword.Reserved
 '\n\t\t\t'    Text
 '-- These embedded modules have also just been loaded' Comment.Single
 '\n\t\t\t'    Text
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'OnLoad'      Name
+'OnLoad'      Name.Function
 '('           Punctuation
-'module'      Name
+'module'      Name.Variable
 ')'           Punctuation
 '\n\t\t'      Text
 'end'         Keyword.Reserved
@@ -611,30 +611,30 @@
 '\n\t'        Text
 'local'       Keyword.Declaration
 ' '           Text
-'auc'         Name
+'auc'         Name.Variable
 ','           Punctuation
 ' '           Text
-'sys'         Name
+'sys'         Name.Variable
 ','           Punctuation
 ' '           Text
-'eng'         Name
+'eng'         Name.Variable
 ' '           Text
 '='           Operator
 ' '           Text
-'strsplit'    Name
+'strsplit'    Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 '-'           Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'addon'       Name
+'addon'       Name.Variable
 ')'           Punctuation
 '\n\t'        Text
 'if'          Keyword.Reserved
 ' '           Text
 '('           Punctuation
-'auc'         Name
+'auc'         Name.Variable
 ' '           Text
 '=='          Operator
 ' '           Text
@@ -644,29 +644,29 @@
 ' '           Text
 'and'         Operator.Word
 ' '           Text
-'sys'         Name
+'sys'         Name.Variable
 ' '           Text
 'and'         Operator.Word
 ' '           Text
-'eng'         Name
+'eng'         Name.Variable
 ')'           Punctuation
 ' '           Text
 'then'        Keyword.Reserved
 '\n\t\t'      Text
 'for'         Keyword.Reserved
 ' '           Text
-'system'      Name
+'system'      Name.Variable
 ','           Punctuation
 ' '           Text
-'systemMods'  Name
+'systemMods'  Name.Variable
 ' '           Text
 'in'          Keyword.Reserved
 ' '           Text
 'pairs'       Name.Builtin
 '('           Punctuation
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Modules'     Name
+'Modules'     Name.Property
 ')'           Punctuation
 ' '           Text
 'do'          Keyword.Reserved
@@ -674,13 +674,13 @@
 'if'          Keyword.Reserved
 ' '           Text
 '('           Punctuation
-'sys'         Name
+'sys'         Name.Variable
 ' '           Text
 '=='          Operator
 ' '           Text
-'system'      Name
+'system'      Name.Variable
 ':'           Punctuation
-'lower'       Name
+'lower'       Name.Function
 '('           Punctuation
 ')'           Punctuation
 ')'           Punctuation
@@ -689,16 +689,16 @@
 '\n\t\t\t\t'  Text
 'for'         Keyword.Reserved
 ' '           Text
-'engine'      Name
+'engine'      Name.Variable
 ','           Punctuation
 ' '           Text
-'engineLib'   Name
+'engineLib'   Name.Variable
 ' '           Text
 'in'          Keyword.Reserved
 ' '           Text
 'pairs'       Name.Builtin
 '('           Punctuation
-'systemMods'  Name
+'systemMods'  Name.Variable
 ')'           Punctuation
 ' '           Text
 'do'          Keyword.Reserved
@@ -706,30 +706,30 @@
 'if'          Keyword.Reserved
 ' '           Text
 '('           Punctuation
-'eng'         Name
+'eng'         Name.Variable
 ' '           Text
 '=='          Operator
 ' '           Text
-'engine'      Name
+'engine'      Name.Variable
 ':'           Punctuation
-'lower'       Name
+'lower'       Name.Function
 '('           Punctuation
 ')'           Punctuation
 ' '           Text
 'and'         Operator.Word
 ' '           Text
-'engineLib'   Name
+'engineLib'   Name.Variable
 '.'           Punctuation
-'OnLoad'      Name
+'OnLoad'      Name.Property
 ')'           Punctuation
 ' '           Text
 'then'        Keyword.Reserved
 '\n\t\t\t\t\t\t' Text
-'engineLib'   Name
+'engineLib'   Name.Variable
 '.'           Punctuation
-'OnLoad'      Name
+'OnLoad'      Name.Function
 '('           Punctuation
-'addon'       Name
+'addon'       Name.Variable
 ')'           Punctuation
 '\n\t\t\t\t\t' Text
 'end'         Keyword.Reserved
@@ -746,34 +746,34 @@
 '\n\t'        Text
 'for'         Keyword.Reserved
 ' '           Text
-'system'      Name
+'system'      Name.Variable
 ','           Punctuation
 ' '           Text
-'systemMods'  Name
+'systemMods'  Name.Variable
 ' '           Text
 'in'          Keyword.Reserved
 ' '           Text
 'pairs'       Name.Builtin
 '('           Punctuation
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Modules'     Name
+'Modules'     Name.Property
 ')'           Punctuation
 ' '           Text
 'do'          Keyword.Reserved
 '\n\t\t'      Text
 'for'         Keyword.Reserved
 ' '           Text
-'engine'      Name
+'engine'      Name.Variable
 ','           Punctuation
 ' '           Text
-'engineLib'   Name
+'engineLib'   Name.Variable
 ' '           Text
 'in'          Keyword.Reserved
 ' '           Text
 'pairs'       Name.Builtin
 '('           Punctuation
-'systemMods'  Name
+'systemMods'  Name.Variable
 ')'           Punctuation
 ' '           Text
 'do'          Keyword.Reserved
@@ -781,17 +781,17 @@
 'if'          Keyword.Reserved
 ' '           Text
 '('           Punctuation
-'engineLib'   Name
+'engineLib'   Name.Variable
 '.'           Punctuation
-'LoadTriggers' Name
+'LoadTriggers' Name.Property
 ' '           Text
 'and'         Operator.Word
 ' '           Text
-'engineLib'   Name
+'engineLib'   Name.Variable
 '.'           Punctuation
-'LoadTriggers' Name
+'LoadTriggers' Name.Property
 '['           Punctuation
-'addon'       Name
+'addon'       Name.Variable
 ']'           Punctuation
 ')'           Punctuation
 ' '           Text
@@ -800,18 +800,18 @@
 'if'          Keyword.Reserved
 ' '           Text
 '('           Punctuation
-'engineLib'   Name
+'engineLib'   Name.Variable
 '.'           Punctuation
-'OnLoad'      Name
+'OnLoad'      Name.Property
 ')'           Punctuation
 ' '           Text
 'then'        Keyword.Reserved
 '\n\t\t\t\t\t' Text
-'engineLib'   Name
+'engineLib'   Name.Variable
 '.'           Punctuation
-'OnLoad'      Name
+'OnLoad'      Name.Function
 '('           Punctuation
-'addon'       Name
+'addon'       Name.Variable
 ')'           Punctuation
 '\n\t\t\t\t'  Text
 'end'         Keyword.Reserved
@@ -821,13 +821,13 @@
 'if'          Keyword.Reserved
 ' '           Text
 '('           Punctuation
-'engineLib'   Name
+'engineLib'   Name.Variable
 '.'           Punctuation
-'Processor'   Name
+'Processor'   Name.Property
 ' '           Text
 'and'         Operator.Word
 ' '           Text
-'auc'         Name
+'auc'         Name.Variable
 ' '           Text
 '=='          Operator
 ' '           Text
@@ -837,25 +837,25 @@
 ' '           Text
 'and'         Operator.Word
 ' '           Text
-'sys'         Name
+'sys'         Name.Variable
 ' '           Text
 'and'         Operator.Word
 ' '           Text
-'eng'         Name
+'eng'         Name.Variable
 ')'           Punctuation
 ' '           Text
 'then'        Keyword.Reserved
 '\n\t\t\t\t'  Text
-'engineLib'   Name
+'engineLib'   Name.Variable
 '.'           Punctuation
-'Processor'   Name
+'Processor'   Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'load'        Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'addon'       Name
+'addon'       Name.Variable
 ')'           Punctuation
 '\n\t\t\t'    Text
 'end'         Keyword.Reserved
@@ -878,34 +878,34 @@
 '\n\t'        Text
 'for'         Keyword.Reserved
 ' '           Text
-'system'      Name
+'system'      Name.Variable
 ','           Punctuation
 ' '           Text
-'systemMods'  Name
+'systemMods'  Name.Variable
 ' '           Text
 'in'          Keyword.Reserved
 ' '           Text
 'pairs'       Name.Builtin
 '('           Punctuation
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Modules'     Name
+'Modules'     Name.Property
 ')'           Punctuation
 ' '           Text
 'do'          Keyword.Reserved
 '\n\t\t'      Text
 'for'         Keyword.Reserved
 ' '           Text
-'engine'      Name
+'engine'      Name.Variable
 ','           Punctuation
 ' '           Text
-'engineLib'   Name
+'engineLib'   Name.Variable
 ' '           Text
 'in'          Keyword.Reserved
 ' '           Text
 'pairs'       Name.Builtin
 '('           Punctuation
-'systemMods'  Name
+'systemMods'  Name.Variable
 ')'           Punctuation
 ' '           Text
 'do'          Keyword.Reserved
@@ -913,16 +913,16 @@
 'if'          Keyword.Reserved
 ' '           Text
 '('           Punctuation
-'engineLib'   Name
+'engineLib'   Name.Variable
 '.'           Punctuation
-'OnUnload'    Name
+'OnUnload'    Name.Property
 ')'           Punctuation
 ' '           Text
 'then'        Keyword.Reserved
 '\n\t\t\t\t'  Text
-'engineLib'   Name
+'engineLib'   Name.Variable
 '.'           Punctuation
-'OnUnload'    Name
+'OnUnload'    Name.Function
 '('           Punctuation
 ')'           Punctuation
 '\n\t\t\t'    Text
@@ -936,9 +936,9 @@
 'end'         Keyword.Reserved
 '\n\n'        Text
 
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Schedule'    Name
+'Schedule'    Name.Property
 ' '           Text
 '='           Operator
 ' '           Text
@@ -957,10 +957,10 @@
 '\n\t'        Text
 'local'       Keyword.Declaration
 ' '           Text
-'event'       Name
+'event'       Name.Variable
 ','           Punctuation
 ' '           Text
-'arg'         Name
+'arg'         Name.Variable
 ' '           Text
 '='           Operator
 ' '           Text
@@ -975,7 +975,7 @@
 'if'          Keyword.Reserved
 ' '           Text
 '('           Punctuation
-'event'       Name
+'event'       Name.Variable
 ' '           Text
 '=='          Operator
 ' '           Text
@@ -988,21 +988,21 @@
 '\n\t\t'      Text
 'local'       Keyword.Declaration
 ' '           Text
-'addon'       Name
+'addon'       Name.Variable
 ' '           Text
 '='           Operator
 ' '           Text
 'string.lower' Name.Builtin
 '('           Punctuation
-'arg'         Name
+'arg'         Name.Variable
 ')'           Punctuation
 '\n\t\t'      Text
 'if'          Keyword.Reserved
 ' '           Text
 '('           Punctuation
-'addon'       Name
+'addon'       Name.Variable
 ':'           Punctuation
-'sub'         Name
+'sub'         Name.Function
 '('           Punctuation
 '1'           Literal.Number.Integer
 ','           Punctuation
@@ -1018,11 +1018,11 @@
 ' '           Text
 'then'        Keyword.Reserved
 '\n\t\t\t'    Text
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'OnLoad'      Name
+'OnLoad'      Name.Function
 '('           Punctuation
-'addon'       Name
+'addon'       Name.Variable
 ')'           Punctuation
 '\n\t\t'      Text
 'end'         Keyword.Reserved
@@ -1030,7 +1030,7 @@
 'elseif'      Keyword.Reserved
 ' '           Text
 '('           Punctuation
-'event'       Name
+'event'       Name.Variable
 ' '           Text
 '=='          Operator
 ' '           Text
@@ -1046,7 +1046,7 @@
 'elseif'      Keyword.Reserved
 ' '           Text
 '('           Punctuation
-'event'       Name
+'event'       Name.Variable
 ' '           Text
 '=='          Operator
 ' '           Text
@@ -1057,18 +1057,18 @@
 ' '           Text
 'then'        Keyword.Reserved
 '\n\t\t'      Text
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Scan'        Name
+'Scan'        Name.Property
 '.'           Punctuation
-'Interrupt'   Name
+'Interrupt'   Name.Function
 '('           Punctuation
 ')'           Punctuation
 '\n\t'        Text
 'elseif'      Keyword.Reserved
 ' '           Text
 '('           Punctuation
-'event'       Name
+'event'       Name.Variable
 ' '           Text
 '=='          Operator
 ' '           Text
@@ -1079,24 +1079,24 @@
 ' '           Text
 'then'        Keyword.Reserved
 '\n\t\t'      Text
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Scan'        Name
+'Scan'        Name.Property
 '.'           Punctuation
-'Commit'      Name
+'Commit'      Name.Function
 '('           Punctuation
 'true'        Keyword.Constant
 ')'           Punctuation
 '\n\t\t'      Text
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'OnUnload'    Name
+'OnUnload'    Name.Function
 '('           Punctuation
 ')'           Punctuation
 '\n\t'        Text
 'elseif'      Keyword.Reserved
 ' '           Text
-'event'       Name
+'event'       Name.Variable
 ' '           Text
 '=='          Operator
 ' '           Text
@@ -1106,7 +1106,7 @@
 '\n\t'        Text
 'or'          Operator.Word
 ' '           Text
-'event'       Name
+'event'       Name.Variable
 ' '           Text
 '=='          Operator
 ' '           Text
@@ -1116,7 +1116,7 @@
 '\n\t'        Text
 'or'          Operator.Word
 ' '           Text
-'event'       Name
+'event'       Name.Variable
 ' '           Text
 '=='          Operator
 ' '           Text
@@ -1126,7 +1126,7 @@
 '\n\t'        Text
 'or'          Operator.Word
 ' '           Text
-'event'       Name
+'event'       Name.Variable
 ' '           Text
 '=='          Operator
 ' '           Text
@@ -1136,9 +1136,9 @@
 '\n\t'        Text
 'then'        Keyword.Reserved
 '\n\t\t'      Text
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Schedule'    Name
+'Schedule'    Name.Property
 '['           Punctuation
 '"'           Literal.String.Double
 'inventory'   Literal.String.Double
@@ -1147,7 +1147,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'GetTime'     Name
+'GetTime'     Name.Function
 '('           Punctuation
 ')'           Punctuation
 ' '           Text
@@ -1172,7 +1172,7 @@
 '\n\t'        Text
 'if'          Keyword.Reserved
 ' '           Text
-'event'       Name
+'event'       Name.Variable
 ' '           Text
 '=='          Operator
 ' '           Text
@@ -1182,11 +1182,11 @@
 ' '           Text
 'then'        Keyword.Reserved
 '\n\t\t'      Text
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Post'        Name
+'Post'        Name.Property
 '.'           Punctuation
-'AlertBagsChanged' Name
+'AlertBagsChanged' Name.Function
 '('           Punctuation
 ')'           Punctuation
 '\n\t'        Text
@@ -1194,92 +1194,92 @@
 '\n\n\t'      Text
 'local'       Keyword.Declaration
 ' '           Text
-'now'         Name
+'now'         Name.Variable
 ' '           Text
 '='           Operator
 ' '           Text
-'GetTime'     Name
+'GetTime'     Name.Function
 '('           Punctuation
 ')'           Punctuation
 '\n\t'        Text
 'for'         Keyword.Reserved
 ' '           Text
-'event'       Name
+'event'       Name.Variable
 ','           Punctuation
 ' '           Text
-'time'        Name
+'time'        Name.Variable
 ' '           Text
 'in'          Keyword.Reserved
 ' '           Text
 'pairs'       Name.Builtin
 '('           Punctuation
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Schedule'    Name
+'Schedule'    Name.Property
 ')'           Punctuation
 ' '           Text
 'do'          Keyword.Reserved
 '\n\t\t'      Text
 'if'          Keyword.Reserved
 ' '           Text
-'time'        Name
+'time'        Name.Variable
 ' '           Text
 '>'           Operator
 ' '           Text
-'now'         Name
+'now'         Name.Variable
 ' '           Text
 'then'        Keyword.Reserved
 '\n\t\t\t'    Text
 'for'         Keyword.Reserved
 ' '           Text
-'system'      Name
+'system'      Name.Variable
 ','           Punctuation
 ' '           Text
-'systemMods'  Name
+'systemMods'  Name.Variable
 ' '           Text
 'in'          Keyword.Reserved
 ' '           Text
 'pairs'       Name.Builtin
 '('           Punctuation
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Modules'     Name
+'Modules'     Name.Property
 ')'           Punctuation
 ' '           Text
 'do'          Keyword.Reserved
 '\n\t\t\t\t'  Text
 'for'         Keyword.Reserved
 ' '           Text
-'engine'      Name
+'engine'      Name.Variable
 ','           Punctuation
 ' '           Text
-'engineLib'   Name
+'engineLib'   Name.Variable
 ' '           Text
 'in'          Keyword.Reserved
 ' '           Text
 'pairs'       Name.Builtin
 '('           Punctuation
-'systemMods'  Name
+'systemMods'  Name.Variable
 ')'           Punctuation
 ' '           Text
 'do'          Keyword.Reserved
 '\n\t\t\t\t\t' Text
 'if'          Keyword.Reserved
 ' '           Text
-'engineLib'   Name
+'engineLib'   Name.Variable
 '.'           Punctuation
-'Processor'   Name
+'Processor'   Name.Property
 ' '           Text
 'then'        Keyword.Reserved
 '\n\t\t\t\t\t\t' Text
-'engineLib'   Name
+'engineLib'   Name.Variable
 '.'           Punctuation
-'Processor'   Name
+'Processor'   Name.Function
 '('           Punctuation
-'event'       Name
+'event'       Name.Variable
 ','           Punctuation
 ' '           Text
-'time'        Name
+'time'        Name.Variable
 ')'           Punctuation
 '\n\t\t\t\t\t' Text
 'end'         Keyword.Reserved
@@ -1290,11 +1290,11 @@
 '\n\t\t'      Text
 'end'         Keyword.Reserved
 '\n\t\t'      Text
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Schedule'    Name
+'Schedule'    Name.Property
 '['           Punctuation
-'event'       Name
+'event'       Name.Variable
 ']'           Punctuation
 ' '           Text
 '='           Operator
@@ -1307,13 +1307,13 @@
 'end'         Keyword.Reserved
 '\n\n'        Text
 
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Frame'       Name
+'Frame'       Name.Property
 ' '           Text
 '='           Operator
 ' '           Text
-'CreateFrame' Name
+'CreateFrame' Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'Frame'       Literal.String.Double
@@ -1321,11 +1321,11 @@
 ')'           Punctuation
 '\n'          Text
 
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Frame'       Name
+'Frame'       Name.Property
 ':'           Punctuation
-'RegisterEvent' Name
+'RegisterEvent' Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'ADDON_LOADED' Literal.String.Double
@@ -1333,11 +1333,11 @@
 ')'           Punctuation
 '\n'          Text
 
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Frame'       Name
+'Frame'       Name.Property
 ':'           Punctuation
-'RegisterEvent' Name
+'RegisterEvent' Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'AUCTION_HOUSE_SHOW' Literal.String.Double
@@ -1345,11 +1345,11 @@
 ')'           Punctuation
 '\n'          Text
 
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Frame'       Name
+'Frame'       Name.Property
 ':'           Punctuation
-'RegisterEvent' Name
+'RegisterEvent' Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'AUCTION_HOUSE_CLOSED' Literal.String.Double
@@ -1357,11 +1357,11 @@
 ')'           Punctuation
 '\n'          Text
 
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Frame'       Name
+'Frame'       Name.Property
 ':'           Punctuation
-'RegisterEvent' Name
+'RegisterEvent' Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'UNIT_INVENTORY_CHANGED' Literal.String.Double
@@ -1369,11 +1369,11 @@
 ')'           Punctuation
 '\n'          Text
 
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Frame'       Name
+'Frame'       Name.Property
 ':'           Punctuation
-'RegisterEvent' Name
+'RegisterEvent' Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'ITEM_LOCK_CHANGED' Literal.String.Double
@@ -1381,11 +1381,11 @@
 ')'           Punctuation
 '\n'          Text
 
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Frame'       Name
+'Frame'       Name.Property
 ':'           Punctuation
-'RegisterEvent' Name
+'RegisterEvent' Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'CURSOR_UPDATE' Literal.String.Double
@@ -1393,11 +1393,11 @@
 ')'           Punctuation
 '\n'          Text
 
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Frame'       Name
+'Frame'       Name.Property
 ':'           Punctuation
-'RegisterEvent' Name
+'RegisterEvent' Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'BAG_UPDATE'  Literal.String.Double
@@ -1405,11 +1405,11 @@
 ')'           Punctuation
 '\n'          Text
 
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Frame'       Name
+'Frame'       Name.Property
 ':'           Punctuation
-'RegisterEvent' Name
+'RegisterEvent' Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'PLAYER_LOGOUT' Literal.String.Double
@@ -1417,46 +1417,46 @@
 ')'           Punctuation
 '\n'          Text
 
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Frame'       Name
+'Frame'       Name.Property
 ':'           Punctuation
-'SetScript'   Name
+'SetScript'   Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'OnEvent'     Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'OnEvent'     Name
+'OnEvent'     Name.Property
 ')'           Punctuation
 '\n'          Text
 
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Frame'       Name
+'Frame'       Name.Property
 ':'           Punctuation
-'SetScript'   Name
+'SetScript'   Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'OnUpdate'    Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'OnUpdate'    Name
+'OnUpdate'    Name.Property
 ')'           Punctuation
 '\n\n'        Text
 
 "-- Auctioneer's debug functions" Comment.Single
 '\n'          Text
 
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Debug'       Name
+'Debug'       Name.Property
 ' '           Text
 '='           Operator
 ' '           Text
@@ -1466,7 +1466,7 @@
 
 'local'       Keyword.Declaration
 ' '           Text
-'addonName'   Name
+'addonName'   Name.Variable
 ' '           Text
 '='           Operator
 ' '           Text
@@ -1562,43 +1562,43 @@
 '.'           Punctuation
 'DebugPrint'  Name.Function
 '('           Punctuation
-'message'     Name
+'message'     Name.Variable
 ','           Punctuation
 ' '           Text
-'category'    Name
+'category'    Name.Variable
 ','           Punctuation
 ' '           Text
-'title'       Name
+'title'       Name.Variable
 ','           Punctuation
 ' '           Text
-'errorCode'   Name
+'errorCode'   Name.Variable
 ','           Punctuation
 ' '           Text
-'level'       Name
+'level'       Name.Variable
 ')'           Punctuation
 '\n\t'        Text
 'return'      Keyword.Reserved
 ' '           Text
-'DebugLib'    Name
+'DebugLib'    Name.Variable
 '.'           Punctuation
-'DebugPrint'  Name
+'DebugPrint'  Name.Function
 '('           Punctuation
-'addonName'   Name
+'addonName'   Name.Variable
 ','           Punctuation
 ' '           Text
-'message'     Name
+'message'     Name.Variable
 ','           Punctuation
 ' '           Text
-'category'    Name
+'category'    Name.Variable
 ','           Punctuation
 ' '           Text
-'title'       Name
+'title'       Name.Variable
 ','           Punctuation
 ' '           Text
-'errorCode'   Name
+'errorCode'   Name.Variable
 ','           Punctuation
 ' '           Text
-'level'       Name
+'level'       Name.Variable
 ')'           Punctuation
 '\n'          Text
 
@@ -1664,25 +1664,25 @@
 '.'           Punctuation
 'Assert'      Name.Function
 '('           Punctuation
-'test'        Name
+'test'        Name.Variable
 ','           Punctuation
 ' '           Text
-'message'     Name
+'message'     Name.Variable
 ')'           Punctuation
 '\n\t'        Text
 'return'      Keyword.Reserved
 ' '           Text
-'DebugLib'    Name
+'DebugLib'    Name.Variable
 '.'           Punctuation
-'Assert'      Name
+'Assert'      Name.Function
 '('           Punctuation
-'addonName'   Name
+'addonName'   Name.Variable
 ','           Punctuation
 ' '           Text
-'test'        Name
+'test'        Name.Variable
 ','           Punctuation
 ' '           Text
-'message'     Name
+'message'     Name.Variable
 ')'           Punctuation
 '\n'          Text
 
@@ -1697,7 +1697,7 @@
 
 'local'       Keyword.Declaration
 ' '           Text
-'t'           Name
+'t'           Name.Variable
 ' '           Text
 '='           Operator
 ' '           Text
@@ -1713,13 +1713,13 @@
 '2'           Literal.Number.Integer
 ';'           Punctuation
 ' '           Text
-'a'           Name
+'a'           Name.Variable
 '='           Operator
 '{'           Punctuation
-'b'           Name
+'b'           Name.Variable
 '='           Operator
 '{'           Punctuation
-'c'           Name
+'c'           Name.Variable
 '='           Operator
 '{'           Punctuation
 '}'           Punctuation
@@ -1840,7 +1840,7 @@
 'd'           Name.Function
 ' '           Text
 '('           Punctuation
-'file'        Name
+'file'        Name.Variable
 ')'           Punctuation
 '\n        '  Text
 'return'      Keyword.Reserved
