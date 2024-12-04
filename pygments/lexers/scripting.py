@@ -70,7 +70,7 @@ class LuaLexer(RegexLexer):
         'ws': [
             (_comment_multiline, Comment.Multiline),
             (_comment_single, Comment.Single),
-            (_space, Text),
+            (_space, Whitespace),
         ],
         'base': [
             include('ws'),
