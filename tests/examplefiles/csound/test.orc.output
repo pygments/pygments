@@ -385,10 +385,10 @@
 'lua_exec'    Name.Builtin
 ' '           Text.Whitespace
 '{{'          Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- Lua'      Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}}'          Literal.String
 '\n'          Text.Whitespace
