@@ -31,7 +31,7 @@ class CoffeeStyle(Style):
     styles = {
         Comment: "#70757A",
         Comment.Hashbang: "#8f9f9f",
-        Comment.Preproc: "#fdd0c0",
+        Comment.Preproc: "#dfaf87",
         Comment.PreprocFile: "#c9b98f",
         Comment.Special: "#af5f5f",
         Error: "#af5f5f",
