@@ -51,7 +51,7 @@ class CoffeeStyle(Style):
         Literal: "#af875f",
         Name: "#ddd0c0",
         Name.Attribute: "#ddd0c0",
-        Name.Builtin: "#ddd0c0",
+        Name.Builtin: "#875f5f",
         Name.Builtin.Pseudo: "#87afaf",
         Name.Class: "#875f5f",
         Name.Constant: "#af8787",
