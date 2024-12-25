@@ -664,6 +664,6 @@ class VueLexer(HtmlLexer):
         'attr-directive': [
             (r'(["\'])(.*?)(\1)', bygroups(String,
              using(JavascriptLexer), String), '#pop'),
-            (r'[^\s>]+', bygroups(using(JavascriptLexer)), '#pop'),
+            (r'[^\s>]+', using(JavascriptLexer), '#pop'),
         ],
     }
