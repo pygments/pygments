@@ -17,19 +17,28 @@ Version 2.19.0
 - Updated lexers:
 
   * C#: Fix number highlighting (#986, #2727), add ``file`` keyword (#2726, #2805, #2806), add various other keywords (#2745, #2770)
+  * CSS: Add ``revert`` (#2766, #2775)
   * Debian control: Add ``Change-By`` field (#2757)
   * Elip: Improve punctuation handling (#2651)
+  * Igor: Add ``int`` (#2801)
   * Ini: Fix quoted strings with embedded comment characters (#2767, #2720)
   * Java: Support functions returning types containing a question mark (#2737)
   * JavaScript: Support private identiiers (#2729, #2671)
-  * PostgreSQL: Add more ``EXPLAIN`` keywords (#2785)
+  * LLVM: Add ``splat``, improve floating-point number parsing (#2755)
+  * Macaulay2: Update to 1.24.11 (#2800)
+  * PostgreSQL: Add more ``EXPLAIN`` keywords (#2785), handle ``/`` (#2774)
   * S-Lexer: Fix keywords (#2082, #2750)
   * TransactSQL: Fix single-line comments (#2717)
+  * Turtle: Fix triple quoted strings (#2744, #2758)
   * Typst: Various improvements (#2724)
+  * Various: Add ``^`` as an operator to Matlab, Octave and Scilab (#2798)
   * Vyper: Add ``staticcall`` and ``extcall`` (#2719)
 
 * Mark file extensions for ``HTML/XML+Evoque`` as aliases (#2743)
 * Add a color for ``Operator.Word`` to the ``rrt`` style (#2709)
+* Fix broken link in the documentation (#2803, #2804)
+* Drop executable bit where not needed (#2781)
+* Reduce Mojo priority relative to Python in ``analyze_text´` (#2771, #2772)
 
 Version 2.18.0
 --------------
