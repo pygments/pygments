@@ -14,49 +14,43 @@ label 0
 
 ---tokens---
 'label'       Name.Constant
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'x'           Name.Constant
-' = '         Operator
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'arg'         Name.Function
 '('           Punctuation
 '0'           Literal.Number
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'name'        Name.Attribute
 '='           Punctuation
 'x'           Name.Constant
 ')'           Punctuation
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 ':'           Punctuation
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'float64'     Name.Constant
-'\n'          Text
-
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n\n  '      Text.Whitespace
 '$const2.0'   Name.Variable
-' = '         Operator
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'const'       Name.Function
 '('           Punctuation
 'int'         Name.Constant
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number
 ')'           Punctuation
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 ':'           Punctuation
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'Literal'     Name.Constant
 '['           Punctuation
 'int'         Name.Constant
@@ -64,87 +58,66 @@ label 0
 '('           Punctuation
 '2'           Literal.Number
 ')'           Punctuation
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 '$6binary_multiply.2' Name.Variable
-' = '         Operator
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 '$const2.0'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'x'           Name.Constant
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 ':'           Punctuation
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'float64'     Name.Constant
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'del '        Keyword
 '$const2.0'   Name.Variable
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 '$10binary_multiply.4' Name.Variable
-' = '         Operator
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 '$6binary_multiply.2' Name.Variable
-' '           Text
+' '           Text.Whitespace
 '*'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'x'           Name.Constant
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 ':'           Punctuation
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'float64'     Name.Constant
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'del '        Keyword
 'x'           Name.Constant
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'del '        Keyword
 '$6binary_multiply.2' Name.Variable
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 '$12return_value.5' Name.Variable
-' = '         Operator
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
 'cast'        Name.Function
 '('           Punctuation
 'value'       Name.Attribute
 '='           Punctuation
 '$10binary_multiply.4' Name.Variable
 ')'           Punctuation
-' '           Text
-' '           Text
+'  '          Text.Whitespace
 ':'           Punctuation
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'float64'     Name.Constant
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'del '        Keyword
 '$10binary_multiply.4' Name.Variable
-'\n'          Text
-
-' '           Text
-' '           Text
+'\n  '        Text.Whitespace
 'return'      Name.Constant
-' '           Text
+' '           Text.Whitespace
 '$12return_value.5' Name.Variable
-'\n'          Text
+'\n'          Text.Whitespace

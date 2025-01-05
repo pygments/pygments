@@ -8,16 +8,9 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.styles.default import DefaultStyle
-from pygments.styles.manni import ManniStyle
-from pygments.styles.monokai import MonokaiStyle
-from pygments.styles.native import NativeStyle
-
 from pygments.lexer import RegexLexer, include, bygroups, words
-from pygments.token import Text, Name, String,  Punctuation, Keyword, \
+from pygments.token import Whitespace, Name, String,  Punctuation, Keyword, \
     Operator, Number
-
-from pygments.style import Style
 
 __all__ = ["NumbaIRLexer"]
 
@@ -30,6 +23,7 @@ class NumbaIRLexer(RegexLexer):
     aliases = ['numba_ir', 'numbair']
     filenames = ['*.numba_ir']
     mimetypes = ['text/x-numba_ir', 'text/x-numbair']
+    version_added = '2.19'
 
     identifier = r'\$[a-zA-Z0-9._]+'
     fun_or_var = r'([a-zA-Z_]+[a-zA-Z0-9]*)'
@@ -39,7 +33,7 @@ class NumbaIRLexer(RegexLexer):
             (r'(label)(\ [0-9]+)(:)$',
                 bygroups(Keyword, Name.Label, Punctuation)),
 
-            (r' = ', Operator),
+            (r'=', Operator),
             include('whitespace'),
             include('keyword'),
 
@@ -64,6 +58,6 @@ class NumbaIRLexer(RegexLexer):
         ],
 
         'whitespace': [
-            (r'(\n|\s)', Text),
+            (r'(\n|\s)+', Whitespace),
         ],
     }
