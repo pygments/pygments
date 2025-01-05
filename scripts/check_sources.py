@@ -146,7 +146,7 @@ def main(argv):
     out = io.StringIO()
 
     for root, dirs, files in os.walk(path):
-        for excl in ['.tox', '.git', 'examplefiles']:
+        for excl in ['.tox', '.git', '.venv', 'examplefiles']:
             if excl in dirs:
                 dirs.remove(excl)
         if '-i' in opts and abspath(root) in opts['-i']:
@@ -177,6 +177,10 @@ def main(argv):
                     lines = f.read().decode('utf-8').splitlines()
             except OSError as err:
                 print(f"{fn}: cannot open: {err}")
+                num += 1
+                continue
+            except UnicodeDecodeError as err:
+                print(f"{fn}: error decoding: {err}")
                 num += 1
                 continue
 

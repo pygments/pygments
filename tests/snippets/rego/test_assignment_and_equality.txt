@@ -1,0 +1,94 @@
+---input---
+package example
+
+# Rego Policy References: https://www.openpolicyagent.org/docs/latest/policy-reference/
+
+# assign variable x to value of field foo.bar.baz in input
+x := input.foo.bar.baz
+
+# check if variable x has same value as variable y
+x == y
+
+# check if variable x is a set containing "foo" and "bar"
+x == {"foo", "bar"}
+
+# OR
+
+{"foo", "bar"} == x
+
+---tokens---
+'package'     Keyword
+' '           Text.Whitespace
+'example'     Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# Rego Policy References: https://www.openpolicyagent.org/docs/latest/policy-reference/' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# assign variable x to value of field foo.bar.baz in input' Comment.Single
+'\n'          Text.Whitespace
+
+'x'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'input'       Name.Builtin
+'.'           Punctuation
+'foo'         Name
+'.'           Punctuation
+'bar'         Name
+'.'           Punctuation
+'baz'         Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# check if variable x has same value as variable y' Comment.Single
+'\n'          Text.Whitespace
+
+'x'           Name
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'y'           Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# check if variable x is a set containing "foo" and "bar"' Comment.Single
+'\n'          Text.Whitespace
+
+'x'           Name
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'"foo"'       Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"bar"'       Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# OR'        Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'"foo"'       Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"bar"'       Literal.String.Double
+'}'           Punctuation
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'x'           Name
+'\n'          Text.Whitespace
