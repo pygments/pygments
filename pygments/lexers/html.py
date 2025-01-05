@@ -636,6 +636,7 @@ class VueLexer(HtmlLexer):
     aliases = ['vue']
     filenames = ['*.vue']
     mimetypes = []
+    version_added = '2.19'
 
     flags = re.IGNORECASE | re.DOTALL
     tokens = {
