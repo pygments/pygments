@@ -21,7 +21,7 @@ class RegoLexer(RegexLexer):
     filenames = ['*.rego']
     aliases = ['rego']
     mimetypes = ['text/x-rego']
-    version_added = '2.18'
+    version_added = '2.19'
 
     reserved_words = (
         'as', 'contains', 'data', 'default', 'else', 'every', 'false',
