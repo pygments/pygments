@@ -1,0 +1,36 @@
+'<?xml version="1.0" encoding="UTF-8"?>' Comment.Preproc
+'\n'          Text.Whitespace
+
+'<!DOCTYPE'   Comment.Preproc
+' '           Comment.Preproc
+'hello'       Comment.Preproc
+' '           Comment.Preproc
+'['           Comment.Preproc
+'\n\n  '      Comment.Preproc
+'<!'          Comment.Preproc
+'ENTITY % ContentType ' Comment.Preproc
+'"CDATA"'     Comment.Preproc
+'\n      '    Comment.Preproc
+'-- media type, as per [RFC2045]\n      --' Comment.Preproc
+'>'           Comment.Preproc
+'\n\n  '      Comment.Preproc
+'<![ %HTML.Frameset; [\n    <!ENTITY % MultiLengths "CDATA" -- comma-separated list of MultiLength -->\n  ]]>' Comment.Preproc
+'\n\n  '      Comment.Preproc
+'<!-- IETF HTML table standard, see [RFC1942] -->' Comment.Preproc
+'\n\n  '      Comment.Preproc
+'<!'          Comment.Preproc
+'ELEMENT hello (#PCDATA)' Comment.Preproc
+'>'           Comment.Preproc
+'\n'          Comment.Preproc
+
+']'           Comment.Preproc
+'>'           Comment.Preproc
+'\n'          Text.Whitespace
+
+'<hello'      Name.Tag
+'>'           Name.Tag
+'Hello'       Text
+' '           Text.Whitespace
+'Word!'       Text
+'</hello>'    Name.Tag
+'\n'          Text.Whitespace
