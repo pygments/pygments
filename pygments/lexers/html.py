@@ -11,7 +11,7 @@
 import re
 
 from pygments.lexer import RegexLexer, ExtendedRegexLexer, include, bygroups, \
-    default, using
+    default, using, inherit, this
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Punctuation, Whitespace
 from pygments.util import looks_like_xml, html_doctype_matches
@@ -22,7 +22,7 @@ from pygments.lexers.css import CssLexer, _indentation, _starts_block
 from pygments.lexers.ruby import RubyLexer
 
 __all__ = ['HtmlLexer', 'DtdLexer', 'XmlLexer', 'XsltLexer', 'HamlLexer',
-           'ScamlLexer', 'PugLexer', 'UrlEncodedLexer']
+           'ScamlLexer', 'PugLexer', 'VueLexer', 'UrlEncodedLexer']
 
 
 class HtmlLexer(RegexLexer):
@@ -622,5 +622,48 @@ class UrlEncodedLexer(RegexLexer):
     tokens = {
         'root': [
             ('([^&=]*)(=)([^=&]*)(&?)', bygroups(Name.Tag, Operator, String, Punctuation)),
+        ],
+    }
+    
+
+class VueLexer(HtmlLexer):
+    """
+    For Vue Single-File Component.
+    """
+
+    name = 'Vue'
+    url = 'https://vuejs.org/api/sfc-spec.html'
+    aliases = ['vue']
+    filenames = ['*.vue']
+    mimetypes = []
+
+    flags = re.IGNORECASE | re.DOTALL
+    tokens = {
+        'root': [
+            (r'(\{\{)(.*?)(\}\})', bygroups(Comment.Preproc,
+             using(JavascriptLexer), Comment.Preproc)),
+            ('[^<&{]+', Text),
+            inherit,
+        ],
+        'tag': [
+            (r'\s+', Text),
+            (r'((?:[@:]|v-)(?:[.\w:-]|\[[^\]]*?\])+\s*)(=)(\s*)',
+             bygroups(using(this, state=['name']), Operator, Text),
+             'attr-directive'),
+            (r'([\w:-]+\s*)(=)(\s*)', bygroups(Name.Attribute, Operator, Text),
+             'attr'),
+            (r'[\w:-]+', Name.Attribute),
+            (r'(/?)(\s*)(>)', bygroups(Punctuation, Text, Punctuation), '#pop'),
+        ],
+        'name': [
+            (r'[\w-]+', Name.Attribute),
+            (r'[:@.]', Punctuation),
+            (r'(\[)([^\]]*?)(\])', bygroups(Comment.Preproc,
+             using(JavascriptLexer), Comment.Preproc)),
+        ],
+        'attr-directive': [
+            (r'(["\'])(.*?)(\1)', bygroups(String,
+             using(JavascriptLexer), String), '#pop'),
+            (r'[^\s>]+', using(JavascriptLexer), '#pop'),
         ],
     }
