@@ -9,7 +9,7 @@
 """
 
 from pygments.lexer import words, bygroups, ExtendedRegexLexer
-from pygments.token import Comment, Name, String, Whitespace, Operator, Punctuation, Number, Text, Keyword
+from pygments.token import Comment, Name, String, Whitespace, Operator, Punctuation, Number, Keyword
 
 __all__ = ['MapleLexer']
 
