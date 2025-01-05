@@ -24,7 +24,7 @@ class MapleLexer(ExtendedRegexLexer):
     filenames = ['*.mpl', '*.mi', '*.mm']
     mimetypes = ['text/x-maple']
     url = 'https://www.maplesoft.com/products/Maple/'
-    version_added = ''
+    version_added = '2.19'
 
     keywords = ('and',
                 'assuming',
@@ -273,14 +273,11 @@ class MapleLexer(ExtendedRegexLexer):
             (words(builtins, prefix=r'\b', suffix=r'\b'), Name.Builtin),
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
             (r'(:=|\*\*|@@|<=|>=|<>|->|::|\.\.|&\+|[\+\-\*\.\^\$/@&,:=<>%~])', Operator),
-            (r'[;^!@$\(\)\[\]{}|_\\#?]', Punctuation),
+            (r'[;^!@$\(\)\[\]{}|_\\#?]+', Punctuation),
             (r'(\d+)(\.\.)', bygroups(Number.Integer, Punctuation)),
             (r'(\d*\.\d+|\d+\.\d*)([eE][+-]?\d+)?', Number.Float),
             (r'\d+', Number.Integer),
-            (r'\n', Whitespace),
-            (r'[^\S\n]+', Whitespace),
-            (r'\s+', Text),
-
+            (r'\s+', Whitespace),
         ],
         'comment': [
             (r'.*\(\*', Comment.Multiline, '#push'),
