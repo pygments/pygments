@@ -80,7 +80,7 @@ fruit.orange.color(x) = true if x == "orange"          # function
 
 ---tokens---
 'package'     Keyword
-' '           Text
+' '           Text.Whitespace
 'example'     Name
 '\n'          Text.Whitespace
 
@@ -97,43 +97,43 @@ fruit.orange.color(x) = true if x == "orange"          # function
 '\n'          Text.Whitespace
 
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '1'           Literal.Number
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number
 '}'           Punctuation
 '\n'          Text.Whitespace
 
 'b'           Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '4'           Literal.Number
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '6'           Literal.Number
 '}'           Punctuation
 '\n'          Text.Whitespace
 
 'c'           Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'b'           Name
 '\n'          Text.Whitespace
 
@@ -148,19 +148,19 @@ fruit.orange.color(x) = true if x == "orange"          # function
 '\n'          Text.Whitespace
 
 'p'           Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 '\n'          Text.Whitespace
 
@@ -173,17 +173,17 @@ fruit.orange.color(x) = true if x == "orange"          # function
 '\n'          Text.Whitespace
 
 'p'           Name
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 '\n'          Text.Whitespace
 
@@ -193,15 +193,15 @@ fruit.orange.color(x) = true if x == "orange"          # function
 '\n'          Text.Whitespace
 
 'p'           Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 '4'           Literal.Number
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 '\n'          Text.Whitespace
 
@@ -218,53 +218,53 @@ fruit.orange.color(x) = true if x == "orange"          # function
 '\n'          Text.Whitespace
 
 'default'     Keyword
-' '           Text
+' '           Text.Whitespace
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '1'           Literal.Number
 '\n'          Text.Whitespace
 
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number
-'   '         Text
+'   '         Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'input'       Name.Builtin
 '.'           Punctuation
 'value'       Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 '\n'          Text.Whitespace
 
 'a'           Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '100'         Literal.Number
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'input'       Name.Builtin
 '.'           Punctuation
 'value'       Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '10'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 '\n'          Text.Whitespace
 
@@ -284,26 +284,26 @@ fruit.orange.color(x) = true if x == "orange"          # function
 '['           Punctuation
 'x'           Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '1'           Literal.Number
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number
 ']'           Punctuation
 '['           Punctuation
 '_'           Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 '\n'          Text.Whitespace
 
@@ -311,26 +311,26 @@ fruit.orange.color(x) = true if x == "orange"          # function
 '['           Punctuation
 'y'           Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'y'           Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '4'           Literal.Number
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '6'           Literal.Number
 ']'           Punctuation
 '['           Punctuation
 '_'           Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 '\n'          Text.Whitespace
 
@@ -340,56 +340,56 @@ fruit.orange.color(x) = true if x == "orange"          # function
 '\n'          Text.Whitespace
 
 'a_set'       Name
-' '           Text
+' '           Text.Whitespace
 'contains'    Keyword
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '1'           Literal.Number
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '2'           Literal.Number
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 '\n'          Text.Whitespace
 
 'a_set'       Name
-' '           Text
+' '           Text.Whitespace
 'contains'    Keyword
-' '           Text
+' '           Text.Whitespace
 'y'           Name
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'y'           Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '4'           Literal.Number
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '5'           Literal.Number
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '6'           Literal.Number
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 '\n'          Text.Whitespace
 
@@ -402,28 +402,28 @@ fruit.orange.color(x) = true if x == "orange"          # function
 '['           Punctuation
 'x'           Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'y'           Name
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '"key1"'      Literal.String.Double
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'y'           Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '"value1"'    Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 '\n'          Text.Whitespace
 
@@ -431,28 +431,28 @@ fruit.orange.color(x) = true if x == "orange"          # function
 '['           Punctuation
 'w'           Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'z'           Name
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'w'           Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '"key2"'      Literal.String.Double
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'z'           Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '"value2"'    Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 '\n'          Text.Whitespace
 
@@ -472,20 +472,20 @@ fruit.orange.color(x) = true if x == "orange"          # function
 '('           Punctuation
 'x'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'y'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 'y'           Name
 '\n'          Text.Whitespace
 
@@ -503,28 +503,28 @@ fruit.orange.color(x) = true if x == "orange"          # function
 '('           Punctuation
 'x'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'y'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 'y'           Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '10'          Literal.Number
 '\n'          Text.Whitespace
 
@@ -545,21 +545,21 @@ fruit.orange.color(x) = true if x == "orange"          # function
 '('           Punctuation
 'x'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '"A"'         Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '>='          Operator
-' '           Text
+' '           Text.Whitespace
 '90'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 '\n'          Text.Whitespace
 
@@ -567,28 +567,28 @@ fruit.orange.color(x) = true if x == "orange"          # function
 '('           Punctuation
 'x'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '"B"'         Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '>='          Operator
-' '           Text
+' '           Text.Whitespace
 '80'          Literal.Number
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 '90'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 '\n'          Text.Whitespace
 
@@ -596,28 +596,28 @@ fruit.orange.color(x) = true if x == "orange"          # function
 '('           Punctuation
 'x'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '"C"'         Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '>='          Operator
-' '           Text
+' '           Text.Whitespace
 '70'          Literal.Number
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '<'           Operator
-' '           Text
+' '           Text.Whitespace
 '80'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 '}'           Punctuation
 '\n'          Text.Whitespace
 
@@ -638,19 +638,19 @@ fruit.orange.color(x) = true if x == "orange"          # function
 'apple'       Name
 '.'           Punctuation
 'seeds'       Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '12'          Literal.Number
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'input'       Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '"apple"'     Literal.String.Double
-'             ' Text
+'             ' Text.Whitespace
 '# complete document (single value rule)' Comment.Single
 '\n'          Text.Whitespace
 
@@ -661,19 +661,19 @@ fruit.orange.color(x) = true if x == "orange"          # function
 'pineapple'   Name
 '.'           Punctuation
 'colors'      Name
-' '           Text
+' '           Text.Whitespace
 'contains'    Keyword
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '"yellow"'    Literal.String.Double
-'     '       Text
+'     '       Text.Whitespace
 '# multi-value rule' Comment.Single
 '\n'          Text.Whitespace
 
@@ -687,19 +687,19 @@ fruit.orange.color(x) = true if x == "orange"          # function
 '['           Punctuation
 'x'           Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"bananular"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '"cellular"'  Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '# single value rule' Comment.Single
 '\n'          Text.Whitespace
 
@@ -710,15 +710,15 @@ fruit.orange.color(x) = true if x == "orange"          # function
 'phone'       Name
 '.'           Punctuation
 'cellular'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"bananular"' Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword
-'      '      Text
+'      '      Text.Whitespace
 '# equivalent single value rule' Comment.Single
 '\n'          Text.Whitespace
 
@@ -732,18 +732,18 @@ fruit.orange.color(x) = true if x == "orange"          # function
 '('           Punctuation
 'x'           Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '"orange"'    Literal.String.Double
-'          '  Text
+'          '  Text.Whitespace
 '# function'  Comment.Single
 '\n'          Text.Whitespace

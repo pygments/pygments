@@ -50,14 +50,3 @@ def test_negative_method_names(lexer, method_name):
 
     text = 'def ' + method_name
     assert list(lexer.get_tokens(text))[-2] != (Name.Function, method_name)
-
-
-def testShiftLeftWithoutSpace(lexer):
-    fragment = u'[]<<a\n'
-    tokens = [
-        (Token.Operator, u'['),
-        (Token.Operator, u']'),
-        (Token.Operator, u'<<'),
-        (Token.Name, u'a'),
-        (Token.Text, u'\n'),
-    ]

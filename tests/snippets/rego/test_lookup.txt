@@ -76,7 +76,7 @@ some [x, "b", z] in a_set
 
 ---tokens---
 'package'     Keyword
-' '           Text
+' '           Text.Whitespace
 'example'     Name
 '\n'          Text.Whitespace
 
@@ -96,9 +96,9 @@ some [x, "b", z] in a_set
 '\n'          Text.Whitespace
 
 'val'         Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'arr'         Name
 '['           Punctuation
 '0'           Literal.Number
@@ -107,14 +107,14 @@ some [x, "b", z] in a_set
 
 '\n'          Text.Whitespace
 
-' '           Text
+' '           Text.Whitespace
 '# check if value at index 0 is "foo"' Comment.Single
 '\n'          Text.Whitespace
 
 '"foo"'       Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'arr'         Name
 '['           Punctuation
 '0'           Literal.Number
@@ -127,9 +127,9 @@ some [x, "b", z] in a_set
 '\n'          Text.Whitespace
 
 '"foo"'       Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'arr'         Name
 '['           Punctuation
 'i'           Name
@@ -142,9 +142,9 @@ some [x, "b", z] in a_set
 '\n'          Text.Whitespace
 
 'val'         Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'arr'         Name
 '['           Punctuation
 'count'       Name
@@ -161,42 +161,42 @@ some [x, "b", z] in a_set
 '\n'          Text.Whitespace
 
 'some'        Keyword
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'val'         Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'arr'         Name
-'   '         Text
+'   '         Text.Whitespace
 '# lookup value at index 0' Comment.Single
 '\n'          Text.Whitespace
 
 '0'           Literal.Number
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"foo"'       Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'arr'         Name
-'      '      Text
+'      '      Text.Whitespace
 '# check if value at index 0 is "foo"' Comment.Single
 '\n'          Text.Whitespace
 
 'some'        Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"foo"'       Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'arr'         Name
-' '           Text
+' '           Text.Whitespace
 '# find all indices i that have value "foo"' Comment.Single
 '\n'          Text.Whitespace
 
@@ -211,9 +211,9 @@ some [x, "b", z] in a_set
 '\n'          Text.Whitespace
 
 'val'         Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'obj'         Name
 '['           Punctuation
 '"foo"'       Literal.String.Double
@@ -226,9 +226,9 @@ some [x, "b", z] in a_set
 '\n'          Text.Whitespace
 
 '"bar"'       Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'obj'         Name
 '['           Punctuation
 '"foo"'       Literal.String.Double
@@ -243,9 +243,9 @@ some [x, "b", z] in a_set
 '\n'          Text.Whitespace
 
 '"bar"'       Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'obj'         Name
 '.'           Punctuation
 'foo'         Name
@@ -267,9 +267,9 @@ some [x, "b", z] in a_set
 '\n'          Text.Whitespace
 
 'k'           Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '"foo"'       Literal.String.Double
 '\n'          Text.Whitespace
 
@@ -299,7 +299,7 @@ some [x, "b", z] in a_set
 '\n'          Text.Whitespace
 
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'obj'         Name
 '.'           Punctuation
 'foo'         Name
@@ -315,13 +315,13 @@ some [x, "b", z] in a_set
 '\n'          Text.Whitespace
 
 'o'           Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"foo"'       Literal.String.Double
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'false'       Keyword
 '}'           Punctuation
 '\n'          Text.Whitespace
@@ -330,9 +330,9 @@ some [x, "b", z] in a_set
 '\n'          Text.Whitespace
 
 'false'       Keyword
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'o'           Name
 '\n'          Text.Whitespace
 
@@ -341,11 +341,11 @@ some [x, "b", z] in a_set
 
 '"foo"'       Literal.String.Double
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'false'       Keyword
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'o'           Name
 '\n'          Text.Whitespace
 
@@ -371,7 +371,7 @@ some [x, "b", z] in a_set
 '\n'          Text.Whitespace
 
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'a_set'       Name
 '['           Punctuation
 '"foo"'       Literal.String.Double
@@ -388,10 +388,10 @@ some [x, "b", z] in a_set
 '['           Punctuation
 '"a"'         Literal.String.Double
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"b"'         Literal.String.Double
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"c"'         Literal.String.Double
 ']'           Punctuation
 ']'           Punctuation
@@ -407,10 +407,10 @@ some [x, "b", z] in a_set
 '['           Punctuation
 'x'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"b"'         Literal.String.Double
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'z'           Name
 ']'           Punctuation
 ']'           Punctuation
@@ -422,51 +422,51 @@ some [x, "b", z] in a_set
 '\n'          Text.Whitespace
 
 '"foo"'       Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'a_set'       Name
 '\n'          Text.Whitespace
 
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 '"foo"'       Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'a_set'       Name
 '\n'          Text.Whitespace
 
 'some'        Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 '"a"'         Literal.String.Double
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"b"'         Literal.String.Double
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"c"'         Literal.String.Double
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'a_set'       Name
 '\n'          Text.Whitespace
 
 'some'        Keyword
-' '           Text
+' '           Text.Whitespace
 '['           Punctuation
 'x'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"b"'         Literal.String.Double
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'z'           Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'a_set'       Name
 '\n'          Text.Whitespace

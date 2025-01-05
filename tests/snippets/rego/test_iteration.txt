@@ -62,7 +62,7 @@ foo[k].bar.baz[i] == 7; foo[k].qux > 3
 
 ---tokens---
 'package'     Keyword
-' '           Text
+' '           Text.Whitespace
 'example'     Name
 '\n'          Text.Whitespace
 
@@ -93,9 +93,9 @@ foo[k].bar.baz[i] == 7; foo[k].qux > 3
 '\n'          Text.Whitespace
 
 'val'         Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'arr'         Name
 '['           Punctuation
 '_'           Name
@@ -108,9 +108,9 @@ foo[k].bar.baz[i] == 7; foo[k].qux > 3
 '\n'          Text.Whitespace
 
 'val'         Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'arr'         Name
 '['           Punctuation
 'i'           Name
@@ -123,41 +123,41 @@ foo[k].bar.baz[i] == 7; foo[k].qux > 3
 '\n'          Text.Whitespace
 
 'some'        Keyword
-' '           Text
+' '           Text.Whitespace
 'val'         Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'arr'         Name
-'    '        Text
+'    '        Text.Whitespace
 '# iterate over values' Comment.Single
 '\n'          Text.Whitespace
 
 'some'        Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_'           Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'arr'         Name
-'   '         Text
+'   '         Text.Whitespace
 '# iterate over indices' Comment.Single
 '\n'          Text.Whitespace
 
 'some'        Keyword
-' '           Text
+' '           Text.Whitespace
 'i'           Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'val'         Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'arr'         Name
-' '           Text
+' '           Text.Whitespace
 '# iterate over index/value pairs' Comment.Single
 '\n'          Text.Whitespace
 
@@ -185,9 +185,9 @@ foo[k].bar.baz[i] == 7; foo[k].qux > 3
 '\n'          Text.Whitespace
 
 'val'         Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'obj'         Name
 '['           Punctuation
 '_'           Name
@@ -200,9 +200,9 @@ foo[k].bar.baz[i] == 7; foo[k].qux > 3
 '\n'          Text.Whitespace
 
 'val'         Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'obj'         Name
 '['           Punctuation
 'key'         Name
@@ -215,41 +215,41 @@ foo[k].bar.baz[i] == 7; foo[k].qux > 3
 '\n'          Text.Whitespace
 
 'some'        Keyword
-' '           Text
+' '           Text.Whitespace
 'val'         Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'obj'         Name
-'      '      Text
+'      '      Text.Whitespace
 '# iterate over values' Comment.Single
 '\n'          Text.Whitespace
 
 'some'        Keyword
-' '           Text
+' '           Text.Whitespace
 'key'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '_'           Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'obj'         Name
-'   '         Text
+'   '         Text.Whitespace
 '# iterate over keys' Comment.Single
 '\n'          Text.Whitespace
 
 'some'        Keyword
-' '           Text
+' '           Text.Whitespace
 'key'         Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'val'         Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'obj'         Name
-' '           Text
+' '           Text.Whitespace
 '# key/value pairs' Comment.Single
 '\n'          Text.Whitespace
 
@@ -277,11 +277,11 @@ foo[k].bar.baz[i] == 7; foo[k].qux > 3
 '\n'          Text.Whitespace
 
 'some'        Keyword
-' '           Text
+' '           Text.Whitespace
 'val'         Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'set'         Name
 '\n'          Text.Whitespace
 
@@ -308,9 +308,9 @@ foo[k].bar.baz[i] == 7; foo[k].qux > 3
 '['           Punctuation
 'i'           Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '7'           Literal.Number
 '\n'          Text.Whitespace
 
@@ -323,9 +323,9 @@ foo[k].bar.baz[i] == 7; foo[k].qux > 3
 '['           Punctuation
 'k1'          Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'bar'         Name
 '['           Punctuation
 'k2'          Name
@@ -341,19 +341,19 @@ foo[k].bar.baz[i] == 7; foo[k].qux > 3
 '['           Punctuation
 'k1'          Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'foo'         Name
 '['           Punctuation
 'k2'          Name
 ']'           Punctuation
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'k1'          Name
-' '           Text
+' '           Text.Whitespace
 '!='          Operator
-' '           Text
+' '           Text.Whitespace
 'k2'          Name
 '\n'          Text.Whitespace
 
@@ -373,20 +373,20 @@ foo[k].bar.baz[i] == 7; foo[k].qux > 3
 '['           Punctuation
 'i'           Name
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '7'           Literal.Number
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'foo'         Name
 '['           Punctuation
 'k'           Name
 ']'           Punctuation
 '.'           Punctuation
 'qux'         Name
-' '           Text
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
+' '           Text.Whitespace
 '3'           Literal.Number
 '\n'          Text.Whitespace

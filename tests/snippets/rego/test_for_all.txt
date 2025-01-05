@@ -29,7 +29,7 @@ any_not_match if {
 
 ---tokens---
 'package'     Keyword
-' '           Text
+' '           Text.Whitespace
 'example'     Name
 '\n'          Text.Whitespace
 
@@ -47,24 +47,24 @@ any_not_match if {
 '('           Punctuation
 '{'           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'set'         Name
 '['           Punctuation
 'x'           Name
 ']'           Punctuation
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'f'           Name
 '('           Punctuation
 'x'           Name
 ')'           Punctuation
 '}'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '0'           Literal.Number
 '\n'          Text.Whitespace
 
@@ -77,24 +77,24 @@ any_not_match if {
 '('           Punctuation
 '{'           Punctuation
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '|'           Operator
-' '           Text
+' '           Text.Whitespace
 'set'         Name
 '['           Punctuation
 'x'           Name
 ']'           Punctuation
 ';'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'f'           Name
 '('           Punctuation
 'x'           Name
 ')'           Punctuation
 '}'           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'count'       Name
 '('           Punctuation
 'set'         Name
@@ -107,7 +107,7 @@ any_not_match if {
 '\n'          Text.Whitespace
 
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'any_match'   Name
 '\n'          Text.Whitespace
 
@@ -117,7 +117,7 @@ any_not_match if {
 '\n'          Text.Whitespace
 
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'any_not_match' Name
 '\n'          Text.Whitespace
 
@@ -129,23 +129,23 @@ any_not_match if {
 '\n'          Text.Whitespace
 
 'any_match'   Name
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'some'        Keyword
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'set'         Name
 '\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'f'           Name
 '('           Punctuation
 'x'           Name
@@ -158,25 +158,25 @@ any_not_match if {
 '\n'          Text.Whitespace
 
 'any_not_match' Name
-' '           Text
+' '           Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'some'        Keyword
-' '           Text
+' '           Text.Whitespace
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 'in'          Keyword
-' '           Text
+' '           Text.Whitespace
 'set'         Name
 '\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 'not'         Keyword
-' '           Text
+' '           Text.Whitespace
 'f'           Name
 '('           Punctuation
 'x'           Name

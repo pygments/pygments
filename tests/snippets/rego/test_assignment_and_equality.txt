@@ -18,7 +18,7 @@ x == {"foo", "bar"}
 
 ---tokens---
 'package'     Keyword
-' '           Text
+' '           Text.Whitespace
 'example'     Name
 '\n'          Text.Whitespace
 
@@ -33,9 +33,9 @@ x == {"foo", "bar"}
 '\n'          Text.Whitespace
 
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 ':='          Operator
-' '           Text
+' '           Text.Whitespace
 'input'       Name.Builtin
 '.'           Punctuation
 'foo'         Name
@@ -51,9 +51,9 @@ x == {"foo", "bar"}
 '\n'          Text.Whitespace
 
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'y'           Name
 '\n'          Text.Whitespace
 
@@ -63,13 +63,13 @@ x == {"foo", "bar"}
 '\n'          Text.Whitespace
 
 'x'           Name
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '"foo"'       Literal.String.Double
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"bar"'       Literal.String.Double
 '}'           Punctuation
 '\n'          Text.Whitespace
@@ -84,11 +84,11 @@ x == {"foo", "bar"}
 '{'           Punctuation
 '"foo"'       Literal.String.Double
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"bar"'       Literal.String.Double
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 'x'           Name
 '\n'          Text.Whitespace

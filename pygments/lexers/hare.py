@@ -1,6 +1,6 @@
 """
     pygments.lexers.hare
-    ~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~
 
     Lexers for the Hare language.
 
@@ -8,12 +8,9 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
-
-from pygments.lexer import RegexLexer, include, bygroups, inherit, words, \
-    default
-from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation
+from pygments.lexer import RegexLexer, include, words
+from pygments.token import Comment, Operator, Keyword, Name, String, \
+    Number, Punctuation, Whitespace
 
 __all__ = ['HareLexer']
 
@@ -35,8 +32,8 @@ class HareLexer(RegexLexer):
         'whitespace': [
             (r'^use.*;', Comment.Preproc),
             (r'@[a-z]+', Comment.Preproc),
-            (r'\n', Text),
-            (r'\s+', Text),
+            (r'\n', Whitespace),
+            (r'\s+', Whitespace),
             (r'//.*?$', Comment.Single),
         ],
         'statements': [
@@ -50,7 +47,7 @@ class HareLexer(RegexLexer):
             (r'\d+[zui]?(\d+)?', Number.Integer),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (words(('as', 'is', '=>', '..', '...')), Operator),
-            (r'[()\[\],.{};]', Punctuation),
+            (r'[()\[\],.{};]+', Punctuation),
             (words(('abort', 'align', 'alloc', 'append', 'assert', 'case',
                 'const', 'def', 'defer', 'delete', 'else', 'enum', 'export',
                 'fn', 'for', 'free', 'if', 'let', 'len', 'match', 'offset',

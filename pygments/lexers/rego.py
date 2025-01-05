@@ -1,6 +1,6 @@
 """
     pygments.lexers.rego
-    ~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~
 
     Lexers for the Rego policy languages.
 
@@ -8,9 +8,8 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
 from pygments.lexer import RegexLexer, words
-from pygments.token import Text, Comment, Operator, Keyword, Name, String, Number, Punctuation, Whitespace
+from pygments.token import Comment, Operator, Keyword, Name, String, Number, Punctuation, Whitespace
 
 class RegoLexer(RegexLexer):
     """
@@ -37,8 +36,8 @@ class RegoLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\n', Text.Whitespace),
-            (r'\s+', Text),
+            (r'\n', Whitespace),
+            (r'\s+', Whitespace),
             (r'#.*?$', Comment.Single),
             (words(reserved_words, suffix=r'\b'), Keyword),
             (words(builtins, suffix=r'\b'), Name.Builtin),
