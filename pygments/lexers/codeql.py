@@ -25,7 +25,7 @@ class CodeQLLexer(RegexLexer):
     filenames = ['*.ql', '*.qll']
     mimetypes = []
     url = 'https://github.com/github/codeql'
-    version_added = '' 
+    version_added = '2.19'
 
     flags = re.MULTILINE | re.UNICODE
 
@@ -63,7 +63,7 @@ class CodeQLLexer(RegexLexer):
             (r'<=|>=|<|>|=|!=|\+|-|\*|/', Operator),
 
             # Punctuation
-            (r'[.,;:\[\]{}()]', Punctuation),
+            (r'[.,;:\[\]{}()]+', Punctuation),
 
             # Identifiers
             (r'@[a-zA-Z_]\w*', Name.Variable),  # Variables with @ prefix

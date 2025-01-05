@@ -86,8 +86,7 @@ select sc, "This LINQ selection is redundant and can be removed."
 'afe'         Name.Variable
 '.'           Punctuation
 'getNumberOfParameters' Name.Variable
-'('           Punctuation
-')'           Punctuation
+'()'          Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
@@ -98,8 +97,7 @@ select sc, "This LINQ selection is redundant and can be removed."
 'afe'         Name.Variable
 '.'           Punctuation
 'getExpressionBody' Name.Variable
-'('           Punctuation
-')'           Punctuation
+'()'          Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
@@ -108,11 +106,9 @@ select sc, "This LINQ selection is redundant and can be removed."
 'getParameter' Name.Variable
 '('           Punctuation
 '0'           Literal.Number.Integer
-')'           Punctuation
-'.'           Punctuation
+').'          Punctuation
 'getAnAccess' Name.Variable
-'('           Punctuation
-')'           Punctuation
+'()'          Punctuation
 '\n'          Text.Whitespace
 
 '}'           Punctuation
@@ -132,9 +128,7 @@ select sc, "This LINQ selection is redundant and can be removed."
 'sc'          Name.Variable
 '.'           Punctuation
 'getFunctionExpr' Name.Variable
-'('           Punctuation
-')'           Punctuation
-')'           Punctuation
+'())'         Punctuation
 '\n'          Text.Whitespace
 
 'select'      Keyword.Builtin
