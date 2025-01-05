@@ -11,12 +11,13 @@ Version 2.19.0
 
   * Debian Sources (#2788, #2747)
   * Gleam (#2662)
-  * GoogleSQL (#2820)
+  * GoogleSQL (#2820, #2814)
   * JSON5 (#2734, #1880)
   * TableGen (#2751)
 
 - Updated lexers:
 
+  * BQN: Various improvements (#2789)
   * C#: Fix number highlighting (#986, #2727), add ``file`` keyword (#2726, #2805, #2806), add various other keywords (#2745, #2770)
   * CSS: Add ``revert`` (#2766, #2775)
   * Debian control: Add ``Change-By`` field (#2757)
@@ -26,8 +27,10 @@ Version 2.19.0
   * Java: Support functions returning types containing a question mark (#2737)
   * JavaScript: Support private identiiers (#2729, #2671)
   * LLVM: Add ``splat``, improve floating-point number parsing (#2755)
+  * Lua: Improve variable detection, add built-in functions (#2829)
   * Macaulay2: Update to 1.24.11 (#2800)
   * PostgreSQL: Add more ``EXPLAIN`` keywords (#2785), handle ``/`` (#2774)
+  * Ruby: Fix operator ``<<`` parsing (#2740)
   * S-Lexer: Fix keywords (#2082, #2750)
   * TransactSQL: Fix single-line comments (#2717)
   * Turtle: Fix triple quoted strings (#2744, #2758)
@@ -40,6 +43,9 @@ Version 2.19.0
 * Fix broken link in the documentation (#2803, #2804)
 * Drop executable bit where not needed (#2781)
 * Reduce Mojo priority relative to Python in ``analyze_text´` (#2771, #2772)
+* Fix documentation builds (#2712)
+* Match example file names to the lexer's name (#2713, #2715)
+* Ensure lexer metadata is present (#2714)
 
 Version 2.18.0
 --------------
