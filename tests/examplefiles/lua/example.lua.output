@@ -18,8 +18,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'{'           Punctuation
-'}'           Punctuation
+'{}'          Punctuation
 ' '           Text.Whitespace
 'end'         Keyword.Reserved
 '\n'          Text.Whitespace
@@ -38,8 +37,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'{'           Punctuation
-'}'           Punctuation
+'{}'          Punctuation
 ' '           Text.Whitespace
 'end'         Keyword.Reserved
 '\n'          Text.Whitespace
@@ -58,8 +56,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'{'           Punctuation
-'}'           Punctuation
+'{}'          Punctuation
 ' '           Text.Whitespace
 'end'         Keyword.Reserved
 '\n'          Text.Whitespace
@@ -78,8 +75,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'{'           Punctuation
-'}'           Punctuation
+'{}'          Punctuation
 ' '           Text.Whitespace
 'end'         Keyword.Reserved
 '\n\n'        Text.Whitespace
@@ -135,8 +131,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'{'           Punctuation
-'}'           Punctuation
+'{}'          Punctuation
 '\n\n'        Text.Whitespace
 
 '-- For our modular stats system, each stats engine should add their' Comment.Single
@@ -169,19 +164,13 @@
 '{'           Punctuation
 'Stat'        Name.Variable
 '='           Operator
-'{'           Punctuation
-'}'           Punctuation
-','           Punctuation
+'{},'         Punctuation
 'Util'        Name.Variable
 '='           Operator
-'{'           Punctuation
-'}'           Punctuation
-','           Punctuation
+'{},'         Punctuation
 'Filter'      Name.Variable
 '='           Operator
-'{'           Punctuation
-'}'           Punctuation
-'}'           Punctuation
+'{}}'         Punctuation
 ' '           Text.Whitespace
 'end'         Keyword.Reserved
 '\n'          Text.Whitespace
@@ -204,8 +193,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'{'           Punctuation
-'}'           Punctuation
+'{}'          Punctuation
 ' '           Text.Whitespace
 'end'         Keyword.Reserved
 '\n'          Text.Whitespace
@@ -228,8 +216,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'{'           Punctuation
-'}'           Punctuation
+'{}'          Punctuation
 ' '           Text.Whitespace
 'end'         Keyword.Reserved
 '\n\n'        Text.Whitespace
@@ -321,8 +308,7 @@
 '"'           Literal.String.Double
 'scandata.force' Literal.String.Double
 '"'           Literal.String.Double
-')'           Punctuation
-')'           Punctuation
+'))'          Punctuation
 ' '           Text.Whitespace
 'then'        Keyword.Reserved
 '\n\t\t'      Text.Whitespace
@@ -331,8 +317,7 @@
 'Scan'        Name.Property
 '.'           Punctuation
 'GetImage'    Name.Function
-'('           Punctuation
-')'           Punctuation
+'()'          Punctuation
 '\n\t'        Text.Whitespace
 'end'         Keyword.Reserved
 '\n\n\t'      Text.Whitespace
@@ -425,8 +410,7 @@
 'private'     Name.Class
 '.'           Punctuation
 'HookAH'      Name.Function
-'('           Punctuation
-')'           Punctuation
+'()'          Punctuation
 '\n\t'        Text.Whitespace
 'hooksecurefunc' Name.Function
 '('           Punctuation
@@ -521,8 +505,7 @@
 'addon'       Name.Variable
 ':'           Punctuation
 'lower'       Name.Function
-'('           Punctuation
-')'           Punctuation
+'()'          Punctuation
 '\n\n\t'      Text.Whitespace
 '-- Check if the actual addon itself is loading' Comment.Single
 '\n\t'        Text.Whitespace
@@ -681,9 +664,7 @@
 'system'      Name.Variable
 ':'           Punctuation
 'lower'       Name.Function
-'('           Punctuation
-')'           Punctuation
-')'           Punctuation
+'())'         Punctuation
 ' '           Text.Whitespace
 'then'        Keyword.Reserved
 '\n\t\t\t\t'  Text.Whitespace
@@ -713,8 +694,7 @@
 'engine'      Name.Variable
 ':'           Punctuation
 'lower'       Name.Function
-'('           Punctuation
-')'           Punctuation
+'()'          Punctuation
 ' '           Text.Whitespace
 'and'         Operator.Word
 ' '           Text.Whitespace
@@ -792,8 +772,7 @@
 'LoadTriggers' Name.Property
 '['           Punctuation
 'addon'       Name.Variable
-']'           Punctuation
-')'           Punctuation
+'])'          Punctuation
 ' '           Text.Whitespace
 'then'        Keyword.Reserved
 '\n\t\t\t\t'  Text.Whitespace
@@ -873,8 +852,7 @@
 'private'     Name.Class
 '.'           Punctuation
 'OnUnload'    Name.Function
-'('           Punctuation
-')'           Punctuation
+'()'          Punctuation
 '\n\t'        Text.Whitespace
 'for'         Keyword.Reserved
 ' '           Text.Whitespace
@@ -923,8 +901,7 @@
 'engineLib'   Name.Variable
 '.'           Punctuation
 'OnUnload'    Name.Function
-'('           Punctuation
-')'           Punctuation
+'()'          Punctuation
 '\n\t\t\t'    Text.Whitespace
 'end'         Keyword.Reserved
 '\n\t\t'      Text.Whitespace
@@ -942,8 +919,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'{'           Punctuation
-'}'           Punctuation
+'{}'          Punctuation
 '\n'          Text.Whitespace
 
 'function'    Keyword.Reserved
@@ -951,9 +927,7 @@
 'private'     Name.Class
 '.'           Punctuation
 'OnEvent'     Name.Function
-'('           Punctuation
-'...'         Punctuation
-')'           Punctuation
+'(...)'       Punctuation
 '\n\t'        Text.Whitespace
 'local'       Keyword.Declaration
 ' '           Text.Whitespace
@@ -1062,8 +1036,7 @@
 'Scan'        Name.Property
 '.'           Punctuation
 'Interrupt'   Name.Function
-'('           Punctuation
-')'           Punctuation
+'()'          Punctuation
 '\n\t'        Text.Whitespace
 'elseif'      Keyword.Reserved
 ' '           Text.Whitespace
@@ -1091,8 +1064,7 @@
 'private'     Name.Variable
 '.'           Punctuation
 'OnUnload'    Name.Function
-'('           Punctuation
-')'           Punctuation
+'()'          Punctuation
 '\n\t'        Text.Whitespace
 'elseif'      Keyword.Reserved
 ' '           Text.Whitespace
@@ -1148,8 +1120,7 @@
 '='           Operator
 ' '           Text.Whitespace
 'GetTime'     Name.Function
-'('           Punctuation
-')'           Punctuation
+'()'          Punctuation
 ' '           Text.Whitespace
 '+'           Operator
 ' '           Text.Whitespace
@@ -1166,9 +1137,7 @@
 'private'     Name.Class
 '.'           Punctuation
 'OnUpdate'    Name.Function
-'('           Punctuation
-'...'         Punctuation
-')'           Punctuation
+'(...)'       Punctuation
 '\n\t'        Text.Whitespace
 'if'          Keyword.Reserved
 ' '           Text.Whitespace
@@ -1187,8 +1156,7 @@
 'Post'        Name.Property
 '.'           Punctuation
 'AlertBagsChanged' Name.Function
-'('           Punctuation
-')'           Punctuation
+'()'          Punctuation
 '\n\t'        Text.Whitespace
 'end'         Keyword.Reserved
 '\n\n\t'      Text.Whitespace
@@ -1199,8 +1167,7 @@
 '='           Operator
 ' '           Text.Whitespace
 'GetTime'     Name.Function
-'('           Punctuation
-')'           Punctuation
+'()'          Punctuation
 '\n\t'        Text.Whitespace
 'for'         Keyword.Reserved
 ' '           Text.Whitespace
@@ -1460,8 +1427,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'{'           Punctuation
-'}'           Punctuation
+'{}'          Punctuation
 '\n'          Text.Whitespace
 
 'local'       Keyword.Declaration
@@ -1721,11 +1687,7 @@
 '{'           Punctuation
 'c'           Name.Variable
 '='           Operator
-'{'           Punctuation
-'}'           Punctuation
-'}'           Punctuation
-'}'           Punctuation
-','           Punctuation
+'{}}},'       Punctuation
 '\n        '  Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
@@ -1790,16 +1752,14 @@
 't'           Name.Class
 '.'           Punctuation
 'f'           Name.Function
-'('           Punctuation
-')'           Punctuation
+'()'          Punctuation
 '\n        '  Text.Whitespace
 'goto'        Keyword.Reserved
 ' '           Text.Whitespace
 'eof'         Name.Label
 '\n        '  Text.Whitespace
 'os.exit'     Name.Builtin
-'('           Punctuation
-')'           Punctuation
+'()'          Punctuation
 '\n        '  Text.Whitespace
 '::'          Punctuation
 ' '           Text.Whitespace

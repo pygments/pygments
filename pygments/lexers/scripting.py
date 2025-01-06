@@ -86,7 +86,7 @@ class LuaLexer(RegexLexer):
             (r'::', Punctuation, 'label'),
             (r'\.{3}', Punctuation),
             (r'[=<>|~&+\-*/%#^]+|\.\.', Operator),
-            (r'[\[\]{}().,:;]', Punctuation),
+            (r'[\[\]{}().,:;]+', Punctuation),
             (r'(and|or|not)\b', Operator.Word),
 
             ('(break|do|else|elseif|end|for|if|in|repeat|return|then|until|'
@@ -108,6 +108,7 @@ class LuaLexer(RegexLexer):
 
         'varname': [
             include('ws'),
+            (r'\.\.', Operator, '#pop'),
             (r'[.:]', Punctuation),
             (rf'{_name}(?={_s}*[.:])', Name.Property),
             (rf'{_name}(?={_s}*\()', Name.Function, '#pop'),

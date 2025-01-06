@@ -1,0 +1,71 @@
+'local'       Keyword.Declaration
+' '           Text.Whitespace
+'json'        Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'require'     Name.Builtin
+'('           Punctuation
+"'"           Literal.String.Single
+'json'        Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'local'       Keyword.Declaration
+' '           Text.Whitespace
+'scriptmanager' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'require'     Name.Builtin
+'('           Punctuation
+"'"           Literal.String.Single
+'script-manager' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'local'       Keyword.Declaration
+' '           Text.Whitespace
+'path'        Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'scriptmanager' Name.Variable
+'.'           Punctuation
+'getModStatePath' Name.Function
+'('           Punctuation
+"'"           Literal.String.Single
+'mymodname'   Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'config'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'config'      Name.Variable
+' '           Text.Whitespace
+'or'          Operator.Word
+' '           Text.Whitespace
+'json'        Name.Variable
+'.'           Punctuation
+'open'        Name.Function
+'('           Punctuation
+'path'        Name.Variable
+' '           Text.Whitespace
+'..'          Operator
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'settings.json' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'-- modify state in the config.data table and persist it when it changes with' Comment.Single
+'\n'          Text.Whitespace
+
+'-- config:write()' Comment.Single
+'\n'          Text.Whitespace
