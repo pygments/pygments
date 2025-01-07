@@ -34,7 +34,7 @@ class _TokenType(tuple):
     def __getattr__(self, val):
         if not val or not val[0].isupper():
             return tuple.__getattribute__(self, val)
-        new = _TokenType(self + (val,))
+        new = _TokenType((*self, val))
         setattr(self, val, new)
         self.subtypes.add(new)
         new.parent = self

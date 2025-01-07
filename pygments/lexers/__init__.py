@@ -25,8 +25,7 @@ COMPAT = {
     'LeanLexer': 'Lean3Lexer',
 }
 
-__all__ = ['get_lexer_by_name', 'get_lexer_for_filename', 'find_lexer_class',
-           'guess_lexer', 'load_lexer_from_file'] + list(LEXERS) + list(COMPAT)
+__all__ = ['get_lexer_by_name', 'get_lexer_for_filename', 'find_lexer_class', 'guess_lexer', 'load_lexer_from_file', *list(LEXERS), *list(COMPAT)]
 
 _lexer_cache = {}
 _pattern_cache = {}

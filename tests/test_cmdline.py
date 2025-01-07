@@ -48,7 +48,7 @@ def run_cmdline(*args, **kwds):
     new_stdin.write(kwds.get('stdin', ''))
     new_stdin.seek(0, 0)
     try:
-        ret = cmdline.main(['pygmentize'] + list(args))
+        ret = cmdline.main(['pygmentize', *list(args)])
     finally:
         sys.stdin = saved_stdin
         sys.stdout = saved_stdout
