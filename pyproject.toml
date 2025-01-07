@@ -65,6 +65,7 @@ path = "pygments/__init__.py"
 target-version = "py38"
 lint.extend-select = [
   "UP",  # "pyupgrade"
+  "RUF", # "ruff"
 ]
 extend-exclude = [
     # These Python tests are purposefully invalid.
