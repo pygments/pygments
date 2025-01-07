@@ -146,8 +146,8 @@ class SvgFormatter(Formatter):
         outfile.write(f'<text x="{line_x}" y="{y}" xml:space="preserve">')
         for ttype, value in tokensource:
             style = self._get_style(ttype)
-            tspan = style and '<tspan' + style + '>' or ''
-            tspanend = tspan and '</tspan>' or ''
+            tspan = (style and '<tspan' + style + '>') or ''
+            tspanend = (tspan and '</tspan>') or ''
             value = escape_html(value)
             if self.spacehack:
                 value = value.expandtabs().replace(' ', '&#160;')

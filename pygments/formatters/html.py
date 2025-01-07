@@ -580,7 +580,7 @@ class HtmlFormatter(Formatter):
 
     def get_css_prefix(self, arg):
         if arg is None:
-            arg = ('cssclass' in self.options and '.'+self.cssclass or '')
+            arg = (('cssclass' in self.options and '.'+self.cssclass) or '')
         if isinstance(arg, str):
             args = [arg]
         else:
@@ -591,7 +591,7 @@ class HtmlFormatter(Formatter):
                 cls = '.' + cls
             tmp = []
             for arg in args:
-                tmp.append((arg and arg + ' ' or '') + cls)
+                tmp.append(((arg and arg + ' ') or '') + cls)
             return ', '.join(tmp)
 
         return prefix

@@ -16,8 +16,14 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Generic, Literal, Punctuation
 from pygments.util import ClassNotFound
 
-__all__ = ['IrcLogsLexer', 'TodotxtLexer', 'HttpLexer', 'GettextLexer',
-           'NotmuchLexer', 'KernelLogLexer']
+__all__ = [
+    'GettextLexer',
+    'HttpLexer',
+    'IrcLogsLexer',
+    'KernelLogLexer',
+    'NotmuchLexer',
+    'TodotxtLexer',
+]
 
 
 class IrcLogsLexer(RegexLexer):

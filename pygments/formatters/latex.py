@@ -344,8 +344,8 @@ class LatexFormatter(Formatter):
             if self.linenos:
                 start, step = self.linenostart, self.linenostep
                 outfile.write(',numbers=left' +
-                              (start and ',firstnumber=%d' % start or '') +
-                              (step and ',stepnumber=%d' % step or ''))
+                              ((start and ',firstnumber=%d' % start) or '') +
+                              ((step and ',stepnumber=%d' % step) or ''))
             if self.mathescape or self.texcomments or self.escapeinside:
                 outfile.write(',codes={\\catcode`\\$=3\\catcode`\\^=7'
                               '\\catcode`\\_=8\\relax}')

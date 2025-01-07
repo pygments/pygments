@@ -19,9 +19,21 @@ from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
     make_analysator, Future, guess_decode
 from pygments.regexopt import regex_opt
 
-__all__ = ['Lexer', 'RegexLexer', 'ExtendedRegexLexer', 'DelegatingLexer',
-           'LexerContext', 'include', 'inherit', 'bygroups', 'using', 'this',
-           'default', 'words', 'line_re']
+__all__ = [
+    'DelegatingLexer',
+    'ExtendedRegexLexer',
+    'Lexer',
+    'LexerContext',
+    'RegexLexer',
+    'bygroups',
+    'default',
+    'include',
+    'inherit',
+    'line_re',
+    'this',
+    'using',
+    'words',
+]
 
 line_re = re.compile('.*?\n')
 

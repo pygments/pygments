@@ -25,7 +25,7 @@ def make_charset(letters):
 
 def regex_opt_inner(strings, open_paren):
     """Return a regex that matches any string in the sorted list of strings."""
-    close_paren = open_paren and ')' or ''
+    close_paren = (open_paren and ')') or ''
     # print strings, repr(open_paren)
     if not strings:
         # print '-> nothing left'

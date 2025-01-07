@@ -16,8 +16,15 @@ from pygments.token import Comment, Error, Keyword, Name, Number, \
 from pygments.lexers import _vbscript_builtins
 
 
-__all__ = ['BlitzBasicLexer', 'BlitzMaxLexer', 'MonkeyLexer', 'CbmBasicV2Lexer',
-           'QBasicLexer', 'VBScriptLexer', 'BBCBasicLexer']
+__all__ = [
+    'BBCBasicLexer',
+    'BlitzBasicLexer',
+    'BlitzMaxLexer',
+    'CbmBasicV2Lexer',
+    'MonkeyLexer',
+    'QBasicLexer',
+    'VBScriptLexer',
+]
 
 
 class BlitzMaxLexer(RegexLexer):

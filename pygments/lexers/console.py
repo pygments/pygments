@@ -12,7 +12,7 @@ from pygments.lexer import RegexLexer, include, bygroups
 from pygments.token import Generic, Comment, String, Text, Keyword, Name, \
     Punctuation, Number, Whitespace
 
-__all__ = ['VCTreeStatusLexer', 'PyPyLogLexer']
+__all__ = ['PyPyLogLexer', 'VCTreeStatusLexer']
 
 
 class VCTreeStatusLexer(RegexLexer):

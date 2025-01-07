@@ -16,9 +16,20 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Error, Whitespace, Other
 from pygments.util import get_bool_opt, get_list_opt
 
-__all__ = ['LuaLexer', 'LuauLexer', 'MoonScriptLexer', 'ChaiscriptLexer', 'LSLLexer',
-           'AppleScriptLexer', 'RexxLexer', 'MOOCodeLexer', 'HybrisLexer',
-           'EasytrieveLexer', 'JclLexer', 'MiniScriptLexer']
+__all__ = [
+    'AppleScriptLexer',
+    'ChaiscriptLexer',
+    'EasytrieveLexer',
+    'HybrisLexer',
+    'JclLexer',
+    'LSLLexer',
+    'LuaLexer',
+    'LuauLexer',
+    'MOOCodeLexer',
+    'MiniScriptLexer',
+    'MoonScriptLexer',
+    'RexxLexer',
+]
 
 
 def all_lua_builtins():

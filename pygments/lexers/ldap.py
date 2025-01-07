@@ -15,7 +15,7 @@ from pygments.lexer import RegexLexer, bygroups, default
 from pygments.token import Operator, Comment, Keyword, Literal, Name, String, \
     Number, Punctuation, Whitespace, Escape
 
-__all__ = ['LdifLexer', 'LdaprcLexer']
+__all__ = ['LdaprcLexer', 'LdifLexer']
 
 
 class LdifLexer(RegexLexer):

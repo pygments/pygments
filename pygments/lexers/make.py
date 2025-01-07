@@ -16,7 +16,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Punctuation, Whitespace
 from pygments.lexers.shell import BashLexer
 
-__all__ = ['MakefileLexer', 'BaseMakefileLexer', 'CMakeLexer']
+__all__ = ['BaseMakefileLexer', 'CMakeLexer', 'MakefileLexer']
 
 
 class MakefileLexer(Lexer):

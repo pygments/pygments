@@ -41,7 +41,7 @@ class _TokenType(tuple):
         return new
 
     def __repr__(self):
-        return 'Token' + (self and '.' or '') + '.'.join(self)
+        return 'Token' + ((self and '.') or '') + '.'.join(self)
 
     def __copy__(self):
         # These instances are supposed to be singletons

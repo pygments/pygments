@@ -17,10 +17,24 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 from pygments.util import shebang_matches
 from pygments import unistring as uni
 
-__all__ = ['JavaLexer', 'ScalaLexer', 'GosuLexer', 'GosuTemplateLexer',
-           'GroovyLexer', 'IokeLexer', 'ClojureLexer', 'ClojureScriptLexer',
-           'KotlinLexer', 'XtendLexer', 'AspectJLexer', 'CeylonLexer',
-           'PigLexer', 'GoloLexer', 'JasminLexer', 'SarlLexer']
+__all__ = [
+    'AspectJLexer',
+    'CeylonLexer',
+    'ClojureLexer',
+    'ClojureScriptLexer',
+    'GoloLexer',
+    'GosuLexer',
+    'GosuTemplateLexer',
+    'GroovyLexer',
+    'IokeLexer',
+    'JasminLexer',
+    'JavaLexer',
+    'KotlinLexer',
+    'PigLexer',
+    'SarlLexer',
+    'ScalaLexer',
+    'XtendLexer',
+]
 
 
 class JavaLexer(RegexLexer):

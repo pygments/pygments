@@ -23,7 +23,7 @@ from pygments.lexer import RegexLexer, include, bygroups, using
 from pygments.token import Text, Comment, Name, String, Number, \
     Operator, Punctuation
 
-__all__ = ['TypoScriptLexer', 'TypoScriptCssDataLexer', 'TypoScriptHtmlDataLexer']
+__all__ = ['TypoScriptCssDataLexer', 'TypoScriptHtmlDataLexer', 'TypoScriptLexer']
 
 
 class TypoScriptCssDataLexer(RegexLexer):

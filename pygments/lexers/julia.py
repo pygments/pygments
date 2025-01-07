@@ -16,7 +16,7 @@ from pygments.util import shebang_matches
 from pygments.lexers._julia_builtins import OPERATORS_LIST, DOTTED_OPERATORS_LIST, \
     KEYWORD_LIST, BUILTIN_LIST, LITERAL_LIST
 
-__all__ = ['JuliaLexer', 'JuliaConsoleLexer']
+__all__ = ['JuliaConsoleLexer', 'JuliaLexer']
 
 # see https://docs.julialang.org/en/v1/manual/variables/#Allowed-Variable-Names
 allowed_variable = \

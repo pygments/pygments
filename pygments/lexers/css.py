@@ -17,7 +17,7 @@ from pygments.token import Comment, Operator, Keyword, Name, String, Number, \
     Punctuation, Whitespace
 from pygments.lexers._css_builtins import _css_properties
 
-__all__ = ['CssLexer', 'SassLexer', 'ScssLexer', 'LessCssLexer']
+__all__ = ['CssLexer', 'LessCssLexer', 'SassLexer', 'ScssLexer']
 
 
 # List of vendor prefixes obtained from:

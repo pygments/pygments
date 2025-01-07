@@ -196,7 +196,7 @@ def main(argv):
         print("No errors found.")
     else:
         print(out.getvalue().rstrip('\n'))
-        print("%d error%s found." % (num, num > 1 and "s" or ""))
+        print("%d error%s found." % (num, (num > 1 and "s") or ""))
     return int(num > 0)
 
 

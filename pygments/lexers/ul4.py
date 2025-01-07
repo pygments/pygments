@@ -16,8 +16,14 @@ from pygments.token import Comment, Text, Keyword, String, Number, Literal, \
 from pygments.lexers.web import HtmlLexer, XmlLexer, CssLexer, JavascriptLexer
 from pygments.lexers.python import PythonLexer
 
-__all__ = ['UL4Lexer', 'HTMLUL4Lexer', 'XMLUL4Lexer', 'CSSUL4Lexer',
-           'JavascriptUL4Lexer', 'PythonUL4Lexer']
+__all__ = [
+    'CSSUL4Lexer',
+    'HTMLUL4Lexer',
+    'JavascriptUL4Lexer',
+    'PythonUL4Lexer',
+    'UL4Lexer',
+    'XMLUL4Lexer',
+]
 
 
 class UL4Lexer(RegexLexer):

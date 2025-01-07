@@ -16,8 +16,14 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 
 from pygments.lexers._openedge_builtins import OPENEDGEKEYWORDS
 
-__all__ = ['CobolLexer', 'CobolFreeformatLexer', 'ABAPLexer', 'OpenEdgeLexer',
-           'GoodDataCLLexer', 'MaqlLexer']
+__all__ = [
+    'ABAPLexer',
+    'CobolFreeformatLexer',
+    'CobolLexer',
+    'GoodDataCLLexer',
+    'MaqlLexer',
+    'OpenEdgeLexer',
+]
 
 
 class CobolLexer(RegexLexer):

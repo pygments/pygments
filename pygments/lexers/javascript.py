@@ -17,10 +17,20 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 from pygments.util import get_bool_opt
 import pygments.unistring as uni
 
-__all__ = ['JavascriptLexer', 'KalLexer', 'LiveScriptLexer', 'DartLexer',
-           'TypeScriptLexer', 'LassoLexer', 'ObjectiveJLexer',
-           'CoffeeScriptLexer', 'MaskLexer', 'EarlGreyLexer', 'JuttleLexer',
-           'NodeConsoleLexer']
+__all__ = [
+    'CoffeeScriptLexer',
+    'DartLexer',
+    'EarlGreyLexer',
+    'JavascriptLexer',
+    'JuttleLexer',
+    'KalLexer',
+    'LassoLexer',
+    'LiveScriptLexer',
+    'MaskLexer',
+    'NodeConsoleLexer',
+    'ObjectiveJLexer',
+    'TypeScriptLexer',
+]
 
 JS_IDENT_START = ('(?:[$_' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl') +
                   ']|\\\\u[a-fA-F0-9]{4})')
@@ -771,9 +781,9 @@ class LassoLexer(RegexLexer):
             stack.append('delimiters')
         for index, token, value in \
                 RegexLexer.get_tokens_unprocessed(self, text, stack):
-            if (token is Name.Other and value.lower() in self._builtins or
-                    token is Name.Other.Member and
-                    value.lower().rstrip('=') in self._members):
+            if ((token is Name.Other and value.lower() in self._builtins) or
+                    (token is Name.Other.Member and
+                    value.lower().rstrip('=') in self._members)):
                 yield index, Name.Builtin, value
                 continue
             yield index, token, value

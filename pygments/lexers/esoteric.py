@@ -12,8 +12,14 @@ from pygments.lexer import RegexLexer, include, words, bygroups
 from pygments.token import Comment, Operator, Keyword, Name, String, Number, \
     Punctuation, Error, Whitespace
 
-__all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'CAmkESLexer',
-           'CapDLLexer', 'AheuiLexer']
+__all__ = [
+    'AheuiLexer',
+    'BefungeLexer',
+    'BrainfuckLexer',
+    'CAmkESLexer',
+    'CapDLLexer',
+    'RedcodeLexer',
+]
 
 
 class BrainfuckLexer(RegexLexer):

@@ -12,7 +12,7 @@ from pygments.lexer import RegexLexer, bygroups, include, this, using, words
 from pygments.token import Comment, Keyword, Literal, Name, Number, \
     Operator, Punctuation, String, Text, Whitespace
 
-__all__ = ['BnfLexer', 'AbnfLexer', 'JsgfLexer', 'PegLexer']
+__all__ = ['AbnfLexer', 'BnfLexer', 'JsgfLexer', 'PegLexer']
 
 
 class BnfLexer(RegexLexer):

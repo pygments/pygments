@@ -18,7 +18,7 @@ from pygments.lexers.html import HtmlLexer
 from pygments.lexers.python import PythonLexer
 from pygments.lexers.scripting import LuaLexer
 
-__all__ = ['CsoundScoreLexer', 'CsoundOrchestraLexer', 'CsoundDocumentLexer']
+__all__ = ['CsoundDocumentLexer', 'CsoundOrchestraLexer', 'CsoundScoreLexer']
 
 newline = (r'((?:(?:;|//).*)*)(\n)', bygroups(Comment.Single, Text))
 

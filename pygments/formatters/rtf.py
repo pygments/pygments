@@ -254,8 +254,8 @@ class RtfFormatter(Formatter):
         # rtf 1.8 header
         lines.append('{\\rtf1\\ansi\\uc0\\deff0'
                      '{\\fonttbl{\\f0\\fmodern\\fprq1\\fcharset0%s;}}'
-                     % (self.fontface and ' '
-                        + self._escape(self.fontface) or ''))
+                     % ((self.fontface and ' '
+                        + self._escape(self.fontface)) or ''))
 
         # color table
         lines.append('{\\colortbl;')

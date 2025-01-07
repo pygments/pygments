@@ -90,7 +90,7 @@ class GroffFormatter(Formatter):
 
     def _write_lineno(self, outfile):
         self._lineno += 1
-        outfile.write("%s% 4d " % (self._lineno != 1 and '\n' or '', self._lineno))
+        outfile.write("%s% 4d " % ((self._lineno != 1 and '\n') or '', self._lineno))
 
 
     def _wrap_line(self, line):

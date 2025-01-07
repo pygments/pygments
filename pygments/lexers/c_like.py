@@ -18,9 +18,20 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 from pygments.lexers.c_cpp import CLexer, CppLexer
 from pygments.lexers import _mql_builtins
 
-__all__ = ['PikeLexer', 'NesCLexer', 'ClayLexer', 'ECLexer', 'ValaLexer',
-           'CudaLexer', 'SwigLexer', 'MqlLexer', 'ArduinoLexer', 'CharmciLexer',
-           'OmgIdlLexer', 'PromelaLexer']
+__all__ = [
+    'ArduinoLexer',
+    'CharmciLexer',
+    'ClayLexer',
+    'CudaLexer',
+    'ECLexer',
+    'MqlLexer',
+    'NesCLexer',
+    'OmgIdlLexer',
+    'PikeLexer',
+    'PromelaLexer',
+    'SwigLexer',
+    'ValaLexer',
+]
 
 
 class PikeLexer(CppLexer):

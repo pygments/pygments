@@ -16,7 +16,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Error, Generic, Whitespace
 from pygments.util import shebang_matches
 
-__all__ = ['RubyLexer', 'RubyConsoleLexer', 'FancyLexer']
+__all__ = ['FancyLexer', 'RubyConsoleLexer', 'RubyLexer']
 
 
 RUBY_OPERATORS = (

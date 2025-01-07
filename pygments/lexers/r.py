@@ -14,7 +14,7 @@ from pygments.lexer import Lexer, RegexLexer, include, do_insertions
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Whitespace
 
-__all__ = ['RConsoleLexer', 'SLexer', 'RdLexer']
+__all__ = ['RConsoleLexer', 'RdLexer', 'SLexer']
 
 
 line_re  = re.compile('.*?\n')

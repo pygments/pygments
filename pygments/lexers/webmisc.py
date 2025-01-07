@@ -20,7 +20,7 @@ from pygments.lexers.html import HtmlLexer
 from pygments.lexers.javascript import JavascriptLexer
 from pygments.lexers.ruby import RubyLexer
 
-__all__ = ['DuelLexer', 'SlimLexer', 'XQueryLexer', 'QmlLexer', 'CirruLexer']
+__all__ = ['CirruLexer', 'DuelLexer', 'QmlLexer', 'SlimLexer', 'XQueryLexer']
 
 
 class DuelLexer(RegexLexer):
