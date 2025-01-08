@@ -34,7 +34,7 @@ class BlueprintLexer(RegexLexer):
     name = "Blueprint"
     aliases = ["blueprint"]
     filenames = ("*.blp",)
-    mimetypes = ["text/x-blueprint"]
+    mimetypes = ("text/x-blueprint",)
     url = "https://gitlab.gnome.org/jwestman/blueprint-compiler"
     version_added = '2.16'
 

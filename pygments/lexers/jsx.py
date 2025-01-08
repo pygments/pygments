@@ -86,7 +86,7 @@ class TsxLexer(TypeScriptLexer):
     name = "TSX"
     aliases = ["tsx"]
     filenames = ("*.tsx",)
-    mimetypes = ["text/typescript-tsx"]
+    mimetypes = ("text/typescript-tsx",)
     url = "https://www.typescriptlang.org/docs/handbook/jsx.html"
     version_added = '2.19'
 

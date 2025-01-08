@@ -22,7 +22,7 @@ class OpenScadLexer(RegexLexer):
     url = "https://openscad.org/"
     aliases = ["openscad"]
     filenames = ("*.scad",)
-    mimetypes = ["application/x-openscad"]
+    mimetypes = ("application/x-openscad",)
     version_added = '2.16'
 
     tokens: typing.ClassVar = {

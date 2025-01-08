@@ -519,7 +519,7 @@ class MarkdownLexer(RegexLexer):
     url = 'https://daringfireball.net/projects/markdown/'
     aliases = ('markdown', 'md')
     filenames = ('*.md', '*.markdown')
-    mimetypes = ["text/x-markdown"]
+    mimetypes = ("text/x-markdown",)
     version_added = '2.2'
     flags = re.MULTILINE
 
@@ -638,7 +638,7 @@ class OrgLexer(RegexLexer):
     url = 'https://orgmode.org'
     aliases = ('org', 'orgmode', 'org-mode')
     filenames = ('*.org',)
-    mimetypes = ["text/org"]
+    mimetypes = ("text/org",)
     version_added = '2.18'
 
     def _inline(start, end):
@@ -747,7 +747,7 @@ class TiddlyWiki5Lexer(RegexLexer):
     url = 'https://tiddlywiki.com/#TiddlerFiles'
     aliases = ('tid',)
     filenames = ('*.tid',)
-    mimetypes = ["text/vnd.tiddlywiki"]
+    mimetypes = ("text/vnd.tiddlywiki",)
     version_added = '2.7'
     flags = re.MULTILINE
 

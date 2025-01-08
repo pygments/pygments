@@ -27,7 +27,7 @@ class BibTeXLexer(ExtendedRegexLexer):
     name = 'BibTeX'
     aliases = ('bibtex', 'bib')
     filenames = ('*.bib',)
-    mimetypes = ["text/x-bibtex"]
+    mimetypes = ("text/x-bibtex",)
     version_added = '2.2'
     flags = re.IGNORECASE
     url = 'https://texfaq.org/FAQ-BibTeXing'

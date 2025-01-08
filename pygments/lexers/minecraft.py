@@ -35,7 +35,7 @@ class SNBTLexer(RegexLexer):
     url = "https://minecraft.wiki/w/NBT_format"
     aliases = ["snbt"]
     filenames = ("*.snbt",)
-    mimetypes = ["text/snbt"]
+    mimetypes = ("text/snbt",)
     version_added = '2.12'
 
     tokens: typing.ClassVar = {
@@ -108,7 +108,7 @@ class MCFunctionLexer(RegexLexer):
     url = "https://minecraft.wiki/w/Commands"
     aliases = ["mcfunction", "mcf"]
     filenames = ("*.mcfunction",)
-    mimetypes = ["text/mcfunction"]
+    mimetypes = ("text/mcfunction",)
     version_added = '2.12'
 
     # Used to denotate the start of a block comment, borrowed from Github's mcfunction

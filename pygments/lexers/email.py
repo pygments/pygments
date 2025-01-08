@@ -125,7 +125,7 @@ class EmailLexer(DelegatingLexer):
     name = "E-mail"
     aliases = ["email", "eml"]
     filenames = ("*.eml",)
-    mimetypes = ["message/rfc822"]
+    mimetypes = ("message/rfc822",)
     url = "https://en.wikipedia.org/wiki/Email#Message_format"
     version_added = '2.5'
 
