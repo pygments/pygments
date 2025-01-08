@@ -30,7 +30,7 @@ class GLShaderLexer(RegexLexer):
     """
     name = 'GLSL'
     aliases = ('glsl',)
-    filenames = ['*.vert', '*.frag', '*.geo']
+    filenames = ('*.vert', '*.frag', '*.geo')
     mimetypes = ['text/x-glslsrc']
     url = 'https://www.khronos.org/api/opengl'
     version_added = '1.1'
@@ -161,7 +161,7 @@ class HLSLShaderLexer(RegexLexer):
     """
     name = 'HLSL'
     aliases = ('hlsl',)
-    filenames = ['*.hlsl', '*.hlsli']
+    filenames = ('*.hlsl', '*.hlsli')
     mimetypes = ['text/x-hlsl']
     url = 'https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl'
     version_added = '2.3'
@@ -316,7 +316,7 @@ class PostScriptLexer(RegexLexer):
     name = 'PostScript'
     url = 'https://en.wikipedia.org/wiki/PostScript'
     aliases = ('postscript', 'postscr')
-    filenames = ['*.ps', '*.eps']
+    filenames = ('*.ps', '*.eps')
     mimetypes = ['application/postscript']
     version_added = '1.4'
 
@@ -538,7 +538,7 @@ class GnuplotLexer(RegexLexer):
     name = 'Gnuplot'
     url = 'http://gnuplot.info/'
     aliases = ('gnuplot',)
-    filenames = ['*.plot', '*.plt']
+    filenames = ('*.plot', '*.plt')
     mimetypes = ['text/x-gnuplot']
     version_added = '0.11'
 
@@ -697,7 +697,7 @@ class PovrayLexer(RegexLexer):
     name = 'POVRay'
     url = 'http://www.povray.org/'
     aliases = ('pov',)
-    filenames = ['*.pov', '*.inc']
+    filenames = ('*.pov', '*.inc')
     mimetypes = ['text/x-povray']
     version_added = '0.11'
 

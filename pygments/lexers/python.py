@@ -741,7 +741,7 @@ class PythonTracebackLexer(RegexLexer):
 
     name = 'Python Traceback'
     aliases = ('pytb', 'py3tb')
-    filenames = ['*.pytb', '*.py3tb']
+    filenames = ('*.pytb', '*.py3tb')
     mimetypes = ['text/x-python-traceback', 'text/x-python3-traceback']
     url = 'https://python.org'
     version_added = '1.0'
@@ -843,7 +843,7 @@ class CythonLexer(RegexLexer):
     name = 'Cython'
     url = 'https://cython.org'
     aliases = ('cython', 'pyx', 'pyrex')
-    filenames = ['*.pyx', '*.pxd', '*.pxi']
+    filenames = ('*.pyx', '*.pxd', '*.pxi')
     mimetypes = ['text/x-cython', 'application/x-cython']
     version_added = '1.1'
 

@@ -198,7 +198,7 @@ class JagsLexer(RegexLexer):
 
     name = 'JAGS'
     aliases = ('jags',)
-    filenames = ['*.jag', '*.bug']
+    filenames = ('*.jag', '*.bug')
     url = 'https://mcmc-jags.sourceforge.io'
     version_added = '1.6'
 

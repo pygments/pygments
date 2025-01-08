@@ -75,7 +75,7 @@ class SLexer(RegexLexer):
 
     name = 'S'
     aliases = ('splus', 's', 'r')
-    filenames = ['*.S', '*.R', '.Rhistory', '.Rprofile', '.Renviron']
+    filenames = ('*.S', '*.R', '.Rhistory', '.Rprofile', '.Renviron')
     mimetypes = ['text/S-plus', 'text/S', 'text/x-r-source', 'text/x-r',
                  'text/x-R', 'text/x-r-history', 'text/x-r-profile']
     url = 'https://www.r-project.org'

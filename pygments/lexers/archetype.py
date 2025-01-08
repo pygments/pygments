@@ -254,7 +254,7 @@ class AdlLexer(AtomsLexer):
 
     name = 'ADL'
     aliases = ('adl',)
-    filenames = ['*.adl', '*.adls', '*.adlf', '*.adlx']
+    filenames = ('*.adl', '*.adls', '*.adlf', '*.adlx')
     url = 'https://specifications.openehr.org/releases/AM/latest/ADL2.html'
     version_added = '2.1'
 

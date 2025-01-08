@@ -31,7 +31,7 @@ class MesonLexer(RegexLexer):
     name = 'Meson'
     url = 'https://mesonbuild.com/'
     aliases = ('meson', 'meson.build')
-    filenames = ['meson.build', 'meson_options.txt']
+    filenames = ('meson.build', 'meson_options.txt')
     mimetypes = ['text/x-meson']
     version_added = '2.10'
 

@@ -32,7 +32,7 @@ class ErlangLexer(RegexLexer):
     name = 'Erlang'
     url = 'https://www.erlang.org/'
     aliases = ('erlang',)
-    filenames = ['*.erl', '*.hrl', '*.es', '*.escript']
+    filenames = ('*.erl', '*.hrl', '*.es', '*.escript')
     mimetypes = ['text/x-erlang']
     version_added = '0.9'
 
@@ -229,7 +229,7 @@ class ElixirLexer(RegexLexer):
     name = 'Elixir'
     url = 'https://elixir-lang.org'
     aliases = ('elixir', 'ex', 'exs')
-    filenames = ['*.ex', '*.eex', '*.exs', '*.leex']
+    filenames = ('*.ex', '*.eex', '*.exs', '*.leex')
     mimetypes = ['text/x-elixir']
     version_added = '1.5'
 

@@ -31,7 +31,7 @@ class GAPLexer(RegexLexer):
     name = 'GAP'
     url = 'https://www.gap-system.org'
     aliases = ('gap',)
-    filenames = ['*.g', '*.gd', '*.gi', '*.gap']
+    filenames = ('*.g', '*.gd', '*.gi', '*.gap')
     version_added = '2.0'
 
     tokens: typing.ClassVar = {
@@ -159,7 +159,7 @@ class MathematicaLexer(RegexLexer):
     name = 'Mathematica'
     url = 'http://www.wolfram.com/mathematica/'
     aliases = ('mathematica', 'mma', 'nb')
-    filenames = ['*.nb', '*.cdf', '*.nbp', '*.ma']
+    filenames = ('*.nb', '*.cdf', '*.nbp', '*.ma')
     mimetypes = ['application/mathematica',
                  'application/vnd.wolfram.mathematica',
                  'application/vnd.wolfram.mathematica.package',

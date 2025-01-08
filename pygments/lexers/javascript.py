@@ -49,7 +49,7 @@ class JavascriptLexer(RegexLexer):
     name = 'JavaScript'
     url = 'https://www.ecma-international.org/publications-and-standards/standards/ecma-262/'
     aliases = ('javascript', 'js')
-    filenames = ['*.js', '*.jsm', '*.mjs', '*.cjs']
+    filenames = ('*.js', '*.jsm', '*.mjs', '*.cjs')
     mimetypes = ['application/javascript', 'application/x-javascript',
                  'text/x-javascript', 'text/javascript']
     version_added = ''
@@ -553,9 +553,9 @@ class LassoLexer(RegexLexer):
 
     name = 'Lasso'
     aliases = ('lasso', 'lassoscript')
-    filenames = ['*.lasso', '*.lasso[89]']
+    filenames = ('*.lasso', '*.lasso[89]')
     version_added = '1.6'
-    alias_filenames = ['*.incl', '*.inc', '*.las']
+    alias_filenames = ('*.incl', '*.inc', '*.las')
     mimetypes = ['text/x-lasso']
     url = 'https://www.lassosoft.com'
 

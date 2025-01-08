@@ -24,7 +24,7 @@ class SparqlLexer(RegexLexer):
     """
     name = 'SPARQL'
     aliases = ('sparql',)
-    filenames = ['*.rq', '*.sparql']
+    filenames = ('*.rq', '*.sparql')
     mimetypes = ['application/sparql-query']
     url = 'https://www.w3.org/TR/sparql11-query'
     version_added = '2.0'

@@ -24,7 +24,7 @@ class RebolLexer(RegexLexer):
     """
     name = 'REBOL'
     aliases = ('rebol',)
-    filenames = ['*.r', '*.r3', '*.reb']
+    filenames = ('*.r', '*.r3', '*.reb')
     mimetypes = ['text/x-rebol']
     url = 'http://www.rebol.com'
     version_added = '1.1'
@@ -245,7 +245,7 @@ class RedLexer(RegexLexer):
     """
     name = 'Red'
     aliases = ('red', 'red/system')
-    filenames = ['*.red', '*.reds']
+    filenames = ('*.red', '*.reds')
     mimetypes = ['text/x-red', 'text/x-red-system']
     url = 'https://www.red-lang.org'
     version_added = '2.0'

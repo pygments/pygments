@@ -28,7 +28,7 @@ class PerlLexer(RegexLexer):
     name = 'Perl'
     url = 'https://www.perl.org'
     aliases = ('perl', 'pl')
-    filenames = ['*.pl', '*.pm', '*.t', '*.perl']
+    filenames = ('*.pl', '*.pm', '*.t', '*.perl')
     mimetypes = ['text/x-perl', 'application/x-perl']
     version_added = ''
 

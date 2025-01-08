@@ -124,7 +124,7 @@ class BlitzBasicLexer(RegexLexer):
     name = 'BlitzBasic'
     url = 'http://blitzbasic.com'
     aliases = ('blitzbasic', 'b3d', 'bplus')
-    filenames = ['*.bb', '*.decls']
+    filenames = ('*.bb', '*.decls')
     mimetypes = ['text/x-bb']
     version_added = '2.0'
 
@@ -367,7 +367,7 @@ class QBasicLexer(RegexLexer):
 
     name = 'QBasic'
     aliases = ('qbasic', 'basic')
-    filenames = ['*.BAS', '*.bas']
+    filenames = ('*.BAS', '*.bas')
     mimetypes = ['text/basic']
     url = 'https://en.wikipedia.org/wiki/QBasic'
     version_added = '2.0'
@@ -507,7 +507,7 @@ class VBScriptLexer(RegexLexer):
     """
     name = 'VBScript'
     aliases = ('vbscript',)
-    filenames = ['*.vbs', '*.VBS']
+    filenames = ('*.vbs', '*.VBS')
     url = 'https://learn.microsoft.com/en-us/previous-versions/t0aew7h6(v=vs.85)'
     version_added = '2.4'
 

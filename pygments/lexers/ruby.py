@@ -443,7 +443,7 @@ class FancyLexer(RegexLexer):
     """
     name = 'Fancy'
     url = 'https://github.com/bakkdoor/fancy'
-    filenames = ['*.fy', '*.fancypack']
+    filenames = ('*.fy', '*.fancypack')
     aliases = ('fancy', 'fy')
     mimetypes = ['text/x-fancysrc']
     version_added = '1.5'

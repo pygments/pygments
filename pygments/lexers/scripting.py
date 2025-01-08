@@ -63,7 +63,7 @@ class LuaLexer(RegexLexer):
     name = 'Lua'
     url = 'https://www.lua.org/'
     aliases = ('lua',)
-    filenames = ['*.lua', '*.wlua']
+    filenames = ('*.lua', '*.wlua')
     mimetypes = ['text/x-lua', 'application/x-lua']
     version_added = ''
 
@@ -1055,7 +1055,7 @@ class RexxLexer(RegexLexer):
     name = 'Rexx'
     url = 'http://www.rexxinfo.org/'
     aliases = ('rexx', 'arexx')
-    filenames = ['*.rexx', '*.rex', '*.rx', '*.arexx']
+    filenames = ('*.rexx', '*.rex', '*.rx', '*.arexx')
     mimetypes = ['text/x-rexx']
     version_added = '2.0'
     flags = re.IGNORECASE
@@ -1305,7 +1305,7 @@ class EasytrieveLexer(RegexLexer):
     """
     name = 'Easytrieve'
     aliases = ('easytrieve',)
-    filenames = ['*.ezt', '*.mac']
+    filenames = ('*.ezt', '*.mac')
     mimetypes = ['text/x-easytrieve']
     url = 'https://www.broadcom.com/products/mainframe/application-development/easytrieve-report-generator'
     version_added = '2.1'

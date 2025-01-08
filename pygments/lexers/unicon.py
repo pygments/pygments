@@ -170,7 +170,7 @@ class IconLexer(RegexLexer):
     """
     name = 'Icon'
     aliases = ('icon',)
-    filenames = ['*.icon', '*.ICON']
+    filenames = ('*.icon', '*.ICON')
     mimetypes = ()
     url = 'https://www2.cs.arizona.edu/icon'
     version_added = '1.6'
@@ -311,7 +311,7 @@ class UcodeLexer(RegexLexer):
     """
     name = 'ucode'
     aliases = ('ucode',)
-    filenames = ['*.u', '*.u1', '*.u2']
+    filenames = ('*.u', '*.u1', '*.u2')
     mimetypes = ()
     url = 'http://www.unicon.org'
     version_added = '2.4'

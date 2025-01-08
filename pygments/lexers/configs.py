@@ -437,7 +437,7 @@ class ApacheConfLexer(RegexLexer):
 
     name = 'ApacheConf'
     aliases = ('apacheconf', 'aconf', 'apache')
-    filenames = ['.htaccess', 'apache.conf', 'apache2.conf']
+    filenames = ('.htaccess', 'apache.conf', 'apache2.conf')
     mimetypes = ['text/x-apacheconf']
     url = 'https://httpd.apache.org/docs/current/configuring.html'
     version_added = '0.6'
@@ -682,7 +682,7 @@ class DockerLexer(RegexLexer):
     name = 'Docker'
     url = 'http://docker.io'
     aliases = ('docker', 'dockerfile')
-    filenames = ['Dockerfile', '*.docker']
+    filenames = ('Dockerfile', '*.docker')
     mimetypes = ['text/x-dockerfile-config']
     version_added = '2.0'
 
@@ -718,7 +718,7 @@ class TerraformLexer(ExtendedRegexLexer):
     name = 'Terraform'
     url = 'https://www.terraform.io/'
     aliases = ('terraform', 'tf', 'hcl')
-    filenames = ['*.tf', '*.hcl']
+    filenames = ('*.tf', '*.hcl')
     mimetypes = ['application/x-tf', 'application/x-terraform']
     version_added = '2.1'
 
@@ -887,7 +887,7 @@ class TermcapLexer(RegexLexer):
     """
     name = 'Termcap'
     aliases = ('termcap',)
-    filenames = ['termcap', 'termcap.src']
+    filenames = ('termcap', 'termcap.src')
     mimetypes = ()
     url = 'https://en.wikipedia.org/wiki/Termcap'
     version_added = '2.1'
@@ -934,7 +934,7 @@ class TerminfoLexer(RegexLexer):
     """
     name = 'Terminfo'
     aliases = ('terminfo',)
-    filenames = ['terminfo', 'terminfo.src']
+    filenames = ('terminfo', 'terminfo.src')
     mimetypes = ()
     url = 'https://en.wikipedia.org/wiki/Terminfo'
     version_added = '2.1'
@@ -1138,7 +1138,7 @@ class TOMLLexer(RegexLexer):
 
     name = 'TOML'
     aliases = ('toml',)
-    filenames = ['*.toml', 'Pipfile', 'poetry.lock']
+    filenames = ('*.toml', 'Pipfile', 'poetry.lock')
     mimetypes = ['application/toml']
     url = 'https://toml.io'
     version_added = '2.4'
@@ -1389,7 +1389,7 @@ class SingularityLexer(RegexLexer):
     name = 'Singularity'
     url = 'https://www.sylabs.io/guides/3.0/user-guide/definition_files.html'
     aliases = ('singularity',)
-    filenames = ['*.def', 'Singularity']
+    filenames = ('*.def', 'Singularity')
     version_added = '2.6'
     flags = re.IGNORECASE | re.MULTILINE | re.DOTALL
 

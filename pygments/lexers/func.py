@@ -23,7 +23,7 @@ class FuncLexer(RegexLexer):
 
     name = 'FunC'
     aliases = ('func', 'fc')
-    filenames = ['*.fc', '*.func']
+    filenames = ('*.fc', '*.func')
     url = 'https://docs.ton.org/develop/func/overview'
     version_added = ''
 

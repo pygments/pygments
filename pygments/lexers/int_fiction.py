@@ -548,7 +548,7 @@ class Inform7Lexer(RegexLexer):
     name = 'Inform 7'
     url = 'http://inform7.com/'
     aliases = ('inform7', 'i7')
-    filenames = ['*.ni', '*.i7x']
+    filenames = ('*.ni', '*.i7x')
     version_added = '2.0'
 
     flags = re.MULTILINE | re.DOTALL

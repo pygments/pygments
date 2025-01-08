@@ -32,7 +32,7 @@ class DuelLexer(RegexLexer):
     name = 'Duel'
     url = 'http://duelengine.org/'
     aliases = ('duel', 'jbst', 'jsonml+bst')
-    filenames = ['*.duel', '*.jbst']
+    filenames = ('*.duel', '*.jbst')
     mimetypes = ['text/x-duel', 'text/x-jbst']
     version_added = '1.4'
 
@@ -63,7 +63,7 @@ class XQueryLexer(ExtendedRegexLexer):
     name = 'XQuery'
     url = 'https://www.w3.org/XML/Query/'
     aliases = ('xquery', 'xqy', 'xq', 'xql', 'xqm')
-    filenames = ['*.xqy', '*.xquery', '*.xq', '*.xql', '*.xqm']
+    filenames = ('*.xqy', '*.xquery', '*.xq', '*.xql', '*.xqm')
     mimetypes = ['text/xquery', 'application/xquery']
     version_added = '1.4'
 
@@ -820,7 +820,7 @@ class QmlLexer(RegexLexer):
     name = 'QML'
     url = 'https://doc.qt.io/qt-6/qmlapplications.html'
     aliases = ('qml', 'qbs')
-    filenames = ['*.qml', '*.qbs']
+    filenames = ('*.qml', '*.qbs')
     mimetypes = ['application/x-qml', 'application/x-qt.qbs+qml']
     version_added = '1.6'
 

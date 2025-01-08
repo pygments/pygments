@@ -23,7 +23,7 @@ class AutohotkeyLexer(RegexLexer):
     name = 'autohotkey'
     url = 'http://www.autohotkey.com/'
     aliases = ('autohotkey', 'ahk')
-    filenames = ['*.ahk', '*.ahkl']
+    filenames = ('*.ahk', '*.ahkl')
     mimetypes = ['text/x-autohotkey']
     version_added = '1.4'
 

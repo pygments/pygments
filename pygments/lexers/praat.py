@@ -24,7 +24,7 @@ class PraatLexer(RegexLexer):
     name = 'Praat'
     url = 'http://www.praat.org'
     aliases = ('praat',)
-    filenames = ['*.praat', '*.proc', '*.psc']
+    filenames = ('*.praat', '*.proc', '*.psc')
     version_added = '2.1'
 
     keywords = (

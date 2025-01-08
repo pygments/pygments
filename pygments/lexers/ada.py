@@ -27,7 +27,7 @@ class AdaLexer(RegexLexer):
 
     name = 'Ada'
     aliases = ('ada', 'ada95', 'ada2005')
-    filenames = ['*.adb', '*.ads', '*.ada']
+    filenames = ('*.adb', '*.ads', '*.ada')
     mimetypes = ['text/x-ada']
     url = 'https://www.adaic.org'
     version_added = '1.3'

@@ -27,7 +27,7 @@ class MaximaLexer(RegexLexer):
     name = 'Maxima'
     url = 'http://maxima.sourceforge.net'
     aliases = ('maxima', 'macsyma')
-    filenames = ['*.mac', '*.max']
+    filenames = ('*.mac', '*.max')
     version_added = '2.11'
 
     keywords = ('if', 'then', 'else', 'elseif',

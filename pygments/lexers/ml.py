@@ -25,7 +25,7 @@ class SMLLexer(RegexLexer):
 
     name = 'Standard ML'
     aliases = ('sml',)
-    filenames = ['*.sml', '*.sig', '*.fun']
+    filenames = ('*.sml', '*.sig', '*.fun')
     mimetypes = ['text/x-standardml', 'application/x-standardml']
     url = 'https://en.wikipedia.org/wiki/Standard_ML'
     version_added = '1.5'
@@ -361,7 +361,7 @@ class OcamlLexer(RegexLexer):
     name = 'OCaml'
     url = 'https://ocaml.org/'
     aliases = ('ocaml',)
-    filenames = ['*.ml', '*.mli', '*.mll', '*.mly']
+    filenames = ('*.ml', '*.mli', '*.mll', '*.mly')
     mimetypes = ['text/x-ocaml']
     version_added = '0.7'
 
@@ -776,7 +776,7 @@ class ReasonLexer(RegexLexer):
     name = 'ReasonML'
     url = 'https://reasonml.github.io/'
     aliases = ('reasonml', 'reason')
-    filenames = ['*.re', '*.rei']
+    filenames = ('*.re', '*.rei')
     mimetypes = ['text/x-reasonml']
     version_added = '2.6'
 
@@ -868,7 +868,7 @@ class FStarLexer(RegexLexer):
     name = 'FStar'
     url = 'https://www.fstar-lang.org/'
     aliases = ('fstar',)
-    filenames = ['*.fst', '*.fsti']
+    filenames = ('*.fst', '*.fsti')
     mimetypes = ['text/x-fstar']
     version_added = '2.7'
 

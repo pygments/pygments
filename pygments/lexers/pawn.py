@@ -134,7 +134,7 @@ class PawnLexer(RegexLexer):
 
     name = 'Pawn'
     aliases = ('pawn',)
-    filenames = ['*.p', '*.pwn', '*.inc']
+    filenames = ('*.p', '*.pwn', '*.inc')
     mimetypes = ['text/x-pawn']
     url = 'https://www.compuphase.com/pawn/pawn.htm'
     version_added = '2.0'

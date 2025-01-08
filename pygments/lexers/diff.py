@@ -25,7 +25,7 @@ class DiffLexer(RegexLexer):
 
     name = 'Diff'
     aliases = ('diff', 'udiff')
-    filenames = ['*.diff', '*.patch']
+    filenames = ('*.diff', '*.patch')
     mimetypes = ['text/x-diff', 'text/x-patch']
     url = 'https://en.wikipedia.org/wiki/Diff'
     version_added = ''
@@ -64,7 +64,7 @@ class DarcsPatchLexer(RegexLexer):
 
     name = 'Darcs Patch'
     aliases = ('dpatch',)
-    filenames = ['*.dpatch', '*.darcspatch']
+    filenames = ('*.dpatch', '*.darcspatch')
     url = 'https://darcs.net'
     version_added = '0.10'
 

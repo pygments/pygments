@@ -69,7 +69,7 @@ class SilverLexer(RegexLexer):
     """
     name = 'Silver'
     aliases = ('silver',)
-    filenames = ['*.sil', '*.vpr']
+    filenames = ('*.sil', '*.vpr')
     url = 'https://github.com/viperproject/silver'
     version_added = '2.2'
 

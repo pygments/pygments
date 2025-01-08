@@ -31,7 +31,7 @@ class NSISLexer(RegexLexer):
     name = 'NSIS'
     url = 'http://nsis.sourceforge.net/'
     aliases = ('nsis', 'nsi', 'nsh')
-    filenames = ['*.nsi', '*.nsh']
+    filenames = ('*.nsi', '*.nsh')
     mimetypes = ['text/x-nsis']
     version_added = '1.6'
 

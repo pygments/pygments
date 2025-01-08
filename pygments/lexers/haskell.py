@@ -669,7 +669,7 @@ class KokaLexer(RegexLexer):
     name = 'Koka'
     url = 'https://koka-lang.github.io/koka/doc/index.html'
     aliases = ('koka',)
-    filenames = ['*.kk', '*.kki']
+    filenames = ('*.kk', '*.kki')
     mimetypes = ['text/x-koka']
     version_added = '1.6'
 

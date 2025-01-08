@@ -69,7 +69,7 @@ class WatLexer(RegexLexer):
     name = 'WebAssembly'
     url = 'https://webassembly.org/'
     aliases = ('wast', 'wat')
-    filenames = ['*.wat', '*.wast']
+    filenames = ('*.wat', '*.wast')
     version_added = '2.9'
 
     tokens: typing.ClassVar = {

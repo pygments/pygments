@@ -27,7 +27,7 @@ class HaxeLexer(ExtendedRegexLexer):
     name = 'Haxe'
     url = 'http://haxe.org/'
     aliases = ('haxe', 'hxsl', 'hx')
-    filenames = ['*.hx', '*.hxsl']
+    filenames = ('*.hx', '*.hxsl')
     mimetypes = ['text/haxe', 'text/x-haxe', 'text/x-hx']
     version_added = '1.3'
 

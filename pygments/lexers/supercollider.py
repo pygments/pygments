@@ -26,7 +26,7 @@ class SuperColliderLexer(RegexLexer):
     name = 'SuperCollider'
     url = 'http://supercollider.github.io/'
     aliases = ('supercollider', 'sc')
-    filenames = ['*.sc', '*.scd']
+    filenames = ('*.sc', '*.scd')
     mimetypes = ['application/supercollider', 'text/supercollider']
     version_added = '2.1'
 

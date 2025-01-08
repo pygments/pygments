@@ -3234,7 +3234,7 @@ class ScilabLexer(RegexLexer):
     name = 'Scilab'
     url = 'https://www.scilab.org/'
     aliases = ('scilab',)
-    filenames = ['*.sci', '*.sce', '*.tst']
+    filenames = ('*.sci', '*.sce', '*.tst')
     mimetypes = ['text/scilab']
     version_added = '1.5'
 

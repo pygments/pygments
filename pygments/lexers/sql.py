@@ -991,7 +991,7 @@ class GoogleSqlLexer(RegexLexer):
 
     name = 'GoogleSQL'
     aliases = ('googlesql', 'zetasql')
-    filenames = ['*.googlesql', '*.googlesql.sql']
+    filenames = ('*.googlesql', '*.googlesql.sql')
     mimetypes = ['text/x-google-sql', 'text/x-google-sql-aux']
     url = 'https://cloud.google.com/bigquery/googlesql'
     version_added = '2.19'

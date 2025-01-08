@@ -32,7 +32,7 @@ class StataLexer(RegexLexer):
     url = 'http://www.stata.com/'
     version_added = '2.2'
     aliases   = ['stata', 'do']
-    filenames = ['*.do', '*.ado']
+    filenames = ('*.do', '*.ado')
     mimetypes = ['text/x-stata', 'text/stata', 'application/x-stata']
     flags     = re.MULTILINE | re.DOTALL
 

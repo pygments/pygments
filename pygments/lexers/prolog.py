@@ -24,7 +24,7 @@ class PrologLexer(RegexLexer):
     """
     name = 'Prolog'
     aliases = ('prolog',)
-    filenames = ['*.ecl', '*.prolog', '*.pro', '*.pl']
+    filenames = ('*.ecl', '*.prolog', '*.pro', '*.pl')
     mimetypes = ['text/x-prolog']
     url = 'https://en.wikipedia.org/wiki/Prolog'
     version_added = ''
@@ -97,7 +97,7 @@ class LogtalkLexer(RegexLexer):
     name = 'Logtalk'
     url = 'http://logtalk.org/'
     aliases = ('logtalk',)
-    filenames = ['*.lgt', '*.logtalk']
+    filenames = ('*.lgt', '*.logtalk')
     mimetypes = ['text/x-logtalk']
     version_added = '0.10'
 

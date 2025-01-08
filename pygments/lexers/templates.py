@@ -259,7 +259,7 @@ class VelocityLexer(RegexLexer):
     name = 'Velocity'
     url = 'https://velocity.apache.org/'
     aliases = ('velocity',)
-    filenames = ['*.vm', '*.fhtml']
+    filenames = ('*.vm', '*.fhtml')
     version_added = ''
 
     flags = re.MULTILINE | re.DOTALL
@@ -342,7 +342,7 @@ class VelocityHtmlLexer(DelegatingLexer):
     name = 'HTML+Velocity'
     aliases = ('html+velocity',)
     version_added = ''
-    alias_filenames = ['*.html', '*.fhtml']
+    alias_filenames = ('*.html', '*.fhtml')
     mimetypes = ['text/html+velocity']
     url = 'https://velocity.apache.org/'
 
@@ -360,7 +360,7 @@ class VelocityXmlLexer(DelegatingLexer):
     name = 'XML+Velocity'
     aliases = ('xml+velocity',)
     version_added = ''
-    alias_filenames = ['*.xml', '*.vm']
+    alias_filenames = ('*.xml', '*.vm')
     mimetypes = ['application/xml+velocity']
     url = 'https://velocity.apache.org/'
 
@@ -468,7 +468,7 @@ class MyghtyLexer(RegexLexer):
     name = 'Myghty'
     url = 'http://www.myghty.org/'
     aliases = ('myghty',)
-    filenames = ['*.myt', 'autodelegate']
+    filenames = ('*.myt', 'autodelegate')
     mimetypes = ['application/x-myghty']
     version_added = '0.6'
 
@@ -579,7 +579,7 @@ class MasonLexer(RegexLexer):
     name = 'Mason'
     url = 'http://www.masonhq.com/'
     aliases = ('mason',)
-    filenames = ['*.m', '*.mhtml', '*.mc', '*.mi', 'autohandler', 'dhandler']
+    filenames = ('*.m', '*.mhtml', '*.mc', '*.mi', 'autohandler', 'dhandler')
     mimetypes = ['application/x-mason']
     version_added = '1.4'
 
@@ -784,7 +784,7 @@ class CheetahLexer(RegexLexer):
     name = 'Cheetah'
     url = 'http://www.cheetahtemplate.org/'
     aliases = ('cheetah', 'spitfire')
-    filenames = ['*.tmpl', '*.spt']
+    filenames = ('*.tmpl', '*.spt')
     mimetypes = ['application/x-cheetah', 'application/x-spitfire']
     version_added = ''
 
@@ -980,7 +980,7 @@ class HtmlGenshiLexer(DelegatingLexer):
     name = 'HTML+Genshi'
     aliases = ('html+genshi', 'html+kid')
     version_added = ''
-    alias_filenames = ['*.html', '*.htm', '*.xhtml']
+    alias_filenames = ('*.html', '*.htm', '*.xhtml')
     mimetypes = ['text/html+genshi']
     url = 'https://genshi.edgewall.org/'
 
@@ -1075,7 +1075,7 @@ class RhtmlLexer(DelegatingLexer):
     aliases = ('rhtml', 'html+erb', 'html+ruby')
     filenames = ('*.rhtml',)
     version_added = ''
-    alias_filenames = ['*.html', '*.htm', '*.xhtml']
+    alias_filenames = ('*.html', '*.htm', '*.xhtml')
     mimetypes = ['text/html+ruby']
     url = 'https://github.com/ruby/erb'
 
@@ -1192,7 +1192,7 @@ class XmlPhpLexer(DelegatingLexer):
     name = 'XML+PHP'
     aliases = ('xml+php',)
     version_added = ''
-    alias_filenames = ['*.xml', '*.php', '*.php[345]']
+    alias_filenames = ('*.xml', '*.php', '*.php[345]')
     mimetypes = ['application/xml+php']
     url = 'https://www.php.net'
 
@@ -1258,7 +1258,7 @@ class HtmlSmartyLexer(DelegatingLexer):
     name = 'HTML+Smarty'
     aliases = ('html+smarty',)
     version_added = ''
-    alias_filenames = ['*.html', '*.htm', '*.xhtml', '*.tpl']
+    alias_filenames = ('*.html', '*.htm', '*.xhtml', '*.tpl')
     mimetypes = ['text/html+smarty']
     url = 'https://www.smarty.net/'
 
@@ -1281,7 +1281,7 @@ class XmlSmartyLexer(DelegatingLexer):
     name = 'XML+Smarty'
     aliases = ('xml+smarty',)
     version_added = ''
-    alias_filenames = ['*.xml', '*.tpl']
+    alias_filenames = ('*.xml', '*.tpl')
     mimetypes = ['application/xml+smarty']
     url = 'https://www.smarty.net/'
 
@@ -1304,7 +1304,7 @@ class CssSmartyLexer(DelegatingLexer):
     name = 'CSS+Smarty'
     aliases = ('css+smarty',)
     version_added = ''
-    alias_filenames = ['*.css', '*.tpl']
+    alias_filenames = ('*.css', '*.tpl')
     mimetypes = ['text/css+smarty']
     url = 'https://www.smarty.net/'
 
@@ -1324,7 +1324,7 @@ class JavascriptSmartyLexer(DelegatingLexer):
     name = 'JavaScript+Smarty'
     aliases = ('javascript+smarty', 'js+smarty')
     version_added = ''
-    alias_filenames = ['*.js', '*.tpl']
+    alias_filenames = ('*.js', '*.tpl')
     mimetypes = ['application/x-javascript+smarty',
                  'text/x-javascript+smarty',
                  'text/javascript+smarty']
@@ -1347,9 +1347,9 @@ class HtmlDjangoLexer(DelegatingLexer):
 
     name = 'HTML+Django/Jinja'
     aliases = ('html+django', 'html+jinja', 'htmldjango')
-    filenames = ['*.html.j2', '*.htm.j2', '*.xhtml.j2', '*.html.jinja2', '*.htm.jinja2', '*.xhtml.jinja2']
+    filenames = ('*.html.j2', '*.htm.j2', '*.xhtml.j2', '*.html.jinja2', '*.htm.jinja2', '*.xhtml.jinja2')
     version_added = ''
-    alias_filenames = ['*.html', '*.htm', '*.xhtml']
+    alias_filenames = ('*.html', '*.htm', '*.xhtml')
     mimetypes = ['text/html+django', 'text/html+jinja']
     url = 'https://www.djangoproject.com/documentation/templates'
 
@@ -1371,7 +1371,7 @@ class XmlDjangoLexer(DelegatingLexer):
 
     name = 'XML+Django/Jinja'
     aliases = ('xml+django', 'xml+jinja')
-    filenames = ['*.xml.j2', '*.xml.jinja2']
+    filenames = ('*.xml.j2', '*.xml.jinja2')
     version_added = ''
     alias_filenames = ('*.xml',)
     mimetypes = ['application/xml+django', 'application/xml+jinja']
@@ -1395,7 +1395,7 @@ class CssDjangoLexer(DelegatingLexer):
 
     name = 'CSS+Django/Jinja'
     aliases = ('css+django', 'css+jinja')
-    filenames = ['*.css.j2', '*.css.jinja2']
+    filenames = ('*.css.j2', '*.css.jinja2')
     version_added = ''
     alias_filenames = ('*.css',)
     mimetypes = ['text/css+django', 'text/css+jinja']
@@ -1417,7 +1417,7 @@ class JavascriptDjangoLexer(DelegatingLexer):
     name = 'JavaScript+Django/Jinja'
     aliases = ['javascript+django', 'js+django',
                'javascript+jinja', 'js+jinja']
-    filenames = ['*.js.j2', '*.js.jinja2']
+    filenames = ('*.js.j2', '*.js.jinja2')
     version_added = ''
     alias_filenames = ('*.js',)
     mimetypes = ['application/x-javascript+django',
@@ -1682,7 +1682,7 @@ class ColdfusionHtmlLexer(DelegatingLexer):
     """
     name = 'Coldfusion HTML'
     aliases = ('cfm',)
-    filenames = ['*.cfm', '*.cfml']
+    filenames = ('*.cfm', '*.cfml')
     mimetypes = ['application/x-coldfusion']
     url = 'https://www.adobe.com/products/coldfusion-family.html'
     version_added = ''
@@ -1962,7 +1962,7 @@ class HandlebarsHtmlLexer(DelegatingLexer):
 
     name = "HTML+Handlebars"
     aliases = ["html+handlebars"]
-    filenames = ['*.handlebars', '*.hbs']
+    filenames = ('*.handlebars', '*.hbs')
     mimetypes = ['text/html+handlebars', 'text/x-handlebars-template']
     url = 'https://handlebarsjs.com/'
     version_added = '2.0'
@@ -1981,7 +1981,7 @@ class YamlJinjaLexer(DelegatingLexer):
 
     name = 'YAML+Jinja'
     aliases = ('yaml+jinja', 'salt', 'sls')
-    filenames = ['*.sls', '*.yaml.j2', '*.yml.j2', '*.yaml.jinja2', '*.yml.jinja2']
+    filenames = ('*.sls', '*.yaml.j2', '*.yml.j2', '*.yaml.jinja2', '*.yml.jinja2')
     mimetypes = ['text/x-yaml+jinja', 'text/x-sls']
     url = 'https://jinja.palletsprojects.com'
     version_added = '2.0'
@@ -2380,7 +2380,7 @@ class SqlJinjaLexer(DelegatingLexer):
 
     name = 'SQL+Jinja'
     aliases = ('sql+jinja',)
-    filenames = ['*.sql', '*.sql.j2', '*.sql.jinja2']
+    filenames = ('*.sql', '*.sql.j2', '*.sql.jinja2')
     url = 'https://jinja.palletsprojects.com'
     version_added = '2.13'
 

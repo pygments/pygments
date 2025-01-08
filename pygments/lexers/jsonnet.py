@@ -39,7 +39,7 @@ class JsonnetLexer(RegexLexer):
 
     name = 'Jsonnet'
     aliases = ('jsonnet',)
-    filenames = ['*.jsonnet', '*.libsonnet']
+    filenames = ('*.jsonnet', '*.libsonnet')
     url = "https://jsonnet.org"
     version_added = ''
     tokens: typing.ClassVar = {

@@ -151,7 +151,7 @@ class SystemVerilogLexer(RegexLexer):
     """
     name = 'systemverilog'
     aliases = ('systemverilog', 'sv')
-    filenames = ['*.sv', '*.svh']
+    filenames = ('*.sv', '*.svh')
     mimetypes = ['text/x-systemverilog']
     url = 'https://en.wikipedia.org/wiki/SystemVerilog'
     version_added = '1.5'
@@ -377,7 +377,7 @@ class VhdlLexer(RegexLexer):
     """
     name = 'vhdl'
     aliases = ('vhdl',)
-    filenames = ['*.vhdl', '*.vhd']
+    filenames = ('*.vhdl', '*.vhd')
     mimetypes = ['text/x-vhdl']
     url = 'https://en.wikipedia.org/wiki/VHDL'
     version_added = '1.5'

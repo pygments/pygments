@@ -33,7 +33,7 @@ class CobolLexer(RegexLexer):
     """
     name = 'COBOL'
     aliases = ('cobol',)
-    filenames = ['*.cob', '*.COB', '*.cpy', '*.CPY']
+    filenames = ('*.cob', '*.COB', '*.cpy', '*.CPY')
     mimetypes = ['text/x-cobol']
     url = 'https://en.wikipedia.org/wiki/COBOL'
     version_added = '1.6'
@@ -232,7 +232,7 @@ class CobolFreeformatLexer(CobolLexer):
     """
     name = 'COBOLFree'
     aliases = ('cobolfree',)
-    filenames = ['*.cbl', '*.CBL']
+    filenames = ('*.cbl', '*.CBL')
     mimetypes = ()
     url = 'https://opencobol.add1tocobol.com'
     version_added = '1.6'
@@ -252,7 +252,7 @@ class ABAPLexer(RegexLexer):
     """
     name = 'ABAP'
     aliases = ('abap',)
-    filenames = ['*.abap', '*.ABAP']
+    filenames = ('*.abap', '*.ABAP')
     mimetypes = ['text/x-abap']
     url = 'https://community.sap.com/topics/abap'
     version_added = '1.1'
@@ -461,7 +461,7 @@ class OpenEdgeLexer(RegexLexer):
     """
     name = 'OpenEdge ABL'
     aliases = ('openedge', 'abl', 'progress')
-    filenames = ['*.p', '*.cls']
+    filenames = ('*.p', '*.cls')
     mimetypes = ['text/x-openedge', 'application/x-openedge']
     url = 'https://www.progress.com/openedge/features/abl'
     version_added = '1.5'

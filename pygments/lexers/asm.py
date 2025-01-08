@@ -42,7 +42,7 @@ class GasLexer(RegexLexer):
     """
     name = 'GAS'
     aliases = ('gas', 'asm')
-    filenames = ['*.s', '*.S']
+    filenames = ('*.s', '*.S')
     mimetypes = ['text/x-gas']
     url = 'https://www.gnu.org/software/binutils'
     version_added = ''
@@ -209,7 +209,7 @@ class CppObjdumpLexer(DelegatingLexer):
     """
     name = 'cpp-objdump'
     aliases = ('cpp-objdump', 'c++-objdumb', 'cxx-objdump')
-    filenames = ['*.cpp-objdump', '*.c++-objdump', '*.cxx-objdump']
+    filenames = ('*.cpp-objdump', '*.c++-objdump', '*.cxx-objdump')
     mimetypes = ['text/x-cpp-objdump']
     url = 'https://www.gnu.org/software/binutils'
     version_added = ''
@@ -737,7 +737,7 @@ class NasmLexer(RegexLexer):
     """
     name = 'NASM'
     aliases = ('nasm',)
-    filenames = ['*.asm', '*.ASM', '*.nasm']
+    filenames = ('*.asm', '*.ASM', '*.nasm')
     mimetypes = ['text/x-nasm']
     url = 'https://nasm.us'
     version_added = ''
@@ -839,7 +839,7 @@ class TasmLexer(RegexLexer):
     """
     name = 'TASM'
     aliases = ('tasm',)
-    filenames = ['*.asm', '*.ASM', '*.tasm']
+    filenames = ('*.asm', '*.ASM', '*.tasm')
     mimetypes = ['text/x-tasm']
     url = 'https://en.wikipedia.org/wiki/Turbo_Assembler'
     version_added = ''
@@ -967,7 +967,7 @@ class Dasm16Lexer(RegexLexer):
     name = 'DASM16'
     url = 'http://0x10c.com/doc/dcpu-16.txt'
     aliases = ('dasm16',)
-    filenames = ['*.dasm16', '*.dasm']
+    filenames = ('*.dasm16', '*.dasm')
     mimetypes = ['text/x-dasm16']
     version_added = '2.4'
 

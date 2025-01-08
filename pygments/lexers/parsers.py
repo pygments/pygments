@@ -532,7 +532,7 @@ class AntlrCppLexer(DelegatingLexer):
 
     name = 'ANTLR With CPP Target'
     aliases = ('antlr-cpp',)
-    filenames = ['*.G', '*.g']
+    filenames = ('*.G', '*.g')
     url = 'https://www.antlr.org'
     version_added = '1.1'
 
@@ -551,7 +551,7 @@ class AntlrObjectiveCLexer(DelegatingLexer):
 
     name = 'ANTLR With ObjectiveC Target'
     aliases = ('antlr-objc',)
-    filenames = ['*.G', '*.g']
+    filenames = ('*.G', '*.g')
     url = 'https://www.antlr.org'
     version_added = '1.1'
 
@@ -570,7 +570,7 @@ class AntlrCSharpLexer(DelegatingLexer):
 
     name = 'ANTLR With C# Target'
     aliases = ('antlr-csharp', 'antlr-c#')
-    filenames = ['*.G', '*.g']
+    filenames = ('*.G', '*.g')
     url = 'https://www.antlr.org'
     version_added = '1.1'
 
@@ -589,7 +589,7 @@ class AntlrPythonLexer(DelegatingLexer):
 
     name = 'ANTLR With Python Target'
     aliases = ('antlr-python',)
-    filenames = ['*.G', '*.g']
+    filenames = ('*.G', '*.g')
     url = 'https://www.antlr.org'
     version_added = '1.1'
 
@@ -608,7 +608,7 @@ class AntlrJavaLexer(DelegatingLexer):
 
     name = 'ANTLR With Java Target'
     aliases = ('antlr-java',)
-    filenames = ['*.G', '*.g']
+    filenames = ('*.G', '*.g')
     url = 'https://www.antlr.org'
     version_added = '1.1'
 
@@ -627,7 +627,7 @@ class AntlrRubyLexer(DelegatingLexer):
 
     name = 'ANTLR With Ruby Target'
     aliases = ('antlr-ruby', 'antlr-rb')
-    filenames = ['*.G', '*.g']
+    filenames = ('*.G', '*.g')
     url = 'https://www.antlr.org'
     version_added = '1.1'
 
@@ -646,7 +646,7 @@ class AntlrPerlLexer(DelegatingLexer):
 
     name = 'ANTLR With Perl Target'
     aliases = ('antlr-perl',)
-    filenames = ['*.G', '*.g']
+    filenames = ('*.G', '*.g')
     url = 'https://www.antlr.org'
     version_added = '1.1'
 
@@ -665,7 +665,7 @@ class AntlrActionScriptLexer(DelegatingLexer):
 
     name = 'ANTLR With ActionScript Target'
     aliases = ('antlr-actionscript', 'antlr-as')
-    filenames = ['*.G', '*.g']
+    filenames = ('*.G', '*.g')
     url = 'https://www.antlr.org'
     version_added = '1.1'
 
@@ -754,7 +754,7 @@ class TreetopLexer(DelegatingLexer):
 
     name = 'Treetop'
     aliases = ('treetop',)
-    filenames = ['*.treetop', '*.tt']
+    filenames = ('*.treetop', '*.tt')
     url = 'https://cjheath.github.io/treetop'
     version_added = '1.6'
 

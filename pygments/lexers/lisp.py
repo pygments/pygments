@@ -46,7 +46,7 @@ class SchemeLexer(RegexLexer):
     name = 'Scheme'
     url = 'http://www.scheme-reports.org/'
     aliases = ('scheme', 'scm')
-    filenames = ['*.scm', '*.ss']
+    filenames = ('*.scm', '*.ss')
     mimetypes = ['text/x-scheme', 'application/x-scheme']
     version_added = '0.6'
 
@@ -310,7 +310,7 @@ class CommonLispLexer(RegexLexer):
     name = 'Common Lisp'
     url = 'https://lisp-lang.org/'
     aliases = ('common-lisp', 'cl', 'lisp')
-    filenames = ['*.cl', '*.lisp']
+    filenames = ('*.cl', '*.lisp')
     mimetypes = ['text/x-common-lisp']
     version_added = '0.9'
 
@@ -613,7 +613,7 @@ class RacketLexer(RegexLexer):
     name = 'Racket'
     url = 'http://racket-lang.org/'
     aliases = ('racket', 'rkt')
-    filenames = ['*.rkt', '*.rktd', '*.rktl']
+    filenames = ('*.rkt', '*.rktd', '*.rktl')
     mimetypes = ['text/x-racket', 'application/x-racket']
     version_added = '1.6'
 
@@ -1545,7 +1545,7 @@ class NewLispLexer(RegexLexer):
     name = 'NewLisp'
     url = 'http://www.newlisp.org/'
     aliases = ('newlisp',)
-    filenames = ['*.lsp', '*.nl', '*.kif']
+    filenames = ('*.lsp', '*.nl', '*.kif')
     mimetypes = ['text/x-newlisp', 'application/x-newlisp']
     version_added = '1.5'
 
@@ -2847,7 +2847,7 @@ class JanetLexer(RegexLexer):
     name = 'Janet'
     url =  'https://janet-lang.org/'
     aliases = ('janet',)
-    filenames = ['*.janet', '*.jdn']
+    filenames = ('*.janet', '*.jdn')
     mimetypes = ['text/x-janet', 'application/x-janet']
     version_added = '2.18'
 

@@ -80,7 +80,7 @@ class SedLexer(RegexLexer):
     """
     name = 'Sed'
     aliases = ('sed', 'gsed', 'ssed')
-    filenames = ['*.sed', '*.[gs]sed']
+    filenames = ('*.sed', '*.[gs]sed')
     mimetypes = ['text/x-sed']
     url = 'https://en.wikipedia.org/wiki/Sed'
     version_added = ''

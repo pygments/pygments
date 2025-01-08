@@ -98,7 +98,7 @@ class GettextLexer(RegexLexer):
     """
     name = 'Gettext Catalog'
     aliases = ('pot', 'po')
-    filenames = ['*.pot', '*.po']
+    filenames = ('*.pot', '*.po')
     mimetypes = ['application/x-gettext', 'text/x-gettext', 'text/gettext']
     url = 'https://www.gnu.org/software/gettext'
     version_added = '0.9'
@@ -223,7 +223,7 @@ class TodotxtLexer(RegexLexer):
     version_added = '2.0'
     # *.todotxt is not a standard extension for Todo.txt files; including it
     # makes testing easier, and also makes autodetecting file type easier.
-    filenames = ['todo.txt', '*.todotxt']
+    filenames = ('todo.txt', '*.todotxt')
     mimetypes = ['text/x-todo']
 
     # Aliases mapping standard token types of Todo.txt format concepts
@@ -400,7 +400,7 @@ class KernelLogLexer(RegexLexer):
     """
     name = 'Kernel log'
     aliases = ('kmsg', 'dmesg')
-    filenames = ['*.kmsg', '*.dmesg']
+    filenames = ('*.kmsg', '*.dmesg')
     url = 'https://fr.wikipedia.org/wiki/Dmesg'
     version_added = '2.6'
 

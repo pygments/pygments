@@ -29,7 +29,7 @@ class MIPSLexer(RegexLexer):
     # TODO: add '*.s' and '*.asm', which will require designing an analyse_text
     # method for this lexer and refactoring those from Gas and Nasm in order to
     # have relatively reliable detection
-    filenames = ['*.mips', '*.MIPS']
+    filenames = ('*.mips', '*.MIPS')
     url = 'https://mips.com'
 
     keywords = [

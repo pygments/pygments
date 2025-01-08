@@ -90,7 +90,7 @@ class VisualPrologLexer(VisualPrologBaseLexer):
     name = 'Visual Prolog'
     url = 'https://www.visual-prolog.com/'
     aliases = ('visualprolog',)
-    filenames = ['*.pro', '*.cl', '*.i', '*.pack', '*.ph']
+    filenames = ('*.pro', '*.cl', '*.i', '*.pack', '*.ph')
     version_added = '2.17'
 
     majorkw = ('goal', 'namespace', 'interface', 'class', 'implement', 'where', 'open', 'inherits', 'supports', 'resolve',

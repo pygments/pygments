@@ -137,7 +137,7 @@ class RstLexer(RegexLexer):
     name = 'reStructuredText'
     url = 'https://docutils.sourceforge.io/rst.html'
     aliases = ('restructuredtext', 'rst', 'rest')
-    filenames = ['*.rst', '*.rest']
+    filenames = ('*.rst', '*.rest')
     mimetypes = ["text/x-rst", "text/prs.fallenstein.rst"]
     version_added = '0.7'
     flags = re.MULTILINE
@@ -292,7 +292,7 @@ class TexLexer(RegexLexer):
 
     name = 'TeX'
     aliases = ('tex', 'latex')
-    filenames = ['*.tex', '*.aux', '*.toc']
+    filenames = ('*.tex', '*.aux', '*.toc')
     mimetypes = ['text/x-tex', 'text/x-latex']
     url = 'https://tug.org'
     version_added = ''
@@ -353,7 +353,7 @@ class GroffLexer(RegexLexer):
 
     name = 'Groff'
     aliases = ('groff', 'nroff', 'man')
-    filenames = ['*.[1-9]', '*.man', '*.1p', '*.3pm']
+    filenames = ('*.[1-9]', '*.man', '*.1p', '*.3pm')
     mimetypes = ['application/x-troff', 'text/troff']
     url = 'https://www.gnu.org/software/groff'
     version_added = '0.6'
@@ -518,7 +518,7 @@ class MarkdownLexer(RegexLexer):
     name = 'Markdown'
     url = 'https://daringfireball.net/projects/markdown/'
     aliases = ('markdown', 'md')
-    filenames = ['*.md', '*.markdown']
+    filenames = ('*.md', '*.markdown')
     mimetypes = ["text/x-markdown"]
     version_added = '2.2'
     flags = re.MULTILINE

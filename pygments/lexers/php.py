@@ -169,7 +169,7 @@ class PhpLexer(RegexLexer):
     name = 'PHP'
     url = 'https://www.php.net/'
     aliases = ('php', 'php3', 'php4', 'php5')
-    filenames = ['*.php', '*.php[345]', '*.inc']
+    filenames = ('*.php', '*.php[345]', '*.inc')
     mimetypes = ['text/x-php']
     version_added = ''
 

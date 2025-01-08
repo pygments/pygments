@@ -30,7 +30,7 @@ class SieveLexer(RegexLexer):
     Lexer for sieve format.
     """
     name = 'Sieve'
-    filenames = ['*.siv', '*.sieve']
+    filenames = ('*.siv', '*.sieve')
     aliases = ('sieve',)
     url = 'https://en.wikipedia.org/wiki/Sieve_(mail_filtering_language)'
     version_added = '2.6'

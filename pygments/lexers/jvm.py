@@ -462,7 +462,7 @@ class GosuLexer(RegexLexer):
 
     name = 'Gosu'
     aliases = ('gosu',)
-    filenames = ['*.gs', '*.gsx', '*.gsp', '*.vark']
+    filenames = ('*.gs', '*.gsx', '*.gsp', '*.vark')
     mimetypes = ['text/x-gosu']
     url = 'https://gosu-lang.github.io'
     version_added = '1.5'
@@ -560,7 +560,7 @@ class GroovyLexer(RegexLexer):
     name = 'Groovy'
     url = 'https://groovy-lang.org/'
     aliases = ('groovy',)
-    filenames = ['*.groovy','*.gradle']
+    filenames = ('*.groovy','*.gradle')
     mimetypes = ['text/x-groovy']
     version_added = '1.5'
 
@@ -827,7 +827,7 @@ class ClojureLexer(RegexLexer):
     name = 'Clojure'
     url = 'http://clojure.org/'
     aliases = ('clojure', 'clj')
-    filenames = ['*.clj', '*.cljc']
+    filenames = ('*.clj', '*.cljc')
     mimetypes = ['text/x-clojure', 'application/x-clojure']
     version_added = '0.11'
 
@@ -1106,7 +1106,7 @@ class KotlinLexer(RegexLexer):
     name = 'Kotlin'
     url = 'http://kotlinlang.org/'
     aliases = ('kotlin',)
-    filenames = ['*.kt', '*.kts']
+    filenames = ('*.kt', '*.kts')
     mimetypes = ['text/x-kotlin']
     version_added = '1.5'
 

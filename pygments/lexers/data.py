@@ -37,7 +37,7 @@ class YamlLexer(ExtendedRegexLexer):
     name = 'YAML'
     url = 'http://yaml.org/'
     aliases = ('yaml',)
-    filenames = ['*.yaml', '*.yml']
+    filenames = ('*.yaml', '*.yml')
     mimetypes = ['text/x-yaml']
     version_added = '0.11'
 
@@ -448,7 +448,7 @@ class JsonLexer(Lexer):
     name = 'JSON'
     url = 'https://www.json.org'
     aliases = ('json', 'json-object')
-    filenames = ['*.json', '*.jsonl', '*.ndjson', 'Pipfile.lock']
+    filenames = ('*.json', '*.jsonl', '*.ndjson', 'Pipfile.lock')
     mimetypes = ['application/json', 'application/json-object', 'application/x-ndjson', 'application/jsonl', 'application/json-seq']
     version_added = '1.5'
 

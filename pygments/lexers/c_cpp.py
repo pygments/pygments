@@ -293,7 +293,7 @@ class CLexer(CFamilyLexer):
     """
     name = 'C'
     aliases = ('c',)
-    filenames = ['*.c', '*.h', '*.idc', '*.x[bp]m']
+    filenames = ('*.c', '*.h', '*.idc', '*.x[bp]m')
     mimetypes = ['text/x-chdr', 'text/x-csrc', 'image/x-xbitmap', 'image/x-xpixmap']
     url = 'https://en.wikipedia.org/wiki/C_(programming_language)'
     version_added = ''

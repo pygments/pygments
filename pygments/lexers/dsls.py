@@ -205,7 +205,7 @@ class ZeekLexer(RegexLexer):
     name = 'Zeek'
     url = 'https://www.zeek.org/'
     aliases = ('zeek', 'bro')
-    filenames = ['*.zeek', '*.bro']
+    filenames = ('*.zeek', '*.bro')
     version_added = '2.5'
 
     _hex = r'[0-9a-fA-F]'
@@ -734,7 +734,7 @@ class CrmshLexer(RegexLexer):
     name = 'Crmsh'
     url = 'http://crmsh.github.io/'
     aliases = ('crmsh', 'pcmk')
-    filenames = ['*.crmsh', '*.pcmk']
+    filenames = ('*.crmsh', '*.pcmk')
     mimetypes = ()
     version_added = '2.1'
 

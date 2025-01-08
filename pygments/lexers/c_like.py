@@ -41,7 +41,7 @@ class PikeLexer(CppLexer):
     """
     name = 'Pike'
     aliases = ('pike',)
-    filenames = ['*.pike', '*.pmod']
+    filenames = ('*.pike', '*.pmod')
     mimetypes = ['text/x-pike']
     version_added = '2.0'
 
@@ -161,7 +161,7 @@ class ECLexer(CLexer):
     """
     name = 'eC'
     aliases = ('ec',)
-    filenames = ['*.ec', '*.eh']
+    filenames = ('*.ec', '*.eh')
     mimetypes = ['text/x-echdr', 'text/x-ecsrc']
     url = 'https://ec-lang.org'
     version_added = '1.5'
@@ -194,7 +194,7 @@ class ValaLexer(RegexLexer):
     """
     name = 'Vala'
     aliases = ('vala', 'vapi')
-    filenames = ['*.vala', '*.vapi']
+    filenames = ('*.vala', '*.vapi')
     mimetypes = ['text/x-vala']
     url = 'https://vala.dev'
     version_added = '1.1'
@@ -291,7 +291,7 @@ class CudaLexer(CLexer):
     For NVIDIA CUDA™ source.
     """
     name = 'CUDA'
-    filenames = ['*.cu', '*.cuh']
+    filenames = ('*.cu', '*.cuh')
     aliases = ('cuda', 'cu')
     mimetypes = ['text/x-cuda']
     url = 'https://developer.nvidia.com/category/zone/cuda-zone'
@@ -339,7 +339,7 @@ class SwigLexer(CppLexer):
     """
     name = 'SWIG'
     aliases = ('swig',)
-    filenames = ['*.swg', '*.i']
+    filenames = ('*.swg', '*.i')
     mimetypes = ['text/swig']
     version_added = '2.0'
     priority = 0.04  # Lower than C/C++ and Objective C/C++
@@ -405,7 +405,7 @@ class MqlLexer(CppLexer):
     """
     name = 'MQL'
     aliases = ('mql', 'mq4', 'mq5', 'mql4', 'mql5')
-    filenames = ['*.mq4', '*.mq5', '*.mqh']
+    filenames = ('*.mq4', '*.mq5', '*.mqh')
     mimetypes = ['text/x-mql']
     version_added = '2.0'
 
@@ -586,7 +586,7 @@ class OmgIdlLexer(CLexer):
     name = 'OMG Interface Definition Language'
     url = 'https://www.omg.org/spec/IDL/About-IDL/'
     aliases = ('omg-idl',)
-    filenames = ['*.idl', '*.pidl']
+    filenames = ('*.idl', '*.pidl')
     mimetypes = ()
     version_added = '2.9'
 
@@ -678,7 +678,7 @@ class PromelaLexer(CLexer):
     
     name = 'Promela'
     aliases = ('promela',)
-    filenames = ['*.pml', '*.prom', '*.prm', '*.promela', '*.pr', '*.pm']
+    filenames = ('*.pml', '*.prom', '*.prm', '*.promela', '*.pr', '*.pm')
     mimetypes = ['text/x-promela']
     url = 'https://spinroot.com/spin/whatispin.html'
     version_added = '2.18'

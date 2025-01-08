@@ -25,7 +25,7 @@ class SASLexer(RegexLexer):
 
     name      = 'SAS'
     aliases   = ['sas']
-    filenames = ['*.SAS', '*.sas']
+    filenames = ('*.SAS', '*.sas')
     mimetypes = ['text/x-sas', 'text/sas', 'application/x-sas']
     url = 'https://en.wikipedia.org/wiki/SAS_(software)'
     version_added = '2.2'

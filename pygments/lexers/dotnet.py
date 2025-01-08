@@ -437,7 +437,7 @@ class VbNetLexer(RegexLexer):
     name = 'VB.net'
     url = 'https://docs.microsoft.com/en-us/dotnet/visual-basic/'
     aliases = ('vb.net', 'vbnet', 'lobas', 'oobas', 'sobas', 'visual-basic', 'visualbasic')
-    filenames = ['*.vb', '*.bas']
+    filenames = ('*.vb', '*.bas')
     mimetypes = ['text/x-vbnet', 'text/x-vba']  # (?)
     version_added = ''
 
@@ -572,7 +572,7 @@ class CSharpAspxLexer(DelegatingLexer):
 
     name = 'aspx-cs'
     aliases = ('aspx-cs',)
-    filenames = ['*.aspx', '*.asax', '*.ascx', '*.ashx', '*.asmx', '*.axd']
+    filenames = ('*.aspx', '*.asax', '*.ascx', '*.ashx', '*.asmx', '*.axd')
     mimetypes = ()
     url = 'https://dotnet.microsoft.com/en-us/apps/aspnet'
     version_added = ''
@@ -594,7 +594,7 @@ class VbNetAspxLexer(DelegatingLexer):
 
     name = 'aspx-vb'
     aliases = ('aspx-vb',)
-    filenames = ['*.aspx', '*.asax', '*.ascx', '*.ashx', '*.asmx', '*.axd']
+    filenames = ('*.aspx', '*.asax', '*.ascx', '*.ashx', '*.asmx', '*.axd')
     mimetypes = ()
     url = 'https://dotnet.microsoft.com/en-us/apps/aspnet'
     version_added = ''
@@ -618,7 +618,7 @@ class FSharpLexer(RegexLexer):
     name = 'F#'
     url = 'https://fsharp.org/'
     aliases = ('fsharp', 'f#')
-    filenames = ['*.fs', '*.fsi', '*.fsx']
+    filenames = ('*.fs', '*.fsi', '*.fsx')
     mimetypes = ['text/x-fsharp']
     version_added = '1.5'
 

@@ -26,7 +26,7 @@ class PortugolLexer(Lexer):
     """For Portugol, a Pascal dialect with keywords in Portuguese."""
     name = 'Portugol'
     aliases = ('portugol',)
-    filenames = ['*.alg', '*.portugol']
+    filenames = ('*.alg', '*.portugol')
     mimetypes = ()
     url = "https://www.apoioinformatica.inf.br/produtos/visualg/linguagem"
     version_added = ''
@@ -59,7 +59,7 @@ class DelphiLexer(Lexer):
     """
     name = 'Delphi'
     aliases = ('delphi', 'pas', 'pascal', 'objectpascal')
-    filenames = ['*.pas', '*.dpr']
+    filenames = ('*.pas', '*.dpr')
     mimetypes = ['text/x-pascal']
     url = 'https://www.embarcadero.com/products/delphi'
     version_added = ''

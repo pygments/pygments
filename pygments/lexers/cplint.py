@@ -24,7 +24,7 @@ class CplintLexer(PrologLexer):
     name = 'cplint'
     url = 'https://cplint.eu'
     aliases = ('cplint',)
-    filenames = ['*.ecl', '*.prolog', '*.pro', '*.pl', '*.P', '*.lpad', '*.cpl']
+    filenames = ('*.ecl', '*.prolog', '*.pro', '*.pl', '*.P', '*.lpad', '*.cpl')
     mimetypes = ['text/x-cplint']
     version_added = '2.12'
 

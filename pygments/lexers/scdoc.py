@@ -24,7 +24,7 @@ class ScdocLexer(RegexLexer):
     name = 'scdoc'
     url = 'https://git.sr.ht/~sircmpwn/scdoc'
     aliases = ('scdoc', 'scd')
-    filenames = ['*.scd', '*.scdoc']
+    filenames = ('*.scd', '*.scdoc')
     version_added = '2.5'
     flags = re.MULTILINE
 
