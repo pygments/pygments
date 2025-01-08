@@ -19,7 +19,7 @@ class SoongLexer(RegexLexer):
     name = 'Soong'
     version_added = '2.18'
     url = 'https://source.android.com/docs/setup/reference/androidbp'
-    aliases = ['androidbp', 'bp', 'soong']
+    aliases = ('androidbp', 'bp', 'soong')
     filenames = ['Android.bp']
 
     tokens: typing.ClassVar = {

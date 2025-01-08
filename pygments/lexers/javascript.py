@@ -48,7 +48,7 @@ class JavascriptLexer(RegexLexer):
 
     name = 'JavaScript'
     url = 'https://www.ecma-international.org/publications-and-standards/standards/ecma-262/'
-    aliases = ['javascript', 'js']
+    aliases = ('javascript', 'js')
     filenames = ['*.js', '*.jsm', '*.mjs', '*.cjs']
     mimetypes = ['application/javascript', 'application/x-javascript',
                  'text/x-javascript', 'text/javascript']
@@ -155,7 +155,7 @@ class TypeScriptLexer(JavascriptLexer):
 
     name = 'TypeScript'
     url = 'https://www.typescriptlang.org/'
-    aliases = ['typescript', 'ts']
+    aliases = ('typescript', 'ts')
     filenames = ['*.ts']
     mimetypes = ['application/x-typescript', 'text/x-typescript']
     version_added = '1.6'
@@ -327,7 +327,7 @@ class LiveScriptLexer(RegexLexer):
 
     name = 'LiveScript'
     url = 'https://livescript.net/'
-    aliases = ['livescript', 'live-script']
+    aliases = ('livescript', 'live-script')
     filenames = ['*.ls']
     mimetypes = ['text/livescript']
     version_added = '1.6'
@@ -552,7 +552,7 @@ class LassoLexer(RegexLexer):
     """
 
     name = 'Lasso'
-    aliases = ['lasso', 'lassoscript']
+    aliases = ('lasso', 'lassoscript')
     filenames = ['*.lasso', '*.lasso[89]']
     version_added = '1.6'
     alias_filenames = ['*.incl', '*.inc', '*.las']
@@ -806,7 +806,7 @@ class ObjectiveJLexer(RegexLexer):
     """
 
     name = 'Objective-J'
-    aliases = ['objective-j', 'objectivej', 'obj-j', 'objj']
+    aliases = ('objective-j', 'objectivej', 'obj-j', 'objj')
     filenames = ['*.j']
     mimetypes = ['text/x-objective-j']
     url = 'https://www.cappuccino.dev/learn/objective-j.html'
@@ -1030,7 +1030,7 @@ class CoffeeScriptLexer(RegexLexer):
 
     name = 'CoffeeScript'
     url = 'http://coffeescript.org'
-    aliases = ['coffeescript', 'coffee-script', 'coffee']
+    aliases = ('coffeescript', 'coffee-script', 'coffee')
     filenames = ['*.coffee']
     mimetypes = ['text/coffeescript']
     version_added = '1.3'
@@ -1263,7 +1263,7 @@ class EarlGreyLexer(RegexLexer):
     """
 
     name = 'Earl Grey'
-    aliases = ['earl-grey', 'earlgrey', 'eg']
+    aliases = ('earl-grey', 'earlgrey', 'eg')
     filenames = ['*.eg']
     mimetypes = ['text/x-earl-grey']
     url = 'https://github.com/breuleux/earl-grey'

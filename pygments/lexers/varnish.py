@@ -163,7 +163,7 @@ class VCLSnippetLexer(VCLLexer):
     For Varnish Configuration Language snippets.
     """
     name = 'VCLSnippets'
-    aliases = ['vclsnippets', 'vclsnippet']
+    aliases = ('vclsnippets', 'vclsnippet')
     mimetypes = ['text/x-vclsnippet']
     filenames = []
     url = 'https://www.varnish-software.com/developers/tutorials/varnish-configuration-language-vcl'

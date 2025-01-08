@@ -39,7 +39,7 @@ class GroffFormatter(Formatter):
     """
 
     name = 'groff'
-    aliases = ['groff','troff','roff']
+    aliases = ('groff','troff','roff')
     filenames = []
 
     def __init__(self, **options):

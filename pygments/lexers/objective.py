@@ -199,7 +199,7 @@ class ObjectiveCLexer(objective(CLexer)):
 
     name = 'Objective-C'
     url = 'https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html'
-    aliases = ['objective-c', 'objectivec', 'obj-c', 'objc']
+    aliases = ('objective-c', 'objectivec', 'obj-c', 'objc')
     filenames = ['*.m', '*.h']
     mimetypes = ['text/x-objective-c']
     version_added = ''
@@ -212,7 +212,7 @@ class ObjectiveCppLexer(objective(CppLexer)):
     """
 
     name = 'Objective-C++'
-    aliases = ['objective-c++', 'objectivec++', 'obj-c++', 'objc++']
+    aliases = ('objective-c++', 'objectivec++', 'obj-c++', 'objc++')
     filenames = ['*.mm', '*.hh']
     mimetypes = ['text/x-objective-c++']
     version_added = ''

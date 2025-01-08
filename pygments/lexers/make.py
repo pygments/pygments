@@ -29,7 +29,7 @@ class MakefileLexer(Lexer):
     """
 
     name = 'Makefile'
-    aliases = ['make', 'makefile', 'mf', 'bsdmake']
+    aliases = ('make', 'makefile', 'mf', 'bsdmake')
     filenames = ['*.mak', '*.mk', 'Makefile', 'makefile', 'Makefile.*', 'GNUmakefile']
     mimetypes = ['text/x-makefile']
     url = 'https://en.wikipedia.org/wiki/Make_(software)'

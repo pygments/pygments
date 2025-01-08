@@ -97,7 +97,7 @@ class GettextLexer(RegexLexer):
     Lexer for Gettext catalog files.
     """
     name = 'Gettext Catalog'
-    aliases = ['pot', 'po']
+    aliases = ('pot', 'po')
     filenames = ['*.pot', '*.po']
     mimetypes = ['application/x-gettext', 'text/x-gettext', 'text/gettext']
     url = 'https://www.gnu.org/software/gettext'
@@ -399,7 +399,7 @@ class KernelLogLexer(RegexLexer):
     For Linux Kernel log ("dmesg") output.
     """
     name = 'Kernel log'
-    aliases = ['kmsg', 'dmesg']
+    aliases = ('kmsg', 'dmesg')
     filenames = ['*.kmsg', '*.dmesg']
     url = 'https://fr.wikipedia.org/wiki/Dmesg'
     version_added = '2.6'

@@ -39,7 +39,7 @@ class ProtoBufLexer(RegexLexer):
 
     name = 'Protocol Buffer'
     url = 'https://developers.google.com/protocol-buffers/'
-    aliases = ['protobuf', 'proto']
+    aliases = ('protobuf', 'proto')
     filenames = ['*.proto']
     version_added = '1.4'
 
@@ -204,7 +204,7 @@ class ZeekLexer(RegexLexer):
     """
     name = 'Zeek'
     url = 'https://www.zeek.org/'
-    aliases = ['zeek', 'bro']
+    aliases = ('zeek', 'bro')
     filenames = ['*.zeek', '*.bro']
     version_added = '2.5'
 
@@ -515,7 +515,7 @@ class MscgenLexer(RegexLexer):
     """
     name = 'Mscgen'
     url = 'http://www.mcternan.me.uk/mscgen/'
-    aliases = ['mscgen', 'msc']
+    aliases = ('mscgen', 'msc')
     filenames = ['*.msc']
     version_added = '1.6'
 
@@ -733,7 +733,7 @@ class CrmshLexer(RegexLexer):
     """
     name = 'Crmsh'
     url = 'http://crmsh.github.io/'
-    aliases = ['crmsh', 'pcmk']
+    aliases = ('crmsh', 'pcmk')
     filenames = ['*.crmsh', '*.pcmk']
     mimetypes = []
     version_added = '2.1'

@@ -24,7 +24,7 @@ class TalLexer(RegexLexer):
     """
 
     name = 'Tal'
-    aliases = ['tal', 'uxntal']
+    aliases = ('tal', 'uxntal')
     filenames = ['*.tal']
     mimetypes = ['text/x-uxntal']
     url = 'https://wiki.xxiivv.com/site/uxntal.html'

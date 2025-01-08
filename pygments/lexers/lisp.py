@@ -45,7 +45,7 @@ class SchemeLexer(RegexLexer):
     """
     name = 'Scheme'
     url = 'http://www.scheme-reports.org/'
-    aliases = ['scheme', 'scm']
+    aliases = ('scheme', 'scm')
     filenames = ['*.scm', '*.ss']
     mimetypes = ['text/x-scheme', 'application/x-scheme']
     version_added = '0.6'
@@ -309,7 +309,7 @@ class CommonLispLexer(RegexLexer):
     """
     name = 'Common Lisp'
     url = 'https://lisp-lang.org/'
-    aliases = ['common-lisp', 'cl', 'lisp']
+    aliases = ('common-lisp', 'cl', 'lisp')
     filenames = ['*.cl', '*.lisp']
     mimetypes = ['text/x-common-lisp']
     version_added = '0.9'
@@ -497,7 +497,7 @@ class HyLexer(RegexLexer):
     """
     name = 'Hy'
     url = 'http://hylang.org/'
-    aliases = ['hylang', 'hy']
+    aliases = ('hylang', 'hy')
     filenames = ['*.hy']
     mimetypes = ['text/x-hy', 'application/x-hy']
     version_added = '2.0'
@@ -612,7 +612,7 @@ class RacketLexer(RegexLexer):
 
     name = 'Racket'
     url = 'http://racket-lang.org/'
-    aliases = ['racket', 'rkt']
+    aliases = ('racket', 'rkt')
     filenames = ['*.rkt', '*.rktd', '*.rktl']
     mimetypes = ['text/x-racket', 'application/x-racket']
     version_added = '1.6'
@@ -1674,7 +1674,7 @@ class EmacsLispLexer(RegexLexer):
     needed to highlight elisp code.
     """
     name = 'EmacsLisp'
-    aliases = ['emacs-lisp', 'elisp', 'emacs']
+    aliases = ('emacs-lisp', 'elisp', 'emacs')
     filenames = ['*.el']
     mimetypes = ['text/x-elisp', 'application/x-elisp']
     url = 'https://www.gnu.org/software/emacs'
@@ -2766,7 +2766,7 @@ class FennelLexer(RegexLexer):
     """
     name = 'Fennel'
     url = 'https://fennel-lang.org'
-    aliases = ['fennel', 'fnl']
+    aliases = ('fennel', 'fnl')
     filenames = ['*.fnl']
     version_added = '2.3'
 

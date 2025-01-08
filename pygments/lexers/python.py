@@ -41,7 +41,7 @@ class PythonLexer(RegexLexer):
 
     name = 'Python'
     url = 'https://www.python.org'
-    aliases = ['python', 'py', 'sage', 'python3', 'py3', 'bazel', 'starlark', 'pyi']
+    aliases = ('python', 'py', 'sage', 'python3', 'py3', 'bazel', 'starlark', 'pyi')
     filenames = [
         '*.py',
         '*.pyw',
@@ -433,7 +433,7 @@ class Python2Lexer(RegexLexer):
 
     name = 'Python 2.x'
     url = 'https://www.python.org'
-    aliases = ['python2', 'py2']
+    aliases = ('python2', 'py2')
     filenames = []  # now taken over by PythonLexer (3.x)
     mimetypes = ['text/x-python2', 'application/x-python2']
     version_added = ''
@@ -646,7 +646,7 @@ class Python2Lexer(RegexLexer):
 
 class _PythonConsoleLexerBase(RegexLexer):
     name = 'Python console session'
-    aliases = ['pycon', 'python-console']
+    aliases = ('pycon', 'python-console')
     mimetypes = ['text/x-python-doctest']
 
     """Auxiliary lexer for `PythonConsoleLexer`.
@@ -706,7 +706,7 @@ class PythonConsoleLexer(DelegatingLexer):
     """
 
     name = 'Python console session'
-    aliases = ['pycon', 'python-console']
+    aliases = ('pycon', 'python-console')
     mimetypes = ['text/x-python-doctest']
     url = 'https://python.org'
     version_added = ''
@@ -740,7 +740,7 @@ class PythonTracebackLexer(RegexLexer):
     """
 
     name = 'Python Traceback'
-    aliases = ['pytb', 'py3tb']
+    aliases = ('pytb', 'py3tb')
     filenames = ['*.pytb', '*.py3tb']
     mimetypes = ['text/x-python-traceback', 'text/x-python3-traceback']
     url = 'https://python.org'
@@ -842,7 +842,7 @@ class CythonLexer(RegexLexer):
 
     name = 'Cython'
     url = 'https://cython.org'
-    aliases = ['cython', 'pyx', 'pyrex']
+    aliases = ('cython', 'pyx', 'pyrex')
     filenames = ['*.pyx', '*.pxd', '*.pxi']
     mimetypes = ['text/x-cython', 'application/x-cython']
     version_added = '1.1'

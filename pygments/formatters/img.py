@@ -384,7 +384,7 @@ class ImageFormatter(Formatter):
 
     # Required by the pygments mapper
     name = 'img'
-    aliases = ['img', 'IMG', 'png']
+    aliases = ('img', 'IMG', 'png')
     filenames = ['*.png']
 
     unicodeoutput = False
@@ -671,7 +671,7 @@ class JpgImageFormatter(ImageFormatter):
     """
 
     name = 'img_jpg'
-    aliases = ['jpg', 'jpeg']
+    aliases = ('jpg', 'jpeg')
     filenames = ['*.jpg']
     default_image_format = 'jpeg'
 
@@ -685,6 +685,6 @@ class BmpImageFormatter(ImageFormatter):
     """
 
     name = 'img_bmp'
-    aliases = ['bmp', 'bitmap']
+    aliases = ('bmp', 'bitmap')
     filenames = ['*.bmp']
     default_image_format = 'bmp'

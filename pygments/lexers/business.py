@@ -460,7 +460,7 @@ class OpenEdgeLexer(RegexLexer):
     Lexer for OpenEdge ABL (formerly Progress) source code.
     """
     name = 'OpenEdge ABL'
-    aliases = ['openedge', 'abl', 'progress']
+    aliases = ('openedge', 'abl', 'progress')
     filenames = ['*.p', '*.cls']
     mimetypes = ['text/x-openedge', 'application/x-openedge']
     url = 'https://www.progress.com/openedge/features/abl'

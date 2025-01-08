@@ -23,7 +23,7 @@ class GraphvizLexer(RegexLexer):
     """
     name = 'Graphviz'
     url = 'https://www.graphviz.org/doc/info/lang.html'
-    aliases = ['graphviz', 'dot']
+    aliases = ('graphviz', 'dot')
     filenames = ['*.gv', '*.dot']
     mimetypes = ['text/x-graphviz', 'text/vnd.graphviz']
     version_added = '2.8'

@@ -56,7 +56,7 @@ class CSharpLexer(RegexLexer):
 
     name = 'C#'
     url = 'https://docs.microsoft.com/en-us/dotnet/csharp/'
-    aliases = ['csharp', 'c#', 'cs']
+    aliases = ('csharp', 'c#', 'cs')
     filenames = ['*.cs']
     mimetypes = ['text/x-csharp']  # inferred
     version_added = ''
@@ -436,7 +436,7 @@ class VbNetLexer(RegexLexer):
 
     name = 'VB.net'
     url = 'https://docs.microsoft.com/en-us/dotnet/visual-basic/'
-    aliases = ['vb.net', 'vbnet', 'lobas', 'oobas', 'sobas', 'visual-basic', 'visualbasic']
+    aliases = ('vb.net', 'vbnet', 'lobas', 'oobas', 'sobas', 'visual-basic', 'visualbasic')
     filenames = ['*.vb', '*.bas']
     mimetypes = ['text/x-vbnet', 'text/x-vba']  # (?)
     version_added = ''
@@ -617,7 +617,7 @@ class FSharpLexer(RegexLexer):
 
     name = 'F#'
     url = 'https://fsharp.org/'
-    aliases = ['fsharp', 'f#']
+    aliases = ('fsharp', 'f#')
     filenames = ['*.fs', '*.fsi', '*.fsx']
     mimetypes = ['text/x-fsharp']
     version_added = '1.5'
@@ -779,7 +779,7 @@ class XppLexer(RegexLexer):
 
     name = 'X++'
     url = 'https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-ref/xpp-language-reference'
-    aliases = ['xpp', 'x++']
+    aliases = ('xpp', 'x++')
     filenames = ['*.xpp']
     version_added = '2.15'
 

@@ -23,7 +23,7 @@ class ComponentPascalLexer(RegexLexer):
     For Component Pascal source code.
     """
     name = 'Component Pascal'
-    aliases = ['componentpascal', 'cp']
+    aliases = ('componentpascal', 'cp')
     filenames = ['*.cp', '*.cps']
     mimetypes = ['text/x-component-pascal']
     url = 'https://blackboxframework.org'

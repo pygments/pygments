@@ -217,7 +217,7 @@ class DylanLidLexer(RegexLexer):
     """
 
     name = 'DylanLID'
-    aliases = ['dylan-lid', 'lid']
+    aliases = ('dylan-lid', 'lid')
     filenames = ['*.lid', '*.hdp']
     mimetypes = ['text/x-dylan-lid']
     url = 'http://www.opendylan.org/'
@@ -246,7 +246,7 @@ class DylanConsoleLexer(Lexer):
     This is based on a copy of the ``RubyConsoleLexer``.
     """
     name = 'Dylan session'
-    aliases = ['dylan-console', 'dylan-repl']
+    aliases = ('dylan-console', 'dylan-repl')
     filenames = ['*.dylan-console']
     mimetypes = ['text/x-dylan-console']
     url = 'http://www.opendylan.org/'

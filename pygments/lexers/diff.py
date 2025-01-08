@@ -24,7 +24,7 @@ class DiffLexer(RegexLexer):
     """
 
     name = 'Diff'
-    aliases = ['diff', 'udiff']
+    aliases = ('diff', 'udiff')
     filenames = ['*.diff', '*.patch']
     mimetypes = ['text/x-diff', 'text/x-patch']
     url = 'https://en.wikipedia.org/wiki/Diff'

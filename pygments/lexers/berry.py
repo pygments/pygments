@@ -21,7 +21,7 @@ class BerryLexer(RegexLexer):
     For Berry source code.
     """
     name = 'Berry'
-    aliases = ['berry', 'be']
+    aliases = ('berry', 'be')
     filenames = ['*.be']
     mimetypes = ['text/x-berry', 'application/x-berry']
     url = 'https://berry-lang.github.io'

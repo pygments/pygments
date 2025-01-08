@@ -21,7 +21,7 @@ class ThingsDBLexer(RegexLexer):
     Lexer for the ThingsDB programming language.
     """
     name = 'ThingsDB'
-    aliases = ['ti', 'thingsdb']
+    aliases = ('ti', 'thingsdb')
     filenames = ['*.ti']
     url = 'https://www.thingsdb.net'
     version_added = '2.9'

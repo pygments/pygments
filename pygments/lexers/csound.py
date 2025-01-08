@@ -140,7 +140,7 @@ class CsoundScoreLexer(CsoundLexer):
     """
 
     name = 'Csound Score'
-    aliases = ['csound-score', 'csound-sco']
+    aliases = ('csound-score', 'csound-sco')
     filenames = ['*.sco']
     version_added = '2.1'
 
@@ -205,7 +205,7 @@ class CsoundOrchestraLexer(CsoundLexer):
     """
 
     name = 'Csound Orchestra'
-    aliases = ['csound', 'csound-orc']
+    aliases = ('csound', 'csound-orc')
     filenames = ['*.orc', '*.udo']
     version_added = '2.1'
 
@@ -414,7 +414,7 @@ class CsoundDocumentLexer(RegexLexer):
     """
 
     name = 'Csound Document'
-    aliases = ['csound-document', 'csound-csd']
+    aliases = ('csound-document', 'csound-csd')
     filenames = ['*.csd']
     url = 'https://csound.com'
     version_added = '2.1'

@@ -775,7 +775,7 @@ class ReasonLexer(RegexLexer):
 
     name = 'ReasonML'
     url = 'https://reasonml.github.io/'
-    aliases = ['reasonml', 'reason']
+    aliases = ('reasonml', 'reason')
     filenames = ['*.re', '*.rei']
     mimetypes = ['text/x-reasonml']
     version_added = '2.6'

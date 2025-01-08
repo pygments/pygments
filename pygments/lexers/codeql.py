@@ -22,7 +22,7 @@ from pygments.token import Comment, Operator, Keyword, Name, String, \
 
 class CodeQLLexer(RegexLexer):
     name = 'CodeQL'
-    aliases = ['codeql', 'ql']
+    aliases = ('codeql', 'ql')
     filenames = ['*.ql', '*.qll']
     mimetypes = []
     url = 'https://github.com/github/codeql'

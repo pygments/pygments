@@ -27,7 +27,7 @@ class Inform6Lexer(RegexLexer):
 
     name = 'Inform 6'
     url = 'http://inform-fiction.org/'
-    aliases = ['inform6', 'i6']
+    aliases = ('inform6', 'i6')
     filenames = ['*.inf']
     version_added = '2.0'
 
@@ -547,7 +547,7 @@ class Inform7Lexer(RegexLexer):
 
     name = 'Inform 7'
     url = 'http://inform7.com/'
-    aliases = ['inform7', 'i7']
+    aliases = ('inform7', 'i7')
     filenames = ['*.ni', '*.i7x']
     version_added = '2.0'
 

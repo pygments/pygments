@@ -22,7 +22,7 @@ class AscLexer(RegexLexer):
     base64 data.
     """
     name = 'ASCII armored'
-    aliases = ['asc', 'pem']
+    aliases = ('asc', 'pem')
     filenames = [
         '*.asc',  # PGP; *.gpg, *.pgp, and *.sig too, but those can be binary
         '*.pem',  # X.509; *.cer, *.crt, *.csr, and key etc too, but those can be binary

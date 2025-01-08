@@ -109,7 +109,7 @@ class LdaprcLexer(RegexLexer):
     """
 
     name = 'LDAP configuration file'
-    aliases = ['ldapconf', 'ldaprc']
+    aliases = ('ldapconf', 'ldaprc')
     filenames = ['.ldaprc', 'ldaprc', 'ldap.conf']
     mimetypes = ["text/x-ldapconf"]
     url = 'https://www.openldap.org/software//man.cgi?query=ldap.conf&sektion=5&apropos=0&manpath=OpenLDAP+2.4-Release'

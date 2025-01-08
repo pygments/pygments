@@ -515,7 +515,7 @@ class PugLexer(ExtendedRegexLexer):
     """
 
     name = 'Pug'
-    aliases = ['pug', 'jade']
+    aliases = ('pug', 'jade')
     filenames = ['*.pug', '*.jade']
     mimetypes = ['text/x-pug', 'text/x-jade']
     url = 'https://pugjs.org'

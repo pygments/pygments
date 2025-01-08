@@ -175,7 +175,7 @@ class PostgresLexer(PostgresBase, RegexLexer):
     """
 
     name = 'PostgreSQL SQL dialect'
-    aliases = ['postgresql', 'postgres']
+    aliases = ('postgresql', 'postgres')
     mimetypes = ['text/x-postgresql']
     url = 'https://www.postgresql.org'
     version_added = '1.5'
@@ -324,7 +324,7 @@ class PostgresConsoleLexer(Lexer):
     """
 
     name = 'PostgreSQL console (psql)'
-    aliases = ['psql', 'postgresql-console', 'postgres-console']
+    aliases = ('psql', 'postgresql-console', 'postgres-console')
     mimetypes = ['text/x-postgresql-psql']
     url = 'https://www.postgresql.org'
     version_added = '1.5'
@@ -720,7 +720,7 @@ class TransactSqlLexer(RegexLexer):
     """
 
     name = 'Transact-SQL'
-    aliases = ['tsql', 't-sql']
+    aliases = ('tsql', 't-sql')
     filenames = ['*.sql']
     mimetypes = ['text/x-tsql']
     url = 'https://www.tsql.info'
@@ -990,7 +990,7 @@ class GoogleSqlLexer(RegexLexer):
     """
 
     name = 'GoogleSQL'
-    aliases = ['googlesql', 'zetasql']
+    aliases = ('googlesql', 'zetasql')
     filenames = ['*.googlesql', '*.googlesql.sql']
     mimetypes = ['text/x-google-sql', 'text/x-google-sql-aux']
     url = 'https://cloud.google.com/bigquery/googlesql'

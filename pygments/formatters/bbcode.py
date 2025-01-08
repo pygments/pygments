@@ -45,7 +45,7 @@ class BBCodeFormatter(Formatter):
         (default: ``false``).
     """
     name = 'BBCode'
-    aliases = ['bbcode', 'bb']
+    aliases = ('bbcode', 'bb')
     filenames = []
 
     def __init__(self, **options):

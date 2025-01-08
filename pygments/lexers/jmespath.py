@@ -23,7 +23,7 @@ class JMESPathLexer(RegexLexer):
     name = 'JMESPath'
     url = 'https://jmespath.org'
     filenames = ['*.jp']
-    aliases = ['jmespath', 'jp']
+    aliases = ('jmespath', 'jp')
     version_added = ''
 
     tokens: typing.ClassVar = {

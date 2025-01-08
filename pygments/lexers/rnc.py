@@ -23,7 +23,7 @@ class RNCCompactLexer(RegexLexer):
 
     name = 'Relax-NG Compact'
     url = 'http://relaxng.org'
-    aliases = ['rng-compact', 'rnc']
+    aliases = ('rng-compact', 'rnc')
     filenames = ['*.rnc']
     version_added = '2.2'
 

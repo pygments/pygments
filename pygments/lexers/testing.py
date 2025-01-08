@@ -20,7 +20,7 @@ class GherkinLexer(RegexLexer):
     For Gherkin syntax.
     """
     name = 'Gherkin'
-    aliases = ['gherkin', 'cucumber']
+    aliases = ('gherkin', 'cucumber')
     filenames = ['*.feature']
     mimetypes = ['text/x-gherkin']
     url = 'https://cucumber.io/docs/gherkin'

@@ -24,7 +24,7 @@ class TeraTermLexer(RegexLexer):
     """
     name = 'Tera Term macro'
     url = 'https://ttssh2.osdn.jp/'
-    aliases = ['teratermmacro', 'teraterm', 'ttl']
+    aliases = ('teratermmacro', 'teraterm', 'ttl')
     filenames = ['*.ttl']
     mimetypes = ['text/x-teratermmacro']
     version_added = '2.4'

@@ -32,7 +32,7 @@ class JuliaLexer(RegexLexer):
 
     name = 'Julia'
     url = 'https://julialang.org/'
-    aliases = ['julia', 'jl']
+    aliases = ('julia', 'jl')
     filenames = ['*.jl']
     mimetypes = ['text/x-julia', 'application/x-julia']
     version_added = '1.6'
@@ -249,7 +249,7 @@ class JuliaConsoleLexer(Lexer):
     For Julia console sessions. Modeled after MatlabSessionLexer.
     """
     name = 'Julia console'
-    aliases = ['jlcon', 'julia-repl']
+    aliases = ('jlcon', 'julia-repl')
     url = 'https://julialang.org/'
     version_added = '1.6'
     _example = "jlcon/console"

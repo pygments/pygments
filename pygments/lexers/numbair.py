@@ -21,7 +21,7 @@ class NumbaIRLexer(RegexLexer):
     """
     name = 'Numba_IR'
     url = "https://numba.readthedocs.io/en/stable/developer/architecture.html#stage-2-generate-the-numba-ir"
-    aliases = ['numba_ir', 'numbair']
+    aliases = ('numba_ir', 'numbair')
     filenames = ['*.numba_ir']
     mimetypes = ['text/x-numba_ir', 'text/x-numbair']
     version_added = '2.19'

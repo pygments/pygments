@@ -244,7 +244,7 @@ class RedLexer(RegexLexer):
     A Red-language lexer.
     """
     name = 'Red'
-    aliases = ['red', 'red/system']
+    aliases = ('red', 'red/system')
     filenames = ['*.red', '*.reds']
     mimetypes = ['text/x-red', 'text/x-red-system']
     url = 'https://www.red-lang.org'

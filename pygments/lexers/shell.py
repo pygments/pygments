@@ -38,7 +38,7 @@ class BashLexer(RegexLexer):
     """
 
     name = 'Bash'
-    aliases = ['bash', 'sh', 'ksh', 'zsh', 'shell', 'openrc']
+    aliases = ('bash', 'sh', 'ksh', 'zsh', 'shell', 'openrc')
     filenames = ['*.sh', '*.ksh', '*.bash', '*.ebuild', '*.eclass',
                  '*.exheres-0', '*.exlib', '*.zsh',
                  '.bashrc', 'bashrc', '.bash_*', 'bash_*', 'zshrc', '.zshrc',
@@ -142,7 +142,7 @@ class SlurmBashLexer(BashLexer):
     """
 
     name = 'Slurm'
-    aliases = ['slurm', 'sbatch']
+    aliases = ('slurm', 'sbatch')
     filenames = ['*.sl']
     mimetypes = []
     version_added = '2.4'
@@ -237,7 +237,7 @@ class BashSessionLexer(ShellSessionBaseLexer):
     """
 
     name = 'Bash Session'
-    aliases = ['console', 'shell-session']
+    aliases = ('console', 'shell-session')
     filenames = ['*.sh-session', '*.shell-session']
     mimetypes = ['application/x-shell-session', 'application/x-sh-session']
     url = 'https://en.wikipedia.org/wiki/Unix_shell'
@@ -256,7 +256,7 @@ class BatchLexer(RegexLexer):
     Lexer for the DOS/Windows Batch file format.
     """
     name = 'Batchfile'
-    aliases = ['batch', 'bat', 'dosbatch', 'winbatch']
+    aliases = ('batch', 'bat', 'dosbatch', 'winbatch')
     filenames = ['*.bat', '*.cmd']
     mimetypes = ['application/x-dos-batch']
     url = 'https://en.wikipedia.org/wiki/Batch_file'
@@ -566,7 +566,7 @@ class TcshLexer(RegexLexer):
     """
 
     name = 'Tcsh'
-    aliases = ['tcsh', 'csh']
+    aliases = ('tcsh', 'csh')
     filenames = ['*.tcsh', '*.csh']
     mimetypes = ['application/x-csh']
     url = 'https://www.tcsh.org'
@@ -652,7 +652,7 @@ class PowerShellLexer(RegexLexer):
     For Windows PowerShell code.
     """
     name = 'PowerShell'
-    aliases = ['powershell', 'pwsh', 'posh', 'ps1', 'psm1']
+    aliases = ('powershell', 'pwsh', 'posh', 'ps1', 'psm1')
     filenames = ['*.ps1', '*.psm1']
     mimetypes = ['text/x-powershell']
     url = 'https://learn.microsoft.com/en-us/powershell'
@@ -768,7 +768,7 @@ class PowerShellSessionLexer(ShellSessionBaseLexer):
     """
 
     name = 'PowerShell Session'
-    aliases = ['pwsh-session', 'ps1con']
+    aliases = ('pwsh-session', 'ps1con')
     filenames = []
     mimetypes = []
     url = 'https://learn.microsoft.com/en-us/powershell'
@@ -787,7 +787,7 @@ class FishShellLexer(RegexLexer):
     """
 
     name = 'Fish'
-    aliases = ['fish', 'fishshell']
+    aliases = ('fish', 'fishshell')
     filenames = ['*.fish', '*.load']
     mimetypes = ['application/x-fish']
     url = 'https://fishshell.com'

@@ -40,7 +40,7 @@ class QVToLexer(RegexLexer):
     # With obvious borrowings & inspiration from the Java, Python and C lexers
 
     name = 'QVTO'
-    aliases = ['qvto', 'qvt']
+    aliases = ('qvto', 'qvt')
     filenames = ['*.qvto']
     url = 'https://www.omg.org/spec/QVT/1.1'
     version_added = ''

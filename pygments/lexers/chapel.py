@@ -23,7 +23,7 @@ class ChapelLexer(RegexLexer):
     name = 'Chapel'
     url = 'https://chapel-lang.org/'
     filenames = ['*.chpl']
-    aliases = ['chapel', 'chpl']
+    aliases = ('chapel', 'chpl')
     version_added = '2.0'
     # mimetypes = ['text/x-chapel']
 

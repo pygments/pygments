@@ -37,7 +37,7 @@ class HaskellLexer(RegexLexer):
     """
     name = 'Haskell'
     url = 'https://www.haskell.org/'
-    aliases = ['haskell', 'hs']
+    aliases = ('haskell', 'hs')
     filenames = ['*.hs']
     mimetypes = ['text/x-haskell']
     version_added = '0.8'
@@ -192,7 +192,7 @@ class IdrisLexer(RegexLexer):
     """
     name = 'Idris'
     url = 'https://www.idris-lang.org/'
-    aliases = ['idris', 'idr']
+    aliases = ('idris', 'idr')
     filenames = ['*.idr']
     mimetypes = ['text/x-idris']
     version_added = '2.0'
@@ -373,7 +373,7 @@ class CryptolLexer(RegexLexer):
     FIXME: A Cryptol2 lexer based on the lexemes defined in the Haskell 98 Report.
     """
     name = 'Cryptol'
-    aliases = ['cryptol', 'cry']
+    aliases = ('cryptol', 'cry')
     filenames = ['*.cry']
     mimetypes = ['text/x-cryptol']
     url = 'https://www.cryptol.net'
@@ -581,7 +581,7 @@ class LiterateHaskellLexer(LiterateLexer):
         is a backslash or percent character, LaTeX is assumed, else Bird.
     """
     name = 'Literate Haskell'
-    aliases = ['literate-haskell', 'lhaskell', 'lhs']
+    aliases = ('literate-haskell', 'lhaskell', 'lhs')
     filenames = ['*.lhs']
     mimetypes = ['text/x-literate-haskell']
     url = 'https://wiki.haskell.org/Literate_programming'
@@ -604,7 +604,7 @@ class LiterateIdrisLexer(LiterateLexer):
         is a backslash or percent character, LaTeX is assumed, else Bird.
     """
     name = 'Literate Idris'
-    aliases = ['literate-idris', 'lidris', 'lidr']
+    aliases = ('literate-idris', 'lidris', 'lidr')
     filenames = ['*.lidr']
     mimetypes = ['text/x-literate-idris']
     url = 'https://idris2.readthedocs.io/en/latest/reference/literate.html'
@@ -627,7 +627,7 @@ class LiterateAgdaLexer(LiterateLexer):
         is a backslash or percent character, LaTeX is assumed, else Bird.
     """
     name = 'Literate Agda'
-    aliases = ['literate-agda', 'lagda']
+    aliases = ('literate-agda', 'lagda')
     filenames = ['*.lagda']
     mimetypes = ['text/x-literate-agda']
     url = 'https://agda.readthedocs.io/en/latest/tools/literate-programming.html'
@@ -650,7 +650,7 @@ class LiterateCryptolLexer(LiterateLexer):
         is a backslash or percent character, LaTeX is assumed, else Bird.
     """
     name = 'Literate Cryptol'
-    aliases = ['literate-cryptol', 'lcryptol', 'lcry']
+    aliases = ('literate-cryptol', 'lcryptol', 'lcry')
     filenames = ['*.lcry']
     mimetypes = ['text/x-literate-cryptol']
     url = 'https://www.cryptol.net'

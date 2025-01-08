@@ -28,7 +28,7 @@ class ArturoLexer(RegexLexer):
     """
 
     name = 'Arturo'
-    aliases = ['arturo', 'art']
+    aliases = ('arturo', 'art')
     filenames = ['*.art']
     url = 'https://arturo-lang.io/'
     version_added = '2.14'

@@ -21,7 +21,7 @@ class FiftLexer(RegexLexer):
     """
 
     name = 'Fift'
-    aliases = ['fift', 'fif']
+    aliases = ('fift', 'fif')
     filenames = ['*.fif']
     url = 'https://ton-blockchain.github.io/docs/fiftbase.pdf'
     version_added = ''

@@ -23,7 +23,7 @@ class Lean3Lexer(RegexLexer):
     """
     name = 'Lean'
     url = 'https://leanprover-community.github.io/lean3'
-    aliases = ['lean', 'lean3']
+    aliases = ('lean', 'lean3')
     filenames = ['*.lean']
     mimetypes = ['text/x-lean', 'text/x-lean3']
     version_added = '2.0'

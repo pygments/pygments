@@ -23,7 +23,7 @@ class apdlexer(RegexLexer):
     For APDL source code.
     """
     name = 'ANSYS parametric design language'
-    aliases = ['ansys', 'apdl']
+    aliases = ('ansys', 'apdl')
     filenames = ['*.ans']
     url = 'https://www.ansys.com'
     version_added = '2.9'

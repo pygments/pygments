@@ -25,7 +25,7 @@ class SmalltalkLexer(RegexLexer):
     name = 'Smalltalk'
     url = 'http://www.smalltalk.org/'
     filenames = ['*.st']
-    aliases = ['smalltalk', 'squeak', 'st']
+    aliases = ('smalltalk', 'squeak', 'st')
     mimetypes = ['text/x-smalltalk']
     version_added = '0.10'
 

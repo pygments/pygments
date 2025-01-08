@@ -26,7 +26,7 @@ class HaxeLexer(ExtendedRegexLexer):
 
     name = 'Haxe'
     url = 'http://haxe.org/'
-    aliases = ['haxe', 'hxsl', 'hx']
+    aliases = ('haxe', 'hxsl', 'hx')
     filenames = ['*.hx', '*.hxsl']
     mimetypes = ['text/haxe', 'text/x-haxe', 'text/x-hx']
     version_added = '1.3'
@@ -901,7 +901,7 @@ class HxmlLexer(RegexLexer):
     """
     name = 'Hxml'
     url = 'https://haxe.org/manual/compiler-usage-hxml.html'
-    aliases = ['haxeml', 'hxml']
+    aliases = ('haxeml', 'hxml')
     filenames = ['*.hxml']
     version_added = '1.6'
 

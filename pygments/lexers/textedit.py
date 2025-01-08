@@ -26,7 +26,7 @@ class AwkLexer(RegexLexer):
     """
 
     name = 'Awk'
-    aliases = ['awk', 'gawk', 'mawk', 'nawk']
+    aliases = ('awk', 'gawk', 'mawk', 'nawk')
     filenames = ['*.awk']
     mimetypes = ['application/x-awk']
     url = 'https://en.wikipedia.org/wiki/AWK'
@@ -79,7 +79,7 @@ class SedLexer(RegexLexer):
     Lexer for Sed script files.
     """
     name = 'Sed'
-    aliases = ['sed', 'gsed', 'ssed']
+    aliases = ('sed', 'gsed', 'ssed')
     filenames = ['*.sed', '*.[gs]sed']
     mimetypes = ['text/x-sed']
     url = 'https://en.wikipedia.org/wiki/Sed'

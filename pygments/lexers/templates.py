@@ -384,7 +384,7 @@ class DjangoLexer(RegexLexer):
     """
 
     name = 'Django/Jinja'
-    aliases = ['django', 'jinja']
+    aliases = ('django', 'jinja')
     mimetypes = ['application/x-django-templating', 'application/x-jinja']
     url = 'https://www.djangoproject.com/documentation/templates'
     version_added = ''
@@ -544,7 +544,7 @@ class MyghtyJavascriptLexer(DelegatingLexer):
     """
 
     name = 'JavaScript+Myghty'
-    aliases = ['javascript+myghty', 'js+myghty']
+    aliases = ('javascript+myghty', 'js+myghty')
     mimetypes = ['application/x-javascript+myghty',
                  'text/x-javascript+myghty',
                  'text/javascript+mygthy']
@@ -730,7 +730,7 @@ class MakoJavascriptLexer(DelegatingLexer):
     """
 
     name = 'JavaScript+Mako'
-    aliases = ['javascript+mako', 'js+mako']
+    aliases = ('javascript+mako', 'js+mako')
     mimetypes = ['application/x-javascript+mako',
                  'text/x-javascript+mako',
                  'text/javascript+mako']
@@ -783,7 +783,7 @@ class CheetahLexer(RegexLexer):
 
     name = 'Cheetah'
     url = 'http://www.cheetahtemplate.org/'
-    aliases = ['cheetah', 'spitfire']
+    aliases = ('cheetah', 'spitfire')
     filenames = ['*.tmpl', '*.spt']
     mimetypes = ['application/x-cheetah', 'application/x-spitfire']
     version_added = ''
@@ -824,7 +824,7 @@ class CheetahHtmlLexer(DelegatingLexer):
     """
 
     name = 'HTML+Cheetah'
-    aliases = ['html+cheetah', 'html+spitfire', 'htmlcheetah']
+    aliases = ('html+cheetah', 'html+spitfire', 'htmlcheetah')
     mimetypes = ['text/html+cheetah', 'text/html+spitfire']
     url = 'http://www.cheetahtemplate.org/'
     version_added = ''
@@ -840,7 +840,7 @@ class CheetahXmlLexer(DelegatingLexer):
     """
 
     name = 'XML+Cheetah'
-    aliases = ['xml+cheetah', 'xml+spitfire']
+    aliases = ('xml+cheetah', 'xml+spitfire')
     mimetypes = ['application/xml+cheetah', 'application/xml+spitfire']
     url = 'http://www.cheetahtemplate.org/'
     version_added = ''
@@ -978,7 +978,7 @@ class HtmlGenshiLexer(DelegatingLexer):
     """
 
     name = 'HTML+Genshi'
-    aliases = ['html+genshi', 'html+kid']
+    aliases = ('html+genshi', 'html+kid')
     version_added = ''
     alias_filenames = ['*.html', '*.htm', '*.xhtml']
     mimetypes = ['text/html+genshi']
@@ -1003,7 +1003,7 @@ class GenshiLexer(DelegatingLexer):
     """
 
     name = 'Genshi'
-    aliases = ['genshi', 'kid', 'xml+genshi', 'xml+kid']
+    aliases = ('genshi', 'kid', 'xml+genshi', 'xml+kid')
     filenames = ['*.kid']
     version_added = ''
     alias_filenames = ['*.xml']
@@ -1050,7 +1050,7 @@ class CssGenshiLexer(DelegatingLexer):
     """
 
     name = 'CSS+Genshi Text'
-    aliases = ['css+genshitext', 'css+genshi']
+    aliases = ('css+genshitext', 'css+genshi')
     version_added = ''
     alias_filenames = ['*.css']
     mimetypes = ['text/css+genshi']
@@ -1072,7 +1072,7 @@ class RhtmlLexer(DelegatingLexer):
     """
 
     name = 'RHTML'
-    aliases = ['rhtml', 'html+erb', 'html+ruby']
+    aliases = ('rhtml', 'html+erb', 'html+ruby')
     filenames = ['*.rhtml']
     version_added = ''
     alias_filenames = ['*.html', '*.htm', '*.xhtml']
@@ -1098,7 +1098,7 @@ class XmlErbLexer(DelegatingLexer):
     """
 
     name = 'XML+Ruby'
-    aliases = ['xml+ruby', 'xml+erb']
+    aliases = ('xml+ruby', 'xml+erb')
     version_added = ''
     alias_filenames = ['*.xml']
     mimetypes = ['application/xml+ruby']
@@ -1120,7 +1120,7 @@ class CssErbLexer(DelegatingLexer):
     """
 
     name = 'CSS+Ruby'
-    aliases = ['css+ruby', 'css+erb']
+    aliases = ('css+ruby', 'css+erb')
     version_added = ''
     alias_filenames = ['*.css']
     mimetypes = ['text/css+ruby']
@@ -1140,7 +1140,7 @@ class JavascriptErbLexer(DelegatingLexer):
     """
 
     name = 'JavaScript+Ruby'
-    aliases = ['javascript+ruby', 'js+ruby', 'javascript+erb', 'js+erb']
+    aliases = ('javascript+ruby', 'js+ruby', 'javascript+erb', 'js+erb')
     version_added = ''
     alias_filenames = ['*.js']
     mimetypes = ['application/x-javascript+ruby',
@@ -1232,7 +1232,7 @@ class JavascriptPhpLexer(DelegatingLexer):
     """
 
     name = 'JavaScript+PHP'
-    aliases = ['javascript+php', 'js+php']
+    aliases = ('javascript+php', 'js+php')
     version_added = ''
     alias_filenames = ['*.js']
     mimetypes = ['application/x-javascript+php',
@@ -1322,7 +1322,7 @@ class JavascriptSmartyLexer(DelegatingLexer):
     """
 
     name = 'JavaScript+Smarty'
-    aliases = ['javascript+smarty', 'js+smarty']
+    aliases = ('javascript+smarty', 'js+smarty')
     version_added = ''
     alias_filenames = ['*.js', '*.tpl']
     mimetypes = ['application/x-javascript+smarty',
@@ -1346,7 +1346,7 @@ class HtmlDjangoLexer(DelegatingLexer):
     """
 
     name = 'HTML+Django/Jinja'
-    aliases = ['html+django', 'html+jinja', 'htmldjango']
+    aliases = ('html+django', 'html+jinja', 'htmldjango')
     filenames = ['*.html.j2', '*.htm.j2', '*.xhtml.j2', '*.html.jinja2', '*.htm.jinja2', '*.xhtml.jinja2']
     version_added = ''
     alias_filenames = ['*.html', '*.htm', '*.xhtml']
@@ -1370,7 +1370,7 @@ class XmlDjangoLexer(DelegatingLexer):
     """
 
     name = 'XML+Django/Jinja'
-    aliases = ['xml+django', 'xml+jinja']
+    aliases = ('xml+django', 'xml+jinja')
     filenames = ['*.xml.j2', '*.xml.jinja2']
     version_added = ''
     alias_filenames = ['*.xml']
@@ -1394,7 +1394,7 @@ class CssDjangoLexer(DelegatingLexer):
     """
 
     name = 'CSS+Django/Jinja'
-    aliases = ['css+django', 'css+jinja']
+    aliases = ('css+django', 'css+jinja')
     filenames = ['*.css.j2', '*.css.jinja2']
     version_added = ''
     alias_filenames = ['*.css']
@@ -1861,7 +1861,7 @@ class LassoJavascriptLexer(DelegatingLexer):
     """
 
     name = 'JavaScript+Lasso'
-    aliases = ['javascript+lasso', 'js+lasso']
+    aliases = ('javascript+lasso', 'js+lasso')
     version_added = '1.6'
     alias_filenames = ['*.js']
     mimetypes = ['application/x-javascript+lasso',
@@ -1980,7 +1980,7 @@ class YamlJinjaLexer(DelegatingLexer):
     """
 
     name = 'YAML+Jinja'
-    aliases = ['yaml+jinja', 'salt', 'sls']
+    aliases = ('yaml+jinja', 'salt', 'sls')
     filenames = ['*.sls', '*.yaml.j2', '*.yml.j2', '*.yaml.jinja2', '*.yml.jinja2']
     mimetypes = ['text/x-yaml+jinja', 'text/x-sls']
     url = 'https://jinja.palletsprojects.com'

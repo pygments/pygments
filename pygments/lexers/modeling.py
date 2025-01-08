@@ -103,7 +103,7 @@ class BugsLexer(RegexLexer):
     """
 
     name = 'BUGS'
-    aliases = ['bugs', 'winbugs', 'openbugs']
+    aliases = ('bugs', 'winbugs', 'openbugs')
     filenames = ['*.bug']
     url = 'https://www.mrc-bsu.cam.ac.uk/software/bugs/openbugs'
     version_added = '1.6'

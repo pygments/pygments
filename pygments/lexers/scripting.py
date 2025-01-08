@@ -512,7 +512,7 @@ class MoonScriptLexer(LuaLexer):
 
     name = 'MoonScript'
     url = 'http://moonscript.org'
-    aliases = ['moonscript', 'moon']
+    aliases = ('moonscript', 'moon')
     filenames = ['*.moon']
     mimetypes = ['text/x-moonscript', 'application/x-moonscript']
     version_added = '1.5'
@@ -581,7 +581,7 @@ class ChaiscriptLexer(RegexLexer):
 
     name = 'ChaiScript'
     url = 'http://chaiscript.com/'
-    aliases = ['chaiscript', 'chai']
+    aliases = ('chaiscript', 'chai')
     filenames = ['*.chai']
     mimetypes = ['text/x-chaiscript', 'application/x-chaiscript']
     version_added = '2.0'
@@ -1054,7 +1054,7 @@ class RexxLexer(RegexLexer):
     """
     name = 'Rexx'
     url = 'http://www.rexxinfo.org/'
-    aliases = ['rexx', 'arexx']
+    aliases = ('rexx', 'arexx')
     filenames = ['*.rexx', '*.rex', '*.rx', '*.arexx']
     mimetypes = ['text/x-rexx']
     version_added = '2.0'
@@ -1166,7 +1166,7 @@ class MOOCodeLexer(RegexLexer):
     name = 'MOOCode'
     url = 'http://www.moo.mud.org/'
     filenames = ['*.moo']
-    aliases = ['moocode', 'moo']
+    aliases = ('moocode', 'moo')
     mimetypes = ['text/x-moocode']
     version_added = '0.9'
 
@@ -1579,7 +1579,7 @@ class MiniScriptLexer(RegexLexer):
 
     name = 'MiniScript'
     url = 'https://miniscript.org'
-    aliases = ['miniscript', 'ms']
+    aliases = ('miniscript', 'ms')
     filenames = ['*.ms']
     mimetypes = ['text/x-minicript', 'application/x-miniscript']
     version_added = '2.6'

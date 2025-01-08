@@ -230,7 +230,7 @@ class RagelRubyLexer(DelegatingLexer):
     """
 
     name = 'Ragel in Ruby Host'
-    aliases = ['ragel-ruby', 'ragel-rb']
+    aliases = ('ragel-ruby', 'ragel-rb')
     filenames = ['*.rl']
     url = 'http://www.colm.net/open-source/ragel/'
     version_added = '1.1'
@@ -569,7 +569,7 @@ class AntlrCSharpLexer(DelegatingLexer):
     """
 
     name = 'ANTLR With C# Target'
-    aliases = ['antlr-csharp', 'antlr-c#']
+    aliases = ('antlr-csharp', 'antlr-c#')
     filenames = ['*.G', '*.g']
     url = 'https://www.antlr.org'
     version_added = '1.1'
@@ -626,7 +626,7 @@ class AntlrRubyLexer(DelegatingLexer):
     """
 
     name = 'ANTLR With Ruby Target'
-    aliases = ['antlr-ruby', 'antlr-rb']
+    aliases = ('antlr-ruby', 'antlr-rb')
     filenames = ['*.G', '*.g']
     url = 'https://www.antlr.org'
     version_added = '1.1'
@@ -664,7 +664,7 @@ class AntlrActionScriptLexer(DelegatingLexer):
     """
 
     name = 'ANTLR With ActionScript Target'
-    aliases = ['antlr-actionscript', 'antlr-as']
+    aliases = ('antlr-actionscript', 'antlr-as')
     filenames = ['*.G', '*.g']
     url = 'https://www.antlr.org'
     version_added = '1.1'

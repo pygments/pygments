@@ -30,7 +30,7 @@ class NSISLexer(RegexLexer):
     """
     name = 'NSIS'
     url = 'http://nsis.sourceforge.net/'
-    aliases = ['nsis', 'nsi', 'nsh']
+    aliases = ('nsis', 'nsi', 'nsh')
     filenames = ['*.nsi', '*.nsh']
     mimetypes = ['text/x-nsis']
     version_added = '1.6'
@@ -253,7 +253,7 @@ class SourcesListLexer(RegexLexer):
     """
 
     name = 'Debian Sourcelist'
-    aliases = ['debsources', 'sourceslist', 'sources.list']
+    aliases = ('debsources', 'sourceslist', 'sources.list')
     filenames = ['sources.list']
     version_added = '0.7'
     mimetype = ['application/x-debian-sourceslist']
@@ -301,7 +301,7 @@ class DebianControlLexer(RegexLexer):
     """
     name = 'Debian Control file'
     url = 'https://www.debian.org/doc/debian-policy/ch-controlfields.html'
-    aliases = ['debcontrol', 'control']
+    aliases = ('debcontrol', 'control')
     filenames = ['control']
     version_added = '0.9'
 

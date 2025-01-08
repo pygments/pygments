@@ -27,7 +27,7 @@ class PerlLexer(RegexLexer):
 
     name = 'Perl'
     url = 'https://www.perl.org'
-    aliases = ['perl', 'pl']
+    aliases = ('perl', 'pl')
     filenames = ['*.pl', '*.pm', '*.t', '*.perl']
     mimetypes = ['text/x-perl', 'application/x-perl']
     version_added = ''
@@ -231,7 +231,7 @@ class Perl6Lexer(ExtendedRegexLexer):
 
     name = 'Perl6'
     url = 'https://www.raku.org'
-    aliases = ['perl6', 'pl6', 'raku']
+    aliases = ('perl6', 'pl6', 'raku')
     filenames = ['*.pl', '*.pm', '*.nqp', '*.p6', '*.6pl', '*.p6l', '*.pl6',
                  '*.6pm', '*.p6m', '*.pm6', '*.t', '*.raku', '*.rakumod',
                  '*.rakutest', '*.rakudoc']

@@ -27,7 +27,7 @@ class RConsoleLexer(Lexer):
     """
 
     name = 'RConsole'
-    aliases = ['rconsole', 'rout']
+    aliases = ('rconsole', 'rout')
     filenames = ['*.Rout']
     url = 'https://www.r-project.org'
     version_added = ''
@@ -74,7 +74,7 @@ class SLexer(RegexLexer):
     """
 
     name = 'S'
-    aliases = ['splus', 's', 'r']
+    aliases = ('splus', 's', 'r')
     filenames = ['*.S', '*.R', '.Rhistory', '.Rprofile', '.Renviron']
     mimetypes = ['text/S-plus', 'text/S', 'text/x-r-source', 'text/x-r',
                  'text/x-R', 'text/x-r-history', 'text/x-r-profile']

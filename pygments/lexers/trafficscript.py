@@ -20,7 +20,7 @@ class RtsLexer(RegexLexer):
     For Riverbed Stingray Traffic Manager
     """
     name = 'TrafficScript'
-    aliases = ['trafficscript', 'rts']
+    aliases = ('trafficscript', 'rts')
     filenames = ['*.rts']
     url = 'https://riverbed.com'
     version_added = '2.1'

@@ -68,7 +68,7 @@ class WatLexer(RegexLexer):
 
     name = 'WebAssembly'
     url = 'https://webassembly.org/'
-    aliases = ['wast', 'wat']
+    aliases = ('wast', 'wat')
     filenames = ['*.wat', '*.wast']
     version_added = '2.9'
 

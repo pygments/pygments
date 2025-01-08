@@ -30,7 +30,7 @@ class BrainfuckLexer(RegexLexer):
 
     name = 'Brainfuck'
     url = 'http://www.muppetlabs.com/~breadbox/bf/'
-    aliases = ['brainfuck', 'bf']
+    aliases = ('brainfuck', 'bf')
     filenames = ['*.bf', '*.b']
     mimetypes = ['application/x-brainfuck']
     version_added = ''
@@ -116,7 +116,7 @@ class CAmkESLexer(RegexLexer):
     """
     name = 'CAmkES'
     url = 'https://sel4.systems/CAmkES/'
-    aliases = ['camkes', 'idl4']
+    aliases = ('camkes', 'idl4')
     filenames = ['*.camkes', '*.idl4']
     version_added = '2.1'
 

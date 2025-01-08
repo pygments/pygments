@@ -637,7 +637,7 @@ class IokeLexer(RegexLexer):
     name = 'Ioke'
     url = 'https://ioke.org/'
     filenames = ['*.ik']
-    aliases = ['ioke', 'ik']
+    aliases = ('ioke', 'ik')
     mimetypes = ['text/x-iokesrc']
     version_added = '1.4'
     tokens: typing.ClassVar = {
@@ -826,7 +826,7 @@ class ClojureLexer(RegexLexer):
     """
     name = 'Clojure'
     url = 'http://clojure.org/'
-    aliases = ['clojure', 'clj']
+    aliases = ('clojure', 'clj')
     filenames = ['*.clj', '*.cljc']
     mimetypes = ['text/x-clojure', 'application/x-clojure']
     version_added = '0.11'
@@ -966,7 +966,7 @@ class ClojureScriptLexer(ClojureLexer):
     """
     name = 'ClojureScript'
     url = 'http://clojure.org/clojurescript'
-    aliases = ['clojurescript', 'cljs']
+    aliases = ('clojurescript', 'cljs')
     filenames = ['*.cljs']
     mimetypes = ['text/x-clojurescript', 'application/x-clojurescript']
     version_added = '2.0'
@@ -1505,7 +1505,7 @@ class JasminLexer(RegexLexer):
 
     name = 'Jasmin'
     url = 'http://jasmin.sourceforge.net/'
-    aliases = ['jasmin', 'jasminxt']
+    aliases = ('jasmin', 'jasminxt')
     filenames = ['*.j']
     version_added = '2.0'
 

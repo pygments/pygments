@@ -99,7 +99,7 @@ class GAPConsoleLexer(Lexer):
     For GAP console sessions. Modeled after JuliaConsoleLexer.
     """
     name = 'GAP session'
-    aliases = ['gap-console', 'gap-repl']
+    aliases = ('gap-console', 'gap-repl')
     filenames = ['*.tst']
     url = 'https://www.gap-system.org'
     version_added = '2.14'
@@ -158,7 +158,7 @@ class MathematicaLexer(RegexLexer):
     """
     name = 'Mathematica'
     url = 'http://www.wolfram.com/mathematica/'
-    aliases = ['mathematica', 'mma', 'nb']
+    aliases = ('mathematica', 'mma', 'nb')
     filenames = ['*.nb', '*.cdf', '*.nbp', '*.ma']
     mimetypes = ['application/mathematica',
                  'application/vnd.wolfram.mathematica',

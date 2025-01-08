@@ -21,7 +21,7 @@ class NullFormatter(Formatter):
     Output the text unchanged without any formatting.
     """
     name = 'Text only'
-    aliases = ['text', 'null']
+    aliases = ('text', 'null')
     filenames = ['*.txt']
 
     def format(self, tokensource, outfile):
@@ -54,7 +54,7 @@ class RawTokenFormatter(Formatter):
 
     """
     name = 'Raw tokens'
-    aliases = ['raw', 'tokens']
+    aliases = ('raw', 'tokens')
     filenames = ['*.raw']
 
     unicodeoutput = False

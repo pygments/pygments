@@ -23,7 +23,7 @@ class RustLexer(RegexLexer):
     name = 'Rust'
     url = 'https://www.rust-lang.org/'
     filenames = ['*.rs', '*.rs.in']
-    aliases = ['rust', 'rs']
+    aliases = ('rust', 'rs')
     mimetypes = ['text/rust', 'text/x-rust']
     version_added = '1.6'
 

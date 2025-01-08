@@ -228,7 +228,7 @@ class ElixirLexer(RegexLexer):
 
     name = 'Elixir'
     url = 'https://elixir-lang.org'
-    aliases = ['elixir', 'ex', 'exs']
+    aliases = ('elixir', 'ex', 'exs')
     filenames = ['*.ex', '*.eex', '*.exs', '*.leex']
     mimetypes = ['text/x-elixir']
     version_added = '1.5'

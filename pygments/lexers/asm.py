@@ -41,7 +41,7 @@ class GasLexer(RegexLexer):
     For Gas (AT&T) assembly code.
     """
     name = 'GAS'
-    aliases = ['gas', 'asm']
+    aliases = ('gas', 'asm')
     filenames = ['*.s', '*.S']
     mimetypes = ['text/x-gas']
     url = 'https://www.gnu.org/software/binutils'
@@ -208,7 +208,7 @@ class CppObjdumpLexer(DelegatingLexer):
     For the output of ``objdump -Sr`` on compiled C++ files.
     """
     name = 'cpp-objdump'
-    aliases = ['cpp-objdump', 'c++-objdumb', 'cxx-objdump']
+    aliases = ('cpp-objdump', 'c++-objdumb', 'cxx-objdump')
     filenames = ['*.cpp-objdump', '*.c++-objdump', '*.cxx-objdump']
     mimetypes = ['text/x-cpp-objdump']
     url = 'https://www.gnu.org/software/binutils'
@@ -239,7 +239,7 @@ class HsailLexer(RegexLexer):
     For HSAIL assembly code.
     """
     name = 'HSAIL'
-    aliases = ['hsail', 'hsa']
+    aliases = ('hsail', 'hsa')
     filenames = ['*.hsail']
     mimetypes = ['text/x-hsail']
     url = 'https://en.wikipedia.org/wiki/Heterogeneous_System_Architecture#HSA_Intermediate_Layer'

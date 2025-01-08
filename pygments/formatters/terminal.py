@@ -77,7 +77,7 @@ class TerminalFormatter(Formatter):
         (default: ``False`` = no line numbers).
     """
     name = 'Terminal'
-    aliases = ['terminal', 'console']
+    aliases = ('terminal', 'console')
     filenames = []
 
     def __init__(self, **options):

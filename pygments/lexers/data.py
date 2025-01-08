@@ -447,7 +447,7 @@ class JsonLexer(Lexer):
 
     name = 'JSON'
     url = 'https://www.json.org'
-    aliases = ['json', 'json-object']
+    aliases = ('json', 'json-object')
     filenames = ['*.json', '*.jsonl', '*.ndjson', 'Pipfile.lock']
     mimetypes = ['application/json', 'application/json-object', 'application/x-ndjson', 'application/jsonl', 'application/json-seq']
     version_added = '1.5'
@@ -722,7 +722,7 @@ class JsonLdLexer(JsonLexer):
 
     name = 'JSON-LD'
     url = 'https://json-ld.org/'
-    aliases = ['jsonld', 'json-ld']
+    aliases = ('jsonld', 'json-ld')
     filenames = ['*.jsonld']
     mimetypes = ['application/ld+json']
     version_added = '2.0'

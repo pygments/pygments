@@ -326,7 +326,7 @@ class ShExCLexer(RegexLexer):
     Lexer for ShExC shape expressions language syntax.
     """
     name = 'ShExC'
-    aliases = ['shexc', 'shex']
+    aliases = ('shexc', 'shex')
     filenames = ['*.shex']
     mimetypes = ['text/shex']
     url = 'https://shex.io/shex-semantics/#shexc'

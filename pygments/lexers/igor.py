@@ -23,7 +23,7 @@ class IgorLexer(RegexLexer):
     """
 
     name = 'Igor'
-    aliases = ['igor', 'igorpro']
+    aliases = ('igor', 'igorpro')
     filenames = ['*.ipf']
     mimetypes = ['text/ipf']
     url = 'http://www.wavemetrics.com'

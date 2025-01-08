@@ -25,7 +25,7 @@ class NimrodLexer(RegexLexer):
 
     name = 'Nimrod'
     url = 'http://nim-lang.org/'
-    aliases = ['nimrod', 'nim']
+    aliases = ('nimrod', 'nim')
     filenames = ['*.nim', '*.nimrod']
     mimetypes = ['text/x-nim']
     version_added = '1.5'

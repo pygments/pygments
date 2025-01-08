@@ -50,7 +50,7 @@ class IniLexer(RegexLexer):
     """
 
     name = 'INI'
-    aliases = ['ini', 'cfg', 'dosini']
+    aliases = ('ini', 'cfg', 'dosini')
     filenames = [
         '*.ini', '*.cfg', '*.inf', '.editorconfig',
     ]
@@ -222,7 +222,7 @@ class PropertiesLexer(RegexLexer):
     """
 
     name = 'Properties'
-    aliases = ['properties', 'jproperties']
+    aliases = ('properties', 'jproperties')
     filenames = ['*.properties']
     mimetypes = ['text/x-java-properties']
     url = 'https://en.wikipedia.org/wiki/.properties'
@@ -296,7 +296,7 @@ class KconfigLexer(RegexLexer):
     """
 
     name = 'Kconfig'
-    aliases = ['kconfig', 'menuconfig', 'linux-config', 'kernel-config']
+    aliases = ('kconfig', 'menuconfig', 'linux-config', 'kernel-config')
     version_added = '1.6'
     # Adjust this if new kconfig file names appear in your environment
     filenames = ['Kconfig*', '*Config.in*', 'external.in*',
@@ -375,7 +375,7 @@ class Cfengine3Lexer(RegexLexer):
 
     name = 'CFEngine3'
     url = 'http://cfengine.org'
-    aliases = ['cfengine3', 'cf3']
+    aliases = ('cfengine3', 'cf3')
     filenames = ['*.cf']
     mimetypes = []
     version_added = '1.5'
@@ -436,7 +436,7 @@ class ApacheConfLexer(RegexLexer):
     """
 
     name = 'ApacheConf'
-    aliases = ['apacheconf', 'aconf', 'apache']
+    aliases = ('apacheconf', 'aconf', 'apache')
     filenames = ['.htaccess', 'apache.conf', 'apache2.conf']
     mimetypes = ['text/x-apacheconf']
     url = 'https://httpd.apache.org/docs/current/configuring.html'
@@ -479,7 +479,7 @@ class SquidConfLexer(RegexLexer):
 
     name = 'SquidConf'
     url = 'http://www.squid-cache.org/'
-    aliases = ['squidconf', 'squid.conf', 'squid']
+    aliases = ('squidconf', 'squid.conf', 'squid')
     filenames = ['squid.conf']
     mimetypes = ['text/x-squidconf']
     version_added = '0.9'
@@ -653,7 +653,7 @@ class LighttpdConfLexer(RegexLexer):
     """
     name = 'Lighttpd configuration file'
     url = 'http://lighttpd.net/'
-    aliases = ['lighttpd', 'lighty']
+    aliases = ('lighttpd', 'lighty')
     filenames = ['lighttpd.conf']
     mimetypes = ['text/x-lighttpd-conf']
     version_added = '0.11'
@@ -681,7 +681,7 @@ class DockerLexer(RegexLexer):
     """
     name = 'Docker'
     url = 'http://docker.io'
-    aliases = ['docker', 'dockerfile']
+    aliases = ('docker', 'dockerfile')
     filenames = ['Dockerfile', '*.docker']
     mimetypes = ['text/x-dockerfile-config']
     version_added = '2.0'
@@ -717,7 +717,7 @@ class TerraformLexer(ExtendedRegexLexer):
 
     name = 'Terraform'
     url = 'https://www.terraform.io/'
-    aliases = ['terraform', 'tf', 'hcl']
+    aliases = ('terraform', 'tf', 'hcl')
     filenames = ['*.tf', '*.hcl']
     mimetypes = ['application/x-tf', 'application/x-terraform']
     version_added = '2.1'
@@ -1309,7 +1309,7 @@ class NestedTextLexer(RegexLexer):
 
     name = 'NestedText'
     url = 'https://nestedtext.org'
-    aliases = ['nestedtext', 'nt']
+    aliases = ('nestedtext', 'nt')
     filenames = ['*.nt']
     version_added = '2.9'
 
@@ -1435,7 +1435,7 @@ class UnixConfigLexer(RegexLexer):
     """
 
     name = 'Unix/Linux config files'
-    aliases = ['unixconfig', 'linuxconfig']
+    aliases = ('unixconfig', 'linuxconfig')
     filenames = []
     url = 'https://en.wikipedia.org/wiki/Configuration_file#Unix_and_Unix-like_operating_systems'
     version_added = '2.12'

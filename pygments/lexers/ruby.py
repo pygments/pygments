@@ -33,7 +33,7 @@ class RubyLexer(ExtendedRegexLexer):
 
     name = 'Ruby'
     url = 'http://www.ruby-lang.org'
-    aliases = ['ruby', 'rb', 'duby']
+    aliases = ('ruby', 'rb', 'duby')
     filenames = ['*.rb', '*.rbw', 'Rakefile', '*.rake', '*.gemspec',
                  '*.rbx', '*.duby', 'Gemfile', 'Vagrantfile']
     mimetypes = ['text/x-ruby', 'application/x-ruby']
@@ -399,7 +399,7 @@ class RubyConsoleLexer(Lexer):
     For Ruby interactive console (**irb**) output.
     """
     name = 'Ruby irb session'
-    aliases = ['rbcon', 'irb']
+    aliases = ('rbcon', 'irb')
     mimetypes = ['text/x-ruby-shellsession']
     url = 'https://www.ruby-lang.org'
     version_added = ''
@@ -444,7 +444,7 @@ class FancyLexer(RegexLexer):
     name = 'Fancy'
     url = 'https://github.com/bakkdoor/fancy'
     filenames = ['*.fy', '*.fancypack']
-    aliases = ['fancy', 'fy']
+    aliases = ('fancy', 'fy')
     mimetypes = ['text/x-fancysrc']
     version_added = '1.5'
 

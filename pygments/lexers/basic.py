@@ -35,7 +35,7 @@ class BlitzMaxLexer(RegexLexer):
 
     name = 'BlitzMax'
     url = 'http://blitzbasic.com'
-    aliases = ['blitzmax', 'bmax']
+    aliases = ('blitzmax', 'bmax')
     filenames = ['*.bmx']
     mimetypes = ['text/x-bmx']
     version_added = '1.4'
@@ -123,7 +123,7 @@ class BlitzBasicLexer(RegexLexer):
 
     name = 'BlitzBasic'
     url = 'http://blitzbasic.com'
-    aliases = ['blitzbasic', 'b3d', 'bplus']
+    aliases = ('blitzbasic', 'b3d', 'bplus')
     filenames = ['*.bb', '*.decls']
     mimetypes = ['text/x-bb']
     version_added = '2.0'
@@ -366,7 +366,7 @@ class QBasicLexer(RegexLexer):
     """
 
     name = 'QBasic'
-    aliases = ['qbasic', 'basic']
+    aliases = ('qbasic', 'basic')
     filenames = ['*.BAS', '*.bas']
     mimetypes = ['text/basic']
     url = 'https://en.wikipedia.org/wiki/QBasic'

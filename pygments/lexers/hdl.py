@@ -23,7 +23,7 @@ class VerilogLexer(RegexLexer):
     For verilog source code with preprocessor directives.
     """
     name = 'verilog'
-    aliases = ['verilog', 'v']
+    aliases = ('verilog', 'v')
     filenames = ['*.v']
     mimetypes = ['text/x-verilog']
     url = 'https://en.wikipedia.org/wiki/Verilog'
@@ -150,7 +150,7 @@ class SystemVerilogLexer(RegexLexer):
     1800-2009 standard.
     """
     name = 'systemverilog'
-    aliases = ['systemverilog', 'sv']
+    aliases = ('systemverilog', 'sv')
     filenames = ['*.sv', '*.svh']
     mimetypes = ['text/x-systemverilog']
     url = 'https://en.wikipedia.org/wiki/SystemVerilog'

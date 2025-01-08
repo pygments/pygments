@@ -23,7 +23,7 @@ class FloScriptLexer(RegexLexer):
 
     name = 'FloScript'
     url = 'https://github.com/ioflo/ioflo'
-    aliases = ['floscript', 'flo']
+    aliases = ('floscript', 'flo')
     filenames = ['*.flo']
     version_added = '2.4'
 

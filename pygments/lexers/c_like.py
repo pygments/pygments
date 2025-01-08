@@ -193,7 +193,7 @@ class ValaLexer(RegexLexer):
     For Vala source code with preprocessor directives.
     """
     name = 'Vala'
-    aliases = ['vala', 'vapi']
+    aliases = ('vala', 'vapi')
     filenames = ['*.vala', '*.vapi']
     mimetypes = ['text/x-vala']
     url = 'https://vala.dev'
@@ -292,7 +292,7 @@ class CudaLexer(CLexer):
     """
     name = 'CUDA'
     filenames = ['*.cu', '*.cuh']
-    aliases = ['cuda', 'cu']
+    aliases = ('cuda', 'cu')
     mimetypes = ['text/x-cuda']
     url = 'https://developer.nvidia.com/category/zone/cuda-zone'
     version_added = '1.6'
@@ -404,7 +404,7 @@ class MqlLexer(CppLexer):
     `MQL5 <http://www.mql5.com/en/docs>`_ source code.
     """
     name = 'MQL'
-    aliases = ['mql', 'mq4', 'mq5', 'mql4', 'mql5']
+    aliases = ('mql', 'mq4', 'mq5', 'mql4', 'mql5')
     filenames = ['*.mq4', '*.mq5', '*.mqh']
     mimetypes = ['text/x-mql']
     version_added = '2.0'

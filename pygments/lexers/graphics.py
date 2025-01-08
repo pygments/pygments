@@ -315,7 +315,7 @@ class PostScriptLexer(RegexLexer):
     """
     name = 'PostScript'
     url = 'https://en.wikipedia.org/wiki/PostScript'
-    aliases = ['postscript', 'postscr']
+    aliases = ('postscript', 'postscr')
     filenames = ['*.ps', '*.eps']
     mimetypes = ['application/postscript']
     version_added = '1.4'
@@ -409,7 +409,7 @@ class AsymptoteLexer(RegexLexer):
     """
     name = 'Asymptote'
     url = 'http://asymptote.sf.net/'
-    aliases = ['asymptote', 'asy']
+    aliases = ('asymptote', 'asy')
     filenames = ['*.asy']
     mimetypes = ['text/x-asymptote']
     version_added = '1.2'
