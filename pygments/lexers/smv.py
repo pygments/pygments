@@ -23,7 +23,7 @@ class NuSMVLexer(RegexLexer):
 
     name = 'NuSMV'
     aliases = ('nusmv',)
-    filenames = ['*.smv']
+    filenames = ('*.smv',)
     mimetypes = ()
     url = 'https://nusmv.fbk.eu'
     version_added = '2.2'

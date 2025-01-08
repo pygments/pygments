@@ -22,7 +22,7 @@ class IoLexer(RegexLexer):
     """
     name = 'Io'
     url = 'http://iolanguage.com/'
-    filenames = ['*.io']
+    filenames = ('*.io',)
     aliases = ('io',)
     mimetypes = ['text/x-iosrc']
     version_added = '0.10'

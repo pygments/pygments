@@ -151,7 +151,7 @@ class RagelEmbeddedLexer(RegexLexer):
 
     name = 'Embedded Ragel'
     aliases = ('ragel-em',)
-    filenames = ['*.rl']
+    filenames = ('*.rl',)
     url = 'http://www.colm.net/open-source/ragel/'
     version_added = '1.1'
 
@@ -231,7 +231,7 @@ class RagelRubyLexer(DelegatingLexer):
 
     name = 'Ragel in Ruby Host'
     aliases = ('ragel-ruby', 'ragel-rb')
-    filenames = ['*.rl']
+    filenames = ('*.rl',)
     url = 'http://www.colm.net/open-source/ragel/'
     version_added = '1.1'
 
@@ -249,7 +249,7 @@ class RagelCLexer(DelegatingLexer):
 
     name = 'Ragel in C Host'
     aliases = ('ragel-c',)
-    filenames = ['*.rl']
+    filenames = ('*.rl',)
     url = 'http://www.colm.net/open-source/ragel/'
     version_added = '1.1'
 
@@ -267,7 +267,7 @@ class RagelDLexer(DelegatingLexer):
 
     name = 'Ragel in D Host'
     aliases = ('ragel-d',)
-    filenames = ['*.rl']
+    filenames = ('*.rl',)
     url = 'http://www.colm.net/open-source/ragel/'
     version_added = '1.1'
 
@@ -285,7 +285,7 @@ class RagelCppLexer(DelegatingLexer):
 
     name = 'Ragel in CPP Host'
     aliases = ('ragel-cpp',)
-    filenames = ['*.rl']
+    filenames = ('*.rl',)
     url = 'http://www.colm.net/open-source/ragel/'
     version_added = '1.1'
 
@@ -303,7 +303,7 @@ class RagelObjectiveCLexer(DelegatingLexer):
 
     name = 'Ragel in Objective C Host'
     aliases = ('ragel-objc',)
-    filenames = ['*.rl']
+    filenames = ('*.rl',)
     url = 'http://www.colm.net/open-source/ragel/'
     version_added = '1.1'
 
@@ -321,7 +321,7 @@ class RagelJavaLexer(DelegatingLexer):
 
     name = 'Ragel in Java Host'
     aliases = ('ragel-java',)
-    filenames = ['*.rl']
+    filenames = ('*.rl',)
     url = 'http://www.colm.net/open-source/ragel/'
     version_added = '1.1'
 
@@ -771,7 +771,7 @@ class EbnfLexer(RegexLexer):
 
     name = 'EBNF'
     aliases = ('ebnf',)
-    filenames = ['*.ebnf']
+    filenames = ('*.ebnf',)
     mimetypes = ['text/x-ebnf']
     url = 'https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form'
     version_added = '2.0'

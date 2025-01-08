@@ -34,7 +34,7 @@ class IrcLogsLexer(RegexLexer):
 
     name = 'IRC logs'
     aliases = ('irc',)
-    filenames = ['*.weechatlog']
+    filenames = ('*.weechatlog',)
     mimetypes = ['text/x-irclog']
     url = 'https://en.wikipedia.org/wiki/Internet_Relay_Chat'
     version_added = ''

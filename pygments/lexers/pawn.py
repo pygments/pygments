@@ -23,7 +23,7 @@ class SourcePawnLexer(RegexLexer):
     """
     name = 'SourcePawn'
     aliases = ('sp',)
-    filenames = ['*.sp']
+    filenames = ('*.sp',)
     mimetypes = ['text/x-sourcepawn']
     url = 'https://github.com/alliedmodders/sourcepawn'
     version_added = '1.6'

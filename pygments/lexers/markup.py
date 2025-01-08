@@ -470,7 +470,7 @@ class MozPreprocXulLexer(DelegatingLexer):
     """
     name = "XUL+mozpreproc"
     aliases = ('xul+mozpreproc',)
-    filenames = ['*.xul.in']
+    filenames = ('*.xul.in',)
     mimetypes = ()
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
     version_added = '2.0'
@@ -486,7 +486,7 @@ class MozPreprocJavascriptLexer(DelegatingLexer):
     """
     name = "Javascript+mozpreproc"
     aliases = ('javascript+mozpreproc',)
-    filenames = ['*.js.in']
+    filenames = ('*.js.in',)
     mimetypes = ()
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
     version_added = '2.0'
@@ -502,7 +502,7 @@ class MozPreprocCssLexer(DelegatingLexer):
     """
     name = "CSS+mozpreproc"
     aliases = ('css+mozpreproc',)
-    filenames = ['*.css.in']
+    filenames = ('*.css.in',)
     mimetypes = ()
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
     version_added = '2.0'
@@ -637,7 +637,7 @@ class OrgLexer(RegexLexer):
     name = 'Org Mode'
     url = 'https://orgmode.org'
     aliases = ('org', 'orgmode', 'org-mode')
-    filenames = ['*.org']
+    filenames = ('*.org',)
     mimetypes = ["text/org"]
     version_added = '2.18'
 
@@ -746,7 +746,7 @@ class TiddlyWiki5Lexer(RegexLexer):
     name = 'tiddler'
     url = 'https://tiddlywiki.com/#TiddlerFiles'
     aliases = ('tid',)
-    filenames = ['*.tid']
+    filenames = ('*.tid',)
     mimetypes = ["text/vnd.tiddlywiki"]
     version_added = '2.7'
     flags = re.MULTILINE

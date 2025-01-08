@@ -26,7 +26,7 @@ class TNTLexer(Lexer):
     name = 'Typographic Number Theory'
     url = 'https://github.com/Kenny2github/language-tnt'
     aliases = ('tnt',)
-    filenames = ['*.tnt']
+    filenames = ('*.tnt',)
     version_added = '2.7'
 
     cur = []

@@ -33,7 +33,7 @@ class JuliaLexer(RegexLexer):
     name = 'Julia'
     url = 'https://julialang.org/'
     aliases = ('julia', 'jl')
-    filenames = ['*.jl']
+    filenames = ('*.jl',)
     mimetypes = ['text/x-julia', 'application/x-julia']
     version_added = '1.6'
 

@@ -201,7 +201,7 @@ class SmartyLexer(RegexLexer):
     name = 'Smarty'
     url = 'https://www.smarty.net/'
     aliases = ('smarty',)
-    filenames = ['*.tpl']
+    filenames = ('*.tpl',)
     mimetypes = ['application/x-smarty']
     version_added = ''
 
@@ -634,7 +634,7 @@ class MakoLexer(RegexLexer):
     name = 'Mako'
     url = 'http://www.makotemplates.org/'
     aliases = ('mako',)
-    filenames = ['*.mao']
+    filenames = ('*.mao',)
     mimetypes = ['application/x-mako']
     version_added = '0.7'
 
@@ -1004,9 +1004,9 @@ class GenshiLexer(DelegatingLexer):
 
     name = 'Genshi'
     aliases = ('genshi', 'kid', 'xml+genshi', 'xml+kid')
-    filenames = ['*.kid']
+    filenames = ('*.kid',)
     version_added = ''
-    alias_filenames = ['*.xml']
+    alias_filenames = ('*.xml',)
     mimetypes = ['application/x-genshi', 'application/x-kid']
     url = 'https://genshi.edgewall.org/'
 
@@ -1031,7 +1031,7 @@ class JavascriptGenshiLexer(DelegatingLexer):
     aliases = ['js+genshitext', 'js+genshi', 'javascript+genshitext',
                'javascript+genshi']
     version_added = ''
-    alias_filenames = ['*.js']
+    alias_filenames = ('*.js',)
     mimetypes = ['application/x-javascript+genshi',
                  'text/x-javascript+genshi',
                  'text/javascript+genshi']
@@ -1052,7 +1052,7 @@ class CssGenshiLexer(DelegatingLexer):
     name = 'CSS+Genshi Text'
     aliases = ('css+genshitext', 'css+genshi')
     version_added = ''
-    alias_filenames = ['*.css']
+    alias_filenames = ('*.css',)
     mimetypes = ['text/css+genshi']
     url = 'https://genshi.edgewall.org'
 
@@ -1073,7 +1073,7 @@ class RhtmlLexer(DelegatingLexer):
 
     name = 'RHTML'
     aliases = ('rhtml', 'html+erb', 'html+ruby')
-    filenames = ['*.rhtml']
+    filenames = ('*.rhtml',)
     version_added = ''
     alias_filenames = ['*.html', '*.htm', '*.xhtml']
     mimetypes = ['text/html+ruby']
@@ -1100,7 +1100,7 @@ class XmlErbLexer(DelegatingLexer):
     name = 'XML+Ruby'
     aliases = ('xml+ruby', 'xml+erb')
     version_added = ''
-    alias_filenames = ['*.xml']
+    alias_filenames = ('*.xml',)
     mimetypes = ['application/xml+ruby']
     url = 'https://github.com/ruby/erb'
 
@@ -1122,7 +1122,7 @@ class CssErbLexer(DelegatingLexer):
     name = 'CSS+Ruby'
     aliases = ('css+ruby', 'css+erb')
     version_added = ''
-    alias_filenames = ['*.css']
+    alias_filenames = ('*.css',)
     mimetypes = ['text/css+ruby']
     url = 'https://github.com/ruby/erb'
 
@@ -1142,7 +1142,7 @@ class JavascriptErbLexer(DelegatingLexer):
     name = 'JavaScript+Ruby'
     aliases = ('javascript+ruby', 'js+ruby', 'javascript+erb', 'js+erb')
     version_added = ''
-    alias_filenames = ['*.js']
+    alias_filenames = ('*.js',)
     mimetypes = ['application/x-javascript+ruby',
                  'text/x-javascript+ruby',
                  'text/javascript+ruby']
@@ -1164,7 +1164,7 @@ class HtmlPhpLexer(DelegatingLexer):
 
     name = 'HTML+PHP'
     aliases = ('html+php',)
-    filenames = ['*.phtml']
+    filenames = ('*.phtml',)
     version_added = ''
     alias_filenames = ['*.php', '*.html', '*.htm', '*.xhtml',
                        '*.php[345]']
@@ -1214,7 +1214,7 @@ class CssPhpLexer(DelegatingLexer):
     name = 'CSS+PHP'
     aliases = ('css+php',)
     version_added = ''
-    alias_filenames = ['*.css']
+    alias_filenames = ('*.css',)
     mimetypes = ['text/css+php']
     url = 'https://www.php.net'
 
@@ -1234,7 +1234,7 @@ class JavascriptPhpLexer(DelegatingLexer):
     name = 'JavaScript+PHP'
     aliases = ('javascript+php', 'js+php')
     version_added = ''
-    alias_filenames = ['*.js']
+    alias_filenames = ('*.js',)
     mimetypes = ['application/x-javascript+php',
                  'text/x-javascript+php',
                  'text/javascript+php']
@@ -1373,7 +1373,7 @@ class XmlDjangoLexer(DelegatingLexer):
     aliases = ('xml+django', 'xml+jinja')
     filenames = ['*.xml.j2', '*.xml.jinja2']
     version_added = ''
-    alias_filenames = ['*.xml']
+    alias_filenames = ('*.xml',)
     mimetypes = ['application/xml+django', 'application/xml+jinja']
     url = 'https://www.djangoproject.com/documentation/templates'
 
@@ -1397,7 +1397,7 @@ class CssDjangoLexer(DelegatingLexer):
     aliases = ('css+django', 'css+jinja')
     filenames = ['*.css.j2', '*.css.jinja2']
     version_added = ''
-    alias_filenames = ['*.css']
+    alias_filenames = ('*.css',)
     mimetypes = ['text/css+django', 'text/css+jinja']
     url = 'https://www.djangoproject.com/documentation/templates'
 
@@ -1419,7 +1419,7 @@ class JavascriptDjangoLexer(DelegatingLexer):
                'javascript+jinja', 'js+jinja']
     filenames = ['*.js.j2', '*.js.jinja2']
     version_added = ''
-    alias_filenames = ['*.js']
+    alias_filenames = ('*.js',)
     mimetypes = ['application/x-javascript+django',
                  'application/x-javascript+jinja',
                  'text/x-javascript+django',
@@ -1466,7 +1466,7 @@ class JspLexer(DelegatingLexer):
     """
     name = 'Java Server Page'
     aliases = ('jsp',)
-    filenames = ['*.jsp']
+    filenames = ('*.jsp',)
     mimetypes = ['application/x-jsp']
     url = 'https://projects.eclipse.org/projects/ee4j.jsp'
     version_added = '0.7'
@@ -1489,7 +1489,7 @@ class EvoqueLexer(RegexLexer):
     """
     name = 'Evoque'
     aliases = ('evoque',)
-    filenames = ['*.evoque']
+    filenames = ('*.evoque',)
     mimetypes = ['application/x-evoque']
     url = 'https://gizmojo.org/templating'
     version_added = '1.1'
@@ -1547,7 +1547,7 @@ class EvoqueHtmlLexer(DelegatingLexer):
     """
     name = 'HTML+Evoque'
     aliases = ('html+evoque',)
-    alias_filenames = ['*.html']
+    alias_filenames = ('*.html',)
     mimetypes = ['text/html+evoque']
     url = 'https://gizmojo.org/templating'
     version_added = '1.1'
@@ -1566,7 +1566,7 @@ class EvoqueXmlLexer(DelegatingLexer):
     """
     name = 'XML+Evoque'
     aliases = ('xml+evoque',)
-    alias_filenames = ['*.xml']
+    alias_filenames = ('*.xml',)
     mimetypes = ['application/xml+evoque']
     url = 'https://gizmojo.org/templating'
     version_added = '1.1'
@@ -1697,7 +1697,7 @@ class ColdfusionCFCLexer(DelegatingLexer):
     """
     name = 'Coldfusion CFC'
     aliases = ('cfc',)
-    filenames = ['*.cfc']
+    filenames = ('*.cfc',)
     mimetypes = ()
     url = 'https://www.adobe.com/products/coldfusion-family.html'
     version_added = '2.0'
@@ -1712,7 +1712,7 @@ class SspLexer(DelegatingLexer):
     """
     name = 'Scalate Server Page'
     aliases = ('ssp',)
-    filenames = ['*.ssp']
+    filenames = ('*.ssp',)
     mimetypes = ['application/x-ssp']
     url = 'https://scalate.github.io/scalate/'
     version_added = '1.4'
@@ -1759,7 +1759,7 @@ class TeaTemplateLexer(DelegatingLexer):
     """
     name = 'Tea'
     aliases = ('tea',)
-    filenames = ['*.tea']
+    filenames = ('*.tea',)
     mimetypes = ['text/x-tea']
     url = 'https://github.com/teatrove/teatrove'
     version_added = '1.5'
@@ -1837,7 +1837,7 @@ class LassoCssLexer(DelegatingLexer):
     name = 'CSS+Lasso'
     aliases = ('css+lasso',)
     version_added = '1.6'
-    alias_filenames = ['*.css']
+    alias_filenames = ('*.css',)
     mimetypes = ['text/css+lasso']
     url = 'https://www.lassosoft.com'
 
@@ -1863,7 +1863,7 @@ class LassoJavascriptLexer(DelegatingLexer):
     name = 'JavaScript+Lasso'
     aliases = ('javascript+lasso', 'js+lasso')
     version_added = '1.6'
-    alias_filenames = ['*.js']
+    alias_filenames = ('*.js',)
     mimetypes = ['application/x-javascript+lasso',
                  'text/x-javascript+lasso',
                  'text/javascript+lasso']
@@ -1997,7 +1997,7 @@ class LiquidLexer(RegexLexer):
     name = 'liquid'
     url = 'https://www.rubydoc.info/github/Shopify/liquid'
     aliases = ('liquid',)
-    filenames = ['*.liquid']
+    filenames = ('*.liquid',)
     version_added = '2.0'
 
     tokens: typing.ClassVar = {
@@ -2286,7 +2286,7 @@ class TwigHtmlLexer(DelegatingLexer):
 
     name = "HTML+Twig"
     aliases = ["html+twig"]
-    filenames = ['*.twig']
+    filenames = ('*.twig',)
     mimetypes = ['text/html+twig']
     url = 'https://twig.symfony.com'
     version_added = '2.0'
@@ -2365,7 +2365,7 @@ class Angular2HtmlLexer(DelegatingLexer):
 
     name = "HTML + Angular2"
     aliases = ["html+ng2"]
-    filenames = ['*.ng2']
+    filenames = ('*.ng2',)
     url = 'https://angular.io/guide/template-syntax'
     version_added = '2.0'
 

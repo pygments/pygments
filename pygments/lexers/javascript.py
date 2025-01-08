@@ -156,7 +156,7 @@ class TypeScriptLexer(JavascriptLexer):
     name = 'TypeScript'
     url = 'https://www.typescriptlang.org/'
     aliases = ('typescript', 'ts')
-    filenames = ['*.ts']
+    filenames = ('*.ts',)
     mimetypes = ['application/x-typescript', 'text/x-typescript']
     version_added = '1.6'
 
@@ -195,7 +195,7 @@ class KalLexer(RegexLexer):
     name = 'Kal'
     url = 'http://rzimmerman.github.io/kal'
     aliases = ('kal',)
-    filenames = ['*.kal']
+    filenames = ('*.kal',)
     mimetypes = ['text/kal', 'application/kal']
     version_added = '2.0'
 
@@ -328,7 +328,7 @@ class LiveScriptLexer(RegexLexer):
     name = 'LiveScript'
     url = 'https://livescript.net/'
     aliases = ('livescript', 'live-script')
-    filenames = ['*.ls']
+    filenames = ('*.ls',)
     mimetypes = ['text/livescript']
     version_added = '1.6'
 
@@ -440,7 +440,7 @@ class DartLexer(RegexLexer):
     name = 'Dart'
     url = 'http://dart.dev/'
     aliases = ('dart',)
-    filenames = ['*.dart']
+    filenames = ('*.dart',)
     mimetypes = ['text/x-dart']
     version_added = '1.5'
 
@@ -807,7 +807,7 @@ class ObjectiveJLexer(RegexLexer):
 
     name = 'Objective-J'
     aliases = ('objective-j', 'objectivej', 'obj-j', 'objj')
-    filenames = ['*.j']
+    filenames = ('*.j',)
     mimetypes = ['text/x-objective-j']
     url = 'https://www.cappuccino.dev/learn/objective-j.html'
     version_added = '1.3'
@@ -1031,7 +1031,7 @@ class CoffeeScriptLexer(RegexLexer):
     name = 'CoffeeScript'
     url = 'http://coffeescript.org'
     aliases = ('coffeescript', 'coffee-script', 'coffee')
-    filenames = ['*.coffee']
+    filenames = ('*.coffee',)
     mimetypes = ['text/coffeescript']
     version_added = '1.3'
 
@@ -1143,7 +1143,7 @@ class MaskLexer(RegexLexer):
     name = 'Mask'
     url = 'https://github.com/atmajs/MaskJS'
     aliases = ('mask',)
-    filenames = ['*.mask']
+    filenames = ('*.mask',)
     mimetypes = ['text/x-mask']
     version_added = '2.0'
 
@@ -1264,7 +1264,7 @@ class EarlGreyLexer(RegexLexer):
 
     name = 'Earl Grey'
     aliases = ('earl-grey', 'earlgrey', 'eg')
-    filenames = ['*.eg']
+    filenames = ('*.eg',)
     mimetypes = ['text/x-earl-grey']
     url = 'https://github.com/breuleux/earl-grey'
     version_added = ''
@@ -1479,7 +1479,7 @@ class JuttleLexer(RegexLexer):
     name = 'Juttle'
     url = 'http://juttle.github.io/'
     aliases = ('juttle',)
-    filenames = ['*.juttle']
+    filenames = ('*.juttle',)
     mimetypes = ['application/juttle', 'application/x-juttle',
                  'text/x-juttle', 'text/juttle']
     version_added = '2.2'

@@ -191,7 +191,7 @@ class CrocLexer(RegexLexer):
     """
     name = 'Croc'
     url = 'http://jfbillingsley.com/croc'
-    filenames = ['*.croc']
+    filenames = ('*.croc',)
     aliases = ('croc',)
     mimetypes = ['text/x-crocsrc']
     version_added = ''

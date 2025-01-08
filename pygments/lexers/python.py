@@ -798,7 +798,7 @@ class Python2TracebackLexer(RegexLexer):
 
     name = 'Python 2.x Traceback'
     aliases = ('py2tb',)
-    filenames = ['*.py2tb']
+    filenames = ('*.py2tb',)
     mimetypes = ['text/x-python2-traceback']
     url = 'https://python.org'
     version_added = '0.7'
@@ -1022,7 +1022,7 @@ class DgLexer(RegexLexer):
     """
     name = 'dg'
     aliases = ('dg',)
-    filenames = ['*.dg']
+    filenames = ('*.dg',)
     mimetypes = ['text/x-dg']
     url = 'http://pyos.github.io/dg'
     version_added = '1.6'

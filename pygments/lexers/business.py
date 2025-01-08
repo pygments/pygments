@@ -530,7 +530,7 @@ class GoodDataCLLexer(RegexLexer):
 
     name = 'GoodData-CL'
     aliases = ('gooddata-cl',)
-    filenames = ['*.gdc']
+    filenames = ('*.gdc',)
     mimetypes = ['text/x-gooddata-cl']
     url = 'https://github.com/gooddata/GoodData-CL'
     version_added = '1.4'
@@ -577,7 +577,7 @@ class MaqlLexer(RegexLexer):
 
     name = 'MAQL'
     aliases = ('maql',)
-    filenames = ['*.maql']
+    filenames = ('*.maql',)
     mimetypes = ['text/x-gooddata-maql', 'application/x-gooddata-maql']
     url = 'https://help.gooddata.com/doc/enterprise/en/dashboards-and-insights/maql-analytical-query-language'
     version_added = '1.4'

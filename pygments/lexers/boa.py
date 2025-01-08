@@ -22,7 +22,7 @@ class BoaLexer(RegexLexer):
     """
     name = 'Boa'
     aliases = ('boa',)
-    filenames = ['*.boa']
+    filenames = ('*.boa',)
     url = 'https://boa.cs.iastate.edu/docs'
     version_added = '2.4'
 

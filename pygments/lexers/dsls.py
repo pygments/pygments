@@ -40,7 +40,7 @@ class ProtoBufLexer(RegexLexer):
     name = 'Protocol Buffer'
     url = 'https://developers.google.com/protocol-buffers/'
     aliases = ('protobuf', 'proto')
-    filenames = ['*.proto']
+    filenames = ('*.proto',)
     version_added = '1.4'
 
     tokens: typing.ClassVar = {
@@ -100,7 +100,7 @@ class ThriftLexer(RegexLexer):
     name = 'Thrift'
     url = 'https://thrift.apache.org/'
     aliases = ('thrift',)
-    filenames = ['*.thrift']
+    filenames = ('*.thrift',)
     mimetypes = ['application/x-thrift']
     version_added = '2.1'
 
@@ -366,7 +366,7 @@ class PuppetLexer(RegexLexer):
     name = 'Puppet'
     url = 'https://puppet.com/'
     aliases = ('puppet',)
-    filenames = ['*.pp']
+    filenames = ('*.pp',)
     version_added = '1.6'
 
     tokens: typing.ClassVar = {
@@ -455,7 +455,7 @@ class RslLexer(RegexLexer):
     name = 'RSL'
     url = 'http://en.wikipedia.org/wiki/RAISE'
     aliases = ('rsl',)
-    filenames = ['*.rsl']
+    filenames = ('*.rsl',)
     mimetypes = ['text/rsl']
     version_added = '2.0'
 
@@ -516,7 +516,7 @@ class MscgenLexer(RegexLexer):
     name = 'Mscgen'
     url = 'http://www.mcternan.me.uk/mscgen/'
     aliases = ('mscgen', 'msc')
-    filenames = ['*.msc']
+    filenames = ('*.msc',)
     version_added = '1.6'
 
     _var = r'(\w+|"(?:\\"|[^"])*")'
@@ -565,7 +565,7 @@ class VGLLexer(RegexLexer):
     name = 'VGL'
     url = 'http://www.thermoscientific.com/samplemanager'
     aliases = ('vgl',)
-    filenames = ['*.rpf']
+    filenames = ('*.rpf',)
     version_added = '1.6'
 
     flags = re.MULTILINE | re.DOTALL | re.IGNORECASE
@@ -599,7 +599,7 @@ class AlloyLexer(RegexLexer):
     name = 'Alloy'
     url = 'http://alloy.mit.edu'
     aliases = ('alloy',)
-    filenames = ['*.als']
+    filenames = ('*.als',)
     mimetypes = ['text/x-alloy']
     version_added = '2.0'
 
@@ -669,7 +669,7 @@ class PanLexer(RegexLexer):
     name = 'Pan'
     url = 'https://github.com/quattor/pan/'
     aliases = ('pan',)
-    filenames = ['*.pan']
+    filenames = ('*.pan',)
     version_added = '2.0'
 
     tokens: typing.ClassVar = {
@@ -880,7 +880,7 @@ class SnowballLexer(ExtendedRegexLexer):
     name = 'Snowball'
     url = 'https://snowballstem.org/'
     aliases = ('snowball',)
-    filenames = ['*.sbl']
+    filenames = ('*.sbl',)
     version_added = '2.2'
 
     _ws = r'\n\r\t '

@@ -100,7 +100,7 @@ class GAPConsoleLexer(Lexer):
     """
     name = 'GAP session'
     aliases = ('gap-console', 'gap-repl')
-    filenames = ['*.tst']
+    filenames = ('*.tst',)
     url = 'https://www.gap-system.org'
     version_added = '2.14'
     _example = "gap-repl/euclidean.tst"
@@ -207,7 +207,7 @@ class MuPADLexer(RegexLexer):
     name = 'MuPAD'
     url = 'http://www.mupad.com'
     aliases = ('mupad',)
-    filenames = ['*.mu']
+    filenames = ('*.mu',)
     version_added = '0.8'
 
     tokens: typing.ClassVar = {
@@ -278,7 +278,7 @@ class BCLexer(RegexLexer):
     name = 'BC'
     url = 'https://www.gnu.org/software/bc/'
     aliases = ('bc',)
-    filenames = ['*.bc']
+    filenames = ('*.bc',)
     version_added = '2.1'
 
     tokens: typing.ClassVar = {

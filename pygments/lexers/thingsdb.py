@@ -22,7 +22,7 @@ class ThingsDBLexer(RegexLexer):
     """
     name = 'ThingsDB'
     aliases = ('ti', 'thingsdb')
-    filenames = ['*.ti']
+    filenames = ('*.ti',)
     url = 'https://www.thingsdb.net'
     version_added = '2.9'
 

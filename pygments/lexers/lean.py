@@ -24,7 +24,7 @@ class Lean3Lexer(RegexLexer):
     name = 'Lean'
     url = 'https://leanprover-community.github.io/lean3'
     aliases = ('lean', 'lean3')
-    filenames = ['*.lean']
+    filenames = ('*.lean',)
     mimetypes = ['text/x-lean', 'text/x-lean3']
     version_added = '2.0'
 
@@ -141,7 +141,7 @@ class Lean4Lexer(RegexLexer):
     name = 'Lean4'
     url = 'https://github.com/leanprover/lean4'
     aliases = ('lean4',)
-    filenames = ['*.lean']
+    filenames = ('*.lean',)
     mimetypes = ['text/x-lean4']
     version_added = '2.18'
 

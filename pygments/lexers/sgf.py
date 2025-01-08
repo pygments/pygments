@@ -25,7 +25,7 @@ class SmartGameFormatLexer(RegexLexer):
     name = 'SmartGameFormat'
     url = 'https://www.red-bean.com/sgf/'
     aliases = ('sgf',)
-    filenames = ['*.sgf']
+    filenames = ('*.sgf',)
     version_added = '2.4'
 
     tokens: typing.ClassVar = {

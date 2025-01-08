@@ -21,7 +21,7 @@ class BareLexer(RegexLexer):
     """
     name = 'BARE'
     url = 'https://baremessages.org'
-    filenames = ['*.bare']
+    filenames = ('*.bare',)
     aliases = ('bare',)
     version_added = '2.7'
 

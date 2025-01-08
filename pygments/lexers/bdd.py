@@ -23,7 +23,7 @@ class BddLexer(RegexLexer):
 
     name = 'Bdd'
     aliases = ('bdd',)
-    filenames = ['*.feature']
+    filenames = ('*.feature',)
     mimetypes = ['text/x-bdd']
     url = 'https://en.wikipedia.org/wiki/Behavior-driven_development'
     version_added = '2.11'

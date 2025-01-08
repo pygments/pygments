@@ -57,7 +57,7 @@ class CSharpLexer(RegexLexer):
     name = 'C#'
     url = 'https://docs.microsoft.com/en-us/dotnet/csharp/'
     aliases = ('csharp', 'c#', 'cs')
-    filenames = ['*.cs']
+    filenames = ('*.cs',)
     mimetypes = ['text/x-csharp']  # inferred
     version_added = ''
 
@@ -206,7 +206,7 @@ class NemerleLexer(RegexLexer):
     name = 'Nemerle'
     url = 'http://nemerle.org'
     aliases = ('nemerle',)
-    filenames = ['*.n']
+    filenames = ('*.n',)
     mimetypes = ['text/x-nemerle']  # inferred
     version_added = '1.5'
 
@@ -367,7 +367,7 @@ class BooLexer(RegexLexer):
     name = 'Boo'
     url = 'https://github.com/boo-lang/boo'
     aliases = ('boo',)
-    filenames = ['*.boo']
+    filenames = ('*.boo',)
     mimetypes = ['text/x-boo']
     version_added = ''
 
@@ -780,7 +780,7 @@ class XppLexer(RegexLexer):
     name = 'X++'
     url = 'https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-ref/xpp-language-reference'
     aliases = ('xpp', 'x++')
-    filenames = ['*.xpp']
+    filenames = ('*.xpp',)
     version_added = '2.15'
 
     flags = re.MULTILINE

@@ -26,7 +26,7 @@ class ECLLexer(RegexLexer):
     name = 'ECL'
     url = 'https://hpccsystems.com/training/documentation/ecl-language-reference/html'
     aliases = ('ecl',)
-    filenames = ['*.ecl']
+    filenames = ('*.ecl',)
     mimetypes = ['application/x-ecl']
     version_added = '1.5'
 

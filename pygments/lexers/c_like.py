@@ -82,7 +82,7 @@ class NesCLexer(CLexer):
     """
     name = 'nesC'
     aliases = ('nesc',)
-    filenames = ['*.nc']
+    filenames = ('*.nc',)
     mimetypes = ['text/x-nescsrc']
     version_added = '2.0'
 
@@ -108,7 +108,7 @@ class ClayLexer(RegexLexer):
     For Clay source.
     """
     name = 'Clay'
-    filenames = ['*.clay']
+    filenames = ('*.clay',)
     aliases = ('clay',)
     mimetypes = ['text/x-clay']
     url = 'http://claylabs.com/clay'
@@ -432,7 +432,7 @@ class ArduinoLexer(CppLexer):
 
     name = 'Arduino'
     aliases = ('arduino',)
-    filenames = ['*.ino']
+    filenames = ('*.ino',)
     mimetypes = ['text/x-arduino']
     version_added = '2.1'
 
@@ -556,7 +556,7 @@ class CharmciLexer(CppLexer):
 
     name = 'Charmci'
     aliases = ('charmci',)
-    filenames = ['*.ci']
+    filenames = ('*.ci',)
     version_added = '2.4'
 
     mimetypes = ()

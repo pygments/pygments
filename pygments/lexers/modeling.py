@@ -28,7 +28,7 @@ class ModelicaLexer(RegexLexer):
     name = 'Modelica'
     url = 'http://www.modelica.org/'
     aliases = ('modelica',)
-    filenames = ['*.mo']
+    filenames = ('*.mo',)
     mimetypes = ['text/x-modelica']
     version_added = '1.1'
 
@@ -104,7 +104,7 @@ class BugsLexer(RegexLexer):
 
     name = 'BUGS'
     aliases = ('bugs', 'winbugs', 'openbugs')
-    filenames = ['*.bug']
+    filenames = ('*.bug',)
     url = 'https://www.mrc-bsu.cam.ac.uk/software/bugs/openbugs'
     version_added = '1.6'
 
@@ -289,7 +289,7 @@ class StanLexer(RegexLexer):
 
     name = 'Stan'
     aliases = ('stan',)
-    filenames = ['*.stan']
+    filenames = ('*.stan',)
     url = 'https://mc-stan.org'
     version_added = '1.6'
 

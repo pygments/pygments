@@ -110,7 +110,7 @@ class TableGenLexer(RegexLexer):
     name = 'TableGen'
     url = 'https://llvm.org/docs/TableGen/ProgRef.html'
     aliases = ('tablegen', 'td')
-    filenames = ['*.td']
+    filenames = ('*.td',)
 
     version_added = '2.19'
 

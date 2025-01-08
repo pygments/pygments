@@ -24,7 +24,7 @@ class FutharkLexer(RegexLexer):
     name = 'Futhark'
     url = 'https://futhark-lang.org/'
     aliases = ('futhark',)
-    filenames = ['*.fut']
+    filenames = ('*.fut',)
     mimetypes = ['text/x-futhark']
     version_added = '2.8'
 

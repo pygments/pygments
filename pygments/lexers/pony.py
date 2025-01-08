@@ -23,7 +23,7 @@ class PonyLexer(RegexLexer):
 
     name = 'Pony'
     aliases = ('pony',)
-    filenames = ['*.pony']
+    filenames = ('*.pony',)
     url = 'https://www.ponylang.io'
     version_added = '2.4'
 

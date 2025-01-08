@@ -23,7 +23,7 @@ class KuinLexer(RegexLexer):
     name = 'Kuin'
     url = 'https://github.com/kuina/Kuin'
     aliases = ('kuin',)
-    filenames = ['*.kn']
+    filenames = ('*.kn',)
     version_added = '2.9'
 
     tokens: typing.ClassVar = {

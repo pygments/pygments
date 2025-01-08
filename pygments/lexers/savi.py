@@ -40,7 +40,7 @@ class SaviLexer(RegexLexer):
     name = 'Savi'
     url = 'https://github.com/savi-lang/savi'
     aliases = ('savi',)
-    filenames = ['*.savi']
+    filenames = ('*.savi',)
     version_added = ''
 
     tokens: typing.ClassVar = {

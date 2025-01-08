@@ -22,7 +22,7 @@ class HareLexer(RegexLexer):
     name = 'Hare'
     url = 'https://harelang.org/'
     aliases = ('hare',)
-    filenames = ['*.ha']
+    filenames = ('*.ha',)
     mimetypes = ['text/x-hare']
     version_added = '2.19'
 

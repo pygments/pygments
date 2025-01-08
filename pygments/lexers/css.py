@@ -148,7 +148,7 @@ class CssLexer(RegexLexer):
     name = 'CSS'
     url = 'https://www.w3.org/TR/CSS/#css'
     aliases = ('css',)
-    filenames = ['*.css']
+    filenames = ('*.css',)
     mimetypes = ['text/css']
     version_added = ''
 
@@ -394,7 +394,7 @@ class SassLexer(ExtendedRegexLexer):
     name = 'Sass'
     url = 'https://sass-lang.com/'
     aliases = ('sass',)
-    filenames = ['*.sass']
+    filenames = ('*.sass',)
     mimetypes = ['text/x-sass']
     version_added = '1.3'
 
@@ -476,7 +476,7 @@ class ScssLexer(RegexLexer):
     name = 'SCSS'
     url = 'https://sass-lang.com/'
     aliases = ('scss',)
-    filenames = ['*.scss']
+    filenames = ('*.scss',)
     mimetypes = ['text/x-scss']
     version_added = ''
 
@@ -528,7 +528,7 @@ class LessCssLexer(CssLexer):
     name = 'LessCss'
     url = 'http://lesscss.org/'
     aliases = ('less',)
-    filenames = ['*.less']
+    filenames = ('*.less',)
     mimetypes = ['text/x-less-css']
     version_added = '2.1'
 

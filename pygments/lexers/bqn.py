@@ -23,7 +23,7 @@ class BQNLexer(RegexLexer):
     name = 'BQN'
     url = 'https://mlochbaum.github.io/BQN/index.html'
     aliases = ('bqn',)
-    filenames = ['*.bqn']
+    filenames = ('*.bqn',)
     mimetypes = ()
     version_added = '2.16'
 

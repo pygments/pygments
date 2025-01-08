@@ -18,7 +18,7 @@ class RegoLexer(RegexLexer):
     """
     name = 'Rego'
     url = 'https://www.openpolicyagent.org/docs/latest/policy-language/'
-    filenames = ['*.rego']
+    filenames = ('*.rego',)
     aliases = ('rego',)
     mimetypes = ['text/x-rego']
     version_added = '2.19'

@@ -157,7 +157,7 @@ class ErlangShellLexer(Lexer):
     """
     name = 'Erlang erl session'
     aliases = ('erl',)
-    filenames = ['*.erl-sh']
+    filenames = ('*.erl-sh',)
     mimetypes = ['text/x-erl-shellsession']
     url = 'https://www.erlang.org/'
     version_added = '1.1'

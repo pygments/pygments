@@ -21,7 +21,7 @@ class GherkinLexer(RegexLexer):
     """
     name = 'Gherkin'
     aliases = ('gherkin', 'cucumber')
-    filenames = ['*.feature']
+    filenames = ('*.feature',)
     mimetypes = ['text/x-gherkin']
     url = 'https://cucumber.io/docs/gherkin'
     version_added = '1.2'
@@ -141,7 +141,7 @@ class TAPLexer(RegexLexer):
     name = 'TAP'
     url = 'https://testanything.org/'
     aliases = ('tap',)
-    filenames = ['*.tap']
+    filenames = ('*.tap',)
     version_added = '2.1'
 
     tokens: typing.ClassVar = {

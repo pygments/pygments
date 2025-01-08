@@ -26,7 +26,7 @@ class SnobolLexer(RegexLexer):
 
     name = "Snobol"
     aliases = ["snobol"]
-    filenames = ['*.snobol']
+    filenames = ('*.snobol',)
     mimetypes = ['text/x-snobol']
     url = 'https://www.regressive.org/snobol4'
     version_added = '1.5'

@@ -410,7 +410,7 @@ class AsymptoteLexer(RegexLexer):
     name = 'Asymptote'
     url = 'http://asymptote.sf.net/'
     aliases = ('asymptote', 'asy')
-    filenames = ['*.asy']
+    filenames = ('*.asy',)
     mimetypes = ['text/x-asymptote']
     version_added = '1.2'
 

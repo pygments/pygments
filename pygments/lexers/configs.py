@@ -106,7 +106,7 @@ class DesktopLexer(RegexLexer):
     name = 'Desktop file'
     url = "https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html"
     aliases = ('desktop',)
-    filenames = ['*.desktop']
+    filenames = ('*.desktop',)
     mimetypes = ['application/x-desktop']
     version_added = '2.16'
 
@@ -180,7 +180,7 @@ class RegeditLexer(RegexLexer):
     name = 'reg'
     url = 'http://en.wikipedia.org/wiki/Windows_Registry#.REG_files'
     aliases = ('registry',)
-    filenames = ['*.reg']
+    filenames = ('*.reg',)
     mimetypes = ['text/x-windows-registry']
     version_added = '1.6'
 
@@ -223,7 +223,7 @@ class PropertiesLexer(RegexLexer):
 
     name = 'Properties'
     aliases = ('properties', 'jproperties')
-    filenames = ['*.properties']
+    filenames = ('*.properties',)
     mimetypes = ['text/x-java-properties']
     url = 'https://en.wikipedia.org/wiki/.properties'
     version_added = '1.4'
@@ -376,7 +376,7 @@ class Cfengine3Lexer(RegexLexer):
     name = 'CFEngine3'
     url = 'http://cfengine.org'
     aliases = ('cfengine3', 'cf3')
-    filenames = ['*.cf']
+    filenames = ('*.cf',)
     mimetypes = ()
     version_added = '1.5'
 
@@ -480,7 +480,7 @@ class SquidConfLexer(RegexLexer):
     name = 'SquidConf'
     url = 'http://www.squid-cache.org/'
     aliases = ('squidconf', 'squid.conf', 'squid')
-    filenames = ['squid.conf']
+    filenames = ('squid.conf',)
     mimetypes = ['text/x-squidconf']
     version_added = '0.9'
     flags = re.IGNORECASE
@@ -608,7 +608,7 @@ class NginxConfLexer(RegexLexer):
     name = 'Nginx configuration file'
     url = 'http://nginx.net/'
     aliases = ('nginx',)
-    filenames = ['nginx.conf']
+    filenames = ('nginx.conf',)
     mimetypes = ['text/x-nginx-conf']
     version_added = '0.11'
 
@@ -654,7 +654,7 @@ class LighttpdConfLexer(RegexLexer):
     name = 'Lighttpd configuration file'
     url = 'http://lighttpd.net/'
     aliases = ('lighttpd', 'lighty')
-    filenames = ['lighttpd.conf']
+    filenames = ('lighttpd.conf',)
     mimetypes = ['text/x-lighttpd-conf']
     version_added = '0.11'
 
@@ -982,7 +982,7 @@ class PkgConfigLexer(RegexLexer):
     name = 'PkgConfig'
     url = 'http://www.freedesktop.org/wiki/Software/pkg-config/'
     aliases = ('pkgconfig',)
-    filenames = ['*.pc']
+    filenames = ('*.pc',)
     mimetypes = ()
     version_added = '2.1'
 
@@ -1050,7 +1050,7 @@ class PacmanConfLexer(RegexLexer):
     name = 'PacmanConf'
     url = 'https://www.archlinux.org/pacman/pacman.conf.5.html'
     aliases = ('pacmanconf',)
-    filenames = ['pacman.conf']
+    filenames = ('pacman.conf',)
     mimetypes = ()
     version_added = '2.1'
 
@@ -1094,7 +1094,7 @@ class AugeasLexer(RegexLexer):
     name = 'Augeas'
     url = 'http://augeas.net'
     aliases = ('augeas',)
-    filenames = ['*.aug']
+    filenames = ('*.aug',)
     version_added = '2.4'
 
     tokens: typing.ClassVar = {
@@ -1310,7 +1310,7 @@ class NestedTextLexer(RegexLexer):
     name = 'NestedText'
     url = 'https://nestedtext.org'
     aliases = ('nestedtext', 'nt')
-    filenames = ['*.nt']
+    filenames = ('*.nt',)
     version_added = '2.9'
 
     tokens: typing.ClassVar = {

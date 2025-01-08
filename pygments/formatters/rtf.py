@@ -100,7 +100,7 @@ class RtfFormatter(Formatter):
     """
     name = 'RTF'
     aliases = ('rtf',)
-    filenames = ['*.rtf']
+    filenames = ('*.rtf',)
 
     def __init__(self, **options):
         r"""

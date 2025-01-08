@@ -27,7 +27,7 @@ class AwkLexer(RegexLexer):
 
     name = 'Awk'
     aliases = ('awk', 'gawk', 'mawk', 'nawk')
-    filenames = ['*.awk']
+    filenames = ('*.awk',)
     mimetypes = ['application/x-awk']
     url = 'https://en.wikipedia.org/wiki/AWK'
     version_added = '1.5'

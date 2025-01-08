@@ -723,7 +723,7 @@ class JsonLdLexer(JsonLexer):
     name = 'JSON-LD'
     url = 'https://json-ld.org/'
     aliases = ('jsonld', 'json-ld')
-    filenames = ['*.jsonld']
+    filenames = ('*.jsonld',)
     mimetypes = ['application/ld+json']
     version_added = '2.0'
 

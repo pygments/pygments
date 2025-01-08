@@ -31,7 +31,7 @@ class ZephirLexer(RegexLexer):
     name = 'Zephir'
     url = 'http://zephir-lang.com/'
     aliases = ('zephir',)
-    filenames = ['*.zep']
+    filenames = ('*.zep',)
     version_added = '2.0'
 
     zephir_keywords = ['fetch', 'echo', 'isset', 'empty']

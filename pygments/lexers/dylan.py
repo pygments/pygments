@@ -247,7 +247,7 @@ class DylanConsoleLexer(Lexer):
     """
     name = 'Dylan session'
     aliases = ('dylan-console', 'dylan-repl')
-    filenames = ['*.dylan-console']
+    filenames = ('*.dylan-console',)
     mimetypes = ['text/x-dylan-console']
     url = 'http://www.opendylan.org/'
     version_added = '1.6'

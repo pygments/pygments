@@ -452,7 +452,7 @@ class OpaLexer(RegexLexer):
 
     name = 'Opa'
     aliases = ('opa',)
-    filenames = ['*.opa']
+    filenames = ('*.opa',)
     mimetypes = ['text/x-opa']
     url = 'http://opalang.org'
     version_added = '1.5'

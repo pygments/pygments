@@ -37,7 +37,7 @@ class Json5Lexer(RegexLexer):
 
     name = 'JSON5'
     aliases = ('json5',)
-    filenames = ['*.json5']
+    filenames = ('*.json5',)
     url = "https://json5.org"
     version_added = '2.19'
     tokens: typing.ClassVar = {

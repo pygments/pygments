@@ -182,7 +182,7 @@ class TurtleLexer(RegexLexer):
     """
     name = 'Turtle'
     aliases = ('turtle',)
-    filenames = ['*.ttl']
+    filenames = ('*.ttl',)
     mimetypes = ['text/turtle', 'application/x-turtle']
     url = 'https://www.w3.org/TR/turtle'
     version_added = '2.1'
@@ -327,7 +327,7 @@ class ShExCLexer(RegexLexer):
     """
     name = 'ShExC'
     aliases = ('shexc', 'shex')
-    filenames = ['*.shex']
+    filenames = ('*.shex',)
     mimetypes = ['text/shex']
     url = 'https://shex.io/shex-semantics/#shexc'
     version_added = ''

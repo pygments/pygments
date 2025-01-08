@@ -21,7 +21,7 @@ class RoboconfGraphLexer(RegexLexer):
     """
     name = 'Roboconf Graph'
     aliases = ('roboconf-graph',)
-    filenames = ['*.graph']
+    filenames = ('*.graph',)
     url = 'https://roboconf.github.io/en/user-guide/graph-definition.html'
     version_added = '2.1'
 
@@ -56,7 +56,7 @@ class RoboconfInstancesLexer(RegexLexer):
     """
     name = 'Roboconf Instances'
     aliases = ('roboconf-instances',)
-    filenames = ['*.instances']
+    filenames = ('*.instances',)
     url = 'https://roboconf.github.io'
     version_added = '2.1'
 

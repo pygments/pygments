@@ -24,7 +24,7 @@ class JLexer(RegexLexer):
     name = 'J'
     url = 'http://jsoftware.com/'
     aliases = ('j',)
-    filenames = ['*.ijs']
+    filenames = ('*.ijs',)
     mimetypes = ['text/x-j']
     version_added = '2.1'
 

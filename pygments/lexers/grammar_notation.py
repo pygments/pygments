@@ -44,7 +44,7 @@ class BnfLexer(RegexLexer):
 
     name = 'BNF'
     aliases = ('bnf',)
-    filenames = ['*.bnf']
+    filenames = ('*.bnf',)
     mimetypes = ['text/x-bnf']
     url = 'https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form'
     version_added = '2.1'
@@ -74,7 +74,7 @@ class AbnfLexer(RegexLexer):
     name = 'ABNF'
     url = 'http://www.ietf.org/rfc/rfc7405.txt'
     aliases = ('abnf',)
-    filenames = ['*.abnf']
+    filenames = ('*.abnf',)
     mimetypes = ['text/x-abnf']
     version_added = '2.1'
 
@@ -137,7 +137,7 @@ class JsgfLexer(RegexLexer):
     name = 'JSGF'
     url = 'https://www.w3.org/TR/jsgf/'
     aliases = ('jsgf',)
-    filenames = ['*.jsgf']
+    filenames = ('*.jsgf',)
     mimetypes = ['application/jsgf', 'application/x-jsgf', 'text/jsgf']
     version_added = '2.2'
 
@@ -228,7 +228,7 @@ class PegLexer(RegexLexer):
     name = 'PEG'
     url = 'https://bford.info/pub/lang/peg.pdf'
     aliases = ('peg',)
-    filenames = ['*.peg']
+    filenames = ('*.peg',)
     mimetypes = ['text/x-peg']
     version_added = '2.6'
 

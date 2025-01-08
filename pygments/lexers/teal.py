@@ -26,7 +26,7 @@ class TealLexer(RegexLexer):
     name = 'teal'
     url = 'https://developer.algorand.org/docs/reference/teal/specification/'
     aliases = ('teal',)
-    filenames = ['*.teal']
+    filenames = ('*.teal',)
     version_added = '2.9'
 
     keywords = words({

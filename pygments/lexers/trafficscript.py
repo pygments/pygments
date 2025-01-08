@@ -21,7 +21,7 @@ class RtsLexer(RegexLexer):
     """
     name = 'TrafficScript'
     aliases = ('trafficscript', 'rts')
-    filenames = ['*.rts']
+    filenames = ('*.rts',)
     url = 'https://riverbed.com'
     version_added = '2.1'
 

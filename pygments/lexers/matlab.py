@@ -27,7 +27,7 @@ class MatlabLexer(RegexLexer):
     """
     name = 'Matlab'
     aliases = ('matlab',)
-    filenames = ['*.m']
+    filenames = ('*.m',)
     mimetypes = ['text/matlab']
     url = 'https://www.mathworks.com/products/matlab.html'
     version_added = '0.10'
@@ -2817,7 +2817,7 @@ class OctaveLexer(RegexLexer):
     name = 'Octave'
     url = 'https://www.gnu.org/software/octave/index'
     aliases = ('octave',)
-    filenames = ['*.m']
+    filenames = ('*.m',)
     mimetypes = ['text/octave']
     version_added = '1.5'
 

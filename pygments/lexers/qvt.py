@@ -41,7 +41,7 @@ class QVToLexer(RegexLexer):
 
     name = 'QVTO'
     aliases = ('qvto', 'qvt')
-    filenames = ['*.qvto']
+    filenames = ('*.qvto',)
     url = 'https://www.omg.org/spec/QVT/1.1'
     version_added = ''
 

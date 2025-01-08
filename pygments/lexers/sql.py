@@ -398,7 +398,7 @@ class PostgresExplainLexer(RegexLexer):
 
     name = 'PostgreSQL EXPLAIN dialect'
     aliases = ('postgres-explain',)
-    filenames = ['*.explain']
+    filenames = ('*.explain',)
     mimetypes = ['text/x-postgresql-explain']
     url = 'https://www.postgresql.org/docs/current/using-explain.html'
     version_added = '2.15'
@@ -585,7 +585,7 @@ class SqlLexer(RegexLexer):
 
     name = 'SQL'
     aliases = ('sql',)
-    filenames = ['*.sql']
+    filenames = ('*.sql',)
     mimetypes = ['text/x-sql']
     url = 'https://en.wikipedia.org/wiki/SQL'
     version_added = ''
@@ -721,7 +721,7 @@ class TransactSqlLexer(RegexLexer):
 
     name = 'Transact-SQL'
     aliases = ('tsql', 't-sql')
-    filenames = ['*.sql']
+    filenames = ('*.sql',)
     mimetypes = ['text/x-tsql']
     url = 'https://www.tsql.info'
     version_added = ''
@@ -1149,7 +1149,7 @@ class SqliteConsoleLexer(Lexer):
 
     name = 'sqlite3con'
     aliases = ('sqlite3',)
-    filenames = ['*.sqlite3-console']
+    filenames = ('*.sqlite3-console',)
     mimetypes = ['text/x-sqlite3-console']
     url = 'https://www.sqlite.org'
     version_added = '0.11'
@@ -1191,7 +1191,7 @@ class RqlLexer(RegexLexer):
     name = 'RQL'
     url = 'http://www.logilab.org/project/rql'
     aliases = ('rql',)
-    filenames = ['*.rql']
+    filenames = ('*.rql',)
     mimetypes = ['text/x-rql']
     version_added = '2.0'
 

@@ -46,7 +46,7 @@ class JavaLexer(RegexLexer):
     name = 'Java'
     url = 'https://www.oracle.com/technetwork/java/'
     aliases = ('java',)
-    filenames = ['*.java']
+    filenames = ('*.java',)
     mimetypes = ['text/x-java']
     version_added = ''
 
@@ -139,7 +139,7 @@ class AspectJLexer(JavaLexer):
     name = 'AspectJ'
     url = 'http://www.eclipse.org/aspectj/'
     aliases = ('aspectj',)
-    filenames = ['*.aj']
+    filenames = ('*.aj',)
     mimetypes = ['text/x-aspectj']
     version_added = '1.6'
 
@@ -178,7 +178,7 @@ class ScalaLexer(RegexLexer):
     name = 'Scala'
     url = 'http://www.scala-lang.org'
     aliases = ('scala',)
-    filenames = ['*.scala']
+    filenames = ('*.scala',)
     mimetypes = ['text/x-scala']
     version_added = ''
 
@@ -541,7 +541,7 @@ class GosuTemplateLexer(Lexer):
 
     name = 'Gosu Template'
     aliases = ('gst',)
-    filenames = ['*.gst']
+    filenames = ('*.gst',)
     mimetypes = ['text/x-gosu-template']
     url = 'https://gosu-lang.github.io'
     version_added = '1.5'
@@ -636,7 +636,7 @@ class IokeLexer(RegexLexer):
     """
     name = 'Ioke'
     url = 'https://ioke.org/'
-    filenames = ['*.ik']
+    filenames = ('*.ik',)
     aliases = ('ioke', 'ik')
     mimetypes = ['text/x-iokesrc']
     version_added = '1.4'
@@ -967,7 +967,7 @@ class ClojureScriptLexer(ClojureLexer):
     name = 'ClojureScript'
     url = 'http://clojure.org/clojurescript'
     aliases = ('clojurescript', 'cljs')
-    filenames = ['*.cljs']
+    filenames = ('*.cljs',)
     mimetypes = ['text/x-clojurescript', 'application/x-clojurescript']
     version_added = '2.0'
 
@@ -1027,7 +1027,7 @@ class CeylonLexer(RegexLexer):
     name = 'Ceylon'
     url = 'http://ceylon-lang.org/'
     aliases = ('ceylon',)
-    filenames = ['*.ceylon']
+    filenames = ('*.ceylon',)
     mimetypes = ['text/x-ceylon']
     version_added = '1.6'
 
@@ -1261,7 +1261,7 @@ class XtendLexer(RegexLexer):
     name = 'Xtend'
     url = 'https://www.eclipse.org/xtend/'
     aliases = ('xtend',)
-    filenames = ['*.xtend']
+    filenames = ('*.xtend',)
     mimetypes = ['text/x-xtend']
     version_added = '1.6'
 
@@ -1326,7 +1326,7 @@ class PigLexer(RegexLexer):
     name = 'Pig'
     url = 'https://pig.apache.org/'
     aliases = ('pig',)
-    filenames = ['*.pig']
+    filenames = ('*.pig',)
     mimetypes = ['text/x-pig']
     version_added = '2.0'
 
@@ -1392,7 +1392,7 @@ class GoloLexer(RegexLexer):
 
     name = 'Golo'
     url = 'http://golo-lang.org/'
-    filenames = ['*.golo']
+    filenames = ('*.golo',)
     aliases = ('golo',)
     version_added = '2.0'
 
@@ -1506,7 +1506,7 @@ class JasminLexer(RegexLexer):
     name = 'Jasmin'
     url = 'http://jasmin.sourceforge.net/'
     aliases = ('jasmin', 'jasminxt')
-    filenames = ['*.j']
+    filenames = ('*.j',)
     version_added = '2.0'
 
     _whitespace = r' \n\t\r'
@@ -1766,7 +1766,7 @@ class SarlLexer(RegexLexer):
     name = 'SARL'
     url = 'http://www.sarl.io'
     aliases = ('sarl',)
-    filenames = ['*.sarl']
+    filenames = ('*.sarl',)
     mimetypes = ['text/x-sarl']
     version_added = '2.4'
 

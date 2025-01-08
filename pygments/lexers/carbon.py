@@ -23,7 +23,7 @@ class CarbonLexer(RegexLexer):
     """
     name = 'Carbon'
     url = 'https://github.com/carbon-language/carbon-lang'
-    filenames = ['*.carbon']
+    filenames = ('*.carbon',)
     aliases = ('carbon',)
     mimetypes = ['text/x-carbon']
     version_added = '2.15'

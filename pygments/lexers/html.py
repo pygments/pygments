@@ -122,7 +122,7 @@ class DtdLexer(RegexLexer):
 
     name = 'DTD'
     aliases = ('dtd',)
-    filenames = ['*.dtd']
+    filenames = ('*.dtd',)
     mimetypes = ['application/xml-dtd']
     url = 'https://en.wikipedia.org/wiki/Document_type_definition'
     version_added = '1.5'
@@ -291,7 +291,7 @@ class HamlLexer(ExtendedRegexLexer):
 
     name = 'Haml'
     aliases = ('haml',)
-    filenames = ['*.haml']
+    filenames = ('*.haml',)
     mimetypes = ['text/x-haml']
     url = 'https://haml.info'
     version_added = '1.3'
@@ -402,7 +402,7 @@ class ScamlLexer(ExtendedRegexLexer):
 
     name = 'Scaml'
     aliases = ('scaml',)
-    filenames = ['*.scaml']
+    filenames = ('*.scaml',)
     mimetypes = ['text/x-scaml']
     url = 'https://scalate.github.io/scalate/'
     version_added = '1.4'
@@ -643,7 +643,7 @@ class VueLexer(HtmlLexer):
     name = 'Vue'
     url = 'https://vuejs.org/api/sfc-spec.html'
     aliases = ('vue',)
-    filenames = ['*.vue']
+    filenames = ('*.vue',)
     mimetypes = ()
     version_added = '2.19'
 

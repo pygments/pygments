@@ -22,7 +22,7 @@ class GoLexer(RegexLexer):
     """
     name = 'Go'
     url = 'https://go.dev/'
-    filenames = ['*.go']
+    filenames = ('*.go',)
     aliases = ('go', 'golang')
     mimetypes = ['text/x-gosrc']
     version_added = '1.2'

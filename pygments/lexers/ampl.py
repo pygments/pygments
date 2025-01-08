@@ -23,7 +23,7 @@ class AmplLexer(RegexLexer):
     name = 'Ampl'
     url = 'http://ampl.com/'
     aliases = ('ampl',)
-    filenames = ['*.run']
+    filenames = ('*.run',)
     version_added = '2.2'
 
     tokens: typing.ClassVar = {

@@ -141,7 +141,7 @@ class CsoundScoreLexer(CsoundLexer):
 
     name = 'Csound Score'
     aliases = ('csound-score', 'csound-sco')
-    filenames = ['*.sco']
+    filenames = ('*.sco',)
     version_added = '2.1'
 
     tokens: typing.ClassVar = {
@@ -415,7 +415,7 @@ class CsoundDocumentLexer(RegexLexer):
 
     name = 'Csound Document'
     aliases = ('csound-document', 'csound-csd')
-    filenames = ['*.csd']
+    filenames = ('*.csd',)
     url = 'https://csound.com'
     version_added = '2.1'
 

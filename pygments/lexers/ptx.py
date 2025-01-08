@@ -23,7 +23,7 @@ class PtxLexer(RegexLexer):
     """
     name = 'PTX'
     url = "https://docs.nvidia.com/cuda/parallel-thread-execution/"
-    filenames = ['*.ptx']
+    filenames = ('*.ptx',)
     aliases = ('ptx',)
     mimetypes = ['text/x-ptx']
     version_added = '2.16'

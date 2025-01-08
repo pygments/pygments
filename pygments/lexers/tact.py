@@ -21,7 +21,7 @@ class TactLexer(RegexLexer):
 
     name = 'Tact'
     aliases = ('tact',)
-    filenames = ['*.tact']
+    filenames = ('*.tact',)
     url = "https://tact-lang.org"
     version_added = '2.18'
 

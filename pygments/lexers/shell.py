@@ -143,7 +143,7 @@ class SlurmBashLexer(BashLexer):
 
     name = 'Slurm'
     aliases = ('slurm', 'sbatch')
-    filenames = ['*.sl']
+    filenames = ('*.sl',)
     mimetypes = ()
     version_added = '2.4'
     EXTRA_KEYWORDS = {'srun'}
@@ -860,7 +860,7 @@ class ExeclineLexer(RegexLexer):
 
     name = 'execline'
     aliases = ('execline',)
-    filenames = ['*.exec']
+    filenames = ('*.exec',)
     url = 'https://skarnet.org/software/execline'
     version_added = '2.7'
 

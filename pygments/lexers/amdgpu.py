@@ -23,7 +23,7 @@ class AMDGPULexer(RegexLexer):
     """
     name = 'AMDGPU'
     aliases = ('amdgpu',)
-    filenames = ['*.isa']
+    filenames = ('*.isa',)
     url = 'https://gpuopen.com/amd-isa-documentation'
     version_added = '2.8'
 

@@ -26,7 +26,7 @@ class FreeFemLexer(CppLexer):
     name = 'Freefem'
     url = 'https://freefem.org/'
     aliases = ('freefem',)
-    filenames = ['*.edp']
+    filenames = ('*.edp',)
     mimetypes = ['text/x-freefem']
     version_added = '2.4'
 

@@ -25,7 +25,7 @@ class ActionScriptLexer(RegexLexer):
 
     name = 'ActionScript'
     aliases = ('actionscript', 'as')
-    filenames = ['*.as']
+    filenames = ('*.as',)
     mimetypes = ['application/x-actionscript', 'text/x-actionscript',
                  'text/actionscript']
     url = 'https://en.wikipedia.org/wiki/ActionScript'
@@ -124,7 +124,7 @@ class ActionScript3Lexer(RegexLexer):
     name = 'ActionScript 3'
     url = 'https://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/index.html'
     aliases = ('actionscript3', 'as3')
-    filenames = ['*.as']
+    filenames = ('*.as',)
     mimetypes = ['application/x-actionscript3', 'text/x-actionscript3',
                  'text/actionscript3']
     version_added = '0.11'
@@ -209,7 +209,7 @@ class MxmlLexer(RegexLexer):
     flags = re.MULTILINE | re.DOTALL
     name = 'MXML'
     aliases = ('mxml',)
-    filenames = ['*.mxml']
+    filenames = ('*.mxml',)
     url = 'https://en.wikipedia.org/wiki/MXML'
     version_added = '1.1'
 

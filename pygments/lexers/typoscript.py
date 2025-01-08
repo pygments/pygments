@@ -105,7 +105,7 @@ class TypoScriptLexer(RegexLexer):
     name = 'TypoScript'
     url = 'http://docs.typo3.org/typo3cms/TyposcriptReference/'
     aliases = ('typoscript',)
-    filenames = ['*.typoscript']
+    filenames = ('*.typoscript',)
     mimetypes = ['text/x-typoscript']
     version_added = '2.2'
 

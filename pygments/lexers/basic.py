@@ -36,7 +36,7 @@ class BlitzMaxLexer(RegexLexer):
     name = 'BlitzMax'
     url = 'http://blitzbasic.com'
     aliases = ('blitzmax', 'bmax')
-    filenames = ['*.bmx']
+    filenames = ('*.bmx',)
     mimetypes = ['text/x-bmx']
     version_added = '1.4'
 
@@ -201,7 +201,7 @@ class MonkeyLexer(RegexLexer):
 
     name = 'Monkey'
     aliases = ('monkey',)
-    filenames = ['*.monkey']
+    filenames = ('*.monkey',)
     mimetypes = ['text/x-monkey']
     url = 'https://blitzresearch.itch.io/monkeyx'
     version_added = '1.6'
@@ -328,7 +328,7 @@ class CbmBasicV2Lexer(RegexLexer):
     """
     name = 'CBM BASIC V2'
     aliases = ('cbmbas',)
-    filenames = ['*.bas']
+    filenames = ('*.bas',)
     url = 'https://en.wikipedia.org/wiki/Commodore_BASIC'
     version_added = '1.6'
 
@@ -603,7 +603,7 @@ class BBCBasicLexer(RegexLexer):
 
     name = 'BBC Basic'
     aliases = ('bbcbasic',)
-    filenames = ['*.bbc']
+    filenames = ('*.bbc',)
     url = 'https://www.bbcbasic.co.uk/bbcbasic.html'
     version_added = '2.4'
 

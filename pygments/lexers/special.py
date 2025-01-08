@@ -24,7 +24,7 @@ class TextLexer(Lexer):
     """
     name = 'Text only'
     aliases = ('text',)
-    filenames = ['*.txt']
+    filenames = ('*.txt',)
     mimetypes = ['text/plain']
     url = ""
     version_added = ''

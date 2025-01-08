@@ -29,7 +29,7 @@ class LimboLexer(RegexLexer):
     name = 'Limbo'
     url = 'http://www.vitanuova.com/inferno/limbo.html'
     aliases = ('limbo',)
-    filenames = ['*.b']
+    filenames = ('*.b',)
     mimetypes = ['text/limbo']
     version_added = '2.0'
 

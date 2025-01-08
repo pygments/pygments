@@ -25,7 +25,7 @@ class ProcfileLexer(RegexLexer):
     name = 'Procfile'
     url = 'https://devcenter.heroku.com/articles/procfile#procfile-format'
     aliases = ('procfile',)
-    filenames = ['Procfile']
+    filenames = ('Procfile',)
     version_added = '2.10'
 
     tokens: typing.ClassVar = {

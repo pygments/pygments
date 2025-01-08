@@ -902,7 +902,7 @@ class HxmlLexer(RegexLexer):
     name = 'Hxml'
     url = 'https://haxe.org/manual/compiler-usage-hxml.html'
     aliases = ('haxeml', 'hxml')
-    filenames = ['*.hxml']
+    filenames = ('*.hxml',)
     version_added = '1.6'
 
     tokens: typing.ClassVar = {

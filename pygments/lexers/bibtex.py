@@ -26,7 +26,7 @@ class BibTeXLexer(ExtendedRegexLexer):
 
     name = 'BibTeX'
     aliases = ('bibtex', 'bib')
-    filenames = ['*.bib']
+    filenames = ('*.bib',)
     mimetypes = ["text/x-bibtex"]
     version_added = '2.2'
     flags = re.IGNORECASE
@@ -121,7 +121,7 @@ class BSTLexer(RegexLexer):
 
     name = 'BST'
     aliases = ('bst', 'bst-pybtex')
-    filenames = ['*.bst']
+    filenames = ('*.bst',)
     version_added = '2.2'
     flags = re.IGNORECASE | re.MULTILINE
     url = 'https://texfaq.org/FAQ-BibTeXing'

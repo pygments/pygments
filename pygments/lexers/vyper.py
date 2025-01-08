@@ -21,7 +21,7 @@ class VyperLexer(RegexLexer):
     """
     name = 'Vyper'
     aliases = ('vyper',)
-    filenames = ['*.vy']
+    filenames = ('*.vy',)
     url = "https://vyper.readthedocs.io"
     version_added = '2.17'
 

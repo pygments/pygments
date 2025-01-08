@@ -24,7 +24,7 @@ class VerilogLexer(RegexLexer):
     """
     name = 'verilog'
     aliases = ('verilog', 'v')
-    filenames = ['*.v']
+    filenames = ('*.v',)
     mimetypes = ['text/x-verilog']
     url = 'https://en.wikipedia.org/wiki/Verilog'
     version_added = '1.4'

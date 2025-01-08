@@ -22,7 +22,7 @@ class SmithyLexer(RegexLexer):
     """
     name = 'Smithy'
     url = 'https://awslabs.github.io/smithy/'
-    filenames = ['*.smithy']
+    filenames = ('*.smithy',)
     aliases = ('smithy',)
     version_added = '2.10'
 

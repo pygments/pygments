@@ -251,7 +251,7 @@ class LatexFormatter(Formatter):
     """
     name = 'LaTeX'
     aliases = ('latex', 'tex')
-    filenames = ['*.tex']
+    filenames = ('*.tex',)
 
     def __init__(self, **options):
         Formatter.__init__(self, **options)

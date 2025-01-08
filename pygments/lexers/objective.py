@@ -288,7 +288,7 @@ class SwiftLexer(RegexLexer):
     """
     name = 'Swift'
     url = 'https://www.swift.org/'
-    filenames = ['*.swift']
+    filenames = ('*.swift',)
     aliases = ('swift',)
     mimetypes = ['text/x-swift']
     version_added = '2.0'

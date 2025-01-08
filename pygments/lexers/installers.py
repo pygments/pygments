@@ -156,7 +156,7 @@ class RPMSpecLexer(RegexLexer):
 
     name = 'RPMSpec'
     aliases = ('spec',)
-    filenames = ['*.spec']
+    filenames = ('*.spec',)
     mimetypes = ['text/x-rpm-spec']
     url = 'https://rpm-software-management.github.io/rpm/manual/spec.html'
     version_added = '1.6'
@@ -230,7 +230,7 @@ class DebianSourcesLexer(RegexLexer):
 
     name = 'Debian Sources file'
     aliases = ('debian.sources',)
-    filenames = ['*.sources']
+    filenames = ('*.sources',)
     version_added = '2.19'
     url = 'https://manpages.debian.org/bookworm/apt/sources.list.5.en.html#THE_DEB_AND_DEB-SRC_TYPES:_GENERAL_FORMAT'
 
@@ -254,7 +254,7 @@ class SourcesListLexer(RegexLexer):
 
     name = 'Debian Sourcelist'
     aliases = ('debsources', 'sourceslist', 'sources.list')
-    filenames = ['sources.list']
+    filenames = ('sources.list',)
     version_added = '0.7'
     mimetype = ['application/x-debian-sourceslist']
     url = 'https://wiki.debian.org/SourcesList'
@@ -302,7 +302,7 @@ class DebianControlLexer(RegexLexer):
     name = 'Debian Control file'
     url = 'https://www.debian.org/doc/debian-policy/ch-controlfields.html'
     aliases = ('debcontrol', 'control')
-    filenames = ['control']
+    filenames = ('control',)
     version_added = '0.9'
 
     tokens: typing.ClassVar = {

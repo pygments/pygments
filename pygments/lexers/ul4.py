@@ -36,7 +36,7 @@ class UL4Lexer(RegexLexer):
 
     name = 'UL4'
     aliases = ('ul4',)
-    filenames = ['*.ul4']
+    filenames = ('*.ul4',)
     url = 'https://python.livinglogic.de/UL4.html'
     version_added = '2.12'
 
@@ -248,7 +248,7 @@ class HTMLUL4Lexer(DelegatingLexer):
 
     name = 'HTML+UL4'
     aliases = ('html+ul4',)
-    filenames = ['*.htmlul4']
+    filenames = ('*.htmlul4',)
     url = 'https://python.livinglogic.de/UL4.html'
     version_added = ''
 
@@ -263,7 +263,7 @@ class XMLUL4Lexer(DelegatingLexer):
 
     name = 'XML+UL4'
     aliases = ('xml+ul4',)
-    filenames = ['*.xmlul4']
+    filenames = ('*.xmlul4',)
     url = 'https://python.livinglogic.de/UL4.html'
     version_added = ''
 
@@ -278,7 +278,7 @@ class CSSUL4Lexer(DelegatingLexer):
 
     name = 'CSS+UL4'
     aliases = ('css+ul4',)
-    filenames = ['*.cssul4']
+    filenames = ('*.cssul4',)
     url = 'https://python.livinglogic.de/UL4.html'
     version_added = ''
 
@@ -293,7 +293,7 @@ class JavascriptUL4Lexer(DelegatingLexer):
 
     name = 'Javascript+UL4'
     aliases = ('js+ul4',)
-    filenames = ['*.jsul4']
+    filenames = ('*.jsul4',)
     url = 'https://python.livinglogic.de/UL4.html'
     version_added = ''
 
@@ -308,7 +308,7 @@ class PythonUL4Lexer(DelegatingLexer):
 
     name = 'Python+UL4'
     aliases = ('py+ul4',)
-    filenames = ['*.pyul4']
+    filenames = ('*.pyul4',)
     url = 'https://python.livinglogic.de/UL4.html'
     version_added = ''
 

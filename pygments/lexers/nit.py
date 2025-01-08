@@ -24,7 +24,7 @@ class NitLexer(RegexLexer):
     name = 'Nit'
     url = 'http://nitlanguage.org'
     aliases = ('nit',)
-    filenames = ['*.nit']
+    filenames = ('*.nit',)
     version_added = '2.0'
     tokens: typing.ClassVar = {
         'root': [

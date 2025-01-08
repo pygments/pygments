@@ -25,7 +25,7 @@ class ElpiLexer(RegexLexer):
     name = 'Elpi'
     url = 'http://github.com/LPCIC/elpi'
     aliases = ('elpi',)
-    filenames = ['*.elpi']
+    filenames = ('*.elpi',)
     mimetypes = ['text/x-elpi']
     version_added = '2.11'
 

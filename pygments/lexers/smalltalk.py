@@ -24,7 +24,7 @@ class SmalltalkLexer(RegexLexer):
     """
     name = 'Smalltalk'
     url = 'http://www.smalltalk.org/'
-    filenames = ['*.st']
+    filenames = ('*.st',)
     aliases = ('smalltalk', 'squeak', 'st')
     mimetypes = ['text/x-smalltalk']
     version_added = '0.10'
@@ -143,7 +143,7 @@ class NewspeakLexer(RegexLexer):
     """
     name = 'Newspeak'
     url = 'http://newspeaklanguage.org/'
-    filenames = ['*.ns2']
+    filenames = ('*.ns2',)
     aliases = ['newspeak', ]
     mimetypes = ['text/x-newspeak']
     version_added = '1.1'

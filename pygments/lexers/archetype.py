@@ -139,7 +139,7 @@ class OdinLexer(AtomsLexer):
     """
     name = 'ODIN'
     aliases = ('odin',)
-    filenames = ['*.odin']
+    filenames = ('*.odin',)
     mimetypes = ['text/odin']
     url = 'https://github.com/openEHR/odin'
     version_added = '2.1'
@@ -188,7 +188,7 @@ class CadlLexer(AtomsLexer):
     """
     name = 'cADL'
     aliases = ('cadl',)
-    filenames = ['*.cadl']
+    filenames = ('*.cadl',)
     url = 'https://specifications.openehr.org/releases/AM/latest/ADL2.html#_cadl_constraint_adl'
     version_added = '2.1'
 

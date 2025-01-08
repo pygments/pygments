@@ -24,7 +24,7 @@ class IgorLexer(RegexLexer):
 
     name = 'Igor'
     aliases = ('igor', 'igorpro')
-    filenames = ['*.ipf']
+    filenames = ('*.ipf',)
     mimetypes = ['text/ipf']
     url = 'http://www.wavemetrics.com'
     version_added = '2.0'

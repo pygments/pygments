@@ -27,7 +27,7 @@ class LdifLexer(RegexLexer):
 
     name = 'LDIF'
     aliases = ('ldif',)
-    filenames = ['*.ldif']
+    filenames = ('*.ldif',)
     mimetypes = ["text/x-ldif"]
     url = "https://datatracker.ietf.org/doc/html/rfc2849"
     version_added = '2.17'

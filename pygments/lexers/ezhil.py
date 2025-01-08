@@ -25,7 +25,7 @@ class EzhilLexer(RegexLexer):
     name = 'Ezhil'
     url = 'http://ezhillang.org'
     aliases = ('ezhil',)
-    filenames = ['*.n']
+    filenames = ('*.n',)
     mimetypes = ['text/x-ezhil']
     version_added = '2.1'
     # Refer to tamil.utf8.tamil_letters from open-tamil for a stricter version of this.

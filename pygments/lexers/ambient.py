@@ -24,7 +24,7 @@ class AmbientTalkLexer(RegexLexer):
     """
     name = 'AmbientTalk'
     url = 'https://code.google.com/p/ambienttalk'
-    filenames = ['*.at']
+    filenames = ('*.at',)
     aliases = ('ambienttalk', 'ambienttalk/2', 'at')
     mimetypes = ['text/x-ambienttalk']
     version_added = '2.0'

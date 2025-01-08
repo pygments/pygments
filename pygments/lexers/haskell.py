@@ -38,7 +38,7 @@ class HaskellLexer(RegexLexer):
     name = 'Haskell'
     url = 'https://www.haskell.org/'
     aliases = ('haskell', 'hs')
-    filenames = ['*.hs']
+    filenames = ('*.hs',)
     mimetypes = ['text/x-haskell']
     version_added = '0.8'
 
@@ -170,7 +170,7 @@ class HspecLexer(HaskellLexer):
 
     name = 'Hspec'
     aliases = ('hspec',)
-    filenames = ['*Spec.hs']
+    filenames = ('*Spec.hs',)
     mimetypes = ()
     version_added = '2.4'
 
@@ -193,7 +193,7 @@ class IdrisLexer(RegexLexer):
     name = 'Idris'
     url = 'https://www.idris-lang.org/'
     aliases = ('idris', 'idr')
-    filenames = ['*.idr']
+    filenames = ('*.idr',)
     mimetypes = ['text/x-idris']
     version_added = '2.0'
 
@@ -304,7 +304,7 @@ class AgdaLexer(RegexLexer):
     name = 'Agda'
     url = 'http://wiki.portal.chalmers.se/agda/pmwiki.php'
     aliases = ('agda',)
-    filenames = ['*.agda']
+    filenames = ('*.agda',)
     mimetypes = ['text/x-agda']
     version_added = '2.0'
 
@@ -374,7 +374,7 @@ class CryptolLexer(RegexLexer):
     """
     name = 'Cryptol'
     aliases = ('cryptol', 'cry')
-    filenames = ['*.cry']
+    filenames = ('*.cry',)
     mimetypes = ['text/x-cryptol']
     url = 'https://www.cryptol.net'
     version_added = '2.0'
@@ -582,7 +582,7 @@ class LiterateHaskellLexer(LiterateLexer):
     """
     name = 'Literate Haskell'
     aliases = ('literate-haskell', 'lhaskell', 'lhs')
-    filenames = ['*.lhs']
+    filenames = ('*.lhs',)
     mimetypes = ['text/x-literate-haskell']
     url = 'https://wiki.haskell.org/Literate_programming'
     version_added = '0.9'
@@ -605,7 +605,7 @@ class LiterateIdrisLexer(LiterateLexer):
     """
     name = 'Literate Idris'
     aliases = ('literate-idris', 'lidris', 'lidr')
-    filenames = ['*.lidr']
+    filenames = ('*.lidr',)
     mimetypes = ['text/x-literate-idris']
     url = 'https://idris2.readthedocs.io/en/latest/reference/literate.html'
     version_added = '2.0'
@@ -628,7 +628,7 @@ class LiterateAgdaLexer(LiterateLexer):
     """
     name = 'Literate Agda'
     aliases = ('literate-agda', 'lagda')
-    filenames = ['*.lagda']
+    filenames = ('*.lagda',)
     mimetypes = ['text/x-literate-agda']
     url = 'https://agda.readthedocs.io/en/latest/tools/literate-programming.html'
     version_added = '2.0'
@@ -651,7 +651,7 @@ class LiterateCryptolLexer(LiterateLexer):
     """
     name = 'Literate Cryptol'
     aliases = ('literate-cryptol', 'lcryptol', 'lcry')
-    filenames = ['*.lcry']
+    filenames = ('*.lcry',)
     mimetypes = ['text/x-literate-cryptol']
     url = 'https://www.cryptol.net'
     version_added = '2.0'

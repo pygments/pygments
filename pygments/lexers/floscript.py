@@ -24,7 +24,7 @@ class FloScriptLexer(RegexLexer):
     name = 'FloScript'
     url = 'https://github.com/ioflo/ioflo'
     aliases = ('floscript', 'flo')
-    filenames = ['*.flo']
+    filenames = ('*.flo',)
     version_added = '2.4'
 
     def innerstring_rules(ttype):

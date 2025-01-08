@@ -180,7 +180,7 @@ class ObjdumpLexer(RegexLexer):
     """
     name = 'objdump'
     aliases = ('objdump',)
-    filenames = ['*.objdump']
+    filenames = ('*.objdump',)
     mimetypes = ['text/x-objdump']
     url = 'https://www.gnu.org/software/binutils'
     version_added = ''
@@ -194,7 +194,7 @@ class DObjdumpLexer(DelegatingLexer):
     """
     name = 'd-objdump'
     aliases = ('d-objdump',)
-    filenames = ['*.d-objdump']
+    filenames = ('*.d-objdump',)
     mimetypes = ['text/x-d-objdump']
     url = 'https://www.gnu.org/software/binutils'
     version_added = ''
@@ -224,7 +224,7 @@ class CObjdumpLexer(DelegatingLexer):
     """
     name = 'c-objdump'
     aliases = ('c-objdump',)
-    filenames = ['*.c-objdump']
+    filenames = ('*.c-objdump',)
     mimetypes = ['text/x-c-objdump']
     url = 'https://www.gnu.org/software/binutils'
     version_added = ''
@@ -240,7 +240,7 @@ class HsailLexer(RegexLexer):
     """
     name = 'HSAIL'
     aliases = ('hsail', 'hsa')
-    filenames = ['*.hsail']
+    filenames = ('*.hsail',)
     mimetypes = ['text/x-hsail']
     url = 'https://en.wikipedia.org/wiki/Heterogeneous_System_Architecture#HSA_Intermediate_Layer'
     version_added = '2.2'
@@ -376,7 +376,7 @@ class LlvmLexer(RegexLexer):
     name = 'LLVM'
     url = 'https://llvm.org/docs/LangRef.html'
     aliases = ('llvm',)
-    filenames = ['*.ll']
+    filenames = ('*.ll',)
     mimetypes = ['text/x-llvm']
     version_added = ''
 
@@ -664,7 +664,7 @@ class LlvmMirLexer(RegexLexer):
     name = 'LLVM-MIR'
     url = 'https://llvm.org/docs/MIRLangRef.html'
     aliases = ('llvm-mir',)
-    filenames = ['*.mir']
+    filenames = ('*.mir',)
     version_added = '2.6'
 
     tokens: typing.ClassVar = {
@@ -825,7 +825,7 @@ class NasmObjdumpLexer(ObjdumpLexer):
     """
     name = 'objdump-nasm'
     aliases = ('objdump-nasm',)
-    filenames = ['*.objdump-intel']
+    filenames = ('*.objdump-intel',)
     mimetypes = ['text/x-nasm-objdump']
     url = 'https://www.gnu.org/software/binutils'
     version_added = '2.0'
@@ -927,7 +927,7 @@ class Ca65Lexer(RegexLexer):
     """
     name = 'ca65 assembler'
     aliases = ('ca65',)
-    filenames = ['*.s']
+    filenames = ('*.s',)
     url = 'https://cc65.github.io'
     version_added = '1.6'
 

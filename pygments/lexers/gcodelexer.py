@@ -21,7 +21,7 @@ class GcodeLexer(RegexLexer):
     """
     name = 'g-code'
     aliases = ('gcode',)
-    filenames = ['*.gcode']
+    filenames = ('*.gcode',)
     url = 'https://en.wikipedia.org/wiki/G-code'
     version_added = '2.9'
 

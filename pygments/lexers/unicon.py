@@ -25,7 +25,7 @@ class UniconLexer(RegexLexer):
 
     name = 'Unicon'
     aliases = ('unicon',)
-    filenames = ['*.icn']
+    filenames = ('*.icn',)
     mimetypes = ['text/unicon']
     url = 'https://www.unicon.org'
     version_added = '2.4'

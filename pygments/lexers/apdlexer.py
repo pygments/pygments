@@ -24,7 +24,7 @@ class apdlexer(RegexLexer):
     """
     name = 'ANSYS parametric design language'
     aliases = ('ansys', 'apdl')
-    filenames = ['*.ans']
+    filenames = ('*.ans',)
     url = 'https://www.ansys.com'
     version_added = '2.9'
 

@@ -20,7 +20,7 @@ class XorgLexer(RegexLexer):
     name = 'Xorg'
     url = 'https://www.x.org/wiki/'
     aliases = ('xorg.conf',)
-    filenames = ['xorg.conf']
+    filenames = ('xorg.conf',)
     mimetypes = ()
     version_added = ''
 

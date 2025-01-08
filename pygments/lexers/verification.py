@@ -23,7 +23,7 @@ class BoogieLexer(RegexLexer):
     name = 'Boogie'
     url = 'https://boogie-docs.readthedocs.io/en/latest/'
     aliases = ('boogie',)
-    filenames = ['*.bpl']
+    filenames = ('*.bpl',)
     version_added = '2.1'
 
     tokens: typing.ClassVar = {

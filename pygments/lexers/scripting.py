@@ -248,7 +248,7 @@ class LuauLexer(RegexLexer):
     name = 'Luau'
     url = 'https://luau-lang.org/'
     aliases = ('luau',)
-    filenames = ['*.luau']
+    filenames = ('*.luau',)
     version_added = '2.18'
 
     _comment_multiline = r'(?:--\[(?P<level>=*)\[[\w\W]*?\](?P=level)\])'
@@ -513,7 +513,7 @@ class MoonScriptLexer(LuaLexer):
     name = 'MoonScript'
     url = 'http://moonscript.org'
     aliases = ('moonscript', 'moon')
-    filenames = ['*.moon']
+    filenames = ('*.moon',)
     mimetypes = ['text/x-moonscript', 'application/x-moonscript']
     version_added = '1.5'
 
@@ -582,7 +582,7 @@ class ChaiscriptLexer(RegexLexer):
     name = 'ChaiScript'
     url = 'http://chaiscript.com/'
     aliases = ('chaiscript', 'chai')
-    filenames = ['*.chai']
+    filenames = ('*.chai',)
     mimetypes = ['text/x-chaiscript', 'application/x-chaiscript']
     version_added = '2.0'
 
@@ -647,7 +647,7 @@ class LSLLexer(RegexLexer):
 
     name = 'LSL'
     aliases = ('lsl',)
-    filenames = ['*.lsl']
+    filenames = ('*.lsl',)
     mimetypes = ['text/x-lsl']
     url = 'https://wiki.secondlife.com/wiki/Linden_Scripting_Language'
     version_added = '2.0'
@@ -736,7 +736,7 @@ class AppleScriptLexer(RegexLexer):
     name = 'AppleScript'
     url = 'https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html'
     aliases = ('applescript',)
-    filenames = ['*.applescript']
+    filenames = ('*.applescript',)
     version_added = '1.0'
 
     flags = re.MULTILINE | re.DOTALL
@@ -1165,7 +1165,7 @@ class MOOCodeLexer(RegexLexer):
     """
     name = 'MOOCode'
     url = 'http://www.moo.mud.org/'
-    filenames = ['*.moo']
+    filenames = ('*.moo',)
     aliases = ('moocode', 'moo')
     mimetypes = ['text/x-moocode']
     version_added = '0.9'
@@ -1208,7 +1208,7 @@ class HybrisLexer(RegexLexer):
 
     name = 'Hybris'
     aliases = ('hybris',)
-    filenames = ['*.hyb']
+    filenames = ('*.hyb',)
     mimetypes = ['text/x-hybris', 'application/x-hybris']
     url = 'https://github.com/evilsocket/hybris'
     version_added = '1.4'
@@ -1497,7 +1497,7 @@ class JclLexer(RegexLexer):
     """
     name = 'JCL'
     aliases = ('jcl',)
-    filenames = ['*.jcl']
+    filenames = ('*.jcl',)
     mimetypes = ['text/x-jcl']
     url = 'https://en.wikipedia.org/wiki/Job_Control_Language'
     version_added = '2.1'
@@ -1580,7 +1580,7 @@ class MiniScriptLexer(RegexLexer):
     name = 'MiniScript'
     url = 'https://miniscript.org'
     aliases = ('miniscript', 'ms')
-    filenames = ['*.ms']
+    filenames = ('*.ms',)
     mimetypes = ['text/x-minicript', 'application/x-miniscript']
     version_added = '2.6'
 

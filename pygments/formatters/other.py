@@ -22,7 +22,7 @@ class NullFormatter(Formatter):
     """
     name = 'Text only'
     aliases = ('text', 'null')
-    filenames = ['*.txt']
+    filenames = ('*.txt',)
 
     def format(self, tokensource, outfile):
         enc = self.encoding
@@ -55,7 +55,7 @@ class RawTokenFormatter(Formatter):
     """
     name = 'Raw tokens'
     aliases = ('raw', 'tokens')
-    filenames = ['*.raw']
+    filenames = ('*.raw',)
 
     unicodeoutput = False
 

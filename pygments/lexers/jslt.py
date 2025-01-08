@@ -26,7 +26,7 @@ class JSLTLexer(RegexLexer):
     """
     name = 'JSLT'
     url = 'https://github.com/schibsted/jslt'
-    filenames = ['*.jslt']
+    filenames = ('*.jslt',)
     aliases = ('jslt',)
     mimetypes = ['text/x-jslt']
     version_added = '2.10'

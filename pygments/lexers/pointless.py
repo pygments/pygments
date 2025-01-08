@@ -24,7 +24,7 @@ class PointlessLexer(RegexLexer):
     name = 'Pointless'
     url = 'https://ptls.dev'
     aliases = ('pointless',)
-    filenames = ['*.ptls']
+    filenames = ('*.ptls',)
     version_added = '2.7'
 
     ops = words([

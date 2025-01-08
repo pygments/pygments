@@ -23,7 +23,7 @@ class DaxLexer(RegexLexer):
     """
     name = 'Dax'
     aliases = ('dax',)
-    filenames = ['*.dax']
+    filenames = ('*.dax',)
     url = 'https://learn.microsoft.com/en-us/dax/dax-function-reference'
     mimetypes = ()
     version_added = '2.15'

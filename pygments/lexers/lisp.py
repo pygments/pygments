@@ -498,7 +498,7 @@ class HyLexer(RegexLexer):
     name = 'Hy'
     url = 'http://hylang.org/'
     aliases = ('hylang', 'hy')
-    filenames = ['*.hy']
+    filenames = ('*.hy',)
     mimetypes = ['text/x-hy', 'application/x-hy']
     version_added = '2.0'
 
@@ -1675,7 +1675,7 @@ class EmacsLispLexer(RegexLexer):
     """
     name = 'EmacsLisp'
     aliases = ('emacs-lisp', 'elisp', 'emacs')
-    filenames = ['*.el']
+    filenames = ('*.el',)
     mimetypes = ['text/x-elisp', 'application/x-elisp']
     url = 'https://www.gnu.org/software/emacs'
     version_added = '2.1'
@@ -2320,7 +2320,7 @@ class ShenLexer(RegexLexer):
     name = 'Shen'
     url = 'http://shenlanguage.org/'
     aliases = ('shen',)
-    filenames = ['*.shen']
+    filenames = ('*.shen',)
     mimetypes = ['text/x-shen', 'application/x-shen']
     version_added = '2.1'
 
@@ -2483,7 +2483,7 @@ class CPSALexer(RegexLexer):
     """
     name = 'CPSA'
     aliases = ('cpsa',)
-    filenames = ['*.cpsa']
+    filenames = ('*.cpsa',)
     mimetypes = ()
     url = 'https://web.cs.wpi.edu/~guttman/cs564/cpsauser.html'
     version_added = '2.1'
@@ -2565,7 +2565,7 @@ class XtlangLexer(RegexLexer):
     name = 'xtlang'
     url = 'http://extempore.moso.com.au'
     aliases = ('extempore',)
-    filenames = ['*.xtm']
+    filenames = ('*.xtm',)
     mimetypes = ()
     version_added = '2.2'
 
@@ -2767,7 +2767,7 @@ class FennelLexer(RegexLexer):
     name = 'Fennel'
     url = 'https://fennel-lang.org'
     aliases = ('fennel', 'fnl')
-    filenames = ['*.fnl']
+    filenames = ('*.fnl',)
     version_added = '2.3'
 
     # this list is current as of Fennel version 0.10.0.

@@ -22,7 +22,7 @@ class SpiceLexer(RegexLexer):
     """
     name = 'Spice'
     url = 'https://www.spicelang.com'
-    filenames = ['*.spice']
+    filenames = ('*.spice',)
     aliases = ('spice', 'spicelang')
     mimetypes = ['text/x-spice']
     version_added = '2.11'

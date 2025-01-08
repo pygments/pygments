@@ -126,7 +126,7 @@ class VisualPrologGrammarLexer(VisualPrologBaseLexer):
     name = 'Visual Prolog Grammar'
     url = 'https://www.visual-prolog.com/'
     aliases = ('visualprologgrammar',)
-    filenames = ['*.vipgrm']
+    filenames = ('*.vipgrm',)
     version_added = '2.17'
 
     majorkw = ('open', 'namespace', 'grammar', 'nonterminals',

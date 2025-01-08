@@ -395,7 +395,7 @@ class MoselLexer(RegexLexer):
     """
     name = 'Mosel'
     aliases = ('mosel',)
-    filenames = ['*.mos']
+    filenames = ('*.mos',)
     url = 'https://www.fico.com/fico-xpress-optimization/docs/latest/mosel/mosel_lang/dhtml/moselreflang.html'
     version_added = '2.6'
 

@@ -88,7 +88,7 @@ class BefungeLexer(RegexLexer):
     name = 'Befunge'
     url = 'http://en.wikipedia.org/wiki/Befunge'
     aliases = ('befunge',)
-    filenames = ['*.befunge']
+    filenames = ('*.befunge',)
     mimetypes = ['application/x-befunge']
     version_added = '0.7'
 
@@ -191,7 +191,7 @@ class CapDLLexer(RegexLexer):
     name = 'CapDL'
     url = 'https://ssrg.nicta.com.au/publications/nictaabstracts/Kuz_KLW_10.abstract.pml'
     aliases = ('capdl',)
-    filenames = ['*.cdl']
+    filenames = ('*.cdl',)
     version_added = '2.2'
 
     tokens: typing.ClassVar = {
@@ -243,7 +243,7 @@ class RedcodeLexer(RegexLexer):
     """
     name = 'Redcode'
     aliases = ('redcode',)
-    filenames = ['*.cw']
+    filenames = ('*.cw',)
     url = 'https://en.wikipedia.org/wiki/Core_War'
     version_added = '0.8'
 
@@ -280,7 +280,7 @@ class AheuiLexer(RegexLexer):
     name = 'Aheui'
     url = 'http://aheui.github.io/'
     aliases = ('aheui',)
-    filenames = ['*.aheui']
+    filenames = ('*.aheui',)
     version_added = ''
 
     tokens: typing.ClassVar = {

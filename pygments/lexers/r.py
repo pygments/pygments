@@ -28,7 +28,7 @@ class RConsoleLexer(Lexer):
 
     name = 'RConsole'
     aliases = ('rconsole', 'rout')
-    filenames = ['*.Rout']
+    filenames = ('*.Rout',)
     url = 'https://www.r-project.org'
     version_added = ''
     _example = "rconsole/r-console-transcript.Rout"
@@ -169,7 +169,7 @@ class RdLexer(RegexLexer):
     """
     name = 'Rd'
     aliases = ('rd',)
-    filenames = ['*.Rd']
+    filenames = ('*.Rd',)
     mimetypes = ['text/x-r-doc']
     url = 'http://cran.r-project.org/doc/manuals/R-exts.html'
     version_added = '1.6'

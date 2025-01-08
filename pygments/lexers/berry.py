@@ -22,7 +22,7 @@ class BerryLexer(RegexLexer):
     """
     name = 'Berry'
     aliases = ('berry', 'be')
-    filenames = ['*.be']
+    filenames = ('*.be',)
     mimetypes = ['text/x-berry', 'application/x-berry']
     url = 'https://berry-lang.github.io'
     version_added = '2.12'
