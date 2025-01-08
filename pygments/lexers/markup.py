@@ -138,7 +138,7 @@ class RstLexer(RegexLexer):
     url = 'https://docutils.sourceforge.io/rst.html'
     aliases = ('restructuredtext', 'rst', 'rest')
     filenames = ('*.rst', '*.rest')
-    mimetypes = ["text/x-rst", "text/prs.fallenstein.rst"]
+    mimetypes = ("text/x-rst", "text/prs.fallenstein.rst")
     version_added = '0.7'
     flags = re.MULTILINE
 

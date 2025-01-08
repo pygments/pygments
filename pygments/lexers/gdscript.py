@@ -31,7 +31,7 @@ class GDScriptLexer(RegexLexer):
     url = 'https://www.godotengine.org'
     aliases = ["gdscript", "gd"]
     filenames = ("*.gd",)
-    mimetypes = ["text/x-gdscript", "application/x-gdscript"]
+    mimetypes = ("text/x-gdscript", "application/x-gdscript")
     version_added = ''
 
     def innerstring_rules(ttype):

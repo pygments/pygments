@@ -64,7 +64,7 @@ class JsxLexer(JavascriptLexer):
     name = "JSX"
     aliases = ["jsx", "react"]
     filenames = ("*.jsx", "*.react")
-    mimetypes = ["text/jsx", "text/typescript-jsx"]
+    mimetypes = ("text/jsx", "text/typescript-jsx")
     url = "https://facebook.github.io/jsx/"
     version_added = '2.17'
 
