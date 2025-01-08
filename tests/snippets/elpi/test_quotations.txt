@@ -100,7 +100,7 @@ dummy :- {{Record coqWorld (T : Type) :=
 ' '           Text.Whitespace
 'i:'          Keyword.Mode
 'int'         Keyword.Type
-','           Text
+','           Keyword.Mode
 ' '           Text.Whitespace
 'o:'          Keyword.Mode
 'term'        Keyword.Type
@@ -198,7 +198,7 @@ dummy :- {{Record coqWorld (T : Type) :=
 ' '           Text.Whitespace
 'i:'          Keyword.Mode
 'term'        Keyword.Type
-','           Text
+','           Keyword.Mode
 ' '           Text.Whitespace
 'o:'          Keyword.Mode
 'nat'         Keyword.Type
