@@ -36,7 +36,7 @@ class UsdLexer(RegexLexer):
     name = "USD"
     url = 'https://graphics.pixar.com/usd/release/index.html'
     aliases = ["usd", "usda"]
-    filenames = ["*.usd", "*.usda"]
+    filenames = ("*.usd", "*.usda")
     version_added = '2.6'
 
     tokens: typing.ClassVar = {
