@@ -28,7 +28,7 @@ class PromQLLexer(RegexLexer):
 
     name = "PromQL"
     url = 'https://prometheus.io/docs/prometheus/latest/querying/basics/'
-    aliases = ["promql"]
+    aliases = ("promql",)
     filenames = ("*.promql",)
     version_added = ''
 

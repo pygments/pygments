@@ -50,7 +50,7 @@ class MIMELexer(RegexLexer):
     """
 
     name = "MIME"
-    aliases = ["mime"]
+    aliases = ("mime",)
     mimetypes = ["multipart/mixed",
                  "multipart/related",
                  "multipart/alternative"]

@@ -60,7 +60,7 @@ class GraphQLLexer(RegexLexer):
     Lexer for GraphQL syntax
     """
     name = "GraphQL"
-    aliases = ["graphql"]
+    aliases = ("graphql",)
     filenames = ("*.graphql",)
     url = "https://graphql.org"
     version_added = '2.16'

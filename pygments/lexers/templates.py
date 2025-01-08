@@ -1961,7 +1961,7 @@ class HandlebarsHtmlLexer(DelegatingLexer):
     """
 
     name = "HTML+Handlebars"
-    aliases = ["html+handlebars"]
+    aliases = ("html+handlebars",)
     filenames = ('*.handlebars', '*.hbs')
     mimetypes = ('text/html+handlebars', 'text/x-handlebars-template')
     url = 'https://handlebarsjs.com/'
@@ -2285,7 +2285,7 @@ class TwigHtmlLexer(DelegatingLexer):
     """
 
     name = "HTML+Twig"
-    aliases = ["html+twig"]
+    aliases = ("html+twig",)
     filenames = ('*.twig',)
     mimetypes = ('text/html+twig',)
     url = 'https://twig.symfony.com'
@@ -2364,7 +2364,7 @@ class Angular2HtmlLexer(DelegatingLexer):
     """
 
     name = "HTML + Angular2"
-    aliases = ["html+ng2"]
+    aliases = ("html+ng2",)
     filenames = ('*.ng2',)
     url = 'https://angular.io/guide/template-syntax'
     version_added = '2.0'

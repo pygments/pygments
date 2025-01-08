@@ -22,7 +22,7 @@ class KLexer(RegexLexer):
     """
 
     name = "K"
-    aliases = ["k"]
+    aliases = ("k",)
     filenames = ("*.k",)
     url = "https://code.kx.com"
     version_added = '2.12'
@@ -156,7 +156,7 @@ class QLexer(KLexer):
     """
 
     name = "Q"
-    aliases = ["q"]
+    aliases = ("q",)
     filenames = ("*.q",)
     version_added = '2.12'
 

@@ -33,7 +33,7 @@ class SNBTLexer(RegexLexer):
 
     name = "SNBT"
     url = "https://minecraft.wiki/w/NBT_format"
-    aliases = ["snbt"]
+    aliases = ("snbt",)
     filenames = ("*.snbt",)
     mimetypes = ("text/snbt",)
     version_added = '2.12'

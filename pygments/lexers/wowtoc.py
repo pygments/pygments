@@ -50,7 +50,7 @@ class WoWTocLexer(RegexLexer):
     """
 
     name = "World of Warcraft TOC"
-    aliases = ["wowtoc"]
+    aliases = ("wowtoc",)
     filenames = ("*.toc",)
     url = 'https://wowpedia.fandom.com/wiki/TOC_format'
     version_added = '2.14'

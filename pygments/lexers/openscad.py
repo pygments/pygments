@@ -20,7 +20,7 @@ class OpenScadLexer(RegexLexer):
     """
     name = "OpenSCAD"
     url = "https://openscad.org/"
-    aliases = ["openscad"]
+    aliases = ("openscad",)
     filenames = ("*.scad",)
     mimetypes = ("application/x-openscad",)
     version_added = '2.16'
