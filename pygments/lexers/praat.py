@@ -23,7 +23,7 @@ class PraatLexer(RegexLexer):
 
     name = 'Praat'
     url = 'http://www.praat.org'
-    aliases = ['praat']
+    aliases = ('praat',)
     filenames = ['*.praat', '*.proc', '*.psc']
     version_added = '2.1'
 

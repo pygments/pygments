@@ -24,7 +24,7 @@ class ZigLexer(RegexLexer):
     """
     name = 'Zig'
     url = 'http://www.ziglang.org'
-    aliases = ['zig']
+    aliases = ('zig',)
     filenames = ['*.zig']
     mimetypes = ['text/zig']
     version_added = ''

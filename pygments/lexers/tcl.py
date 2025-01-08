@@ -44,7 +44,7 @@ class TclLexer(RegexLexer):
 
     name = 'Tcl'
     url = 'https://www.tcl.tk/about/language.html'
-    aliases = ['tcl']
+    aliases = ('tcl',)
     filenames = ['*.tcl', '*.rvt']
     mimetypes = ['text/x-tcl', 'text/x-script.tcl', 'application/x-tcl']
     version_added = '0.10'

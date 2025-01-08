@@ -26,7 +26,7 @@ class PddlLexer(RegexLexer):
     """
 
     name = 'PDDL'
-    aliases = ['pddl']
+    aliases = ('pddl',)
     filenames = ['*.pddl']
     # there doesn't really seem to be a PDDL homepage.
     url = 'https://en.wikipedia.org/wiki/Planning_Domain_Definition_Language'

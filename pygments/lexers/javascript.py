@@ -194,7 +194,7 @@ class KalLexer(RegexLexer):
 
     name = 'Kal'
     url = 'http://rzimmerman.github.io/kal'
-    aliases = ['kal']
+    aliases = ('kal',)
     filenames = ['*.kal']
     mimetypes = ['text/kal', 'application/kal']
     version_added = '2.0'
@@ -439,7 +439,7 @@ class DartLexer(RegexLexer):
 
     name = 'Dart'
     url = 'http://dart.dev/'
-    aliases = ['dart']
+    aliases = ('dart',)
     filenames = ['*.dart']
     mimetypes = ['text/x-dart']
     version_added = '1.5'
@@ -1142,7 +1142,7 @@ class MaskLexer(RegexLexer):
     """
     name = 'Mask'
     url = 'https://github.com/atmajs/MaskJS'
-    aliases = ['mask']
+    aliases = ('mask',)
     filenames = ['*.mask']
     mimetypes = ['text/x-mask']
     version_added = '2.0'
@@ -1478,7 +1478,7 @@ class JuttleLexer(RegexLexer):
 
     name = 'Juttle'
     url = 'http://juttle.github.io/'
-    aliases = ['juttle']
+    aliases = ('juttle',)
     filenames = ['*.juttle']
     mimetypes = ['application/juttle', 'application/x-juttle',
                  'text/x-juttle', 'text/juttle']

@@ -23,7 +23,7 @@ class SmithyLexer(RegexLexer):
     name = 'Smithy'
     url = 'https://awslabs.github.io/smithy/'
     filenames = ['*.smithy']
-    aliases = ['smithy']
+    aliases = ('smithy',)
     version_added = '2.10'
 
     unquoted = r'[A-Za-z0-9_\.#$-]+'

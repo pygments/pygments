@@ -23,7 +23,7 @@ class WrenLexer(RegexLexer):
     """
     name = 'Wren'
     url = 'https://wren.io'
-    aliases = ['wren']
+    aliases = ('wren',)
     filenames = ['*.wren']
     version_added = '2.14'
 

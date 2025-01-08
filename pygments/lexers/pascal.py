@@ -25,7 +25,7 @@ __all__ = ['DelphiLexer', 'PortugolLexer']
 class PortugolLexer(Lexer):
     """For Portugol, a Pascal dialect with keywords in Portuguese."""
     name = 'Portugol'
-    aliases = ['portugol']
+    aliases = ('portugol',)
     filenames = ['*.alg', '*.portugol']
     mimetypes = []
     url = "https://www.apoioinformatica.inf.br/produtos/visualg/linguagem"

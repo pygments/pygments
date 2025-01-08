@@ -87,7 +87,7 @@ class BefungeLexer(RegexLexer):
     """
     name = 'Befunge'
     url = 'http://en.wikipedia.org/wiki/Befunge'
-    aliases = ['befunge']
+    aliases = ('befunge',)
     filenames = ['*.befunge']
     mimetypes = ['application/x-befunge']
     version_added = '0.7'
@@ -190,7 +190,7 @@ class CapDLLexer(RegexLexer):
     """
     name = 'CapDL'
     url = 'https://ssrg.nicta.com.au/publications/nictaabstracts/Kuz_KLW_10.abstract.pml'
-    aliases = ['capdl']
+    aliases = ('capdl',)
     filenames = ['*.cdl']
     version_added = '2.2'
 
@@ -242,7 +242,7 @@ class RedcodeLexer(RegexLexer):
     Contributed by Adam Blinkinsop <blinks@acm.org>.
     """
     name = 'Redcode'
-    aliases = ['redcode']
+    aliases = ('redcode',)
     filenames = ['*.cw']
     url = 'https://en.wikipedia.org/wiki/Core_War'
     version_added = '0.8'
@@ -279,7 +279,7 @@ class AheuiLexer(RegexLexer):
 
     name = 'Aheui'
     url = 'http://aheui.github.io/'
-    aliases = ['aheui']
+    aliases = ('aheui',)
     filenames = ['*.aheui']
     version_added = ''
 

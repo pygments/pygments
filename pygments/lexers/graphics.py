@@ -29,7 +29,7 @@ class GLShaderLexer(RegexLexer):
     GLSL (OpenGL Shader) lexer.
     """
     name = 'GLSL'
-    aliases = ['glsl']
+    aliases = ('glsl',)
     filenames = ['*.vert', '*.frag', '*.geo']
     mimetypes = ['text/x-glslsrc']
     url = 'https://www.khronos.org/api/opengl'
@@ -160,7 +160,7 @@ class HLSLShaderLexer(RegexLexer):
     HLSL (Microsoft Direct3D Shader) lexer.
     """
     name = 'HLSL'
-    aliases = ['hlsl']
+    aliases = ('hlsl',)
     filenames = ['*.hlsl', '*.hlsli']
     mimetypes = ['text/x-hlsl']
     url = 'https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl'
@@ -537,7 +537,7 @@ class GnuplotLexer(RegexLexer):
 
     name = 'Gnuplot'
     url = 'http://gnuplot.info/'
-    aliases = ['gnuplot']
+    aliases = ('gnuplot',)
     filenames = ['*.plot', '*.plt']
     mimetypes = ['text/x-gnuplot']
     version_added = '0.11'
@@ -696,7 +696,7 @@ class PovrayLexer(RegexLexer):
     """
     name = 'POVRay'
     url = 'http://www.povray.org/'
-    aliases = ['pov']
+    aliases = ('pov',)
     filenames = ['*.pov', '*.inc']
     mimetypes = ['text/x-povray']
     version_added = '0.11'

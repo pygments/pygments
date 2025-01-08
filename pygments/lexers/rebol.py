@@ -23,7 +23,7 @@ class RebolLexer(RegexLexer):
     A REBOL lexer.
     """
     name = 'REBOL'
-    aliases = ['rebol']
+    aliases = ('rebol',)
     filenames = ['*.r', '*.r3', '*.reb']
     mimetypes = ['text/x-rebol']
     url = 'http://www.rebol.com'

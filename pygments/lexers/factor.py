@@ -22,7 +22,7 @@ class FactorLexer(RegexLexer):
     """
     name = 'Factor'
     url = 'http://factorcode.org'
-    aliases = ['factor']
+    aliases = ('factor',)
     filenames = ['*.factor']
     mimetypes = ['text/x-factor']
     version_added = '1.4'

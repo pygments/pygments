@@ -24,7 +24,7 @@ class UniconLexer(RegexLexer):
     """
 
     name = 'Unicon'
-    aliases = ['unicon']
+    aliases = ('unicon',)
     filenames = ['*.icn']
     mimetypes = ['text/unicon']
     url = 'https://www.unicon.org'
@@ -169,7 +169,7 @@ class IconLexer(RegexLexer):
     Lexer for Icon.
     """
     name = 'Icon'
-    aliases = ['icon']
+    aliases = ('icon',)
     filenames = ['*.icon', '*.ICON']
     mimetypes = []
     url = 'https://www2.cs.arizona.edu/icon'
@@ -310,7 +310,7 @@ class UcodeLexer(RegexLexer):
     Lexer for Icon ucode files.
     """
     name = 'ucode'
-    aliases = ['ucode']
+    aliases = ('ucode',)
     filenames = ['*.u', '*.u1', '*.u2']
     mimetypes = []
     url = 'http://www.unicon.org'

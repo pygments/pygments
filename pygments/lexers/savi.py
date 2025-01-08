@@ -39,7 +39,7 @@ class SaviLexer(RegexLexer):
 
     name = 'Savi'
     url = 'https://github.com/savi-lang/savi'
-    aliases = ['savi']
+    aliases = ('savi',)
     filenames = ['*.savi']
     version_added = ''
 

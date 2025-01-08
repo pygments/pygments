@@ -45,7 +45,7 @@ class JavaLexer(RegexLexer):
 
     name = 'Java'
     url = 'https://www.oracle.com/technetwork/java/'
-    aliases = ['java']
+    aliases = ('java',)
     filenames = ['*.java']
     mimetypes = ['text/x-java']
     version_added = ''
@@ -138,7 +138,7 @@ class AspectJLexer(JavaLexer):
 
     name = 'AspectJ'
     url = 'http://www.eclipse.org/aspectj/'
-    aliases = ['aspectj']
+    aliases = ('aspectj',)
     filenames = ['*.aj']
     mimetypes = ['text/x-aspectj']
     version_added = '1.6'
@@ -177,7 +177,7 @@ class ScalaLexer(RegexLexer):
 
     name = 'Scala'
     url = 'http://www.scala-lang.org'
-    aliases = ['scala']
+    aliases = ('scala',)
     filenames = ['*.scala']
     mimetypes = ['text/x-scala']
     version_added = ''
@@ -461,7 +461,7 @@ class GosuLexer(RegexLexer):
     """
 
     name = 'Gosu'
-    aliases = ['gosu']
+    aliases = ('gosu',)
     filenames = ['*.gs', '*.gsx', '*.gsp', '*.vark']
     mimetypes = ['text/x-gosu']
     url = 'https://gosu-lang.github.io'
@@ -540,7 +540,7 @@ class GosuTemplateLexer(Lexer):
     """
 
     name = 'Gosu Template'
-    aliases = ['gst']
+    aliases = ('gst',)
     filenames = ['*.gst']
     mimetypes = ['text/x-gosu-template']
     url = 'https://gosu-lang.github.io'
@@ -559,7 +559,7 @@ class GroovyLexer(RegexLexer):
 
     name = 'Groovy'
     url = 'https://groovy-lang.org/'
-    aliases = ['groovy']
+    aliases = ('groovy',)
     filenames = ['*.groovy','*.gradle']
     mimetypes = ['text/x-groovy']
     version_added = '1.5'
@@ -1026,7 +1026,7 @@ class CeylonLexer(RegexLexer):
 
     name = 'Ceylon'
     url = 'http://ceylon-lang.org/'
-    aliases = ['ceylon']
+    aliases = ('ceylon',)
     filenames = ['*.ceylon']
     mimetypes = ['text/x-ceylon']
     version_added = '1.6'
@@ -1105,7 +1105,7 @@ class KotlinLexer(RegexLexer):
 
     name = 'Kotlin'
     url = 'http://kotlinlang.org/'
-    aliases = ['kotlin']
+    aliases = ('kotlin',)
     filenames = ['*.kt', '*.kts']
     mimetypes = ['text/x-kotlin']
     version_added = '1.5'
@@ -1260,7 +1260,7 @@ class XtendLexer(RegexLexer):
 
     name = 'Xtend'
     url = 'https://www.eclipse.org/xtend/'
-    aliases = ['xtend']
+    aliases = ('xtend',)
     filenames = ['*.xtend']
     mimetypes = ['text/x-xtend']
     version_added = '1.6'
@@ -1325,7 +1325,7 @@ class PigLexer(RegexLexer):
 
     name = 'Pig'
     url = 'https://pig.apache.org/'
-    aliases = ['pig']
+    aliases = ('pig',)
     filenames = ['*.pig']
     mimetypes = ['text/x-pig']
     version_added = '2.0'
@@ -1393,7 +1393,7 @@ class GoloLexer(RegexLexer):
     name = 'Golo'
     url = 'http://golo-lang.org/'
     filenames = ['*.golo']
-    aliases = ['golo']
+    aliases = ('golo',)
     version_added = '2.0'
 
     tokens: typing.ClassVar = {
@@ -1765,7 +1765,7 @@ class SarlLexer(RegexLexer):
 
     name = 'SARL'
     url = 'http://www.sarl.io'
-    aliases = ['sarl']
+    aliases = ('sarl',)
     filenames = ['*.sarl']
     mimetypes = ['text/x-sarl']
     version_added = '2.4'

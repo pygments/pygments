@@ -20,7 +20,7 @@ class TactLexer(RegexLexer):
     """For Tact source code."""
 
     name = 'Tact'
-    aliases = ['tact']
+    aliases = ('tact',)
     filenames = ['*.tact']
     url = "https://tact-lang.org"
     version_added = '2.18'

@@ -23,7 +23,7 @@ class SophiaLexer(RegexLexer):
     """
 
     name = 'Sophia'
-    aliases = ['sophia']
+    aliases = ('sophia',)
     filenames = ['*.aes']
     mimetypes = []
     url = 'https://docs.aeternity.com/aesophia'

@@ -26,7 +26,7 @@ class GSQLLexer(RegexLexer):
 
     name = 'GSQL'
     url = 'https://docs.tigergraph.com/dev/gsql-ref'
-    aliases = ['gsql']
+    aliases = ('gsql',)
     filenames = ['*.gsql']
     version_added = '2.10'
 

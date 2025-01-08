@@ -22,7 +22,7 @@ class SolidityLexer(RegexLexer):
     """
 
     name = 'Solidity'
-    aliases = ['solidity']
+    aliases = ('solidity',)
     filenames = ['*.sol']
     mimetypes = []
     url = 'https://soliditylang.org'

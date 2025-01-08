@@ -82,7 +82,7 @@ class MonteLexer(RegexLexer):
     """
     name = 'Monte'
     url = 'https://monte.readthedocs.io/'
-    aliases = ['monte']
+    aliases = ('monte',)
     filenames = ['*.mt']
     version_added = '2.2'
 

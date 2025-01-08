@@ -22,7 +22,7 @@ class APLLexer(RegexLexer):
     """
     name = 'APL'
     url = 'https://en.m.wikipedia.org/wiki/APL_(programming_language)'
-    aliases = ['apl']
+    aliases = ('apl',)
     filenames = [
         '*.apl', '*.aplf', '*.aplo', '*.apln',  
         '*.aplc', '*.apli', '*.dyalog',

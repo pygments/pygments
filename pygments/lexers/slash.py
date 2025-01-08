@@ -174,7 +174,7 @@ class SlashLexer(DelegatingLexer):
     """
 
     name = 'Slash'
-    aliases = ['slash']
+    aliases = ('slash',)
     filenames = ['*.sla']
     url = 'https://github.com/arturadib/Slash-A'
     version_added = '2.4'

@@ -797,7 +797,7 @@ class Python2TracebackLexer(RegexLexer):
     """
 
     name = 'Python 2.x Traceback'
-    aliases = ['py2tb']
+    aliases = ('py2tb',)
     filenames = ['*.py2tb']
     mimetypes = ['text/x-python2-traceback']
     url = 'https://python.org'
@@ -1021,7 +1021,7 @@ class DgLexer(RegexLexer):
     running on the CPython 3 VM.
     """
     name = 'dg'
-    aliases = ['dg']
+    aliases = ('dg',)
     filenames = ['*.dg']
     mimetypes = ['text/x-dg']
     url = 'http://pyos.github.io/dg'
@@ -1120,7 +1120,7 @@ class NumPyLexer(PythonLexer):
 
     name = 'NumPy'
     url = 'https://numpy.org/'
-    aliases = ['numpy']
+    aliases = ('numpy',)
     version_added = '0.10'
 
     # override the mimetypes to not inherit them from python

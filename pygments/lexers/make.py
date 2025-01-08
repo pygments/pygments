@@ -73,7 +73,7 @@ class BaseMakefileLexer(RegexLexer):
     """
 
     name = 'Base Makefile'
-    aliases = ['basemake']
+    aliases = ('basemake',)
     filenames = []
     mimetypes = []
     url = 'https://en.wikipedia.org/wiki/Make_(software)'
@@ -135,7 +135,7 @@ class CMakeLexer(RegexLexer):
     """
     name = 'CMake'
     url = 'https://cmake.org/documentation/'
-    aliases = ['cmake']
+    aliases = ('cmake',)
     filenames = ['*.cmake', 'CMakeLists.txt']
     mimetypes = ['text/x-cmake']
     version_added = '1.2'

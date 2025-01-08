@@ -27,7 +27,7 @@ class CypherLexer(RegexLexer):
     """
     name = 'Cypher'
     url = 'https://neo4j.com/docs/developer-manual/3.3/cypher/'
-    aliases = ['cypher']
+    aliases = ('cypher',)
     filenames = ['*.cyp', '*.cypher']
     version_added = '2.0'
 

@@ -21,7 +21,7 @@ class BoaLexer(RegexLexer):
     Lexer for the Boa language.
     """
     name = 'Boa'
-    aliases = ['boa']
+    aliases = ('boa',)
     filenames = ['*.boa']
     url = 'https://boa.cs.iastate.edu/docs'
     version_added = '2.4'

@@ -23,7 +23,7 @@ class RitaLexer(RegexLexer):
     name = 'Rita'
     url = 'https://github.com/zaibacu/rita-dsl'
     filenames = ['*.rita']
-    aliases = ['rita']
+    aliases = ('rita',)
     mimetypes = ['text/rita']
     version_added = '2.11'
 

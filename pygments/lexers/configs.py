@@ -105,7 +105,7 @@ class DesktopLexer(RegexLexer):
 
     name = 'Desktop file'
     url = "https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html"
-    aliases = ['desktop']
+    aliases = ('desktop',)
     filenames = ['*.desktop']
     mimetypes = ['application/x-desktop']
     version_added = '2.16'
@@ -135,7 +135,7 @@ class SystemdLexer(RegexLexer):
 
     name = 'Systemd'
     url = "https://www.freedesktop.org/software/systemd/man/systemd.syntax.html"
-    aliases = ['systemd']
+    aliases = ('systemd',)
     filenames = [
         '*.service', '*.socket', '*.device', '*.mount', '*.automount',
         '*.swap', '*.target', '*.path', '*.timer', '*.slice', '*.scope',
@@ -179,7 +179,7 @@ class RegeditLexer(RegexLexer):
 
     name = 'reg'
     url = 'http://en.wikipedia.org/wiki/Windows_Registry#.REG_files'
-    aliases = ['registry']
+    aliases = ('registry',)
     filenames = ['*.reg']
     mimetypes = ['text/x-windows-registry']
     version_added = '1.6'
@@ -607,7 +607,7 @@ class NginxConfLexer(RegexLexer):
     """
     name = 'Nginx configuration file'
     url = 'http://nginx.net/'
-    aliases = ['nginx']
+    aliases = ('nginx',)
     filenames = ['nginx.conf']
     mimetypes = ['text/x-nginx-conf']
     version_added = '0.11'
@@ -886,7 +886,7 @@ class TermcapLexer(RegexLexer):
     This is very simple and minimal.
     """
     name = 'Termcap'
-    aliases = ['termcap']
+    aliases = ('termcap',)
     filenames = ['termcap', 'termcap.src']
     mimetypes = []
     url = 'https://en.wikipedia.org/wiki/Termcap'
@@ -933,7 +933,7 @@ class TerminfoLexer(RegexLexer):
     This is very simple and minimal.
     """
     name = 'Terminfo'
-    aliases = ['terminfo']
+    aliases = ('terminfo',)
     filenames = ['terminfo', 'terminfo.src']
     mimetypes = []
     url = 'https://en.wikipedia.org/wiki/Terminfo'
@@ -981,7 +981,7 @@ class PkgConfigLexer(RegexLexer):
 
     name = 'PkgConfig'
     url = 'http://www.freedesktop.org/wiki/Software/pkg-config/'
-    aliases = ['pkgconfig']
+    aliases = ('pkgconfig',)
     filenames = ['*.pc']
     mimetypes = []
     version_added = '2.1'
@@ -1049,7 +1049,7 @@ class PacmanConfLexer(RegexLexer):
 
     name = 'PacmanConf'
     url = 'https://www.archlinux.org/pacman/pacman.conf.5.html'
-    aliases = ['pacmanconf']
+    aliases = ('pacmanconf',)
     filenames = ['pacman.conf']
     mimetypes = []
     version_added = '2.1'
@@ -1093,7 +1093,7 @@ class AugeasLexer(RegexLexer):
     """
     name = 'Augeas'
     url = 'http://augeas.net'
-    aliases = ['augeas']
+    aliases = ('augeas',)
     filenames = ['*.aug']
     version_added = '2.4'
 
@@ -1137,7 +1137,7 @@ class TOMLLexer(RegexLexer):
     """
 
     name = 'TOML'
-    aliases = ['toml']
+    aliases = ('toml',)
     filenames = ['*.toml', 'Pipfile', 'poetry.lock']
     mimetypes = ['application/toml']
     url = 'https://toml.io'
@@ -1388,7 +1388,7 @@ class SingularityLexer(RegexLexer):
 
     name = 'Singularity'
     url = 'https://www.sylabs.io/guides/3.0/user-guide/definition_files.html'
-    aliases = ['singularity']
+    aliases = ('singularity',)
     filenames = ['*.def', 'Singularity']
     version_added = '2.6'
     flags = re.IGNORECASE | re.MULTILINE | re.DOTALL

@@ -22,7 +22,7 @@ class DaxLexer(RegexLexer):
     Referenced from: https://github.com/sql-bi/SyntaxHighlighterBrushDax
     """
     name = 'Dax'
-    aliases = ['dax']
+    aliases = ('dax',)
     filenames = ['*.dax']
     url = 'https://learn.microsoft.com/en-us/dax/dax-function-reference'
     mimetypes = []

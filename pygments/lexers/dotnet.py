@@ -205,7 +205,7 @@ class NemerleLexer(RegexLexer):
 
     name = 'Nemerle'
     url = 'http://nemerle.org'
-    aliases = ['nemerle']
+    aliases = ('nemerle',)
     filenames = ['*.n']
     mimetypes = ['text/x-nemerle']  # inferred
     version_added = '1.5'
@@ -366,7 +366,7 @@ class BooLexer(RegexLexer):
 
     name = 'Boo'
     url = 'https://github.com/boo-lang/boo'
-    aliases = ['boo']
+    aliases = ('boo',)
     filenames = ['*.boo']
     mimetypes = ['text/x-boo']
     version_added = ''
@@ -571,7 +571,7 @@ class CSharpAspxLexer(DelegatingLexer):
     """
 
     name = 'aspx-cs'
-    aliases = ['aspx-cs']
+    aliases = ('aspx-cs',)
     filenames = ['*.aspx', '*.asax', '*.ascx', '*.ashx', '*.asmx', '*.axd']
     mimetypes = []
     url = 'https://dotnet.microsoft.com/en-us/apps/aspnet'
@@ -593,7 +593,7 @@ class VbNetAspxLexer(DelegatingLexer):
     """
 
     name = 'aspx-vb'
-    aliases = ['aspx-vb']
+    aliases = ('aspx-vb',)
     filenames = ['*.aspx', '*.asax', '*.ascx', '*.ashx', '*.asmx', '*.axd']
     mimetypes = []
     url = 'https://dotnet.microsoft.com/en-us/apps/aspnet'

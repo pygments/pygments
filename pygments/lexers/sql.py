@@ -230,7 +230,7 @@ class PlPgsqlLexer(PostgresBase, RegexLexer):
     Handle the extra syntax in Pl/pgSQL language.
     """
     name = 'PL/pgSQL'
-    aliases = ['plpgsql']
+    aliases = ('plpgsql',)
     mimetypes = ['text/x-plpgsql']
     url = 'https://www.postgresql.org/docs/current/plpgsql.html'
     version_added = '1.5'
@@ -397,7 +397,7 @@ class PostgresExplainLexer(RegexLexer):
     """
 
     name = 'PostgreSQL EXPLAIN dialect'
-    aliases = ['postgres-explain']
+    aliases = ('postgres-explain',)
     filenames = ['*.explain']
     mimetypes = ['text/x-postgresql-explain']
     url = 'https://www.postgresql.org/docs/current/using-explain.html'
@@ -584,7 +584,7 @@ class SqlLexer(RegexLexer):
     """
 
     name = 'SQL'
-    aliases = ['sql']
+    aliases = ('sql',)
     filenames = ['*.sql']
     mimetypes = ['text/x-sql']
     url = 'https://en.wikipedia.org/wiki/SQL'
@@ -807,7 +807,7 @@ class MySqlLexer(RegexLexer):
     """
 
     name = 'MySQL'
-    aliases = ['mysql']
+    aliases = ('mysql',)
     mimetypes = ['text/x-mysql']
     url = 'https://www.mysql.com'
     version_added = ''
@@ -1148,7 +1148,7 @@ class SqliteConsoleLexer(Lexer):
     """
 
     name = 'sqlite3con'
-    aliases = ['sqlite3']
+    aliases = ('sqlite3',)
     filenames = ['*.sqlite3-console']
     mimetypes = ['text/x-sqlite3-console']
     url = 'https://www.sqlite.org'
@@ -1190,7 +1190,7 @@ class RqlLexer(RegexLexer):
     """
     name = 'RQL'
     url = 'http://www.logilab.org/project/rql'
-    aliases = ['rql']
+    aliases = ('rql',)
     filenames = ['*.rql']
     mimetypes = ['text/x-rql']
     version_added = '2.0'

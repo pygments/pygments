@@ -116,7 +116,7 @@ class VimLexer(RegexLexer):
     Lexer for VimL script files.
     """
     name = 'VimL'
-    aliases = ['vim']
+    aliases = ('vim',)
     filenames = ['*.vim', '.vimrc', '.exrc', '.gvimrc',
                  '_vimrc', '_exrc', '_gvimrc', 'vimrc', 'gvimrc']
     mimetypes = ['text/x-vim']

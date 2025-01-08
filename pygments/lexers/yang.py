@@ -21,7 +21,7 @@ class YangLexer(RegexLexer):
     """
     name = 'YANG'
     url = 'https://tools.ietf.org/html/rfc7950/'
-    aliases = ['yang']
+    aliases = ('yang',)
     filenames = ['*.yang']
     mimetypes = ['application/yang']
     version_added = '2.7'

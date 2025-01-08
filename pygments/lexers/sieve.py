@@ -31,7 +31,7 @@ class SieveLexer(RegexLexer):
     """
     name = 'Sieve'
     filenames = ['*.siv', '*.sieve']
-    aliases = ['sieve']
+    aliases = ('sieve',)
     url = 'https://en.wikipedia.org/wiki/Sieve_(mail_filtering_language)'
     version_added = '2.6'
 

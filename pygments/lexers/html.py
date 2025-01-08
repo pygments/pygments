@@ -42,7 +42,7 @@ class HtmlLexer(RegexLexer):
 
     name = 'HTML'
     url = 'https://html.spec.whatwg.org/'
-    aliases = ['html']
+    aliases = ('html',)
     filenames = ['*.html', '*.htm', '*.xhtml', '*.xslt']
     mimetypes = ['text/html', 'application/xhtml+xml']
     version_added = ''
@@ -121,7 +121,7 @@ class DtdLexer(RegexLexer):
     flags = re.MULTILINE | re.DOTALL
 
     name = 'DTD'
-    aliases = ['dtd']
+    aliases = ('dtd',)
     filenames = ['*.dtd']
     mimetypes = ['application/xml-dtd']
     url = 'https://en.wikipedia.org/wiki/Document_type_definition'
@@ -209,7 +209,7 @@ class XmlLexer(RegexLexer):
     flags = re.MULTILINE | re.DOTALL
 
     name = 'XML'
-    aliases = ['xml']
+    aliases = ('xml',)
     filenames = ['*.xml', '*.xsl', '*.rss', '*.xslt', '*.xsd',
                  '*.wsdl', '*.wsf']
     mimetypes = ['text/xml', 'application/xml', 'image/svg+xml',
@@ -253,7 +253,7 @@ class XsltLexer(XmlLexer):
     """
 
     name = 'XSLT'
-    aliases = ['xslt']
+    aliases = ('xslt',)
     filenames = ['*.xsl', '*.xslt', '*.xpl']  # xpl is XProc
     mimetypes = ['application/xsl+xml', 'application/xslt+xml']
     url = 'https://www.w3.org/TR/xslt-30'
@@ -290,7 +290,7 @@ class HamlLexer(ExtendedRegexLexer):
     """
 
     name = 'Haml'
-    aliases = ['haml']
+    aliases = ('haml',)
     filenames = ['*.haml']
     mimetypes = ['text/x-haml']
     url = 'https://haml.info'
@@ -401,7 +401,7 @@ class ScamlLexer(ExtendedRegexLexer):
     """
 
     name = 'Scaml'
-    aliases = ['scaml']
+    aliases = ('scaml',)
     filenames = ['*.scaml']
     mimetypes = ['text/x-scaml']
     url = 'https://scalate.github.io/scalate/'
@@ -623,7 +623,7 @@ class UrlEncodedLexer(RegexLexer):
     """
 
     name = 'urlencoded'
-    aliases = ['urlencoded']
+    aliases = ('urlencoded',)
     mimetypes = ['application/x-www-form-urlencoded']
     url = 'https://en.wikipedia.org/wiki/Percent-encoding'
     version_added = '2.16'
@@ -642,7 +642,7 @@ class VueLexer(HtmlLexer):
 
     name = 'Vue'
     url = 'https://vuejs.org/api/sfc-spec.html'
-    aliases = ['vue']
+    aliases = ('vue',)
     filenames = ['*.vue']
     mimetypes = []
     version_added = '2.19'

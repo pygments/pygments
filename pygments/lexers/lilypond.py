@@ -55,7 +55,7 @@ class LilyPondLexer(SchemeLexer):
     """
     name = 'LilyPond'
     url = 'https://lilypond.org'
-    aliases = ['lilypond']
+    aliases = ('lilypond',)
     filenames = ['*.ly']
     mimetypes = []
     version_added = '2.11'

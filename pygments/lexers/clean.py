@@ -25,7 +25,7 @@ class CleanLexer(ExtendedRegexLexer):
     """
     name = 'Clean'
     url = 'http://clean.cs.ru.nl/Clean'
-    aliases = ['clean']
+    aliases = ('clean',)
     filenames = ['*.icl', '*.dcl']
     version_added = ''
 

@@ -29,7 +29,7 @@ class TypstLexer(RegexLexer):
     """
 
     name = 'Typst'
-    aliases = ['typst']
+    aliases = ('typst',)
     filenames = ['*.typ']
     mimetypes = ['text/x-typst']
     url = 'https://typst.app'

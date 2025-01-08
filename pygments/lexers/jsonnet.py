@@ -38,7 +38,7 @@ class JsonnetLexer(RegexLexer):
     """Lexer for Jsonnet source code."""
 
     name = 'Jsonnet'
-    aliases = ['jsonnet']
+    aliases = ('jsonnet',)
     filenames = ['*.jsonnet', '*.libsonnet']
     url = "https://jsonnet.org"
     version_added = ''

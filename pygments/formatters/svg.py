@@ -87,7 +87,7 @@ class SvgFormatter(Formatter):
         and defaults to ``True``.
     """
     name = 'SVG'
-    aliases = ['svg']
+    aliases = ('svg',)
     filenames = ['*.svg']
 
     def __init__(self, **options):

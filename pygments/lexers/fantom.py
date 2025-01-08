@@ -24,7 +24,7 @@ class FantomLexer(RegexLexer):
     For Fantom source code.
     """
     name = 'Fantom'
-    aliases = ['fan']
+    aliases = ('fan',)
     filenames = ['*.fan']
     mimetypes = ['application/x-fantom']
     url = 'https://www.fantom.org'

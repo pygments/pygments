@@ -23,7 +23,7 @@ class PrologLexer(RegexLexer):
     Lexer for Prolog files.
     """
     name = 'Prolog'
-    aliases = ['prolog']
+    aliases = ('prolog',)
     filenames = ['*.ecl', '*.prolog', '*.pro', '*.pl']
     mimetypes = ['text/x-prolog']
     url = 'https://en.wikipedia.org/wiki/Prolog'
@@ -96,7 +96,7 @@ class LogtalkLexer(RegexLexer):
 
     name = 'Logtalk'
     url = 'http://logtalk.org/'
-    aliases = ['logtalk']
+    aliases = ('logtalk',)
     filenames = ['*.lgt', '*.logtalk']
     mimetypes = ['text/x-logtalk']
     version_added = '0.10'

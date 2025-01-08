@@ -202,7 +202,7 @@ class AutoItLexer(RegexLexer):
     """
     name = 'AutoIt'
     url = 'http://www.autoitscript.com/site/autoit/'
-    aliases = ['autoit']
+    aliases = ('autoit',)
     filenames = ['*.au3']
     mimetypes = ['text/x-autoit']
     version_added = '1.6'

@@ -22,7 +22,7 @@ class CapnProtoLexer(RegexLexer):
     name = 'Cap\'n Proto'
     url = 'https://capnproto.org'
     filenames = ['*.capnp']
-    aliases = ['capnp']
+    aliases = ('capnp',)
     version_added = '2.2'
 
     tokens: typing.ClassVar = {

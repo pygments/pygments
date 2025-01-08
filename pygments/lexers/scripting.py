@@ -62,7 +62,7 @@ class LuaLexer(RegexLexer):
 
     name = 'Lua'
     url = 'https://www.lua.org/'
-    aliases = ['lua']
+    aliases = ('lua',)
     filenames = ['*.lua', '*.wlua']
     mimetypes = ['text/x-lua', 'application/x-lua']
     version_added = ''
@@ -247,7 +247,7 @@ class LuauLexer(RegexLexer):
 
     name = 'Luau'
     url = 'https://luau-lang.org/'
-    aliases = ['luau']
+    aliases = ('luau',)
     filenames = ['*.luau']
     version_added = '2.18'
 
@@ -646,7 +646,7 @@ class LSLLexer(RegexLexer):
     """
 
     name = 'LSL'
-    aliases = ['lsl']
+    aliases = ('lsl',)
     filenames = ['*.lsl']
     mimetypes = ['text/x-lsl']
     url = 'https://wiki.secondlife.com/wiki/Linden_Scripting_Language'
@@ -735,7 +735,7 @@ class AppleScriptLexer(RegexLexer):
 
     name = 'AppleScript'
     url = 'https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html'
-    aliases = ['applescript']
+    aliases = ('applescript',)
     filenames = ['*.applescript']
     version_added = '1.0'
 
@@ -1207,7 +1207,7 @@ class HybrisLexer(RegexLexer):
     """
 
     name = 'Hybris'
-    aliases = ['hybris']
+    aliases = ('hybris',)
     filenames = ['*.hyb']
     mimetypes = ['text/x-hybris', 'application/x-hybris']
     url = 'https://github.com/evilsocket/hybris'
@@ -1304,7 +1304,7 @@ class EasytrieveLexer(RegexLexer):
     mainframe's native file formats. It is somewhat comparable to awk.
     """
     name = 'Easytrieve'
-    aliases = ['easytrieve']
+    aliases = ('easytrieve',)
     filenames = ['*.ezt', '*.mac']
     mimetypes = ['text/x-easytrieve']
     url = 'https://www.broadcom.com/products/mainframe/application-development/easytrieve-report-generator'
@@ -1496,7 +1496,7 @@ class JclLexer(RegexLexer):
     comparable to MS DOS batch and Unix shell scripts.
     """
     name = 'JCL'
-    aliases = ['jcl']
+    aliases = ('jcl',)
     filenames = ['*.jcl']
     mimetypes = ['text/x-jcl']
     url = 'https://en.wikipedia.org/wiki/Job_Control_Language'

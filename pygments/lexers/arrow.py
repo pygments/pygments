@@ -27,7 +27,7 @@ class ArrowLexer(RegexLexer):
 
     name = 'Arrow'
     url = 'https://pypi.org/project/py-arrow-lang/'
-    aliases = ['arrow']
+    aliases = ('arrow',)
     filenames = ['*.arw']
     version_added = '2.7'
 

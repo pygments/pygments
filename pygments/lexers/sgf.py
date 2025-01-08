@@ -24,7 +24,7 @@ class SmartGameFormatLexer(RegexLexer):
     """
     name = 'SmartGameFormat'
     url = 'https://www.red-bean.com/sgf/'
-    aliases = ['sgf']
+    aliases = ('sgf',)
     filenames = ['*.sgf']
     version_added = '2.4'
 

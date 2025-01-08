@@ -32,7 +32,7 @@ class CobolLexer(RegexLexer):
     Lexer for OpenCOBOL code.
     """
     name = 'COBOL'
-    aliases = ['cobol']
+    aliases = ('cobol',)
     filenames = ['*.cob', '*.COB', '*.cpy', '*.CPY']
     mimetypes = ['text/x-cobol']
     url = 'https://en.wikipedia.org/wiki/COBOL'
@@ -231,7 +231,7 @@ class CobolFreeformatLexer(CobolLexer):
     Lexer for Free format OpenCOBOL code.
     """
     name = 'COBOLFree'
-    aliases = ['cobolfree']
+    aliases = ('cobolfree',)
     filenames = ['*.cbl', '*.CBL']
     mimetypes = []
     url = 'https://opencobol.add1tocobol.com'
@@ -251,7 +251,7 @@ class ABAPLexer(RegexLexer):
     Lexer for ABAP, SAP's integrated language.
     """
     name = 'ABAP'
-    aliases = ['abap']
+    aliases = ('abap',)
     filenames = ['*.abap', '*.ABAP']
     mimetypes = ['text/x-abap']
     url = 'https://community.sap.com/topics/abap'
@@ -529,7 +529,7 @@ class GoodDataCLLexer(RegexLexer):
     """
 
     name = 'GoodData-CL'
-    aliases = ['gooddata-cl']
+    aliases = ('gooddata-cl',)
     filenames = ['*.gdc']
     mimetypes = ['text/x-gooddata-cl']
     url = 'https://github.com/gooddata/GoodData-CL'
@@ -576,7 +576,7 @@ class MaqlLexer(RegexLexer):
     """
 
     name = 'MAQL'
-    aliases = ['maql']
+    aliases = ('maql',)
     filenames = ['*.maql']
     mimetypes = ['text/x-gooddata-maql', 'application/x-gooddata-maql']
     url = 'https://help.gooddata.com/doc/enterprise/en/dashboards-and-insights/maql-analytical-query-language'

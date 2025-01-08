@@ -25,7 +25,7 @@ class SmaliLexer(RegexLexer):
     """
     name = 'Smali'
     url = 'http://code.google.com/p/smali/'
-    aliases = ['smali']
+    aliases = ('smali',)
     filenames = ['*.smali']
     mimetypes = ['text/smali']
     version_added = '1.6'

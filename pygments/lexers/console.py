@@ -22,7 +22,7 @@ class VCTreeStatusLexer(RegexLexer):
     status" or "svn status".
     """
     name = 'VCTreeStatus'
-    aliases = ['vctreestatus']
+    aliases = ('vctreestatus',)
     filenames = []
     mimetypes = []
     url = ""

@@ -36,7 +36,7 @@ class HexdumpLexer(RegexLexer):
     * ``DEBUG.EXE FILE.COM`` and entering ``d`` to the prompt.
     """
     name = 'Hexdump'
-    aliases = ['hexdump']
+    aliases = ('hexdump',)
     url = 'https://en.wikipedia.org/wiki/Hex_dump'
     version_added = '2.1'
 

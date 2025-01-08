@@ -31,7 +31,7 @@ class ErlangLexer(RegexLexer):
 
     name = 'Erlang'
     url = 'https://www.erlang.org/'
-    aliases = ['erlang']
+    aliases = ('erlang',)
     filenames = ['*.erl', '*.hrl', '*.es', '*.escript']
     mimetypes = ['text/x-erlang']
     version_added = '0.9'
@@ -156,7 +156,7 @@ class ErlangShellLexer(Lexer):
     Shell sessions in erl (for Erlang code).
     """
     name = 'Erlang erl session'
-    aliases = ['erl']
+    aliases = ('erl',)
     filenames = ['*.erl-sh']
     mimetypes = ['text/x-erl-shellsession']
     url = 'https://www.erlang.org/'
@@ -490,7 +490,7 @@ class ElixirConsoleLexer(Lexer):
     """
 
     name = 'Elixir iex session'
-    aliases = ['iex']
+    aliases = ('iex',)
     mimetypes = ['text/x-elixir-shellsession']
     url = 'https://elixir-lang.org'
     version_added = '1.5'

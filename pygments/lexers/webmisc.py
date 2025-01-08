@@ -893,7 +893,7 @@ class CirruLexer(RegexLexer):
 
     name = 'Cirru'
     url = 'http://cirru.org/'
-    aliases = ['cirru']
+    aliases = ('cirru',)
     filenames = ['*.cirru']
     mimetypes = ['text/x-cirru']
     version_added = '2.0'
@@ -940,7 +940,7 @@ class SlimLexer(ExtendedRegexLexer):
     """
 
     name = 'Slim'
-    aliases = ['slim']
+    aliases = ('slim',)
     filenames = ['*.slim']
     mimetypes = ['text/x-slim']
     url = 'https://slim-template.github.io'

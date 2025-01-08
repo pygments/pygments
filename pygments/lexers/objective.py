@@ -225,7 +225,7 @@ class LogosLexer(ObjectiveCppLexer):
     """
 
     name = 'Logos'
-    aliases = ['logos']
+    aliases = ('logos',)
     filenames = ['*.x', '*.xi', '*.xm', '*.xmi']
     mimetypes = ['text/x-logos']
     version_added = '1.6'
@@ -289,7 +289,7 @@ class SwiftLexer(RegexLexer):
     name = 'Swift'
     url = 'https://www.swift.org/'
     filenames = ['*.swift']
-    aliases = ['swift']
+    aliases = ('swift',)
     mimetypes = ['text/x-swift']
     version_added = '2.0'
 

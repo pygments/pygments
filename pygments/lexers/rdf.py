@@ -23,7 +23,7 @@ class SparqlLexer(RegexLexer):
     Lexer for SPARQL query language.
     """
     name = 'SPARQL'
-    aliases = ['sparql']
+    aliases = ('sparql',)
     filenames = ['*.rq', '*.sparql']
     mimetypes = ['application/sparql-query']
     url = 'https://www.w3.org/TR/sparql11-query'
@@ -181,7 +181,7 @@ class TurtleLexer(RegexLexer):
     Lexer for Turtle data language.
     """
     name = 'Turtle'
-    aliases = ['turtle']
+    aliases = ('turtle',)
     filenames = ['*.ttl']
     mimetypes = ['text/turtle', 'application/x-turtle']
     url = 'https://www.w3.org/TR/turtle'

@@ -99,7 +99,7 @@ class ThriftLexer(RegexLexer):
     """
     name = 'Thrift'
     url = 'https://thrift.apache.org/'
-    aliases = ['thrift']
+    aliases = ('thrift',)
     filenames = ['*.thrift']
     mimetypes = ['application/x-thrift']
     version_added = '2.1'
@@ -365,7 +365,7 @@ class PuppetLexer(RegexLexer):
     """
     name = 'Puppet'
     url = 'https://puppet.com/'
-    aliases = ['puppet']
+    aliases = ('puppet',)
     filenames = ['*.pp']
     version_added = '1.6'
 
@@ -454,7 +454,7 @@ class RslLexer(RegexLexer):
     """
     name = 'RSL'
     url = 'http://en.wikipedia.org/wiki/RAISE'
-    aliases = ['rsl']
+    aliases = ('rsl',)
     filenames = ['*.rsl']
     mimetypes = ['text/rsl']
     version_added = '2.0'
@@ -564,7 +564,7 @@ class VGLLexer(RegexLexer):
     """
     name = 'VGL'
     url = 'http://www.thermoscientific.com/samplemanager'
-    aliases = ['vgl']
+    aliases = ('vgl',)
     filenames = ['*.rpf']
     version_added = '1.6'
 
@@ -598,7 +598,7 @@ class AlloyLexer(RegexLexer):
 
     name = 'Alloy'
     url = 'http://alloy.mit.edu'
-    aliases = ['alloy']
+    aliases = ('alloy',)
     filenames = ['*.als']
     mimetypes = ['text/x-alloy']
     version_added = '2.0'
@@ -668,7 +668,7 @@ class PanLexer(RegexLexer):
 
     name = 'Pan'
     url = 'https://github.com/quattor/pan/'
-    aliases = ['pan']
+    aliases = ('pan',)
     filenames = ['*.pan']
     version_added = '2.0'
 
@@ -802,7 +802,7 @@ class FlatlineLexer(RegexLexer):
     """
     name = 'Flatline'
     url = 'https://github.com/bigmlcom/flatline'
-    aliases = ['flatline']
+    aliases = ('flatline',)
     filenames = []
     mimetypes = ['text/x-flatline']
     version_added = '2.2'
@@ -879,7 +879,7 @@ class SnowballLexer(ExtendedRegexLexer):
 
     name = 'Snowball'
     url = 'https://snowballstem.org/'
-    aliases = ['snowball']
+    aliases = ('snowball',)
     filenames = ['*.sbl']
     version_added = '2.2'
 

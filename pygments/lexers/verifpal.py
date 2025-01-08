@@ -22,7 +22,7 @@ class VerifpalLexer(RegexLexer):
     """
 
     name = 'Verifpal'
-    aliases = ['verifpal']
+    aliases = ('verifpal',)
     filenames = ['*.vp']
     mimetypes = ['text/x-verifpal']
     url = 'https://verifpal.com'

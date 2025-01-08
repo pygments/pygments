@@ -548,7 +548,7 @@ class MSDOSSessionLexer(ShellSessionBaseLexer):
     """
 
     name = 'MSDOS Session'
-    aliases = ['doscon']
+    aliases = ('doscon',)
     filenames = []
     mimetypes = []
     url = 'https://en.wikipedia.org/wiki/MS-DOS'
@@ -635,7 +635,7 @@ class TcshSessionLexer(ShellSessionBaseLexer):
     """
 
     name = 'Tcsh Session'
-    aliases = ['tcshcon']
+    aliases = ('tcshcon',)
     filenames = []
     mimetypes = []
     url = 'https://www.tcsh.org'
@@ -859,7 +859,7 @@ class ExeclineLexer(RegexLexer):
     """
 
     name = 'execline'
-    aliases = ['execline']
+    aliases = ('execline',)
     filenames = ['*.exec']
     url = 'https://skarnet.org/software/execline'
     version_added = '2.7'

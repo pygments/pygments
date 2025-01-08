@@ -22,7 +22,7 @@ class RideLexer(RegexLexer):
     """
 
     name = 'Ride'
-    aliases = ['ride']
+    aliases = ('ride',)
     filenames = ['*.ride']
     mimetypes = ['text/x-ride']
     url = 'https://docs.waves.tech/en/ride'

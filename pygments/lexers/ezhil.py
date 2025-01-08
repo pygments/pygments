@@ -24,7 +24,7 @@ class EzhilLexer(RegexLexer):
     """
     name = 'Ezhil'
     url = 'http://ezhillang.org'
-    aliases = ['ezhil']
+    aliases = ('ezhil',)
     filenames = ['*.n']
     mimetypes = ['text/x-ezhil']
     version_added = '2.1'

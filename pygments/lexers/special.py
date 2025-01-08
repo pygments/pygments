@@ -23,7 +23,7 @@ class TextLexer(Lexer):
     "Null" lexer, doesn't highlight anything.
     """
     name = 'Text only'
-    aliases = ['text']
+    aliases = ('text',)
     filenames = ['*.txt']
     mimetypes = ['text/plain']
     url = ""
@@ -43,7 +43,7 @@ class OutputLexer(Lexer):
     Simple lexer that highlights everything as ``Token.Generic.Output``.
     """
     name = 'Text output'
-    aliases = ['output']
+    aliases = ('output',)
     url = ""
     version_added = '2.10'
     _example = "output/output"

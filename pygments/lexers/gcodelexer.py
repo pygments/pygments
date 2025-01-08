@@ -20,7 +20,7 @@ class GcodeLexer(RegexLexer):
     For gcode source code.
     """
     name = 'g-code'
-    aliases = ['gcode']
+    aliases = ('gcode',)
     filenames = ['*.gcode']
     url = 'https://en.wikipedia.org/wiki/G-code'
     version_added = '2.9'

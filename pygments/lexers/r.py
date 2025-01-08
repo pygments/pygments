@@ -168,7 +168,7 @@ class RdLexer(RegexLexer):
     and `Parsing Rd files <http://developer.r-project.org/parseRd.pdf>`_.
     """
     name = 'Rd'
-    aliases = ['rd']
+    aliases = ('rd',)
     filenames = ['*.Rd']
     mimetypes = ['text/x-r-doc']
     url = 'http://cran.r-project.org/doc/manuals/R-exts.html'

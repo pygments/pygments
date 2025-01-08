@@ -133,7 +133,7 @@ class TestcaseFormatter(Formatter):
     .. versionadded:: 2.0
     """
     name = 'Testcase'
-    aliases = ['testcase']
+    aliases = ('testcase',)
 
     def __init__(self, **options):
         Formatter.__init__(self, **options)

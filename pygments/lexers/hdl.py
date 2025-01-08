@@ -376,7 +376,7 @@ class VhdlLexer(RegexLexer):
     For VHDL source code.
     """
     name = 'vhdl'
-    aliases = ['vhdl']
+    aliases = ('vhdl',)
     filenames = ['*.vhdl', '*.vhd']
     mimetypes = ['text/x-vhdl']
     url = 'https://en.wikipedia.org/wiki/VHDL'

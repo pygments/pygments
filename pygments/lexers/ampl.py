@@ -22,7 +22,7 @@ class AmplLexer(RegexLexer):
     """
     name = 'Ampl'
     url = 'http://ampl.com/'
-    aliases = ['ampl']
+    aliases = ('ampl',)
     filenames = ['*.run']
     version_added = '2.2'
 

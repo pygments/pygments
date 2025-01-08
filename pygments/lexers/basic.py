@@ -200,7 +200,7 @@ class MonkeyLexer(RegexLexer):
     """
 
     name = 'Monkey'
-    aliases = ['monkey']
+    aliases = ('monkey',)
     filenames = ['*.monkey']
     mimetypes = ['text/x-monkey']
     url = 'https://blitzresearch.itch.io/monkeyx'
@@ -327,7 +327,7 @@ class CbmBasicV2Lexer(RegexLexer):
     For CBM BASIC V2 sources.
     """
     name = 'CBM BASIC V2'
-    aliases = ['cbmbas']
+    aliases = ('cbmbas',)
     filenames = ['*.bas']
     url = 'https://en.wikipedia.org/wiki/Commodore_BASIC'
     version_added = '1.6'
@@ -506,7 +506,7 @@ class VBScriptLexer(RegexLexer):
     VBScript is scripting language that is modeled on Visual Basic.
     """
     name = 'VBScript'
-    aliases = ['vbscript']
+    aliases = ('vbscript',)
     filenames = ['*.vbs', '*.VBS']
     url = 'https://learn.microsoft.com/en-us/previous-versions/t0aew7h6(v=vs.85)'
     version_added = '2.4'
@@ -602,7 +602,7 @@ class BBCBasicLexer(RegexLexer):
 
 
     name = 'BBC Basic'
-    aliases = ['bbcbasic']
+    aliases = ('bbcbasic',)
     filenames = ['*.bbc']
     url = 'https://www.bbcbasic.co.uk/bbcbasic.html'
     version_added = '2.4'

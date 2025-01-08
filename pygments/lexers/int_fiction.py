@@ -747,7 +747,7 @@ class Inform6TemplateLexer(Inform7Lexer):
     """
 
     name = 'Inform 6 template'
-    aliases = ['i6t']
+    aliases = ('i6t',)
     filenames = ['*.i6t']
     version_added = '2.0'
 
@@ -761,7 +761,7 @@ class Tads3Lexer(RegexLexer):
     """
 
     name = 'TADS 3'
-    aliases = ['tads3']
+    aliases = ('tads3',)
     filenames = ['*.t']
     url = 'https://www.tads.org'
     version_added = ''

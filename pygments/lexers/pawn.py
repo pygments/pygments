@@ -22,7 +22,7 @@ class SourcePawnLexer(RegexLexer):
     For SourcePawn source code with preprocessor directives.
     """
     name = 'SourcePawn'
-    aliases = ['sp']
+    aliases = ('sp',)
     filenames = ['*.sp']
     mimetypes = ['text/x-sourcepawn']
     url = 'https://github.com/alliedmodders/sourcepawn'
@@ -133,7 +133,7 @@ class PawnLexer(RegexLexer):
     """
 
     name = 'Pawn'
-    aliases = ['pawn']
+    aliases = ('pawn',)
     filenames = ['*.p', '*.pwn', '*.inc']
     mimetypes = ['text/x-pawn']
     url = 'https://www.compuphase.com/pawn/pawn.htm'

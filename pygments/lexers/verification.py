@@ -22,7 +22,7 @@ class BoogieLexer(RegexLexer):
     """
     name = 'Boogie'
     url = 'https://boogie-docs.readthedocs.io/en/latest/'
-    aliases = ['boogie']
+    aliases = ('boogie',)
     filenames = ['*.bpl']
     version_added = '2.1'
 
@@ -68,7 +68,7 @@ class SilverLexer(RegexLexer):
     For Silver source code.
     """
     name = 'Silver'
-    aliases = ['silver']
+    aliases = ('silver',)
     filenames = ['*.sil', '*.vpr']
     url = 'https://github.com/viperproject/silver'
     version_added = '2.2'

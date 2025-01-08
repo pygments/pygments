@@ -89,7 +89,7 @@ class VisualPrologLexer(VisualPrologBaseLexer):
     """
     name = 'Visual Prolog'
     url = 'https://www.visual-prolog.com/'
-    aliases = ['visualprolog']
+    aliases = ('visualprolog',)
     filenames = ['*.pro', '*.cl', '*.i', '*.pack', '*.ph']
     version_added = '2.17'
 
@@ -125,7 +125,7 @@ class VisualPrologGrammarLexer(VisualPrologBaseLexer):
 
     name = 'Visual Prolog Grammar'
     url = 'https://www.visual-prolog.com/'
-    aliases = ['visualprologgrammar']
+    aliases = ('visualprologgrammar',)
     filenames = ['*.vipgrm']
     version_added = '2.17'
 

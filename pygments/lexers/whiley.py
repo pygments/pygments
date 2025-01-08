@@ -23,7 +23,7 @@ class WhileyLexer(RegexLexer):
     name = 'Whiley'
     url = 'http://whiley.org/'
     filenames = ['*.whiley']
-    aliases = ['whiley']
+    aliases = ('whiley',)
     mimetypes = ['text/x-whiley']
     version_added = '2.2'
 

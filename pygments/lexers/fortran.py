@@ -175,7 +175,7 @@ class FortranFixedLexer(RegexLexer):
     Lexer for fixed format Fortran.
     """
     name = 'FortranFixed'
-    aliases = ['fortranfixed']
+    aliases = ('fortranfixed',)
     filenames = ['*.f', '*.F']
     url = 'https://fortran-lang.org/'
     version_added = '2.1'

@@ -22,7 +22,7 @@ class OocLexer(RegexLexer):
     """
     name = 'Ooc'
     url = 'https://ooc-lang.github.io/'
-    aliases = ['ooc']
+    aliases = ('ooc',)
     filenames = ['*.ooc']
     mimetypes = ['text/x-ooc']
     version_added = '1.2'

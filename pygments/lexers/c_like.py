@@ -40,7 +40,7 @@ class PikeLexer(CppLexer):
     For `Pike <http://pike.lysator.liu.se/>`_ source code.
     """
     name = 'Pike'
-    aliases = ['pike']
+    aliases = ('pike',)
     filenames = ['*.pike', '*.pmod']
     mimetypes = ['text/x-pike']
     version_added = '2.0'
@@ -81,7 +81,7 @@ class NesCLexer(CLexer):
     directives.
     """
     name = 'nesC'
-    aliases = ['nesc']
+    aliases = ('nesc',)
     filenames = ['*.nc']
     mimetypes = ['text/x-nescsrc']
     version_added = '2.0'
@@ -109,7 +109,7 @@ class ClayLexer(RegexLexer):
     """
     name = 'Clay'
     filenames = ['*.clay']
-    aliases = ['clay']
+    aliases = ('clay',)
     mimetypes = ['text/x-clay']
     url = 'http://claylabs.com/clay'
     version_added = '2.0'
@@ -160,7 +160,7 @@ class ECLexer(CLexer):
     For eC source code with preprocessor directives.
     """
     name = 'eC'
-    aliases = ['ec']
+    aliases = ('ec',)
     filenames = ['*.ec', '*.eh']
     mimetypes = ['text/x-echdr', 'text/x-ecsrc']
     url = 'https://ec-lang.org'
@@ -338,7 +338,7 @@ class SwigLexer(CppLexer):
     For `SWIG <http://www.swig.org/>`_ source code.
     """
     name = 'SWIG'
-    aliases = ['swig']
+    aliases = ('swig',)
     filenames = ['*.swg', '*.i']
     mimetypes = ['text/swig']
     version_added = '2.0'
@@ -431,7 +431,7 @@ class ArduinoLexer(CppLexer):
     """
 
     name = 'Arduino'
-    aliases = ['arduino']
+    aliases = ('arduino',)
     filenames = ['*.ino']
     mimetypes = ['text/x-arduino']
     version_added = '2.1'
@@ -555,7 +555,7 @@ class CharmciLexer(CppLexer):
     """
 
     name = 'Charmci'
-    aliases = ['charmci']
+    aliases = ('charmci',)
     filenames = ['*.ci']
     version_added = '2.4'
 
@@ -585,7 +585,7 @@ class OmgIdlLexer(CLexer):
 
     name = 'OMG Interface Definition Language'
     url = 'https://www.omg.org/spec/IDL/About-IDL/'
-    aliases = ['omg-idl']
+    aliases = ('omg-idl',)
     filenames = ['*.idl', '*.pidl']
     mimetypes = []
     version_added = '2.9'
@@ -677,7 +677,7 @@ class PromelaLexer(CLexer):
     """
     
     name = 'Promela'
-    aliases = ['promela']
+    aliases = ('promela',)
     filenames = ['*.pml', '*.prom', '*.prm', '*.promela', '*.pr', '*.pm']
     mimetypes = ['text/x-promela']
     url = 'https://spinroot.com/spin/whatispin.html'

@@ -22,7 +22,7 @@ class EiffelLexer(RegexLexer):
     """
     name = 'Eiffel'
     url = 'https://www.eiffel.com'
-    aliases = ['eiffel']
+    aliases = ('eiffel',)
     filenames = ['*.e']
     mimetypes = ['text/x-eiffel']
     version_added = '2.0'

@@ -24,7 +24,7 @@ class ProcfileLexer(RegexLexer):
     """
     name = 'Procfile'
     url = 'https://devcenter.heroku.com/articles/procfile#procfile-format'
-    aliases = ['procfile']
+    aliases = ('procfile',)
     filenames = ['Procfile']
     version_added = '2.10'
 

@@ -30,7 +30,7 @@ class ZephirLexer(RegexLexer):
 
     name = 'Zephir'
     url = 'http://zephir-lang.com/'
-    aliases = ['zephir']
+    aliases = ('zephir',)
     filenames = ['*.zep']
     version_added = '2.0'
 
@@ -100,7 +100,7 @@ class PsyshConsoleLexer(Lexer):
     """
     name = 'PsySH console session for PHP'
     url = 'https://psysh.org/'
-    aliases = ['psysh']
+    aliases = ('psysh',)
     version_added = '2.7'
 
     def __init__(self, **options):

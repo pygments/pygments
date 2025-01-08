@@ -20,7 +20,7 @@ class VyperLexer(RegexLexer):
     """For the Vyper smart contract language.
     """
     name = 'Vyper'
-    aliases = ['vyper']
+    aliases = ('vyper',)
     filenames = ['*.vy']
     url = "https://vyper.readthedocs.io"
     version_added = '2.17'

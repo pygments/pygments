@@ -37,7 +37,7 @@ class WgslLexer(RegexLexer):
     """
     name = 'WebGPU Shading Language'
     url = 'https://www.w3.org/TR/WGSL/'
-    aliases = ['wgsl']
+    aliases = ('wgsl',)
     filenames = ['*.wgsl']
     mimetypes = ['text/wgsl']
     version_added = '2.15'

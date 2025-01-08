@@ -140,7 +140,7 @@ class TAPLexer(RegexLexer):
     """
     name = 'TAP'
     url = 'https://testanything.org/'
-    aliases = ['tap']
+    aliases = ('tap',)
     filenames = ['*.tap']
     version_added = '2.1'
 

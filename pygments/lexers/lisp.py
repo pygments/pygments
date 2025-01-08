@@ -1544,7 +1544,7 @@ class NewLispLexer(RegexLexer):
 
     name = 'NewLisp'
     url = 'http://www.newlisp.org/'
-    aliases = ['newlisp']
+    aliases = ('newlisp',)
     filenames = ['*.lsp', '*.nl', '*.kif']
     mimetypes = ['text/x-newlisp', 'application/x-newlisp']
     version_added = '1.5'
@@ -2319,7 +2319,7 @@ class ShenLexer(RegexLexer):
     """
     name = 'Shen'
     url = 'http://shenlanguage.org/'
-    aliases = ['shen']
+    aliases = ('shen',)
     filenames = ['*.shen']
     mimetypes = ['text/x-shen', 'application/x-shen']
     version_added = '2.1'
@@ -2482,7 +2482,7 @@ class CPSALexer(RegexLexer):
     A CPSA lexer based on the CPSA language as of version 2.2.12
     """
     name = 'CPSA'
-    aliases = ['cpsa']
+    aliases = ('cpsa',)
     filenames = ['*.cpsa']
     mimetypes = []
     url = 'https://web.cs.wpi.edu/~guttman/cs564/cpsauser.html'
@@ -2564,7 +2564,7 @@ class XtlangLexer(RegexLexer):
     """
     name = 'xtlang'
     url = 'http://extempore.moso.com.au'
-    aliases = ['extempore']
+    aliases = ('extempore',)
     filenames = ['*.xtm']
     mimetypes = []
     version_added = '2.2'
@@ -2846,7 +2846,7 @@ class JanetLexer(RegexLexer):
     """
     name = 'Janet'
     url =  'https://janet-lang.org/'
-    aliases = ['janet']
+    aliases = ('janet',)
     filenames = ['*.janet', '*.jdn']
     mimetypes = ['text/x-janet', 'application/x-janet']
     version_added = '2.18'

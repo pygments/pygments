@@ -33,7 +33,7 @@ class TypoScriptCssDataLexer(RegexLexer):
     """
 
     name = 'TypoScriptCssData'
-    aliases = ['typoscriptcssdata']
+    aliases = ('typoscriptcssdata',)
     url = 'http://docs.typo3.org/typo3cms/TyposcriptReference/'
     version_added = '2.2'
 
@@ -68,7 +68,7 @@ class TypoScriptHtmlDataLexer(RegexLexer):
     """
 
     name = 'TypoScriptHtmlData'
-    aliases = ['typoscripthtmldata']
+    aliases = ('typoscripthtmldata',)
     url = 'http://docs.typo3.org/typo3cms/TyposcriptReference/'
     version_added = '2.2'
 
@@ -104,7 +104,7 @@ class TypoScriptLexer(RegexLexer):
 
     name = 'TypoScript'
     url = 'http://docs.typo3.org/typo3cms/TyposcriptReference/'
-    aliases = ['typoscript']
+    aliases = ('typoscript',)
     filenames = ['*.typoscript']
     mimetypes = ['text/x-typoscript']
     version_added = '2.2'

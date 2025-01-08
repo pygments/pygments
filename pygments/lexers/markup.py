@@ -47,7 +47,7 @@ class BBCodeLexer(RegexLexer):
     """
 
     name = 'BBCode'
-    aliases = ['bbcode']
+    aliases = ('bbcode',)
     mimetypes = ['text/x-bbcode']
     url = 'https://www.bbcode.org/'
     version_added = '0.6'
@@ -469,7 +469,7 @@ class MozPreprocXulLexer(DelegatingLexer):
     `XmlLexer`.
     """
     name = "XUL+mozpreproc"
-    aliases = ['xul+mozpreproc']
+    aliases = ('xul+mozpreproc',)
     filenames = ['*.xul.in']
     mimetypes = []
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
@@ -485,7 +485,7 @@ class MozPreprocJavascriptLexer(DelegatingLexer):
     `JavascriptLexer`.
     """
     name = "Javascript+mozpreproc"
-    aliases = ['javascript+mozpreproc']
+    aliases = ('javascript+mozpreproc',)
     filenames = ['*.js.in']
     mimetypes = []
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
@@ -501,7 +501,7 @@ class MozPreprocCssLexer(DelegatingLexer):
     `CssLexer`.
     """
     name = "CSS+mozpreproc"
-    aliases = ['css+mozpreproc']
+    aliases = ('css+mozpreproc',)
     filenames = ['*.css.in']
     mimetypes = []
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
@@ -745,7 +745,7 @@ class TiddlyWiki5Lexer(RegexLexer):
     """
     name = 'tiddler'
     url = 'https://tiddlywiki.com/#TiddlerFiles'
-    aliases = ['tid']
+    aliases = ('tid',)
     filenames = ['*.tid']
     mimetypes = ["text/vnd.tiddlywiki"]
     version_added = '2.7'

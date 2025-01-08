@@ -208,7 +208,7 @@ class MxmlLexer(RegexLexer):
     """
     flags = re.MULTILINE | re.DOTALL
     name = 'MXML'
-    aliases = ['mxml']
+    aliases = ('mxml',)
     filenames = ['*.mxml']
     url = 'https://en.wikipedia.org/wiki/MXML'
     version_added = '1.1'

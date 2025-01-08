@@ -30,7 +30,7 @@ class GAPLexer(RegexLexer):
     """
     name = 'GAP'
     url = 'https://www.gap-system.org'
-    aliases = ['gap']
+    aliases = ('gap',)
     filenames = ['*.g', '*.gd', '*.gi', '*.gap']
     version_added = '2.0'
 
@@ -206,7 +206,7 @@ class MuPADLexer(RegexLexer):
     """
     name = 'MuPAD'
     url = 'http://www.mupad.com'
-    aliases = ['mupad']
+    aliases = ('mupad',)
     filenames = ['*.mu']
     version_added = '0.8'
 
@@ -277,7 +277,7 @@ class BCLexer(RegexLexer):
     """
     name = 'BC'
     url = 'https://www.gnu.org/software/bc/'
-    aliases = ['bc']
+    aliases = ('bc',)
     filenames = ['*.bc']
     version_added = '2.1'
 

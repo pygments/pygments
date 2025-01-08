@@ -23,7 +23,7 @@ class NCLLexer(RegexLexer):
     Lexer for NCL code.
     """
     name = 'NCL'
-    aliases = ['ncl']
+    aliases = ('ncl',)
     filenames = ['*.ncl']
     mimetypes = ['text/ncl']
     url = 'https://www.ncl.ucar.edu'

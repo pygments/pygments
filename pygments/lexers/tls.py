@@ -24,7 +24,7 @@ class TlsLexer(RegexLexer):
     name = 'TLS Presentation Language'
     url = 'https://www.rfc-editor.org/rfc/rfc8446#section-3'
     filenames = []
-    aliases = ['tls']
+    aliases = ('tls',)
     mimetypes = []
     version_added = '2.16'
 

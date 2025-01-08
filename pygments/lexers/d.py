@@ -23,7 +23,7 @@ class DLexer(RegexLexer):
     name = 'D'
     url = 'https://dlang.org/'
     filenames = ['*.d', '*.di']
-    aliases = ['d']
+    aliases = ('d',)
     mimetypes = ['text/x-dsrc']
     version_added = '1.2'
 
@@ -192,7 +192,7 @@ class CrocLexer(RegexLexer):
     name = 'Croc'
     url = 'http://jfbillingsley.com/croc'
     filenames = ['*.croc']
-    aliases = ['croc']
+    aliases = ('croc',)
     mimetypes = ['text/x-crocsrc']
     version_added = ''
 
@@ -255,6 +255,6 @@ class MiniDLexer(CrocLexer):
     """
     name = 'MiniD'
     filenames = []  # don't lex .md as MiniD, reserve for Markdown
-    aliases = ['minid']
+    aliases = ('minid',)
     mimetypes = ['text/x-minidsrc']
     version_added = ''

@@ -657,7 +657,7 @@ class GifImageFormatter(ImageFormatter):
     """
 
     name = 'img_gif'
-    aliases = ['gif']
+    aliases = ('gif',)
     filenames = ['*.gif']
     default_image_format = 'gif'
 

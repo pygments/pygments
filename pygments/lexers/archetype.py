@@ -138,7 +138,7 @@ class OdinLexer(AtomsLexer):
     Lexer for ODIN syntax.
     """
     name = 'ODIN'
-    aliases = ['odin']
+    aliases = ('odin',)
     filenames = ['*.odin']
     mimetypes = ['text/odin']
     url = 'https://github.com/openEHR/odin'
@@ -187,7 +187,7 @@ class CadlLexer(AtomsLexer):
     Lexer for cADL syntax.
     """
     name = 'cADL'
-    aliases = ['cadl']
+    aliases = ('cadl',)
     filenames = ['*.cadl']
     url = 'https://specifications.openehr.org/releases/AM/latest/ADL2.html#_cadl_constraint_adl'
     version_added = '2.1'
@@ -253,7 +253,7 @@ class AdlLexer(AtomsLexer):
     """
 
     name = 'ADL'
-    aliases = ['adl']
+    aliases = ('adl',)
     filenames = ['*.adl', '*.adls', '*.adlf', '*.adlx']
     url = 'https://specifications.openehr.org/releases/AM/latest/ADL2.html'
     version_added = '2.1'

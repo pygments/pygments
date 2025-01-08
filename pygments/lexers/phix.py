@@ -26,7 +26,7 @@ class PhixLexer(RegexLexer):
 
     name = 'Phix'
     url = 'http://phix.x10.mx'
-    aliases = ['phix']
+    aliases = ('phix',)
     filenames = ['*.exw']
     mimetypes = ['text/x-phix']
     version_added = '2.14'

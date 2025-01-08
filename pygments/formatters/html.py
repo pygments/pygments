@@ -413,7 +413,7 @@ class HtmlFormatter(Formatter):
     """
 
     name = 'HTML'
-    aliases = ['html']
+    aliases = ('html',)
     filenames = ['*.html', '*.htm']
 
     def __init__(self, **options):

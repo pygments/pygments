@@ -37,7 +37,7 @@ class DnsZoneLexer(RegexLexer):
     flags = re.MULTILINE
 
     name = 'Zone'
-    aliases = ['zone']
+    aliases = ('zone',)
     filenames = [ "*.zone" ]
     url = "https://datatracker.ietf.org/doc/html/rfc1035"
     mimetypes = ['text/dns']

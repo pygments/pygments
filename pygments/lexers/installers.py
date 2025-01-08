@@ -155,7 +155,7 @@ class RPMSpecLexer(RegexLexer):
     """
 
     name = 'RPMSpec'
-    aliases = ['spec']
+    aliases = ('spec',)
     filenames = ['*.spec']
     mimetypes = ['text/x-rpm-spec']
     url = 'https://rpm-software-management.github.io/rpm/manual/spec.html'
@@ -229,7 +229,7 @@ class DebianSourcesLexer(RegexLexer):
     """
 
     name = 'Debian Sources file'
-    aliases = ['debian.sources']
+    aliases = ('debian.sources',)
     filenames = ['*.sources']
     version_added = '2.19'
     url = 'https://manpages.debian.org/bookworm/apt/sources.list.5.en.html#THE_DEB_AND_DEB-SRC_TYPES:_GENERAL_FORMAT'

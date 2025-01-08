@@ -179,7 +179,7 @@ class ObjdumpLexer(RegexLexer):
     For the output of ``objdump -dr``.
     """
     name = 'objdump'
-    aliases = ['objdump']
+    aliases = ('objdump',)
     filenames = ['*.objdump']
     mimetypes = ['text/x-objdump']
     url = 'https://www.gnu.org/software/binutils'
@@ -193,7 +193,7 @@ class DObjdumpLexer(DelegatingLexer):
     For the output of ``objdump -Sr`` on compiled D files.
     """
     name = 'd-objdump'
-    aliases = ['d-objdump']
+    aliases = ('d-objdump',)
     filenames = ['*.d-objdump']
     mimetypes = ['text/x-d-objdump']
     url = 'https://www.gnu.org/software/binutils'
@@ -223,7 +223,7 @@ class CObjdumpLexer(DelegatingLexer):
     For the output of ``objdump -Sr`` on compiled C files.
     """
     name = 'c-objdump'
-    aliases = ['c-objdump']
+    aliases = ('c-objdump',)
     filenames = ['*.c-objdump']
     mimetypes = ['text/x-c-objdump']
     url = 'https://www.gnu.org/software/binutils'
@@ -375,7 +375,7 @@ class LlvmLexer(RegexLexer):
     """
     name = 'LLVM'
     url = 'https://llvm.org/docs/LangRef.html'
-    aliases = ['llvm']
+    aliases = ('llvm',)
     filenames = ['*.ll']
     mimetypes = ['text/x-llvm']
     version_added = ''
@@ -519,7 +519,7 @@ class LlvmMirBodyLexer(RegexLexer):
     """
     name = 'LLVM-MIR Body'
     url = 'https://llvm.org/docs/MIRLangRef.html'
-    aliases = ['llvm-mir-body']
+    aliases = ('llvm-mir-body',)
     filenames = []
     mimetypes = []
     version_added = '2.6'
@@ -663,7 +663,7 @@ class LlvmMirLexer(RegexLexer):
     """
     name = 'LLVM-MIR'
     url = 'https://llvm.org/docs/MIRLangRef.html'
-    aliases = ['llvm-mir']
+    aliases = ('llvm-mir',)
     filenames = ['*.mir']
     version_added = '2.6'
 
@@ -736,7 +736,7 @@ class NasmLexer(RegexLexer):
     For Nasm (Intel) assembly code.
     """
     name = 'NASM'
-    aliases = ['nasm']
+    aliases = ('nasm',)
     filenames = ['*.asm', '*.ASM', '*.nasm']
     mimetypes = ['text/x-nasm']
     url = 'https://nasm.us'
@@ -824,7 +824,7 @@ class NasmObjdumpLexer(ObjdumpLexer):
     For the output of ``objdump -d -M intel``.
     """
     name = 'objdump-nasm'
-    aliases = ['objdump-nasm']
+    aliases = ('objdump-nasm',)
     filenames = ['*.objdump-intel']
     mimetypes = ['text/x-nasm-objdump']
     url = 'https://www.gnu.org/software/binutils'
@@ -838,7 +838,7 @@ class TasmLexer(RegexLexer):
     For Tasm (Turbo Assembler) assembly code.
     """
     name = 'TASM'
-    aliases = ['tasm']
+    aliases = ('tasm',)
     filenames = ['*.asm', '*.ASM', '*.tasm']
     mimetypes = ['text/x-tasm']
     url = 'https://en.wikipedia.org/wiki/Turbo_Assembler'
@@ -926,7 +926,7 @@ class Ca65Lexer(RegexLexer):
     For ca65 assembler sources.
     """
     name = 'ca65 assembler'
-    aliases = ['ca65']
+    aliases = ('ca65',)
     filenames = ['*.s']
     url = 'https://cc65.github.io'
     version_added = '1.6'
@@ -966,7 +966,7 @@ class Dasm16Lexer(RegexLexer):
     """
     name = 'DASM16'
     url = 'http://0x10c.com/doc/dcpu-16.txt'
-    aliases = ['dasm16']
+    aliases = ('dasm16',)
     filenames = ['*.dasm16', '*.dasm']
     mimetypes = ['text/x-dasm16']
     version_added = '2.4'

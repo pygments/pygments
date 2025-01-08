@@ -169,7 +169,7 @@ class HspecLexer(HaskellLexer):
     """
 
     name = 'Hspec'
-    aliases = ['hspec']
+    aliases = ('hspec',)
     filenames = ['*Spec.hs']
     mimetypes = []
     version_added = '2.4'
@@ -303,7 +303,7 @@ class AgdaLexer(RegexLexer):
 
     name = 'Agda'
     url = 'http://wiki.portal.chalmers.se/agda/pmwiki.php'
-    aliases = ['agda']
+    aliases = ('agda',)
     filenames = ['*.agda']
     mimetypes = ['text/x-agda']
     version_added = '2.0'
@@ -668,7 +668,7 @@ class KokaLexer(RegexLexer):
 
     name = 'Koka'
     url = 'https://koka-lang.github.io/koka/doc/index.html'
-    aliases = ['koka']
+    aliases = ('koka',)
     filenames = ['*.kk', '*.kki']
     mimetypes = ['text/x-koka']
     version_added = '1.6'

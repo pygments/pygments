@@ -33,7 +33,7 @@ class IrcLogsLexer(RegexLexer):
     """
 
     name = 'IRC logs'
-    aliases = ['irc']
+    aliases = ('irc',)
     filenames = ['*.weechatlog']
     mimetypes = ['text/x-irclog']
     url = 'https://en.wikipedia.org/wiki/Internet_Relay_Chat'
@@ -126,7 +126,7 @@ class HttpLexer(RegexLexer):
     """
 
     name = 'HTTP'
-    aliases = ['http']
+    aliases = ('http',)
     url = 'https://httpwg.org/specs'
     version_added = '1.5'
 
@@ -219,7 +219,7 @@ class TodotxtLexer(RegexLexer):
 
     name = 'Todotxt'
     url = 'http://todotxt.com/'
-    aliases = ['todotxt']
+    aliases = ('todotxt',)
     version_added = '2.0'
     # *.todotxt is not a standard extension for Todo.txt files; including it
     # makes testing easier, and also makes autodetecting file type easier.
@@ -325,7 +325,7 @@ class NotmuchLexer(RegexLexer):
 
     name = 'Notmuch'
     url = 'https://notmuchmail.org/'
-    aliases = ['notmuch']
+    aliases = ('notmuch',)
     version_added = '2.5'
 
     def _highlight_code(self, match):

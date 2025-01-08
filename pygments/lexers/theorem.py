@@ -27,7 +27,7 @@ class CoqLexer(RegexLexer):
 
     name = 'Coq'
     url = 'http://coq.inria.fr/'
-    aliases = ['coq']
+    aliases = ('coq',)
     filenames = ['*.v']
     mimetypes = ['text/x-coq']
     version_added = '1.5'
@@ -200,7 +200,7 @@ class IsabelleLexer(RegexLexer):
 
     name = 'Isabelle'
     url = 'https://isabelle.in.tum.de/'
-    aliases = ['isabelle']
+    aliases = ('isabelle',)
     filenames = ['*.thy']
     mimetypes = ['text/x-isabelle']
     version_added = '2.0'

@@ -22,7 +22,7 @@ class KuinLexer(RegexLexer):
     """
     name = 'Kuin'
     url = 'https://github.com/kuina/Kuin'
-    aliases = ['kuin']
+    aliases = ('kuin',)
     filenames = ['*.kn']
     version_added = '2.9'
 

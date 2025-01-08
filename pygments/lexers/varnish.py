@@ -22,7 +22,7 @@ class VCLLexer(RegexLexer):
     For Varnish Configuration Language (VCL).
     """
     name = 'VCL'
-    aliases = ['vcl']
+    aliases = ('vcl',)
     filenames = ['*.vcl']
     mimetypes = ['text/x-vclsrc']
     url = 'https://www.varnish-software.com/developers/tutorials/varnish-configuration-language-vcl'

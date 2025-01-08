@@ -57,7 +57,7 @@ class RagelLexer(RegexLexer):
 
     name = 'Ragel'
     url = 'http://www.colm.net/open-source/ragel/'
-    aliases = ['ragel']
+    aliases = ('ragel',)
     filenames = []
     version_added = '1.1'
 
@@ -150,7 +150,7 @@ class RagelEmbeddedLexer(RegexLexer):
     """
 
     name = 'Embedded Ragel'
-    aliases = ['ragel-em']
+    aliases = ('ragel-em',)
     filenames = ['*.rl']
     url = 'http://www.colm.net/open-source/ragel/'
     version_added = '1.1'
@@ -248,7 +248,7 @@ class RagelCLexer(DelegatingLexer):
     """
 
     name = 'Ragel in C Host'
-    aliases = ['ragel-c']
+    aliases = ('ragel-c',)
     filenames = ['*.rl']
     url = 'http://www.colm.net/open-source/ragel/'
     version_added = '1.1'
@@ -266,7 +266,7 @@ class RagelDLexer(DelegatingLexer):
     """
 
     name = 'Ragel in D Host'
-    aliases = ['ragel-d']
+    aliases = ('ragel-d',)
     filenames = ['*.rl']
     url = 'http://www.colm.net/open-source/ragel/'
     version_added = '1.1'
@@ -284,7 +284,7 @@ class RagelCppLexer(DelegatingLexer):
     """
 
     name = 'Ragel in CPP Host'
-    aliases = ['ragel-cpp']
+    aliases = ('ragel-cpp',)
     filenames = ['*.rl']
     url = 'http://www.colm.net/open-source/ragel/'
     version_added = '1.1'
@@ -302,7 +302,7 @@ class RagelObjectiveCLexer(DelegatingLexer):
     """
 
     name = 'Ragel in Objective C Host'
-    aliases = ['ragel-objc']
+    aliases = ('ragel-objc',)
     filenames = ['*.rl']
     url = 'http://www.colm.net/open-source/ragel/'
     version_added = '1.1'
@@ -320,7 +320,7 @@ class RagelJavaLexer(DelegatingLexer):
     """
 
     name = 'Ragel in Java Host'
-    aliases = ['ragel-java']
+    aliases = ('ragel-java',)
     filenames = ['*.rl']
     url = 'http://www.colm.net/open-source/ragel/'
     version_added = '1.1'
@@ -340,7 +340,7 @@ class AntlrLexer(RegexLexer):
     """
 
     name = 'ANTLR'
-    aliases = ['antlr']
+    aliases = ('antlr',)
     filenames = []
     url = 'https://www.antlr.org'
     version_added = '1.1'
@@ -531,7 +531,7 @@ class AntlrCppLexer(DelegatingLexer):
     """
 
     name = 'ANTLR With CPP Target'
-    aliases = ['antlr-cpp']
+    aliases = ('antlr-cpp',)
     filenames = ['*.G', '*.g']
     url = 'https://www.antlr.org'
     version_added = '1.1'
@@ -550,7 +550,7 @@ class AntlrObjectiveCLexer(DelegatingLexer):
     """
 
     name = 'ANTLR With ObjectiveC Target'
-    aliases = ['antlr-objc']
+    aliases = ('antlr-objc',)
     filenames = ['*.G', '*.g']
     url = 'https://www.antlr.org'
     version_added = '1.1'
@@ -588,7 +588,7 @@ class AntlrPythonLexer(DelegatingLexer):
     """
 
     name = 'ANTLR With Python Target'
-    aliases = ['antlr-python']
+    aliases = ('antlr-python',)
     filenames = ['*.G', '*.g']
     url = 'https://www.antlr.org'
     version_added = '1.1'
@@ -607,7 +607,7 @@ class AntlrJavaLexer(DelegatingLexer):
     """
 
     name = 'ANTLR With Java Target'
-    aliases = ['antlr-java']
+    aliases = ('antlr-java',)
     filenames = ['*.G', '*.g']
     url = 'https://www.antlr.org'
     version_added = '1.1'
@@ -645,7 +645,7 @@ class AntlrPerlLexer(DelegatingLexer):
     """
 
     name = 'ANTLR With Perl Target'
-    aliases = ['antlr-perl']
+    aliases = ('antlr-perl',)
     filenames = ['*.G', '*.g']
     url = 'https://www.antlr.org'
     version_added = '1.1'
@@ -753,7 +753,7 @@ class TreetopLexer(DelegatingLexer):
     """
 
     name = 'Treetop'
-    aliases = ['treetop']
+    aliases = ('treetop',)
     filenames = ['*.treetop', '*.tt']
     url = 'https://cjheath.github.io/treetop'
     version_added = '1.6'
@@ -770,7 +770,7 @@ class EbnfLexer(RegexLexer):
     """
 
     name = 'EBNF'
-    aliases = ['ebnf']
+    aliases = ('ebnf',)
     filenames = ['*.ebnf']
     mimetypes = ['text/x-ebnf']
     url = 'https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form'

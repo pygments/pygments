@@ -26,7 +26,7 @@ class DylanLexer(RegexLexer):
 
     name = 'Dylan'
     url = 'http://www.opendylan.org/'
-    aliases = ['dylan']
+    aliases = ('dylan',)
     filenames = ['*.dylan', '*.dyl', '*.intr']
     mimetypes = ['text/x-dylan']
     version_added = '0.7'

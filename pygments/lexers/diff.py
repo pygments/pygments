@@ -63,7 +63,7 @@ class DarcsPatchLexer(RegexLexer):
     """
 
     name = 'Darcs Patch'
-    aliases = ['dpatch']
+    aliases = ('dpatch',)
     filenames = ['*.dpatch', '*.darcspatch']
     url = 'https://darcs.net'
     version_added = '0.10'
@@ -126,7 +126,7 @@ class WDiffLexer(RegexLexer):
 
     name = 'WDiff'
     url = 'https://www.gnu.org/software/wdiff/'
-    aliases = ['wdiff']
+    aliases = ('wdiff',)
     filenames = ['*.wdiff']
     mimetypes = []
     version_added = '2.2'
