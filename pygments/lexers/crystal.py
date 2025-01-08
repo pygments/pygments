@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import ExtendedRegexLexer, include, bygroups, default, \
     words, line_re
@@ -157,7 +158,7 @@ class CrystalLexer(ExtendedRegexLexer):
 
         return states
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*?$', Comment.Single),
             # keywords

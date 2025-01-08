@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 import re
+import typing
 
 from pygments.lexer import RegexLexer, words
 from pygments.token import Comment, Operator, Keyword, Name, String, \
@@ -29,7 +30,7 @@ class TlsLexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             # comments

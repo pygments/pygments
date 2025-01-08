@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, bygroups, using, this, words, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -31,7 +32,7 @@ class ActionScriptLexer(RegexLexer):
     version_added = '0.9'
 
     flags = re.DOTALL
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'//.*?\n', Comment.Single),
@@ -132,7 +133,7 @@ class ActionScript3Lexer(RegexLexer):
     typeidentifier = identifier + r'(?:\.<\w+>)?'
 
     flags = re.DOTALL | re.MULTILINE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'(function\s+)(' + identifier + r')(\s*)(\()',
@@ -212,7 +213,7 @@ class MxmlLexer(RegexLexer):
     url = 'https://en.wikipedia.org/wiki/MXML'
     version_added = '1.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             ('[^<&]+', Text),
             (r'&\S*?;', Name.Entity),

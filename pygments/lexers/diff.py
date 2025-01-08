@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups
 from pygments.token import Text, Comment, Operator, Keyword, Name, Generic, \
@@ -29,7 +30,7 @@ class DiffLexer(RegexLexer):
     url = 'https://en.wikipedia.org/wiki/Diff'
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'( )(.*)(\n)', bygroups(Whitespace, Text, Whitespace)),
             (r'(!.*|---)(\n)', bygroups(Generic.Strong, Whitespace)),
@@ -70,7 +71,7 @@ class DarcsPatchLexer(RegexLexer):
     DPATCH_KEYWORDS = ('hunk', 'addfile', 'adddir', 'rmfile', 'rmdir', 'move',
                        'replace')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'<', Operator),
             (r'>', Operator),
@@ -141,7 +142,7 @@ class WDiffLexer(RegexLexer):
     del_op = r"\[\-"
     del_cl = r"\-\]"
     normal = r'[^{}[\]+-]+'  # for performance
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (ins_op, Generic.Inserted, 'inserted'),
             (del_op, Generic.Deleted, 'deleted'),

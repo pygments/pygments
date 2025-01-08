@@ -8,6 +8,7 @@
 
 import re
 from io import StringIO
+import typing
 
 from pygments.lexers.sql import PlPgsqlLexer
 from pygments.formatters import TerminalFormatter, Terminal256Formatter, \
@@ -56,7 +57,7 @@ def test_reasonable_output_lineno():
 
 
 class MyStyle(Style):
-    styles = {
+    styles: typing.ClassVar = {
         Token.Comment:    'ansibrightblack',
         Token.String:     'ansibrightblue bg:ansired',
         Token.Number:     'ansibrightgreen bg:ansigreen',

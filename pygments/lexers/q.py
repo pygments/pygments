@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words, include, bygroups, inherit
 from pygments.token import Comment, Name, Number, Operator, Punctuation, \
     String, Whitespace, Literal, Generic
@@ -26,7 +27,7 @@ class KLexer(RegexLexer):
     url = "https://code.kx.com"
     version_added = '2.12'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "whitespace": [
             # hashbang script
             (r"^#!.*", Comment.Hashbang),
@@ -159,7 +160,7 @@ class QLexer(KLexer):
     filenames = ["*.q"]
     version_added = '2.12'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             (words(("aj", "aj0", "ajf", "ajf0", "all", "and", "any", "asc",
                     "asof", "attr", "avgs", "ceiling", "cols", "count", "cross",

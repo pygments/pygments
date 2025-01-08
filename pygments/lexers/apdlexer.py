@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, words, default
 from pygments.token import Comment, Keyword, Name, Number, Operator, \
@@ -555,7 +556,7 @@ class apdlexer(RegexLexer):
                 "PLANE293",
                 "USER300")
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^\S\n]+', Whitespace),
             (words((elafunb+elafunc+elafund+elafune+elafunh+special), suffix=r'\b'), Keyword, 'non-keyword'),

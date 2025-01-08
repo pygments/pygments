@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, words, bygroups
 from pygments.token import Comment, Keyword, Name, String, Number, \
     Punctuation, Whitespace
@@ -26,7 +27,7 @@ class DLexer(RegexLexer):
     mimetypes = ['text/x-dsrc']
     version_added = '1.2'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             (r'\s+', Whitespace),
@@ -195,7 +196,7 @@ class CrocLexer(RegexLexer):
     mimetypes = ['text/x-crocsrc']
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             (r'\s+', Whitespace),

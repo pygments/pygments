@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, words, default
 from pygments.token import Comment, Operator, Keyword, Name, \
     Number, Punctuation, Whitespace
@@ -314,7 +315,7 @@ class WgslLexer(RegexLexer):
           mat4x2h mat4x3h mat4x4h
           """.split(), suffix=r'\b'), Name.Builtin)
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'blankspace': [
             # https://www.w3.org/TR/WGSL/#blankspace
             (r'[\u0020\u0009\u000a\u000b\u000c\u000d\u0085\u200e\u200f\u2028\u2029]+', Whitespace),

@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, include
 from pygments.token import String, Punctuation, Whitespace, Name, Operator, \
     Number, Literal, Keyword
@@ -25,7 +26,7 @@ class JMESPathLexer(RegexLexer):
     aliases = ['jmespath', 'jp']
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'string': [
             (r"'(\\(.|\n)|[^'\\])*'", String),
         ],

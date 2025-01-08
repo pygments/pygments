@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 import re
+import typing
 
 from pygments.lexer import RegexLexer, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -29,7 +30,7 @@ class CarbonLexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             (r'\s+', Whitespace),

@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import words, bygroups, ExtendedRegexLexer
 from pygments.token import Comment, Name, String, Whitespace, Operator, Punctuation, Number, Keyword
 
@@ -262,7 +263,7 @@ class MapleLexer(ExtendedRegexLexer):
         ctx.pos = match.end()
         ctx.end = orig_end
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*\n', Comment.Single),
             (r'\(\*', Comment.Multiline, 'comment'),

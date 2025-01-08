@@ -9,6 +9,7 @@
 """
 
 
+import typing
 from pygments.lexer import RegexLexer, words, include
 from pygments.token import Punctuation, Keyword, Whitespace, Name, Comment, \
     Operator, Number
@@ -31,7 +32,7 @@ class PddlLexer(RegexLexer):
     url = 'https://en.wikipedia.org/wiki/Planning_Domain_Definition_Language'
     version_added = '2.19'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r';.*$', Comment.Singleline),

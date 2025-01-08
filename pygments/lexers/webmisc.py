@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, ExtendedRegexLexer, include, bygroups, \
     default, using
@@ -37,7 +38,7 @@ class DuelLexer(RegexLexer):
 
     flags = re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(<%[@=#!:]?)(.*?)(%>)',
              bygroups(Name.Tag, using(JavascriptLexer), Name.Tag)),
@@ -315,7 +316,7 @@ class XQueryLexer(ExtendedRegexLexer):
         ctx.stack.append('operator')
         ctx.pos = match.end()
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'comment': [
             # xquery comments
             (r'[^:()]+', Comment),
@@ -826,7 +827,7 @@ class QmlLexer(RegexLexer):
     # pasted from JavascriptLexer, with some additions
     flags = re.DOTALL | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'commentsandwhitespace': [
             (r'\s+', Text),
             (r'<!--', Comment),
@@ -898,7 +899,7 @@ class CirruLexer(RegexLexer):
     version_added = '2.0'
     flags = re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'string': [
             (r'[^"\\\n]+', String),
             (r'\\', String.Escape, 'escape'),
@@ -947,7 +948,7 @@ class SlimLexer(ExtendedRegexLexer):
 
     flags = re.IGNORECASE
     _dot = r'(?: \|\n(?=.* \|)|.)'
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[ \t]*\n', Text),
             (r'[ \t]*', _indentation),

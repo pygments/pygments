@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import Comment, String, Number, Operator, Text, \
@@ -30,7 +31,7 @@ class ResourceLexer(RegexLexer):
               ':int', ':alias')
 
     flags = re.MULTILINE | re.IGNORECASE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'//.*?$', Comment),
             (r'"', String, 'string'),

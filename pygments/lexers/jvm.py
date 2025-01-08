@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
     this, combined, default, words
@@ -51,7 +52,7 @@ class JavaLexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(^\s*)((?:(?:public|private|protected|static|strictfp)(?:\s+))*)(record)\b',
              bygroups(Whitespace, using(this), Keyword.Declaration), 'class'),
@@ -216,7 +217,7 @@ class ScalaLexer(RegexLexer):
         '@native'
     )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
             include('comments'),
@@ -468,7 +469,7 @@ class GosuLexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # method names
             (r'^(\s*(?:[a-zA-Z_][\w.\[\]]*\s+)+?)'  # modifiers etc.
@@ -565,7 +566,7 @@ class GroovyLexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Groovy allows a file to start with a shebang
             (r'#!(.*?)$', Comment.Preproc, 'base'),
@@ -639,7 +640,7 @@ class IokeLexer(RegexLexer):
     aliases = ['ioke', 'ik']
     mimetypes = ['text/x-iokesrc']
     version_added = '1.4'
-    tokens = {
+    tokens: typing.ClassVar = {
         'interpolatableText': [
             (r'(\\b|\\e|\\t|\\n|\\f|\\r|\\"|\\\\|\\#|\\\Z|\\u[0-9a-fA-F]{1,4}'
              r'|\\[0-3]?[0-7]?[0-7])', String.Escape),
@@ -901,7 +902,7 @@ class ClojureLexer(RegexLexer):
     # but that's hard, so just pretend / is part of the name
     valid_name = r'(?!#)[\w!$%*+<=>?/.#|-]+'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # the comments - always starting with semicolon
             # and going to the end of the line
@@ -981,7 +982,7 @@ class TeaLangLexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # method names
             (r'^(\s*(?:[a-zA-Z_][\w\.\[\]]*\s+)+?)'  # return arguments
@@ -1035,7 +1036,7 @@ class CeylonLexer(RegexLexer):
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # method names
             (r'^(\s*(?:[a-zA-Z_][\w.\[\]]*\s+)+?)'  # return arguments
@@ -1127,7 +1128,7 @@ class KotlinLexer(RegexLexer):
                 r'internal|lateinit|noinline|open|operator|override|private|'
                 r'protected|public|sealed|suspend|tailrec|value')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Whitespaces
             (r'[^\S\n]+', Whitespace),
@@ -1266,7 +1267,7 @@ class XtendLexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # method names
             (r'^(\s*(?:[a-zA-Z_][\w.\[\]]*\s+)+?)'  # return arguments
@@ -1331,7 +1332,7 @@ class PigLexer(RegexLexer):
 
     flags = re.MULTILINE | re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'--.*', Comment),
@@ -1395,7 +1396,7 @@ class GoloLexer(RegexLexer):
     aliases = ['golo']
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^\S\n]+', Whitespace),
 
@@ -1515,7 +1516,7 @@ class JasminLexer(RegexLexer):
     _name = rf'[^{_separator}]+'
     _unqualified_name = rf'(?:[^{_separator}.;\[/]+)'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'default': [
             (r'\n', Whitespace, '#pop'),
             (r"'", String.Single, ('#pop', 'quote')),
@@ -1771,7 +1772,7 @@ class SarlLexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # method names
             (r'^(\s*(?:[a-zA-Z_][\w.\[\]]*\s+)+?)'  # return arguments

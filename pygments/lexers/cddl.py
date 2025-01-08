@@ -12,6 +12,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, include, words
 from pygments.token import Comment, Error, Keyword, Name, Number, Operator, \
     Punctuation, String, Whitespace
@@ -102,7 +103,7 @@ class CddlLexer(RegexLexer):
     _re_uint = r"(?:0b[01]+|0x[0-9a-fA-F]+|[1-9]\d*|0(?!\d))"
     _re_int = r"-?" + _re_uint
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "commentsandwhitespace": [(r"\s+", Whitespace), (r";.+$", Comment.Single)],
         "root": [
             include("commentsandwhitespace"),

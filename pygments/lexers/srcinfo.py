@@ -11,6 +11,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words
 from pygments.token import Text, Comment, Keyword, Name, Operator, Whitespace
 
@@ -42,7 +43,7 @@ class SrcinfoLexer(RegexLexer):
     url = 'https://wiki.archlinux.org/title/.SRCINFO'
     version_added = '2.11'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'#.*', Comment.Single),

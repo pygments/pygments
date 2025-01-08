@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.token import  Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
@@ -128,7 +129,7 @@ class Asn1Lexer(RegexLexer):
     url = "https://www.itu.int/ITU-T/studygroups/com17/languages/X.680-0207.pdf"
     version_added = '2.16'
 
-    tokens = {
+    tokens: typing.ClassVar = {
        'root': [
             # Whitespace:
             (r'\s+', Whitespace),

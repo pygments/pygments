@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, DelegatingLexer, \
     include, bygroups, using
@@ -60,7 +61,7 @@ class RagelLexer(RegexLexer):
     filenames = []
     version_added = '1.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'whitespace': [
             (r'\s+', Whitespace)
         ],
@@ -154,7 +155,7 @@ class RagelEmbeddedLexer(RegexLexer):
     url = 'http://www.colm.net/open-source/ragel/'
     version_added = '1.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(' + r'|'.join((   # keep host code in largest possible chunks
                 r'[^%\'"/#]+',    # exclude unsafe characters
@@ -350,7 +351,7 @@ class AntlrLexer(RegexLexer):
     _STRING_LITERAL = r'\'(?:\\\\|\\\'|[^\']*)\''
     _INT = r'[0-9]+'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'whitespace': [
             (r'\s+', Whitespace),
         ],
@@ -685,7 +686,7 @@ class TreetopBaseLexer(RegexLexer):
     .. versionadded:: 1.6
     """
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('space'),
             (r'require[ \t]+[^\n\r]+[\n\r]', Other),
@@ -775,7 +776,7 @@ class EbnfLexer(RegexLexer):
     url = 'https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form'
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
             include('comment_start'),

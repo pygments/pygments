@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, inherit, words, include
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -22,7 +23,7 @@ class VisualPrologBaseLexer(RegexLexer):
     minorkwexp = ('and', 'catch', 'do', 'else', 'elseif', 'erroneous', 'externally', 'failure', 'finally', 'foreach', 'if', 'or', 'orelse', 'otherwise', 'then',
                   'try', 'div', 'mod', 'rem', 'quot')
     dockw = ('short', 'detail', 'end', 'withdomain')
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (words(minorendkw, prefix=r'\bend\s+', suffix=r'\b'), Keyword.Minor),
@@ -98,7 +99,7 @@ class VisualPrologLexer(VisualPrologBaseLexer):
                'guard', 'multi', 'nondeterm', 'or', 'orelse', 'otherwise', 'procedure', 'resolve', 'single', 'suspending')
     directivekw = ('bininclude', 'else', 'elseif', 'endif', 'error', 'export', 'externally', 'from', 'grammargenerate',
                    'grammarinclude', 'if', 'include', 'message', 'options', 'orrequires', 'requires', 'stringinclude', 'then')
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (words(minorkw, suffix=r'\b'), Keyword.Minor),
             (words(majorkw, suffix=r'\b'), Keyword),
@@ -131,7 +132,7 @@ class VisualPrologGrammarLexer(VisualPrologBaseLexer):
     majorkw = ('open', 'namespace', 'grammar', 'nonterminals',
                'startsymbols', 'terminals', 'rules', 'precedence')
     directivekw = ('bininclude', 'stringinclude')
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (words(majorkw, suffix=r'\b'), Keyword),
             (words(directivekw, prefix='#', suffix=r'\b'), Keyword.Directive),

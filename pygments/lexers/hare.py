@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, words
 from pygments.token import Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
@@ -28,7 +29,7 @@ class HareLexer(RegexLexer):
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
     _ws1 = r'\s*(?:/[*].*?[*]/\s*)?'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'whitespace': [
             (r'^use.*;', Comment.Preproc),
             (r'@[a-z]+', Comment.Preproc),

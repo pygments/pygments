@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Punctuation
@@ -26,7 +27,7 @@ class RNCCompactLexer(RegexLexer):
     filenames = ['*.rnc']
     version_added = '2.2'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'namespace\b', Keyword.Namespace),
             (r'(?:default|datatypes)\b', Keyword.Declaration),

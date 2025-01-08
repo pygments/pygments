@@ -12,6 +12,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words, bygroups, default
 from pygments.token import Text, Comment, Operator, Keyword, String, Number, Punctuation, Name
 
@@ -71,7 +72,7 @@ class WatLexer(RegexLexer):
     filenames = ['*.wat', '*.wast']
     version_added = '2.9'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (words(keywords, suffix=r'(?=[^a-z_\.])'), Keyword),
             (words(builtins), Name.Builtin, 'arguments'),

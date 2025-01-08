@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import Lexer, RegexLexer, ExtendedRegexLexer, include, \
     bygroups, default, LexerContext, do_insertions, words, line_re
@@ -190,7 +191,7 @@ class RubyLexer(ExtendedRegexLexer):
 
         return states
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\A#!.+?$', Comment.Hashbang),
             (r'#.*?$', Comment.Single),
@@ -447,7 +448,7 @@ class FancyLexer(RegexLexer):
     mimetypes = ['text/x-fancysrc']
     version_added = '1.5'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         # copied from PerlLexer:
         'balanced-regex': [
             (r'/(\\\\|\\[^\\]|[^/\\])*/[egimosx]*', String.Regex, '#pop'),

@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
@@ -47,7 +48,7 @@ class FutharkLexer(RegexLexer):
 
     # opstart_re = '+\-\*/%=\!><\|&\^'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'--(.*?)$', Comment.Single),
             (r'\s+', Whitespace),

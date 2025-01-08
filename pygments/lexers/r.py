@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import Lexer, RegexLexer, include, do_insertions
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -81,7 +82,7 @@ class SLexer(RegexLexer):
     version_added = '0.10'
 
     valid_name = r'`[^`\\]*(?:\\.[^`\\]*)*`|(?:[a-zA-Z]|\.[A-Za-z_.])[\w.]*|\.'
-    tokens = {
+    tokens: typing.ClassVar = {
         'comments': [
             (r'#.*$', Comment.Single),
         ],
@@ -175,7 +176,7 @@ class RdLexer(RegexLexer):
 
     # To account for verbatim / LaTeX-like / and R-like areas
     # would require parsing.
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # catch escaped brackets and percent sign
             (r'\\[\\{}%]', String.Escape),

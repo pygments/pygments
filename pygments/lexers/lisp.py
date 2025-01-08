@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, words, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -203,7 +204,7 @@ class SchemeLexer(RegexLexer):
     # work to 'scheme-root'; this is so that LilyPondLexer can inherit
     # 'scheme-root' and redefine 'root'.
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             default('scheme-root'),
         ],
@@ -366,7 +367,7 @@ class CommonLispLexer(RegexLexer):
                     continue
             yield index, token, value
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             default('body'),
         ],
@@ -534,7 +535,7 @@ class HyLexer(RegexLexer):
     def _multi_escape(entries):
         return words(entries, suffix=' ')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # the comments - always starting with semicolon
             # and going to the end of the line
@@ -1408,7 +1409,7 @@ class RacketLexer(RegexLexer):
     _inexact_real = rf'(?:[-+]?{_inexact_normal}|[-+]{_inexact_special})'
     _inexact_unsigned = rf'(?:{_inexact_normal}|{_inexact_special})'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (_closing_parenthesis, Error),
             (r'(?!\Z)', Text, 'unquoted-datum')
@@ -1615,7 +1616,7 @@ class NewLispLexer(RegexLexer):
     # valid names
     valid_name = r'([\w!$%&*+.,/<=>?@^~|-])+|(\[.*?\])+'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # shebang
             (r'#!(.*?)$', Comment.Preproc),
@@ -2231,7 +2232,7 @@ class EmacsLispLexer(RegexLexer):
                     continue
             yield index, token, value
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             default('body'),
         ],
@@ -2373,7 +2374,7 @@ class ShenLexer(RegexLexer):
     symbol_name = rf'[a-z!$%*+,<=>?/.\'@&#_-]{valid_symbol_chars}*'
     variable = rf'[A-Z]{valid_symbol_chars}*'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'string': [
             (r'"', String, '#pop'),
             (r'c#\d{1,3};', String.Escape),
@@ -2504,7 +2505,7 @@ class CPSALexer(RegexLexer):
     # but this should be good enough for now
     valid_name = r'[\w!$%&*+,/:<=>?@^~|-]+'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # the comments - always starting with semicolon
             # and going to the end of the line
@@ -2661,7 +2662,7 @@ class XtlangLexer(RegexLexer):
     valid_xtlang_name = r'[\w.!-]+'
     valid_xtlang_type = r'[]{}[\w<>,*/|!-]+'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         # keep track of when we're exiting the xtlang form
         'xtlang': [
             (r'\(', Punctuation, '#push'),
@@ -2799,7 +2800,7 @@ class FennelLexer(RegexLexer):
     # commas, and @ is not allowed.
     valid_name = r'[a-zA-Z_!$%&*+/:<=>?^~|-][\w!$%&*+/:<=>?^~|\.-]*'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # the only comment form is a semicolon; goes to the end of the line
             (r';.*$', Comment.Single),
@@ -3070,7 +3071,7 @@ class JanetLexer(RegexLexer):
     # lower or uppercase e, optional sign, one or more digits
     _dec_exp = r'[eE][+-]?[0-9]+'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*$', Comment.Single),
 

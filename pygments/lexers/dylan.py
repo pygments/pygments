@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import Lexer, RegexLexer, bygroups, do_insertions, \
     default, line_re
@@ -108,7 +109,7 @@ class DylanLexer(RegexLexer):
                     continue
             yield index, token, value
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Whitespace
             (r'\s+', Whitespace),
@@ -223,7 +224,7 @@ class DylanLidLexer(RegexLexer):
     version_added = '1.6'
     flags = re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Whitespace
             (r'\s+', Whitespace),

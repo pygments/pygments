@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, bygroups, words, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
@@ -63,7 +64,7 @@ class RustLexer(RegexLexer):
         'vec', 'write', 'writeln',
     ), suffix=r'!'), Name.Function.Magic)
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # rust allows a file to start with a shebang, but if the first line
             # starts with #![ then it's not a shebang but a crate attribute.

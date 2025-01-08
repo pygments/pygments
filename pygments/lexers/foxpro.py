@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer
 from pygments.token import Punctuation, Text, Comment, Operator, Keyword, \
@@ -33,7 +34,7 @@ class FoxProLexer(RegexLexer):
 
     flags = re.IGNORECASE | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r';\s*\n', Punctuation),  # consume newline
             (r'(^|\n)\s*', Text, 'newline'),

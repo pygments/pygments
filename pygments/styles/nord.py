@@ -9,6 +9,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, Number, \
     Operator, Generic, Whitespace, Punctuation, Text, Token
@@ -31,7 +32,7 @@ class NordStyle(Style):
     background_color = "#2E3440"
     highlight_color = "#3B4252"
 
-    styles = {
+    styles: typing.ClassVar = {
         Token:                      "#d8dee9",
 
         Whitespace:                 '#d8dee9',
@@ -101,7 +102,7 @@ class NordDarkerStyle(Style):
     background_color = "#242933"
     highlight_color = "#3B4252"
 
-    styles = {
+    styles: typing.ClassVar = {
         Token:                      "#d8dee9",
 
         Whitespace:                 '#d8dee9',

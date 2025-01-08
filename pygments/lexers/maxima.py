@@ -11,6 +11,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -43,7 +44,7 @@ class MaximaLexer(RegexLexer):
 
     operator_words = ('and', 'or', 'not')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'/\*', Comment.Multiline, 'comment'),
             (r'"(?:[^"\\]|\\.)*"', String),

@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, using, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -35,7 +36,7 @@ class ModelicaLexer(RegexLexer):
 
     _name = r"(?:'(?:[^\\']|\\.)+'|[a-zA-Z_]\w*)"
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'whitespace': [
             (r'[\s\ufeff]+', Text),
             (r'//[^\n]*\n?', Comment.Single),
@@ -147,7 +148,7 @@ class BugsLexer(RegexLexer):
     http://www.openbugs.info/Manuals/ModelSpecification.html#ContentsAI
     """
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'whitespace': [
             (r"\s+", Text),
         ],
@@ -223,7 +224,7 @@ class JagsLexer(RegexLexer):
         'ddirch', 'dmnorm', 'dwish', 'dmt', 'dmulti', 'dbinom', 'dchisq',
         'dnbinom', 'dweibull', 'ddirich')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'whitespace': [
             (r"\s+", Text),
         ],
@@ -292,7 +293,7 @@ class StanLexer(RegexLexer):
     url = 'https://mc-stan.org'
     version_added = '1.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'whitespace': [
             (r"\s+", Text),
         ],

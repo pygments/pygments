@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.token import Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace, Literal
@@ -42,7 +43,7 @@ class DnsZoneLexer(RegexLexer):
     mimetypes = ['text/dns']
     version_added = '2.16'
 
-    tokens = {
+    tokens: typing.ClassVar = {
        'root': [
             # Empty/comment line:
             (r'([ \t]*)(;.*)(\n)', bygroups(Whitespace, Comment.Single, Whitespace)),

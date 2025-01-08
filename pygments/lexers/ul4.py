@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, DelegatingLexer, bygroups, words, include
 from pygments.token import Comment, Text, Keyword, String, Number, Literal, \
@@ -39,7 +40,7 @@ class UL4Lexer(RegexLexer):
     url = 'https://python.livinglogic.de/UL4.html'
     version_added = '2.12'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             (
                 # Template header without name:

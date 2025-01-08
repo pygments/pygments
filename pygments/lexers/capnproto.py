@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, default
 from pygments.token import Text, Comment, Keyword, Name, Literal, Whitespace
 
@@ -24,7 +25,7 @@ class CapnProtoLexer(RegexLexer):
     aliases = ['capnp']
     version_added = '2.2'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*?$', Comment.Single),
             (r'@[0-9a-zA-Z]*', Name.Decorator),

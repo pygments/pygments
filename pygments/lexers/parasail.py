@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -31,7 +32,7 @@ class ParaSailLexer(RegexLexer):
 
     flags = re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^\S\n]+', Text),
             (r'//.*?\n', Comment.Single),

@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import Text, Token, Name, String, Comment, Number
 
@@ -60,7 +61,7 @@ class YangLexer(RegexLexer):
 
     suffix_re_pattern = r'(?=[^\w\-:])'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'comments': [
             (r'[^*/]', Comment),
             (r'/\*', Comment, '#push'),

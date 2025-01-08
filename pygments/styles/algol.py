@@ -29,6 +29,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, Operator
 
@@ -41,7 +42,7 @@ class AlgolStyle(Style):
 
     background_color = "#ffffff"
 
-    styles = {
+    styles: typing.ClassVar = {
         Comment:                   "italic #888",
         Comment.Preproc:           "bold noitalic #888",
         Comment.Special:           "bold noitalic #888",

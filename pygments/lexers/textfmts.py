@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexers import guess_lexer, get_lexer_by_name
 from pygments.lexer import RegexLexer, bygroups, default, include
@@ -61,7 +62,7 @@ class IrcLogsLexer(RegexLexer):
           \d{2}:\d{2}:\d{2}\s+         # Time + Whitespace
         )?
     """
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # log start/end
             (r'^\*\*\*\*(.*)\*\*\*\*$', Comment),
@@ -102,7 +103,7 @@ class GettextLexer(RegexLexer):
     url = 'https://www.gnu.org/software/gettext'
     version_added = '0.9'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^#,\s.*?$', Keyword.Type),
             (r'^#:\s.*?$', Keyword.Declaration),
@@ -179,7 +180,7 @@ class HttpLexer(RegexLexer):
                     return
         yield offset, Text, content
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'([a-zA-Z][-_a-zA-Z]+)( +)([^ ]+)( +)'
              r'(HTTP)(/)(1\.[01]|2(?:\.0)?|3)(\r?\n|\Z)',
@@ -255,7 +256,7 @@ class TodotxtLexer(RegexLexer):
                                date_regex + r')')
     priority_date_regex = r'(' + priority_regex + r')( )(' + date_regex + r')'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         # Should parse starting at beginning of line; each line is a task
         'root': [
             # Complete task entry points: two total:
@@ -340,7 +341,7 @@ class NotmuchLexer(RegexLexer):
 
         yield from lexer.get_tokens_unprocessed(code)
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\fmessage\{\s*', Keyword, ('message', 'message-attr')),
         ],
@@ -403,7 +404,7 @@ class KernelLogLexer(RegexLexer):
     url = 'https://fr.wikipedia.org/wiki/Dmesg'
     version_added = '2.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^[^:]+:debug : (?=\[)', Text, 'debug'),
             (r'^[^:]+:info  : (?=\[)', Text, 'info'),

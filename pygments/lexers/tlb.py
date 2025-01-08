@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, words
 from pygments.token import Operator, Name, \
     Number, Whitespace, Punctuation, Comment
@@ -26,7 +27,7 @@ class TlbLexer(RegexLexer):
     url = 'https://docs.ton.org/#/overviews/TL-B'
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
 

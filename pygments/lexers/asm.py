@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, using, words, \
     DelegatingLexer, default
@@ -53,7 +54,7 @@ class GasLexer(RegexLexer):
     number = r'(?:0[xX][a-fA-F0-9]+|#?-?\d+)'
     register = '%' + identifier + r'\b'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
             (identifier + ':', Name.Label),
@@ -272,7 +273,7 @@ class HsailLexer(RegexLexer):
     hexfloat = r'0[xX](([0-9a-fA-F]+\.[0-9a-fA-F]*)|([0-9a-fA-F]*\.[0-9a-fA-F]+))[pP][+-]?\d+'
     ieeefloat = r'0((h|H)[0-9a-fA-F]{4}|(f|F)[0-9a-fA-F]{8}|(d|D)[0-9a-fA-F]{16})'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
             include('comments'),
@@ -384,7 +385,7 @@ class LlvmLexer(RegexLexer):
     identifier = r'([-a-zA-Z$._][\w\-$.]*|' + string + ')'
     block_label = r'(' + identifier + r'|(\d+))'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
 
@@ -523,7 +524,7 @@ class LlvmMirBodyLexer(RegexLexer):
     mimetypes = []
     version_added = '2.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Attributes on basic blocks
             (words(('liveins', 'successors'), suffix=':'), Keyword),
@@ -666,7 +667,7 @@ class LlvmMirLexer(RegexLexer):
     filenames = ['*.mir']
     version_added = '2.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Comments are hashes at the YAML level
             (r'#.*', Comment),
@@ -766,7 +767,7 @@ class NasmLexer(RegexLexer):
                   r'EXPORT|LIBRARY|MODULE)(?=\s)')
 
     flags = re.IGNORECASE | re.MULTILINE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^\s*%', Comment.Preproc, 'preproc'),
             include('whitespace'),
@@ -865,7 +866,7 @@ class TasmLexer(RegexLexer):
     datatype = (r'db|dd|dw|T[A-Z][a-z]+')
 
     flags = re.IGNORECASE | re.MULTILINE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^\s*%', Comment.Preproc, 'preproc'),
             include('whitespace'),
@@ -932,7 +933,7 @@ class Ca65Lexer(RegexLexer):
 
     flags = re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r';.*', Comment.Single),
             (r'\s+', Whitespace),
@@ -1007,7 +1008,7 @@ class Dasm16Lexer(RegexLexer):
         klass = Name.Variable if ident.upper() in lexer.REGISTERS else Name.Label
         yield match.start(), klass, ident
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
             (':' + identifier, Name.Label),

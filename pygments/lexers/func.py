@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Whitespace, Punctuation
@@ -32,7 +33,7 @@ class FuncLexer(RegexLexer):
     # 4. Starts with letter, contains letters, numbers and underscores
     identifier = r'(?!")(`([^`]+)`|((?=_)_|(?=\{)\{|(?=\})\}|(?![_`{}]))([^;,\[\]\(\)\s~.]+))'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             (r'\s+', Whitespace),

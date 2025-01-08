@@ -18,6 +18,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, using
 from pygments.token import Text, Comment, Name, String, Number, \
@@ -36,7 +37,7 @@ class TypoScriptCssDataLexer(RegexLexer):
     url = 'http://docs.typo3.org/typo3cms/TyposcriptReference/'
     version_added = '2.2'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # marker: ###MARK###
             (r'(.*)(###\w+###)(.*)', bygroups(String, Name.Constant, String)),
@@ -71,7 +72,7 @@ class TypoScriptHtmlDataLexer(RegexLexer):
     url = 'http://docs.typo3.org/typo3cms/TyposcriptReference/'
     version_added = '2.2'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # INCLUDE_TYPOSCRIPT
             (r'(INCLUDE_TYPOSCRIPT)', Name.Class),
@@ -110,7 +111,7 @@ class TypoScriptLexer(RegexLexer):
 
     flags = re.DOTALL | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('comment'),
             include('constant'),

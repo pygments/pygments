@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words, include, bygroups, using, \
     this, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, \
@@ -34,7 +35,7 @@ class GLShaderLexer(RegexLexer):
     url = 'https://www.khronos.org/api/opengl'
     version_added = '1.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#(?:.*\\\n)*.*$', Comment.Preproc),
             (r'//.*$', Comment.Single),
@@ -165,7 +166,7 @@ class HLSLShaderLexer(RegexLexer):
     url = 'https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl'
     version_added = '2.3'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#(?:.*\\\n)*.*$', Comment.Preproc),
             (r'//.*$', Comment.Single),
@@ -325,7 +326,7 @@ class PostScriptLexer(RegexLexer):
     valid_name_chars = rf'[^{delimiter}]'
     valid_name = rf"{valid_name_chars}+{delimiter_end}"
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # All comment types
             (r'^%!.+$', Comment.Preproc),
@@ -416,7 +417,7 @@ class AsymptoteLexer(RegexLexer):
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/\*.*?\*/)+'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'whitespace': [
             (r'\n', Whitespace),
             (r'\s+', Whitespace),
@@ -541,7 +542,7 @@ class GnuplotLexer(RegexLexer):
     mimetypes = ['text/x-gnuplot']
     version_added = '0.11'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
             (_shortened('bi$nd'), Keyword, 'bind'),
@@ -700,7 +701,7 @@ class PovrayLexer(RegexLexer):
     mimetypes = ['text/x-povray']
     version_added = '0.11'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'/\*[\w\W]*?\*/', Comment.Multiline),
             (r'//.*$', Comment.Single),

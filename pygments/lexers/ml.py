@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, default, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -99,7 +100,7 @@ class SMLLexer(RegexLexer):
             token = Name
         yield match.start(1), token, str
 
-    tokens = {
+    tokens: typing.ClassVar = {
         # Whitespace and comments are (almost) everywhere
         'whitespace': [
             (r'\s+', Text),
@@ -386,7 +387,7 @@ class OcamlLexer(RegexLexer):
     infix_syms = r'[=<>@^|&+\*/$%-]'
     primitives = ('unit', 'int', 'float', 'bool', 'string', 'char', 'list', 'array')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'escape-sequence': [
             (r'\\[\\"\'ntbr]', String.Escape),
             (r'\\[0-9]{3}', String.Escape),
@@ -473,7 +474,7 @@ class OpaLexer(RegexLexer):
     punc_re = r'[()\[\],;|]'  # '{' and '}' are treated elsewhere
                               # because they are also used for inserts
 
-    tokens = {
+    tokens: typing.ClassVar = {
         # copied from the caml lexer, should be adapted
         'escape-sequence': [
             (r'\\[\\"\'ntr}]', String.Escape),
@@ -800,7 +801,7 @@ class ReasonLexer(RegexLexer):
     infix_syms = r'[=<>@^|&+\*/$%-]'
     primitives = ('unit', 'int', 'float', 'bool', 'string', 'char', 'list', 'array')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'escape-sequence': [
             (r'\\[\\"\'ntbr]', String.Escape),
             (r'\\[0-9]{3}', String.Escape),
@@ -897,7 +898,7 @@ class FStarLexer(RegexLexer):
     infix_syms = r'[=<>@^|&+\*/$%-]'
     primitives = ('unit', 'int', 'float', 'bool', 'string', 'char', 'list', 'array')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'escape-sequence': [
             (r'\\[\\"\'ntbr]', String.Escape),
             (r'\\[0-9]{3}', String.Escape),

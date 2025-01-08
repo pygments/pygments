@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words
 from pygments.token import Comment, Operator, Keyword, Name, String, Number, Punctuation, Whitespace
 
@@ -34,7 +35,7 @@ class RegoLexer(RegexLexer):
         'input', # Represents synchronously pushed base documents
     )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             (r'\s+', Whitespace),

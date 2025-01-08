@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, using, \
     this, default, words
@@ -42,7 +43,7 @@ class Inform6Lexer(RegexLexer):
     _squote = "'\u2018\u2019"
     _newline = '\\n\u0085\u2028\u2029'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (rf'\A(!%[^{_newline}]*[{_newline}])+', Comment.Preproc,
              'directive'),
@@ -868,7 +869,7 @@ class Tads3Lexer(RegexLexer):
             (r'["\'\s&{<}\\]', token)
         ]
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             ('\ufeff', Text),
             (r'\{', Punctuation, 'object-body'),

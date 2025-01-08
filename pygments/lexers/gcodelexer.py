@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Comment, Name, Text, Keyword, Number
 
@@ -24,7 +25,7 @@ class GcodeLexer(RegexLexer):
     url = 'https://en.wikipedia.org/wiki/G-code'
     version_added = '2.9'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r';.*\n', Comment),
             (r'^[gmGM]\d{1,4}\s', Name.Builtin),  # M or G commands

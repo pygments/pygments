@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, bygroups, using, this, \
     inherit, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -38,7 +39,7 @@ class VCLLexer(RegexLexer):
         elif '\nvcl 4.0;' in text[:1000]:
             return 0.9
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'probe': [
             include('whitespace'),
             include('comments'),
@@ -172,7 +173,7 @@ class VCLSnippetLexer(VCLLexer):
         # override method inherited from VCLLexer
         return 0
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'snippetspre': [
             (r'\.\.\.+', Comment),
             (r'(bereq|req|req_top|resp|beresp|obj|client|server|local|remote|'

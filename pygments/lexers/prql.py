@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, combined, words, include, bygroups
 from pygments.token import Comment, Literal, Keyword, Name, Number, Operator, \
     Punctuation, String, Text, Whitespace
@@ -58,7 +59,7 @@ class PrqlLexer(RegexLexer):
             (r'[\'"\\]', ttype),
         ]
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
 
             # Comments

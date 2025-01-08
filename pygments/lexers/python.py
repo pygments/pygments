@@ -9,6 +9,7 @@
 """
 
 import keyword
+import typing
 
 from pygments.lexer import DelegatingLexer, RegexLexer, include, \
     bygroups, using, default, words, combined, this
@@ -103,7 +104,7 @@ class PythonLexer(RegexLexer):
             # newlines are an error (use "nl" state)
         ]
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             (r'^(\s*)([rRuUbB]{,2})("""(?:.|\n)*?""")',
@@ -450,7 +451,7 @@ class Python2Lexer(RegexLexer):
             # newlines are an error (use "nl" state)
         ]
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             (r'^(\s*)([rRuUbB]{,2})("""(?:.|\n)*?""")',
@@ -653,7 +654,7 @@ class _PythonConsoleLexerBase(RegexLexer):
     Code tokens are output as ``Token.Other.Code``, traceback tokens as
     ``Token.Other.Traceback``.
     """
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(>>> )(.*\n)', bygroups(Generic.Prompt, Other.Code), 'continuations'),
             # This happens, e.g., when tracebacks are embedded in documentation;
@@ -745,7 +746,7 @@ class PythonTracebackLexer(RegexLexer):
     url = 'https://python.org'
     version_added = '1.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             (r'^(\^C)?Traceback \(most recent call last\):\n', Generic.Traceback, 'intb'),
@@ -802,7 +803,7 @@ class Python2TracebackLexer(RegexLexer):
     url = 'https://python.org'
     version_added = '0.7'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Cover both (most recent call last) and (innermost last)
             # The optional ^C allows us to catch keyboard interrupt signals.
@@ -846,7 +847,7 @@ class CythonLexer(RegexLexer):
     mimetypes = ['text/x-cython', 'application/x-cython']
     version_added = '1.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             (r'^(\s*)("""(?:.|\n)*?""")', bygroups(Whitespace, String.Doc)),
@@ -1026,7 +1027,7 @@ class DgLexer(RegexLexer):
     url = 'http://pyos.github.io/dg'
     version_added = '1.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Text),
             (r'#.*?$', Comment.Single),

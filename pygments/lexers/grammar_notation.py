@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, include, this, using, words
 from pygments.token import Comment, Keyword, Literal, Name, Number, \
     Operator, Punctuation, String, Text, Whitespace
@@ -48,7 +49,7 @@ class BnfLexer(RegexLexer):
     url = 'https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form'
     version_added = '2.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(<)([ -;=?-~]+)(>)',
              bygroups(Punctuation, Name.Class, Punctuation)),
@@ -82,7 +83,7 @@ class AbnfLexer(RegexLexer):
         'DQUOTE', 'HEXDIG', 'HTAB', 'LF', 'LWSP', 'OCTET',
         'SP', 'VCHAR', 'WSP')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # comment
             (r';.*$', Comment.Single),
@@ -140,7 +141,7 @@ class JsgfLexer(RegexLexer):
     mimetypes = ['application/jsgf', 'application/x-jsgf', 'text/jsgf']
     version_added = '2.2'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('comments'),
             include('non-comments'),
@@ -231,7 +232,7 @@ class PegLexer(RegexLexer):
     mimetypes = ['text/x-peg']
     version_added = '2.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Comments
             (r'#.*$', Comment.Single),

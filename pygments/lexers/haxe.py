@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import ExtendedRegexLexer, RegexLexer, include, bygroups, \
     default
@@ -81,7 +82,7 @@ class HaxeLexer(ExtendedRegexLexer):
         yield match.start(), Comment.Preproc, '#' + proc
         ctx.pos = match.end()
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('spaces'),
             include('meta'),
@@ -904,7 +905,7 @@ class HxmlLexer(RegexLexer):
     filenames = ['*.hxml']
     version_added = '1.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Separator
             (r'(--)(next)', bygroups(Punctuation, Generic.Heading)),

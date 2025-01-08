@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import Lexer, RegexLexer, bygroups, words, do_insertions, \
     include, default, line_re
@@ -90,7 +91,7 @@ class ErlangLexer(RegexLexer):
 
     base_re = r'(?:[2-9]|[12][0-9]|3[0-6])'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'(%.*)(\n)', bygroups(Comment, Whitespace)),
@@ -351,7 +352,7 @@ class ElixirLexer(RegexLexer):
     hex_char_re = r'(\\x[\da-fA-F]{1,2})'
     escape_char_re = r'(\\[abdefnrstv])'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'#.*$', Comment.Single),

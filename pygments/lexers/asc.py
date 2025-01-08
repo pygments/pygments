@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 import re
+import typing
 
 from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Comment, Generic, Name, Operator, String, Whitespace
@@ -35,7 +36,7 @@ class AscLexer(RegexLexer):
 
     flags = re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'^-----BEGIN [^\n]+-----$', Generic.Heading, 'data'),

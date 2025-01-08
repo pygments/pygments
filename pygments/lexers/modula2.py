@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include
 from pygments.util import get_bool_opt, get_list_opt
@@ -165,7 +166,7 @@ class Modula2Lexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'whitespace': [
             (r'\n+', Text),  # blank lines
             (r'\s+', Text),  # whitespace

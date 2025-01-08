@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words, bygroups, default
 from pygments.token import Comment, Keyword, Name, String, Punctuation, \
     Whitespace
@@ -27,7 +28,7 @@ class VerifpalLexer(RegexLexer):
     url = 'https://verifpal.com'
     version_added = '2.16'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'//.*$', Comment.Single),
             (r'(principal)( +)(\w+)( *)(\[)(.*)$', bygroups(Name.Builtin, Whitespace, String, Whitespace, Punctuation, Whitespace)),

@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups
 from pygments.lexer import words as words_
 from pygments.lexers._usd_builtins import COMMON_ATTRIBUTES, KEYWORDS, \
@@ -38,7 +39,7 @@ class UsdLexer(RegexLexer):
     filenames = ["*.usd", "*.usda"]
     version_added = '2.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             (rf"(custom){_WHITESPACE}(uniform)(\s+){_TYPE}(\s+){_BASE_ATTRIBUTE}(\s*)(=)",
              bygroups(Keyword.Token, Whitespace, Keyword.Token, Whitespace,

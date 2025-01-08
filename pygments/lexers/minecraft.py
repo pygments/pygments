@@ -19,6 +19,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, default, include, bygroups
 from pygments.token import Comment, Keyword, Literal, Name, Number, Operator, \
     Punctuation, String, Text, Whitespace
@@ -37,7 +38,7 @@ class SNBTLexer(RegexLexer):
     mimetypes = ["text/snbt"]
     version_added = '2.12'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             # We only look for the open bracket here since square bracket
             #  is only valid in NBT pathing (which is a mcfunction idea).
@@ -113,7 +114,7 @@ class MCFunctionLexer(RegexLexer):
     # Used to denotate the start of a block comment, borrowed from Github's mcfunction
     _block_comment_prefix = "[>!]"
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             include("names"),
             include("comments"),
@@ -328,7 +329,7 @@ class MCSchemaLexer(RegexLexer):
     mimetypes = ['text/mcschema']
     version_added = '2.14'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'commentsandwhitespace': [
             (r'\s+', Whitespace),
             (r'//.*?$', Comment.Single),

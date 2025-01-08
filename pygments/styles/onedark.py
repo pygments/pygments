@@ -11,6 +11,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Comment, Keyword, Name, Number, Operator, \
     Punctuation, String, Token
@@ -29,7 +30,7 @@ class OneDarkStyle(Style):
     
     background_color = '#282C34'
 
-    styles = {
+    styles: typing.ClassVar = {
         Token:                  '#ABB2BF',
 
         Punctuation:            '#ABB2BF',

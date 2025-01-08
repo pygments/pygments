@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import Comment, Keyword, Name, Number, Operator, \
     Punctuation, String, Text
@@ -29,7 +30,7 @@ class WhileyLexer(RegexLexer):
     # See the language specification:
     # http://whiley.org/download/WhileyLanguageSpec.pdf
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Whitespace
             (r'\s+', Text),

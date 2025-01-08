@@ -10,6 +10,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, default, words
 from pygments.token import Comment, Keyword, Name, Number, Operator, \
     Punctuation, String, Text
@@ -43,7 +44,7 @@ class SophiaLexer(RegexLexer):
                        'list', 'option', 'char', 'unit', 'map', 'event',
                        'hash', 'signature', 'oracle', 'oracle_query')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'escape-sequence': [
             (r'\\[\\"\'ntbr]', String.Escape),
             (r'\\[0-9]{3}', String.Escape),

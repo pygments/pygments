@@ -10,6 +10,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, Token, \
      Number, Operator, Generic, Whitespace, Punctuation, Other, Literal
@@ -27,7 +28,7 @@ class MonokaiStyle(Style):
     background_color = "#272822"
     highlight_color = "#49483e"
 
-    styles = {
+    styles: typing.ClassVar = {
         # No corresponding class for the following:
         Token:                     "#f8f8f2", # class:  ''
         Whitespace:                "",        # class: 'w'

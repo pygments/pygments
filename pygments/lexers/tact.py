@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, bygroups, words
 from pygments.token import Comment, Operator, Keyword, Name, String, \
     Number, Whitespace, Punctuation
@@ -24,7 +25,7 @@ class TactLexer(RegexLexer):
     url = "https://tact-lang.org"
     version_added = '2.18'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'[.;(),\[\]{}]', Punctuation),

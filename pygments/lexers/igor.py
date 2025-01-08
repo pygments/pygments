@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, words
 from pygments.token import Text, Comment, Keyword, Name, String, Whitespace
@@ -411,7 +412,7 @@ class IgorLexer(RegexLexer):
         'zeromq_test_serializeWave', 'zeta'
     )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'//.*$', Comment.Single),
             (r'"([^"\\]|\\.)*"', String),

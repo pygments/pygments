@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, words
 from pygments.token import Comment, Operator, Keyword, Name, String, \
@@ -31,7 +32,7 @@ class ECLLexer(RegexLexer):
 
     flags = re.IGNORECASE | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
             include('statements'),

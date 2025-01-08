@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
@@ -25,7 +26,7 @@ class NitLexer(RegexLexer):
     aliases = ['nit']
     filenames = ['*.nit']
     version_added = '2.0'
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*?$', Comment.Single),
             (words((

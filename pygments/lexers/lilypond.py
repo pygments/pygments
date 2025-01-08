@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import bygroups, default, inherit, words
 from pygments.lexers.lisp import SchemeLexer
@@ -82,7 +83,7 @@ class LilyPondLexer(SchemeLexer):
                 token = Token.Name.Builtin.SchemeBuiltin
             yield index, token, value
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             # Whitespace.
             (r"\s+", Token.Text.Whitespace),

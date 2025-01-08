@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, ExtendedRegexLexer, include, default, \
     words
@@ -52,7 +53,7 @@ class BibTeXLexer(ExtendedRegexLexer):
         del ctx.opening_brace
         ctx.pos = match.end()
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
             (r'@comment(?!ary)', Comment),
@@ -125,7 +126,7 @@ class BSTLexer(RegexLexer):
     flags = re.IGNORECASE | re.MULTILINE
     url = 'https://texfaq.org/FAQ-BibTeXing'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
             (words(['read', 'sort']), Keyword),

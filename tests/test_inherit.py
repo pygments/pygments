@@ -6,12 +6,13 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, inherit
 from pygments.token import Text
 
 
 class One(RegexLexer):
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             ('a', Text),
             ('b', Text),
@@ -20,7 +21,7 @@ class One(RegexLexer):
 
 
 class Two(One):
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             ('x', Text),
             inherit,
@@ -30,7 +31,7 @@ class Two(One):
 
 
 class Three(Two):
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             ('i', Text),
             inherit,
@@ -40,7 +41,7 @@ class Three(Two):
 
 
 class Beginning(Two):
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             inherit,
             ('m', Text),
@@ -49,7 +50,7 @@ class Beginning(Two):
 
 
 class End(Two):
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             ('m', Text),
             inherit,
@@ -58,11 +59,11 @@ class End(Two):
 
 
 class Empty(One):
-    tokens = {}
+    tokens: typing.ClassVar = {}
 
 
 class Skipped(Empty):
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             ('x', Text),
             inherit,

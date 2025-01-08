@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words
 from pygments.token import String, Comment, Keyword, Name, Number, Operator, \
     Punctuation, Whitespace
@@ -77,7 +78,7 @@ class BoaLexer(RegexLexer):
         prefix=r'\b',
         suffix=r'\(')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*?$', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline),

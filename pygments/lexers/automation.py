@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, bygroups, combined
 from pygments.token import Text, Comment, Operator, Name, String, \
     Number, Punctuation, Generic
@@ -26,7 +27,7 @@ class AutohotkeyLexer(RegexLexer):
     mimetypes = ['text/x-autohotkey']
     version_added = '1.4'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^(\s*)(/\*)', bygroups(Text, Comment.Multiline), 'incomment'),
             (r'^(\s*)(\()', bygroups(Text, Generic), 'incontinuation'),
@@ -312,7 +313,7 @@ class AutoItLexer(RegexLexer):
     @tray_id @trayiconflashing @trayiconvisible @username @userprofiledir @wday
     @windowsdir @workingdir @yday @year""".split()
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r';.*\n', Comment.Single),
             (r'(#comments-start|#cs)(.|\n)*?(#comments-end|#ce)',

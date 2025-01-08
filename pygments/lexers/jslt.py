@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, combined, words
 from pygments.token import Comment, Keyword, Name, Number, Operator, \
     Punctuation, String, Whitespace
@@ -30,7 +31,7 @@ class JSLTLexer(RegexLexer):
     mimetypes = ['text/x-jslt']
     version_added = '2.10'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[\t\n\f\r ]+', Whitespace),
             (r'//.*(\n|\Z)', Comment.Single),

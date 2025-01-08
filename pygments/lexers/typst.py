@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words, bygroups, include
 from pygments.token import Comment, Keyword, Name, String, Punctuation, \
     Whitespace, Generic, Operator, Number, Text
@@ -41,7 +42,7 @@ class TypstLexer(RegexLexer):
         '<-<','<<-','<->','<=>','<==>','<-->', '>', '<', '~', ':', '|'
     )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('markup'),
         ],

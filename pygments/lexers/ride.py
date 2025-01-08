@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words, include
 from pygments.token import Comment, Keyword, Name, Number, Punctuation, \
     String, Text
@@ -81,7 +82,7 @@ class RideLexer(RegexLexer):
         'let', 'then', '@Callable', '@Verifier',
     ), suffix=r'\b')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Comments
             (r'#.*', Comment.Single),

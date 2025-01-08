@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words, bygroups
 from pygments.token import Text, Comment, Keyword, Name, Literal, Whitespace
 
@@ -47,7 +48,7 @@ class BareLexer(RegexLexer):
         'map',
     ]
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(type)(\s+)([A-Z][a-zA-Z0-9]+)(\s+)(\{)',
              bygroups(Keyword, Whitespace, Name.Class, Whitespace, Text), 'struct'),

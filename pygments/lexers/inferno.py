@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, default
 from pygments.token import Punctuation, Comment, Operator, Keyword, \
@@ -32,7 +33,7 @@ class LimboLexer(RegexLexer):
     mimetypes = ['text/limbo']
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'whitespace': [
             (r'^(\s*)([a-zA-Z_]\w*:)(\s*\n)',
              bygroups(Whitespace, Name.Label, Whitespace)),

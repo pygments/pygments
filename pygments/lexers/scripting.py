@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, default, combined, \
     words
@@ -72,7 +73,7 @@ class LuaLexer(RegexLexer):
     _s = rf'(?:{_comment_multiline}|{_comment_single}|{_space})'
     _name = r'(?:[^\W\d]\w*)'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Lua allows a file to start with a shebang.
             (r'#!.*', Comment.Preproc),
@@ -254,7 +255,7 @@ class LuauLexer(RegexLexer):
     _comment_single = r'(?:--.*$)'
     _s = r'(?:{}|{}|{})'.format(_comment_multiline, _comment_single, r'\s+')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#!.*', Comment.Hashbang, 'base'),
             default('base'),
@@ -516,7 +517,7 @@ class MoonScriptLexer(LuaLexer):
     mimetypes = ['text/x-moonscript', 'application/x-moonscript']
     version_added = '1.5'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#!(.*?)$', Comment.Preproc),
             default('base'),
@@ -587,7 +588,7 @@ class ChaiscriptLexer(RegexLexer):
 
     flags = re.DOTALL | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'commentsandwhitespace': [
             (r'\s+', Text),
             (r'//.*?\n', Comment.Single),
@@ -672,7 +673,7 @@ class LSLLexer(RegexLexer):
     lsl_reserved_log = r'\b(?:print)\b'
     lsl_operators = r'\+\+|\-\-|<<|>>|&&?|\|\|?|\^|~|[!%<>=*+\-/]=?'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root':
         [
             (r'//.*?\n',                          Comment.Single),
@@ -997,7 +998,7 @@ class AppleScriptLexer(RegexLexer):
                         'visible( document rect)?', 'volume', 'width', 'window',
                         'windows menu', 'wraps', 'zoomable', 'zoomed')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Text),
             (r'¬\n', String.Escape),
@@ -1059,7 +1060,7 @@ class RexxLexer(RegexLexer):
     version_added = '2.0'
     flags = re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'/\*', Comment.Multiline, 'comment'),
@@ -1169,7 +1170,7 @@ class MOOCodeLexer(RegexLexer):
     mimetypes = ['text/x-moocode']
     version_added = '0.9'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Numbers
             (r'(0|[1-9][0-9_]*)', Number.Integer),
@@ -1214,7 +1215,7 @@ class HybrisLexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # method names
             (r'^(\s*(?:function|method|operator\s+)+?)'
@@ -1362,7 +1363,7 @@ class EasytrieveLexer(RegexLexer):
         'VERIFY', 'W', 'WHEN', 'WHILE', 'WORK', 'WRITE', 'X', 'XDM', 'XRST'
     ]
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\*.*\n', Comment.Single),
             (r'\n+', Whitespace),
@@ -1503,7 +1504,7 @@ class JclLexer(RegexLexer):
 
     flags = re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'//\*.*\n', Comment.Single),
             (r'//', Keyword.Pseudo, 'statement'),
@@ -1583,7 +1584,7 @@ class MiniScriptLexer(RegexLexer):
     mimetypes = ['text/x-minicript', 'application/x-miniscript']
     version_added = '2.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#!(.*?)$', Comment.Preproc),
             default('base'),

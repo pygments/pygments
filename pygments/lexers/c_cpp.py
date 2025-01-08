@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, using, \
     this, inherit, default, words
@@ -53,7 +54,7 @@ class CFamilyLexer(RegexLexer):
     # Regex to match optional comments
     _possible_comments = rf'\s*(?:(?:(?:{_comment_single})|(?:{_comment_multiline}))\s*)*'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'whitespace': [
             # preprocessor directives: without whitespace
             (r'^#if\s+0', Comment.Preproc, 'if0'),
@@ -298,7 +299,7 @@ class CLexer(CFamilyLexer):
     version_added = ''
     priority = 0.1
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'keywords': [
             (words((
                 '_Alignas', '_Alignof', '_Noreturn', '_Generic', '_Thread_local',
@@ -352,7 +353,7 @@ class CppLexer(CFamilyLexer):
     version_added = ''
     priority = 0.1
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'statements': [
             # C++11 raw strings
             (r'((?:[LuU]|u8)?R)(")([^\\()\s]{,16})(\()((?:.|\n)*?)(\)\3)(")',

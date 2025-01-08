@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, bygroups, default, words, include
 from pygments.token import Comment, Error, Keyword, Name, Number, \
@@ -48,7 +49,7 @@ class BlitzMaxLexer(RegexLexer):
     bmax_func = bmax_var + r'?((?:[ \t]|\.\.\n)*)([(])'
 
     flags = re.MULTILINE | re.IGNORECASE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Text
             (r'\s+', Whitespace),
@@ -132,7 +133,7 @@ class BlitzBasicLexer(RegexLexer):
     bb_var = (rf'({bb_name})(?:([ \t]*)({bb_sktypes})|([ \t]*)([.])([ \t]*)(?:({bb_name})))?')
 
     flags = re.MULTILINE | re.IGNORECASE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Text
             (r'\s+', Whitespace),
@@ -217,7 +218,7 @@ class MonkeyLexer(RegexLexer):
 
     flags = re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Text
             (r'\s+', Whitespace),
@@ -333,7 +334,7 @@ class CbmBasicV2Lexer(RegexLexer):
 
     flags = re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'rem.*\n', Comment.Single),
             (r'\s+', Whitespace),
@@ -424,7 +425,7 @@ class QBasicLexer(RegexLexer):
         'STEP', 'STRING', 'THEN', 'TO', 'UNTIL', 'USING', 'WEND'
     )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n+', Text),
             (r'\s+', Text.Whitespace),
@@ -512,7 +513,7 @@ class VBScriptLexer(RegexLexer):
 
     flags = re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r"'[^\n]*", Comment.Single),
             (r'\s+', Whitespace),
@@ -606,7 +607,7 @@ class BBCBasicLexer(RegexLexer):
     url = 'https://www.bbcbasic.co.uk/bbcbasic.html'
     version_added = '2.4'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r"[0-9]+", Name.Label),
             (r"(\*)([^\n]*)",

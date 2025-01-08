@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, include
 from pygments.token import Name, Number, String, Punctuation, Whitespace
 
@@ -41,7 +42,7 @@ class HexdumpLexer(RegexLexer):
 
     hd = r'[0-9A-Ha-h]'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             include('offset'),

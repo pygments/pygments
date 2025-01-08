@@ -10,6 +10,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words
 from pygments.token import Comment, Keyword, Name, String, Number, \
     Punctuation, Whitespace, Literal
@@ -36,7 +37,7 @@ class TalLexer(RegexLexer):
         'ADD', 'SUB', 'MUL', 'DIV', 'AND', 'ORA', 'EOR', 'SFT'
     ]
 
-    tokens = {
+    tokens: typing.ClassVar = {
         # the comment delimiters must not be adjacent to non-space characters.
         # this means ( foo ) is a valid comment but (foo) is not. this also
         # applies to nested comments.

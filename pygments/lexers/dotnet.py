@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 import re
+import typing
 
 from pygments.lexer import RegexLexer, DelegatingLexer, bygroups, include, \
     using, this, default, words
@@ -370,7 +371,7 @@ class BooLexer(RegexLexer):
     mimetypes = ['text/x-boo']
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'(#|//).*$', Comment.Single),
@@ -445,7 +446,7 @@ class VbNetLexer(RegexLexer):
                                  'Cf', 'Mn', 'Mc') + ']*'
 
     flags = re.MULTILINE | re.IGNORECASE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^\s*<.*?>', Name.Attribute),
             (r'\s+', Whitespace),
@@ -551,7 +552,7 @@ class GenericAspxLexer(RegexLexer):
 
     flags = re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(<%[@=#]?)(.*?)(%>)', bygroups(Name.Tag, Other, Name.Tag)),
             (r'(<script.*?>)(.*?)(</script>)', bygroups(using(XmlLexer),
@@ -661,7 +662,7 @@ class FSharpLexer(RegexLexer):
     # See http://msdn.microsoft.com/en-us/library/dd233181.aspx and/or
     # http://fsharp.org/about/files/spec.pdf for reference.  Good luck.
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'escape-sequence': [
             (r'\\[\\"\'ntbrafv]', String.Escape),
             (r'\\[0-9]{3}', String.Escape),
@@ -831,7 +832,7 @@ class XppLexer(RegexLexer):
 
     tokens = {}
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # method names
             (r'(\s*)\b(else|if)\b([^\n])', bygroups(Whitespace, Keyword, using(this))), # ensure that if is not treated like a function

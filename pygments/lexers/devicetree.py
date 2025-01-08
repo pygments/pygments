@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, include, default, words
 from pygments.token import Comment, Keyword, Name, Number, Operator, \
     Punctuation, String, Text, Whitespace
@@ -30,7 +31,7 @@ class DevicetreeLexer(RegexLexer):
     #: optional Whitespace or /*...*/ style comment
     _ws = r'\s*(?:/[*][^*/]*?[*]/\s*)*'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'macro': [
             # Include preprocessor directives (C style):
             (r'(#include)(' + _ws + r')([^\n]+)',

@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import Lexer, RegexLexer, do_insertions, bygroups, \
     include, default, this, using, words, line_re
@@ -47,7 +48,7 @@ class BashLexer(RegexLexer):
     url = 'https://en.wikipedia.org/wiki/Unix_shell'
     version_added = '0.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('basic'),
             (r'`', String.Backtick, 'backticks'),
@@ -435,7 +436,7 @@ class BatchLexer(RegexLexer):
              bygroups(Number.Integer, Punctuation, using(this, state='text')))
         ]
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': _make_begin_state(False),
         'follow': _make_follow_state(False),
         'arithmetic': _make_arithmetic_state(False),
@@ -571,7 +572,7 @@ class TcshLexer(RegexLexer):
     url = 'https://www.tcsh.org'
     version_added = '0.10'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('basic'),
             (r'\$\(', Keyword, 'paren'),
@@ -706,7 +707,7 @@ class PowerShellLexer(RegexLexer):
         'forwardhelptargetname functionality inputs link '
         'notes outputs parameter remotehelprunspace role synopsis').split()
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # we need to count pairs of parentheses for correct highlight
             # of '$(...)' blocks in strings
@@ -792,7 +793,7 @@ class FishShellLexer(RegexLexer):
     url = 'https://fishshell.com'
     version_added = '2.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('basic'),
             include('data'),
@@ -863,7 +864,7 @@ class ExeclineLexer(RegexLexer):
     url = 'https://skarnet.org/software/execline'
     version_added = '2.7'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('basic'),
             include('data'),

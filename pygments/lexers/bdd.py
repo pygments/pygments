@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include
 from pygments.token import Comment, Keyword, Name, String, Number, Text, \
     Punctuation, Whitespace
@@ -30,7 +31,7 @@ class BddLexer(RegexLexer):
     step_keywords = (r'Given|When|Then|Add|And|Feature|Scenario Outline|'
                      r'Scenario|Background|Examples|But')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'comments': [
             (r'^\s*#.*$', Comment),
         ],

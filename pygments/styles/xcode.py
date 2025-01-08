@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Literal
@@ -23,7 +24,7 @@ class XcodeStyle(Style):
 
     name = 'xcode'
     
-    styles = {
+    styles: typing.ClassVar = {
         Comment:                '#177500',
         Comment.Preproc:        '#633820',
 

@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 from pygments.lexer import RegexLexer, default, include, words
 from pygments.token import Comment, Keyword, Name, Number, \
     String, Text, Operator
@@ -35,7 +36,7 @@ class StataLexer(RegexLexer):
     mimetypes = ['text/x-stata', 'text/stata', 'application/x-stata']
     flags     = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('comments'),
             include('strings'),

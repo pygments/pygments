@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import Text, Comment, Keyword, Name, String, \
     Number, Whitespace, Punctuation
@@ -39,7 +40,7 @@ class SmithyLexer(RegexLexer):
        'operation', 'service', 'trait'
     )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'///.*$', Comment.Multiline),
             (r'//.*$', Comment),

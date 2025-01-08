@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words
 from pygments.token import Comment, Keyword, Name, Number, Operator, \
     Punctuation, Text
@@ -27,7 +28,7 @@ class NuSMVLexer(RegexLexer):
     url = 'https://nusmv.fbk.eu'
     version_added = '2.2'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Comments
             (r'(?s)\/\-\-.*?\-\-/', Comment),

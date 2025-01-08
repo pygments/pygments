@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Whitespace
@@ -56,7 +57,7 @@ class TclLexer(RegexLexer):
             (r'#', Comment, 'comment'),
         ]
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('command'),
             include('basic'),

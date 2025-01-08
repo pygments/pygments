@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -28,7 +29,7 @@ class PrologLexer(RegexLexer):
     url = 'https://en.wikipedia.org/wiki/Prolog'
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'/\*', Comment.Multiline, 'nested-comment'),
             (r'%.*', Comment.Single),
@@ -100,7 +101,7 @@ class LogtalkLexer(RegexLexer):
     mimetypes = ['text/x-logtalk']
     version_added = '0.10'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Directives
             (r'^\s*:-\s', Punctuation, 'directive'),

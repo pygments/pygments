@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -117,7 +118,7 @@ class RebolLexer(RegexLexer):
         else:
             yield match.start(), Name.Variable, word
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Text),
             (r'#"', String.Char, 'char'),
@@ -307,7 +308,7 @@ class RedLexer(RegexLexer):
         else:
             yield match.start(), Name.Variable, word
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Text),
             (r'#"', String.Char, 'char'),

@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 from pygments.lexer import RegexLexer, include, words
 from pygments.token import Comment, Keyword, Name, Number, String, Text, \
     Other, Generic
@@ -118,7 +119,7 @@ class SASLexer(RegexLexer):
         "zipnamel", "zipstate"
     )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('comments'),
             include('proc-data'),

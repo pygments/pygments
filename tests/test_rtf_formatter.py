@@ -9,6 +9,7 @@
 from io import StringIO
 import itertools
 import re
+import typing
 import pytest
 
 from pygments.formatters import RtfFormatter
@@ -157,7 +158,7 @@ def test_linenos_python():
     class TestStyle(Style):
         name = 'rtf_formatter_test'
         line_number_color = "#ff0000"
-        styles = {Token: '', String: '#00ff00', Name: '#0000ff'}
+        styles: typing.ClassVar = {Token: '', String: '#00ff00', Name: '#0000ff'}
 
     t = r's = "line1\nline2"' + '\n'
     options = dict(linenos=True, lineno_padding=2, style=TestStyle)

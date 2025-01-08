@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
      Operator, Generic
@@ -21,7 +22,7 @@ class VisualStudioStyle(Style):
     
     background_color = "#ffffff"
 
-    styles = {
+    styles: typing.ClassVar = {
         Comment:                   "#008000",
         Comment.Preproc:           "#0000ff",
         Keyword:                   "#0000ff",

@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words, bygroups, include
 from pygments.token import Name, Text, Comment, Keyword, String, Punctuation, \
     Number, Operator, Whitespace
@@ -115,7 +116,7 @@ class PraatLexer(RegexLexer):
         'ncol', 'nrow', 'xmin', 'ymin', 'xmax', 'ymax', 'nx', 'ny', 'dx', 'dy',
     )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(\s+)(#.*?$)',  bygroups(Whitespace, Comment.Single)),
             (r'^#.*?$',        Comment.Single),

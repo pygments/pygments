@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups
 from pygments.token import Text, Comment, Operator, Name, String, \
@@ -28,7 +29,7 @@ class TeraTermLexer(RegexLexer):
     mimetypes = ['text/x-teratermmacro']
     version_added = '2.4'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('comments'),
             include('labels'),

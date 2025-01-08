@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import ExtendedRegexLexer, bygroups, DelegatingLexer
 from pygments.token import Name, Number, String, Comment, Punctuation, \
     Other, Keyword, Operator, Whitespace
@@ -28,7 +29,7 @@ class SlashLanguageLexer(ExtendedRegexLexer):
         ctx.pos = match.end()
         pass
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             (r"<%=",        Comment.Preproc,    move_state("slash")),
             (r"<%!!",       Comment.Preproc,    move_state("slash")),

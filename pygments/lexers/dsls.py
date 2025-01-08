@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import ExtendedRegexLexer, RegexLexer, bygroups, words, \
     include, default, this, using, combined
@@ -42,7 +43,7 @@ class ProtoBufLexer(RegexLexer):
     filenames = ['*.proto']
     version_added = '1.4'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[ \t]+', Whitespace),
             (r'[,;{}\[\]()<>]', Punctuation),
@@ -103,7 +104,7 @@ class ThriftLexer(RegexLexer):
     mimetypes = ['application/x-thrift']
     version_added = '2.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
             include('comments'),
@@ -211,7 +212,7 @@ class ZeekLexer(RegexLexer):
     _float = r'((\d*\.?\d+)|(\d+\.?\d*))([eE][-+]?\d+)?'
     _h = r'[A-Za-z0-9][-A-Za-z0-9]*'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
             include('comments'),
@@ -368,7 +369,7 @@ class PuppetLexer(RegexLexer):
     filenames = ['*.pp']
     version_added = '1.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('comments'),
             include('keywords'),
@@ -460,7 +461,7 @@ class RslLexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (words((
                 'Bool', 'Char', 'Int', 'Nat', 'Real', 'Text', 'Unit', 'abs',
@@ -520,7 +521,7 @@ class MscgenLexer(RegexLexer):
 
     _var = r'(\w+|"(?:\\"|[^"])*")'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'msc\b', Keyword.Type),
             # Options
@@ -569,7 +570,7 @@ class VGLLexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL | re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\{[^}]*\}', Comment.Multiline),
             (r'declare', Keyword.Constant),
@@ -608,7 +609,7 @@ class AlloyLexer(RegexLexer):
     string_rex = r'"\b(\\\\|\\[^\\]|[^"\\])*"'
     text_tuple = (r'[^\S\n]+', Whitespace)
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'sig': [
             (r'(extends)\b', Keyword, '#pop'),
             (iden_rex, Name),
@@ -671,7 +672,7 @@ class PanLexer(RegexLexer):
     filenames = ['*.pan']
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('basic'),
             (r'\(', Keyword, 'paren'),
@@ -756,7 +757,7 @@ class CrmshLexer(RegexLexer):
     rsc_role_action = (r'(?:Master|Started|Slave|Stopped|'
                        r'start|promote|demote|stop)')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^(#.*)(\n)?', bygroups(Comment, Whitespace)),
             # attr=value (nvpair)
@@ -835,7 +836,7 @@ class FlatlineLexer(RegexLexer):
 
     valid_name = r'(?!#)[\w!$%*+<=>?/.#-]+'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # whitespaces - usually not relevant
             (r'[,]+', Text),
@@ -926,7 +927,7 @@ class SnowballLexer(ExtendedRegexLexer):
         return bygroups(Keyword.Reserved, Whitespace, String.Escape, Whitespace,
                         String.Escape)(lexer, match, ctx)
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'len\b', Name.Builtin),
             (r'lenof\b', Operator.Word),

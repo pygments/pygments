@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, bygroups, words
 from pygments.token import Whitespace, Name, String,  Punctuation, Keyword, \
     Operator, Number
@@ -28,7 +29,7 @@ class NumbaIRLexer(RegexLexer):
     identifier = r'\$[a-zA-Z0-9._]+'
     fun_or_var = r'([a-zA-Z_]+[a-zA-Z0-9]*)'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root' : [
             (r'(label)(\ [0-9]+)(:)$',
                 bygroups(Keyword, Name.Label, Punctuation)),

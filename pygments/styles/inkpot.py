@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Text, Other, Keyword, Name, Comment, String, \
     Error, Number, Operator, Generic, Whitespace, Punctuation
@@ -21,7 +22,7 @@ class InkPotStyle(Style):
     
     background_color = "#1e1e27"
 
-    styles = {
+    styles: typing.ClassVar = {
         Text:                      "#cfbfad",
         Other:                     "#cfbfad",
         Whitespace:                "#434357",

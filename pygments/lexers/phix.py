@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -334,7 +335,7 @@ class PhixLexer(RegexLexer):
         'true', 'True', 'TRUE', 'VC_SCRNLINES', 'WHITE', 'WINDOWS', 'YELLOW'
     )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r"\s+", Whitespace),
             (r'/\*|--/\*|#\[', Comment.Multiline, 'comment'),

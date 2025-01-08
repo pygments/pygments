@@ -9,6 +9,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, Error, Number, Operator, \
     Generic, Text, Literal, String, Token
@@ -57,7 +58,7 @@ class GhDarkStyle(Style):
     line_number_color = GRAY_4
     line_number_background_color = BG_DEFAULT
 
-    styles = {
+    styles: typing.ClassVar = {
         Token:                      FG_DEFAULT,
 
         Error:                      DANGER_FG,

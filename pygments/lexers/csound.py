@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, bygroups, default, include, using, words
 from pygments.token import Comment, Error, Keyword, Name, Number, Operator, Punctuation, \
@@ -26,7 +27,7 @@ newline = (r'((?:(?:;|//).*)*)(\n)', bygroups(Comment.Single, Text))
 class CsoundLexer(RegexLexer):
     url = 'https://csound.com/'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'whitespace': [
             (r'[ \t]+', Whitespace),
             (r'/[*](?:.|\n)*?[*]/', Comment.Multiline),
@@ -143,7 +144,7 @@ class CsoundScoreLexer(CsoundLexer):
     filenames = ['*.sco']
     version_added = '2.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             include('whitespace and macro uses'),
@@ -236,7 +237,7 @@ class CsoundOrchestraLexer(CsoundLexer):
             yield match.start(2), Punctuation, match.group(2)
             yield match.start(3), type_annotation_token, match.group(3)
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
 
@@ -425,7 +426,7 @@ class CsoundDocumentLexer(RegexLexer):
     # after the root element, unescaped bitwise AND & and less than < operators, etc. In
     # other words, while Csound Document files look like XML files, they may not actually
     # be XML files.
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'/[*](.|\n)*?[*]/', Comment.Multiline),
             (r'(?:;|//).*$', Comment.Single),

@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
@@ -32,7 +33,7 @@ class SourcePawnLexer(RegexLexer):
     #: only one /* */ style comment
     _ws1 = r'\s*(?:/[*].*?[*]/\s*)*'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # preprocessor directives: without whitespace
             (r'^#if\s+0', Comment.Preproc, 'if0'),
@@ -143,7 +144,7 @@ class PawnLexer(RegexLexer):
     #: only one /* */ style comment
     _ws1 = r'\s*(?:/[*].*?[*]/\s*)*'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # preprocessor directives: without whitespace
             (r'^#if\s+0', Comment.Preproc, 'if0'),

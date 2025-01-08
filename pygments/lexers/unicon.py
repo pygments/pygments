@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, words, using, this
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -31,7 +32,7 @@ class UniconLexer(RegexLexer):
 
     flags = re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^\S\n]+', Text),
             (r'#.*?\n', Comment.Single),
@@ -176,7 +177,7 @@ class IconLexer(RegexLexer):
 
     flags = re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^\S\n]+', Text),
             (r'#.*?\n', Comment.Single),
@@ -317,7 +318,7 @@ class UcodeLexer(RegexLexer):
 
     flags = re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(#.*\n)', Comment),
             (words((

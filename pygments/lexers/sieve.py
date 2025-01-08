@@ -17,6 +17,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Comment, Name, Literal, String, Text, Punctuation, \
     Keyword
@@ -34,7 +35,7 @@ class SieveLexer(RegexLexer):
     url = 'https://en.wikipedia.org/wiki/Sieve_(mail_filtering_language)'
     version_added = '2.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Text),
             (r'[();,{}\[\]]', Punctuation),

@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, bygroups, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
@@ -28,7 +29,7 @@ class SmalltalkLexer(RegexLexer):
     mimetypes = ['text/x-smalltalk']
     version_added = '0.10'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(<)(\w+:)(.*?)(>)', bygroups(Text, Keyword, Text, Text)),
             include('squeak fileout'),
@@ -147,7 +148,7 @@ class NewspeakLexer(RegexLexer):
     mimetypes = ['text/x-newspeak']
     version_added = '1.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\b(Newsqueak2)\b', Keyword.Declaration),
             (r"'[^']*'", String),

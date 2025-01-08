@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, ExtendedRegexLexer, include, bygroups, \
     using, this, default, words
@@ -33,7 +34,7 @@ class PerlLexer(RegexLexer):
 
     flags = re.DOTALL | re.MULTILINE
     # TODO: give this to a perl guy who knows how to parse perl...
-    tokens = {
+    tokens: typing.ClassVar = {
         'balanced-regex': [
             (r'/(\\\\|\\[^\\]|[^\\/])*/[egimosx]*', String.Regex, '#pop'),
             (r'!(\\\\|\\[^\\]|[^\\!])*![egimosx]*', String.Regex, '#pop'),
@@ -594,7 +595,7 @@ class Perl6Lexer(ExtendedRegexLexer):
     # characters. We have special logic for processing these characters (due to the fact
     # that you can nest Perl 6 code in regex blocks), so if you need to process one of
     # them, make sure you also process the corresponding one!
-    tokens = {
+    tokens: typing.ClassVar = {
         'common': [
             (r'#[`|=](?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS) + r'])(?P=first_char)*)',
              brackets_callback(Comment.Multiline)),

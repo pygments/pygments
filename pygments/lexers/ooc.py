@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
@@ -26,7 +27,7 @@ class OocLexer(RegexLexer):
     mimetypes = ['text/x-ooc']
     version_added = '1.2'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (words((
                 'class', 'interface', 'implement', 'abstract', 'extends', 'from',

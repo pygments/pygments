@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, using, this, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -36,7 +37,7 @@ class NSISLexer(RegexLexer):
 
     flags = re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'([;#].*)(\n)', bygroups(Comment, Whitespace)),
             (r"'.*?'", String.Single),
@@ -163,7 +164,7 @@ class RPMSpecLexer(RegexLexer):
     _directives = ('(?:package|prep|build|install|clean|check|pre[a-z]*|'
                    'post[a-z]*|trigger[a-z]*|files)')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*$', Comment),
             include('basic'),
@@ -233,7 +234,7 @@ class DebianSourcesLexer(RegexLexer):
     version_added = '2.19'
     url = 'https://manpages.debian.org/bookworm/apt/sources.list.5.en.html#THE_DEB_AND_DEB-SRC_TYPES:_GENERAL_FORMAT'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^(Signed-By)(:)(\s*)', bygroups(Keyword, Punctuation, Whitespace), 'signed-by'),
             (r'^([a-zA-Z\-0-9\.]*?)(:)(\s*)(.*?)$',
@@ -258,7 +259,7 @@ class SourcesListLexer(RegexLexer):
     mimetype = ['application/x-debian-sourceslist']
     url = 'https://wiki.debian.org/SourcesList'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'#.*?$', Comment),
@@ -304,7 +305,7 @@ class DebianControlLexer(RegexLexer):
     filenames = ['control']
     version_added = '0.9'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^(Description)', Keyword, 'description'),
             (r'^(Maintainer|Uploaders|Changed-By)(:)(\s*)',

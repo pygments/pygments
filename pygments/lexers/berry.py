@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words, include, bygroups
 from pygments.token import Comment, Whitespace, Operator, Keyword, Name, \
     String, Number, Punctuation
@@ -28,7 +29,7 @@ class BerryLexer(RegexLexer):
 
     _name = r'\b[^\W\d]\w*'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
             include('numbers'),

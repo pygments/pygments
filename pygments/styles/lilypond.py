@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Token
 
@@ -28,7 +29,7 @@ class LilyPondStyle(Style):
     # input only and doesn't show good output on Python code.
     web_style_gallery_exclude = True
 
-    styles = {
+    styles: typing.ClassVar = {
         Token.Text: "",
         Token.Keyword: "bold",
         Token.Comment: "italic #A3AAB2",

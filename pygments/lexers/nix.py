@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -38,7 +39,7 @@ class NixLexer(RegexLexer):
 
     punctuations = ["(", ")", "[", "]", ";", "{", "}", ":", ",", "@"]
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # comments starting with #
             (r'#.*$', Comment.Single),

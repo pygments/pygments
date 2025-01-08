@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import bygroups, combined, default, do_insertions, include, \
     inherit, Lexer, RegexLexer, this, using, words, line_re
@@ -55,7 +56,7 @@ class JavascriptLexer(RegexLexer):
 
     flags = re.DOTALL | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'commentsandwhitespace': [
             (r'\s+', Whitespace),
             (r'<!--', Comment),
@@ -163,7 +164,7 @@ class TypeScriptLexer(JavascriptLexer):
     # common these days
     priority = 0.5
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(abstract|implements|private|protected|public|readonly)\b',
                 Keyword, 'slashstartsregex'),
@@ -199,7 +200,7 @@ class KalLexer(RegexLexer):
     version_added = '2.0'
 
     flags = re.DOTALL
-    tokens = {
+    tokens: typing.ClassVar = {
         'commentsandwhitespace': [
             (r'\s+', Whitespace),
             (r'###[^#].*?###', Comment.Multiline),
@@ -332,7 +333,7 @@ class LiveScriptLexer(RegexLexer):
     version_added = '1.6'
 
     flags = re.DOTALL
-    tokens = {
+    tokens: typing.ClassVar = {
         'commentsandwhitespace': [
             (r'\s+', Whitespace),
             (r'/\*.*?\*/', Comment.Multiline),
@@ -445,7 +446,7 @@ class DartLexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('string_literal'),
             (r'#!(.*?)$', Comment.Preproc),
@@ -560,7 +561,7 @@ class LassoLexer(RegexLexer):
 
     flags = re.IGNORECASE | re.DOTALL | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^#![ \S]+lasso9\b', Comment.Preproc, 'lasso'),
             (r'(?=\[|<)', Other, 'delimiters'),
@@ -816,7 +817,7 @@ class ObjectiveJLexer(RegexLexer):
 
     flags = re.DOTALL | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
 
@@ -1040,7 +1041,7 @@ class CoffeeScriptLexer(RegexLexer):
         r'(<<|>>>?|==?(?!>)|!=?|=(?!>)|-(?!>)|[<>+*`%&|\^/])=?')
 
     flags = re.DOTALL
-    tokens = {
+    tokens: typing.ClassVar = {
         'commentsandwhitespace': [
             (r'\s+', Whitespace),
             (r'###[^#].*?###', Comment.Multiline),
@@ -1147,7 +1148,7 @@ class MaskLexer(RegexLexer):
     version_added = '2.0'
 
     flags = re.MULTILINE | re.IGNORECASE | re.DOTALL
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace)),
@@ -1268,7 +1269,7 @@ class EarlGreyLexer(RegexLexer):
     url = 'https://github.com/breuleux/earl-grey'
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             include('control'),
@@ -1485,7 +1486,7 @@ class JuttleLexer(RegexLexer):
 
     flags = re.DOTALL | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'commentsandwhitespace': [
             (r'\s+', Whitespace),
             (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace)),

@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, words, bygroups
 from pygments.token import Comment, Operator, Keyword, Name, String, \
@@ -34,7 +35,7 @@ class AmbientTalkLexer(RegexLexer):
                      'disconnected:', 'reconnected:', 'takenOffline:', 'becomes:',
                      'export:', 'as:', 'object:', 'actor:', 'mirror:', 'taggedAs:',
                      'mirroredBy:', 'is:'))
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'//.*?\n', Comment.Single),

@@ -14,6 +14,7 @@
 __all__ = ['CodeQLLexer']
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, words
 from pygments.token import Comment, Operator, Keyword, Name, String, \
@@ -29,7 +30,7 @@ class CodeQLLexer(RegexLexer):
 
     flags = re.MULTILINE | re.UNICODE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Whitespace and comments
             (r'\s+', Whitespace),

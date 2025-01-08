@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexers.html import HtmlLexer, XmlLexer
 from pygments.lexers.javascript import JavascriptLexer, LassoLexer
@@ -206,7 +207,7 @@ class SmartyLexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^{]+', Other),
             (r'(\{)(\*.*?\*)(\})',
@@ -265,7 +266,7 @@ class VelocityLexer(RegexLexer):
 
     identifier = r'[a-zA-Z_]\w*'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^{#$]+', Other),
             (r'(#)(\*.*?\*)(#)',
@@ -390,7 +391,7 @@ class DjangoLexer(RegexLexer):
 
     flags = re.M | re.S
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^{]+', Other),
             (r'\{\{', Comment.Preproc, 'var'),
@@ -471,7 +472,7 @@ class MyghtyLexer(RegexLexer):
     mimetypes = ['application/x-myghty']
     version_added = '0.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Text),
             (r'(?s)(<%(?:def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)',
@@ -582,7 +583,7 @@ class MasonLexer(RegexLexer):
     mimetypes = ['application/x-mason']
     version_added = '1.4'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'(?s)(<%doc>)(.*?)(</%doc>)',
@@ -637,7 +638,7 @@ class MakoLexer(RegexLexer):
     mimetypes = ['application/x-mako']
     version_added = '0.7'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(\s*)(%)(\s*end(?:\w+))(\n|\Z)',
              bygroups(Text.Whitespace, Comment.Preproc, Keyword, Other)),
@@ -787,7 +788,7 @@ class CheetahLexer(RegexLexer):
     mimetypes = ['application/x-cheetah', 'application/x-spitfire']
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(##[^\n]*)$',
              (bygroups(Comment))),
@@ -881,7 +882,7 @@ class GenshiTextLexer(RegexLexer):
     mimetypes = ['application/x-genshi-text', 'text/x-genshi']
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^#$\s]+', Other),
             (r'^(\s*)(##.*)$', bygroups(Text, Comment)),
@@ -914,7 +915,7 @@ class GenshiMarkupLexer(RegexLexer):
 
     flags = re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^<$]+', Other),
             (r'(<\?python)(.*?)(\?>)',
@@ -1442,7 +1443,7 @@ class JspRootLexer(RegexLexer):
     .. versionadded:: 0.7
     """
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'<%\S?', Keyword, 'sec'),
             # FIXME: I want to make these keywords but still parse attributes.
@@ -1495,7 +1496,7 @@ class EvoqueLexer(RegexLexer):
 
     flags = re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^#$]+', Other),
             (r'#\[', Comment.Multiline, 'comment'),
@@ -1590,7 +1591,7 @@ class ColdfusionLexer(RegexLexer):
 
     flags = re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'//.*?\n', Comment.Single),
             (r'/\*(?:.|\n)*?\*/', Comment.Multiline),
@@ -1638,7 +1639,7 @@ class ColdfusionMarkupLexer(RegexLexer):
     mimetypes = []
     url = 'https://www.adobe.com/products/coldfusion-family.html'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^<]+', Other),
             include('tags'),
@@ -1738,7 +1739,7 @@ class TeaTemplateRootLexer(RegexLexer):
     .. versionadded:: 1.5
     """
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'<%\S?', Keyword, 'sec'),
             (r'[^<]+', Other),
@@ -1890,7 +1891,7 @@ class HandlebarsLexer(RegexLexer):
     aliases = ['handlebars']
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^{]+', Other),
 
@@ -1999,7 +2000,7 @@ class LiquidLexer(RegexLexer):
     filenames = ['*.liquid']
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^{]+', Text),
             # tags and block tags
@@ -2217,7 +2218,7 @@ class TwigLexer(RegexLexer):
     _ident_end = r'(?:' + _ident_char + ')*'
     _ident_inner = _ident_begin + _ident_end
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^{]+', Other),
             (r'\{\{', Comment.Preproc, 'var'),
@@ -2308,7 +2309,7 @@ class Angular2Lexer(RegexLexer):
     aliases = ['ng2']
     version_added = '2.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^{([*#]+', Other),
 

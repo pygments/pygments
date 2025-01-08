@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer
 from pygments.token import Text, Comment, Keyword, String
 
@@ -50,7 +51,7 @@ class X10Lexer(RegexLexer):
         'throws', 'transient'
     )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^\S\n]+', Text),
             (r'//.*?\n', Comment.Single),

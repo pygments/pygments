@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 
 from pygments.lexer import RegexLexer, bygroups, default
@@ -31,7 +32,7 @@ class LdifLexer(RegexLexer):
     url = "https://datatracker.ietf.org/doc/html/rfc2849"
     version_added = '2.17'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s*\n', Whitespace),
             (r'(-)(\n)', bygroups(Punctuation, Whitespace)),
@@ -123,7 +124,7 @@ class LdaprcLexer(RegexLexer):
 
     flags = re.IGNORECASE | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*', Comment.Single),
             (r'\s+', Whitespace),

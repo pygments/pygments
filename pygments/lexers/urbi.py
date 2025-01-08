@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import ExtendedRegexLexer, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -56,7 +57,7 @@ class UrbiscriptLexer(ExtendedRegexLexer):
         yield match.start(), String.Escape, blob_text
         ctx.pos = match.end() + blob_size + 1  # +1 is the ending ")"
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Text),
             # comments

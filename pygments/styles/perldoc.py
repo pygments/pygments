@@ -10,6 +10,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Whitespace
@@ -27,7 +28,7 @@ class PerldocStyle(Style):
     
     background_color = '#eeeedd'
 
-    styles = {
+    styles: typing.ClassVar = {
         Whitespace:             '#bbbbbb',
         Comment:                '#228B22',
         Comment.Preproc:        '#1e889b',

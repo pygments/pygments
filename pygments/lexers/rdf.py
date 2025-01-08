@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, bygroups, default
 from pygments.token import Keyword, Punctuation, String, Number, Operator, \
@@ -92,7 +93,7 @@ class SparqlLexer(RegexLexer):
 
     # Lexer token definitions ::
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Text),
             # keywords ::
@@ -238,7 +239,7 @@ class TurtleLexer(RegexLexer):
         'IRIREF': r'(<[^<>"{}|^`\\\x00-\x20]*>)'
     }
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Text),
 
@@ -396,7 +397,7 @@ class ShExCLexer(RegexLexer):
 
     # Lexer token definitions ::
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Text),
             # keywords ::

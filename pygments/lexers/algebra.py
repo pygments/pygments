@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import Lexer, RegexLexer, bygroups, do_insertions, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -33,7 +34,7 @@ class GAPLexer(RegexLexer):
     filenames = ['*.g', '*.gd', '*.gi', '*.gap']
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*$', Comment.Single),
             (r'"(?:[^"\\]|\\.)*"', String),
@@ -177,7 +178,7 @@ class MathematicaLexer(RegexLexer):
     def _multi_escape(entries):
         return '({})'.format('|'.join(re.escape(entry) for entry in entries))
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(?s)\(\*.*?\*\)', Comment),
 
@@ -209,7 +210,7 @@ class MuPADLexer(RegexLexer):
     filenames = ['*.mu']
     version_added = '0.8'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'//.*?$', Comment.Single),
             (r'/\*', Comment.Multiline, 'comment'),
@@ -280,7 +281,7 @@ class BCLexer(RegexLexer):
     filenames = ['*.bc']
     version_added = '2.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'/\*', Comment.Multiline, 'comment'),
             (r'"(?:[^"\\]|\\.)*"', String),

@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Comment, Keyword, Operator, Name, String, Number, \
     Punctuation, Whitespace
@@ -26,7 +27,7 @@ class GraphvizLexer(RegexLexer):
     filenames = ['*.gv', '*.dot']
     mimetypes = ['text/x-graphviz', 'text/vnd.graphviz']
     version_added = '2.8'
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'(#|//).*?$', Comment.Single),

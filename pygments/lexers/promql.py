@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, default, words
 from pygments.token import Comment, Keyword, Name, Number, Operator, \
     Punctuation, String, Whitespace
@@ -125,7 +126,7 @@ class PromQLLexer(RegexLexer):
         Keyword.Reserved,
     )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             (r"\n", Whitespace),
             (r"\s+", Whitespace),

@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, include
 from pygments.token import Comment, Name, Number, Operator, Punctuation, \
         String, Whitespace
@@ -21,7 +22,7 @@ class SoongLexer(RegexLexer):
     aliases = ['androidbp', 'bp', 'soong']
     filenames = ['Android.bp']
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # A variable assignment
             (r'(\w*)(\s*)(\+?=)(\s*)',

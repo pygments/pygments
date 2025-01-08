@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, include, combined, default, \
     words
 from pygments.token import Text, Comment, Operator, Keyword, Punctuation, \
@@ -44,7 +45,7 @@ class QVToLexer(RegexLexer):
     url = 'https://www.omg.org/spec/QVT/1.1'
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Text),
             (r'[^\S\n]+', Text),

@@ -10,6 +10,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Escape, \
     Error, Text, Number, Operator, Generic, Punctuation, Literal
@@ -48,7 +49,7 @@ class MaterialStyle(Style):
     line_number_special_color = '#607A86'
     line_number_special_background_color = dark_teal
 
-    styles = {
+    styles: typing.ClassVar = {
         Text:                          foreground,
         Escape:                        cyan,
         Error:                         red,

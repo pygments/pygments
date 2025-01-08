@@ -6,6 +6,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 import pytest
 
 from pygments.token import Text, Whitespace
@@ -19,7 +20,7 @@ def lexer():
 
 class MyLexer(RegexLexer):
     """Test tuple state transitions including #pop."""
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             ('a', Text.Root, 'rag'),
             ('e', Text.Root),

@@ -6,6 +6,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pytest import raises
 
 from pygments.lexer import using, bygroups, this, RegexLexer
@@ -13,7 +14,7 @@ from pygments.token import String, Text, Keyword
 
 
 class MyLexer(RegexLexer):
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*',
              using(this, state='invalid')),

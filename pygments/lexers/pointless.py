@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words
 from pygments.token import Comment, Error, Keyword, Name, Number, Operator, \
     Punctuation, String, Text
@@ -39,7 +40,7 @@ class PointlessLexer(RegexLexer):
         "yield", "upval",
     ], suffix=r'\b')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[ \n\r]+', Text),
             (r'--.*$', Comment.Single),

@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words, re
 from pygments.token import Text, Operator, Keyword, Name, Comment
 
@@ -25,7 +26,7 @@ class RoboconfGraphLexer(RegexLexer):
     version_added = '2.1'
 
     flags = re.IGNORECASE | re.MULTILINE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Skip white spaces
             (r'\s+', Text),
@@ -60,7 +61,7 @@ class RoboconfInstancesLexer(RegexLexer):
     version_added = '2.1'
 
     flags = re.IGNORECASE | re.MULTILINE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
 
             # Skip white spaces

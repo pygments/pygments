@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Whitespace, Token
@@ -26,7 +27,7 @@ class VimStyle(Style):
     background_color = "#000000"
     highlight_color = "#222222"
 
-    styles = {
+    styles: typing.ClassVar = {
         Token:                     "#cccccc",
         Whitespace:                "",
         Comment:                   "#000080",

@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, words
 from pygments.token import Keyword, Comment, Name, String, Number, \
@@ -30,7 +31,7 @@ class EzhilLexer(RegexLexer):
     # Refer to tamil.utf8.tamil_letters from open-tamil for a stricter version of this.
     # This much simpler version is close enough, and includes combining marks.
     _TALETTERS = '[a-zA-Z_]|[\u0b80-\u0bff]'
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('keywords'),
             (r'#.*$', Comment.Single),

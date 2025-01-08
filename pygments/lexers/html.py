@@ -48,7 +48,7 @@ class HtmlLexer(RegexLexer):
     version_added = ''
 
     flags = re.IGNORECASE | re.DOTALL
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             ('[^<&]+', Text),
             (r'&\S*?;', Name.Entity),
@@ -127,7 +127,7 @@ class DtdLexer(RegexLexer):
     url = 'https://en.wikipedia.org/wiki/Document_type_definition'
     version_added = '1.5'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('common'),
 
@@ -217,7 +217,7 @@ class XmlLexer(RegexLexer):
     url = 'https://www.w3.org/XML'
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^<&\s]+', Text),
             (r'[^<&\S]+', Whitespace),
@@ -305,7 +305,7 @@ class HamlLexer(ExtendedRegexLexer):
     # In certain places, a comma at the end of the line
     # allows line wrapping as well.
     _comma_dot = r'(?:,\s*\n|' + _dot + ')'
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[ \t]*\n', Text),
             (r'[ \t]*', _indentation),
@@ -414,7 +414,7 @@ class ScamlLexer(ExtendedRegexLexer):
     # _dot = r'(?: \|\n(?=.* \|)|.)'
     _dot = r'.'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[ \t]*\n', Text),
             (r'[ \t]*', _indentation),
@@ -524,7 +524,7 @@ class PugLexer(ExtendedRegexLexer):
     flags = re.IGNORECASE
     _dot = r'.'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[ \t]*\n', Text),
             (r'[ \t]*', _indentation),
@@ -628,7 +628,7 @@ class UrlEncodedLexer(RegexLexer):
     url = 'https://en.wikipedia.org/wiki/Percent-encoding'
     version_added = '2.16'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             ('([^&=]*)(=)([^=&]*)(&?)', bygroups(Name.Tag, Operator, String, Punctuation)),
         ],
@@ -648,7 +648,7 @@ class VueLexer(HtmlLexer):
     version_added = '2.19'
 
     flags = re.IGNORECASE | re.DOTALL
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(\{\{)(.*?)(\}\})', bygroups(Comment.Preproc,
              using(JavascriptLexer), Comment.Preproc)),

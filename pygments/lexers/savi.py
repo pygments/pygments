@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, include
 from pygments.token import Whitespace, Keyword, Name, String, Number, \
   Operator, Punctuation, Comment, Generic, Error
@@ -42,7 +43,7 @@ class SaviLexer(RegexLexer):
     filenames = ['*.savi']
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
       "root": [
         # Line Comment
         (r'//.*?$', Comment.Single),

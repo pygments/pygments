@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String
 
@@ -22,7 +23,7 @@ class IgorStyle(Style):
 
     name = 'igor'
 
-    styles = {
+    styles: typing.ClassVar = {
         Comment:                'italic #FF0000',
         Keyword:                '#0000FF',
         Name.Function:          '#C34E00',

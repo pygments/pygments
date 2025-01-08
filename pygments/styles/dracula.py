@@ -11,6 +11,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, Literal, \
     Number, Operator, Other, Punctuation, Text, Generic, Whitespace
@@ -42,7 +43,7 @@ class DraculaStyle(Style):
     line_number_special_color = green
     line_number_special_background_color = comment
 
-    styles = {
+    styles: typing.ClassVar = {
         Whitespace: foreground,
 
         Comment: comment,

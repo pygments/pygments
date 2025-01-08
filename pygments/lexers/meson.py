@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words, include
 from pygments.token import Comment, Name, Number, Punctuation, Operator, \
     Keyword, String, Whitespace
@@ -34,7 +35,7 @@ class MesonLexer(RegexLexer):
     mimetypes = ['text/x-meson']
     version_added = '2.10'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*?$', Comment),
             (r"'''.*'''", String.Single),

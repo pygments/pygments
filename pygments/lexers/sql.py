@@ -42,6 +42,7 @@
 
 import collections
 import re
+import typing
 
 from pygments.lexer import Lexer, RegexLexer, do_insertions, bygroups, words
 from pygments.token import Punctuation, Whitespace, Text, Comment, Operator, \
@@ -180,7 +181,7 @@ class PostgresLexer(PostgresBase, RegexLexer):
     version_added = '1.5'
 
     flags = re.IGNORECASE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'--.*\n?', Comment.Single),
@@ -402,7 +403,7 @@ class PostgresExplainLexer(RegexLexer):
     url = 'https://www.postgresql.org/docs/current/using-explain.html'
     version_added = '2.15'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(:|\(|\)|ms|kB|->|\.\.|\,|\/)', Punctuation),
             (r'(\s+)', Whitespace),
@@ -590,7 +591,7 @@ class SqlLexer(RegexLexer):
     version_added = ''
 
     flags = re.IGNORECASE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'--.*\n?', Comment.Single),
@@ -727,7 +728,7 @@ class TransactSqlLexer(RegexLexer):
 
     flags = re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'--.*[$|\n]?', Comment.Single),
@@ -812,7 +813,7 @@ class MySqlLexer(RegexLexer):
     version_added = ''
 
     flags = re.IGNORECASE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
 
@@ -996,7 +997,7 @@ class GoogleSqlLexer(RegexLexer):
     version_added = '2.19'
 
     flags = re.IGNORECASE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
 
@@ -1195,7 +1196,7 @@ class RqlLexer(RegexLexer):
     version_added = '2.0'
 
     flags = re.IGNORECASE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'(DELETE|SET|INSERT|UNION|DISTINCT|WITH|WHERE|BEING|OR'

@@ -10,6 +10,7 @@
 
 import re
 import copy
+import typing
 
 from pygments.lexer import ExtendedRegexLexer, RegexLexer, include, bygroups, \
     default, words, inherit
@@ -151,7 +152,7 @@ class CssLexer(RegexLexer):
     mimetypes = ['text/css']
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('basics'),
         ],
@@ -264,7 +265,7 @@ class CssLexer(RegexLexer):
     }
 
 
-common_sass_tokens = {
+common_sass_tokens: typing.ClassVar = {
     'value': [
         (r'[ \t]+', Whitespace),
         (r'[!$][\w-]+', Name.Variable),
@@ -399,7 +400,7 @@ class SassLexer(ExtendedRegexLexer):
 
     flags = re.IGNORECASE | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[ \t]*\n', Whitespace),
             (r'[ \t]*', _indentation),
@@ -480,7 +481,7 @@ class ScssLexer(RegexLexer):
     version_added = ''
 
     flags = re.IGNORECASE | re.DOTALL
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'//.*?\n', Comment.Single),
@@ -531,7 +532,7 @@ class LessCssLexer(CssLexer):
     mimetypes = ['text/x-less-css']
     version_added = '2.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'@\w+', Name.Variable),
             inherit,

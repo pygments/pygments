@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
@@ -30,7 +31,7 @@ class SnobolLexer(RegexLexer):
     url = 'https://www.regressive.org/snobol4'
     version_added = '1.5'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         # root state, start of line
         # comments, continuation lines, and directives start in column 1
         # as do labels

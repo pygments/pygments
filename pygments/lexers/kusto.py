@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words
 from pygments.token import (Comment, Keyword, Name, Number, Punctuation,
                             String, Whitespace)
@@ -51,7 +52,7 @@ class KustoLexer(RegexLexer):
     url = "https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query"
     version_added = '2.17'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             (r"\s+", Whitespace),
             (words(KUSTO_KEYWORDS, suffix=r"\b"), Keyword),

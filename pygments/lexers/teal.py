@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, include, words
 from pygments.token import Comment, Name, Number, String, Text, Keyword, \
     Whitespace
@@ -53,7 +54,7 @@ class TealLexer(RegexLexer):
 
     identifier = r'[^ \t\n]+(?=\/\/)|[^ \t\n]+'
     newline = r'\r?\n'
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
             # pragmas match specifically on the space character

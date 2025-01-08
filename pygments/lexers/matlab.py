@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import Lexer, RegexLexer, bygroups, default, words, \
     do_insertions, include
@@ -33,7 +34,7 @@ class MatlabLexer(RegexLexer):
 
     _operators = r'-|==|~=|<=|>=|<|>|&&|&|~|\|\|?|\.\*|\*|\+|\.\^|\^|\.\\|\./|/|\\'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'expressions': [
             # operators:
             (_operators, Operator),
@@ -3144,7 +3145,7 @@ class OctaveLexer(RegexLexer):
         "WIFEXITED", "WIFSIGNALED", "WIFSTOPPED", "WNOHANG",
         "WSTOPSIG", "WTERMSIG", "WUNTRACED")
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'%\{\s*\n', Comment.Multiline, 'percentblockcomment'),
             (r'#\{\s*\n', Comment.Multiline, 'hashblockcomment'),
@@ -3237,7 +3238,7 @@ class ScilabLexer(RegexLexer):
     mimetypes = ['text/scilab']
     version_added = '1.5'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'//.*?$', Comment.Single),
             (r'^\s*function\b', Keyword, 'deffunc'),

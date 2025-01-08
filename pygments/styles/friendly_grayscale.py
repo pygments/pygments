@@ -11,6 +11,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Whitespace
@@ -29,7 +30,7 @@ class FriendlyGrayscaleStyle(Style):
 
     background_color = "#f0f0f0"
 
-    styles = {
+    styles: typing.ClassVar = {
         Whitespace:                "#bbbbbb",
         Comment:                   "italic #959595",
         Comment.Preproc:           "noitalic #575757",

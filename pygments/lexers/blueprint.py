@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, words
 from pygments.token import (
@@ -38,7 +39,7 @@ class BlueprintLexer(RegexLexer):
     version_added = '2.16'
 
     flags = re.IGNORECASE
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             include("block-content"),
         ],

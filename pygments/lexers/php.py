@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import Lexer, RegexLexer, include, bygroups, default, \
     using, this, words, do_insertions, line_re
@@ -38,7 +39,7 @@ class ZephirLexer(RegexLexer):
 
     flags = re.DOTALL | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'commentsandwhitespace': [
             (r'\s+', Text),
             (r'//.*?\n', Comment.Single),
@@ -179,7 +180,7 @@ class PhpLexer(RegexLexer):
     _ident_nons = r'(?:[_a-z]|[^\x00-\x7f])(?:\w|[^\x00-\x7f])*'
 
     flags = re.IGNORECASE | re.DOTALL | re.MULTILINE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'<\?(php)?', Comment.Preproc, 'php'),
             (r'[^<]+', Other),

@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import ExtendedRegexLexer, RegexLexer, default, words, \
     bygroups, include, using, line_re
@@ -57,7 +58,7 @@ class IniLexer(RegexLexer):
     url = 'https://en.wikipedia.org/wiki/INI_file'
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'[;#].*', Comment.Single),
@@ -109,7 +110,7 @@ class DesktopLexer(RegexLexer):
     mimetypes = ['application/x-desktop']
     version_added = '2.16'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^[ \t]*\n', Whitespace),
             (r'^(#.*)(\n)', bygroups(Comment.Single, Whitespace)),
@@ -141,7 +142,7 @@ class SystemdLexer(RegexLexer):
     ]
     version_added = '2.16'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^[ \t]*\n', Whitespace),
             (r'^([;#].*)(\n)', bygroups(Comment.Single, Whitespace)),
@@ -183,7 +184,7 @@ class RegeditLexer(RegexLexer):
     mimetypes = ['text/x-windows-registry']
     version_added = '1.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'Windows Registry Editor.*', Text),
             (r'\s+', Whitespace),
@@ -227,7 +228,7 @@ class PropertiesLexer(RegexLexer):
     url = 'https://en.wikipedia.org/wiki/.properties'
     version_added = '1.4'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # comments
             (r'[!#].*|/{2}.*', Comment.Single),
@@ -319,7 +320,7 @@ class KconfigLexer(RegexLexer):
             default('#pop:2')
         ]
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'#.*?\n', Comment.Single),
@@ -379,7 +380,7 @@ class Cfengine3Lexer(RegexLexer):
     mimetypes = []
     version_added = '1.5'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*?\n', Comment),
             (r'(body)(\s+)(\S+)(\s+)(control)',
@@ -442,7 +443,7 @@ class ApacheConfLexer(RegexLexer):
     version_added = '0.6'
     flags = re.MULTILINE | re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'#(.*\\\n)+.*$|(#.*?)$', Comment),
@@ -577,7 +578,7 @@ class SquidConfLexer(RegexLexer):
     # There is no test where it is used.
     ip = rf'{bare_ip}(/({bare_ip}|\d+))?'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'#', Comment, 'comment'),
@@ -611,7 +612,7 @@ class NginxConfLexer(RegexLexer):
     mimetypes = ['text/x-nginx-conf']
     version_added = '0.11'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(include)(\s+)([^\s;]+)', bygroups(Keyword, Whitespace, Name)),
             (r'[^\s;#]+', Keyword, 'stmt'),
@@ -657,7 +658,7 @@ class LighttpdConfLexer(RegexLexer):
     mimetypes = ['text/x-lighttpd-conf']
     version_added = '0.11'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*\n', Comment.Single),
             (r'/\S*', Name),  # pathname
@@ -690,7 +691,7 @@ class DockerLexer(RegexLexer):
     _lb = r'(?:\s*\\?\s*)'  # dockerfile line break regex
     flags = re.IGNORECASE | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*', Comment),
             (r'(FROM)([ \t]*)(\S*)([ \t]*)(?:(AS)([ \t]*)(\S*))?',
@@ -805,7 +806,7 @@ class TerraformLexer(ExtendedRegexLexer):
                 yield amatch.start(), Error, amatch.group()
         ctx.end = len(ctx.text)
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('basic'),
             include('whitespace'),
@@ -896,7 +897,7 @@ class TermcapLexer(RegexLexer):
     #   * separator is ':'
     #   * to embed colon as data, we must use \072
     #   * space after separator is not allowed (mayve)
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^#.*', Comment),
             (r'^[^\s#:|]+', Name.Tag, 'names'),
@@ -943,7 +944,7 @@ class TerminfoLexer(RegexLexer):
     #   * separator is ','
     #   * to embed comma as data, we can use \,
     #   * space after separator is allowed
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^#.*$', Comment),
             (r'^[^\s#,|]+', Name.Tag, 'names'),
@@ -985,7 +986,7 @@ class PkgConfigLexer(RegexLexer):
     mimetypes = []
     version_added = '2.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*$', Comment.Single),
 
@@ -1053,7 +1054,7 @@ class PacmanConfLexer(RegexLexer):
     mimetypes = []
     version_added = '2.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # comment
             (r'#.*$', Comment.Single),
@@ -1096,7 +1097,7 @@ class AugeasLexer(RegexLexer):
     filenames = ['*.aug']
     version_added = '2.4'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(module)(\s*)([^\s=]+)', bygroups(Keyword.Namespace, Whitespace, Name.Namespace)),
             (r'(let)(\s*)([^\s=]+)', bygroups(Keyword.Declaration, Whitespace, Name.Variable)),
@@ -1156,7 +1157,7 @@ class TOMLLexer(RegexLexer):
                 )?
               """
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Note that we make an effort in order to distinguish
             # moments at which we're parsing a key and moments at
@@ -1312,7 +1313,7 @@ class NestedTextLexer(RegexLexer):
     filenames = ['*.nt']
     version_added = '2.9'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Comment: # ...
             (r'^([ ]*)(#.*)$', bygroups(Whitespace, Comment)),
@@ -1396,7 +1397,7 @@ class SingularityLexer(RegexLexer):
     _section = r'^(%(?:pre|post|setup|environment|help|labels|test|runscript|files|startscript))(\s*)'
     _appsect = r'^(%app(?:install|help|run|labels|env|test|files))(\s*)'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (_section, bygroups(Generic.Heading, Whitespace), 'script'),
             (_appsect, bygroups(Generic.Heading, Whitespace), 'script'),
@@ -1439,7 +1440,7 @@ class UnixConfigLexer(RegexLexer):
     url = 'https://en.wikipedia.org/wiki/Configuration_file#Unix_and_Unix-like_operating_systems'
     version_added = '2.12'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^#.*', Comment),
             (r'\n', Whitespace),

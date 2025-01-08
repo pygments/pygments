@@ -13,6 +13,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, bygroups, using, default
 from pygments.token import Text, Comment, Name, Literal, Number, String, \
     Punctuation, Keyword, Operator, Generic, Whitespace
@@ -27,7 +28,7 @@ class AtomsLexer(RegexLexer):
     .. versionadded:: 2.1
     """
 
-    tokens = {
+    tokens: typing.ClassVar = {
         # ----- pseudo-states for inclusion -----
         'whitespace': [
             (r'\n', Whitespace),
@@ -143,7 +144,7 @@ class OdinLexer(AtomsLexer):
     url = 'https://github.com/openEHR/odin'
     version_added = '2.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'path': [
             (r'>', Punctuation, '#pop'),
             # attribute name
@@ -191,7 +192,7 @@ class CadlLexer(AtomsLexer):
     url = 'https://specifications.openehr.org/releases/AM/latest/ADL2.html#_cadl_constraint_adl'
     version_added = '2.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'path': [
             # attribute name
             (r'[a-z_]\w*', Name.Class),
@@ -257,7 +258,7 @@ class AdlLexer(AtomsLexer):
     url = 'https://specifications.openehr.org/releases/AM/latest/ADL2.html'
     version_added = '2.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'whitespace': [
             # blank line ends
             (r'\s*\n', Whitespace),

@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, using, this, words, \
     inherit, default
@@ -44,7 +45,7 @@ def objective(baselexer):
         Implements Objective-C syntax on top of an existing C family lexer.
         """
 
-        tokens = {
+        tokens: typing.ClassVar = {
             'statements': [
                 (r'@"', String, 'string'),
                 (r'@(YES|NO)', Number),
@@ -230,7 +231,7 @@ class LogosLexer(ObjectiveCppLexer):
     version_added = '1.6'
     priority = 0.25
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'statements': [
             (r'(%orig|%log)\b', Keyword),
             (r'(%c)\b(\()(\s*)([a-zA-Z$_][\w$]*)(\s*)(\))',
@@ -292,7 +293,7 @@ class SwiftLexer(RegexLexer):
     mimetypes = ['text/x-swift']
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Whitespace and Comments
             (r'\n', Text),

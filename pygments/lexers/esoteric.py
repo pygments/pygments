@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, words, bygroups
 from pygments.token import Comment, Operator, Keyword, Name, String, Number, \
     Punctuation, Error, Whitespace
@@ -34,7 +35,7 @@ class BrainfuckLexer(RegexLexer):
     mimetypes = ['application/x-brainfuck']
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'common': [
             # use different colors for different instruction types
             (r'[.,]+', Name.Tag),
@@ -91,7 +92,7 @@ class BefungeLexer(RegexLexer):
     mimetypes = ['application/x-befunge']
     version_added = '0.7'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[0-9a-f]', Number),
             (r'[+*/%!`-]', Operator),             # Traditional math
@@ -119,7 +120,7 @@ class CAmkESLexer(RegexLexer):
     filenames = ['*.camkes', '*.idl4']
     version_added = '2.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # C pre-processor directive
             (r'^(\s*)(#.*)(\n)', bygroups(Whitespace, Comment.Preproc,
@@ -193,7 +194,7 @@ class CapDLLexer(RegexLexer):
     filenames = ['*.cdl']
     version_added = '2.2'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # C pre-processor directive
             (r'^(\s*)(#.*)(\n)',
@@ -251,7 +252,7 @@ class RedcodeLexer(RegexLexer):
                'ORG', 'EQU', 'END')
     modifiers = ('A', 'B', 'AB', 'BA', 'F', 'X', 'I')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Whitespace:
             (r'\s+', Whitespace),
@@ -282,7 +283,7 @@ class AheuiLexer(RegexLexer):
     filenames = ['*.aheui']
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             ('['
              '나-낳냐-냫너-넣녀-녛노-놓뇨-눟뉴-닇'

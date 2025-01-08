@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, inherit, words, \
     default
@@ -44,7 +45,7 @@ class PikeLexer(CppLexer):
     mimetypes = ['text/x-pike']
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'statements': [
             (words((
                 'catch', 'new', 'private', 'protected', 'public', 'gauge',
@@ -85,7 +86,7 @@ class NesCLexer(CLexer):
     mimetypes = ['text/x-nescsrc']
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'statements': [
             (words((
                 'abstract', 'as', 'async', 'atomic', 'call', 'command', 'component',
@@ -113,7 +114,7 @@ class ClayLexer(RegexLexer):
     url = 'http://claylabs.com/clay'
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'//.*?$', Comment.Single),
@@ -165,7 +166,7 @@ class ECLexer(CLexer):
     url = 'https://ec-lang.org'
     version_added = '1.5'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'statements': [
             (words((
                 'virtual', 'class', 'private', 'public', 'property', 'import',
@@ -198,7 +199,7 @@ class ValaLexer(RegexLexer):
     url = 'https://vala.dev'
     version_added = '1.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'whitespace': [
             (r'^\s*#if\s+0', Comment.Preproc, 'if0'),
             (r'\n', Whitespace),
@@ -343,7 +344,7 @@ class SwigLexer(CppLexer):
     version_added = '2.0'
     priority = 0.04  # Lower than C/C++ and Objective C/C++
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Match it here so it won't be matched as a function in the rest of root
             (r'\$\**\&?\w+', Name),
@@ -408,7 +409,7 @@ class MqlLexer(CppLexer):
     mimetypes = ['text/x-mql']
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'statements': [
             (words(_mql_builtins.keywords, suffix=r'\b'), Keyword),
             (words(_mql_builtins.c_types, suffix=r'\b'), Keyword.Type),
@@ -560,7 +561,7 @@ class CharmciLexer(CppLexer):
 
     mimetypes = []
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'keywords': [
             (r'(module)(\s+)', bygroups(Keyword, Text), 'classname'),
             (words(('mainmodule', 'mainchare', 'chare', 'array', 'group',
@@ -591,7 +592,7 @@ class OmgIdlLexer(CLexer):
 
     scoped_name = r'((::)?\w+)+'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'values': [
             (words(('true', 'false'), prefix=r'(?i)', suffix=r'\b'), Number),
             (r'([Ll]?)(")', bygroups(String.Affix, String.Double), 'string'),
@@ -687,7 +688,7 @@ class PromelaLexer(CLexer):
     # Promela's grammar definition:
     # https://spinroot.com/spin/Man/grammar.html
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'statements': [
             (r'(\[\]|<>|/\\|\\/)|(U|W|V)\b', Operator), # LTL Operators
             (r'@', Punctuation), #remoterefs

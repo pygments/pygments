@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, words
 from pygments.token import Comment, Keyword, Name, String, Number, \
     Punctuation, Whitespace, Operator
@@ -33,7 +34,7 @@ class PtxLexer(RegexLexer):
     identifier = r'([-a-zA-Z$._][\w\-$.]*|' + string + ')'
     block_label = r'(' + identifier + r'|(\d+))'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
 

@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, words, bygroups
 from pygments.token import Comment, Operator, Keyword, Name, String, Number, \
     Punctuation, Whitespace
@@ -26,7 +27,7 @@ class EiffelLexer(RegexLexer):
     mimetypes = ['text/x-eiffel']
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^\S\n]+', Whitespace),
             (r'--.*?$', Comment.Single),

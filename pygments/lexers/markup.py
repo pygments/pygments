@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexers.html import XmlLexer
 from pygments.lexers.javascript import JavascriptLexer
@@ -51,7 +52,7 @@ class BBCodeLexer(RegexLexer):
     url = 'https://www.bbcode.org/'
     version_added = '0.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^[]+', Text),
             # tag/end tag begin
@@ -87,7 +88,7 @@ class MoinWikiLexer(RegexLexer):
 
     flags = re.MULTILINE | re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^#.*$', Comment),
             (r'(!)(\S+)', bygroups(Keyword, Text)),  # Ignore-next
@@ -186,7 +187,7 @@ class RstLexer(RegexLexer):
     unicode_delimiters = '\u2010\u2011\u2012\u2013\u2014\u00a0'
     end_string_suffix = (rf'((?=$)|(?=[-/:.,; \n\x00{re.escape(unicode_delimiters)}{re.escape(closers)}]))')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Heading with overline
             (r'^(=+|-+|`+|:+|\.+|\'+|"+|~+|\^+|_+|\*+|\++|#+)([ \t]*\n)'
@@ -296,7 +297,7 @@ class TexLexer(RegexLexer):
     url = 'https://tug.org'
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'general': [
             (r'%.*?\n', Comment),
             (r'[{}]', Name.Builtin),
@@ -357,7 +358,7 @@ class GroffLexer(RegexLexer):
     url = 'https://www.gnu.org/software/groff'
     version_added = '0.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(\.)(\w+)', bygroups(Text, Keyword), 'request'),
             (r'\.', Punctuation, 'request'),
@@ -413,7 +414,7 @@ class MozPreprocHashLexer(RegexLexer):
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^#', Comment.Preproc, ('expr', 'exprstart')),
             (r'.+', Other),
@@ -454,7 +455,7 @@ class MozPreprocPercentLexer(MozPreprocHashLexer):
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^%', Comment.Preproc, ('expr', 'exprstart')),
             (r'.+', Other),
@@ -549,7 +550,7 @@ class MarkdownLexer(RegexLexer):
 
         yield match.start('terminator'), String.Backtick, match.group('terminator')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # heading with '#' prefix (atx-style)
             (r'(^#[^#].+)(\n)', bygroups(Generic.Heading, Text)),
@@ -643,7 +644,7 @@ class OrgLexer(RegexLexer):
     def _inline(start, end):
         return rf'(?<!\w){start}(.|\n(?!\n))+?{end}(?!\w)'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^# .*', Comment.Single),
 
@@ -806,7 +807,7 @@ class TiddlyWiki5Lexer(RegexLexer):
 
         yield match.start(4), String, match.group(4)
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # title in metadata section
             (r'^(title)(:\s)(.+\n)', bygroups(Keyword, Text, Generic.Heading)),
@@ -1114,7 +1115,7 @@ class WikitextLexer(RegexLexer):
         'INT', 'DISPLAYTITLE', 'PAGESINNAMESPACE', 'PAGESINNS',
     }
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Redirects
             (r"""(?xi)

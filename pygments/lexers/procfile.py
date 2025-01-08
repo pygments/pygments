@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Name, Number, String, Text, Punctuation
 
@@ -27,7 +28,7 @@ class ProcfileLexer(RegexLexer):
     filenames = ['Procfile']
     version_added = '2.10'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^([a-z]+)(:)', bygroups(Name.Label, Punctuation)),
             (r'\s+', Text.Whitespace),

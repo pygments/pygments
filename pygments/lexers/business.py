@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, words, bygroups
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -48,7 +49,7 @@ class CobolLexer(RegexLexer):
     # Intrinsics:
     # http://opencobol.add1tocobol.com/#does-opencobol-implement-any-intrinsic-functions
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('comment'),
             include('strings'),
@@ -238,7 +239,7 @@ class CobolFreeformatLexer(CobolLexer):
 
     flags = re.IGNORECASE | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'comment': [
             (r'(\*>.*\n|^\w*\*.*$)', Comment),
         ],
@@ -258,7 +259,7 @@ class ABAPLexer(RegexLexer):
 
     flags = re.IGNORECASE | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'common': [
             (r'\s+', Whitespace),
             (r'^\*.*$', Comment.Single),
@@ -475,7 +476,7 @@ class OpenEdgeLexer(RegexLexer):
                      prefix=r'(?i)(^|(?<=[^\w\-]))',
                      suffix=r'\s*($|(?=[^\w\-]))')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'/\*', Comment.Multiline, 'comment'),
             (r'\{', Comment.Preproc, 'preprocessor'),
@@ -538,7 +539,7 @@ class GoodDataCLLexer(RegexLexer):
 
     # Syntax:
     # https://github.com/gooddata/GoodData-CL/raw/master/cli/src/main/resources/com/gooddata/processor/COMMANDS.txt
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Comments
             (r'#.*', Comment.Single),
@@ -582,7 +583,7 @@ class MaqlLexer(RegexLexer):
     version_added = '1.4'
 
     flags = re.IGNORECASE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # IDENTITY
             (r'IDENTIFIER\b', Name.Builtin),

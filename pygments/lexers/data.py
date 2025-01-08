@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import Lexer, ExtendedRegexLexer, LexerContext, \
     include, bygroups
 from pygments.token import Comment, Error, Keyword, Literal, Name, Number, \
@@ -164,7 +165,7 @@ class YamlLexer(ExtendedRegexLexer):
                 context.pos = match.end()
         return callback
 
-    tokens = {
+    tokens: typing.ClassVar = {
         # the root rules
         'root': [
             # ignored whitespaces

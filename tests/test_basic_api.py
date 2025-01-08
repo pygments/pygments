@@ -12,6 +12,7 @@ import random
 from io import StringIO, BytesIO
 from os import path
 import re
+import typing
 
 import pytest
 
@@ -310,7 +311,7 @@ def test_bare_class_handler():
     class BuggyLexer(RegexLexer):
         def get_tokens(self, text, extra_argument):
             pass
-        tokens = {'root': []}
+        tokens: typing.ClassVar = {'root': []}
     try:
         list(lex('dummy', BuggyLexer()))
     except TypeError as e:

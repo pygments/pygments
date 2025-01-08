@@ -36,6 +36,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Whitespace, Punctuation, Other, Literal
@@ -54,7 +55,7 @@ class TangoStyle(Style):
     
     background_color = "#f8f8f8"
 
-    styles = {
+    styles: typing.ClassVar = {
         # No corresponding class for the following:
         #Text:                     "", # class:  ''
         Whitespace:                "#f8f8f8",      # class: 'w'

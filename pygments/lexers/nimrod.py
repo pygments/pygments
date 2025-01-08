@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, default, bygroups
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -67,7 +68,7 @@ class NimrodLexer(RegexLexer):
         'bool', 'char', 'range', 'array', 'seq', 'set', 'string'
     ]
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Comments
             (r'##\[', String.Doc, 'doccomment'),

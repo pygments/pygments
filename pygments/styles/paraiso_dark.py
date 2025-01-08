@@ -12,6 +12,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, Text, \
     Number, Operator, Generic, Whitespace, Punctuation, Other, Literal
@@ -40,7 +41,7 @@ class ParaisoDarkStyle(Style):
     background_color = BACKGROUND
     highlight_color = SELECTION
 
-    styles = {
+    styles: typing.ClassVar = {
         # No corresponding class for the following:
         Text:                      FOREGROUND,  # class:  ''
         Whitespace:                "",          # class: 'w'

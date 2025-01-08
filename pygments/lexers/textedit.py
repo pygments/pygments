@@ -10,6 +10,7 @@
 
 import re
 from bisect import bisect
+import typing
 
 from pygments.lexer import RegexLexer, bygroups, default, include, this, using
 from pygments.lexers.python import PythonLexer
@@ -31,7 +32,7 @@ class AwkLexer(RegexLexer):
     url = 'https://en.wikipedia.org/wiki/AWK'
     version_added = '1.5'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'commentsandwhitespace': [
             (r'\s+', Text),
             (r'#.*$', Comment.Single)
@@ -88,7 +89,7 @@ class SedLexer(RegexLexer):
     # Match the contents within delimiters such as /<contents>/
     _inside_delims = r'((?:(?:\\[^\n]|[^\\])*?\\\n)*?(?:\\.|[^\\])*?)'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'#.*$', Comment.Single),
@@ -126,7 +127,7 @@ class VimLexer(RegexLexer):
 
     _python = r'py(?:t(?:h(?:o(?:n)?)?)?)?'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^([ \t:]*)(' + _python + r')([ \t]*)(<<)([ \t]*)(.*)((?:\n|.)*)(\6)',
              bygroups(using(this), Keyword, Text, Operator, Text, Text,

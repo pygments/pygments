@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
@@ -28,7 +29,7 @@ class PonyLexer(RegexLexer):
 
     _caps = r'(iso|trn|ref|val|box|tag)'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Text),
             (r'[^\S\n]+', Text),

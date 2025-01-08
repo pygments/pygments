@@ -10,6 +10,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Token, Keyword, Name, Comment, String, Error, \
     Number, Operator, Whitespace, Generic
@@ -24,7 +25,7 @@ class StataDarkStyle(Style):
     background_color = "#232629"
     highlight_color = "#49483e"
 
-    styles = {
+    styles: typing.ClassVar = {
         Token:                 '#cccccc',
         Whitespace:            '#bbbbbb',
         Error:                 'bg:#e3d2d2 #a61717',

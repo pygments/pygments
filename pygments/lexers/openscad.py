@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, words, include
 from pygments.token import Text, Comment, Punctuation, Operator, Keyword, Name, Number, Whitespace, Literal, String
 
@@ -24,7 +25,7 @@ class OpenScadLexer(RegexLexer):
     mimetypes = ["application/x-openscad"]
     version_added = '2.16'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             (r"[^\S\n]+", Whitespace),
             (r'//', Comment.Single, 'comment-single'),

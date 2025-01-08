@@ -9,6 +9,7 @@
 """
 
 from string import Template
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, using, \
     this, default, words
@@ -42,7 +43,7 @@ class FantomLexer(RegexLexer):
             )
         )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'comments': [
             (r'(?s)/\*.*?\*/', Comment.Multiline),           # Multiline
             (r'//.*?$', Comment.Single),                    # Single line

@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import bygroups, default, include, inherit
 from pygments.lexers.javascript import JavascriptLexer, TypeScriptLexer
@@ -70,7 +71,7 @@ class JsxLexer(JavascriptLexer):
     flags = re.MULTILINE | re.DOTALL
 
     # Use same tokens as `JavascriptLexer`, but with tags and attributes support
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             include("jsx"),
             inherit,
@@ -92,7 +93,7 @@ class TsxLexer(TypeScriptLexer):
     flags = re.MULTILINE | re.DOTALL
 
     # Use same tokens as `TypescriptLexer`, but with tags and attributes support
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             include("jsx"),
             inherit,

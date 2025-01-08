@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer
 from pygments.token import Comment, Operator, Keyword, Name, String, Number, \
     Whitespace
@@ -25,7 +26,7 @@ class IoLexer(RegexLexer):
     aliases = ['io']
     mimetypes = ['text/x-iosrc']
     version_added = '0.10'
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             (r'\s+', Whitespace),

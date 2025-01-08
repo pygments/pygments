@@ -9,6 +9,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Token, Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic
@@ -27,7 +28,7 @@ class GruvboxDarkStyle(Style):
     background_color = '#282828'
     highlight_color = '#ebdbb2'
 
-    styles = {
+    styles: typing.ClassVar = {
         Token:              '#dddddd',
 
         Comment:            'italic #928374',
@@ -79,7 +80,7 @@ class GruvboxLightStyle(Style):
     background_color = '#fbf1c7'
     highlight_color = '#3c3836'
 
-    styles = {
+    styles: typing.ClassVar = {
         Comment:            'italic #928374',
         Comment.PreProc:    '#427b58',
         Comment.Special:    'bold italic #3c3836',

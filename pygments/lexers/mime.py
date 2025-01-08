@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include
 from pygments.lexers import get_lexer_for_mimetype
@@ -182,7 +183,7 @@ class MIMELexer(RegexLexer):
 
     attention_headers = {"content-type", "content-transfer-encoding"}
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             (r"^([\w-]+):( *)([\s\S]*?\n)(?![ \t])", get_header_tokens),
             (r"^$[\s\S]+", get_body_tokens),

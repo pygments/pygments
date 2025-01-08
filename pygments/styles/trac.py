@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Whitespace
@@ -23,7 +24,7 @@ class TracStyle(Style):
 
     name = 'trac'
     
-    styles = {
+    styles: typing.ClassVar = {
         Whitespace:             '#bbbbbb',
         Comment:                'italic #999988',
         Comment.Preproc:        'bold noitalic #999999',

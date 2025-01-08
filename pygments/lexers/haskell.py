@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import Lexer, RegexLexer, bygroups, do_insertions, \
     default, include, inherit, line_re
@@ -49,7 +50,7 @@ class HaskellLexer(RegexLexer):
              'DC[1-4]', 'NAK', 'SYN', 'ETB', 'CAN',
              'EM', 'SUB', 'ESC', '[FGRU]S', 'SP', 'DEL')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Whitespace:
             (r'\s+', Whitespace),
@@ -173,7 +174,7 @@ class HspecLexer(HaskellLexer):
     mimetypes = []
     version_added = '2.4'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(it)(\s*)("[^"]*")', bygroups(Text, Whitespace, String.Doc)),
             (r'(describe)(\s*)("[^"]*")', bygroups(Text, Whitespace, String.Doc)),
@@ -214,7 +215,7 @@ class IdrisLexer(RegexLexer):
     directives = ('lib', 'link', 'flag', 'include', 'hide', 'freeze', 'access',
                   'default', 'logging', 'dynamic', 'name', 'error_handlers', 'language')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Comments
             (r'^(\s*)(%({}))'.format('|'.join(directives)),
@@ -317,7 +318,7 @@ class AgdaLexer(RegexLexer):
         'variable', 'where', 'with',
     )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Declaration
             (r'^(\s*)([^\s(){}]+)(\s*)(:)(\s*)',
@@ -387,7 +388,7 @@ class CryptolLexer(RegexLexer):
              'DC[1-4]', 'NAK', 'SYN', 'ETB', 'CAN',
              'EM', 'SUB', 'ESC', '[FGRU]S', 'SP', 'DEL')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Whitespace:
             (r'\s+', Whitespace),
@@ -720,7 +721,7 @@ class KokaLexer(RegexLexer):
     tokenConstructor = Generic.Emph
 
     # main lexer
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
 

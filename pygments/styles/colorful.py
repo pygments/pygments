@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Whitespace
@@ -22,7 +23,7 @@ class ColorfulStyle(Style):
     """
     name = 'colorful'
 
-    styles = {
+    styles: typing.ClassVar = {
         Whitespace:                "#bbbbbb",
 
         Comment:                   "#888",

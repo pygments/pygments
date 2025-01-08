@@ -9,6 +9,7 @@
 """
 
 import keyword
+import typing
 
 from pygments import unistring as uni
 from pygments.lexer import (
@@ -97,7 +98,7 @@ class MojoLexer(RegexLexer):
             # newlines are an error (use "nl" state)
         ]
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             (r"\s+", Whitespace),
             (

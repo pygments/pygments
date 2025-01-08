@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, bygroups
 from pygments.token import Generic, Comment, String, Text, Keyword, Name, \
     Punctuation, Number, Whitespace
@@ -27,7 +28,7 @@ class VCTreeStatusLexer(RegexLexer):
     url = ""
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^A  \+  C\s+', Generic.Error),
             (r'^A\s+\+?\s+', String),
@@ -53,7 +54,7 @@ class PyPyLogLexer(RegexLexer):
     url = 'pypy.org'
     version_added = '1.5'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             (r"\[\w+\] \{jit-log-.*?$", Keyword, "jit-log"),
             (r"\[\w+\] \{jit-backend-counts$", Keyword, "jit-backend-counts"),

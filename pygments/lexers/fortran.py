@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, bygroups, include, words, using, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -36,7 +37,7 @@ class FortranLexer(RegexLexer):
     # Builtins:
     # http://gcc.gnu.org/onlinedocs/gcc-3.4.6/g77/Table-of-Intrinsic-Functions.html
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^#.*\n', Comment.Preproc),
             (r'!.*\n', Comment),
@@ -190,7 +191,7 @@ class FortranFixedLexer(RegexLexer):
             if value != '':
                 yield index, token, value
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[C*].*\n', Comment),
             (r'#.*\n', Comment.Preproc),
