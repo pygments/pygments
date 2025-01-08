@@ -1,0 +1,14 @@
+---input---
+lib::fun(1, a)
+
+---tokens---
+'lib'         Name.Namespace
+'::'          Operator
+'fun'         Name.Function
+'('           Punctuation
+'1'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'a'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
