@@ -25,7 +25,7 @@ class Lean3Lexer(RegexLexer):
     url = 'https://leanprover-community.github.io/lean3'
     aliases = ('lean', 'lean3')
     filenames = ('*.lean',)
-    mimetypes = ['text/x-lean', 'text/x-lean3']
+    mimetypes = ('text/x-lean', 'text/x-lean3')
     version_added = '2.0'
 
     # from https://github.com/leanprover/vscode-lean/blob/1589ca3a65e394b3789409707febbd2d166c9344/syntaxes/lean.json#L186C20-L186C217

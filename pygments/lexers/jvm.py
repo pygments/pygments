@@ -828,7 +828,7 @@ class ClojureLexer(RegexLexer):
     url = 'http://clojure.org/'
     aliases = ('clojure', 'clj')
     filenames = ('*.clj', '*.cljc')
-    mimetypes = ['text/x-clojure', 'application/x-clojure']
+    mimetypes = ('text/x-clojure', 'application/x-clojure')
     version_added = '0.11'
 
     special_forms = (
@@ -968,7 +968,7 @@ class ClojureScriptLexer(ClojureLexer):
     url = 'http://clojure.org/clojurescript'
     aliases = ('clojurescript', 'cljs')
     filenames = ('*.cljs',)
-    mimetypes = ['text/x-clojurescript', 'application/x-clojurescript']
+    mimetypes = ('text/x-clojurescript', 'application/x-clojurescript')
     version_added = '2.0'
 
 

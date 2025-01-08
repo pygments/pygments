@@ -28,7 +28,7 @@ class HaxeLexer(ExtendedRegexLexer):
     url = 'http://haxe.org/'
     aliases = ('haxe', 'hxsl', 'hx')
     filenames = ('*.hx', '*.hxsl')
-    mimetypes = ['text/haxe', 'text/x-haxe', 'text/x-hx']
+    mimetypes = ('text/haxe', 'text/x-haxe', 'text/x-hx')
     version_added = '1.3'
 
     # keywords extracted from lexer.mll in the haxe compiler source

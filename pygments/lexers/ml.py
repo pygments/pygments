@@ -26,7 +26,7 @@ class SMLLexer(RegexLexer):
     name = 'Standard ML'
     aliases = ('sml',)
     filenames = ('*.sml', '*.sig', '*.fun')
-    mimetypes = ['text/x-standardml', 'application/x-standardml']
+    mimetypes = ('text/x-standardml', 'application/x-standardml')
     url = 'https://en.wikipedia.org/wiki/Standard_ML'
     version_added = '1.5'
 

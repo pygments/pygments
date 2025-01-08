@@ -246,7 +246,7 @@ class RedLexer(RegexLexer):
     name = 'Red'
     aliases = ('red', 'red/system')
     filenames = ('*.red', '*.reds')
-    mimetypes = ['text/x-red', 'text/x-red-system']
+    mimetypes = ('text/x-red', 'text/x-red-system')
     url = 'https://www.red-lang.org'
     version_added = '2.0'
 

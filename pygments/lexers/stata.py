@@ -33,7 +33,7 @@ class StataLexer(RegexLexer):
     version_added = '2.2'
     aliases   = ['stata', 'do']
     filenames = ('*.do', '*.ado')
-    mimetypes = ['text/x-stata', 'text/stata', 'application/x-stata']
+    mimetypes = ('text/x-stata', 'text/stata', 'application/x-stata')
     flags     = re.MULTILINE | re.DOTALL
 
     tokens: typing.ClassVar = {

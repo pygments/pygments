@@ -29,7 +29,7 @@ class PerlLexer(RegexLexer):
     url = 'https://www.perl.org'
     aliases = ('perl', 'pl')
     filenames = ('*.pl', '*.pm', '*.t', '*.perl')
-    mimetypes = ['text/x-perl', 'application/x-perl']
+    mimetypes = ('text/x-perl', 'application/x-perl')
     version_added = ''
 
     flags = re.DOTALL | re.MULTILINE
@@ -235,7 +235,7 @@ class Perl6Lexer(ExtendedRegexLexer):
     filenames = ['*.pl', '*.pm', '*.nqp', '*.p6', '*.6pl', '*.p6l', '*.pl6',
                  '*.6pm', '*.p6m', '*.pm6', '*.t', '*.raku', '*.rakumod',
                  '*.rakutest', '*.rakudoc']
-    mimetypes = ['text/x-perl6', 'application/x-perl6']
+    mimetypes = ('text/x-perl6', 'application/x-perl6')
     version_added = '2.0'
     flags = re.MULTILINE | re.DOTALL
 

@@ -162,7 +162,7 @@ class ECLexer(CLexer):
     name = 'eC'
     aliases = ('ec',)
     filenames = ('*.ec', '*.eh')
-    mimetypes = ['text/x-echdr', 'text/x-ecsrc']
+    mimetypes = ('text/x-echdr', 'text/x-ecsrc')
     url = 'https://ec-lang.org'
     version_added = '1.5'
 

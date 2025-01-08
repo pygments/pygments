@@ -138,7 +138,7 @@ class JsgfLexer(RegexLexer):
     url = 'https://www.w3.org/TR/jsgf/'
     aliases = ('jsgf',)
     filenames = ('*.jsgf',)
-    mimetypes = ['application/jsgf', 'application/x-jsgf', 'text/jsgf']
+    mimetypes = ('application/jsgf', 'application/x-jsgf', 'text/jsgf')
     version_added = '2.2'
 
     tokens: typing.ClassVar = {

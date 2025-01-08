@@ -293,7 +293,7 @@ class TexLexer(RegexLexer):
     name = 'TeX'
     aliases = ('tex', 'latex')
     filenames = ('*.tex', '*.aux', '*.toc')
-    mimetypes = ['text/x-tex', 'text/x-latex']
+    mimetypes = ('text/x-tex', 'text/x-latex')
     url = 'https://tug.org'
     version_added = ''
 
@@ -354,7 +354,7 @@ class GroffLexer(RegexLexer):
     name = 'Groff'
     aliases = ('groff', 'nroff', 'man')
     filenames = ('*.[1-9]', '*.man', '*.1p', '*.3pm')
-    mimetypes = ['application/x-troff', 'text/troff']
+    mimetypes = ('application/x-troff', 'text/troff')
     url = 'https://www.gnu.org/software/groff'
     version_added = '0.6'
 

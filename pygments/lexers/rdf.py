@@ -183,7 +183,7 @@ class TurtleLexer(RegexLexer):
     name = 'Turtle'
     aliases = ('turtle',)
     filenames = ('*.ttl',)
-    mimetypes = ['text/turtle', 'application/x-turtle']
+    mimetypes = ('text/turtle', 'application/x-turtle')
     url = 'https://www.w3.org/TR/turtle'
     version_added = '2.1'
 

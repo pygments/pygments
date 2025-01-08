@@ -54,7 +54,7 @@ class IniLexer(RegexLexer):
     filenames = [
         '*.ini', '*.cfg', '*.inf', '.editorconfig',
     ]
-    mimetypes = ['text/x-ini', 'text/inf']
+    mimetypes = ('text/x-ini', 'text/inf')
     url = 'https://en.wikipedia.org/wiki/INI_file'
     version_added = ''
 
@@ -719,7 +719,7 @@ class TerraformLexer(ExtendedRegexLexer):
     url = 'https://www.terraform.io/'
     aliases = ('terraform', 'tf', 'hcl')
     filenames = ('*.tf', '*.hcl')
-    mimetypes = ['application/x-tf', 'application/x-terraform']
+    mimetypes = ('application/x-tf', 'application/x-terraform')
     version_added = '2.1'
 
     classes = ('backend', 'data', 'module', 'output', 'provider',

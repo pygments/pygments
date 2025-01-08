@@ -24,7 +24,7 @@ class RustLexer(RegexLexer):
     url = 'https://www.rust-lang.org/'
     filenames = ('*.rs', '*.rs.in')
     aliases = ('rust', 'rs')
-    mimetypes = ['text/rust', 'text/x-rust']
+    mimetypes = ('text/rust', 'text/x-rust')
     version_added = '1.6'
 
     keyword_types = (words((

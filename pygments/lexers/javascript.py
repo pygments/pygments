@@ -157,7 +157,7 @@ class TypeScriptLexer(JavascriptLexer):
     url = 'https://www.typescriptlang.org/'
     aliases = ('typescript', 'ts')
     filenames = ('*.ts',)
-    mimetypes = ['application/x-typescript', 'text/x-typescript']
+    mimetypes = ('application/x-typescript', 'text/x-typescript')
     version_added = '1.6'
 
     # Higher priority than the TypoScriptLexer, as TypeScript is far more
@@ -196,7 +196,7 @@ class KalLexer(RegexLexer):
     url = 'http://rzimmerman.github.io/kal'
     aliases = ('kal',)
     filenames = ('*.kal',)
-    mimetypes = ['text/kal', 'application/kal']
+    mimetypes = ('text/kal', 'application/kal')
     version_added = '2.0'
 
     flags = re.DOTALL

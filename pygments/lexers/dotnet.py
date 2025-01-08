@@ -438,7 +438,7 @@ class VbNetLexer(RegexLexer):
     url = 'https://docs.microsoft.com/en-us/dotnet/visual-basic/'
     aliases = ('vb.net', 'vbnet', 'lobas', 'oobas', 'sobas', 'visual-basic', 'visualbasic')
     filenames = ('*.vb', '*.bas')
-    mimetypes = ['text/x-vbnet', 'text/x-vba']  # (?)
+    mimetypes = ('text/x-vbnet', 'text/x-vba')  # (?)
     version_added = ''
 
     uni_name = '[_' + uni.combine('Ll', 'Lt', 'Lm', 'Nl') + ']' + \

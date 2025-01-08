@@ -34,7 +34,7 @@ class JuliaLexer(RegexLexer):
     url = 'https://julialang.org/'
     aliases = ('julia', 'jl')
     filenames = ('*.jl',)
-    mimetypes = ['text/x-julia', 'application/x-julia']
+    mimetypes = ('text/x-julia', 'application/x-julia')
     version_added = '1.6'
 
     tokens: typing.ClassVar = {

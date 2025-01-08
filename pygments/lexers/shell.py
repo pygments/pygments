@@ -44,7 +44,7 @@ class BashLexer(RegexLexer):
                  '.bashrc', 'bashrc', '.bash_*', 'bash_*', 'zshrc', '.zshrc',
                  '.kshrc', 'kshrc',
                  'PKGBUILD']
-    mimetypes = ['application/x-sh', 'application/x-shellscript', 'text/x-shellscript']
+    mimetypes = ('application/x-sh', 'application/x-shellscript', 'text/x-shellscript')
     url = 'https://en.wikipedia.org/wiki/Unix_shell'
     version_added = '0.6'
 
@@ -239,7 +239,7 @@ class BashSessionLexer(ShellSessionBaseLexer):
     name = 'Bash Session'
     aliases = ('console', 'shell-session')
     filenames = ('*.sh-session', '*.shell-session')
-    mimetypes = ['application/x-shell-session', 'application/x-sh-session']
+    mimetypes = ('application/x-shell-session', 'application/x-sh-session')
     url = 'https://en.wikipedia.org/wiki/Unix_shell'
     version_added = '1.1'
     _example = "console/example.sh-session"

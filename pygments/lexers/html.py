@@ -44,7 +44,7 @@ class HtmlLexer(RegexLexer):
     url = 'https://html.spec.whatwg.org/'
     aliases = ('html',)
     filenames = ('*.html', '*.htm', '*.xhtml', '*.xslt')
-    mimetypes = ['text/html', 'application/xhtml+xml']
+    mimetypes = ('text/html', 'application/xhtml+xml')
     version_added = ''
 
     flags = re.IGNORECASE | re.DOTALL
@@ -255,7 +255,7 @@ class XsltLexer(XmlLexer):
     name = 'XSLT'
     aliases = ('xslt',)
     filenames = ('*.xsl', '*.xslt', '*.xpl')  # xpl is XProc
-    mimetypes = ['application/xsl+xml', 'application/xslt+xml']
+    mimetypes = ('application/xsl+xml', 'application/xslt+xml')
     url = 'https://www.w3.org/TR/xslt-30'
     version_added = '0.10'
 
@@ -517,7 +517,7 @@ class PugLexer(ExtendedRegexLexer):
     name = 'Pug'
     aliases = ('pug', 'jade')
     filenames = ('*.pug', '*.jade')
-    mimetypes = ['text/x-pug', 'text/x-jade']
+    mimetypes = ('text/x-pug', 'text/x-jade')
     url = 'https://pugjs.org'
     version_added = '1.4'
 

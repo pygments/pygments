@@ -435,7 +435,7 @@ class Python2Lexer(RegexLexer):
     url = 'https://www.python.org'
     aliases = ('python2', 'py2')
     filenames = ()  # now taken over by PythonLexer (3.x)
-    mimetypes = ['text/x-python2', 'application/x-python2']
+    mimetypes = ('text/x-python2', 'application/x-python2')
     version_added = ''
 
     def innerstring_rules(ttype):
@@ -742,7 +742,7 @@ class PythonTracebackLexer(RegexLexer):
     name = 'Python Traceback'
     aliases = ('pytb', 'py3tb')
     filenames = ('*.pytb', '*.py3tb')
-    mimetypes = ['text/x-python-traceback', 'text/x-python3-traceback']
+    mimetypes = ('text/x-python-traceback', 'text/x-python3-traceback')
     url = 'https://python.org'
     version_added = '1.0'
 
@@ -844,7 +844,7 @@ class CythonLexer(RegexLexer):
     url = 'https://cython.org'
     aliases = ('cython', 'pyx', 'pyrex')
     filenames = ('*.pyx', '*.pxd', '*.pxi')
-    mimetypes = ['text/x-cython', 'application/x-cython']
+    mimetypes = ('text/x-cython', 'application/x-cython')
     version_added = '1.1'
 
     tokens: typing.ClassVar = {

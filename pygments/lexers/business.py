@@ -462,7 +462,7 @@ class OpenEdgeLexer(RegexLexer):
     name = 'OpenEdge ABL'
     aliases = ('openedge', 'abl', 'progress')
     filenames = ('*.p', '*.cls')
-    mimetypes = ['text/x-openedge', 'application/x-openedge']
+    mimetypes = ('text/x-openedge', 'application/x-openedge')
     url = 'https://www.progress.com/openedge/features/abl'
     version_added = '1.5'
 
@@ -578,7 +578,7 @@ class MaqlLexer(RegexLexer):
     name = 'MAQL'
     aliases = ('maql',)
     filenames = ('*.maql',)
-    mimetypes = ['text/x-gooddata-maql', 'application/x-gooddata-maql']
+    mimetypes = ('text/x-gooddata-maql', 'application/x-gooddata-maql')
     url = 'https://help.gooddata.com/doc/enterprise/en/dashboards-and-insights/maql-analytical-query-language'
     version_added = '1.4'
 

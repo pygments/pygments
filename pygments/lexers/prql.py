@@ -27,7 +27,7 @@ class PrqlLexer(RegexLexer):
     url = 'https://prql-lang.org/'
     aliases = ('prql',)
     filenames = ('*.prql',)
-    mimetypes = ['application/prql', 'application/x-prql']
+    mimetypes = ('application/prql', 'application/x-prql')
     version_added = '2.17'
 
     builtinTypes = words((

@@ -99,7 +99,7 @@ class GettextLexer(RegexLexer):
     name = 'Gettext Catalog'
     aliases = ('pot', 'po')
     filenames = ('*.pot', '*.po')
-    mimetypes = ['application/x-gettext', 'text/x-gettext', 'text/gettext']
+    mimetypes = ('application/x-gettext', 'text/x-gettext', 'text/gettext')
     url = 'https://www.gnu.org/software/gettext'
     version_added = '0.9'
 

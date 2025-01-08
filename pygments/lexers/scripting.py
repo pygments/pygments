@@ -64,7 +64,7 @@ class LuaLexer(RegexLexer):
     url = 'https://www.lua.org/'
     aliases = ('lua',)
     filenames = ('*.lua', '*.wlua')
-    mimetypes = ['text/x-lua', 'application/x-lua']
+    mimetypes = ('text/x-lua', 'application/x-lua')
     version_added = ''
 
     _comment_multiline = r'(?:--\[(?P<level>=*)\[[\w\W]*?\](?P=level)\])'
@@ -514,7 +514,7 @@ class MoonScriptLexer(LuaLexer):
     url = 'http://moonscript.org'
     aliases = ('moonscript', 'moon')
     filenames = ('*.moon',)
-    mimetypes = ['text/x-moonscript', 'application/x-moonscript']
+    mimetypes = ('text/x-moonscript', 'application/x-moonscript')
     version_added = '1.5'
 
     tokens: typing.ClassVar = {
@@ -583,7 +583,7 @@ class ChaiscriptLexer(RegexLexer):
     url = 'http://chaiscript.com/'
     aliases = ('chaiscript', 'chai')
     filenames = ('*.chai',)
-    mimetypes = ['text/x-chaiscript', 'application/x-chaiscript']
+    mimetypes = ('text/x-chaiscript', 'application/x-chaiscript')
     version_added = '2.0'
 
     flags = re.DOTALL | re.MULTILINE
@@ -1209,7 +1209,7 @@ class HybrisLexer(RegexLexer):
     name = 'Hybris'
     aliases = ('hybris',)
     filenames = ('*.hyb',)
-    mimetypes = ['text/x-hybris', 'application/x-hybris']
+    mimetypes = ('text/x-hybris', 'application/x-hybris')
     url = 'https://github.com/evilsocket/hybris'
     version_added = '1.4'
 
@@ -1581,7 +1581,7 @@ class MiniScriptLexer(RegexLexer):
     url = 'https://miniscript.org'
     aliases = ('miniscript', 'ms')
     filenames = ('*.ms',)
-    mimetypes = ['text/x-minicript', 'application/x-miniscript']
+    mimetypes = ('text/x-minicript', 'application/x-miniscript')
     version_added = '2.6'
 
     tokens: typing.ClassVar = {

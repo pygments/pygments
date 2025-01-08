@@ -449,7 +449,7 @@ class JsonLexer(Lexer):
     url = 'https://www.json.org'
     aliases = ('json', 'json-object')
     filenames = ('*.json', '*.jsonl', '*.ndjson', 'Pipfile.lock')
-    mimetypes = ['application/json', 'application/json-object', 'application/x-ndjson', 'application/jsonl', 'application/json-seq']
+    mimetypes = ('application/json', 'application/json-object', 'application/x-ndjson', 'application/jsonl', 'application/json-seq')
     version_added = '1.5'
 
     # No validation of integers, floats, or constants is done.
