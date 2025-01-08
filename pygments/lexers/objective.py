@@ -201,7 +201,7 @@ class ObjectiveCLexer(objective(CLexer)):
     url = 'https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html'
     aliases = ('objective-c', 'objectivec', 'obj-c', 'objc')
     filenames = ('*.m', '*.h')
-    mimetypes = ['text/x-objective-c']
+    mimetypes = ('text/x-objective-c',)
     version_added = ''
     priority = 0.05    # Lower than C
 
@@ -214,7 +214,7 @@ class ObjectiveCppLexer(objective(CppLexer)):
     name = 'Objective-C++'
     aliases = ('objective-c++', 'objectivec++', 'obj-c++', 'objc++')
     filenames = ('*.mm', '*.hh')
-    mimetypes = ['text/x-objective-c++']
+    mimetypes = ('text/x-objective-c++',)
     version_added = ''
     priority = 0.05    # Lower than C++
 
@@ -227,7 +227,7 @@ class LogosLexer(ObjectiveCppLexer):
     name = 'Logos'
     aliases = ('logos',)
     filenames = ('*.x', '*.xi', '*.xm', '*.xmi')
-    mimetypes = ['text/x-logos']
+    mimetypes = ('text/x-logos',)
     version_added = '1.6'
     priority = 0.25
 
@@ -290,7 +290,7 @@ class SwiftLexer(RegexLexer):
     url = 'https://www.swift.org/'
     filenames = ('*.swift',)
     aliases = ('swift',)
-    mimetypes = ['text/x-swift']
+    mimetypes = ('text/x-swift',)
     version_added = '2.0'
 
     tokens: typing.ClassVar = {

@@ -170,7 +170,7 @@ class PhpLexer(RegexLexer):
     url = 'https://www.php.net/'
     aliases = ('php', 'php3', 'php4', 'php5')
     filenames = ('*.php', '*.php[345]', '*.inc')
-    mimetypes = ['text/x-php']
+    mimetypes = ('text/x-php',)
     version_added = ''
 
     # Note that a backslash is included, PHP uses a backslash as a namespace

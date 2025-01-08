@@ -26,7 +26,7 @@ class FelixLexer(RegexLexer):
     url = 'http://www.felix-lang.org'
     aliases = ('felix', 'flx')
     filenames = ('*.flx', '*.flxh')
-    mimetypes = ['text/x-felix']
+    mimetypes = ('text/x-felix',)
     version_added = '1.2'
 
     preproc = (

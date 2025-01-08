@@ -35,7 +35,7 @@ class IrcLogsLexer(RegexLexer):
     name = 'IRC logs'
     aliases = ('irc',)
     filenames = ('*.weechatlog',)
-    mimetypes = ['text/x-irclog']
+    mimetypes = ('text/x-irclog',)
     url = 'https://en.wikipedia.org/wiki/Internet_Relay_Chat'
     version_added = ''
 
@@ -224,7 +224,7 @@ class TodotxtLexer(RegexLexer):
     # *.todotxt is not a standard extension for Todo.txt files; including it
     # makes testing easier, and also makes autodetecting file type easier.
     filenames = ('todo.txt', '*.todotxt')
-    mimetypes = ['text/x-todo']
+    mimetypes = ('text/x-todo',)
 
     # Aliases mapping standard token types of Todo.txt format concepts
     CompleteTaskText = Operator  # Chosen to de-emphasize complete tasks

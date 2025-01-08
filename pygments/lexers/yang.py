@@ -23,7 +23,7 @@ class YangLexer(RegexLexer):
     url = 'https://tools.ietf.org/html/rfc7950/'
     aliases = ('yang',)
     filenames = ('*.yang',)
-    mimetypes = ['application/yang']
+    mimetypes = ('application/yang',)
     version_added = '2.7'
 
     #Keywords from RFC7950 ; oriented at BNF style

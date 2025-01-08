@@ -24,7 +24,7 @@ class RitaLexer(RegexLexer):
     url = 'https://github.com/zaibacu/rita-dsl'
     filenames = ('*.rita',)
     aliases = ('rita',)
-    mimetypes = ['text/rita']
+    mimetypes = ('text/rita',)
     version_added = '2.11'
 
     tokens: typing.ClassVar = {

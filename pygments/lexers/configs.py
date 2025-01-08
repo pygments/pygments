@@ -107,7 +107,7 @@ class DesktopLexer(RegexLexer):
     url = "https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html"
     aliases = ('desktop',)
     filenames = ('*.desktop',)
-    mimetypes = ['application/x-desktop']
+    mimetypes = ('application/x-desktop',)
     version_added = '2.16'
 
     tokens: typing.ClassVar = {
@@ -181,7 +181,7 @@ class RegeditLexer(RegexLexer):
     url = 'http://en.wikipedia.org/wiki/Windows_Registry#.REG_files'
     aliases = ('registry',)
     filenames = ('*.reg',)
-    mimetypes = ['text/x-windows-registry']
+    mimetypes = ('text/x-windows-registry',)
     version_added = '1.6'
 
     tokens: typing.ClassVar = {
@@ -224,7 +224,7 @@ class PropertiesLexer(RegexLexer):
     name = 'Properties'
     aliases = ('properties', 'jproperties')
     filenames = ('*.properties',)
-    mimetypes = ['text/x-java-properties']
+    mimetypes = ('text/x-java-properties',)
     url = 'https://en.wikipedia.org/wiki/.properties'
     version_added = '1.4'
 
@@ -301,7 +301,7 @@ class KconfigLexer(RegexLexer):
     # Adjust this if new kconfig file names appear in your environment
     filenames = ['Kconfig*', '*Config.in*', 'external.in*',
                  'standard-modules.in']
-    mimetypes = ['text/x-kconfig']
+    mimetypes = ('text/x-kconfig',)
     url = 'https://www.kernel.org/doc/html/latest/kbuild/kconfig-language.html'
 
     # No re.MULTILINE, indentation-aware help text needs line-by-line handling
@@ -438,7 +438,7 @@ class ApacheConfLexer(RegexLexer):
     name = 'ApacheConf'
     aliases = ('apacheconf', 'aconf', 'apache')
     filenames = ('.htaccess', 'apache.conf', 'apache2.conf')
-    mimetypes = ['text/x-apacheconf']
+    mimetypes = ('text/x-apacheconf',)
     url = 'https://httpd.apache.org/docs/current/configuring.html'
     version_added = '0.6'
     flags = re.MULTILINE | re.IGNORECASE
@@ -481,7 +481,7 @@ class SquidConfLexer(RegexLexer):
     url = 'http://www.squid-cache.org/'
     aliases = ('squidconf', 'squid.conf', 'squid')
     filenames = ('squid.conf',)
-    mimetypes = ['text/x-squidconf']
+    mimetypes = ('text/x-squidconf',)
     version_added = '0.9'
     flags = re.IGNORECASE
 
@@ -609,7 +609,7 @@ class NginxConfLexer(RegexLexer):
     url = 'http://nginx.net/'
     aliases = ('nginx',)
     filenames = ('nginx.conf',)
-    mimetypes = ['text/x-nginx-conf']
+    mimetypes = ('text/x-nginx-conf',)
     version_added = '0.11'
 
     tokens: typing.ClassVar = {
@@ -655,7 +655,7 @@ class LighttpdConfLexer(RegexLexer):
     url = 'http://lighttpd.net/'
     aliases = ('lighttpd', 'lighty')
     filenames = ('lighttpd.conf',)
-    mimetypes = ['text/x-lighttpd-conf']
+    mimetypes = ('text/x-lighttpd-conf',)
     version_added = '0.11'
 
     tokens: typing.ClassVar = {
@@ -683,7 +683,7 @@ class DockerLexer(RegexLexer):
     url = 'http://docker.io'
     aliases = ('docker', 'dockerfile')
     filenames = ('Dockerfile', '*.docker')
-    mimetypes = ['text/x-dockerfile-config']
+    mimetypes = ('text/x-dockerfile-config',)
     version_added = '2.0'
 
     _keywords = (r'(?:MAINTAINER|EXPOSE|WORKDIR|USER|STOPSIGNAL)')
@@ -1139,7 +1139,7 @@ class TOMLLexer(RegexLexer):
     name = 'TOML'
     aliases = ('toml',)
     filenames = ('*.toml', 'Pipfile', 'poetry.lock')
-    mimetypes = ['application/toml']
+    mimetypes = ('application/toml',)
     url = 'https://toml.io'
     version_added = '2.4'
 

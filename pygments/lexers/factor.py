@@ -24,7 +24,7 @@ class FactorLexer(RegexLexer):
     url = 'http://factorcode.org'
     aliases = ('factor',)
     filenames = ('*.factor',)
-    mimetypes = ['text/x-factor']
+    mimetypes = ('text/x-factor',)
     version_added = '1.4'
 
     builtin_kernel = words((

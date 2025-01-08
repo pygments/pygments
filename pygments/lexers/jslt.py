@@ -28,7 +28,7 @@ class JSLTLexer(RegexLexer):
     url = 'https://github.com/schibsted/jslt'
     filenames = ('*.jslt',)
     aliases = ('jslt',)
-    mimetypes = ['text/x-jslt']
+    mimetypes = ('text/x-jslt',)
     version_added = '2.10'
 
     tokens: typing.ClassVar = {

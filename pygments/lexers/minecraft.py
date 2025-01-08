@@ -326,7 +326,7 @@ class MCSchemaLexer(RegexLexer):
     url = 'https://learn.microsoft.com/en-us/minecraft/creator/reference/content/schemasreference/'
     aliases = ('mcschema',)
     filenames = ('*.mcschema',)
-    mimetypes = ['text/mcschema']
+    mimetypes = ('text/mcschema',)
     version_added = '2.14'
 
     tokens: typing.ClassVar = {

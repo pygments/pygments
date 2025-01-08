@@ -106,7 +106,7 @@ class TypoScriptLexer(RegexLexer):
     url = 'http://docs.typo3.org/typo3cms/TyposcriptReference/'
     aliases = ('typoscript',)
     filenames = ('*.typoscript',)
-    mimetypes = ['text/x-typoscript']
+    mimetypes = ('text/x-typoscript',)
     version_added = '2.2'
 
     flags = re.DOTALL | re.MULTILINE

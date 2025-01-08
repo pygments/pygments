@@ -25,7 +25,7 @@ class ElmLexer(RegexLexer):
     url = 'https://elm-lang.org/'
     aliases = ('elm',)
     filenames = ('*.elm',)
-    mimetypes = ['text/x-elm']
+    mimetypes = ('text/x-elm',)
     version_added = '2.1'
 
     validName = r'[a-z_][a-zA-Z0-9_\']*'

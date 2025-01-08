@@ -58,7 +58,7 @@ class CSharpLexer(RegexLexer):
     url = 'https://docs.microsoft.com/en-us/dotnet/csharp/'
     aliases = ('csharp', 'c#', 'cs')
     filenames = ('*.cs',)
-    mimetypes = ['text/x-csharp']  # inferred
+    mimetypes = ('text/x-csharp',)  # inferred
     version_added = ''
 
     flags = re.MULTILINE | re.DOTALL
@@ -207,7 +207,7 @@ class NemerleLexer(RegexLexer):
     url = 'http://nemerle.org'
     aliases = ('nemerle',)
     filenames = ('*.n',)
-    mimetypes = ['text/x-nemerle']  # inferred
+    mimetypes = ('text/x-nemerle',)  # inferred
     version_added = '1.5'
 
     flags = re.MULTILINE | re.DOTALL
@@ -368,7 +368,7 @@ class BooLexer(RegexLexer):
     url = 'https://github.com/boo-lang/boo'
     aliases = ('boo',)
     filenames = ('*.boo',)
-    mimetypes = ['text/x-boo']
+    mimetypes = ('text/x-boo',)
     version_added = ''
 
     tokens: typing.ClassVar = {
@@ -619,7 +619,7 @@ class FSharpLexer(RegexLexer):
     url = 'https://fsharp.org/'
     aliases = ('fsharp', 'f#')
     filenames = ('*.fs', '*.fsi', '*.fsx')
-    mimetypes = ['text/x-fsharp']
+    mimetypes = ('text/x-fsharp',)
     version_added = '1.5'
 
     keywords = [

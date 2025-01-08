@@ -25,7 +25,7 @@ class JLexer(RegexLexer):
     url = 'http://jsoftware.com/'
     aliases = ('j',)
     filenames = ('*.ijs',)
-    mimetypes = ['text/x-j']
+    mimetypes = ('text/x-j',)
     version_added = '2.1'
 
     validName = r'\b[a-zA-Z]\w*'

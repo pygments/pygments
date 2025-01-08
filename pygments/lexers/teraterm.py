@@ -26,7 +26,7 @@ class TeraTermLexer(RegexLexer):
     url = 'https://ttssh2.osdn.jp/'
     aliases = ('teratermmacro', 'teraterm', 'ttl')
     filenames = ('*.ttl',)
-    mimetypes = ['text/x-teratermmacro']
+    mimetypes = ('text/x-teratermmacro',)
     version_added = '2.4'
 
     tokens: typing.ClassVar = {

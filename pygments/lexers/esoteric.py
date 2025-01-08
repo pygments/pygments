@@ -32,7 +32,7 @@ class BrainfuckLexer(RegexLexer):
     url = 'http://www.muppetlabs.com/~breadbox/bf/'
     aliases = ('brainfuck', 'bf')
     filenames = ('*.bf', '*.b')
-    mimetypes = ['application/x-brainfuck']
+    mimetypes = ('application/x-brainfuck',)
     version_added = ''
 
     tokens: typing.ClassVar = {
@@ -89,7 +89,7 @@ class BefungeLexer(RegexLexer):
     url = 'http://en.wikipedia.org/wiki/Befunge'
     aliases = ('befunge',)
     filenames = ('*.befunge',)
-    mimetypes = ['application/x-befunge']
+    mimetypes = ('application/x-befunge',)
     version_added = '0.7'
 
     tokens: typing.ClassVar = {

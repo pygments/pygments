@@ -26,7 +26,7 @@ class FortranLexer(RegexLexer):
     url = 'https://fortran-lang.org/'
     aliases = ('fortran', 'f90')
     filenames = ('*.f03', '*.f90', '*.F03', '*.F90')
-    mimetypes = ['text/x-fortran']
+    mimetypes = ('text/x-fortran',)
     version_added = '0.10'
     flags = re.IGNORECASE | re.MULTILINE
 

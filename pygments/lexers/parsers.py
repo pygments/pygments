@@ -772,7 +772,7 @@ class EbnfLexer(RegexLexer):
     name = 'EBNF'
     aliases = ('ebnf',)
     filenames = ('*.ebnf',)
-    mimetypes = ['text/x-ebnf']
+    mimetypes = ('text/x-ebnf',)
     url = 'https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form'
     version_added = '2.0'
 

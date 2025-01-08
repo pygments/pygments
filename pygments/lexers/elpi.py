@@ -26,7 +26,7 @@ class ElpiLexer(RegexLexer):
     url = 'http://github.com/LPCIC/elpi'
     aliases = ('elpi',)
     filenames = ('*.elpi',)
-    mimetypes = ['text/x-elpi']
+    mimetypes = ('text/x-elpi',)
     version_added = '2.11'
 
     lcase_re = r"[a-z]"

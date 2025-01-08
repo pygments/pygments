@@ -311,7 +311,7 @@ class CommonLispLexer(RegexLexer):
     url = 'https://lisp-lang.org/'
     aliases = ('common-lisp', 'cl', 'lisp')
     filenames = ('*.cl', '*.lisp')
-    mimetypes = ['text/x-common-lisp']
+    mimetypes = ('text/x-common-lisp',)
     version_added = '0.9'
 
     flags = re.IGNORECASE | re.MULTILINE

@@ -258,7 +258,7 @@ class BatchLexer(RegexLexer):
     name = 'Batchfile'
     aliases = ('batch', 'bat', 'dosbatch', 'winbatch')
     filenames = ('*.bat', '*.cmd')
-    mimetypes = ['application/x-dos-batch']
+    mimetypes = ('application/x-dos-batch',)
     url = 'https://en.wikipedia.org/wiki/Batch_file'
     version_added = '0.7'
 
@@ -568,7 +568,7 @@ class TcshLexer(RegexLexer):
     name = 'Tcsh'
     aliases = ('tcsh', 'csh')
     filenames = ('*.tcsh', '*.csh')
-    mimetypes = ['application/x-csh']
+    mimetypes = ('application/x-csh',)
     url = 'https://www.tcsh.org'
     version_added = '0.10'
 
@@ -654,7 +654,7 @@ class PowerShellLexer(RegexLexer):
     name = 'PowerShell'
     aliases = ('powershell', 'pwsh', 'posh', 'ps1', 'psm1')
     filenames = ('*.ps1', '*.psm1')
-    mimetypes = ['text/x-powershell']
+    mimetypes = ('text/x-powershell',)
     url = 'https://learn.microsoft.com/en-us/powershell'
     version_added = '1.5'
 
@@ -789,7 +789,7 @@ class FishShellLexer(RegexLexer):
     name = 'Fish'
     aliases = ('fish', 'fishshell')
     filenames = ('*.fish', '*.load')
-    mimetypes = ['application/x-fish']
+    mimetypes = ('application/x-fish',)
     url = 'https://fishshell.com'
     version_added = '2.1'
 

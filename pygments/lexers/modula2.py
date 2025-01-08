@@ -161,7 +161,7 @@ class Modula2Lexer(RegexLexer):
     url = 'http://www.modula2.org/'
     aliases = ('modula2', 'm2')
     filenames = ('*.def', '*.mod')
-    mimetypes = ['text/x-modula2']
+    mimetypes = ('text/x-modula2',)
     version_added = '1.3'
 
     flags = re.MULTILINE | re.DOTALL

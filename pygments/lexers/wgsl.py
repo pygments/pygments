@@ -39,7 +39,7 @@ class WgslLexer(RegexLexer):
     url = 'https://www.w3.org/TR/WGSL/'
     aliases = ('wgsl',)
     filenames = ('*.wgsl',)
-    mimetypes = ['text/wgsl']
+    mimetypes = ('text/wgsl',)
     version_added = '2.15'
 
     # https://www.w3.org/TR/WGSL/#var-and-value

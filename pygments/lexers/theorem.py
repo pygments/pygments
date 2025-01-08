@@ -29,7 +29,7 @@ class CoqLexer(RegexLexer):
     url = 'http://coq.inria.fr/'
     aliases = ('coq',)
     filenames = ('*.v',)
-    mimetypes = ['text/x-coq']
+    mimetypes = ('text/x-coq',)
     version_added = '1.5'
 
     flags = 0 # no re.MULTILINE
@@ -202,7 +202,7 @@ class IsabelleLexer(RegexLexer):
     url = 'https://isabelle.in.tum.de/'
     aliases = ('isabelle',)
     filenames = ('*.thy',)
-    mimetypes = ['text/x-isabelle']
+    mimetypes = ('text/x-isabelle',)
     version_added = '2.0'
 
     keyword_minor = (

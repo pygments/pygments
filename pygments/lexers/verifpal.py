@@ -24,7 +24,7 @@ class VerifpalLexer(RegexLexer):
     name = 'Verifpal'
     aliases = ('verifpal',)
     filenames = ('*.vp',)
-    mimetypes = ['text/x-verifpal']
+    mimetypes = ('text/x-verifpal',)
     url = 'https://verifpal.com'
     version_added = '2.16'
 

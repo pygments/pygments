@@ -31,7 +31,7 @@ class GLShaderLexer(RegexLexer):
     name = 'GLSL'
     aliases = ('glsl',)
     filenames = ('*.vert', '*.frag', '*.geo')
-    mimetypes = ['text/x-glslsrc']
+    mimetypes = ('text/x-glslsrc',)
     url = 'https://www.khronos.org/api/opengl'
     version_added = '1.1'
 
@@ -162,7 +162,7 @@ class HLSLShaderLexer(RegexLexer):
     name = 'HLSL'
     aliases = ('hlsl',)
     filenames = ('*.hlsl', '*.hlsli')
-    mimetypes = ['text/x-hlsl']
+    mimetypes = ('text/x-hlsl',)
     url = 'https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl'
     version_added = '2.3'
 
@@ -317,7 +317,7 @@ class PostScriptLexer(RegexLexer):
     url = 'https://en.wikipedia.org/wiki/PostScript'
     aliases = ('postscript', 'postscr')
     filenames = ('*.ps', '*.eps')
-    mimetypes = ['application/postscript']
+    mimetypes = ('application/postscript',)
     version_added = '1.4'
 
     delimiter = r'()<>\[\]{}/%\s'
@@ -411,7 +411,7 @@ class AsymptoteLexer(RegexLexer):
     url = 'http://asymptote.sf.net/'
     aliases = ('asymptote', 'asy')
     filenames = ('*.asy',)
-    mimetypes = ['text/x-asymptote']
+    mimetypes = ('text/x-asymptote',)
     version_added = '1.2'
 
     #: optional Comment or Whitespace
@@ -539,7 +539,7 @@ class GnuplotLexer(RegexLexer):
     url = 'http://gnuplot.info/'
     aliases = ('gnuplot',)
     filenames = ('*.plot', '*.plt')
-    mimetypes = ['text/x-gnuplot']
+    mimetypes = ('text/x-gnuplot',)
     version_added = '0.11'
 
     tokens: typing.ClassVar = {
@@ -698,7 +698,7 @@ class PovrayLexer(RegexLexer):
     url = 'http://www.povray.org/'
     aliases = ('pov',)
     filenames = ('*.pov', '*.inc')
-    mimetypes = ['text/x-povray']
+    mimetypes = ('text/x-povray',)
     version_added = '0.11'
 
     tokens: typing.ClassVar = {

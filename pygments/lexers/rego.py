@@ -20,7 +20,7 @@ class RegoLexer(RegexLexer):
     url = 'https://www.openpolicyagent.org/docs/latest/policy-language/'
     filenames = ('*.rego',)
     aliases = ('rego',)
-    mimetypes = ['text/x-rego']
+    mimetypes = ('text/x-rego',)
     version_added = '2.19'
 
     reserved_words = (

@@ -24,7 +24,7 @@ class AutohotkeyLexer(RegexLexer):
     url = 'http://www.autohotkey.com/'
     aliases = ('autohotkey', 'ahk')
     filenames = ('*.ahk', '*.ahkl')
-    mimetypes = ['text/x-autohotkey']
+    mimetypes = ('text/x-autohotkey',)
     version_added = '1.4'
 
     tokens: typing.ClassVar = {
@@ -204,7 +204,7 @@ class AutoItLexer(RegexLexer):
     url = 'http://www.autoitscript.com/site/autoit/'
     aliases = ('autoit',)
     filenames = ('*.au3',)
-    mimetypes = ['text/x-autoit']
+    mimetypes = ('text/x-autoit',)
     version_added = '1.6'
 
     # Keywords, functions, macros from au3.keywords.properties

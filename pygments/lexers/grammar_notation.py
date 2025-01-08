@@ -45,7 +45,7 @@ class BnfLexer(RegexLexer):
     name = 'BNF'
     aliases = ('bnf',)
     filenames = ('*.bnf',)
-    mimetypes = ['text/x-bnf']
+    mimetypes = ('text/x-bnf',)
     url = 'https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form'
     version_added = '2.1'
 
@@ -75,7 +75,7 @@ class AbnfLexer(RegexLexer):
     url = 'http://www.ietf.org/rfc/rfc7405.txt'
     aliases = ('abnf',)
     filenames = ('*.abnf',)
-    mimetypes = ['text/x-abnf']
+    mimetypes = ('text/x-abnf',)
     version_added = '2.1'
 
     _core_rules = (
@@ -229,7 +229,7 @@ class PegLexer(RegexLexer):
     url = 'https://bford.info/pub/lang/peg.pdf'
     aliases = ('peg',)
     filenames = ('*.peg',)
-    mimetypes = ['text/x-peg']
+    mimetypes = ('text/x-peg',)
     version_added = '2.6'
 
     tokens: typing.ClassVar = {

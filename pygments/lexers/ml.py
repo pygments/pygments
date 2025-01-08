@@ -362,7 +362,7 @@ class OcamlLexer(RegexLexer):
     url = 'https://ocaml.org/'
     aliases = ('ocaml',)
     filenames = ('*.ml', '*.mli', '*.mll', '*.mly')
-    mimetypes = ['text/x-ocaml']
+    mimetypes = ('text/x-ocaml',)
     version_added = '0.7'
 
     keywords = (
@@ -453,7 +453,7 @@ class OpaLexer(RegexLexer):
     name = 'Opa'
     aliases = ('opa',)
     filenames = ('*.opa',)
-    mimetypes = ['text/x-opa']
+    mimetypes = ('text/x-opa',)
     url = 'http://opalang.org'
     version_added = '1.5'
 
@@ -777,7 +777,7 @@ class ReasonLexer(RegexLexer):
     url = 'https://reasonml.github.io/'
     aliases = ('reasonml', 'reason')
     filenames = ('*.re', '*.rei')
-    mimetypes = ['text/x-reasonml']
+    mimetypes = ('text/x-reasonml',)
     version_added = '2.6'
 
     keywords = (
@@ -869,7 +869,7 @@ class FStarLexer(RegexLexer):
     url = 'https://www.fstar-lang.org/'
     aliases = ('fstar',)
     filenames = ('*.fst', '*.fsti')
-    mimetypes = ['text/x-fstar']
+    mimetypes = ('text/x-fstar',)
     version_added = '2.7'
 
     keywords = (

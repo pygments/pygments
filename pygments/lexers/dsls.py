@@ -101,7 +101,7 @@ class ThriftLexer(RegexLexer):
     url = 'https://thrift.apache.org/'
     aliases = ('thrift',)
     filenames = ('*.thrift',)
-    mimetypes = ['application/x-thrift']
+    mimetypes = ('application/x-thrift',)
     version_added = '2.1'
 
     tokens: typing.ClassVar = {
@@ -456,7 +456,7 @@ class RslLexer(RegexLexer):
     url = 'http://en.wikipedia.org/wiki/RAISE'
     aliases = ('rsl',)
     filenames = ('*.rsl',)
-    mimetypes = ['text/rsl']
+    mimetypes = ('text/rsl',)
     version_added = '2.0'
 
     flags = re.MULTILINE | re.DOTALL
@@ -600,7 +600,7 @@ class AlloyLexer(RegexLexer):
     url = 'http://alloy.mit.edu'
     aliases = ('alloy',)
     filenames = ('*.als',)
-    mimetypes = ['text/x-alloy']
+    mimetypes = ('text/x-alloy',)
     version_added = '2.0'
 
     flags = re.MULTILINE | re.DOTALL
@@ -804,7 +804,7 @@ class FlatlineLexer(RegexLexer):
     url = 'https://github.com/bigmlcom/flatline'
     aliases = ('flatline',)
     filenames = ()
-    mimetypes = ['text/x-flatline']
+    mimetypes = ('text/x-flatline',)
     version_added = '2.2'
 
     special_forms = ('let',)

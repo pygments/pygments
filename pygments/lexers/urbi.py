@@ -26,7 +26,7 @@ class UrbiscriptLexer(ExtendedRegexLexer):
     name = 'UrbiScript'
     aliases = ('urbiscript',)
     filenames = ('*.u',)
-    mimetypes = ['application/x-urbiscript']
+    mimetypes = ('application/x-urbiscript',)
     url = 'https://github.com/urbiforge/urbi'
     version_added = '1.5'
 

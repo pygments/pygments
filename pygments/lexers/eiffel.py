@@ -24,7 +24,7 @@ class EiffelLexer(RegexLexer):
     url = 'https://www.eiffel.com'
     aliases = ('eiffel',)
     filenames = ('*.e',)
-    mimetypes = ['text/x-eiffel']
+    mimetypes = ('text/x-eiffel',)
     version_added = '2.0'
 
     tokens: typing.ClassVar = {

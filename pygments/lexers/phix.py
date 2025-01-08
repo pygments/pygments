@@ -28,7 +28,7 @@ class PhixLexer(RegexLexer):
     url = 'http://phix.x10.mx'
     aliases = ('phix',)
     filenames = ('*.exw',)
-    mimetypes = ['text/x-phix']
+    mimetypes = ('text/x-phix',)
     version_added = '2.14'
 
     flags = re.MULTILINE    # nb: **NOT** re.DOTALL! (totally spanners comment handling)

@@ -24,7 +24,7 @@ class OocLexer(RegexLexer):
     url = 'https://ooc-lang.github.io/'
     aliases = ('ooc',)
     filenames = ('*.ooc',)
-    mimetypes = ['text/x-ooc']
+    mimetypes = ('text/x-ooc',)
     version_added = '1.2'
 
     tokens: typing.ClassVar = {

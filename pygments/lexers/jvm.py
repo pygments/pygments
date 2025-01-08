@@ -47,7 +47,7 @@ class JavaLexer(RegexLexer):
     url = 'https://www.oracle.com/technetwork/java/'
     aliases = ('java',)
     filenames = ('*.java',)
-    mimetypes = ['text/x-java']
+    mimetypes = ('text/x-java',)
     version_added = ''
 
     flags = re.MULTILINE | re.DOTALL
@@ -140,7 +140,7 @@ class AspectJLexer(JavaLexer):
     url = 'http://www.eclipse.org/aspectj/'
     aliases = ('aspectj',)
     filenames = ('*.aj',)
-    mimetypes = ['text/x-aspectj']
+    mimetypes = ('text/x-aspectj',)
     version_added = '1.6'
 
     aj_keywords = {
@@ -179,7 +179,7 @@ class ScalaLexer(RegexLexer):
     url = 'http://www.scala-lang.org'
     aliases = ('scala',)
     filenames = ('*.scala',)
-    mimetypes = ['text/x-scala']
+    mimetypes = ('text/x-scala',)
     version_added = ''
 
     flags = re.MULTILINE | re.DOTALL
@@ -463,7 +463,7 @@ class GosuLexer(RegexLexer):
     name = 'Gosu'
     aliases = ('gosu',)
     filenames = ('*.gs', '*.gsx', '*.gsp', '*.vark')
-    mimetypes = ['text/x-gosu']
+    mimetypes = ('text/x-gosu',)
     url = 'https://gosu-lang.github.io'
     version_added = '1.5'
 
@@ -542,7 +542,7 @@ class GosuTemplateLexer(Lexer):
     name = 'Gosu Template'
     aliases = ('gst',)
     filenames = ('*.gst',)
-    mimetypes = ['text/x-gosu-template']
+    mimetypes = ('text/x-gosu-template',)
     url = 'https://gosu-lang.github.io'
     version_added = '1.5'
 
@@ -561,7 +561,7 @@ class GroovyLexer(RegexLexer):
     url = 'https://groovy-lang.org/'
     aliases = ('groovy',)
     filenames = ('*.groovy','*.gradle')
-    mimetypes = ['text/x-groovy']
+    mimetypes = ('text/x-groovy',)
     version_added = '1.5'
 
     flags = re.MULTILINE | re.DOTALL
@@ -638,7 +638,7 @@ class IokeLexer(RegexLexer):
     url = 'https://ioke.org/'
     filenames = ('*.ik',)
     aliases = ('ioke', 'ik')
-    mimetypes = ['text/x-iokesrc']
+    mimetypes = ('text/x-iokesrc',)
     version_added = '1.4'
     tokens: typing.ClassVar = {
         'interpolatableText': [
@@ -1028,7 +1028,7 @@ class CeylonLexer(RegexLexer):
     url = 'http://ceylon-lang.org/'
     aliases = ('ceylon',)
     filenames = ('*.ceylon',)
-    mimetypes = ['text/x-ceylon']
+    mimetypes = ('text/x-ceylon',)
     version_added = '1.6'
 
     flags = re.MULTILINE | re.DOTALL
@@ -1107,7 +1107,7 @@ class KotlinLexer(RegexLexer):
     url = 'http://kotlinlang.org/'
     aliases = ('kotlin',)
     filenames = ('*.kt', '*.kts')
-    mimetypes = ['text/x-kotlin']
+    mimetypes = ('text/x-kotlin',)
     version_added = '1.5'
 
     flags = re.MULTILINE | re.DOTALL
@@ -1262,7 +1262,7 @@ class XtendLexer(RegexLexer):
     url = 'https://www.eclipse.org/xtend/'
     aliases = ('xtend',)
     filenames = ('*.xtend',)
-    mimetypes = ['text/x-xtend']
+    mimetypes = ('text/x-xtend',)
     version_added = '1.6'
 
     flags = re.MULTILINE | re.DOTALL
@@ -1327,7 +1327,7 @@ class PigLexer(RegexLexer):
     url = 'https://pig.apache.org/'
     aliases = ('pig',)
     filenames = ('*.pig',)
-    mimetypes = ['text/x-pig']
+    mimetypes = ('text/x-pig',)
     version_added = '2.0'
 
     flags = re.MULTILINE | re.IGNORECASE
@@ -1767,7 +1767,7 @@ class SarlLexer(RegexLexer):
     url = 'http://www.sarl.io'
     aliases = ('sarl',)
     filenames = ('*.sarl',)
-    mimetypes = ['text/x-sarl']
+    mimetypes = ('text/x-sarl',)
     version_added = '2.4'
 
     flags = re.MULTILINE | re.DOTALL

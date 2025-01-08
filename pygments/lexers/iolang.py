@@ -24,7 +24,7 @@ class IoLexer(RegexLexer):
     url = 'http://iolanguage.com/'
     filenames = ('*.io',)
     aliases = ('io',)
-    mimetypes = ['text/x-iosrc']
+    mimetypes = ('text/x-iosrc',)
     version_added = '0.10'
     tokens: typing.ClassVar = {
         'root': [

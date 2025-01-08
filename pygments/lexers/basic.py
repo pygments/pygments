@@ -37,7 +37,7 @@ class BlitzMaxLexer(RegexLexer):
     url = 'http://blitzbasic.com'
     aliases = ('blitzmax', 'bmax')
     filenames = ('*.bmx',)
-    mimetypes = ['text/x-bmx']
+    mimetypes = ('text/x-bmx',)
     version_added = '1.4'
 
     bmax_vopwords = r'\b(Shl|Shr|Sar|Mod)\b'
@@ -125,7 +125,7 @@ class BlitzBasicLexer(RegexLexer):
     url = 'http://blitzbasic.com'
     aliases = ('blitzbasic', 'b3d', 'bplus')
     filenames = ('*.bb', '*.decls')
-    mimetypes = ['text/x-bb']
+    mimetypes = ('text/x-bb',)
     version_added = '2.0'
 
     bb_sktypes = r'@{1,2}|[#$%]'
@@ -202,7 +202,7 @@ class MonkeyLexer(RegexLexer):
     name = 'Monkey'
     aliases = ('monkey',)
     filenames = ('*.monkey',)
-    mimetypes = ['text/x-monkey']
+    mimetypes = ('text/x-monkey',)
     url = 'https://blitzresearch.itch.io/monkeyx'
     version_added = '1.6'
 
@@ -368,7 +368,7 @@ class QBasicLexer(RegexLexer):
     name = 'QBasic'
     aliases = ('qbasic', 'basic')
     filenames = ('*.BAS', '*.bas')
-    mimetypes = ['text/basic']
+    mimetypes = ('text/basic',)
     url = 'https://en.wikipedia.org/wiki/QBasic'
     version_added = '2.0'
 

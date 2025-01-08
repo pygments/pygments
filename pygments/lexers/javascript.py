@@ -329,7 +329,7 @@ class LiveScriptLexer(RegexLexer):
     url = 'https://livescript.net/'
     aliases = ('livescript', 'live-script')
     filenames = ('*.ls',)
-    mimetypes = ['text/livescript']
+    mimetypes = ('text/livescript',)
     version_added = '1.6'
 
     flags = re.DOTALL
@@ -441,7 +441,7 @@ class DartLexer(RegexLexer):
     url = 'http://dart.dev/'
     aliases = ('dart',)
     filenames = ('*.dart',)
-    mimetypes = ['text/x-dart']
+    mimetypes = ('text/x-dart',)
     version_added = '1.5'
 
     flags = re.MULTILINE | re.DOTALL
@@ -556,7 +556,7 @@ class LassoLexer(RegexLexer):
     filenames = ('*.lasso', '*.lasso[89]')
     version_added = '1.6'
     alias_filenames = ('*.incl', '*.inc', '*.las')
-    mimetypes = ['text/x-lasso']
+    mimetypes = ('text/x-lasso',)
     url = 'https://www.lassosoft.com'
 
     flags = re.IGNORECASE | re.DOTALL | re.MULTILINE
@@ -808,7 +808,7 @@ class ObjectiveJLexer(RegexLexer):
     name = 'Objective-J'
     aliases = ('objective-j', 'objectivej', 'obj-j', 'objj')
     filenames = ('*.j',)
-    mimetypes = ['text/x-objective-j']
+    mimetypes = ('text/x-objective-j',)
     url = 'https://www.cappuccino.dev/learn/objective-j.html'
     version_added = '1.3'
 
@@ -1032,7 +1032,7 @@ class CoffeeScriptLexer(RegexLexer):
     url = 'http://coffeescript.org'
     aliases = ('coffeescript', 'coffee-script', 'coffee')
     filenames = ('*.coffee',)
-    mimetypes = ['text/coffeescript']
+    mimetypes = ('text/coffeescript',)
     version_added = '1.3'
 
     _operator_re = (
@@ -1144,7 +1144,7 @@ class MaskLexer(RegexLexer):
     url = 'https://github.com/atmajs/MaskJS'
     aliases = ('mask',)
     filenames = ('*.mask',)
-    mimetypes = ['text/x-mask']
+    mimetypes = ('text/x-mask',)
     version_added = '2.0'
 
     flags = re.MULTILINE | re.IGNORECASE | re.DOTALL
@@ -1265,7 +1265,7 @@ class EarlGreyLexer(RegexLexer):
     name = 'Earl Grey'
     aliases = ('earl-grey', 'earlgrey', 'eg')
     filenames = ('*.eg',)
-    mimetypes = ['text/x-earl-grey']
+    mimetypes = ('text/x-earl-grey',)
     url = 'https://github.com/breuleux/earl-grey'
     version_added = ''
 

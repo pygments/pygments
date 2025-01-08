@@ -24,7 +24,7 @@ class SourcePawnLexer(RegexLexer):
     name = 'SourcePawn'
     aliases = ('sp',)
     filenames = ('*.sp',)
-    mimetypes = ['text/x-sourcepawn']
+    mimetypes = ('text/x-sourcepawn',)
     url = 'https://github.com/alliedmodders/sourcepawn'
     version_added = '1.6'
 
@@ -135,7 +135,7 @@ class PawnLexer(RegexLexer):
     name = 'Pawn'
     aliases = ('pawn',)
     filenames = ('*.p', '*.pwn', '*.inc')
-    mimetypes = ['text/x-pawn']
+    mimetypes = ('text/x-pawn',)
     url = 'https://www.compuphase.com/pawn/pawn.htm'
     version_added = '2.0'
 

@@ -123,7 +123,7 @@ class DtdLexer(RegexLexer):
     name = 'DTD'
     aliases = ('dtd',)
     filenames = ('*.dtd',)
-    mimetypes = ['application/xml-dtd']
+    mimetypes = ('application/xml-dtd',)
     url = 'https://en.wikipedia.org/wiki/Document_type_definition'
     version_added = '1.5'
 
@@ -292,7 +292,7 @@ class HamlLexer(ExtendedRegexLexer):
     name = 'Haml'
     aliases = ('haml',)
     filenames = ('*.haml',)
-    mimetypes = ['text/x-haml']
+    mimetypes = ('text/x-haml',)
     url = 'https://haml.info'
     version_added = '1.3'
 
@@ -403,7 +403,7 @@ class ScamlLexer(ExtendedRegexLexer):
     name = 'Scaml'
     aliases = ('scaml',)
     filenames = ('*.scaml',)
-    mimetypes = ['text/x-scaml']
+    mimetypes = ('text/x-scaml',)
     url = 'https://scalate.github.io/scalate/'
     version_added = '1.4'
 
@@ -624,7 +624,7 @@ class UrlEncodedLexer(RegexLexer):
 
     name = 'urlencoded'
     aliases = ('urlencoded',)
-    mimetypes = ['application/x-www-form-urlencoded']
+    mimetypes = ('application/x-www-form-urlencoded',)
     url = 'https://en.wikipedia.org/wiki/Percent-encoding'
     version_added = '2.16'
 

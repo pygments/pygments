@@ -26,7 +26,7 @@ class AmbientTalkLexer(RegexLexer):
     url = 'https://code.google.com/p/ambienttalk'
     filenames = ('*.at',)
     aliases = ('ambienttalk', 'ambienttalk/2', 'at')
-    mimetypes = ['text/x-ambienttalk']
+    mimetypes = ('text/x-ambienttalk',)
     version_added = '2.0'
 
     flags = re.MULTILINE | re.DOTALL

@@ -29,7 +29,7 @@ class ModelicaLexer(RegexLexer):
     url = 'http://www.modelica.org/'
     aliases = ('modelica',)
     filenames = ('*.mo',)
-    mimetypes = ['text/x-modelica']
+    mimetypes = ('text/x-modelica',)
     version_added = '1.1'
 
     flags = re.DOTALL | re.MULTILINE

@@ -27,7 +27,7 @@ class NixLexer(RegexLexer):
     url = 'http://nixos.org/nix/'
     aliases = ('nixos', 'nix')
     filenames = ('*.nix',)
-    mimetypes = ['text/x-nix']
+    mimetypes = ('text/x-nix',)
     version_added = '2.0'
 
     keywords = ['rec', 'with', 'let', 'in', 'inherit', 'assert', 'if',

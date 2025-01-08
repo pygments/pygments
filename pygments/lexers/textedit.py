@@ -28,7 +28,7 @@ class AwkLexer(RegexLexer):
     name = 'Awk'
     aliases = ('awk', 'gawk', 'mawk', 'nawk')
     filenames = ('*.awk',)
-    mimetypes = ['application/x-awk']
+    mimetypes = ('application/x-awk',)
     url = 'https://en.wikipedia.org/wiki/AWK'
     version_added = '1.5'
 
@@ -81,7 +81,7 @@ class SedLexer(RegexLexer):
     name = 'Sed'
     aliases = ('sed', 'gsed', 'ssed')
     filenames = ('*.sed', '*.[gs]sed')
-    mimetypes = ['text/x-sed']
+    mimetypes = ('text/x-sed',)
     url = 'https://en.wikipedia.org/wiki/Sed'
     version_added = ''
     flags = re.MULTILINE
@@ -119,7 +119,7 @@ class VimLexer(RegexLexer):
     aliases = ('vim',)
     filenames = ['*.vim', '.vimrc', '.exrc', '.gvimrc',
                  '_vimrc', '_exrc', '_gvimrc', 'vimrc', 'gvimrc']
-    mimetypes = ['text/x-vim']
+    mimetypes = ('text/x-vim',)
     url = 'https://www.vim.org'
     version_added = '0.8'
 

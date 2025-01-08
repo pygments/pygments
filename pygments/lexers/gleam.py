@@ -25,7 +25,7 @@ class GleamLexer(RegexLexer):
     url = 'https://gleam.run/'
     filenames = ('*.gleam',)
     aliases = ('gleam',)
-    mimetypes = ['text/x-gleam']
+    mimetypes = ('text/x-gleam',)
     version_added = '2.19'
 
     keywords = words((

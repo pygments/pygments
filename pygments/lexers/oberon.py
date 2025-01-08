@@ -25,7 +25,7 @@ class ComponentPascalLexer(RegexLexer):
     name = 'Component Pascal'
     aliases = ('componentpascal', 'cp')
     filenames = ('*.cp', '*.cps')
-    mimetypes = ['text/x-component-pascal']
+    mimetypes = ('text/x-component-pascal',)
     url = 'https://blackboxframework.org'
     version_added = '2.1'
 

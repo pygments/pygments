@@ -62,7 +62,7 @@ class RobotFrameworkLexer(Lexer):
     url = 'http://robotframework.org'
     aliases = ('robotframework',)
     filenames = ('*.robot', '*.resource')
-    mimetypes = ['text/x-robotframework']
+    mimetypes = ('text/x-robotframework',)
     version_added = '1.6'
 
     def __init__(self, **options):

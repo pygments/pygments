@@ -48,7 +48,7 @@ class BBCodeLexer(RegexLexer):
 
     name = 'BBCode'
     aliases = ('bbcode',)
-    mimetypes = ['text/x-bbcode']
+    mimetypes = ('text/x-bbcode',)
     url = 'https://www.bbcode.org/'
     version_added = '0.6'
 
@@ -82,7 +82,7 @@ class MoinWikiLexer(RegexLexer):
     name = 'MoinMoin/Trac Wiki markup'
     aliases = ('trac-wiki', 'moin')
     filenames = ()
-    mimetypes = ['text/x-trac-wiki']
+    mimetypes = ('text/x-trac-wiki',)
     url = 'https://moinmo.in'
     version_added = '0.7'
 
@@ -910,7 +910,7 @@ class WikitextLexer(RegexLexer):
     url = 'https://www.mediawiki.org/wiki/Wikitext'
     aliases = ('wikitext', 'mediawiki')
     filenames = ()
-    mimetypes = ['text/x-wiki']
+    mimetypes = ('text/x-wiki',)
     version_added = '2.15'
     flags = re.MULTILINE
 

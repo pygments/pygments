@@ -28,7 +28,7 @@ class DylanLexer(RegexLexer):
     url = 'http://www.opendylan.org/'
     aliases = ('dylan',)
     filenames = ('*.dylan', '*.dyl', '*.intr')
-    mimetypes = ['text/x-dylan']
+    mimetypes = ('text/x-dylan',)
     version_added = '0.7'
 
     flags = re.IGNORECASE
@@ -219,7 +219,7 @@ class DylanLidLexer(RegexLexer):
     name = 'DylanLID'
     aliases = ('dylan-lid', 'lid')
     filenames = ('*.lid', '*.hdp')
-    mimetypes = ['text/x-dylan-lid']
+    mimetypes = ('text/x-dylan-lid',)
     url = 'http://www.opendylan.org/'
     version_added = '1.6'
     flags = re.IGNORECASE
@@ -248,7 +248,7 @@ class DylanConsoleLexer(Lexer):
     name = 'Dylan session'
     aliases = ('dylan-console', 'dylan-repl')
     filenames = ('*.dylan-console',)
-    mimetypes = ['text/x-dylan-console']
+    mimetypes = ('text/x-dylan-console',)
     url = 'http://www.opendylan.org/'
     version_added = '1.6'
     _example = 'dylan-console/console.dylan-console'

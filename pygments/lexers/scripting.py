@@ -648,7 +648,7 @@ class LSLLexer(RegexLexer):
     name = 'LSL'
     aliases = ('lsl',)
     filenames = ('*.lsl',)
-    mimetypes = ['text/x-lsl']
+    mimetypes = ('text/x-lsl',)
     url = 'https://wiki.secondlife.com/wiki/Linden_Scripting_Language'
     version_added = '2.0'
 
@@ -1056,7 +1056,7 @@ class RexxLexer(RegexLexer):
     url = 'http://www.rexxinfo.org/'
     aliases = ('rexx', 'arexx')
     filenames = ('*.rexx', '*.rex', '*.rx', '*.arexx')
-    mimetypes = ['text/x-rexx']
+    mimetypes = ('text/x-rexx',)
     version_added = '2.0'
     flags = re.IGNORECASE
 
@@ -1167,7 +1167,7 @@ class MOOCodeLexer(RegexLexer):
     url = 'http://www.moo.mud.org/'
     filenames = ('*.moo',)
     aliases = ('moocode', 'moo')
-    mimetypes = ['text/x-moocode']
+    mimetypes = ('text/x-moocode',)
     version_added = '0.9'
 
     tokens: typing.ClassVar = {
@@ -1306,7 +1306,7 @@ class EasytrieveLexer(RegexLexer):
     name = 'Easytrieve'
     aliases = ('easytrieve',)
     filenames = ('*.ezt', '*.mac')
-    mimetypes = ['text/x-easytrieve']
+    mimetypes = ('text/x-easytrieve',)
     url = 'https://www.broadcom.com/products/mainframe/application-development/easytrieve-report-generator'
     version_added = '2.1'
     flags = 0
@@ -1498,7 +1498,7 @@ class JclLexer(RegexLexer):
     name = 'JCL'
     aliases = ('jcl',)
     filenames = ('*.jcl',)
-    mimetypes = ['text/x-jcl']
+    mimetypes = ('text/x-jcl',)
     url = 'https://en.wikipedia.org/wiki/Job_Control_Language'
     version_added = '2.1'
 

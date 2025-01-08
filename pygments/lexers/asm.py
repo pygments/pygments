@@ -43,7 +43,7 @@ class GasLexer(RegexLexer):
     name = 'GAS'
     aliases = ('gas', 'asm')
     filenames = ('*.s', '*.S')
-    mimetypes = ['text/x-gas']
+    mimetypes = ('text/x-gas',)
     url = 'https://www.gnu.org/software/binutils'
     version_added = ''
 
@@ -181,7 +181,7 @@ class ObjdumpLexer(RegexLexer):
     name = 'objdump'
     aliases = ('objdump',)
     filenames = ('*.objdump',)
-    mimetypes = ['text/x-objdump']
+    mimetypes = ('text/x-objdump',)
     url = 'https://www.gnu.org/software/binutils'
     version_added = ''
 
@@ -195,7 +195,7 @@ class DObjdumpLexer(DelegatingLexer):
     name = 'd-objdump'
     aliases = ('d-objdump',)
     filenames = ('*.d-objdump',)
-    mimetypes = ['text/x-d-objdump']
+    mimetypes = ('text/x-d-objdump',)
     url = 'https://www.gnu.org/software/binutils'
     version_added = ''
 
@@ -210,7 +210,7 @@ class CppObjdumpLexer(DelegatingLexer):
     name = 'cpp-objdump'
     aliases = ('cpp-objdump', 'c++-objdumb', 'cxx-objdump')
     filenames = ('*.cpp-objdump', '*.c++-objdump', '*.cxx-objdump')
-    mimetypes = ['text/x-cpp-objdump']
+    mimetypes = ('text/x-cpp-objdump',)
     url = 'https://www.gnu.org/software/binutils'
     version_added = ''
 
@@ -225,7 +225,7 @@ class CObjdumpLexer(DelegatingLexer):
     name = 'c-objdump'
     aliases = ('c-objdump',)
     filenames = ('*.c-objdump',)
-    mimetypes = ['text/x-c-objdump']
+    mimetypes = ('text/x-c-objdump',)
     url = 'https://www.gnu.org/software/binutils'
     version_added = ''
 
@@ -241,7 +241,7 @@ class HsailLexer(RegexLexer):
     name = 'HSAIL'
     aliases = ('hsail', 'hsa')
     filenames = ('*.hsail',)
-    mimetypes = ['text/x-hsail']
+    mimetypes = ('text/x-hsail',)
     url = 'https://en.wikipedia.org/wiki/Heterogeneous_System_Architecture#HSA_Intermediate_Layer'
     version_added = '2.2'
 
@@ -377,7 +377,7 @@ class LlvmLexer(RegexLexer):
     url = 'https://llvm.org/docs/LangRef.html'
     aliases = ('llvm',)
     filenames = ('*.ll',)
-    mimetypes = ['text/x-llvm']
+    mimetypes = ('text/x-llvm',)
     version_added = ''
 
     #: optional Comment or Whitespace
@@ -738,7 +738,7 @@ class NasmLexer(RegexLexer):
     name = 'NASM'
     aliases = ('nasm',)
     filenames = ('*.asm', '*.ASM', '*.nasm')
-    mimetypes = ['text/x-nasm']
+    mimetypes = ('text/x-nasm',)
     url = 'https://nasm.us'
     version_added = ''
 
@@ -826,7 +826,7 @@ class NasmObjdumpLexer(ObjdumpLexer):
     name = 'objdump-nasm'
     aliases = ('objdump-nasm',)
     filenames = ('*.objdump-intel',)
-    mimetypes = ['text/x-nasm-objdump']
+    mimetypes = ('text/x-nasm-objdump',)
     url = 'https://www.gnu.org/software/binutils'
     version_added = '2.0'
 
@@ -840,7 +840,7 @@ class TasmLexer(RegexLexer):
     name = 'TASM'
     aliases = ('tasm',)
     filenames = ('*.asm', '*.ASM', '*.tasm')
-    mimetypes = ['text/x-tasm']
+    mimetypes = ('text/x-tasm',)
     url = 'https://en.wikipedia.org/wiki/Turbo_Assembler'
     version_added = ''
 
@@ -968,7 +968,7 @@ class Dasm16Lexer(RegexLexer):
     url = 'http://0x10c.com/doc/dcpu-16.txt'
     aliases = ('dasm16',)
     filenames = ('*.dasm16', '*.dasm')
-    mimetypes = ['text/x-dasm16']
+    mimetypes = ('text/x-dasm16',)
     version_added = '2.4'
 
     INSTRUCTIONS = [

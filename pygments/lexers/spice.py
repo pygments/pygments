@@ -24,7 +24,7 @@ class SpiceLexer(RegexLexer):
     url = 'https://www.spicelang.com'
     filenames = ('*.spice',)
     aliases = ('spice', 'spicelang')
-    mimetypes = ['text/x-spice']
+    mimetypes = ('text/x-spice',)
     version_added = '2.11'
 
     tokens: typing.ClassVar = {

@@ -647,7 +647,7 @@ class Python2Lexer(RegexLexer):
 class _PythonConsoleLexerBase(RegexLexer):
     name = 'Python console session'
     aliases = ('pycon', 'python-console')
-    mimetypes = ['text/x-python-doctest']
+    mimetypes = ('text/x-python-doctest',)
 
     """Auxiliary lexer for `PythonConsoleLexer`.
 
@@ -707,7 +707,7 @@ class PythonConsoleLexer(DelegatingLexer):
 
     name = 'Python console session'
     aliases = ('pycon', 'python-console')
-    mimetypes = ['text/x-python-doctest']
+    mimetypes = ('text/x-python-doctest',)
     url = 'https://python.org'
     version_added = ''
 
@@ -799,7 +799,7 @@ class Python2TracebackLexer(RegexLexer):
     name = 'Python 2.x Traceback'
     aliases = ('py2tb',)
     filenames = ('*.py2tb',)
-    mimetypes = ['text/x-python2-traceback']
+    mimetypes = ('text/x-python2-traceback',)
     url = 'https://python.org'
     version_added = '0.7'
 
@@ -1023,7 +1023,7 @@ class DgLexer(RegexLexer):
     name = 'dg'
     aliases = ('dg',)
     filenames = ('*.dg',)
-    mimetypes = ['text/x-dg']
+    mimetypes = ('text/x-dg',)
     url = 'http://pyos.github.io/dg'
     version_added = '1.6'
 

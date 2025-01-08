@@ -24,7 +24,7 @@ class X10Lexer(RegexLexer):
     url = 'http://x10-lang.org/'
     aliases = ('x10', 'xten')
     filenames = ('*.x10',)
-    mimetypes = ['text/x-x10']
+    mimetypes = ('text/x-x10',)
     version_added = '2.2'
 
     keywords = (

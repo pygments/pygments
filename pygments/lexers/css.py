@@ -149,7 +149,7 @@ class CssLexer(RegexLexer):
     url = 'https://www.w3.org/TR/CSS/#css'
     aliases = ('css',)
     filenames = ('*.css',)
-    mimetypes = ['text/css']
+    mimetypes = ('text/css',)
     version_added = ''
 
     tokens: typing.ClassVar = {
@@ -395,7 +395,7 @@ class SassLexer(ExtendedRegexLexer):
     url = 'https://sass-lang.com/'
     aliases = ('sass',)
     filenames = ('*.sass',)
-    mimetypes = ['text/x-sass']
+    mimetypes = ('text/x-sass',)
     version_added = '1.3'
 
     flags = re.IGNORECASE | re.MULTILINE
@@ -477,7 +477,7 @@ class ScssLexer(RegexLexer):
     url = 'https://sass-lang.com/'
     aliases = ('scss',)
     filenames = ('*.scss',)
-    mimetypes = ['text/x-scss']
+    mimetypes = ('text/x-scss',)
     version_added = ''
 
     flags = re.IGNORECASE | re.DOTALL
@@ -529,7 +529,7 @@ class LessCssLexer(CssLexer):
     url = 'http://lesscss.org/'
     aliases = ('less',)
     filenames = ('*.less',)
-    mimetypes = ['text/x-less-css']
+    mimetypes = ('text/x-less-css',)
     version_added = '2.1'
 
     tokens: typing.ClassVar = {

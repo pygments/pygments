@@ -25,7 +25,7 @@ class SparqlLexer(RegexLexer):
     name = 'SPARQL'
     aliases = ('sparql',)
     filenames = ('*.rq', '*.sparql')
-    mimetypes = ['application/sparql-query']
+    mimetypes = ('application/sparql-query',)
     url = 'https://www.w3.org/TR/sparql11-query'
     version_added = '2.0'
 
@@ -328,7 +328,7 @@ class ShExCLexer(RegexLexer):
     name = 'ShExC'
     aliases = ('shexc', 'shex')
     filenames = ('*.shex',)
-    mimetypes = ['text/shex']
+    mimetypes = ('text/shex',)
     url = 'https://shex.io/shex-semantics/#shexc'
     version_added = ''
 

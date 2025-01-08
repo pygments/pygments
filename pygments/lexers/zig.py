@@ -26,7 +26,7 @@ class ZigLexer(RegexLexer):
     url = 'http://www.ziglang.org'
     aliases = ('zig',)
     filenames = ('*.zig',)
-    mimetypes = ['text/zig']
+    mimetypes = ('text/zig',)
     version_added = ''
 
     type_keywords = (

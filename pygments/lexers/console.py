@@ -50,7 +50,7 @@ class PyPyLogLexer(RegexLexer):
     name = "PyPy Log"
     aliases = ["pypylog", "pypy"]
     filenames = ["*.pypylog"]
-    mimetypes = ['application/x-pypylog']
+    mimetypes = ('application/x-pypylog',)
     url = 'pypy.org'
     version_added = '1.5'
 

@@ -22,7 +22,7 @@ class GherkinLexer(RegexLexer):
     name = 'Gherkin'
     aliases = ('gherkin', 'cucumber')
     filenames = ('*.feature',)
-    mimetypes = ['text/x-gherkin']
+    mimetypes = ('text/x-gherkin',)
     url = 'https://cucumber.io/docs/gherkin'
     version_added = '1.2'
 

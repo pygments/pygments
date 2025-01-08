@@ -23,7 +23,7 @@ class HareLexer(RegexLexer):
     url = 'https://harelang.org/'
     aliases = ('hare',)
     filenames = ('*.ha',)
-    mimetypes = ['text/x-hare']
+    mimetypes = ('text/x-hare',)
     version_added = '2.19'
 
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'

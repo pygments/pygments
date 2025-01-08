@@ -25,7 +25,7 @@ class CplintLexer(PrologLexer):
     url = 'https://cplint.eu'
     aliases = ('cplint',)
     filenames = ('*.ecl', '*.prolog', '*.pro', '*.pl', '*.P', '*.lpad', '*.cpl')
-    mimetypes = ['text/x-cplint']
+    mimetypes = ('text/x-cplint',)
     version_added = '2.12'
 
     tokens: typing.ClassVar = {

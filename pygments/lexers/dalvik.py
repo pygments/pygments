@@ -27,7 +27,7 @@ class SmaliLexer(RegexLexer):
     url = 'http://code.google.com/p/smali/'
     aliases = ('smali',)
     filenames = ('*.smali',)
-    mimetypes = ['text/smali']
+    mimetypes = ('text/smali',)
     version_added = '1.6'
 
     tokens: typing.ClassVar = {

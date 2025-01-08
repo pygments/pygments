@@ -24,7 +24,7 @@ class GoLexer(RegexLexer):
     url = 'https://go.dev/'
     filenames = ('*.go',)
     aliases = ('go', 'golang')
-    mimetypes = ['text/x-gosrc']
+    mimetypes = ('text/x-gosrc',)
     version_added = '1.2'
 
     tokens: typing.ClassVar = {

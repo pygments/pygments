@@ -60,7 +60,7 @@ class DelphiLexer(Lexer):
     name = 'Delphi'
     aliases = ('delphi', 'pas', 'pascal', 'objectpascal')
     filenames = ('*.pas', '*.dpr')
-    mimetypes = ['text/x-pascal']
+    mimetypes = ('text/x-pascal',)
     url = 'https://www.embarcadero.com/products/delphi'
     version_added = ''
 

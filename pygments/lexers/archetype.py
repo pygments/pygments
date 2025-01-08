@@ -140,7 +140,7 @@ class OdinLexer(AtomsLexer):
     name = 'ODIN'
     aliases = ('odin',)
     filenames = ('*.odin',)
-    mimetypes = ['text/odin']
+    mimetypes = ('text/odin',)
     url = 'https://github.com/openEHR/odin'
     version_added = '2.1'
 

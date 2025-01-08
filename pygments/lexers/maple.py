@@ -23,7 +23,7 @@ class MapleLexer(ExtendedRegexLexer):
     name = 'Maple'
     aliases = ('maple',)
     filenames = ('*.mpl', '*.mi', '*.mm')
-    mimetypes = ['text/x-maple']
+    mimetypes = ('text/x-maple',)
     url = 'https://www.maplesoft.com/products/Maple/'
     version_added = '2.19'
 

@@ -32,7 +32,7 @@ class NSISLexer(RegexLexer):
     url = 'http://nsis.sourceforge.net/'
     aliases = ('nsis', 'nsi', 'nsh')
     filenames = ('*.nsi', '*.nsh')
-    mimetypes = ['text/x-nsis']
+    mimetypes = ('text/x-nsis',)
     version_added = '1.6'
 
     flags = re.IGNORECASE
@@ -157,7 +157,7 @@ class RPMSpecLexer(RegexLexer):
     name = 'RPMSpec'
     aliases = ('spec',)
     filenames = ('*.spec',)
-    mimetypes = ['text/x-rpm-spec']
+    mimetypes = ('text/x-rpm-spec',)
     url = 'https://rpm-software-management.github.io/rpm/manual/spec.html'
     version_added = '1.6'
 

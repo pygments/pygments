@@ -31,7 +31,7 @@ class MakefileLexer(Lexer):
     name = 'Makefile'
     aliases = ('make', 'makefile', 'mf', 'bsdmake')
     filenames = ('*.mak', '*.mk', 'Makefile', 'makefile', 'Makefile.*', 'GNUmakefile')
-    mimetypes = ['text/x-makefile']
+    mimetypes = ('text/x-makefile',)
     url = 'https://en.wikipedia.org/wiki/Make_(software)'
     version_added = ''
 
@@ -137,7 +137,7 @@ class CMakeLexer(RegexLexer):
     url = 'https://cmake.org/documentation/'
     aliases = ('cmake',)
     filenames = ('*.cmake', 'CMakeLists.txt')
-    mimetypes = ['text/x-cmake']
+    mimetypes = ('text/x-cmake',)
     version_added = '1.2'
 
     tokens: typing.ClassVar = {

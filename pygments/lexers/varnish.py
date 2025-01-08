@@ -24,7 +24,7 @@ class VCLLexer(RegexLexer):
     name = 'VCL'
     aliases = ('vcl',)
     filenames = ('*.vcl',)
-    mimetypes = ['text/x-vclsrc']
+    mimetypes = ('text/x-vclsrc',)
     url = 'https://www.varnish-software.com/developers/tutorials/varnish-configuration-language-vcl'
     version_added = '2.2'
 
@@ -164,7 +164,7 @@ class VCLSnippetLexer(VCLLexer):
     """
     name = 'VCLSnippets'
     aliases = ('vclsnippets', 'vclsnippet')
-    mimetypes = ['text/x-vclsnippet']
+    mimetypes = ('text/x-vclsnippet',)
     filenames = ()
     url = 'https://www.varnish-software.com/developers/tutorials/varnish-configuration-language-vcl'
     version_added = '2.2'

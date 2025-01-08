@@ -25,7 +25,7 @@ class CarbonLexer(RegexLexer):
     url = 'https://github.com/carbon-language/carbon-lang'
     filenames = ('*.carbon',)
     aliases = ('carbon',)
-    mimetypes = ['text/x-carbon']
+    mimetypes = ('text/x-carbon',)
     version_added = '2.15'
 
     flags = re.MULTILINE | re.DOTALL

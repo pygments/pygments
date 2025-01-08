@@ -25,7 +25,7 @@ class TextLexer(Lexer):
     name = 'Text only'
     aliases = ('text',)
     filenames = ('*.txt',)
-    mimetypes = ['text/plain']
+    mimetypes = ('text/plain',)
     url = ""
     version_added = ''
 
@@ -68,7 +68,7 @@ class RawTokenLexer(Lexer):
     name = 'Raw token data'
     aliases = ()
     filenames = ()
-    mimetypes = ['application/x-pygments-tokens']
+    mimetypes = ('application/x-pygments-tokens',)
     url = 'https://pygments.org/docs/formatters/#RawTokenFormatter'
     version_added = ''
 

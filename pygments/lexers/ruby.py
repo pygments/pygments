@@ -400,7 +400,7 @@ class RubyConsoleLexer(Lexer):
     """
     name = 'Ruby irb session'
     aliases = ('rbcon', 'irb')
-    mimetypes = ['text/x-ruby-shellsession']
+    mimetypes = ('text/x-ruby-shellsession',)
     url = 'https://www.ruby-lang.org'
     version_added = ''
     _example = 'rbcon/console'
@@ -445,7 +445,7 @@ class FancyLexer(RegexLexer):
     url = 'https://github.com/bakkdoor/fancy'
     filenames = ('*.fy', '*.fancypack')
     aliases = ('fancy', 'fy')
-    mimetypes = ['text/x-fancysrc']
+    mimetypes = ('text/x-fancysrc',)
     version_added = '1.5'
 
     tokens: typing.ClassVar = {

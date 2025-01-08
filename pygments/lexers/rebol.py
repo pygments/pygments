@@ -25,7 +25,7 @@ class RebolLexer(RegexLexer):
     name = 'REBOL'
     aliases = ('rebol',)
     filenames = ('*.r', '*.r3', '*.reb')
-    mimetypes = ['text/x-rebol']
+    mimetypes = ('text/x-rebol',)
     url = 'http://www.rebol.com'
     version_added = '1.1'
 

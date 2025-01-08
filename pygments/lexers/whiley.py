@@ -24,7 +24,7 @@ class WhileyLexer(RegexLexer):
     url = 'http://whiley.org/'
     filenames = ('*.whiley',)
     aliases = ('whiley',)
-    mimetypes = ['text/x-whiley']
+    mimetypes = ('text/x-whiley',)
     version_added = '2.2'
 
     # See the language specification:

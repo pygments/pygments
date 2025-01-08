@@ -107,7 +107,7 @@ class ErbLexer(Lexer):
     name = 'ERB'
     url = 'https://github.com/ruby/erb'
     aliases = ('erb',)
-    mimetypes = ['application/x-ruby-templating']
+    mimetypes = ('application/x-ruby-templating',)
     version_added = ''
 
     _block_re = re.compile(r'(<%%|%%>|<%=|<%#|<%-|<%|-%>|%>|^%[^%].*?$)', re.M)
@@ -202,7 +202,7 @@ class SmartyLexer(RegexLexer):
     url = 'https://www.smarty.net/'
     aliases = ('smarty',)
     filenames = ('*.tpl',)
-    mimetypes = ['application/x-smarty']
+    mimetypes = ('application/x-smarty',)
     version_added = ''
 
     flags = re.MULTILINE | re.DOTALL
@@ -343,7 +343,7 @@ class VelocityHtmlLexer(DelegatingLexer):
     aliases = ('html+velocity',)
     version_added = ''
     alias_filenames = ('*.html', '*.fhtml')
-    mimetypes = ['text/html+velocity']
+    mimetypes = ('text/html+velocity',)
     url = 'https://velocity.apache.org/'
 
     def __init__(self, **options):
@@ -361,7 +361,7 @@ class VelocityXmlLexer(DelegatingLexer):
     aliases = ('xml+velocity',)
     version_added = ''
     alias_filenames = ('*.xml', '*.vm')
-    mimetypes = ['application/xml+velocity']
+    mimetypes = ('application/xml+velocity',)
     url = 'https://velocity.apache.org/'
 
     def __init__(self, **options):
@@ -469,7 +469,7 @@ class MyghtyLexer(RegexLexer):
     url = 'http://www.myghty.org/'
     aliases = ('myghty',)
     filenames = ('*.myt', 'autodelegate')
-    mimetypes = ['application/x-myghty']
+    mimetypes = ('application/x-myghty',)
     version_added = '0.6'
 
     tokens: typing.ClassVar = {
@@ -513,7 +513,7 @@ class MyghtyHtmlLexer(DelegatingLexer):
 
     name = 'HTML+Myghty'
     aliases = ('html+myghty',)
-    mimetypes = ['text/html+myghty']
+    mimetypes = ('text/html+myghty',)
     url = 'http://www.myghty.org/'
     version_added = '0.6'
 
@@ -529,7 +529,7 @@ class MyghtyXmlLexer(DelegatingLexer):
 
     name = 'XML+Myghty'
     aliases = ('xml+myghty',)
-    mimetypes = ['application/xml+myghty']
+    mimetypes = ('application/xml+myghty',)
     url = 'http://www.myghty.org/'
     version_added = '0.6'
 
@@ -563,7 +563,7 @@ class MyghtyCssLexer(DelegatingLexer):
 
     name = 'CSS+Myghty'
     aliases = ('css+myghty',)
-    mimetypes = ['text/css+myghty']
+    mimetypes = ('text/css+myghty',)
     url = 'http://www.myghty.org/'
     version_added = '0.6'
 
@@ -580,7 +580,7 @@ class MasonLexer(RegexLexer):
     url = 'http://www.masonhq.com/'
     aliases = ('mason',)
     filenames = ('*.m', '*.mhtml', '*.mc', '*.mi', 'autohandler', 'dhandler')
-    mimetypes = ['application/x-mason']
+    mimetypes = ('application/x-mason',)
     version_added = '1.4'
 
     tokens: typing.ClassVar = {
@@ -635,7 +635,7 @@ class MakoLexer(RegexLexer):
     url = 'http://www.makotemplates.org/'
     aliases = ('mako',)
     filenames = ('*.mao',)
-    mimetypes = ['application/x-mako']
+    mimetypes = ('application/x-mako',)
     version_added = '0.7'
 
     tokens: typing.ClassVar = {
@@ -699,7 +699,7 @@ class MakoHtmlLexer(DelegatingLexer):
 
     name = 'HTML+Mako'
     aliases = ('html+mako',)
-    mimetypes = ['text/html+mako']
+    mimetypes = ('text/html+mako',)
     url = 'http://www.makotemplates.org/'
     version_added = '0.7'
 
@@ -715,7 +715,7 @@ class MakoXmlLexer(DelegatingLexer):
 
     name = 'XML+Mako'
     aliases = ('xml+mako',)
-    mimetypes = ['application/xml+mako']
+    mimetypes = ('application/xml+mako',)
     url = 'http://www.makotemplates.org/'
     version_added = '0.7'
 
@@ -749,7 +749,7 @@ class MakoCssLexer(DelegatingLexer):
 
     name = 'CSS+Mako'
     aliases = ('css+mako',)
-    mimetypes = ['text/css+mako']
+    mimetypes = ('text/css+mako',)
     url = 'http://www.makotemplates.org/'
     version_added = '0.7'
 
@@ -981,7 +981,7 @@ class HtmlGenshiLexer(DelegatingLexer):
     aliases = ('html+genshi', 'html+kid')
     version_added = ''
     alias_filenames = ('*.html', '*.htm', '*.xhtml')
-    mimetypes = ['text/html+genshi']
+    mimetypes = ('text/html+genshi',)
     url = 'https://genshi.edgewall.org/'
 
     def __init__(self, **options):
@@ -1053,7 +1053,7 @@ class CssGenshiLexer(DelegatingLexer):
     aliases = ('css+genshitext', 'css+genshi')
     version_added = ''
     alias_filenames = ('*.css',)
-    mimetypes = ['text/css+genshi']
+    mimetypes = ('text/css+genshi',)
     url = 'https://genshi.edgewall.org'
 
     def __init__(self, **options):
@@ -1076,7 +1076,7 @@ class RhtmlLexer(DelegatingLexer):
     filenames = ('*.rhtml',)
     version_added = ''
     alias_filenames = ('*.html', '*.htm', '*.xhtml')
-    mimetypes = ['text/html+ruby']
+    mimetypes = ('text/html+ruby',)
     url = 'https://github.com/ruby/erb'
 
 
@@ -1101,7 +1101,7 @@ class XmlErbLexer(DelegatingLexer):
     aliases = ('xml+ruby', 'xml+erb')
     version_added = ''
     alias_filenames = ('*.xml',)
-    mimetypes = ['application/xml+ruby']
+    mimetypes = ('application/xml+ruby',)
     url = 'https://github.com/ruby/erb'
 
     def __init__(self, **options):
@@ -1123,7 +1123,7 @@ class CssErbLexer(DelegatingLexer):
     aliases = ('css+ruby', 'css+erb')
     version_added = ''
     alias_filenames = ('*.css',)
-    mimetypes = ['text/css+ruby']
+    mimetypes = ('text/css+ruby',)
     url = 'https://github.com/ruby/erb'
 
     def __init__(self, **options):
@@ -1193,7 +1193,7 @@ class XmlPhpLexer(DelegatingLexer):
     aliases = ('xml+php',)
     version_added = ''
     alias_filenames = ('*.xml', '*.php', '*.php[345]')
-    mimetypes = ['application/xml+php']
+    mimetypes = ('application/xml+php',)
     url = 'https://www.php.net'
 
     def __init__(self, **options):
@@ -1215,7 +1215,7 @@ class CssPhpLexer(DelegatingLexer):
     aliases = ('css+php',)
     version_added = ''
     alias_filenames = ('*.css',)
-    mimetypes = ['text/css+php']
+    mimetypes = ('text/css+php',)
     url = 'https://www.php.net'
 
     def __init__(self, **options):
@@ -1259,7 +1259,7 @@ class HtmlSmartyLexer(DelegatingLexer):
     aliases = ('html+smarty',)
     version_added = ''
     alias_filenames = ('*.html', '*.htm', '*.xhtml', '*.tpl')
-    mimetypes = ['text/html+smarty']
+    mimetypes = ('text/html+smarty',)
     url = 'https://www.smarty.net/'
 
     def __init__(self, **options):
@@ -1282,7 +1282,7 @@ class XmlSmartyLexer(DelegatingLexer):
     aliases = ('xml+smarty',)
     version_added = ''
     alias_filenames = ('*.xml', '*.tpl')
-    mimetypes = ['application/xml+smarty']
+    mimetypes = ('application/xml+smarty',)
     url = 'https://www.smarty.net/'
 
     def __init__(self, **options):
@@ -1305,7 +1305,7 @@ class CssSmartyLexer(DelegatingLexer):
     aliases = ('css+smarty',)
     version_added = ''
     alias_filenames = ('*.css', '*.tpl')
-    mimetypes = ['text/css+smarty']
+    mimetypes = ('text/css+smarty',)
     url = 'https://www.smarty.net/'
 
     def __init__(self, **options):
@@ -1467,7 +1467,7 @@ class JspLexer(DelegatingLexer):
     name = 'Java Server Page'
     aliases = ('jsp',)
     filenames = ('*.jsp',)
-    mimetypes = ['application/x-jsp']
+    mimetypes = ('application/x-jsp',)
     url = 'https://projects.eclipse.org/projects/ee4j.jsp'
     version_added = '0.7'
 
@@ -1490,7 +1490,7 @@ class EvoqueLexer(RegexLexer):
     name = 'Evoque'
     aliases = ('evoque',)
     filenames = ('*.evoque',)
-    mimetypes = ['application/x-evoque']
+    mimetypes = ('application/x-evoque',)
     url = 'https://gizmojo.org/templating'
     version_added = '1.1'
 
@@ -1548,7 +1548,7 @@ class EvoqueHtmlLexer(DelegatingLexer):
     name = 'HTML+Evoque'
     aliases = ('html+evoque',)
     alias_filenames = ('*.html',)
-    mimetypes = ['text/html+evoque']
+    mimetypes = ('text/html+evoque',)
     url = 'https://gizmojo.org/templating'
     version_added = '1.1'
 
@@ -1567,7 +1567,7 @@ class EvoqueXmlLexer(DelegatingLexer):
     name = 'XML+Evoque'
     aliases = ('xml+evoque',)
     alias_filenames = ('*.xml',)
-    mimetypes = ['application/xml+evoque']
+    mimetypes = ('application/xml+evoque',)
     url = 'https://gizmojo.org/templating'
     version_added = '1.1'
 
@@ -1683,7 +1683,7 @@ class ColdfusionHtmlLexer(DelegatingLexer):
     name = 'Coldfusion HTML'
     aliases = ('cfm',)
     filenames = ('*.cfm', '*.cfml')
-    mimetypes = ['application/x-coldfusion']
+    mimetypes = ('application/x-coldfusion',)
     url = 'https://www.adobe.com/products/coldfusion-family.html'
     version_added = ''
 
@@ -1713,7 +1713,7 @@ class SspLexer(DelegatingLexer):
     name = 'Scalate Server Page'
     aliases = ('ssp',)
     filenames = ('*.ssp',)
-    mimetypes = ['application/x-ssp']
+    mimetypes = ('application/x-ssp',)
     url = 'https://scalate.github.io/scalate/'
     version_added = '1.4'
 
@@ -1760,7 +1760,7 @@ class TeaTemplateLexer(DelegatingLexer):
     name = 'Tea'
     aliases = ('tea',)
     filenames = ('*.tea',)
-    mimetypes = ['text/x-tea']
+    mimetypes = ('text/x-tea',)
     url = 'https://github.com/teatrove/teatrove'
     version_added = '1.5'
 
@@ -1815,7 +1815,7 @@ class LassoXmlLexer(DelegatingLexer):
     version_added = '1.6'
     alias_filenames = ['*.xml', '*.lasso', '*.lasso[89]',
                        '*.incl', '*.inc', '*.las']
-    mimetypes = ['application/xml+lasso']
+    mimetypes = ('application/xml+lasso',)
     url = 'https://www.lassosoft.com'
 
     def __init__(self, **options):
@@ -1838,7 +1838,7 @@ class LassoCssLexer(DelegatingLexer):
     aliases = ('css+lasso',)
     version_added = '1.6'
     alias_filenames = ('*.css',)
-    mimetypes = ['text/css+lasso']
+    mimetypes = ('text/css+lasso',)
     url = 'https://www.lassosoft.com'
 
     def __init__(self, **options):
@@ -2205,7 +2205,7 @@ class TwigLexer(RegexLexer):
 
     name = 'Twig'
     aliases = ('twig',)
-    mimetypes = ['application/x-twig']
+    mimetypes = ('application/x-twig',)
     url = 'https://twig.symfony.com'
     version_added = '2.0'
 
@@ -2287,7 +2287,7 @@ class TwigHtmlLexer(DelegatingLexer):
     name = "HTML+Twig"
     aliases = ["html+twig"]
     filenames = ('*.twig',)
-    mimetypes = ['text/html+twig']
+    mimetypes = ('text/html+twig',)
     url = 'https://twig.symfony.com'
     version_added = '2.0'
 

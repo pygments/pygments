@@ -25,7 +25,7 @@ class DevicetreeLexer(RegexLexer):
     url = 'https://www.devicetree.org/'
     aliases = ('devicetree', 'dts')
     filenames = ('*.dts', '*.dtsi')
-    mimetypes = ['text/x-c']
+    mimetypes = ('text/x-c',)
     version_added = '2.7'
 
     #: optional Whitespace or /*...*/ style comment

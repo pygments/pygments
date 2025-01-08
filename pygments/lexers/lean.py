@@ -142,7 +142,7 @@ class Lean4Lexer(RegexLexer):
     url = 'https://github.com/leanprover/lean4'
     aliases = ('lean4',)
     filenames = ('*.lean',)
-    mimetypes = ['text/x-lean4']
+    mimetypes = ('text/x-lean4',)
     version_added = '2.18'
 
     # same as Lean3Lexer, with `!` and `?` allowed

@@ -25,7 +25,7 @@ class YaraLexer(RegexLexer):
     url = 'https://virustotal.github.io/yara/'
     aliases = ('yara', 'yar')
     filenames = ('*.yar',)
-    mimetypes = ['text/x-yara']
+    mimetypes = ('text/x-yara',)
     version_added = '2.16'
 
     tokens: typing.ClassVar = {

@@ -38,7 +38,7 @@ class YamlLexer(ExtendedRegexLexer):
     url = 'http://yaml.org/'
     aliases = ('yaml',)
     filenames = ('*.yaml', '*.yml')
-    mimetypes = ['text/x-yaml']
+    mimetypes = ('text/x-yaml',)
     version_added = '0.11'
 
     def something(token_class):
@@ -724,7 +724,7 @@ class JsonLdLexer(JsonLexer):
     url = 'https://json-ld.org/'
     aliases = ('jsonld', 'json-ld')
     filenames = ('*.jsonld',)
-    mimetypes = ['application/ld+json']
+    mimetypes = ('application/ld+json',)
     version_added = '2.0'
 
     json_ld_keywords = {

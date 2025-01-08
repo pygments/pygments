@@ -27,7 +27,7 @@ class ParaSailLexer(RegexLexer):
     url = 'http://www.parasail-lang.org'
     aliases = ('parasail',)
     filenames = ('*.psi', '*.psl')
-    mimetypes = ['text/x-parasail']
+    mimetypes = ('text/x-parasail',)
     version_added = '2.1'
 
     flags = re.MULTILINE

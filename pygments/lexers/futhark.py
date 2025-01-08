@@ -25,7 +25,7 @@ class FutharkLexer(RegexLexer):
     url = 'https://futhark-lang.org/'
     aliases = ('futhark',)
     filenames = ('*.fut',)
-    mimetypes = ['text/x-futhark']
+    mimetypes = ('text/x-futhark',)
     version_added = '2.8'
 
     num_types = ('i8', 'i16', 'i32', 'i64', 'u8', 'u16', 'u32', 'u64', 'f32', 'f64')

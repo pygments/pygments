@@ -42,7 +42,7 @@ class PikeLexer(CppLexer):
     name = 'Pike'
     aliases = ('pike',)
     filenames = ('*.pike', '*.pmod')
-    mimetypes = ['text/x-pike']
+    mimetypes = ('text/x-pike',)
     version_added = '2.0'
 
     tokens: typing.ClassVar = {
@@ -83,7 +83,7 @@ class NesCLexer(CLexer):
     name = 'nesC'
     aliases = ('nesc',)
     filenames = ('*.nc',)
-    mimetypes = ['text/x-nescsrc']
+    mimetypes = ('text/x-nescsrc',)
     version_added = '2.0'
 
     tokens: typing.ClassVar = {
@@ -110,7 +110,7 @@ class ClayLexer(RegexLexer):
     name = 'Clay'
     filenames = ('*.clay',)
     aliases = ('clay',)
-    mimetypes = ['text/x-clay']
+    mimetypes = ('text/x-clay',)
     url = 'http://claylabs.com/clay'
     version_added = '2.0'
 
@@ -195,7 +195,7 @@ class ValaLexer(RegexLexer):
     name = 'Vala'
     aliases = ('vala', 'vapi')
     filenames = ('*.vala', '*.vapi')
-    mimetypes = ['text/x-vala']
+    mimetypes = ('text/x-vala',)
     url = 'https://vala.dev'
     version_added = '1.1'
 
@@ -293,7 +293,7 @@ class CudaLexer(CLexer):
     name = 'CUDA'
     filenames = ('*.cu', '*.cuh')
     aliases = ('cuda', 'cu')
-    mimetypes = ['text/x-cuda']
+    mimetypes = ('text/x-cuda',)
     url = 'https://developer.nvidia.com/category/zone/cuda-zone'
     version_added = '1.6'
 
@@ -340,7 +340,7 @@ class SwigLexer(CppLexer):
     name = 'SWIG'
     aliases = ('swig',)
     filenames = ('*.swg', '*.i')
-    mimetypes = ['text/swig']
+    mimetypes = ('text/swig',)
     version_added = '2.0'
     priority = 0.04  # Lower than C/C++ and Objective C/C++
 
@@ -406,7 +406,7 @@ class MqlLexer(CppLexer):
     name = 'MQL'
     aliases = ('mql', 'mq4', 'mq5', 'mql4', 'mql5')
     filenames = ('*.mq4', '*.mq5', '*.mqh')
-    mimetypes = ['text/x-mql']
+    mimetypes = ('text/x-mql',)
     version_added = '2.0'
 
     tokens: typing.ClassVar = {
@@ -433,7 +433,7 @@ class ArduinoLexer(CppLexer):
     name = 'Arduino'
     aliases = ('arduino',)
     filenames = ('*.ino',)
-    mimetypes = ['text/x-arduino']
+    mimetypes = ('text/x-arduino',)
     version_added = '2.1'
 
     # Language sketch main structure functions
@@ -679,7 +679,7 @@ class PromelaLexer(CLexer):
     name = 'Promela'
     aliases = ('promela',)
     filenames = ('*.pml', '*.prom', '*.prm', '*.promela', '*.pr', '*.pm')
-    mimetypes = ['text/x-promela']
+    mimetypes = ('text/x-promela',)
     url = 'https://spinroot.com/spin/whatispin.html'
     version_added = '2.18'
 

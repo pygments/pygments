@@ -34,7 +34,7 @@ class CrystalLexer(ExtendedRegexLexer):
     url = 'https://crystal-lang.org'
     aliases = ('cr', 'crystal')
     filenames = ('*.cr',)
-    mimetypes = ['text/x-crystal']
+    mimetypes = ('text/x-crystal',)
     version_added = '2.2'
 
     flags = re.DOTALL | re.MULTILINE

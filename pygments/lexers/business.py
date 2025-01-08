@@ -34,7 +34,7 @@ class CobolLexer(RegexLexer):
     name = 'COBOL'
     aliases = ('cobol',)
     filenames = ('*.cob', '*.COB', '*.cpy', '*.CPY')
-    mimetypes = ['text/x-cobol']
+    mimetypes = ('text/x-cobol',)
     url = 'https://en.wikipedia.org/wiki/COBOL'
     version_added = '1.6'
 
@@ -253,7 +253,7 @@ class ABAPLexer(RegexLexer):
     name = 'ABAP'
     aliases = ('abap',)
     filenames = ('*.abap', '*.ABAP')
-    mimetypes = ['text/x-abap']
+    mimetypes = ('text/x-abap',)
     url = 'https://community.sap.com/topics/abap'
     version_added = '1.1'
 
@@ -531,7 +531,7 @@ class GoodDataCLLexer(RegexLexer):
     name = 'GoodData-CL'
     aliases = ('gooddata-cl',)
     filenames = ('*.gdc',)
-    mimetypes = ['text/x-gooddata-cl']
+    mimetypes = ('text/x-gooddata-cl',)
     url = 'https://github.com/gooddata/GoodData-CL'
     version_added = '1.4'
 

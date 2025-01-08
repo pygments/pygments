@@ -28,7 +28,7 @@ class MatlabLexer(RegexLexer):
     name = 'Matlab'
     aliases = ('matlab',)
     filenames = ('*.m',)
-    mimetypes = ['text/matlab']
+    mimetypes = ('text/matlab',)
     url = 'https://www.mathworks.com/products/matlab.html'
     version_added = '0.10'
 
@@ -2818,7 +2818,7 @@ class OctaveLexer(RegexLexer):
     url = 'https://www.gnu.org/software/octave/index'
     aliases = ('octave',)
     filenames = ('*.m',)
-    mimetypes = ['text/octave']
+    mimetypes = ('text/octave',)
     version_added = '1.5'
 
     # These lists are generated automatically.
@@ -3235,7 +3235,7 @@ class ScilabLexer(RegexLexer):
     url = 'https://www.scilab.org/'
     aliases = ('scilab',)
     filenames = ('*.sci', '*.sce', '*.tst')
-    mimetypes = ['text/scilab']
+    mimetypes = ('text/scilab',)
     version_added = '1.5'
 
     tokens: typing.ClassVar = {

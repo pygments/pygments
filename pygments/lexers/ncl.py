@@ -25,7 +25,7 @@ class NCLLexer(RegexLexer):
     name = 'NCL'
     aliases = ('ncl',)
     filenames = ('*.ncl',)
-    mimetypes = ['text/ncl']
+    mimetypes = ('text/ncl',)
     url = 'https://www.ncl.ucar.edu'
     version_added = '2.2'
 

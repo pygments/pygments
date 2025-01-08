@@ -32,7 +32,7 @@ class MesonLexer(RegexLexer):
     url = 'https://mesonbuild.com/'
     aliases = ('meson', 'meson.build')
     filenames = ('meson.build', 'meson_options.txt')
-    mimetypes = ['text/x-meson']
+    mimetypes = ('text/x-meson',)
     version_added = '2.10'
 
     tokens: typing.ClassVar = {
