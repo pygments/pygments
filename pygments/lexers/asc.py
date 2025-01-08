@@ -29,8 +29,8 @@ class AscLexer(RegexLexer):
         'id_dsa', 'id_ecdsa', 'id_ecdsa_sk', 'id_ed25519', 'id_ed25519_sk',
         'id_rsa',  # SSH private keys
     ]
-    mimetypes = ['application/pgp-keys', 'application/pgp-encrypted',
-                 'application/pgp-signature', 'application/pem-certificate-chain']
+    mimetypes = ('application/pgp-keys', 'application/pgp-encrypted',
+                 'application/pgp-signature', 'application/pem-certificate-chain')
     url = 'https://www.openpgp.org'
     version_added = '2.10'
 

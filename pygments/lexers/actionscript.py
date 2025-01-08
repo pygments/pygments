@@ -26,8 +26,8 @@ class ActionScriptLexer(RegexLexer):
     name = 'ActionScript'
     aliases = ('actionscript', 'as')
     filenames = ('*.as',)
-    mimetypes = ['application/x-actionscript', 'text/x-actionscript',
-                 'text/actionscript']
+    mimetypes = ('application/x-actionscript', 'text/x-actionscript',
+                 'text/actionscript')
     url = 'https://en.wikipedia.org/wiki/ActionScript'
     version_added = '0.9'
 
@@ -125,8 +125,8 @@ class ActionScript3Lexer(RegexLexer):
     url = 'https://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/index.html'
     aliases = ('actionscript3', 'as3')
     filenames = ('*.as',)
-    mimetypes = ['application/x-actionscript3', 'text/x-actionscript3',
-                 'text/actionscript3']
+    mimetypes = ('application/x-actionscript3', 'text/x-actionscript3',
+                 'text/actionscript3')
     version_added = '0.11'
 
     identifier = r'[$a-zA-Z_]\w*'

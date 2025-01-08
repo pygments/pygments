@@ -212,8 +212,8 @@ class XmlLexer(RegexLexer):
     aliases = ('xml',)
     filenames = ('*.xml', '*.xsl', '*.rss', '*.xslt', '*.xsd',
                  '*.wsdl', '*.wsf')
-    mimetypes = ['text/xml', 'application/xml', 'image/svg+xml',
-                 'application/rss+xml', 'application/atom+xml']
+    mimetypes = ('text/xml', 'application/xml', 'image/svg+xml',
+                 'application/rss+xml', 'application/atom+xml')
     url = 'https://www.w3.org/XML'
     version_added = ''
 

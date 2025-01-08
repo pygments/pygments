@@ -50,8 +50,8 @@ class JavascriptLexer(RegexLexer):
     url = 'https://www.ecma-international.org/publications-and-standards/standards/ecma-262/'
     aliases = ('javascript', 'js')
     filenames = ('*.js', '*.jsm', '*.mjs', '*.cjs')
-    mimetypes = ['application/javascript', 'application/x-javascript',
-                 'text/x-javascript', 'text/javascript']
+    mimetypes = ('application/javascript', 'application/x-javascript',
+                 'text/x-javascript', 'text/javascript')
     version_added = ''
 
     flags = re.DOTALL | re.MULTILINE
@@ -1480,8 +1480,8 @@ class JuttleLexer(RegexLexer):
     url = 'http://juttle.github.io/'
     aliases = ('juttle',)
     filenames = ('*.juttle',)
-    mimetypes = ['application/juttle', 'application/x-juttle',
-                 'text/x-juttle', 'text/juttle']
+    mimetypes = ('application/juttle', 'application/x-juttle',
+                 'text/x-juttle', 'text/juttle')
     version_added = '2.2'
 
     flags = re.DOTALL | re.MULTILINE

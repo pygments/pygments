@@ -545,9 +545,9 @@ class MyghtyJavascriptLexer(DelegatingLexer):
 
     name = 'JavaScript+Myghty'
     aliases = ('javascript+myghty', 'js+myghty')
-    mimetypes = ['application/x-javascript+myghty',
+    mimetypes = ('application/x-javascript+myghty',
                  'text/x-javascript+myghty',
-                 'text/javascript+mygthy']
+                 'text/javascript+mygthy')
     url = 'http://www.myghty.org/'
     version_added = '0.6'
 
@@ -731,9 +731,9 @@ class MakoJavascriptLexer(DelegatingLexer):
 
     name = 'JavaScript+Mako'
     aliases = ('javascript+mako', 'js+mako')
-    mimetypes = ['application/x-javascript+mako',
+    mimetypes = ('application/x-javascript+mako',
                  'text/x-javascript+mako',
-                 'text/javascript+mako']
+                 'text/javascript+mako')
     url = 'http://www.makotemplates.org/'
     version_added = '0.7'
 
@@ -858,12 +858,12 @@ class CheetahJavascriptLexer(DelegatingLexer):
     name = 'JavaScript+Cheetah'
     aliases = ['javascript+cheetah', 'js+cheetah',
                'javascript+spitfire', 'js+spitfire']
-    mimetypes = ['application/x-javascript+cheetah',
+    mimetypes = ('application/x-javascript+cheetah',
                  'text/x-javascript+cheetah',
                  'text/javascript+cheetah',
                  'application/x-javascript+spitfire',
                  'text/x-javascript+spitfire',
-                 'text/javascript+spitfire']
+                 'text/javascript+spitfire')
     url = 'http://www.cheetahtemplate.org/'
     version_added = ''
 
@@ -1032,9 +1032,9 @@ class JavascriptGenshiLexer(DelegatingLexer):
                'javascript+genshi']
     version_added = ''
     alias_filenames = ('*.js',)
-    mimetypes = ['application/x-javascript+genshi',
+    mimetypes = ('application/x-javascript+genshi',
                  'text/x-javascript+genshi',
-                 'text/javascript+genshi']
+                 'text/javascript+genshi')
     url = 'https://genshi.edgewall.org'
 
     def __init__(self, **options):
@@ -1143,9 +1143,9 @@ class JavascriptErbLexer(DelegatingLexer):
     aliases = ('javascript+ruby', 'js+ruby', 'javascript+erb', 'js+erb')
     version_added = ''
     alias_filenames = ('*.js',)
-    mimetypes = ['application/x-javascript+ruby',
+    mimetypes = ('application/x-javascript+ruby',
                  'text/x-javascript+ruby',
-                 'text/javascript+ruby']
+                 'text/javascript+ruby')
     url = 'https://github.com/ruby/erb'
 
     def __init__(self, **options):
@@ -1168,9 +1168,9 @@ class HtmlPhpLexer(DelegatingLexer):
     version_added = ''
     alias_filenames = ('*.php', '*.html', '*.htm', '*.xhtml',
                        '*.php[345]')
-    mimetypes = ['application/x-php',
+    mimetypes = ('application/x-php',
                  'application/x-httpd-php', 'application/x-httpd-php3',
-                 'application/x-httpd-php4', 'application/x-httpd-php5']
+                 'application/x-httpd-php4', 'application/x-httpd-php5')
     url = 'https://www.php.net'
 
 
@@ -1235,9 +1235,9 @@ class JavascriptPhpLexer(DelegatingLexer):
     aliases = ('javascript+php', 'js+php')
     version_added = ''
     alias_filenames = ('*.js',)
-    mimetypes = ['application/x-javascript+php',
+    mimetypes = ('application/x-javascript+php',
                  'text/x-javascript+php',
-                 'text/javascript+php']
+                 'text/javascript+php')
     url = 'https://www.php.net'
 
     def __init__(self, **options):
@@ -1325,9 +1325,9 @@ class JavascriptSmartyLexer(DelegatingLexer):
     aliases = ('javascript+smarty', 'js+smarty')
     version_added = ''
     alias_filenames = ('*.js', '*.tpl')
-    mimetypes = ['application/x-javascript+smarty',
+    mimetypes = ('application/x-javascript+smarty',
                  'text/x-javascript+smarty',
-                 'text/javascript+smarty']
+                 'text/javascript+smarty')
     url = 'https://www.smarty.net/'
 
     def __init__(self, **options):
@@ -1420,12 +1420,12 @@ class JavascriptDjangoLexer(DelegatingLexer):
     filenames = ('*.js.j2', '*.js.jinja2')
     version_added = ''
     alias_filenames = ('*.js',)
-    mimetypes = ['application/x-javascript+django',
+    mimetypes = ('application/x-javascript+django',
                  'application/x-javascript+jinja',
                  'text/x-javascript+django',
                  'text/x-javascript+jinja',
                  'text/javascript+django',
-                 'text/javascript+jinja']
+                 'text/javascript+jinja')
     url = 'https://www.djangoproject.com/documentation/templates'
 
     def __init__(self, **options):
@@ -1789,9 +1789,9 @@ class LassoHtmlLexer(DelegatingLexer):
     version_added = '1.6'
     alias_filenames = ('*.html', '*.htm', '*.xhtml', '*.lasso', '*.lasso[89]',
                        '*.incl', '*.inc', '*.las')
-    mimetypes = ['text/html+lasso',
+    mimetypes = ('text/html+lasso',
                  'application/x-httpd-lasso',
-                 'application/x-httpd-lasso[89]']
+                 'application/x-httpd-lasso[89]')
     url = 'https://www.lassosoft.com'
 
     def __init__(self, **options):

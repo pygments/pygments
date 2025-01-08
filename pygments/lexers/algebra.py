@@ -160,10 +160,10 @@ class MathematicaLexer(RegexLexer):
     url = 'http://www.wolfram.com/mathematica/'
     aliases = ('mathematica', 'mma', 'nb')
     filenames = ('*.nb', '*.cdf', '*.nbp', '*.ma')
-    mimetypes = ['application/mathematica',
+    mimetypes = ('application/mathematica',
                  'application/vnd.wolfram.mathematica',
                  'application/vnd.wolfram.mathematica.package',
-                 'application/vnd.wolfram.cdf']
+                 'application/vnd.wolfram.cdf')
     version_added = '2.0'
 
     # http://reference.wolfram.com/mathematica/guide/Syntax.html
