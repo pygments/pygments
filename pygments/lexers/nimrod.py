@@ -43,7 +43,7 @@ class NimrodLexer(RegexLexer):
             new = []
         return "|".join(newWords)
 
-    keywords = [
+    keywords = (
         'addr', 'and', 'as', 'asm', 'bind', 'block', 'break', 'case',
         'cast', 'concept', 'const', 'continue', 'converter', 'defer', 'discard',
         'distinct', 'div', 'do', 'elif', 'else', 'end', 'enum', 'except',
@@ -52,21 +52,21 @@ class NimrodLexer(RegexLexer):
         'not', 'notin', 'object', 'of', 'or', 'out', 'ptr', 'raise',
         'ref', 'return', 'shl', 'shr', 'static', 'try',
         'tuple', 'type', 'using', 'when', 'while', 'xor'
-    ]
+    )
 
-    keywordsPseudo = [
+    keywordsPseudo = (
         'nil', 'true', 'false'
-    ]
+    )
 
-    opWords = [
+    opWords = (
         'and', 'or', 'not', 'xor', 'shl', 'shr', 'div', 'mod', 'in',
         'notin', 'is', 'isnot'
-    ]
+    )
 
-    types = [
+    types = (
         'int', 'int8', 'int16', 'int32', 'int64', 'float', 'float32', 'float64',
         'bool', 'char', 'range', 'array', 'seq', 'set', 'string'
-    ]
+    )
 
     tokens: typing.ClassVar = {
         'root': [

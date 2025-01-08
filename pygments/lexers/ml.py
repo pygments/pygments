@@ -30,7 +30,7 @@ class SMLLexer(RegexLexer):
     url = 'https://en.wikipedia.org/wiki/Standard_ML'
     version_added = '1.5'
 
-    alphanumid_reserved = {
+    alphanumid_reserved: typing.ClassVar = {
         # Core
         'abstype', 'and', 'andalso', 'as', 'case', 'datatype', 'do', 'else',
         'end', 'exception', 'fn', 'fun', 'handle', 'if', 'in', 'infix',
@@ -41,14 +41,14 @@ class SMLLexer(RegexLexer):
         'struct', 'structure', 'where',
     }
 
-    symbolicid_reserved = {
+    symbolicid_reserved: typing.ClassVar = {
         # Core
         ':', r'\|', '=', '=>', '->', '#',
         # Modules
         ':>',
     }
 
-    nonid_reserved = {'(', ')', '[', ']', '{', '}', ',', ';', '...', '_'}
+    nonid_reserved: typing.ClassVar = {'(', ')', '[', ']', '{', '}', ',', ';', '...', '_'}
 
     alphanumid_re = r"[a-zA-Z][\w']*"
     symbolicid_re = r"[!%&$#+\-/:<=>?@\\~`^|*]+"

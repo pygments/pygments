@@ -408,7 +408,7 @@ class MozPreprocHashLexer(RegexLexer):
     Other data is left untouched.
     """
     name = 'mozhashpreproc'
-    aliases = [name]
+    aliases = (name,)
     filenames = ()
     mimetypes = ()
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
@@ -449,7 +449,7 @@ class MozPreprocPercentLexer(MozPreprocHashLexer):
     Other data is left untouched.
     """
     name = 'mozpercentpreproc'
-    aliases = [name]
+    aliases = (name,)
     filenames = ()
     mimetypes = ()
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
@@ -1015,37 +1015,37 @@ class WikitextLexer(RegexLexer):
     nbsp_char = r'(?:\t|&nbsp;|&\#0*160;|&\#[Xx]0*[Aa]0;|[ \xA0\u1680\u2000-\u200A\u202F\u205F\u3000])'
     link_address = r'(?:[0-9.]+|\[[0-9a-f:.]+\]|[^\x00-\x20"<>\[\]\x7F\xA0\u1680\u2000-\u200A\u202F\u205F\u3000\uFFFD])'
     link_char_class = r'[^\x00-\x20"<>\[\]\x7F\xA0\u1680\u2000-\u200A\u202F\u205F\u3000\uFFFD]'
-    double_slashes_i = {
+    double_slashes_i: typing.ClassVar = {
         '__FORCETOC__', '__NOCONTENTCONVERT__', '__NOCC__', '__NOEDITSECTION__', '__NOGALLERY__',
         '__NOTITLECONVERT__', '__NOTC__', '__NOTOC__', '__TOC__',
     }
-    double_slashes = {
+    double_slashes: typing.ClassVar = {
         '__EXPECTUNUSEDCATEGORY__',  '__HIDDENCAT__', '__INDEX__',  '__NEWSECTIONLINK__',
         '__NOINDEX__',  '__NONEWSECTIONLINK__',  '__STATICREDIRECT__', '__NOGLOBAL__',
         '__DISAMBIG__', '__EXPECTED_UNCONNECTED_PAGE__',
     }
-    protocols = {
+    protocols: typing.ClassVar = {
         'bitcoin:', 'ftp://', 'ftps://', 'geo:', 'git://', 'gopher://', 'http://', 'https://',
         'irc://', 'ircs://', 'magnet:', 'mailto:', 'mms://', 'news:', 'nntp://', 'redis://',
         'sftp://', 'sip:', 'sips:', 'sms:', 'ssh://', 'svn://', 'tel:', 'telnet://', 'urn:',
         'worldwind://', 'xmpp:', '//',
     }
     non_relative_protocols = protocols - {'//'}
-    html_tags = {
+    html_tags: typing.ClassVar = {
         'abbr', 'b', 'bdi', 'bdo', 'big', 'blockquote', 'br', 'caption', 'center', 'cite', 'code',
         'data', 'dd', 'del', 'dfn', 'div', 'dl', 'dt', 'em', 'font', 'h1', 'h2', 'h3', 'h4', 'h5',
         'h6', 'hr', 'i', 'ins', 'kbd', 'li', 'link', 'mark', 'meta', 'ol', 'p', 'q', 'rb', 'rp',
         'rt', 'rtc', 'ruby', 's', 'samp', 'small', 'span', 'strike', 'strong', 'sub', 'sup',
         'table', 'td', 'th', 'time', 'tr', 'tt', 'u', 'ul', 'var', 'wbr',
     }
-    parser_tags = {
+    parser_tags: typing.ClassVar = {
         'graph', 'charinsert', 'rss', 'chem', 'categorytree', 'nowiki', 'inputbox', 'math',
         'hiero', 'score', 'pre', 'ref', 'translate', 'imagemap', 'templatestyles', 'languages',
         'noinclude', 'mapframe', 'section', 'poem', 'syntaxhighlight', 'includeonly', 'tvar',
         'onlyinclude', 'templatedata', 'langconvert', 'timeline', 'dynamicpagelist', 'gallery',
         'maplink', 'ce', 'references',
     }
-    variant_langs = {
+    variant_langs: typing.ClassVar = {
         # ZhConverter.php
         'zh', 'zh-hans', 'zh-hant', 'zh-cn', 'zh-hk', 'zh-mo', 'zh-my', 'zh-sg', 'zh-tw',
         # WuuConverter.php
@@ -1075,10 +1075,10 @@ class WikitextLexer(RegexLexer):
         # BanConverter.php
         'ban', 'ban-bali', 'ban-x-dharma', 'ban-x-palmleaf', 'ban-x-pku',
     }
-    magic_vars_i = {
+    magic_vars_i: typing.ClassVar = {
         'ARTICLEPATH', 'INT', 'PAGEID', 'SCRIPTPATH', 'SERVER', 'SERVERNAME', 'STYLEPATH',
     }
-    magic_vars = {
+    magic_vars: typing.ClassVar = {
         '!', '=', 'BASEPAGENAME', 'BASEPAGENAMEE', 'CASCADINGSOURCES', 'CONTENTLANGUAGE',
         'CONTENTLANG', 'CURRENTDAY', 'CURRENTDAY2', 'CURRENTDAYNAME', 'CURRENTDOW', 'CURRENTHOUR',
         'CURRENTMONTH', 'CURRENTMONTH2', 'CURRENTMONTH1', 'CURRENTMONTHABBREV', 'CURRENTMONTHNAME',
@@ -1095,13 +1095,13 @@ class WikitextLexer(RegexLexer):
         'ARTICLEPAGENAMEE', 'SUBJECTSPACE', 'ARTICLESPACE', 'SUBJECTSPACEE', 'ARTICLESPACEE',
         'SUBPAGENAME', 'SUBPAGENAMEE', 'TALKPAGENAME', 'TALKPAGENAMEE', 'TALKSPACE', 'TALKSPACEE',
     }
-    parser_functions_i = {
+    parser_functions_i: typing.ClassVar = {
         'ANCHORENCODE', 'BIDI', 'CANONICALURL', 'CANONICALURLE', 'FILEPATH', 'FORMATNUM',
         'FULLURL', 'FULLURLE', 'GENDER', 'GRAMMAR', 'INT', r'\#LANGUAGE', 'LC', 'LCFIRST', 'LOCALURL',
         'LOCALURLE', 'NS', 'NSE', 'PADLEFT', 'PADRIGHT', 'PAGEID', 'PLURAL', 'UC', 'UCFIRST',
         'URLENCODE',
     }
-    parser_functions = {
+    parser_functions: typing.ClassVar = {
         'BASEPAGENAME', 'BASEPAGENAMEE', 'CASCADINGSOURCES', 'DEFAULTSORT', 'DEFAULTSORTKEY',
         'DEFAULTCATEGORYSORT', 'FULLPAGENAME', 'FULLPAGENAMEE', 'NAMESPACE', 'NAMESPACEE',
         'NAMESPACENUMBER', 'NUMBERINGROUP', 'NUMINGROUP', 'NUMBEROFACTIVEUSERS', 'NUMBEROFADMINS',

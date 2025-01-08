@@ -256,7 +256,7 @@ class SourcesListLexer(RegexLexer):
     aliases = ('debsources', 'sourceslist', 'sources.list')
     filenames = ('sources.list',)
     version_added = '0.7'
-    mimetype = ['application/x-debian-sourceslist']
+    mimetype = ('application/x-debian-sourceslist',)
     url = 'https://wiki.debian.org/SourcesList'
 
     tokens: typing.ClassVar = {

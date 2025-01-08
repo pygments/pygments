@@ -85,7 +85,7 @@ class SourcePawnLexer(RegexLexer):
         ]
     }
 
-    SM_TYPES = {'Action', 'bool', 'Float', 'Plugin', 'String', 'any',
+    SM_TYPES: typing.ClassVar = {'Action', 'bool', 'Float', 'Plugin', 'String', 'any',
                 'AdminFlag', 'OverrideType', 'OverrideRule', 'ImmunityType',
                 'GroupId', 'AdminId', 'AdmAccessMode', 'AdminCachePart',
                 'CookieAccess', 'CookieMenu', 'CookieMenuAction', 'NetFlow',

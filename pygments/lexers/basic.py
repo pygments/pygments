@@ -573,7 +573,7 @@ class BBCBasicLexer(RegexLexer):
     BBC Basic was supplied on the BBC Micro, and later Acorn RISC OS.
     It is also used by BBC Basic For Windows.
     """
-    base_keywords = ['OTHERWISE', 'AND', 'DIV', 'EOR', 'MOD', 'OR', 'ERROR',
+    base_keywords = ('OTHERWISE', 'AND', 'DIV', 'EOR', 'MOD', 'OR', 'ERROR',
                      'LINE', 'OFF', 'STEP', 'SPC', 'TAB', 'ELSE', 'THEN',
                      'OPENIN', 'PTR', 'PAGE', 'TIME', 'LOMEM', 'HIMEM', 'ABS',
                      'ACS', 'ADVAL', 'ASC', 'ASN', 'ATN', 'BGET', 'COS', 'COUNT',
@@ -589,16 +589,16 @@ class BBCBasicLexer(RegexLexer):
                      'INPUT', 'LET', 'LOCAL', 'MODE', 'MOVE', 'NEXT', 'ON',
                      'VDU', 'PLOT', 'PRINT', 'PROC', 'READ', 'REM', 'REPEAT',
                      'REPORT', 'RESTORE', 'RETURN', 'RUN', 'STOP', 'COLOUR',
-                     'TRACE', 'UNTIL', 'WIDTH', 'OSCLI']
+                     'TRACE', 'UNTIL', 'WIDTH', 'OSCLI')
 
-    basic5_keywords = ['WHEN', 'OF', 'ENDCASE', 'ENDIF', 'ENDWHILE', 'CASE',
+    basic5_keywords = ('WHEN', 'OF', 'ENDCASE', 'ENDIF', 'ENDWHILE', 'CASE',
                        'CIRCLE', 'FILL', 'ORIGIN', 'POINT', 'RECTANGLE', 'SWAP',
                        'WHILE', 'WAIT', 'MOUSE', 'QUIT', 'SYS', 'INSTALL',
                        'LIBRARY', 'TINT', 'ELLIPSE', 'BEATS', 'TEMPO', 'VOICES',
                        'VOICE', 'STEREO', 'OVERLAY', 'APPEND', 'AUTO', 'CRUNCH',
                        'DELETE', 'EDIT', 'HELP', 'LIST', 'LOAD', 'LVAR', 'NEW',
                        'OLD', 'RENUMBER', 'SAVE', 'TEXTLOAD', 'TEXTSAVE',
-                       'TWIN', 'TWINO', 'INSTALL', 'SUM', 'BEAT']
+                       'TWIN', 'TWINO', 'INSTALL', 'SUM', 'BEAT')
 
 
     name = 'BBC Basic'

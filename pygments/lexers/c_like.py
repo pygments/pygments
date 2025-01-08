@@ -297,11 +297,11 @@ class CudaLexer(CLexer):
     url = 'https://developer.nvidia.com/category/zone/cuda-zone'
     version_added = '1.6'
 
-    function_qualifiers = {'__device__', '__global__', '__host__',
+    function_qualifiers: typing.ClassVar = {'__device__', '__global__', '__host__',
                            '__noinline__', '__forceinline__'}
-    variable_qualifiers = {'__device__', '__constant__', '__shared__',
+    variable_qualifiers: typing.ClassVar = {'__device__', '__constant__', '__shared__',
                            '__restrict__'}
-    vector_types = {'char1', 'uchar1', 'char2', 'uchar2', 'char3', 'uchar3',
+    vector_types: typing.ClassVar = {'char1', 'uchar1', 'char2', 'uchar2', 'char3', 'uchar3',
                     'char4', 'uchar4', 'short1', 'ushort1', 'short2', 'ushort2',
                     'short3', 'ushort3', 'short4', 'ushort4', 'int1', 'uint1',
                     'int2', 'uint2', 'int3', 'uint3', 'int4', 'uint4', 'long1',
@@ -309,11 +309,11 @@ class CudaLexer(CLexer):
                     'ulong4', 'longlong1', 'ulonglong1', 'longlong2',
                     'ulonglong2', 'float1', 'float2', 'float3', 'float4',
                     'double1', 'double2', 'dim3'}
-    variables = {'gridDim', 'blockIdx', 'blockDim', 'threadIdx', 'warpSize'}
-    functions = {'__threadfence_block', '__threadfence', '__threadfence_system',
+    variables: typing.ClassVar = {'gridDim', 'blockIdx', 'blockDim', 'threadIdx', 'warpSize'}
+    functions: typing.ClassVar = {'__threadfence_block', '__threadfence', '__threadfence_system',
                  '__syncthreads', '__syncthreads_count', '__syncthreads_and',
                  '__syncthreads_or'}
-    execution_confs = {'<<<', '>>>'}
+    execution_confs: typing.ClassVar = {'<<<', '>>>'}
 
     def get_tokens_unprocessed(self, text, stack=('root',)):
         for index, token, value in CLexer.get_tokens_unprocessed(self, text, stack):
@@ -362,7 +362,7 @@ class SwigLexer(CppLexer):
     }
 
     # This is a far from complete set of SWIG directives
-    swig_directives = {
+    swig_directives: typing.ClassVar = {
         # Most common directives
         '%apply', '%define', '%director', '%enddef', '%exception', '%extend',
         '%feature', '%fragment', '%ignore', '%immutable', '%import', '%include',
@@ -437,13 +437,13 @@ class ArduinoLexer(CppLexer):
     version_added = '2.1'
 
     # Language sketch main structure functions
-    structure = {'setup', 'loop'}
+    structure: typing.ClassVar = {'setup', 'loop'}
 
     # Language operators
-    operators = {'not', 'or', 'and', 'xor'}
+    operators: typing.ClassVar = {'not', 'or', 'and', 'xor'}
 
     # Language 'variables'
-    variables = {
+    variables: typing.ClassVar = {
         'DIGITAL_MESSAGE', 'FIRMATA_STRING', 'ANALOG_MESSAGE', 'REPORT_DIGITAL',
         'REPORT_ANALOG', 'INPUT_PULLUP', 'SET_PIN_MODE', 'INTERNAL2V56', 'SYSTEM_RESET',
         'LED_BUILTIN', 'INTERNAL1V1', 'SYSEX_START', 'INTERNAL', 'EXTERNAL', 'HIGH',
@@ -463,7 +463,7 @@ class ArduinoLexer(CppLexer):
         'atomic_llong', 'atomic_ullong', 'PROGMEM'}
 
     # Language shipped functions and class ( )
-    functions = {
+    functions: typing.ClassVar = {
         'KeyboardController', 'MouseController', 'SoftwareSerial', 'EthernetServer',
         'EthernetClient', 'LiquidCrystal', 'RobotControl', 'GSMVoiceCall',
         'EthernetUDP', 'EsploraTFT', 'HttpClient', 'RobotMotor', 'WiFiClient',
@@ -528,7 +528,7 @@ class ArduinoLexer(CppLexer):
         'isHexadecimalDigit'}
 
     # do not highlight
-    suppress_highlight = {
+    suppress_highlight: typing.ClassVar = {
         'namespace', 'template', 'mutable', 'using', 'asm', 'typeid',
         'typename', 'this', 'alignof', 'constexpr', 'decltype', 'noexcept',
         'static_assert', 'thread_local', 'restrict'}

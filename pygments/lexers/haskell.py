@@ -490,7 +490,7 @@ class CryptolLexer(RegexLexer):
         ],
     }
 
-    EXTRA_KEYWORDS = {'join', 'split', 'reverse', 'transpose', 'width',
+    EXTRA_KEYWORDS: typing.ClassVar = {'join', 'split', 'reverse', 'transpose', 'width',
                       'length', 'tail', '<<', '>>', '<<<', '>>>', 'const',
                       'reg', 'par', 'seq', 'ASSERT', 'undefined', 'error',
                       'trace'}
@@ -673,7 +673,7 @@ class KokaLexer(RegexLexer):
     mimetypes = ('text/x-koka',)
     version_added = '1.6'
 
-    keywords = [
+    keywords = (
         'infix', 'infixr', 'infixl',
         'type', 'cotype', 'rectype', 'alias',
         'struct', 'con',
@@ -686,25 +686,25 @@ class KokaLexer(RegexLexer):
         'rec',
         'try', 'yield', 'enum',
         'interface', 'instance',
-    ]
+    )
 
     # keywords that are followed by a type
-    typeStartKeywords = [
+    typeStartKeywords = (
         'type', 'cotype', 'rectype', 'alias', 'struct', 'enum',
-    ]
+    )
 
     # keywords valid in a type
-    typekeywords = [
+    typekeywords = (
         'forall', 'exists', 'some', 'with',
-    ]
+    )
 
     # builtin names and special names
-    builtin = [
+    builtin = (
         'for', 'while', 'repeat',
         'foreach', 'foreach-indexed',
         'error', 'catch', 'finally',
         'cs', 'js', 'file', 'ref', 'assigned',
-    ]
+    )
 
     # symbols that can be in an operator
     symbols = r'[$%&*+@!/\\^~=.:\-?|<>]+'

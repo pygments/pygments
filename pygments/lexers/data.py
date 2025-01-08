@@ -460,12 +460,12 @@ class JsonLexer(Lexer):
     #     "1...eee" is parsed as a float
     #     "trustful" is parsed as a constant
     #
-    integers = set('-0123456789')
-    floats = set('.eE+')
-    constants = set('truefalsenull')  # true|false|null
-    hexadecimals = set('0123456789abcdefABCDEF')
-    punctuations = set('{}[],')
-    whitespaces = {'\u0020', '\u000a', '\u000d', '\u0009'}
+    integers: typing.ClassVar = set('-0123456789')
+    floats: typing.ClassVar = set('.eE+')
+    constants: typing.ClassVar = set('truefalsenull')  # true|false|null
+    hexadecimals: typing.ClassVar = set('0123456789abcdefABCDEF')
+    punctuations: typing.ClassVar = set('{}[],')
+    whitespaces: typing.ClassVar = {'\u0020', '\u000a', '\u000d', '\u0009'}
 
     def get_tokens_unprocessed(self, text):
         """Parse JSON data."""
@@ -727,7 +727,7 @@ class JsonLdLexer(JsonLexer):
     mimetypes = ('application/ld+json',)
     version_added = '2.0'
 
-    json_ld_keywords = {
+    json_ld_keywords: typing.ClassVar = {
         f'"@{keyword}"'
         for keyword in (
             'base',

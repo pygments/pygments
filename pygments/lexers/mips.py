@@ -32,7 +32,7 @@ class MIPSLexer(RegexLexer):
     filenames = ('*.mips', '*.MIPS')
     url = 'https://mips.com'
 
-    keywords = [
+    keywords = (
         # Arithmetic insturctions
         "add", "sub", "subu", "addi", "subi", "addu", "addiu",
         # Multiplication/division
@@ -76,9 +76,9 @@ class MIPSLexer(RegexLexer):
         # Math
         "abs.s", "abs.d", "sqrt.s", "sqrt.d", "ceil.w.d", "ceil.w.s", "floor.w.d",
         "floor.w.s", "round.w.d", "round.w.s",
-    ]
+    )
 
-    pseudoinstructions = [
+    pseudoinstructions = (
         # Arithmetic & logical
         "rem", "remu", "mulo", "mulou", "abs", "neg", "negu", "not", "rol", "ror",
         # branches
@@ -94,16 +94,16 @@ class MIPSLexer(RegexLexer):
         # --- Floats -----------------------------------------------------
         # load-store
         "l.d", "l.s", "s.d", "s.s",
-    ]
+    )
 
-    directives = [
+    directives = (
         ".align", ".ascii", ".asciiz", ".byte", ".data", ".double", ".extern", ".float",
         ".globl", ".half", ".kdata", ".ktext", ".space", ".text", ".word",
-    ]
+    )
 
-    deprecated = [
+    deprecated = (
         "beql", "bnel", "bgtzl", "bgezl", "bltzl", "blezl", "bltzall", "bgezall",
-    ]
+    )
 
     tokens: typing.ClassVar = {
         'root': [

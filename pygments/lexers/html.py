@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, ExtendedRegexLexer, include, bygroups, \
     default, using, inherit, this
@@ -259,7 +260,7 @@ class XsltLexer(XmlLexer):
     url = 'https://www.w3.org/TR/xslt-30'
     version_added = '0.10'
 
-    EXTRA_KEYWORDS = {
+    EXTRA_KEYWORDS: typing.ClassVar = {
         'apply-imports', 'apply-templates', 'attribute',
         'attribute-set', 'call-template', 'choose', 'comment',
         'copy', 'copy-of', 'decimal-format', 'element', 'fallback',

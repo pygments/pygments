@@ -25,7 +25,7 @@ class BareLexer(RegexLexer):
     aliases = ('bare',)
     version_added = '2.7'
 
-    keywords = [
+    keywords = (
         'type',
         'enum',
         'u8',
@@ -46,7 +46,7 @@ class BareLexer(RegexLexer):
         'string',
         'optional',
         'map',
-    ]
+    )
 
     tokens: typing.ClassVar = {
         'root': [

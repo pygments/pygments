@@ -66,7 +66,7 @@ class CSharpLexer(RegexLexer):
     # for the range of allowed unicode characters in identifiers, see
     # http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf
 
-    levels = {
+    levels: typing.ClassVar = {
         'none': r'@?[_a-zA-Z]\w*',
         'basic': ('@?[_' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Nl') + ']' +
                   '[' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Nl', 'Nd', 'Pc',
@@ -215,7 +215,7 @@ class NemerleLexer(RegexLexer):
     # for the range of allowed unicode characters in identifiers, see
     # http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf
 
-    levels = {
+    levels: typing.ClassVar = {
         'none': r'@?[_a-zA-Z]\w*',
         'basic': ('@?[_' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Nl') + ']' +
                   '[' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Nl', 'Nd', 'Pc',
@@ -622,7 +622,7 @@ class FSharpLexer(RegexLexer):
     mimetypes = ('text/x-fsharp',)
     version_added = '1.5'
 
-    keywords = [
+    keywords = (
         'abstract', 'as', 'assert', 'base', 'begin', 'class', 'default',
         'delegate', 'do!', 'do', 'done', 'downcast', 'downto', 'elif', 'else',
         'end', 'exception', 'extern', 'false', 'finally', 'for', 'function',
@@ -632,7 +632,7 @@ class FSharpLexer(RegexLexer):
         'rec', 'return!', 'return', 'select', 'static', 'struct', 'then', 'to',
         'true', 'try', 'type', 'upcast', 'use!', 'use', 'val', 'void', 'when',
         'while', 'with', 'yield!', 'yield',
-    ]
+    )
     # Reserved words; cannot hurt to color them as keywords too.
     keywords += [
         'atomic', 'break', 'checked', 'component', 'const', 'constraint',
@@ -641,23 +641,23 @@ class FSharpLexer(RegexLexer):
         'process', 'protected', 'pure', 'sealed', 'tailcall', 'trait',
         'virtual', 'volatile',
     ]
-    keyopts = [
+    keyopts = (
         '!=', '#', '&&', '&', r'\(', r'\)', r'\*', r'\+', ',', r'-\.',
         '->', '-', r'\.\.', r'\.', '::', ':=', ':>', ':', ';;', ';', '<-',
         r'<\]', '<', r'>\]', '>', r'\?\?', r'\?', r'\[<', r'\[\|', r'\[', r'\]',
         '_', '`', r'\{', r'\|\]', r'\|', r'\}', '~', '<@@', '<@', '=', '@>', '@@>',
-    ]
+    )
 
     operators = r'[!$%&*+\./:<=>?@^|~-]'
-    word_operators = ['and', 'or', 'not']
+    word_operators = ('and', 'or', 'not')
     prefix_syms = r'[!?~]'
     infix_syms = r'[=<>@^|&+\*/$%-]'
-    primitives = [
+    primitives = (
         'sbyte', 'byte', 'char', 'nativeint', 'unativeint', 'float32', 'single',
         'float', 'double', 'int8', 'uint8', 'int16', 'uint16', 'int32',
         'uint32', 'int64', 'uint64', 'decimal', 'unit', 'bool', 'string',
         'list', 'exn', 'obj', 'enum',
-    ]
+    )
 
     # See http://msdn.microsoft.com/en-us/library/dd233181.aspx and/or
     # http://fsharp.org/about/files/spec.pdf for reference.  Good luck.

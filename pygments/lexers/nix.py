@@ -30,14 +30,14 @@ class NixLexer(RegexLexer):
     mimetypes = ('text/x-nix',)
     version_added = '2.0'
 
-    keywords = ['rec', 'with', 'let', 'in', 'inherit', 'assert', 'if',
-                'else', 'then', '...']
-    builtins = ['import', 'abort', 'baseNameOf', 'dirOf', 'isNull', 'builtins',
-                'map', 'removeAttrs', 'throw', 'toString', 'derivation']
-    operators = ['++', '+', '?', '.', '!', '//', '==', '/',
-                 '!=', '&&', '||', '->', '=', '<', '>', '*', '-']
+    keywords = ('rec', 'with', 'let', 'in', 'inherit', 'assert', 'if',
+                'else', 'then', '...')
+    builtins = ('import', 'abort', 'baseNameOf', 'dirOf', 'isNull', 'builtins',
+                'map', 'removeAttrs', 'throw', 'toString', 'derivation')
+    operators = ('++', '+', '?', '.', '!', '//', '==', '/',
+                 '!=', '&&', '||', '->', '=', '<', '>', '*', '-')
 
-    punctuations = ["(", ")", "[", "]", ";", "{", "}", ":", ",", "@"]
+    punctuations = ("(", ")", "[", "]", ";", "{", "}", ":", ",", "@")
 
     tokens: typing.ClassVar = {
         'root': [

@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import Lexer
 from pygments.util import get_bool_opt, get_list_opt
@@ -85,14 +86,14 @@ class DelphiLexer(Lexer):
         'dispose', 'exit', 'false', 'new', 'true'
     )
 
-    BLOCK_KEYWORDS = {
+    BLOCK_KEYWORDS: typing.ClassVar = {
         'begin', 'class', 'const', 'constructor', 'destructor', 'end',
         'finalization', 'function', 'implementation', 'initialization',
         'label', 'library', 'operator', 'procedure', 'program', 'property',
         'record', 'threadvar', 'type', 'unit', 'uses', 'var'
     }
 
-    FUNCTION_MODIFIERS = {
+    FUNCTION_MODIFIERS: typing.ClassVar = {
         'alias', 'cdecl', 'export', 'inline', 'interrupt', 'nostackframe',
         'pascal', 'register', 'safecall', 'softfloat', 'stdcall',
         'varargs', 'name', 'dynamic', 'near', 'virtual', 'external',
@@ -101,13 +102,13 @@ class DelphiLexer(Lexer):
 
     # XXX: those aren't global. but currently we know no way for defining
     #      them just for the type context.
-    DIRECTIVES = {
+    DIRECTIVES: typing.ClassVar = {
         'absolute', 'abstract', 'assembler', 'cppdecl', 'default', 'far',
         'far16', 'forward', 'index', 'oldfpccall', 'private', 'protected',
         'published', 'public'
     }
 
-    BUILTIN_TYPES = {
+    BUILTIN_TYPES: typing.ClassVar = {
         'ansichar', 'ansistring', 'bool', 'boolean', 'byte', 'bytebool',
         'cardinal', 'char', 'comp', 'currency', 'double', 'dword',
         'extended', 'int64', 'integer', 'iunknown', 'longbool', 'longint',
@@ -123,7 +124,7 @@ class DelphiLexer(Lexer):
         'widechar', 'widestring', 'word', 'wordbool'
     }
 
-    BUILTIN_UNITS = {
+    BUILTIN_UNITS: typing.ClassVar = {
         'System': (
             'abs', 'acquireexceptionobject', 'addr', 'ansitoutf8',
             'append', 'arctan', 'assert', 'assigned', 'assignfile',
@@ -263,7 +264,7 @@ class DelphiLexer(Lexer):
         )
     }
 
-    ASM_REGISTERS = {
+    ASM_REGISTERS: typing.ClassVar = {
         'ah', 'al', 'ax', 'bh', 'bl', 'bp', 'bx', 'ch', 'cl', 'cr0',
         'cr1', 'cr2', 'cr3', 'cr4', 'cs', 'cx', 'dh', 'di', 'dl', 'dr0',
         'dr1', 'dr2', 'dr3', 'dr4', 'dr5', 'dr6', 'dr7', 'ds', 'dx',
@@ -274,7 +275,7 @@ class DelphiLexer(Lexer):
         'xmm6', 'xmm7'
     }
 
-    ASM_INSTRUCTIONS = {
+    ASM_INSTRUCTIONS: typing.ClassVar = {
         'aaa', 'aad', 'aam', 'aas', 'adc', 'add', 'and', 'arpl', 'bound',
         'bsf', 'bsr', 'bswap', 'bt', 'btc', 'btr', 'bts', 'call', 'cbw',
         'cdq', 'clc', 'cld', 'cli', 'clts', 'cmc', 'cmova', 'cmovae',
@@ -395,7 +396,7 @@ class DelphiLexer(Lexer):
         'pos',
     )
 
-    PORTUGOL_BUILTIN_TYPES = {
+    PORTUGOL_BUILTIN_TYPES: typing.ClassVar = {
         'inteiro', 'real', 'caractere', 'logico'
     }
 

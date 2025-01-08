@@ -209,7 +209,7 @@ class CsoundOrchestraLexer(CsoundLexer):
     filenames = ('*.orc', '*.udo')
     version_added = '2.1'
 
-    user_defined_opcodes = set()
+    user_defined_opcodes: typing.ClassVar = set()
 
     def opcode_name_callback(lexer, match):
         opcode = match.group(0)

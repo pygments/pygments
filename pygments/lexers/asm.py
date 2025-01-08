@@ -971,7 +971,7 @@ class Dasm16Lexer(RegexLexer):
     mimetypes = ('text/x-dasm16',)
     version_added = '2.4'
 
-    INSTRUCTIONS = [
+    INSTRUCTIONS = (
         'SET',
         'ADD', 'SUB',
         'MUL', 'MLI',
@@ -984,15 +984,15 @@ class Dasm16Lexer(RegexLexer):
         'STI', 'STD',
         'JSR',
         'INT', 'IAG', 'IAS', 'RFI', 'IAQ', 'HWN', 'HWQ', 'HWI',
-    ]
+    )
 
-    REGISTERS = [
+    REGISTERS = (
         'A', 'B', 'C',
         'X', 'Y', 'Z',
         'I', 'J',
         'SP', 'PC', 'EX',
         'POP', 'PEEK', 'PUSH'
-    ]
+    )
 
     # Regexes yo
     char = r'[a-zA-Z0-9_$@.]'

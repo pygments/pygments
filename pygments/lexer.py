@@ -948,7 +948,7 @@ class ProfilingRegexLexerMeta(RegexLexerMeta):
 class ProfilingRegexLexer(RegexLexer, metaclass=ProfilingRegexLexerMeta):
     """Drop-in replacement for RegexLexer that does profiling of its regexes."""
 
-    _prof_data = []
+    _prof_data: typing.ClassVar = []
     _prof_sort_index = 4  # defaults to time per call
 
     def get_tokens_unprocessed(self, text, stack=('root',)):

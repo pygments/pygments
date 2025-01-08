@@ -54,7 +54,7 @@ class HaxeLexer(ExtendedRegexLexer):
 
     flags = re.DOTALL | re.MULTILINE
 
-    preproc_stack = []
+    preproc_stack: typing.ClassVar = []
 
     def preproc_callback(self, match, ctx):
         proc = match.group(2)

@@ -31,7 +31,7 @@ class CddlLexer(RegexLexer):
     mimetypes = ("text/x-cddl",)
     version_added = '2.8'
 
-    _prelude_types = [
+    _prelude_types = (
         "any",
         "b64legacy",
         "b64url",
@@ -72,9 +72,9 @@ class CddlLexer(RegexLexer):
         "undefined",
         "unsigned",
         "uri",
-    ]
+    )
 
-    _controls = [
+    _controls = (
         ".and",
         ".bits",
         ".cbor",
@@ -89,7 +89,7 @@ class CddlLexer(RegexLexer):
         ".regexp",
         ".size",
         ".within",
-    ]
+    )
 
     _re_id = (
         r"[$@A-Z_a-z]"

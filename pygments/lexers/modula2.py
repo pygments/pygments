@@ -743,7 +743,7 @@ class Modula2Lexer(RegexLexer):
 #   D a t a b a s e s
 
     # Lexemes to Mark as Errors Database
-    lexemes_to_reject_db = {
+    lexemes_to_reject_db: typing.ClassVar = {
         # Lexemes to reject for unknown dialect
         'unknown': (
             # LEAVE THIS EMPTY
@@ -783,7 +783,7 @@ class Modula2Lexer(RegexLexer):
     }
 
     # Reserved Words Database
-    reserved_words_db = {
+    reserved_words_db: typing.ClassVar = {
         # Reserved words for unknown dialect
         'unknown': (
             common_reserved_words,
@@ -847,7 +847,7 @@ class Modula2Lexer(RegexLexer):
     }
 
     # Builtins Database
-    builtins_db = {
+    builtins_db: typing.ClassVar = {
         # Builtins for unknown dialect
         'unknown': (
             common_builtins,
@@ -911,7 +911,7 @@ class Modula2Lexer(RegexLexer):
     }
 
     # Pseudo-Module Builtins Database
-    pseudo_builtins_db = {
+    pseudo_builtins_db: typing.ClassVar = {
         # Builtins for unknown dialect
         'unknown': (
             common_pseudo_builtins,
@@ -975,7 +975,7 @@ class Modula2Lexer(RegexLexer):
     }
 
     # Standard Library ADTs Database
-    stdlib_adts_db = {
+    stdlib_adts_db: typing.ClassVar = {
         # Empty entry for unknown dialect
         'unknown': (
             # LEAVE THIS EMPTY
@@ -1022,7 +1022,7 @@ class Modula2Lexer(RegexLexer):
     }
 
     # Standard Library Modules Database
-    stdlib_modules_db = {
+    stdlib_modules_db: typing.ClassVar = {
         # Empty entry for unknown dialect
         'unknown': (
             # LEAVE THIS EMPTY
@@ -1072,7 +1072,7 @@ class Modula2Lexer(RegexLexer):
     }
 
     # Standard Library Types Database
-    stdlib_types_db = {
+    stdlib_types_db: typing.ClassVar = {
         # Empty entry for unknown dialect
         'unknown': (
             # LEAVE THIS EMPTY
@@ -1119,7 +1119,7 @@ class Modula2Lexer(RegexLexer):
     }
 
     # Standard Library Procedures Database
-    stdlib_procedures_db = {
+    stdlib_procedures_db: typing.ClassVar = {
         # Empty entry for unknown dialect
         'unknown': (
             # LEAVE THIS EMPTY
@@ -1166,7 +1166,7 @@ class Modula2Lexer(RegexLexer):
     }
 
     # Standard Library Variables Database
-    stdlib_variables_db = {
+    stdlib_variables_db: typing.ClassVar = {
         # Empty entry for unknown dialect
         'unknown': (
             # LEAVE THIS EMPTY
@@ -1213,7 +1213,7 @@ class Modula2Lexer(RegexLexer):
     }
 
     # Standard Library Constants Database
-    stdlib_constants_db = {
+    stdlib_constants_db: typing.ClassVar = {
         # Empty entry for unknown dialect
         'unknown': (
             # LEAVE THIS EMPTY

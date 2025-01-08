@@ -10,6 +10,7 @@
 """
 
 import re
+import typing
 
 from pygments.token import String, Comment, Keyword, Name, Error, Whitespace, \
     string_to_tokentype
@@ -108,7 +109,7 @@ class SymbolFilter(Filter):
        ``'latex'``.  The default is ``'isabelle'``.
     """
 
-    latex_symbols = {
+    latex_symbols: typing.ClassVar = {
         '\\alpha'                : '\U000003b1',
         '\\beta'                 : '\U000003b2',
         '\\gamma'                : '\U000003b3',
@@ -307,7 +308,7 @@ class SymbolFilter(Filter):
         '\\textdegree'           : '\U000000b0',
     }
 
-    isabelle_symbols = {
+    isabelle_symbols: typing.ClassVar = {
         '\\<zero>'                 : '\U0001d7ec',
         '\\<one>'                  : '\U0001d7ed',
         '\\<two>'                  : '\U0001d7ee',
@@ -668,7 +669,7 @@ class SymbolFilter(Filter):
         '\\<^esup>'                : '\U000021d6',
     }
 
-    lang_map = {'isabelle' : isabelle_symbols, 'latex' : latex_symbols}
+    lang_map: typing.ClassVar = {'isabelle' : isabelle_symbols, 'latex' : latex_symbols}
 
     def __init__(self, **options):
         Filter.__init__(self, **options)

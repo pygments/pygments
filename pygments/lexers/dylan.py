@@ -33,7 +33,7 @@ class DylanLexer(RegexLexer):
 
     flags = re.IGNORECASE
 
-    builtins = {
+    builtins: typing.ClassVar = {
         'subclass', 'abstract', 'block', 'concrete', 'constant', 'class',
         'compiler-open', 'compiler-sideways', 'domain', 'dynamic',
         'each-subclass', 'exception', 'exclude', 'function', 'generic',
@@ -42,18 +42,18 @@ class DylanLexer(RegexLexer):
         'module', 'open', 'primary', 'required', 'sealed', 'sideways',
         'singleton', 'slot', 'thread', 'variable', 'virtual'}
 
-    keywords = {
+    keywords: typing.ClassVar = {
         'above', 'afterwards', 'begin', 'below', 'by', 'case', 'cleanup',
         'create', 'define', 'else', 'elseif', 'end', 'export', 'finally',
         'for', 'from', 'if', 'in', 'let', 'local', 'otherwise', 'rename',
         'select', 'signal', 'then', 'to', 'unless', 'until', 'use', 'when',
         'while'}
 
-    operators = {
+    operators: typing.ClassVar = {
         '~', '+', '-', '*', '|', '^', '=', '==', '~=', '~==', '<', '<=',
         '>', '>=', '&', '|'}
 
-    functions = {
+    functions: typing.ClassVar = {
         'abort', 'abs', 'add', 'add!', 'add-method', 'add-new', 'add-new!',
         'all-superclasses', 'always', 'any?', 'applicable-method?', 'apply',
         'aref', 'aref-setter', 'as', 'as-lowercase', 'as-lowercase!',

@@ -1558,8 +1558,8 @@ class NodeConsoleLexer(Lexer):
     .. versionadded: 2.10
     """
     name = 'Node.js REPL console session'
-    aliases = ['nodejsrepl', ]
-    mimetypes = ['text/x-nodejsrepl', ]
+    aliases = ('nodejsrepl',)
+    mimetypes = ('text/x-nodejsrepl',)
     url = 'https://nodejs.org'
     version_added = ''
 

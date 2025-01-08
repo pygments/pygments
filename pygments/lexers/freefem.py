@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.token import Comment, Operator, Keyword, Name
 
 from pygments.lexers.c_cpp import CppLexer
@@ -31,16 +32,16 @@ class FreeFemLexer(CppLexer):
     version_added = '2.4'
 
     # Language operators
-    operators = {'+', '-', '*', '.*', '/', './', '%', '^', '^-1', ':', '\''}
+    operators: typing.ClassVar = {'+', '-', '*', '.*', '/', './', '%', '^', '^-1', ':', '\''}
 
     # types
-    types = {'bool', 'border', 'complex', 'dmatrix', 'fespace', 'func', 'gslspline',
+    types: typing.ClassVar = {'bool', 'border', 'complex', 'dmatrix', 'fespace', 'func', 'gslspline',
              'ifstream', 'int', 'macro', 'matrix', 'mesh', 'mesh3', 'mpiComm',
              'mpiGroup', 'mpiRequest', 'NewMacro', 'EndMacro', 'ofstream', 'Pmmap',
              'problem', 'Psemaphore', 'real', 'solve', 'string', 'varf'}
 
     # finite element spaces
-    fespaces = {'BDM1', 'BDM1Ortho', 'Edge03d', 'Edge13d', 'Edge23d', 'FEQF', 'HCT',
+    fespaces: typing.ClassVar = {'BDM1', 'BDM1Ortho', 'Edge03d', 'Edge13d', 'Edge23d', 'FEQF', 'HCT',
                 'P0', 'P03d', 'P0Edge', 'P1', 'P13d', 'P1b', 'P1b3d', 'P1bl', 'P1bl3d',
                 'P1dc', 'P1Edge', 'P1nc', 'P2', 'P23d', 'P2b', 'P2BR', 'P2dc', 'P2Edge',
                 'P2h', 'P2Morley', 'P2pnc', 'P3', 'P3dc', 'P3Edge', 'P4', 'P4dc',
@@ -48,10 +49,10 @@ class FreeFemLexer(CppLexer):
                 'RT2', 'RT2Ortho'}
 
     # preprocessor
-    preprocessor = {'ENDIFMACRO', 'include', 'IFMACRO', 'load'}
+    preprocessor: typing.ClassVar = {'ENDIFMACRO', 'include', 'IFMACRO', 'load'}
 
     # Language keywords
-    keywords = {
+    keywords: typing.ClassVar = {
                 'adj',
                 'append',
                 'area',
@@ -167,7 +168,7 @@ class FreeFemLexer(CppLexer):
     }
 
     # Language shipped functions and class ( )
-    functions = {
+    functions: typing.ClassVar = {
                 'abs',
                 'acos',
                 'acosh',
@@ -700,7 +701,7 @@ class FreeFemLexer(CppLexer):
     }
 
     # function parameters
-    parameters = {
+    parameters: typing.ClassVar = {
                 'A',
                 'A1',
                 'abserror',
@@ -847,10 +848,10 @@ class FreeFemLexer(CppLexer):
     }
 
     # deprecated
-    deprecated = {'fixeborder'}
+    deprecated: typing.ClassVar = {'fixeborder'}
 
     # do not highlight
-    suppress_highlight = {
+    suppress_highlight: typing.ClassVar = {
                 'alignof',
                 'asm',
                 'constexpr',

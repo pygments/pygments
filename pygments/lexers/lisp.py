@@ -91,7 +91,7 @@ class SchemeLexer(RegexLexer):
     # numbers like #b35. But we cannot parse 'abcdef' without #x as a
     # number.
 
-    number_rules = {}
+    number_rules: typing.ClassVar = {}
     for base in (2, 8, 10, 16):
         if base == 2:
             digit = r'[01]'
@@ -1693,7 +1693,7 @@ class EmacsLispLexer(RegexLexer):
     # Take a deep breath...
     symbol = rf'((?:{nonmacro})(?:{constituent})*)'
 
-    macros = {
+    macros: typing.ClassVar = {
         'atomic-change-group', 'case', 'block', 'cl-block', 'cl-callf', 'cl-callf2',
         'cl-case', 'cl-decf', 'cl-declaim', 'cl-declare',
         'cl-define-compiler-macro', 'cl-defmacro', 'cl-defstruct',
@@ -1742,7 +1742,7 @@ class EmacsLispLexer(RegexLexer):
         'return-from',
     }
 
-    special_forms = {
+    special_forms: typing.ClassVar = {
         'and', 'catch', 'cond', 'condition-case', 'defconst', 'defvar',
         'function', 'if', 'interactive', 'let', 'let*', 'or', 'prog1',
         'prog2', 'progn', 'quote', 'save-current-buffer', 'save-excursion',
@@ -1750,7 +1750,7 @@ class EmacsLispLexer(RegexLexer):
         'unwind-protect', 'while',
     }
 
-    builtin_function = {
+    builtin_function: typing.ClassVar = {
         '%', '*', '+', '-', '/', '/=', '1+', '1-', '<', '<=', '=', '>', '>=',
         'Snarf-documentation', 'abort-recursive-edit', 'abs',
         'accept-process-output', 'access-file', 'accessible-keymaps', 'acos',
@@ -2192,18 +2192,18 @@ class EmacsLispLexer(RegexLexer):
         'forward-point',
     }
 
-    builtin_function_highlighted = {
+    builtin_function_highlighted: typing.ClassVar = {
         'defvaralias', 'provide', 'require',
         'with-no-warnings', 'define-widget', 'with-electric-help',
         'throw', 'defalias', 'featurep'
     }
 
-    lambda_list_keywords = {
+    lambda_list_keywords: typing.ClassVar = {
         '&allow-other-keys', '&aux', '&body', '&environment', '&key', '&optional',
         '&rest', '&whole',
     }
 
-    error_keywords = {
+    error_keywords: typing.ClassVar = {
         'cl-assert', 'cl-check-type', 'error', 'signal',
         'user-error', 'warn',
     }
@@ -2365,7 +2365,7 @@ class ShenLexer(RegexLexer):
 
     BUILTINS_ANYWHERE = ('where', 'skip', '>>', '_', '!', '<e>', '<!>')
 
-    MAPPINGS = {s: Keyword for s in DECLARATIONS}
+    MAPPINGS: typing.ClassVar = {s: Keyword for s in DECLARATIONS}
     MAPPINGS.update((s, Name.Builtin) for s in BUILTINS)
     MAPPINGS.update((s, Keyword) for s in SPECIAL_FORMS)
 

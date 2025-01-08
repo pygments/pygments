@@ -181,7 +181,7 @@ class MIMELexer(RegexLexer):
         self.content_transfer_encoding = match.group(0).lower()
         yield match.start(0), Name.Constant, match.group(0)
 
-    attention_headers = {"content-type", "content-transfer-encoding"}
+    attention_headers: typing.ClassVar = {"content-type", "content-transfer-encoding"}
 
     tokens: typing.ClassVar = {
         "root": [

@@ -426,7 +426,7 @@ class Perl6Lexer(ExtendedRegexLexer):
 
     # Perl 6 has a *lot* of possible bracketing characters
     # this list was lifted from STD.pm6 (https://github.com/perl6/std)
-    PERL6_BRACKETS = {
+    PERL6_BRACKETS: typing.ClassVar = {
         '\u0028': '\u0029', '\u003c': '\u003e', '\u005b': '\u005d',
         '\u007b': '\u007d', '\u00ab': '\u00bb', '\u0f3a': '\u0f3b',
         '\u0f3c': '\u0f3d', '\u169b': '\u169c', '\u2018': '\u2019',
