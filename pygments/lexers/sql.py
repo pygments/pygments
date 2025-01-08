@@ -268,7 +268,7 @@ class PsqlRegexLexer(PostgresBase, RegexLexer):
     """
 
     name = 'PostgreSQL console - regexp based lexer'
-    aliases = []    # not public
+    aliases = ()    # not public
 
     flags = re.IGNORECASE
     tokens = {name: state[:] for (name, state) in PostgresLexer.tokens.items()}

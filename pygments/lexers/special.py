@@ -66,7 +66,7 @@ class RawTokenLexer(Lexer):
         the given compression algorithm before lexing (default: ``""``).
     """
     name = 'Raw token data'
-    aliases = []
+    aliases = ()
     filenames = []
     mimetypes = ['application/x-pygments-tokens']
     url = 'https://pygments.org/docs/formatters/#RawTokenFormatter'

@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.token import Token, STANDARD_TYPES
 
 # Default mapping of ansixxx to RGB colors.
@@ -188,13 +189,13 @@ class Style(metaclass=StyleMeta):
     line_number_special_background_color = '#ffffc0'
 
     #: Style definitions for individual token types.
-    styles = {}
+    styles: typing.ClassVar = {}
 
     #: user-friendly style name (used when selecting the style, so this
     # should be all-lowercase, no spaces, hyphens)
     name = 'unnamed'
 
-    aliases = []
+    aliases = ()
 
     # Attribute for lexers defined within Pygments. If set
     # to True, the style is not shown in the style gallery

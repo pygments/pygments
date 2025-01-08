@@ -122,7 +122,7 @@ class Lexer(metaclass=LexerMeta):
 
     #: A list of short, unique identifiers that can be used to look
     #: up the lexer from a list, e.g., using `get_lexer_by_name()`.
-    aliases = []
+    aliases = ()
 
     #: A list of `fnmatch` patterns that match filenames which contain
     #: content for this lexer. The patterns in this list should be unique among
