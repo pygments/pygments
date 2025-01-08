@@ -1,0 +1,42 @@
+---input---
+int has_value();
+int has_value();
+
+int has_value();
+int has_value();
+
+
+---tokens---
+'int'         Keyword.Type
+' '           Text.Whitespace
+'has_value'   Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'has_value'   Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'has_value'   Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'has_value'   Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
