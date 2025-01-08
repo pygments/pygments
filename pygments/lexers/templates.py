@@ -856,8 +856,8 @@ class CheetahJavascriptLexer(DelegatingLexer):
     """
 
     name = 'JavaScript+Cheetah'
-    aliases = ['javascript+cheetah', 'js+cheetah',
-               'javascript+spitfire', 'js+spitfire']
+    aliases = ('javascript+cheetah', 'js+cheetah',
+               'javascript+spitfire', 'js+spitfire')
     mimetypes = ('application/x-javascript+cheetah',
                  'text/x-javascript+cheetah',
                  'text/javascript+cheetah',
@@ -1028,8 +1028,8 @@ class JavascriptGenshiLexer(DelegatingLexer):
     """
 
     name = 'JavaScript+Genshi Text'
-    aliases = ['js+genshitext', 'js+genshi', 'javascript+genshitext',
-               'javascript+genshi']
+    aliases = ('js+genshitext', 'js+genshi', 'javascript+genshitext',
+               'javascript+genshi')
     version_added = ''
     alias_filenames = ('*.js',)
     mimetypes = ('application/x-javascript+genshi',
@@ -1415,8 +1415,8 @@ class JavascriptDjangoLexer(DelegatingLexer):
     """
 
     name = 'JavaScript+Django/Jinja'
-    aliases = ['javascript+django', 'js+django',
-               'javascript+jinja', 'js+jinja']
+    aliases = ('javascript+django', 'js+django',
+               'javascript+jinja', 'js+jinja')
     filenames = ('*.js.j2', '*.js.jinja2')
     version_added = ''
     alias_filenames = ('*.js',)

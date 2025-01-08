@@ -144,7 +144,7 @@ class NewspeakLexer(RegexLexer):
     name = 'Newspeak'
     url = 'http://newspeaklanguage.org/'
     filenames = ('*.ns2',)
-    aliases = ['newspeak', ]
+    aliases = ('newspeak', )
     mimetypes = ('text/x-newspeak',)
     version_added = '1.1'
 
