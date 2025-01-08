@@ -346,9 +346,9 @@ class CppLexer(CFamilyLexer):
     name = 'C++'
     url = 'https://isocpp.org/'
     aliases = ('cpp', 'c++')
-    filenames = ['*.cpp', '*.hpp', '*.c++', '*.h++',
+    filenames = ('*.cpp', '*.hpp', '*.c++', '*.h++',
                  '*.cc', '*.hh', '*.cxx', '*.hxx',
-                 '*.C', '*.H', '*.cp', '*.CPP', '*.tpp']
+                 '*.C', '*.H', '*.cp', '*.CPP', '*.tpp')
     mimetypes = ('text/x-c++hdr', 'text/x-c++src')
     version_added = ''
     priority = 0.1

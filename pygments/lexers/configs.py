@@ -299,8 +299,8 @@ class KconfigLexer(RegexLexer):
     aliases = ('kconfig', 'menuconfig', 'linux-config', 'kernel-config')
     version_added = '1.6'
     # Adjust this if new kconfig file names appear in your environment
-    filenames = ['Kconfig*', '*Config.in*', 'external.in*',
-                 'standard-modules.in']
+    filenames = ('Kconfig*', '*Config.in*', 'external.in*',
+                 'standard-modules.in')
     mimetypes = ('text/x-kconfig',)
     url = 'https://www.kernel.org/doc/html/latest/kbuild/kconfig-language.html'
 

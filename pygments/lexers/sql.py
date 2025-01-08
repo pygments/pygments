@@ -237,7 +237,7 @@ class PlPgsqlLexer(PostgresBase, RegexLexer):
 
     flags = re.IGNORECASE
     # FIXME: use inheritance
-    tokens = {name: state[:] for (name, state) in PostgresLexer.tokens.items()}
+    tokens: typing.ClassVar = {name: state[:] for (name, state) in PostgresLexer.tokens.items()}
 
     # extend the keywords list
     for i, pattern in enumerate(tokens['root']):
@@ -271,11 +271,11 @@ class PsqlRegexLexer(PostgresBase, RegexLexer):
     aliases = ()    # not public
 
     flags = re.IGNORECASE
-    tokens = {name: state[:] for (name, state) in PostgresLexer.tokens.items()}
+    tokens: typing.ClassVar = {name: state[:] for (name, state) in PostgresLexer.tokens.items()}
 
     tokens['root'].append(
         (r'\\[^\s]+', Keyword.Pseudo, 'psql-command'))
-    tokens['psql-command'] = [
+    tokens['psql-command'] = [  # noqa: RUF012
         (r'\n', Text, 'root'),
         (r'\s+', Whitespace),
         (r'\\[^\s]+', Keyword.Pseudo),

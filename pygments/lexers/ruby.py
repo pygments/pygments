@@ -34,8 +34,8 @@ class RubyLexer(ExtendedRegexLexer):
     name = 'Ruby'
     url = 'http://www.ruby-lang.org'
     aliases = ('ruby', 'rb', 'duby')
-    filenames = ['*.rb', '*.rbw', 'Rakefile', '*.rake', '*.gemspec',
-                 '*.rbx', '*.duby', 'Gemfile', 'Vagrantfile']
+    filenames = ('*.rb', '*.rbw', 'Rakefile', '*.rake', '*.gemspec',
+                 '*.rbx', '*.duby', 'Gemfile', 'Vagrantfile')
     mimetypes = ('text/x-ruby', 'application/x-ruby')
     version_added = ''
 

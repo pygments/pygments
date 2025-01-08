@@ -67,7 +67,7 @@ class XQueryLexer(ExtendedRegexLexer):
     mimetypes = ('text/xquery', 'application/xquery')
     version_added = '1.4'
 
-    xquery_parse_state = []
+    xquery_parse_state: typing.ClassVar = []
 
     # FIX UNICODE LATER
     # ncnamestartchar = (

@@ -563,7 +563,7 @@ class Inform7Lexer(RegexLexer):
     # signs in the first column are inweb syntax. In phrase definitions
     # and use options, tokens in braces are treated as I7. Use options
     # also interpret "{N}".
-    tokens = {}
+    tokens: typing.ClassVar = {}
     token_variants = ['+i6t-not-inline', '+i6t-inline', '+i6t-use-option']
 
     for level in token_variants:

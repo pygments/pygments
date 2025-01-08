@@ -11,6 +11,7 @@
 import re
 import sys
 import time
+import typing
 
 from pygments.filter import apply_filters, Filter
 from pygments.filters import get_filter_by_name
@@ -707,7 +708,7 @@ class RegexLexer(Lexer, metaclass=RegexLexerMeta):
     #: The tuple can also be replaced with ``include('state')``, in which
     #: case the rules from the state named by the string are included in the
     #: current one.
-    tokens = {}
+    tokens: typing.ClassVar = {}
 
     def get_tokens_unprocessed(self, text, stack=('root',)):
         """

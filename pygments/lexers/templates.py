@@ -1166,8 +1166,8 @@ class HtmlPhpLexer(DelegatingLexer):
     aliases = ('html+php',)
     filenames = ('*.phtml',)
     version_added = ''
-    alias_filenames = ['*.php', '*.html', '*.htm', '*.xhtml',
-                       '*.php[345]']
+    alias_filenames = ('*.php', '*.html', '*.htm', '*.xhtml',
+                       '*.php[345]')
     mimetypes = ['application/x-php',
                  'application/x-httpd-php', 'application/x-httpd-php3',
                  'application/x-httpd-php4', 'application/x-httpd-php5']
@@ -1787,8 +1787,8 @@ class LassoHtmlLexer(DelegatingLexer):
     name = 'HTML+Lasso'
     aliases = ('html+lasso',)
     version_added = '1.6'
-    alias_filenames = ['*.html', '*.htm', '*.xhtml', '*.lasso', '*.lasso[89]',
-                       '*.incl', '*.inc', '*.las']
+    alias_filenames = ('*.html', '*.htm', '*.xhtml', '*.lasso', '*.lasso[89]',
+                       '*.incl', '*.inc', '*.las')
     mimetypes = ['text/html+lasso',
                  'application/x-httpd-lasso',
                  'application/x-httpd-lasso[89]']
@@ -1813,8 +1813,8 @@ class LassoXmlLexer(DelegatingLexer):
     name = 'XML+Lasso'
     aliases = ('xml+lasso',)
     version_added = '1.6'
-    alias_filenames = ['*.xml', '*.lasso', '*.lasso[89]',
-                       '*.incl', '*.inc', '*.las']
+    alias_filenames = ('*.xml', '*.lasso', '*.lasso[89]',
+                       '*.incl', '*.inc', '*.las')
     mimetypes = ('application/xml+lasso',)
     url = 'https://www.lassosoft.com'
 
@@ -1864,7 +1864,7 @@ class LassoJavascriptLexer(DelegatingLexer):
     aliases = ('javascript+lasso', 'js+lasso')
     version_added = '1.6'
     alias_filenames = ('*.js',)
-    mimetypes = ['application/x-javascript+lasso',
+    mimetypes: typing.ClassVar = ['application/x-javascript+lasso',
                  'text/x-javascript+lasso',
                  'text/javascript+lasso']
     url = 'https://www.lassosoft.com'

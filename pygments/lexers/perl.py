@@ -232,9 +232,9 @@ class Perl6Lexer(ExtendedRegexLexer):
     name = 'Perl6'
     url = 'https://www.raku.org'
     aliases = ('perl6', 'pl6', 'raku')
-    filenames = ['*.pl', '*.pm', '*.nqp', '*.p6', '*.6pl', '*.p6l', '*.pl6',
+    filenames = ('*.pl', '*.pm', '*.nqp', '*.p6', '*.6pl', '*.p6l', '*.pl6',
                  '*.6pm', '*.p6m', '*.pm6', '*.t', '*.raku', '*.rakumod',
-                 '*.rakutest', '*.rakudoc']
+                 '*.rakutest', '*.rakudoc')
     mimetypes = ('text/x-perl6', 'application/x-perl6')
     version_added = '2.0'
     flags = re.MULTILINE | re.DOTALL

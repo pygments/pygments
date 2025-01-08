@@ -77,7 +77,7 @@ class CSharpLexer(RegexLexer):
                                       'Nd', 'Pc', 'Cf', 'Mn', 'Mc') + ']*'),
     }
 
-    tokens = {}
+    tokens: typing.ClassVar = {}
     token_variants = True
 
     for levelname, cs_ident in levels.items():
@@ -226,7 +226,7 @@ class NemerleLexer(RegexLexer):
                                       'Nd', 'Pc', 'Cf', 'Mn', 'Mc') + ']*'),
     }
 
-    tokens = {}
+    tokens: typing.ClassVar = {}
     token_variants = True
 
     for levelname, cs_ident in levels.items():
@@ -830,7 +830,7 @@ class XppLexer(RegexLexer):
                  'webStaticFileStr','webUrlItemStr','webWebPartStr','webletItemStr','webpageDefStr','websiteDefStr','workflowApprovalStr',
                  'workflowCategoryStr','workflowTaskStr','workflowTypeStr')
 
-    tokens = {}
+    tokens: typing.ClassVar = {}
 
     tokens: typing.ClassVar = {
         'root': [

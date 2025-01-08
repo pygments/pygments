@@ -117,8 +117,8 @@ class VimLexer(RegexLexer):
     """
     name = 'VimL'
     aliases = ('vim',)
-    filenames = ['*.vim', '.vimrc', '.exrc', '.gvimrc',
-                 '_vimrc', '_exrc', '_gvimrc', 'vimrc', 'gvimrc']
+    filenames = ('*.vim', '.vimrc', '.exrc', '.gvimrc',
+                 '_vimrc', '_exrc', '_gvimrc', 'vimrc', 'gvimrc')
     mimetypes = ('text/x-vim',)
     url = 'https://www.vim.org'
     version_added = '0.8'

@@ -51,9 +51,9 @@ class MIMELexer(RegexLexer):
 
     name = "MIME"
     aliases = ("mime",)
-    mimetypes = ["multipart/mixed",
+    mimetypes = ("multipart/mixed",
                  "multipart/related",
-                 "multipart/alternative"]
+                 "multipart/alternative")
     url = 'https://en.wikipedia.org/wiki/MIME'
     version_added = '2.5'
 

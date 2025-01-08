@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import Lexer
 from pygments.token import Text, Comment, Operator, Keyword, Name, Number, \
@@ -29,16 +30,16 @@ class TNTLexer(Lexer):
     filenames = ('*.tnt',)
     version_added = '2.7'
 
-    cur = []
+    cur: typing.ClassVar = []
 
-    LOGIC = set('⊃→]&∧^|∨Vv')
-    OPERATORS = set('+.⋅*')
-    VARIABLES = set('abcde')
-    PRIMES = set("'′")
-    NEGATORS = set('~!')
-    QUANTIFIERS = set('AE∀∃')
-    NUMBERS = set('0123456789')
-    WHITESPACE = set('\t \v\n')
+    LOGIC: typing.ClassVar = set('⊃→]&∧^|∨Vv')
+    OPERATORS: typing.ClassVar = set('+.⋅*')
+    VARIABLES: typing.ClassVar = set('abcde')
+    PRIMES: typing.ClassVar = set("'′")
+    NEGATORS: typing.ClassVar = set('~!')
+    QUANTIFIERS: typing.ClassVar = set('AE∀∃')
+    NUMBERS: typing.ClassVar = set('0123456789')
+    WHITESPACE: typing.ClassVar = set('\t \v\n')
 
     RULES = re.compile('''(?xi)
         joining | separation | double-tilde | fantasy\\ rule
