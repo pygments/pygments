@@ -47,7 +47,7 @@ class KustoLexer(RegexLexer):
     """
 
     name = "Kusto"
-    aliases = ["kql", "kusto"]
+    aliases = ("kql", "kusto")
     filenames = ("*.kql", "*.kusto", ".csl")
     url = "https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query"
     version_added = '2.17'

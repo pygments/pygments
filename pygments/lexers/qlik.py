@@ -26,7 +26,7 @@ class QlikLexer(RegexLexer):
     """
 
     name = "Qlik"
-    aliases = ["qlik", "qlikview", "qliksense", "qlikscript"]
+    aliases = ("qlik", "qlikview", "qliksense", "qlikscript")
     filenames = ("*.qvs", "*.qvw")
     url = "https://qlik.com"
     version_added = '2.12'

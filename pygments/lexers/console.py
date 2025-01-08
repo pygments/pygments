@@ -48,7 +48,7 @@ class PyPyLogLexer(RegexLexer):
     Lexer for PyPy log files.
     """
     name = "PyPy Log"
-    aliases = ["pypylog", "pypy"]
+    aliases = ("pypylog", "pypy")
     filenames = ("*.pypylog",)
     mimetypes = ('application/x-pypylog',)
     url = 'pypy.org'

@@ -106,7 +106,7 @@ class MCFunctionLexer(RegexLexer):
 
     name = "MCFunction"
     url = "https://minecraft.wiki/w/Commands"
-    aliases = ["mcfunction", "mcf"]
+    aliases = ("mcfunction", "mcf")
     filenames = ("*.mcfunction",)
     mimetypes = ("text/mcfunction",)
     version_added = '2.12'

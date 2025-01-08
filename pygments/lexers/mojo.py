@@ -46,7 +46,7 @@ class MojoLexer(RegexLexer):
 
     name = "Mojo"
     url = "https://docs.modular.com/mojo/"
-    aliases = ["mojo", "🔥"]
+    aliases = ("mojo", "🔥")
     filenames = [
         "*.mojo",
         "*.🔥",
