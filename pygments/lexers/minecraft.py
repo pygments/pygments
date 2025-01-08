@@ -34,7 +34,7 @@ class SNBTLexer(RegexLexer):
     name = "SNBT"
     url = "https://minecraft.wiki/w/NBT_format"
     aliases = ["snbt"]
-    filenames = ["*.snbt"]
+    filenames = ("*.snbt",)
     mimetypes = ["text/snbt"]
     version_added = '2.12'
 
@@ -107,7 +107,7 @@ class MCFunctionLexer(RegexLexer):
     name = "MCFunction"
     url = "https://minecraft.wiki/w/Commands"
     aliases = ["mcfunction", "mcf"]
-    filenames = ["*.mcfunction"]
+    filenames = ("*.mcfunction",)
     mimetypes = ["text/mcfunction"]
     version_added = '2.12'
 

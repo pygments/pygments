@@ -30,7 +30,7 @@ class GDScriptLexer(RegexLexer):
     name = "GDScript"
     url = 'https://www.godotengine.org'
     aliases = ["gdscript", "gd"]
-    filenames = ["*.gd"]
+    filenames = ("*.gd",)
     mimetypes = ["text/x-gdscript", "application/x-gdscript"]
     version_added = ''
 

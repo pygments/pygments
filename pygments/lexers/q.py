@@ -23,7 +23,7 @@ class KLexer(RegexLexer):
 
     name = "K"
     aliases = ["k"]
-    filenames = ["*.k"]
+    filenames = ("*.k",)
     url = "https://code.kx.com"
     version_added = '2.12'
 
@@ -157,7 +157,7 @@ class QLexer(KLexer):
 
     name = "Q"
     aliases = ["q"]
-    filenames = ["*.q"]
+    filenames = ("*.q",)
     version_added = '2.12'
 
     tokens: typing.ClassVar = {

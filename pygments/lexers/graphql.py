@@ -61,7 +61,7 @@ class GraphQLLexer(RegexLexer):
     """
     name = "GraphQL"
     aliases = ["graphql"]
-    filenames = ["*.graphql"]
+    filenames = ("*.graphql",)
     url = "https://graphql.org"
     version_added = '2.16'
 
