@@ -488,6 +488,7 @@ LEXERS = {
     'SmithyLexer': ('pygments.lexers.smithy', 'Smithy', ('smithy',), ('*.smithy',), ()),
     'SnobolLexer': ('pygments.lexers.snobol', 'Snobol', ('snobol',), ('*.snobol',), ('text/x-snobol',)),
     'SnowballLexer': ('pygments.lexers.dsls', 'Snowball', ('snowball',), ('*.sbl',), ()),
+    'SoarLexer': ('pygments.lexers.soar', 'Soar', ('soar', 'Soar'), ('*.soar',), ()),
     'SolidityLexer': ('pygments.lexers.solidity', 'Solidity', ('solidity',), ('*.sol',), ()),
     'SoongLexer': ('pygments.lexers.soong', 'Soong', ('androidbp', 'bp', 'soong'), ('Android.bp',), ()),
     'SophiaLexer': ('pygments.lexers.sophia', 'Sophia', ('sophia',), ('*.aes',), ()),
