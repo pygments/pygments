@@ -24,7 +24,7 @@ class BQNLexer(RegexLexer):
     url = 'https://mlochbaum.github.io/BQN/index.html'
     aliases = ('bqn',)
     filenames = ['*.bqn']
-    mimetypes = []
+    mimetypes = ()
     version_added = '2.16'
 
     # An inter_word_char. Necessary because \w matches all alphanumeric

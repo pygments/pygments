@@ -644,7 +644,7 @@ class VueLexer(HtmlLexer):
     url = 'https://vuejs.org/api/sfc-spec.html'
     aliases = ('vue',)
     filenames = ['*.vue']
-    mimetypes = []
+    mimetypes = ()
     version_added = '2.19'
 
     flags = re.IGNORECASE | re.DOTALL

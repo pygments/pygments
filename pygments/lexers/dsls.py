@@ -735,7 +735,7 @@ class CrmshLexer(RegexLexer):
     url = 'http://crmsh.github.io/'
     aliases = ('crmsh', 'pcmk')
     filenames = ['*.crmsh', '*.pcmk']
-    mimetypes = []
+    mimetypes = ()
     version_added = '2.1'
 
     elem = words((

@@ -25,7 +25,7 @@ class SophiaLexer(RegexLexer):
     name = 'Sophia'
     aliases = ('sophia',)
     filenames = ['*.aes']
-    mimetypes = []
+    mimetypes = ()
     url = 'https://docs.aeternity.com/aesophia'
     version_added = '2.11'
 

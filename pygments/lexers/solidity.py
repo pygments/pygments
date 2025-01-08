@@ -24,7 +24,7 @@ class SolidityLexer(RegexLexer):
     name = 'Solidity'
     aliases = ('solidity',)
     filenames = ['*.sol']
-    mimetypes = []
+    mimetypes = ()
     url = 'https://soliditylang.org'
     version_added = '2.5'
 

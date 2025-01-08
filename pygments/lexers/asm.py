@@ -521,7 +521,7 @@ class LlvmMirBodyLexer(RegexLexer):
     url = 'https://llvm.org/docs/MIRLangRef.html'
     aliases = ('llvm-mir-body',)
     filenames = []
-    mimetypes = []
+    mimetypes = ()
     version_added = '2.6'
 
     tokens: typing.ClassVar = {

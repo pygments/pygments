@@ -410,7 +410,7 @@ class MozPreprocHashLexer(RegexLexer):
     name = 'mozhashpreproc'
     aliases = [name]
     filenames = []
-    mimetypes = []
+    mimetypes = ()
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
     version_added = '2.0'
 
@@ -451,7 +451,7 @@ class MozPreprocPercentLexer(MozPreprocHashLexer):
     name = 'mozpercentpreproc'
     aliases = [name]
     filenames = []
-    mimetypes = []
+    mimetypes = ()
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
     version_added = '2.0'
 
@@ -471,7 +471,7 @@ class MozPreprocXulLexer(DelegatingLexer):
     name = "XUL+mozpreproc"
     aliases = ('xul+mozpreproc',)
     filenames = ['*.xul.in']
-    mimetypes = []
+    mimetypes = ()
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
     version_added = '2.0'
 
@@ -487,7 +487,7 @@ class MozPreprocJavascriptLexer(DelegatingLexer):
     name = "Javascript+mozpreproc"
     aliases = ('javascript+mozpreproc',)
     filenames = ['*.js.in']
-    mimetypes = []
+    mimetypes = ()
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
     version_added = '2.0'
 
@@ -503,7 +503,7 @@ class MozPreprocCssLexer(DelegatingLexer):
     name = "CSS+mozpreproc"
     aliases = ('css+mozpreproc',)
     filenames = ['*.css.in']
-    mimetypes = []
+    mimetypes = ()
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
     version_added = '2.0'
 

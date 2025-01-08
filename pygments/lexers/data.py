@@ -711,7 +711,7 @@ class JsonBareObjectLexer(JsonLexer):
     name = 'JSONBareObject'
     aliases = ()
     filenames = []
-    mimetypes = []
+    mimetypes = ()
     version_added = '2.2'
 
 

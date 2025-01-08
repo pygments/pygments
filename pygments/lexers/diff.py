@@ -128,7 +128,7 @@ class WDiffLexer(RegexLexer):
     url = 'https://www.gnu.org/software/wdiff/'
     aliases = ('wdiff',)
     filenames = ['*.wdiff']
-    mimetypes = []
+    mimetypes = ()
     version_added = '2.2'
 
     flags = re.MULTILINE | re.DOTALL

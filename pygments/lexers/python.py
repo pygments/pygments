@@ -1124,7 +1124,7 @@ class NumPyLexer(PythonLexer):
     version_added = '0.10'
 
     # override the mimetypes to not inherit them from python
-    mimetypes = []
+    mimetypes = ()
     filenames = []
 
     EXTRA_KEYWORDS = {

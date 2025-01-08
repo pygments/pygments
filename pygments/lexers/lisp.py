@@ -2484,7 +2484,7 @@ class CPSALexer(RegexLexer):
     name = 'CPSA'
     aliases = ('cpsa',)
     filenames = ['*.cpsa']
-    mimetypes = []
+    mimetypes = ()
     url = 'https://web.cs.wpi.edu/~guttman/cs564/cpsauser.html'
     version_added = '2.1'
 
@@ -2566,7 +2566,7 @@ class XtlangLexer(RegexLexer):
     url = 'http://extempore.moso.com.au'
     aliases = ('extempore',)
     filenames = ['*.xtm']
-    mimetypes = []
+    mimetypes = ()
     version_added = '2.2'
 
     common_keywords = (

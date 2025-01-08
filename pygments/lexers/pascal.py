@@ -27,7 +27,7 @@ class PortugolLexer(Lexer):
     name = 'Portugol'
     aliases = ('portugol',)
     filenames = ['*.alg', '*.portugol']
-    mimetypes = []
+    mimetypes = ()
     url = "https://www.apoioinformatica.inf.br/produtos/visualg/linguagem"
     version_added = ''
 

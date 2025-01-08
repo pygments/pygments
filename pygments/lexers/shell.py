@@ -144,7 +144,7 @@ class SlurmBashLexer(BashLexer):
     name = 'Slurm'
     aliases = ('slurm', 'sbatch')
     filenames = ['*.sl']
-    mimetypes = []
+    mimetypes = ()
     version_added = '2.4'
     EXTRA_KEYWORDS = {'srun'}
 
@@ -550,7 +550,7 @@ class MSDOSSessionLexer(ShellSessionBaseLexer):
     name = 'MSDOS Session'
     aliases = ('doscon',)
     filenames = []
-    mimetypes = []
+    mimetypes = ()
     url = 'https://en.wikipedia.org/wiki/MS-DOS'
     version_added = '2.1'
     _example = "doscon/session"
@@ -637,7 +637,7 @@ class TcshSessionLexer(ShellSessionBaseLexer):
     name = 'Tcsh Session'
     aliases = ('tcshcon',)
     filenames = []
-    mimetypes = []
+    mimetypes = ()
     url = 'https://www.tcsh.org'
     version_added = '2.1'
     _example = "tcshcon/session"
@@ -770,7 +770,7 @@ class PowerShellSessionLexer(ShellSessionBaseLexer):
     name = 'PowerShell Session'
     aliases = ('pwsh-session', 'ps1con')
     filenames = []
-    mimetypes = []
+    mimetypes = ()
     url = 'https://learn.microsoft.com/en-us/powershell'
     version_added = '2.1'
     _example = "pwsh-session/session"

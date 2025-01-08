@@ -233,7 +233,7 @@ class CobolFreeformatLexer(CobolLexer):
     name = 'COBOLFree'
     aliases = ('cobolfree',)
     filenames = ['*.cbl', '*.CBL']
-    mimetypes = []
+    mimetypes = ()
     url = 'https://opencobol.add1tocobol.com'
     version_added = '1.6'
 

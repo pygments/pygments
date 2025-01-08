@@ -171,7 +171,7 @@ class HspecLexer(HaskellLexer):
     name = 'Hspec'
     aliases = ('hspec',)
     filenames = ['*Spec.hs']
-    mimetypes = []
+    mimetypes = ()
     version_added = '2.4'
 
     tokens: typing.ClassVar = {

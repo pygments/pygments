@@ -24,7 +24,7 @@ class VCTreeStatusLexer(RegexLexer):
     name = 'VCTreeStatus'
     aliases = ('vctreestatus',)
     filenames = []
-    mimetypes = []
+    mimetypes = ()
     url = ""
     version_added = '2.0'
 

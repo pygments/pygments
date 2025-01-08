@@ -377,7 +377,7 @@ class Cfengine3Lexer(RegexLexer):
     url = 'http://cfengine.org'
     aliases = ('cfengine3', 'cf3')
     filenames = ['*.cf']
-    mimetypes = []
+    mimetypes = ()
     version_added = '1.5'
 
     tokens: typing.ClassVar = {
@@ -888,7 +888,7 @@ class TermcapLexer(RegexLexer):
     name = 'Termcap'
     aliases = ('termcap',)
     filenames = ['termcap', 'termcap.src']
-    mimetypes = []
+    mimetypes = ()
     url = 'https://en.wikipedia.org/wiki/Termcap'
     version_added = '2.1'
 
@@ -935,7 +935,7 @@ class TerminfoLexer(RegexLexer):
     name = 'Terminfo'
     aliases = ('terminfo',)
     filenames = ['terminfo', 'terminfo.src']
-    mimetypes = []
+    mimetypes = ()
     url = 'https://en.wikipedia.org/wiki/Terminfo'
     version_added = '2.1'
 
@@ -983,7 +983,7 @@ class PkgConfigLexer(RegexLexer):
     url = 'http://www.freedesktop.org/wiki/Software/pkg-config/'
     aliases = ('pkgconfig',)
     filenames = ['*.pc']
-    mimetypes = []
+    mimetypes = ()
     version_added = '2.1'
 
     tokens: typing.ClassVar = {
@@ -1051,7 +1051,7 @@ class PacmanConfLexer(RegexLexer):
     url = 'https://www.archlinux.org/pacman/pacman.conf.5.html'
     aliases = ('pacmanconf',)
     filenames = ['pacman.conf']
-    mimetypes = []
+    mimetypes = ()
     version_added = '2.1'
 
     tokens: typing.ClassVar = {

@@ -21,7 +21,7 @@ class XorgLexer(RegexLexer):
     url = 'https://www.x.org/wiki/'
     aliases = ('xorg.conf',)
     filenames = ['xorg.conf']
-    mimetypes = []
+    mimetypes = ()
     version_added = ''
 
     tokens: typing.ClassVar = {

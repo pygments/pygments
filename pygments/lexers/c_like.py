@@ -559,7 +559,7 @@ class CharmciLexer(CppLexer):
     filenames = ['*.ci']
     version_added = '2.4'
 
-    mimetypes = []
+    mimetypes = ()
 
     tokens: typing.ClassVar = {
         'keywords': [
@@ -587,7 +587,7 @@ class OmgIdlLexer(CLexer):
     url = 'https://www.omg.org/spec/IDL/About-IDL/'
     aliases = ('omg-idl',)
     filenames = ['*.idl', '*.pidl']
-    mimetypes = []
+    mimetypes = ()
     version_added = '2.9'
 
     scoped_name = r'((::)?\w+)+'

@@ -138,7 +138,7 @@ class Lexer(metaclass=LexerMeta):
     alias_filenames = []
 
     #: A list of MIME types for content that can be lexed with this lexer.
-    mimetypes = []
+    mimetypes = ()
 
     #: Priority, should multiple lexers match and no content is provided
     priority = 0

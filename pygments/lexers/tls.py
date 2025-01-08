@@ -25,7 +25,7 @@ class TlsLexer(RegexLexer):
     url = 'https://www.rfc-editor.org/rfc/rfc8446#section-3'
     filenames = []
     aliases = ('tls',)
-    mimetypes = []
+    mimetypes = ()
     version_added = '2.16'
 
     flags = re.MULTILINE | re.DOTALL

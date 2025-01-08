@@ -24,7 +24,7 @@ class CodeQLLexer(RegexLexer):
     name = 'CodeQL'
     aliases = ('codeql', 'ql')
     filenames = ['*.ql', '*.qll']
-    mimetypes = []
+    mimetypes = ()
     url = 'https://github.com/github/codeql'
     version_added = '2.19'
 

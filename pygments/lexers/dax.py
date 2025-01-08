@@ -25,7 +25,7 @@ class DaxLexer(RegexLexer):
     aliases = ('dax',)
     filenames = ['*.dax']
     url = 'https://learn.microsoft.com/en-us/dax/dax-function-reference'
-    mimetypes = []
+    mimetypes = ()
     version_added = '2.15'
 
     tokens: typing.ClassVar = {
