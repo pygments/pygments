@@ -74,7 +74,7 @@ class BaseMakefileLexer(RegexLexer):
 
     name = 'Base Makefile'
     aliases = ('basemake',)
-    filenames = []
+    filenames = ()
     mimetypes = ()
     url = 'https://en.wikipedia.org/wiki/Make_(software)'
     version_added = '0.10'

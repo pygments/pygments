@@ -117,7 +117,7 @@ class IRCFormatter(Formatter):
     """
     name = 'IRC'
     aliases = ('irc', 'IRC')
-    filenames = []
+    filenames = ()
 
     def __init__(self, **options):
         Formatter.__init__(self, **options)

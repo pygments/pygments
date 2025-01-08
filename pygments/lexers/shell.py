@@ -549,7 +549,7 @@ class MSDOSSessionLexer(ShellSessionBaseLexer):
 
     name = 'MSDOS Session'
     aliases = ('doscon',)
-    filenames = []
+    filenames = ()
     mimetypes = ()
     url = 'https://en.wikipedia.org/wiki/MS-DOS'
     version_added = '2.1'
@@ -636,7 +636,7 @@ class TcshSessionLexer(ShellSessionBaseLexer):
 
     name = 'Tcsh Session'
     aliases = ('tcshcon',)
-    filenames = []
+    filenames = ()
     mimetypes = ()
     url = 'https://www.tcsh.org'
     version_added = '2.1'
@@ -769,7 +769,7 @@ class PowerShellSessionLexer(ShellSessionBaseLexer):
 
     name = 'PowerShell Session'
     aliases = ('pwsh-session', 'ps1con')
-    filenames = []
+    filenames = ()
     mimetypes = ()
     url = 'https://learn.microsoft.com/en-us/powershell'
     version_added = '2.1'

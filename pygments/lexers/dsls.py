@@ -803,7 +803,7 @@ class FlatlineLexer(RegexLexer):
     name = 'Flatline'
     url = 'https://github.com/bigmlcom/flatline'
     aliases = ('flatline',)
-    filenames = []
+    filenames = ()
     mimetypes = ['text/x-flatline']
     version_added = '2.2'
 

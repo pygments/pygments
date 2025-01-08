@@ -254,7 +254,7 @@ class MiniDLexer(CrocLexer):
     For MiniD source. MiniD is now known as Croc.
     """
     name = 'MiniD'
-    filenames = []  # don't lex .md as MiniD, reserve for Markdown
+    filenames = ()  # don't lex .md as MiniD, reserve for Markdown
     aliases = ('minid',)
     mimetypes = ['text/x-minidsrc']
     version_added = ''

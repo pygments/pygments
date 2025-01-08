@@ -1436,7 +1436,7 @@ class UnixConfigLexer(RegexLexer):
 
     name = 'Unix/Linux config files'
     aliases = ('unixconfig', 'linuxconfig')
-    filenames = []
+    filenames = ()
     url = 'https://en.wikipedia.org/wiki/Configuration_file#Unix_and_Unix-like_operating_systems'
     version_added = '2.12'
 

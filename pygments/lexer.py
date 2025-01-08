@@ -127,7 +127,7 @@ class Lexer(metaclass=LexerMeta):
     #: A list of `fnmatch` patterns that match filenames which contain
     #: content for this lexer. The patterns in this list should be unique among
     #: all lexers.
-    filenames = []
+    filenames = ()
 
     #: A list of `fnmatch` patterns that match filenames which may or may not
     #: contain content for this lexer. This list is used by the
@@ -135,7 +135,7 @@ class Lexer(metaclass=LexerMeta):
     #: are then included in guessing the correct one. That means that
     #: e.g. every lexer for HTML and a template language should include
     #: ``\*.html`` in this list.
-    alias_filenames = []
+    alias_filenames = ()
 
     #: A list of MIME types for content that can be lexed with this lexer.
     mimetypes = ()

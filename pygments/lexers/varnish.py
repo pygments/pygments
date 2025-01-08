@@ -165,7 +165,7 @@ class VCLSnippetLexer(VCLLexer):
     name = 'VCLSnippets'
     aliases = ('vclsnippets', 'vclsnippet')
     mimetypes = ['text/x-vclsnippet']
-    filenames = []
+    filenames = ()
     url = 'https://www.varnish-software.com/developers/tutorials/varnish-configuration-language-vcl'
     version_added = '2.2'
 

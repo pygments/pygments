@@ -67,7 +67,7 @@ class RawTokenLexer(Lexer):
     """
     name = 'Raw token data'
     aliases = ()
-    filenames = []
+    filenames = ()
     mimetypes = ['application/x-pygments-tokens']
     url = 'https://pygments.org/docs/formatters/#RawTokenFormatter'
     version_added = ''

@@ -58,7 +58,7 @@ class RagelLexer(RegexLexer):
     name = 'Ragel'
     url = 'http://www.colm.net/open-source/ragel/'
     aliases = ('ragel',)
-    filenames = []
+    filenames = ()
     version_added = '1.1'
 
     tokens: typing.ClassVar = {
@@ -341,7 +341,7 @@ class AntlrLexer(RegexLexer):
 
     name = 'ANTLR'
     aliases = ('antlr',)
-    filenames = []
+    filenames = ()
     url = 'https://www.antlr.org'
     version_added = '1.1'
 

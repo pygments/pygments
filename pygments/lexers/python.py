@@ -434,7 +434,7 @@ class Python2Lexer(RegexLexer):
     name = 'Python 2.x'
     url = 'https://www.python.org'
     aliases = ('python2', 'py2')
-    filenames = []  # now taken over by PythonLexer (3.x)
+    filenames = ()  # now taken over by PythonLexer (3.x)
     mimetypes = ['text/x-python2', 'application/x-python2']
     version_added = ''
 
@@ -1125,7 +1125,7 @@ class NumPyLexer(PythonLexer):
 
     # override the mimetypes to not inherit them from python
     mimetypes = ()
-    filenames = []
+    filenames = ()
 
     EXTRA_KEYWORDS = {
         'abs', 'absolute', 'accumulate', 'add', 'alen', 'all', 'allclose',

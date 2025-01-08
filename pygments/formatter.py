@@ -74,7 +74,7 @@ class Formatter:
     #: A list of fnmatch patterns that match filenames for which this
     #: formatter can produce output. The patterns in this list should be unique
     #: among all formatters.
-    filenames = []
+    filenames = ()
 
     #: If True, this formatter outputs Unicode strings when no encoding
     #: option is given.

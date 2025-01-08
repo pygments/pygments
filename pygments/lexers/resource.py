@@ -23,7 +23,7 @@ class ResourceLexer(RegexLexer):
     """
     name = 'ResourceBundle'
     aliases = ('resourcebundle', 'resource')
-    filenames = []
+    filenames = ()
     url = 'https://unicode-org.github.io/icu/userguide/locale/resources.html'
     version_added = '2.0'
 

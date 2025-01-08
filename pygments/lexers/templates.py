@@ -1584,7 +1584,7 @@ class ColdfusionLexer(RegexLexer):
     """
     name = 'cfstatement'
     aliases = ('cfs',)
-    filenames = []
+    filenames = ()
     mimetypes = ()
     url = 'https://www.adobe.com/products/coldfusion-family.html'
     version_added = ''
@@ -1635,7 +1635,7 @@ class ColdfusionMarkupLexer(RegexLexer):
     """
     name = 'Coldfusion'
     aliases = ('cf',)
-    filenames = []
+    filenames = ()
     mimetypes = ()
     url = 'https://www.adobe.com/products/coldfusion-family.html'
 

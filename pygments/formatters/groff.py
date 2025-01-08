@@ -40,7 +40,7 @@ class GroffFormatter(Formatter):
 
     name = 'groff'
     aliases = ('groff','troff','roff')
-    filenames = []
+    filenames = ()
 
     def __init__(self, **options):
         Formatter.__init__(self, **options)

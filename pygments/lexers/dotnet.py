@@ -546,7 +546,7 @@ class GenericAspxLexer(RegexLexer):
     """
 
     name = 'aspx-gen'
-    filenames = []
+    filenames = ()
     mimetypes = ()
     url = 'https://dotnet.microsoft.com/en-us/apps/aspnet'
 

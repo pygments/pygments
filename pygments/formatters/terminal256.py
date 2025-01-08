@@ -130,7 +130,7 @@ class Terminal256Formatter(Formatter):
     """
     name = 'Terminal256'
     aliases = ('terminal256', 'console256', '256')
-    filenames = []
+    filenames = ()
 
     def __init__(self, **options):
         Formatter.__init__(self, **options)
@@ -306,7 +306,7 @@ class TerminalTrueColorFormatter(Terminal256Formatter):
     """
     name = 'TerminalTrueColor'
     aliases = ('terminal16m', 'console16m', '16m')
-    filenames = []
+    filenames = ()
 
     def _build_color_table(self):
         pass

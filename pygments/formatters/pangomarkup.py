@@ -34,7 +34,7 @@ class PangoMarkupFormatter(Formatter):
 
     name = 'Pango Markup'
     aliases = ('pango', 'pangomarkup')
-    filenames = []
+    filenames = ()
 
     def __init__(self, **options):
         Formatter.__init__(self, **options)

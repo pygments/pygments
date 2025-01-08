@@ -81,7 +81,7 @@ class MoinWikiLexer(RegexLexer):
 
     name = 'MoinMoin/Trac Wiki markup'
     aliases = ('trac-wiki', 'moin')
-    filenames = []
+    filenames = ()
     mimetypes = ['text/x-trac-wiki']
     url = 'https://moinmo.in'
     version_added = '0.7'
@@ -409,7 +409,7 @@ class MozPreprocHashLexer(RegexLexer):
     """
     name = 'mozhashpreproc'
     aliases = [name]
-    filenames = []
+    filenames = ()
     mimetypes = ()
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
     version_added = '2.0'
@@ -450,7 +450,7 @@ class MozPreprocPercentLexer(MozPreprocHashLexer):
     """
     name = 'mozpercentpreproc'
     aliases = [name]
-    filenames = []
+    filenames = ()
     mimetypes = ()
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
     version_added = '2.0'
@@ -909,7 +909,7 @@ class WikitextLexer(RegexLexer):
     name = 'Wikitext'
     url = 'https://www.mediawiki.org/wiki/Wikitext'
     aliases = ('wikitext', 'mediawiki')
-    filenames = []
+    filenames = ()
     mimetypes = ['text/x-wiki']
     version_added = '2.15'
     flags = re.MULTILINE

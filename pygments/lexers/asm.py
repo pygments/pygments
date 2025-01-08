@@ -520,7 +520,7 @@ class LlvmMirBodyLexer(RegexLexer):
     name = 'LLVM-MIR Body'
     url = 'https://llvm.org/docs/MIRLangRef.html'
     aliases = ('llvm-mir-body',)
-    filenames = []
+    filenames = ()
     mimetypes = ()
     version_added = '2.6'
 
