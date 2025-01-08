@@ -63,6 +63,7 @@ class GraphQLLexer(RegexLexer):
     filenames = ["*.graphql"]
     url = "https://graphql.org"
     version_added = '2.16'
+    _example = 'graphql/ex07_fragments2.graphql'
 
     tokens = {
         "ignored_tokens": [

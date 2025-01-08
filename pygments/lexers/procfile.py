@@ -26,6 +26,7 @@ class ProcfileLexer(RegexLexer):
     aliases = ['procfile']
     filenames = ['Procfile']
     version_added = '2.10'
+    _example = 'procfile/Procfile'
 
     tokens = {
         'root': [

@@ -29,6 +29,7 @@ class QlikLexer(RegexLexer):
     filenames = ["*.qvs", "*.qvw"]
     url = "https://qlik.com"
     version_added = '2.12'
+    _example = 'qlik/example.qvs'
 
     flags = re.IGNORECASE
 

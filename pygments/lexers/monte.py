@@ -84,6 +84,7 @@ class MonteLexer(RegexLexer):
     aliases = ['monte']
     filenames = ['*.mt']
     version_added = '2.2'
+    _example = 'monte/test.mt'
 
     tokens = {
         'root': [

@@ -31,6 +31,7 @@ class LimboLexer(RegexLexer):
     filenames = ['*.b']
     mimetypes = ['text/limbo']
     version_added = '2.0'
+    _example = 'limbo/limbo.b'
 
     tokens = {
         'whitespace': [

@@ -28,6 +28,7 @@ class NimrodLexer(RegexLexer):
     filenames = ['*.nim', '*.nimrod']
     mimetypes = ['text/x-nim']
     version_added = '1.5'
+    _example = 'nim/example.nim'
 
     flags = re.MULTILINE | re.IGNORECASE
 

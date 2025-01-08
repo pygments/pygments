@@ -25,6 +25,7 @@ class AutohotkeyLexer(RegexLexer):
     filenames = ['*.ahk', '*.ahkl']
     mimetypes = ['text/x-autohotkey']
     version_added = '1.4'
+    _example = 'ahk/demo.ahk'
 
     tokens = {
         'root': [
@@ -205,6 +206,7 @@ class AutoItLexer(RegexLexer):
     filenames = ['*.au3']
     mimetypes = ['text/x-autoit']
     version_added = '1.6'
+    _example = 'autoit/autoit_submit.au3'
 
     # Keywords, functions, macros from au3.keywords.properties
     # which can be found in AutoIt installed directory, e.g.

@@ -26,6 +26,7 @@ class VCTreeStatusLexer(RegexLexer):
     mimetypes = []
     url = ""
     version_added = '2.0'
+    _example = 'vctreestatus/vctreestatus_hg'
 
     tokens = {
         'root': [
@@ -52,6 +53,7 @@ class PyPyLogLexer(RegexLexer):
     mimetypes = ['application/x-pypylog']
     url = 'pypy.org'
     version_added = '1.5'
+    _example = 'pypylog/test.pypylog'
 
     tokens = {
         "root": [

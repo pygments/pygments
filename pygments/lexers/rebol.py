@@ -27,6 +27,7 @@ class RebolLexer(RegexLexer):
     mimetypes = ['text/x-rebol']
     url = 'http://www.rebol.com'
     version_added = '1.1'
+    _example = 'rebol/test.r3'
 
     flags = re.IGNORECASE | re.MULTILINE
 
@@ -248,6 +249,7 @@ class RedLexer(RegexLexer):
     mimetypes = ['text/x-red', 'text/x-red-system']
     url = 'https://www.red-lang.org'
     version_added = '2.0'
+    _example = 'red/example.red'
 
     flags = re.IGNORECASE | re.MULTILINE
 

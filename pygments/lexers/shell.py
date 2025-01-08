@@ -37,6 +37,7 @@ class BashLexer(RegexLexer):
     mimetypes = ['application/x-sh', 'application/x-shellscript', 'text/x-shellscript']
     url = 'https://en.wikipedia.org/wiki/Unix_shell'
     version_added = '0.6'
+    _example = 'bash/ltmain.sh'
 
     tokens = {
         'root': [
@@ -136,6 +137,7 @@ class SlurmBashLexer(BashLexer):
     filenames = ['*.sl']
     mimetypes = []
     version_added = '2.4'
+    _example = 'slurm/example.sl'
     EXTRA_KEYWORDS = {'srun'}
 
     def get_tokens_unprocessed(self, text):
@@ -232,7 +234,7 @@ class BashSessionLexer(ShellSessionBaseLexer):
     mimetypes = ['application/x-shell-session', 'application/x-sh-session']
     url = 'https://en.wikipedia.org/wiki/Unix_shell'
     version_added = '1.1'
-    _example = "console/example.sh-session"
+    _example = 'console/example.shell-session'
 
     _innerLexerCls = BashLexer
     _ps1rgx = re.compile(
@@ -251,6 +253,7 @@ class BatchLexer(RegexLexer):
     mimetypes = ['application/x-dos-batch']
     url = 'https://en.wikipedia.org/wiki/Batch_file'
     version_added = '0.7'
+    _example = 'bat/example.bat'
 
     flags = re.MULTILINE | re.IGNORECASE
 
@@ -543,7 +546,7 @@ class MSDOSSessionLexer(ShellSessionBaseLexer):
     mimetypes = []
     url = 'https://en.wikipedia.org/wiki/MS-DOS'
     version_added = '2.1'
-    _example = "doscon/session"
+    _example = 'doscon/session'
 
     _innerLexerCls = BatchLexer
     _ps1rgx = re.compile(r'^([^>]*>)(.*\n?)')
@@ -561,6 +564,7 @@ class TcshLexer(RegexLexer):
     mimetypes = ['application/x-csh']
     url = 'https://www.tcsh.org'
     version_added = '0.10'
+    _example = 'tcsh/test.tcsh'
 
     tokens = {
         'root': [
@@ -630,7 +634,7 @@ class TcshSessionLexer(ShellSessionBaseLexer):
     mimetypes = []
     url = 'https://www.tcsh.org'
     version_added = '2.1'
-    _example = "tcshcon/session"
+    _example = 'tcshcon/session'
 
     _innerLexerCls = TcshLexer
     _ps1rgx = re.compile(r'^([^>]+>)(.*\n?)')
@@ -647,6 +651,7 @@ class PowerShellLexer(RegexLexer):
     mimetypes = ['text/x-powershell']
     url = 'https://learn.microsoft.com/en-us/powershell'
     version_added = '1.5'
+    _example = 'powershell/test.ps1'
 
     flags = re.DOTALL | re.IGNORECASE | re.MULTILINE
 
@@ -763,7 +768,7 @@ class PowerShellSessionLexer(ShellSessionBaseLexer):
     mimetypes = []
     url = 'https://learn.microsoft.com/en-us/powershell'
     version_added = '2.1'
-    _example = "pwsh-session/session"
+    _example = 'pwsh-session/session'
 
     _innerLexerCls = PowerShellLexer
     _bare_continuation = True
@@ -782,6 +787,7 @@ class FishShellLexer(RegexLexer):
     mimetypes = ['application/x-fish']
     url = 'https://fishshell.com'
     version_added = '2.1'
+    _example = 'fish/example.fish'
 
     tokens = {
         'root': [
@@ -853,6 +859,7 @@ class ExeclineLexer(RegexLexer):
     filenames = ['*.exec']
     url = 'https://skarnet.org/software/execline'
     version_added = '2.7'
+    _example = 'execline/example.exec'
 
     tokens = {
         'root': [

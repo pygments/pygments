@@ -55,6 +55,7 @@ class MojoLexer(RegexLexer):
         "application/x-mojo",
     ]
     version_added = "2.18"
+    _example = 'mojo/sample.mojo'
 
     uni_name = f"[{uni.xid_start}][{uni.xid_continue}]*"
 

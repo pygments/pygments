@@ -24,6 +24,7 @@ class YangLexer(RegexLexer):
     filenames = ['*.yang']
     mimetypes = ['application/yang']
     version_added = '2.7'
+    _example = 'yang/test.yang'
 
     #Keywords from RFC7950 ; oriented at BNF style
     TOP_STMTS_KEYWORDS = ("module", "submodule")
