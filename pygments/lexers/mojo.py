@@ -47,14 +47,14 @@ class MojoLexer(RegexLexer):
     name = "Mojo"
     url = "https://docs.modular.com/mojo/"
     aliases = ("mojo", "🔥")
-    filenames = [
+    filenames = (
         "*.mojo",
         "*.🔥",
-    ]
-    mimetypes = [
+    )
+    mimetypes = (
         "text/x-mojo",
         "application/x-mojo",
-    ]
+    )
     version_added = "2.18"
 
     uni_name = f"[{uni.xid_start}][{uni.xid_continue}]*"

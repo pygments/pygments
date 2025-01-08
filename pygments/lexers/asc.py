@@ -23,12 +23,12 @@ class AscLexer(RegexLexer):
     """
     name = 'ASCII armored'
     aliases = ('asc', 'pem')
-    filenames = [
+    filenames = (
         '*.asc',  # PGP; *.gpg, *.pgp, and *.sig too, but those can be binary
         '*.pem',  # X.509; *.cer, *.crt, *.csr, and key etc too, but those can be binary
         'id_dsa', 'id_ecdsa', 'id_ecdsa_sk', 'id_ed25519', 'id_ed25519_sk',
         'id_rsa',  # SSH private keys
-    ]
+    )
     mimetypes = ('application/pgp-keys', 'application/pgp-encrypted',
                  'application/pgp-signature', 'application/pem-certificate-chain')
     url = 'https://www.openpgp.org'

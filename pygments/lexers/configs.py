@@ -51,9 +51,9 @@ class IniLexer(RegexLexer):
 
     name = 'INI'
     aliases = ('ini', 'cfg', 'dosini')
-    filenames = [
+    filenames = (
         '*.ini', '*.cfg', '*.inf', '.editorconfig',
-    ]
+    )
     mimetypes = ('text/x-ini', 'text/inf')
     url = 'https://en.wikipedia.org/wiki/INI_file'
     version_added = ''
@@ -136,10 +136,10 @@ class SystemdLexer(RegexLexer):
     name = 'Systemd'
     url = "https://www.freedesktop.org/software/systemd/man/systemd.syntax.html"
     aliases = ('systemd',)
-    filenames = [
+    filenames = (
         '*.service', '*.socket', '*.device', '*.mount', '*.automount',
         '*.swap', '*.target', '*.path', '*.timer', '*.slice', '*.scope',
-    ]
+    )
     version_added = '2.16'
 
     tokens: typing.ClassVar = {

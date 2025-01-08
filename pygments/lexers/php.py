@@ -34,8 +34,8 @@ class ZephirLexer(RegexLexer):
     filenames = ('*.zep',)
     version_added = '2.0'
 
-    zephir_keywords = ['fetch', 'echo', 'isset', 'empty']
-    zephir_type = ['bit', 'bits', 'string']
+    zephir_keywords = ('fetch', 'echo', 'isset', 'empty')
+    zephir_type = ('bit', 'bits', 'string')
 
     flags = re.DOTALL | re.MULTILINE
 

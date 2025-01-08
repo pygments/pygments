@@ -146,7 +146,7 @@ class SlurmBashLexer(BashLexer):
     filenames = ('*.sl',)
     mimetypes = ()
     version_added = '2.4'
-    EXTRA_KEYWORDS = {'srun'}
+    EXTRA_KEYWORDS: typing.ClassVar = {'srun'}
 
     def get_tokens_unprocessed(self, text):
         for index, token, value in BashLexer.get_tokens_unprocessed(self, text):

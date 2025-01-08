@@ -24,7 +24,7 @@ class SASLexer(RegexLexer):
     # Syntax from syntax/sas.vim by James Kidd <james.kidd@covance.com>
 
     name      = 'SAS'
-    aliases   = ['sas']
+    aliases   = ('sas',)
     filenames = ('*.SAS', '*.sas')
     mimetypes = ('text/x-sas', 'text/sas', 'application/x-sas')
     url = 'https://en.wikipedia.org/wiki/SAS_(software)'

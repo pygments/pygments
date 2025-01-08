@@ -30,12 +30,12 @@ class TalLexer(RegexLexer):
     url = 'https://wiki.xxiivv.com/site/uxntal.html'
     version_added = '2.12'
 
-    instructions = [
+    instructions = (
         'BRK', 'LIT', 'INC', 'POP', 'DUP', 'NIP', 'SWP', 'OVR', 'ROT',
         'EQU', 'NEQ', 'GTH', 'LTH', 'JMP', 'JCN', 'JSR', 'STH',
         'LDZ', 'STZ', 'LDR', 'STR', 'LDA', 'STA', 'DEI', 'DEO',
         'ADD', 'SUB', 'MUL', 'DIV', 'AND', 'ORA', 'EOR', 'SFT'
-    ]
+    )
 
     tokens: typing.ClassVar = {
         # the comment delimiters must not be adjacent to non-space characters.

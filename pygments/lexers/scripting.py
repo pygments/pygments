@@ -1328,7 +1328,7 @@ class EasytrieveLexer(RegexLexer):
     _DELIMITER_PATTERN_CAPTURE = '(' + _DELIMITER_PATTERN + ')'
     _NON_DELIMITER_OR_COMMENT_PATTERN = '[^' + _DELIMITERS_OR_COMENT + ']'
     _OPERATORS_PATTERN = '[.+\\-/=\\[\\](){}<>;,&%¬]'
-    _KEYWORDS = [
+    _KEYWORDS = (
         'AFTER-BREAK', 'AFTER-LINE', 'AFTER-SCREEN', 'AIM', 'AND', 'ATTR',
         'BEFORE', 'BEFORE-BREAK', 'BEFORE-LINE', 'BEFORE-SCREEN', 'BUSHU',
         'BY', 'CALL', 'CASE', 'CHECKPOINT', 'CHKP', 'CHKP-STATUS', 'CLEAR',
@@ -1361,7 +1361,7 @@ class EasytrieveLexer(RegexLexer):
         'TERM-ROWS', 'TERMINATION', 'TITLE', 'TO', 'TRANSFER', 'TRC',
         'UNIQUE', 'UNTIL', 'UPDATE', 'UPPERCASE', 'USER', 'USERID', 'VALUE',
         'VERIFY', 'W', 'WHEN', 'WHILE', 'WORK', 'WRITE', 'X', 'XDM', 'XRST'
-    ]
+    )
 
     tokens: typing.ClassVar = {
         'root': [

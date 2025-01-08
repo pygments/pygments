@@ -251,7 +251,7 @@ class PlPgsqlLexer(PostgresBase, RegexLexer):
         assert 0, "SQL keywords not found"
 
     # Add specific PL/pgSQL rules (before the SQL ones)
-    tokens['root'][:0] = [
+    tokens['root'][:0] = [  # noqa: RUF012
         (r'\%[a-z]\w*\b', Name.Builtin),     # actually, a datatype
         (r':=', Operator),
         (r'\<\<[a-z]\w*\>\>', Name.Label),

@@ -234,7 +234,7 @@ class TurtleLexer(RegexLexer):
                 '(?:(?:[' + PN_CHARS_GRP + '.:]|' + PLX + ')*(?:[' +
                 PN_CHARS_GRP + ':]|' + PLX + '))?')
 
-    patterns = {
+    patterns: typing.ClassVar = {
         'PNAME_NS': r'((?:[a-zA-Z][\w-]*)?\:)',  # Simplified character range
         'IRIREF': r'(<[^<>"{}|^`\\\x00-\x20]*>)'
     }

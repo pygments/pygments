@@ -23,10 +23,10 @@ class APLLexer(RegexLexer):
     name = 'APL'
     url = 'https://en.m.wikipedia.org/wiki/APL_(programming_language)'
     aliases = ('apl',)
-    filenames = [
+    filenames = (
         '*.apl', '*.aplf', '*.aplo', '*.apln',  
         '*.aplc', '*.apli', '*.dyalog',
-    ]
+    )
     version_added = '2.0'
 
     tokens: typing.ClassVar = {

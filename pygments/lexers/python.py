@@ -42,7 +42,7 @@ class PythonLexer(RegexLexer):
     name = 'Python'
     url = 'https://www.python.org'
     aliases = ('python', 'py', 'sage', 'python3', 'py3', 'bazel', 'starlark', 'pyi')
-    filenames = [
+    filenames = (
         '*.py',
         '*.pyw',
         # Type stubs
@@ -63,7 +63,7 @@ class PythonLexer(RegexLexer):
         'WORKSPACE',
         # Twisted Application infrastructure
         '*.tac',
-    ]
+    )
     mimetypes = ('text/x-python', 'application/x-python',
                  'text/x-python3', 'application/x-python3')
     version_added = '0.10'
@@ -1127,7 +1127,7 @@ class NumPyLexer(PythonLexer):
     mimetypes = ()
     filenames = ()
 
-    EXTRA_KEYWORDS = {
+    EXTRA_KEYWORDS: typing.ClassVar = {
         'abs', 'absolute', 'accumulate', 'add', 'alen', 'all', 'allclose',
         'alltrue', 'alterdot', 'amax', 'amin', 'angle', 'any', 'append',
         'apply_along_axis', 'apply_over_axes', 'arange', 'arccos', 'arccosh',
