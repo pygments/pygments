@@ -254,7 +254,7 @@ LEXERS = {
     'Json5Lexer': ('pygments.lexers.json5', 'JSON5', ('json5',), ('*.json5',), ()),
     'JsonBareObjectLexer': ('pygments.lexers.data', 'JSONBareObject', (), (), ()),
     'JsonLdLexer': ('pygments.lexers.data', 'JSON-LD', ('jsonld', 'json-ld'), ('*.jsonld',), ('application/ld+json',)),
-    'JsonLexer': ('pygments.lexers.data', 'JSON', ('json', 'json-object'), ('*.json', '*.jsonl', '*.ndjson', 'Pipfile.lock', '*.module'), ('application/json', 'application/json-object', 'application/x-ndjson', 'application/jsonl', 'application/json-seq')),
+    'JsonLexer': ('pygments.lexers.data', 'JSON', ('json', 'json-object'), ('*.json', '*.jsonl', '*.ndjson', 'Pipfile.lock', '*.module', '*.xc'), ('application/json', 'application/json-object', 'application/x-ndjson', 'application/jsonl', 'application/json-seq')),
     'JsonnetLexer': ('pygments.lexers.jsonnet', 'Jsonnet', ('jsonnet',), ('*.jsonnet', '*.libsonnet'), ()),
     'JspLexer': ('pygments.lexers.templates', 'Java Server Page', ('jsp',), ('*.jsp',), ('application/x-jsp',)),
     'JsxLexer': ('pygments.lexers.jsx', 'JSX', ('jsx', 'react'), ('*.jsx', '*.react'), ('text/jsx', 'text/typescript-jsx')),
