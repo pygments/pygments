@@ -89,8 +89,10 @@ class LuaLexer(RegexLexer):
             (r'[\[\]{}().,:;]+', Punctuation),
             (r'(and|or|not)\b', Operator.Word),
 
-            ('(break|do|else|elseif|end|for|if|in|repeat|return|then|until|'
-             r'while)\b', Keyword.Reserved),
+            (words([
+                'break', 'do', 'else', 'elseif', 'end', 'for', 'if', 'in',
+                'repeat', 'return', 'then', 'until', 'while'
+            ], suffix=r'\b'), Keyword.Reserved),
             (r'goto\b', Keyword.Reserved, 'goto'),
             (r'(local)\b', Keyword.Declaration),
             (r'(true|false|nil)\b', Keyword.Constant),
