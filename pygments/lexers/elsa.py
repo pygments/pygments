@@ -28,7 +28,7 @@ class ElsaLexer(RegexLexer):
     version_added = '2.15' # idk
     
 
-    # flags = re.NOFLAG 
+    flags = re.NOFLAG 
 
     tokens = {
         'root': [
@@ -49,6 +49,8 @@ class ElsaLexer(RegexLexer):
             
         ],
         'comment' : [
+              # if elsa begins nested multiline comment support, uncomment this
+        # doesn't matter tbh
             (r'\s+', Whitespace),
             (r'[^\s\{\}\-]+', Comment),
             (r"{-", Comment, '#push'),

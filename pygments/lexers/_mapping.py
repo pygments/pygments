@@ -152,6 +152,7 @@ LEXERS = {
     'ElixirLexer': ('pygments.lexers.erlang', 'Elixir', ('elixir', 'ex', 'exs'), ('*.ex', '*.eex', '*.exs', '*.leex'), ('text/x-elixir',)),
     'ElmLexer': ('pygments.lexers.elm', 'Elm', ('elm',), ('*.elm',), ('text/x-elm',)),
     'ElpiLexer': ('pygments.lexers.elpi', 'Elpi', ('elpi',), ('*.elpi',), ('text/x-elpi',)),
+    'ElsaLexer': ('pygments.lexers.elsa', 'Elsa', ('elsa',), ('*.lc',), ('text/x-elsa',)),
     'EmacsLispLexer': ('pygments.lexers.lisp', 'EmacsLisp', ('emacs-lisp', 'elisp', 'emacs'), ('*.el',), ('text/x-elisp', 'application/x-elisp')),
     'EmailLexer': ('pygments.lexers.email', 'E-mail', ('email', 'eml'), ('*.eml',), ('message/rfc822',)),
     'ErbLexer': ('pygments.lexers.templates', 'ERB', ('erb',), (), ('application/x-ruby-templating',)),
