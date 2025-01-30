@@ -1,0 +1,262 @@
+Unique  (cost=49756390.50..52412720.47 rows=265632997 width=44) (actual rows=16963 loops=1)
+  Buffers: shared hit=484 read=869278 dirtied=782137 written=782104, temp read=1864338 written=1864338
+  ->  Sort  (cost=49756390.50..50420472.99 rows=265632997 width=44) (actual rows=389203091 loops=1)
+          Sort Key: four.india, four.quebec, four.romeo
+          Sort Method: external merge  Disk: 14914368kB
+        Buffers: shared hit=484 read=869278 dirtied=782137 written=782104, temp read=1864338 written=1864338
+        ->  Append  (cost=1074.72..7801815.20 rows=265632997 width=44) (actual rows=389203091 loops=1)
+              Buffers: shared hit=475 read=869278 dirtied=782137 written=782104
+              ->  Hash Join  (cost=1074.72..5144647.71 rows=265632995 width=28) (actual rows=389203089 loops=1)
+                      Hash Cond: (mike.romeo = four.romeo)
+                    Buffers: shared read=869212 dirtied=782137 written=782104
+                    ->  Seq Scan on mike  (cost=0.00..1630351.96 rows=76168096 width=4) (actual rows=76329862 loops=1)
+                          Buffers: shared read=868671 dirtied=782137 written=782104
+                    ->  Hash  (cost=778.21..778.21 rows=23721 width=28) (actual rows=23752 loops=1)
+                            Buckets: 32768  Batches: 1  Memory Usage: 1676kB
+                          Buffers: shared read=541
+                          ->  Seq Scan on four  (cost=0.00..778.21 rows=23721 width=28) (actual rows=23753 loops=1)
+                                Buffers: shared read=541
+              ->  Seq Scan on four papa  (cost=0.00..837.51 rows=2 width=28) (actual rows=2 loops=1)
+                      Filter: ((quebec)::text = 'echo'::text)
+                      Rows Removed by Filter: 23751
+                    Buffers: shared hit=475 read=66
+
+Unique  (cost=35743307.84..37168307.40 rows=142499956 width=48) (actual rows=8336122 loops=1)
+  Buffers: shared hit=10664 read=1223591, temp read=1439499 written=1032459
+  ->  Sort  (cost=35743307.84..36099557.73 rows=142499956 width=48) (actual rows=131104186 loops=1)
+          Sort Key: lima.tango_xray, lima.quebec, lima.xray
+          Sort Method: external merge  Disk: 5874440kB
+        Buffers: shared hit=10664 read=1223591, temp read=1439499 written=1032459
+        ->  Append  (cost=9917231.73..13876757.50 rows=142499956 width=48) (actual rows=131104186 loops=1)
+              Buffers: shared hit=10664 read=1223591, temp read=705180 written=298140
+              ->  Merge Join  (cost=9917231.73..12113535.56 rows=142499955 width=32) (actual rows=131104184 loops=1)
+                      Merge Cond: (lima.xray = tango_mike.xray)
+                    Buffers: shared read=911596, temp read=705180 written=298140
+                    ->  Sort  (cost=1855656.88..1885891.23 rows=12093737 width=32) (actual rows=12125134 loops=1)
+                            Sort Key: lima.xray
+                            Sort Method: quicksort  Memory: 1340493kB
+                          Buffers: shared read=312027
+                          ->  Seq Scan on lima  (cost=0.00..432964.37 rows=12093737 width=32) (actual rows=12125134 loops=1)
+                                Buffers: shared read=312027
+                    ->  Sort  (cost=8060359.88..8195110.08 rows=53900080 width=8) (actual rows=131104540 loops=1)
+                            Sort Key: tango_mike.xray
+                            Sort Method: external sort  Disk: 1192552kB
+                          Buffers: shared read=599569, temp read=501699 written=298140
+                          ->  Seq Scan on tango_mike  (cost=0.00..1138569.80 rows=53900080 width=8) (actual rows=55453373 loops=1)
+                                Buffers: shared read=599569
+              ->  Gather  (cost=1000.00..338222.39 rows=1 width=32) (actual rows=2 loops=1)
+                      Workers Planned: 6
+                      Workers Launched: 6
+                    Buffers: shared hit=10664 read=311995
+                    ->  Parallel Seq Scan on lima golf  (cost=0.00..337222.29 rows=1 width=32) (actual rows=0 loops=7)
+                            Filter: ((quebec)::text = 'echo'::text)
+                            Rows Removed by Filter: 1732162
+                          Buffers: shared hit=122 read=311995
+Planning time: 2.748 ms
+Query Identifier: 3091347420220593938
+
+Group  (cost=4164445.30..4175997.52 rows=385074 width=264) (actual time=206821.675..206875.256 rows=4486 loops=1)
+    Group Key: echo_whiskey0.kilo_bravo, [...]
+  Buffers: shared hit=1390631 read=993857 written=40265, local hit=26
+  I/O Timings: read=1567607.774 write=488.689
+  ->  Sort  (cost=4164445.30..4165407.98 rows=385074 width=264) (actual time=206821.611..206872.674 rows=4669 loops=1)
+          Sort Key: echo_whiskey0.kilo_bravo,[...]
+          Sort Method: quicksort  Memory: 1737kB
+        Buffers: shared hit=1390631 read=993857 written=40265, local hit=26
+        I/O Timings: read=1567607.774 write=488.689
+        ->  Hash Semi Join  (cost=61200.47..4128720.49 rows=385074 width=264) (actual time=2241.552..206857.688 rows=4669 loops=1)
+                Hash Cond: ((echo_whiskey0.papa)::text = (golf.hotel)::text)
+              Buffers: shared hit=1390628 read=993857 written=40265, local hit=26
+              I/O Timings: read=1567607.774 write=488.689
+              ->  Gather  (cost=61043.48..4123268.73 rows=385074 width=232) (actual time=1487.139..206127.826 rows=380948 loops=1)
+                      Workers Planned: 7
+                      Workers Launched: 7
+                    Buffers: shared hit=1390628 read=993857 written=40265
+                    I/O Timings: read=1567607.774 write=488.689
+                    ->  Parallel Hash Join  (cost=60043.48..4083761.33 rows=55011 width=232) (actual time=1479.129..206052.797 rows=47618 loops=8)
+                            Hash Cond: (echo_whiskey0.victor_romeo = zulu_alpha1.delta)
+                          Buffers: shared hit=1390628 read=993857 written=40265
+                          I/O Timings: read=1567607.774 write=488.689
+                          ->  Parallel Hash Join  (cost=58129.39..4081317.34 rows=55011 width=202) (actual time=882.995..205409.189 rows=47618 loops=8)
+                                  Hash Cond: (echo_whiskey0.romeo = zulu_alpha1kilo_oscar1.delta)
+                                Buffers: shared hit=1390051 read=992531 written=40265
+                                I/O Timings: read=1567535.726 write=488.689
+                                ->  Nested Loop  (cost=56215.30..4078873.35 rows=55011 width=172) (actual time=880.305..205357.815 rows=47618 loops=8)
+                                      Buffers: shared hit=1388344 read=992531 written=40265
+                                      I/O Timings: read=1567535.726 write=488.689
+                                      ->  Hash Join  (cost=56214.87..3978622.48 rows=55011 width=176) (actual time=841.911..65184.969 rows=47618 loops=8)
+                                              Hash Cond: (echo_whiskey0.charlie_india = whiskey_delta0.charlie_india)
+                                            Buffers: shared hit=2842 read=854234 written=34524
+                                            I/O Timings: read=499073.802 write=421.296
+                                            ->  Hash Join  (cost=55668.42..3977931.56 rows=55011 width=132) (actual time=789.705..65085.512 rows=47618 loops=8)
+                                                    Hash Cond: (echo_whiskey0.whiskey_six = juliet01.whiskey_six)
+                                                    ->  Parallel Bitmap Heap Scan on p_fait_radio_qdoc p_fait_radio_qdoc0
+                                                  Buffers: shared hit=357 read=853879 written=34524
+                                                  I/O Timings: read=499028.808 write=421.296
+                                                  ->  (cost=55614.03..3976535.39 rows=211114 width=104)  (cost=0.00..0.00 rows=0 width=0) (actual time=789.126..64998.813 rows=188462 loops=8)
+                                                          Recheck Cond: ((kilo_bravo >= 'two'::date) AND (kilo_bravo < 'tango'::date))
+                                                          Filter: (((charlie_oscar)::text = 'xray'::text) AND ((six_foxtrot)::text = 'november'::text))
+                                                          Rows Removed by Filter: 140321
+                                                          Heap Blocks: exact=106838
+                                                          ->  Bitmap Index Scan on p_fait_radio_qdoc_dt_examen_idx
+                                                        Buffers: shared hit=8 read=853879 written=34524
+                                                        I/O Timings: read=499028.808 write=421.296
+                                                        ->  (cost=0.00..55244.59 rows=2632802 width=0)  (cost=0.00..0.00 rows=0 width=0) (actual time=538.316..538.325 rows=2630265 loops=1)
+                                                                Index Cond: ((kilo_bravo >= 'two'::date) AND (kilo_bravo < 'tango'::date))
+                                                              Buffers: shared hit=3 read=7191
+                                                              I/O Timings: read=87.617
+                                                  ->  Hash  (cost=51.99..51.99 rows=191 width=36) (actual time=0.526..0.532 rows=191 loops=8)
+                                                          Buckets: 1024  Batches: 1  Memory Usage: 23kB
+                                                        Buffers: shared hit=349
+                                                        ->  Seq Scan on juliet yankee  (cost=0.00..51.99 rows=191 width=36) (actual time=0.070..0.492 rows=191 loops=8)
+                                                                Filter: ((victor_tango)::text = ANY ('{"seven_tango",[...]))
+                                                                Rows Removed by Filter: 542
+                                                              Buffers: shared hit=349
+                                            ->  Hash  (cost=440.09..440.09 rows=8509 width=52) (actual time=52.166..52.167 rows=8509 loops=8)
+                                                    Buckets: 16384  Batches: 1  Memory Usage: 842kB
+                                                  Buffers: shared hit=2485 read=355
+                                                  I/O Timings: read=44.994
+                                                  ->  Seq Scan on whiskey_delta kilo_six  (cost=0.00..440.09 rows=8509 width=52) (actual time=24.144..50.757 rows=8509 loops=8)
+                                                        Buffers: shared hit=2485 read=355
+                                                        I/O Timings: read=44.994
+                                      ->  Index Only Scan using echo_mike on seven_delta six_yankee  (cost=0.43..1.82 rows=1 width=4) (actual time=2.942..2.942 rows=1 loops=380948)
+                                              Index Cond: (three = echo_whiskey0.three)
+                                              Heap Fetches: 380948
+                                            Buffers: shared hit=1385502 read=138297 written=5741
+                                            I/O Timings: read=1068461.924 write=67.392
+                                ->  Parallel Hash  (cost=1799.04..1799.04 rows=9204 width=38) (actual time=2.613..2.614 rows=1956 loops=8)
+                                        Buckets: 16384  Batches: 1  Memory Usage: 1376kB
+                                      Buffers: shared hit=1707
+                                      ->  Parallel Seq Scan on oscar zulu_hotel  (cost=0.00..1799.04 rows=9204 width=38) (actual time=0.019..1.744 rows=1956 loops=8)
+                                            Buffers: shared hit=1707
+                          ->  Parallel Hash  (cost=1799.04..1799.04 rows=9204 width=38) (actual time=595.923..595.925 rows=1956 loops=8)
+                                  Buckets: 16384  Batches: 1  Memory Usage: 1504kB
+                                Buffers: shared hit=381 read=1326
+                                I/O Timings: read=72.048
+                                ->  Parallel Seq Scan on oscar quebec  (cost=0.00..1799.04 rows=9204 width=38) (actual time=485.918..495.799 rows=1956 loops=8)
+                                      Buffers: shared hit=381 read=1326
+                                      I/O Timings: read=72.048
+              ->  Hash  (cost=84.22..84.22 rows=5822 width=8) (actual time=611.099..611.105 rows=5822 loops=1)
+                      Buckets: 8192  Batches: 1  Memory Usage: 292kB
+                    Buffers: local hit=26
+                    ->  Seq Scan on golf  (cost=0.00..84.22 rows=5822 width=8) (actual time=0.010..0.317 rows=5822 loops=1)
+                          Buffers: local hit=26
+Planning time: 2.748 ms
+Query Identifier: -3091347420220593938
+JIT:
+  Functions: 361
+  Options: Expressions true, Deforming true, Optimization true, Inlining true
+  Timing: Inlining 289.335 ms, Optimization 2473.925 ms, Total 4530.841 ms, Generation 43.386 ms, Emission 1724.195 ms
+Execution time: 206882.405 ms
+
+Sort  (cost=4832642.89..4832642.89 rows=1 width=1312) (actual rows=453730 loops=1)
+    Sort Key: zulu1.seven
+    Sort Method: external merge  Disk: 257936kB
+  Buffers: shared hit=1783366 read=1426731 dirtied=4, temp read=323359 written=323429
+  I/O Timings: shared/local read=2032079.939, temp read=2193.583 write=5151.457
+  ->  Nested Loop Left Join  (cost=3051132.14..4832642.88 rows=1 width=1312) (actual rows=453730 loops=1)
+          ->  Index Scan using ix_id on claim claim_1  (cost=0.56..2.29 rows=1 width=717) (actual rows=1 loops=414998)
+        Buffers: shared hit=1783363 read=1426731 dirtied=4, temp read=258880 written=258880
+        I/O Timings: shared/local read=2032079.939, temp read=2044.248 write=4894.951
+        ->  Hash Right Join  (cost=3051131.58..4832640.58 rows=1 width=611) (actual rows=414998 loops=1)
+                Hash Cond: (papa.golf = six.quebec)
+                Filter: (papa.quebec five NULL)
+                Rows Removed by Filter: 13785035
+                Index Cond: (golf = six.quebec)
+              Buffers: shared hit=1694786 read=410168 dirtied=4
+              I/O Timings: shared/local read=1417404.480
+              ->  Seq Scan on papa  (cost=0.00..440581.94 rows=14974120 width=32) (actual rows=15046540 loops=1)
+                      Filter: ((tango_zulu)::text <> november ('two'::text[]))
+                      Rows Removed by Filter: 1492077
+                    Buffers: shared hit=15120 read=198856
+                    I/O Timings: shared/local read=109734.296
+              ->  Hash  (cost=1778734.66..1778734.66 rows=14040233 width=611) (actual rows=14200033 loops=1)
+                      Buckets: 16384  Batches: 2048  Memory Usage: 851kB
+                    Buffers: shared hit=73454 read=817707, temp written=160348
+                    I/O Timings: shared/local read=504941.162, temp write=3061.348
+                    ->  Seq Scan on six  (cost=0.00..1778734.66 rows=14040233 width=611) (actual rows=14200033 loops=1)
+                            Filter: (tango_sierra <> 0)
+                            Rows Removed by Filter: 57717321
+                          Buffers: shared hit=73454 read=817707
+                          I/O Timings: shared/local read=504941.162
+
+Nested Loop Left Join  (cost=72931.79..83622.93 rows=1 width=832) (actual time=968.461..968.468 rows=0 loops=1)
+  Buffers: shared hit=489178, temp read=2679 written=4448
+  I/O Timings: temp read=5.360 write=22.675
+  ->  Nested Loop  (cost=72931.50..83620.42 rows=1 width=279) (actual time=968.460..968.467 rows=0 loops=1)
+        Buffers: shared hit=489178, temp read=2679 written=4448
+        I/O Timings: temp read=5.360 write=22.675
+        ->  Nested Loop  (cost=72931.08..83617.78 rows=1 width=62) (actual time=968.460..968.466 rows=0 loops=1)
+              Buffers: shared hit=489178, temp read=2679 written=4448
+              I/O Timings: temp read=5.360 write=22.675
+              ->  Subquery Scan on kilo_xray  (cost=72930.65..83604.44 rows=5 width=58) (actual time=478.276..651.469 rows=110441 loops=1)
+                      Filter: ((kilo_xray.whiskey_echo five_romeo NULL) AND (kilo_xray.six five_romeo NULL))
+                      Rows Removed by Filter: 33333
+                    Buffers: shared hit=47414, temp read=2679 written=4448
+                    I/O Timings: temp read=5.360 write=22.675
+                    ->  WindowAgg  (cost=72930.65..81777.91 rows=182653 width=138) (actual time=478.275..637.849 rows=143774 loops=1)
+                          Buffers: shared hit=47414, temp read=2679 written=4448
+                          I/O Timings: temp read=5.360 write=22.675
+                          ->  HashAggregate  (cost=72930.65..79038.11 rows=182653 width=73) (actual time=478.269..577.468 rows=143774 loops=1)
+                                  Group Key: five_hotel.quebec_quebec, quebec_three.charlie_india, charlie_oscar.seven, lima_quebec.whiskey_echo, charlie_oscar.oscar_charlie, charlie_oscar.victor_foxtrot, charlie_oscar.uniform, charlie_oscar.six
+                                  Planned Partitions: 16  Batches: 17  Memory Usage: 2649kB  Disk Usage: 14992kB
+                                Buffers: shared hit=47414, temp read=2679 written=4448
+                                I/O Timings: temp read=5.360 write=22.675
+                                ->  Hash Join  (cost=44734.11..60458.88 rows=182653 width=69) (actual time=124.039..380.606 rows=207581 loops=1)
+                                        Hash Cond: ((quebec_three.quebec_quebec)::text = (five_hotel.quebec_quebec)::text)
+                                      Buffers: shared hit=47414, temp read=1423 written=1423
+                                      I/O Timings: temp read=3.250 write=8.407
+                                      ->  Hash Left Join  (cost=44729.29..59958.35 rows=182653 width=69) (actual time=123.980..331.544 rows=207581 loops=1)
+                                              Hash Cond: (quebec_three.charlie_india = charlie_oscar.charlie_india)
+                                            Buffers: shared hit=47412, temp read=1423 written=1423
+                                            I/O Timings: temp read=3.250 write=8.407
+                                            ->  Hash Right Join  (cost=42757.12..54734.13 rows=182653 width=12) (actual time=98.360..222.977 rows=207581 loops=1)
+                                                    Hash Cond: (victor_romeo.foxtrot = quebec_three.charlie_india)
+                                                  Buffers: shared hit=46648, temp read=834 written=834
+                                                  I/O Timings: temp read=1.939 write=5.097
+                                                  ->  Seq Scan on india_november victor_romeo  (cost=0.00..9508.53 rows=182653 width=8) (actual time=0.009..18.253 rows=192153 loops=1)
+                                                        Buffers: shared hit=7682
+                                                  ->  Hash  (cost=40401.61..40401.61 rows=143561 width=8) (actual time=98.244..98.245 rows=143774 loops=1)
+                                                          Buckets: 65536  Batches: 4  Memory Usage: 1956kB
+                                                        Buffers: shared hit=38966, temp written=379
+                                                        I/O Timings: temp write=2.594
+                                                        ->  Seq Scan on alpha quebec_three  (cost=0.00..40401.61 rows=143561 width=8) (actual time=0.004..64.676 rows=143774 loops=1)
+                                                              Buffers: shared hit=38966
+                                            ->  Hash  (cost=1196.51..1196.51 rows=33333 width=61) (actual time=25.472..25.473 rows=33333 loops=1)
+                                                    Buckets: 32768  Batches: 2  Memory Usage: 1668kB
+                                                  Buffers: shared hit=764, temp written=151
+                                                  I/O Timings: temp write=0.860
+                                                  ->  Hash Left Join  (cost=18.91..1196.51 rows=33333 width=61) (actual time=0.194..14.627 rows=33333 loops=1)
+                                                          Hash Cond: (charlie_oscar.whiskey_echo = lima_quebec.whiskey_echo)
+                                                        Buffers: shared hit=764
+                                                        ->  Seq Scan on echo_victor charlie_oscar  (cost=0.00..1089.33 rows=33333 width=45) (actual time=0.007..6.582 rows=33333 loops=1)
+                                                              Buffers: shared hit=756
+                                                        ->  Hash  (cost=12.85..12.85 rows=485 width=20) (actual time=0.177..0.178 rows=485 loops=1)
+                                                                Buckets: 1024  Batches: 1  Memory Usage: 33kB
+                                                              Buffers: shared hit=8
+                                                              ->  Seq Scan on yankee_sierra lima_quebec  (cost=0.00..12.85 rows=485 width=20) (actual time=0.005..0.081 rows=485 loops=1)
+                                                                    Buffers: shared hit=8
+                                      ->  Hash  (cost=3.25..3.25 rows=125 width=4) (actual time=0.053..0.054 rows=144 loops=1)
+                                              Buckets: 1024  Batches: 1  Memory Usage: 14kB
+                                            Buffers: shared hit=2
+                                            ->  Seq Scan on charlie_six five_hotel  (cost=0.00..3.25 rows=125 width=4) (actual time=0.007..0.025 rows=144 loops=1)
+                                                  Buffers: shared hit=2
+              ->  Memoize  (cost=0.43..2.66 rows=1 width=4) (actual time=0.003..0.003 rows=0 loops=110441)
+                      Cache Key: scan_job_assets_provider.asset_id
+                      Cache Mode: logical
+                      Hits: 0  Misses: 110441  Evictions: 70987  Overflows: 0  Memory Usage: 2621kB
+                    Buffers: shared hit=441764
+                    ->  Index Scan using kilo_whiskey on alpha  (cost=0.42..2.65 rows=1 width=4) (actual time=0.002..0.002 rows=0 loops=110441)
+                            Index Cond: (charlie_india = kilo_xray.charlie_india)
+                            Filter: ((tango five_romeo NULL) AND (NOT oscar_romeo) AND mike AND (NOT yankee_yankee) AND (golf_six <> 'lima_hotel'::golf_six) AND (romeo_foxtrot <> 'sierra'::whiskey_romeo) AND ((quebec_quebec)::text = 'golf_zulu'::text))
+                            Rows Removed by Filter: 1
+                          Buffers: shared hit=441764
+        ->  Index Scan using kilo_whiskey on alpha three  (cost=0.42..2.64 rows=1 width=221) (never executed)
+                Index Cond: (charlie_india = alpha.charlie_india)
+  ->  Index Scan using romeo_romeo on echo_three india_quebec  (cost=0.29..2.51 rows=1 width=553) (never executed)
+          Index Cond: (oscar_charlie = kilo_xray.oscar_charlie)
+Planning:
+  Buffers: shared hit=88
+Planning time: 1.589 ms
+Execution time: 970.282 ms
+

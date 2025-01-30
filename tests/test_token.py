@@ -2,7 +2,7 @@
     Test suite for the token module
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -40,7 +40,7 @@ def test_sanity_check():
 
     for k, v in t.items():
         if len(v) > 1:
-            pytest.fail("%r has more than one key: %r" % (k, v))
+            pytest.fail(f"{k!r} has more than one key: {v!r}")
 
 
 def test_copying():

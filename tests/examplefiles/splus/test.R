@@ -137,6 +137,8 @@ foo <<- 2 + 2
 2 + 2 ->> foo
 base:::sum
 base::sum
+## Forward pipe operator (since R version 4.1)
+mtcars |> head()
 
 ## Strings
 foo <- "hello, world!"
@@ -153,7 +155,7 @@ world!'
 ## Backtick strings
 `foo123 +!"bar'baz` <- 2 + 2
 
-## Builtin funcitons
+## Builtin functions
 file.create()
 gamma()
 grep()

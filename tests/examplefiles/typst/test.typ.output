@@ -7,7 +7,8 @@
 ' '           Text.Whitespace
 'text'        Name.Function
 '('           Punctuation
-'navy)'       Text
+'navy'        Name.Variable
+')'           Punctuation
 '\n'          Text.Whitespace
 
 '#show'       Keyword.Declaration
@@ -35,13 +36,13 @@
 ':'           Punctuation
 ' '           Text.Whitespace
 '"Palatino"'  Literal.String.Double
-','           Operator
+','           Punctuation
 ' '           Text.Whitespace
 'hyphenate'   Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
 'false'       Keyword.Constant
-','           Operator
+','           Punctuation
 ' '           Text.Whitespace
 'lang'        Name.Variable
 ':'           Punctuation
@@ -63,7 +64,7 @@
 ' '           Text.Whitespace
 '1.5'         Literal.Number
 'cm'          Keyword.Reserved
-','           Operator
+','           Punctuation
 ' '           Text.Whitespace
 'y'           Name.Variable
 ':'           Punctuation
@@ -71,7 +72,7 @@
 '2.5'         Literal.Number
 'cm'          Keyword.Reserved
 ')'           Punctuation
-','           Operator
+','           Punctuation
 ' '           Text.Whitespace
 'numbering'   Name.Variable
 ':'           Punctuation
@@ -84,26 +85,50 @@
 ' '           Text.Whitespace
 'section'     Name.Function
 '('           Punctuation
-'title, content) = grid(' Text
+'title'       Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'content'     Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'grid'        Name.Function
+'('           Punctuation
+'\n      '    Text.Whitespace
+'columns'     Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'55'          Literal.Number
+'pt'          Keyword.Reserved
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number
+'fr'          Keyword.Reserved
+')'           Punctuation
+','           Punctuation
+'\n      '    Text.Whitespace
+'text'        Name.Function
+'('           Punctuation
+'darkgrey'    Name.Variable
+')'           Punctuation
+'['           Punctuation
+'#date'       Name.Variable
+']'           Punctuation
+','           Punctuation
+'\n      '    Text.Whitespace
+'h'           Name.Function
+'('           Punctuation
+'1'           Literal.Number
+'fr'          Keyword.Reserved
+')'           Punctuation
+','           Punctuation
+'\n      '    Text.Whitespace
+'content'     Name.Variable
 '\n'          Text.Whitespace
 
-'      '      Text.Whitespace
-'columns: (55pt, 1fr),' Text
-'\n'          Text.Whitespace
-
-'      '      Text.Whitespace
-'text(darkgrey)[#date]' Text
-'\n'          Text.Whitespace
-
-'      '      Text.Whitespace
-'h(1fr)'      Text
-'\n'          Text.Whitespace
-
-'      '      Text.Whitespace
-'content'     Text
-'\n'          Text.Whitespace
-
-')'           Text
+')'           Punctuation
 '\n'          Text.Whitespace
 
 '\n== Title'  Generic.Heading
@@ -117,10 +142,23 @@
 
 '#text'       Name.Function
 '('           Punctuation
-'darkgrey)[ | ] #link("' Text
-'https'       Name.Variable
-':'           Punctuation
-'//example.com")[super example]' Comment.Single
+'darkgrey'    Name.Variable
+')'           Punctuation
+'['           Punctuation
+' '           Text.Whitespace
+'|'           Text
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'#link'       Name.Function
+'('           Punctuation
+'"https://example.com"' Literal.String.Double
+')'           Punctuation
+'['           Punctuation
+'super'       Text
+' '           Text.Whitespace
+'example'     Text
+']'           Punctuation
 '\n'          Text.Whitespace
 
 '#line'       Name.Function
@@ -130,7 +168,7 @@
 ' '           Text.Whitespace
 '100'         Literal.Number
 '%'           Keyword.Reserved
-','           Operator
+','           Punctuation
 ' '           Text.Whitespace
 'stroke'      Name.Variable
 ':'           Punctuation
@@ -143,35 +181,79 @@
 '#section'    Name.Function
 '('           Punctuation
 '['           Punctuation
-'another \\ test], [' Text
+'another'     Text
+' '           Text.Whitespace
+'\\'          Punctuation
+' '           Text.Whitespace
+'test'        Text
+']'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '*#link("https://github.com/typst/typst")[typst]*' Generic.Strong
 ' '           Text.Whitespace
-'--- bob #section_date([2022 -- present]) \\' Text
+'---'         Punctuation
+' '           Text.Whitespace
+'bob'         Text
+' '           Text.Whitespace
+'#section_date' Name.Function
+'('           Punctuation
+'['           Punctuation
+'2022'        Text
+' '           Text.Whitespace
+'--'          Punctuation
+' '           Text.Whitespace
+'present'     Text
+']'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'\\'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'some text'   Text
+'some'        Text
+' '           Text.Whitespace
+'text'        Text
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'/'           Punctuation
+' '           Text.Whitespace
+'Itemone'     Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'--'          Punctuation
+' '           Text.Whitespace
+'first'       Text
+' '           Text.Whitespace
+'item'        Text
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 ']'           Punctuation
 '\n'          Text.Whitespace
 
-'  / '        Punctuation
-'Itemone'     Name.Variable
-':'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Another'     Text
 ' '           Text.Whitespace
-'-- first item' Text
-'\n'          Text.Whitespace
-
-')'           Text
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'Another link, with http instead of https: ' Text
+'link,'       Text
+' '           Text.Whitespace
+'with'        Text
+' '           Text.Whitespace
+'http'        Text
+' '           Text.Whitespace
+'instead'     Text
+' '           Text.Whitespace
+'of'          Text
+' '           Text.Whitespace
+'https:'      Text
+' '           Text.Whitespace
 'http://example.com' Generic.Emph
 '\n'          Text.Whitespace

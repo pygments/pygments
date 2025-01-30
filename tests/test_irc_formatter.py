@@ -2,7 +2,7 @@
     Pygments IRC formatter tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -26,5 +26,5 @@ def test_linecount_output():
     houtfile = StringIO()
     hfmt.format(newlinetokensource, houtfile)
 
-    expected_out = '0001: \x0302from\x03 \\\n0002: \\\n0003:     \x1d\x0310os\x03\x1d \x0302import\x03  path\n0004: '
+    expected_out = '0001: \x0302from\x03\x0315 \\\x03\n0002: \x0315\\\x03\n0003: \x0315    \x03\x1d\x0310os\x03\x1d\x0315 \x03\x0302import\x03  path\n0004: '
     assert expected_out == houtfile.getvalue()

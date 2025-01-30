@@ -230,7 +230,7 @@ man_pages = [
 # Example configuration for intersphinx: refer to the Python standard library.
 #intersphinx_mapping = {'http://docs.python.org/': None}
 
-rst_prolog = '.. |language_count| replace:: {}'.format(len(list(pygments.lexers.get_all_lexers())))
+rst_prolog = f'.. |language_count| replace:: {len(list(pygments.lexers.get_all_lexers()))}'
 
 def pg_context(app, pagename, templatename, ctx, event_arg):
     ctx['demo_active'] = bool(os.environ.get('WEBSITE_BUILD'))
@@ -284,7 +284,7 @@ def source_read(app, docname, source):
 
         def linkify(match):
             url = 'https://github.com/pygments/pygments/issues/' + match[1]
-            return '`{} <{}>`_'.format(match[0], url)
+            return f'`{match[0]} <{url}>`_'
 
         linkified = re.sub(r'(?:PR)?#([0-9]+)\b', linkify, changelog[:idx])
         source[0] = linkified + changelog[idx:]

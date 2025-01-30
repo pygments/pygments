@@ -2,7 +2,7 @@
     Pygments terminal formatter tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -61,6 +61,7 @@ class MyStyle(Style):
         Token.String:     'ansibrightblue bg:ansired',
         Token.Number:     'ansibrightgreen bg:ansigreen',
         Token.Number.Hex: 'ansigreen bg:ansibrightred',
+        Token.Other:      '#3366AA'
     }
 
 
@@ -76,7 +77,8 @@ async def function(a,b,c, *d, **kwarg:Bool)->Bool:
 
 def test_style_html():
     style = HtmlFormatter(style=MyStyle).get_style_defs()
-    assert '#555555' in style, "ansigray for comment not html css style"
+    assert '#555' in style, "ansigray for comment not html css style"
+    assert '36A' in style, "6-character style was not shortened"
 
 
 def test_others_work():

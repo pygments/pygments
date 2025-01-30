@@ -21,7 +21,7 @@
 
     .. _Markdown: https://pypi.python.org/pypi/Markdown
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -56,7 +56,7 @@ class CodeBlockPreprocessor(Preprocessor):
                 lexer = TextLexer()
             code = highlight(m.group(2), lexer, self.formatter)
             code = code.replace('\n\n', '\n&nbsp;\n').replace('\n', '<br />')
-            return '\n\n<div class="code">%s</div>\n\n' % code
+            return f'\n\n<div class="code">{code}</div>\n\n'
         joined_lines = "\n".join(lines)
         joined_lines = self.pattern.sub(repl, joined_lines)
         return joined_lines.split("\n")

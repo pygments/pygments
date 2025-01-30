@@ -1,0 +1,69 @@
+---input---
+#my-function(
+  ..spread,
+  named-param: n,
+  next: (
+    inner: (
+      a: "foo bar",
+      b: none,
+      c: 40,
+    )
+  )
+)Regular Text
+= A Heading
+
+---tokens---
+'#my-function' Name.Function
+'('           Punctuation
+'\n  '        Text.Whitespace
+'..'          Punctuation
+'spread'      Name.Variable
+','           Punctuation
+'\n  '        Text.Whitespace
+'named-param' Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'n'           Name.Variable
+','           Punctuation
+'\n  '        Text.Whitespace
+'next'        Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'\n    '      Text.Whitespace
+'inner'       Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'\n      '    Text.Whitespace
+'a'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'"foo bar"'   Literal.String.Double
+','           Punctuation
+'\n      '    Text.Whitespace
+'b'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'none'        Keyword.Constant
+','           Punctuation
+'\n      '    Text.Whitespace
+'c'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'40'          Literal.Number.Integer
+','           Punctuation
+'\n    '      Text.Whitespace
+')'           Punctuation
+'\n  '        Text.Whitespace
+')'           Punctuation
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'Regular'     Text
+' '           Text.Whitespace
+'Text'        Text
+'\n'          Text.Whitespace
+
+'= A Heading' Generic.Heading
+'\n'          Text.Whitespace

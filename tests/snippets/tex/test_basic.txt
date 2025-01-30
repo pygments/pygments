@@ -1,0 +1,117 @@
+---input---
+\documentclass{article}
+
+% Comment
+
+\ExplSyntaxOn
+    \@@_command:nTF { a } { b } { c }
+\ExplSyntaxOff
+
+\makeatletter
+\def\example@command{example}
+\makeatother
+
+\begin{document}
+
+text \LaTeX: text \
+
+text \example{}[] text \\
+
+text \example text. ``quote''; \123\% and: text.
+
+$\alpha_i\in\{\alpha:\alpha\leq3\}\ \text{something}$
+
+\end{document}
+
+---tokens---
+'\\documentclass' Keyword
+'{'           Name.Builtin
+'article'     Text
+'}'           Name.Builtin
+'\n\n'        Text
+
+'% Comment\n' Comment
+
+'\n'          Text
+
+'\\ExplSyntaxOn' Keyword
+'\n    '      Text
+'\\@@_command:nTF' Keyword
+' '           Text
+'{'           Name.Builtin
+' a '         Text
+'}'           Name.Builtin
+' '           Text
+'{'           Name.Builtin
+' b '         Text
+'}'           Name.Builtin
+' '           Text
+'{'           Name.Builtin
+' c '         Text
+'}'           Name.Builtin
+'\n'          Text
+
+'\\ExplSyntaxOff' Keyword
+'\n\n'        Text
+
+'\\makeatletter' Keyword
+'\n'          Text
+
+'\\def'       Keyword
+'\\example@command' Keyword
+'{'           Name.Builtin
+'example'     Text
+'}'           Name.Builtin
+'\n'          Text
+
+'\\makeatother' Keyword
+'\n\n'        Text
+
+'\\begin'     Keyword
+'{'           Name.Builtin
+'document'    Text
+'}'           Name.Builtin
+'\n\ntext '   Text
+'\\LaTeX:'    Keyword
+' text '      Text
+'\\'          Keyword
+'\n\ntext '   Text
+'\\example'   Keyword
+'{'           Name.Builtin
+'}'           Name.Builtin
+'[] text '    Text
+'\\\\'        Keyword
+'\n\ntext '   Text
+'\\example'   Keyword
+" text. ``quote''; " Text
+'\\1'         Keyword
+'23'          Text
+'\\%'         Keyword
+' and: text.\n\n' Text
+
+'$'           Literal.String
+'\\alpha'     Name.Variable
+'_'           Name.Builtin
+'i'           Name.Builtin
+'\\in'        Name.Variable
+'\\{'         Name.Variable
+'\\alpha'     Name.Variable
+':'           Name.Builtin
+'\\alpha'     Name.Variable
+'\\leq'       Name.Variable
+'3'           Literal.Number
+'\\}'         Name.Variable
+'\\'          Name.Variable
+' '           Name.Builtin
+'\\text'      Name.Variable
+'{'           Name.Builtin
+'something'   Name.Builtin
+'}'           Name.Builtin
+'$'           Literal.String
+'\n\n'        Text
+
+'\\end'       Keyword
+'{'           Name.Builtin
+'document'    Text
+'}'           Name.Builtin
+'\n'          Text

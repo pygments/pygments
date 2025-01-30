@@ -1,0 +1,66 @@
+'('           Punctuation
+'define'      Name.Builtin
+' '           Text.Whitespace
+'('           Punctuation
+'problem'     Name.Builtin
+' '           Text.Whitespace
+'example-problem' Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+'('           Punctuation
+':domain'     Keyword
+' '           Text.Whitespace
+'example-domain' Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+'('           Punctuation
+':objects'    Keyword
+'\n       '   Text.Whitespace
+'i1'          Name
+' '           Text.Whitespace
+'i2'          Name
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'item'        Name
+'\n    '      Text.Whitespace
+')'           Punctuation
+'\n    '      Text.Whitespace
+'('           Punctuation
+':init'       Keyword
+'\n        '  Text.Whitespace
+'('           Punctuation
+'adjacent'    Name
+' '           Text.Whitespace
+'i1'          Name
+' '           Text.Whitespace
+'i2'          Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+')'           Punctuation
+'\n    '      Text.Whitespace
+'('           Punctuation
+':goal'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'adjacent'    Name
+' '           Text.Whitespace
+'i2'          Name
+' '           Text.Whitespace
+'i1'          Name
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text.Whitespace
+'('           Punctuation
+':metric'     Keyword
+' '           Text.Whitespace
+'minimize'    Name.Builtin
+' '           Text.Whitespace
+'('           Punctuation
+'total-cost'  Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace

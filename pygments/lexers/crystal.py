@@ -4,7 +4,7 @@
 
     Lexer for Crystal.
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -106,7 +106,7 @@ class CrystalLexer(ExtendedRegexLexer):
                                 ('backtick', String.Backtick, '`'):
             states['simple-'+name] = [
                 include('string-escaped' if name == 'sym' else 'string-intp-escaped'),
-                (r'[^\\%s#]+' % end, ttype),
+                (rf'[^\\{end}#]+', ttype),
                 (r'[\\#]', ttype),
                 (end, ttype, '#pop'),
             ]

@@ -1,0 +1,30 @@
+---input---
+@constant.splat.i1 = constant <vscale x 1 x i1> splat (i1 true)
+
+---tokens---
+'@constant.splat.i1' Name.Variable.Global
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'constant'    Keyword
+' '           Text.Whitespace
+'<'           Punctuation
+'vscale'      Keyword
+' '           Text.Whitespace
+'x'           Keyword
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'x'           Keyword
+' '           Text.Whitespace
+'i1'          Keyword.Type
+'>'           Punctuation
+' '           Text.Whitespace
+'splat'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'i1'          Keyword.Type
+' '           Text.Whitespace
+'true'        Keyword
+')'           Punctuation
+'\n'          Text.Whitespace

@@ -2,7 +2,7 @@
     Test suite for the unistring module
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -17,8 +17,8 @@ def test_cats_exist_and_compilable():
         s = getattr(uni, cat)
         if s == '':  # Probably Cs on Jython
             continue
-        print("%s %r" % (cat, s))
-        re.compile('[%s]' % s)
+        print(f"{cat} {s!r}")
+        re.compile(f'[{s}]')
 
 
 def _cats_that_match(c):
@@ -27,7 +27,7 @@ def _cats_that_match(c):
         s = getattr(uni, cat)
         if s == '':  # Probably Cs on Jython
             continue
-        if re.compile('[%s]' % s).match(c):
+        if re.compile(f'[{s}]').match(c):
             matching_cats.append(cat)
     return matching_cats
 

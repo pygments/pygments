@@ -1,0 +1,112 @@
+---input---
+:
+,
+#
+!
+=
+==
+!=
+|
+||
+&&
+<<
+>>
+|>
+.
+->
+<-
+..
+@
+{a + b}
+{{a + b} * c}
+concat(["never", "the", "less"])
+
+---tokens---
+':'           Punctuation
+'\n'          Text.Whitespace
+
+','           Punctuation
+'\n'          Text.Whitespace
+
+'#'           Punctuation
+'\n'          Text.Whitespace
+
+'!'           Punctuation
+'\n'          Text.Whitespace
+
+'='           Punctuation
+'\n'          Text.Whitespace
+
+'=='          Punctuation
+'\n'          Text.Whitespace
+
+'!='          Punctuation
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+'\n'          Text.Whitespace
+
+'||'          Punctuation
+'\n'          Text.Whitespace
+
+'&&'          Punctuation
+'\n'          Text.Whitespace
+
+'<<'          Punctuation
+'\n'          Text.Whitespace
+
+'>>'          Punctuation
+'\n'          Text.Whitespace
+
+'|>'          Punctuation
+'\n'          Text.Whitespace
+
+'.'           Punctuation
+'\n'          Text.Whitespace
+
+'->'          Punctuation
+'\n'          Text.Whitespace
+
+'<-'          Punctuation
+'\n'          Text.Whitespace
+
+'..'          Punctuation
+'\n'          Text.Whitespace
+
+'@'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'a'           Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'b'           Name
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{{'          Punctuation
+'a'           Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'b'           Name
+'}'           Punctuation
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'c'           Name
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'concat'      Name
+'(['          Punctuation
+'"never"'     Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'"the"'       Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'"less"'      Literal.String
+'])'          Punctuation
+'\n'          Text.Whitespace

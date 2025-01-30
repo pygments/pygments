@@ -4,7 +4,7 @@
 
     Lexers for BASIC like languages (other than VB.net).
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -36,9 +36,8 @@ class BlitzMaxLexer(RegexLexer):
     bmax_sktypes = r'@{1,2}|[!#$%]'
     bmax_lktypes = r'\b(Int|Byte|Short|Float|Double|Long)\b'
     bmax_name = r'[a-z_]\w*'
-    bmax_var = (r'(%s)(?:(?:([ \t]*)(%s)|([ \t]*:[ \t]*\b(?:Shl|Shr|Sar|Mod)\b)'
-                r'|([ \t]*)(:)([ \t]*)(?:%s|(%s)))(?:([ \t]*)(Ptr))?)') % \
-        (bmax_name, bmax_sktypes, bmax_lktypes, bmax_name)
+    bmax_var = (rf'({bmax_name})(?:(?:([ \t]*)({bmax_sktypes})|([ \t]*:[ \t]*\b(?:Shl|Shr|Sar|Mod)\b)'
+                rf'|([ \t]*)(:)([ \t]*)(?:{bmax_lktypes}|({bmax_name})))(?:([ \t]*)(Ptr))?)')
     bmax_func = bmax_var + r'?((?:[ \t]|\.\.\n)*)([(])'
 
     flags = re.MULTILINE | re.IGNORECASE
@@ -59,16 +58,14 @@ class BlitzMaxLexer(RegexLexer):
             (r'\$[0-9a-f]+', Number.Hex),
             (r'\%[10]+', Number.Bin),
             # Other
-            (r'(?:(?:(:)?([ \t]*)(:?%s|([+\-*/&|~]))|Or|And|Not|[=<>^]))' %
-             (bmax_vopwords), Operator),
+            (rf'(?:(?:(:)?([ \t]*)(:?{bmax_vopwords}|([+\-*/&|~]))|Or|And|Not|[=<>^]))', Operator),
             (r'[(),.:\[\]]', Punctuation),
             (r'(?:#[\w \t]*)', Name.Label),
             (r'(?:\?[\w \t]*)', Comment.Preproc),
             # Identifiers
-            (r'\b(New)\b([ \t]?)([(]?)(%s)' % (bmax_name),
+            (rf'\b(New)\b([ \t]?)([(]?)({bmax_name})',
              bygroups(Keyword.Reserved, Whitespace, Punctuation, Name.Class)),
-            (r'\b(Import|Framework|Module)([ \t]+)(%s\.%s)' %
-             (bmax_name, bmax_name),
+            (rf'\b(Import|Framework|Module)([ \t]+)({bmax_name}\.{bmax_name})',
              bygroups(Keyword.Reserved, Whitespace, Keyword.Namespace)),
             (bmax_func, bygroups(Name.Function, Whitespace, Keyword.Type,
                                  Operator, Whitespace, Punctuation, Whitespace,
@@ -77,7 +74,7 @@ class BlitzMaxLexer(RegexLexer):
             (bmax_var, bygroups(Name.Variable, Whitespace, Keyword.Type, Operator,
                                 Whitespace, Punctuation, Whitespace, Keyword.Type,
                                 Name.Class, Whitespace, Keyword.Type)),
-            (r'\b(Type|Extends)([ \t]+)(%s)' % (bmax_name),
+            (rf'\b(Type|Extends)([ \t]+)({bmax_name})',
              bygroups(Keyword.Reserved, Whitespace, Name.Class)),
             # Keywords
             (r'\b(Ptr)\b', Keyword.Type),
@@ -101,7 +98,7 @@ class BlitzMaxLexer(RegexLexer):
                 'RestoreData'), prefix=r'\b', suffix=r'\b'),
              Keyword.Reserved),
             # Final resolve (for variable names and such)
-            (r'(%s)' % (bmax_name), Name.Variable),
+            (rf'({bmax_name})', Name.Variable),
         ],
         'string': [
             (r'""', String.Double),
@@ -125,8 +122,7 @@ class BlitzBasicLexer(RegexLexer):
 
     bb_sktypes = r'@{1,2}|[#$%]'
     bb_name = r'[a-z]\w*'
-    bb_var = (r'(%s)(?:([ \t]*)(%s)|([ \t]*)([.])([ \t]*)(?:(%s)))?') % \
-             (bb_name, bb_sktypes, bb_name)
+    bb_var = (rf'({bb_name})(?:([ \t]*)({bb_sktypes})|([ \t]*)([.])([ \t]*)(?:({bb_name})))?')
 
     flags = re.MULTILINE | re.IGNORECASE
     tokens = {
@@ -151,21 +147,21 @@ class BlitzBasicLexer(RegexLexer):
              Operator),
             (r'([+\-*/~=<>^])', Operator),
             (r'[(),:\[\]\\]', Punctuation),
-            (r'\.([ \t]*)(%s)' % bb_name, Name.Label),
+            (rf'\.([ \t]*)({bb_name})', Name.Label),
             # Identifiers
-            (r'\b(New)\b([ \t]+)(%s)' % (bb_name),
+            (rf'\b(New)\b([ \t]+)({bb_name})',
              bygroups(Keyword.Reserved, Whitespace, Name.Class)),
-            (r'\b(Gosub|Goto)\b([ \t]+)(%s)' % (bb_name),
+            (rf'\b(Gosub|Goto)\b([ \t]+)({bb_name})',
              bygroups(Keyword.Reserved, Whitespace, Name.Label)),
-            (r'\b(Object)\b([ \t]*)([.])([ \t]*)(%s)\b' % (bb_name),
+            (rf'\b(Object)\b([ \t]*)([.])([ \t]*)({bb_name})\b',
              bygroups(Operator, Whitespace, Punctuation, Whitespace, Name.Class)),
-            (r'\b%s\b([ \t]*)(\()' % bb_var,
+            (rf'\b{bb_var}\b([ \t]*)(\()',
              bygroups(Name.Function, Whitespace, Keyword.Type, Whitespace, Punctuation,
                       Whitespace, Name.Class, Whitespace, Punctuation)),
-            (r'\b(Function)\b([ \t]+)%s' % bb_var,
+            (rf'\b(Function)\b([ \t]+){bb_var}',
              bygroups(Keyword.Reserved, Whitespace, Name.Function, Whitespace, Keyword.Type,
                       Whitespace, Punctuation, Whitespace, Name.Class)),
-            (r'\b(Type)([ \t]+)(%s)' % (bb_name),
+            (rf'\b(Type)([ \t]+)({bb_name})',
              bygroups(Keyword.Reserved, Whitespace, Name.Class)),
             # Keywords
             (r'\b(Pi|True|False|Null)\b', Keyword.Constant),
@@ -234,7 +230,7 @@ class MonkeyLexer(RegexLexer):
             (r'\$[0-9a-fA-Z]+', Number.Hex),
             (r'\%[10]+', Number.Bin),
             # Native data types
-            (r'\b%s\b' % keyword_type, Keyword.Type),
+            (rf'\b{keyword_type}\b', Keyword.Type),
             # Exception handling
             (r'(?i)\b(?:Try|Catch|Throw)\b', Keyword.Reserved),
             (r'Throwable', Name.Exception),
@@ -270,21 +266,21 @@ class MonkeyLexer(RegexLexer):
             (r'(?i)(?:Not|Mod|Shl|Shr|And|Or)', Operator.Word),
             (r'[(){}!#,.:]', Punctuation),
             # catch the rest
-            (r'%s\b' % name_constant, Name.Constant),
-            (r'%s\b' % name_function, Name.Function),
-            (r'%s\b' % name_variable, Name.Variable),
+            (rf'{name_constant}\b', Name.Constant),
+            (rf'{name_function}\b', Name.Function),
+            (rf'{name_variable}\b', Name.Variable),
         ],
         'funcname': [
-            (r'(?i)%s\b' % name_function, Name.Function),
+            (rf'(?i){name_function}\b', Name.Function),
             (r':', Punctuation, 'classname'),
             (r'\s+', Whitespace),
             (r'\(', Punctuation, 'variables'),
             (r'\)', Punctuation, '#pop')
         ],
         'classname': [
-            (r'%s\.' % name_module, Name.Namespace),
-            (r'%s\b' % keyword_type, Keyword.Type),
-            (r'%s\b' % name_class, Name.Class),
+            (rf'{name_module}\.', Name.Namespace),
+            (rf'{keyword_type}\b', Keyword.Type),
+            (rf'{name_class}\b', Name.Class),
             # array (of given size)
             (r'(\[)(\s*)(\d*)(\s*)(\])',
              bygroups(Punctuation, Whitespace, Number.Integer, Whitespace, Punctuation)),
@@ -296,9 +292,9 @@ class MonkeyLexer(RegexLexer):
             default('#pop')
         ],
         'variables': [
-            (r'%s\b' % name_constant, Name.Constant),
-            (r'%s\b' % name_variable, Name.Variable),
-            (r'%s' % keyword_type_special, Keyword.Type),
+            (rf'{name_constant}\b', Name.Constant),
+            (rf'{name_variable}\b', Name.Variable),
+            (rf'{keyword_type_special}', Keyword.Type),
             (r'\s+', Whitespace),
             (r':', Punctuation, 'classname'),
             (r',', Punctuation, '#push'),
@@ -469,26 +465,26 @@ class QBasicLexer(RegexLexer):
         # can't use regular \b because of X$()
         # XXX: use words() here
         'declarations': [
-            (r'\b(%s)(?=\(|\b)' % '|'.join(map(re.escape, declarations)),
+            (r'\b({})(?=\(|\b)'.format('|'.join(map(re.escape, declarations))),
              Keyword.Declaration),
         ],
         'functions': [
-            (r'\b(%s)(?=\(|\b)' % '|'.join(map(re.escape, functions)),
+            (r'\b({})(?=\(|\b)'.format('|'.join(map(re.escape, functions))),
              Keyword.Reserved),
         ],
         'metacommands': [
-            (r'\b(%s)(?=\(|\b)' % '|'.join(map(re.escape, metacommands)),
+            (r'\b({})(?=\(|\b)'.format('|'.join(map(re.escape, metacommands))),
              Keyword.Constant),
         ],
         'operators': [
-            (r'\b(%s)(?=\(|\b)' % '|'.join(map(re.escape, operators)), Operator.Word),
+            (r'\b({})(?=\(|\b)'.format('|'.join(map(re.escape, operators))), Operator.Word),
         ],
         'statements': [
-            (r'\b(%s)\b' % '|'.join(map(re.escape, statements)),
+            (r'\b({})\b'.format('|'.join(map(re.escape, statements))),
              Keyword.Reserved),
         ],
         'keywords': [
-            (r'\b(%s)\b' % '|'.join(keywords), Keyword),
+            (r'\b({})\b'.format('|'.join(keywords)), Keyword),
         ],
     }
 

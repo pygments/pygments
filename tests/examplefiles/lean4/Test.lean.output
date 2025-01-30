@@ -1,0 +1,3648 @@
+'/-'          Comment
+'\nCopyright (c) 2017 Johannes Hölzl. All rights reserved.\nReleased under Apache 2.0 license as described in the file LICENSE.\nAuthors: Johannes Hölzl\n' Comment.Multiline
+
+'-/'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'Mathlib'     Name
+'.'           Name.Builtin.Pseudo
+'Order'       Name
+'.'           Name.Builtin.Pseudo
+'Chain'       Name
+'\n\n'        Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'align_import' Name
+' '           Text.Whitespace
+'order'       Name
+'.'           Name.Builtin.Pseudo
+'zorn'        Name
+' '           Text.Whitespace
+'from'        Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'leanprover-community/mathlib' Literal.String.Double
+'"'           Literal.String.Double
+'@'           Name.Builtin.Pseudo
+'"'           Literal.String.Double
+'46a64b5b4268c594af770c44d9e502afc6a515cb' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text.Whitespace
+
+'/-'          Comment
+"!\n# Zorn's lemmas\n\nThis file proves several formulations of Zorn's Lemma.\n\n## Variants\n\nThe primary statement of Zorn's lemma is `exists_maximal_of_chains_bounded`. Then it is specialized\nto particular relations:\n* `(≤)` with `zorn_partialOrder`\n* `(⊆)` with `zorn_subset`\n* `(⊇)` with `zorn_superset`\n\nLemma names carry modifiers:\n* `₀`: Quantifies over a set, as opposed to over a type.\n* `_nonempty`: Doesn't ask to prove that the empty chain is bounded and lets you give an element\n  that will be smaller than the maximal element found (the maximal element is no smaller than any\n  other element, but it can also be incomparable to some).\n\n## How" Comment.Multiline
+'-'           Comment.Multiline
+"to\n\nThis file comes across as confusing to those who haven't yet used it, so here is a detailed\nwalkthrough:\n1. Know what relation on which type" Comment.Multiline
+'/'           Comment.Multiline
+"set you're looking for. See Variants above. You can discharge\n  some conditions to Zorn's lemma directly using a `_nonempty` variant.\n2. Write down the definition of your type" Comment.Multiline
+'/'           Comment.Multiline
+'set, put a `suffices : ∃ m, ∀ a, m ≺ a → a ≺ m, { ... },`\n  (or whatever you actually need) followed by an `apply some_version_of_zorn`.\n3. Fill in the details. This is where you start talking about chains.\n\nA typical proof using Zorn could look like this (TODO: update to mathlib4)\n```lean\nlemma zorny_lemma : zorny_statement :=\nbegin\n  let s : Set α := {x | whatever x},\n  suffices : ∃ x ∈ s, ∀ y ∈ s, y ⊆ x → y = x, ' Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+' or with another operator\n  { exact proof_post_zorn },\n  apply zorn_subset, ' Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+' or another variant\n  rintro c hcs hc,\n  obtain rfl | hcnemp := c.eq_empty_or_nonempty, ' Comment.Multiline
+'-'           Comment.Multiline
+'-'           Comment.Multiline
+' you might need to disjunct on c empty or not\n  { exact ⟨edge_case_construction,\n      proof_that_edge_case_construction_respects_whatever,\n      proof_that_edge_case_construction_contains_all_stuff_in_c⟩ },\n  exact ⟨construction,\n    proof_that_construction_respects_whatever,\n    proof_that_construction_contains_all_stuff_in_c⟩,\nend\n```\n\n## Notes\n\nOriginally ported from Isabelle' Comment.Multiline
+'/'           Comment.Multiline
+'HOL. The\n[original file](https:' Comment.Multiline
+'/'           Comment.Multiline
+'/'           Comment.Multiline
+'isabelle.in.tum.de' Comment.Multiline
+'/'           Comment.Multiline
+'dist'        Comment.Multiline
+'/'           Comment.Multiline
+'library'     Comment.Multiline
+'/'           Comment.Multiline
+'HOL'         Comment.Multiline
+'/'           Comment.Multiline
+'HOL'         Comment.Multiline
+'/'           Comment.Multiline
+'Zorn.html) was written by Jacques D.\nFleuriot, Tobias Nipkow, Christian Sternagel.\n' Comment.Multiline
+
+'-/'          Comment.Multiline
+'\n\n\n'      Text.Whitespace
+
+'open'        Keyword.Namespace
+' '           Text.Whitespace
+'Classical'   Name
+' '           Text.Whitespace
+'Set'         Name
+'\n\n'        Text.Whitespace
+
+'variable'    Keyword.Namespace
+' '           Text.Whitespace
+'{'           Operator
+'α'           Name
+' '           Text.Whitespace
+'β'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Type'        Keyword.Type
+'*'           Name.Builtin.Pseudo
+'}'           Operator
+' '           Text.Whitespace
+'{'           Operator
+'r'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'α'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'α'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'Prop'        Keyword.Type
+'}'           Operator
+' '           Text.Whitespace
+'{'           Operator
+'c'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Set'         Name
+' '           Text.Whitespace
+'α'           Name
+'}'           Operator
+'\n\n'        Text.Whitespace
+
+'/--'         Literal.String.Doc
+' Local notation for the relation being considered. ' Literal.String.Doc
+'-/'          Literal.String.Doc
+'\n'          Text.Whitespace
+
+'local'       Keyword.Namespace
+' '           Text.Whitespace
+'infixl'      Keyword.Namespace
+':'           Operator
+'50'          Literal.Number.Integer
+' '           Text.Whitespace
+'"'           Literal.String.Double
+' ≺ '         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+' '           Text.Whitespace
+'r'           Name
+'\n\n'        Text.Whitespace
+
+'/--'         Literal.String.Doc
+" **Zorn's lemma**\n\nIf every chain has an upper bound, then there exists a maximal element. " Literal.String.Doc
+'-/'          Literal.String.Doc
+'\n'          Text.Whitespace
+
+'theorem'     Keyword.Namespace
+' '           Text.Whitespace
+'exists_maximal_of_chains_bounded' Name
+' '           Text.Whitespace
+'('           Operator
+'h'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+','           Operator
+' '           Text.Whitespace
+'IsChain'     Name
+' '           Text.Whitespace
+'r'           Name
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'ub'          Name
+','           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+','           Operator
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'≺'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'ub'          Name
+')'           Operator
+'\n    '      Text.Whitespace
+'('           Operator
+'trans'       Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'{'           Operator
+'a'           Name
+' '           Text.Whitespace
+'b'           Name
+' '           Text.Whitespace
+'c'           Name
+'}'           Operator
+','           Operator
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'≺'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'b'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'b'           Name
+' '           Text.Whitespace
+'≺'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'≺'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+')'           Operator
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+','           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+','           Operator
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'≺'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'≺'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+':='          Operator
+'\n  '        Text.Whitespace
+'have'        Keyword
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'ub'          Name
+','           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'maxChain'    Name
+' '           Text.Whitespace
+'r'           Name
+','           Operator
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'≺'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'ub'          Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'h'           Name
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'<'           Name.Builtin.Pseudo
+'|'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'maxChain_spec' Name
+'.'           Name.Builtin.Pseudo
+'left'        Name
+'\n  '        Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'ub'          Name
+','           Operator
+' '           Text.Whitespace
+'('           Operator
+'hub'         Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'maxChain'    Name
+' '           Text.Whitespace
+'r'           Name
+','           Operator
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'≺'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'ub'          Name
+')'           Operator
+'⟩'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'this'        Name
+'\n  '        Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'ub'          Name
+','           Operator
+' '           Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'ha'          Name
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+'\n    '      Text.Whitespace
+'have'        Keyword
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'IsChain'     Name
+' '           Text.Whitespace
+'r'           Name
+' '           Text.Whitespace
+'('           Operator
+'insert'      Name
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'<'           Name.Builtin.Pseudo
+'|'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'maxChain'    Name
+' '           Text.Whitespace
+'r'           Name
+')'           Operator
+' '           Text.Whitespace
+':='          Operator
+'\n      '    Text.Whitespace
+'maxChain_spec' Name
+'.'           Name.Builtin.Pseudo
+'1'           Literal.Number
+'.'           Name.Builtin.Pseudo
+'insert'      Name
+' '           Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'b'           Name
+' '           Text.Whitespace
+'hb'          Name
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+' '           Text.Whitespace
+'Or'          Name
+'.'           Name.Builtin.Pseudo
+'inr'         Name
+' '           Text.Whitespace
+'<'           Name.Builtin.Pseudo
+'|'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'trans'       Name
+' '           Text.Whitespace
+'('           Operator
+'hub'         Name
+' '           Text.Whitespace
+'b'           Name
+' '           Text.Whitespace
+'hb'          Name
+')'           Operator
+' '           Text.Whitespace
+'ha'          Name
+'\n    '      Text.Whitespace
+'hub'         Name
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'<'           Name.Builtin.Pseudo
+'|'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'by'          Keyword
+'\n      '    Text.Whitespace
+'rw'          Name
+' '           Text.Whitespace
+'['           Operator
+'maxChain_spec' Name
+'.'           Name.Builtin.Pseudo
+'right'       Name
+' '           Text.Whitespace
+'this'        Name
+' '           Text.Whitespace
+'('           Operator
+'subset_insert' Name
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+')'           Operator
+']'           Operator
+'\n      '    Text.Whitespace
+'exact'       Name
+' '           Text.Whitespace
+'mem_insert'  Name
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+'⟩'           Name.Builtin.Pseudo
+'\n'          Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'align'       Name
+' '           Text.Whitespace
+'exists_maximal_of_chains_bounded' Name
+' '           Text.Whitespace
+'exists_maximal_of_chains_bounded' Name
+'\n\n'        Text.Whitespace
+
+'/--'         Literal.String.Doc
+" A variant of Zorn's lemma. If every nonempty chain of a nonempty type has an upper bound, then\nthere is a maximal element.\n" Literal.String.Doc
+
+'-/'          Literal.String.Doc
+'\n'          Text.Whitespace
+
+'theorem'     Keyword.Namespace
+' '           Text.Whitespace
+'exists_maximal_of_nonempty_chains_bounded' Name
+' '           Text.Whitespace
+'['           Operator
+'Nonempty'    Name
+' '           Text.Whitespace
+'α'           Name
+']'           Operator
+'\n    '      Text.Whitespace
+'('           Operator
+'h'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+','           Operator
+' '           Text.Whitespace
+'IsChain'     Name
+' '           Text.Whitespace
+'r'           Name
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+'.'           Name.Builtin.Pseudo
+'Nonempty'    Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'ub'          Name
+','           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+','           Operator
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'≺'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'ub'          Name
+')'           Operator
+'\n    '      Text.Whitespace
+'('           Operator
+'trans'       Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'{'           Operator
+'a'           Name
+' '           Text.Whitespace
+'b'           Name
+' '           Text.Whitespace
+'c'           Name
+'}'           Operator
+','           Operator
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'≺'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'b'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'b'           Name
+' '           Text.Whitespace
+'≺'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'≺'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+')'           Operator
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+','           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+','           Operator
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'≺'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'≺'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+':='          Operator
+'\n  '        Text.Whitespace
+'exists_maximal_of_chains_bounded' Name
+'\n    '      Text.Whitespace
+'('           Operator
+'fun'         Keyword
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'hc'          Name
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+'\n      '    Text.Whitespace
+'('           Operator
+'eq_empty_or_nonempty' Name
+' '           Text.Whitespace
+'c'           Name
+')'           Operator
+'.'           Name.Builtin.Pseudo
+'elim'        Name
+'\n        '  Text.Whitespace
+'('           Operator
+'fun'         Keyword
+' '           Text.Whitespace
+'h'           Name
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'Classical'   Name
+'.'           Name.Builtin.Pseudo
+'arbitrary'   Name
+' '           Text.Whitespace
+'α'           Name
+','           Operator
+' '           Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'hx'          Name
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+' '           Text.Whitespace
+'('           Operator
+'h'           Name
+' '           Text.Whitespace
+'▸'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'hx'          Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'('           Operator
+'∅'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Set'         Name
+' '           Text.Whitespace
+'α'           Name
+')'           Operator
+')'           Operator
+'.'           Name.Builtin.Pseudo
+'elim'        Name
+'⟩'           Name.Builtin.Pseudo
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'h'           Name
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'hc'          Name
+')'           Operator
+')'           Operator
+'\n    '      Text.Whitespace
+'trans'       Name
+'\n'          Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'align'       Name
+' '           Text.Whitespace
+'exists_maximal_of_nonempty_chains_bounded' Name
+' '           Text.Whitespace
+'exists_maximal_of_nonempty_chains_bounded' Name
+'\n\n'        Text.Whitespace
+
+'section'     Keyword.Namespace
+' '           Text.Whitespace
+'Preorder'    Name
+'\n\n'        Text.Whitespace
+
+'variable'    Keyword.Namespace
+' '           Text.Whitespace
+'['           Operator
+'Preorder'    Name
+' '           Text.Whitespace
+'α'           Name
+']'           Operator
+'\n\n'        Text.Whitespace
+
+'theorem'     Keyword.Namespace
+' '           Text.Whitespace
+'zorn_preorder' Name
+' '           Text.Whitespace
+'('           Operator
+'h'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Set'         Name
+' '           Text.Whitespace
+'α'           Name
+','           Operator
+' '           Text.Whitespace
+'IsChain'     Name
+' '           Text.Whitespace
+'('           Operator
+'·'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'·'           Name.Builtin.Pseudo
+')'           Operator
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'BddAbove'    Name
+' '           Text.Whitespace
+'c'           Name
+')'           Operator
+' '           Text.Whitespace
+':'           Operator
+'\n    '      Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'α'           Name
+','           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+','           Operator
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+':='          Operator
+'\n  '        Text.Whitespace
+'exists_maximal_of_chains_bounded' Name
+' '           Text.Whitespace
+'h'           Name
+' '           Text.Whitespace
+'le_trans'    Name
+'\n'          Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'align'       Name
+' '           Text.Whitespace
+'zorn_preorder' Name
+' '           Text.Whitespace
+'zorn_preorder' Name
+'\n\n'        Text.Whitespace
+
+'theorem'     Keyword.Namespace
+' '           Text.Whitespace
+'zorn_nonempty_preorder' Name
+' '           Text.Whitespace
+'['           Operator
+'Nonempty'    Name
+' '           Text.Whitespace
+'α'           Name
+']'           Operator
+'\n    '      Text.Whitespace
+'('           Operator
+'h'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Set'         Name
+' '           Text.Whitespace
+'α'           Name
+','           Operator
+' '           Text.Whitespace
+'IsChain'     Name
+' '           Text.Whitespace
+'('           Operator
+'·'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'·'           Name.Builtin.Pseudo
+')'           Operator
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+'.'           Name.Builtin.Pseudo
+'Nonempty'    Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'BddAbove'    Name
+' '           Text.Whitespace
+'c'           Name
+')'           Operator
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'α'           Name
+','           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+','           Operator
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+':='          Operator
+'\n  '        Text.Whitespace
+'exists_maximal_of_nonempty_chains_bounded' Name
+' '           Text.Whitespace
+'h'           Name
+' '           Text.Whitespace
+'le_trans'    Name
+'\n'          Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'align'       Name
+' '           Text.Whitespace
+'zorn_nonempty_preorder' Name
+' '           Text.Whitespace
+'zorn_nonempty_preorder' Name
+'\n\n'        Text.Whitespace
+
+'theorem'     Keyword.Namespace
+' '           Text.Whitespace
+'zorn_preorder₀' Name
+' '           Text.Whitespace
+'('           Operator
+'s'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Set'         Name
+' '           Text.Whitespace
+'α'           Name
+')'           Operator
+'\n    '      Text.Whitespace
+'('           Operator
+'ih'          Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+','           Operator
+' '           Text.Whitespace
+'IsChain'     Name
+' '           Text.Whitespace
+'('           Operator
+'·'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'·'           Name.Builtin.Pseudo
+')'           Operator
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'ub'          Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+','           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+','           Operator
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'ub'          Name
+')'           Operator
+' '           Text.Whitespace
+':'           Operator
+'\n    '      Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+','           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+','           Operator
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+':='          Operator
+'\n  '        Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'⟨'           Name.Builtin.Pseudo
+'m'           Name
+','           Operator
+' '           Text.Whitespace
+'hms'         Name
+'⟩'           Name.Builtin.Pseudo
+','           Operator
+' '           Text.Whitespace
+'h'           Name
+'⟩'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+':='          Operator
+'\n    '      Text.Whitespace
+'@'           Name.Builtin.Pseudo
+'zorn_preorder' Name
+' '           Text.Whitespace
+'s'           Name
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'hc'          Name
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+'\n      '    Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'ub'          Name
+','           Operator
+' '           Text.Whitespace
+'hubs'        Name
+','           Operator
+' '           Text.Whitespace
+'hub'         Name
+'⟩'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+':='          Operator
+'\n        '  Text.Whitespace
+'ih'          Name
+' '           Text.Whitespace
+'('           Operator
+'Subtype'     Name
+'.'           Name.Builtin.Pseudo
+'val'         Name
+' '           Text.Whitespace
+"'"           Name.Builtin.Pseudo
+"'"           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'fun'         Keyword
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'⟨'           Name.Builtin.Pseudo
+'_'           Name.Builtin.Pseudo
+','           Operator
+' '           Text.Whitespace
+'hx'          Name
+'⟩'           Name.Builtin.Pseudo
+','           Operator
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+','           Operator
+' '           Text.Whitespace
+'h'           Name
+'⟩'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+' '           Text.Whitespace
+'h'           Name
+' '           Text.Whitespace
+'▸'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'hx'          Name
+')'           Operator
+'\n          ' Text.Whitespace
+'('           Operator
+'by'          Keyword
+'\n            ' Text.Whitespace
+'rintro'      Name
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'p'           Name
+','           Operator
+' '           Text.Whitespace
+'hpc'         Name
+','           Operator
+' '           Text.Whitespace
+'rfl'         Name
+'⟩'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'q'           Name
+','           Operator
+' '           Text.Whitespace
+'hqc'         Name
+','           Operator
+' '           Text.Whitespace
+'rfl'         Name
+'⟩'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'hpq'         Name
+'\n            ' Text.Whitespace
+"refine'"     Name
+' '           Text.Whitespace
+'hc'          Name
+' '           Text.Whitespace
+'hpc'         Name
+' '           Text.Whitespace
+'hqc'         Name
+' '           Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'t'           Name
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+' '           Text.Whitespace
+'hpq'         Name
+' '           Text.Whitespace
+'('           Operator
+'Subtype'     Name
+'.'           Name.Builtin.Pseudo
+'ext_iff'     Name
+'.'           Name.Builtin.Pseudo
+'1'           Literal.Number
+' '           Text.Whitespace
+'t'           Name
+')'           Operator
+')'           Operator
+'\n      '    Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'⟨'           Name.Builtin.Pseudo
+'ub'          Name
+','           Operator
+' '           Text.Whitespace
+'hubs'        Name
+'⟩'           Name.Builtin.Pseudo
+','           Operator
+' '           Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'y'           Name
+','           Operator
+' '           Text.Whitespace
+'hy'          Name
+'⟩'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'hc'          Name
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+' '           Text.Whitespace
+'hub'         Name
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'_'           Name.Builtin.Pseudo
+','           Operator
+' '           Text.Whitespace
+'hc'          Name
+','           Operator
+' '           Text.Whitespace
+'rfl'         Name
+'⟩'           Name.Builtin.Pseudo
+'⟩'           Name.Builtin.Pseudo
+'\n  '        Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'m'           Name
+','           Operator
+' '           Text.Whitespace
+'hms'         Name
+','           Operator
+' '           Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'hzs'         Name
+' '           Text.Whitespace
+'hmz'         Name
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+' '           Text.Whitespace
+'h'           Name
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'z'           Name
+','           Operator
+' '           Text.Whitespace
+'hzs'         Name
+'⟩'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'hmz'         Name
+'⟩'           Name.Builtin.Pseudo
+'\n'          Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'align'       Name
+' '           Text.Whitespace
+'zorn_preorder₀' Name
+' '           Text.Whitespace
+'zorn_preorder₀' Name
+'\n\n'        Text.Whitespace
+
+'theorem'     Keyword.Namespace
+' '           Text.Whitespace
+'zorn_nonempty_preorder₀' Name
+' '           Text.Whitespace
+'('           Operator
+'s'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Set'         Name
+' '           Text.Whitespace
+'α'           Name
+')'           Operator
+'\n    '      Text.Whitespace
+'('           Operator
+'ih'          Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+','           Operator
+' '           Text.Whitespace
+'IsChain'     Name
+' '           Text.Whitespace
+'('           Operator
+'·'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'·'           Name.Builtin.Pseudo
+')'           Operator
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+','           Operator
+' '           Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'ub'          Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+','           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+','           Operator
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'ub'          Name
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'x'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'α'           Name
+')'           Operator
+'\n    '      Text.Whitespace
+'('           Operator
+'hxs'         Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+')'           Operator
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+','           Operator
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'∧'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+','           Operator
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'by'          Keyword
+'\n  '        Text.Whitespace
+'-- Porting note: the first three lines replace the following two lines in mathlib3.' Comment.Single
+'\n  '        Text.Whitespace
+'-- The mathlib3 `rcases` supports holes for proof obligations, this is not yet implemented in 4.' Comment.Single
+'\n  '        Text.Whitespace
+'-- rcases zorn_preorder₀ ({ y ∈ s | x ≤ y }) fun c hcs hc => ?_ with ⟨m, ⟨hms, hxm⟩, hm⟩' Comment.Single
+'\n  '        Text.Whitespace
+'-- · exact ⟨m, hms, hxm, fun z hzs hmz => hm _ ⟨hzs, hxm.trans hmz⟩ hmz⟩' Comment.Single
+'\n  '        Text.Whitespace
+'have'        Keyword
+' '           Text.Whitespace
+'H'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'zorn_preorder₀' Name
+' '           Text.Whitespace
+'('           Operator
+'{'           Operator
+' '           Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+' '           Text.Whitespace
+'|'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+'}'           Operator
+')'           Operator
+' '           Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'hcs'         Name
+' '           Text.Whitespace
+'hc'          Name
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+' '           Text.Whitespace
+'?'           Name.Builtin.Pseudo
+'_'           Name.Builtin.Pseudo
+'\n  '        Text.Whitespace
+'·'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'rcases'      Name
+' '           Text.Whitespace
+'H'           Name
+' '           Text.Whitespace
+'with'        Keyword
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'m'           Name
+','           Operator
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'hms'         Name
+','           Operator
+' '           Text.Whitespace
+'hxm'         Name
+'⟩'           Name.Builtin.Pseudo
+','           Operator
+' '           Text.Whitespace
+'hm'          Name
+'⟩'           Name.Builtin.Pseudo
+'\n    '      Text.Whitespace
+'exact'       Name
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'m'           Name
+','           Operator
+' '           Text.Whitespace
+'hms'         Name
+','           Operator
+' '           Text.Whitespace
+'hxm'         Name
+','           Operator
+' '           Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'hzs'         Name
+' '           Text.Whitespace
+'hmz'         Name
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+' '           Text.Whitespace
+'hm'          Name
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'hzs'         Name
+','           Operator
+' '           Text.Whitespace
+'hxm'         Name
+'.'           Name.Builtin.Pseudo
+'trans'       Name
+' '           Text.Whitespace
+'hmz'         Name
+'⟩'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'hmz'         Name
+'⟩'           Name.Builtin.Pseudo
+'\n  '        Text.Whitespace
+'·'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'rcases'      Name
+' '           Text.Whitespace
+'c'           Name
+'.'           Name.Builtin.Pseudo
+'eq_empty_or_nonempty' Name
+' '           Text.Whitespace
+'with'        Keyword
+' '           Text.Whitespace
+'('           Operator
+'rfl'         Name
+' '           Text.Whitespace
+'|'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'y'           Name
+','           Operator
+' '           Text.Whitespace
+'hy'          Name
+'⟩'           Name.Builtin.Pseudo
+')'           Operator
+'\n    '      Text.Whitespace
+'·'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'exact'       Name
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'x'           Name
+','           Operator
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'hxs'         Name
+','           Operator
+' '           Text.Whitespace
+'le_rfl'      Name
+'⟩'           Name.Builtin.Pseudo
+','           Operator
+' '           Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+' '           Text.Whitespace
+'False'       Name
+'.'           Name.Builtin.Pseudo
+'elim'        Name
+'⟩'           Name.Builtin.Pseudo
+'\n    '      Text.Whitespace
+'·'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'rcases'      Name
+' '           Text.Whitespace
+'ih'          Name
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'('           Operator
+'fun'         Keyword
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'hz'          Name
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+' '           Text.Whitespace
+'('           Operator
+'hcs'         Name
+' '           Text.Whitespace
+'hz'          Name
+')'           Operator
+'.'           Name.Builtin.Pseudo
+'1'           Literal.Number
+')'           Operator
+' '           Text.Whitespace
+'hc'          Name
+' '           Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+'hy'          Name
+' '           Text.Whitespace
+'with'        Keyword
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'z'           Name
+','           Operator
+' '           Text.Whitespace
+'hzs'         Name
+','           Operator
+' '           Text.Whitespace
+'hz'          Name
+'⟩'           Name.Builtin.Pseudo
+'\n      '    Text.Whitespace
+'exact'       Name
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'z'           Name
+','           Operator
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'hzs'         Name
+','           Operator
+' '           Text.Whitespace
+'('           Operator
+'hcs'         Name
+' '           Text.Whitespace
+'hy'          Name
+')'           Operator
+'.'           Name.Builtin.Pseudo
+'2'           Literal.Number
+'.'           Name.Builtin.Pseudo
+'trans'       Name
+' '           Text.Whitespace
+'<'           Name.Builtin.Pseudo
+'|'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'hz'          Name
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'hy'          Name
+'⟩'           Name.Builtin.Pseudo
+','           Operator
+' '           Text.Whitespace
+'hz'          Name
+'⟩'           Name.Builtin.Pseudo
+'\n'          Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'align'       Name
+' '           Text.Whitespace
+'zorn_nonempty_preorder₀' Name
+' '           Text.Whitespace
+'zorn_nonempty_preorder₀' Name
+'\n\n'        Text.Whitespace
+
+'theorem'     Keyword.Namespace
+' '           Text.Whitespace
+'zorn_nonempty_Ici₀' Name
+' '           Text.Whitespace
+'('           Operator
+'a'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'α'           Name
+')'           Operator
+'\n    '      Text.Whitespace
+'('           Operator
+'ih'          Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'Ici'         Name
+' '           Text.Whitespace
+'a'           Name
+','           Operator
+' '           Text.Whitespace
+'IsChain'     Name
+' '           Text.Whitespace
+'('           Operator
+'·'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'·'           Name.Builtin.Pseudo
+')'           Operator
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+','           Operator
+' '           Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'ub'          Name
+','           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+','           Operator
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'ub'          Name
+')'           Operator
+'\n    '      Text.Whitespace
+'('           Operator
+'x'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'α'           Name
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'hax'         Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'x'           Name
+')'           Operator
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+','           Operator
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'∧'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'z'           Name
+','           Operator
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'by'          Keyword
+'\n  '        Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'m'           Name
+','           Operator
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+','           Operator
+' '           Text.Whitespace
+'hxm'         Name
+','           Operator
+' '           Text.Whitespace
+'hm'          Name
+'⟩'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'zorn_nonempty_preorder₀' Name
+' '           Text.Whitespace
+'('           Operator
+'Ici'         Name
+' '           Text.Whitespace
+'a'           Name
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'fun'         Keyword
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'hca'         Name
+' '           Text.Whitespace
+'hc'          Name
+' '           Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+'hy'          Name
+' '           Text.Whitespace
+'↦'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'?'           Name.Builtin.Pseudo
+'_'           Name.Builtin.Pseudo
+')'           Operator
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'hax'         Name
+'\n  '        Text.Whitespace
+'·'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'exact'       Name
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'m'           Name
+','           Operator
+' '           Text.Whitespace
+'hxm'         Name
+','           Operator
+' '           Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'hmz'         Name
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+' '           Text.Whitespace
+'hm'          Name
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'('           Operator
+'hax'         Name
+'.'           Name.Builtin.Pseudo
+'trans'       Name
+' '           Text.Whitespace
+'<'           Name.Builtin.Pseudo
+'|'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'hxm'         Name
+'.'           Name.Builtin.Pseudo
+'trans'       Name
+' '           Text.Whitespace
+'hmz'         Name
+')'           Operator
+' '           Text.Whitespace
+'hmz'         Name
+'⟩'           Name.Builtin.Pseudo
+'\n  '        Text.Whitespace
+'·'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'have'        Keyword
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'ub'          Name
+','           Operator
+' '           Text.Whitespace
+'hub'         Name
+'⟩'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'ih'          Name
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'hca'         Name
+' '           Text.Whitespace
+'hc'          Name
+' '           Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+'hy'          Name
+';'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'exact'       Name
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'ub'          Name
+','           Operator
+' '           Text.Whitespace
+'('           Operator
+'hca'         Name
+' '           Text.Whitespace
+'hy'          Name
+')'           Operator
+'.'           Name.Builtin.Pseudo
+'trans'       Name
+' '           Text.Whitespace
+'('           Operator
+'hub'         Name
+' '           Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+'hy'          Name
+')'           Operator
+','           Operator
+' '           Text.Whitespace
+'hub'         Name
+'⟩'           Name.Builtin.Pseudo
+'\n'          Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'align'       Name
+' '           Text.Whitespace
+'zorn_nonempty_Ici₀' Name
+' '           Text.Whitespace
+'zorn_nonempty_Ici₀' Name
+'\n\n'        Text.Whitespace
+
+'end'         Keyword.Namespace
+' '           Text.Whitespace
+'Preorder'    Name
+'\n\n'        Text.Whitespace
+
+'section'     Keyword.Namespace
+' '           Text.Whitespace
+'PartialOrder' Name
+'\n\n'        Text.Whitespace
+
+'variable'    Keyword.Namespace
+' '           Text.Whitespace
+'['           Operator
+'PartialOrder' Name
+' '           Text.Whitespace
+'α'           Name
+']'           Operator
+'\n\n'        Text.Whitespace
+
+'theorem'     Keyword.Namespace
+' '           Text.Whitespace
+'zorn_partialOrder' Name
+' '           Text.Whitespace
+'('           Operator
+'h'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Set'         Name
+' '           Text.Whitespace
+'α'           Name
+','           Operator
+' '           Text.Whitespace
+'IsChain'     Name
+' '           Text.Whitespace
+'('           Operator
+'·'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'·'           Name.Builtin.Pseudo
+')'           Operator
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'BddAbove'    Name
+' '           Text.Whitespace
+'c'           Name
+')'           Operator
+' '           Text.Whitespace
+':'           Operator
+'\n    '      Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'α'           Name
+','           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+','           Operator
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'='           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+':='          Operator
+'\n  '        Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'m'           Name
+','           Operator
+' '           Text.Whitespace
+'hm'          Name
+'⟩'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'zorn_preorder' Name
+' '           Text.Whitespace
+'h'           Name
+'\n  '        Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'m'           Name
+','           Operator
+' '           Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'ha'          Name
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+' '           Text.Whitespace
+'le_antisymm' Name
+' '           Text.Whitespace
+'('           Operator
+'hm'          Name
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'ha'          Name
+')'           Operator
+' '           Text.Whitespace
+'ha'          Name
+'⟩'           Name.Builtin.Pseudo
+'\n'          Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'align'       Name
+' '           Text.Whitespace
+'zorn_partial_order' Name
+' '           Text.Whitespace
+'zorn_partialOrder' Name
+'\n\n'        Text.Whitespace
+
+'theorem'     Keyword.Namespace
+' '           Text.Whitespace
+'zorn_nonempty_partialOrder' Name
+' '           Text.Whitespace
+'['           Operator
+'Nonempty'    Name
+' '           Text.Whitespace
+'α'           Name
+']'           Operator
+'\n    '      Text.Whitespace
+'('           Operator
+'h'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Set'         Name
+' '           Text.Whitespace
+'α'           Name
+','           Operator
+' '           Text.Whitespace
+'IsChain'     Name
+' '           Text.Whitespace
+'('           Operator
+'·'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'·'           Name.Builtin.Pseudo
+')'           Operator
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+'.'           Name.Builtin.Pseudo
+'Nonempty'    Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'BddAbove'    Name
+' '           Text.Whitespace
+'c'           Name
+')'           Operator
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'α'           Name
+','           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+','           Operator
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'='           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+':='          Operator
+'\n  '        Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'m'           Name
+','           Operator
+' '           Text.Whitespace
+'hm'          Name
+'⟩'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'zorn_nonempty_preorder' Name
+' '           Text.Whitespace
+'h'           Name
+'\n  '        Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'m'           Name
+','           Operator
+' '           Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'ha'          Name
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+' '           Text.Whitespace
+'le_antisymm' Name
+' '           Text.Whitespace
+'('           Operator
+'hm'          Name
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'ha'          Name
+')'           Operator
+' '           Text.Whitespace
+'ha'          Name
+'⟩'           Name.Builtin.Pseudo
+'\n'          Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'align'       Name
+' '           Text.Whitespace
+'zorn_nonempty_partial_order' Name
+' '           Text.Whitespace
+'zorn_nonempty_partialOrder' Name
+'\n\n'        Text.Whitespace
+
+'theorem'     Keyword.Namespace
+' '           Text.Whitespace
+'zorn_partialOrder₀' Name
+' '           Text.Whitespace
+'('           Operator
+'s'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Set'         Name
+' '           Text.Whitespace
+'α'           Name
+')'           Operator
+'\n    '      Text.Whitespace
+'('           Operator
+'ih'          Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+','           Operator
+' '           Text.Whitespace
+'IsChain'     Name
+' '           Text.Whitespace
+'('           Operator
+'·'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'·'           Name.Builtin.Pseudo
+')'           Operator
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'ub'          Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+','           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+','           Operator
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'ub'          Name
+')'           Operator
+' '           Text.Whitespace
+':'           Operator
+'\n    '      Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+','           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+','           Operator
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'='           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+':='          Operator
+'\n  '        Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'m'           Name
+','           Operator
+' '           Text.Whitespace
+'hms'         Name
+','           Operator
+' '           Text.Whitespace
+'hm'          Name
+'⟩'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'zorn_preorder₀' Name
+' '           Text.Whitespace
+'s'           Name
+' '           Text.Whitespace
+'ih'          Name
+'\n  '        Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'m'           Name
+','           Operator
+' '           Text.Whitespace
+'hms'         Name
+','           Operator
+' '           Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'hzs'         Name
+' '           Text.Whitespace
+'hmz'         Name
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+' '           Text.Whitespace
+'('           Operator
+'hm'          Name
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'hzs'         Name
+' '           Text.Whitespace
+'hmz'         Name
+')'           Operator
+'.'           Name.Builtin.Pseudo
+'antisymm'    Name
+' '           Text.Whitespace
+'hmz'         Name
+'⟩'           Name.Builtin.Pseudo
+'\n'          Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'align'       Name
+' '           Text.Whitespace
+'zorn_partial_order₀' Name
+' '           Text.Whitespace
+'zorn_partialOrder₀' Name
+'\n\n'        Text.Whitespace
+
+'theorem'     Keyword.Namespace
+' '           Text.Whitespace
+'zorn_nonempty_partialOrder₀' Name
+' '           Text.Whitespace
+'('           Operator
+'s'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Set'         Name
+' '           Text.Whitespace
+'α'           Name
+')'           Operator
+'\n    '      Text.Whitespace
+'('           Operator
+'ih'          Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+','           Operator
+' '           Text.Whitespace
+'IsChain'     Name
+' '           Text.Whitespace
+'('           Operator
+'·'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'·'           Name.Builtin.Pseudo
+')'           Operator
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+','           Operator
+' '           Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'ub'          Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+','           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+','           Operator
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'ub'          Name
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'x'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'α'           Name
+')'           Operator
+'\n    '      Text.Whitespace
+'('           Operator
+'hxs'         Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+')'           Operator
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+','           Operator
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'∧'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+','           Operator
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'≤'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'='           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+':='          Operator
+'\n  '        Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'m'           Name
+','           Operator
+' '           Text.Whitespace
+'hms'         Name
+','           Operator
+' '           Text.Whitespace
+'hxm'         Name
+','           Operator
+' '           Text.Whitespace
+'hm'          Name
+'⟩'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'zorn_nonempty_preorder₀' Name
+' '           Text.Whitespace
+'s'           Name
+' '           Text.Whitespace
+'ih'          Name
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'hxs'         Name
+'\n  '        Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'m'           Name
+','           Operator
+' '           Text.Whitespace
+'hms'         Name
+','           Operator
+' '           Text.Whitespace
+'hxm'         Name
+','           Operator
+' '           Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'hzs'         Name
+' '           Text.Whitespace
+'hmz'         Name
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+' '           Text.Whitespace
+'('           Operator
+'hm'          Name
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'hzs'         Name
+' '           Text.Whitespace
+'hmz'         Name
+')'           Operator
+'.'           Name.Builtin.Pseudo
+'antisymm'    Name
+' '           Text.Whitespace
+'hmz'         Name
+'⟩'           Name.Builtin.Pseudo
+'\n'          Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'align'       Name
+' '           Text.Whitespace
+'zorn_nonempty_partial_order₀' Name
+' '           Text.Whitespace
+'zorn_nonempty_partialOrder₀' Name
+'\n\n'        Text.Whitespace
+
+'end'         Keyword.Namespace
+' '           Text.Whitespace
+'PartialOrder' Name
+'\n\n'        Text.Whitespace
+
+'theorem'     Keyword.Namespace
+' '           Text.Whitespace
+'zorn_subset' Name
+' '           Text.Whitespace
+'('           Operator
+'S'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Set'         Name
+' '           Text.Whitespace
+'('           Operator
+'Set'         Name
+' '           Text.Whitespace
+'α'           Name
+')'           Operator
+')'           Operator
+'\n    '      Text.Whitespace
+'('           Operator
+'h'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'S'           Name
+','           Operator
+' '           Text.Whitespace
+'IsChain'     Name
+' '           Text.Whitespace
+'('           Operator
+'·'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'·'           Name.Builtin.Pseudo
+')'           Operator
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'ub'          Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'S'           Name
+','           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+','           Operator
+' '           Text.Whitespace
+'s'           Name
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'ub'          Name
+')'           Operator
+' '           Text.Whitespace
+':'           Operator
+'\n    '      Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'S'           Name
+','           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'S'           Name
+','           Operator
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'='           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+':='          Operator
+'\n  '        Text.Whitespace
+'zorn_partialOrder₀' Name
+' '           Text.Whitespace
+'S'           Name
+' '           Text.Whitespace
+'h'           Name
+'\n'          Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'align'       Name
+' '           Text.Whitespace
+'zorn_subset' Name
+' '           Text.Whitespace
+'zorn_subset' Name
+'\n\n'        Text.Whitespace
+
+'theorem'     Keyword.Namespace
+' '           Text.Whitespace
+'zorn_subset_nonempty' Name
+' '           Text.Whitespace
+'('           Operator
+'S'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Set'         Name
+' '           Text.Whitespace
+'('           Operator
+'Set'         Name
+' '           Text.Whitespace
+'α'           Name
+')'           Operator
+')'           Operator
+'\n    '      Text.Whitespace
+'('           Operator
+'H'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'S'           Name
+','           Operator
+' '           Text.Whitespace
+'IsChain'     Name
+' '           Text.Whitespace
+'('           Operator
+'·'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'·'           Name.Builtin.Pseudo
+')'           Operator
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+'.'           Name.Builtin.Pseudo
+'Nonempty'    Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'ub'          Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'S'           Name
+','           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+','           Operator
+' '           Text.Whitespace
+'s'           Name
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'ub'          Name
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'x'           Name
+')'           Operator
+'\n    '      Text.Whitespace
+'('           Operator
+'hx'          Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'S'           Name
+')'           Operator
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'S'           Name
+','           Operator
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'∧'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'S'           Name
+','           Operator
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'='           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+':='          Operator
+'\n  '        Text.Whitespace
+'zorn_nonempty_partialOrder₀' Name
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'('           Operator
+'fun'         Keyword
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'cS'          Name
+' '           Text.Whitespace
+'hc'          Name
+' '           Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+'yc'          Name
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+' '           Text.Whitespace
+'H'           Name
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'cS'          Name
+' '           Text.Whitespace
+'hc'          Name
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'y'           Name
+','           Operator
+' '           Text.Whitespace
+'yc'          Name
+'⟩'           Name.Builtin.Pseudo
+')'           Operator
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'hx'          Name
+'\n'          Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'align'       Name
+' '           Text.Whitespace
+'zorn_subset_nonempty' Name
+' '           Text.Whitespace
+'zorn_subset_nonempty' Name
+'\n\n'        Text.Whitespace
+
+'theorem'     Keyword.Namespace
+' '           Text.Whitespace
+'zorn_superset' Name
+' '           Text.Whitespace
+'('           Operator
+'S'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Set'         Name
+' '           Text.Whitespace
+'('           Operator
+'Set'         Name
+' '           Text.Whitespace
+'α'           Name
+')'           Operator
+')'           Operator
+'\n    '      Text.Whitespace
+'('           Operator
+'h'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'S'           Name
+','           Operator
+' '           Text.Whitespace
+'IsChain'     Name
+' '           Text.Whitespace
+'('           Operator
+'·'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'·'           Name.Builtin.Pseudo
+')'           Operator
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'lb'          Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'S'           Name
+','           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+','           Operator
+' '           Text.Whitespace
+'lb'          Name
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+')'           Operator
+' '           Text.Whitespace
+':'           Operator
+'\n    '      Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'S'           Name
+','           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'S'           Name
+','           Operator
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'='           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+':='          Operator
+'\n  '        Text.Whitespace
+'('           Operator
+'@'           Name.Builtin.Pseudo
+'zorn_partialOrder₀' Name
+' '           Text.Whitespace
+'('           Operator
+'Set'         Name
+' '           Text.Whitespace
+'α'           Name
+')'           Operator
+'ᵒ'           Name.Builtin.Pseudo
+'ᵈ'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'S'           Name
+')'           Operator
+' '           Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'cS'          Name
+' '           Text.Whitespace
+'hc'          Name
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+' '           Text.Whitespace
+'h'           Name
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'cS'          Name
+' '           Text.Whitespace
+'hc'          Name
+'.'           Name.Builtin.Pseudo
+'symm'        Name
+'\n'          Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'align'       Name
+' '           Text.Whitespace
+'zorn_superset' Name
+' '           Text.Whitespace
+'zorn_superset' Name
+'\n\n'        Text.Whitespace
+
+'theorem'     Keyword.Namespace
+' '           Text.Whitespace
+'zorn_superset_nonempty' Name
+' '           Text.Whitespace
+'('           Operator
+'S'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Set'         Name
+' '           Text.Whitespace
+'('           Operator
+'Set'         Name
+' '           Text.Whitespace
+'α'           Name
+')'           Operator
+')'           Operator
+'\n    '      Text.Whitespace
+'('           Operator
+'H'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'S'           Name
+','           Operator
+' '           Text.Whitespace
+'IsChain'     Name
+' '           Text.Whitespace
+'('           Operator
+'·'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'·'           Name.Builtin.Pseudo
+')'           Operator
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+'.'           Name.Builtin.Pseudo
+'Nonempty'    Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'lb'          Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'S'           Name
+','           Operator
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+','           Operator
+' '           Text.Whitespace
+'lb'          Name
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'x'           Name
+')'           Operator
+'\n    '      Text.Whitespace
+'('           Operator
+'hx'          Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'S'           Name
+')'           Operator
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'S'           Name
+','           Operator
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'∧'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'∀'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'∈'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'S'           Name
+','           Operator
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'='           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+':='          Operator
+'\n  '        Text.Whitespace
+'@'           Name.Builtin.Pseudo
+'zorn_nonempty_partialOrder₀' Name
+' '           Text.Whitespace
+'('           Operator
+'Set'         Name
+' '           Text.Whitespace
+'α'           Name
+')'           Operator
+'ᵒ'           Name.Builtin.Pseudo
+'ᵈ'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'S'           Name
+' '           Text.Whitespace
+'('           Operator
+'fun'         Keyword
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'cS'          Name
+' '           Text.Whitespace
+'hc'          Name
+' '           Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+'yc'          Name
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+' '           Text.Whitespace
+'H'           Name
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'cS'          Name
+' '           Text.Whitespace
+'hc'          Name
+'.'           Name.Builtin.Pseudo
+'symm'        Name
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'y'           Name
+','           Operator
+' '           Text.Whitespace
+'yc'          Name
+'⟩'           Name.Builtin.Pseudo
+')'           Operator
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'hx'          Name
+'\n'          Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'align'       Name
+' '           Text.Whitespace
+'zorn_superset_nonempty' Name
+' '           Text.Whitespace
+'zorn_superset_nonempty' Name
+'\n\n'        Text.Whitespace
+
+'/--'         Literal.String.Doc
+" Every chain is contained in a maximal chain. This generalizes Hausdorff's maximality principle.\n" Literal.String.Doc
+
+'-/'          Literal.String.Doc
+'\n'          Text.Whitespace
+
+'theorem'     Keyword.Namespace
+' '           Text.Whitespace
+'IsChain'     Name
+'.'           Name.Builtin.Pseudo
+'exists_maxChain' Name
+' '           Text.Whitespace
+'('           Operator
+'hc'          Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'IsChain'     Name
+' '           Text.Whitespace
+'r'           Name
+' '           Text.Whitespace
+'c'           Name
+')'           Operator
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'∃'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'M'           Name
+','           Operator
+' '           Text.Whitespace
+'@'           Name.Builtin.Pseudo
+'IsMaxChain'  Name
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'r'           Name
+' '           Text.Whitespace
+'M'           Name
+' '           Text.Whitespace
+'∧'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'M'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'by'          Keyword
+'\n  '        Text.Whitespace
+'-- Porting note: the first three lines replace the following two lines in mathlib3.' Comment.Single
+'\n  '        Text.Whitespace
+'-- The mathlib3 `obtain` supports holes for proof obligations, this is not yet implemented in 4.' Comment.Single
+'\n  '        Text.Whitespace
+'-- obtain ⟨M, ⟨_, hM₀⟩, hM₁, hM₂⟩ :=' Comment.Single
+'\n  '        Text.Whitespace
+'--   zorn_subset_nonempty { s | c ⊆ s ∧ IsChain r s } _ c ⟨Subset.rfl, hc⟩' Comment.Single
+'\n  '        Text.Whitespace
+'have'        Keyword
+' '           Text.Whitespace
+'H'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'zorn_subset_nonempty' Name
+' '           Text.Whitespace
+'{'           Operator
+' '           Text.Whitespace
+'s'           Name
+' '           Text.Whitespace
+'|'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'⊆'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'s'           Name
+' '           Text.Whitespace
+'∧'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'IsChain'     Name
+' '           Text.Whitespace
+'r'           Name
+' '           Text.Whitespace
+'s'           Name
+' '           Text.Whitespace
+'}'           Operator
+' '           Text.Whitespace
+'?'           Name.Builtin.Pseudo
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'Subset'      Name
+'.'           Name.Builtin.Pseudo
+'rfl'         Name
+','           Operator
+' '           Text.Whitespace
+'hc'          Name
+'⟩'           Name.Builtin.Pseudo
+'\n  '        Text.Whitespace
+'·'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'obtain'      Keyword
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'M'           Name
+','           Operator
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'_'           Name.Builtin.Pseudo
+','           Operator
+' '           Text.Whitespace
+'hM₀'         Name
+'⟩'           Name.Builtin.Pseudo
+','           Operator
+' '           Text.Whitespace
+'hM₁'         Name
+','           Operator
+' '           Text.Whitespace
+'hM₂'         Name
+'⟩'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'H'           Name
+'\n    '      Text.Whitespace
+'exact'       Name
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'M'           Name
+','           Operator
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'hM₀'         Name
+','           Operator
+' '           Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'d'           Name
+' '           Text.Whitespace
+'hd'          Name
+' '           Text.Whitespace
+'hMd'         Name
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+' '           Text.Whitespace
+'('           Operator
+'hM₂'         Name
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'hM₁'         Name
+'.'           Name.Builtin.Pseudo
+'trans'       Name
+' '           Text.Whitespace
+'hMd'         Name
+','           Operator
+' '           Text.Whitespace
+'hd'          Name
+'⟩'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'hMd'         Name
+')'           Operator
+'.'           Name.Builtin.Pseudo
+'symm'        Name
+'⟩'           Name.Builtin.Pseudo
+','           Operator
+' '           Text.Whitespace
+'hM₁'         Name
+'⟩'           Name.Builtin.Pseudo
+'\n  '        Text.Whitespace
+'rintro'      Name
+' '           Text.Whitespace
+'cs'          Name
+' '           Text.Whitespace
+'hcs₀'        Name
+' '           Text.Whitespace
+'hcs₁'        Name
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'s'           Name
+','           Operator
+' '           Text.Whitespace
+'hs'          Name
+'⟩'           Name.Builtin.Pseudo
+'\n  '        Text.Whitespace
+"refine'"     Name
+'\n    '      Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'⋃'           Name.Builtin.Pseudo
+'₀'           Name.Builtin.Pseudo
+'cs'          Name
+','           Operator
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'fun'         Keyword
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'ha'          Name
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+' '           Text.Whitespace
+'Set'         Name
+'.'           Name.Builtin.Pseudo
+'mem_sUnion_of_mem' Name
+' '           Text.Whitespace
+'('           Operator
+'('           Operator
+'hcs₀'        Name
+' '           Text.Whitespace
+'hs'          Name
+')'           Operator
+'.'           Name.Builtin.Pseudo
+'left'        Name
+' '           Text.Whitespace
+'ha'          Name
+')'           Operator
+' '           Text.Whitespace
+'hs'          Name
+','           Operator
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+'⟩'           Name.Builtin.Pseudo
+','           Operator
+' '           Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'=>'          Name.Builtin.Pseudo
+'\n      '    Text.Whitespace
+'Set'         Name
+'.'           Name.Builtin.Pseudo
+'subset_sUnion_of_mem' Name
+'⟩'           Name.Builtin.Pseudo
+'\n  '        Text.Whitespace
+'rintro'      Name
+' '           Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'sy'          Name
+','           Operator
+' '           Text.Whitespace
+'hsy'         Name
+','           Operator
+' '           Text.Whitespace
+'hysy'        Name
+'⟩'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'⟨'           Name.Builtin.Pseudo
+'sz'          Name
+','           Operator
+' '           Text.Whitespace
+'hsz'         Name
+','           Operator
+' '           Text.Whitespace
+'hzsz'        Name
+'⟩'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'hyz'         Name
+'\n  '        Text.Whitespace
+'obtain'      Keyword
+' '           Text.Whitespace
+'rfl'         Name
+' '           Text.Whitespace
+'|'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'hsseq'       Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'eq_or_ne'    Name
+' '           Text.Whitespace
+'sy'          Name
+' '           Text.Whitespace
+'sz'          Name
+'\n  '        Text.Whitespace
+'·'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'exact'       Name
+' '           Text.Whitespace
+'('           Operator
+'hcs₀'        Name
+' '           Text.Whitespace
+'hsy'         Name
+')'           Operator
+'.'           Name.Builtin.Pseudo
+'right'       Name
+' '           Text.Whitespace
+'hysy'        Name
+' '           Text.Whitespace
+'hzsz'        Name
+' '           Text.Whitespace
+'hyz'         Name
+'\n  '        Text.Whitespace
+"cases'"      Name
+' '           Text.Whitespace
+'hcs₁'        Name
+' '           Text.Whitespace
+'hsy'         Name
+' '           Text.Whitespace
+'hsz'         Name
+' '           Text.Whitespace
+'hsseq'       Name
+' '           Text.Whitespace
+'with'        Keyword
+' '           Text.Whitespace
+'h'           Name
+' '           Text.Whitespace
+'h'           Name
+'\n  '        Text.Whitespace
+'·'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'exact'       Name
+' '           Text.Whitespace
+'('           Operator
+'hcs₀'        Name
+' '           Text.Whitespace
+'hsz'         Name
+')'           Operator
+'.'           Name.Builtin.Pseudo
+'right'       Name
+' '           Text.Whitespace
+'('           Operator
+'h'           Name
+' '           Text.Whitespace
+'hysy'        Name
+')'           Operator
+' '           Text.Whitespace
+'hzsz'        Name
+' '           Text.Whitespace
+'hyz'         Name
+'\n  '        Text.Whitespace
+'·'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'exact'       Name
+' '           Text.Whitespace
+'('           Operator
+'hcs₀'        Name
+' '           Text.Whitespace
+'hsy'         Name
+')'           Operator
+'.'           Name.Builtin.Pseudo
+'right'       Name
+' '           Text.Whitespace
+'hysy'        Name
+' '           Text.Whitespace
+'('           Operator
+'h'           Name
+' '           Text.Whitespace
+'hzsz'        Name
+')'           Operator
+' '           Text.Whitespace
+'hyz'         Name
+'\n'          Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'align'       Name
+' '           Text.Whitespace
+'is_chain'    Name
+'.'           Name.Builtin.Pseudo
+'exists_max_chain' Name
+' '           Text.Whitespace
+'IsChain'     Name
+'.'           Name.Builtin.Pseudo
+'exists_maxChain' Name
+'\n\n'        Text.Whitespace
+
+'-- other bits of tricky syntax' Comment.Single
+'\n'          Text.Whitespace
+
+'@['          Keyword.Declaration
+'to_additive' Name
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'See note [foo]' Literal.String.Double
+'"'           Literal.String.Double
+']'           Keyword.Declaration
+'\n'          Text.Whitespace
+
+'lemma'       Keyword.Namespace
+' '           Text.Whitespace
+'mul_one'     Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'sorry'       Generic.Error
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'sorry'       Generic.Error
+'\n\n'        Text.Whitespace
+
+'variable'    Keyword.Namespace
+' '           Text.Whitespace
+'{'           Operator
+'ι'           Name
+' '           Text.Whitespace
+'A'           Name
+' '           Text.Whitespace
+'B'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Type'        Keyword.Type
+'*'           Name.Builtin.Pseudo
+'}'           Operator
+' '           Text.Whitespace
+'('           Operator
+'𝒜'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'ι'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'A'           Name
+')'           Operator
+' '           Text.Whitespace
+'('           Operator
+'ℬ'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'ι'           Name
+' '           Text.Whitespace
+'→'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'B'           Name
+')'           Operator
+'\n\n'        Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'check'       Name
+' '           Text.Whitespace
+'`𝒜.a'        Literal.String.Symbol
+'\n'          Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'check'       Name
+' '           Text.Whitespace
+'``𝒜'         Literal.String.Symbol
+'\n\n'        Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'check'       Name
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'\\\n'        Literal.String.Escape
+
+'  This is'   Literal.String.Double
+'\\n'         Literal.String.Escape
+'a '          Literal.String.Double
+'\\\n'        Literal.String.Escape
+
+'  wrapped string.' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'check'       Name
+' '           Text.Whitespace
+'List'        Name
+'.'           Name.Builtin.Pseudo
+'get!'        Name
+'\n\n'        Text.Whitespace
+
+'#'           Name.Builtin.Pseudo
+'check'       Name
+' '           Text.Whitespace
+'1.0'         Literal.Number.Float
+' '           Text.Whitespace
+'+'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'2.'          Literal.Number.Float
+' '           Text.Whitespace
+'+'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'0.3e1'       Literal.Number.Float
+'\n'          Text.Whitespace

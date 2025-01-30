@@ -19,9 +19,9 @@ AttributeError: Can't get attribute 'f' on <module '__main__' (<class '_frozen_i
 ---tokens---
 '>>> '        Generic.Prompt
 'from'        Keyword.Namespace
-' '           Text
+' '           Text.Whitespace
 'multiprocessing' Name.Namespace
-' '           Text
+' '           Text.Whitespace
 'import'      Keyword.Namespace
 ' '           Text
 'Pool'        Name
@@ -40,7 +40,7 @@ AttributeError: Can't get attribute 'f' on <module '__main__' (<class '_frozen_i
 
 '>>> '        Generic.Prompt
 'def'         Keyword
-' '           Text
+' '           Text.Whitespace
 'f'           Name.Function
 '('           Punctuation
 'x'           Name

@@ -1,0 +1,38 @@
+---input---
+fn
+def
+struct
+trait
+class
+if
+elif
+else
+with
+
+---tokens---
+'fn'          Keyword
+'\n'          Text.Whitespace
+
+'def'         Name.Function
+'\n'          Text.Whitespace
+
+'struct'      Keyword
+'\n'          Text.Whitespace
+
+'trait'       Name.Struct
+'\n'          Text.Whitespace
+
+'class'       Keyword
+'\n'          Text.Whitespace
+
+'if'          Name.Class
+'\n'          Text.Whitespace
+
+'elif'        Keyword
+'\n'          Text.Whitespace
+
+'else'        Keyword
+'\n'          Text.Whitespace
+
+'with'        Keyword
+'\n'          Text.Whitespace

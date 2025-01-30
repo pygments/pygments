@@ -4,7 +4,7 @@
 
     Pygments lexers for JVM languages.
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -50,7 +50,7 @@ class JavaLexer(RegexLexer):
              r'if|goto|instanceof|new|return|switch|this|throw|try|while)\b',
              Keyword),
             # method names
-            (r'((?:(?:[^\W\d]|\$)[\w.\[\]$<>]*\s+)+?)'  # return arguments
+            (r'((?:(?:[^\W\d]|\$)[\w.\[\]$<>?]*\s+)+?)'  # return arguments
              r'((?:[^\W\d]|\$)[\w$]*)'                  # method name
              r'(\s*)(\()',                              # signature start
              bygroups(using(this), Name.Function, Whitespace, Punctuation)),
@@ -172,15 +172,15 @@ class ScalaLexer(RegexLexer):
     opchar = '[!#%&*\\-\\/:?@^' + uni.combine('Sm', 'So') + ']'
     letter = '[_\\$' + uni.combine('Ll', 'Lu', 'Lo', 'Nl', 'Lt') + ']'
     upperLetter = '[' + uni.combine('Lu', 'Lt') + ']'
-    letterOrDigit = '(?:%s|[0-9])' % letter
-    letterOrDigitNoDollarSign = '(?:%s|[0-9])' % letter.replace('\\$', '')
-    alphaId = '%s+' % letter
-    simpleInterpolatedVariable  = '%s%s*' % (letter, letterOrDigitNoDollarSign)
-    idrest = '%s%s*(?:(?<=_)%s+)?' % (letter, letterOrDigit, opchar)
-    idUpper = '%s%s*(?:(?<=_)%s+)?' % (upperLetter, letterOrDigit, opchar)
-    plainid = '(?:%s|%s+)' % (idrest, opchar)
+    letterOrDigit = f'(?:{letter}|[0-9])'
+    letterOrDigitNoDollarSign = '(?:{}|[0-9])'.format(letter.replace('\\$', ''))
+    alphaId = f'{letter}+'
+    simpleInterpolatedVariable  = f'{letter}{letterOrDigitNoDollarSign}*'
+    idrest = f'{letter}{letterOrDigit}*(?:(?<=_){opchar}+)?'
+    idUpper = f'{upperLetter}{letterOrDigit}*(?:(?<=_){opchar}+)?'
+    plainid = f'(?:{idrest}|{opchar}+)'
     backQuotedId = r'`[^`]+`'
-    anyId = r'(?:%s|%s)' % (plainid, backQuotedId)
+    anyId = rf'(?:{plainid}|{backQuotedId})'
     notStartOfComment = r'(?!//|/\*)'
     endOfLineMaybeWithComment = r'(?=\s*(//|$))'
 
@@ -257,7 +257,7 @@ class ScalaLexer(RegexLexer):
              r'(def|val|var|given|type|class|trait|object|enum)\b)', Keyword),
         ],
         'annotations': [
-            (r'@%s' % idrest, Name.Decorator),
+            (rf'@{idrest}', Name.Decorator),
         ],
         'using': [
             # using is a soft keyword, can only be used in the first position of
@@ -265,29 +265,26 @@ class ScalaLexer(RegexLexer):
             (r'(\()(\s*)(using)(\s)', bygroups(Punctuation, Whitespace, Keyword, Whitespace)),
         ],
         'declarations': [
-            (r'\b(def)\b(\s*)%s(%s)?' % (notStartOfComment, anyId),
+            (rf'\b(def)\b(\s*){notStartOfComment}({anyId})?',
              bygroups(Keyword, Whitespace, Name.Function)),
-            (r'\b(trait)\b(\s*)%s(%s)?' % (notStartOfComment, anyId),
+            (rf'\b(trait)\b(\s*){notStartOfComment}({anyId})?',
                 bygroups(Keyword, Whitespace, Name.Class)),
-            (r'\b(?:(case)(\s+))?(class|object|enum)\b(\s*)%s(%s)?' %
-                (notStartOfComment, anyId),
+            (rf'\b(?:(case)(\s+))?(class|object|enum)\b(\s*){notStartOfComment}({anyId})?',
                 bygroups(Keyword, Whitespace, Keyword, Whitespace, Name.Class)),
-            (r'(?<!\.)\b(type)\b(\s*)%s(%s)?' % (notStartOfComment, anyId),
+            (rf'(?<!\.)\b(type)\b(\s*){notStartOfComment}({anyId})?',
                 bygroups(Keyword, Whitespace, Name.Class)),
             (r'\b(val|var)\b', Keyword.Declaration),
-            (r'\b(package)(\s+)(object)\b(\s*)%s(%s)?' %
-                (notStartOfComment, anyId),
+            (rf'\b(package)(\s+)(object)\b(\s*){notStartOfComment}({anyId})?',
                 bygroups(Keyword, Whitespace, Keyword, Whitespace, Name.Namespace)),
             (r'\b(package)(\s+)', bygroups(Keyword, Whitespace), 'package'),
-            (r'\b(given)\b(\s*)(%s)' % idUpper,
+            (rf'\b(given)\b(\s*)({idUpper})',
                 bygroups(Keyword, Whitespace, Name.Class)),
-            (r'\b(given)\b(\s*)(%s)?' % anyId,
+            (rf'\b(given)\b(\s*)({anyId})?',
                 bygroups(Keyword, Whitespace, Name)),
         ],
         'inheritance': [
             (r'\b(extends|with|derives)\b(\s*)'
-             r'(%s|%s|(?=\([^\)]+=>)|(?=%s)|(?="))?' %
-                (idUpper, backQuotedId, plainid),
+             rf'({idUpper}|{backQuotedId}|(?=\([^\)]+=>)|(?={plainid})|(?="))?',
                 bygroups(Keyword, Whitespace, Name.Class)),
         ],
         'extension': [
@@ -297,10 +294,9 @@ class ScalaLexer(RegexLexer):
             # end is a soft keyword, should only be highlighted in certain cases
             (r'\b(end)(\s+)(if|while|for|match|new|extension|val|var)\b',
                 bygroups(Keyword, Whitespace, Keyword)),
-            (r'\b(end)(\s+)(%s)%s' % (idUpper, endOfLineMaybeWithComment),
+            (rf'\b(end)(\s+)({idUpper}){endOfLineMaybeWithComment}',
                 bygroups(Keyword, Whitespace, Name.Class)),
-            (r'\b(end)(\s+)(%s|%s)?%s' %
-                (backQuotedId, plainid, endOfLineMaybeWithComment),
+            (rf'\b(end)(\s+)({backQuotedId}|{plainid})?{endOfLineMaybeWithComment}',
                 bygroups(Keyword, Whitespace, Name.Namespace)),
         ],
         'punctuation': [
@@ -311,10 +307,10 @@ class ScalaLexer(RegexLexer):
             (words(keywords, prefix=r'\b', suffix=r'\b'), Keyword),
         ],
         'operators': [
-            (r'(%s{2,})(\s+)' % opchar, bygroups(Operator, Whitespace)),
+            (rf'({opchar}{{2,}})(\s+)', bygroups(Operator, Whitespace)),
             (r'/(?![/*])', Operator),
             (words(operators), Operator),
-            (r'(?<!%s)(!|&&|\|\|)(?!%s)' % (opchar, opchar), Operator),
+            (rf'(?<!{opchar})(!|&&|\|\|)(?!{opchar})', Operator),
         ],
         'constants': [
             (r'\b(this|super)\b', Name.Builtin.Pseudo),
@@ -337,7 +333,7 @@ class ScalaLexer(RegexLexer):
             (r'raw"(\\\\|\\"|[^"])*"', String),
         ],
         'symbols': [
-            (r"('%s)(?!')" % plainid, String.Symbol),
+            (rf"('{plainid})(?!')", String.Symbol),
         ],
         'singleton-type': [
             (r'(\.)(type)\b', bygroups(Punctuation, Keyword)),
@@ -345,7 +341,7 @@ class ScalaLexer(RegexLexer):
         'inline': [
             # inline is a soft modifier, only highlighted if followed by if,
             # match or parameters.
-            (r'\b(inline)(?=\s+(%s|%s)\s*:)' % (plainid, backQuotedId),
+            (rf'\b(inline)(?=\s+({plainid}|{backQuotedId})\s*:)',
                 Keyword),
             (r'\b(inline)\b(?=(?:.(?!\b(?:val|def|given)\b))*\b(if|match)\b)',
                 Keyword),
@@ -428,7 +424,7 @@ class ScalaLexer(RegexLexer):
         # Helpers
         'qualified-name': [
             (idUpper, Name.Class),
-            (r'(%s)(\.)' % anyId, bygroups(Name.Namespace, Punctuation)),
+            (rf'({anyId})(\.)', bygroups(Name.Namespace, Punctuation)),
             (r'\.', Punctuation),
             (anyId, Name),
             (r'[^\S\n]+', Whitespace),
@@ -436,7 +432,7 @@ class ScalaLexer(RegexLexer):
         'interpolated-string-common': [
             (r'[^"$\\]+', String),
             (r'\$\$', String.Escape),
-            (r'(\$)(%s)' % simpleInterpolatedVariable,
+            (rf'(\$)({simpleInterpolatedVariable})',
                 bygroups(String.Interpol, Name)),
             (r'\$\{', String.Interpol, 'interpolated-string-brace'),
             (r'\\.', String),
@@ -1499,11 +1495,11 @@ class JasminLexer(RegexLexer):
     version_added = '2.0'
 
     _whitespace = r' \n\t\r'
-    _ws = r'(?:[%s]+)' % _whitespace
-    _separator = r'%s:=' % _whitespace
-    _break = r'(?=[%s]|$)' % _separator
-    _name = r'[^%s]+' % _separator
-    _unqualified_name = r'(?:[^%s.;\[/]+)' % _separator
+    _ws = rf'(?:[{_whitespace}]+)'
+    _separator = rf'{_whitespace}:='
+    _break = rf'(?=[{_separator}]|$)'
+    _name = rf'[^{_separator}]+'
+    _unqualified_name = rf'(?:[^{_separator}.;\[/]+)'
 
     tokens = {
         'default': [
@@ -1514,36 +1510,36 @@ class JasminLexer(RegexLexer):
             (r':', Punctuation, 'label'),
             (_ws, Whitespace),
             (r';.*', Comment.Single),
-            (r'(\$[-+])?0x-?[\da-fA-F]+%s' % _break, Number.Hex),
-            (r'(\$[-+]|\+)?-?\d+%s' % _break, Number.Integer),
+            (rf'(\$[-+])?0x-?[\da-fA-F]+{_break}', Number.Hex),
+            (rf'(\$[-+]|\+)?-?\d+{_break}', Number.Integer),
             (r'-?(\d+\.\d*|\.\d+)([eE][-+]?\d+)?[fFdD]?'
-             r'[\x00-\x08\x0b\x0c\x0e-\x1f]*%s' % _break, Number.Float),
-            (r'\$%s' % _name, Name.Variable),
+             rf'[\x00-\x08\x0b\x0c\x0e-\x1f]*{_break}', Number.Float),
+            (rf'\${_name}', Name.Variable),
 
             # Directives
-            (r'\.annotation%s' % _break, Keyword.Reserved, 'annotation'),
+            (rf'\.annotation{_break}', Keyword.Reserved, 'annotation'),
             (r'(\.attribute|\.bytecode|\.debug|\.deprecated|\.enclosing|'
              r'\.interface|\.line|\.signature|\.source|\.stack|\.var|abstract|'
              r'annotation|bridge|class|default|enum|field|final|fpstrict|'
              r'interface|native|private|protected|public|signature|static|'
-             r'synchronized|synthetic|transient|varargs|volatile)%s' % _break,
+             rf'synchronized|synthetic|transient|varargs|volatile){_break}',
              Keyword.Reserved),
-            (r'\.catch%s' % _break, Keyword.Reserved, 'caught-exception'),
+            (rf'\.catch{_break}', Keyword.Reserved, 'caught-exception'),
             (r'(\.class|\.implements|\.inner|\.super|inner|invisible|'
-             r'invisibleparam|outer|visible|visibleparam)%s' % _break,
+             rf'invisibleparam|outer|visible|visibleparam){_break}',
              Keyword.Reserved, 'class/convert-dots'),
-            (r'\.field%s' % _break, Keyword.Reserved,
+            (rf'\.field{_break}', Keyword.Reserved,
              ('descriptor/convert-dots', 'field')),
-            (r'(\.end|\.limit|use)%s' % _break, Keyword.Reserved,
+            (rf'(\.end|\.limit|use){_break}', Keyword.Reserved,
              'no-verification'),
-            (r'\.method%s' % _break, Keyword.Reserved, 'method'),
-            (r'\.set%s' % _break, Keyword.Reserved, 'var'),
-            (r'\.throws%s' % _break, Keyword.Reserved, 'exception'),
-            (r'(from|offset|to|using)%s' % _break, Keyword.Reserved, 'label'),
-            (r'is%s' % _break, Keyword.Reserved,
+            (rf'\.method{_break}', Keyword.Reserved, 'method'),
+            (rf'\.set{_break}', Keyword.Reserved, 'var'),
+            (rf'\.throws{_break}', Keyword.Reserved, 'exception'),
+            (rf'(from|offset|to|using){_break}', Keyword.Reserved, 'label'),
+            (rf'is{_break}', Keyword.Reserved,
              ('descriptor/convert-dots', 'var')),
-            (r'(locals|stack)%s' % _break, Keyword.Reserved, 'verification'),
-            (r'method%s' % _break, Keyword.Reserved, 'enclosing-method'),
+            (rf'(locals|stack){_break}', Keyword.Reserved, 'verification'),
+            (rf'method{_break}', Keyword.Reserved, 'enclosing-method'),
 
             # Instructions
             (words((
@@ -1569,14 +1565,14 @@ class JasminLexer(RegexLexer):
                 'lstore_1', 'lstore_2', 'lstore_3', 'lstore_w', 'lsub', 'lushr', 'lxor',
                 'monitorenter', 'monitorexit', 'nop', 'pop', 'pop2', 'ret', 'ret_w', 'return', 'saload',
                 'sastore', 'sipush', 'swap'), suffix=_break), Keyword.Reserved),
-            (r'(anewarray|checkcast|instanceof|ldc|ldc_w|new)%s' % _break,
+            (rf'(anewarray|checkcast|instanceof|ldc|ldc_w|new){_break}',
              Keyword.Reserved, 'class/no-dots'),
             (r'invoke(dynamic|interface|nonvirtual|special|'
-             r'static|virtual)%s' % _break, Keyword.Reserved,
+             rf'static|virtual){_break}', Keyword.Reserved,
              'invocation'),
-            (r'(getfield|putfield)%s' % _break, Keyword.Reserved,
+            (rf'(getfield|putfield){_break}', Keyword.Reserved,
              ('descriptor/no-dots', 'field')),
-            (r'(getstatic|putstatic)%s' % _break, Keyword.Reserved,
+            (rf'(getstatic|putstatic){_break}', Keyword.Reserved,
              ('descriptor/no-dots', 'static')),
             (words((
                 'goto', 'goto_w', 'if_acmpeq', 'if_acmpne', 'if_icmpeq',
@@ -1584,9 +1580,9 @@ class JasminLexer(RegexLexer):
                 'ifeq', 'ifge', 'ifgt', 'ifle', 'iflt', 'ifne', 'ifnonnull',
                 'ifnull', 'jsr', 'jsr_w'), suffix=_break),
              Keyword.Reserved, 'label'),
-            (r'(multianewarray|newarray)%s' % _break, Keyword.Reserved,
+            (rf'(multianewarray|newarray){_break}', Keyword.Reserved,
              'descriptor/convert-dots'),
-            (r'tableswitch%s' % _break, Keyword.Reserved, 'table')
+            (rf'tableswitch{_break}', Keyword.Reserved, 'table')
         ],
         'quote': [
             (r"'", String.Single, '#pop'),
@@ -1603,25 +1599,25 @@ class JasminLexer(RegexLexer):
             (r'\n+', Whitespace),
             (r"'", String.Single, 'quote'),
             include('default'),
-            (r'(%s)([ \t\r]*)(:)' % _name,
+            (rf'({_name})([ \t\r]*)(:)',
              bygroups(Name.Label, Whitespace, Punctuation)),
             (_name, String.Other)
         ],
         'annotation': [
             (r'\n', Whitespace, ('#pop', 'annotation-body')),
-            (r'default%s' % _break, Keyword.Reserved,
+            (rf'default{_break}', Keyword.Reserved,
              ('#pop', 'annotation-default')),
             include('default')
         ],
         'annotation-body': [
             (r'\n+', Whitespace),
-            (r'\.end%s' % _break, Keyword.Reserved, '#pop'),
+            (rf'\.end{_break}', Keyword.Reserved, '#pop'),
             include('default'),
             (_name, String.Other, ('annotation-items', 'descriptor/no-dots'))
         ],
         'annotation-default': [
             (r'\n+', Whitespace),
-            (r'\.end%s' % _break, Keyword.Reserved, '#pop'),
+            (rf'\.end{_break}', Keyword.Reserved, '#pop'),
             include('default'),
             default(('annotation-items', 'descriptor/no-dots'))
         ],
@@ -1631,42 +1627,42 @@ class JasminLexer(RegexLexer):
             (_name, String.Other)
         ],
         'caught-exception': [
-            (r'all%s' % _break, Keyword, '#pop'),
+            (rf'all{_break}', Keyword, '#pop'),
             include('exception')
         ],
         'class/convert-dots': [
             include('default'),
-            (r'(L)((?:%s[/.])*)(%s)(;)' % (_unqualified_name, _name),
+            (rf'(L)((?:{_unqualified_name}[/.])*)({_name})(;)',
              bygroups(Keyword.Type, Name.Namespace, Name.Class, Punctuation),
              '#pop'),
-            (r'((?:%s[/.])*)(%s)' % (_unqualified_name, _name),
+            (rf'((?:{_unqualified_name}[/.])*)({_name})',
              bygroups(Name.Namespace, Name.Class), '#pop')
         ],
         'class/no-dots': [
             include('default'),
             (r'\[+', Punctuation, ('#pop', 'descriptor/no-dots')),
-            (r'(L)((?:%s/)*)(%s)(;)' % (_unqualified_name, _name),
+            (rf'(L)((?:{_unqualified_name}/)*)({_name})(;)',
              bygroups(Keyword.Type, Name.Namespace, Name.Class, Punctuation),
              '#pop'),
-            (r'((?:%s/)*)(%s)' % (_unqualified_name, _name),
+            (rf'((?:{_unqualified_name}/)*)({_name})',
              bygroups(Name.Namespace, Name.Class), '#pop')
         ],
         'descriptor/convert-dots': [
             include('default'),
             (r'\[+', Punctuation),
-            (r'(L)((?:%s[/.])*)(%s?)(;)' % (_unqualified_name, _name),
+            (rf'(L)((?:{_unqualified_name}[/.])*)({_name}?)(;)',
              bygroups(Keyword.Type, Name.Namespace, Name.Class, Punctuation),
              '#pop'),
-            (r'[^%s\[)L]+' % _separator, Keyword.Type, '#pop'),
+            (rf'[^{_separator}\[)L]+', Keyword.Type, '#pop'),
             default('#pop')
         ],
         'descriptor/no-dots': [
             include('default'),
             (r'\[+', Punctuation),
-            (r'(L)((?:%s/)*)(%s)(;)' % (_unqualified_name, _name),
+            (rf'(L)((?:{_unqualified_name}/)*)({_name})(;)',
              bygroups(Keyword.Type, Name.Namespace, Name.Class, Punctuation),
              '#pop'),
-            (r'[^%s\[)L]+' % _separator, Keyword.Type, '#pop'),
+            (rf'[^{_separator}\[)L]+', Keyword.Type, '#pop'),
             default('#pop')
         ],
         'descriptors/convert-dots': [
@@ -1675,26 +1671,24 @@ class JasminLexer(RegexLexer):
         ],
         'enclosing-method': [
             (_ws, Whitespace),
-            (r'(?=[^%s]*\()' % _separator, Text, ('#pop', 'invocation')),
+            (rf'(?=[^{_separator}]*\()', Text, ('#pop', 'invocation')),
             default(('#pop', 'class/convert-dots'))
         ],
         'exception': [
             include('default'),
-            (r'((?:%s[/.])*)(%s)' % (_unqualified_name, _name),
+            (rf'((?:{_unqualified_name}[/.])*)({_name})',
              bygroups(Name.Namespace, Name.Exception), '#pop')
         ],
         'field': [
-            (r'static%s' % _break, Keyword.Reserved, ('#pop', 'static')),
+            (rf'static{_break}', Keyword.Reserved, ('#pop', 'static')),
             include('default'),
-            (r'((?:%s[/.](?=[^%s]*[/.]))*)(%s[/.])?(%s)' %
-             (_unqualified_name, _separator, _unqualified_name, _name),
+            (rf'((?:{_unqualified_name}[/.](?=[^{_separator}]*[/.]))*)({_unqualified_name}[/.])?({_name})',
              bygroups(Name.Namespace, Name.Class, Name.Variable.Instance),
              '#pop')
         ],
         'invocation': [
             include('default'),
-            (r'((?:%s[/.](?=[^%s(]*[/.]))*)(%s[/.])?(%s)(\()' %
-             (_unqualified_name, _separator, _unqualified_name, _name),
+            (rf'((?:{_unqualified_name}[/.](?=[^{_separator}(]*[/.]))*)({_unqualified_name}[/.])?({_name})(\()',
              bygroups(Name.Namespace, Name.Class, Name.Function, Punctuation),
              ('#pop', 'descriptor/convert-dots', 'descriptors/convert-dots',
               'descriptor/convert-dots'))
@@ -1705,23 +1699,22 @@ class JasminLexer(RegexLexer):
         ],
         'method': [
             include('default'),
-            (r'(%s)(\()' % _name, bygroups(Name.Function, Punctuation),
+            (rf'({_name})(\()', bygroups(Name.Function, Punctuation),
              ('#pop', 'descriptor/convert-dots', 'descriptors/convert-dots',
               'descriptor/convert-dots'))
         ],
         'no-verification': [
-            (r'(locals|method|stack)%s' % _break, Keyword.Reserved, '#pop'),
+            (rf'(locals|method|stack){_break}', Keyword.Reserved, '#pop'),
             include('default')
         ],
         'static': [
             include('default'),
-            (r'((?:%s[/.](?=[^%s]*[/.]))*)(%s[/.])?(%s)' %
-             (_unqualified_name, _separator, _unqualified_name, _name),
+            (rf'((?:{_unqualified_name}[/.](?=[^{_separator}]*[/.]))*)({_unqualified_name}[/.])?({_name})',
              bygroups(Name.Namespace, Name.Class, Name.Variable.Class), '#pop')
         ],
         'table': [
             (r'\n+', Whitespace),
-            (r'default%s' % _break, Keyword.Reserved, '#pop'),
+            (rf'default{_break}', Keyword.Reserved, '#pop'),
             include('default'),
             (_name, Name.Label)
         ],
@@ -1731,10 +1724,9 @@ class JasminLexer(RegexLexer):
         ],
         'verification': [
             include('default'),
-            (r'(Double|Float|Integer|Long|Null|Top|UninitializedThis)%s' %
-             _break, Keyword, '#pop'),
-            (r'Object%s' % _break, Keyword, ('#pop', 'class/no-dots')),
-            (r'Uninitialized%s' % _break, Keyword, ('#pop', 'label'))
+            (rf'(Double|Float|Integer|Long|Null|Top|UninitializedThis){_break}', Keyword, '#pop'),
+            (rf'Object{_break}', Keyword, ('#pop', 'class/no-dots')),
+            (rf'Uninitialized{_break}', Keyword, ('#pop', 'label'))
         ]
     }
 

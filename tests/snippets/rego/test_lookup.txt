@@ -1,0 +1,472 @@
+---input---
+package example
+
+# Rego Policy References: https://www.openpolicyagent.org/docs/latest/policy-reference/
+
+### Arrays
+
+# lookup value at index 0
+val := arr[0]
+
+ # check if value at index 0 is "foo"
+"foo" == arr[0]
+
+# find all indices i that have value "foo"
+"foo" == arr[i]
+
+# lookup last value
+val := arr[count(arr)-1]
+
+# with `import rego.v1` or `import future.keywords.in`
+some 0, val in arr   # lookup value at index 0
+0, "foo" in arr      # check if value at index 0 is "foo"
+some i, "foo" in arr # find all indices i that have value "foo"
+
+### Objects
+
+# lookup value for key "foo"
+val := obj["foo"]
+
+# check if value for key "foo" is "bar"
+"bar" == obj["foo"]
+
+# OR
+
+"bar" == obj.foo
+
+# check if key "foo" exists and is not false
+obj.foo
+
+# check if key assigned to variable k exists
+k := "foo"
+obj[k]
+
+# check if path foo.bar.baz exists and is not false
+obj.foo.bar.baz
+
+# check if path foo.bar.baz, foo.bar, or foo does not exist or is false
+not obj.foo.bar.baz
+
+# with `import rego.v1` or `import future.keywords.in`
+o := {"foo": false}
+# check if value exists: the expression will be true
+false in o
+# check if value for key "foo" is false
+"foo", false in o
+
+### Sets
+
+# check if "foo" belongs to the set
+a_set["foo"]
+
+# check if "foo" DOES NOT belong to the set
+not a_set["foo"]
+
+# check if the array ["a", "b", "c"] belongs to the set
+a_set[["a", "b", "c"]]
+
+# find all arrays of the form [x, "b", z] in the set
+a_set[[x, "b", z]]
+
+# with `import rego.v1` or `import future.keywords.in`
+"foo" in a_set
+not "foo" in a_set
+some ["a", "b", "c"] in a_set
+some [x, "b", z] in a_set
+
+---tokens---
+'package'     Keyword
+' '           Text.Whitespace
+'example'     Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# Rego Policy References: https://www.openpolicyagent.org/docs/latest/policy-reference/' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'### Arrays'  Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# lookup value at index 0' Comment.Single
+'\n'          Text.Whitespace
+
+'val'         Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'arr'         Name
+'['           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+' '           Text.Whitespace
+'# check if value at index 0 is "foo"' Comment.Single
+'\n'          Text.Whitespace
+
+'"foo"'       Literal.String.Double
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'arr'         Name
+'['           Punctuation
+'0'           Literal.Number
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# find all indices i that have value "foo"' Comment.Single
+'\n'          Text.Whitespace
+
+'"foo"'       Literal.String.Double
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'arr'         Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# lookup last value' Comment.Single
+'\n'          Text.Whitespace
+
+'val'         Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'arr'         Name
+'['           Punctuation
+'count'       Name
+'('           Punctuation
+'arr'         Name
+')'           Punctuation
+'-1'          Literal.Number
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# with `import rego.v1` or `import future.keywords.in`' Comment.Single
+'\n'          Text.Whitespace
+
+'some'        Keyword
+' '           Text.Whitespace
+'0'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'val'         Name
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'arr'         Name
+'   '         Text.Whitespace
+'# lookup value at index 0' Comment.Single
+'\n'          Text.Whitespace
+
+'0'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'"foo"'       Literal.String.Double
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'arr'         Name
+'      '      Text.Whitespace
+'# check if value at index 0 is "foo"' Comment.Single
+'\n'          Text.Whitespace
+
+'some'        Keyword
+' '           Text.Whitespace
+'i'           Name
+','           Punctuation
+' '           Text.Whitespace
+'"foo"'       Literal.String.Double
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'arr'         Name
+' '           Text.Whitespace
+'# find all indices i that have value "foo"' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'### Objects' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# lookup value for key "foo"' Comment.Single
+'\n'          Text.Whitespace
+
+'val'         Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'obj'         Name
+'['           Punctuation
+'"foo"'       Literal.String.Double
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# check if value for key "foo" is "bar"' Comment.Single
+'\n'          Text.Whitespace
+
+'"bar"'       Literal.String.Double
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'obj'         Name
+'['           Punctuation
+'"foo"'       Literal.String.Double
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# OR'        Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'"bar"'       Literal.String.Double
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'obj'         Name
+'.'           Punctuation
+'foo'         Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# check if key "foo" exists and is not false' Comment.Single
+'\n'          Text.Whitespace
+
+'obj'         Name
+'.'           Punctuation
+'foo'         Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# check if key assigned to variable k exists' Comment.Single
+'\n'          Text.Whitespace
+
+'k'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'"foo"'       Literal.String.Double
+'\n'          Text.Whitespace
+
+'obj'         Name
+'['           Punctuation
+'k'           Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# check if path foo.bar.baz exists and is not false' Comment.Single
+'\n'          Text.Whitespace
+
+'obj'         Name
+'.'           Punctuation
+'foo'         Name
+'.'           Punctuation
+'bar'         Name
+'.'           Punctuation
+'baz'         Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# check if path foo.bar.baz, foo.bar, or foo does not exist or is false' Comment.Single
+'\n'          Text.Whitespace
+
+'not'         Keyword
+' '           Text.Whitespace
+'obj'         Name
+'.'           Punctuation
+'foo'         Name
+'.'           Punctuation
+'bar'         Name
+'.'           Punctuation
+'baz'         Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# with `import rego.v1` or `import future.keywords.in`' Comment.Single
+'\n'          Text.Whitespace
+
+'o'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'"foo"'       Literal.String.Double
+':'           Punctuation
+' '           Text.Whitespace
+'false'       Keyword
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'# check if value exists: the expression will be true' Comment.Single
+'\n'          Text.Whitespace
+
+'false'       Keyword
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'o'           Name
+'\n'          Text.Whitespace
+
+'# check if value for key "foo" is false' Comment.Single
+'\n'          Text.Whitespace
+
+'"foo"'       Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'false'       Keyword
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'o'           Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'### Sets'    Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# check if "foo" belongs to the set' Comment.Single
+'\n'          Text.Whitespace
+
+'a_set'       Name
+'['           Punctuation
+'"foo"'       Literal.String.Double
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# check if "foo" DOES NOT belong to the set' Comment.Single
+'\n'          Text.Whitespace
+
+'not'         Keyword
+' '           Text.Whitespace
+'a_set'       Name
+'['           Punctuation
+'"foo"'       Literal.String.Double
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# check if the array ["a", "b", "c"] belongs to the set' Comment.Single
+'\n'          Text.Whitespace
+
+'a_set'       Name
+'['           Punctuation
+'['           Punctuation
+'"a"'         Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"b"'         Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"c"'         Literal.String.Double
+']'           Punctuation
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# find all arrays of the form [x, "b", z] in the set' Comment.Single
+'\n'          Text.Whitespace
+
+'a_set'       Name
+'['           Punctuation
+'['           Punctuation
+'x'           Name
+','           Punctuation
+' '           Text.Whitespace
+'"b"'         Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'z'           Name
+']'           Punctuation
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# with `import rego.v1` or `import future.keywords.in`' Comment.Single
+'\n'          Text.Whitespace
+
+'"foo"'       Literal.String.Double
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'a_set'       Name
+'\n'          Text.Whitespace
+
+'not'         Keyword
+' '           Text.Whitespace
+'"foo"'       Literal.String.Double
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'a_set'       Name
+'\n'          Text.Whitespace
+
+'some'        Keyword
+' '           Text.Whitespace
+'['           Punctuation
+'"a"'         Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"b"'         Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"c"'         Literal.String.Double
+']'           Punctuation
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'a_set'       Name
+'\n'          Text.Whitespace
+
+'some'        Keyword
+' '           Text.Whitespace
+'['           Punctuation
+'x'           Name
+','           Punctuation
+' '           Text.Whitespace
+'"b"'         Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'z'           Name
+']'           Punctuation
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'a_set'       Name
+'\n'          Text.Whitespace

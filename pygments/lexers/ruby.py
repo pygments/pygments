@@ -4,7 +4,7 @@
 
     Lexers for Ruby and related languages.
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -125,7 +125,7 @@ class RubyLexer(ExtendedRegexLexer):
                                 ('backtick', String.Backtick, '`'):
             states['simple-'+name] = [
                 include('string-intp-escaped'),
-                (r'[^\\%s#]+' % end, ttype),
+                (rf'[^\\{end}#]+', ttype),
                 (r'[\\#]', ttype),
                 (end, ttype, '#pop'),
             ]

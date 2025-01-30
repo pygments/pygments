@@ -1,0 +1,37 @@
+---input---
+[section]
+    key 1 = "value1"
+    key 2 = "value2" # comment
+    key 3 = "value3 ; value 3bis" ; comment
+
+---tokens---
+'[section]'   Keyword
+'\n    '      Text.Whitespace
+'key 1'       Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'value1'      Literal.String
+'"'           Literal.String
+'\n    '      Text.Whitespace
+'key 2'       Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'value2'      Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'# comment'   Comment.Single
+'\n    '      Text.Whitespace
+'key 3'       Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'value3 ; value 3bis' Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'; comment'   Comment.Single
+'\n'          Text.Whitespace

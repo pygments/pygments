@@ -1,0 +1,119 @@
+---input---
+use fmt;
+
+export fn main() void = {
+	const greetings = [
+		"Hello, world!",
+		"¡Hola Mundo!",
+		"Γειά σου Κόσμε!",
+		"Привіт, світе!",
+		"こんにちは世界！",
+	];
+	for (let greeting .. greetings) {
+		fmt::println(greeting)!;
+	};
+};
+
+---tokens---
+'use fmt;'    Comment.Preproc
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'export'      Keyword
+' '           Text.Whitespace
+'fn'          Keyword
+' '           Text.Whitespace
+'main'        Name
+'()'          Punctuation
+' '           Text.Whitespace
+'void'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'const'       Keyword
+' '           Text.Whitespace
+'greetings'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'"'           Literal.String
+'Hello, world!' Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'"'           Literal.String
+'¡Hola Mundo!' Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'"'           Literal.String
+'Γειά σου Κόσμε!' Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'"'           Literal.String
+'Привіт, світе!' Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'"'           Literal.String
+'こんにちは世界！'    Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'];'          Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'let'         Keyword
+' '           Text.Whitespace
+'greeting'    Name
+' '           Text.Whitespace
+'..'          Operator
+' '           Text.Whitespace
+'greetings'   Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'fmt'         Name
+':'           Operator
+':'           Operator
+'println'     Name
+'('           Punctuation
+'greeting'    Name
+')'           Punctuation
+'!'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'};'          Punctuation
+'\n'          Text.Whitespace
+
+'};'          Punctuation
+'\n'          Text.Whitespace

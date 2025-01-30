@@ -1,0 +1,54 @@
+---input---
+match spam:
+    case Some(x):
+        print(f"found {x}")
+    case None:
+        print("found nothing")
+    case _:
+        assert False
+
+---tokens---
+'match'       Keyword
+' '           Text.Whitespace
+'spam'        Name
+':'           Punctuation
+'\n    '      Text.Whitespace
+'case'        Name
+' '           Text.Whitespace
+'Some'        Name
+'('           Punctuation
+'x'           Name
+'):'          Punctuation
+'\n        '  Text.Whitespace
+'print'       Name.Builtin
+'('           Punctuation
+'f'           Literal.String.Affix
+'"'           Literal.String.Double
+'found '      Literal.String.Double
+'{'           Literal.String.Interpol
+'x'           Name
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+')'           Punctuation
+'\n    '      Text.Whitespace
+'case'        Name
+' '           Text.Whitespace
+'None'        Keyword.Constant
+':'           Punctuation
+'\n        '  Text.Whitespace
+'print'       Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'found nothing' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n    '      Text.Whitespace
+'case'        Name
+' '           Text.Whitespace
+'_'           Name
+':'           Punctuation
+'\n        '  Text.Whitespace
+'assert'      Keyword
+' '           Text.Whitespace
+'False'       Keyword.Constant
+'\n'          Text.Whitespace

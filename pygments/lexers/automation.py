@@ -4,7 +4,7 @@
 
     Lexers for automation scripting languages.
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -335,15 +335,15 @@ class AutoItLexer(RegexLexer):
             include('garbage'),
         ],
         'commands': [
-            (r'(?i)(\s*)(%s)\b' % '|'.join(keywords),
+            (r'(?i)(\s*)({})\b'.format('|'.join(keywords)),
              bygroups(Text, Name.Builtin)),
         ],
         'builtInFunctions': [
-            (r'(?i)(%s)\b' % '|'.join(functions),
+            (r'(?i)({})\b'.format('|'.join(functions)),
              Name.Function),
         ],
         'builtInMarcros': [
-            (r'(?i)(%s)\b' % '|'.join(macros),
+            (r'(?i)({})\b'.format('|'.join(macros)),
              Name.Variable.Global),
         ],
         'labels': [

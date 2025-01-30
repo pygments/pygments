@@ -1,0 +1,123 @@
+---input---
+label 0
+  x = arg(0, name=x)  :: float64
+
+  $const2.0 = const(int, 2)  :: Literal[int](2)
+  $6binary_multiply.2 = $const2.0 * x  :: float64
+  del $const2.0
+  $10binary_multiply.4 = $6binary_multiply.2 * x  :: float64
+  del x
+  del $6binary_multiply.2
+  $12return_value.5 = cast(value=$10binary_multiply.4)  :: float64
+  del $10binary_multiply.4
+  return $12return_value.5
+
+---tokens---
+'label'       Name.Constant
+' '           Text.Whitespace
+'0'           Literal.Number
+'\n  '        Text.Whitespace
+'x'           Name.Constant
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'arg'         Name.Function
+'('           Punctuation
+'0'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'name'        Name.Attribute
+'='           Punctuation
+'x'           Name.Constant
+')'           Punctuation
+'  '          Text.Whitespace
+':'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'float64'     Name.Constant
+'\n\n  '      Text.Whitespace
+'$const2.0'   Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'const'       Name.Function
+'('           Punctuation
+'int'         Name.Constant
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number
+')'           Punctuation
+'  '          Text.Whitespace
+':'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Literal'     Name.Constant
+'['           Punctuation
+'int'         Name.Constant
+']'           Punctuation
+'('           Punctuation
+'2'           Literal.Number
+')'           Punctuation
+'\n  '        Text.Whitespace
+'$6binary_multiply.2' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'$const2.0'   Name.Variable
+' '           Text.Whitespace
+'*'           Punctuation
+' '           Text.Whitespace
+'x'           Name.Constant
+'  '          Text.Whitespace
+':'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'float64'     Name.Constant
+'\n  '        Text.Whitespace
+'del '        Keyword
+'$const2.0'   Name.Variable
+'\n  '        Text.Whitespace
+'$10binary_multiply.4' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'$6binary_multiply.2' Name.Variable
+' '           Text.Whitespace
+'*'           Punctuation
+' '           Text.Whitespace
+'x'           Name.Constant
+'  '          Text.Whitespace
+':'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'float64'     Name.Constant
+'\n  '        Text.Whitespace
+'del '        Keyword
+'x'           Name.Constant
+'\n  '        Text.Whitespace
+'del '        Keyword
+'$6binary_multiply.2' Name.Variable
+'\n  '        Text.Whitespace
+'$12return_value.5' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'cast'        Name.Function
+'('           Punctuation
+'value'       Name.Attribute
+'='           Punctuation
+'$10binary_multiply.4' Name.Variable
+')'           Punctuation
+'  '          Text.Whitespace
+':'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'float64'     Name.Constant
+'\n  '        Text.Whitespace
+'del '        Keyword
+'$10binary_multiply.4' Name.Variable
+'\n  '        Text.Whitespace
+'return'      Name.Constant
+' '           Text.Whitespace
+'$12return_value.5' Name.Variable
+'\n'          Text.Whitespace

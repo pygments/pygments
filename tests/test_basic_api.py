@@ -2,10 +2,12 @@
     Pygments basic API tests
     ~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
+import inspect
+import pathlib
 import random
 from io import StringIO, BytesIO
 from os import path
@@ -16,8 +18,10 @@ import pytest
 from pygments import lexers, formatters, lex, format, __version__
 from pygments.token import _TokenType, Text
 from pygments.lexer import RegexLexer
+import pygments
 from pygments.formatter import Formatter
 from pygments.formatters.img import FontNotFound
+from pygments.lexers import LEXERS
 from pygments.util import ClassNotFound
 
 TESTDIR = path.dirname(path.abspath(__file__))
@@ -42,7 +46,7 @@ def test_lexer_classes(cls):
     for attr in 'aliases', 'filenames', 'alias_filenames', 'mimetypes':
         assert hasattr(cls, attr)
         assert isinstance(getattr(cls, attr), list), \
-            "%s: %s attribute wrong" % (cls, attr)
+            f"{cls}: {attr} attribute wrong"
     assert isinstance(cls.url, str), \
         (f"Lexer class {cls.__name__} is missing the `url` attribute. "
          "Please add it to provide a link to the language's homepage "
@@ -56,6 +60,16 @@ def test_lexer_classes(cls):
             (f"Lexer class {cls.__name__} has a wrong version_added attribute. "
              "It should be a version number like <major>.<minor> (but not "
              "<major>.<minor>.<micro>).")
+    if cls._example is not None:
+        assert isinstance(cls._example, str)
+        p = (
+            pathlib.Path(inspect.getabsfile(pygments)).parent.parent
+            / "tests"
+            / "examplefiles"
+            / cls._example
+        )
+        assert p.is_file(), f"Example file {p} not found"
+        assert p.parent.name in cls.aliases, f"Example file {p} not in alias directory"
     result = cls.analyse_text("abc")
     assert isinstance(result, float) and 0.0 <= result <= 1.0
     result = cls.analyse_text(".abc")
@@ -73,26 +87,52 @@ def test_lexer_classes(cls):
                 assert 'root' in cls.tokens[variant]
         else:
             assert 'root' in cls._tokens, \
-                   '%s has no root state' % cls
+                   f'{cls} has no root state'
 
 
-@pytest.mark.parametrize('cls', lexers._iter_lexerclasses(plugins=False))
+def test_lexer_metadata_uniqueness():
+    """Check there is no overlapping metadata between lexers."""
+    # Build reverse indexes for each metadata type.
+    name_index = {}
+    alias_index = {}
+    mimetype_index = {}
+    for class_name, (_, name, aliases, _, mimetypes) in LEXERS.items():
+        name_index.setdefault(name, []).append(class_name)
+        for alias in aliases:
+            alias_index.setdefault(alias, []).append(class_name)
+        for mimetype in mimetypes:
+            mimetype_index.setdefault(mimetype, []).append(class_name)
+
+    # Check that each metadata is unique.
+    for class_name, (_, name, aliases, _, mimetypes) in LEXERS.items():
+        assert (
+            len(name_index[name]) == 1
+        ), f"Name {name} is not unique: {name_index[name]}"
+        for alias in aliases:
+            assert (
+                len(alias_index[alias]) == 1
+            ), f"Alias {alias} is not unique: {alias_index[alias]}"
+        for mimetype in mimetypes:
+            assert (
+                len(mimetype_index[mimetype]) == 1
+            ), f"Mimetype {mimetype} is not unique: {mimetype_index[mimetype]}"
+
+
+@pytest.mark.parametrize("cls", lexers._iter_lexerclasses(plugins=False))
 def test_random_input(cls):
     inst = cls()
     try:
         tokens = list(inst.get_tokens(test_content))
     except KeyboardInterrupt:
         raise KeyboardInterrupt(
-            'interrupted %s.get_tokens(): test_content=%r' %
-            (cls.__name__, test_content))
+            f'interrupted {cls.__name__}.get_tokens(): test_content={test_content!r}')
     txt = ""
     for token in tokens:
         assert isinstance(token, tuple)
         assert isinstance(token[0], _TokenType)
         assert isinstance(token[1], str)
         txt += token[1]
-    assert txt == test_content, "%s lexer roundtrip failed: %r != %r" % \
-        (cls.name, test_content, txt)
+    assert txt == test_content, f"{cls.name} lexer roundtrip failed: {test_content!r} != {txt!r}"
 
 
 @pytest.mark.parametrize('cls', lexers._iter_lexerclasses(plugins=False))
@@ -105,7 +145,7 @@ def test_lexer_options(cls):
     def ensure(tokens, output):
         concatenated = ''.join(token[1] for token in tokens)
         assert concatenated == output, \
-            '%s: %r != %r' % (cls, concatenated, output)
+            f'{cls}: {concatenated!r} != {output!r}'
 
     inst = cls(stripnl=False)
     ensure(inst.get_tokens('a\nb'), 'a\nb\n')
@@ -220,17 +260,17 @@ def test_formatter_unicode_handling(cls):
     if cls.name != 'Raw tokens':
         out = format(tokens, inst)
         if cls.unicodeoutput:
-            assert isinstance(out, str), '%s: %r' % (cls, out)
+            assert isinstance(out, str), f'{cls}: {out!r}'
 
         inst = cls(encoding='utf-8')
         out = format(tokens, inst)
-        assert isinstance(out, bytes), '%s: %r' % (cls, out)
+        assert isinstance(out, bytes), f'{cls}: {out!r}'
         # Cannot test for encoding, since formatters may have to escape
         # non-ASCII characters.
     else:
         inst = cls()
         out = format(tokens, inst)
-        assert isinstance(out, bytes), '%s: %r' % (cls, out)
+        assert isinstance(out, bytes), f'{cls}: {out!r}'
 
 
 def test_get_formatters():
@@ -312,12 +352,12 @@ class TestFilters:
                 text = fp.read()
             tokens = list(lx.get_tokens(text))
             assert all(isinstance(t[1], str) for t in tokens), \
-                '%s filter did not return Unicode' % x
+                f'{x} filter did not return Unicode'
             roundtext = ''.join([t[1] for t in tokens])
             if x not in ('whitespace', 'keywordcase', 'gobble'):
                 # these filters change the text
                 assert roundtext == text, \
-                    "lexer roundtrip with %s filter failed" % x
+                    f"lexer roundtrip with {x} filter failed"
 
     def test_raiseonerror(self):
         lx = lexers.PythonLexer()

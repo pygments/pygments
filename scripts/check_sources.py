@@ -6,7 +6,7 @@
     Make sure each Python file has a correct file header
     including copyright and license information.
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -33,10 +33,9 @@ def checker(*suffixes, **kwds):
 
 
 name_mail_re = r'[\w ]+(<.*?>)?'
-copyright_re = re.compile(r'^    :copyright: Copyright 2006-2024 by '
+copyright_re = re.compile(r'^    :copyright: Copyright 2006-2025 by '
                           r'the Pygments team, see AUTHORS\.$')
-copyright_2_re = re.compile(r'^                %s(, %s)*[,.]$' %
-                            (name_mail_re, name_mail_re))
+copyright_2_re = re.compile(rf'^                {name_mail_re}(, {name_mail_re})*[,.]$')
 is_const_re = re.compile(r'if.*?==\s+(None|False|True)\b')
 
 misspellings = ["developement", "adress", "verificate",  # ALLOW-MISSPELLING
@@ -53,7 +52,7 @@ def check_syntax(fn, lines):
     try:
         compile('\n'.join(lines), fn, "exec")
     except SyntaxError as err:
-        yield 0, "not compilable: %s" % err
+        yield 0, f"not compilable: {err}"
 
 
 @checker('.py')
@@ -125,7 +124,7 @@ def main(argv):
     try:
         gopts, args = getopt.getopt(argv[1:], "vi:")
     except getopt.GetoptError:
-        print("Usage: %s [-v] [-i ignorepath]* [path]" % argv[0])
+        print(f"Usage: {argv[0]} [-v] [-i ignorepath]* [path]")
         return 2
     opts = {}
     for opt, val in gopts:
@@ -138,7 +137,7 @@ def main(argv):
     elif len(args) == 1:
         path = args[0]
     else:
-        print("Usage: %s [-v] [-i ignorepath]* [path]" % argv[0])
+        print(f"Usage: {argv[0]} [-v] [-i ignorepath]* [path]")
         return 2
 
     verbose = '-v' in opts
@@ -147,7 +146,7 @@ def main(argv):
     out = io.StringIO()
 
     for root, dirs, files in os.walk(path):
-        for excl in ['.tox', '.git', 'examplefiles']:
+        for excl in ['.tox', '.git', '.venv', 'examplefiles']:
             if excl in dirs:
                 dirs.remove(excl)
         if '-i' in opts and abspath(root) in opts['-i']:
@@ -171,13 +170,17 @@ def main(argv):
                 continue
 
             if verbose:
-                print("Checking %s..." % fn)
+                print(f"Checking {fn}...")
 
             try:
                 with open(fn, 'rb') as f:
                     lines = f.read().decode('utf-8').splitlines()
             except OSError as err:
-                print("%s: cannot open: %s" % (fn, err))
+                print(f"{fn}: cannot open: {err}")
+                num += 1
+                continue
+            except UnicodeDecodeError as err:
+                print(f"{fn}: error decoding: {err}")
                 num += 1
                 continue
 

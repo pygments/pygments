@@ -1,0 +1,34 @@
+---input---
+let c = [{
+  return I && A != 0;
+}]
+
+---tokens---
+'let'         Keyword
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'[{'          Text
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'I'           Name
+' '           Text.Whitespace
+'&'           Operator
+'&'           Operator
+' '           Text.Whitespace
+'A'           Name
+' '           Text.Whitespace
+'!'           Operator
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}]'          Text
+'\n'          Text.Whitespace

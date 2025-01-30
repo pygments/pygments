@@ -1,0 +1,4260 @@
+'(*'          Comment
+' -*- coding: utf-8 -*- ' Comment
+'*)'          Comment
+'\n'          Text
+
+'(*'          Comment
+'**********************************************************************' Comment
+'*)'          Comment
+'\n'          Text
+
+'(*'          Comment
+'  v      *   The Coq Proof Assistant  /  The Coq Development Team     ' Comment
+'*)'          Comment
+'\n'          Text
+
+'(*'          Comment
+' <O___,, *   INRIA - CNRS - LIX - LRI - PPS - Copyright 1999-2011     ' Comment
+'*)'          Comment
+'\n'          Text
+
+'(*'          Comment
+'   \\VV/  *************************************************************' Comment
+'*)'          Comment
+'\n'          Text
+
+'(*'          Comment
+'    //   *      This file is distributed under the terms of the       ' Comment
+'*)'          Comment
+'\n'          Text
+
+'(*'          Comment
+'         *       GNU Lesser General Public License Version 2.1        ' Comment
+'*)'          Comment
+'\n'          Text
+
+'(*'          Comment
+'**********************************************************************' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'(*'          Comment
+'* *  Typeclass-based relations, tactics and standard instances\n\n   This is the basic theory needed to formalize morphisms and setoids.\n\n   Author: Matthieu Sozeau\n   Institution: LRI, CNRS UMR 8623 - University Paris Sud\n' Comment
+
+'*)'          Comment
+'\n\n'        Text
+
+'(*'          Comment
+' $Id: RelationClasses.v 14641 2011-11-06 11:59:10Z herbelin $ ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Require'     Keyword.Namespace
+' '           Text
+'Export'      Keyword.Namespace
+' '           Text
+'Coq.Classes.Init' Name
+'.'           Operator
+'\n'          Text
+
+'Require'     Keyword.Namespace
+' '           Text
+'Import'      Keyword.Namespace
+' '           Text
+'Coq.Program.Basics' Name
+'.'           Operator
+'\n'          Text
+
+'Require'     Keyword.Namespace
+' '           Text
+'Import'      Keyword.Namespace
+' '           Text
+'Coq.Program.Tactics' Name
+'.'           Operator
+'\n'          Text
+
+'Require'     Keyword.Namespace
+' '           Text
+'Import'      Keyword.Namespace
+' '           Text
+'Coq.Relations.Relation_Definitions' Name
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* We allow to unfold the [relation] definition while doing morphism search. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Notation'    Keyword.Namespace
+' '           Text
+'inverse'     Name
+' '           Text
+'R'           Name
+' '           Text
+':='          Operator
+' '           Text
+'('           Operator
+'flip'        Name
+' '           Text
+'('           Operator
+'R'           Name
+':'           Operator
+'relation'    Name
+' '           Text
+'_'           Operator
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'_'           Operator
+')'           Operator
+'.'           Operator
+'\n\n'        Text
+
+'Definition'  Keyword.Namespace
+' '           Text
+'complement'  Name
+' '           Text
+'{'           Operator
+'A'           Name
+'}'           Operator
+' '           Text
+'('           Operator
+'R'           Name
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'A'           Name
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'A'           Name
+' '           Text
+':='          Operator
+' '           Text
+'fun'         Keyword
+' '           Text
+'x'           Name
+' '           Text
+'y'           Name
+' '           Text
+'=>'          Operator
+' '           Text
+'R'           Name
+' '           Text
+'x'           Name
+' '           Text
+'y'           Name
+' '           Text
+'->'          Operator
+' '           Text
+'False'       Name
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* Opaque for proof-search. ' Comment
+'*)'          Comment
+'\n'          Text
+
+'Typeclasses' Name
+' '           Text
+'Opaque'      Keyword.Namespace
+' '           Text
+'complement'  Name
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* These are convertible. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Lemma'       Keyword.Namespace
+' '           Text
+'complement_inverse' Name
+' '           Text
+':'           Operator
+' '           Text
+'forall'      Keyword
+' '           Text
+'A'           Name
+' '           Text
+'('           Operator
+'R'           Name
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'A'           Name
+')'           Operator
+','           Operator
+' '           Text
+'complement'  Name
+' '           Text
+'('           Operator
+'inverse'     Name
+' '           Text
+'R'           Name
+')'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'inverse'     Name
+' '           Text
+'('           Operator
+'complement'  Name
+' '           Text
+'R'           Name
+')'           Operator
+'.'           Operator
+'\n'          Text
+
+'Proof'       Keyword.Namespace
+'.'           Operator
+' '           Text
+'reflexivity' Keyword.Pseudo
+'.'           Operator
+' '           Text
+'Qed'         Keyword.Namespace
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* We rebind relations in separate classes to be able to overload each proof. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Set'         Keyword.Namespace
+' '           Text
+'Implicit'    Keyword.Namespace
+' '           Text
+'Arguments'   Keyword.Namespace
+'.'           Punctuation
+'\n'          Text
+
+'Unset'       Keyword.Namespace
+' '           Text
+'Strict'      Keyword.Namespace
+' '           Text
+'Implicit'    Keyword.Namespace
+'.'           Punctuation
+'\n\n'        Text
+
+'Class'       Keyword.Namespace
+' '           Text
+'Reflexive'   Name
+' '           Text
+'{'           Operator
+'A'           Name
+'}'           Operator
+' '           Text
+'('           Operator
+'R'           Name
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'A'           Name
+')'           Operator
+' '           Text
+':='          Operator
+'\n  '        Text
+'reflexivity' Keyword.Pseudo
+' '           Text
+':'           Operator
+' '           Text
+'forall'      Keyword
+' '           Text
+'x'           Name
+','           Operator
+' '           Text
+'R'           Name
+' '           Text
+'x'           Name
+' '           Text
+'x'           Name
+'.'           Operator
+'\n\n'        Text
+
+'Class'       Keyword.Namespace
+' '           Text
+'Irreflexive' Name
+' '           Text
+'{'           Operator
+'A'           Name
+'}'           Operator
+' '           Text
+'('           Operator
+'R'           Name
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'A'           Name
+')'           Operator
+' '           Text
+':='          Operator
+'\n  '        Text
+'irreflexivity' Name
+' '           Text
+':'           Operator
+' '           Text
+'Reflexive'   Name
+' '           Text
+'('           Operator
+'complement'  Name
+' '           Text
+'R'           Name
+')'           Operator
+'.'           Operator
+'\n\n'        Text
+
+'Hint'        Keyword.Namespace
+' '           Text
+'Extern'      Name
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'('           Operator
+'Reflexive'   Name
+' '           Text
+'('           Operator
+'complement'  Name
+' '           Text
+'_'           Operator
+')'           Operator
+')'           Operator
+' '           Text
+'=>'          Operator
+' '           Text
+'class_apply' Name
+' '           Text
+'@'           Operator
+'irreflexivity' Name
+' '           Text
+':'           Operator
+' '           Text
+'typeclass_instances' Name
+'.'           Operator
+'\n\n'        Text
+
+'Class'       Keyword.Namespace
+' '           Text
+'Symmetric'   Name
+' '           Text
+'{'           Operator
+'A'           Name
+'}'           Operator
+' '           Text
+'('           Operator
+'R'           Name
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'A'           Name
+')'           Operator
+' '           Text
+':='          Operator
+'\n  '        Text
+'symmetry'    Keyword
+' '           Text
+':'           Operator
+' '           Text
+'forall'      Keyword
+' '           Text
+'x'           Name
+' '           Text
+'y'           Name
+','           Operator
+' '           Text
+'R'           Name
+' '           Text
+'x'           Name
+' '           Text
+'y'           Name
+' '           Text
+'->'          Operator
+' '           Text
+'R'           Name
+' '           Text
+'y'           Name
+' '           Text
+'x'           Name
+'.'           Operator
+'\n\n'        Text
+
+'Class'       Keyword.Namespace
+' '           Text
+'Asymmetric'  Name
+' '           Text
+'{'           Operator
+'A'           Name
+'}'           Operator
+' '           Text
+'('           Operator
+'R'           Name
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'A'           Name
+')'           Operator
+' '           Text
+':='          Operator
+'\n  '        Text
+'asymmetry'   Name
+' '           Text
+':'           Operator
+' '           Text
+'forall'      Keyword
+' '           Text
+'x'           Name
+' '           Text
+'y'           Name
+','           Operator
+' '           Text
+'R'           Name
+' '           Text
+'x'           Name
+' '           Text
+'y'           Name
+' '           Text
+'->'          Operator
+' '           Text
+'R'           Name
+' '           Text
+'y'           Name
+' '           Text
+'x'           Name
+' '           Text
+'->'          Operator
+' '           Text
+'False'       Name
+'.'           Operator
+'\n\n'        Text
+
+'Class'       Keyword.Namespace
+' '           Text
+'Transitive'  Name
+' '           Text
+'{'           Operator
+'A'           Name
+'}'           Operator
+' '           Text
+'('           Operator
+'R'           Name
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'A'           Name
+')'           Operator
+' '           Text
+':='          Operator
+'\n  '        Text
+'transitivity' Keyword
+' '           Text
+':'           Operator
+' '           Text
+'forall'      Keyword
+' '           Text
+'x'           Name
+' '           Text
+'y'           Name
+' '           Text
+'z'           Name
+','           Operator
+' '           Text
+'R'           Name
+' '           Text
+'x'           Name
+' '           Text
+'y'           Name
+' '           Text
+'->'          Operator
+' '           Text
+'R'           Name
+' '           Text
+'y'           Name
+' '           Text
+'z'           Name
+' '           Text
+'->'          Operator
+' '           Text
+'R'           Name
+' '           Text
+'x'           Name
+' '           Text
+'z'           Name
+'.'           Operator
+'\n\n'        Text
+
+'Hint'        Keyword.Namespace
+' '           Text
+'Resolve'     Keyword.Namespace
+' '           Text
+'@'           Operator
+'irreflexivity' Name
+' '           Text
+':'           Operator
+' '           Text
+'ord'         Name
+'.'           Operator
+'\n\n'        Text
+
+'Unset'       Keyword.Namespace
+' '           Text
+'Implicit'    Keyword.Namespace
+' '           Text
+'Arguments'   Keyword.Namespace
+'.'           Punctuation
+'\n\n'        Text
+
+'(*'          Comment
+'* A HintDb for relations. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Ltac'        Keyword.Namespace
+' '           Text
+'solve_relation' Name
+' '           Text
+':='          Operator
+'\n  '        Text
+'match'       Keyword
+' '           Text
+'goal'        Name
+' '           Text
+'with'        Keyword
+'\n  '        Text
+'|'           Operator
+' '           Text
+'['           Operator
+' '           Text
+'|'           Operator
+'-'           Operator
+' '           Text
+'?'           Operator
+'R'           Name
+' '           Text
+'?'           Operator
+'x'           Name
+' '           Text
+'?'           Operator
+'x'           Name
+' '           Text
+']'           Operator
+' '           Text
+'=>'          Operator
+' '           Text
+'reflexivity' Keyword.Pseudo
+'\n  '        Text
+'|'           Operator
+' '           Text
+'['           Operator
+' '           Text
+'H'           Name
+' '           Text
+':'           Operator
+' '           Text
+'?'           Operator
+'R'           Name
+' '           Text
+'?'           Operator
+'x'           Name
+' '           Text
+'?'           Operator
+'y'           Name
+' '           Text
+'|'           Operator
+'-'           Operator
+' '           Text
+'?'           Operator
+'R'           Name
+' '           Text
+'?'           Operator
+'y'           Name
+' '           Text
+'?'           Operator
+'x'           Name
+' '           Text
+']'           Operator
+' '           Text
+'=>'          Operator
+' '           Text
+'symmetry'    Keyword
+' '           Text
+';'           Operator
+' '           Text
+'exact'       Keyword.Pseudo
+' '           Text
+'H'           Name
+'\n  '        Text
+'end'         Keyword
+'.'           Operator
+'\n\n'        Text
+
+'Hint'        Keyword.Namespace
+' '           Text
+'Extern'      Name
+' '           Text
+'4'           Literal.Number.Integer
+' '           Text
+'=>'          Operator
+' '           Text
+'solve_relation' Name
+' '           Text
+':'           Operator
+' '           Text
+'relations'   Name
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* We can already dualize all these properties. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Generalizable' Name
+' '           Text
+'Variables'   Keyword.Namespace
+' '           Text
+'A'           Name
+' '           Text
+'B'           Name
+' '           Text
+'C'           Name
+' '           Text
+'D'           Name
+' '           Text
+'R'           Name
+' '           Text
+'S'           Name
+' '           Text
+'T'           Name
+' '           Text
+'U'           Name
+' '           Text
+'l'           Name
+' '           Text
+'eqA'         Name
+' '           Text
+'eqB'         Name
+' '           Text
+'eqC'         Name
+' '           Text
+'eqD'         Name
+'.'           Operator
+'\n\n'        Text
+
+'Lemma'       Keyword.Namespace
+' '           Text
+'flip_Reflexive' Name
+' '           Text
+'`'           Operator
+'{'           Operator
+'Reflexive'   Name
+' '           Text
+'A'           Name
+' '           Text
+'R'           Name
+'}'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'Reflexive'   Name
+' '           Text
+'('           Operator
+'flip'        Name
+' '           Text
+'R'           Name
+')'           Operator
+'.'           Operator
+'\n'          Text
+
+'Proof'       Keyword.Namespace
+'.'           Operator
+' '           Text
+'tauto'       Keyword
+'.'           Operator
+' '           Text
+'Qed'         Keyword.Namespace
+'.'           Operator
+'\n\n'        Text
+
+'Hint'        Keyword.Namespace
+' '           Text
+'Extern'      Name
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'('           Operator
+'Reflexive'   Name
+' '           Text
+'('           Operator
+'flip'        Name
+' '           Text
+'_'           Operator
+')'           Operator
+')'           Operator
+' '           Text
+'=>'          Operator
+' '           Text
+'apply'       Keyword
+' '           Text
+'flip_Reflexive' Name
+' '           Text
+':'           Operator
+' '           Text
+'typeclass_instances' Name
+'.'           Operator
+'\n\n'        Text
+
+'Program'     Keyword.Namespace
+' '           Text
+'Definition'  Keyword.Namespace
+' '           Text
+'flip_Irreflexive' Name
+' '           Text
+'`'           Operator
+'('           Operator
+'Irreflexive' Name
+' '           Text
+'A'           Name
+' '           Text
+'R'           Name
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'Irreflexive' Name
+' '           Text
+'('           Operator
+'flip'        Name
+' '           Text
+'R'           Name
+')'           Operator
+' '           Text
+':='          Operator
+'\n  '        Text
+'irreflexivity' Name
+' '           Text
+'('           Operator
+'R'           Name
+':='          Operator
+'R'           Name
+')'           Operator
+'.'           Operator
+'\n\n'        Text
+
+'Program'     Keyword.Namespace
+' '           Text
+'Definition'  Keyword.Namespace
+' '           Text
+'flip_Symmetric' Name
+' '           Text
+'`'           Operator
+'('           Operator
+'Symmetric'   Name
+' '           Text
+'A'           Name
+' '           Text
+'R'           Name
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'Symmetric'   Name
+' '           Text
+'('           Operator
+'flip'        Name
+' '           Text
+'R'           Name
+')'           Operator
+' '           Text
+':='          Operator
+'\n  '        Text
+'fun'         Keyword
+' '           Text
+'x'           Name
+' '           Text
+'y'           Name
+' '           Text
+'H'           Name
+' '           Text
+'=>'          Operator
+' '           Text
+'symmetry'    Keyword
+' '           Text
+'('           Operator
+'R'           Name
+':='          Operator
+'R'           Name
+')'           Operator
+' '           Text
+'H'           Name
+'.'           Operator
+'\n\n'        Text
+
+'Program'     Keyword.Namespace
+' '           Text
+'Definition'  Keyword.Namespace
+' '           Text
+'flip_Asymmetric' Name
+' '           Text
+'`'           Operator
+'('           Operator
+'Asymmetric'  Name
+' '           Text
+'A'           Name
+' '           Text
+'R'           Name
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'Asymmetric'  Name
+' '           Text
+'('           Operator
+'flip'        Name
+' '           Text
+'R'           Name
+')'           Operator
+' '           Text
+':='          Operator
+'\n  '        Text
+'fun'         Keyword
+' '           Text
+'x'           Name
+' '           Text
+'y'           Name
+' '           Text
+'H'           Name
+' '           Text
+"H'"          Name
+' '           Text
+'=>'          Operator
+' '           Text
+'asymmetry'   Name
+' '           Text
+'('           Operator
+'R'           Name
+':='          Operator
+'R'           Name
+')'           Operator
+' '           Text
+'H'           Name
+' '           Text
+"H'"          Name
+'.'           Operator
+'\n\n'        Text
+
+'Program'     Keyword.Namespace
+' '           Text
+'Definition'  Keyword.Namespace
+' '           Text
+'flip_Transitive' Name
+' '           Text
+'`'           Operator
+'('           Operator
+'Transitive'  Name
+' '           Text
+'A'           Name
+' '           Text
+'R'           Name
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'Transitive'  Name
+' '           Text
+'('           Operator
+'flip'        Name
+' '           Text
+'R'           Name
+')'           Operator
+' '           Text
+':='          Operator
+'\n  '        Text
+'fun'         Keyword
+' '           Text
+'x'           Name
+' '           Text
+'y'           Name
+' '           Text
+'z'           Name
+' '           Text
+'H'           Name
+' '           Text
+"H'"          Name
+' '           Text
+'=>'          Operator
+' '           Text
+'transitivity' Keyword
+' '           Text
+'('           Operator
+'R'           Name
+':='          Operator
+'R'           Name
+')'           Operator
+' '           Text
+"H'"          Name
+' '           Text
+'H'           Name
+'.'           Operator
+'\n\n'        Text
+
+'Hint'        Keyword.Namespace
+' '           Text
+'Extern'      Name
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'('           Operator
+'Irreflexive' Name
+' '           Text
+'('           Operator
+'flip'        Name
+' '           Text
+'_'           Operator
+')'           Operator
+')'           Operator
+' '           Text
+'=>'          Operator
+' '           Text
+'class_apply' Name
+' '           Text
+'flip_Irreflexive' Name
+' '           Text
+':'           Operator
+' '           Text
+'typeclass_instances' Name
+'.'           Operator
+'\n'          Text
+
+'Hint'        Keyword.Namespace
+' '           Text
+'Extern'      Name
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'('           Operator
+'Symmetric'   Name
+' '           Text
+'('           Operator
+'flip'        Name
+' '           Text
+'_'           Operator
+')'           Operator
+')'           Operator
+' '           Text
+'=>'          Operator
+' '           Text
+'class_apply' Name
+' '           Text
+'flip_Symmetric' Name
+' '           Text
+':'           Operator
+' '           Text
+'typeclass_instances' Name
+'.'           Operator
+'\n'          Text
+
+'Hint'        Keyword.Namespace
+' '           Text
+'Extern'      Name
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'('           Operator
+'Asymmetric'  Name
+' '           Text
+'('           Operator
+'flip'        Name
+' '           Text
+'_'           Operator
+')'           Operator
+')'           Operator
+' '           Text
+'=>'          Operator
+' '           Text
+'class_apply' Name
+' '           Text
+'flip_Asymmetric' Name
+' '           Text
+':'           Operator
+' '           Text
+'typeclass_instances' Name
+'.'           Operator
+'\n'          Text
+
+'Hint'        Keyword.Namespace
+' '           Text
+'Extern'      Name
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'('           Operator
+'Transitive'  Name
+' '           Text
+'('           Operator
+'flip'        Name
+' '           Text
+'_'           Operator
+')'           Operator
+')'           Operator
+' '           Text
+'=>'          Operator
+' '           Text
+'class_apply' Name
+' '           Text
+'flip_Transitive' Name
+' '           Text
+':'           Operator
+' '           Text
+'typeclass_instances' Name
+'.'           Operator
+'\n\n'        Text
+
+'Definition'  Keyword.Namespace
+' '           Text
+'Reflexive_complement_Irreflexive' Name
+' '           Text
+'`'           Operator
+'('           Operator
+'Reflexive'   Name
+' '           Text
+'A'           Name
+' '           Text
+'('           Operator
+'R'           Name
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'A'           Name
+')'           Operator
+')'           Operator
+'\n   '       Text
+':'           Operator
+' '           Text
+'Irreflexive' Name
+' '           Text
+'('           Operator
+'complement'  Name
+' '           Text
+'R'           Name
+')'           Operator
+'.'           Operator
+'\n'          Text
+
+'Proof'       Keyword.Namespace
+'.'           Operator
+' '           Text
+'firstorder'  Name
+'.'           Operator
+' '           Text
+'Qed'         Keyword.Namespace
+'.'           Operator
+'\n\n'        Text
+
+'Definition'  Keyword.Namespace
+' '           Text
+'complement_Symmetric' Name
+' '           Text
+'`'           Operator
+'('           Operator
+'Symmetric'   Name
+' '           Text
+'A'           Name
+' '           Text
+'('           Operator
+'R'           Name
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'A'           Name
+')'           Operator
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'Symmetric'   Name
+' '           Text
+'('           Operator
+'complement'  Name
+' '           Text
+'R'           Name
+')'           Operator
+'.'           Operator
+'\n'          Text
+
+'Proof'       Keyword.Namespace
+'.'           Operator
+' '           Text
+'firstorder'  Name
+'.'           Operator
+' '           Text
+'Qed'         Keyword.Namespace
+'.'           Operator
+'\n\n'        Text
+
+'Hint'        Keyword.Namespace
+' '           Text
+'Extern'      Name
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'('           Operator
+'Symmetric'   Name
+' '           Text
+'('           Operator
+'complement'  Name
+' '           Text
+'_'           Operator
+')'           Operator
+')'           Operator
+' '           Text
+'=>'          Operator
+' '           Text
+'class_apply' Name
+' '           Text
+'complement_Symmetric' Name
+' '           Text
+':'           Operator
+' '           Text
+'typeclass_instances' Name
+'.'           Operator
+'\n'          Text
+
+'Hint'        Keyword.Namespace
+' '           Text
+'Extern'      Name
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'('           Operator
+'Irreflexive' Name
+' '           Text
+'('           Operator
+'complement'  Name
+' '           Text
+'_'           Operator
+')'           Operator
+')'           Operator
+' '           Text
+'=>'          Operator
+' '           Text
+'class_apply' Name
+' '           Text
+'Reflexive_complement_Irreflexive' Name
+' '           Text
+':'           Operator
+' '           Text
+'typeclass_instances' Name
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* * Standard instances. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Ltac'        Keyword.Namespace
+' '           Text
+'reduce_hyp'  Name
+' '           Text
+'H'           Name
+' '           Text
+':='          Operator
+'\n  '        Text
+'match'       Keyword
+' '           Text
+'type'        Name
+' '           Text
+'of'          Keyword
+' '           Text
+'H'           Name
+' '           Text
+'with'        Keyword
+'\n    '      Text
+'|'           Operator
+' '           Text
+'context'     Name
+' '           Text
+'['           Operator
+' '           Text
+'_'           Operator
+' '           Text
+'<->'         Operator
+' '           Text
+'_'           Operator
+' '           Text
+']'           Operator
+' '           Text
+'=>'          Operator
+' '           Text
+'fail'        Name
+' '           Text
+'1'           Literal.Number.Integer
+'\n    '      Text
+'|'           Operator
+' '           Text
+'_'           Operator
+' '           Text
+'=>'          Operator
+' '           Text
+'red'         Keyword
+' '           Text
+'in'          Keyword
+' '           Text
+'H'           Name
+' '           Text
+';'           Operator
+' '           Text
+'try'         Keyword.Reserved
+' '           Text
+'reduce_hyp'  Name
+' '           Text
+'H'           Name
+'\n  '        Text
+'end'         Keyword
+'.'           Operator
+'\n\n'        Text
+
+'Ltac'        Keyword.Namespace
+' '           Text
+'reduce_goal' Name
+' '           Text
+':='          Operator
+'\n  '        Text
+'match'       Keyword
+' '           Text
+'goal'        Name
+' '           Text
+'with'        Keyword
+'\n    '      Text
+'|'           Operator
+' '           Text
+'['           Operator
+' '           Text
+'|'           Operator
+'-'           Operator
+' '           Text
+'_'           Operator
+' '           Text
+'<->'         Operator
+' '           Text
+'_'           Operator
+' '           Text
+']'           Operator
+' '           Text
+'=>'          Operator
+' '           Text
+'fail'        Name
+' '           Text
+'1'           Literal.Number.Integer
+'\n    '      Text
+'|'           Operator
+' '           Text
+'_'           Operator
+' '           Text
+'=>'          Operator
+' '           Text
+'red'         Keyword
+' '           Text
+';'           Operator
+' '           Text
+'intros'      Keyword
+' '           Text
+';'           Operator
+' '           Text
+'try'         Keyword.Reserved
+' '           Text
+'reduce_goal' Name
+'\n  '        Text
+'end'         Keyword
+'.'           Operator
+'\n\n'        Text
+
+'Tactic'      Keyword.Namespace
+' '           Text
+'Notation'    Keyword.Namespace
+' '           Text
+'"'           Literal.String.Double
+'reduce'      Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'"'           Literal.String.Double
+'in'          Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'hyp'         Name
+'('           Operator
+'Hid'         Name
+')'           Operator
+' '           Text
+':='          Operator
+' '           Text
+'reduce_hyp'  Name
+' '           Text
+'Hid'         Name
+'.'           Operator
+'\n\n'        Text
+
+'Ltac'        Keyword.Namespace
+' '           Text
+'reduce'      Name
+' '           Text
+':='          Operator
+' '           Text
+'reduce_goal' Name
+'.'           Operator
+'\n\n'        Text
+
+'Tactic'      Keyword.Namespace
+' '           Text
+'Notation'    Keyword.Namespace
+' '           Text
+'"'           Literal.String.Double
+'apply'       Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'"'           Literal.String.Double
+'*'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'constr'      Name
+'('           Operator
+'t'           Name
+')'           Operator
+' '           Text
+':='          Operator
+'\n  '        Text
+'first'       Keyword.Reserved
+' '           Text
+'['           Operator
+' '           Text
+'refine'      Keyword
+' '           Text
+'t'           Name
+' '           Text
+'|'           Operator
+' '           Text
+'refine'      Keyword
+' '           Text
+'('           Operator
+'t'           Name
+' '           Text
+'_'           Operator
+')'           Operator
+' '           Text
+'|'           Operator
+' '           Text
+'refine'      Keyword
+' '           Text
+'('           Operator
+'t'           Name
+' '           Text
+'_'           Operator
+' '           Text
+'_'           Operator
+')'           Operator
+' '           Text
+'|'           Operator
+' '           Text
+'refine'      Keyword
+' '           Text
+'('           Operator
+'t'           Name
+' '           Text
+'_'           Operator
+' '           Text
+'_'           Operator
+' '           Text
+'_'           Operator
+')'           Operator
+' '           Text
+'|'           Operator
+' '           Text
+'refine'      Keyword
+' '           Text
+'('           Operator
+'t'           Name
+' '           Text
+'_'           Operator
+' '           Text
+'_'           Operator
+' '           Text
+'_'           Operator
+' '           Text
+'_'           Operator
+')'           Operator
+' '           Text
+'|'           Operator
+'\n    '      Text
+'refine'      Keyword
+' '           Text
+'('           Operator
+'t'           Name
+' '           Text
+'_'           Operator
+' '           Text
+'_'           Operator
+' '           Text
+'_'           Operator
+' '           Text
+'_'           Operator
+' '           Text
+'_'           Operator
+')'           Operator
+' '           Text
+'|'           Operator
+' '           Text
+'refine'      Keyword
+' '           Text
+'('           Operator
+'t'           Name
+' '           Text
+'_'           Operator
+' '           Text
+'_'           Operator
+' '           Text
+'_'           Operator
+' '           Text
+'_'           Operator
+' '           Text
+'_'           Operator
+' '           Text
+'_'           Operator
+')'           Operator
+' '           Text
+'|'           Operator
+' '           Text
+'refine'      Keyword
+' '           Text
+'('           Operator
+'t'           Name
+' '           Text
+'_'           Operator
+' '           Text
+'_'           Operator
+' '           Text
+'_'           Operator
+' '           Text
+'_'           Operator
+' '           Text
+'_'           Operator
+' '           Text
+'_'           Operator
+' '           Text
+'_'           Operator
+')'           Operator
+' '           Text
+']'           Operator
+'.'           Operator
+'\n\n'        Text
+
+'Ltac'        Keyword.Namespace
+' '           Text
+'simpl_relation' Name
+' '           Text
+':='          Operator
+'\n  '        Text
+'unfold'      Keyword
+' '           Text
+'flip'        Name
+','           Operator
+' '           Text
+'impl'        Name
+','           Operator
+' '           Text
+'arrow'       Name
+' '           Text
+';'           Operator
+' '           Text
+'try'         Keyword.Reserved
+' '           Text
+'reduce'      Name
+' '           Text
+';'           Operator
+' '           Text
+'program_simpl' Name
+' '           Text
+';'           Operator
+'\n    '      Text
+'try'         Keyword.Reserved
+' '           Text
+'('           Operator
+' '           Text
+'solve'       Keyword.Pseudo
+' '           Text
+'['           Operator
+' '           Text
+'intuition'   Keyword
+' '           Text
+']'           Operator
+')'           Operator
+'.'           Operator
+'\n\n'        Text
+
+'Local'       Keyword.Namespace
+' '           Text
+'Obligation'  Name
+' '           Text
+'Tactic'      Keyword.Namespace
+' '           Text
+':='          Operator
+' '           Text
+'simpl_relation' Name
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* Logical implication. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Program'     Keyword.Namespace
+' '           Text
+'Instance'    Keyword.Namespace
+' '           Text
+'impl_Reflexive' Name
+' '           Text
+':'           Operator
+' '           Text
+'Reflexive'   Name
+' '           Text
+'impl'        Name
+'.'           Operator
+'\n'          Text
+
+'Program'     Keyword.Namespace
+' '           Text
+'Instance'    Keyword.Namespace
+' '           Text
+'impl_Transitive' Name
+' '           Text
+':'           Operator
+' '           Text
+'Transitive'  Name
+' '           Text
+'impl'        Name
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* Logical equivalence. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Program'     Keyword.Namespace
+' '           Text
+'Instance'    Keyword.Namespace
+' '           Text
+'iff_Reflexive' Name
+' '           Text
+':'           Operator
+' '           Text
+'Reflexive'   Name
+' '           Text
+'iff'         Name
+'.'           Operator
+'\n'          Text
+
+'Program'     Keyword.Namespace
+' '           Text
+'Instance'    Keyword.Namespace
+' '           Text
+'iff_Symmetric' Name
+' '           Text
+':'           Operator
+' '           Text
+'Symmetric'   Name
+' '           Text
+'iff'         Name
+'.'           Operator
+'\n'          Text
+
+'Program'     Keyword.Namespace
+' '           Text
+'Instance'    Keyword.Namespace
+' '           Text
+'iff_Transitive' Name
+' '           Text
+':'           Operator
+' '           Text
+'Transitive'  Name
+' '           Text
+'iff'         Name
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* Leibniz equality. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Instance'    Keyword.Namespace
+' '           Text
+'eq_Reflexive' Name
+' '           Text
+'{'           Operator
+'A'           Name
+'}'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'Reflexive'   Name
+' '           Text
+'('           Operator
+'@'           Operator
+'eq'          Name
+' '           Text
+'A'           Name
+')'           Operator
+' '           Text
+':='          Operator
+' '           Text
+'@'           Operator
+'eq_refl'     Name
+' '           Text
+'A'           Name
+'.'           Operator
+'\n'          Text
+
+'Instance'    Keyword.Namespace
+' '           Text
+'eq_Symmetric' Name
+' '           Text
+'{'           Operator
+'A'           Name
+'}'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'Symmetric'   Name
+' '           Text
+'('           Operator
+'@'           Operator
+'eq'          Name
+' '           Text
+'A'           Name
+')'           Operator
+' '           Text
+':='          Operator
+' '           Text
+'@'           Operator
+'eq_sym'      Name
+' '           Text
+'A'           Name
+'.'           Operator
+'\n'          Text
+
+'Instance'    Keyword.Namespace
+' '           Text
+'eq_Transitive' Name
+' '           Text
+'{'           Operator
+'A'           Name
+'}'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'Transitive'  Name
+' '           Text
+'('           Operator
+'@'           Operator
+'eq'          Name
+' '           Text
+'A'           Name
+')'           Operator
+' '           Text
+':='          Operator
+' '           Text
+'@'           Operator
+'eq_trans'    Name
+' '           Text
+'A'           Name
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* Various combinations of reflexivity, symmetry and transitivity. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'(*'          Comment
+'* A [PreOrder] is both Reflexive and Transitive. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Class'       Keyword.Namespace
+' '           Text
+'PreOrder'    Name
+' '           Text
+'{'           Operator
+'A'           Name
+'}'           Operator
+' '           Text
+'('           Operator
+'R'           Name
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'A'           Name
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'Prop'        Keyword.Type
+' '           Text
+':='          Operator
+' '           Text
+'{'           Operator
+'\n  '        Text
+'PreOrder_Reflexive' Name
+' '           Text
+':>'          Operator
+' '           Text
+'Reflexive'   Name
+' '           Text
+'R'           Name
+' '           Text
+';'           Operator
+'\n  '        Text
+'PreOrder_Transitive' Name
+' '           Text
+':>'          Operator
+' '           Text
+'Transitive'  Name
+' '           Text
+'R'           Name
+' '           Text
+'}'           Operator
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* A partial equivalence relation is Symmetric and Transitive. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Class'       Keyword.Namespace
+' '           Text
+'PER'         Name
+' '           Text
+'{'           Operator
+'A'           Name
+'}'           Operator
+' '           Text
+'('           Operator
+'R'           Name
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'A'           Name
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'Prop'        Keyword.Type
+' '           Text
+':='          Operator
+' '           Text
+'{'           Operator
+'\n  '        Text
+'PER_Symmetric' Name
+' '           Text
+':>'          Operator
+' '           Text
+'Symmetric'   Name
+' '           Text
+'R'           Name
+' '           Text
+';'           Operator
+'\n  '        Text
+'PER_Transitive' Name
+' '           Text
+':>'          Operator
+' '           Text
+'Transitive'  Name
+' '           Text
+'R'           Name
+' '           Text
+'}'           Operator
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* Equivalence relations. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Class'       Keyword.Namespace
+' '           Text
+'Equivalence' Name
+' '           Text
+'{'           Operator
+'A'           Name
+'}'           Operator
+' '           Text
+'('           Operator
+'R'           Name
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'A'           Name
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'Prop'        Keyword.Type
+' '           Text
+':='          Operator
+' '           Text
+'{'           Operator
+'\n  '        Text
+'Equivalence_Reflexive' Name
+' '           Text
+':>'          Operator
+' '           Text
+'Reflexive'   Name
+' '           Text
+'R'           Name
+' '           Text
+';'           Operator
+'\n  '        Text
+'Equivalence_Symmetric' Name
+' '           Text
+':>'          Operator
+' '           Text
+'Symmetric'   Name
+' '           Text
+'R'           Name
+' '           Text
+';'           Operator
+'\n  '        Text
+'Equivalence_Transitive' Name
+' '           Text
+':>'          Operator
+' '           Text
+'Transitive'  Name
+' '           Text
+'R'           Name
+' '           Text
+'}'           Operator
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* An Equivalence is a PER plus reflexivity. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Instance'    Keyword.Namespace
+' '           Text
+'Equivalence_PER' Name
+' '           Text
+'`'           Operator
+'('           Operator
+'Equivalence' Name
+' '           Text
+'A'           Name
+' '           Text
+'R'           Name
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'PER'         Name
+' '           Text
+'R'           Name
+' '           Text
+'|'           Operator
+' '           Text
+'10'          Literal.Number.Integer
+' '           Text
+':='          Operator
+'\n  '        Text
+'{'           Operator
+' '           Text
+'PER_Symmetric' Name
+' '           Text
+':='          Operator
+' '           Text
+'Equivalence_Symmetric' Name
+' '           Text
+';'           Operator
+'\n    '      Text
+'PER_Transitive' Name
+' '           Text
+':='          Operator
+' '           Text
+'Equivalence_Transitive' Name
+' '           Text
+'}'           Operator
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* We can now define antisymmetry w.r.t. an equivalence relation on the carrier. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Class'       Keyword.Namespace
+' '           Text
+'Antisymmetric' Name
+' '           Text
+'A'           Name
+' '           Text
+'eqA'         Name
+' '           Text
+'`'           Operator
+'{'           Operator
+'equ'         Name
+' '           Text
+':'           Operator
+' '           Text
+'Equivalence' Name
+' '           Text
+'A'           Name
+' '           Text
+'eqA'         Name
+'}'           Operator
+' '           Text
+'('           Operator
+'R'           Name
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'A'           Name
+')'           Operator
+' '           Text
+':='          Operator
+'\n  '        Text
+'antisymmetry' Name
+' '           Text
+':'           Operator
+' '           Text
+'forall'      Keyword
+' '           Text
+'{'           Operator
+'x'           Name
+' '           Text
+'y'           Name
+'}'           Operator
+','           Operator
+' '           Text
+'R'           Name
+' '           Text
+'x'           Name
+' '           Text
+'y'           Name
+' '           Text
+'->'          Operator
+' '           Text
+'R'           Name
+' '           Text
+'y'           Name
+' '           Text
+'x'           Name
+' '           Text
+'->'          Operator
+' '           Text
+'eqA'         Name
+' '           Text
+'x'           Name
+' '           Text
+'y'           Name
+'.'           Operator
+'\n\n'        Text
+
+'Program'     Keyword.Namespace
+' '           Text
+'Definition'  Keyword.Namespace
+' '           Text
+'flip_antiSymmetric' Name
+' '           Text
+'`'           Operator
+'('           Operator
+'Antisymmetric' Name
+' '           Text
+'A'           Name
+' '           Text
+'eqA'         Name
+' '           Text
+'R'           Name
+')'           Operator
+' '           Text
+':'           Operator
+'\n  '        Text
+'Antisymmetric' Name
+' '           Text
+'A'           Name
+' '           Text
+'eqA'         Name
+' '           Text
+'('           Operator
+'flip'        Name
+' '           Text
+'R'           Name
+')'           Operator
+'.'           Operator
+'\n'          Text
+
+'Proof'       Keyword.Namespace
+'.'           Operator
+' '           Text
+'firstorder'  Name
+'.'           Operator
+' '           Text
+'Qed'         Keyword.Namespace
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* Leibinz equality [eq] is an equivalence relation.\n   The instance has low priority as it is always applicable\n   if only the type is constrained. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Program'     Keyword.Namespace
+' '           Text
+'Instance'    Keyword.Namespace
+' '           Text
+'eq_equivalence' Name
+' '           Text
+':'           Operator
+' '           Text
+'Equivalence' Name
+' '           Text
+'('           Operator
+'@'           Operator
+'eq'          Name
+' '           Text
+'A'           Name
+')'           Operator
+' '           Text
+'|'           Operator
+' '           Text
+'10'          Literal.Number.Integer
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* Logical equivalence [iff] is an equivalence relation. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Program'     Keyword.Namespace
+' '           Text
+'Instance'    Keyword.Namespace
+' '           Text
+'iff_equivalence' Name
+' '           Text
+':'           Operator
+' '           Text
+'Equivalence' Name
+' '           Text
+'iff'         Name
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* We now develop a generalization of results on relations for arbitrary predicates.\n   The resulting theory can be applied to homogeneous binary relations but also to\n   arbitrary n-ary predicates. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Local'       Keyword.Namespace
+' '           Text
+'Open'        Keyword.Namespace
+' '           Text
+'Scope'       Keyword.Namespace
+' '           Text
+'list_scope'  Name
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+' Notation " [ ] " := nil : list_scope. ' Comment
+'*)'          Comment
+'\n'          Text
+
+'(*'          Comment
+' Notation " [ x ; .. ; y ] " := ' Comment
+'('           Comment
+'cons x .. '  Comment
+'('           Comment
+'cons y nil'  Comment
+')'           Comment
+' ..'         Comment
+')'           Comment
+' '           Comment
+'('           Comment
+'at level 1'  Comment
+')'           Comment
+' : list_scope. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'(*'          Comment
+'* A compact representation of non-dependent arities, with the codomain singled-out. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Fixpoint'    Keyword.Namespace
+' '           Text
+'arrows'      Name
+' '           Text
+'('           Operator
+'l'           Name
+' '           Text
+':'           Operator
+' '           Text
+'list'        Name
+' '           Text
+'Type'        Keyword.Type
+')'           Operator
+' '           Text
+'('           Operator
+'r'           Name
+' '           Text
+':'           Operator
+' '           Text
+'Type'        Keyword.Type
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'Type'        Keyword.Type
+' '           Text
+':='          Operator
+'\n  '        Text
+'match'       Keyword
+' '           Text
+'l'           Name
+' '           Text
+'with'        Keyword
+'\n    '      Text
+'|'           Operator
+' '           Text
+'nil'         Name
+' '           Text
+'=>'          Operator
+' '           Text
+'r'           Name
+'\n    '      Text
+'|'           Operator
+' '           Text
+'A'           Name
+' '           Text
+'::'          Operator
+' '           Text
+"l'"          Name
+' '           Text
+'=>'          Operator
+' '           Text
+'A'           Name
+' '           Text
+'->'          Operator
+' '           Text
+'arrows'      Name
+' '           Text
+"l'"          Name
+' '           Text
+'r'           Name
+'\n  '        Text
+'end'         Keyword
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* We can define abbreviations for operation and relation types based on [arrows]. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Definition'  Keyword.Namespace
+' '           Text
+'unary_operation' Name
+' '           Text
+'A'           Name
+' '           Text
+':='          Operator
+' '           Text
+'arrows'      Name
+' '           Text
+'('           Operator
+'A'           Name
+'::'          Operator
+'nil'         Name
+')'           Operator
+' '           Text
+'A'           Name
+'.'           Operator
+'\n'          Text
+
+'Definition'  Keyword.Namespace
+' '           Text
+'binary_operation' Name
+' '           Text
+'A'           Name
+' '           Text
+':='          Operator
+' '           Text
+'arrows'      Name
+' '           Text
+'('           Operator
+'A'           Name
+'::'          Operator
+'A'           Name
+'::'          Operator
+'nil'         Name
+')'           Operator
+' '           Text
+'A'           Name
+'.'           Operator
+'\n'          Text
+
+'Definition'  Keyword.Namespace
+' '           Text
+'ternary_operation' Name
+' '           Text
+'A'           Name
+' '           Text
+':='          Operator
+' '           Text
+'arrows'      Name
+' '           Text
+'('           Operator
+'A'           Name
+'::'          Operator
+'A'           Name
+'::'          Operator
+'A'           Name
+'::'          Operator
+'nil'         Name
+')'           Operator
+' '           Text
+'A'           Name
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* We define n-ary [predicate]s as functions into [Prop]. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Notation'    Keyword.Namespace
+' '           Text
+'predicate'   Name
+' '           Text
+'l'           Name
+' '           Text
+':='          Operator
+' '           Text
+'('           Operator
+'arrows'      Name
+' '           Text
+'l'           Name
+' '           Text
+'Prop'        Keyword.Type
+')'           Operator
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* Unary predicates, or sets. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Definition'  Keyword.Namespace
+' '           Text
+'unary_predicate' Name
+' '           Text
+'A'           Name
+' '           Text
+':='          Operator
+' '           Text
+'predicate'   Name
+' '           Text
+'('           Operator
+'A'           Name
+'::'          Operator
+'nil'         Name
+')'           Operator
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* Homogeneous binary relations, equivalent to [relation A]. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Definition'  Keyword.Namespace
+' '           Text
+'binary_relation' Name
+' '           Text
+'A'           Name
+' '           Text
+':='          Operator
+' '           Text
+'predicate'   Name
+' '           Text
+'('           Operator
+'A'           Name
+'::'          Operator
+'A'           Name
+'::'          Operator
+'nil'         Name
+')'           Operator
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* We can close a predicate by universal or existential quantification. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Fixpoint'    Keyword.Namespace
+' '           Text
+'predicate_all' Name
+' '           Text
+'('           Operator
+'l'           Name
+' '           Text
+':'           Operator
+' '           Text
+'list'        Name
+' '           Text
+'Type'        Keyword.Type
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'predicate'   Name
+' '           Text
+'l'           Name
+' '           Text
+'->'          Operator
+' '           Text
+'Prop'        Keyword.Type
+' '           Text
+':='          Operator
+'\n  '        Text
+'match'       Keyword
+' '           Text
+'l'           Name
+' '           Text
+'with'        Keyword
+'\n    '      Text
+'|'           Operator
+' '           Text
+'nil'         Name
+' '           Text
+'=>'          Operator
+' '           Text
+'fun'         Keyword
+' '           Text
+'f'           Name
+' '           Text
+'=>'          Operator
+' '           Text
+'f'           Name
+'\n    '      Text
+'|'           Operator
+' '           Text
+'A'           Name
+' '           Text
+'::'          Operator
+' '           Text
+'tl'          Name
+' '           Text
+'=>'          Operator
+' '           Text
+'fun'         Keyword
+' '           Text
+'f'           Name
+' '           Text
+'=>'          Operator
+' '           Text
+'forall'      Keyword
+' '           Text
+'x'           Name
+' '           Text
+':'           Operator
+' '           Text
+'A'           Name
+','           Operator
+' '           Text
+'predicate_all' Name
+' '           Text
+'tl'          Name
+' '           Text
+'('           Operator
+'f'           Name
+' '           Text
+'x'           Name
+')'           Operator
+'\n  '        Text
+'end'         Keyword
+'.'           Operator
+'\n\n'        Text
+
+'Fixpoint'    Keyword.Namespace
+' '           Text
+'predicate_exists' Name
+' '           Text
+'('           Operator
+'l'           Name
+' '           Text
+':'           Operator
+' '           Text
+'list'        Name
+' '           Text
+'Type'        Keyword.Type
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'predicate'   Name
+' '           Text
+'l'           Name
+' '           Text
+'->'          Operator
+' '           Text
+'Prop'        Keyword.Type
+' '           Text
+':='          Operator
+'\n  '        Text
+'match'       Keyword
+' '           Text
+'l'           Name
+' '           Text
+'with'        Keyword
+'\n    '      Text
+'|'           Operator
+' '           Text
+'nil'         Name
+' '           Text
+'=>'          Operator
+' '           Text
+'fun'         Keyword
+' '           Text
+'f'           Name
+' '           Text
+'=>'          Operator
+' '           Text
+'f'           Name
+'\n    '      Text
+'|'           Operator
+' '           Text
+'A'           Name
+' '           Text
+'::'          Operator
+' '           Text
+'tl'          Name
+' '           Text
+'=>'          Operator
+' '           Text
+'fun'         Keyword
+' '           Text
+'f'           Name
+' '           Text
+'=>'          Operator
+' '           Text
+'exists'      Keyword
+' '           Text
+'x'           Name
+' '           Text
+':'           Operator
+' '           Text
+'A'           Name
+','           Operator
+' '           Text
+'predicate_exists' Name
+' '           Text
+'tl'          Name
+' '           Text
+'('           Operator
+'f'           Name
+' '           Text
+'x'           Name
+')'           Operator
+'\n  '        Text
+'end'         Keyword
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* Pointwise extension of a binary operation on [T] to a binary operation\n   on functions whose codomain is [T].\n   For an operator on [Prop] this lifts the operator to a binary operation. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Fixpoint'    Keyword.Namespace
+' '           Text
+'pointwise_extension' Name
+' '           Text
+'{'           Operator
+'T'           Name
+' '           Text
+':'           Operator
+' '           Text
+'Type'        Keyword.Type
+'}'           Operator
+' '           Text
+'('           Operator
+'op'          Name
+' '           Text
+':'           Operator
+' '           Text
+'binary_operation' Name
+' '           Text
+'T'           Name
+')'           Operator
+'\n  '        Text
+'('           Operator
+'l'           Name
+' '           Text
+':'           Operator
+' '           Text
+'list'        Name
+' '           Text
+'Type'        Keyword.Type
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'binary_operation' Name
+' '           Text
+'('           Operator
+'arrows'      Name
+' '           Text
+'l'           Name
+' '           Text
+'T'           Name
+')'           Operator
+' '           Text
+':='          Operator
+'\n  '        Text
+'match'       Keyword
+' '           Text
+'l'           Name
+' '           Text
+'with'        Keyword
+'\n    '      Text
+'|'           Operator
+' '           Text
+'nil'         Name
+' '           Text
+'=>'          Operator
+' '           Text
+'fun'         Keyword
+' '           Text
+'R'           Name
+' '           Text
+"R'"          Name
+' '           Text
+'=>'          Operator
+' '           Text
+'op'          Name
+' '           Text
+'R'           Name
+' '           Text
+"R'"          Name
+'\n    '      Text
+'|'           Operator
+' '           Text
+'A'           Name
+' '           Text
+'::'          Operator
+' '           Text
+'tl'          Name
+' '           Text
+'=>'          Operator
+' '           Text
+'fun'         Keyword
+' '           Text
+'R'           Name
+' '           Text
+"R'"          Name
+' '           Text
+'=>'          Operator
+'\n      '    Text
+'fun'         Keyword
+' '           Text
+'x'           Name
+' '           Text
+'=>'          Operator
+' '           Text
+'pointwise_extension' Name
+' '           Text
+'op'          Name
+' '           Text
+'tl'          Name
+' '           Text
+'('           Operator
+'R'           Name
+' '           Text
+'x'           Name
+')'           Operator
+' '           Text
+'('           Operator
+"R'"          Name
+' '           Text
+'x'           Name
+')'           Operator
+'\n  '        Text
+'end'         Keyword
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* Pointwise lifting, equivalent to doing [pointwise_extension] and closing using [predicate_all]. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Fixpoint'    Keyword.Namespace
+' '           Text
+'pointwise_lifting' Name
+' '           Text
+'('           Operator
+'op'          Name
+' '           Text
+':'           Operator
+' '           Text
+'binary_relation' Name
+' '           Text
+'Prop'        Keyword.Type
+')'           Operator
+'  '          Text
+'('           Operator
+'l'           Name
+' '           Text
+':'           Operator
+' '           Text
+'list'        Name
+' '           Text
+'Type'        Keyword.Type
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'binary_relation' Name
+' '           Text
+'('           Operator
+'predicate'   Name
+' '           Text
+'l'           Name
+')'           Operator
+' '           Text
+':='          Operator
+'\n  '        Text
+'match'       Keyword
+' '           Text
+'l'           Name
+' '           Text
+'with'        Keyword
+'\n    '      Text
+'|'           Operator
+' '           Text
+'nil'         Name
+' '           Text
+'=>'          Operator
+' '           Text
+'fun'         Keyword
+' '           Text
+'R'           Name
+' '           Text
+"R'"          Name
+' '           Text
+'=>'          Operator
+' '           Text
+'op'          Name
+' '           Text
+'R'           Name
+' '           Text
+"R'"          Name
+'\n    '      Text
+'|'           Operator
+' '           Text
+'A'           Name
+' '           Text
+'::'          Operator
+' '           Text
+'tl'          Name
+' '           Text
+'=>'          Operator
+' '           Text
+'fun'         Keyword
+' '           Text
+'R'           Name
+' '           Text
+"R'"          Name
+' '           Text
+'=>'          Operator
+'\n      '    Text
+'forall'      Keyword
+' '           Text
+'x'           Name
+','           Operator
+' '           Text
+'pointwise_lifting' Name
+' '           Text
+'op'          Name
+' '           Text
+'tl'          Name
+' '           Text
+'('           Operator
+'R'           Name
+' '           Text
+'x'           Name
+')'           Operator
+' '           Text
+'('           Operator
+"R'"          Name
+' '           Text
+'x'           Name
+')'           Operator
+'\n  '        Text
+'end'         Keyword
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* The n-ary equivalence relation, defined by lifting the 0-ary [iff] relation. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Definition'  Keyword.Namespace
+' '           Text
+'predicate_equivalence' Name
+' '           Text
+'{'           Operator
+'l'           Name
+' '           Text
+':'           Operator
+' '           Text
+'list'        Name
+' '           Text
+'Type'        Keyword.Type
+'}'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'binary_relation' Name
+' '           Text
+'('           Operator
+'predicate'   Name
+' '           Text
+'l'           Name
+')'           Operator
+' '           Text
+':='          Operator
+'\n  '        Text
+'pointwise_lifting' Name
+' '           Text
+'iff'         Name
+' '           Text
+'l'           Name
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* The n-ary implication relation, defined by lifting the 0-ary [impl] relation. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Definition'  Keyword.Namespace
+' '           Text
+'predicate_implication' Name
+' '           Text
+'{'           Operator
+'l'           Name
+' '           Text
+':'           Operator
+' '           Text
+'list'        Name
+' '           Text
+'Type'        Keyword.Type
+'}'           Operator
+' '           Text
+':='          Operator
+'\n  '        Text
+'pointwise_lifting' Name
+' '           Text
+'impl'        Name
+' '           Text
+'l'           Name
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* Notations for pointwise equivalence and implication of predicates. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Infix'       Name
+' '           Text
+'"'           Literal.String.Double
+'<∙>'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+':='          Operator
+' '           Text
+'predicate_equivalence' Name
+' '           Text
+'('           Operator
+'at'          Name
+' '           Text
+'level'       Name
+' '           Text
+'95'          Literal.Number.Integer
+','           Operator
+' '           Text
+'no'          Name
+' '           Text
+'associativity' Name
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'predicate_scope' Name
+'.'           Operator
+'\n'          Text
+
+'Infix'       Name
+' '           Text
+'"'           Literal.String.Double
+'-∙>'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+':='          Operator
+' '           Text
+'predicate_implication' Name
+' '           Text
+'('           Operator
+'at'          Name
+' '           Text
+'level'       Name
+' '           Text
+'70'          Literal.Number.Integer
+','           Operator
+' '           Text
+'right'       Keyword
+' '           Text
+'associativity' Name
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'predicate_scope' Name
+'.'           Operator
+'\n\n'        Text
+
+'Open'        Keyword.Namespace
+' '           Text
+'Local'       Keyword.Namespace
+' '           Text
+'Scope'       Keyword.Namespace
+' '           Text
+'predicate_scope' Name
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* The pointwise liftings of conjunction and disjunctions.\n   Note that these are [binary_operation]s, building new relations out of old ones. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Definition'  Keyword.Namespace
+' '           Text
+'predicate_intersection' Name
+' '           Text
+':='          Operator
+' '           Text
+'pointwise_extension' Name
+' '           Text
+'and'         Name
+'.'           Operator
+'\n'          Text
+
+'Definition'  Keyword.Namespace
+' '           Text
+'predicate_union' Name
+' '           Text
+':='          Operator
+' '           Text
+'pointwise_extension' Name
+' '           Text
+'or'          Name
+'.'           Operator
+'\n\n'        Text
+
+'Infix'       Name
+' '           Text
+'"'           Literal.String.Double
+'/∙\\'        Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+':='          Operator
+' '           Text
+'predicate_intersection' Name
+' '           Text
+'('           Operator
+'at'          Name
+' '           Text
+'level'       Name
+' '           Text
+'80'          Literal.Number.Integer
+','           Operator
+' '           Text
+'right'       Keyword
+' '           Text
+'associativity' Name
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'predicate_scope' Name
+'.'           Operator
+'\n'          Text
+
+'Infix'       Name
+' '           Text
+'"'           Literal.String.Double
+'\\∙/'        Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+':='          Operator
+' '           Text
+'predicate_union' Name
+' '           Text
+'('           Operator
+'at'          Name
+' '           Text
+'level'       Name
+' '           Text
+'85'          Literal.Number.Integer
+','           Operator
+' '           Text
+'right'       Keyword
+' '           Text
+'associativity' Name
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'predicate_scope' Name
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* The always [True] and always [False] predicates. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Fixpoint'    Keyword.Namespace
+' '           Text
+'true'        Name.Builtin.Pseudo
+'_'           Operator
+'predicate'   Name
+' '           Text
+'{'           Operator
+'l'           Name
+' '           Text
+':'           Operator
+' '           Text
+'list'        Name
+' '           Text
+'Type'        Keyword.Type
+'}'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'predicate'   Name
+' '           Text
+'l'           Name
+' '           Text
+':='          Operator
+'\n  '        Text
+'match'       Keyword
+' '           Text
+'l'           Name
+' '           Text
+'with'        Keyword
+'\n    '      Text
+'|'           Operator
+' '           Text
+'nil'         Name
+' '           Text
+'=>'          Operator
+' '           Text
+'True'        Name
+'\n    '      Text
+'|'           Operator
+' '           Text
+'A'           Name
+' '           Text
+'::'          Operator
+' '           Text
+'tl'          Name
+' '           Text
+'=>'          Operator
+' '           Text
+'fun'         Keyword
+' '           Text
+'_'           Operator
+' '           Text
+'=>'          Operator
+' '           Text
+'@'           Operator
+'true'        Name.Builtin.Pseudo
+'_'           Operator
+'predicate'   Name
+' '           Text
+'tl'          Name
+'\n  '        Text
+'end'         Keyword
+'.'           Operator
+'\n\n'        Text
+
+'Fixpoint'    Keyword.Namespace
+' '           Text
+'false'       Name.Builtin.Pseudo
+'_'           Operator
+'predicate'   Name
+' '           Text
+'{'           Operator
+'l'           Name
+' '           Text
+':'           Operator
+' '           Text
+'list'        Name
+' '           Text
+'Type'        Keyword.Type
+'}'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'predicate'   Name
+' '           Text
+'l'           Name
+' '           Text
+':='          Operator
+'\n  '        Text
+'match'       Keyword
+' '           Text
+'l'           Name
+' '           Text
+'with'        Keyword
+'\n    '      Text
+'|'           Operator
+' '           Text
+'nil'         Name
+' '           Text
+'=>'          Operator
+' '           Text
+'False'       Name
+'\n    '      Text
+'|'           Operator
+' '           Text
+'A'           Name
+' '           Text
+'::'          Operator
+' '           Text
+'tl'          Name
+' '           Text
+'=>'          Operator
+' '           Text
+'fun'         Keyword
+' '           Text
+'_'           Operator
+' '           Text
+'=>'          Operator
+' '           Text
+'@'           Operator
+'false'       Name.Builtin.Pseudo
+'_'           Operator
+'predicate'   Name
+' '           Text
+'tl'          Name
+'\n  '        Text
+'end'         Keyword
+'.'           Operator
+'\n\n'        Text
+
+'Notation'    Keyword.Namespace
+' '           Text
+'"'           Literal.String.Double
+'∙⊤∙'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+':='          Operator
+' '           Text
+'true'        Name.Builtin.Pseudo
+'_'           Operator
+'predicate'   Name
+' '           Text
+':'           Operator
+' '           Text
+'predicate_scope' Name
+'.'           Operator
+'\n'          Text
+
+'Notation'    Keyword.Namespace
+' '           Text
+'"'           Literal.String.Double
+'∙⊥∙'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+':='          Operator
+' '           Text
+'false'       Name.Builtin.Pseudo
+'_'           Operator
+'predicate'   Name
+' '           Text
+':'           Operator
+' '           Text
+'predicate_scope' Name
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* Predicate equivalence is an equivalence, and predicate implication defines a preorder. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Program'     Keyword.Namespace
+' '           Text
+'Instance'    Keyword.Namespace
+' '           Text
+'predicate_equivalence_equivalence' Name
+' '           Text
+':'           Operator
+' '           Text
+'Equivalence' Name
+' '           Text
+'('           Operator
+'@'           Operator
+'predicate_equivalence' Name
+' '           Text
+'l'           Name
+')'           Operator
+'.'           Operator
+'\n  '        Text
+'Next Obligation' Keyword.Namespace
+'.'           Operator
+'\n    '      Text
+'induction'   Keyword
+' '           Text
+'l'           Name
+' '           Text
+';'           Operator
+' '           Text
+'firstorder'  Name
+'.'           Operator
+'\n  '        Text
+'Qed'         Keyword.Namespace
+'.'           Operator
+'\n  '        Text
+'Next Obligation' Keyword.Namespace
+'.'           Operator
+'\n    '      Text
+'induction'   Keyword
+' '           Text
+'l'           Name
+' '           Text
+';'           Operator
+' '           Text
+'firstorder'  Name
+'.'           Operator
+'\n  '        Text
+'Qed'         Keyword.Namespace
+'.'           Operator
+'\n  '        Text
+'Next Obligation' Keyword.Namespace
+'.'           Operator
+'\n    '      Text
+'fold'        Keyword
+' '           Text
+'pointwise_lifting' Name
+'.'           Operator
+'\n    '      Text
+'induction'   Keyword
+' '           Text
+'l'           Name
+'.'           Operator
+' '           Text
+'firstorder'  Name
+'.'           Operator
+'\n    '      Text
+'intros'      Keyword
+'.'           Operator
+' '           Text
+'simpl'       Keyword
+' '           Text
+'in'          Keyword
+' '           Text
+'*'           Operator
+'.'           Operator
+' '           Text
+'pose'        Keyword
+' '           Text
+'('           Operator
+'IHl'         Name
+' '           Text
+'('           Operator
+'x'           Name
+' '           Text
+'x0'          Name
+')'           Operator
+' '           Text
+'('           Operator
+'y'           Name
+' '           Text
+'x0'          Name
+')'           Operator
+' '           Text
+'('           Operator
+'z'           Name
+' '           Text
+'x0'          Name
+')'           Operator
+')'           Operator
+'.'           Operator
+'\n    '      Text
+'firstorder'  Name
+'.'           Operator
+'\n  '        Text
+'Qed'         Keyword.Namespace
+'.'           Operator
+'\n\n'        Text
+
+'Program'     Keyword.Namespace
+' '           Text
+'Instance'    Keyword.Namespace
+' '           Text
+'predicate_implication_preorder' Name
+' '           Text
+':'           Operator
+'\n  '        Text
+'PreOrder'    Name
+' '           Text
+'('           Operator
+'@'           Operator
+'predicate_implication' Name
+' '           Text
+'l'           Name
+')'           Operator
+'.'           Operator
+'\n  '        Text
+'Next Obligation' Keyword.Namespace
+'.'           Operator
+'\n    '      Text
+'induction'   Keyword
+' '           Text
+'l'           Name
+' '           Text
+';'           Operator
+' '           Text
+'firstorder'  Name
+'.'           Operator
+'\n  '        Text
+'Qed'         Keyword.Namespace
+'.'           Operator
+'\n  '        Text
+'Next Obligation' Keyword.Namespace
+'.'           Operator
+'\n    '      Text
+'induction'   Keyword
+' '           Text
+'l'           Name
+'.'           Operator
+' '           Text
+'firstorder'  Name
+'.'           Operator
+'\n    '      Text
+'unfold'      Keyword
+' '           Text
+'predicate_implication' Name
+' '           Text
+'in'          Keyword
+' '           Text
+'*'           Operator
+'.'           Operator
+' '           Text
+'simpl'       Keyword
+' '           Text
+'in'          Keyword
+' '           Text
+'*'           Operator
+'.'           Operator
+'\n    '      Text
+'intro'       Keyword
+'.'           Operator
+' '           Text
+'pose'        Keyword
+' '           Text
+'('           Operator
+'IHl'         Name
+' '           Text
+'('           Operator
+'x'           Name
+' '           Text
+'x0'          Name
+')'           Operator
+' '           Text
+'('           Operator
+'y'           Name
+' '           Text
+'x0'          Name
+')'           Operator
+' '           Text
+'('           Operator
+'z'           Name
+' '           Text
+'x0'          Name
+')'           Operator
+')'           Operator
+'.'           Operator
+' '           Text
+'firstorder'  Name
+'.'           Operator
+'\n  '        Text
+'Qed'         Keyword.Namespace
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* We define the various operations which define the algebra on binary relations,\n   from the general ones. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Definition'  Keyword.Namespace
+' '           Text
+'relation_equivalence' Name
+' '           Text
+'{'           Operator
+'A'           Name
+' '           Text
+':'           Operator
+' '           Text
+'Type'        Keyword.Type
+'}'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'('           Operator
+'relation'    Name
+' '           Text
+'A'           Name
+')'           Operator
+' '           Text
+':='          Operator
+'\n  '        Text
+'@'           Operator
+'predicate_equivalence' Name
+' '           Text
+'('           Operator
+'_'           Operator
+'::'          Operator
+'_'           Operator
+'::'          Operator
+'nil'         Name
+')'           Operator
+'.'           Operator
+'\n\n'        Text
+
+'Class'       Keyword.Namespace
+' '           Text
+'subrelation' Name
+' '           Text
+'{'           Operator
+'A'           Name
+':'           Operator
+'Type'        Keyword.Type
+'}'           Operator
+' '           Text
+'('           Operator
+'R'           Name
+' '           Text
+"R'"          Name
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'A'           Name
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'Prop'        Keyword.Type
+' '           Text
+':='          Operator
+'\n  '        Text
+'is_subrelation' Name
+' '           Text
+':'           Operator
+' '           Text
+'@'           Operator
+'predicate_implication' Name
+' '           Text
+'('           Operator
+'A'           Name
+'::'          Operator
+'A'           Name
+'::'          Operator
+'nil'         Name
+')'           Operator
+' '           Text
+'R'           Name
+' '           Text
+"R'"          Name
+'.'           Operator
+'\n\n'        Text
+
+'Implicit'    Keyword.Namespace
+' '           Text
+'Arguments'   Keyword.Namespace
+' '           Text
+'subrelation' Name
+' '           Text
+'['           Operator
+'['           Operator
+'A'           Name
+']'           Operator
+']'           Operator
+'.'           Operator
+'\n\n'        Text
+
+'Definition'  Keyword.Namespace
+' '           Text
+'relation_conjunction' Name
+' '           Text
+'{'           Operator
+'A'           Name
+'}'           Operator
+' '           Text
+'('           Operator
+'R'           Name
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'A'           Name
+')'           Operator
+' '           Text
+'('           Operator
+"R'"          Name
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'A'           Name
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'A'           Name
+' '           Text
+':='          Operator
+'\n  '        Text
+'@'           Operator
+'predicate_intersection' Name
+' '           Text
+'('           Operator
+'A'           Name
+'::'          Operator
+'A'           Name
+'::'          Operator
+'nil'         Name
+')'           Operator
+' '           Text
+'R'           Name
+' '           Text
+"R'"          Name
+'.'           Operator
+'\n\n'        Text
+
+'Definition'  Keyword.Namespace
+' '           Text
+'relation_disjunction' Name
+' '           Text
+'{'           Operator
+'A'           Name
+'}'           Operator
+' '           Text
+'('           Operator
+'R'           Name
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'A'           Name
+')'           Operator
+' '           Text
+'('           Operator
+"R'"          Name
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'A'           Name
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'A'           Name
+' '           Text
+':='          Operator
+'\n  '        Text
+'@'           Operator
+'predicate_union' Name
+' '           Text
+'('           Operator
+'A'           Name
+'::'          Operator
+'A'           Name
+'::'          Operator
+'nil'         Name
+')'           Operator
+' '           Text
+'R'           Name
+' '           Text
+"R'"          Name
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* Relation equivalence is an equivalence, and subrelation defines a partial order. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Set'         Keyword.Namespace
+' '           Text
+'Automatic'   Keyword.Namespace
+' '           Text
+'Introduction' Keyword.Namespace
+'.'           Punctuation
+'\n\n'        Text
+
+'Instance'    Keyword.Namespace
+' '           Text
+'relation_equivalence_equivalence' Name
+' '           Text
+'('           Operator
+'A'           Name
+' '           Text
+':'           Operator
+' '           Text
+'Type'        Keyword.Type
+')'           Operator
+' '           Text
+':'           Operator
+'\n  '        Text
+'Equivalence' Name
+' '           Text
+'('           Operator
+'@'           Operator
+'relation_equivalence' Name
+' '           Text
+'A'           Name
+')'           Operator
+'.'           Operator
+'\n'          Text
+
+'Proof'       Keyword.Namespace
+'.'           Operator
+' '           Text
+'exact'       Keyword.Pseudo
+' '           Text
+'('           Operator
+'@'           Operator
+'predicate_equivalence_equivalence' Name
+' '           Text
+'('           Operator
+'A'           Name
+'::'          Operator
+'A'           Name
+'::'          Operator
+'nil'         Name
+')'           Operator
+')'           Operator
+'.'           Operator
+' '           Text
+'Qed'         Keyword.Namespace
+'.'           Operator
+'\n\n'        Text
+
+'Instance'    Keyword.Namespace
+' '           Text
+'relation_implication_preorder' Name
+' '           Text
+'A'           Name
+' '           Text
+':'           Operator
+' '           Text
+'PreOrder'    Name
+' '           Text
+'('           Operator
+'@'           Operator
+'subrelation' Name
+' '           Text
+'A'           Name
+')'           Operator
+'.'           Operator
+'\n'          Text
+
+'Proof'       Keyword.Namespace
+'.'           Operator
+' '           Text
+'exact'       Keyword.Pseudo
+' '           Text
+'('           Operator
+'@'           Operator
+'predicate_implication_preorder' Name
+' '           Text
+'('           Operator
+'A'           Name
+'::'          Operator
+'A'           Name
+'::'          Operator
+'nil'         Name
+')'           Operator
+')'           Operator
+'.'           Operator
+' '           Text
+'Qed'         Keyword.Namespace
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* *** Partial Order.\n   A partial order is a preorder which is additionally antisymmetric.\n   We give an equivalent definition, up-to an equivalence relation\n   on the carrier. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Class'       Keyword.Namespace
+' '           Text
+'PartialOrder' Name
+' '           Text
+'{'           Operator
+'A'           Name
+'}'           Operator
+' '           Text
+'eqA'         Name
+' '           Text
+'`'           Operator
+'{'           Operator
+'equ'         Name
+' '           Text
+':'           Operator
+' '           Text
+'Equivalence' Name
+' '           Text
+'A'           Name
+' '           Text
+'eqA'         Name
+'}'           Operator
+' '           Text
+'R'           Name
+' '           Text
+'`'           Operator
+'{'           Operator
+'preo'        Name
+' '           Text
+':'           Operator
+' '           Text
+'PreOrder'    Name
+' '           Text
+'A'           Name
+' '           Text
+'R'           Name
+'}'           Operator
+' '           Text
+':='          Operator
+'\n  '        Text
+'partial_order_equivalence' Name
+' '           Text
+':'           Operator
+' '           Text
+'relation_equivalence' Name
+' '           Text
+'eqA'         Name
+' '           Text
+'('           Operator
+'relation_conjunction' Name
+' '           Text
+'R'           Name
+' '           Text
+'('           Operator
+'inverse'     Name
+' '           Text
+'R'           Name
+')'           Operator
+')'           Operator
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* The equivalence proof is sufficient for proving that [R] must be a morphism\n   for equivalence ' Comment
+'('           Comment
+'see Morphisms' Comment
+')'           Comment
+'.\n   It is also sufficient to show that [R] is antisymmetric w.r.t. [eqA] ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Instance'    Keyword.Namespace
+' '           Text
+'partial_order_antisym' Name
+' '           Text
+'`'           Operator
+'('           Operator
+'PartialOrder' Name
+' '           Text
+'A'           Name
+' '           Text
+'eqA'         Name
+' '           Text
+'R'           Name
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'!'           Operator
+' '           Text
+'Antisymmetric' Name
+' '           Text
+'A'           Name
+' '           Text
+'eqA'         Name
+' '           Text
+'R'           Name
+'.'           Operator
+'\n'          Text
+
+'Proof'       Keyword.Namespace
+' '           Text
+'with'        Keyword
+' '           Text
+'auto'        Keyword
+'.'           Operator
+'\n  '        Text
+'reduce_goal' Name
+'.'           Operator
+'\n  '        Text
+'pose'        Keyword
+' '           Text
+'proof'       Name
+' '           Text
+'partial_order_equivalence' Name
+' '           Text
+'as'          Keyword
+' '           Text
+'poe'         Name
+'.'           Operator
+' '           Text
+'do'          Keyword.Reserved
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'red'         Keyword
+' '           Text
+'in'          Keyword
+' '           Text
+'poe'         Name
+'.'           Operator
+'\n  '        Text
+'apply'       Keyword
+' '           Text
+'<-'          Operator
+' '           Text
+'poe'         Name
+'.'           Operator
+' '           Text
+'firstorder'  Name
+'.'           Operator
+'\n'          Text
+
+'Qed'         Keyword.Namespace
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* The partial order defined by subrelation and relation equivalence. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Program'     Keyword.Namespace
+' '           Text
+'Instance'    Keyword.Namespace
+' '           Text
+'subrelation_partial_order' Name
+' '           Text
+':'           Operator
+'\n  '        Text
+'!'           Operator
+' '           Text
+'PartialOrder' Name
+' '           Text
+'('           Operator
+'relation'    Name
+' '           Text
+'A'           Name
+')'           Operator
+' '           Text
+'relation_equivalence' Name
+' '           Text
+'subrelation' Name
+'.'           Operator
+'\n\n  '      Text
+'Next Obligation' Keyword.Namespace
+'.'           Operator
+'\n  '        Text
+'Proof'       Keyword.Namespace
+'.'           Operator
+'\n    '      Text
+'unfold'      Keyword
+' '           Text
+'relation_equivalence' Name
+' '           Text
+'in'          Keyword
+' '           Text
+'*'           Operator
+'.'           Operator
+' '           Text
+'firstorder'  Name
+'.'           Operator
+'\n  '        Text
+'Qed'         Keyword.Namespace
+'.'           Operator
+'\n\n'        Text
+
+'Typeclasses' Name
+' '           Text
+'Opaque'      Keyword.Namespace
+' '           Text
+'arrows'      Name
+' '           Text
+'predicate_implication' Name
+' '           Text
+'predicate_equivalence' Name
+'\n  '        Text
+'relation_equivalence' Name
+' '           Text
+'pointwise_lifting' Name
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* Rewrite relation on a given support: declares a relation as a rewrite\n   relation for use by the generalized rewriting tactic.\n   It helps choosing if a rewrite should be handled\n   by the generalized or the regular rewriting tactic using leibniz equality.\n   Users can declare an [RewriteRelation A RA] anywhere to declare default\n   relations. This is also done automatically by the [Declare Relation A RA]\n   commands. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Class'       Keyword.Namespace
+' '           Text
+'RewriteRelation' Name
+' '           Text
+'{'           Operator
+'A'           Name
+' '           Text
+':'           Operator
+' '           Text
+'Type'        Keyword.Type
+'}'           Operator
+' '           Text
+'('           Operator
+'RA'          Name
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'A'           Name
+')'           Operator
+'.'           Operator
+'\n\n'        Text
+
+'Instance'    Keyword.Namespace
+':'           Operator
+' '           Text
+'RewriteRelation' Name
+' '           Text
+'impl'        Name
+'.'           Operator
+'\n'          Text
+
+'Instance'    Keyword.Namespace
+':'           Operator
+' '           Text
+'RewriteRelation' Name
+' '           Text
+'iff'         Name
+'.'           Operator
+'\n'          Text
+
+'Instance'    Keyword.Namespace
+':'           Operator
+' '           Text
+'RewriteRelation' Name
+' '           Text
+'('           Operator
+'@'           Operator
+'relation_equivalence' Name
+' '           Text
+'A'           Name
+')'           Operator
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* Any [Equivalence] declared in the context is automatically considered\n   a rewrite relation. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Instance'    Keyword.Namespace
+' '           Text
+'equivalence_rewrite_relation' Name
+' '           Text
+'`'           Operator
+'('           Operator
+'Equivalence' Name
+' '           Text
+'A'           Name
+' '           Text
+'eqA'         Name
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'RewriteRelation' Name
+' '           Text
+'eqA'         Name
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* Strict Order ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Class'       Keyword.Namespace
+' '           Text
+'StrictOrder' Name
+' '           Text
+'{'           Operator
+'A'           Name
+' '           Text
+':'           Operator
+' '           Text
+'Type'        Keyword.Type
+'}'           Operator
+' '           Text
+'('           Operator
+'R'           Name
+' '           Text
+':'           Operator
+' '           Text
+'relation'    Name
+' '           Text
+'A'           Name
+')'           Operator
+' '           Text
+':='          Operator
+' '           Text
+'{'           Operator
+'\n  '        Text
+'StrictOrder_Irreflexive' Name
+' '           Text
+':>'          Operator
+' '           Text
+'Irreflexive' Name
+' '           Text
+'R'           Name
+' '           Text
+';'           Operator
+'\n  '        Text
+'StrictOrder_Transitive' Name
+' '           Text
+':>'          Operator
+' '           Text
+'Transitive'  Name
+' '           Text
+'R'           Name
+'\n'          Text
+
+'}'           Operator
+'.'           Operator
+'\n\n'        Text
+
+'Instance'    Keyword.Namespace
+' '           Text
+'StrictOrder_Asymmetric' Name
+' '           Text
+'`'           Operator
+'('           Operator
+'StrictOrder' Name
+' '           Text
+'A'           Name
+' '           Text
+'R'           Name
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'Asymmetric'  Name
+' '           Text
+'R'           Name
+'.'           Operator
+'\n'          Text
+
+'Proof'       Keyword.Namespace
+'.'           Operator
+' '           Text
+'firstorder'  Name
+'.'           Operator
+' '           Text
+'Qed'         Keyword.Namespace
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* Inversing a [StrictOrder] gives another [StrictOrder] ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Lemma'       Keyword.Namespace
+' '           Text
+'StrictOrder_inverse' Name
+' '           Text
+'`'           Operator
+'('           Operator
+'StrictOrder' Name
+' '           Text
+'A'           Name
+' '           Text
+'R'           Name
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'StrictOrder' Name
+' '           Text
+'('           Operator
+'inverse'     Name
+' '           Text
+'R'           Name
+')'           Operator
+'.'           Operator
+'\n'          Text
+
+'Proof'       Keyword.Namespace
+'.'           Operator
+' '           Text
+'firstorder'  Name
+'.'           Operator
+' '           Text
+'Qed'         Keyword.Namespace
+'.'           Operator
+'\n\n'        Text
+
+'(*'          Comment
+'* Same for [PartialOrder]. ' Comment
+'*)'          Comment
+'\n\n'        Text
+
+'Lemma'       Keyword.Namespace
+' '           Text
+'PreOrder_inverse' Name
+' '           Text
+'`'           Operator
+'('           Operator
+'PreOrder'    Name
+' '           Text
+'A'           Name
+' '           Text
+'R'           Name
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'PreOrder'    Name
+' '           Text
+'('           Operator
+'inverse'     Name
+' '           Text
+'R'           Name
+')'           Operator
+'.'           Operator
+'\n'          Text
+
+'Proof'       Keyword.Namespace
+'.'           Operator
+' '           Text
+'firstorder'  Name
+'.'           Operator
+' '           Text
+'Qed'         Keyword.Namespace
+'.'           Operator
+'\n\n'        Text
+
+'Hint'        Keyword.Namespace
+' '           Text
+'Extern'      Name
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'('           Operator
+'StrictOrder' Name
+' '           Text
+'('           Operator
+'inverse'     Name
+' '           Text
+'_'           Operator
+')'           Operator
+')'           Operator
+' '           Text
+'=>'          Operator
+' '           Text
+'class_apply' Name
+' '           Text
+'StrictOrder_inverse' Name
+' '           Text
+':'           Operator
+' '           Text
+'typeclass_instances' Name
+'.'           Operator
+'\n'          Text
+
+'Hint'        Keyword.Namespace
+' '           Text
+'Extern'      Name
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'('           Operator
+'PreOrder'    Name
+' '           Text
+'('           Operator
+'inverse'     Name
+' '           Text
+'_'           Operator
+')'           Operator
+')'           Operator
+' '           Text
+'=>'          Operator
+' '           Text
+'class_apply' Name
+' '           Text
+'PreOrder_inverse' Name
+' '           Text
+':'           Operator
+' '           Text
+'typeclass_instances' Name
+'.'           Operator
+'\n\n'        Text
+
+'Lemma'       Keyword.Namespace
+' '           Text
+'PartialOrder_inverse' Name
+' '           Text
+'`'           Operator
+'('           Operator
+'PartialOrder' Name
+' '           Text
+'A'           Name
+' '           Text
+'eqA'         Name
+' '           Text
+'R'           Name
+')'           Operator
+' '           Text
+':'           Operator
+' '           Text
+'PartialOrder' Name
+' '           Text
+'eqA'         Name
+' '           Text
+'('           Operator
+'inverse'     Name
+' '           Text
+'R'           Name
+')'           Operator
+'.'           Operator
+'\n'          Text
+
+'Proof'       Keyword.Namespace
+'.'           Operator
+' '           Text
+'firstorder'  Name
+'.'           Operator
+' '           Text
+'Qed'         Keyword.Namespace
+'.'           Operator
+'\n\n'        Text
+
+'Hint'        Keyword.Namespace
+' '           Text
+'Extern'      Name
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'('           Operator
+'PartialOrder' Name
+' '           Text
+'('           Operator
+'inverse'     Name
+' '           Text
+'_'           Operator
+')'           Operator
+')'           Operator
+' '           Text
+'=>'          Operator
+' '           Text
+'class_apply' Name
+' '           Text
+'PartialOrder_inverse' Name
+' '           Text
+':'           Operator
+' '           Text
+'typeclass_instances' Name
+'.'           Operator
+'\n'          Text

@@ -1,0 +1,57 @@
+---input---
+func test() {
+    let world = "world"
+    let multi = """
+    hello
+    \(world)
+    !
+    """
+    return multi
+}
+
+---tokens---
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'test'        Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'world'       Name.Variable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'world'       Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'multi'       Name.Variable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"""'         Literal.String
+'\n    hello\n    ' Literal.String
+'\\('         Literal.String.Interpol
+'world'       Name
+')'           Literal.String.Interpol
+'\n    !\n    ' Literal.String
+'"""'         Literal.String
+'\n'          Text
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'multi'       Name
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

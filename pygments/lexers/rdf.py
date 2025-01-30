@@ -4,7 +4,7 @@
 
     Lexers for semantic web and RDF query languages and markup.
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -243,10 +243,10 @@ class TurtleLexer(RegexLexer):
             (r'\s+', Text),
 
             # Base / prefix
-            (r'(@base|BASE)(\s+)%(IRIREF)s(\s*)(\.?)' % patterns,
+            (r'(@base|BASE)(\s+){IRIREF}(\s*)(\.?)'.format(**patterns),
              bygroups(Keyword, Whitespace, Name.Variable, Whitespace,
                       Punctuation)),
-            (r'(@prefix|PREFIX)(\s+)%(PNAME_NS)s(\s+)%(IRIREF)s(\s*)(\.?)' % patterns,
+            (r'(@prefix|PREFIX)(\s+){PNAME_NS}(\s+){IRIREF}(\s*)(\.?)'.format(**patterns),
              bygroups(Keyword, Whitespace, Name.Namespace, Whitespace,
                       Name.Variable, Whitespace, Punctuation)),
 
@@ -254,7 +254,7 @@ class TurtleLexer(RegexLexer):
             (r'(?<=\s)a(?=\s)', Keyword.Type),
 
             # IRIREF
-            (r'%(IRIREF)s' % patterns, Name.Variable),
+            (r'{IRIREF}'.format(**patterns), Name.Variable),
 
             # PrefixedName
             (r'(' + PN_PREFIX + r')?(\:)(' + PN_LOCAL + r')?',
@@ -280,7 +280,7 @@ class TurtleLexer(RegexLexer):
         ],
         'triple-double-quoted-string': [
             (r'"""', String, 'end-of-string'),
-            (r'[^\\]+', String),
+            (r'[^\\]+(?=""")', String),
             (r'\\', String, 'string-escape'),
         ],
         'single-double-quoted-string': [
@@ -290,7 +290,7 @@ class TurtleLexer(RegexLexer):
         ],
         'triple-single-quoted-string': [
             (r"'''", String, 'end-of-string'),
-            (r'[^\\]+', String),
+            (r"[^\\]+(?=''')", String),
             (r'\\', String, 'string-escape'),
         ],
         'single-single-quoted-string': [
@@ -305,7 +305,7 @@ class TurtleLexer(RegexLexer):
             (r'(@)([a-zA-Z]+(?:-[a-zA-Z0-9]+)*)',
              bygroups(Operator, Generic.Emph), '#pop:2'),
 
-            (r'(\^\^)%(IRIREF)s' % patterns, bygroups(Operator, Generic.Emph), '#pop:2'),
+            (r'(\^\^){IRIREF}'.format(**patterns), bygroups(Operator, Generic.Emph), '#pop:2'),
 
             default('#pop:2'),
 
@@ -316,7 +316,7 @@ class TurtleLexer(RegexLexer):
     # but each has a recognizable and distinct syntax.
     def analyse_text(text):
         for t in ('@base ', 'BASE ', '@prefix ', 'PREFIX '):
-            if re.search(r'^\s*%s' % t, text):
+            if re.search(rf'^\s*{t}', text):
                 return 0.80
 
 

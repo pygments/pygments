@@ -183,7 +183,7 @@ will list only all installed filters.
 .. versionadded:: 2.11
 
 The ``--json`` option can be used in conjunction with the ``-L`` option to
-output it's contents as JSON. Thus, to print all the installed styles and their
+output its contents as JSON. Thus, to print all the installed styles and their
 description in JSON, use the command::
 
     $ pygmentize -L styles --json

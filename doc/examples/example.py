@@ -11,4 +11,4 @@ class Math:
             a, b = b, a + b
 
 result = sum(Math.fib(42))
-print("The answer is {}".format(result))
+print(f"The answer is {result}")

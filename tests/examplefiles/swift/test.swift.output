@@ -1,225 +1,78 @@
 '//'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//'          Comment.Single
-' '           Comment.Single
-' '           Comment.Single
-'t'           Comment.Single
-'e'           Comment.Single
-'s'           Comment.Single
-'t'           Comment.Single
-'.'           Comment.Single
-'s'           Comment.Single
-'w'           Comment.Single
-'i'           Comment.Single
-'f'           Comment.Single
-'t'           Comment.Single
-'\n'          Text
+'  test.swift' Comment.Single
+'\n'          Text.Whitespace
 
 '//'          Comment.Single
-' '           Comment.Single
-' '           Comment.Single
-'f'           Comment.Single
-'r'           Comment.Single
-'o'           Comment.Single
-'m'           Comment.Single
-' '           Comment.Single
-'h'           Comment.Single
-'t'           Comment.Single
-'t'           Comment.Single
-'p'           Comment.Single
-'s'           Comment.Single
-':'           Comment.Single
-'/'           Comment.Single
-'/'           Comment.Single
-'g'           Comment.Single
-'i'           Comment.Single
-'t'           Comment.Single
-'h'           Comment.Single
-'u'           Comment.Single
-'b'           Comment.Single
-'.'           Comment.Single
-'c'           Comment.Single
-'o'           Comment.Single
-'m'           Comment.Single
-'/'           Comment.Single
-'f'           Comment.Single
-'u'           Comment.Single
-'l'           Comment.Single
-'l'           Comment.Single
-'s'           Comment.Single
-'t'           Comment.Single
-'a'           Comment.Single
-'c'           Comment.Single
-'k'           Comment.Single
-'i'           Comment.Single
-'o'           Comment.Single
-'/'           Comment.Single
-'F'           Comment.Single
-'l'           Comment.Single
-'a'           Comment.Single
-'p'           Comment.Single
-'p'           Comment.Single
-'y'           Comment.Single
-'S'           Comment.Single
-'w'           Comment.Single
-'i'           Comment.Single
-'f'           Comment.Single
-'t'           Comment.Single
-'\n'          Text
+'  from https://github.com/fullstackio/FlappySwift' Comment.Single
+'\n'          Text.Whitespace
 
 '//'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '//'          Comment.Single
-' '           Comment.Single
-' '           Comment.Single
-'C'           Comment.Single
-'r'           Comment.Single
-'e'           Comment.Single
-'a'           Comment.Single
-'t'           Comment.Single
-'e'           Comment.Single
-'d'           Comment.Single
-' '           Comment.Single
-'b'           Comment.Single
-'y'           Comment.Single
-' '           Comment.Single
-'N'           Comment.Single
-'a'           Comment.Single
-'t'           Comment.Single
-'e'           Comment.Single
-' '           Comment.Single
-'M'           Comment.Single
-'u'           Comment.Single
-'r'           Comment.Single
-'r'           Comment.Single
-'a'           Comment.Single
-'y'           Comment.Single
-' '           Comment.Single
-'o'           Comment.Single
-'n'           Comment.Single
-' '           Comment.Single
-'6'           Comment.Single
-'/'           Comment.Single
-'2'           Comment.Single
-'/'           Comment.Single
-'1'           Comment.Single
-'4'           Comment.Single
-'.'           Comment.Single
-'\n'          Text
+'  Created by Nate Murray on 6/2/14.' Comment.Single
+'\n'          Text.Whitespace
 
 '//'          Comment.Single
-' '           Comment.Single
-' '           Comment.Single
-'C'           Comment.Single
-'o'           Comment.Single
-'p'           Comment.Single
-'y'           Comment.Single
-'r'           Comment.Single
-'i'           Comment.Single
-'g'           Comment.Single
-'h'           Comment.Single
-'t'           Comment.Single
-' '           Comment.Single
-'('           Comment.Single
-'c'           Comment.Single
-')'           Comment.Single
-' '           Comment.Single
-'2'           Comment.Single
-'0'           Comment.Single
-'1'           Comment.Single
-'4'           Comment.Single
-' '           Comment.Single
-'F'           Comment.Single
-'u'           Comment.Single
-'l'           Comment.Single
-'l'           Comment.Single
-'s'           Comment.Single
-'t'           Comment.Single
-'a'           Comment.Single
-'c'           Comment.Single
-'k'           Comment.Single
-'.'           Comment.Single
-'i'           Comment.Single
-'o'           Comment.Single
-'.'           Comment.Single
-' '           Comment.Single
-'A'           Comment.Single
-'l'           Comment.Single
-'l'           Comment.Single
-' '           Comment.Single
-'r'           Comment.Single
-'i'           Comment.Single
-'g'           Comment.Single
-'h'           Comment.Single
-'t'           Comment.Single
-'s'           Comment.Single
-' '           Comment.Single
-'r'           Comment.Single
-'e'           Comment.Single
-'s'           Comment.Single
-'e'           Comment.Single
-'r'           Comment.Single
-'v'           Comment.Single
-'e'           Comment.Single
-'d'           Comment.Single
-'.'           Comment.Single
-'\n'          Text
+'  Copyright (c) 2014 Fullstack.io. All rights reserved.' Comment.Single
+'\n'          Text.Whitespace
 
 '//'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
 'import'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'UIKit'       Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 'import'      Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'SpriteKit'   Name.Class
-'\n'          Text
+'\n'          Text.Whitespace
 
 '\n'          Text
 
 'extension'   Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'SKNode'      Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'func'        Name.Class
-' '           Text
+' '           Text.Whitespace
 'unarchiveFromFile' Name
 '('           Punctuation
 'file'        Name
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'NSString'    Name.Builtin.Pseudo
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '->'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'SKNode'      Name.Builtin.Pseudo
 '?'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text
 
-'        \n        ' Text
+'        \n        ' Text.Whitespace
 'let'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'path'        Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'NSBundle'    Name.Builtin.Pseudo
 '.'           Punctuation
 'mainBundle'  Name
@@ -230,61 +83,61 @@
 '('           Punctuation
 'file'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'ofType'      Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'sks'         Literal.String
 '"'           Literal.String
 ')'           Punctuation
 '\n'          Text
 
-'        \n        ' Text
+'        \n        ' Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'sceneData'   Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'NSData'      Name.Builtin.Pseudo
 '.'           Punctuation
 'dataWithContentsOfFile' Name
 '('           Punctuation
 'path'        Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'options'     Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'DataReadingMappedIfSafe' Name
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'error'       Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'nil'         Keyword.Constant
 ')'           Punctuation
 '\n'          Text
 
-'        '    Text
+'        '    Text.Whitespace
 'var'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'archiver'    Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'NSKeyedUnarchiver' Name.Builtin.Pseudo
 '('           Punctuation
 'forReadingWithData' Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'sceneData'   Name
 ')'           Punctuation
 '\n'          Text
 
-'        \n        ' Text
+'        \n        ' Text.Whitespace
 'archiver'    Name
 '.'           Punctuation
 'setClass'    Name
@@ -295,36 +148,36 @@
 '('           Punctuation
 ')'           Punctuation
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 'forClassName' Name
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String
 'SKScene'     Literal.String
 '"'           Literal.String
 ')'           Punctuation
 '\n'          Text
 
-'        '    Text
+'        '    Text.Whitespace
 'let'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'scene'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'archiver'    Name
 '.'           Punctuation
 'decodeObjectForKey' Name
 '('           Punctuation
 'NSKeyedArchiveRootObjectKey' Name
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'GameScene'   Name
 '\n'          Text
 
-'        '    Text
+'        '    Text.Whitespace
 'archiver'    Name
 '.'           Punctuation
 'finishDecoding' Name
@@ -332,13 +185,13 @@
 ')'           Punctuation
 '\n'          Text
 
-'        '    Text
+'        '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'scene'       Name
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
 '\n'          Text
 
@@ -348,30 +201,30 @@
 '\n'          Text
 
 'class'       Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'GameViewController' Name.Class
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'UIViewController' Name.Builtin.Pseudo
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text
 
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'override'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'func'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'viewDidLoad' Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text
 
-'        '    Text
+'        '    Text.Whitespace
 'super'       Keyword.Constant
 '.'           Punctuation
 'viewDidLoad' Name
@@ -381,15 +234,15 @@
 
 '\n'          Text
 
-'        '    Text
+'        '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'let'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'scene'       Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'GameScene'   Name
 '.'           Punctuation
 'unarchiveFromFile' Name
@@ -398,232 +251,90 @@
 'GameScene'   Literal.String
 '"'           Literal.String
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
 '?'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'GameScene'   Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text
 
-'            ' Text
+'            ' Text.Whitespace
 '//'          Comment.Single
-' '           Comment.Single
-'C'           Comment.Single
-'o'           Comment.Single
-'n'           Comment.Single
-'f'           Comment.Single
-'i'           Comment.Single
-'g'           Comment.Single
-'u'           Comment.Single
-'r'           Comment.Single
-'e'           Comment.Single
-' '           Comment.Single
-'t'           Comment.Single
-'h'           Comment.Single
-'e'           Comment.Single
-' '           Comment.Single
-'v'           Comment.Single
-'i'           Comment.Single
-'e'           Comment.Single
-'w'           Comment.Single
-'.'           Comment.Single
-'\n'          Text
+' Configure the view.' Comment.Single
+'\n'          Text.Whitespace
 
-'            ' Text
+'            ' Text.Whitespace
 'let'         Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'skView'      Name.Variable
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'self'        Keyword.Constant
 '.'           Punctuation
 'view'        Name
-' '           Text
+' '           Text.Whitespace
 'as'          Keyword
-' '           Text
+' '           Text.Whitespace
 'SKView'      Name.Builtin.Pseudo
 '\n'          Text
 
-'            ' Text
+'            ' Text.Whitespace
 'skView'      Name
 '.'           Punctuation
 'showsFPS'    Name
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword.Constant
 '\n'          Text
 
-'            ' Text
+'            ' Text.Whitespace
 'skView'      Name
 '.'           Punctuation
 'showsNodeCount' Name
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword.Constant
 '\n'          Text
 
-'            \n            ' Text
+'            \n            ' Text.Whitespace
 '/*'          Comment.Multiline
-' '           Comment.Multiline
-'S'           Comment.Multiline
-'p'           Comment.Multiline
-'r'           Comment.Multiline
-'i'           Comment.Multiline
-'t'           Comment.Multiline
-'e'           Comment.Multiline
-' '           Comment.Multiline
-'K'           Comment.Multiline
-'i'           Comment.Multiline
-'t'           Comment.Multiline
-' '           Comment.Multiline
-'a'           Comment.Multiline
-'p'           Comment.Multiline
-'p'           Comment.Multiline
-'l'           Comment.Multiline
-'i'           Comment.Multiline
-'e'           Comment.Multiline
-'s'           Comment.Multiline
-' '           Comment.Multiline
-'a'           Comment.Multiline
-'d'           Comment.Multiline
-'d'           Comment.Multiline
-'i'           Comment.Multiline
-'t'           Comment.Multiline
-'i'           Comment.Multiline
-'o'           Comment.Multiline
-'n'           Comment.Multiline
-'a'           Comment.Multiline
-'l'           Comment.Multiline
-' '           Comment.Multiline
-'o'           Comment.Multiline
-'p'           Comment.Multiline
-'t'           Comment.Multiline
-'i'           Comment.Multiline
-'m'           Comment.Multiline
-'i'           Comment.Multiline
-'z'           Comment.Multiline
-'a'           Comment.Multiline
-'t'           Comment.Multiline
-'i'           Comment.Multiline
-'o'           Comment.Multiline
-'n'           Comment.Multiline
-'s'           Comment.Multiline
-' '           Comment.Multiline
-'t'           Comment.Multiline
-'o'           Comment.Multiline
-' '           Comment.Multiline
-'i'           Comment.Multiline
-'m'           Comment.Multiline
-'p'           Comment.Multiline
-'r'           Comment.Multiline
-'o'           Comment.Multiline
-'v'           Comment.Multiline
-'e'           Comment.Multiline
-' '           Comment.Multiline
-'r'           Comment.Multiline
-'e'           Comment.Multiline
-'n'           Comment.Multiline
-'d'           Comment.Multiline
-'e'           Comment.Multiline
-'r'           Comment.Multiline
-'i'           Comment.Multiline
-'n'           Comment.Multiline
-'g'           Comment.Multiline
-' '           Comment.Multiline
-'p'           Comment.Multiline
-'e'           Comment.Multiline
-'r'           Comment.Multiline
-'f'           Comment.Multiline
-'o'           Comment.Multiline
-'r'           Comment.Multiline
-'m'           Comment.Multiline
-'a'           Comment.Multiline
-'n'           Comment.Multiline
-'c'           Comment.Multiline
-'e'           Comment.Multiline
-' '           Comment.Multiline
+' Sprite Kit applies additional optimizations to improve rendering performance ' Comment.Multiline
 '*/'          Comment.Multiline
 '\n'          Text
 
-'            ' Text
+'            ' Text.Whitespace
 'skView'      Name
 '.'           Punctuation
 'ignoresSiblingOrder' Name
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword.Constant
 '\n'          Text
 
-'            \n            ' Text
+'            \n            ' Text.Whitespace
 '/*'          Comment.Multiline
-' '           Comment.Multiline
-'S'           Comment.Multiline
-'e'           Comment.Multiline
-'t'           Comment.Multiline
-' '           Comment.Multiline
-'t'           Comment.Multiline
-'h'           Comment.Multiline
-'e'           Comment.Multiline
-' '           Comment.Multiline
-'s'           Comment.Multiline
-'c'           Comment.Multiline
-'a'           Comment.Multiline
-'l'           Comment.Multiline
-'e'           Comment.Multiline
-' '           Comment.Multiline
-'m'           Comment.Multiline
-'o'           Comment.Multiline
-'d'           Comment.Multiline
-'e'           Comment.Multiline
-' '           Comment.Multiline
-'t'           Comment.Multiline
-'o'           Comment.Multiline
-' '           Comment.Multiline
-'s'           Comment.Multiline
-'c'           Comment.Multiline
-'a'           Comment.Multiline
-'l'           Comment.Multiline
-'e'           Comment.Multiline
-' '           Comment.Multiline
-'t'           Comment.Multiline
-'o'           Comment.Multiline
-' '           Comment.Multiline
-'f'           Comment.Multiline
-'i'           Comment.Multiline
-'t'           Comment.Multiline
-' '           Comment.Multiline
-'t'           Comment.Multiline
-'h'           Comment.Multiline
-'e'           Comment.Multiline
-' '           Comment.Multiline
-'w'           Comment.Multiline
-'i'           Comment.Multiline
-'n'           Comment.Multiline
-'d'           Comment.Multiline
-'o'           Comment.Multiline
-'w'           Comment.Multiline
-' '           Comment.Multiline
+' Set the scale mode to scale to fit the window ' Comment.Multiline
 '*/'          Comment.Multiline
 '\n'          Text
 
-'            ' Text
+'            ' Text.Whitespace
 'scene'       Name
 '.'           Punctuation
 'scaleMode'   Name
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'AspectFill'  Name
 '\n'          Text
 
-'            \n            ' Text
+'            \n            ' Text.Whitespace
 'skView'      Name
 '.'           Punctuation
 'presentScene' Name
@@ -632,63 +343,63 @@
 ')'           Punctuation
 '\n'          Text
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
 '\n'          Text
 
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'override'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'func'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'shouldAutorotate' Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '->'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'Bool'        Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text
 
-'        '    Text
+'        '    Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'true'        Keyword.Constant
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
 '\n'          Text
 
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'override'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'func'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'supportedInterfaceOrientations' Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '->'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'Int'         Name.Builtin
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text
 
-'        '    Text
+'        '    Text.Whitespace
 'if'          Keyword
-' '           Text
+' '           Text.Whitespace
 'UIDevice'    Name.Builtin.Pseudo
 '.'           Punctuation
 'currentDevice' Name
@@ -696,19 +407,19 @@
 ')'           Punctuation
 '.'           Punctuation
 'userInterfaceIdiom' Name
-' '           Text
+' '           Text.Whitespace
 '='           Punctuation
 '='           Punctuation
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'Phone'       Name
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text
 
-'            ' Text
+'            ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Int'         Name.Builtin
 '('           Punctuation
 'UIInterfaceOrientationMask' Name
@@ -721,17 +432,17 @@
 ')'           Punctuation
 '\n'          Text
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'else'        Keyword
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text
 
-'            ' Text
+'            ' Text.Whitespace
 'return'      Keyword
-' '           Text
+' '           Text.Whitespace
 'Int'         Name.Builtin
 '('           Punctuation
 'UIInterfaceOrientationMask' Name
@@ -744,29 +455,29 @@
 ')'           Punctuation
 '\n'          Text
 
-'        '    Text
+'        '    Text.Whitespace
 '}'           Punctuation
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
 '\n'          Text
 
 '\n'          Text
 
-'    '        Text
+'    '        Text.Whitespace
 'override'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'func'        Keyword.Declaration
-' '           Text
+' '           Text.Whitespace
 'didReceiveMemoryWarning' Name.Function
 '('           Punctuation
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text
 
-'        '    Text
+'        '    Text.Whitespace
 'super'       Keyword.Constant
 '.'           Punctuation
 'didReceiveMemoryWarning' Name
@@ -774,72 +485,16 @@
 ')'           Punctuation
 '\n'          Text
 
-'        '    Text
+'        '    Text.Whitespace
 '//'          Comment.Single
-' '           Comment.Single
-'R'           Comment.Single
-'e'           Comment.Single
-'l'           Comment.Single
-'e'           Comment.Single
-'a'           Comment.Single
-'s'           Comment.Single
-'e'           Comment.Single
-' '           Comment.Single
-'a'           Comment.Single
-'n'           Comment.Single
-'y'           Comment.Single
-' '           Comment.Single
-'c'           Comment.Single
-'a'           Comment.Single
-'c'           Comment.Single
-'h'           Comment.Single
-'e'           Comment.Single
-'d'           Comment.Single
-' '           Comment.Single
-'d'           Comment.Single
-'a'           Comment.Single
-'t'           Comment.Single
-'a'           Comment.Single
-','           Comment.Single
-' '           Comment.Single
-'i'           Comment.Single
-'m'           Comment.Single
-'a'           Comment.Single
-'g'           Comment.Single
-'e'           Comment.Single
-'s'           Comment.Single
-','           Comment.Single
-' '           Comment.Single
-'e'           Comment.Single
-'t'           Comment.Single
-'c'           Comment.Single
-' '           Comment.Single
-'t'           Comment.Single
-'h'           Comment.Single
-'a'           Comment.Single
-'t'           Comment.Single
-' '           Comment.Single
-'a'           Comment.Single
-'r'           Comment.Single
-'e'           Comment.Single
-'n'           Comment.Single
-"'"           Comment.Single
-'t'           Comment.Single
-' '           Comment.Single
-'i'           Comment.Single
-'n'           Comment.Single
-' '           Comment.Single
-'u'           Comment.Single
-'s'           Comment.Single
-'e'           Comment.Single
-'.'           Comment.Single
-'\n'          Text
+" Release any cached data, images, etc that aren't in use." Comment.Single
+'\n'          Text.Whitespace
 
-'    '        Text
+'    '        Text.Whitespace
 '}'           Punctuation
 '\n'          Text
 
-'    \n'      Text
+'    \n'      Text.Whitespace
 
 '}'           Punctuation
 '\n'          Text

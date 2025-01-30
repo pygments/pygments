@@ -3,9 +3,9 @@
 ;;;;
 
 
-(defn _numeric-check [x]
-  (if (not (numeric? x))
-    (raise (TypeError (.format "{0!r} is not a number" x)))))
+(defn _numeric-check [↻]
+  (if (not (numeric? ↻))
+    (raise (TypeError (.format "{0!r} (↻) is not a number" ↻)))))
 
 (defn cycle [coll]
   "Yield an infinite repetition of the items in coll"

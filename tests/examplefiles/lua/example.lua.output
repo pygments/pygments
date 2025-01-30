@@ -1,108 +1,104 @@
 "--[[\n\tAuctioneer Advanced\n\tVersion: <%version%> (<%codename%>)\n\tRevision: $Id: CoreMain.lua 2233 2007-09-25 03:57:33Z norganna $\n\tURL: http://auctioneeraddon.com/\n\n\tThis is an addon for World of Warcraft that adds statistical history to the auction data that is collected\n\twhen the auction is scanned, so that you can easily determine what price\n\tyou will be able to sell an item for at auction or at a vendor whenever you\n\tmouse-over an item in the game\n\n\tLicense:\n\t\tThis program is free software; you can redistribute it and/or\n\t\tmodify it under the terms of the GNU General Public License\n\t\tas published by the Free Software Foundation; either version 2\n\t\tof the License, or (at your option) any later version.\n\n\t\tThis program is distributed in the hope that it will be useful,\n\t\tbut WITHOUT ANY WARRANTY; without even the implied warranty of\n\t\tMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n\t\tGNU General Public License for more details.\n\n\t\tYou should have received a copy of the GNU General Public License\n\t\talong with this program(see GPL.txt); if not, write to the Free Software\n\t\tFoundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.\n\n\tNote:\n\t\tThis AddOn's source code is specifically designed to work with\n\t\tWorld of Warcraft's interpreted AddOn system.\n\t\tYou have an implicit licence to use this AddOn with these facilities\n\t\tsince that is its designated purpose as per:\n\t\thttp://www.fsf.org/licensing/licenses/gpl-faq.html#InterpreterIncompat\n]]" Comment.Multiline
-'\n\n\n'      Text
+'\n\n\n'      Text.Whitespace
 
 '--[[\n\tSee CoreAPI.lua for a description of the modules API\n]]' Comment.Multiline
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'if'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'not'         Operator.Word
-' '           Text
-'AucAdvanced' Name
+' '           Text.Whitespace
+'AucAdvanced' Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-' '           Text
-'AucAdvanced' Name
-' '           Text
+' '           Text.Whitespace
+'AucAdvanced' Name.Variable
+' '           Text.Whitespace
 '='           Operator
-' '           Text
-'{'           Punctuation
-'}'           Punctuation
-' '           Text
+' '           Text.Whitespace
+'{}'          Punctuation
+' '           Text.Whitespace
 'end'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 'if'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'not'         Operator.Word
-' '           Text
-'AucAdvancedData' Name
+' '           Text.Whitespace
+'AucAdvancedData' Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-' '           Text
-'AucAdvancedData' Name
-' '           Text
+' '           Text.Whitespace
+'AucAdvancedData' Name.Variable
+' '           Text.Whitespace
 '='           Operator
-' '           Text
-'{'           Punctuation
-'}'           Punctuation
-' '           Text
+' '           Text.Whitespace
+'{}'          Punctuation
+' '           Text.Whitespace
 'end'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 'if'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'not'         Operator.Word
-' '           Text
-'AucAdvancedLocal' Name
+' '           Text.Whitespace
+'AucAdvancedLocal' Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-' '           Text
-'AucAdvancedLocal' Name
-' '           Text
+' '           Text.Whitespace
+'AucAdvancedLocal' Name.Variable
+' '           Text.Whitespace
 '='           Operator
-' '           Text
-'{'           Punctuation
-'}'           Punctuation
-' '           Text
+' '           Text.Whitespace
+'{}'          Punctuation
+' '           Text.Whitespace
 'end'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 'if'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'not'         Operator.Word
-' '           Text
-'AucAdvancedConfig' Name
+' '           Text.Whitespace
+'AucAdvancedConfig' Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-' '           Text
-'AucAdvancedConfig' Name
-' '           Text
+' '           Text.Whitespace
+'AucAdvancedConfig' Name.Variable
+' '           Text.Whitespace
 '='           Operator
-' '           Text
-'{'           Punctuation
-'}'           Punctuation
-' '           Text
+' '           Text.Whitespace
+'{}'          Punctuation
+' '           Text.Whitespace
 'end'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Version'     Name
+'Version'     Name.Property
 '='           Operator
 '"'           Literal.String.Double
 '<%version%>' Literal.String.Double
 '"'           Literal.String.Double
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'if'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Version'     Name
-' '           Text
+'Version'     Name.Property
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '<'           Literal.String.Double
 '"'           Literal.String.Double
@@ -111,1600 +107,1570 @@
 '%version%>'  Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-'\n\t'        Text
-'AucAdvanced' Name
+'\n\t'        Text.Whitespace
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Version'     Name
-' '           Text
+'Version'     Name.Property
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 '5.0.DEV'     Literal.String.Double
 '"'           Literal.String.Double
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'local'       Keyword.Declaration
-' '           Text
-'private'     Name
-' '           Text
+' '           Text.Whitespace
+'private'     Name.Variable
+' '           Text.Whitespace
 '='           Operator
-' '           Text
-'{'           Punctuation
-'}'           Punctuation
-'\n\n'        Text
+' '           Text.Whitespace
+'{}'          Punctuation
+'\n\n'        Text.Whitespace
 
 '-- For our modular stats system, each stats engine should add their' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- subclass to AucAdvanced.Modules.<type>.<name> and store their data into their own' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- data table in AucAdvancedData.Stats.<type><name>' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'if'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'not'         Operator.Word
-' '           Text
-'AucAdvanced' Name
+' '           Text.Whitespace
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Modules'     Name
+'Modules'     Name.Property
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-' '           Text
-'AucAdvanced' Name
+' '           Text.Whitespace
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Modules'     Name
-' '           Text
+'Modules'     Name.Property
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'Stat'        Name
+'Stat'        Name.Variable
 '='           Operator
-'{'           Punctuation
-'}'           Punctuation
-','           Punctuation
-'Util'        Name
+'{},'         Punctuation
+'Util'        Name.Variable
 '='           Operator
-'{'           Punctuation
-'}'           Punctuation
-','           Punctuation
-'Filter'      Name
+'{},'         Punctuation
+'Filter'      Name.Variable
 '='           Operator
-'{'           Punctuation
-'}'           Punctuation
-'}'           Punctuation
-' '           Text
+'{}}'         Punctuation
+' '           Text.Whitespace
 'end'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 'if'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'not'         Operator.Word
-' '           Text
-'AucAdvancedData' Name
+' '           Text.Whitespace
+'AucAdvancedData' Name.Variable
 '.'           Punctuation
-'Stats'       Name
+'Stats'       Name.Property
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-' '           Text
-'AucAdvancedData' Name
+' '           Text.Whitespace
+'AucAdvancedData' Name.Variable
 '.'           Punctuation
-'Stats'       Name
-' '           Text
+'Stats'       Name.Property
+' '           Text.Whitespace
 '='           Operator
-' '           Text
-'{'           Punctuation
-'}'           Punctuation
-' '           Text
+' '           Text.Whitespace
+'{}'          Punctuation
+' '           Text.Whitespace
 'end'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 'if'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
 'not'         Operator.Word
-' '           Text
-'AucAdvancedLocal' Name
+' '           Text.Whitespace
+'AucAdvancedLocal' Name.Variable
 '.'           Punctuation
-'Stats'       Name
+'Stats'       Name.Property
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-' '           Text
-'AucAdvancedLocal' Name
+' '           Text.Whitespace
+'AucAdvancedLocal' Name.Variable
 '.'           Punctuation
-'Stats'       Name
-' '           Text
+'Stats'       Name.Property
+' '           Text.Whitespace
 '='           Operator
-' '           Text
-'{'           Punctuation
-'}'           Punctuation
-' '           Text
+' '           Text.Whitespace
+'{}'          Punctuation
+' '           Text.Whitespace
 'end'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'function'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'private'     Name.Class
 '.'           Punctuation
 'TooltipHook' Name.Function
 '('           Punctuation
-'vars'        Name
+'vars'        Name.Variable
 ','           Punctuation
-' '           Text
-'ret'         Name
+' '           Text.Whitespace
+'ret'         Name.Variable
 ','           Punctuation
-' '           Text
-'frame'       Name
+' '           Text.Whitespace
+'frame'       Name.Variable
 ','           Punctuation
-' '           Text
-'name'        Name
+' '           Text.Whitespace
+'name'        Name.Variable
 ','           Punctuation
-' '           Text
-'hyperlink'   Name
+' '           Text.Whitespace
+'hyperlink'   Name.Variable
 ','           Punctuation
-' '           Text
-'quality'     Name
+' '           Text.Whitespace
+'quality'     Name.Variable
 ','           Punctuation
-' '           Text
-'quantity'    Name
+' '           Text.Whitespace
+'quantity'    Name.Variable
 ','           Punctuation
-' '           Text
-'cost'        Name
+' '           Text.Whitespace
+'cost'        Name.Variable
 ','           Punctuation
-' '           Text
-'additional'  Name
+' '           Text.Whitespace
+'additional'  Name.Variable
 ')'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'if'          Keyword.Reserved
-' '           Text
-'EnhTooltip'  Name
+' '           Text.Whitespace
+'EnhTooltip'  Name.Variable
 '.'           Punctuation
-'LinkType'    Name
+'LinkType'    Name.Function
 '('           Punctuation
-'hyperlink'   Name
+'hyperlink'   Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '~='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'item'        Literal.String.Double
 '"'           Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'return'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '-- Auctioneer hooks into item tooltips only' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'end'         Keyword.Reserved
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 '-- Check to see if we need to force load scandata' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'local'       Keyword.Declaration
-' '           Text
-'getter'      Name
-' '           Text
+' '           Text.Whitespace
+'getter'      Name.Variable
+' '           Text.Whitespace
 '='           Operator
-' '           Text
-'AucAdvanced' Name
+' '           Text.Whitespace
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Settings'    Name
+'Settings'    Name.Property
 '.'           Punctuation
-'GetSetting'  Name
-'\n\t'        Text
+'GetSetting'  Name.Property
+'\n\t'        Text.Whitespace
 'if'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'getter'      Name
+'getter'      Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'scandata.tooltip.display' Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'and'         Operator.Word
-' '           Text
-'getter'      Name
+' '           Text.Whitespace
+'getter'      Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'scandata.force' Literal.String.Double
 '"'           Literal.String.Double
-')'           Punctuation
-')'           Punctuation
-' '           Text
+'))'          Punctuation
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-'\n\t\t'      Text
-'AucAdvanced' Name
+'\n\t\t'      Text.Whitespace
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Scan'        Name
+'Scan'        Name.Property
 '.'           Punctuation
-'GetImage'    Name
-'('           Punctuation
-')'           Punctuation
-'\n\t'        Text
+'GetImage'    Name.Function
+'()'          Punctuation
+'\n\t'        Text.Whitespace
 'end'         Keyword.Reserved
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 'for'         Keyword.Reserved
-' '           Text
-'system'      Name
+' '           Text.Whitespace
+'system'      Name.Variable
 ','           Punctuation
-' '           Text
-'systemMods'  Name
-' '           Text
+' '           Text.Whitespace
+'systemMods'  Name.Variable
+' '           Text.Whitespace
 'in'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'pairs'       Name.Builtin
 '('           Punctuation
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Modules'     Name
+'Modules'     Name.Property
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword.Reserved
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'for'         Keyword.Reserved
-' '           Text
-'engine'      Name
+' '           Text.Whitespace
+'engine'      Name.Variable
 ','           Punctuation
-' '           Text
-'engineLib'   Name
-' '           Text
+' '           Text.Whitespace
+'engineLib'   Name.Variable
+' '           Text.Whitespace
 'in'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'pairs'       Name.Builtin
 '('           Punctuation
-'systemMods'  Name
+'systemMods'  Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword.Reserved
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'if'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'engineLib'   Name
+'engineLib'   Name.Variable
 '.'           Punctuation
-'Processor'   Name
+'Processor'   Name.Property
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-' '           Text
-'engineLib'   Name
+' '           Text.Whitespace
+'engineLib'   Name.Variable
 '.'           Punctuation
-'Processor'   Name
+'Processor'   Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'tooltip'     Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
-' '           Text
-'frame'       Name
+' '           Text.Whitespace
+'frame'       Name.Variable
 ','           Punctuation
-' '           Text
-'name'        Name
+' '           Text.Whitespace
+'name'        Name.Variable
 ','           Punctuation
-' '           Text
-'hyperlink'   Name
+' '           Text.Whitespace
+'hyperlink'   Name.Variable
 ','           Punctuation
-' '           Text
-'quality'     Name
+' '           Text.Whitespace
+'quality'     Name.Variable
 ','           Punctuation
-' '           Text
-'quantity'    Name
+' '           Text.Whitespace
+'quantity'    Name.Variable
 ','           Punctuation
-' '           Text
-'cost'        Name
+' '           Text.Whitespace
+'cost'        Name.Variable
 ','           Punctuation
-' '           Text
-'additional'  Name
+' '           Text.Whitespace
+'additional'  Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'end'         Keyword.Reserved
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'end'         Keyword.Reserved
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'end'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'function'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'private'     Name.Class
 '.'           Punctuation
 'HookAH'      Name.Function
-'('           Punctuation
-')'           Punctuation
-'\n\t'        Text
-'hooksecurefunc' Name
+'()'          Punctuation
+'\n\t'        Text.Whitespace
+'hooksecurefunc' Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'AuctionFrameBrowse_Update' Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
-' '           Text
-'AucAdvanced' Name
+' '           Text.Whitespace
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'API'         Name
+'API'         Name.Property
 '.'           Punctuation
-'ListUpdate'  Name
+'ListUpdate'  Name.Property
 ')'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'for'         Keyword.Reserved
-' '           Text
-'system'      Name
+' '           Text.Whitespace
+'system'      Name.Variable
 ','           Punctuation
-' '           Text
-'systemMods'  Name
-' '           Text
+' '           Text.Whitespace
+'systemMods'  Name.Variable
+' '           Text.Whitespace
 'in'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'pairs'       Name.Builtin
 '('           Punctuation
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Modules'     Name
+'Modules'     Name.Property
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword.Reserved
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'for'         Keyword.Reserved
-' '           Text
-'engine'      Name
+' '           Text.Whitespace
+'engine'      Name.Variable
 ','           Punctuation
-' '           Text
-'engineLib'   Name
-' '           Text
+' '           Text.Whitespace
+'engineLib'   Name.Variable
+' '           Text.Whitespace
 'in'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'pairs'       Name.Builtin
 '('           Punctuation
-'systemMods'  Name
+'systemMods'  Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword.Reserved
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'if'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'engineLib'   Name
+'engineLib'   Name.Variable
 '.'           Punctuation
-'Processor'   Name
+'Processor'   Name.Property
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-'\n\t\t\t\t'  Text
-'engineLib'   Name
+'\n\t\t\t\t'  Text.Whitespace
+'engineLib'   Name.Variable
 '.'           Punctuation
-'Processor'   Name
+'Processor'   Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'auctionui'   Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'end'         Keyword.Reserved
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'end'         Keyword.Reserved
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'end'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'function'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'private'     Name.Class
 '.'           Punctuation
 'OnLoad'      Name.Function
 '('           Punctuation
-'addon'       Name
+'addon'       Name.Variable
 ')'           Punctuation
-'\n\t'        Text
-'addon'       Name
-' '           Text
+'\n\t'        Text.Whitespace
+'addon'       Name.Variable
+' '           Text.Whitespace
 '='           Operator
-' '           Text
-'addon'       Name
+' '           Text.Whitespace
+'addon'       Name.Variable
 ':'           Punctuation
-'lower'       Name
-'('           Punctuation
-')'           Punctuation
-'\n\n\t'      Text
+'lower'       Name.Function
+'()'          Punctuation
+'\n\n\t'      Text.Whitespace
 '-- Check if the actual addon itself is loading' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'if'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'addon'       Name
-' '           Text
+'addon'       Name.Variable
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'auc-advanced' Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-'\n\t\t'      Text
-'Stubby'      Name
+'\n\t\t'      Text.Whitespace
+'Stubby'      Name.Variable
 '.'           Punctuation
-'RegisterAddOnHook' Name
+'RegisterAddOnHook' Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'Blizzard_AuctionUi' Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'Auc-Advanced' Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
-' '           Text
-'private'     Name
+' '           Text.Whitespace
+'private'     Name.Variable
 '.'           Punctuation
-'HookAH'      Name
+'HookAH'      Name.Property
 ')'           Punctuation
-'\n\t\t'      Text
-'Stubby'      Name
+'\n\t\t'      Text.Whitespace
+'Stubby'      Name.Variable
 '.'           Punctuation
-'RegisterFunctionHook' Name
+'RegisterFunctionHook' Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'EnhTooltip.AddTooltip' Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '600'         Literal.Number.Integer
 ','           Punctuation
-' '           Text
-'private'     Name
+' '           Text.Whitespace
+'private'     Name.Variable
 '.'           Punctuation
-'TooltipHook' Name
+'TooltipHook' Name.Property
 ')'           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'for'         Keyword.Reserved
-' '           Text
-'pos'         Name
+' '           Text.Whitespace
+'pos'         Name.Variable
 ','           Punctuation
-' '           Text
-'module'      Name
-' '           Text
+' '           Text.Whitespace
+'module'      Name.Variable
+' '           Text.Whitespace
 'in'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'ipairs'      Name.Builtin
 '('           Punctuation
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'EmbeddedModules' Name
+'EmbeddedModules' Name.Property
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword.Reserved
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 '-- These embedded modules have also just been loaded' Comment.Single
-'\n\t\t\t'    Text
-'private'     Name
+'\n\t\t\t'    Text.Whitespace
+'private'     Name.Variable
 '.'           Punctuation
-'OnLoad'      Name
+'OnLoad'      Name.Function
 '('           Punctuation
-'module'      Name
+'module'      Name.Variable
 ')'           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'end'         Keyword.Reserved
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'end'         Keyword.Reserved
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 '-- Notify the actual module if it exists' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'local'       Keyword.Declaration
-' '           Text
-'auc'         Name
+' '           Text.Whitespace
+'auc'         Name.Variable
 ','           Punctuation
-' '           Text
-'sys'         Name
+' '           Text.Whitespace
+'sys'         Name.Variable
 ','           Punctuation
-' '           Text
-'eng'         Name
-' '           Text
+' '           Text.Whitespace
+'eng'         Name.Variable
+' '           Text.Whitespace
 '='           Operator
-' '           Text
-'strsplit'    Name
+' '           Text.Whitespace
+'strsplit'    Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 '-'           Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
-' '           Text
-'addon'       Name
+' '           Text.Whitespace
+'addon'       Name.Variable
 ')'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'if'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'auc'         Name
-' '           Text
+'auc'         Name.Variable
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'auc'         Literal.String.Double
 '"'           Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 'and'         Operator.Word
-' '           Text
-'sys'         Name
-' '           Text
+' '           Text.Whitespace
+'sys'         Name.Variable
+' '           Text.Whitespace
 'and'         Operator.Word
-' '           Text
-'eng'         Name
+' '           Text.Whitespace
+'eng'         Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'for'         Keyword.Reserved
-' '           Text
-'system'      Name
+' '           Text.Whitespace
+'system'      Name.Variable
 ','           Punctuation
-' '           Text
-'systemMods'  Name
-' '           Text
+' '           Text.Whitespace
+'systemMods'  Name.Variable
+' '           Text.Whitespace
 'in'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'pairs'       Name.Builtin
 '('           Punctuation
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Modules'     Name
+'Modules'     Name.Property
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword.Reserved
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'if'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'sys'         Name
-' '           Text
+'sys'         Name.Variable
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
-'system'      Name
+' '           Text.Whitespace
+'system'      Name.Variable
 ':'           Punctuation
-'lower'       Name
-'('           Punctuation
-')'           Punctuation
-')'           Punctuation
-' '           Text
+'lower'       Name.Function
+'())'         Punctuation
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 'for'         Keyword.Reserved
-' '           Text
-'engine'      Name
+' '           Text.Whitespace
+'engine'      Name.Variable
 ','           Punctuation
-' '           Text
-'engineLib'   Name
-' '           Text
+' '           Text.Whitespace
+'engineLib'   Name.Variable
+' '           Text.Whitespace
 'in'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'pairs'       Name.Builtin
 '('           Punctuation
-'systemMods'  Name
+'systemMods'  Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword.Reserved
-'\n\t\t\t\t\t' Text
+'\n\t\t\t\t\t' Text.Whitespace
 'if'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'eng'         Name
-' '           Text
+'eng'         Name.Variable
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
-'engine'      Name
+' '           Text.Whitespace
+'engine'      Name.Variable
 ':'           Punctuation
-'lower'       Name
-'('           Punctuation
-')'           Punctuation
-' '           Text
+'lower'       Name.Function
+'()'          Punctuation
+' '           Text.Whitespace
 'and'         Operator.Word
-' '           Text
-'engineLib'   Name
+' '           Text.Whitespace
+'engineLib'   Name.Variable
 '.'           Punctuation
-'OnLoad'      Name
+'OnLoad'      Name.Property
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-'\n\t\t\t\t\t\t' Text
-'engineLib'   Name
+'\n\t\t\t\t\t\t' Text.Whitespace
+'engineLib'   Name.Variable
 '.'           Punctuation
-'OnLoad'      Name
+'OnLoad'      Name.Function
 '('           Punctuation
-'addon'       Name
+'addon'       Name.Variable
 ')'           Punctuation
-'\n\t\t\t\t\t' Text
+'\n\t\t\t\t\t' Text.Whitespace
 'end'         Keyword.Reserved
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 'end'         Keyword.Reserved
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'end'         Keyword.Reserved
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'end'         Keyword.Reserved
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'end'         Keyword.Reserved
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 "-- Check all modules' load triggers and pass event to processors" Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'for'         Keyword.Reserved
-' '           Text
-'system'      Name
+' '           Text.Whitespace
+'system'      Name.Variable
 ','           Punctuation
-' '           Text
-'systemMods'  Name
-' '           Text
+' '           Text.Whitespace
+'systemMods'  Name.Variable
+' '           Text.Whitespace
 'in'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'pairs'       Name.Builtin
 '('           Punctuation
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Modules'     Name
+'Modules'     Name.Property
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword.Reserved
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'for'         Keyword.Reserved
-' '           Text
-'engine'      Name
+' '           Text.Whitespace
+'engine'      Name.Variable
 ','           Punctuation
-' '           Text
-'engineLib'   Name
-' '           Text
+' '           Text.Whitespace
+'engineLib'   Name.Variable
+' '           Text.Whitespace
 'in'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'pairs'       Name.Builtin
 '('           Punctuation
-'systemMods'  Name
+'systemMods'  Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword.Reserved
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'if'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'engineLib'   Name
+'engineLib'   Name.Variable
 '.'           Punctuation
-'LoadTriggers' Name
-' '           Text
+'LoadTriggers' Name.Property
+' '           Text.Whitespace
 'and'         Operator.Word
-' '           Text
-'engineLib'   Name
+' '           Text.Whitespace
+'engineLib'   Name.Variable
 '.'           Punctuation
-'LoadTriggers' Name
+'LoadTriggers' Name.Property
 '['           Punctuation
-'addon'       Name
-']'           Punctuation
-')'           Punctuation
-' '           Text
+'addon'       Name.Variable
+'])'          Punctuation
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 'if'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'engineLib'   Name
+'engineLib'   Name.Variable
 '.'           Punctuation
-'OnLoad'      Name
+'OnLoad'      Name.Property
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-'\n\t\t\t\t\t' Text
-'engineLib'   Name
+'\n\t\t\t\t\t' Text.Whitespace
+'engineLib'   Name.Variable
 '.'           Punctuation
-'OnLoad'      Name
+'OnLoad'      Name.Function
 '('           Punctuation
-'addon'       Name
+'addon'       Name.Variable
 ')'           Punctuation
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 'end'         Keyword.Reserved
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'end'         Keyword.Reserved
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'if'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'engineLib'   Name
+'engineLib'   Name.Variable
 '.'           Punctuation
-'Processor'   Name
-' '           Text
+'Processor'   Name.Property
+' '           Text.Whitespace
 'and'         Operator.Word
-' '           Text
-'auc'         Name
-' '           Text
+' '           Text.Whitespace
+'auc'         Name.Variable
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'auc'         Literal.String.Double
 '"'           Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 'and'         Operator.Word
-' '           Text
-'sys'         Name
-' '           Text
+' '           Text.Whitespace
+'sys'         Name.Variable
+' '           Text.Whitespace
 'and'         Operator.Word
-' '           Text
-'eng'         Name
+' '           Text.Whitespace
+'eng'         Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-'\n\t\t\t\t'  Text
-'engineLib'   Name
+'\n\t\t\t\t'  Text.Whitespace
+'engineLib'   Name.Variable
 '.'           Punctuation
-'Processor'   Name
+'Processor'   Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'load'        Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
-' '           Text
-'addon'       Name
+' '           Text.Whitespace
+'addon'       Name.Variable
 ')'           Punctuation
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'end'         Keyword.Reserved
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'end'         Keyword.Reserved
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'end'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'function'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'private'     Name.Class
 '.'           Punctuation
 'OnUnload'    Name.Function
-'('           Punctuation
-')'           Punctuation
-'\n\t'        Text
+'()'          Punctuation
+'\n\t'        Text.Whitespace
 'for'         Keyword.Reserved
-' '           Text
-'system'      Name
+' '           Text.Whitespace
+'system'      Name.Variable
 ','           Punctuation
-' '           Text
-'systemMods'  Name
-' '           Text
+' '           Text.Whitespace
+'systemMods'  Name.Variable
+' '           Text.Whitespace
 'in'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'pairs'       Name.Builtin
 '('           Punctuation
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Modules'     Name
+'Modules'     Name.Property
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword.Reserved
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'for'         Keyword.Reserved
-' '           Text
-'engine'      Name
+' '           Text.Whitespace
+'engine'      Name.Variable
 ','           Punctuation
-' '           Text
-'engineLib'   Name
-' '           Text
+' '           Text.Whitespace
+'engineLib'   Name.Variable
+' '           Text.Whitespace
 'in'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'pairs'       Name.Builtin
 '('           Punctuation
-'systemMods'  Name
+'systemMods'  Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword.Reserved
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'if'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'engineLib'   Name
+'engineLib'   Name.Variable
 '.'           Punctuation
-'OnUnload'    Name
+'OnUnload'    Name.Property
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-'\n\t\t\t\t'  Text
-'engineLib'   Name
+'\n\t\t\t\t'  Text.Whitespace
+'engineLib'   Name.Variable
 '.'           Punctuation
-'OnUnload'    Name
-'('           Punctuation
-')'           Punctuation
-'\n\t\t\t'    Text
+'OnUnload'    Name.Function
+'()'          Punctuation
+'\n\t\t\t'    Text.Whitespace
 'end'         Keyword.Reserved
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'end'         Keyword.Reserved
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'end'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Schedule'    Name
-' '           Text
+'Schedule'    Name.Property
+' '           Text.Whitespace
 '='           Operator
-' '           Text
-'{'           Punctuation
-'}'           Punctuation
-'\n'          Text
+' '           Text.Whitespace
+'{}'          Punctuation
+'\n'          Text.Whitespace
 
 'function'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'private'     Name.Class
 '.'           Punctuation
 'OnEvent'     Name.Function
-'('           Punctuation
-'...'         Punctuation
-')'           Punctuation
-'\n\t'        Text
+'(...)'       Punctuation
+'\n\t'        Text.Whitespace
 'local'       Keyword.Declaration
-' '           Text
-'event'       Name
+' '           Text.Whitespace
+'event'       Name.Variable
 ','           Punctuation
-' '           Text
-'arg'         Name
-' '           Text
+' '           Text.Whitespace
+'arg'         Name.Variable
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'select'      Name.Builtin
 '('           Punctuation
 '2'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '...'         Punctuation
 ')'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'if'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'event'       Name
-' '           Text
+'event'       Name.Variable
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'ADDON_LOADED' Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'local'       Keyword.Declaration
-' '           Text
-'addon'       Name
-' '           Text
+' '           Text.Whitespace
+'addon'       Name.Variable
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'string.lower' Name.Builtin
 '('           Punctuation
-'arg'         Name
+'arg'         Name.Variable
 ')'           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'if'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'addon'       Name
+'addon'       Name.Variable
 ':'           Punctuation
-'sub'         Name
+'sub'         Name.Function
 '('           Punctuation
 '1'           Literal.Number.Integer
 ','           Punctuation
 '4'           Literal.Number.Integer
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'auc-'        Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-'\n\t\t\t'    Text
-'private'     Name
+'\n\t\t\t'    Text.Whitespace
+'private'     Name.Variable
 '.'           Punctuation
-'OnLoad'      Name
+'OnLoad'      Name.Function
 '('           Punctuation
-'addon'       Name
+'addon'       Name.Variable
 ')'           Punctuation
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'end'         Keyword.Reserved
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'elseif'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'event'       Name
-' '           Text
+'event'       Name.Variable
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'AUCTION_HOUSE_SHOW' Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 '-- Do Nothing for now' Comment.Single
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'elseif'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'event'       Name
-' '           Text
+'event'       Name.Variable
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'AUCTION_HOUSE_CLOSED' Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-'\n\t\t'      Text
-'AucAdvanced' Name
+'\n\t\t'      Text.Whitespace
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Scan'        Name
+'Scan'        Name.Property
 '.'           Punctuation
-'Interrupt'   Name
-'('           Punctuation
-')'           Punctuation
-'\n\t'        Text
+'Interrupt'   Name.Function
+'()'          Punctuation
+'\n\t'        Text.Whitespace
 'elseif'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'event'       Name
-' '           Text
+'event'       Name.Variable
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'PLAYER_LOGOUT' Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-'\n\t\t'      Text
-'AucAdvanced' Name
+'\n\t\t'      Text.Whitespace
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Scan'        Name
+'Scan'        Name.Property
 '.'           Punctuation
-'Commit'      Name
+'Commit'      Name.Function
 '('           Punctuation
 'true'        Keyword.Constant
 ')'           Punctuation
-'\n\t\t'      Text
-'private'     Name
+'\n\t\t'      Text.Whitespace
+'private'     Name.Variable
 '.'           Punctuation
-'OnUnload'    Name
-'('           Punctuation
-')'           Punctuation
-'\n\t'        Text
+'OnUnload'    Name.Function
+'()'          Punctuation
+'\n\t'        Text.Whitespace
 'elseif'      Keyword.Reserved
-' '           Text
-'event'       Name
-' '           Text
+' '           Text.Whitespace
+'event'       Name.Variable
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'UNIT_INVENTORY_CHANGED' Literal.String.Double
 '"'           Literal.String.Double
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'or'          Operator.Word
-' '           Text
-'event'       Name
-' '           Text
+' '           Text.Whitespace
+'event'       Name.Variable
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'ITEM_LOCK_CHANGED' Literal.String.Double
 '"'           Literal.String.Double
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'or'          Operator.Word
-' '           Text
-'event'       Name
-' '           Text
+' '           Text.Whitespace
+'event'       Name.Variable
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'CURSOR_UPDATE' Literal.String.Double
 '"'           Literal.String.Double
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'or'          Operator.Word
-' '           Text
-'event'       Name
-' '           Text
+' '           Text.Whitespace
+'event'       Name.Variable
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'BAG_UPDATE'  Literal.String.Double
 '"'           Literal.String.Double
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'then'        Keyword.Reserved
-'\n\t\t'      Text
-'private'     Name
+'\n\t\t'      Text.Whitespace
+'private'     Name.Variable
 '.'           Punctuation
-'Schedule'    Name
+'Schedule'    Name.Property
 '['           Punctuation
 '"'           Literal.String.Double
 'inventory'   Literal.String.Double
 '"'           Literal.String.Double
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
-'GetTime'     Name
-'('           Punctuation
-')'           Punctuation
-' '           Text
+' '           Text.Whitespace
+'GetTime'     Name.Function
+'()'          Punctuation
+' '           Text.Whitespace
 '+'           Operator
-' '           Text
+' '           Text.Whitespace
 '0.15'        Literal.Number.Float
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'end'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'function'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'private'     Name.Class
 '.'           Punctuation
 'OnUpdate'    Name.Function
-'('           Punctuation
-'...'         Punctuation
-')'           Punctuation
-'\n\t'        Text
+'(...)'       Punctuation
+'\n\t'        Text.Whitespace
 'if'          Keyword.Reserved
-' '           Text
-'event'       Name
-' '           Text
+' '           Text.Whitespace
+'event'       Name.Variable
+' '           Text.Whitespace
 '=='          Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'inventory'   Literal.String.Double
 '"'           Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-'\n\t\t'      Text
-'AucAdvanced' Name
+'\n\t\t'      Text.Whitespace
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Post'        Name
+'Post'        Name.Property
 '.'           Punctuation
-'AlertBagsChanged' Name
-'('           Punctuation
-')'           Punctuation
-'\n\t'        Text
+'AlertBagsChanged' Name.Function
+'()'          Punctuation
+'\n\t'        Text.Whitespace
 'end'         Keyword.Reserved
-'\n\n\t'      Text
+'\n\n\t'      Text.Whitespace
 'local'       Keyword.Declaration
-' '           Text
-'now'         Name
-' '           Text
+' '           Text.Whitespace
+'now'         Name.Variable
+' '           Text.Whitespace
 '='           Operator
-' '           Text
-'GetTime'     Name
-'('           Punctuation
-')'           Punctuation
-'\n\t'        Text
+' '           Text.Whitespace
+'GetTime'     Name.Function
+'()'          Punctuation
+'\n\t'        Text.Whitespace
 'for'         Keyword.Reserved
-' '           Text
-'event'       Name
+' '           Text.Whitespace
+'event'       Name.Variable
 ','           Punctuation
-' '           Text
-'time'        Name
-' '           Text
+' '           Text.Whitespace
+'time'        Name.Variable
+' '           Text.Whitespace
 'in'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'pairs'       Name.Builtin
 '('           Punctuation
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Schedule'    Name
+'Schedule'    Name.Property
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword.Reserved
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'if'          Keyword.Reserved
-' '           Text
-'time'        Name
-' '           Text
+' '           Text.Whitespace
+'time'        Name.Variable
+' '           Text.Whitespace
 '>'           Operator
-' '           Text
-'now'         Name
-' '           Text
+' '           Text.Whitespace
+'now'         Name.Variable
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'for'         Keyword.Reserved
-' '           Text
-'system'      Name
+' '           Text.Whitespace
+'system'      Name.Variable
 ','           Punctuation
-' '           Text
-'systemMods'  Name
-' '           Text
+' '           Text.Whitespace
+'systemMods'  Name.Variable
+' '           Text.Whitespace
 'in'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'pairs'       Name.Builtin
 '('           Punctuation
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Modules'     Name
+'Modules'     Name.Property
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword.Reserved
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 'for'         Keyword.Reserved
-' '           Text
-'engine'      Name
+' '           Text.Whitespace
+'engine'      Name.Variable
 ','           Punctuation
-' '           Text
-'engineLib'   Name
-' '           Text
+' '           Text.Whitespace
+'engineLib'   Name.Variable
+' '           Text.Whitespace
 'in'          Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'pairs'       Name.Builtin
 '('           Punctuation
-'systemMods'  Name
+'systemMods'  Name.Variable
 ')'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'do'          Keyword.Reserved
-'\n\t\t\t\t\t' Text
+'\n\t\t\t\t\t' Text.Whitespace
 'if'          Keyword.Reserved
-' '           Text
-'engineLib'   Name
+' '           Text.Whitespace
+'engineLib'   Name.Variable
 '.'           Punctuation
-'Processor'   Name
-' '           Text
+'Processor'   Name.Property
+' '           Text.Whitespace
 'then'        Keyword.Reserved
-'\n\t\t\t\t\t\t' Text
-'engineLib'   Name
+'\n\t\t\t\t\t\t' Text.Whitespace
+'engineLib'   Name.Variable
 '.'           Punctuation
-'Processor'   Name
+'Processor'   Name.Function
 '('           Punctuation
-'event'       Name
+'event'       Name.Variable
 ','           Punctuation
-' '           Text
-'time'        Name
+' '           Text.Whitespace
+'time'        Name.Variable
 ')'           Punctuation
-'\n\t\t\t\t\t' Text
+'\n\t\t\t\t\t' Text.Whitespace
 'end'         Keyword.Reserved
-'\n\t\t\t\t'  Text
+'\n\t\t\t\t'  Text.Whitespace
 'end'         Keyword.Reserved
-'\n\t\t\t'    Text
+'\n\t\t\t'    Text.Whitespace
 'end'         Keyword.Reserved
-'\n\t\t'      Text
+'\n\t\t'      Text.Whitespace
 'end'         Keyword.Reserved
-'\n\t\t'      Text
-'private'     Name
+'\n\t\t'      Text.Whitespace
+'private'     Name.Variable
 '.'           Punctuation
-'Schedule'    Name
+'Schedule'    Name.Property
 '['           Punctuation
-'event'       Name
+'event'       Name.Variable
 ']'           Punctuation
-' '           Text
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 'nil'         Keyword.Constant
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'end'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Frame'       Name
-' '           Text
+'Frame'       Name.Property
+' '           Text.Whitespace
 '='           Operator
-' '           Text
-'CreateFrame' Name
+' '           Text.Whitespace
+'CreateFrame' Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'Frame'       Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Frame'       Name
+'Frame'       Name.Property
 ':'           Punctuation
-'RegisterEvent' Name
+'RegisterEvent' Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'ADDON_LOADED' Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Frame'       Name
+'Frame'       Name.Property
 ':'           Punctuation
-'RegisterEvent' Name
+'RegisterEvent' Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'AUCTION_HOUSE_SHOW' Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Frame'       Name
+'Frame'       Name.Property
 ':'           Punctuation
-'RegisterEvent' Name
+'RegisterEvent' Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'AUCTION_HOUSE_CLOSED' Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Frame'       Name
+'Frame'       Name.Property
 ':'           Punctuation
-'RegisterEvent' Name
+'RegisterEvent' Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'UNIT_INVENTORY_CHANGED' Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Frame'       Name
+'Frame'       Name.Property
 ':'           Punctuation
-'RegisterEvent' Name
+'RegisterEvent' Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'ITEM_LOCK_CHANGED' Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Frame'       Name
+'Frame'       Name.Property
 ':'           Punctuation
-'RegisterEvent' Name
+'RegisterEvent' Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'CURSOR_UPDATE' Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Frame'       Name
+'Frame'       Name.Property
 ':'           Punctuation
-'RegisterEvent' Name
+'RegisterEvent' Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'BAG_UPDATE'  Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Frame'       Name
+'Frame'       Name.Property
 ':'           Punctuation
-'RegisterEvent' Name
+'RegisterEvent' Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'PLAYER_LOGOUT' Literal.String.Double
 '"'           Literal.String.Double
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Frame'       Name
+'Frame'       Name.Property
 ':'           Punctuation
-'SetScript'   Name
+'SetScript'   Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'OnEvent'     Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
-' '           Text
-'private'     Name
+' '           Text.Whitespace
+'private'     Name.Variable
 '.'           Punctuation
-'OnEvent'     Name
+'OnEvent'     Name.Property
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
-'private'     Name
+'private'     Name.Variable
 '.'           Punctuation
-'Frame'       Name
+'Frame'       Name.Property
 ':'           Punctuation
-'SetScript'   Name
+'SetScript'   Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'OnUpdate'    Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
-' '           Text
-'private'     Name
+' '           Text.Whitespace
+'private'     Name.Variable
 '.'           Punctuation
-'OnUpdate'    Name
+'OnUpdate'    Name.Property
 ')'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 "-- Auctioneer's debug functions" Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
-'AucAdvanced' Name
+'AucAdvanced' Name.Variable
 '.'           Punctuation
-'Debug'       Name
-' '           Text
+'Debug'       Name.Property
+' '           Text.Whitespace
 '='           Operator
-' '           Text
-'{'           Punctuation
-'}'           Punctuation
-'\n'          Text
+' '           Text.Whitespace
+'{}'          Punctuation
+'\n'          Text.Whitespace
 
 'local'       Keyword.Declaration
-' '           Text
-'addonName'   Name
-' '           Text
+' '           Text.Whitespace
+'addonName'   Name.Variable
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '"'           Literal.String.Double
 'Auctioneer'  Literal.String.Double
 '"'           Literal.String.Double
-' '           Text
+' '           Text.Whitespace
 "-- the addon's name as it will be displayed in" Comment.Single
-'\n                               ' Text
+'\n                               ' Text.Whitespace
 '-- the debug messages' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-------------------------------------------------------------------------------' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- Prints the specified message to nLog.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- syntax:'  Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--    errorCode, message = debugPrint([message][, category][, title][, errorCode][, level])' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- parameters:' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--    message   - (string) the error message' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--                nil, no error message specified' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--    category  - (string) the category of the debug message' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--                nil, no category specified' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--    title     - (string) the title for the debug message' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--                nil, no title specified' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--    errorCode - (number) the error code' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--                nil, no error code specified' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--    level     - (string) nLog message level' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--                         Any nLog.levels string is valid.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--                nil, no level specified' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- returns:' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--    errorCode - (number) errorCode, if one is specified' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--                nil, otherwise' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--    message   - (string) message, if one is specified' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--                nil, otherwise' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-------------------------------------------------------------------------------' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'function'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'AucAdvanced' Name.Class
 '.'           Punctuation
 'Debug'       Name.Class
 '.'           Punctuation
 'DebugPrint'  Name.Function
 '('           Punctuation
-'message'     Name
+'message'     Name.Variable
 ','           Punctuation
-' '           Text
-'category'    Name
+' '           Text.Whitespace
+'category'    Name.Variable
 ','           Punctuation
-' '           Text
-'title'       Name
+' '           Text.Whitespace
+'title'       Name.Variable
 ','           Punctuation
-' '           Text
-'errorCode'   Name
+' '           Text.Whitespace
+'errorCode'   Name.Variable
 ','           Punctuation
-' '           Text
-'level'       Name
+' '           Text.Whitespace
+'level'       Name.Variable
 ')'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'return'      Keyword.Reserved
-' '           Text
-'DebugLib'    Name
+' '           Text.Whitespace
+'DebugLib'    Name.Variable
 '.'           Punctuation
-'DebugPrint'  Name
+'DebugPrint'  Name.Function
 '('           Punctuation
-'addonName'   Name
+'addonName'   Name.Variable
 ','           Punctuation
-' '           Text
-'message'     Name
+' '           Text.Whitespace
+'message'     Name.Variable
 ','           Punctuation
-' '           Text
-'category'    Name
+' '           Text.Whitespace
+'category'    Name.Variable
 ','           Punctuation
-' '           Text
-'title'       Name
+' '           Text.Whitespace
+'title'       Name.Variable
 ','           Punctuation
-' '           Text
-'errorCode'   Name
+' '           Text.Whitespace
+'errorCode'   Name.Variable
 ','           Punctuation
-' '           Text
-'level'       Name
+' '           Text.Whitespace
+'level'       Name.Variable
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '-------------------------------------------------------------------------------' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- Used to make sure that conditions are met within functions.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 "-- If test is false, the error message will be written to nLog and the user's" Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- default chat channel.' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- syntax:'  Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--    assertion = assert(test, message)' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- parameters:' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--    test    - (any)     false/nil, if the assertion failed' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--                        anything else, otherwise' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--    message - (string)  the message which will be output to the user' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- returns:' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--    assertion - (boolean) true, if the test passed' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '--                          false, otherwise' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-------------------------------------------------------------------------------' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'function'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'AucAdvanced' Name.Class
 '.'           Punctuation
 'Debug'       Name.Class
 '.'           Punctuation
 'Assert'      Name.Function
 '('           Punctuation
-'test'        Name
+'test'        Name.Variable
 ','           Punctuation
-' '           Text
-'message'     Name
+' '           Text.Whitespace
+'message'     Name.Variable
 ')'           Punctuation
-'\n\t'        Text
+'\n\t'        Text.Whitespace
 'return'      Keyword.Reserved
-' '           Text
-'DebugLib'    Name
+' '           Text.Whitespace
+'DebugLib'    Name.Variable
 '.'           Punctuation
-'Assert'      Name
+'Assert'      Name.Function
 '('           Punctuation
-'addonName'   Name
+'addonName'   Name.Variable
 ','           Punctuation
-' '           Text
-'test'        Name
+' '           Text.Whitespace
+'test'        Name.Variable
 ','           Punctuation
-' '           Text
-'message'     Name
+' '           Text.Whitespace
+'message'     Name.Variable
 ')'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 '--[==[\nHere follow further tests of Lua syntax.\n]]==]' Comment.Multiline
-'\n'          Text
+'\n'          Text.Whitespace
 
 '---[['       Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'local'       Keyword.Declaration
-' '           Text
-'t'           Name
-' '           Text
+' '           Text.Whitespace
+'t'           Name.Variable
+' '           Text.Whitespace
 '='           Operator
-' '           Text
+' '           Text.Whitespace
 '{'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '['           Punctuation
-' '           Text
+' '           Text.Whitespace
 '[[\nx\n]==] \\]]' Literal.String
 ']'           Punctuation
 '='           Operator
@@ -1712,139 +1678,133 @@
 '|'           Operator
 '2'           Literal.Number.Integer
 ';'           Punctuation
-' '           Text
-'a'           Name
+' '           Text.Whitespace
+'a'           Name.Variable
 '='           Operator
 '{'           Punctuation
-'b'           Name
+'b'           Name.Variable
 '='           Operator
 '{'           Punctuation
-'c'           Name
+'c'           Name.Variable
 '='           Operator
-'{'           Punctuation
-'}'           Punctuation
-'}'           Punctuation
-'}'           Punctuation
-','           Punctuation
-'\n        '  Text
+'{}}},'       Punctuation
+'\n        '  Text.Whitespace
 '1'           Literal.Number.Integer
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1.'          Literal.Number.Float
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1.2'         Literal.Number.Float
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '.2'          Literal.Number.Float
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1e3'         Literal.Number.Float
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1.e3'        Literal.Number.Float
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1.2e3'       Literal.Number.Float
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '.2e3'        Literal.Number.Float
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1.2e+3'      Literal.Number.Float
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '1.2E-3'      Literal.Number.Float
 ';'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 '0xA'         Literal.Number.Hex
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0Xa'         Literal.Number.Hex
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0xA.'        Literal.Number.Hex
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0x.F'        Literal.Number.Hex
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0xA.F'       Literal.Number.Hex
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0xA.Fp1'     Literal.Number.Hex
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0xA.FP+1'    Literal.Number.Hex
 ','           Punctuation
-' '           Text
+' '           Text.Whitespace
 '0Xa.fp-1'    Literal.Number.Hex
 ';'           Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'function'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 't'           Name.Class
 '.'           Punctuation
 'f'           Name.Function
-'('           Punctuation
-')'           Punctuation
-'\n        '  Text
+'()'          Punctuation
+'\n        '  Text.Whitespace
 'goto'        Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 'eof'         Name.Label
-'\n        '  Text
+'\n        '  Text.Whitespace
 'os.exit'     Name.Builtin
-'('           Punctuation
-')'           Punctuation
-'\n        '  Text
+'()'          Punctuation
+'\n        '  Text.Whitespace
 '::'          Punctuation
-' '           Text
+' '           Text.Whitespace
 'eof'         Name.Label
-' '           Text
+' '           Text.Whitespace
 '::'          Punctuation
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword.Reserved
-'\n\n'        Text
+'\n\n'        Text.Whitespace
 
 'function'    Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 't'           Name.Class
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'a'           Name.Class
-' '           Text
+' '           Text.Whitespace
 '--[==[x]==]' Comment.Multiline
-' '           Text
+' '           Text.Whitespace
 '.'           Punctuation
 'b'           Name.Class
-' '           Text
+' '           Text.Whitespace
 '--[==[y]==]' Comment.Multiline
-' '           Text
+' '           Text.Whitespace
 '--'          Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '-- () end'   Comment.Single
-'\n           ' Text
+'\n           ' Text.Whitespace
 '.'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'c'           Name.Class
-' '           Text
+' '           Text.Whitespace
 ':'           Punctuation
-' '           Text
+' '           Text.Whitespace
 'd'           Name.Function
-' '           Text
+' '           Text.Whitespace
 '('           Punctuation
-'file'        Name
+'file'        Name.Variable
 ')'           Punctuation
-'\n        '  Text
+'\n        '  Text.Whitespace
 'return'      Keyword.Reserved
-' '           Text
+' '           Text.Whitespace
 "'"           Literal.String.Single
 '.'           Literal.String.Single
 '\\a'         Literal.String.Escape
@@ -1886,7 +1846,7 @@
 '.'           Literal.String.Single
 '\\u{1234}'   Literal.String.Escape
 "'"           Literal.String.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 'end'         Keyword.Reserved
-'\n'          Text
+'\n'          Text.Whitespace

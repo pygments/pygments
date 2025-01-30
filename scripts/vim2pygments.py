@@ -6,7 +6,7 @@
     This script converts vim colorscheme files to valid pygments
     style classes meant for putting into modules.
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -776,7 +776,7 @@ def get_vim_color(color):
         if len(color) == 7:
             return color
         else:
-            return '#%s0' % '0'.join(color)[1:]
+            return '#{}0'.format('0'.join(color)[1:])
     return COLORS.get(color.lower())
 
 
@@ -867,21 +867,21 @@ class StyleWriter:
 
     def write_header(self, out):
         out.write('# -*- coding: utf-8 -*-\n"""\n')
-        out.write('    %s Colorscheme\n' % self.name.title())
+        out.write(f'    {self.name.title()} Colorscheme\n')
         out.write('    %s\n\n' % ('~' * (len(self.name) + 12)))
-        out.write('    Converted by %s\n' % SCRIPT_NAME)
+        out.write(f'    Converted by {SCRIPT_NAME}\n')
         out.write('"""\nfrom pygments.style import Style\n')
-        out.write('from pygments.token import Token, %s\n\n' % ', '.join(TOKEN_TYPES))
-        out.write('class %sStyle(Style):\n\n' % self.name.title())
+        out.write('from pygments.token import Token, {}\n\n'.format(', '.join(TOKEN_TYPES)))
+        out.write(f'class {self.name.title()}Style(Style):\n\n')
 
     def write(self, out):
         self.write_header(out)
         default_token, tokens = find_colors(self.code)
         tokens = list(tokens.items())
-        tokens.sort(lambda a, b: cmp(len(a[0]), len(a[1])))
+        tokens.sort(key=lambda x: (len(x[0]), len(x[1])))
         bg_color = [x[3:] for x in default_token.split() if x.startswith('bg:')]
         if bg_color:
-            out.write('    background_color = %r\n' % bg_color[0])
+            out.write(f'    background_color = {bg_color[0]!r}\n')
         out.write('    styles = {\n')
         out.write('        %-20s%r,\n' % ('Token:', default_token))
         for token, definition in tokens:
@@ -899,7 +899,7 @@ def convert(filename, stream=None):
     name = path.basename(filename)
     if name.endswith('.vim'):
         name = name[:-4]
-    f = file(filename)
+    f = open(filename)
     code = f.read()
     f.close()
     writer = StyleWriter(code, name)
@@ -914,14 +914,14 @@ def convert(filename, stream=None):
 
 def main():
     if len(sys.argv) != 2 or sys.argv[1] in ('-h', '--help'):
-        print('Usage: %s <filename.vim>' % sys.argv[0])
+        print(f'Usage: {sys.argv[0]} <filename.vim>')
         return 2
     if sys.argv[1] in ('-v', '--version'):
-        print('%s %s' % (SCRIPT_NAME, SCRIPT_VERSION))
+        print(f'{SCRIPT_NAME} {SCRIPT_VERSION}')
         return
     filename = sys.argv[1]
     if not (path.exists(filename) and path.isfile(filename)):
-        print('Error: %s not found' % filename)
+        print(f'Error: {filename} not found')
         return 1
     convert(filename, sys.stdout)
     sys.stdout.write('\n')

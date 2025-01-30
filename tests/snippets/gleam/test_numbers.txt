@@ -1,0 +1,44 @@
+---input---
+1_000_000
+10_000.01
+
+0b00001111
+0B00001111
+0o17
+0O17
+0xF
+0Xface
+
+7.0e7
+3.0e-4
+
+---tokens---
+'1_000_000'   Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'10_000.01'   Literal.Number.Float
+'\n\n'        Text.Whitespace
+
+'0b00001111'  Literal.Number.Bin
+'\n'          Text.Whitespace
+
+'0B00001111'  Literal.Number.Bin
+'\n'          Text.Whitespace
+
+'0o17'        Literal.Number.Oct
+'\n'          Text.Whitespace
+
+'0O17'        Literal.Number.Oct
+'\n'          Text.Whitespace
+
+'0xF'         Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'0Xface'      Literal.Number.Hex
+'\n\n'        Text.Whitespace
+
+'7.0e7'       Literal.Number.Float
+'\n'          Text.Whitespace
+
+'3.0e-4'      Literal.Number.Float
+'\n'          Text.Whitespace

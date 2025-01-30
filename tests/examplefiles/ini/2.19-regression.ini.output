@@ -1,0 +1,75 @@
+'[cache]'     Keyword
+'\n'          Text.Whitespace
+
+'version'     Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.String
+'\n'          Text.Whitespace
+
+'repository'  Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'3c4...e59'   Literal.String
+'\n'          Text.Whitespace
+
+'manifest'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'10e...21c'   Literal.String
+'\n'          Text.Whitespace
+
+'timestamp'   Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'2017-06-01T21:31:39.699514' Literal.String
+'\n'          Text.Whitespace
+
+'key_type'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'2'           Literal.String
+'\n'          Text.Whitespace
+
+'previous_location' Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'/path/to/repo' Literal.String
+'\n\n'        Text.Whitespace
+
+'[integrity]' Keyword
+'\n'          Text.Whitespace
+
+'manifest'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'10e...21c'   Literal.String
+'\n'          Text.Whitespace
+
+'files = {"algorithm"' Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'XXH64'       Literal.String
+'"'           Literal.String
+', "digests": {"HashHeader"' Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'eab...39e3'  Literal.String
+'"'           Literal.String
+', "final"'   Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'e2a...b24'   Literal.String
+'"'           Literal.String
+'}}'          Name.Attribute
+'\n'          Text.Whitespace

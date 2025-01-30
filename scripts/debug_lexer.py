@@ -7,7 +7,7 @@
     the text where Error tokens are being generated, along
     with some context.
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -74,7 +74,7 @@ class DebuggingRegexLexer(ExtendedRegexLexer):
                         elif new_state == '#push':
                             ctx.stack.append(ctx.stack[-1])
                         else:
-                            assert False, 'wrong state def: %r' % new_state
+                            assert False, f'wrong state def: {new_state!r}'
                         statetokens = tokendefs[ctx.stack[-1]]
                     break
             else:
@@ -150,17 +150,15 @@ def main(fn, lexer=None, options={}):
         lxcls = get_lexer_by_name(lexer).__class__
     elif guess:
         lxcls = guess_lexer(text).__class__
-        print('Using lexer: %s (%s.%s)' % (lxcls.name, lxcls.__module__,
-                                           lxcls.__name__))
+        print(f'Using lexer: {lxcls.name} ({lxcls.__module__}.{lxcls.__name__})')
     else:
         lxcls = find_lexer_class_for_filename(os.path.basename(fn))
         if lxcls is None:
             name, rest = fn.split('_', 1)
             lxcls = find_lexer_class(name)
             if lxcls is None:
-                raise AssertionError('no lexer found for file %r' % fn)
-        print('Using lexer: %s (%s.%s)' % (lxcls.name, lxcls.__module__,
-                                           lxcls.__name__))
+                raise AssertionError(f'no lexer found for file {fn!r}')
+        print(f'Using lexer: {lxcls.name} ({lxcls.__module__}.{lxcls.__name__})')
     debug_lexer = False
     # if profile:
     #     # does not work for e.g. ExtendedRegexLexers

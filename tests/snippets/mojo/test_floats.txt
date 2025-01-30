@@ -1,0 +1,75 @@
+---input---
+123 -11 0 -0 0.5 .5 1. -0.5 +0.5 -.5 -1. 2e1 -2e1 2e -2e +2e e.3 -e.3 11.2e-3 -11.2e-3 5_6 5__6 _5 6_ 5.6_7 5.67_
+
+---tokens---
+'123'         Literal.Number.Integer
+' '           Text.Whitespace
+'-'           Operator
+'11'          Literal.Number.Integer
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'-'           Operator
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'0.5'         Literal.Number.Float
+' '           Text.Whitespace
+'.5'          Literal.Number.Float
+' '           Text.Whitespace
+'1.'          Literal.Number.Float
+' '           Text.Whitespace
+'-'           Operator
+'0.5'         Literal.Number.Float
+' '           Text.Whitespace
+'+'           Operator
+'0.5'         Literal.Number.Float
+' '           Text.Whitespace
+'-'           Operator
+'.5'          Literal.Number.Float
+' '           Text.Whitespace
+'-'           Operator
+'1.'          Literal.Number.Float
+' '           Text.Whitespace
+'2e1'         Literal.Number.Float
+' '           Text.Whitespace
+'-'           Operator
+'2e1'         Literal.Number.Float
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'e'           Name
+' '           Text.Whitespace
+'-'           Operator
+'2'           Literal.Number.Integer
+'e'           Name
+' '           Text.Whitespace
+'+'           Operator
+'2'           Literal.Number.Integer
+'e'           Name
+' '           Text.Whitespace
+'e'           Name
+'.3'          Literal.Number.Float
+' '           Text.Whitespace
+'-'           Operator
+'e'           Name
+'.3'          Literal.Number.Float
+' '           Text.Whitespace
+'11.2e-3'     Literal.Number.Float
+' '           Text.Whitespace
+'-'           Operator
+'11.2e-3'     Literal.Number.Float
+' '           Text.Whitespace
+'5_6'         Literal.Number.Integer
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'__6'         Name
+' '           Text.Whitespace
+'_5'          Name
+' '           Text.Whitespace
+'6'           Literal.Number.Integer
+'_'           Name
+' '           Text.Whitespace
+'5.6_7'       Literal.Number.Float
+' '           Text.Whitespace
+'5.67'        Literal.Number.Float
+'_'           Name
+'\n'          Text.Whitespace

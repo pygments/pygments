@@ -4,7 +4,7 @@
 
     Lexers for Lispy languages.
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -314,7 +314,7 @@ class CommonLispLexer(RegexLexer):
 
     # symbol token, reverse-engineered from hyperspec
     # Take a deep breath...
-    symbol = r'(\|[^|]+\||(?:%s)(?:%s)*)' % (nonmacro, constituent)
+    symbol = rf'(\|[^|]+\||(?:{nonmacro})(?:{constituent})*)'
 
     def __init__(self, **options):
         from pygments.lexers._cl_builtins import BUILTIN_FUNCTIONS, \
@@ -486,7 +486,7 @@ class HyLexer(RegexLexer):
     """
     name = 'Hy'
     url = 'http://hylang.org/'
-    aliases = ['hylang']
+    aliases = ['hylang', 'hy']
     filenames = ['*.hy']
     mimetypes = ['text/x-hy', 'application/x-hy']
     version_added = '2.0'
@@ -519,7 +519,7 @@ class HyLexer(RegexLexer):
     # valid names for identifiers
     # well, names can only not consist fully of numbers
     # but this should be good enough for now
-    valid_name = r'(?!#)[\w!$%*+<=>?/.#:-]+'
+    valid_name = r"[^ \t\n\r\f\v()[\]{};\"'`~]+"
 
     def _multi_escape(entries):
         return words(entries, suffix=' ')
@@ -531,8 +531,7 @@ class HyLexer(RegexLexer):
             (r';.*$', Comment.Single),
 
             # whitespaces - usually not relevant
-            (r',+', Text),
-            (r'\s+', Whitespace),
+            (r'[ \t\n\r\f\v]+', Whitespace),
 
             # numbers
             (r'-?\d+\.\d+', Number.Float),
@@ -1387,19 +1386,17 @@ class RacketLexer(RegexLexer):
     _opening_parenthesis = r'[([{]'
     _closing_parenthesis = r'[)\]}]'
     _delimiters = r'()[\]{}",\'`;\s'
-    _symbol = r'(?:\|[^|]*\||\\[\w\W]|[^|\\%s]+)+' % _delimiters
+    _symbol = rf'(?:\|[^|]*\||\\[\w\W]|[^|\\{_delimiters}]+)+'
     _exact_decimal_prefix = r'(?:#e)?(?:#d)?(?:#e)?'
     _exponent = r'(?:[defls][-+]?\d+)'
     _inexact_simple_no_hashes = r'(?:\d+(?:/\d+|\.\d*)?|\.\d+)'
-    _inexact_simple = (r'(?:%s|(?:\d+#+(?:\.#*|/\d+#*)?|\.\d+#+|'
-                       r'\d+(?:\.\d*#+|/\d+#+)))' % _inexact_simple_no_hashes)
-    _inexact_normal_no_hashes = r'(?:%s%s?)' % (_inexact_simple_no_hashes,
-                                                _exponent)
-    _inexact_normal = r'(?:%s%s?)' % (_inexact_simple, _exponent)
+    _inexact_simple = (rf'(?:{_inexact_simple_no_hashes}|(?:\d+#+(?:\.#*|/\d+#*)?|\.\d+#+|'
+                       r'\d+(?:\.\d*#+|/\d+#+)))')
+    _inexact_normal_no_hashes = rf'(?:{_inexact_simple_no_hashes}{_exponent}?)'
+    _inexact_normal = rf'(?:{_inexact_simple}{_exponent}?)'
     _inexact_special = r'(?:(?:inf|nan)\.[0f])'
-    _inexact_real = r'(?:[-+]?%s|[-+]%s)' % (_inexact_normal,
-                                             _inexact_special)
-    _inexact_unsigned = r'(?:%s|%s)' % (_inexact_normal, _inexact_special)
+    _inexact_real = rf'(?:[-+]?{_inexact_normal}|[-+]{_inexact_special})'
+    _inexact_unsigned = rf'(?:{_inexact_normal}|{_inexact_special})'
 
     tokens = {
         'root': [
@@ -1419,36 +1416,29 @@ class RacketLexer(RegexLexer):
             # onto Pygments token types; some judgment calls here.
 
             # #d or no prefix
-            (r'(?i)%s[-+]?\d+(?=[%s])' % (_exact_decimal_prefix, _delimiters),
+            (rf'(?i){_exact_decimal_prefix}[-+]?\d+(?=[{_delimiters}])',
              Number.Integer, '#pop'),
-            (r'(?i)%s[-+]?(\d+(\.\d*)?|\.\d+)([deflst][-+]?\d+)?(?=[%s])' %
-             (_exact_decimal_prefix, _delimiters), Number.Float, '#pop'),
-            (r'(?i)%s[-+]?(%s([-+]%s?i)?|[-+]%s?i)(?=[%s])' %
-             (_exact_decimal_prefix, _inexact_normal_no_hashes,
-              _inexact_normal_no_hashes, _inexact_normal_no_hashes,
-              _delimiters), Number, '#pop'),
+            (rf'(?i){_exact_decimal_prefix}[-+]?(\d+(\.\d*)?|\.\d+)([deflst][-+]?\d+)?(?=[{_delimiters}])', Number.Float, '#pop'),
+            (rf'(?i){_exact_decimal_prefix}[-+]?({_inexact_normal_no_hashes}([-+]{_inexact_normal_no_hashes}?i)?|[-+]{_inexact_normal_no_hashes}?i)(?=[{_delimiters}])', Number, '#pop'),
 
             # Inexact without explicit #i
-            (r'(?i)(#d)?(%s([-+]%s?i)?|[-+]%s?i|%s@%s)(?=[%s])' %
-             (_inexact_real, _inexact_unsigned, _inexact_unsigned,
-              _inexact_real, _inexact_real, _delimiters), Number.Float,
+            (rf'(?i)(#d)?({_inexact_real}([-+]{_inexact_unsigned}?i)?|[-+]{_inexact_unsigned}?i|{_inexact_real}@{_inexact_real})(?=[{_delimiters}])', Number.Float,
              '#pop'),
 
             # The remaining extflonums
-            (r'(?i)(([-+]?%st[-+]?\d+)|[-+](inf|nan)\.t)(?=[%s])' %
-             (_inexact_simple, _delimiters), Number.Float, '#pop'),
+            (rf'(?i)(([-+]?{_inexact_simple}t[-+]?\d+)|[-+](inf|nan)\.t)(?=[{_delimiters}])', Number.Float, '#pop'),
 
             # #b
-            (r'(?iu)(#[ei])?#b%s' % _symbol, Number.Bin, '#pop'),
+            (rf'(?iu)(#[ei])?#b{_symbol}', Number.Bin, '#pop'),
 
             # #o
-            (r'(?iu)(#[ei])?#o%s' % _symbol, Number.Oct, '#pop'),
+            (rf'(?iu)(#[ei])?#o{_symbol}', Number.Oct, '#pop'),
 
             # #x
-            (r'(?iu)(#[ei])?#x%s' % _symbol, Number.Hex, '#pop'),
+            (rf'(?iu)(#[ei])?#x{_symbol}', Number.Hex, '#pop'),
 
             # #i is always inexact, i.e. float
-            (r'(?iu)(#d)?#i%s' % _symbol, Number.Float, '#pop'),
+            (rf'(?iu)(#d)?#i{_symbol}', Number.Float, '#pop'),
 
             # Strings and characters
             (r'#?"', String.Double, ('#pop', 'string')),
@@ -1461,7 +1451,7 @@ class RacketLexer(RegexLexer):
             (r'#(true|false|[tTfF])', Name.Constant, '#pop'),
 
             # Keyword argument names (e.g. #:keyword)
-            (r'#:%s' % _symbol, Keyword.Declaration, '#pop'),
+            (rf'#:{_symbol}', Keyword.Declaration, '#pop'),
 
             # Reader extensions
             (r'(#lang |#!)(\S+)',
@@ -1469,8 +1459,8 @@ class RacketLexer(RegexLexer):
             (r'#reader', Keyword.Namespace, 'quoted-datum'),
 
             # Other syntax
-            (r"(?i)\.(?=[%s])|#c[is]|#['`]|#,@?" % _delimiters, Operator),
-            (r"'|#[s&]|#hash(eqv?)?|#\d*(?=%s)" % _opening_parenthesis,
+            (rf"(?i)\.(?=[{_delimiters}])|#c[is]|#['`]|#,@?", Operator),
+            (rf"'|#[s&]|#hash(eqv?)?|#\d*(?={_opening_parenthesis})",
              Operator, ('#pop', 'quoted-datum'))
         ],
         'datum*': [
@@ -1484,15 +1474,15 @@ class RacketLexer(RegexLexer):
         ],
         'unquoted-datum': [
             include('datum'),
-            (r'quote(?=[%s])' % _delimiters, Keyword,
+            (rf'quote(?=[{_delimiters}])', Keyword,
              ('#pop', 'quoted-datum')),
             (r'`', Operator, ('#pop', 'quasiquoted-datum')),
-            (r'quasiquote(?=[%s])' % _delimiters, Keyword,
+            (rf'quasiquote(?=[{_delimiters}])', Keyword,
              ('#pop', 'quasiquoted-datum')),
             (_opening_parenthesis, Punctuation, ('#pop', 'unquoted-list')),
-            (words(_keywords, suffix='(?=[%s])' % _delimiters),
+            (words(_keywords, suffix=f'(?=[{_delimiters}])'),
              Keyword, '#pop'),
-            (words(_builtins, suffix='(?=[%s])' % _delimiters),
+            (words(_builtins, suffix=f'(?=[{_delimiters}])'),
              Name.Builtin, '#pop'),
             (_symbol, Name, '#pop'),
             include('datum*')
@@ -1504,7 +1494,7 @@ class RacketLexer(RegexLexer):
         'quasiquoted-datum': [
             include('datum'),
             (r',@?', Operator, ('#pop', 'unquoted-datum')),
-            (r'unquote(-splicing)?(?=[%s])' % _delimiters, Keyword,
+            (rf'unquote(-splicing)?(?=[{_delimiters}])', Keyword,
              ('#pop', 'unquoted-datum')),
             (_opening_parenthesis, Punctuation, ('#pop', 'quasiquoted-list')),
             include('datum*')
@@ -1690,7 +1680,7 @@ class EmacsLispLexer(RegexLexer):
 
     # symbol token, reverse-engineered from hyperspec
     # Take a deep breath...
-    symbol = r'((?:%s)(?:%s)*)' % (nonmacro, constituent)
+    symbol = rf'((?:{nonmacro})(?:{constituent})*)'
 
     macros = {
         'atomic-change-group', 'case', 'block', 'cl-block', 'cl-callf', 'cl-callf2',
@@ -2303,7 +2293,7 @@ class EmacsLispLexer(RegexLexer):
         ],
         'string': [
             (r'[^"\\`]+', String),
-            (r'`%s\'' % symbol, String.Symbol),
+            (rf'`{symbol}\'', String.Symbol),
             (r'`', String),
             (r'\\.', String),
             (r'\\\n', String),
@@ -2369,9 +2359,9 @@ class ShenLexer(RegexLexer):
     MAPPINGS.update((s, Keyword) for s in SPECIAL_FORMS)
 
     valid_symbol_chars = r'[\w!$%*+,<=>?/.\'@&#:-]'
-    valid_name = '%s+' % valid_symbol_chars
-    symbol_name = r'[a-z!$%%*+,<=>?/.\'@&#_-]%s*' % valid_symbol_chars
-    variable = r'[A-Z]%s*' % valid_symbol_chars
+    valid_name = f'{valid_symbol_chars}+'
+    symbol_name = rf'[a-z!$%*+,<=>?/.\'@&#_-]{valid_symbol_chars}*'
+    variable = rf'[A-Z]{valid_symbol_chars}*'
 
     tokens = {
         'string': [
@@ -2848,7 +2838,7 @@ class JanetLexer(RegexLexer):
     aliases = ['janet']
     filenames = ['*.janet', '*.jdn']
     mimetypes = ['text/x-janet', 'application/x-janet']
-    version_added = '2.17'
+    version_added = '2.18'
 
     # XXX: gets too slow
     #flags = re.MULTILINE | re.VERBOSE

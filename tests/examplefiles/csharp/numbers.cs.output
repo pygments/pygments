@@ -1,0 +1,104 @@
+'public'      Keyword
+' '           Text.Whitespace
+'class'       Keyword
+' '           Text.Whitespace
+'CSharpNumbers' Name.Class
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'public'      Keyword
+' '           Text.Whitespace
+'int'         Keyword.Type
+'['           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'TheInts'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'123'         Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'10543765Lu'  Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0xFf'        Literal.Number.Hex
+','           Punctuation
+' '           Text.Whitespace
+'0X1ba044fEL' Literal.Number.Hex
+','           Punctuation
+' '           Text.Whitespace
+'0x1ade3FE129AaUL' Literal.Number.Hex
+','           Punctuation
+' '           Text.Whitespace
+'0xabc'       Literal.Number.Hex
+','           Punctuation
+' '           Text.Whitespace
+'0x123'       Literal.Number.Hex
+','           Punctuation
+' '           Text.Whitespace
+'0b101'       Literal.Number.Bin
+','           Punctuation
+' '           Text.Whitespace
+'0B10011010u' Literal.Number.Bin
+','           Punctuation
+' '           Text.Whitespace
+'0b111111110000UL' Literal.Number.Bin
+','           Punctuation
+' '           Text.Whitespace
+'0B111'       Literal.Number.Bin
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'public'      Keyword
+' '           Text.Whitespace
+'float'       Keyword.Type
+'['           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'TheReals'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'1.234567'    Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'1.3e5f'      Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'.3e5f'       Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'2345E-20'    Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'15D'         Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'19.73M'      Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'1.2F'        Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'1.2f'        Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'.3e5F'       Literal.Number.Float
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

@@ -4,7 +4,7 @@
 
     Lexers for Matlab and related languages.
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -31,7 +31,7 @@ class MatlabLexer(RegexLexer):
     url = 'https://www.mathworks.com/products/matlab.html'
     version_added = '0.10'
 
-    _operators = r'-|==|~=|<=|>=|<|>|&&|&|~|\|\|?|\.\*|\*|\+|\.\^|\.\\|\./|/|\\'
+    _operators = r'-|==|~=|<=|>=|<|>|&&|&|~|\|\|?|\.\*|\*|\+|\.\^|\^|\.\\|\./|/|\\'
 
     tokens = {
         'expressions': [
@@ -41,8 +41,8 @@ class MatlabLexer(RegexLexer):
             # numbers (must come before punctuation to handle `.5`; cannot use
             # `\b` due to e.g. `5. + .5`).  The negative lookahead on operators
             # avoids including the dot in `1./x` (the dot is part of `./`).
-            (r'(?<!\w)((\d+\.\d+)|(\d*\.\d+)|(\d+\.(?!%s)))'
-             r'([eEf][+-]?\d+)?(?!\w)' % _operators, Number.Float),
+            (rf'(?<!\w)((\d+\.\d+)|(\d*\.\d+)|(\d+\.(?!{_operators})))'
+             r'([eEf][+-]?\d+)?(?!\w)', Number.Float),
             (r'\b\d+[eEf][+-]?[0-9]+\b', Number.Float),
             (r'\b\d+\b', Number.Integer),
 
@@ -2665,7 +2665,7 @@ class MatlabLexer(RegexLexer):
             # `cd ./ foo`.).  Here, the regex checks that the first word in the
             # line is not followed by <spaces> and then
             # (equal | open-parenthesis | <operator><space> | <space>).
-            (r'(?:^|(?<=;))(\s*)(\w+)(\s+)(?!=|\(|%s\s|\s)' % _operators,
+            (rf'(?:^|(?<=;))(\s*)(\w+)(\s+)(?!=|\(|{_operators}\s|\s)',
              bygroups(Whitespace, Name, Whitespace), 'commandargs'),
 
             include('expressions')
@@ -2747,6 +2747,7 @@ class MatlabSessionLexer(Lexer):
     aliases = ['matlabsession']
     url = 'https://www.mathworks.com/products/matlab.html'
     version_added = '0.10'
+    _example = "matlabsession/matlabsession_sample.txt"
 
     def get_tokens_unprocessed(self, text):
         mlexer = MatlabLexer(**self.options)
@@ -3174,7 +3175,7 @@ class OctaveLexer(RegexLexer):
             # operators in Octave but not Matlab requiring escape for re:
             (r'\*=|\+=|\^=|\/=|\\=|\*\*|\+\+|\.\*\*', Operator),
             # operators requiring escape for re:
-            (r'\.\*|\*|\+|\.\^|\.\\|\.\/|\/|\\', Operator),
+            (r'\.\*|\*|\+|\.\^|\^|\.\\|\.\/|\/|\\', Operator),
 
 
             # punctuation:
@@ -3259,7 +3260,7 @@ class ScilabLexer(RegexLexer):
             # operators:
             (r'-|==|~=|<|>|<=|>=|&&|&|~|\|\|?', Operator),
             # operators requiring escape for re:
-            (r'\.\*|\*|\+|\.\^|\.\\|\.\/|\/|\\', Operator),
+            (r'\.\*|\*|\+|\.\^|\^|\.\\|\.\/|\/|\\', Operator),
 
             # punctuation:
             (r'[\[\](){}@.,=:;]+', Punctuation),

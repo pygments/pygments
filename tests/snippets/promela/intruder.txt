@@ -1,0 +1,27 @@
+---input---
+Crypt x;
+init {
+  Crypt x;
+}
+
+---tokens---
+'Crypt'       Name
+' '           Text.Whitespace
+'x'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'init'        Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'Crypt'       Name
+' '           Text.Whitespace
+'x'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

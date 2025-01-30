@@ -4,7 +4,7 @@
 
     Lexers for other C-like languages.
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -20,7 +20,7 @@ from pygments.lexers import _mql_builtins
 
 __all__ = ['PikeLexer', 'NesCLexer', 'ClayLexer', 'ECLexer', 'ValaLexer',
            'CudaLexer', 'SwigLexer', 'MqlLexer', 'ArduinoLexer', 'CharmciLexer',
-           'OmgIdlLexer']
+           'OmgIdlLexer', 'PromelaLexer']
 
 
 class PikeLexer(CppLexer):
@@ -655,5 +655,84 @@ class OmgIdlLexer(CLexer):
             (r'[\(\)]', Punctuation),
             include('values'),
             include('annotation_appl'),
+        ],
+    }
+
+
+class PromelaLexer(CLexer):
+    """
+    For the Promela language used with SPIN.
+    """
+    
+    name = 'Promela'
+    aliases = ['promela']
+    filenames = ['*.pml', '*.prom', '*.prm', '*.promela', '*.pr', '*.pm']
+    mimetypes = ['text/x-promela']
+    url = 'https://spinroot.com/spin/whatispin.html'
+    version_added = '2.18'
+
+    # Promela's language reference:
+    # https://spinroot.com/spin/Man/promela.html
+    # Promela's grammar definition:
+    # https://spinroot.com/spin/Man/grammar.html
+
+    tokens = {
+        'statements': [
+            (r'(\[\]|<>|/\\|\\/)|(U|W|V)\b', Operator), # LTL Operators
+            (r'@', Punctuation), #remoterefs
+            (r'(\.)([a-zA-Z_]\w*)', bygroups(Operator, Name.Attribute)),
+            inherit
+        ],
+        'types': [
+            # Predefined (data types)
+            (words((
+                'bit', 'bool', 'byte', 'pid', 'short', 'int', 'unsigned'),
+                suffix=r'\b'),
+             Keyword.Type),
+        ],
+        'keywords': [
+            # ControlFlow
+            (words((
+                'atomic', 'break', 'd_step', 'do', 'od', 'for', 'in', 'goto',
+                'if', 'fi', 'unless'), suffix=r'\b'),
+             Keyword),
+            # BasicStatements
+            (words((
+                'assert', 'get_priority', 'printf', 'printm', 'set_priority'),
+                suffix=r'\b'),
+             Name.Function),
+            # Embedded C Code
+            (words((
+                'c_code', 'c_decl', 'c_expr', 'c_state', 'c_track'),
+                suffix=r'\b'),
+             Keyword),
+            # Predefined (local/global variables)
+            (words((
+                '_', '_last', '_nr_pr', '_pid', '_priority', 'else', 'np_',
+                'STDIN'), suffix=r'\b'),
+             Name.Builtin),
+            # Predefined (functions)
+            (words((
+                'empty', 'enabled', 'eval', 'full', 'len', 'nempty', 'nfull',
+                'pc_value'), suffix=r'\b'),
+             Name.Function),
+            # Predefined (operators)
+            (r'run\b', Operator.Word),
+            # Declarators
+            (words((
+                'active', 'chan', 'D_proctype', 'hidden', 'init', 'local',
+                'mtype', 'never', 'notrace', 'proctype', 'show', 'trace',
+                'typedef', 'xr', 'xs'), suffix=r'\b'),
+             Keyword.Declaration),
+            # Declarators (suffixes)
+            (words((
+                'priority', 'provided'), suffix=r'\b'),
+             Keyword),
+            # MetaTerms (declarators)
+            (words((
+                'inline', 'ltl', 'select'), suffix=r'\b'),
+             Keyword.Declaration),
+            # MetaTerms (keywords)
+            (r'skip\b', Keyword),
         ],
     }

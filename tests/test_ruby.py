@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     Basic RubyLexer Test
     ~~~~~~~~~~~~~~~~~~~~
@@ -8,7 +7,6 @@
 """
 
 import pytest
-
 from pygments.token import Name
 from pygments.lexers.ruby import RubyLexer
 

@@ -136,6 +136,7 @@ This is an (incomplete) list of projects and sites known to use the Pygments hig
   `editor <https://docs.spyder-ide.org/editor.html>`_.
 * `snippet.host <https://snippet.host>`_, minimal text and code snippet hosting
 * `sourcehut <https://sourcehut.org>`_, the hacker's forge
+* `Material for MkDocs <https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/#highlight>`_, popular static site generator
 
 If you have a project or web site using Pygments, `open an issue or PR
 <https://github.com/pygments/pygments>`_ and we'll add a line here.

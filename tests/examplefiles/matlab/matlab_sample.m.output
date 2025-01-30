@@ -1,0 +1,196 @@
+'function'    Keyword
+' '           Text.Whitespace
+'zz'          Text
+'='           Punctuation
+'sample'      Name.Function
+'('           Punctuation
+'aa'          Text
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'%%%%%%%%%%%%%%%%%%' Comment
+'\n'          Text.Whitespace
+
+'% some comments' Comment
+'\n'          Text.Whitespace
+
+'%%%%%%%%%%%%%%%%%%' Comment
+'\n\n'        Text.Whitespace
+
+'x'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String
+"a string'"   Literal.String
+';'           Punctuation
+'    '        Text.Whitespace
+"% some 'ticks' in a comment" Comment
+'\n'          Text.Whitespace
+
+'y'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String
+"a string with '" Literal.String
+"'"           Literal.String
+"interal'"    Literal.String
+"'"           Literal.String
+" quotes'"    Literal.String
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'for'         Keyword
+' '           Text.Whitespace
+'i'           Name.Builtin
+'='           Punctuation
+'1'           Literal.Number.Integer
+':'           Punctuation
+'20'          Literal.Number.Integer
+'\n  '        Text.Whitespace
+'disp'        Name.Builtin
+'('           Punctuation
+'i'           Name.Builtin
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'end'         Keyword
+'\n\n'        Text.Whitespace
+
+'a'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'rand'        Name.Builtin
+'('           Punctuation
+'30'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'b'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'rand'        Name.Builtin
+'('           Punctuation
+'30'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'c'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'.*'          Operator
+' '           Text.Whitespace
+'b'           Name
+' '           Text.Whitespace
+'./'          Operator
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'\\'          Operator
+' '           Text.Whitespace
+'...'         Keyword
+' comment at end of line and continuation' Comment
+'\n    '      Text.Whitespace
+'('           Punctuation
+'b'           Name
+' '           Text.Whitespace
+'.*'          Operator
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'b'           Name
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'a'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'^'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'c'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'a'           Name
+"'"           Operator
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'b'           Name
+"'"           Operator
+';'           Punctuation
+'  '          Text.Whitespace
+'% note: these ticks are for transpose, not quotes.' Comment
+'\n\n'        Text.Whitespace
+
+'disp'        Name.Builtin
+'('           Punctuation
+"'"           Literal.String
+"a comment symbol, %, in a string'" Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+"!echo abc % this isn't a comment - it's passed to system command" Literal.String.Other
+'\n\n'        Text.Whitespace
+
+'function'    Keyword
+' '           Text.Whitespace
+'y'           Text
+'='           Punctuation
+'myfunc'      Name.Function
+'('           Punctuation
+'x'           Text
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'y'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'exp'         Name.Builtin
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+';'           Punctuation
+'\n\n '       Text.Whitespace
+'%{\n'        Comment.Multiline
+
+'a block comment\n' Comment.Multiline
+
+' %}'         Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'function'    Keyword
+' '           Text.Whitespace
+'no_arg_func' Name.Function
+'\n'          Text.Whitespace
+
+'fprintf'     Name.Builtin
+'('           Punctuation
+"'"           Literal.String
+"%s\\n'"      Literal.String
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String
+"function with no args'" Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'end'         Keyword
+'\n'          Text.Whitespace

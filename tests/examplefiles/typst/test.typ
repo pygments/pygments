@@ -4,8 +4,8 @@
 #set page(margin: (x: 1.5cm, y: 2.5cm), numbering: "1 / 1")
 #let section(title, content) = grid(
       columns: (55pt, 1fr),
-      text(darkgrey)[#date]
-      h(1fr)
+      text(darkgrey)[#date],
+      h(1fr),
       content
 )
 
@@ -16,8 +16,8 @@
 #section([another \ test], [
   *#link("https://github.com/typst/typst")[typst]* --- bob #section_date([2022 -- present]) \
     some text
-  ]
   / Itemone: -- first item
+  ]
 )
 
 Another link, with http instead of https: http://example.com

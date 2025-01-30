@@ -4,7 +4,7 @@
 
     Lexer for resource definition files.
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -36,7 +36,7 @@ class ResourceLexer(RegexLexer):
             (r'"', String, 'string'),
             (r'-?\d+', Number.Integer),
             (r'[,{}]', Operator),
-            (r'([^\s{:]+)(\s*)(%s?)' % '|'.join(_types),
+            (r'([^\s{{:]+)(\s*)({}?)'.format('|'.join(_types)),
              bygroups(Name, Text, Keyword)),
             (r'\s+', Text),
             (words(_types), Keyword),

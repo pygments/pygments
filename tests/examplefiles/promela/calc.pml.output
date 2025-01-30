@@ -1,0 +1,191 @@
+'// reverse polish\n' Comment.Single
+
+'\n'          Text.Whitespace
+
+'mtype'       Keyword.Declaration
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'operator'    Name
+','           Punctuation
+' '           Text.Whitespace
+'value'       Name
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'chan'        Keyword.Declaration
+' '           Text.Whitespace
+'f'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'12'          Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'of'          Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'mtype'       Keyword.Declaration
+','           Punctuation
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'proctype'    Keyword.Declaration
+' '           Text.Whitespace
+'calc'        Name
+'('           Punctuation
+'chan'        Keyword.Declaration
+' '           Text.Whitespace
+'you'         Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\t'          Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'s'           Name
+','           Punctuation
+' '           Text.Whitespace
+'lft'         Name
+','           Punctuation
+' '           Text.Whitespace
+'rgt'         Name
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'chan'        Keyword.Declaration
+' '           Text.Whitespace
+'me'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'of'          Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'if'          Keyword
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'f'           Name
+'?'           Operator
+'operator'    Name
+'('           Punctuation
+'s'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'run'         Operator.Word
+' '           Text.Whitespace
+'calc'        Name
+'('           Punctuation
+'me'          Name
+')'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'me'          Name
+'?'           Operator
+'lft'         Name
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'run'         Operator.Word
+' '           Text.Whitespace
+'calc'        Name
+'('           Punctuation
+'me'          Name
+')'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'me'          Name
+'?'           Operator
+'rgt'         Name
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'if'          Keyword
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'s'           Name
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'+'           Literal.String.Char
+"'"           Literal.String.Char
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'you'         Name
+'!'           Operator
+'('           Punctuation
+'lft'         Name
+'+'           Operator
+'rgt'         Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'fi'          Keyword
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+':'           Operator
+':'           Operator
+' '           Text.Whitespace
+'f'           Name
+'?'           Operator
+'value'       Name
+'('           Punctuation
+'s'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'you'         Name
+'!'           Operator
+'s'           Name
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'fi'          Keyword
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

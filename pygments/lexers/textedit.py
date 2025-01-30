@@ -4,7 +4,7 @@
 
     Lexers for languages related to text processing.
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -49,7 +49,7 @@ class AwkLexer(RegexLexer):
         'root': [
             (r'^(?=\s|/)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
-            (r'\+\+|--|\|\||&&|in\b|\$|!?~|'
+            (r'\+\+|--|\|\||&&|in\b|\$|!?~|\?|:|'
              r'(\*\*|[-<>+*%\^/!=|])=?', Operator, 'slashstartsregex'),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
             (r'[})\].]', Punctuation),

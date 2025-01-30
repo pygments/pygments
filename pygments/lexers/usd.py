@@ -4,7 +4,7 @@
 
     The module that parses Pixar's Universal Scene Description file format.
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -40,23 +40,19 @@ class UsdLexer(RegexLexer):
 
     tokens = {
         "root": [
-            (r"(custom){_WHITESPACE}(uniform)(\s+){}(\s+){}(\s*)(=)".format(
-                _TYPE, _BASE_ATTRIBUTE, _WHITESPACE=_WHITESPACE),
+            (rf"(custom){_WHITESPACE}(uniform)(\s+){_TYPE}(\s+){_BASE_ATTRIBUTE}(\s*)(=)",
              bygroups(Keyword.Token, Whitespace, Keyword.Token, Whitespace,
                       Keyword.Type, Whitespace, Name.Attribute, Text,
                       Name.Keyword.Tokens, Whitespace, Operator)),
-            (r"(custom){_WHITESPACE}{}(\s+){}(\s*)(=)".format(
-                _TYPE, _BASE_ATTRIBUTE, _WHITESPACE=_WHITESPACE),
+            (rf"(custom){_WHITESPACE}{_TYPE}(\s+){_BASE_ATTRIBUTE}(\s*)(=)",
              bygroups(Keyword.Token, Whitespace, Keyword.Type, Whitespace,
                       Name.Attribute, Text, Name.Keyword.Tokens, Whitespace,
                       Operator)),
-            (r"(uniform){_WHITESPACE}{}(\s+){}(\s*)(=)".format(
-                _TYPE, _BASE_ATTRIBUTE, _WHITESPACE=_WHITESPACE),
+            (rf"(uniform){_WHITESPACE}{_TYPE}(\s+){_BASE_ATTRIBUTE}(\s*)(=)",
              bygroups(Keyword.Token, Whitespace, Keyword.Type, Whitespace,
                       Name.Attribute, Text, Name.Keyword.Tokens, Whitespace,
                       Operator)),
-            (r"{}{_WHITESPACE}{}(\s*)(=)".format(
-                _TYPE, _BASE_ATTRIBUTE, _WHITESPACE=_WHITESPACE),
+            (rf"{_TYPE}{_WHITESPACE}{_BASE_ATTRIBUTE}(\s*)(=)",
              bygroups(Keyword.Type, Whitespace, Name.Attribute, Text,
                       Name.Keyword.Tokens, Whitespace, Operator)),
         ] +

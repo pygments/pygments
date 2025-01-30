@@ -4,7 +4,7 @@
 
     Lexers for various template engines' markup.
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -1501,7 +1501,7 @@ class EvoqueHtmlLexer(DelegatingLexer):
     """
     name = 'HTML+Evoque'
     aliases = ['html+evoque']
-    filenames = ['*.html']
+    alias_filenames = ['*.html']
     mimetypes = ['text/html+evoque']
     url = 'https://gizmojo.org/templating'
     version_added = '1.1'
@@ -1520,7 +1520,7 @@ class EvoqueXmlLexer(DelegatingLexer):
     """
     name = 'XML+Evoque'
     aliases = ['xml+evoque']
-    filenames = ['*.xml']
+    alias_filenames = ['*.xml']
     mimetypes = ['application/xml+evoque']
     url = 'https://gizmojo.org/templating'
     version_added = '1.1'
@@ -2190,7 +2190,7 @@ class TwigLexer(RegexLexer):
                       Other, Comment.Preproc, Text, Keyword, Text,
                       Comment.Preproc)),
             # filter blocks
-            (r'(\{%%)(-?\s*)(filter)(\s+)(%s)' % _ident_inner,
+            (rf'(\{{%)(-?\s*)(filter)(\s+)({_ident_inner})',
              bygroups(Comment.Preproc, Text, Keyword, Text, Name.Function),
              'tag'),
             (r'(\{%)(-?\s*)([a-zA-Z_]\w*)',
@@ -2198,9 +2198,9 @@ class TwigLexer(RegexLexer):
             (r'\{', Other),
         ],
         'varnames': [
-            (r'(\|)(\s*)(%s)' % _ident_inner,
+            (rf'(\|)(\s*)({_ident_inner})',
              bygroups(Operator, Text, Name.Function)),
-            (r'(is)(\s+)(not)?(\s*)(%s)' % _ident_inner,
+            (rf'(is)(\s+)(not)?(\s*)({_ident_inner})',
              bygroups(Keyword, Text, Keyword, Text, Name.Function)),
             (r'(?i)(true|false|none|null)\b', Keyword.Pseudo),
             (r'(in|not|and|b-and|or|b-or|b-xor|is'

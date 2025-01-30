@@ -47,7 +47,6 @@ Pygments documentation
    :maxdepth: 1
 
    terminaltips
-   rstdirective
    moinmoin
    java
    integrate

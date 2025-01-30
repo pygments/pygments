@@ -5,7 +5,7 @@
     Sphinx extension to generate automatic documentation of lexers,
     formatters and filters.
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -162,7 +162,7 @@ class PygmentsDoc(Directive):
             self.filenames.add(mod.__file__)
             cls = getattr(mod, classname)
             if not cls.__doc__:
-                print("Warning: %s does not have a docstring." % classname)
+                print(f"Warning: {classname} does not have a docstring.")
             docstring = cls.__doc__
             if isinstance(docstring, bytes):
                 docstring = docstring.decode('utf8')
@@ -204,7 +204,7 @@ class PygmentsDoc(Directive):
 
         for module, lexers in sorted(modules.items(), key=lambda x: x[0]):
             if moduledocstrings[module] is None:
-                raise Exception("Missing docstring for %s" % (module,))
+                raise Exception(f"Missing docstring for {module}")
             heading = moduledocstrings[module].splitlines()[4].strip().rstrip('.')
             out.append(MODULEDOC % (module, heading, '-'*len(heading)))
             for data in lexers:

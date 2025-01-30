@@ -4,7 +4,7 @@
 
     Lexers for modeling languages.
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -165,8 +165,7 @@ class BugsLexer(RegexLexer):
             # Reserved Words
             (r'(for|in)(?![\w.])', Keyword.Reserved),
             # Built-in Functions
-            (r'(%s)(?=\s*\()'
-             % r'|'.join(_FUNCTIONS + _DISTRIBUTIONS),
+            (r'({})(?=\s*\()'.format(r'|'.join(_FUNCTIONS + _DISTRIBUTIONS)),
              Name.Builtin),
             # Regular variable names
             (r'[A-Za-z][\w.]*', Name),
@@ -214,7 +213,7 @@ class JagsLexer(RegexLexer):
         # Truncation/Censoring (should I include)
         'T', 'I')
     # Distributions with density, probability and quartile functions
-    _DISTRIBUTIONS = tuple('[dpq]%s' % x for x in
+    _DISTRIBUTIONS = tuple(f'[dpq]{x}' for x in
                            ('bern', 'beta', 'dchiqsqr', 'ddexp', 'dexp',
                             'df', 'gamma', 'gen.gamma', 'logis', 'lnorm',
                             'negbin', 'nchisqr', 'norm', 'par', 'pois', 'weib'))
@@ -250,9 +249,9 @@ class JagsLexer(RegexLexer):
             (r'(for|in)(?![\w.])', Keyword.Reserved),
             # Builtins
             # Need to use lookahead because . is a valid char
-            (r'(%s)(?=\s*\()' % r'|'.join(_FUNCTIONS
+            (r'({})(?=\s*\()'.format(r'|'.join(_FUNCTIONS
                                           + _DISTRIBUTIONS
-                                          + _OTHER_DISTRIBUTIONS),
+                                          + _OTHER_DISTRIBUTIONS)),
              Name.Builtin),
             # Names
             include('names'),
@@ -309,19 +308,18 @@ class StanLexer(RegexLexer):
             # block start
             include('whitespace'),
             # Block start
-            (r'(%s)(\s*)(\{)' %
-             r'|'.join(('functions', 'data', r'transformed\s+?data',
+            (r'({})(\s*)(\{{)'.format(r'|'.join(('functions', 'data', r'transformed\s+?data',
                         'parameters', r'transformed\s+parameters',
-                        'model', r'generated\s+quantities')),
+                        'model', r'generated\s+quantities'))),
              bygroups(Keyword.Namespace, Text, Punctuation)),
             # target keyword
             (r'target\s*\+=', Keyword),
             # Reserved Words
-            (r'(%s)\b' % r'|'.join(_stan_builtins.KEYWORDS), Keyword),
+            (r'({})\b'.format(r'|'.join(_stan_builtins.KEYWORDS)), Keyword),
             # Truncation
             (r'T(?=\s*\[)', Keyword),
             # Data types
-            (r'(%s)\b' % r'|'.join(_stan_builtins.TYPES), Keyword.Type),
+            (r'({})\b'.format(r'|'.join(_stan_builtins.TYPES)), Keyword.Type),
              # < should be punctuation, but elsewhere I can't tell if it is in
              # a range constraint
             (r'(<)(\s*)(upper|lower|offset|multiplier)(\s*)(=)',
@@ -331,12 +329,12 @@ class StanLexer(RegexLexer):
             # Punctuation
             (r"[;,\[\]()]", Punctuation),
             # Builtin
-            (r'(%s)(?=\s*\()' % '|'.join(_stan_builtins.FUNCTIONS), Name.Builtin),
-            (r'(~)(\s*)(%s)(?=\s*\()' % '|'.join(_stan_builtins.DISTRIBUTIONS),
+            (r'({})(?=\s*\()'.format('|'.join(_stan_builtins.FUNCTIONS)), Name.Builtin),
+            (r'(~)(\s*)({})(?=\s*\()'.format('|'.join(_stan_builtins.DISTRIBUTIONS)),
                 bygroups(Operator, Whitespace, Name.Builtin)),
             # Special names ending in __, like lp__
             (r'[A-Za-z]\w*__\b', Name.Builtin.Pseudo),
-            (r'(%s)\b' % r'|'.join(_stan_builtins.RESERVED), Keyword.Reserved),
+            (r'({})\b'.format(r'|'.join(_stan_builtins.RESERVED)), Keyword.Reserved),
             # user-defined functions
             (r'[A-Za-z]\w*(?=\s*\()]', Name.Function),
             # Imaginary Literals

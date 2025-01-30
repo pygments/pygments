@@ -1,0 +1,140 @@
+---input---
+/**
+ * @name Redundant Select
+ * @description Writing 'seq.Select(e => e)' or 'from e in seq select e' is redundant.
+ * @kind problem
+ * @problem.severity warning
+ * @precision very-high
+ * @id cs/linq/useless-select
+ * @tags maintainability
+ *       language-features
+ *       external/cwe/cwe-561
+ */
+
+import csharp
+import Linq.Helpers
+
+
+// From https://github.com/github/codeql/blob/ef9f3835e533f97403401507ebf736eb7518cdb2/csharp/ql/src/Linq/RedundantSelect.ql#L18
+predicate isIdentityFunction(AnonymousFunctionExpr afe) {
+  afe.getNumberOfParameters() = 1 and
+  afe.getExpressionBody() = afe.getParameter(0).getAnAccess()
+}
+
+from SelectCall sc
+where isIdentityFunction(sc.getFunctionExpr())
+select sc, "This LINQ selection is redundant and can be removed."
+
+---tokens---
+'/*'          Comment.Multiline
+'*'           Comment.Multiline
+'\n '         Comment.Multiline
+'*'           Comment.Multiline
+' @name Redundant Select\n ' Comment.Multiline
+'*'           Comment.Multiline
+" @description Writing 'seq.Select(e => e)' or 'from e in seq select e' is redundant.\n " Comment.Multiline
+'*'           Comment.Multiline
+' @kind problem\n ' Comment.Multiline
+'*'           Comment.Multiline
+' @problem.severity warning\n ' Comment.Multiline
+'*'           Comment.Multiline
+' @precision very-high\n ' Comment.Multiline
+'*'           Comment.Multiline
+' @id cs'     Comment.Multiline
+'/'           Comment.Multiline
+'linq'        Comment.Multiline
+'/'           Comment.Multiline
+'useless-select\n ' Comment.Multiline
+'*'           Comment.Multiline
+' @tags maintainability\n ' Comment.Multiline
+'*'           Comment.Multiline
+'       language-features\n ' Comment.Multiline
+'*'           Comment.Multiline
+'       external' Comment.Multiline
+'/'           Comment.Multiline
+'cwe'         Comment.Multiline
+'/'           Comment.Multiline
+'cwe-561\n '  Comment.Multiline
+'*/'          Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'import'      Keyword.Builtin
+' '           Text.Whitespace
+'csharp'      Name.Variable
+'\n'          Text.Whitespace
+
+'import'      Keyword.Builtin
+' '           Text.Whitespace
+'Linq'        Name.Class
+'.'           Punctuation
+'Helpers'     Name.Class
+'\n\n\n'      Text.Whitespace
+
+'// From https://github.com/github/codeql/blob/ef9f3835e533f97403401507ebf736eb7518cdb2/csharp/ql/src/Linq/RedundantSelect.ql#L18\n' Comment.Single
+
+'predicate'   Keyword.Builtin
+' '           Text.Whitespace
+'isIdentityFunction' Name.Variable
+'('           Punctuation
+'AnonymousFunctionExpr' Name.Class
+' '           Text.Whitespace
+'afe'         Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'afe'         Name.Variable
+'.'           Punctuation
+'getNumberOfParameters' Name.Variable
+'()'          Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'and'         Keyword.Builtin
+'\n  '        Text.Whitespace
+'afe'         Name.Variable
+'.'           Punctuation
+'getExpressionBody' Name.Variable
+'()'          Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'afe'         Name.Variable
+'.'           Punctuation
+'getParameter' Name.Variable
+'('           Punctuation
+'0'           Literal.Number.Integer
+').'          Punctuation
+'getAnAccess' Name.Variable
+'()'          Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'from'        Keyword.Builtin
+' '           Text.Whitespace
+'SelectCall'  Name.Class
+' '           Text.Whitespace
+'sc'          Name.Variable
+'\n'          Text.Whitespace
+
+'where'       Keyword.Builtin
+' '           Text.Whitespace
+'isIdentityFunction' Name.Variable
+'('           Punctuation
+'sc'          Name.Variable
+'.'           Punctuation
+'getFunctionExpr' Name.Variable
+'())'         Punctuation
+'\n'          Text.Whitespace
+
+'select'      Keyword.Builtin
+' '           Text.Whitespace
+'sc'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'"This LINQ selection is redundant and can be removed."' Literal.String
+'\n'          Text.Whitespace

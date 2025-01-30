@@ -30,7 +30,7 @@
     If you do not want to do that and are willing to accept larger HTML
     output, you can set the INLINESTYLES option below to True.
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -105,7 +105,7 @@ class Parser:
 
     def format(self, formatter):
         codeid[0] += 1
-        id = "pygments_%s" % codeid[0]
+        id = f"pygments_{codeid[0]}"
         w = self.req.write
         w(formatter.code_area(1, id, start=1, step=1))
         w(formatter.rawHTML(highlight(self.raw, self.lexer, htmlformatter)))

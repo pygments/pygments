@@ -39,7 +39,7 @@ To add a lexer, you have to perform the following steps:
 
     __all__ = ['AutohotkeyLexer', 'AutoItLexer']
 
-  Add the name of your lexer class to this list (or create the list if your 
+  Add the name of your lexer class to this list (or create the list if your
   lexer   is the only class in the module).
 
 * Finally the lexer can be made publicly known by rebuilding the lexer mapping.
@@ -96,7 +96,7 @@ state.
 .. note::
 
     This means you're always jumping back to the first entry, i.e. you cannot match states in a particular order. For example, a state with the following rules won't work as intended:
-    
+
     .. code:: python
 
         'state': [
@@ -250,11 +250,11 @@ sections, comments and ``key = value`` pairs::
 
         tokens = {
             'root': [
-                (r'\s+', Text),
-                (r';.*?$', Comment),
+                (r'\s+', Whitespace),
+                (r';.*', Comment),
                 (r'\[.*?\]$', Keyword),
-                (r'(.*?)(\s*)(=)(\s*)(.*?)$',
-                 bygroups(Name.Attribute, Text, Operator, Text, String))
+                (r'(.*?)(\s*)(=)(\s*)(.*)',
+                 bygroups(Name.Attribute, Whitespace, Operator, Whitespace, String))
             ]
         }
 
@@ -467,7 +467,7 @@ defined in the parent and child class are merged.  For example::
                   ('[a-z]+', Name),
                   (r'/\*', Comment, 'comment'),
                   ('"', String, 'string'),
-                  (r'\s+', Text),
+                  (r'\s+', Whitespace),
               ],
               'string': [
                   ('[^"]+', String),
@@ -783,7 +783,11 @@ contribute a new lexer, but you might find it useful in any case.
 
   into::
 
-   (r"[\(\)\[\]{}]", token.Punctuation)
+   (r"[\(\)\[\]{}]+", token.Punctuation)
+
+  .. note::
+
+   We're using ``+`` here as well to match successive punctuation tokens together. See below for more information about this.
 
 
 * Be careful with ``.*``. This matches greedily as much as it can. For instance,
@@ -824,7 +828,7 @@ contribute a new lexer, but you might find it useful in any case.
      r'"(\\?.)*?"'
 
   If the ending quote is missing, the regular expression engine will
-  find that it cannot match at the end, and try to backtrack with less
+  find that it cannot match at the end, and try to backtrack with fewer
   matches in the ``*?``.  When it finds a backslash, as it has already
   tried the possibility ``\\.``, it tries ``.`` (recognizing it as a
   simple character without meaning), which leads to the same

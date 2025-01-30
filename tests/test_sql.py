@@ -2,7 +2,7 @@
     Pygments SQL lexers tests
     ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -39,7 +39,7 @@ def _assert_tokens_match(lexer, text, expected_tokens_without_trailing_newline):
     if (len(actual_tokens) >= 1) and (actual_tokens[-1] == (Whitespace, '\n')):
         actual_tokens = tuple(actual_tokens[:-1])
     assert expected_tokens_without_trailing_newline == actual_tokens, \
-        'text must yield expected tokens: %s' % text
+        f'text must yield expected tokens: {text}'
 
 
 def test_can_lex_float(lexer):
@@ -104,12 +104,6 @@ def test_can_analyze_text():
         best_rating, best_lexer_name  = sorted(ratings_and_lexers, reverse=True)[0]
         expected_rating = expected_lexer.analyse_text(code)
         message = (
-            'lexer must be %s (rating %.2f) instead of '
-            '%s (rating %.2f) for analyse_text() on code:\n%s') % (
-            expected_lexer.name,
-            expected_rating,
-            best_lexer_name,
-            best_rating,
-            code
-        )
+            f'lexer must be {expected_lexer.name} (rating {expected_rating:.2f}) instead of '
+            f'{best_lexer_name} (rating {best_rating:.2f}) for analyse_text() on code:\n{code}')
         assert expected_lexer.name == best_lexer_name, message

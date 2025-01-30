@@ -4,7 +4,7 @@
 
     Lexer for the WebGPU Shading Language.
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -27,7 +27,7 @@ NotLineEndRE = '[^' + "".join(LineEndCodePoints) + ']'
 LineEndRE = '[' + "".join(LineEndCodePoints) + ']'
 
 # https://www.w3.org/TR/WGSL/#syntax-ident_pattern_token
-ident_pattern_token = '([{}][{}]+)|[{}]'.format(uni.xid_start,uni.xid_continue,uni.xid_start)
+ident_pattern_token = f'([{uni.xid_start}][{uni.xid_continue}]+)|[{uni.xid_start}]'
 
 
 class WgslLexer(RegexLexer):
@@ -322,8 +322,8 @@ class WgslLexer(RegexLexer):
         'comments': [
             # Line ending comments
             # Match up CR/LF pair first.
-            (r'//{}*{}{}'.format(NotLineEndRE,CR,LF), Comment.Single),
-            (r'//{}*{}'.format(NotLineEndRE,LineEndRE), Comment.Single),
+            (rf'//{NotLineEndRE}*{CR}{LF}', Comment.Single),
+            (rf'//{NotLineEndRE}*{LineEndRE}', Comment.Single),
             (r'/\*', Comment.Multiline, 'block_comment'),
         ],
         'attribute': [

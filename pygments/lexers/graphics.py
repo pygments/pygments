@@ -4,7 +4,7 @@
 
     Lexers for computer graphics and plotting related languages.
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -314,10 +314,10 @@ class PostScriptLexer(RegexLexer):
     version_added = '1.4'
 
     delimiter = r'()<>\[\]{}/%\s'
-    delimiter_end = r'(?=[%s])' % delimiter
+    delimiter_end = rf'(?=[{delimiter}])'
 
-    valid_name_chars = r'[^%s]' % delimiter
-    valid_name = r"%s+%s" % (valid_name_chars, delimiter_end)
+    valid_name_chars = rf'[^{delimiter}]'
+    valid_name = rf"{valid_name_chars}+{delimiter_end}"
 
     tokens = {
         'root': [
@@ -342,7 +342,7 @@ class PostScriptLexer(RegexLexer):
             (r'(\-|\+)?[0-9]+' + delimiter_end, Number.Integer),
 
             # References
-            (r'\/%s' % valid_name, Name.Variable),
+            (rf'\/{valid_name}', Name.Variable),
 
             # Names
             (valid_name, Name.Function),      # Anything else is executed

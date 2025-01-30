@@ -4,7 +4,7 @@
 
     Lexers for Tact.
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -22,7 +22,7 @@ class TactLexer(RegexLexer):
     aliases = ['tact']
     filenames = ['*.tact']
     url = "https://tact-lang.org"
-    version_added = '2.17'
+    version_added = '2.18'
 
     tokens = {
         'root': [
