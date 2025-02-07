@@ -24,7 +24,7 @@ class DylanLexer(RegexLexer):
     """
 
     name = 'Dylan'
-    url = 'http://www.opendylan.org/'
+    url = 'https://opendylan.org/'
     aliases = ['dylan']
     filenames = ['*.dylan', '*.dyl', '*.intr']
     mimetypes = ['text/x-dylan']
