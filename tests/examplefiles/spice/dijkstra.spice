@@ -3,7 +3,7 @@ import "std/type/int" as integer;
 const int vertexCount = 9;
 
 f<int> minDistance(int[] dist, bool[] sptSet) {
-    int min = integer.MAX_VALUE;
+    int min = cast<int>(integer.MAX_VALUE);
     int minIndex;
 
     for int v = 0; v < vertexCount; v++ {
