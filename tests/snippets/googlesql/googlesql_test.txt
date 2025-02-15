@@ -1,0 +1,1485 @@
+---input---
+BEGIN TRANSACTION
+CREATE TEMP TABLE Flights(total INT64)  AS SELECT * FROM UNNEST([10,23,3,14,55]) AS a;
+SELECT *, SPLIT_SUBSTR('blah', 3||4) FROM Flights;
+
+## function calls and builtins
+
+SELECT abs(1.5);
+CREATE OR REPLACE my_table
+SELECT REPLACE('good show', 'good', 'great');
+SELECT LPAD("hello", 10);
+SELECT D3A_COUNT.TO_HLL();
+SELECT KLL_QUANTILES.MERGE_UINT64();
+SELECT MyNonBuiltinFunction(an_arg);
+SELECT MyNonBuiltinFunction((SELECT 1), an_arg), Baz();
+SELECT MyNonBuiltinFunction(')'), Baz(an_arg);
+SELECT (1)
+DEFINE TABLE Foo (options);
+DEFINE MACRO FOO the body of the macro with first arg $1 and second arg $2;
+SELECT $mymacro FROM my_table;
+SELECT "A macro inside a string: $mymacro" FROM my_table;
+SELECT 'A macro inside a string: $mymacro' FROM my_table;
+SELECT """A macro inside a string: $mymacro""" FROM my_table;
+SELECT rb"""A macro inside a string: $mymacro("arg1", "arg2")""" FROM my_table;
+select creation, latency from my_table_${YYYYMMDD+1};
+select creation, latency from my_table_${YYYY+2};
+select creation, latency from my_table_${YYYYMMDD-3};
+select creation, latency from my_table_${DD};
+select "This is the day of the month ${DD}. QED.";
+select * from logs limit ${LimitCount};
+SELECT 1 = 1, 1 != 42;
+SELECT 1 > 2;
+LOAD my.script;
+
+## Ambiguous keywords, either type or function or keywords.
+
+SELECT JSON '{"name": "Alice", "age": 30}';
+SELECT IF("%.1f", 1/3);
+CREATE TABLE IF NOT EXISTS my_table [(my_column int64)];
+SELECT EXTRACT(DAY FROM DATE '2013-12-25');
+SELECT CAST(1 AS BOOL);
+SELECT element from UNNEST([1, 2, 3] as element);
+select [1, 2, 3][OFFSET(0)];
+SELECT * FROM UNNEST(['a', 'b']) AS letter
+ORDER BY letter ASC LIMIT 1 OFFSET 1;
+SELECT * FROM Produce PIVOT(SUM(sales) FOR quarter IN ('Q1', 'Q2', 'Q3', 'Q4'))
+SELECT * FROM Produce UNPIVOT(sales FOR quarter IN (Q1, Q2, Q3, Q4))
+
+## comments
+
+SELECT TRUE;  -- double-dash comment
+SELECT TRUE;  # hash comment
+SELECT TRUE;  // this is a comment
+SELECT /* this is block comment */ TRUE;
+# Bracket comments in stock SQL VS Code config are not supported in GoogleSQL
+SELECT %{bracket comment};
+
+## embedding JS
+
+CREATE FUNCTION f(x INT, y INT)
+RETURNS DOUBLE LANGUAGE js AS """return (x*y);""";
+
+## embedding Lua
+
+CREATE FUNCTION f(x INT, y INT)
+RETURNS DOUBLE LANGUAGE lua AS """return (x*y);""";
+
+### strings
+
+SELECT 'Hi !';
+SELECT "Hi !";
+SELECT 'a tab \t in a single-quoted string';
+SELECT "a tab \t in a single-quoted string";
+SELECT "string with a # sign";
+SELECT 'string with a # sign';
+SELECT 'a string with a \' single quote';
+SELECT "a string with a \" double quote";
+SELECT """triple double quote""";
+SELECT '''triple single quote''';
+SELECT 'triple single quote no word boundary';
+SELECT "triple single quote no word boundary";
+SELECT '''triple single quote no word boundary''';
+SELECT b'binary single quoted string';
+SELECT B'binary single quoted string';
+SELECT b"binary double quoted string";
+SELECT B"binary double quoted string";
+SELECT b'''triple single quote''';
+SELECT B'''triple single quote''';
+SELECT b"""triple double quote""";
+SELECT B"""triple double quote""";
+SELECT r"raw single quoted string";
+SELECT r"double quote";
+SELECT rb"double quote";
+SELECT rB"double quote";
+SELECT R"double quote";
+SELECT Rb"double quote";
+SELECT RB"double quote";
+SELECT r'single quote';
+SELECT rb'single quote';
+SELECT rB'single quote';
+SELECT R'single quote';
+SELECT Rb'single quote';
+SELECT RB'single quote';
+SELECT r'single quote with an uninterpreted \' escape';
+SELECT b'single quote with an *interpreted* \' escape';
+SELECT r"""raw single quoted string""";
+SELECT r'''triple single quote''';
+SELECT rb'''triple single quote''';
+SELECT rB'''triple single quote''';
+SELECT R'''triple single quote''';
+SELECT Rb'''triple single quote''';
+SELECT RB'''triple single quote''';
+SELECT r"""triple double quote""";
+SELECT rb"""triple double quote""";
+SELECT rB"""triple double quote""";
+SELECT R"""triple double quote""";
+SELECT Rb"""triple double quote""";
+SELECT RB"""triple double quote""";
+SELECT RBr"""triple double quote""";
+SELECT RBb"""triple double quote""";
+SELECT rr"invalid raw single quoted string";
+SELECT rr"""invalid raw single quoted string""";
+SELECT rr'invalid raw single quoted string';
+
+---tokens---
+'BEGIN'       Keyword
+' '           Text.Whitespace
+'TRANSACTION' Keyword
+'\n'          Text.Whitespace
+
+'CREATE'      Keyword
+' '           Text.Whitespace
+'TEMP'        Keyword
+' '           Text.Whitespace
+'TABLE'       Keyword
+' '           Text.Whitespace
+'Flights'     Name
+'('           Punctuation
+'total'       Name
+' '           Text.Whitespace
+'INT64'       Keyword.Type
+')'           Punctuation
+'  '          Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'SELECT'      Keyword
+' '           Text.Whitespace
+'*'           Error
+' '           Text.Whitespace
+'FROM'        Keyword
+' '           Text.Whitespace
+'UNNEST'      Keyword
+'('           Punctuation
+'['           Error
+'10'          Literal.Number.Integer
+','           Punctuation
+'23'          Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+'14'          Literal.Number.Integer
+','           Punctuation
+'55'          Literal.Number.Integer
+']'           Error
+')'           Punctuation
+' '           Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'a'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'*'           Error
+','           Punctuation
+' '           Text.Whitespace
+'SPLIT_SUBSTR' Name.Function
+'('           Punctuation
+"'"           Literal.String.Single
+'blah'        Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+'||'          Operator
+'4'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'FROM'        Keyword
+' '           Text.Whitespace
+'Flights'     Name
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'## function calls and builtins' Comment.Single
+'\n\n'        Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'abs'         Name.Function
+'('           Punctuation
+'1.5'         Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'CREATE'      Keyword
+' '           Text.Whitespace
+'OR'          Keyword
+' '           Text.Whitespace
+'REPLACE'     Keyword
+' '           Text.Whitespace
+'my_table'    Name
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'REPLACE'     Keyword
+'('           Punctuation
+"'"           Literal.String.Single
+'good show'   Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'good'        Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'great'       Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'LPAD'        Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'hello'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'D3A_COUNT.TO_HLL' Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'KLL_QUANTILES' Name
+'.'           Punctuation
+'MERGE_UINT64' Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'MyNonBuiltinFunction' Name
+'('           Punctuation
+'an_arg'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'MyNonBuiltinFunction' Name
+'('           Punctuation
+'('           Punctuation
+'SELECT'      Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'an_arg'      Name
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'Baz'         Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'MyNonBuiltinFunction' Name
+'('           Punctuation
+"'"           Literal.String.Single
+')'           Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'Baz'         Name
+'('           Punctuation
+'an_arg'      Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'DEFINE'      Keyword
+' '           Text.Whitespace
+'TABLE'       Keyword
+' '           Text.Whitespace
+'Foo'         Name
+' '           Text.Whitespace
+'('           Punctuation
+'options'     Keyword
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'DEFINE'      Keyword
+' '           Text.Whitespace
+'MACRO'       Keyword
+' '           Text.Whitespace
+'FOO'         Name
+' '           Text.Whitespace
+'the'         Name
+' '           Text.Whitespace
+'body'        Name
+' '           Text.Whitespace
+'of'          Keyword
+' '           Text.Whitespace
+'the'         Name
+' '           Text.Whitespace
+'macro'       Keyword
+' '           Text.Whitespace
+'with'        Keyword
+' '           Text.Whitespace
+'first'       Keyword
+' '           Text.Whitespace
+'arg'         Name
+' '           Text.Whitespace
+'$1'          Name
+' '           Text.Whitespace
+'and'         Keyword
+' '           Text.Whitespace
+'second '     Keyword
+'arg'         Name
+' '           Text.Whitespace
+'$2'          Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'$mymacro'    Name
+' '           Text.Whitespace
+'FROM'        Keyword
+' '           Text.Whitespace
+'my_table'    Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'A macro inside a string: $mymacro' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'FROM'        Keyword
+' '           Text.Whitespace
+'my_table'    Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'A macro inside a string: $mymacro' Literal.String.Single
+"'"           Literal.String.Single
+' '           Text.Whitespace
+'FROM'        Keyword
+' '           Text.Whitespace
+'my_table'    Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'""'          Literal.String.Escape
+'A macro inside a string: $mymacro' Literal.String.Double
+'""'          Literal.String.Escape
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'FROM'        Keyword
+' '           Text.Whitespace
+'my_table'    Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'rb'          Name
+'"'           Literal.String.Double
+'""'          Literal.String.Escape
+'A macro inside a string: $mymacro(' Literal.String.Double
+'"'           Literal.String.Double
+'arg1'        Name
+'"'           Literal.String.Double
+', '          Literal.String.Double
+'"'           Literal.String.Double
+'arg2'        Name
+'"'           Literal.String.Double
+')'           Literal.String.Double
+'""'          Literal.String.Escape
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'FROM'        Keyword
+' '           Text.Whitespace
+'my_table'    Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'select'      Keyword
+' '           Text.Whitespace
+'creation'    Name
+','           Punctuation
+' '           Text.Whitespace
+'latency'     Name
+' '           Text.Whitespace
+'from'        Keyword
+' '           Text.Whitespace
+'my_table_$'  Name
+'{'           Error
+'YYYYMMDD'    Name
+'+'           Operator
+'1'           Literal.Number.Integer
+'}'           Error
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'select'      Keyword
+' '           Text.Whitespace
+'creation'    Name
+','           Punctuation
+' '           Text.Whitespace
+'latency'     Name
+' '           Text.Whitespace
+'from'        Keyword
+' '           Text.Whitespace
+'my_table_$'  Name
+'{'           Error
+'YYYY'        Name
+'+'           Operator
+'2'           Literal.Number.Integer
+'}'           Error
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'select'      Keyword
+' '           Text.Whitespace
+'creation'    Name
+','           Punctuation
+' '           Text.Whitespace
+'latency'     Name
+' '           Text.Whitespace
+'from'        Keyword
+' '           Text.Whitespace
+'my_table_$'  Name
+'{'           Error
+'YYYYMMDD'    Name
+'-'           Operator
+'3'           Literal.Number.Integer
+'}'           Error
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'select'      Keyword
+' '           Text.Whitespace
+'creation'    Name
+','           Punctuation
+' '           Text.Whitespace
+'latency'     Name
+' '           Text.Whitespace
+'from'        Keyword
+' '           Text.Whitespace
+'my_table_$'  Name
+'{'           Error
+'DD'          Name
+'}'           Error
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'select'      Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'This is the day of the month ${DD}. QED.' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'select'      Keyword
+' '           Text.Whitespace
+'*'           Error
+' '           Text.Whitespace
+'from'        Keyword
+' '           Text.Whitespace
+'logs'        Name
+' '           Text.Whitespace
+'limit'       Keyword
+' '           Text.Whitespace
+'$'           Name
+'{'           Error
+'LimitCount'  Name
+'}'           Error
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'='           Error
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'!'           Error
+'='           Error
+' '           Text.Whitespace
+'42'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'>'           Error
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'LOAD'        Keyword
+' '           Text.Whitespace
+'my'          Name
+'.'           Punctuation
+'script'      Name
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'## Ambiguous keywords, either type or function or keywords.' Comment.Single
+'\n\n'        Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'JSON'        Keyword.Type
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'{"name": "Alice", "age": 30}' Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'IF'          Keyword
+'('           Punctuation
+'"'           Literal.String.Double
+'%.1f'        Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'/'           Operator
+'3'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'CREATE'      Keyword
+' '           Text.Whitespace
+'TABLE'       Keyword
+' '           Text.Whitespace
+'IF'          Keyword
+' '           Text.Whitespace
+'NOT'         Keyword
+' '           Text.Whitespace
+'EXISTS'      Keyword
+' '           Text.Whitespace
+'my_table'    Name
+' '           Text.Whitespace
+'['           Error
+'('           Punctuation
+'my_column'   Name
+' '           Text.Whitespace
+'int64'       Keyword.Type
+')'           Punctuation
+']'           Error
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'EXTRACT'     Keyword
+'('           Punctuation
+'DAY'         Keyword
+' '           Text.Whitespace
+'FROM'        Keyword
+' '           Text.Whitespace
+'DATE'        Keyword.Type
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'2013-12-25'  Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'CAST'        Keyword
+'('           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'BOOL'        Keyword.Type
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'element'     Name
+' '           Text.Whitespace
+'from'        Keyword
+' '           Text.Whitespace
+'UNNEST'      Keyword
+'('           Punctuation
+'['           Error
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+']'           Error
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'element'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'select'      Keyword
+' '           Text.Whitespace
+'['           Error
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+']'           Error
+'['           Error
+'OFFSET'      Keyword
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+']'           Error
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'*'           Error
+' '           Text.Whitespace
+'FROM'        Keyword
+' '           Text.Whitespace
+'UNNEST'      Keyword
+'('           Punctuation
+'['           Error
+"'"           Literal.String.Single
+'a'           Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'b'           Literal.String.Single
+"'"           Literal.String.Single
+']'           Error
+')'           Punctuation
+' '           Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'letter'      Name
+'\n'          Text.Whitespace
+
+'ORDER'       Keyword
+' '           Text.Whitespace
+'BY'          Keyword
+' '           Text.Whitespace
+'letter'      Name
+' '           Text.Whitespace
+'ASC'         Keyword
+' '           Text.Whitespace
+'LIMIT'       Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'OFFSET'      Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'*'           Error
+' '           Text.Whitespace
+'FROM'        Keyword
+' '           Text.Whitespace
+'Produce'     Name
+' '           Text.Whitespace
+'PIVOT'       Keyword
+'('           Punctuation
+'SUM'         Name.Function
+'('           Punctuation
+'sales'       Name
+')'           Punctuation
+' '           Text.Whitespace
+'FOR'         Keyword
+' '           Text.Whitespace
+'quarter'     Keyword
+' '           Text.Whitespace
+'IN'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+"'"           Literal.String.Single
+'Q1'          Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'Q2'          Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'Q3'          Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'Q4'          Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'*'           Error
+' '           Text.Whitespace
+'FROM'        Keyword
+' '           Text.Whitespace
+'Produce'     Name
+' '           Text.Whitespace
+'UNPIVOT'     Keyword
+'('           Punctuation
+'sales'       Name
+' '           Text.Whitespace
+'FOR'         Keyword
+' '           Text.Whitespace
+'quarter'     Keyword
+' '           Text.Whitespace
+'IN'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'Q1'          Name
+','           Punctuation
+' '           Text.Whitespace
+'Q2'          Name
+','           Punctuation
+' '           Text.Whitespace
+'Q3'          Name
+','           Punctuation
+' '           Text.Whitespace
+'Q4'          Name
+')'           Punctuation
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'## comments' Comment.Single
+'\n\n'        Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'TRUE'        Name.Constant
+';'           Punctuation
+'  '          Text.Whitespace
+'-- double-dash comment' Comment.Single
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'TRUE'        Name.Constant
+';'           Punctuation
+'  '          Text.Whitespace
+'# hash comment' Comment.Single
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'TRUE'        Name.Constant
+';'           Punctuation
+'  '          Text.Whitespace
+'/'           Error
+'/'           Error
+' '           Text.Whitespace
+'this'        Name
+' '           Text.Whitespace
+'is'          Keyword
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'comment'     Name
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'/*'          Comment.Multiline
+' this is block comment ' Comment.Multiline
+'*/'          Comment.Multiline
+' '           Text.Whitespace
+'TRUE'        Name.Constant
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'# Bracket comments in stock SQL VS Code config are not supported in GoogleSQL' Comment.Single
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'%'           Error
+'{'           Error
+'bracket'     Name
+' '           Text.Whitespace
+'comment'     Name
+'}'           Error
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'## embedding JS' Comment.Single
+'\n\n'        Text.Whitespace
+
+'CREATE'      Keyword
+' '           Text.Whitespace
+'FUNCTION'    Keyword
+' '           Text.Whitespace
+'f'           Name
+'('           Punctuation
+'x'           Name
+' '           Text.Whitespace
+'INT'         Name
+','           Punctuation
+' '           Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+'INT'         Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'RETURNS'     Keyword
+' '           Text.Whitespace
+'DOUBLE'      Keyword.Type
+' '           Text.Whitespace
+'LANGUAGE'    Keyword
+' '           Text.Whitespace
+'js'          Name
+' '           Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'""'          Literal.String.Escape
+'return (x*y);' Literal.String.Double
+'""'          Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'## embedding Lua' Comment.Single
+'\n\n'        Text.Whitespace
+
+'CREATE'      Keyword
+' '           Text.Whitespace
+'FUNCTION'    Keyword
+' '           Text.Whitespace
+'f'           Name
+'('           Punctuation
+'x'           Name
+' '           Text.Whitespace
+'INT'         Name
+','           Punctuation
+' '           Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+'INT'         Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'RETURNS'     Keyword
+' '           Text.Whitespace
+'DOUBLE'      Keyword.Type
+' '           Text.Whitespace
+'LANGUAGE'    Keyword
+' '           Text.Whitespace
+'lua'         Name
+' '           Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'""'          Literal.String.Escape
+'return (x*y);' Literal.String.Double
+'""'          Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'### strings' Comment.Single
+'\n\n'        Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'Hi !'        Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Hi !'        Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'a tab '      Literal.String.Single
+'\\t'         Literal.String.Escape
+' in a single-quoted string' Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'a tab '      Literal.String.Double
+'\\t'         Literal.String.Escape
+' in a single-quoted string' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'string with a # sign' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'string with a # sign' Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'a string with a ' Literal.String.Single
+"\\'"         Literal.String.Escape
+' single quote' Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'a string with a ' Literal.String.Double
+'\\"'         Literal.String.Escape
+' double quote' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'""'          Literal.String.Escape
+'triple double quote' Literal.String.Double
+'""'          Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+"'"           Literal.String.Single
+"''"          Literal.String.Escape
+'triple single quote' Literal.String.Single
+"''"          Literal.String.Escape
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'triple single quote no word boundary' Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'triple single quote no word boundary' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+"'"           Literal.String.Single
+"''"          Literal.String.Escape
+'triple single quote no word boundary' Literal.String.Single
+"''"          Literal.String.Escape
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'b'           Name
+"'"           Literal.String.Single
+'binary single quoted string' Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'B'           Name
+"'"           Literal.String.Single
+'binary single quoted string' Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'b'           Name
+'"'           Literal.String.Double
+'binary double quoted string' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'B'           Name
+'"'           Literal.String.Double
+'binary double quoted string' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'b'           Name
+"'"           Literal.String.Single
+"''"          Literal.String.Escape
+'triple single quote' Literal.String.Single
+"''"          Literal.String.Escape
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'B'           Name
+"'"           Literal.String.Single
+"''"          Literal.String.Escape
+'triple single quote' Literal.String.Single
+"''"          Literal.String.Escape
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'b'           Name
+'"'           Literal.String.Double
+'""'          Literal.String.Escape
+'triple double quote' Literal.String.Double
+'""'          Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'B'           Name
+'"'           Literal.String.Double
+'""'          Literal.String.Escape
+'triple double quote' Literal.String.Double
+'""'          Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'r'           Name
+'"'           Literal.String.Double
+'raw single quoted string' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'r'           Name
+'"'           Literal.String.Double
+'double quote' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'rb'          Name
+'"'           Literal.String.Double
+'double quote' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'rB'          Name
+'"'           Literal.String.Double
+'double quote' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'R'           Name
+'"'           Literal.String.Double
+'double quote' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'Rb'          Name
+'"'           Literal.String.Double
+'double quote' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'RB'          Name
+'"'           Literal.String.Double
+'double quote' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'r'           Name
+"'"           Literal.String.Single
+'single quote' Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'rb'          Name
+"'"           Literal.String.Single
+'single quote' Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'rB'          Name
+"'"           Literal.String.Single
+'single quote' Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'R'           Name
+"'"           Literal.String.Single
+'single quote' Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'Rb'          Name
+"'"           Literal.String.Single
+'single quote' Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'RB'          Name
+"'"           Literal.String.Single
+'single quote' Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'r'           Name
+"'"           Literal.String.Single
+'single quote with an uninterpreted ' Literal.String.Single
+"\\'"         Literal.String.Escape
+' escape'     Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'b'           Name
+"'"           Literal.String.Single
+'single quote with an *interpreted* ' Literal.String.Single
+"\\'"         Literal.String.Escape
+' escape'     Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'r'           Name
+'"'           Literal.String.Double
+'""'          Literal.String.Escape
+'raw single quoted string' Literal.String.Double
+'""'          Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'r'           Name
+"'"           Literal.String.Single
+"''"          Literal.String.Escape
+'triple single quote' Literal.String.Single
+"''"          Literal.String.Escape
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'rb'          Name
+"'"           Literal.String.Single
+"''"          Literal.String.Escape
+'triple single quote' Literal.String.Single
+"''"          Literal.String.Escape
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'rB'          Name
+"'"           Literal.String.Single
+"''"          Literal.String.Escape
+'triple single quote' Literal.String.Single
+"''"          Literal.String.Escape
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'R'           Name
+"'"           Literal.String.Single
+"''"          Literal.String.Escape
+'triple single quote' Literal.String.Single
+"''"          Literal.String.Escape
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'Rb'          Name
+"'"           Literal.String.Single
+"''"          Literal.String.Escape
+'triple single quote' Literal.String.Single
+"''"          Literal.String.Escape
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'RB'          Name
+"'"           Literal.String.Single
+"''"          Literal.String.Escape
+'triple single quote' Literal.String.Single
+"''"          Literal.String.Escape
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'r'           Name
+'"'           Literal.String.Double
+'""'          Literal.String.Escape
+'triple double quote' Literal.String.Double
+'""'          Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'rb'          Name
+'"'           Literal.String.Double
+'""'          Literal.String.Escape
+'triple double quote' Literal.String.Double
+'""'          Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'rB'          Name
+'"'           Literal.String.Double
+'""'          Literal.String.Escape
+'triple double quote' Literal.String.Double
+'""'          Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'R'           Name
+'"'           Literal.String.Double
+'""'          Literal.String.Escape
+'triple double quote' Literal.String.Double
+'""'          Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'Rb'          Name
+'"'           Literal.String.Double
+'""'          Literal.String.Escape
+'triple double quote' Literal.String.Double
+'""'          Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'RB'          Name
+'"'           Literal.String.Double
+'""'          Literal.String.Escape
+'triple double quote' Literal.String.Double
+'""'          Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'RBr'         Name
+'"'           Literal.String.Double
+'""'          Literal.String.Escape
+'triple double quote' Literal.String.Double
+'""'          Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'RBb'         Name
+'"'           Literal.String.Double
+'""'          Literal.String.Escape
+'triple double quote' Literal.String.Double
+'""'          Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'rr'          Name
+'"'           Literal.String.Double
+'invalid raw single quoted string' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'rr'          Name
+'"'           Literal.String.Double
+'""'          Literal.String.Escape
+'invalid raw single quoted string' Literal.String.Double
+'""'          Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SELECT'      Keyword
+' '           Text.Whitespace
+'rr'          Name
+"'"           Literal.String.Single
+'invalid raw single quoted string' Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace

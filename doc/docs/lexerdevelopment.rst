@@ -783,7 +783,11 @@ contribute a new lexer, but you might find it useful in any case.
 
   into::
 
-   (r"[\(\)\[\]{}]", token.Punctuation)
+   (r"[\(\)\[\]{}]+", token.Punctuation)
+
+  .. note::
+
+   We're using ``+`` here as well to match successive punctuation tokens together. See below for more information about this.
 
 
 * Be careful with ``.*``. This matches greedily as much as it can. For instance,

@@ -1,0 +1,749 @@
+---input---
+package example
+
+# Rego Policy References: https://www.openpolicyagent.org/docs/latest/policy-reference/
+
+### Constants
+
+a := {1, 2, 3}
+b := {4, 5, 6}
+c := a | b
+
+### Conditionals (Boolean)
+
+# p is true if ...
+p := true { 1 == 1 }
+
+# OR
+# with `import rego.v1` or `import future.keywords.if`
+p if { 2 > 1 }
+
+# OR
+p { 3 != 4 }
+
+
+### Conditionals
+
+# with `import rego.v1` or `import future.keywords.if`
+default a := 1
+a := 5   if { input.value > 3 }
+a := 100 if { input.value > 10 }
+
+
+### Incremental
+
+# a_set will contain values of x and values of y
+a_set[x] { x := [1, 2, 3][_] }
+a_set[y] { y := [4, 5, 6][_] }
+
+# alternatively, with `import rego.v1`, or `import future.keywords.contains` and `import future.keywords.if`
+a_set contains x if { x in [1, 2, 3] }
+a_set contains y if { y in [4, 5, 6] }
+
+# a_map will contain key->value pairs x->y and w->z
+a_map[x] := y if { x := "key1"; y := "value1" }
+a_map[w] := z if { w := "key2"; z := "value2" }
+
+
+### Functions (boolean)
+
+# with `import rego.v1` or `import future.keywords.if`
+f(x, y) if {
+    x < y
+}
+
+# OR
+
+f(x, y) := true if {
+    x + y > 10
+}
+
+### Functions (conditionals)
+
+# with `import rego.v1` or `import future.keywords.if`
+f(x) := "A" if { x >= 90 }
+f(x) := "B" if { x >= 80; x < 90 }
+f(x) := "C" if { x >= 70; x < 80 }
+
+
+### Reference Heads
+
+# with `import rego.v1`, or `import future.keywords.contains` and `import future.keywords.if`
+fruit.apple.seeds = 12 if input == "apple"             # complete document (single value rule)
+
+fruit.pineapple.colors contains x if x := "yellow"     # multi-value rule
+
+fruit.banana.phone[x] = "bananular" if x := "cellular" # single value rule
+fruit.banana.phone.cellular = "bananular" if true      # equivalent single value rule
+
+fruit.orange.color(x) = true if x == "orange"          # function
+
+---tokens---
+'package'     Keyword
+' '           Text.Whitespace
+'example'     Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# Rego Policy References: https://www.openpolicyagent.org/docs/latest/policy-reference/' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'### Constants' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'a'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'1'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'b'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'4'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'5'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'6'           Literal.Number
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'c'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'b'           Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'### Conditionals (Boolean)' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# p is true if ...' Comment.Single
+'\n'          Text.Whitespace
+
+'p'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'true'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# OR'        Comment.Single
+'\n'          Text.Whitespace
+
+'# with `import rego.v1` or `import future.keywords.if`' Comment.Single
+'\n'          Text.Whitespace
+
+'p'           Name
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# OR'        Comment.Single
+'\n'          Text.Whitespace
+
+'p'           Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number
+' '           Text.Whitespace
+'!='          Operator
+' '           Text.Whitespace
+'4'           Literal.Number
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'### Conditionals' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# with `import rego.v1` or `import future.keywords.if`' Comment.Single
+'\n'          Text.Whitespace
+
+'default'     Keyword
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+'\n'          Text.Whitespace
+
+'a'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'5'           Literal.Number
+'   '         Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'input'       Name.Builtin
+'.'           Punctuation
+'value'       Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'3'           Literal.Number
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'a'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'100'         Literal.Number
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'input'       Name.Builtin
+'.'           Punctuation
+'value'       Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'10'          Literal.Number
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'### Incremental' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# a_set will contain values of x and values of y' Comment.Single
+'\n'          Text.Whitespace
+
+'a_set'       Name
+'['           Punctuation
+'x'           Name
+']'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number
+']'           Punctuation
+'['           Punctuation
+'_'           Name
+']'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'a_set'       Name
+'['           Punctuation
+'y'           Name
+']'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'['           Punctuation
+'4'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'5'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'6'           Literal.Number
+']'           Punctuation
+'['           Punctuation
+'_'           Name
+']'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# alternatively, with `import rego.v1`, or `import future.keywords.contains` and `import future.keywords.if`' Comment.Single
+'\n'          Text.Whitespace
+
+'a_set'       Name
+' '           Text.Whitespace
+'contains'    Keyword
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number
+']'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'a_set'       Name
+' '           Text.Whitespace
+'contains'    Keyword
+' '           Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'['           Punctuation
+'4'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'5'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'6'           Literal.Number
+']'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# a_map will contain key->value pairs x->y and w->z' Comment.Single
+'\n'          Text.Whitespace
+
+'a_map'       Name
+'['           Punctuation
+'x'           Name
+']'           Punctuation
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'"key1"'      Literal.String.Double
+';'           Punctuation
+' '           Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'"value1"'    Literal.String.Double
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'a_map'       Name
+'['           Punctuation
+'w'           Name
+']'           Punctuation
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'w'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'"key2"'      Literal.String.Double
+';'           Punctuation
+' '           Text.Whitespace
+'z'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'"value2"'    Literal.String.Double
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'### Functions (boolean)' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# with `import rego.v1` or `import future.keywords.if`' Comment.Single
+'\n'          Text.Whitespace
+
+'f'           Name
+'('           Punctuation
+'x'           Name
+','           Punctuation
+' '           Text.Whitespace
+'y'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'y'           Name
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# OR'        Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'f'           Name
+'('           Punctuation
+'x'           Name
+','           Punctuation
+' '           Text.Whitespace
+'y'           Name
+')'           Punctuation
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'true'        Keyword
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'10'          Literal.Number
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'### Functions (conditionals)' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# with `import rego.v1` or `import future.keywords.if`' Comment.Single
+'\n'          Text.Whitespace
+
+'f'           Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'"A"'         Literal.String.Double
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'90'          Literal.Number
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'f'           Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'"B"'         Literal.String.Double
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'80'          Literal.Number
+';'           Punctuation
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'90'          Literal.Number
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'f'           Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'"C"'         Literal.String.Double
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'70'          Literal.Number
+';'           Punctuation
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'80'          Literal.Number
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'### Reference Heads' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'# with `import rego.v1`, or `import future.keywords.contains` and `import future.keywords.if`' Comment.Single
+'\n'          Text.Whitespace
+
+'fruit'       Name
+'.'           Punctuation
+'apple'       Name
+'.'           Punctuation
+'seeds'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'12'          Literal.Number
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'input'       Name.Builtin
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'"apple"'     Literal.String.Double
+'             ' Text.Whitespace
+'# complete document (single value rule)' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'fruit'       Name
+'.'           Punctuation
+'pineapple'   Name
+'.'           Punctuation
+'colors'      Name
+' '           Text.Whitespace
+'contains'    Keyword
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'"yellow"'    Literal.String.Double
+'     '       Text.Whitespace
+'# multi-value rule' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'fruit'       Name
+'.'           Punctuation
+'banana'      Name
+'.'           Punctuation
+'phone'       Name
+'['           Punctuation
+'x'           Name
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"bananular"' Literal.String.Double
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'"cellular"'  Literal.String.Double
+' '           Text.Whitespace
+'# single value rule' Comment.Single
+'\n'          Text.Whitespace
+
+'fruit'       Name
+'.'           Punctuation
+'banana'      Name
+'.'           Punctuation
+'phone'       Name
+'.'           Punctuation
+'cellular'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"bananular"' Literal.String.Double
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'true'        Keyword
+'      '      Text.Whitespace
+'# equivalent single value rule' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'fruit'       Name
+'.'           Punctuation
+'orange'      Name
+'.'           Punctuation
+'color'       Name
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'true'        Keyword
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'"orange"'    Literal.String.Double
+'          '  Text.Whitespace
+'# function'  Comment.Single
+'\n'          Text.Whitespace

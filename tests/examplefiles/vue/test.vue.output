@@ -1,0 +1,608 @@
+'<'           Punctuation
+'script'      Name.Tag
+'>'           Punctuation
+''            Text
+'\n'          Text.Whitespace
+
+'export'      Keyword
+' '           Text.Whitespace
+'default'     Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'data'        Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'greeting'    Name.Other
+':'           Operator
+' '           Text.Whitespace
+"'Hello World!'" Literal.String.Single
+'\n        '  Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'<'           Punctuation
+'/'           Punctuation
+'script'      Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'template'    Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'p'           Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"greeting"'  Literal.String
+'>'           Punctuation
+'{{'          Comment.Preproc
+''            Text
+' '           Text.Whitespace
+'greeting'    Name.Other
+' '           Text.Whitespace
+'}}'          Comment.Preproc
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'v-bind'      Name.Attribute
+'='           Operator
+'"'           Literal.String
+'objectOfAttrs' Name.Other
+'"'           Literal.String
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'{{'          Comment.Preproc
+''            Text
+' '           Text.Whitespace
+'number'      Name.Other
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Float
+' '           Text.Whitespace
+'}}'          Comment.Preproc
+'\n    '      Text
+'{{'          Comment.Preproc
+''            Text
+' '           Text.Whitespace
+'ok'          Name.Other
+' '           Text.Whitespace
+'?'           Operator
+' '           Text.Whitespace
+"'YES'"       Literal.String.Single
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+"'NO'"        Literal.String.Single
+' '           Text.Whitespace
+'}}'          Comment.Preproc
+'\n    '      Text
+'{{'          Comment.Preproc
+''            Text
+' '           Text.Whitespace
+'message'     Name.Other
+'.'           Punctuation
+'split'       Name.Other
+'('           Punctuation
+"''"          Literal.String.Single
+')'           Punctuation
+'.'           Punctuation
+'reverse'     Name.Other
+'('           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'join'        Name.Other
+'('           Punctuation
+"''"          Literal.String.Single
+')'           Punctuation
+' '           Text.Whitespace
+'}}'          Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+':'           Punctuation
+'id'          Name.Attribute
+'='           Operator
+'"'           Literal.String
+'`'           Literal.String.Backtick
+'list-'       Literal.String.Backtick
+'${'          Literal.String.Interpol
+'id'          Name.Other
+'}'           Literal.String.Interpol
+'`'           Literal.String.Backtick
+'"'           Literal.String
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'span'        Name.Tag
+' '           Text
+':'           Punctuation
+'title'       Name.Attribute
+'='           Operator
+'"'           Literal.String
+'toTitleDate' Name.Other
+'('           Punctuation
+'date'        Name.Other
+')'           Punctuation
+'"'           Literal.String
+'>'           Punctuation
+'\n        '  Text
+'{{'          Comment.Preproc
+''            Text
+' '           Text.Whitespace
+'formatDate'  Name.Other
+'('           Punctuation
+'date'        Name.Other
+')'           Punctuation
+' '           Text.Whitespace
+'}}'          Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'span'        Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'p'           Name.Tag
+' '           Text
+'v-if'        Name.Attribute
+'='           Operator
+'"'           Literal.String
+'seen'        Name.Other
+'"'           Literal.String
+'>'           Punctuation
+'Now you see me' Text
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'v-bind'      Name.Attribute
+':'           Punctuation
+'href'        Name.Attribute
+'='           Operator
+'"'           Literal.String
+'url'         Name.Other
+'"'           Literal.String
+'>'           Punctuation
+' ... '       Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<!-- shorthand -->' Comment.Multiline
+'\n    '      Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+':'           Punctuation
+'href'        Name.Attribute
+'='           Operator
+'"'           Literal.String
+'url'         Name.Other
+'"'           Literal.String
+'>'           Punctuation
+' ... '       Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'v-on'        Name.Attribute
+':'           Punctuation
+'click'       Name.Attribute
+'='           Operator
+'"'           Literal.String
+'doSomething' Name.Other
+'"'           Literal.String
+'>'           Punctuation
+' ... '       Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<!-- shorthand -->' Comment.Multiline
+'\n    '      Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'@'           Punctuation
+'click'       Name.Attribute
+'='           Operator
+'"'           Literal.String
+'doSomething' Name.Other
+'"'           Literal.String
+'>'           Punctuation
+' ... '       Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'v-bind'      Name.Attribute
+':'           Punctuation
+'['           Comment.Preproc
+'attributeName' Name.Other
+']'           Comment.Preproc
+'='           Operator
+'"'           Literal.String
+'url'         Name.Other
+'"'           Literal.String
+'>'           Punctuation
+' ... '       Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+':'           Punctuation
+'['           Comment.Preproc
+'attributeName' Name.Other
+']'           Comment.Preproc
+'='           Operator
+'"'           Literal.String
+'url'         Name.Other
+'"'           Literal.String
+'>'           Punctuation
+' ... '       Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'v-on'        Name.Attribute
+':'           Punctuation
+'['           Comment.Preproc
+'eventName'   Name.Other
+']'           Comment.Preproc
+'='           Operator
+'"'           Literal.String
+'doSomething' Name.Other
+'"'           Literal.String
+'>'           Punctuation
+' ... '       Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'@'           Punctuation
+'['           Comment.Preproc
+'eventName'   Name.Other
+']'           Comment.Preproc
+'='           Operator
+'"'           Literal.String
+'doSomething' Name.Other
+'"'           Literal.String
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'form'        Name.Tag
+' '           Text
+'@'           Punctuation
+'submit'      Name.Attribute
+'.'           Punctuation
+'prevent'     Name.Attribute
+'='           Operator
+'"'           Literal.String
+'onSubmit'    Name.Other
+'"'           Literal.String
+'>'           Punctuation
+'...'         Text
+'<'           Punctuation
+'/'           Punctuation
+'form'        Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'li'          Name.Tag
+' '           Text
+'v-for'       Name.Attribute
+'='           Operator
+'"'           Literal.String
+'item'        Name.Other
+' '           Text.Whitespace
+'in'          Operator.Word
+' '           Text.Whitespace
+'items'       Name.Other
+'"'           Literal.String
+'>'           Punctuation
+'\n        '  Text
+'{{'          Comment.Preproc
+''            Text
+' '           Text.Whitespace
+'item'        Name.Other
+'.'           Punctuation
+'message'     Name.Other
+' '           Text.Whitespace
+'}}'          Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'li'          Name.Tag
+' '           Text
+'v-for'       Name.Attribute
+'='           Operator
+'"'           Literal.String
+'('           Punctuation
+'item'        Name.Other
+','           Punctuation
+' '           Text.Whitespace
+'index'       Name.Other
+')'           Punctuation
+' '           Text.Whitespace
+'in'          Operator.Word
+' '           Text.Whitespace
+'items'       Name.Other
+'"'           Literal.String
+'>'           Punctuation
+'\n        '  Text
+'{{'          Comment.Preproc
+''            Text
+' '           Text.Whitespace
+'parentMessage' Name.Other
+' '           Text.Whitespace
+'}}'          Comment.Preproc
+' - '         Text
+'{{'          Comment.Preproc
+''            Text
+' '           Text.Whitespace
+'index'       Name.Other
+' '           Text.Whitespace
+'}}'          Comment.Preproc
+' - '         Text
+'{{'          Comment.Preproc
+''            Text
+' '           Text.Whitespace
+'item'        Name.Other
+'.'           Punctuation
+'message'     Name.Other
+' '           Text.Whitespace
+'}}'          Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'li'          Name.Tag
+' '           Text
+'v-for'       Name.Attribute
+'='           Operator
+'"'           Literal.String
+'{'           Punctuation
+' '           Text.Whitespace
+'message'     Name.Other
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'in'          Operator.Word
+' '           Text.Whitespace
+'items'       Name.Other
+'"'           Literal.String
+'>'           Punctuation
+'\n        '  Text
+'{{'          Comment.Preproc
+''            Text
+' '           Text.Whitespace
+'message'     Name.Other
+' '           Text.Whitespace
+'}}'          Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'li'          Name.Tag
+' '           Text
+'v-for'       Name.Attribute
+'='           Operator
+'"'           Literal.String
+'('           Punctuation
+'{'           Punctuation
+' '           Text.Whitespace
+'message'     Name.Other
+' '           Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'index'       Name.Other
+')'           Punctuation
+' '           Text.Whitespace
+'in'          Operator.Word
+' '           Text.Whitespace
+'items'       Name.Other
+'"'           Literal.String
+'>'           Punctuation
+'\n        '  Text
+'{{'          Comment.Preproc
+''            Text
+' '           Text.Whitespace
+'message'     Name.Other
+' '           Text.Whitespace
+'}}'          Comment.Preproc
+' '           Text
+'{{'          Comment.Preproc
+''            Text
+' '           Text.Whitespace
+'index'       Name.Other
+' '           Text.Whitespace
+'}}'          Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'li'          Name.Tag
+' '           Text
+'v-for'       Name.Attribute
+'='           Operator
+'"'           Literal.String
+'item'        Name.Other
+' '           Text.Whitespace
+'in'          Operator.Word
+' '           Text.Whitespace
+'items'       Name.Other
+'"'           Literal.String
+'>'           Punctuation
+'\n        '  Text
+'<'           Punctuation
+'span'        Name.Tag
+' '           Text
+'v-for'       Name.Attribute
+'='           Operator
+'"'           Literal.String
+'childItem'   Name.Other
+' '           Text.Whitespace
+'in'          Operator.Word
+' '           Text.Whitespace
+'item'        Name.Other
+'.'           Punctuation
+'children'    Name.Other
+'"'           Literal.String
+'>'           Punctuation
+'\n            ' Text
+'{{'          Comment.Preproc
+''            Text
+' '           Text.Whitespace
+'item'        Name.Other
+'.'           Punctuation
+'message'     Name.Other
+' '           Text.Whitespace
+'}}'          Comment.Preproc
+' '           Text
+'{{'          Comment.Preproc
+''            Text
+' '           Text.Whitespace
+'childItem'   Name.Other
+' '           Text.Whitespace
+'}}'          Comment.Preproc
+'\n        '  Text
+'<'           Punctuation
+'/'           Punctuation
+'span'        Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text
+'v-for'       Name.Attribute
+'='           Operator
+'"'           Literal.String
+'item'        Name.Other
+' '           Text.Whitespace
+'of'          Keyword
+' '           Text.Whitespace
+'items'       Name.Other
+'"'           Literal.String
+'>'           Punctuation
+'<'           Punctuation
+'/'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'template'    Name.Tag
+'>'           Punctuation
+'\n\n'        Text
+
+'<'           Punctuation
+'style'       Name.Tag
+'>'           Punctuation
+'\n'          Text.Whitespace
+
+'.'           Punctuation
+'greeting'    Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'color'       Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'red'         Keyword.Constant
+';'           Punctuation
+'\n    '      Text.Whitespace
+'font-weight' Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'bold'        Keyword.Constant
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'<'           Punctuation
+'/'           Punctuation
+'style'       Name.Tag
+'>'           Punctuation
+'\n'          Text

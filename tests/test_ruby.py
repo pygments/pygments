@@ -7,7 +7,6 @@
 """
 
 import pytest
-
 from pygments.token import Name
 from pygments.lexers.ruby import RubyLexer
 

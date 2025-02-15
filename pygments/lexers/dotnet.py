@@ -4,7 +4,7 @@
 
     Lexers for .net languages.
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 import re
@@ -121,11 +121,15 @@ class CSharpLexer(RegexLexer):
                     'while', 'get', 'set', 'new', 'partial', 'yield', 'add',
                     'remove', 'value', 'alias', 'ascending', 'descending',
                     'from', 'group', 'into', 'orderby', 'select', 'thenby',
-                    'where', 'join', 'equals', 'file', 'record', 'allows',
+                    'where', 'join', 'equals', 'record', 'allows',
                     'and', 'init', 'managed', 'nameof', 'nint', 'not',
                     'notnull', 'nuint', 'or', 'scoped', 'unmanaged', 'when',
                     'with'
                 ), suffix=r'\b'), Keyword),
+                # version 1: assumes that 'file' is the only contextual keyword
+                # that is a class modifier
+                (r'(file)(\s+)(record|class|abstract|enum|new|sealed|static)\b',
+                   bygroups(Keyword, Whitespace, Keyword)),
                 (r'(global)(::)', bygroups(Keyword, Punctuation)),
                 (r'(bool|byte|char|decimal|double|dynamic|float|int|long|object|'
                  r'sbyte|short|string|uint|ulong|ushort|var)\b\??', Keyword.Type),

@@ -4,7 +4,7 @@
 
     Lexer for the Gleam programming language.
 
-    :copyright: Copyright 2006-2024 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -25,7 +25,7 @@ class GleamLexer(RegexLexer):
     filenames = ['*.gleam']
     aliases = ['gleam']
     mimetypes = ['text/x-gleam']
-    version_added = '2.18'
+    version_added = '2.19'
 
     keywords = words((
         'as', 'assert', 'auto', 'case', 'const', 'delegate', 'derive', 'echo',
