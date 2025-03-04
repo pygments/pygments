@@ -60,6 +60,7 @@ LEXERS = {
     'BoaLexer': ('pygments.lexers.boa', 'Boa', ('boa',), ('*.boa',), ()),
     'BooLexer': ('pygments.lexers.dotnet', 'Boo', ('boo',), ('*.boo',), ('text/x-boo',)),
     'BoogieLexer': ('pygments.lexers.verification', 'Boogie', ('boogie',), ('*.bpl',), ()),
+    'BoxDrawingLexer': ('pygments.lexers.boxdrawing', 'boxdrawing', ('box', 'boxdrawing', 'boxdrawings', 'box-drawing', 'box-drawings', 'box_drawing', 'box_drawings'), ('*.txt',), ()),
     'BrainfuckLexer': ('pygments.lexers.esoteric', 'Brainfuck', ('brainfuck', 'bf'), ('*.bf', '*.b'), ('application/x-brainfuck',)),
     'BugsLexer': ('pygments.lexers.modeling', 'BUGS', ('bugs', 'winbugs', 'openbugs'), ('*.bug',), ()),
     'CAmkESLexer': ('pygments.lexers.esoteric', 'CAmkES', ('camkes', 'idl4'), ('*.camkes', '*.idl4'), ()),
