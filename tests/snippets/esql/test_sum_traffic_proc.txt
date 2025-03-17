@@ -1,0 +1,91 @@
+---input---
+FROM logs-endpoint
+| WHERE process.name == "curl.exe"
+| STATS bytes = SUM(destination.bytes) BY destination.address
+| EVAL kb =  bytes/1024
+| SORT kb DESC
+| LIMIT 10
+| KEEP kb,destination.address
+
+---tokens---
+'FROM'        Keyword
+' '           Text.Whitespace
+'logs-endpoint' Name
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'WHERE'       Keyword
+' '           Text.Whitespace
+'process'     Name
+'.'           Punctuation
+'name'        Name
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'curl.exe'    Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'STATS'       Keyword
+' '           Text.Whitespace
+'bytes'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'SUM'         Name.Function
+'('           Punctuation
+'destination' Name
+'.'           Punctuation
+'bytes'       Name
+')'           Punctuation
+' '           Text.Whitespace
+'BY'          Keyword
+' '           Text.Whitespace
+'destination' Name
+'.'           Punctuation
+'address'     Name
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'EVAL'        Keyword
+' '           Text.Whitespace
+'kb'          Name
+' '           Text.Whitespace
+'='           Operator
+'  '          Text.Whitespace
+'bytes'       Name
+'/'           Operator
+'1024'        Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'SORT'        Keyword
+' '           Text.Whitespace
+'kb'          Name
+' '           Text.Whitespace
+'DESC'        Keyword
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'LIMIT'       Keyword
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'KEEP'        Keyword
+' '           Text.Whitespace
+'kb'          Name
+','           Punctuation
+'destination' Name
+'.'           Punctuation
+'address'     Name
+'\n'          Text.Whitespace

@@ -1,0 +1,128 @@
+---input---
+FROM logs-*
+| WHERE event.code IS NOT NULL
+| STATS event_code_count = COUNT(event.code) BY event.code,host.name
+| ENRICH win_events ON event.code WITH event_description
+| WHERE event_description IS NOT NULL and host.name IS NOT NULL
+| RENAME event_description AS event.description
+| SORT event_code_count DESC
+| KEEP event_code_count,event.code,host.name,event.description
+
+---tokens---
+'FROM'        Keyword
+' '           Text.Whitespace
+'logs-'       Name
+'*'           Name
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'WHERE'       Keyword
+' '           Text.Whitespace
+'event'       Name
+'.'           Punctuation
+'code'        Name
+' '           Text.Whitespace
+'IS NOT NULL' Operator.Word
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'STATS'       Keyword
+' '           Text.Whitespace
+'event_code_count' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'COUNT'       Name.Function
+'('           Punctuation
+'event'       Name
+'.'           Punctuation
+'code'        Name
+')'           Punctuation
+' '           Text.Whitespace
+'BY'          Keyword
+' '           Text.Whitespace
+'event'       Name
+'.'           Punctuation
+'code'        Name
+','           Punctuation
+'host'        Name
+'.'           Punctuation
+'name'        Name
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'ENRICH'      Keyword
+' '           Text.Whitespace
+'win_events'  Name
+' '           Text.Whitespace
+'ON'          Keyword
+' '           Text.Whitespace
+'event'       Name
+'.'           Punctuation
+'code'        Name
+' '           Text.Whitespace
+'WITH'        Keyword
+' '           Text.Whitespace
+'event_description' Name
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'WHERE'       Keyword
+' '           Text.Whitespace
+'event_description' Name
+' '           Text.Whitespace
+'IS NOT NULL' Operator.Word
+' '           Text.Whitespace
+'and'         Operator.Word
+' '           Text.Whitespace
+'host'        Name
+'.'           Punctuation
+'name'        Name
+' '           Text.Whitespace
+'IS NOT NULL' Operator.Word
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'RENAME'      Keyword
+' '           Text.Whitespace
+'event_description' Name
+' '           Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'event'       Name
+'.'           Punctuation
+'description' Name
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'SORT'        Keyword
+' '           Text.Whitespace
+'event_code_count' Name
+' '           Text.Whitespace
+'DESC'        Keyword
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'KEEP'        Keyword
+' '           Text.Whitespace
+'event_code_count' Name
+','           Punctuation
+'event'       Name
+'.'           Punctuation
+'code'        Name
+','           Punctuation
+'host'        Name
+'.'           Punctuation
+'name'        Name
+','           Punctuation
+'event'       Name
+'.'           Punctuation
+'description' Name
+'\n'          Text.Whitespace
