@@ -268,6 +268,7 @@ LEXERS = {
     'KokaLexer': ('pygments.lexers.haskell', 'Koka', ('koka',), ('*.kk', '*.kki'), ('text/x-koka',)),
     'KotlinLexer': ('pygments.lexers.jvm', 'Kotlin', ('kotlin',), ('*.kt', '*.kts'), ('text/x-kotlin',)),
     'KuinLexer': ('pygments.lexers.kuin', 'Kuin', ('kuin',), ('*.kn',), ()),
+    'KumirLexer': ('pygments.lexers.kumir', 'Kumir', ('kumir', 'кумир'), ('*.kum',), ('text/kumir',)),
     'KustoLexer': ('pygments.lexers.kusto', 'Kusto', ('kql', 'kusto'), ('*.kql', '*.kusto', '.csl'), ()),
     'LSLLexer': ('pygments.lexers.scripting', 'LSL', ('lsl',), ('*.lsl',), ('text/x-lsl',)),
     'LassoCssLexer': ('pygments.lexers.templates', 'CSS+Lasso', ('css+lasso',), (), ('text/css+lasso',)),
