@@ -86,7 +86,7 @@ case $(file --mime-type --uncompress $file_common_opts) in
     # text/x-wine-extension-reg
     # text/x-xmcd
 
-    text/plain)  # special filenames. TODO: insert more
+    *)  # special filenames. TODO: insert more
         case $(basename "$file") in
             .zshrc) lexer=sh;;
         esac
