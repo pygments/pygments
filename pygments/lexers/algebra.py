@@ -32,7 +32,12 @@ class GAPLexer(RegexLexer):
         'root': [
             (r'#.*$', Comment.Single),
             (r'"(?:[^"\\]|\\.)*"', String),
-            (r'\(|\)|\[|\]|\{|\}', Punctuation),
+            (r'[\[\](){},;]', Punctuation),
+
+            # intercept range expressions first
+            (r'([0-9]+)(\s*)(\.\.)', bygroups(Number.Integer, Whitespace, Operator)),
+            (r'(\.\.)(\s*)([0-9]+)', bygroups(Operator, Whitespace, Number.Integer)),
+
             (r'''(?x)\b(?:
                 if|then|elif|else|fi|
                 for|while|do|od|
@@ -54,16 +59,24 @@ class GAPLexer(RegexLexer):
                    BindGlobal|BIND_GLOBAL
               )\b''',
              Name.Builtin),
-            (r'\.|,|:=|;|=|\+|-|\*|/|\^|>|<', Operator),
+            (r':=|=|->|\+|-|\*|/|\^|<>|>=|<=|>|<', Operator),
             (r'''(?x)\b(?:
                 and|or|not|mod|in
               )\b''',
              Operator.Word),
+
+            # numbers
+            (r'(\d+((_\d+)+)?\.(?!\.)(\d+((_\d+)+)?)?|\.\d+((_\d+)+)?)([eEf][+-]?[0-9]+)?', Number.Float),
+            (r'\d+((_\d+)+)?[eEf][+-]?[0-9]+', Number.Float),
+            (r'\d+((_\d+)+)?', Number.Integer),
+
             (r'''(?x)
               (?:\w+|`[^`]*`)
               (?:::\w+|`[^`]*`)*''', Name.Variable),
-            (r'[0-9]+(?:\.[0-9]*)?(?:e[0-9]+)?', Number),
-            (r'\.[0-9]+(?:e[0-9]+)?', Number),
+
+            # single dot operator matched last to permit e.g. ".1" as a float
+            (words(['.']), Operator),
+
             (r'.', Text)
         ],
     }
