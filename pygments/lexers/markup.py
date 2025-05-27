@@ -688,8 +688,8 @@ class OrgLexer(RegexLexer):
             (r'\\\\$', Operator),
 
             # Deadline, Scheduled, CLOSED
-            (r'(?i)^( *(?:DEADLINE|SCHEDULED): )(<.+?> *)$',
-             bygroups(Generic.Error, Literal.Date)),
+            (r'(?i)^( *(?:DEADLINE|SCHEDULED): )(<[^>]+?> *)(?:((?:DEADLINE|SCHEDULED): )(<[^>]+?>))?$',
+             bygroups(Generic.Error, Literal.Date, Generic.Error, Literal.Date)),
             (r'(?i)^( *CLOSED: )(\[.+?\] *)$',
              bygroups(Generic.Deleted, Literal.Date)),
 
