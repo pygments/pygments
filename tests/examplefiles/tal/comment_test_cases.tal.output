@@ -1,0 +1,154 @@
+'('           Comment.Multiline
+'a-very-flexible-syntax\n\tPerhaps **too** flexible, but we are matching drifblim behavior. ' Comment.Multiline
+')'           Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'('           Comment.Multiline
+' '           Comment.Multiline
+'('           Comment.Multiline
+' <- starts new nested comment ' Comment.Multiline
+')'           Comment.Multiline
+' '           Comment.Multiline
+')'           Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'('           Comment.Multiline
+'comment '    Comment.Multiline
+'('           Comment.Multiline
+'not-start-of-new-nested-comment ' Comment.Multiline
+')'           Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'('           Comment.Multiline
+' '           Comment.Multiline
+'('           Comment.Multiline
+'not-start-of-new-nested-comment ' Comment.Multiline
+')'           Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'('           Comment.Multiline
+'doc/slashes/are/okay\n\tUnusual, but perhaps useful.\n' Comment.Multiline
+
+')'           Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'('           Comment.Multiline
+'@'           Comment.Multiline
+'('           Comment.Multiline
+'function-like' Comment.Multiline
+')'           Comment.Multiline
+' comments are okay? ' Comment.Multiline
+')'           Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'('           Comment.Multiline
+'()()()()()'  Comment.Multiline
+'evil-but-right this bad case matches the drifblim implementation. ' Comment.Multiline
+')'           Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'('           Comment.Multiline
+'doc F'       Comment.Multiline
+'('           Comment.Multiline
+'x'           Comment.Multiline
+')'           Comment.Multiline
+' = '         Comment.Multiline
+'((('         Comment.Multiline
+'3 * '        Comment.Multiline
+'('           Comment.Multiline
+'x + 2'       Comment.Multiline
+'))'          Comment.Multiline
+' / '         Comment.Multiline
+'(('          Comment.Multiline
+'x - 1'       Comment.Multiline
+')'           Comment.Multiline
+'^2'          Comment.Multiline
+'))'          Comment.Multiline
+' + '         Comment.Multiline
+'(('          Comment.Multiline
+'5 * '        Comment.Multiline
+'('           Comment.Multiline
+'x^2 + 1'     Comment.Multiline
+'))'          Comment.Multiline
+' / '         Comment.Multiline
+'('           Comment.Multiline
+'x + '        Comment.Multiline
+'('           Comment.Multiline
+'4 / '        Comment.Multiline
+'('           Comment.Multiline
+'x - 3'       Comment.Multiline
+')))))'       Comment.Multiline
+' '           Comment.Multiline
+')'           Comment.Multiline
+'\n'          Text.Whitespace
+
+'@F'          Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' x -- res '  Comment.Multiline
+')'           Comment.Multiline
+'\n\t '       Text.Whitespace
+'STHk'        Keyword.Reserved
+' '           Text.Whitespace
+'#02'         Literal.Number.Hex
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+'#03'         Literal.Number.Hex
+' '           Text.Whitespace
+'MUL'         Keyword.Reserved
+'\n\t '       Text.Whitespace
+'STHkr'       Keyword.Reserved
+' '           Text.Whitespace
+'#01'         Literal.Number.Hex
+' '           Text.Whitespace
+'SUB'         Keyword.Reserved
+' '           Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'DUP'         Keyword.Reserved
+' '           Text.Whitespace
+'MUL'         Keyword.Reserved
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'DIV'         Keyword.Reserved
+'\n\t '       Text.Whitespace
+'STHkr'       Keyword.Reserved
+' '           Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+'DUP'         Keyword.Reserved
+' '           Text.Whitespace
+'MUL'         Keyword.Reserved
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+'#01'         Literal.Number.Hex
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+'#05'         Literal.Number.Hex
+' '           Text.Whitespace
+'MUL'         Keyword.Reserved
+'\n\t '       Text.Whitespace
+'STHkr'       Keyword.Reserved
+' '           Text.Whitespace
+'#04'         Literal.Number.Hex
+' '           Text.Whitespace
+'STHr'        Keyword.Reserved
+' '           Text.Whitespace
+'#03'         Literal.Number.Hex
+' '           Text.Whitespace
+'SUB'         Keyword.Reserved
+' '           Text.Whitespace
+'DIV'         Keyword.Reserved
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+'DIV'         Keyword.Reserved
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+'\n\t '       Text.Whitespace
+'JMP2r'       Keyword.Reserved
+'\n'          Text.Whitespace

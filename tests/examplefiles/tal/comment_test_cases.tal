@@ -1,0 +1,24 @@
+(a-very-flexible-syntax
+	Perhaps **too** flexible, but we are matching drifblim behavior. )
+
+( ( <- starts new nested comment ) )
+
+(comment (not-start-of-new-nested-comment )
+
+( (not-start-of-new-nested-comment )
+
+(doc/slashes/are/okay
+	Unusual, but perhaps useful.
+)
+
+(@(function-like) comments are okay? )
+
+(()()()()()evil-but-right this bad case matches the drifblim implementation. )
+
+(doc F(x) = (((3 * (x + 2)) / ((x - 1)^2)) + ((5 * (x^2 + 1)) / (x + (4 / (x - 3))))) )
+@F ( x -- res )
+	 STHk #02 ADD #03 MUL
+	 STHkr #01 SUB [ DUP MUL ] DIV
+	 STHkr [ DUP MUL ] #01 ADD #05 MUL
+	 STHkr #04 STHr #03 SUB DIV ADD DIV ADD
+	 JMP2r
