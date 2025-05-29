@@ -1,24 +1,33 @@
 (a-very-flexible-syntax
-	Perhaps **too** flexible, but we are matching drifblim behavior. )
+	 Perhaps **too** flexible, but we are matching drifblim behavior. )
+|1337 @constant
 
 ( ( <- starts new nested comment ) )
+|00 @False $1 @True
 
 (comment (not-start-of-new-nested-comment )
+|100
 
 ( (not-start-of-new-nested-comment )
+@foo ( -> )
+	 #0102 sum
+	 BRK
 
 (doc/slashes/are/okay
-	Unusual, but perhaps useful.
+	 Unusual, but perhaps useful.
 )
+@sum ( a b -- a + b ) ADD JMP2r
 
 (@(function-like) comments are okay? )
+%macro { ADD }
 
 (()()()()()evil-but-right this bad case matches the drifblim implementation. )
+@buffer $100
 
 (doc F(x) = (((3 * (x + 2)) / ((x - 1)^2)) + ((5 * (x^2 + 1)) / (x + (4 / (x - 3))))) )
 @F ( x -- res )
-	 STHk #02 ADD #03 MUL
-	 STHkr #01 SUB [ DUP MUL ] DIV
-	 STHkr [ DUP MUL ] #01 ADD #05 MUL
-	 STHkr #04 STHr #03 SUB DIV ADD DIV ADD
-	 JMP2r
+	  STHk #02 ADD #03 MUL
+	  STHkr #01 SUB [ DUP MUL ] DIV
+	  STHkr [ DUP MUL ] #01 ADD #05 MUL
+	  STHkr #04 STHr #03 SUB DIV ADD DIV ADD
+	  JMP2r

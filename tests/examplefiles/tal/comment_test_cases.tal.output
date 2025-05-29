@@ -1,6 +1,11 @@
 '('           Comment.Multiline
-'a-very-flexible-syntax\n\tPerhaps **too** flexible, but we are matching drifblim behavior. ' Comment.Multiline
+'a-very-flexible-syntax\n\t Perhaps **too** flexible, but we are matching drifblim behavior. ' Comment.Multiline
 ')'           Comment.Multiline
+'\n'          Text.Whitespace
+
+'|1337'       Keyword.Declaration
+' '           Text.Whitespace
+'@constant'   Name.Function
 '\n\n'        Text.Whitespace
 
 '('           Comment.Multiline
@@ -10,6 +15,15 @@
 ')'           Comment.Multiline
 ' '           Comment.Multiline
 ')'           Comment.Multiline
+'\n'          Text.Whitespace
+
+'|00'         Keyword.Declaration
+' '           Text.Whitespace
+'@False'      Name.Function
+' '           Text.Whitespace
+'$1'          Keyword.Declaration
+' '           Text.Whitespace
+'@True'       Name.Function
 '\n\n'        Text.Whitespace
 
 '('           Comment.Multiline
@@ -17,6 +31,9 @@
 '('           Comment.Multiline
 'not-start-of-new-nested-comment ' Comment.Multiline
 ')'           Comment.Multiline
+'\n'          Text.Whitespace
+
+'|100'        Keyword.Declaration
 '\n\n'        Text.Whitespace
 
 '('           Comment.Multiline
@@ -24,12 +41,36 @@
 '('           Comment.Multiline
 'not-start-of-new-nested-comment ' Comment.Multiline
 ')'           Comment.Multiline
+'\n'          Text.Whitespace
+
+'@foo'        Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' -> '        Comment.Multiline
+')'           Comment.Multiline
+'\n\t '       Text.Whitespace
+'#0102'       Literal.Number.Hex
+' '           Text.Whitespace
+'sum'         Name.Function
+'\n\t '       Text.Whitespace
+'BRK'         Keyword.Reserved
 '\n\n'        Text.Whitespace
 
 '('           Comment.Multiline
-'doc/slashes/are/okay\n\tUnusual, but perhaps useful.\n' Comment.Multiline
+'doc/slashes/are/okay\n\t Unusual, but perhaps useful.\n' Comment.Multiline
 
 ')'           Comment.Multiline
+'\n'          Text.Whitespace
+
+'@sum'        Name.Function
+' '           Text.Whitespace
+'('           Comment.Multiline
+' a b -- a + b ' Comment.Multiline
+')'           Comment.Multiline
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+'JMP2r'       Keyword.Reserved
 '\n\n'        Text.Whitespace
 
 '('           Comment.Multiline
@@ -39,12 +80,26 @@
 ')'           Comment.Multiline
 ' comments are okay? ' Comment.Multiline
 ')'           Comment.Multiline
+'\n'          Text.Whitespace
+
+'%macro'      Name.Decorator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'ADD'         Keyword.Reserved
+' '           Text.Whitespace
+'}'           Punctuation
 '\n\n'        Text.Whitespace
 
 '('           Comment.Multiline
 '()()()()()'  Comment.Multiline
 'evil-but-right this bad case matches the drifblim implementation. ' Comment.Multiline
 ')'           Comment.Multiline
+'\n'          Text.Whitespace
+
+'@buffer'     Name.Function
+' '           Text.Whitespace
+'$100'        Keyword.Declaration
 '\n\n'        Text.Whitespace
 
 '('           Comment.Multiline
@@ -87,7 +142,7 @@
 '('           Comment.Multiline
 ' x -- res '  Comment.Multiline
 ')'           Comment.Multiline
-'\n\t '       Text.Whitespace
+'\n\t  '      Text.Whitespace
 'STHk'        Keyword.Reserved
 ' '           Text.Whitespace
 '#02'         Literal.Number.Hex
@@ -97,7 +152,7 @@
 '#03'         Literal.Number.Hex
 ' '           Text.Whitespace
 'MUL'         Keyword.Reserved
-'\n\t '       Text.Whitespace
+'\n\t  '      Text.Whitespace
 'STHkr'       Keyword.Reserved
 ' '           Text.Whitespace
 '#01'         Literal.Number.Hex
@@ -113,7 +168,7 @@
 ']'           Punctuation
 ' '           Text.Whitespace
 'DIV'         Keyword.Reserved
-'\n\t '       Text.Whitespace
+'\n\t  '      Text.Whitespace
 'STHkr'       Keyword.Reserved
 ' '           Text.Whitespace
 '['           Punctuation
@@ -131,7 +186,7 @@
 '#05'         Literal.Number.Hex
 ' '           Text.Whitespace
 'MUL'         Keyword.Reserved
-'\n\t '       Text.Whitespace
+'\n\t  '      Text.Whitespace
 'STHkr'       Keyword.Reserved
 ' '           Text.Whitespace
 '#04'         Literal.Number.Hex
@@ -149,6 +204,6 @@
 'DIV'         Keyword.Reserved
 ' '           Text.Whitespace
 'ADD'         Keyword.Reserved
-'\n\t '       Text.Whitespace
+'\n\t  '      Text.Whitespace
 'JMP2r'       Keyword.Reserved
 '\n'          Text.Whitespace
