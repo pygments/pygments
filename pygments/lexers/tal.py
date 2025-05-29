@@ -37,18 +37,23 @@ class TalLexer(RegexLexer):
     ]
 
     tokens = {
-        # the comment delimiters must not be adjacent to non-space characters.
-        # this means ( foo ) is a valid comment but (foo) is not. this also
-        # applies to nested comments.
+        # The opening comment delimiter may be followed by non-whitespace
+        # characters to permit "named" comments. The closing delimiter must
+        # be preceded by a space. For example, these are valid comments:
+        # * ( foo )
+        # * (foo bar )
+        # * (doc/method(arithmetic) a b -- c )
+        # However, (foo) and (foo bar) would not be valid. This also applies to any
+        # nested comments.
         'comment': [
-            (r'(?<!\S)\((?!\S)', Comment.Multiline, '#push'), # nested comments
+            (r'(?<!\S)\((?=\S*)', Comment.Multiline, '#push'), # nested comments
             (r'(?<!\S)\)(?!\S)', Comment.Multiline, '#pop'), # nested comments
             (r'[^()]+', Comment.Multiline), # comments
             (r'[()]+', Comment.Multiline), # comments
         ],
         'root': [
             (r'\s+', Whitespace), # spaces
-            (r'(?<!\S)\((?!\S)', Comment.Multiline, 'comment'), # comments
+            (r'(?<!\S)\((?=\S*)', Comment.Multiline, 'comment'), # comments
             (words(instructions, prefix=r'(?<!\S)', suffix=r'2?k?r?(?!\S)'),
              Keyword.Reserved), # instructions
             (r'[][{}](?!\S)', Punctuation), # delimiters
