@@ -3,7 +3,9 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for GDScript.
-
+    
+    Modified by Daniel J. Ramirez <djrmuv@gmail.com> based on the original
+    python.py.
     Modified by Zackery R. Smith <zackery.smith82307@gmail.com> based on
     Godot Engine's lexer.
 
