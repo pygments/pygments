@@ -57,7 +57,7 @@ class LuaLexer(RegexLexer):
 
     _comment_multiline = r'(?:--\[(?P<level>=*)\[[\w\W]*?\](?P=level)\])'
     _comment_single = r'(?:--.*$)'
-    _space = r'(?:\s+)'
+    _space = r'(?:\s+(?!\s))'
     _s = rf'(?:{_comment_multiline}|{_comment_single}|{_space})'
     _name = r'(?:[^\W\d]\w*)'
 
