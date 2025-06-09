@@ -48,7 +48,7 @@ rule Yara4Example
 {
     meta:
         description = "Example rule to test features added in version 4.0"
-        author = "test /test/"
+        author = "test \"/test/\""
     strings:
         $b64name = "string" base64 # some more comments
         $b64wname = "string" base64wide
