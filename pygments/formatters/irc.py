@@ -91,7 +91,6 @@ def ircformat(color, text):
         add += '\x03' + str(IRC_COLOR_MAP[color]).zfill(2)
         sub = '\x03' + sub
     return add + text + sub
-    return '<'+add+'>'+text+'</'+sub+'>'
 
 
 class IRCFormatter(Formatter):
