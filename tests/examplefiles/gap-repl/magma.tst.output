@@ -7,7 +7,7 @@
 '"magma.tst"' Literal.String
 ' '           Text
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Generic.Output
@@ -25,28 +25,28 @@
 ' '           Text
 '['           Punctuation
 ' '           Text
-'1'           Name.Variable
-','           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'1'           Name.Variable
+'1'           Literal.Number.Integer
 ' '           Text
 ']'           Punctuation
-','           Operator
+','           Punctuation
 ' '           Text
 '['           Punctuation
 ' '           Text
-'1'           Name.Variable
-','           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'1'           Name.Variable
+'1'           Literal.Number.Integer
 ' '           Text
 ']'           Punctuation
 ' '           Text
 ']'           Punctuation
 ' '           Text
 ')'           Punctuation
-';'           Operator
-';'           Operator
+';'           Punctuation
+';'           Punctuation
 '\n'          Text.Whitespace
 
 'gap> '       Generic.Prompt
@@ -61,7 +61,7 @@
 ')'           Punctuation
 ' '           Text
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 'false\n'     Generic.Output
@@ -83,22 +83,22 @@
 ' '           Text
 '['           Punctuation
 ' '           Text
-'2'           Name.Variable
-','           Operator
+'2'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'4'           Name.Variable
-','           Operator
+'4'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'3'           Name.Variable
-','           Operator
+'3'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'4'           Name.Variable
-','           Operator
+'4'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'5'           Name.Variable
+'5'           Literal.Number.Integer
 ' '           Text
 ']'           Punctuation
-','           Operator
+','           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -106,22 +106,22 @@
 ' '           Text
 '['           Punctuation
 ' '           Text
-'3'           Name.Variable
-','           Operator
+'3'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'3'           Name.Variable
-','           Operator
+'3'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'2'           Name.Variable
-','           Operator
+'2'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'3'           Name.Variable
-','           Operator
+'3'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'3'           Name.Variable
+'3'           Literal.Number.Integer
 ' '           Text
 ']'           Punctuation
-','           Operator
+','           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -129,22 +129,22 @@
 ' '           Text
 '['           Punctuation
 ' '           Text
-'5'           Name.Variable
-','           Operator
+'5'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'5'           Name.Variable
-','           Operator
+'5'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'5'           Name.Variable
-','           Operator
+'5'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'4'           Name.Variable
-','           Operator
+'4'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'4'           Name.Variable
+'4'           Literal.Number.Integer
 ' '           Text
 ']'           Punctuation
-','           Operator
+','           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -152,22 +152,22 @@
 ' '           Text
 '['           Punctuation
 ' '           Text
-'5'           Name.Variable
-','           Operator
+'5'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'1'           Name.Variable
-','           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'4'           Name.Variable
-','           Operator
+'4'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'1'           Name.Variable
-','           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'1'           Name.Variable
+'1'           Literal.Number.Integer
 ' '           Text
 ']'           Punctuation
-','           Operator
+','           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -175,27 +175,27 @@
 ' '           Text
 '['           Punctuation
 ' '           Text
-'5'           Name.Variable
-','           Operator
+'5'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'3'           Name.Variable
-','           Operator
+'3'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'3'           Name.Variable
-','           Operator
+'3'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'4'           Name.Variable
-','           Operator
+'4'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'5'           Name.Variable
+'5'           Literal.Number.Integer
 ' '           Text
 ']'           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ']'           Punctuation
-';'           Operator
-';'           Operator
+';'           Punctuation
+';'           Punctuation
 '\n'          Text.Whitespace
 
 'gap> '       Generic.Prompt
@@ -207,7 +207,7 @@
 '('           Punctuation
 'T'           Name.Variable
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '<magma with 5 generators>\n' Generic.Output
@@ -224,7 +224,7 @@
 '('           Punctuation
 'M'           Name.Variable
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 'false\n'     Generic.Output
@@ -239,12 +239,11 @@
 'M'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-','           Operator
+','           Punctuation
 ' '           Text
 'x'           Name.Variable
 ' '           Text
-'-'           Operator
-'>'           Operator
+'->'          Operator
 ' '           Text
 'Size'        Name.Variable
 '('           Punctuation
@@ -253,7 +252,7 @@
 ' '           Text
 '>'           Operator
 ' '           Text
-'0'           Name.Variable
+'0'           Literal.Number.Integer
 ' '           Text
 'and'         Operator.Word
 ' '           Text
@@ -262,7 +261,7 @@
 'x'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '[ [ m5 ] ]\n' Generic.Output
@@ -277,12 +276,11 @@
 'M'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-','           Operator
+','           Punctuation
 ' '           Text
 'x'           Name.Variable
 ' '           Text
-'-'           Operator
-'>'           Operator
+'->'          Operator
 ' '           Text
 'Size'        Name.Variable
 '('           Punctuation
@@ -291,7 +289,7 @@
 ' '           Text
 '>'           Operator
 ' '           Text
-'0'           Name.Variable
+'0'           Literal.Number.Integer
 ' '           Text
 'and'         Operator.Word
 ' '           Text
@@ -300,7 +298,7 @@
 'x'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '[ [ m1 ], [ m1, m5 ], [ m2 ], [ m2, m5 ], [ m3 ], [ m3, m4 ], [ m4 ], [ m5 ] ]\n' Generic.Output
@@ -318,22 +316,22 @@
 ' '           Text
 '['           Punctuation
 ' '           Text
-'1'           Name.Variable
-','           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'4'           Name.Variable
-','           Operator
+'4'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'3'           Name.Variable
-','           Operator
+'3'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'3'           Name.Variable
-','           Operator
+'3'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'2'           Name.Variable
+'2'           Literal.Number.Integer
 ' '           Text
 ']'           Punctuation
-','           Operator
+','           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -341,22 +339,22 @@
 ' '           Text
 '['           Punctuation
 ' '           Text
-'4'           Name.Variable
-','           Operator
+'4'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'2'           Name.Variable
-','           Operator
+'2'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'4'           Name.Variable
-','           Operator
+'4'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'4'           Name.Variable
-','           Operator
+'4'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'2'           Name.Variable
+'2'           Literal.Number.Integer
 ' '           Text
 ']'           Punctuation
-','           Operator
+','           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -364,22 +362,22 @@
 ' '           Text
 '['           Punctuation
 ' '           Text
-'3'           Name.Variable
-','           Operator
+'3'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'4'           Name.Variable
-','           Operator
+'4'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'3'           Name.Variable
-','           Operator
+'3'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'4'           Name.Variable
-','           Operator
+'4'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'1'           Name.Variable
+'1'           Literal.Number.Integer
 ' '           Text
 ']'           Punctuation
-','           Operator
+','           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -387,22 +385,22 @@
 ' '           Text
 '['           Punctuation
 ' '           Text
-'1'           Name.Variable
-','           Operator
+'1'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'4'           Name.Variable
-','           Operator
+'4'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'5'           Name.Variable
-','           Operator
+'5'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'4'           Name.Variable
-','           Operator
+'4'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'3'           Name.Variable
+'3'           Literal.Number.Integer
 ' '           Text
 ']'           Punctuation
-','           Operator
+','           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -410,27 +408,27 @@
 ' '           Text
 '['           Punctuation
 ' '           Text
-'2'           Name.Variable
-','           Operator
+'2'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'2'           Name.Variable
-','           Operator
+'2'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'3'           Name.Variable
-','           Operator
+'3'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'5'           Name.Variable
-','           Operator
+'5'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
-'3'           Name.Variable
+'3'           Literal.Number.Integer
 ' '           Text
 ']'           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ']'           Punctuation
-';'           Operator
-';'           Operator
+';'           Punctuation
+';'           Punctuation
 '\n'          Text.Whitespace
 
 'gap> '       Generic.Prompt
@@ -442,7 +440,7 @@
 '('           Punctuation
 'T'           Name.Variable
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '<magma with 5 generators>\n' Generic.Output
@@ -459,7 +457,7 @@
 '('           Punctuation
 'M'           Name.Variable
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 'false\n'     Generic.Output
@@ -474,12 +472,11 @@
 'M'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-','           Operator
+','           Punctuation
 ' '           Text
 'x'           Name.Variable
 ' '           Text
-'-'           Operator
-'>'           Operator
+'->'          Operator
 ' '           Text
 'Size'        Name.Variable
 '('           Punctuation
@@ -488,7 +485,7 @@
 ' '           Text
 '>'           Operator
 ' '           Text
-'0'           Name.Variable
+'0'           Literal.Number.Integer
 ' '           Text
 'and'         Operator.Word
 ' '           Text
@@ -497,7 +494,7 @@
 'x'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '[ [ m1 ], [ m1, m3 ], [ m2 ], [ m2, m4 ], [ m3 ], [ m4 ] ]\n' Generic.Output
@@ -511,20 +508,20 @@
 'M'           Name.Variable
 ')'           Punctuation
 '['           Punctuation
-'1'           Name.Variable
+'1'           Literal.Number.Integer
 ']'           Punctuation
-','           Operator
+','           Punctuation
 ' '           Text
 'Elements'    Name.Variable
 '('           Punctuation
 'M'           Name.Variable
 ')'           Punctuation
 '['           Punctuation
-'2'           Name.Variable
+'2'           Literal.Number.Integer
 ']'           Punctuation
 ']'           Punctuation
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 'fail\n'      Generic.Output
@@ -538,20 +535,20 @@
 'M'           Name.Variable
 ')'           Punctuation
 '['           Punctuation
-'1'           Name.Variable
+'1'           Literal.Number.Integer
 ']'           Punctuation
-','           Operator
+','           Punctuation
 ' '           Text
 'Elements'    Name.Variable
 '('           Punctuation
 'M'           Name.Variable
 ')'           Punctuation
 '['           Punctuation
-'3'           Name.Variable
+'3'           Literal.Number.Integer
 ']'           Punctuation
 ']'           Punctuation
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '<semigroup of size 2, with 2 generators>\n' Generic.Output
@@ -566,12 +563,11 @@
 'M'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-','           Operator
+','           Punctuation
 ' '           Text
 'x'           Name.Variable
 ' '           Text
-'-'           Operator
-'>'           Operator
+'->'          Operator
 ' '           Text
 'Size'        Name.Variable
 '('           Punctuation
@@ -580,7 +576,7 @@
 ' '           Text
 '>'           Operator
 ' '           Text
-'0'           Name.Variable
+'0'           Literal.Number.Integer
 ' '           Text
 'and'         Operator.Word
 ' '           Text
@@ -589,7 +585,7 @@
 'x'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '[ [ m1 ], [ m1, m2 ], [ m1, m2, m3 ], [ m1, m2, m5 ], [ m1, m3 ], [ m1, m5 ], \n' Generic.Output
@@ -610,14 +606,14 @@
 ' '           Text
 'GL'          Name.Variable
 '('           Punctuation
-'2'           Name.Variable
-','           Operator
-'2'           Name.Variable
+'2'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
 ')'           Punctuation
 ' '           Text
 ')'           Punctuation
-';'           Operator
-';'           Operator
+';'           Punctuation
+';'           Punctuation
 '\n'          Text.Whitespace
 
 'gap> '       Generic.Prompt
@@ -627,7 +623,7 @@
 'F'           Name.Variable
 ' '           Text
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 'true\n'      Generic.Output
@@ -639,7 +635,7 @@
 'F'           Name.Variable
 ' '           Text
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 'false\n'     Generic.Output
@@ -652,17 +648,17 @@
 '('           Punctuation
 ' '           Text
 'F'           Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
-'3'           Name.Variable
+'3'           Literal.Number.Integer
 ' '           Text
 ')'           Punctuation
-','           Operator
+','           Punctuation
 ' '           Text
 'IsCommutative' Name.Variable
 ' '           Text
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '1\n'         Generic.Output
@@ -674,7 +670,7 @@
 'F'           Name.Variable
 ' '           Text
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '<semigroup of size 6, with 2 generators>\n' Generic.Output
@@ -690,5 +686,5 @@
 '"magma.tst"' Literal.String
 ' '           Text
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
