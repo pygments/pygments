@@ -168,7 +168,8 @@ class Lean4Lexer(RegexLexer):
     keywords2 = (
         'forall', 'fun', 'obtain', 'from', 'have', 'show', 'assume',
         'let', 'if', 'else', 'then', 'by', 'in', 'with',
-        'calc', 'match', 'nomatch', 'do', 'at',
+        'calc', 'match', 'nomatch', 'do', 'at', 'while', 'for', 'mut',
+        'return', 'unless', 'repeat', 'continue', 'break',
     )
 
     keywords3 = (
