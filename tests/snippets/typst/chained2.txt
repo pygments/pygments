@@ -1,0 +1,35 @@
+---input---
+#let foo = 2
+#foo;$#foo;1$bar
+#baz[something()].more()text()
+
+---tokens---
+'#let'        Keyword.Declaration
+' '           Text.Whitespace
+'foo'         Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'#foo'        Name.Variable
+';'           Text
+'$'           Punctuation
+'#foo'        Name.Variable
+';'           Punctuation
+'1'           Literal.Number
+'$'           Punctuation
+'bar'         Text
+'\n'          Text.Whitespace
+
+'#baz'        Name.Function
+'['           Punctuation
+'something()' Text
+']'           Punctuation
+'.'           Punctuation
+'more'        Name.Function
+'('           Punctuation
+')'           Punctuation
+'text()'      Text
+'\n'          Text.Whitespace
