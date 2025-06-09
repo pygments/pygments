@@ -1,0 +1,368 @@
+'// OpenQASM Test File for Syntax Highlighting' Comment.Single
+'\n'          Text.Whitespace
+
+'OPENQASM'    Keyword
+' '           Text.Whitespace
+'3.0'         Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'import'      Name
+' '           Text.Whitespace
+'"'           Punctuation
+'stdgates'    Name
+'.'           Punctuation
+'inc'         Name
+'"'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'// Register declarations' Comment.Single
+'\n'          Text.Whitespace
+
+'qubit'       Name
+'['           Punctuation
+'5'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'q'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'bit'         Name
+'['           Punctuation
+'5'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'c'           Name
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'// Single-qubit gates' Comment.Single
+'\n'          Text.Whitespace
+
+'h'           Name.Builtin
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'      '      Text.Whitespace
+'// Hadamard' Comment.Single
+'\n'          Text.Whitespace
+
+'x'           Name.Builtin
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'      '      Text.Whitespace
+'// Pauli-X'  Comment.Single
+'\n'          Text.Whitespace
+
+'y'           Name.Builtin
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'      '      Text.Whitespace
+'// Pauli-Y'  Comment.Single
+'\n'          Text.Whitespace
+
+'z'           Name.Builtin
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'      '      Text.Whitespace
+'// Pauli-Z'  Comment.Single
+'\n'          Text.Whitespace
+
+'s'           Name.Builtin
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'4'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'      '      Text.Whitespace
+'// Phase gate' Comment.Single
+'\n'          Text.Whitespace
+
+'sdg'         Name.Builtin
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'    '        Text.Whitespace
+'// S-dagger gate' Comment.Single
+'\n'          Text.Whitespace
+
+'t'           Name.Builtin
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'      '      Text.Whitespace
+'// T gate'   Comment.Single
+'\n'          Text.Whitespace
+
+'tdg'         Name.Builtin
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'    '        Text.Whitespace
+'// T-dagger gate' Comment.Single
+'\n\n'        Text.Whitespace
+
+'// Rotation gates' Comment.Single
+'\n'          Text.Whitespace
+
+'rx'          Name.Builtin
+'('           Punctuation
+'1'           Literal.Number.Integer
+'.'           Punctuation
+'5708'        Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'  '          Text.Whitespace
+'// RX rotation' Comment.Single
+'\n'          Text.Whitespace
+
+'ry'          Name.Builtin
+'('           Punctuation
+'1'           Literal.Number.Integer
+'.'           Punctuation
+'5708'        Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'  '          Text.Whitespace
+'// RY rotation' Comment.Single
+'\n'          Text.Whitespace
+
+'rz'          Name.Builtin
+'('           Punctuation
+'1'           Literal.Number.Integer
+'.'           Punctuation
+'5708'        Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'  '          Text.Whitespace
+'// RZ rotation' Comment.Single
+'\n'          Text.Whitespace
+
+'p'           Name.Builtin
+'('           Punctuation
+'3'           Literal.Number.Integer
+'.'           Punctuation
+'1415'        Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'   '         Text.Whitespace
+'// Phase shift' Comment.Single
+'\n\n'        Text.Whitespace
+
+'// Multi-qubit gates' Comment.Single
+'\n'          Text.Whitespace
+
+'cx'          Name.Builtin
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'        '    Text.Whitespace
+'// CNOT'     Comment.Single
+'\n'          Text.Whitespace
+
+'ccx'         Name.Builtin
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'// Toffoli (CCX)' Comment.Single
+'\n'          Text.Whitespace
+
+'swap'        Name
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'3'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'      '      Text.Whitespace
+'// SWAP gate' Comment.Single
+'\n\n'        Text.Whitespace
+
+'// Controlled rotations' Comment.Single
+'\n'          Text.Whitespace
+
+'u1'          Name.Builtin
+'('           Punctuation
+'0'           Literal.Number.Integer
+'.'           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'4'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'u2'          Name.Builtin
+'('           Punctuation
+'0'           Literal.Number.Integer
+'.'           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'.'           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'u3'          Name.Builtin
+'('           Punctuation
+'0'           Literal.Number.Integer
+'.'           Punctuation
+'5'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'.'           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'.'           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'// Measurement and reset' Comment.Single
+'\n'          Text.Whitespace
+
+'c'           Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'measure'     Keyword
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'c'           Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'measure'     Keyword
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'reset'       Keyword
+' '           Text.Whitespace
+'q'           Name
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'// Barrier'  Comment.Single
+'\n'          Text.Whitespace
+
+'barrier'     Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
