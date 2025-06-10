@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -22,9 +23,9 @@ class RebolLexer(RegexLexer):
     A REBOL lexer.
     """
     name = 'REBOL'
-    aliases = ['rebol']
-    filenames = ['*.r', '*.r3', '*.reb']
-    mimetypes = ['text/x-rebol']
+    aliases = ('rebol',)
+    filenames = ('*.r', '*.r3', '*.reb')
+    mimetypes = ('text/x-rebol',)
     url = 'http://www.rebol.com'
     version_added = '1.1'
 
@@ -117,7 +118,7 @@ class RebolLexer(RegexLexer):
         else:
             yield match.start(), Name.Variable, word
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Text),
             (r'#"', String.Char, 'char'),
@@ -243,9 +244,9 @@ class RedLexer(RegexLexer):
     A Red-language lexer.
     """
     name = 'Red'
-    aliases = ['red', 'red/system']
-    filenames = ['*.red', '*.reds']
-    mimetypes = ['text/x-red', 'text/x-red-system']
+    aliases = ('red', 'red/system')
+    filenames = ('*.red', '*.reds')
+    mimetypes = ('text/x-red', 'text/x-red-system')
     url = 'https://www.red-lang.org'
     version_added = '2.0'
 
@@ -307,7 +308,7 @@ class RedLexer(RegexLexer):
         else:
             yield match.start(), Name.Variable, word
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Text),
             (r'#"', String.Char, 'char'),

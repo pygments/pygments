@@ -11,6 +11,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Comment, Name, Text, Punctuation, String, Keyword
@@ -49,12 +50,12 @@ class WoWTocLexer(RegexLexer):
     """
 
     name = "World of Warcraft TOC"
-    aliases = ["wowtoc"]
-    filenames = ["*.toc"]
+    aliases = ("wowtoc",)
+    filenames = ("*.toc",)
     url = 'https://wowpedia.fandom.com/wiki/TOC_format'
     version_added = '2.14'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             # official localized tags, Notes and Title
             # (normal part is insensitive, locale part is sensitive)

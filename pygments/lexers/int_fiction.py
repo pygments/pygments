@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, using, \
     this, default, words
@@ -26,8 +27,8 @@ class Inform6Lexer(RegexLexer):
 
     name = 'Inform 6'
     url = 'http://inform-fiction.org/'
-    aliases = ['inform6', 'i6']
-    filenames = ['*.inf']
+    aliases = ('inform6', 'i6')
+    filenames = ('*.inf',)
     version_added = '2.0'
 
     flags = re.MULTILINE | re.DOTALL
@@ -42,7 +43,7 @@ class Inform6Lexer(RegexLexer):
     _squote = "'\u2018\u2019"
     _newline = '\\n\u0085\u2028\u2029'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (rf'\A(!%[^{_newline}]*[{_newline}])+', Comment.Preproc,
              'directive'),
@@ -546,8 +547,8 @@ class Inform7Lexer(RegexLexer):
 
     name = 'Inform 7'
     url = 'http://inform7.com/'
-    aliases = ['inform7', 'i7']
-    filenames = ['*.ni', '*.i7x']
+    aliases = ('inform7', 'i7')
+    filenames = ('*.ni', '*.i7x')
     version_added = '2.0'
 
     flags = re.MULTILINE | re.DOTALL
@@ -562,8 +563,8 @@ class Inform7Lexer(RegexLexer):
     # signs in the first column are inweb syntax. In phrase definitions
     # and use options, tokens in braces are treated as I7. Use options
     # also interpret "{N}".
-    tokens = {}
-    token_variants = ['+i6t-not-inline', '+i6t-inline', '+i6t-use-option']
+    tokens: typing.ClassVar = {}
+    token_variants = ('+i6t-not-inline', '+i6t-inline', '+i6t-use-option')
 
     for level in token_variants:
         tokens[level] = {
@@ -746,8 +747,8 @@ class Inform6TemplateLexer(Inform7Lexer):
     """
 
     name = 'Inform 6 template'
-    aliases = ['i6t']
-    filenames = ['*.i6t']
+    aliases = ('i6t',)
+    filenames = ('*.i6t',)
     version_added = '2.0'
 
     def get_tokens_unprocessed(self, text, stack=('+i6t-root',)):
@@ -760,8 +761,8 @@ class Tads3Lexer(RegexLexer):
     """
 
     name = 'TADS 3'
-    aliases = ['tads3']
-    filenames = ['*.t']
+    aliases = ('tads3',)
+    filenames = ('*.t',)
     url = 'https://www.tads.org'
     version_added = ''
 
@@ -868,7 +869,7 @@ class Tads3Lexer(RegexLexer):
             (r'["\'\s&{<}\\]', token)
         ]
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             ('\ufeff', Text),
             (r'\{', Punctuation, 'object-body'),

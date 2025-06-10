@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, ExtendedRegexLexer, include, bygroups, \
     default, using
@@ -20,7 +21,7 @@ from pygments.lexers.html import HtmlLexer
 from pygments.lexers.javascript import JavascriptLexer
 from pygments.lexers.ruby import RubyLexer
 
-__all__ = ['DuelLexer', 'SlimLexer', 'XQueryLexer', 'QmlLexer', 'CirruLexer']
+__all__ = ['CirruLexer', 'DuelLexer', 'QmlLexer', 'SlimLexer', 'XQueryLexer']
 
 
 class DuelLexer(RegexLexer):
@@ -30,14 +31,14 @@ class DuelLexer(RegexLexer):
 
     name = 'Duel'
     url = 'http://duelengine.org/'
-    aliases = ['duel', 'jbst', 'jsonml+bst']
-    filenames = ['*.duel', '*.jbst']
-    mimetypes = ['text/x-duel', 'text/x-jbst']
+    aliases = ('duel', 'jbst', 'jsonml+bst')
+    filenames = ('*.duel', '*.jbst')
+    mimetypes = ('text/x-duel', 'text/x-jbst')
     version_added = '1.4'
 
     flags = re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(<%[@=#!:]?)(.*?)(%>)',
              bygroups(Name.Tag, using(JavascriptLexer), Name.Tag)),
@@ -61,12 +62,12 @@ class XQueryLexer(ExtendedRegexLexer):
     """
     name = 'XQuery'
     url = 'https://www.w3.org/XML/Query/'
-    aliases = ['xquery', 'xqy', 'xq', 'xql', 'xqm']
-    filenames = ['*.xqy', '*.xquery', '*.xq', '*.xql', '*.xqm']
-    mimetypes = ['text/xquery', 'application/xquery']
+    aliases = ('xquery', 'xqy', 'xq', 'xql', 'xqm')
+    filenames = ('*.xqy', '*.xquery', '*.xq', '*.xql', '*.xqm')
+    mimetypes = ('text/xquery', 'application/xquery')
     version_added = '1.4'
 
-    xquery_parse_state = []
+    xquery_parse_state: typing.ClassVar = []
 
     # FIX UNICODE LATER
     # ncnamestartchar = (
@@ -315,7 +316,7 @@ class XQueryLexer(ExtendedRegexLexer):
         ctx.stack.append('operator')
         ctx.pos = match.end()
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'comment': [
             # xquery comments
             (r'[^:()]+', Comment),
@@ -818,15 +819,15 @@ class QmlLexer(RegexLexer):
 
     name = 'QML'
     url = 'https://doc.qt.io/qt-6/qmlapplications.html'
-    aliases = ['qml', 'qbs']
-    filenames = ['*.qml', '*.qbs']
-    mimetypes = ['application/x-qml', 'application/x-qt.qbs+qml']
+    aliases = ('qml', 'qbs')
+    filenames = ('*.qml', '*.qbs')
+    mimetypes = ('application/x-qml', 'application/x-qt.qbs+qml')
     version_added = '1.6'
 
     # pasted from JavascriptLexer, with some additions
     flags = re.DOTALL | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'commentsandwhitespace': [
             (r'\s+', Text),
             (r'<!--', Comment),
@@ -892,13 +893,13 @@ class CirruLexer(RegexLexer):
 
     name = 'Cirru'
     url = 'http://cirru.org/'
-    aliases = ['cirru']
-    filenames = ['*.cirru']
-    mimetypes = ['text/x-cirru']
+    aliases = ('cirru',)
+    filenames = ('*.cirru',)
+    mimetypes = ('text/x-cirru',)
     version_added = '2.0'
     flags = re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'string': [
             (r'[^"\\\n]+', String),
             (r'\\', String.Escape, 'escape'),
@@ -939,15 +940,15 @@ class SlimLexer(ExtendedRegexLexer):
     """
 
     name = 'Slim'
-    aliases = ['slim']
-    filenames = ['*.slim']
-    mimetypes = ['text/x-slim']
+    aliases = ('slim',)
+    filenames = ('*.slim',)
+    mimetypes = ('text/x-slim',)
     url = 'https://slim-template.github.io'
     version_added = '2.0'
 
     flags = re.IGNORECASE
     _dot = r'(?: \|\n(?=.* \|)|.)'
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[ \t]*\n', Text),
             (r'[ \t]*', _indentation),

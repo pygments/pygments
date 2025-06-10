@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, words, using, this
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -23,15 +24,15 @@ class UniconLexer(RegexLexer):
     """
 
     name = 'Unicon'
-    aliases = ['unicon']
-    filenames = ['*.icn']
-    mimetypes = ['text/unicon']
+    aliases = ('unicon',)
+    filenames = ('*.icn',)
+    mimetypes = ('text/unicon',)
     url = 'https://www.unicon.org'
     version_added = '2.4'
 
     flags = re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^\S\n]+', Text),
             (r'#.*?\n', Comment.Single),
@@ -168,15 +169,15 @@ class IconLexer(RegexLexer):
     Lexer for Icon.
     """
     name = 'Icon'
-    aliases = ['icon']
-    filenames = ['*.icon', '*.ICON']
-    mimetypes = []
+    aliases = ('icon',)
+    filenames = ('*.icon', '*.ICON')
+    mimetypes = ()
     url = 'https://www2.cs.arizona.edu/icon'
     version_added = '1.6'
 
     flags = re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^\S\n]+', Text),
             (r'#.*?\n', Comment.Single),
@@ -309,15 +310,15 @@ class UcodeLexer(RegexLexer):
     Lexer for Icon ucode files.
     """
     name = 'ucode'
-    aliases = ['ucode']
-    filenames = ['*.u', '*.u1', '*.u2']
-    mimetypes = []
+    aliases = ('ucode',)
+    filenames = ('*.u', '*.u1', '*.u2')
+    mimetypes = ()
     url = 'http://www.unicon.org'
     version_added = '2.4'
 
     flags = re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(#.*\n)', Comment),
             (words((

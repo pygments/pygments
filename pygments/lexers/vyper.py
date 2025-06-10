@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import (Comment, String, Name, Keyword, Number,
                             Operator, Punctuation, Text, Whitespace)
@@ -19,12 +20,12 @@ class VyperLexer(RegexLexer):
     """For the Vyper smart contract language.
     """
     name = 'Vyper'
-    aliases = ['vyper']
-    filenames = ['*.vy']
+    aliases = ('vyper',)
+    filenames = ('*.vy',)
     url = "https://vyper.readthedocs.io"
     version_added = '2.17'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Whitespace
             (r'\s+', Whitespace),

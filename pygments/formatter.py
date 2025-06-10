@@ -69,12 +69,12 @@ class Formatter:
 
     #: A list of short, unique identifiers that can be used to lookup
     #: the formatter from a list, e.g. using :func:`.get_formatter_by_name()`.
-    aliases = []
+    aliases = ()
 
     #: A list of fnmatch patterns that match filenames for which this
     #: formatter can produce output. The patterns in this list should be unique
     #: among all formatters.
-    filenames = []
+    filenames = ()
 
     #: If True, this formatter outputs Unicode strings when no encoding
     #: option is given.

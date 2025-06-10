@@ -14,6 +14,7 @@
 __all__ = ['CodeQLLexer']
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, words
 from pygments.token import Comment, Operator, Keyword, Name, String, \
@@ -21,15 +22,15 @@ from pygments.token import Comment, Operator, Keyword, Name, String, \
 
 class CodeQLLexer(RegexLexer):
     name = 'CodeQL'
-    aliases = ['codeql', 'ql']
-    filenames = ['*.ql', '*.qll']
-    mimetypes = []
+    aliases = ('codeql', 'ql')
+    filenames = ('*.ql', '*.qll')
+    mimetypes = ()
     url = 'https://github.com/github/codeql'
     version_added = '2.19'
 
     flags = re.MULTILINE | re.UNICODE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Whitespace and comments
             (r'\s+', Whitespace),

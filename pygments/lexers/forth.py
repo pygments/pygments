@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Text, Comment, Keyword, Name, String, Number, \
@@ -24,14 +25,14 @@ class ForthLexer(RegexLexer):
     """
     name = 'Forth'
     url = 'https://www.forth.com/forth/'
-    aliases = ['forth']
-    filenames = ['*.frt', '*.fs']
-    mimetypes = ['application/x-forth']
+    aliases = ('forth',)
+    filenames = ('*.frt', '*.fs')
+    mimetypes = ('application/x-forth',)
     version_added = '2.2'
 
     flags = re.IGNORECASE | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             # All comment types

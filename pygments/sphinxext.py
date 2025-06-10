@@ -10,6 +10,7 @@
 """
 
 import sys
+import typing
 
 from docutils import nodes
 from docutils.statemachine import ViewList
@@ -66,7 +67,7 @@ class PygmentsDoc(Directive):
     required_arguments = 1
     optional_arguments = 0
     final_argument_whitespace = False
-    option_spec = {}
+    option_spec: typing.ClassVar = {}
 
     def run(self):
         self.filenames = set()

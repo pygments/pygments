@@ -15,7 +15,7 @@ from pygments.token import Token, Error, Text, Generic
 from pygments.util import get_choice_opt
 
 
-__all__ = ['TextLexer', 'OutputLexer', 'RawTokenLexer']
+__all__ = ['OutputLexer', 'RawTokenLexer', 'TextLexer']
 
 
 class TextLexer(Lexer):
@@ -23,9 +23,9 @@ class TextLexer(Lexer):
     "Null" lexer, doesn't highlight anything.
     """
     name = 'Text only'
-    aliases = ['text']
-    filenames = ['*.txt']
-    mimetypes = ['text/plain']
+    aliases = ('text',)
+    filenames = ('*.txt',)
+    mimetypes = ('text/plain',)
     url = ""
     version_added = ''
 
@@ -43,7 +43,7 @@ class OutputLexer(Lexer):
     Simple lexer that highlights everything as ``Token.Generic.Output``.
     """
     name = 'Text output'
-    aliases = ['output']
+    aliases = ('output',)
     url = ""
     version_added = '2.10'
     _example = "output/output"
@@ -66,9 +66,9 @@ class RawTokenLexer(Lexer):
         the given compression algorithm before lexing (default: ``""``).
     """
     name = 'Raw token data'
-    aliases = []
-    filenames = []
-    mimetypes = ['application/x-pygments-tokens']
+    aliases = ()
+    filenames = ()
+    mimetypes = ('application/x-pygments-tokens',)
     url = 'https://pygments.org/docs/formatters/#RawTokenFormatter'
     version_added = ''
 

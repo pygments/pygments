@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, using, \
     this, inherit, default, words
@@ -53,7 +54,7 @@ class CFamilyLexer(RegexLexer):
     # Regex to match optional comments
     _possible_comments = rf'\s*(?:(?:(?:{_comment_single})|(?:{_comment_multiline}))\s*)*'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'whitespace': [
             # preprocessor directives: without whitespace
             (r'^#if\s+0', Comment.Preproc, 'if0'),
@@ -218,22 +219,22 @@ class CFamilyLexer(RegexLexer):
         ]
     }
 
-    stdlib_types = {
+    stdlib_types: typing.ClassVar = {
         'size_t', 'ssize_t', 'off_t', 'wchar_t', 'ptrdiff_t', 'sig_atomic_t', 'fpos_t',
         'clock_t', 'time_t', 'va_list', 'jmp_buf', 'FILE', 'DIR', 'div_t', 'ldiv_t',
         'mbstate_t', 'wctrans_t', 'wint_t', 'wctype_t'}
-    c99_types = {
+    c99_types: typing.ClassVar = {
         'int8_t', 'int16_t', 'int32_t', 'int64_t', 'uint8_t',
         'uint16_t', 'uint32_t', 'uint64_t', 'int_least8_t', 'int_least16_t',
         'int_least32_t', 'int_least64_t', 'uint_least8_t', 'uint_least16_t',
         'uint_least32_t', 'uint_least64_t', 'int_fast8_t', 'int_fast16_t', 'int_fast32_t',
         'int_fast64_t', 'uint_fast8_t', 'uint_fast16_t', 'uint_fast32_t', 'uint_fast64_t',
         'intptr_t', 'uintptr_t', 'intmax_t', 'uintmax_t'}
-    linux_types = {
+    linux_types: typing.ClassVar = {
         'clockid_t', 'cpu_set_t', 'cpumask_t', 'dev_t', 'gid_t', 'id_t', 'ino_t', 'key_t',
         'mode_t', 'nfds_t', 'pid_t', 'rlim_t', 'sig_t', 'sighandler_t', 'siginfo_t',
         'sigset_t', 'sigval_t', 'socklen_t', 'timer_t', 'uid_t'}
-    c11_atomic_types = {
+    c11_atomic_types: typing.ClassVar = {
         'atomic_bool', 'atomic_char', 'atomic_schar', 'atomic_uchar', 'atomic_short',
         'atomic_ushort', 'atomic_int', 'atomic_uint', 'atomic_long', 'atomic_ulong',
         'atomic_llong', 'atomic_ullong', 'atomic_char16_t', 'atomic_char32_t', 'atomic_wchar_t',
@@ -291,14 +292,14 @@ class CLexer(CFamilyLexer):
         (default: ``True``).
     """
     name = 'C'
-    aliases = ['c']
-    filenames = ['*.c', '*.h', '*.idc', '*.x[bp]m']
-    mimetypes = ['text/x-chdr', 'text/x-csrc', 'image/x-xbitmap', 'image/x-xpixmap']
+    aliases = ('c',)
+    filenames = ('*.c', '*.h', '*.idc', '*.x[bp]m')
+    mimetypes = ('text/x-chdr', 'text/x-csrc', 'image/x-xbitmap', 'image/x-xpixmap')
     url = 'https://en.wikipedia.org/wiki/C_(programming_language)'
     version_added = ''
     priority = 0.1
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'keywords': [
             (words((
                 '_Alignas', '_Alignof', '_Noreturn', '_Generic', '_Thread_local',
@@ -344,15 +345,15 @@ class CppLexer(CFamilyLexer):
     """
     name = 'C++'
     url = 'https://isocpp.org/'
-    aliases = ['cpp', 'c++']
-    filenames = ['*.cpp', '*.hpp', '*.c++', '*.h++',
+    aliases = ('cpp', 'c++')
+    filenames = ('*.cpp', '*.hpp', '*.c++', '*.h++',
                  '*.cc', '*.hh', '*.cxx', '*.hxx',
-                 '*.C', '*.H', '*.cp', '*.CPP', '*.tpp']
-    mimetypes = ['text/x-c++hdr', 'text/x-c++src']
+                 '*.C', '*.H', '*.cp', '*.CPP', '*.tpp')
+    mimetypes = ('text/x-c++hdr', 'text/x-c++src')
     version_added = ''
     priority = 0.1
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'statements': [
             # C++11 raw strings
             (r'((?:[LuU]|u8)?R)(")([^\\()\s]{,16})(\()((?:.|\n)*?)(\)\3)(")',

@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, words, bygroups
 from pygments.token import Comment, Operator, Keyword, Name, String, \
@@ -23,9 +24,9 @@ class AmbientTalkLexer(RegexLexer):
     """
     name = 'AmbientTalk'
     url = 'https://code.google.com/p/ambienttalk'
-    filenames = ['*.at']
-    aliases = ['ambienttalk', 'ambienttalk/2', 'at']
-    mimetypes = ['text/x-ambienttalk']
+    filenames = ('*.at',)
+    aliases = ('ambienttalk', 'ambienttalk/2', 'at')
+    mimetypes = ('text/x-ambienttalk',)
     version_added = '2.0'
 
     flags = re.MULTILINE | re.DOTALL
@@ -34,7 +35,7 @@ class AmbientTalkLexer(RegexLexer):
                      'disconnected:', 'reconnected:', 'takenOffline:', 'becomes:',
                      'export:', 'as:', 'object:', 'actor:', 'mirror:', 'taggedAs:',
                      'mirroredBy:', 'is:'))
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'//.*?\n', Comment.Single),

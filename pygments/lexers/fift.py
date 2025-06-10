@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include
 from pygments.token import Literal, Comment, Name, String, Number, Whitespace
 
@@ -20,12 +21,12 @@ class FiftLexer(RegexLexer):
     """
 
     name = 'Fift'
-    aliases = ['fift', 'fif']
-    filenames = ['*.fif']
+    aliases = ('fift', 'fif')
+    filenames = ('*.fif',)
     url = 'https://ton-blockchain.github.io/docs/fiftbase.pdf'
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
 

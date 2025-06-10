@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words, include
 from pygments.token import Comment, Keyword, Name, Number, Punctuation, \
     String, Text
@@ -21,9 +22,9 @@ class RideLexer(RegexLexer):
     """
 
     name = 'Ride'
-    aliases = ['ride']
-    filenames = ['*.ride']
-    mimetypes = ['text/x-ride']
+    aliases = ('ride',)
+    filenames = ('*.ride',)
+    mimetypes = ('text/x-ride',)
     url = 'https://docs.waves.tech/en/ride'
     version_added = '2.6'
 
@@ -81,7 +82,7 @@ class RideLexer(RegexLexer):
         'let', 'then', '@Callable', '@Verifier',
     ), suffix=r'\b')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Comments
             (r'#.*', Comment.Single),

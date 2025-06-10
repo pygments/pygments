@@ -9,6 +9,7 @@
 """
 
 import keyword
+import typing
 
 from pygments import unistring as uni
 from pygments.lexer import (
@@ -45,15 +46,15 @@ class MojoLexer(RegexLexer):
 
     name = "Mojo"
     url = "https://docs.modular.com/mojo/"
-    aliases = ["mojo", "🔥"]
-    filenames = [
+    aliases = ("mojo", "🔥")
+    filenames = (
         "*.mojo",
         "*.🔥",
-    ]
-    mimetypes = [
+    )
+    mimetypes = (
         "text/x-mojo",
         "application/x-mojo",
-    ]
+    )
     version_added = "2.18"
 
     uni_name = f"[{uni.xid_start}][{uni.xid_continue}]*"
@@ -97,7 +98,7 @@ class MojoLexer(RegexLexer):
             # newlines are an error (use "nl" state)
         ]
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             (r"\s+", Whitespace),
             (

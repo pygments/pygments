@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import Lexer, RegexLexer, include, bygroups, \
     do_insertions, using
@@ -16,7 +17,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Punctuation, Whitespace
 from pygments.lexers.shell import BashLexer
 
-__all__ = ['MakefileLexer', 'BaseMakefileLexer', 'CMakeLexer']
+__all__ = ['BaseMakefileLexer', 'CMakeLexer', 'MakefileLexer']
 
 
 class MakefileLexer(Lexer):
@@ -28,9 +29,9 @@ class MakefileLexer(Lexer):
     """
 
     name = 'Makefile'
-    aliases = ['make', 'makefile', 'mf', 'bsdmake']
-    filenames = ['*.mak', '*.mk', 'Makefile', 'makefile', 'Makefile.*', 'GNUmakefile']
-    mimetypes = ['text/x-makefile']
+    aliases = ('make', 'makefile', 'mf', 'bsdmake')
+    filenames = ('*.mak', '*.mk', 'Makefile', 'makefile', 'Makefile.*', 'GNUmakefile')
+    mimetypes = ('text/x-makefile',)
     url = 'https://en.wikipedia.org/wiki/Make_(software)'
     version_added = ''
 
@@ -72,13 +73,13 @@ class BaseMakefileLexer(RegexLexer):
     """
 
     name = 'Base Makefile'
-    aliases = ['basemake']
-    filenames = []
-    mimetypes = []
+    aliases = ('basemake',)
+    filenames = ()
+    mimetypes = ()
     url = 'https://en.wikipedia.org/wiki/Make_(software)'
     version_added = '0.10'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # recipes (need to allow spaces because of expandtabs)
             (r'^(?:[\t ]+.*\n|\n)+', using(BashLexer)),
@@ -134,12 +135,12 @@ class CMakeLexer(RegexLexer):
     """
     name = 'CMake'
     url = 'https://cmake.org/documentation/'
-    aliases = ['cmake']
-    filenames = ['*.cmake', 'CMakeLists.txt']
-    mimetypes = ['text/x-cmake']
+    aliases = ('cmake',)
+    filenames = ('*.cmake', 'CMakeLists.txt')
+    mimetypes = ('text/x-cmake',)
     version_added = '1.2'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # (r'(ADD_CUSTOM_COMMAND|ADD_CUSTOM_TARGET|ADD_DEFINITIONS|'
             # r'ADD_DEPENDENCIES|ADD_EXECUTABLE|ADD_LIBRARY|ADD_SUBDIRECTORY|'

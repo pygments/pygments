@@ -12,6 +12,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
     Number, Operator, Punctuation, Generic, Whitespace
@@ -38,7 +39,7 @@ class LovelaceStyle(Style):
     _LABEL_CYAN = '#289870'
     _EXCEPT_YELLOW = '#908828'
 
-    styles = {
+    styles: typing.ClassVar = {
         Whitespace:          '#a89028',
         Comment:             'italic #888888',
         Comment.Hashbang:    _CLS_CYAN,

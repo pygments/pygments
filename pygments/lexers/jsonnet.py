@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import include, RegexLexer, words
 from pygments.token import Comment, Keyword, Name, Number, Operator, \
     Punctuation, String, Text, Whitespace
@@ -37,11 +38,11 @@ class JsonnetLexer(RegexLexer):
     """Lexer for Jsonnet source code."""
 
     name = 'Jsonnet'
-    aliases = ['jsonnet']
-    filenames = ['*.jsonnet', '*.libsonnet']
+    aliases = ('jsonnet',)
+    filenames = ('*.jsonnet', '*.libsonnet')
     url = "https://jsonnet.org"
     version_added = ''
-    tokens = {
+    tokens: typing.ClassVar = {
         # Not used by itself
         '_comments': [
             (r'(//|#).*\n', Comment.Single),

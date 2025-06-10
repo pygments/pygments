@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer
 from pygments.token import Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
@@ -21,16 +22,16 @@ class BQNLexer(RegexLexer):
     """
     name = 'BQN'
     url = 'https://mlochbaum.github.io/BQN/index.html'
-    aliases = ['bqn']
-    filenames = ['*.bqn']
-    mimetypes = []
+    aliases = ('bqn',)
+    filenames = ('*.bqn',)
+    mimetypes = ()
     version_added = '2.16'
 
     # An inter_word_char. Necessary because \w matches all alphanumeric
     # Unicode characters, including ones (e.g., 𝕊) that BQN treats special.
     _iwc = r'((?=[^𝕎𝕏𝔽𝔾𝕊𝕨𝕩𝕗𝕘𝕤𝕣])\w)'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Whitespace
             # ==========

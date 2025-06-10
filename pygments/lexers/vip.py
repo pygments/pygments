@@ -9,12 +9,13 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, inherit, words, include
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
 
-__all__ = ['VisualPrologLexer', 'VisualPrologGrammarLexer']
+__all__ = ['VisualPrologGrammarLexer', 'VisualPrologLexer']
 
 
 class VisualPrologBaseLexer(RegexLexer):
@@ -22,7 +23,7 @@ class VisualPrologBaseLexer(RegexLexer):
     minorkwexp = ('and', 'catch', 'do', 'else', 'elseif', 'erroneous', 'externally', 'failure', 'finally', 'foreach', 'if', 'or', 'orelse', 'otherwise', 'then',
                   'try', 'div', 'mod', 'rem', 'quot')
     dockw = ('short', 'detail', 'end', 'withdomain')
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (words(minorendkw, prefix=r'\bend\s+', suffix=r'\b'), Keyword.Minor),
@@ -88,8 +89,8 @@ class VisualPrologLexer(VisualPrologBaseLexer):
     """
     name = 'Visual Prolog'
     url = 'https://www.visual-prolog.com/'
-    aliases = ['visualprolog']
-    filenames = ['*.pro', '*.cl', '*.i', '*.pack', '*.ph']
+    aliases = ('visualprolog',)
+    filenames = ('*.pro', '*.cl', '*.i', '*.pack', '*.ph')
     version_added = '2.17'
 
     majorkw = ('goal', 'namespace', 'interface', 'class', 'implement', 'where', 'open', 'inherits', 'supports', 'resolve',
@@ -98,7 +99,7 @@ class VisualPrologLexer(VisualPrologBaseLexer):
                'guard', 'multi', 'nondeterm', 'or', 'orelse', 'otherwise', 'procedure', 'resolve', 'single', 'suspending')
     directivekw = ('bininclude', 'else', 'elseif', 'endif', 'error', 'export', 'externally', 'from', 'grammargenerate',
                    'grammarinclude', 'if', 'include', 'message', 'options', 'orrequires', 'requires', 'stringinclude', 'then')
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (words(minorkw, suffix=r'\b'), Keyword.Minor),
             (words(majorkw, suffix=r'\b'), Keyword),
@@ -124,14 +125,14 @@ class VisualPrologGrammarLexer(VisualPrologBaseLexer):
 
     name = 'Visual Prolog Grammar'
     url = 'https://www.visual-prolog.com/'
-    aliases = ['visualprologgrammar']
-    filenames = ['*.vipgrm']
+    aliases = ('visualprologgrammar',)
+    filenames = ('*.vipgrm',)
     version_added = '2.17'
 
     majorkw = ('open', 'namespace', 'grammar', 'nonterminals',
                'startsymbols', 'terminals', 'rules', 'precedence')
     directivekw = ('bininclude', 'stringinclude')
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (words(majorkw, suffix=r'\b'), Keyword),
             (words(directivekw, prefix='#', suffix=r'\b'), Keyword.Directive),

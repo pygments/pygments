@@ -9,13 +9,14 @@
 """
 
 import re
+import typing
 
 
 from pygments.lexer import RegexLexer, bygroups, default
 from pygments.token import Operator, Comment, Keyword, Literal, Name, String, \
     Number, Punctuation, Whitespace, Escape
 
-__all__ = ['LdifLexer', 'LdaprcLexer']
+__all__ = ['LdaprcLexer', 'LdifLexer']
 
 
 class LdifLexer(RegexLexer):
@@ -25,13 +26,13 @@ class LdifLexer(RegexLexer):
     """
 
     name = 'LDIF'
-    aliases = ['ldif']
-    filenames = ['*.ldif']
-    mimetypes = ["text/x-ldif"]
+    aliases = ('ldif',)
+    filenames = ('*.ldif',)
+    mimetypes = ("text/x-ldif",)
     url = "https://datatracker.ietf.org/doc/html/rfc2849"
     version_added = '2.17'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s*\n', Whitespace),
             (r'(-)(\n)', bygroups(Punctuation, Whitespace)),
@@ -108,9 +109,9 @@ class LdaprcLexer(RegexLexer):
     """
 
     name = 'LDAP configuration file'
-    aliases = ['ldapconf', 'ldaprc']
-    filenames = ['.ldaprc', 'ldaprc', 'ldap.conf']
-    mimetypes = ["text/x-ldapconf"]
+    aliases = ('ldapconf', 'ldaprc')
+    filenames = ('.ldaprc', 'ldaprc', 'ldap.conf')
+    mimetypes = ("text/x-ldapconf",)
     url = 'https://www.openldap.org/software//man.cgi?query=ldap.conf&sektion=5&apropos=0&manpath=OpenLDAP+2.4-Release'
     version_added = '2.17'
 
@@ -123,7 +124,7 @@ class LdaprcLexer(RegexLexer):
 
     flags = re.IGNORECASE | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*', Comment.Single),
             (r'\s+', Whitespace),

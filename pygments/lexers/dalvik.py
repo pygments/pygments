@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups
 from pygments.token import Keyword, Text, Comment, Name, String, Number, \
@@ -24,12 +25,12 @@ class SmaliLexer(RegexLexer):
     """
     name = 'Smali'
     url = 'http://code.google.com/p/smali/'
-    aliases = ['smali']
-    filenames = ['*.smali']
-    mimetypes = ['text/smali']
+    aliases = ('smali',)
+    filenames = ('*.smali',)
+    mimetypes = ('text/smali',)
     version_added = '1.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('comment'),
             include('label'),

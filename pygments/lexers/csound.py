@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, bygroups, default, include, using, words
 from pygments.token import Comment, Error, Keyword, Name, Number, Operator, Punctuation, \
@@ -18,7 +19,7 @@ from pygments.lexers.html import HtmlLexer
 from pygments.lexers.python import PythonLexer
 from pygments.lexers.scripting import LuaLexer
 
-__all__ = ['CsoundScoreLexer', 'CsoundOrchestraLexer', 'CsoundDocumentLexer']
+__all__ = ['CsoundDocumentLexer', 'CsoundOrchestraLexer', 'CsoundScoreLexer']
 
 newline = (r'((?:(?:;|//).*)*)(\n)', bygroups(Comment.Single, Text))
 
@@ -26,7 +27,7 @@ newline = (r'((?:(?:;|//).*)*)(\n)', bygroups(Comment.Single, Text))
 class CsoundLexer(RegexLexer):
     url = 'https://csound.com/'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'whitespace': [
             (r'[ \t]+', Whitespace),
             (r'/[*](?:.|\n)*?[*]/', Comment.Multiline),
@@ -139,11 +140,11 @@ class CsoundScoreLexer(CsoundLexer):
     """
 
     name = 'Csound Score'
-    aliases = ['csound-score', 'csound-sco']
-    filenames = ['*.sco']
+    aliases = ('csound-score', 'csound-sco')
+    filenames = ('*.sco',)
     version_added = '2.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             include('whitespace and macro uses'),
@@ -204,11 +205,11 @@ class CsoundOrchestraLexer(CsoundLexer):
     """
 
     name = 'Csound Orchestra'
-    aliases = ['csound', 'csound-orc']
-    filenames = ['*.orc', '*.udo']
+    aliases = ('csound', 'csound-orc')
+    filenames = ('*.orc', '*.udo')
     version_added = '2.1'
 
-    user_defined_opcodes = set()
+    user_defined_opcodes: typing.ClassVar = set()
 
     def opcode_name_callback(lexer, match):
         opcode = match.group(0)
@@ -236,7 +237,7 @@ class CsoundOrchestraLexer(CsoundLexer):
             yield match.start(2), Punctuation, match.group(2)
             yield match.start(3), type_annotation_token, match.group(3)
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
 
@@ -413,8 +414,8 @@ class CsoundDocumentLexer(RegexLexer):
     """
 
     name = 'Csound Document'
-    aliases = ['csound-document', 'csound-csd']
-    filenames = ['*.csd']
+    aliases = ('csound-document', 'csound-csd')
+    filenames = ('*.csd',)
     url = 'https://csound.com'
     version_added = '2.1'
 
@@ -425,7 +426,7 @@ class CsoundDocumentLexer(RegexLexer):
     # after the root element, unescaped bitwise AND & and less than < operators, etc. In
     # other words, while Csound Document files look like XML files, they may not actually
     # be XML files.
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'/[*](.|\n)*?[*]/', Comment.Multiline),
             (r'(?:;|//).*$', Comment.Single),

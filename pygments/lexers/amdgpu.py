@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words
 from pygments.token import Name, Text, Keyword, Whitespace, Number, Comment
 
@@ -21,14 +22,14 @@ class AMDGPULexer(RegexLexer):
     For AMD GPU assembly.
     """
     name = 'AMDGPU'
-    aliases = ['amdgpu']
-    filenames = ['*.isa']
+    aliases = ('amdgpu',)
+    filenames = ('*.isa',)
     url = 'https://gpuopen.com/amd-isa-documentation'
     version_added = '2.8'
 
     flags = re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'[\r\n]+', Text),

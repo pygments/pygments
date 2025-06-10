@@ -11,6 +11,7 @@
 import re
 import sys
 import time
+import typing
 
 from pygments.filter import apply_filters, Filter
 from pygments.filters import get_filter_by_name
@@ -19,9 +20,21 @@ from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
     make_analysator, Future, guess_decode
 from pygments.regexopt import regex_opt
 
-__all__ = ['Lexer', 'RegexLexer', 'ExtendedRegexLexer', 'DelegatingLexer',
-           'LexerContext', 'include', 'inherit', 'bygroups', 'using', 'this',
-           'default', 'words', 'line_re']
+__all__ = [
+    'DelegatingLexer',
+    'ExtendedRegexLexer',
+    'Lexer',
+    'LexerContext',
+    'RegexLexer',
+    'bygroups',
+    'default',
+    'include',
+    'inherit',
+    'line_re',
+    'this',
+    'using',
+    'words',
+]
 
 line_re = re.compile('.*?\n')
 
@@ -110,12 +123,12 @@ class Lexer(metaclass=LexerMeta):
 
     #: A list of short, unique identifiers that can be used to look
     #: up the lexer from a list, e.g., using `get_lexer_by_name()`.
-    aliases = []
+    aliases = ()
 
     #: A list of `fnmatch` patterns that match filenames which contain
     #: content for this lexer. The patterns in this list should be unique among
     #: all lexers.
-    filenames = []
+    filenames = ()
 
     #: A list of `fnmatch` patterns that match filenames which may or may not
     #: contain content for this lexer. This list is used by the
@@ -123,10 +136,10 @@ class Lexer(metaclass=LexerMeta):
     #: are then included in guessing the correct one. That means that
     #: e.g. every lexer for HTML and a template language should include
     #: ``\*.html`` in this list.
-    alias_filenames = []
+    alias_filenames = ()
 
     #: A list of MIME types for content that can be lexed with this lexer.
-    mimetypes = []
+    mimetypes = ()
 
     #: Priority, should multiple lexers match and no content is provided
     priority = 0
@@ -695,7 +708,7 @@ class RegexLexer(Lexer, metaclass=RegexLexerMeta):
     #: The tuple can also be replaced with ``include('state')``, in which
     #: case the rules from the state named by the string are included in the
     #: current one.
-    tokens = {}
+    tokens: typing.ClassVar = {}
 
     def get_tokens_unprocessed(self, text, stack=('root',)):
         """
@@ -935,7 +948,7 @@ class ProfilingRegexLexerMeta(RegexLexerMeta):
 class ProfilingRegexLexer(RegexLexer, metaclass=ProfilingRegexLexerMeta):
     """Drop-in replacement for RegexLexer that does profiling of its regexes."""
 
-    _prof_data = []
+    _prof_data: typing.ClassVar = []
     _prof_sort_index = 4  # defaults to time per call
 
     def get_tokens_unprocessed(self, text, stack=('root',)):

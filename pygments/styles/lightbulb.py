@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import (
     Comment,
@@ -59,7 +60,7 @@ class LightbulbStyle(Style):
     line_number_color = COLORS['gray_2']
     line_number_special_color = COLORS['gray_2']
 
-    styles = {
+    styles: typing.ClassVar = {
         Comment: COLORS["gray_1"],
         Comment.Hashbang: "italic " + COLORS['red_1'],
         Comment.Preproc: "bold " + COLORS['orange_1'],

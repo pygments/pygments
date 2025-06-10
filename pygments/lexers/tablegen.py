@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, words, using
 from pygments.lexers.c_cpp import CppLexer
 from pygments.token import Comment, Keyword, Name, Number, Operator, \
@@ -108,12 +109,12 @@ class TableGenLexer(RegexLexer):
 
     name = 'TableGen'
     url = 'https://llvm.org/docs/TableGen/ProgRef.html'
-    aliases = ['tablegen', 'td']
-    filenames = ['*.td']
+    aliases = ('tablegen', 'td')
+    filenames = ('*.td',)
 
     version_added = '2.19'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
 

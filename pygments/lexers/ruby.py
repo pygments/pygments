@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import Lexer, RegexLexer, ExtendedRegexLexer, include, \
     bygroups, default, LexerContext, do_insertions, words, line_re
@@ -16,7 +17,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Error, Generic, Whitespace
 from pygments.util import shebang_matches
 
-__all__ = ['RubyLexer', 'RubyConsoleLexer', 'FancyLexer']
+__all__ = ['FancyLexer', 'RubyConsoleLexer', 'RubyLexer']
 
 
 RUBY_OPERATORS = (
@@ -32,10 +33,10 @@ class RubyLexer(ExtendedRegexLexer):
 
     name = 'Ruby'
     url = 'http://www.ruby-lang.org'
-    aliases = ['ruby', 'rb', 'duby']
-    filenames = ['*.rb', '*.rbw', 'Rakefile', '*.rake', '*.gemspec',
-                 '*.rbx', '*.duby', 'Gemfile', 'Vagrantfile']
-    mimetypes = ['text/x-ruby', 'application/x-ruby']
+    aliases = ('ruby', 'rb', 'duby')
+    filenames = ('*.rb', '*.rbw', 'Rakefile', '*.rake', '*.gemspec',
+                 '*.rbx', '*.duby', 'Gemfile', 'Vagrantfile')
+    mimetypes = ('text/x-ruby', 'application/x-ruby')
     version_added = ''
 
     flags = re.DOTALL | re.MULTILINE
@@ -190,7 +191,7 @@ class RubyLexer(ExtendedRegexLexer):
 
         return states
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\A#!.+?$', Comment.Hashbang),
             (r'#.*?$', Comment.Single),
@@ -398,8 +399,8 @@ class RubyConsoleLexer(Lexer):
     For Ruby interactive console (**irb**) output.
     """
     name = 'Ruby irb session'
-    aliases = ['rbcon', 'irb']
-    mimetypes = ['text/x-ruby-shellsession']
+    aliases = ('rbcon', 'irb')
+    mimetypes = ('text/x-ruby-shellsession',)
     url = 'https://www.ruby-lang.org'
     version_added = ''
     _example = 'rbcon/console'
@@ -442,12 +443,12 @@ class FancyLexer(RegexLexer):
     """
     name = 'Fancy'
     url = 'https://github.com/bakkdoor/fancy'
-    filenames = ['*.fy', '*.fancypack']
-    aliases = ['fancy', 'fy']
-    mimetypes = ['text/x-fancysrc']
+    filenames = ('*.fy', '*.fancypack')
+    aliases = ('fancy', 'fy')
+    mimetypes = ('text/x-fancysrc',)
     version_added = '1.5'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         # copied from PerlLexer:
         'balanced-regex': [
             (r'/(\\\\|\\[^\\]|[^/\\])*/[egimosx]*', String.Regex, '#pop'),

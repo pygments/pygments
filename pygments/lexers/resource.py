@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import Comment, String, Number, Operator, Text, \
@@ -21,8 +22,8 @@ class ResourceLexer(RegexLexer):
     """Lexer for ICU Resource bundles.
     """
     name = 'ResourceBundle'
-    aliases = ['resourcebundle', 'resource']
-    filenames = []
+    aliases = ('resourcebundle', 'resource')
+    filenames = ()
     url = 'https://unicode-org.github.io/icu/userguide/locale/resources.html'
     version_added = '2.0'
 
@@ -30,7 +31,7 @@ class ResourceLexer(RegexLexer):
               ':int', ':alias')
 
     flags = re.MULTILINE | re.IGNORECASE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'//.*?$', Comment),
             (r'"', String, 'string'),

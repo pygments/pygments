@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, using, this, words
 from pygments.token import Keyword, Punctuation, Comment, Operator, Name, \
@@ -25,13 +26,13 @@ class GSQLLexer(RegexLexer):
 
     name = 'GSQL'
     url = 'https://docs.tigergraph.com/dev/gsql-ref'
-    aliases = ['gsql']
-    filenames = ['*.gsql']
+    aliases = ('gsql',)
+    filenames = ('*.gsql',)
     version_added = '2.10'
 
     flags = re.MULTILINE | re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('comment'),
             include('keywords'),

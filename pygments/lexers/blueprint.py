@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, words
 from pygments.token import (
@@ -31,14 +32,14 @@ class BlueprintLexer(RegexLexer):
     """
 
     name = "Blueprint"
-    aliases = ["blueprint"]
-    filenames = ["*.blp"]
-    mimetypes = ["text/x-blueprint"]
+    aliases = ("blueprint",)
+    filenames = ("*.blp",)
+    mimetypes = ("text/x-blueprint",)
     url = "https://gitlab.gnome.org/jwestman/blueprint-compiler"
     version_added = '2.16'
 
     flags = re.IGNORECASE
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             include("block-content"),
         ],

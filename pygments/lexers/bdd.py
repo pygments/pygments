@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include
 from pygments.token import Comment, Keyword, Name, String, Number, Text, \
     Punctuation, Whitespace
@@ -21,16 +22,16 @@ class BddLexer(RegexLexer):
     """
 
     name = 'Bdd'
-    aliases = ['bdd']
-    filenames = ['*.feature']
-    mimetypes = ['text/x-bdd']
+    aliases = ('bdd',)
+    filenames = ('*.feature',)
+    mimetypes = ('text/x-bdd',)
     url = 'https://en.wikipedia.org/wiki/Behavior-driven_development'
     version_added = '2.11'
 
     step_keywords = (r'Given|When|Then|Add|And|Feature|Scenario Outline|'
                      r'Scenario|Background|Examples|But')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'comments': [
             (r'^\s*#.*$', Comment),
         ],

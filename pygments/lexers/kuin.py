@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, using, this, bygroups, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
         Number, Punctuation, Whitespace
@@ -21,11 +22,11 @@ class KuinLexer(RegexLexer):
     """
     name = 'Kuin'
     url = 'https://github.com/kuina/Kuin'
-    aliases = ['kuin']
-    filenames = ['*.kn']
+    aliases = ('kuin',)
+    filenames = ('*.kn',)
     version_added = '2.9'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('statement'),
         ],

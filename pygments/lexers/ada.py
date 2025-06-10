@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, words, using, this, \
     default
@@ -25,15 +26,15 @@ class AdaLexer(RegexLexer):
     """
 
     name = 'Ada'
-    aliases = ['ada', 'ada95', 'ada2005']
-    filenames = ['*.adb', '*.ads', '*.ada']
-    mimetypes = ['text/x-ada']
+    aliases = ('ada', 'ada95', 'ada2005')
+    filenames = ('*.adb', '*.ads', '*.ada')
+    mimetypes = ('text/x-ada',)
     url = 'https://www.adaic.org'
     version_added = '1.3'
 
     flags = re.MULTILINE | re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^\S\n]+', Text),
             (r'--.*?\n', Comment.Single),

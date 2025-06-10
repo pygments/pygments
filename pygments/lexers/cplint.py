@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import bygroups, inherit, words
 from pygments.lexers import PrologLexer
 from pygments.token import Operator, Keyword, Name, String, Punctuation
@@ -22,12 +23,12 @@ class CplintLexer(PrologLexer):
     """
     name = 'cplint'
     url = 'https://cplint.eu'
-    aliases = ['cplint']
-    filenames = ['*.ecl', '*.prolog', '*.pro', '*.pl', '*.P', '*.lpad', '*.cpl']
-    mimetypes = ['text/x-cplint']
+    aliases = ('cplint',)
+    filenames = ('*.ecl', '*.prolog', '*.pro', '*.pl', '*.P', '*.lpad', '*.cpl')
+    mimetypes = ('text/x-cplint',)
     version_added = '2.12'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'map_query', Keyword),
             (words(('gaussian', 'uniform_dens', 'dirichlet', 'gamma', 'beta',

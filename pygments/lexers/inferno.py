@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, default
 from pygments.token import Punctuation, Comment, Operator, Keyword, \
@@ -27,12 +28,12 @@ class LimboLexer(RegexLexer):
     """
     name = 'Limbo'
     url = 'http://www.vitanuova.com/inferno/limbo.html'
-    aliases = ['limbo']
-    filenames = ['*.b']
-    mimetypes = ['text/limbo']
+    aliases = ('limbo',)
+    filenames = ('*.b',)
+    mimetypes = ('text/limbo',)
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'whitespace': [
             (r'^(\s*)([a-zA-Z_]\w*:)(\s*\n)',
              bygroups(Whitespace, Name.Label, Whitespace)),

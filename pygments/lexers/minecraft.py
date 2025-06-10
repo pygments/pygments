@@ -19,11 +19,12 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, default, include, bygroups
 from pygments.token import Comment, Keyword, Literal, Name, Number, Operator, \
     Punctuation, String, Text, Whitespace
 
-__all__ = ['SNBTLexer', 'MCFunctionLexer', 'MCSchemaLexer']
+__all__ = ['MCFunctionLexer', 'MCSchemaLexer', 'SNBTLexer']
 
 
 class SNBTLexer(RegexLexer):
@@ -32,12 +33,12 @@ class SNBTLexer(RegexLexer):
 
     name = "SNBT"
     url = "https://minecraft.wiki/w/NBT_format"
-    aliases = ["snbt"]
-    filenames = ["*.snbt"]
-    mimetypes = ["text/snbt"]
+    aliases = ("snbt",)
+    filenames = ("*.snbt",)
+    mimetypes = ("text/snbt",)
     version_added = '2.12'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             # We only look for the open bracket here since square bracket
             #  is only valid in NBT pathing (which is a mcfunction idea).
@@ -105,15 +106,15 @@ class MCFunctionLexer(RegexLexer):
 
     name = "MCFunction"
     url = "https://minecraft.wiki/w/Commands"
-    aliases = ["mcfunction", "mcf"]
-    filenames = ["*.mcfunction"]
-    mimetypes = ["text/mcfunction"]
+    aliases = ("mcfunction", "mcf")
+    filenames = ("*.mcfunction",)
+    mimetypes = ("text/mcfunction",)
     version_added = '2.12'
 
     # Used to denotate the start of a block comment, borrowed from Github's mcfunction
     _block_comment_prefix = "[>!]"
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             include("names"),
             include("comments"),
@@ -323,12 +324,12 @@ class MCSchemaLexer(RegexLexer):
 
     name = 'MCSchema'
     url = 'https://learn.microsoft.com/en-us/minecraft/creator/reference/content/schemasreference/'
-    aliases = ['mcschema']
-    filenames = ['*.mcschema']
-    mimetypes = ['text/mcschema']
+    aliases = ('mcschema',)
+    filenames = ('*.mcschema',)
+    mimetypes = ('text/mcschema',)
     version_added = '2.14'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'commentsandwhitespace': [
             (r'\s+', Whitespace),
             (r'//.*?$', Comment.Single),

@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, bygroups, default, words, include
 from pygments.token import Comment, Error, Keyword, Name, Number, \
@@ -16,8 +17,15 @@ from pygments.token import Comment, Error, Keyword, Name, Number, \
 from pygments.lexers import _vbscript_builtins
 
 
-__all__ = ['BlitzBasicLexer', 'BlitzMaxLexer', 'MonkeyLexer', 'CbmBasicV2Lexer',
-           'QBasicLexer', 'VBScriptLexer', 'BBCBasicLexer']
+__all__ = [
+    'BBCBasicLexer',
+    'BlitzBasicLexer',
+    'BlitzMaxLexer',
+    'CbmBasicV2Lexer',
+    'MonkeyLexer',
+    'QBasicLexer',
+    'VBScriptLexer',
+]
 
 
 class BlitzMaxLexer(RegexLexer):
@@ -27,9 +35,9 @@ class BlitzMaxLexer(RegexLexer):
 
     name = 'BlitzMax'
     url = 'http://blitzbasic.com'
-    aliases = ['blitzmax', 'bmax']
-    filenames = ['*.bmx']
-    mimetypes = ['text/x-bmx']
+    aliases = ('blitzmax', 'bmax')
+    filenames = ('*.bmx',)
+    mimetypes = ('text/x-bmx',)
     version_added = '1.4'
 
     bmax_vopwords = r'\b(Shl|Shr|Sar|Mod)\b'
@@ -41,7 +49,7 @@ class BlitzMaxLexer(RegexLexer):
     bmax_func = bmax_var + r'?((?:[ \t]|\.\.\n)*)([(])'
 
     flags = re.MULTILINE | re.IGNORECASE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Text
             (r'\s+', Whitespace),
@@ -115,9 +123,9 @@ class BlitzBasicLexer(RegexLexer):
 
     name = 'BlitzBasic'
     url = 'http://blitzbasic.com'
-    aliases = ['blitzbasic', 'b3d', 'bplus']
-    filenames = ['*.bb', '*.decls']
-    mimetypes = ['text/x-bb']
+    aliases = ('blitzbasic', 'b3d', 'bplus')
+    filenames = ('*.bb', '*.decls')
+    mimetypes = ('text/x-bb',)
     version_added = '2.0'
 
     bb_sktypes = r'@{1,2}|[#$%]'
@@ -125,7 +133,7 @@ class BlitzBasicLexer(RegexLexer):
     bb_var = (rf'({bb_name})(?:([ \t]*)({bb_sktypes})|([ \t]*)([.])([ \t]*)(?:({bb_name})))?')
 
     flags = re.MULTILINE | re.IGNORECASE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Text
             (r'\s+', Whitespace),
@@ -192,9 +200,9 @@ class MonkeyLexer(RegexLexer):
     """
 
     name = 'Monkey'
-    aliases = ['monkey']
-    filenames = ['*.monkey']
-    mimetypes = ['text/x-monkey']
+    aliases = ('monkey',)
+    filenames = ('*.monkey',)
+    mimetypes = ('text/x-monkey',)
     url = 'https://blitzresearch.itch.io/monkeyx'
     version_added = '1.6'
 
@@ -210,7 +218,7 @@ class MonkeyLexer(RegexLexer):
 
     flags = re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Text
             (r'\s+', Whitespace),
@@ -319,14 +327,14 @@ class CbmBasicV2Lexer(RegexLexer):
     For CBM BASIC V2 sources.
     """
     name = 'CBM BASIC V2'
-    aliases = ['cbmbas']
-    filenames = ['*.bas']
+    aliases = ('cbmbas',)
+    filenames = ('*.bas',)
     url = 'https://en.wikipedia.org/wiki/Commodore_BASIC'
     version_added = '1.6'
 
     flags = re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'rem.*\n', Comment.Single),
             (r'\s+', Whitespace),
@@ -358,9 +366,9 @@ class QBasicLexer(RegexLexer):
     """
 
     name = 'QBasic'
-    aliases = ['qbasic', 'basic']
-    filenames = ['*.BAS', '*.bas']
-    mimetypes = ['text/basic']
+    aliases = ('qbasic', 'basic')
+    filenames = ('*.BAS', '*.bas')
+    mimetypes = ('text/basic',)
     url = 'https://en.wikipedia.org/wiki/QBasic'
     version_added = '2.0'
 
@@ -417,7 +425,7 @@ class QBasicLexer(RegexLexer):
         'STEP', 'STRING', 'THEN', 'TO', 'UNTIL', 'USING', 'WEND'
     )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n+', Text),
             (r'\s+', Text.Whitespace),
@@ -498,14 +506,14 @@ class VBScriptLexer(RegexLexer):
     VBScript is scripting language that is modeled on Visual Basic.
     """
     name = 'VBScript'
-    aliases = ['vbscript']
-    filenames = ['*.vbs', '*.VBS']
+    aliases = ('vbscript',)
+    filenames = ('*.vbs', '*.VBS')
     url = 'https://learn.microsoft.com/en-us/previous-versions/t0aew7h6(v=vs.85)'
     version_added = '2.4'
 
     flags = re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r"'[^\n]*", Comment.Single),
             (r'\s+', Whitespace),
@@ -565,7 +573,7 @@ class BBCBasicLexer(RegexLexer):
     BBC Basic was supplied on the BBC Micro, and later Acorn RISC OS.
     It is also used by BBC Basic For Windows.
     """
-    base_keywords = ['OTHERWISE', 'AND', 'DIV', 'EOR', 'MOD', 'OR', 'ERROR',
+    base_keywords = ('OTHERWISE', 'AND', 'DIV', 'EOR', 'MOD', 'OR', 'ERROR',
                      'LINE', 'OFF', 'STEP', 'SPC', 'TAB', 'ELSE', 'THEN',
                      'OPENIN', 'PTR', 'PAGE', 'TIME', 'LOMEM', 'HIMEM', 'ABS',
                      'ACS', 'ADVAL', 'ASC', 'ASN', 'ATN', 'BGET', 'COS', 'COUNT',
@@ -581,25 +589,25 @@ class BBCBasicLexer(RegexLexer):
                      'INPUT', 'LET', 'LOCAL', 'MODE', 'MOVE', 'NEXT', 'ON',
                      'VDU', 'PLOT', 'PRINT', 'PROC', 'READ', 'REM', 'REPEAT',
                      'REPORT', 'RESTORE', 'RETURN', 'RUN', 'STOP', 'COLOUR',
-                     'TRACE', 'UNTIL', 'WIDTH', 'OSCLI']
+                     'TRACE', 'UNTIL', 'WIDTH', 'OSCLI')
 
-    basic5_keywords = ['WHEN', 'OF', 'ENDCASE', 'ENDIF', 'ENDWHILE', 'CASE',
+    basic5_keywords = ('WHEN', 'OF', 'ENDCASE', 'ENDIF', 'ENDWHILE', 'CASE',
                        'CIRCLE', 'FILL', 'ORIGIN', 'POINT', 'RECTANGLE', 'SWAP',
                        'WHILE', 'WAIT', 'MOUSE', 'QUIT', 'SYS', 'INSTALL',
                        'LIBRARY', 'TINT', 'ELLIPSE', 'BEATS', 'TEMPO', 'VOICES',
                        'VOICE', 'STEREO', 'OVERLAY', 'APPEND', 'AUTO', 'CRUNCH',
                        'DELETE', 'EDIT', 'HELP', 'LIST', 'LOAD', 'LVAR', 'NEW',
                        'OLD', 'RENUMBER', 'SAVE', 'TEXTLOAD', 'TEXTSAVE',
-                       'TWIN', 'TWINO', 'INSTALL', 'SUM', 'BEAT']
+                       'TWIN', 'TWINO', 'INSTALL', 'SUM', 'BEAT')
 
 
     name = 'BBC Basic'
-    aliases = ['bbcbasic']
-    filenames = ['*.bbc']
+    aliases = ('bbcbasic',)
+    filenames = ('*.bbc',)
     url = 'https://www.bbcbasic.co.uk/bbcbasic.html'
     version_added = '2.4'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r"[0-9]+", Name.Label),
             (r"(\*)([^\n]*)",

@@ -9,6 +9,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
     Number, Operator, Whitespace, Text
@@ -25,7 +26,7 @@ class StataLightStyle(Style):
 
     name = 'stata-light'
     
-    styles = {
+    styles: typing.ClassVar = {
         Text:                  '#111111',
         Whitespace:            '#bbbbbb',
         Error:                 'bg:#e3d2d2 #a61717',

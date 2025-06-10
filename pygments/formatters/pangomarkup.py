@@ -33,8 +33,8 @@ class PangoMarkupFormatter(Formatter):
     """
 
     name = 'Pango Markup'
-    aliases = ['pango', 'pangomarkup']
-    filenames = []
+    aliases = ('pango', 'pangomarkup')
+    filenames = ()
 
     def __init__(self, **options):
         Formatter.__init__(self, **options)

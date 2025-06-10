@@ -12,6 +12,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words, include, bygroups, default
 from pygments.token import (Comment, Keyword, Name, Number, Punctuation, String,
                             Whitespace)
@@ -59,12 +60,12 @@ class GraphQLLexer(RegexLexer):
     Lexer for GraphQL syntax
     """
     name = "GraphQL"
-    aliases = ["graphql"]
-    filenames = ["*.graphql"]
+    aliases = ("graphql",)
+    filenames = ("*.graphql",)
     url = "https://graphql.org"
     version_added = '2.16'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "ignored_tokens": [
             (r"\s+", Whitespace),  # Whitespaces
             (r"#.*$", Comment),

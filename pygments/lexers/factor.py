@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, default, words
 from pygments.token import Text, Comment, Keyword, Name, String, Number, \
     Whitespace, Punctuation
@@ -21,9 +22,9 @@ class FactorLexer(RegexLexer):
     """
     name = 'Factor'
     url = 'http://factorcode.org'
-    aliases = ['factor']
-    filenames = ['*.factor']
-    mimetypes = ['text/x-factor']
+    aliases = ('factor',)
+    filenames = ('*.factor',)
+    mimetypes = ('text/x-factor',)
     version_added = '1.4'
 
     builtin_kernel = words((
@@ -189,7 +190,7 @@ class FactorLexer(RegexLexer):
         'return', 'return-continuation', 'thread-error-hook', 'throw-continue',
         'throw-restarts', 'with-datastack', 'with-return'), suffix=r'(\s+)')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # factor allows a file to start with a shebang
             (r'#!.*$', Comment.Preproc),

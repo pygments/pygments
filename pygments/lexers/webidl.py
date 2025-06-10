@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, default, include, words
 from pygments.token import Comment, Keyword, Name, Number, Punctuation, \
     String, Text
@@ -43,11 +44,11 @@ class WebIDLLexer(RegexLexer):
 
     name = 'Web IDL'
     url = 'https://www.w3.org/wiki/Web_IDL'
-    aliases = ['webidl']
-    filenames = ['*.webidl']
+    aliases = ('webidl',)
+    filenames = ('*.webidl',)
     version_added = '2.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'common': [
             (r'\s+', Text),
             (r'(?s)/\*.*?\*/', Comment.Multiline),

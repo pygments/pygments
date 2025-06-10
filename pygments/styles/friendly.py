@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Whitespace
@@ -25,7 +26,7 @@ class FriendlyStyle(Style):
     background_color = "#f0f0f0"
     line_number_color = "#666666"
 
-    styles = {
+    styles: typing.ClassVar = {
         Whitespace:                "#bbbbbb",
         Comment:                   "italic #60a0b0",
         Comment.Preproc:           "noitalic #007020",

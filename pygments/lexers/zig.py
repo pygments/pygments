@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words
 from pygments.token import Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
@@ -23,9 +24,9 @@ class ZigLexer(RegexLexer):
     """
     name = 'Zig'
     url = 'http://www.ziglang.org'
-    aliases = ['zig']
-    filenames = ['*.zig']
-    mimetypes = ['text/zig']
+    aliases = ('zig',)
+    filenames = ('*.zig',)
+    mimetypes = ('text/zig',)
     version_added = ''
 
     type_keywords = (
@@ -69,7 +70,7 @@ class ZigLexer(RegexLexer):
         words(('true', 'false', 'null', 'undefined'), suffix=r'\b'),
         Keyword.Constant)
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             (r'\s+', Whitespace),

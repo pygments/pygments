@@ -9,12 +9,13 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import Lexer, RegexLexer, include, do_insertions
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Whitespace
 
-__all__ = ['RConsoleLexer', 'SLexer', 'RdLexer']
+__all__ = ['RConsoleLexer', 'RdLexer', 'SLexer']
 
 
 line_re  = re.compile('.*?\n')
@@ -26,8 +27,8 @@ class RConsoleLexer(Lexer):
     """
 
     name = 'RConsole'
-    aliases = ['rconsole', 'rout']
-    filenames = ['*.Rout']
+    aliases = ('rconsole', 'rout')
+    filenames = ('*.Rout',)
     url = 'https://www.r-project.org'
     version_added = ''
     _example = "rconsole/r-console-transcript.Rout"
@@ -73,15 +74,15 @@ class SLexer(RegexLexer):
     """
 
     name = 'S'
-    aliases = ['splus', 's', 'r']
-    filenames = ['*.S', '*.R', '.Rhistory', '.Rprofile', '.Renviron']
-    mimetypes = ['text/S-plus', 'text/S', 'text/x-r-source', 'text/x-r',
-                 'text/x-R', 'text/x-r-history', 'text/x-r-profile']
+    aliases = ('splus', 's', 'r')
+    filenames = ('*.S', '*.R', '.Rhistory', '.Rprofile', '.Renviron')
+    mimetypes = ('text/S-plus', 'text/S', 'text/x-r-source', 'text/x-r',
+                 'text/x-R', 'text/x-r-history', 'text/x-r-profile')
     url = 'https://www.r-project.org'
     version_added = '0.10'
 
     valid_name = r'`[^`\\]*(?:\\.[^`\\]*)*`|(?:[a-zA-Z]|\.[A-Za-z_.])[\w.]*|\.'
-    tokens = {
+    tokens: typing.ClassVar = {
         'comments': [
             (r'#.*$', Comment.Single),
         ],
@@ -167,15 +168,15 @@ class RdLexer(RegexLexer):
     and `Parsing Rd files <http://developer.r-project.org/parseRd.pdf>`_.
     """
     name = 'Rd'
-    aliases = ['rd']
-    filenames = ['*.Rd']
-    mimetypes = ['text/x-r-doc']
+    aliases = ('rd',)
+    filenames = ('*.Rd',)
+    mimetypes = ('text/x-r-doc',)
     url = 'http://cran.r-project.org/doc/manuals/R-exts.html'
     version_added = '1.6'
 
     # To account for verbatim / LaTeX-like / and R-like areas
     # would require parsing.
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # catch escaped brackets and percent sign
             (r'\\[\\{}%]', String.Escape),

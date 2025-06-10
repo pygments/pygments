@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, using, this, words
 from pygments.token import Keyword, Punctuation, Comment, Operator, Name,\
@@ -26,13 +27,13 @@ class CypherLexer(RegexLexer):
     """
     name = 'Cypher'
     url = 'https://neo4j.com/docs/developer-manual/3.3/cypher/'
-    aliases = ['cypher']
-    filenames = ['*.cyp', '*.cypher']
+    aliases = ('cypher',)
+    filenames = ('*.cyp', '*.cypher')
     version_added = '2.0'
 
     flags = re.MULTILINE | re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('clauses'),
             include('keywords'),

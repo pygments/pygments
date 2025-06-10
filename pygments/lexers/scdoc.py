@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, using, this
 from pygments.token import Text, Comment, Keyword, String, Generic
@@ -22,12 +23,12 @@ class ScdocLexer(RegexLexer):
     """
     name = 'scdoc'
     url = 'https://git.sr.ht/~sircmpwn/scdoc'
-    aliases = ['scdoc', 'scd']
-    filenames = ['*.scd', '*.scdoc']
+    aliases = ('scdoc', 'scd')
+    filenames = ('*.scd', '*.scdoc')
     version_added = '2.5'
     flags = re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # comment
             (r'^(;.+\n)', bygroups(Comment)),

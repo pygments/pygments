@@ -31,8 +31,12 @@ except ImportError:
     except ImportError:
         _winreg = None
 
-__all__ = ['ImageFormatter', 'GifImageFormatter', 'JpgImageFormatter',
-           'BmpImageFormatter']
+__all__ = [
+    'BmpImageFormatter',
+    'GifImageFormatter',
+    'ImageFormatter',
+    'JpgImageFormatter',
+]
 
 
 # For some unknown reason every font calls it something different
@@ -380,8 +384,8 @@ class ImageFormatter(Formatter):
 
     # Required by the pygments mapper
     name = 'img'
-    aliases = ['img', 'IMG', 'png']
-    filenames = ['*.png']
+    aliases = ('img', 'IMG', 'png')
+    filenames = ('*.png',)
 
     unicodeoutput = False
 
@@ -653,8 +657,8 @@ class GifImageFormatter(ImageFormatter):
     """
 
     name = 'img_gif'
-    aliases = ['gif']
-    filenames = ['*.gif']
+    aliases = ('gif',)
+    filenames = ('*.gif',)
     default_image_format = 'gif'
 
 
@@ -667,8 +671,8 @@ class JpgImageFormatter(ImageFormatter):
     """
 
     name = 'img_jpg'
-    aliases = ['jpg', 'jpeg']
-    filenames = ['*.jpg']
+    aliases = ('jpg', 'jpeg')
+    filenames = ('*.jpg',)
     default_image_format = 'jpeg'
 
 
@@ -681,6 +685,6 @@ class BmpImageFormatter(ImageFormatter):
     """
 
     name = 'img_bmp'
-    aliases = ['bmp', 'bitmap']
-    filenames = ['*.bmp']
+    aliases = ('bmp', 'bitmap')
+    filenames = ('*.bmp',)
     default_image_format = 'bmp'

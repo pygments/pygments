@@ -10,6 +10,7 @@
 
 import re
 import copy
+import typing
 
 from pygments.lexer import ExtendedRegexLexer, RegexLexer, include, bygroups, \
     default, words, inherit
@@ -17,7 +18,7 @@ from pygments.token import Comment, Operator, Keyword, Name, String, Number, \
     Punctuation, Whitespace
 from pygments.lexers._css_builtins import _css_properties
 
-__all__ = ['CssLexer', 'SassLexer', 'ScssLexer', 'LessCssLexer']
+__all__ = ['CssLexer', 'LessCssLexer', 'SassLexer', 'ScssLexer']
 
 
 # List of vendor prefixes obtained from:
@@ -29,36 +30,7 @@ _vendor_prefixes = (
 
 # List of extended color keywords obtained from:
 # https://drafts.csswg.org/css-color/#named-colors
-_color_keywords = (
-    'aliceblue', 'antiquewhite', 'aqua', 'aquamarine', 'azure', 'beige',
-    'bisque', 'black', 'blanchedalmond', 'blue', 'blueviolet', 'brown',
-    'burlywood', 'cadetblue', 'chartreuse', 'chocolate', 'coral',
-    'cornflowerblue', 'cornsilk', 'crimson', 'cyan', 'darkblue', 'darkcyan',
-    'darkgoldenrod', 'darkgray', 'darkgreen', 'darkgrey', 'darkkhaki',
-    'darkmagenta', 'darkolivegreen', 'darkorange', 'darkorchid', 'darkred',
-    'darksalmon', 'darkseagreen', 'darkslateblue', 'darkslategray',
-    'darkslategrey', 'darkturquoise', 'darkviolet', 'deeppink', 'deepskyblue',
-    'dimgray', 'dimgrey', 'dodgerblue', 'firebrick', 'floralwhite',
-    'forestgreen', 'fuchsia', 'gainsboro', 'ghostwhite', 'gold', 'goldenrod',
-    'gray', 'green', 'greenyellow', 'grey', 'honeydew', 'hotpink', 'indianred',
-    'indigo', 'ivory', 'khaki', 'lavender', 'lavenderblush', 'lawngreen',
-    'lemonchiffon', 'lightblue', 'lightcoral', 'lightcyan',
-    'lightgoldenrodyellow', 'lightgray', 'lightgreen', 'lightgrey',
-    'lightpink', 'lightsalmon', 'lightseagreen', 'lightskyblue',
-    'lightslategray', 'lightslategrey', 'lightsteelblue', 'lightyellow',
-    'lime', 'limegreen', 'linen', 'magenta', 'maroon', 'mediumaquamarine',
-    'mediumblue', 'mediumorchid', 'mediumpurple', 'mediumseagreen',
-    'mediumslateblue', 'mediumspringgreen', 'mediumturquoise',
-    'mediumvioletred', 'midnightblue', 'mintcream', 'mistyrose', 'moccasin',
-    'navajowhite', 'navy', 'oldlace', 'olive', 'olivedrab', 'orange',
-    'orangered', 'orchid', 'palegoldenrod', 'palegreen', 'paleturquoise',
-    'palevioletred', 'papayawhip', 'peachpuff', 'peru', 'pink', 'plum',
-    'powderblue', 'purple', 'rebeccapurple', 'red', 'rosybrown', 'royalblue',
-    'saddlebrown', 'salmon', 'sandybrown', 'seagreen', 'seashell', 'sienna',
-    'silver', 'skyblue', 'slateblue', 'slategray', 'slategrey', 'snow',
-    'springgreen', 'steelblue', 'tan', 'teal', 'thistle', 'tomato', 'turquoise',
-    'violet', 'wheat', 'white', 'whitesmoke', 'yellow', 'yellowgreen',
-) + ('transparent',)
+_color_keywords = ('aliceblue', 'antiquewhite', 'aqua', 'aquamarine', 'azure', 'beige', 'bisque', 'black', 'blanchedalmond', 'blue', 'blueviolet', 'brown', 'burlywood', 'cadetblue', 'chartreuse', 'chocolate', 'coral', 'cornflowerblue', 'cornsilk', 'crimson', 'cyan', 'darkblue', 'darkcyan', 'darkgoldenrod', 'darkgray', 'darkgreen', 'darkgrey', 'darkkhaki', 'darkmagenta', 'darkolivegreen', 'darkorange', 'darkorchid', 'darkred', 'darksalmon', 'darkseagreen', 'darkslateblue', 'darkslategray', 'darkslategrey', 'darkturquoise', 'darkviolet', 'deeppink', 'deepskyblue', 'dimgray', 'dimgrey', 'dodgerblue', 'firebrick', 'floralwhite', 'forestgreen', 'fuchsia', 'gainsboro', 'ghostwhite', 'gold', 'goldenrod', 'gray', 'green', 'greenyellow', 'grey', 'honeydew', 'hotpink', 'indianred', 'indigo', 'ivory', 'khaki', 'lavender', 'lavenderblush', 'lawngreen', 'lemonchiffon', 'lightblue', 'lightcoral', 'lightcyan', 'lightgoldenrodyellow', 'lightgray', 'lightgreen', 'lightgrey', 'lightpink', 'lightsalmon', 'lightseagreen', 'lightskyblue', 'lightslategray', 'lightslategrey', 'lightsteelblue', 'lightyellow', 'lime', 'limegreen', 'linen', 'magenta', 'maroon', 'mediumaquamarine', 'mediumblue', 'mediumorchid', 'mediumpurple', 'mediumseagreen', 'mediumslateblue', 'mediumspringgreen', 'mediumturquoise', 'mediumvioletred', 'midnightblue', 'mintcream', 'mistyrose', 'moccasin', 'navajowhite', 'navy', 'oldlace', 'olive', 'olivedrab', 'orange', 'orangered', 'orchid', 'palegoldenrod', 'palegreen', 'paleturquoise', 'palevioletred', 'papayawhip', 'peachpuff', 'peru', 'pink', 'plum', 'powderblue', 'purple', 'rebeccapurple', 'red', 'rosybrown', 'royalblue', 'saddlebrown', 'salmon', 'sandybrown', 'seagreen', 'seashell', 'sienna', 'silver', 'skyblue', 'slateblue', 'slategray', 'slategrey', 'snow', 'springgreen', 'steelblue', 'tan', 'teal', 'thistle', 'tomato', 'turquoise', 'violet', 'wheat', 'white', 'whitesmoke', 'yellow', 'yellowgreen', 'transparent')
 
 # List of keyword values obtained from:
 # http://cssvalues.com/
@@ -175,12 +147,12 @@ class CssLexer(RegexLexer):
 
     name = 'CSS'
     url = 'https://www.w3.org/TR/CSS/#css'
-    aliases = ['css']
-    filenames = ['*.css']
-    mimetypes = ['text/css']
+    aliases = ('css',)
+    filenames = ('*.css',)
+    mimetypes = ('text/css',)
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('basics'),
         ],
@@ -293,42 +265,13 @@ class CssLexer(RegexLexer):
     }
 
 
-common_sass_tokens = {
+common_sass_tokens: typing.ClassVar = {
     'value': [
         (r'[ \t]+', Whitespace),
         (r'[!$][\w-]+', Name.Variable),
         (r'url\(', String.Other, 'string-url'),
         (r'[a-z_-][\w-]*(?=\()', Name.Function),
-        (words(_css_properties + (
-            'above', 'absolute', 'always', 'armenian', 'aural', 'auto', 'avoid', 'baseline',
-            'behind', 'below', 'bidi-override', 'blink', 'block', 'bold', 'bolder', 'both',
-            'capitalize', 'center-left', 'center-right', 'center', 'circle',
-            'cjk-ideographic', 'close-quote', 'collapse', 'condensed', 'continuous',
-            'crosshair', 'cross', 'cursive', 'dashed', 'decimal-leading-zero',
-            'decimal', 'default', 'digits', 'disc', 'dotted', 'double', 'e-resize', 'embed',
-            'extra-condensed', 'extra-expanded', 'expanded', 'fantasy', 'far-left',
-            'far-right', 'faster', 'fast', 'fixed', 'georgian', 'groove', 'hebrew', 'help',
-            'hidden', 'hide', 'higher', 'high', 'hiragana-iroha', 'hiragana', 'icon',
-            'inherit', 'inline-table', 'inline', 'inset', 'inside', 'invert', 'italic',
-            'justify', 'katakana-iroha', 'katakana', 'landscape', 'larger', 'large',
-            'left-side', 'leftwards', 'level', 'lighter', 'line-through', 'list-item',
-            'loud', 'lower-alpha', 'lower-greek', 'lower-roman', 'lowercase', 'ltr',
-            'lower', 'low', 'medium', 'message-box', 'middle', 'mix', 'monospace',
-            'n-resize', 'narrower', 'ne-resize', 'no-close-quote', 'no-open-quote',
-            'no-repeat', 'none', 'normal', 'nowrap', 'nw-resize', 'oblique', 'once',
-            'open-quote', 'outset', 'outside', 'overline', 'pointer', 'portrait', 'px',
-            'relative', 'repeat-x', 'repeat-y', 'repeat', 'rgb', 'ridge', 'right-side',
-            'rightwards', 's-resize', 'sans-serif', 'scroll', 'se-resize',
-            'semi-condensed', 'semi-expanded', 'separate', 'serif', 'show', 'silent',
-            'slow', 'slower', 'small-caps', 'small-caption', 'smaller', 'soft', 'solid',
-            'spell-out', 'square', 'static', 'status-bar', 'super', 'sw-resize',
-            'table-caption', 'table-cell', 'table-column', 'table-column-group',
-            'table-footer-group', 'table-header-group', 'table-row',
-            'table-row-group', 'text', 'text-bottom', 'text-top', 'thick', 'thin',
-            'transparent', 'ultra-condensed', 'ultra-expanded', 'underline',
-            'upper-alpha', 'upper-latin', 'upper-roman', 'uppercase', 'url',
-            'visible', 'w-resize', 'wait', 'wider', 'x-fast', 'x-high', 'x-large', 'x-loud',
-            'x-low', 'x-small', 'x-soft', 'xx-large', 'xx-small', 'yes'), suffix=r'\b'),
+        (words((*_css_properties, 'above', 'absolute', 'always', 'armenian', 'aural', 'auto', 'avoid', 'baseline', 'behind', 'below', 'bidi-override', 'blink', 'block', 'bold', 'bolder', 'both', 'capitalize', 'center-left', 'center-right', 'center', 'circle', 'cjk-ideographic', 'close-quote', 'collapse', 'condensed', 'continuous', 'crosshair', 'cross', 'cursive', 'dashed', 'decimal-leading-zero', 'decimal', 'default', 'digits', 'disc', 'dotted', 'double', 'e-resize', 'embed', 'extra-condensed', 'extra-expanded', 'expanded', 'fantasy', 'far-left', 'far-right', 'faster', 'fast', 'fixed', 'georgian', 'groove', 'hebrew', 'help', 'hidden', 'hide', 'higher', 'high', 'hiragana-iroha', 'hiragana', 'icon', 'inherit', 'inline-table', 'inline', 'inset', 'inside', 'invert', 'italic', 'justify', 'katakana-iroha', 'katakana', 'landscape', 'larger', 'large', 'left-side', 'leftwards', 'level', 'lighter', 'line-through', 'list-item', 'loud', 'lower-alpha', 'lower-greek', 'lower-roman', 'lowercase', 'ltr', 'lower', 'low', 'medium', 'message-box', 'middle', 'mix', 'monospace', 'n-resize', 'narrower', 'ne-resize', 'no-close-quote', 'no-open-quote', 'no-repeat', 'none', 'normal', 'nowrap', 'nw-resize', 'oblique', 'once', 'open-quote', 'outset', 'outside', 'overline', 'pointer', 'portrait', 'px', 'relative', 'repeat-x', 'repeat-y', 'repeat', 'rgb', 'ridge', 'right-side', 'rightwards', 's-resize', 'sans-serif', 'scroll', 'se-resize', 'semi-condensed', 'semi-expanded', 'separate', 'serif', 'show', 'silent', 'slow', 'slower', 'small-caps', 'small-caption', 'smaller', 'soft', 'solid', 'spell-out', 'square', 'static', 'status-bar', 'super', 'sw-resize', 'table-caption', 'table-cell', 'table-column', 'table-column-group', 'table-footer-group', 'table-header-group', 'table-row', 'table-row-group', 'text', 'text-bottom', 'text-top', 'thick', 'thin', 'transparent', 'ultra-condensed', 'ultra-expanded', 'underline', 'upper-alpha', 'upper-latin', 'upper-roman', 'uppercase', 'url', 'visible', 'w-resize', 'wait', 'wider', 'x-fast', 'x-high', 'x-large', 'x-loud', 'x-low', 'x-small', 'x-soft', 'xx-large', 'xx-small', 'yes'), suffix=r'\b'),
          Name.Constant),
         (words(_color_keywords, suffix=r'\b'), Name.Entity),
         (words((
@@ -450,14 +393,14 @@ class SassLexer(ExtendedRegexLexer):
 
     name = 'Sass'
     url = 'https://sass-lang.com/'
-    aliases = ['sass']
-    filenames = ['*.sass']
-    mimetypes = ['text/x-sass']
+    aliases = ('sass',)
+    filenames = ('*.sass',)
+    mimetypes = ('text/x-sass',)
     version_added = '1.3'
 
     flags = re.IGNORECASE | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[ \t]*\n', Whitespace),
             (r'[ \t]*', _indentation),
@@ -532,13 +475,13 @@ class ScssLexer(RegexLexer):
 
     name = 'SCSS'
     url = 'https://sass-lang.com/'
-    aliases = ['scss']
-    filenames = ['*.scss']
-    mimetypes = ['text/x-scss']
+    aliases = ('scss',)
+    filenames = ('*.scss',)
+    mimetypes = ('text/x-scss',)
     version_added = ''
 
     flags = re.IGNORECASE | re.DOTALL
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'//.*?\n', Comment.Single),
@@ -584,12 +527,12 @@ class LessCssLexer(CssLexer):
 
     name = 'LessCss'
     url = 'http://lesscss.org/'
-    aliases = ['less']
-    filenames = ['*.less']
-    mimetypes = ['text/x-less-css']
+    aliases = ('less',)
+    filenames = ('*.less',)
+    mimetypes = ('text/x-less-css',)
     version_added = '2.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'@\w+', Name.Variable),
             inherit,

@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, words
 from pygments.token import Comment, Operator, Keyword, Name, Number, \
     Punctuation, Text, Generic
@@ -21,11 +22,11 @@ class BoogieLexer(RegexLexer):
     """
     name = 'Boogie'
     url = 'https://boogie-docs.readthedocs.io/en/latest/'
-    aliases = ['boogie']
-    filenames = ['*.bpl']
+    aliases = ('boogie',)
+    filenames = ('*.bpl',)
     version_added = '2.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Whitespace and Comments
             (r'\n', Text),
@@ -67,12 +68,12 @@ class SilverLexer(RegexLexer):
     For Silver source code.
     """
     name = 'Silver'
-    aliases = ['silver']
-    filenames = ['*.sil', '*.vpr']
+    aliases = ('silver',)
+    filenames = ('*.sil', '*.vpr')
     url = 'https://github.com/viperproject/silver'
     version_added = '2.2'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Whitespace and Comments
             (r'\n', Text),

@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, words
 from pygments.token import Comment, Operator, Keyword, Name, String, \
@@ -24,14 +25,14 @@ class ECLLexer(RegexLexer):
 
     name = 'ECL'
     url = 'https://hpccsystems.com/training/documentation/ecl-language-reference/html'
-    aliases = ['ecl']
-    filenames = ['*.ecl']
-    mimetypes = ['application/x-ecl']
+    aliases = ('ecl',)
+    filenames = ('*.ecl',)
+    mimetypes = ('application/x-ecl',)
     version_added = '1.5'
 
     flags = re.IGNORECASE | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
             include('statements'),

@@ -8,11 +8,12 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, bygroups, combined
 from pygments.token import Text, Comment, Operator, Name, String, \
     Number, Punctuation, Generic
 
-__all__ = ['AutohotkeyLexer', 'AutoItLexer']
+__all__ = ['AutoItLexer', 'AutohotkeyLexer']
 
 
 class AutohotkeyLexer(RegexLexer):
@@ -21,12 +22,12 @@ class AutohotkeyLexer(RegexLexer):
     """
     name = 'autohotkey'
     url = 'http://www.autohotkey.com/'
-    aliases = ['autohotkey', 'ahk']
-    filenames = ['*.ahk', '*.ahkl']
-    mimetypes = ['text/x-autohotkey']
+    aliases = ('autohotkey', 'ahk')
+    filenames = ('*.ahk', '*.ahkl')
+    mimetypes = ('text/x-autohotkey',)
     version_added = '1.4'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^(\s*)(/\*)', bygroups(Text, Comment.Multiline), 'incomment'),
             (r'^(\s*)(\()', bygroups(Text, Generic), 'incontinuation'),
@@ -201,9 +202,9 @@ class AutoItLexer(RegexLexer):
     """
     name = 'AutoIt'
     url = 'http://www.autoitscript.com/site/autoit/'
-    aliases = ['autoit']
-    filenames = ['*.au3']
-    mimetypes = ['text/x-autoit']
+    aliases = ('autoit',)
+    filenames = ('*.au3',)
+    mimetypes = ('text/x-autoit',)
     version_added = '1.6'
 
     # Keywords, functions, macros from au3.keywords.properties
@@ -312,7 +313,7 @@ class AutoItLexer(RegexLexer):
     @tray_id @trayiconflashing @trayiconvisible @username @userprofiledir @wday
     @windowsdir @workingdir @yday @year""".split()
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r';.*\n', Comment.Single),
             (r'(#comments-start|#cs)(.|\n)*?(#comments-end|#ce)',

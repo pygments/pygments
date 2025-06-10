@@ -9,13 +9,14 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, ExtendedRegexLexer, include, default, \
     words
 from pygments.token import Name, Comment, String, Error, Number, Keyword, \
     Punctuation, Whitespace
 
-__all__ = ['BibTeXLexer', 'BSTLexer']
+__all__ = ['BSTLexer', 'BibTeXLexer']
 
 
 class BibTeXLexer(ExtendedRegexLexer):
@@ -24,9 +25,9 @@ class BibTeXLexer(ExtendedRegexLexer):
     """
 
     name = 'BibTeX'
-    aliases = ['bibtex', 'bib']
-    filenames = ['*.bib']
-    mimetypes = ["text/x-bibtex"]
+    aliases = ('bibtex', 'bib')
+    filenames = ('*.bib',)
+    mimetypes = ("text/x-bibtex",)
     version_added = '2.2'
     flags = re.IGNORECASE
     url = 'https://texfaq.org/FAQ-BibTeXing'
@@ -43,8 +44,8 @@ class BibTeXLexer(ExtendedRegexLexer):
     def close_brace_callback(self, match, ctx):
         closing_brace = match.group()
         if (
-            ctx.opening_brace == '{' and closing_brace != '}' or
-            ctx.opening_brace == '(' and closing_brace != ')'
+            (ctx.opening_brace == '{' and closing_brace != '}') or
+            (ctx.opening_brace == '(' and closing_brace != ')')
         ):
             yield match.start(), Error, closing_brace
         else:
@@ -52,7 +53,7 @@ class BibTeXLexer(ExtendedRegexLexer):
         del ctx.opening_brace
         ctx.pos = match.end()
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
             (r'@comment(?!ary)', Comment),
@@ -119,13 +120,13 @@ class BSTLexer(RegexLexer):
     """
 
     name = 'BST'
-    aliases = ['bst', 'bst-pybtex']
-    filenames = ['*.bst']
+    aliases = ('bst', 'bst-pybtex')
+    filenames = ('*.bst',)
     version_added = '2.2'
     flags = re.IGNORECASE | re.MULTILINE
     url = 'https://texfaq.org/FAQ-BibTeXing'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
             (words(['read', 'sort']), Keyword),

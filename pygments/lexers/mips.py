@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words
 from pygments.token import Whitespace, Comment, String, Keyword, Name, Text
 
@@ -23,15 +24,15 @@ class MIPSLexer(RegexLexer):
     """
 
     name = 'MIPS'
-    aliases = ['mips']
+    aliases = ('mips',)
     version_added = ''
     # TODO: add '*.s' and '*.asm', which will require designing an analyse_text
     # method for this lexer and refactoring those from Gas and Nasm in order to
     # have relatively reliable detection
-    filenames = ['*.mips', '*.MIPS']
+    filenames = ('*.mips', '*.MIPS')
     url = 'https://mips.com'
 
-    keywords = [
+    keywords = (
         # Arithmetic insturctions
         "add", "sub", "subu", "addi", "subi", "addu", "addiu",
         # Multiplication/division
@@ -75,9 +76,9 @@ class MIPSLexer(RegexLexer):
         # Math
         "abs.s", "abs.d", "sqrt.s", "sqrt.d", "ceil.w.d", "ceil.w.s", "floor.w.d",
         "floor.w.s", "round.w.d", "round.w.s",
-    ]
+    )
 
-    pseudoinstructions = [
+    pseudoinstructions = (
         # Arithmetic & logical
         "rem", "remu", "mulo", "mulou", "abs", "neg", "negu", "not", "rol", "ror",
         # branches
@@ -93,18 +94,18 @@ class MIPSLexer(RegexLexer):
         # --- Floats -----------------------------------------------------
         # load-store
         "l.d", "l.s", "s.d", "s.s",
-    ]
+    )
 
-    directives = [
+    directives = (
         ".align", ".ascii", ".asciiz", ".byte", ".data", ".double", ".extern", ".float",
         ".globl", ".half", ".kdata", ".ktext", ".space", ".text", ".word",
-    ]
+    )
 
-    deprecated = [
+    deprecated = (
         "beql", "bnel", "bgtzl", "bgezl", "bltzl", "blezl", "bltzall", "bgezall",
-    ]
+    )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'#.*', Comment),

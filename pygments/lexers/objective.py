@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, using, this, words, \
     inherit, default
@@ -17,7 +18,7 @@ from pygments.token import Text, Keyword, Name, String, Operator, \
 
 from pygments.lexers.c_cpp import CLexer, CppLexer
 
-__all__ = ['ObjectiveCLexer', 'ObjectiveCppLexer', 'LogosLexer', 'SwiftLexer']
+__all__ = ['LogosLexer', 'ObjectiveCLexer', 'ObjectiveCppLexer', 'SwiftLexer']
 
 
 def objective(baselexer):
@@ -44,7 +45,7 @@ def objective(baselexer):
         Implements Objective-C syntax on top of an existing C family lexer.
         """
 
-        tokens = {
+        tokens: typing.ClassVar = {
             'statements': [
                 (r'@"', String, 'string'),
                 (r'@(YES|NO)', Number),
@@ -198,9 +199,9 @@ class ObjectiveCLexer(objective(CLexer)):
 
     name = 'Objective-C'
     url = 'https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html'
-    aliases = ['objective-c', 'objectivec', 'obj-c', 'objc']
-    filenames = ['*.m', '*.h']
-    mimetypes = ['text/x-objective-c']
+    aliases = ('objective-c', 'objectivec', 'obj-c', 'objc')
+    filenames = ('*.m', '*.h')
+    mimetypes = ('text/x-objective-c',)
     version_added = ''
     priority = 0.05    # Lower than C
 
@@ -211,9 +212,9 @@ class ObjectiveCppLexer(objective(CppLexer)):
     """
 
     name = 'Objective-C++'
-    aliases = ['objective-c++', 'objectivec++', 'obj-c++', 'objc++']
-    filenames = ['*.mm', '*.hh']
-    mimetypes = ['text/x-objective-c++']
+    aliases = ('objective-c++', 'objectivec++', 'obj-c++', 'objc++')
+    filenames = ('*.mm', '*.hh')
+    mimetypes = ('text/x-objective-c++',)
     version_added = ''
     priority = 0.05    # Lower than C++
 
@@ -224,13 +225,13 @@ class LogosLexer(ObjectiveCppLexer):
     """
 
     name = 'Logos'
-    aliases = ['logos']
-    filenames = ['*.x', '*.xi', '*.xm', '*.xmi']
-    mimetypes = ['text/x-logos']
+    aliases = ('logos',)
+    filenames = ('*.x', '*.xi', '*.xm', '*.xmi')
+    mimetypes = ('text/x-logos',)
     version_added = '1.6'
     priority = 0.25
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'statements': [
             (r'(%orig|%log)\b', Keyword),
             (r'(%c)\b(\()(\s*)([a-zA-Z$_][\w$]*)(\s*)(\))',
@@ -287,12 +288,12 @@ class SwiftLexer(RegexLexer):
     """
     name = 'Swift'
     url = 'https://www.swift.org/'
-    filenames = ['*.swift']
-    aliases = ['swift']
-    mimetypes = ['text/x-swift']
+    filenames = ('*.swift',)
+    aliases = ('swift',)
+    mimetypes = ('text/x-swift',)
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Whitespace and Comments
             (r'\n', Text),

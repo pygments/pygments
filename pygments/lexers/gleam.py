@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words, bygroups
 from pygments.token import Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
@@ -22,9 +23,9 @@ class GleamLexer(RegexLexer):
 
     name = 'Gleam'
     url = 'https://gleam.run/'
-    filenames = ['*.gleam']
-    aliases = ['gleam']
-    mimetypes = ['text/x-gleam']
+    filenames = ('*.gleam',)
+    aliases = ('gleam',)
+    mimetypes = ('text/x-gleam',)
     version_added = '2.19'
 
     keywords = words((
@@ -33,7 +34,7 @@ class GleamLexer(RegexLexer):
         'panic', 'pub', 'test', 'todo', 'type', 'use',
     ), suffix=r'\b')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Comments
             (r'(///.*?)(\n)', bygroups(String.Doc, Whitespace)),

@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import bygroups, default, include, inherit
 from pygments.lexers.javascript import JavascriptLexer, TypeScriptLexer
@@ -61,16 +62,16 @@ class JsxLexer(JavascriptLexer):
     """
 
     name = "JSX"
-    aliases = ["jsx", "react"]
-    filenames = ["*.jsx", "*.react"]
-    mimetypes = ["text/jsx", "text/typescript-jsx"]
+    aliases = ("jsx", "react")
+    filenames = ("*.jsx", "*.react")
+    mimetypes = ("text/jsx", "text/typescript-jsx")
     url = "https://facebook.github.io/jsx/"
     version_added = '2.17'
 
     flags = re.MULTILINE | re.DOTALL
 
     # Use same tokens as `JavascriptLexer`, but with tags and attributes support
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             include("jsx"),
             inherit,
@@ -83,16 +84,16 @@ class TsxLexer(TypeScriptLexer):
     """
 
     name = "TSX"
-    aliases = ["tsx"]
-    filenames = ["*.tsx"]
-    mimetypes = ["text/typescript-tsx"]
+    aliases = ("tsx",)
+    filenames = ("*.tsx",)
+    mimetypes = ("text/typescript-tsx",)
     url = "https://www.typescriptlang.org/docs/handbook/jsx.html"
     version_added = '2.19'
 
     flags = re.MULTILINE | re.DOTALL
 
     # Use same tokens as `TypescriptLexer`, but with tags and attributes support
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             include("jsx"),
             inherit,

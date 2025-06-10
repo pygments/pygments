@@ -8,11 +8,12 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, words, bygroups
 from pygments.token import Comment, Keyword, Name, String, Number, \
     Punctuation, Whitespace
 
-__all__ = ['DLexer', 'CrocLexer', 'MiniDLexer']
+__all__ = ['CrocLexer', 'DLexer', 'MiniDLexer']
 
 
 class DLexer(RegexLexer):
@@ -21,12 +22,12 @@ class DLexer(RegexLexer):
     """
     name = 'D'
     url = 'https://dlang.org/'
-    filenames = ['*.d', '*.di']
-    aliases = ['d']
-    mimetypes = ['text/x-dsrc']
+    filenames = ('*.d', '*.di')
+    aliases = ('d',)
+    mimetypes = ('text/x-dsrc',)
     version_added = '1.2'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             (r'\s+', Whitespace),
@@ -190,12 +191,12 @@ class CrocLexer(RegexLexer):
     """
     name = 'Croc'
     url = 'http://jfbillingsley.com/croc'
-    filenames = ['*.croc']
-    aliases = ['croc']
-    mimetypes = ['text/x-crocsrc']
+    filenames = ('*.croc',)
+    aliases = ('croc',)
+    mimetypes = ('text/x-crocsrc',)
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             (r'\s+', Whitespace),
@@ -253,7 +254,7 @@ class MiniDLexer(CrocLexer):
     For MiniD source. MiniD is now known as Croc.
     """
     name = 'MiniD'
-    filenames = []  # don't lex .md as MiniD, reserve for Markdown
-    aliases = ['minid']
-    mimetypes = ['text/x-minidsrc']
+    filenames = ()  # don't lex .md as MiniD, reserve for Markdown
+    aliases = ('minid',)
+    mimetypes = ('text/x-minidsrc',)
     version_added = ''

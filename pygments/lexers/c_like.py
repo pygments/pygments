@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, inherit, words, \
     default
@@ -18,9 +19,20 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 from pygments.lexers.c_cpp import CLexer, CppLexer
 from pygments.lexers import _mql_builtins
 
-__all__ = ['PikeLexer', 'NesCLexer', 'ClayLexer', 'ECLexer', 'ValaLexer',
-           'CudaLexer', 'SwigLexer', 'MqlLexer', 'ArduinoLexer', 'CharmciLexer',
-           'OmgIdlLexer', 'PromelaLexer']
+__all__ = [
+    'ArduinoLexer',
+    'CharmciLexer',
+    'ClayLexer',
+    'CudaLexer',
+    'ECLexer',
+    'MqlLexer',
+    'NesCLexer',
+    'OmgIdlLexer',
+    'PikeLexer',
+    'PromelaLexer',
+    'SwigLexer',
+    'ValaLexer',
+]
 
 
 class PikeLexer(CppLexer):
@@ -28,12 +40,12 @@ class PikeLexer(CppLexer):
     For `Pike <http://pike.lysator.liu.se/>`_ source code.
     """
     name = 'Pike'
-    aliases = ['pike']
-    filenames = ['*.pike', '*.pmod']
-    mimetypes = ['text/x-pike']
+    aliases = ('pike',)
+    filenames = ('*.pike', '*.pmod')
+    mimetypes = ('text/x-pike',)
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'statements': [
             (words((
                 'catch', 'new', 'private', 'protected', 'public', 'gauge',
@@ -69,12 +81,12 @@ class NesCLexer(CLexer):
     directives.
     """
     name = 'nesC'
-    aliases = ['nesc']
-    filenames = ['*.nc']
-    mimetypes = ['text/x-nescsrc']
+    aliases = ('nesc',)
+    filenames = ('*.nc',)
+    mimetypes = ('text/x-nescsrc',)
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'statements': [
             (words((
                 'abstract', 'as', 'async', 'atomic', 'call', 'command', 'component',
@@ -96,13 +108,13 @@ class ClayLexer(RegexLexer):
     For Clay source.
     """
     name = 'Clay'
-    filenames = ['*.clay']
-    aliases = ['clay']
-    mimetypes = ['text/x-clay']
+    filenames = ('*.clay',)
+    aliases = ('clay',)
+    mimetypes = ('text/x-clay',)
     url = 'http://claylabs.com/clay'
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'//.*?$', Comment.Single),
@@ -148,13 +160,13 @@ class ECLexer(CLexer):
     For eC source code with preprocessor directives.
     """
     name = 'eC'
-    aliases = ['ec']
-    filenames = ['*.ec', '*.eh']
-    mimetypes = ['text/x-echdr', 'text/x-ecsrc']
+    aliases = ('ec',)
+    filenames = ('*.ec', '*.eh')
+    mimetypes = ('text/x-echdr', 'text/x-ecsrc')
     url = 'https://ec-lang.org'
     version_added = '1.5'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'statements': [
             (words((
                 'virtual', 'class', 'private', 'public', 'property', 'import',
@@ -181,13 +193,13 @@ class ValaLexer(RegexLexer):
     For Vala source code with preprocessor directives.
     """
     name = 'Vala'
-    aliases = ['vala', 'vapi']
-    filenames = ['*.vala', '*.vapi']
-    mimetypes = ['text/x-vala']
+    aliases = ('vala', 'vapi')
+    filenames = ('*.vala', '*.vapi')
+    mimetypes = ('text/x-vala',)
     url = 'https://vala.dev'
     version_added = '1.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'whitespace': [
             (r'^\s*#if\s+0', Comment.Preproc, 'if0'),
             (r'\n', Whitespace),
@@ -279,17 +291,17 @@ class CudaLexer(CLexer):
     For NVIDIA CUDA™ source.
     """
     name = 'CUDA'
-    filenames = ['*.cu', '*.cuh']
-    aliases = ['cuda', 'cu']
-    mimetypes = ['text/x-cuda']
+    filenames = ('*.cu', '*.cuh')
+    aliases = ('cuda', 'cu')
+    mimetypes = ('text/x-cuda',)
     url = 'https://developer.nvidia.com/category/zone/cuda-zone'
     version_added = '1.6'
 
-    function_qualifiers = {'__device__', '__global__', '__host__',
+    function_qualifiers: typing.ClassVar = {'__device__', '__global__', '__host__',
                            '__noinline__', '__forceinline__'}
-    variable_qualifiers = {'__device__', '__constant__', '__shared__',
+    variable_qualifiers: typing.ClassVar = {'__device__', '__constant__', '__shared__',
                            '__restrict__'}
-    vector_types = {'char1', 'uchar1', 'char2', 'uchar2', 'char3', 'uchar3',
+    vector_types: typing.ClassVar = {'char1', 'uchar1', 'char2', 'uchar2', 'char3', 'uchar3',
                     'char4', 'uchar4', 'short1', 'ushort1', 'short2', 'ushort2',
                     'short3', 'ushort3', 'short4', 'ushort4', 'int1', 'uint1',
                     'int2', 'uint2', 'int3', 'uint3', 'int4', 'uint4', 'long1',
@@ -297,11 +309,11 @@ class CudaLexer(CLexer):
                     'ulong4', 'longlong1', 'ulonglong1', 'longlong2',
                     'ulonglong2', 'float1', 'float2', 'float3', 'float4',
                     'double1', 'double2', 'dim3'}
-    variables = {'gridDim', 'blockIdx', 'blockDim', 'threadIdx', 'warpSize'}
-    functions = {'__threadfence_block', '__threadfence', '__threadfence_system',
+    variables: typing.ClassVar = {'gridDim', 'blockIdx', 'blockDim', 'threadIdx', 'warpSize'}
+    functions: typing.ClassVar = {'__threadfence_block', '__threadfence', '__threadfence_system',
                  '__syncthreads', '__syncthreads_count', '__syncthreads_and',
                  '__syncthreads_or'}
-    execution_confs = {'<<<', '>>>'}
+    execution_confs: typing.ClassVar = {'<<<', '>>>'}
 
     def get_tokens_unprocessed(self, text, stack=('root',)):
         for index, token, value in CLexer.get_tokens_unprocessed(self, text, stack):
@@ -326,13 +338,13 @@ class SwigLexer(CppLexer):
     For `SWIG <http://www.swig.org/>`_ source code.
     """
     name = 'SWIG'
-    aliases = ['swig']
-    filenames = ['*.swg', '*.i']
-    mimetypes = ['text/swig']
+    aliases = ('swig',)
+    filenames = ('*.swg', '*.i')
+    mimetypes = ('text/swig',)
     version_added = '2.0'
     priority = 0.04  # Lower than C/C++ and Objective C/C++
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Match it here so it won't be matched as a function in the rest of root
             (r'\$\**\&?\w+', Name),
@@ -350,7 +362,7 @@ class SwigLexer(CppLexer):
     }
 
     # This is a far from complete set of SWIG directives
-    swig_directives = {
+    swig_directives: typing.ClassVar = {
         # Most common directives
         '%apply', '%define', '%director', '%enddef', '%exception', '%extend',
         '%feature', '%fragment', '%ignore', '%immutable', '%import', '%include',
@@ -392,12 +404,12 @@ class MqlLexer(CppLexer):
     `MQL5 <http://www.mql5.com/en/docs>`_ source code.
     """
     name = 'MQL'
-    aliases = ['mql', 'mq4', 'mq5', 'mql4', 'mql5']
-    filenames = ['*.mq4', '*.mq5', '*.mqh']
-    mimetypes = ['text/x-mql']
+    aliases = ('mql', 'mq4', 'mq5', 'mql4', 'mql5')
+    filenames = ('*.mq4', '*.mq5', '*.mqh')
+    mimetypes = ('text/x-mql',)
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'statements': [
             (words(_mql_builtins.keywords, suffix=r'\b'), Keyword),
             (words(_mql_builtins.c_types, suffix=r'\b'), Keyword.Type),
@@ -419,19 +431,19 @@ class ArduinoLexer(CppLexer):
     """
 
     name = 'Arduino'
-    aliases = ['arduino']
-    filenames = ['*.ino']
-    mimetypes = ['text/x-arduino']
+    aliases = ('arduino',)
+    filenames = ('*.ino',)
+    mimetypes = ('text/x-arduino',)
     version_added = '2.1'
 
     # Language sketch main structure functions
-    structure = {'setup', 'loop'}
+    structure: typing.ClassVar = {'setup', 'loop'}
 
     # Language operators
-    operators = {'not', 'or', 'and', 'xor'}
+    operators: typing.ClassVar = {'not', 'or', 'and', 'xor'}
 
     # Language 'variables'
-    variables = {
+    variables: typing.ClassVar = {
         'DIGITAL_MESSAGE', 'FIRMATA_STRING', 'ANALOG_MESSAGE', 'REPORT_DIGITAL',
         'REPORT_ANALOG', 'INPUT_PULLUP', 'SET_PIN_MODE', 'INTERNAL2V56', 'SYSTEM_RESET',
         'LED_BUILTIN', 'INTERNAL1V1', 'SYSEX_START', 'INTERNAL', 'EXTERNAL', 'HIGH',
@@ -451,7 +463,7 @@ class ArduinoLexer(CppLexer):
         'atomic_llong', 'atomic_ullong', 'PROGMEM'}
 
     # Language shipped functions and class ( )
-    functions = {
+    functions: typing.ClassVar = {
         'KeyboardController', 'MouseController', 'SoftwareSerial', 'EthernetServer',
         'EthernetClient', 'LiquidCrystal', 'RobotControl', 'GSMVoiceCall',
         'EthernetUDP', 'EsploraTFT', 'HttpClient', 'RobotMotor', 'WiFiClient',
@@ -516,7 +528,7 @@ class ArduinoLexer(CppLexer):
         'isHexadecimalDigit'}
 
     # do not highlight
-    suppress_highlight = {
+    suppress_highlight: typing.ClassVar = {
         'namespace', 'template', 'mutable', 'using', 'asm', 'typeid',
         'typename', 'this', 'alignof', 'constexpr', 'decltype', 'noexcept',
         'static_assert', 'thread_local', 'restrict'}
@@ -543,13 +555,13 @@ class CharmciLexer(CppLexer):
     """
 
     name = 'Charmci'
-    aliases = ['charmci']
-    filenames = ['*.ci']
+    aliases = ('charmci',)
+    filenames = ('*.ci',)
     version_added = '2.4'
 
-    mimetypes = []
+    mimetypes = ()
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'keywords': [
             (r'(module)(\s+)', bygroups(Keyword, Text), 'classname'),
             (words(('mainmodule', 'mainchare', 'chare', 'array', 'group',
@@ -573,14 +585,14 @@ class OmgIdlLexer(CLexer):
 
     name = 'OMG Interface Definition Language'
     url = 'https://www.omg.org/spec/IDL/About-IDL/'
-    aliases = ['omg-idl']
-    filenames = ['*.idl', '*.pidl']
-    mimetypes = []
+    aliases = ('omg-idl',)
+    filenames = ('*.idl', '*.pidl')
+    mimetypes = ()
     version_added = '2.9'
 
     scoped_name = r'((::)?\w+)+'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'values': [
             (words(('true', 'false'), prefix=r'(?i)', suffix=r'\b'), Number),
             (r'([Ll]?)(")', bygroups(String.Affix, String.Double), 'string'),
@@ -665,9 +677,9 @@ class PromelaLexer(CLexer):
     """
     
     name = 'Promela'
-    aliases = ['promela']
-    filenames = ['*.pml', '*.prom', '*.prm', '*.promela', '*.pr', '*.pm']
-    mimetypes = ['text/x-promela']
+    aliases = ('promela',)
+    filenames = ('*.pml', '*.prom', '*.prm', '*.promela', '*.pr', '*.pm')
+    mimetypes = ('text/x-promela',)
     url = 'https://spinroot.com/spin/whatispin.html'
     version_added = '2.18'
 
@@ -676,7 +688,7 @@ class PromelaLexer(CLexer):
     # Promela's grammar definition:
     # https://spinroot.com/spin/Man/grammar.html
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'statements': [
             (r'(\[\]|<>|/\\|\\/)|(U|W|V)\b', Operator), # LTL Operators
             (r'@', Punctuation), #remoterefs

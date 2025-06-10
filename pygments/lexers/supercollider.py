@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, words, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -24,13 +25,13 @@ class SuperColliderLexer(RegexLexer):
 
     name = 'SuperCollider'
     url = 'http://supercollider.github.io/'
-    aliases = ['supercollider', 'sc']
-    filenames = ['*.sc', '*.scd']
-    mimetypes = ['application/supercollider', 'text/supercollider']
+    aliases = ('supercollider', 'sc')
+    filenames = ('*.sc', '*.scd')
+    mimetypes = ('application/supercollider', 'text/supercollider')
     version_added = '2.1'
 
     flags = re.DOTALL | re.MULTILINE
-    tokens = {
+    tokens: typing.ClassVar = {
         'commentsandwhitespace': [
             (r'\s+', Text),
             (r'<!--', Comment),

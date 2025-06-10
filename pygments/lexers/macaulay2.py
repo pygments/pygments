@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words
 from pygments.token import Comment, Keyword, Name, String, Text
 
@@ -1778,11 +1779,11 @@ class Macaulay2Lexer(RegexLexer):
 
     name = 'Macaulay2'
     url = 'https://macaulay2.com/'
-    aliases = ['macaulay2']
-    filenames = ['*.m2']
+    aliases = ('macaulay2',)
+    filenames = ('*.m2',)
     version_added = '2.12'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'--.*$', Comment.Single),
             (r'-\*', Comment.Multiline, 'block comment'),

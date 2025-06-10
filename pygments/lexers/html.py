@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, ExtendedRegexLexer, include, bygroups, \
     default, using, inherit, this
@@ -21,8 +22,17 @@ from pygments.lexers.jvm import ScalaLexer
 from pygments.lexers.css import CssLexer, _indentation, _starts_block
 from pygments.lexers.ruby import RubyLexer
 
-__all__ = ['HtmlLexer', 'DtdLexer', 'XmlLexer', 'XsltLexer', 'HamlLexer',
-           'ScamlLexer', 'PugLexer', 'VueLexer', 'UrlEncodedLexer']
+__all__ = [
+    'DtdLexer',
+    'HamlLexer',
+    'HtmlLexer',
+    'PugLexer',
+    'ScamlLexer',
+    'UrlEncodedLexer',
+    'VueLexer',
+    'XmlLexer',
+    'XsltLexer',
+]
 
 
 class HtmlLexer(RegexLexer):
@@ -33,13 +43,13 @@ class HtmlLexer(RegexLexer):
 
     name = 'HTML'
     url = 'https://html.spec.whatwg.org/'
-    aliases = ['html']
-    filenames = ['*.html', '*.htm', '*.xhtml', '*.xslt']
-    mimetypes = ['text/html', 'application/xhtml+xml']
+    aliases = ('html',)
+    filenames = ('*.html', '*.htm', '*.xhtml', '*.xslt')
+    mimetypes = ('text/html', 'application/xhtml+xml')
     version_added = ''
 
     flags = re.IGNORECASE | re.DOTALL
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             ('[^<&]+', Text),
             (r'&\S*?;', Name.Entity),
@@ -112,13 +122,13 @@ class DtdLexer(RegexLexer):
     flags = re.MULTILINE | re.DOTALL
 
     name = 'DTD'
-    aliases = ['dtd']
-    filenames = ['*.dtd']
-    mimetypes = ['application/xml-dtd']
+    aliases = ('dtd',)
+    filenames = ('*.dtd',)
+    mimetypes = ('application/xml-dtd',)
     url = 'https://en.wikipedia.org/wiki/Document_type_definition'
     version_added = '1.5'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('common'),
 
@@ -200,15 +210,15 @@ class XmlLexer(RegexLexer):
     flags = re.MULTILINE | re.DOTALL
 
     name = 'XML'
-    aliases = ['xml']
-    filenames = ['*.xml', '*.xsl', '*.rss', '*.xslt', '*.xsd',
-                 '*.wsdl', '*.wsf']
-    mimetypes = ['text/xml', 'application/xml', 'image/svg+xml',
-                 'application/rss+xml', 'application/atom+xml']
+    aliases = ('xml',)
+    filenames = ('*.xml', '*.xsl', '*.rss', '*.xslt', '*.xsd',
+                 '*.wsdl', '*.wsf')
+    mimetypes = ('text/xml', 'application/xml', 'image/svg+xml',
+                 'application/rss+xml', 'application/atom+xml')
     url = 'https://www.w3.org/XML'
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^<&\s]+', Text),
             (r'[^<&\S]+', Whitespace),
@@ -244,13 +254,13 @@ class XsltLexer(XmlLexer):
     """
 
     name = 'XSLT'
-    aliases = ['xslt']
-    filenames = ['*.xsl', '*.xslt', '*.xpl']  # xpl is XProc
-    mimetypes = ['application/xsl+xml', 'application/xslt+xml']
+    aliases = ('xslt',)
+    filenames = ('*.xsl', '*.xslt', '*.xpl')  # xpl is XProc
+    mimetypes = ('application/xsl+xml', 'application/xslt+xml')
     url = 'https://www.w3.org/TR/xslt-30'
     version_added = '0.10'
 
-    EXTRA_KEYWORDS = {
+    EXTRA_KEYWORDS: typing.ClassVar = {
         'apply-imports', 'apply-templates', 'attribute',
         'attribute-set', 'call-template', 'choose', 'comment',
         'copy', 'copy-of', 'decimal-format', 'element', 'fallback',
@@ -281,9 +291,9 @@ class HamlLexer(ExtendedRegexLexer):
     """
 
     name = 'Haml'
-    aliases = ['haml']
-    filenames = ['*.haml']
-    mimetypes = ['text/x-haml']
+    aliases = ('haml',)
+    filenames = ('*.haml',)
+    mimetypes = ('text/x-haml',)
     url = 'https://haml.info'
     version_added = '1.3'
 
@@ -296,7 +306,7 @@ class HamlLexer(ExtendedRegexLexer):
     # In certain places, a comma at the end of the line
     # allows line wrapping as well.
     _comma_dot = r'(?:,\s*\n|' + _dot + ')'
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[ \t]*\n', Text),
             (r'[ \t]*', _indentation),
@@ -392,9 +402,9 @@ class ScamlLexer(ExtendedRegexLexer):
     """
 
     name = 'Scaml'
-    aliases = ['scaml']
-    filenames = ['*.scaml']
-    mimetypes = ['text/x-scaml']
+    aliases = ('scaml',)
+    filenames = ('*.scaml',)
+    mimetypes = ('text/x-scaml',)
     url = 'https://scalate.github.io/scalate/'
     version_added = '1.4'
 
@@ -405,7 +415,7 @@ class ScamlLexer(ExtendedRegexLexer):
     # _dot = r'(?: \|\n(?=.* \|)|.)'
     _dot = r'.'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[ \t]*\n', Text),
             (r'[ \t]*', _indentation),
@@ -506,16 +516,16 @@ class PugLexer(ExtendedRegexLexer):
     """
 
     name = 'Pug'
-    aliases = ['pug', 'jade']
-    filenames = ['*.pug', '*.jade']
-    mimetypes = ['text/x-pug', 'text/x-jade']
+    aliases = ('pug', 'jade')
+    filenames = ('*.pug', '*.jade')
+    mimetypes = ('text/x-pug', 'text/x-jade')
     url = 'https://pugjs.org'
     version_added = '1.4'
 
     flags = re.IGNORECASE
     _dot = r'.'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[ \t]*\n', Text),
             (r'[ \t]*', _indentation),
@@ -614,12 +624,12 @@ class UrlEncodedLexer(RegexLexer):
     """
 
     name = 'urlencoded'
-    aliases = ['urlencoded']
-    mimetypes = ['application/x-www-form-urlencoded']
+    aliases = ('urlencoded',)
+    mimetypes = ('application/x-www-form-urlencoded',)
     url = 'https://en.wikipedia.org/wiki/Percent-encoding'
     version_added = '2.16'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             ('([^&=]*)(=)([^=&]*)(&?)', bygroups(Name.Tag, Operator, String, Punctuation)),
         ],
@@ -633,13 +643,13 @@ class VueLexer(HtmlLexer):
 
     name = 'Vue'
     url = 'https://vuejs.org/api/sfc-spec.html'
-    aliases = ['vue']
-    filenames = ['*.vue']
-    mimetypes = []
+    aliases = ('vue',)
+    filenames = ('*.vue',)
+    mimetypes = ()
     version_added = '2.19'
 
     flags = re.IGNORECASE | re.DOTALL
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(\{\{)(.*?)(\}\})', bygroups(Comment.Preproc,
              using(JavascriptLexer), Comment.Preproc)),

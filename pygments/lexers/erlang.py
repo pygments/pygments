@@ -9,14 +9,19 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import Lexer, RegexLexer, bygroups, words, do_insertions, \
     include, default, line_re
 from pygments.token import Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Whitespace
 
-__all__ = ['ErlangLexer', 'ErlangShellLexer', 'ElixirConsoleLexer',
-           'ElixirLexer']
+__all__ = [
+    'ElixirConsoleLexer',
+    'ElixirLexer',
+    'ErlangLexer',
+    'ErlangShellLexer',
+]
 
 
 class ErlangLexer(RegexLexer):
@@ -26,9 +31,9 @@ class ErlangLexer(RegexLexer):
 
     name = 'Erlang'
     url = 'https://www.erlang.org/'
-    aliases = ['erlang']
-    filenames = ['*.erl', '*.hrl', '*.es', '*.escript']
-    mimetypes = ['text/x-erlang']
+    aliases = ('erlang',)
+    filenames = ('*.erl', '*.hrl', '*.es', '*.escript')
+    mimetypes = ('text/x-erlang',)
     version_added = '0.9'
 
     keywords = (
@@ -86,7 +91,7 @@ class ErlangLexer(RegexLexer):
 
     base_re = r'(?:[2-9]|[12][0-9]|3[0-6])'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'(%.*)(\n)', bygroups(Comment, Whitespace)),
@@ -151,9 +156,9 @@ class ErlangShellLexer(Lexer):
     Shell sessions in erl (for Erlang code).
     """
     name = 'Erlang erl session'
-    aliases = ['erl']
-    filenames = ['*.erl-sh']
-    mimetypes = ['text/x-erl-shellsession']
+    aliases = ('erl',)
+    filenames = ('*.erl-sh',)
+    mimetypes = ('text/x-erl-shellsession',)
     url = 'https://www.erlang.org/'
     version_added = '1.1'
 
@@ -223,9 +228,9 @@ class ElixirLexer(RegexLexer):
 
     name = 'Elixir'
     url = 'https://elixir-lang.org'
-    aliases = ['elixir', 'ex', 'exs']
-    filenames = ['*.ex', '*.eex', '*.exs', '*.leex']
-    mimetypes = ['text/x-elixir']
+    aliases = ('elixir', 'ex', 'exs')
+    filenames = ('*.ex', '*.eex', '*.exs', '*.leex')
+    mimetypes = ('text/x-elixir',)
     version_added = '1.5'
 
     KEYWORD = ('fn', 'do', 'end', 'after', 'else', 'rescue', 'catch')
@@ -347,7 +352,7 @@ class ElixirLexer(RegexLexer):
     hex_char_re = r'(\\x[\da-fA-F]{1,2})'
     escape_char_re = r'(\\[abdefnrstv])'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'#.*$', Comment.Single),
@@ -485,8 +490,8 @@ class ElixirConsoleLexer(Lexer):
     """
 
     name = 'Elixir iex session'
-    aliases = ['iex']
-    mimetypes = ['text/x-elixir-shellsession']
+    aliases = ('iex',)
+    mimetypes = ('text/x-elixir-shellsession',)
     url = 'https://elixir-lang.org'
     version_added = '1.5'
 

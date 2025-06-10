@@ -87,8 +87,8 @@ class SvgFormatter(Formatter):
         and defaults to ``True``.
     """
     name = 'SVG'
-    aliases = ['svg']
-    filenames = ['*.svg']
+    aliases = ('svg',)
+    filenames = ('*.svg',)
 
     def __init__(self, **options):
         Formatter.__init__(self, **options)
@@ -146,8 +146,8 @@ class SvgFormatter(Formatter):
         outfile.write(f'<text x="{line_x}" y="{y}" xml:space="preserve">')
         for ttype, value in tokensource:
             style = self._get_style(ttype)
-            tspan = style and '<tspan' + style + '>' or ''
-            tspanend = tspan and '</tspan>' or ''
+            tspan = (style and '<tspan' + style + '>') or ''
+            tspanend = (tspan and '</tspan>') or ''
             value = escape_html(value)
             if self.spacehack:
                 value = value.expandtabs().replace(' ', '&#160;')

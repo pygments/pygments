@@ -10,6 +10,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
     Number, Other, Whitespace, Generic
@@ -27,7 +28,7 @@ class SasStyle(Style):
 
     name = 'sas'
     
-    styles = {
+    styles: typing.ClassVar = {
         Whitespace:            '#bbbbbb',
         Comment:               'italic #008800',
         String:                '#800080',

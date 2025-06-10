@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, DelegatingLexer, bygroups
 from pygments.lexers.mime import MIMELexer
 from pygments.token import Text, Keyword, Name, String, Number, Comment
@@ -41,7 +42,7 @@ class EmailHeaderLexer(RegexLexer):
             yield match.start(1), Comment.Special, match.group(1)
             yield match.start(2), Comment.Multiline, match.group(2)
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             (r"^(?:[A-WYZ]|X400)[\w\-]*:", Name.Tag, "header"),
             (r"^(X-(?:\w[\w\-]*:))([\s\S]*?\n)(?![ \t])", get_x_header_tokens),
@@ -122,9 +123,9 @@ class EmailLexer(DelegatingLexer):
     """
 
     name = "E-mail"
-    aliases = ["email", "eml"]
-    filenames = ["*.eml"]
-    mimetypes = ["message/rfc822"]
+    aliases = ("email", "eml")
+    filenames = ("*.eml",)
+    mimetypes = ("message/rfc822",)
     url = "https://en.wikipedia.org/wiki/Email#Message_format"
     version_added = '2.5'
 

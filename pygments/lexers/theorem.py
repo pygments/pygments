@@ -10,6 +10,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, default, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Whitespace
@@ -26,9 +27,9 @@ class CoqLexer(RegexLexer):
 
     name = 'Coq'
     url = 'http://coq.inria.fr/'
-    aliases = ['coq']
-    filenames = ['*.v']
-    mimetypes = ['text/x-coq']
+    aliases = ('coq',)
+    filenames = ('*.v',)
+    mimetypes = ('text/x-coq',)
     version_added = '1.5'
 
     flags = 0 # no re.MULTILINE
@@ -107,7 +108,7 @@ class CoqLexer(RegexLexer):
     prefix_syms = r'[!?~]'
     infix_syms = r'[=<>@^|&+\*/$%-]'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Text),
             (r'false|true|\(\)|\[\]', Name.Builtin.Pseudo),
@@ -199,9 +200,9 @@ class IsabelleLexer(RegexLexer):
 
     name = 'Isabelle'
     url = 'https://isabelle.in.tum.de/'
-    aliases = ['isabelle']
-    filenames = ['*.thy']
-    mimetypes = ['text/x-isabelle']
+    aliases = ('isabelle',)
+    filenames = ('*.thy',)
+    mimetypes = ('text/x-isabelle',)
     version_added = '2.0'
 
     keyword_minor = (
@@ -330,7 +331,7 @@ class IsabelleLexer(RegexLexer):
 
     proof_operators = ('{', '}', '.', '..')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'\(\*', Comment, 'comment'),

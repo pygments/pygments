@@ -9,13 +9,19 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import Lexer, RegexLexer, bygroups, do_insertions, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Whitespace
 
-__all__ = ['GAPLexer', 'GAPConsoleLexer', 'MathematicaLexer', 'MuPADLexer',
-           'BCLexer']
+__all__ = [
+    'BCLexer',
+    'GAPConsoleLexer',
+    'GAPLexer',
+    'MathematicaLexer',
+    'MuPADLexer',
+]
 
 
 class GAPLexer(RegexLexer):
@@ -24,11 +30,11 @@ class GAPLexer(RegexLexer):
     """
     name = 'GAP'
     url = 'https://www.gap-system.org'
-    aliases = ['gap']
-    filenames = ['*.g', '*.gd', '*.gi', '*.gap']
+    aliases = ('gap',)
+    filenames = ('*.g', '*.gd', '*.gi', '*.gap')
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*$', Comment.Single),
             (r'"(?:[^"\\]|\\.)*"', String),
@@ -93,8 +99,8 @@ class GAPConsoleLexer(Lexer):
     For GAP console sessions. Modeled after JuliaConsoleLexer.
     """
     name = 'GAP session'
-    aliases = ['gap-console', 'gap-repl']
-    filenames = ['*.tst']
+    aliases = ('gap-console', 'gap-repl')
+    filenames = ('*.tst',)
     url = 'https://www.gap-system.org'
     version_added = '2.14'
     _example = "gap-repl/euclidean.tst"
@@ -152,12 +158,12 @@ class MathematicaLexer(RegexLexer):
     """
     name = 'Mathematica'
     url = 'http://www.wolfram.com/mathematica/'
-    aliases = ['mathematica', 'mma', 'nb']
-    filenames = ['*.nb', '*.cdf', '*.nbp', '*.ma']
-    mimetypes = ['application/mathematica',
+    aliases = ('mathematica', 'mma', 'nb')
+    filenames = ('*.nb', '*.cdf', '*.nbp', '*.ma')
+    mimetypes = ('application/mathematica',
                  'application/vnd.wolfram.mathematica',
                  'application/vnd.wolfram.mathematica.package',
-                 'application/vnd.wolfram.cdf']
+                 'application/vnd.wolfram.cdf')
     version_added = '2.0'
 
     # http://reference.wolfram.com/mathematica/guide/Syntax.html
@@ -172,7 +178,7 @@ class MathematicaLexer(RegexLexer):
     def _multi_escape(entries):
         return '({})'.format('|'.join(re.escape(entry) for entry in entries))
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(?s)\(\*.*?\*\)', Comment),
 
@@ -200,11 +206,11 @@ class MuPADLexer(RegexLexer):
     """
     name = 'MuPAD'
     url = 'http://www.mupad.com'
-    aliases = ['mupad']
-    filenames = ['*.mu']
+    aliases = ('mupad',)
+    filenames = ('*.mu',)
     version_added = '0.8'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'//.*?$', Comment.Single),
             (r'/\*', Comment.Multiline, 'comment'),
@@ -271,11 +277,11 @@ class BCLexer(RegexLexer):
     """
     name = 'BC'
     url = 'https://www.gnu.org/software/bc/'
-    aliases = ['bc']
-    filenames = ['*.bc']
+    aliases = ('bc',)
+    filenames = ('*.bc',)
     version_added = '2.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'/\*', Comment.Multiline, 'comment'),
             (r'"(?:[^"\\]|\\.)*"', String),

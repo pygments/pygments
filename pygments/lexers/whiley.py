@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import Comment, Keyword, Name, Number, Operator, \
     Punctuation, String, Text
@@ -21,15 +22,15 @@ class WhileyLexer(RegexLexer):
     """
     name = 'Whiley'
     url = 'http://whiley.org/'
-    filenames = ['*.whiley']
-    aliases = ['whiley']
-    mimetypes = ['text/x-whiley']
+    filenames = ('*.whiley',)
+    aliases = ('whiley',)
+    mimetypes = ('text/x-whiley',)
     version_added = '2.2'
 
     # See the language specification:
     # http://whiley.org/download/WhileyLanguageSpec.pdf
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Whitespace
             (r'\s+', Text),

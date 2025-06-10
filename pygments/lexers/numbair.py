@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, bygroups, words
 from pygments.token import Whitespace, Name, String,  Punctuation, Keyword, \
     Operator, Number
@@ -20,15 +21,15 @@ class NumbaIRLexer(RegexLexer):
     """
     name = 'Numba_IR'
     url = "https://numba.readthedocs.io/en/stable/developer/architecture.html#stage-2-generate-the-numba-ir"
-    aliases = ['numba_ir', 'numbair']
-    filenames = ['*.numba_ir']
-    mimetypes = ['text/x-numba_ir', 'text/x-numbair']
+    aliases = ('numba_ir', 'numbair')
+    filenames = ('*.numba_ir',)
+    mimetypes = ('text/x-numba_ir', 'text/x-numbair')
     version_added = '2.19'
 
     identifier = r'\$[a-zA-Z0-9._]+'
     fun_or_var = r'([a-zA-Z_]+[a-zA-Z0-9]*)'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root' : [
             (r'(label)(\ [0-9]+)(:)$',
                 bygroups(Keyword, Name.Label, Punctuation)),

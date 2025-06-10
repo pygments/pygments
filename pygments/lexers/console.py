@@ -8,11 +8,12 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, bygroups
 from pygments.token import Generic, Comment, String, Text, Keyword, Name, \
     Punctuation, Number, Whitespace
 
-__all__ = ['VCTreeStatusLexer', 'PyPyLogLexer']
+__all__ = ['PyPyLogLexer', 'VCTreeStatusLexer']
 
 
 class VCTreeStatusLexer(RegexLexer):
@@ -21,13 +22,13 @@ class VCTreeStatusLexer(RegexLexer):
     status" or "svn status".
     """
     name = 'VCTreeStatus'
-    aliases = ['vctreestatus']
-    filenames = []
-    mimetypes = []
+    aliases = ('vctreestatus',)
+    filenames = ()
+    mimetypes = ()
     url = ""
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^A  \+  C\s+', Generic.Error),
             (r'^A\s+\+?\s+', String),
@@ -47,13 +48,13 @@ class PyPyLogLexer(RegexLexer):
     Lexer for PyPy log files.
     """
     name = "PyPy Log"
-    aliases = ["pypylog", "pypy"]
-    filenames = ["*.pypylog"]
-    mimetypes = ['application/x-pypylog']
+    aliases = ("pypylog", "pypy")
+    filenames = ("*.pypylog",)
+    mimetypes = ('application/x-pypylog',)
     url = 'pypy.org'
     version_added = '1.5'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             (r"\[\w+\] \{jit-log-.*?$", Keyword, "jit-log"),
             (r"\[\w+\] \{jit-backend-counts$", Keyword, "jit-backend-counts"),

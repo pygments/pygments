@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, words
 from pygments.token import Text, Comment, Keyword, Name, String, Whitespace
@@ -22,9 +23,9 @@ class IgorLexer(RegexLexer):
     """
 
     name = 'Igor'
-    aliases = ['igor', 'igorpro']
-    filenames = ['*.ipf']
-    mimetypes = ['text/ipf']
+    aliases = ('igor', 'igorpro')
+    filenames = ('*.ipf',)
+    mimetypes = ('text/ipf',)
     url = 'http://www.wavemetrics.com'
     version_added = '2.0'
 
@@ -411,7 +412,7 @@ class IgorLexer(RegexLexer):
         'zeromq_test_serializeWave', 'zeta'
     )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'//.*$', Comment.Single),
             (r'"([^"\\]|\\.)*"', String),

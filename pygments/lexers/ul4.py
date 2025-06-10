@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, DelegatingLexer, bygroups, words, include
 from pygments.token import Comment, Text, Keyword, String, Number, Literal, \
@@ -16,8 +17,14 @@ from pygments.token import Comment, Text, Keyword, String, Number, Literal, \
 from pygments.lexers.web import HtmlLexer, XmlLexer, CssLexer, JavascriptLexer
 from pygments.lexers.python import PythonLexer
 
-__all__ = ['UL4Lexer', 'HTMLUL4Lexer', 'XMLUL4Lexer', 'CSSUL4Lexer',
-           'JavascriptUL4Lexer', 'PythonUL4Lexer']
+__all__ = [
+    'CSSUL4Lexer',
+    'HTMLUL4Lexer',
+    'JavascriptUL4Lexer',
+    'PythonUL4Lexer',
+    'UL4Lexer',
+    'XMLUL4Lexer',
+]
 
 
 class UL4Lexer(RegexLexer):
@@ -28,12 +35,12 @@ class UL4Lexer(RegexLexer):
     flags = re.MULTILINE | re.DOTALL
 
     name = 'UL4'
-    aliases = ['ul4']
-    filenames = ['*.ul4']
+    aliases = ('ul4',)
+    filenames = ('*.ul4',)
     url = 'https://python.livinglogic.de/UL4.html'
     version_added = '2.12'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             (
                 # Template header without name:
@@ -240,8 +247,8 @@ class HTMLUL4Lexer(DelegatingLexer):
     """
 
     name = 'HTML+UL4'
-    aliases = ['html+ul4']
-    filenames = ['*.htmlul4']
+    aliases = ('html+ul4',)
+    filenames = ('*.htmlul4',)
     url = 'https://python.livinglogic.de/UL4.html'
     version_added = ''
 
@@ -255,8 +262,8 @@ class XMLUL4Lexer(DelegatingLexer):
     """
 
     name = 'XML+UL4'
-    aliases = ['xml+ul4']
-    filenames = ['*.xmlul4']
+    aliases = ('xml+ul4',)
+    filenames = ('*.xmlul4',)
     url = 'https://python.livinglogic.de/UL4.html'
     version_added = ''
 
@@ -270,8 +277,8 @@ class CSSUL4Lexer(DelegatingLexer):
     """
 
     name = 'CSS+UL4'
-    aliases = ['css+ul4']
-    filenames = ['*.cssul4']
+    aliases = ('css+ul4',)
+    filenames = ('*.cssul4',)
     url = 'https://python.livinglogic.de/UL4.html'
     version_added = ''
 
@@ -285,8 +292,8 @@ class JavascriptUL4Lexer(DelegatingLexer):
     """
 
     name = 'Javascript+UL4'
-    aliases = ['js+ul4']
-    filenames = ['*.jsul4']
+    aliases = ('js+ul4',)
+    filenames = ('*.jsul4',)
     url = 'https://python.livinglogic.de/UL4.html'
     version_added = ''
 
@@ -300,8 +307,8 @@ class PythonUL4Lexer(DelegatingLexer):
     """
 
     name = 'Python+UL4'
-    aliases = ['py+ul4']
-    filenames = ['*.pyul4']
+    aliases = ('py+ul4',)
+    filenames = ('*.pyul4',)
     url = 'https://python.livinglogic.de/UL4.html'
     version_added = ''
 

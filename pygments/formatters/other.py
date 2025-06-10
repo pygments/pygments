@@ -21,8 +21,8 @@ class NullFormatter(Formatter):
     Output the text unchanged without any formatting.
     """
     name = 'Text only'
-    aliases = ['text', 'null']
-    filenames = ['*.txt']
+    aliases = ('text', 'null')
+    filenames = ('*.txt',)
 
     def format(self, tokensource, outfile):
         enc = self.encoding
@@ -54,8 +54,8 @@ class RawTokenFormatter(Formatter):
 
     """
     name = 'Raw tokens'
-    aliases = ['raw', 'tokens']
-    filenames = ['*.raw']
+    aliases = ('raw', 'tokens')
+    filenames = ('*.raw',)
 
     unicodeoutput = False
 
@@ -133,7 +133,7 @@ class TestcaseFormatter(Formatter):
     .. versionadded:: 2.0
     """
     name = 'Testcase'
-    aliases = ['testcase']
+    aliases = ('testcase',)
 
     def __init__(self, **options):
         Formatter.__init__(self, **options)

@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import (Comment, Error, Generic, Keyword, Literal, Name,
                             Number, Operator, Punctuation, String, Token)
@@ -28,7 +29,7 @@ class CoffeeStyle(Style):
     line_number_color = "#4e4e4e"
     line_number_special_color = "#8f9494"
 
-    styles = {
+    styles: typing.ClassVar = {
         Comment: "#70757A",
         Comment.Hashbang: "#8f9f9f",
         Comment.Preproc: "#fdd0c0",

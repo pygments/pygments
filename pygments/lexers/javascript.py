@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import bygroups, combined, default, do_insertions, include, \
     inherit, Lexer, RegexLexer, this, using, words, line_re
@@ -17,10 +18,20 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 from pygments.util import get_bool_opt
 import pygments.unistring as uni
 
-__all__ = ['JavascriptLexer', 'KalLexer', 'LiveScriptLexer', 'DartLexer',
-           'TypeScriptLexer', 'LassoLexer', 'ObjectiveJLexer',
-           'CoffeeScriptLexer', 'MaskLexer', 'EarlGreyLexer', 'JuttleLexer',
-           'NodeConsoleLexer']
+__all__ = [
+    'CoffeeScriptLexer',
+    'DartLexer',
+    'EarlGreyLexer',
+    'JavascriptLexer',
+    'JuttleLexer',
+    'KalLexer',
+    'LassoLexer',
+    'LiveScriptLexer',
+    'MaskLexer',
+    'NodeConsoleLexer',
+    'ObjectiveJLexer',
+    'TypeScriptLexer',
+]
 
 JS_IDENT_START = ('(?:[$_' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl') +
                   ']|\\\\u[a-fA-F0-9]{4})')
@@ -37,15 +48,15 @@ class JavascriptLexer(RegexLexer):
 
     name = 'JavaScript'
     url = 'https://www.ecma-international.org/publications-and-standards/standards/ecma-262/'
-    aliases = ['javascript', 'js']
-    filenames = ['*.js', '*.jsm', '*.mjs', '*.cjs']
-    mimetypes = ['application/javascript', 'application/x-javascript',
-                 'text/x-javascript', 'text/javascript']
+    aliases = ('javascript', 'js')
+    filenames = ('*.js', '*.jsm', '*.mjs', '*.cjs')
+    mimetypes = ('application/javascript', 'application/x-javascript',
+                 'text/x-javascript', 'text/javascript')
     version_added = ''
 
     flags = re.DOTALL | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'commentsandwhitespace': [
             (r'\s+', Whitespace),
             (r'<!--', Comment),
@@ -144,16 +155,16 @@ class TypeScriptLexer(JavascriptLexer):
 
     name = 'TypeScript'
     url = 'https://www.typescriptlang.org/'
-    aliases = ['typescript', 'ts']
-    filenames = ['*.ts']
-    mimetypes = ['application/x-typescript', 'text/x-typescript']
+    aliases = ('typescript', 'ts')
+    filenames = ('*.ts',)
+    mimetypes = ('application/x-typescript', 'text/x-typescript')
     version_added = '1.6'
 
     # Higher priority than the TypoScriptLexer, as TypeScript is far more
     # common these days
     priority = 0.5
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(abstract|implements|private|protected|public|readonly)\b',
                 Keyword, 'slashstartsregex'),
@@ -183,13 +194,13 @@ class KalLexer(RegexLexer):
 
     name = 'Kal'
     url = 'http://rzimmerman.github.io/kal'
-    aliases = ['kal']
-    filenames = ['*.kal']
-    mimetypes = ['text/kal', 'application/kal']
+    aliases = ('kal',)
+    filenames = ('*.kal',)
+    mimetypes = ('text/kal', 'application/kal')
     version_added = '2.0'
 
     flags = re.DOTALL
-    tokens = {
+    tokens: typing.ClassVar = {
         'commentsandwhitespace': [
             (r'\s+', Whitespace),
             (r'###[^#].*?###', Comment.Multiline),
@@ -316,13 +327,13 @@ class LiveScriptLexer(RegexLexer):
 
     name = 'LiveScript'
     url = 'https://livescript.net/'
-    aliases = ['livescript', 'live-script']
-    filenames = ['*.ls']
-    mimetypes = ['text/livescript']
+    aliases = ('livescript', 'live-script')
+    filenames = ('*.ls',)
+    mimetypes = ('text/livescript',)
     version_added = '1.6'
 
     flags = re.DOTALL
-    tokens = {
+    tokens: typing.ClassVar = {
         'commentsandwhitespace': [
             (r'\s+', Whitespace),
             (r'/\*.*?\*/', Comment.Multiline),
@@ -428,14 +439,14 @@ class DartLexer(RegexLexer):
 
     name = 'Dart'
     url = 'http://dart.dev/'
-    aliases = ['dart']
-    filenames = ['*.dart']
-    mimetypes = ['text/x-dart']
+    aliases = ('dart',)
+    filenames = ('*.dart',)
+    mimetypes = ('text/x-dart',)
     version_added = '1.5'
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('string_literal'),
             (r'#!(.*?)$', Comment.Preproc),
@@ -541,16 +552,16 @@ class LassoLexer(RegexLexer):
     """
 
     name = 'Lasso'
-    aliases = ['lasso', 'lassoscript']
-    filenames = ['*.lasso', '*.lasso[89]']
+    aliases = ('lasso', 'lassoscript')
+    filenames = ('*.lasso', '*.lasso[89]')
     version_added = '1.6'
-    alias_filenames = ['*.incl', '*.inc', '*.las']
-    mimetypes = ['text/x-lasso']
+    alias_filenames = ('*.incl', '*.inc', '*.las')
+    mimetypes = ('text/x-lasso',)
     url = 'https://www.lassosoft.com'
 
     flags = re.IGNORECASE | re.DOTALL | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^#![ \S]+lasso9\b', Comment.Preproc, 'lasso'),
             (r'(?=\[|<)', Other, 'delimiters'),
@@ -771,9 +782,9 @@ class LassoLexer(RegexLexer):
             stack.append('delimiters')
         for index, token, value in \
                 RegexLexer.get_tokens_unprocessed(self, text, stack):
-            if (token is Name.Other and value.lower() in self._builtins or
-                    token is Name.Other.Member and
-                    value.lower().rstrip('=') in self._members):
+            if ((token is Name.Other and value.lower() in self._builtins) or
+                    (token is Name.Other.Member and
+                    value.lower().rstrip('=') in self._members)):
                 yield index, Name.Builtin, value
                 continue
             yield index, token, value
@@ -795,9 +806,9 @@ class ObjectiveJLexer(RegexLexer):
     """
 
     name = 'Objective-J'
-    aliases = ['objective-j', 'objectivej', 'obj-j', 'objj']
-    filenames = ['*.j']
-    mimetypes = ['text/x-objective-j']
+    aliases = ('objective-j', 'objectivej', 'obj-j', 'objj')
+    filenames = ('*.j',)
+    mimetypes = ('text/x-objective-j',)
     url = 'https://www.cappuccino.dev/learn/objective-j.html'
     version_added = '1.3'
 
@@ -806,7 +817,7 @@ class ObjectiveJLexer(RegexLexer):
 
     flags = re.DOTALL | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
 
@@ -1019,9 +1030,9 @@ class CoffeeScriptLexer(RegexLexer):
 
     name = 'CoffeeScript'
     url = 'http://coffeescript.org'
-    aliases = ['coffeescript', 'coffee-script', 'coffee']
-    filenames = ['*.coffee']
-    mimetypes = ['text/coffeescript']
+    aliases = ('coffeescript', 'coffee-script', 'coffee')
+    filenames = ('*.coffee',)
+    mimetypes = ('text/coffeescript',)
     version_added = '1.3'
 
     _operator_re = (
@@ -1030,7 +1041,7 @@ class CoffeeScriptLexer(RegexLexer):
         r'(<<|>>>?|==?(?!>)|!=?|=(?!>)|-(?!>)|[<>+*`%&|\^/])=?')
 
     flags = re.DOTALL
-    tokens = {
+    tokens: typing.ClassVar = {
         'commentsandwhitespace': [
             (r'\s+', Whitespace),
             (r'###[^#].*?###', Comment.Multiline),
@@ -1131,13 +1142,13 @@ class MaskLexer(RegexLexer):
     """
     name = 'Mask'
     url = 'https://github.com/atmajs/MaskJS'
-    aliases = ['mask']
-    filenames = ['*.mask']
-    mimetypes = ['text/x-mask']
+    aliases = ('mask',)
+    filenames = ('*.mask',)
+    mimetypes = ('text/x-mask',)
     version_added = '2.0'
 
     flags = re.MULTILINE | re.IGNORECASE | re.DOTALL
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace)),
@@ -1252,13 +1263,13 @@ class EarlGreyLexer(RegexLexer):
     """
 
     name = 'Earl Grey'
-    aliases = ['earl-grey', 'earlgrey', 'eg']
-    filenames = ['*.eg']
-    mimetypes = ['text/x-earl-grey']
+    aliases = ('earl-grey', 'earlgrey', 'eg')
+    filenames = ('*.eg',)
+    mimetypes = ('text/x-earl-grey',)
     url = 'https://github.com/breuleux/earl-grey'
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             include('control'),
@@ -1467,15 +1478,15 @@ class JuttleLexer(RegexLexer):
 
     name = 'Juttle'
     url = 'http://juttle.github.io/'
-    aliases = ['juttle']
-    filenames = ['*.juttle']
-    mimetypes = ['application/juttle', 'application/x-juttle',
-                 'text/x-juttle', 'text/juttle']
+    aliases = ('juttle',)
+    filenames = ('*.juttle',)
+    mimetypes = ('application/juttle', 'application/x-juttle',
+                 'text/x-juttle', 'text/juttle')
     version_added = '2.2'
 
     flags = re.DOTALL | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'commentsandwhitespace': [
             (r'\s+', Whitespace),
             (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace)),
@@ -1547,8 +1558,8 @@ class NodeConsoleLexer(Lexer):
     .. versionadded: 2.10
     """
     name = 'Node.js REPL console session'
-    aliases = ['nodejsrepl', ]
-    mimetypes = ['text/x-nodejsrepl', ]
+    aliases = ('nodejsrepl',)
+    mimetypes = ('text/x-nodejsrepl',)
     url = 'https://nodejs.org'
     version_added = ''
 

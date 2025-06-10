@@ -8,11 +8,12 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, bygroups, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
 
-__all__ = ['SmalltalkLexer', 'NewspeakLexer']
+__all__ = ['NewspeakLexer', 'SmalltalkLexer']
 
 
 class SmalltalkLexer(RegexLexer):
@@ -23,12 +24,12 @@ class SmalltalkLexer(RegexLexer):
     """
     name = 'Smalltalk'
     url = 'http://www.smalltalk.org/'
-    filenames = ['*.st']
-    aliases = ['smalltalk', 'squeak', 'st']
-    mimetypes = ['text/x-smalltalk']
+    filenames = ('*.st',)
+    aliases = ('smalltalk', 'squeak', 'st')
+    mimetypes = ('text/x-smalltalk',)
     version_added = '0.10'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(<)(\w+:)(.*?)(>)', bygroups(Text, Keyword, Text, Text)),
             include('squeak fileout'),
@@ -142,12 +143,12 @@ class NewspeakLexer(RegexLexer):
     """
     name = 'Newspeak'
     url = 'http://newspeaklanguage.org/'
-    filenames = ['*.ns2']
-    aliases = ['newspeak', ]
-    mimetypes = ['text/x-newspeak']
+    filenames = ('*.ns2',)
+    aliases = ('newspeak', )
+    mimetypes = ('text/x-newspeak',)
     version_added = '1.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\b(Newsqueak2)\b', Keyword.Declaration),
             (r"'[^']*'", String),

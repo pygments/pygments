@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import Lexer, RegexLexer, bygroups, default, words, \
     do_insertions, include
@@ -25,15 +26,15 @@ class MatlabLexer(RegexLexer):
     For Matlab source code.
     """
     name = 'Matlab'
-    aliases = ['matlab']
-    filenames = ['*.m']
-    mimetypes = ['text/matlab']
+    aliases = ('matlab',)
+    filenames = ('*.m',)
+    mimetypes = ('text/matlab',)
     url = 'https://www.mathworks.com/products/matlab.html'
     version_added = '0.10'
 
     _operators = r'-|==|~=|<=|>=|<|>|&&|&|~|\|\|?|\.\*|\*|\+|\.\^|\^|\.\\|\./|/|\\'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'expressions': [
             # operators:
             (_operators, Operator),
@@ -2744,7 +2745,7 @@ class MatlabSessionLexer(Lexer):
     Contributed by Ken Schutte <kschutte@csail.mit.edu>.
     """
     name = 'Matlab session'
-    aliases = ['matlabsession']
+    aliases = ('matlabsession',)
     url = 'https://www.mathworks.com/products/matlab.html'
     version_added = '0.10'
     _example = "matlabsession/matlabsession_sample.txt"
@@ -2815,9 +2816,9 @@ class OctaveLexer(RegexLexer):
     """
     name = 'Octave'
     url = 'https://www.gnu.org/software/octave/index'
-    aliases = ['octave']
-    filenames = ['*.m']
-    mimetypes = ['text/octave']
+    aliases = ('octave',)
+    filenames = ('*.m',)
+    mimetypes = ('text/octave',)
     version_added = '1.5'
 
     # These lists are generated automatically.
@@ -3144,7 +3145,7 @@ class OctaveLexer(RegexLexer):
         "WIFEXITED", "WIFSIGNALED", "WIFSTOPPED", "WNOHANG",
         "WSTOPSIG", "WTERMSIG", "WUNTRACED")
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'%\{\s*\n', Comment.Multiline, 'percentblockcomment'),
             (r'#\{\s*\n', Comment.Multiline, 'hashblockcomment'),
@@ -3232,12 +3233,12 @@ class ScilabLexer(RegexLexer):
     """
     name = 'Scilab'
     url = 'https://www.scilab.org/'
-    aliases = ['scilab']
-    filenames = ['*.sci', '*.sce', '*.tst']
-    mimetypes = ['text/scilab']
+    aliases = ('scilab',)
+    filenames = ('*.sci', '*.sce', '*.tst')
+    mimetypes = ('text/scilab',)
     version_added = '1.5'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'//.*?$', Comment.Single),
             (r'^\s*function\b', Keyword, 'deffunc'),

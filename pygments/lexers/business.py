@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, words, bygroups
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -16,8 +17,14 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 
 from pygments.lexers._openedge_builtins import OPENEDGEKEYWORDS
 
-__all__ = ['CobolLexer', 'CobolFreeformatLexer', 'ABAPLexer', 'OpenEdgeLexer',
-           'GoodDataCLLexer', 'MaqlLexer']
+__all__ = [
+    'ABAPLexer',
+    'CobolFreeformatLexer',
+    'CobolLexer',
+    'GoodDataCLLexer',
+    'MaqlLexer',
+    'OpenEdgeLexer',
+]
 
 
 class CobolLexer(RegexLexer):
@@ -25,9 +32,9 @@ class CobolLexer(RegexLexer):
     Lexer for OpenCOBOL code.
     """
     name = 'COBOL'
-    aliases = ['cobol']
-    filenames = ['*.cob', '*.COB', '*.cpy', '*.CPY']
-    mimetypes = ['text/x-cobol']
+    aliases = ('cobol',)
+    filenames = ('*.cob', '*.COB', '*.cpy', '*.CPY')
+    mimetypes = ('text/x-cobol',)
     url = 'https://en.wikipedia.org/wiki/COBOL'
     version_added = '1.6'
 
@@ -42,7 +49,7 @@ class CobolLexer(RegexLexer):
     # Intrinsics:
     # http://opencobol.add1tocobol.com/#does-opencobol-implement-any-intrinsic-functions
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('comment'),
             include('strings'),
@@ -224,15 +231,15 @@ class CobolFreeformatLexer(CobolLexer):
     Lexer for Free format OpenCOBOL code.
     """
     name = 'COBOLFree'
-    aliases = ['cobolfree']
-    filenames = ['*.cbl', '*.CBL']
-    mimetypes = []
+    aliases = ('cobolfree',)
+    filenames = ('*.cbl', '*.CBL')
+    mimetypes = ()
     url = 'https://opencobol.add1tocobol.com'
     version_added = '1.6'
 
     flags = re.IGNORECASE | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'comment': [
             (r'(\*>.*\n|^\w*\*.*$)', Comment),
         ],
@@ -244,15 +251,15 @@ class ABAPLexer(RegexLexer):
     Lexer for ABAP, SAP's integrated language.
     """
     name = 'ABAP'
-    aliases = ['abap']
-    filenames = ['*.abap', '*.ABAP']
-    mimetypes = ['text/x-abap']
+    aliases = ('abap',)
+    filenames = ('*.abap', '*.ABAP')
+    mimetypes = ('text/x-abap',)
     url = 'https://community.sap.com/topics/abap'
     version_added = '1.1'
 
     flags = re.IGNORECASE | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'common': [
             (r'\s+', Whitespace),
             (r'^\*.*$', Comment.Single),
@@ -453,9 +460,9 @@ class OpenEdgeLexer(RegexLexer):
     Lexer for OpenEdge ABL (formerly Progress) source code.
     """
     name = 'OpenEdge ABL'
-    aliases = ['openedge', 'abl', 'progress']
-    filenames = ['*.p', '*.cls']
-    mimetypes = ['text/x-openedge', 'application/x-openedge']
+    aliases = ('openedge', 'abl', 'progress')
+    filenames = ('*.p', '*.cls')
+    mimetypes = ('text/x-openedge', 'application/x-openedge')
     url = 'https://www.progress.com/openedge/features/abl'
     version_added = '1.5'
 
@@ -469,7 +476,7 @@ class OpenEdgeLexer(RegexLexer):
                      prefix=r'(?i)(^|(?<=[^\w\-]))',
                      suffix=r'\s*($|(?=[^\w\-]))')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'/\*', Comment.Multiline, 'comment'),
             (r'\{', Comment.Preproc, 'preprocessor'),
@@ -522,9 +529,9 @@ class GoodDataCLLexer(RegexLexer):
     """
 
     name = 'GoodData-CL'
-    aliases = ['gooddata-cl']
-    filenames = ['*.gdc']
-    mimetypes = ['text/x-gooddata-cl']
+    aliases = ('gooddata-cl',)
+    filenames = ('*.gdc',)
+    mimetypes = ('text/x-gooddata-cl',)
     url = 'https://github.com/gooddata/GoodData-CL'
     version_added = '1.4'
 
@@ -532,7 +539,7 @@ class GoodDataCLLexer(RegexLexer):
 
     # Syntax:
     # https://github.com/gooddata/GoodData-CL/raw/master/cli/src/main/resources/com/gooddata/processor/COMMANDS.txt
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Comments
             (r'#.*', Comment.Single),
@@ -569,14 +576,14 @@ class MaqlLexer(RegexLexer):
     """
 
     name = 'MAQL'
-    aliases = ['maql']
-    filenames = ['*.maql']
-    mimetypes = ['text/x-gooddata-maql', 'application/x-gooddata-maql']
+    aliases = ('maql',)
+    filenames = ('*.maql',)
+    mimetypes = ('text/x-gooddata-maql', 'application/x-gooddata-maql')
     url = 'https://help.gooddata.com/doc/enterprise/en/dashboards-and-insights/maql-analytical-query-language'
     version_added = '1.4'
 
     flags = re.IGNORECASE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # IDENTITY
             (r'IDENTIFIER\b', Name.Builtin),

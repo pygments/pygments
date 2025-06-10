@@ -6,6 +6,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments import highlight
 from pygments.lexer import RegexLexer
 from pygments.lexers import PythonLexer
@@ -58,7 +59,7 @@ import this
 
 
 class ToyLexer(RegexLexer):
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             ("a", Token.Name),
             ("b", Token.Name.Custom),
@@ -66,7 +67,7 @@ class ToyLexer(RegexLexer):
     }
 
 class ToyStyle(Style):
-    styles = {
+    styles: typing.ClassVar = {
         Token.Name: "bold",
     }
 

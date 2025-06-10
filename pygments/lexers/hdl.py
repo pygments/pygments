@@ -9,12 +9,13 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, bygroups, include, using, this, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
 
-__all__ = ['VerilogLexer', 'SystemVerilogLexer', 'VhdlLexer']
+__all__ = ['SystemVerilogLexer', 'VerilogLexer', 'VhdlLexer']
 
 
 class VerilogLexer(RegexLexer):
@@ -22,16 +23,16 @@ class VerilogLexer(RegexLexer):
     For verilog source code with preprocessor directives.
     """
     name = 'verilog'
-    aliases = ['verilog', 'v']
-    filenames = ['*.v']
-    mimetypes = ['text/x-verilog']
+    aliases = ('verilog', 'v')
+    filenames = ('*.v',)
+    mimetypes = ('text/x-verilog',)
     url = 'https://en.wikipedia.org/wiki/Verilog'
     version_added = '1.4'
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^\s*`define', Comment.Preproc, 'macro'),
             (r'\s+', Whitespace),
@@ -149,16 +150,16 @@ class SystemVerilogLexer(RegexLexer):
     1800-2009 standard.
     """
     name = 'systemverilog'
-    aliases = ['systemverilog', 'sv']
-    filenames = ['*.sv', '*.svh']
-    mimetypes = ['text/x-systemverilog']
+    aliases = ('systemverilog', 'sv')
+    filenames = ('*.sv', '*.svh')
+    mimetypes = ('text/x-systemverilog',)
     url = 'https://en.wikipedia.org/wiki/SystemVerilog'
     version_added = '1.5'
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^(\s*)(`define)', bygroups(Whitespace, Comment.Preproc), 'macro'),
             (r'^(\s*)(package)(\s+)', bygroups(Whitespace, Keyword.Namespace, Whitespace)),
@@ -375,14 +376,14 @@ class VhdlLexer(RegexLexer):
     For VHDL source code.
     """
     name = 'vhdl'
-    aliases = ['vhdl']
-    filenames = ['*.vhdl', '*.vhd']
-    mimetypes = ['text/x-vhdl']
+    aliases = ('vhdl',)
+    filenames = ('*.vhdl', '*.vhd')
+    mimetypes = ('text/x-vhdl',)
     url = 'https://en.wikipedia.org/wiki/VHDL'
     version_added = '1.5'
     flags = re.MULTILINE | re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'(\\)(\n)', bygroups(String.Escape, Whitespace)),  # line continuation

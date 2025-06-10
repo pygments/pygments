@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -22,15 +23,15 @@ class ComponentPascalLexer(RegexLexer):
     For Component Pascal source code.
     """
     name = 'Component Pascal'
-    aliases = ['componentpascal', 'cp']
-    filenames = ['*.cp', '*.cps']
-    mimetypes = ['text/x-component-pascal']
+    aliases = ('componentpascal', 'cp')
+    filenames = ('*.cp', '*.cps')
+    mimetypes = ('text/x-component-pascal',)
     url = 'https://blackboxframework.org'
     version_added = '2.1'
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
             include('comments'),

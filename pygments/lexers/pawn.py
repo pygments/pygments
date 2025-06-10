@@ -8,12 +8,13 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
 from pygments.util import get_bool_opt
 
-__all__ = ['SourcePawnLexer', 'PawnLexer']
+__all__ = ['PawnLexer', 'SourcePawnLexer']
 
 
 class SourcePawnLexer(RegexLexer):
@@ -21,9 +22,9 @@ class SourcePawnLexer(RegexLexer):
     For SourcePawn source code with preprocessor directives.
     """
     name = 'SourcePawn'
-    aliases = ['sp']
-    filenames = ['*.sp']
-    mimetypes = ['text/x-sourcepawn']
+    aliases = ('sp',)
+    filenames = ('*.sp',)
+    mimetypes = ('text/x-sourcepawn',)
     url = 'https://github.com/alliedmodders/sourcepawn'
     version_added = '1.6'
 
@@ -32,7 +33,7 @@ class SourcePawnLexer(RegexLexer):
     #: only one /* */ style comment
     _ws1 = r'\s*(?:/[*].*?[*]/\s*)*'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # preprocessor directives: without whitespace
             (r'^#if\s+0', Comment.Preproc, 'if0'),
@@ -84,7 +85,7 @@ class SourcePawnLexer(RegexLexer):
         ]
     }
 
-    SM_TYPES = {'Action', 'bool', 'Float', 'Plugin', 'String', 'any',
+    SM_TYPES: typing.ClassVar = {'Action', 'bool', 'Float', 'Plugin', 'String', 'any',
                 'AdminFlag', 'OverrideType', 'OverrideRule', 'ImmunityType',
                 'GroupId', 'AdminId', 'AdmAccessMode', 'AdminCachePart',
                 'CookieAccess', 'CookieMenu', 'CookieMenuAction', 'NetFlow',
@@ -132,9 +133,9 @@ class PawnLexer(RegexLexer):
     """
 
     name = 'Pawn'
-    aliases = ['pawn']
-    filenames = ['*.p', '*.pwn', '*.inc']
-    mimetypes = ['text/x-pawn']
+    aliases = ('pawn',)
+    filenames = ('*.p', '*.pwn', '*.inc')
+    mimetypes = ('text/x-pawn',)
     url = 'https://www.compuphase.com/pawn/pawn.htm'
     version_added = '2.0'
 
@@ -143,7 +144,7 @@ class PawnLexer(RegexLexer):
     #: only one /* */ style comment
     _ws1 = r'\s*(?:/[*].*?[*]/\s*)*'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # preprocessor directives: without whitespace
             (r'^#if\s+0', Comment.Preproc, 'if0'),

@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import include, RegexLexer, words
 from pygments.token import Whitespace, Punctuation, Keyword, Name, Comment, \
@@ -22,13 +23,13 @@ class WrenLexer(RegexLexer):
     """
     name = 'Wren'
     url = 'https://wren.io'
-    aliases = ['wren']
-    filenames = ['*.wren']
+    aliases = ('wren',)
+    filenames = ('*.wren',)
     version_added = '2.14'
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Whitespace.
             (r'\s+', Whitespace),

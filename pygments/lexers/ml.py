@@ -9,12 +9,13 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, default, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Error
 
-__all__ = ['SMLLexer', 'OcamlLexer', 'OpaLexer', 'ReasonLexer', 'FStarLexer']
+__all__ = ['FStarLexer', 'OcamlLexer', 'OpaLexer', 'ReasonLexer', 'SMLLexer']
 
 
 class SMLLexer(RegexLexer):
@@ -23,13 +24,13 @@ class SMLLexer(RegexLexer):
     """
 
     name = 'Standard ML'
-    aliases = ['sml']
-    filenames = ['*.sml', '*.sig', '*.fun']
-    mimetypes = ['text/x-standardml', 'application/x-standardml']
+    aliases = ('sml',)
+    filenames = ('*.sml', '*.sig', '*.fun')
+    mimetypes = ('text/x-standardml', 'application/x-standardml')
     url = 'https://en.wikipedia.org/wiki/Standard_ML'
     version_added = '1.5'
 
-    alphanumid_reserved = {
+    alphanumid_reserved: typing.ClassVar = {
         # Core
         'abstype', 'and', 'andalso', 'as', 'case', 'datatype', 'do', 'else',
         'end', 'exception', 'fn', 'fun', 'handle', 'if', 'in', 'infix',
@@ -40,14 +41,14 @@ class SMLLexer(RegexLexer):
         'struct', 'structure', 'where',
     }
 
-    symbolicid_reserved = {
+    symbolicid_reserved: typing.ClassVar = {
         # Core
         ':', r'\|', '=', '=>', '->', '#',
         # Modules
         ':>',
     }
 
-    nonid_reserved = {'(', ')', '[', ']', '{', '}', ',', ';', '...', '_'}
+    nonid_reserved: typing.ClassVar = {'(', ')', '[', ']', '{', '}', ',', ';', '...', '_'}
 
     alphanumid_re = r"[a-zA-Z][\w']*"
     symbolicid_re = r"[!%&$#+\-/:<=>?@\\~`^|*]+"
@@ -99,7 +100,7 @@ class SMLLexer(RegexLexer):
             token = Name
         yield match.start(1), token, str
 
-    tokens = {
+    tokens: typing.ClassVar = {
         # Whitespace and comments are (almost) everywhere
         'whitespace': [
             (r'\s+', Text),
@@ -359,9 +360,9 @@ class OcamlLexer(RegexLexer):
 
     name = 'OCaml'
     url = 'https://ocaml.org/'
-    aliases = ['ocaml']
-    filenames = ['*.ml', '*.mli', '*.mll', '*.mly']
-    mimetypes = ['text/x-ocaml']
+    aliases = ('ocaml',)
+    filenames = ('*.ml', '*.mli', '*.mll', '*.mly')
+    mimetypes = ('text/x-ocaml',)
     version_added = '0.7'
 
     keywords = (
@@ -386,7 +387,7 @@ class OcamlLexer(RegexLexer):
     infix_syms = r'[=<>@^|&+\*/$%-]'
     primitives = ('unit', 'int', 'float', 'bool', 'string', 'char', 'list', 'array')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'escape-sequence': [
             (r'\\[\\"\'ntbr]', String.Escape),
             (r'\\[0-9]{3}', String.Escape),
@@ -450,9 +451,9 @@ class OpaLexer(RegexLexer):
     """
 
     name = 'Opa'
-    aliases = ['opa']
-    filenames = ['*.opa']
-    mimetypes = ['text/x-opa']
+    aliases = ('opa',)
+    filenames = ('*.opa',)
+    mimetypes = ('text/x-opa',)
     url = 'http://opalang.org'
     version_added = '1.5'
 
@@ -473,7 +474,7 @@ class OpaLexer(RegexLexer):
     punc_re = r'[()\[\],;|]'  # '{' and '}' are treated elsewhere
                               # because they are also used for inserts
 
-    tokens = {
+    tokens: typing.ClassVar = {
         # copied from the caml lexer, should be adapted
         'escape-sequence': [
             (r'\\[\\"\'ntr}]', String.Escape),
@@ -774,9 +775,9 @@ class ReasonLexer(RegexLexer):
 
     name = 'ReasonML'
     url = 'https://reasonml.github.io/'
-    aliases = ['reasonml', 'reason']
-    filenames = ['*.re', '*.rei']
-    mimetypes = ['text/x-reasonml']
+    aliases = ('reasonml', 'reason')
+    filenames = ('*.re', '*.rei')
+    mimetypes = ('text/x-reasonml',)
     version_added = '2.6'
 
     keywords = (
@@ -800,7 +801,7 @@ class ReasonLexer(RegexLexer):
     infix_syms = r'[=<>@^|&+\*/$%-]'
     primitives = ('unit', 'int', 'float', 'bool', 'string', 'char', 'list', 'array')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'escape-sequence': [
             (r'\\[\\"\'ntbr]', String.Escape),
             (r'\\[0-9]{3}', String.Escape),
@@ -866,9 +867,9 @@ class FStarLexer(RegexLexer):
 
     name = 'FStar'
     url = 'https://www.fstar-lang.org/'
-    aliases = ['fstar']
-    filenames = ['*.fst', '*.fsti']
-    mimetypes = ['text/x-fstar']
+    aliases = ('fstar',)
+    filenames = ('*.fst', '*.fsti')
+    mimetypes = ('text/x-fstar',)
     version_added = '2.7'
 
     keywords = (
@@ -897,7 +898,7 @@ class FStarLexer(RegexLexer):
     infix_syms = r'[=<>@^|&+\*/$%-]'
     primitives = ('unit', 'int', 'float', 'bool', 'string', 'char', 'list', 'array')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'escape-sequence': [
             (r'\\[\\"\'ntbr]', String.Escape),
             (r'\\[0-9]{3}', String.Escape),

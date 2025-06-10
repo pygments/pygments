@@ -11,6 +11,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -25,8 +26,8 @@ class MaximaLexer(RegexLexer):
     """
     name = 'Maxima'
     url = 'http://maxima.sourceforge.net'
-    aliases = ['maxima', 'macsyma']
-    filenames = ['*.mac', '*.max']
+    aliases = ('maxima', 'macsyma')
+    filenames = ('*.mac', '*.max')
     version_added = '2.11'
 
     keywords = ('if', 'then', 'else', 'elseif',
@@ -43,7 +44,7 @@ class MaximaLexer(RegexLexer):
 
     operator_words = ('and', 'or', 'not')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'/\*', Comment.Multiline, 'comment'),
             (r'"(?:[^"\\]|\\.)*"', String),

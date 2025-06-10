@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words
 from pygments.token import String, Comment, Keyword, Name, Number, Operator, \
     Punctuation, Whitespace
@@ -20,8 +21,8 @@ class BoaLexer(RegexLexer):
     Lexer for the Boa language.
     """
     name = 'Boa'
-    aliases = ['boa']
-    filenames = ['*.boa']
+    aliases = ('boa',)
+    filenames = ('*.boa',)
     url = 'https://boa.cs.iastate.edu/docs'
     version_added = '2.4'
 
@@ -77,7 +78,7 @@ class BoaLexer(RegexLexer):
         prefix=r'\b',
         suffix=r'\(')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*?$', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline),

@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -24,21 +25,21 @@ class NixLexer(RegexLexer):
 
     name = 'Nix'
     url = 'http://nixos.org/nix/'
-    aliases = ['nixos', 'nix']
-    filenames = ['*.nix']
-    mimetypes = ['text/x-nix']
+    aliases = ('nixos', 'nix')
+    filenames = ('*.nix',)
+    mimetypes = ('text/x-nix',)
     version_added = '2.0'
 
-    keywords = ['rec', 'with', 'let', 'in', 'inherit', 'assert', 'if',
-                'else', 'then', '...']
-    builtins = ['import', 'abort', 'baseNameOf', 'dirOf', 'isNull', 'builtins',
-                'map', 'removeAttrs', 'throw', 'toString', 'derivation']
-    operators = ['++', '+', '?', '.', '!', '//', '==', '/',
-                 '!=', '&&', '||', '->', '=', '<', '>', '*', '-']
+    keywords = ('rec', 'with', 'let', 'in', 'inherit', 'assert', 'if',
+                'else', 'then', '...')
+    builtins = ('import', 'abort', 'baseNameOf', 'dirOf', 'isNull', 'builtins',
+                'map', 'removeAttrs', 'throw', 'toString', 'derivation')
+    operators = ('++', '+', '?', '.', '!', '//', '==', '/',
+                 '!=', '&&', '||', '->', '=', '<', '>', '*', '-')
 
-    punctuations = ["(", ")", "[", "]", ";", "{", "}", ":", ",", "@"]
+    punctuations = ("(", ")", "[", "]", ";", "{", "}", ":", ",", "@")
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # comments starting with #
             (r'#.*$', Comment.Single),

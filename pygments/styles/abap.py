@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
     Number, Operator
@@ -19,7 +20,7 @@ __all__ = ['AbapStyle']
 class AbapStyle(Style):
     name = 'abap'
 
-    styles = {
+    styles: typing.ClassVar = {
         Comment:                'italic #888',
         Comment.Special:        '#888',
         Keyword:                '#00f',

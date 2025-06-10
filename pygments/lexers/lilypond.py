@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import bygroups, default, inherit, words
 from pygments.lexers.lisp import SchemeLexer
@@ -54,9 +55,9 @@ class LilyPondLexer(SchemeLexer):
     """
     name = 'LilyPond'
     url = 'https://lilypond.org'
-    aliases = ['lilypond']
-    filenames = ['*.ly']
-    mimetypes = []
+    aliases = ('lilypond',)
+    filenames = ('*.ly',)
+    mimetypes = ()
     version_added = '2.11'
 
     flags = re.DOTALL | re.MULTILINE
@@ -82,7 +83,7 @@ class LilyPondLexer(SchemeLexer):
                 token = Token.Name.Builtin.SchemeBuiltin
             yield index, token, value
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             # Whitespace.
             (r"\s+", Token.Text.Whitespace),

@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import ExtendedRegexLexer, RegexLexer, include, bygroups, \
     default
@@ -25,9 +26,9 @@ class HaxeLexer(ExtendedRegexLexer):
 
     name = 'Haxe'
     url = 'http://haxe.org/'
-    aliases = ['haxe', 'hxsl', 'hx']
-    filenames = ['*.hx', '*.hxsl']
-    mimetypes = ['text/haxe', 'text/x-haxe', 'text/x-hx']
+    aliases = ('haxe', 'hxsl', 'hx')
+    filenames = ('*.hx', '*.hxsl')
+    mimetypes = ('text/haxe', 'text/x-haxe', 'text/x-hx')
     version_added = '1.3'
 
     # keywords extracted from lexer.mll in the haxe compiler source
@@ -53,7 +54,7 @@ class HaxeLexer(ExtendedRegexLexer):
 
     flags = re.DOTALL | re.MULTILINE
 
-    preproc_stack = []
+    preproc_stack: typing.ClassVar = []
 
     def preproc_callback(self, match, ctx):
         proc = match.group(2)
@@ -81,7 +82,7 @@ class HaxeLexer(ExtendedRegexLexer):
         yield match.start(), Comment.Preproc, '#' + proc
         ctx.pos = match.end()
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('spaces'),
             include('meta'),
@@ -900,11 +901,11 @@ class HxmlLexer(RegexLexer):
     """
     name = 'Hxml'
     url = 'https://haxe.org/manual/compiler-usage-hxml.html'
-    aliases = ['haxeml', 'hxml']
-    filenames = ['*.hxml']
+    aliases = ('haxeml', 'hxml')
+    filenames = ('*.hxml',)
     version_added = '1.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Separator
             (r'(--)(next)', bygroups(Punctuation, Generic.Heading)),

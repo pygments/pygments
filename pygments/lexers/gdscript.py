@@ -12,6 +12,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, default, words, \
     combined
@@ -28,9 +29,9 @@ class GDScriptLexer(RegexLexer):
 
     name = "GDScript"
     url = 'https://www.godotengine.org'
-    aliases = ["gdscript", "gd"]
-    filenames = ["*.gd"]
-    mimetypes = ["text/x-gdscript", "application/x-gdscript"]
+    aliases = ("gdscript", "gd")
+    filenames = ("*.gd",)
+    mimetypes = ("text/x-gdscript", "application/x-gdscript")
     version_added = ''
 
     def innerstring_rules(ttype):
@@ -47,7 +48,7 @@ class GDScriptLexer(RegexLexer):
             # newlines are an error (use "nl" state)
         ]
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             (r"\n", Whitespace),
             (r'^(\s*)([rRuUbB]{,2})("""(?:.|\n)*?""")',

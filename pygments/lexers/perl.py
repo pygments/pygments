@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, ExtendedRegexLexer, include, bygroups, \
     using, this, default, words
@@ -16,7 +17,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
 from pygments.util import shebang_matches
 
-__all__ = ['PerlLexer', 'Perl6Lexer']
+__all__ = ['Perl6Lexer', 'PerlLexer']
 
 
 class PerlLexer(RegexLexer):
@@ -26,14 +27,14 @@ class PerlLexer(RegexLexer):
 
     name = 'Perl'
     url = 'https://www.perl.org'
-    aliases = ['perl', 'pl']
-    filenames = ['*.pl', '*.pm', '*.t', '*.perl']
-    mimetypes = ['text/x-perl', 'application/x-perl']
+    aliases = ('perl', 'pl')
+    filenames = ('*.pl', '*.pm', '*.t', '*.perl')
+    mimetypes = ('text/x-perl', 'application/x-perl')
     version_added = ''
 
     flags = re.DOTALL | re.MULTILINE
     # TODO: give this to a perl guy who knows how to parse perl...
-    tokens = {
+    tokens: typing.ClassVar = {
         'balanced-regex': [
             (r'/(\\\\|\\[^\\]|[^\\/])*/[egimosx]*', String.Regex, '#pop'),
             (r'!(\\\\|\\[^\\]|[^\\!])*![egimosx]*', String.Regex, '#pop'),
@@ -230,11 +231,11 @@ class Perl6Lexer(ExtendedRegexLexer):
 
     name = 'Perl6'
     url = 'https://www.raku.org'
-    aliases = ['perl6', 'pl6', 'raku']
-    filenames = ['*.pl', '*.pm', '*.nqp', '*.p6', '*.6pl', '*.p6l', '*.pl6',
+    aliases = ('perl6', 'pl6', 'raku')
+    filenames = ('*.pl', '*.pm', '*.nqp', '*.p6', '*.6pl', '*.p6l', '*.pl6',
                  '*.6pm', '*.p6m', '*.pm6', '*.t', '*.raku', '*.rakumod',
-                 '*.rakutest', '*.rakudoc']
-    mimetypes = ['text/x-perl6', 'application/x-perl6']
+                 '*.rakutest', '*.rakudoc')
+    mimetypes = ('text/x-perl6', 'application/x-perl6')
     version_added = '2.0'
     flags = re.MULTILINE | re.DOTALL
 
@@ -425,7 +426,7 @@ class Perl6Lexer(ExtendedRegexLexer):
 
     # Perl 6 has a *lot* of possible bracketing characters
     # this list was lifted from STD.pm6 (https://github.com/perl6/std)
-    PERL6_BRACKETS = {
+    PERL6_BRACKETS: typing.ClassVar = {
         '\u0028': '\u0029', '\u003c': '\u003e', '\u005b': '\u005d',
         '\u007b': '\u007d', '\u00ab': '\u00bb', '\u0f3a': '\u0f3b',
         '\u0f3c': '\u0f3d', '\u169b': '\u169c', '\u2018': '\u2019',
@@ -594,7 +595,7 @@ class Perl6Lexer(ExtendedRegexLexer):
     # characters. We have special logic for processing these characters (due to the fact
     # that you can nest Perl 6 code in regex blocks), so if you need to process one of
     # them, make sure you also process the corresponding one!
-    tokens = {
+    tokens: typing.ClassVar = {
         'common': [
             (r'#[`|=](?P<delimiter>(?P<first_char>[' + ''.join(PERL6_BRACKETS) + r'])(?P=first_char)*)',
              brackets_callback(Comment.Multiline)),

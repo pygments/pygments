@@ -74,7 +74,7 @@ class Parser:
     else:
         extensions = []
 
-    Dependencies = []
+    Dependencies = ()
 
     def __init__(self, raw, request, **kw):
         self.raw = raw

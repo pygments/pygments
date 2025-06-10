@@ -8,12 +8,13 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import Lexer, ExtendedRegexLexer, LexerContext, \
     include, bygroups
 from pygments.token import Comment, Error, Keyword, Literal, Name, Number, \
     Punctuation, String, Whitespace
 
-__all__ = ['YamlLexer', 'JsonLexer', 'JsonBareObjectLexer', 'JsonLdLexer']
+__all__ = ['JsonBareObjectLexer', 'JsonLdLexer', 'JsonLexer', 'YamlLexer']
 
 
 class YamlLexerContext(LexerContext):
@@ -35,9 +36,9 @@ class YamlLexer(ExtendedRegexLexer):
 
     name = 'YAML'
     url = 'http://yaml.org/'
-    aliases = ['yaml']
-    filenames = ['*.yaml', '*.yml']
-    mimetypes = ['text/x-yaml']
+    aliases = ('yaml',)
+    filenames = ('*.yaml', '*.yml')
+    mimetypes = ('text/x-yaml',)
     version_added = '0.11'
 
     def something(token_class):
@@ -164,7 +165,7 @@ class YamlLexer(ExtendedRegexLexer):
                 context.pos = match.end()
         return callback
 
-    tokens = {
+    tokens: typing.ClassVar = {
         # the root rules
         'root': [
             # ignored whitespaces
@@ -446,9 +447,9 @@ class JsonLexer(Lexer):
 
     name = 'JSON'
     url = 'https://www.json.org'
-    aliases = ['json', 'json-object']
-    filenames = ['*.json', '*.jsonl', '*.ndjson', 'Pipfile.lock']
-    mimetypes = ['application/json', 'application/json-object', 'application/x-ndjson', 'application/jsonl', 'application/json-seq']
+    aliases = ('json', 'json-object')
+    filenames = ('*.json', '*.jsonl', '*.ndjson', 'Pipfile.lock')
+    mimetypes = ('application/json', 'application/json-object', 'application/x-ndjson', 'application/jsonl', 'application/json-seq')
     version_added = '1.5'
 
     # No validation of integers, floats, or constants is done.
@@ -459,12 +460,12 @@ class JsonLexer(Lexer):
     #     "1...eee" is parsed as a float
     #     "trustful" is parsed as a constant
     #
-    integers = set('-0123456789')
-    floats = set('.eE+')
-    constants = set('truefalsenull')  # true|false|null
-    hexadecimals = set('0123456789abcdefABCDEF')
-    punctuations = set('{}[],')
-    whitespaces = {'\u0020', '\u000a', '\u000d', '\u0009'}
+    integers: typing.ClassVar = set('-0123456789')
+    floats: typing.ClassVar = set('.eE+')
+    constants: typing.ClassVar = set('truefalsenull')  # true|false|null
+    hexadecimals: typing.ClassVar = set('0123456789abcdefABCDEF')
+    punctuations: typing.ClassVar = set('{}[],')
+    whitespaces: typing.ClassVar = {'\u0020', '\u000a', '\u000d', '\u0009'}
 
     def get_tokens_unprocessed(self, text):
         """Parse JSON data."""
@@ -708,9 +709,9 @@ class JsonBareObjectLexer(JsonLexer):
     """
 
     name = 'JSONBareObject'
-    aliases = []
-    filenames = []
-    mimetypes = []
+    aliases = ()
+    filenames = ()
+    mimetypes = ()
     version_added = '2.2'
 
 
@@ -721,12 +722,12 @@ class JsonLdLexer(JsonLexer):
 
     name = 'JSON-LD'
     url = 'https://json-ld.org/'
-    aliases = ['jsonld', 'json-ld']
-    filenames = ['*.jsonld']
-    mimetypes = ['application/ld+json']
+    aliases = ('jsonld', 'json-ld')
+    filenames = ('*.jsonld',)
+    mimetypes = ('application/ld+json',)
     version_added = '2.0'
 
-    json_ld_keywords = {
+    json_ld_keywords: typing.ClassVar = {
         f'"@{keyword}"'
         for keyword in (
             'base',

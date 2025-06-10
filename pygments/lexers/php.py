@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import Lexer, RegexLexer, include, bygroups, default, \
     using, this, words, do_insertions, line_re
@@ -16,7 +17,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Other, Generic
 from pygments.util import get_bool_opt, get_list_opt, shebang_matches
 
-__all__ = ['ZephirLexer', 'PsyshConsoleLexer', 'PhpLexer']
+__all__ = ['PhpLexer', 'PsyshConsoleLexer', 'ZephirLexer']
 
 
 class ZephirLexer(RegexLexer):
@@ -29,16 +30,16 @@ class ZephirLexer(RegexLexer):
 
     name = 'Zephir'
     url = 'http://zephir-lang.com/'
-    aliases = ['zephir']
-    filenames = ['*.zep']
+    aliases = ('zephir',)
+    filenames = ('*.zep',)
     version_added = '2.0'
 
-    zephir_keywords = ['fetch', 'echo', 'isset', 'empty']
-    zephir_type = ['bit', 'bits', 'string']
+    zephir_keywords = ('fetch', 'echo', 'isset', 'empty')
+    zephir_type = ('bit', 'bits', 'string')
 
     flags = re.DOTALL | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'commentsandwhitespace': [
             (r'\s+', Text),
             (r'//.*?\n', Comment.Single),
@@ -99,7 +100,7 @@ class PsyshConsoleLexer(Lexer):
     """
     name = 'PsySH console session for PHP'
     url = 'https://psysh.org/'
-    aliases = ['psysh']
+    aliases = ('psysh',)
     version_added = '2.7'
 
     def __init__(self, **options):
@@ -167,9 +168,9 @@ class PhpLexer(RegexLexer):
 
     name = 'PHP'
     url = 'https://www.php.net/'
-    aliases = ['php', 'php3', 'php4', 'php5']
-    filenames = ['*.php', '*.php[345]', '*.inc']
-    mimetypes = ['text/x-php']
+    aliases = ('php', 'php3', 'php4', 'php5')
+    filenames = ('*.php', '*.php[345]', '*.inc')
+    mimetypes = ('text/x-php',)
     version_added = ''
 
     # Note that a backslash is included, PHP uses a backslash as a namespace
@@ -179,7 +180,7 @@ class PhpLexer(RegexLexer):
     _ident_nons = r'(?:[_a-z]|[^\x00-\x7f])(?:\w|[^\x00-\x7f])*'
 
     flags = re.IGNORECASE | re.DOTALL | re.MULTILINE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'<\?(php)?', Comment.Preproc, 'php'),
             (r'[^<]+', Other),

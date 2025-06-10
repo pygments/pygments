@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -24,14 +25,14 @@ class ParaSailLexer(RegexLexer):
 
     name = 'ParaSail'
     url = 'http://www.parasail-lang.org'
-    aliases = ['parasail']
-    filenames = ['*.psi', '*.psl']
-    mimetypes = ['text/x-parasail']
+    aliases = ('parasail',)
+    filenames = ('*.psi', '*.psl')
+    mimetypes = ('text/x-parasail',)
     version_added = '2.1'
 
     flags = re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^\S\n]+', Text),
             (r'//.*?\n', Comment.Single),

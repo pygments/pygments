@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import include, RegexLexer, words
 from pygments.token import Comment, Keyword, Name, Number, Punctuation, \
     String, Whitespace
@@ -35,11 +36,11 @@ class Json5Lexer(RegexLexer):
     """Lexer for JSON5 data structures."""
 
     name = 'JSON5'
-    aliases = ['json5']
-    filenames = ['*.json5']
+    aliases = ('json5',)
+    filenames = ('*.json5',)
     url = "https://json5.org"
     version_added = '2.19'
-    tokens = {
+    tokens: typing.ClassVar = {
         '_comments': [
             (r'(//|#).*\n', Comment.Single),
             (r'/\*\*([^/]|/(?!\*))*\*/', String.Doc),

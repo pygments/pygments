@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, words, include
 from pygments.token import Comment, Operator, Keyword, Name, String, \
@@ -22,9 +23,9 @@ class Lean3Lexer(RegexLexer):
     """
     name = 'Lean'
     url = 'https://leanprover-community.github.io/lean3'
-    aliases = ['lean', 'lean3']
-    filenames = ['*.lean']
-    mimetypes = ['text/x-lean', 'text/x-lean3']
+    aliases = ('lean', 'lean3')
+    filenames = ('*.lean',)
+    mimetypes = ('text/x-lean', 'text/x-lean3')
     version_added = '2.0'
 
     # from https://github.com/leanprover/vscode-lean/blob/1589ca3a65e394b3789409707febbd2d166c9344/syntaxes/lean.json#L186C20-L186C217
@@ -33,7 +34,7 @@ class Lean3Lexer(RegexLexer):
         "(?:(?![λΠΣ])[_a-zA-Zα-ωΑ-Ωϊ-ϻἀ-῾℀-⅏𝒜-𝖟0-9'ⁿ-₉ₐ-ₜᵢ-ᵪ])*")
     _name = _name_segment + r"(\." + _name_segment + r")*"
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'expression': [
             (r'\s+', Whitespace),
             (r'/--', String.Doc, 'docstring'),
@@ -139,9 +140,9 @@ class Lean4Lexer(RegexLexer):
     
     name = 'Lean4'
     url = 'https://github.com/leanprover/lean4'
-    aliases = ['lean4']
-    filenames = ['*.lean']
-    mimetypes = ['text/x-lean4']
+    aliases = ('lean4',)
+    filenames = ('*.lean',)
+    mimetypes = ('text/x-lean4',)
     version_added = '2.18'
 
     # same as Lean3Lexer, with `!` and `?` allowed
@@ -188,7 +189,7 @@ class Lean4Lexer(RegexLexer):
     punctuation = ('(', ')', ':', '{', '}', '[', ']', '⦃', '⦄',
                    ':=', ',')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'expression': [
             (r'\s+', Whitespace),
             (r'/--', String.Doc, 'docstring'),

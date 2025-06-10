@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer
 from pygments.token import Punctuation, Text, Comment, Operator, Keyword, \
@@ -25,15 +26,15 @@ class FoxProLexer(RegexLexer):
     """
 
     name = 'FoxPro'
-    aliases = ['foxpro', 'vfp', 'clipper', 'xbase']
-    filenames = ['*.PRG', '*.prg']
+    aliases = ('foxpro', 'vfp', 'clipper', 'xbase')
+    filenames = ('*.PRG', '*.prg')
     version_added = '1.6'
-    mimetype = []
+    mimetype = ()
     url = 'https://learn.microsoft.com/en-us/previous-versions/visualstudio/foxpro'
 
     flags = re.IGNORECASE | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r';\s*\n', Punctuation),  # consume newline
             (r'(^|\n)\s*', Text, 'newline'),

@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 from pygments.lexer import RegexLexer, include, words
 from pygments.token import Comment, Keyword, Name, Number, String, Text, \
     Other, Generic
@@ -23,9 +24,9 @@ class SASLexer(RegexLexer):
     # Syntax from syntax/sas.vim by James Kidd <james.kidd@covance.com>
 
     name      = 'SAS'
-    aliases   = ['sas']
-    filenames = ['*.SAS', '*.sas']
-    mimetypes = ['text/x-sas', 'text/sas', 'application/x-sas']
+    aliases   = ('sas',)
+    filenames = ('*.SAS', '*.sas')
+    mimetypes = ('text/x-sas', 'text/sas', 'application/x-sas')
     url = 'https://en.wikipedia.org/wiki/SAS_(software)'
     version_added = '2.2'
     flags     = re.IGNORECASE | re.MULTILINE
@@ -118,7 +119,7 @@ class SASLexer(RegexLexer):
         "zipnamel", "zipstate"
     )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('comments'),
             include('proc-data'),

@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
@@ -21,14 +22,14 @@ class PonyLexer(RegexLexer):
     """
 
     name = 'Pony'
-    aliases = ['pony']
-    filenames = ['*.pony']
+    aliases = ('pony',)
+    filenames = ('*.pony',)
     url = 'https://www.ponylang.io'
     version_added = '2.4'
 
     _caps = r'(iso|trn|ref|val|box|tag)'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Text),
             (r'[^\S\n]+', Text),

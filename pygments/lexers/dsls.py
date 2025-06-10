@@ -9,15 +9,27 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import ExtendedRegexLexer, RegexLexer, bygroups, words, \
     include, default, this, using, combined
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
 
-__all__ = ['ProtoBufLexer', 'ZeekLexer', 'PuppetLexer', 'RslLexer',
-           'MscgenLexer', 'VGLLexer', 'AlloyLexer', 'PanLexer',
-           'CrmshLexer', 'ThriftLexer', 'FlatlineLexer', 'SnowballLexer']
+__all__ = [
+    'AlloyLexer',
+    'CrmshLexer',
+    'FlatlineLexer',
+    'MscgenLexer',
+    'PanLexer',
+    'ProtoBufLexer',
+    'PuppetLexer',
+    'RslLexer',
+    'SnowballLexer',
+    'ThriftLexer',
+    'VGLLexer',
+    'ZeekLexer',
+]
 
 
 class ProtoBufLexer(RegexLexer):
@@ -27,11 +39,11 @@ class ProtoBufLexer(RegexLexer):
 
     name = 'Protocol Buffer'
     url = 'https://developers.google.com/protocol-buffers/'
-    aliases = ['protobuf', 'proto']
-    filenames = ['*.proto']
+    aliases = ('protobuf', 'proto')
+    filenames = ('*.proto',)
     version_added = '1.4'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[ \t]+', Whitespace),
             (r'[,;{}\[\]()<>]', Punctuation),
@@ -87,12 +99,12 @@ class ThriftLexer(RegexLexer):
     """
     name = 'Thrift'
     url = 'https://thrift.apache.org/'
-    aliases = ['thrift']
-    filenames = ['*.thrift']
-    mimetypes = ['application/x-thrift']
+    aliases = ('thrift',)
+    filenames = ('*.thrift',)
+    mimetypes = ('application/x-thrift',)
     version_added = '2.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
             include('comments'),
@@ -192,15 +204,15 @@ class ZeekLexer(RegexLexer):
     """
     name = 'Zeek'
     url = 'https://www.zeek.org/'
-    aliases = ['zeek', 'bro']
-    filenames = ['*.zeek', '*.bro']
+    aliases = ('zeek', 'bro')
+    filenames = ('*.zeek', '*.bro')
     version_added = '2.5'
 
     _hex = r'[0-9a-fA-F]'
     _float = r'((\d*\.?\d+)|(\d+\.?\d*))([eE][-+]?\d+)?'
     _h = r'[A-Za-z0-9][-A-Za-z0-9]*'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
             include('comments'),
@@ -353,11 +365,11 @@ class PuppetLexer(RegexLexer):
     """
     name = 'Puppet'
     url = 'https://puppet.com/'
-    aliases = ['puppet']
-    filenames = ['*.pp']
+    aliases = ('puppet',)
+    filenames = ('*.pp',)
     version_added = '1.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('comments'),
             include('keywords'),
@@ -442,14 +454,14 @@ class RslLexer(RegexLexer):
     """
     name = 'RSL'
     url = 'http://en.wikipedia.org/wiki/RAISE'
-    aliases = ['rsl']
-    filenames = ['*.rsl']
-    mimetypes = ['text/rsl']
+    aliases = ('rsl',)
+    filenames = ('*.rsl',)
+    mimetypes = ('text/rsl',)
     version_added = '2.0'
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (words((
                 'Bool', 'Char', 'Int', 'Nat', 'Real', 'Text', 'Unit', 'abs',
@@ -503,13 +515,13 @@ class MscgenLexer(RegexLexer):
     """
     name = 'Mscgen'
     url = 'http://www.mcternan.me.uk/mscgen/'
-    aliases = ['mscgen', 'msc']
-    filenames = ['*.msc']
+    aliases = ('mscgen', 'msc')
+    filenames = ('*.msc',)
     version_added = '1.6'
 
     _var = r'(\w+|"(?:\\"|[^"])*")'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'msc\b', Keyword.Type),
             # Options
@@ -552,13 +564,13 @@ class VGLLexer(RegexLexer):
     """
     name = 'VGL'
     url = 'http://www.thermoscientific.com/samplemanager'
-    aliases = ['vgl']
-    filenames = ['*.rpf']
+    aliases = ('vgl',)
+    filenames = ('*.rpf',)
     version_added = '1.6'
 
     flags = re.MULTILINE | re.DOTALL | re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\{[^}]*\}', Comment.Multiline),
             (r'declare', Keyword.Constant),
@@ -586,9 +598,9 @@ class AlloyLexer(RegexLexer):
 
     name = 'Alloy'
     url = 'http://alloy.mit.edu'
-    aliases = ['alloy']
-    filenames = ['*.als']
-    mimetypes = ['text/x-alloy']
+    aliases = ('alloy',)
+    filenames = ('*.als',)
+    mimetypes = ('text/x-alloy',)
     version_added = '2.0'
 
     flags = re.MULTILINE | re.DOTALL
@@ -597,7 +609,7 @@ class AlloyLexer(RegexLexer):
     string_rex = r'"\b(\\\\|\\[^\\]|[^"\\])*"'
     text_tuple = (r'[^\S\n]+', Whitespace)
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'sig': [
             (r'(extends)\b', Keyword, '#pop'),
             (iden_rex, Name),
@@ -656,11 +668,11 @@ class PanLexer(RegexLexer):
 
     name = 'Pan'
     url = 'https://github.com/quattor/pan/'
-    aliases = ['pan']
-    filenames = ['*.pan']
+    aliases = ('pan',)
+    filenames = ('*.pan',)
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('basic'),
             (r'\(', Keyword, 'paren'),
@@ -721,9 +733,9 @@ class CrmshLexer(RegexLexer):
     """
     name = 'Crmsh'
     url = 'http://crmsh.github.io/'
-    aliases = ['crmsh', 'pcmk']
-    filenames = ['*.crmsh', '*.pcmk']
-    mimetypes = []
+    aliases = ('crmsh', 'pcmk')
+    filenames = ('*.crmsh', '*.pcmk')
+    mimetypes = ()
     version_added = '2.1'
 
     elem = words((
@@ -745,7 +757,7 @@ class CrmshLexer(RegexLexer):
     rsc_role_action = (r'(?:Master|Started|Slave|Stopped|'
                        r'start|promote|demote|stop)')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^(#.*)(\n)?', bygroups(Comment, Whitespace)),
             # attr=value (nvpair)
@@ -790,9 +802,9 @@ class FlatlineLexer(RegexLexer):
     """
     name = 'Flatline'
     url = 'https://github.com/bigmlcom/flatline'
-    aliases = ['flatline']
-    filenames = []
-    mimetypes = ['text/x-flatline']
+    aliases = ('flatline',)
+    filenames = ()
+    mimetypes = ('text/x-flatline',)
     version_added = '2.2'
 
     special_forms = ('let',)
@@ -824,7 +836,7 @@ class FlatlineLexer(RegexLexer):
 
     valid_name = r'(?!#)[\w!$%*+<=>?/.#-]+'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # whitespaces - usually not relevant
             (r'[,]+', Text),
@@ -867,8 +879,8 @@ class SnowballLexer(ExtendedRegexLexer):
 
     name = 'Snowball'
     url = 'https://snowballstem.org/'
-    aliases = ['snowball']
-    filenames = ['*.sbl']
+    aliases = ('snowball',)
+    filenames = ('*.sbl',)
     version_added = '2.2'
 
     _ws = r'\n\r\t '
@@ -915,7 +927,7 @@ class SnowballLexer(ExtendedRegexLexer):
         return bygroups(Keyword.Reserved, Whitespace, String.Escape, Whitespace,
                         String.Escape)(lexer, match, ctx)
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'len\b', Name.Builtin),
             (r'lenof\b', Operator.Word),

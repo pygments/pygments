@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexers import guess_lexer, get_lexer_by_name
 from pygments.lexer import RegexLexer, bygroups, default, include
@@ -16,8 +17,14 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Generic, Literal, Punctuation
 from pygments.util import ClassNotFound
 
-__all__ = ['IrcLogsLexer', 'TodotxtLexer', 'HttpLexer', 'GettextLexer',
-           'NotmuchLexer', 'KernelLogLexer']
+__all__ = [
+    'GettextLexer',
+    'HttpLexer',
+    'IrcLogsLexer',
+    'KernelLogLexer',
+    'NotmuchLexer',
+    'TodotxtLexer',
+]
 
 
 class IrcLogsLexer(RegexLexer):
@@ -26,9 +33,9 @@ class IrcLogsLexer(RegexLexer):
     """
 
     name = 'IRC logs'
-    aliases = ['irc']
-    filenames = ['*.weechatlog']
-    mimetypes = ['text/x-irclog']
+    aliases = ('irc',)
+    filenames = ('*.weechatlog',)
+    mimetypes = ('text/x-irclog',)
     url = 'https://en.wikipedia.org/wiki/Internet_Relay_Chat'
     version_added = ''
 
@@ -55,7 +62,7 @@ class IrcLogsLexer(RegexLexer):
           \d{2}:\d{2}:\d{2}\s+         # Time + Whitespace
         )?
     """
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # log start/end
             (r'^\*\*\*\*(.*)\*\*\*\*$', Comment),
@@ -90,13 +97,13 @@ class GettextLexer(RegexLexer):
     Lexer for Gettext catalog files.
     """
     name = 'Gettext Catalog'
-    aliases = ['pot', 'po']
-    filenames = ['*.pot', '*.po']
-    mimetypes = ['application/x-gettext', 'text/x-gettext', 'text/gettext']
+    aliases = ('pot', 'po')
+    filenames = ('*.pot', '*.po')
+    mimetypes = ('application/x-gettext', 'text/x-gettext', 'text/gettext')
     url = 'https://www.gnu.org/software/gettext'
     version_added = '0.9'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^#,\s.*?$', Keyword.Type),
             (r'^#:\s.*?$', Keyword.Declaration),
@@ -119,7 +126,7 @@ class HttpLexer(RegexLexer):
     """
 
     name = 'HTTP'
-    aliases = ['http']
+    aliases = ('http',)
     url = 'https://httpwg.org/specs'
     version_added = '1.5'
 
@@ -173,7 +180,7 @@ class HttpLexer(RegexLexer):
                     return
         yield offset, Text, content
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'([a-zA-Z][-_a-zA-Z]+)( +)([^ ]+)( +)'
              r'(HTTP)(/)(1\.[01]|2(?:\.0)?|3)(\r?\n|\Z)',
@@ -212,12 +219,12 @@ class TodotxtLexer(RegexLexer):
 
     name = 'Todotxt'
     url = 'http://todotxt.com/'
-    aliases = ['todotxt']
+    aliases = ('todotxt',)
     version_added = '2.0'
     # *.todotxt is not a standard extension for Todo.txt files; including it
     # makes testing easier, and also makes autodetecting file type easier.
-    filenames = ['todo.txt', '*.todotxt']
-    mimetypes = ['text/x-todo']
+    filenames = ('todo.txt', '*.todotxt')
+    mimetypes = ('text/x-todo',)
 
     # Aliases mapping standard token types of Todo.txt format concepts
     CompleteTaskText = Operator  # Chosen to de-emphasize complete tasks
@@ -249,7 +256,7 @@ class TodotxtLexer(RegexLexer):
                                date_regex + r')')
     priority_date_regex = r'(' + priority_regex + r')( )(' + date_regex + r')'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         # Should parse starting at beginning of line; each line is a task
         'root': [
             # Complete task entry points: two total:
@@ -318,7 +325,7 @@ class NotmuchLexer(RegexLexer):
 
     name = 'Notmuch'
     url = 'https://notmuchmail.org/'
-    aliases = ['notmuch']
+    aliases = ('notmuch',)
     version_added = '2.5'
 
     def _highlight_code(self, match):
@@ -334,7 +341,7 @@ class NotmuchLexer(RegexLexer):
 
         yield from lexer.get_tokens_unprocessed(code)
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\fmessage\{\s*', Keyword, ('message', 'message-attr')),
         ],
@@ -392,12 +399,12 @@ class KernelLogLexer(RegexLexer):
     For Linux Kernel log ("dmesg") output.
     """
     name = 'Kernel log'
-    aliases = ['kmsg', 'dmesg']
-    filenames = ['*.kmsg', '*.dmesg']
+    aliases = ('kmsg', 'dmesg')
+    filenames = ('*.kmsg', '*.dmesg')
     url = 'https://fr.wikipedia.org/wiki/Dmesg'
     version_added = '2.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^[^:]+:debug : (?=\[)', Text, 'debug'),
             (r'^[^:]+:info  : (?=\[)', Text, 'info'),

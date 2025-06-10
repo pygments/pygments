@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Name, Literal, String, Punctuation, Whitespace
 
@@ -23,11 +24,11 @@ class SmartGameFormatLexer(RegexLexer):
     """
     name = 'SmartGameFormat'
     url = 'https://www.red-bean.com/sgf/'
-    aliases = ['sgf']
-    filenames = ['*.sgf']
+    aliases = ('sgf',)
+    filenames = ('*.sgf',)
     version_added = '2.4'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[():;]+', Punctuation),
             # tokens:

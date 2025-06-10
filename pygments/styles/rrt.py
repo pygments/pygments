@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Token, Comment, Name, Keyword, String, Number, Operator
 
@@ -25,7 +26,7 @@ class RrtStyle(Style):
     background_color = '#000000'
     highlight_color = '#0000ff'
 
-    styles = {
+    styles: typing.ClassVar = {
         Token:              '#dddddd',
         Comment:            '#00ff00',
         Name.Function:      '#ffff00',

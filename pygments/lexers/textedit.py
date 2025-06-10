@@ -10,6 +10,7 @@
 
 import re
 from bisect import bisect
+import typing
 
 from pygments.lexer import RegexLexer, bygroups, default, include, this, using
 from pygments.lexers.python import PythonLexer
@@ -25,13 +26,13 @@ class AwkLexer(RegexLexer):
     """
 
     name = 'Awk'
-    aliases = ['awk', 'gawk', 'mawk', 'nawk']
-    filenames = ['*.awk']
-    mimetypes = ['application/x-awk']
+    aliases = ('awk', 'gawk', 'mawk', 'nawk')
+    filenames = ('*.awk',)
+    mimetypes = ('application/x-awk',)
     url = 'https://en.wikipedia.org/wiki/AWK'
     version_added = '1.5'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'commentsandwhitespace': [
             (r'\s+', Text),
             (r'#.*$', Comment.Single)
@@ -78,9 +79,9 @@ class SedLexer(RegexLexer):
     Lexer for Sed script files.
     """
     name = 'Sed'
-    aliases = ['sed', 'gsed', 'ssed']
-    filenames = ['*.sed', '*.[gs]sed']
-    mimetypes = ['text/x-sed']
+    aliases = ('sed', 'gsed', 'ssed')
+    filenames = ('*.sed', '*.[gs]sed')
+    mimetypes = ('text/x-sed',)
     url = 'https://en.wikipedia.org/wiki/Sed'
     version_added = ''
     flags = re.MULTILINE
@@ -88,7 +89,7 @@ class SedLexer(RegexLexer):
     # Match the contents within delimiters such as /<contents>/
     _inside_delims = r'((?:(?:\\[^\n]|[^\\])*?\\\n)*?(?:\\.|[^\\])*?)'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'#.*$', Comment.Single),
@@ -115,10 +116,10 @@ class VimLexer(RegexLexer):
     Lexer for VimL script files.
     """
     name = 'VimL'
-    aliases = ['vim']
-    filenames = ['*.vim', '.vimrc', '.exrc', '.gvimrc',
-                 '_vimrc', '_exrc', '_gvimrc', 'vimrc', 'gvimrc']
-    mimetypes = ['text/x-vim']
+    aliases = ('vim',)
+    filenames = ('*.vim', '.vimrc', '.exrc', '.gvimrc',
+                 '_vimrc', '_exrc', '_gvimrc', 'vimrc', 'gvimrc')
+    mimetypes = ('text/x-vim',)
     url = 'https://www.vim.org'
     version_added = '0.8'
 
@@ -126,7 +127,7 @@ class VimLexer(RegexLexer):
 
     _python = r'py(?:t(?:h(?:o(?:n)?)?)?)?'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^([ \t:]*)(' + _python + r')([ \t]*)(<<)([ \t]*)(.*)((?:\n|.)*)(\6)',
              bygroups(using(this), Keyword, Text, Operator, Text, Text,

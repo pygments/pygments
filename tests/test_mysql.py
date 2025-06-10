@@ -23,7 +23,7 @@ def lexer():
                                   '22\n333', '22\r\n333'))
 def test_integer_literals_positive_match(lexer, text):
     """Validate that integer literals are tokenized as integers."""
-    token = list(lexer.get_tokens(text))[0]
+    token = next(iter(lexer.get_tokens(text)))
     assert token[0] == Number.Integer
     assert token[1] in {'1', '22'}
 
@@ -32,7 +32,7 @@ def test_integer_literals_positive_match(lexer, text):
                                   '1\u0080', '1\uffff'))
 def test_integer_literals_negative_match(lexer, text):
     """Validate that non-integer texts are not matched as integers."""
-    assert list(lexer.get_tokens(text))[0][0] != Number.Integer
+    assert next(iter(lexer.get_tokens(text)))[0] != Number.Integer
 
 
 @pytest.mark.parametrize(
@@ -43,17 +43,17 @@ def test_integer_literals_negative_match(lexer, text):
     ),
 )
 def test_float_literals(lexer, text):
-    assert list(lexer.get_tokens(text))[0] == (Number.Float, text)
+    assert next(iter(lexer.get_tokens(text))) == (Number.Float, text)
 
 
 @pytest.mark.parametrize('text', ("X'0af019'", "x'0AF019'", "0xaf019"))
 def test_hexadecimal_literals(lexer, text):
-    assert list(lexer.get_tokens(text))[0] == (Number.Hex, text)
+    assert next(iter(lexer.get_tokens(text))) == (Number.Hex, text)
 
 
 @pytest.mark.parametrize('text', ("B'010'", "b'010'", "0b010"))
 def test_binary_literals(lexer, text):
-    assert list(lexer.get_tokens(text))[0] == (Number.Bin, text)
+    assert next(iter(lexer.get_tokens(text))) == (Number.Bin, text)
 
 
 @pytest.mark.parametrize(
@@ -65,7 +65,7 @@ def test_binary_literals(lexer, text):
     ),
 )
 def test_temporal_literals(lexer, text):
-    assert list(lexer.get_tokens(text))[0] == (Literal.Date, text)
+    assert next(iter(lexer.get_tokens(text))) == (Literal.Date, text)
 
 
 @pytest.mark.parametrize(
@@ -109,7 +109,7 @@ def test_variables(lexer, text):
 
 @pytest.mark.parametrize('text', ('true', 'false', 'null', 'unknown'))
 def test_constants(lexer, text):
-    assert list(lexer.get_tokens(text))[0] == (Name.Constant, text)
+    assert next(iter(lexer.get_tokens(text))) == (Name.Constant, text)
 
 
 @pytest.mark.parametrize('text', ('-- abc', '--\tabc', '#abc'))
@@ -183,7 +183,7 @@ def test_exceptions(lexer, text, expected_types):
     ),
 )
 def test_keywords(lexer, text):
-    assert list(lexer.get_tokens(text))[0] == (Keyword, text)
+    assert next(iter(lexer.get_tokens(text))) == (Keyword, text)
 
 
 @pytest.mark.parametrize(
@@ -197,7 +197,7 @@ def test_keywords(lexer, text):
     ),
 )
 def test_data_types(lexer, text):
-    assert list(lexer.get_tokens(text))[0] == (Keyword.Type, text.strip('('))
+    assert next(iter(lexer.get_tokens(text))) == (Keyword.Type, text.strip('('))
 
 
 @pytest.mark.parametrize(
@@ -210,8 +210,8 @@ def test_data_types(lexer, text):
     ),
 )
 def test_functions(lexer, text):
-    assert list(lexer.get_tokens(text + '('))[0] == (Name.Function, text)
-    assert list(lexer.get_tokens(text + ' ('))[0] == (Name.Function, text)
+    assert next(iter(lexer.get_tokens(text + '('))) == (Name.Function, text)
+    assert next(iter(lexer.get_tokens(text + ' ('))) == (Name.Function, text)
 
 
 @pytest.mark.parametrize(
@@ -256,7 +256,7 @@ def test_schema_object_names_quoted_escaped(lexer, text):
     ('+', '*', '/', '%', '&&', ':=', '!', '<', '->>', '^', '|', '~'),
 )
 def test_operators(lexer, text):
-    assert list(lexer.get_tokens(text))[0] == (Operator, text)
+    assert next(iter(lexer.get_tokens(text))) == (Operator, text)
 
 
 @pytest.mark.parametrize(

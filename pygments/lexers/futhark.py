@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
@@ -22,9 +23,9 @@ class FutharkLexer(RegexLexer):
     """
     name = 'Futhark'
     url = 'https://futhark-lang.org/'
-    aliases = ['futhark']
-    filenames = ['*.fut']
-    mimetypes = ['text/x-futhark']
+    aliases = ('futhark',)
+    filenames = ('*.fut',)
+    mimetypes = ('text/x-futhark',)
     version_added = '2.8'
 
     num_types = ('i8', 'i16', 'i32', 'i64', 'u8', 'u16', 'u32', 'u64', 'f32', 'f64')
@@ -47,7 +48,7 @@ class FutharkLexer(RegexLexer):
 
     # opstart_re = '+\-\*/%=\!><\|&\^'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'--(.*?)$', Comment.Single),
             (r'\s+', Whitespace),

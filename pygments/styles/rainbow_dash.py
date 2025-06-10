@@ -10,6 +10,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Comment, Error, Generic, Name, Number, Operator, \
     String, Text, Whitespace, Keyword
@@ -45,7 +46,7 @@ class RainbowDashStyle(Style):
     
     background_color = WHITE
 
-    styles = {
+    styles: typing.ClassVar = {
         Comment: f'italic {BLUE_LIGHT}',
         Comment.Preproc: 'noitalic',
         Comment.Special: 'bold',

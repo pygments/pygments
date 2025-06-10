@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import Lexer, RegexLexer, bygroups, do_insertions, \
     words, include
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -16,7 +17,7 @@ from pygments.util import shebang_matches
 from pygments.lexers._julia_builtins import OPERATORS_LIST, DOTTED_OPERATORS_LIST, \
     KEYWORD_LIST, BUILTIN_LIST, LITERAL_LIST
 
-__all__ = ['JuliaLexer', 'JuliaConsoleLexer']
+__all__ = ['JuliaConsoleLexer', 'JuliaLexer']
 
 # see https://docs.julialang.org/en/v1/manual/variables/#Allowed-Variable-Names
 allowed_variable = \
@@ -31,12 +32,12 @@ class JuliaLexer(RegexLexer):
 
     name = 'Julia'
     url = 'https://julialang.org/'
-    aliases = ['julia', 'jl']
-    filenames = ['*.jl']
-    mimetypes = ['text/x-julia', 'application/x-julia']
+    aliases = ('julia', 'jl')
+    filenames = ('*.jl',)
+    mimetypes = ('text/x-julia', 'application/x-julia')
     version_added = '1.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             (r'[^\S\n]+', Whitespace),
@@ -248,7 +249,7 @@ class JuliaConsoleLexer(Lexer):
     For Julia console sessions. Modeled after MatlabSessionLexer.
     """
     name = 'Julia console'
-    aliases = ['jlcon', 'julia-repl']
+    aliases = ('jlcon', 'julia-repl')
     url = 'https://julialang.org/'
     version_added = '1.6'
     _example = "jlcon/console"

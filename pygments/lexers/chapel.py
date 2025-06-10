@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
@@ -21,10 +22,10 @@ class ChapelLexer(RegexLexer):
     """
     name = 'Chapel'
     url = 'https://chapel-lang.org/'
-    filenames = ['*.chpl']
-    aliases = ['chapel', 'chpl']
+    filenames = ('*.chpl',)
+    aliases = ('chapel', 'chpl')
     version_added = '2.0'
-    # mimetypes = ['text/x-chapel']
+    # mimetypes = ('text/x-chapel',)
 
     known_types = ('bool', 'bytes', 'complex', 'imag', 'int', 'locale',
                    'nothing', 'opaque', 'range', 'real', 'string', 'uint',
@@ -58,7 +59,7 @@ class ChapelLexer(RegexLexer):
                       'yield',
                       'zip')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             (r'\s+', Whitespace),

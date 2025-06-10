@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Whitespace
@@ -43,9 +44,9 @@ class TclLexer(RegexLexer):
 
     name = 'Tcl'
     url = 'https://www.tcl.tk/about/language.html'
-    aliases = ['tcl']
-    filenames = ['*.tcl', '*.rvt']
-    mimetypes = ['text/x-tcl', 'text/x-script.tcl', 'application/x-tcl']
+    aliases = ('tcl',)
+    filenames = ('*.tcl', '*.rvt')
+    mimetypes = ('text/x-tcl', 'text/x-script.tcl', 'application/x-tcl')
     version_added = '0.10'
 
     def _gen_command_rules(keyword_cmds_re, builtin_cmds_re, context=""):
@@ -56,7 +57,7 @@ class TclLexer(RegexLexer):
             (r'#', Comment, 'comment'),
         ]
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('command'),
             include('basic'),

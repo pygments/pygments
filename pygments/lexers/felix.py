@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, bygroups, default, words, \
     combined
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -23,9 +24,9 @@ class FelixLexer(RegexLexer):
 
     name = 'Felix'
     url = 'http://www.felix-lang.org'
-    aliases = ['felix', 'flx']
-    filenames = ['*.flx', '*.flxh']
-    mimetypes = ['text/x-felix']
+    aliases = ('felix', 'flx')
+    filenames = ('*.flx', '*.flxh')
+    mimetypes = ('text/x-felix',)
     version_added = '1.2'
 
     preproc = (
@@ -94,7 +95,7 @@ class FelixLexer(RegexLexer):
 
     decimal_suffixes = '([tTsSiIlLvV]|ll|LL|([iIuU])(8|16|32|64))?'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
 

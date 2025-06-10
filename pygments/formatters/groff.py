@@ -39,8 +39,8 @@ class GroffFormatter(Formatter):
     """
 
     name = 'groff'
-    aliases = ['groff','troff','roff']
-    filenames = []
+    aliases = ('groff','troff','roff')
+    filenames = ()
 
     def __init__(self, **options):
         Formatter.__init__(self, **options)
@@ -90,7 +90,7 @@ class GroffFormatter(Formatter):
 
     def _write_lineno(self, outfile):
         self._lineno += 1
-        outfile.write("%s% 4d " % (self._lineno != 1 and '\n' or '', self._lineno))
+        outfile.write("%s% 4d " % ((self._lineno != 1 and '\n') or '', self._lineno))
 
 
     def _wrap_line(self, line):

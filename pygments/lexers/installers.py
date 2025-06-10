@@ -9,14 +9,19 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, using, this, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Punctuation, Generic, Number, Whitespace
 
-__all__ = ['NSISLexer', 'RPMSpecLexer',
-           'DebianSourcesLexer', 'SourcesListLexer',
-           'DebianControlLexer']
+__all__ = [
+    'DebianControlLexer',
+    'DebianSourcesLexer',
+    'NSISLexer',
+    'RPMSpecLexer',
+    'SourcesListLexer',
+]
 
 
 class NSISLexer(RegexLexer):
@@ -25,14 +30,14 @@ class NSISLexer(RegexLexer):
     """
     name = 'NSIS'
     url = 'http://nsis.sourceforge.net/'
-    aliases = ['nsis', 'nsi', 'nsh']
-    filenames = ['*.nsi', '*.nsh']
-    mimetypes = ['text/x-nsis']
+    aliases = ('nsis', 'nsi', 'nsh')
+    filenames = ('*.nsi', '*.nsh')
+    mimetypes = ('text/x-nsis',)
     version_added = '1.6'
 
     flags = re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'([;#].*)(\n)', bygroups(Comment, Whitespace)),
             (r"'.*?'", String.Single),
@@ -150,16 +155,16 @@ class RPMSpecLexer(RegexLexer):
     """
 
     name = 'RPMSpec'
-    aliases = ['spec']
-    filenames = ['*.spec']
-    mimetypes = ['text/x-rpm-spec']
+    aliases = ('spec',)
+    filenames = ('*.spec',)
+    mimetypes = ('text/x-rpm-spec',)
     url = 'https://rpm-software-management.github.io/rpm/manual/spec.html'
     version_added = '1.6'
 
     _directives = ('(?:package|prep|build|install|clean|check|pre[a-z]*|'
                    'post[a-z]*|trigger[a-z]*|files)')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*$', Comment),
             include('basic'),
@@ -224,12 +229,12 @@ class DebianSourcesLexer(RegexLexer):
     """
 
     name = 'Debian Sources file'
-    aliases = ['debian.sources']
-    filenames = ['*.sources']
+    aliases = ('debian.sources',)
+    filenames = ('*.sources',)
     version_added = '2.19'
     url = 'https://manpages.debian.org/bookworm/apt/sources.list.5.en.html#THE_DEB_AND_DEB-SRC_TYPES:_GENERAL_FORMAT'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^(Signed-By)(:)(\s*)', bygroups(Keyword, Punctuation, Whitespace), 'signed-by'),
             (r'^([a-zA-Z\-0-9\.]*?)(:)(\s*)(.*?)$',
@@ -248,13 +253,13 @@ class SourcesListLexer(RegexLexer):
     """
 
     name = 'Debian Sourcelist'
-    aliases = ['debsources', 'sourceslist', 'sources.list']
-    filenames = ['sources.list']
+    aliases = ('debsources', 'sourceslist', 'sources.list')
+    filenames = ('sources.list',)
     version_added = '0.7'
-    mimetype = ['application/x-debian-sourceslist']
+    mimetype = ('application/x-debian-sourceslist',)
     url = 'https://wiki.debian.org/SourcesList'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'#.*?$', Comment),
@@ -296,11 +301,11 @@ class DebianControlLexer(RegexLexer):
     """
     name = 'Debian Control file'
     url = 'https://www.debian.org/doc/debian-policy/ch-controlfields.html'
-    aliases = ['debcontrol', 'control']
-    filenames = ['control']
+    aliases = ('debcontrol', 'control')
+    filenames = ('control',)
     version_added = '0.9'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^(Description)', Keyword, 'description'),
             (r'^(Maintainer|Uploaders|Changed-By)(:)(\s*)',

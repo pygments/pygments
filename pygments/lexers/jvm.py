@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import Lexer, RegexLexer, include, bygroups, using, \
     this, combined, default, words
@@ -17,10 +18,24 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 from pygments.util import shebang_matches
 from pygments import unistring as uni
 
-__all__ = ['JavaLexer', 'ScalaLexer', 'GosuLexer', 'GosuTemplateLexer',
-           'GroovyLexer', 'IokeLexer', 'ClojureLexer', 'ClojureScriptLexer',
-           'KotlinLexer', 'XtendLexer', 'AspectJLexer', 'CeylonLexer',
-           'PigLexer', 'GoloLexer', 'JasminLexer', 'SarlLexer']
+__all__ = [
+    'AspectJLexer',
+    'CeylonLexer',
+    'ClojureLexer',
+    'ClojureScriptLexer',
+    'GoloLexer',
+    'GosuLexer',
+    'GosuTemplateLexer',
+    'GroovyLexer',
+    'IokeLexer',
+    'JasminLexer',
+    'JavaLexer',
+    'KotlinLexer',
+    'PigLexer',
+    'SarlLexer',
+    'ScalaLexer',
+    'XtendLexer',
+]
 
 
 class JavaLexer(RegexLexer):
@@ -30,14 +45,14 @@ class JavaLexer(RegexLexer):
 
     name = 'Java'
     url = 'https://www.oracle.com/technetwork/java/'
-    aliases = ['java']
-    filenames = ['*.java']
-    mimetypes = ['text/x-java']
+    aliases = ('java',)
+    filenames = ('*.java',)
+    mimetypes = ('text/x-java',)
     version_added = ''
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(^\s*)((?:(?:public|private|protected|static|strictfp)(?:\s+))*)(record)\b',
              bygroups(Whitespace, using(this), Keyword.Declaration), 'class'),
@@ -123,12 +138,12 @@ class AspectJLexer(JavaLexer):
 
     name = 'AspectJ'
     url = 'http://www.eclipse.org/aspectj/'
-    aliases = ['aspectj']
-    filenames = ['*.aj']
-    mimetypes = ['text/x-aspectj']
+    aliases = ('aspectj',)
+    filenames = ('*.aj',)
+    mimetypes = ('text/x-aspectj',)
     version_added = '1.6'
 
-    aj_keywords = {
+    aj_keywords: typing.ClassVar = {
         'aspect', 'pointcut', 'privileged', 'call', 'execution',
         'initialization', 'preinitialization', 'handler', 'get', 'set',
         'staticinitialization', 'target', 'args', 'within', 'withincode',
@@ -139,8 +154,8 @@ class AspectJLexer(JavaLexer):
         'issingleton', 'perthis', 'pertarget', 'percflow', 'percflowbelow',
         'pertypewithin', 'lock', 'unlock', 'thisAspectInstance'
     }
-    aj_inter_type = {'parents:', 'warning:', 'error:', 'soft:', 'precedence:'}
-    aj_inter_type_annotation = {'@type', '@method', '@constructor', '@field'}
+    aj_inter_type: typing.ClassVar = {'parents:', 'warning:', 'error:', 'soft:', 'precedence:'}
+    aj_inter_type_annotation: typing.ClassVar = {'@type', '@method', '@constructor', '@field'}
 
     def get_tokens_unprocessed(self, text):
         for index, token, value in JavaLexer.get_tokens_unprocessed(self, text):
@@ -162,9 +177,9 @@ class ScalaLexer(RegexLexer):
 
     name = 'Scala'
     url = 'http://www.scala-lang.org'
-    aliases = ['scala']
-    filenames = ['*.scala']
-    mimetypes = ['text/x-scala']
+    aliases = ('scala',)
+    filenames = ('*.scala',)
+    mimetypes = ('text/x-scala',)
     version_added = ''
 
     flags = re.MULTILINE | re.DOTALL
@@ -202,7 +217,7 @@ class ScalaLexer(RegexLexer):
         '@native'
     )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
             include('comments'),
@@ -446,15 +461,15 @@ class GosuLexer(RegexLexer):
     """
 
     name = 'Gosu'
-    aliases = ['gosu']
-    filenames = ['*.gs', '*.gsx', '*.gsp', '*.vark']
-    mimetypes = ['text/x-gosu']
+    aliases = ('gosu',)
+    filenames = ('*.gs', '*.gsx', '*.gsp', '*.vark')
+    mimetypes = ('text/x-gosu',)
     url = 'https://gosu-lang.github.io'
     version_added = '1.5'
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # method names
             (r'^(\s*(?:[a-zA-Z_][\w.\[\]]*\s+)+?)'  # modifiers etc.
@@ -525,9 +540,9 @@ class GosuTemplateLexer(Lexer):
     """
 
     name = 'Gosu Template'
-    aliases = ['gst']
-    filenames = ['*.gst']
-    mimetypes = ['text/x-gosu-template']
+    aliases = ('gst',)
+    filenames = ('*.gst',)
+    mimetypes = ('text/x-gosu-template',)
     url = 'https://gosu-lang.github.io'
     version_added = '1.5'
 
@@ -544,14 +559,14 @@ class GroovyLexer(RegexLexer):
 
     name = 'Groovy'
     url = 'https://groovy-lang.org/'
-    aliases = ['groovy']
-    filenames = ['*.groovy','*.gradle']
-    mimetypes = ['text/x-groovy']
+    aliases = ('groovy',)
+    filenames = ('*.groovy','*.gradle')
+    mimetypes = ('text/x-groovy',)
     version_added = '1.5'
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Groovy allows a file to start with a shebang
             (r'#!(.*?)$', Comment.Preproc, 'base'),
@@ -621,11 +636,11 @@ class IokeLexer(RegexLexer):
     """
     name = 'Ioke'
     url = 'https://ioke.org/'
-    filenames = ['*.ik']
-    aliases = ['ioke', 'ik']
-    mimetypes = ['text/x-iokesrc']
+    filenames = ('*.ik',)
+    aliases = ('ioke', 'ik')
+    mimetypes = ('text/x-iokesrc',)
     version_added = '1.4'
-    tokens = {
+    tokens: typing.ClassVar = {
         'interpolatableText': [
             (r'(\\b|\\e|\\t|\\n|\\f|\\r|\\"|\\\\|\\#|\\\Z|\\u[0-9a-fA-F]{1,4}'
              r'|\\[0-3]?[0-7]?[0-7])', String.Escape),
@@ -811,9 +826,9 @@ class ClojureLexer(RegexLexer):
     """
     name = 'Clojure'
     url = 'http://clojure.org/'
-    aliases = ['clojure', 'clj']
-    filenames = ['*.clj', '*.cljc']
-    mimetypes = ['text/x-clojure', 'application/x-clojure']
+    aliases = ('clojure', 'clj')
+    filenames = ('*.clj', '*.cljc')
+    mimetypes = ('text/x-clojure', 'application/x-clojure')
     version_added = '0.11'
 
     special_forms = (
@@ -887,7 +902,7 @@ class ClojureLexer(RegexLexer):
     # but that's hard, so just pretend / is part of the name
     valid_name = r'(?!#)[\w!$%*+<=>?/.#|-]+'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # the comments - always starting with semicolon
             # and going to the end of the line
@@ -951,9 +966,9 @@ class ClojureScriptLexer(ClojureLexer):
     """
     name = 'ClojureScript'
     url = 'http://clojure.org/clojurescript'
-    aliases = ['clojurescript', 'cljs']
-    filenames = ['*.cljs']
-    mimetypes = ['text/x-clojurescript', 'application/x-clojurescript']
+    aliases = ('clojurescript', 'cljs')
+    filenames = ('*.cljs',)
+    mimetypes = ('text/x-clojurescript', 'application/x-clojurescript')
     version_added = '2.0'
 
 
@@ -967,7 +982,7 @@ class TeaLangLexer(RegexLexer):
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # method names
             (r'^(\s*(?:[a-zA-Z_][\w\.\[\]]*\s+)+?)'  # return arguments
@@ -1011,9 +1026,9 @@ class CeylonLexer(RegexLexer):
 
     name = 'Ceylon'
     url = 'http://ceylon-lang.org/'
-    aliases = ['ceylon']
-    filenames = ['*.ceylon']
-    mimetypes = ['text/x-ceylon']
+    aliases = ('ceylon',)
+    filenames = ('*.ceylon',)
+    mimetypes = ('text/x-ceylon',)
     version_added = '1.6'
 
     flags = re.MULTILINE | re.DOTALL
@@ -1021,7 +1036,7 @@ class CeylonLexer(RegexLexer):
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # method names
             (r'^(\s*(?:[a-zA-Z_][\w.\[\]]*\s+)+?)'  # return arguments
@@ -1090,9 +1105,9 @@ class KotlinLexer(RegexLexer):
 
     name = 'Kotlin'
     url = 'http://kotlinlang.org/'
-    aliases = ['kotlin']
-    filenames = ['*.kt', '*.kts']
-    mimetypes = ['text/x-kotlin']
+    aliases = ('kotlin',)
+    filenames = ('*.kt', '*.kts')
+    mimetypes = ('text/x-kotlin',)
     version_added = '1.5'
 
     flags = re.MULTILINE | re.DOTALL
@@ -1113,7 +1128,7 @@ class KotlinLexer(RegexLexer):
                 r'internal|lateinit|noinline|open|operator|override|private|'
                 r'protected|public|sealed|suspend|tailrec|value')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Whitespaces
             (r'[^\S\n]+', Whitespace),
@@ -1245,14 +1260,14 @@ class XtendLexer(RegexLexer):
 
     name = 'Xtend'
     url = 'https://www.eclipse.org/xtend/'
-    aliases = ['xtend']
-    filenames = ['*.xtend']
-    mimetypes = ['text/x-xtend']
+    aliases = ('xtend',)
+    filenames = ('*.xtend',)
+    mimetypes = ('text/x-xtend',)
     version_added = '1.6'
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # method names
             (r'^(\s*(?:[a-zA-Z_][\w.\[\]]*\s+)+?)'  # return arguments
@@ -1310,14 +1325,14 @@ class PigLexer(RegexLexer):
 
     name = 'Pig'
     url = 'https://pig.apache.org/'
-    aliases = ['pig']
-    filenames = ['*.pig']
-    mimetypes = ['text/x-pig']
+    aliases = ('pig',)
+    filenames = ('*.pig',)
+    mimetypes = ('text/x-pig',)
     version_added = '2.0'
 
     flags = re.MULTILINE | re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'--.*', Comment),
@@ -1377,11 +1392,11 @@ class GoloLexer(RegexLexer):
 
     name = 'Golo'
     url = 'http://golo-lang.org/'
-    filenames = ['*.golo']
-    aliases = ['golo']
+    filenames = ('*.golo',)
+    aliases = ('golo',)
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^\S\n]+', Whitespace),
 
@@ -1490,8 +1505,8 @@ class JasminLexer(RegexLexer):
 
     name = 'Jasmin'
     url = 'http://jasmin.sourceforge.net/'
-    aliases = ['jasmin', 'jasminxt']
-    filenames = ['*.j']
+    aliases = ('jasmin', 'jasminxt')
+    filenames = ('*.j',)
     version_added = '2.0'
 
     _whitespace = r' \n\t\r'
@@ -1501,7 +1516,7 @@ class JasminLexer(RegexLexer):
     _name = rf'[^{_separator}]+'
     _unqualified_name = rf'(?:[^{_separator}.;\[/]+)'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'default': [
             (r'\n', Whitespace, '#pop'),
             (r"'", String.Single, ('#pop', 'quote')),
@@ -1750,14 +1765,14 @@ class SarlLexer(RegexLexer):
 
     name = 'SARL'
     url = 'http://www.sarl.io'
-    aliases = ['sarl']
-    filenames = ['*.sarl']
-    mimetypes = ['text/x-sarl']
+    aliases = ('sarl',)
+    filenames = ('*.sarl',)
+    mimetypes = ('text/x-sarl',)
     version_added = '2.4'
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # method names
             (r'^(\s*(?:[a-zA-Z_][\w.\[\]]*\s+)+?)'  # return arguments

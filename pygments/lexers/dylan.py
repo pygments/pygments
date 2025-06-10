@@ -9,13 +9,14 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import Lexer, RegexLexer, bygroups, do_insertions, \
     default, line_re
 from pygments.token import Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Literal, Whitespace
 
-__all__ = ['DylanLexer', 'DylanConsoleLexer', 'DylanLidLexer']
+__all__ = ['DylanConsoleLexer', 'DylanLexer', 'DylanLidLexer']
 
 
 class DylanLexer(RegexLexer):
@@ -25,14 +26,14 @@ class DylanLexer(RegexLexer):
 
     name = 'Dylan'
     url = 'http://www.opendylan.org/'
-    aliases = ['dylan']
-    filenames = ['*.dylan', '*.dyl', '*.intr']
-    mimetypes = ['text/x-dylan']
+    aliases = ('dylan',)
+    filenames = ('*.dylan', '*.dyl', '*.intr')
+    mimetypes = ('text/x-dylan',)
     version_added = '0.7'
 
     flags = re.IGNORECASE
 
-    builtins = {
+    builtins: typing.ClassVar = {
         'subclass', 'abstract', 'block', 'concrete', 'constant', 'class',
         'compiler-open', 'compiler-sideways', 'domain', 'dynamic',
         'each-subclass', 'exception', 'exclude', 'function', 'generic',
@@ -41,18 +42,18 @@ class DylanLexer(RegexLexer):
         'module', 'open', 'primary', 'required', 'sealed', 'sideways',
         'singleton', 'slot', 'thread', 'variable', 'virtual'}
 
-    keywords = {
+    keywords: typing.ClassVar = {
         'above', 'afterwards', 'begin', 'below', 'by', 'case', 'cleanup',
         'create', 'define', 'else', 'elseif', 'end', 'export', 'finally',
         'for', 'from', 'if', 'in', 'let', 'local', 'otherwise', 'rename',
         'select', 'signal', 'then', 'to', 'unless', 'until', 'use', 'when',
         'while'}
 
-    operators = {
+    operators: typing.ClassVar = {
         '~', '+', '-', '*', '|', '^', '=', '==', '~=', '~==', '<', '<=',
         '>', '>=', '&', '|'}
 
-    functions = {
+    functions: typing.ClassVar = {
         'abort', 'abs', 'add', 'add!', 'add-method', 'add-new', 'add-new!',
         'all-superclasses', 'always', 'any?', 'applicable-method?', 'apply',
         'aref', 'aref-setter', 'as', 'as-lowercase', 'as-lowercase!',
@@ -108,7 +109,7 @@ class DylanLexer(RegexLexer):
                     continue
             yield index, token, value
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Whitespace
             (r'\s+', Whitespace),
@@ -216,14 +217,14 @@ class DylanLidLexer(RegexLexer):
     """
 
     name = 'DylanLID'
-    aliases = ['dylan-lid', 'lid']
-    filenames = ['*.lid', '*.hdp']
-    mimetypes = ['text/x-dylan-lid']
+    aliases = ('dylan-lid', 'lid')
+    filenames = ('*.lid', '*.hdp')
+    mimetypes = ('text/x-dylan-lid',)
     url = 'http://www.opendylan.org/'
     version_added = '1.6'
     flags = re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Whitespace
             (r'\s+', Whitespace),
@@ -245,9 +246,9 @@ class DylanConsoleLexer(Lexer):
     This is based on a copy of the ``RubyConsoleLexer``.
     """
     name = 'Dylan session'
-    aliases = ['dylan-console', 'dylan-repl']
-    filenames = ['*.dylan-console']
-    mimetypes = ['text/x-dylan-console']
+    aliases = ('dylan-console', 'dylan-repl')
+    filenames = ('*.dylan-console',)
+    mimetypes = ('text/x-dylan-console',)
     url = 'http://www.opendylan.org/'
     version_added = '1.6'
     _example = 'dylan-console/console.dylan-console'

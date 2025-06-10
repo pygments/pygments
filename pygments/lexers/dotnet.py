@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 import re
+import typing
 
 from pygments.lexer import RegexLexer, DelegatingLexer, bygroups, include, \
     using, this, default, words
@@ -18,8 +19,16 @@ from pygments import unistring as uni
 
 from pygments.lexers.html import XmlLexer
 
-__all__ = ['CSharpLexer', 'NemerleLexer', 'BooLexer', 'VbNetLexer',
-           'CSharpAspxLexer', 'VbNetAspxLexer', 'FSharpLexer', 'XppLexer']
+__all__ = [
+    'BooLexer',
+    'CSharpAspxLexer',
+    'CSharpLexer',
+    'FSharpLexer',
+    'NemerleLexer',
+    'VbNetAspxLexer',
+    'VbNetLexer',
+    'XppLexer',
+]
 
 
 class CSharpLexer(RegexLexer):
@@ -47,9 +56,9 @@ class CSharpLexer(RegexLexer):
 
     name = 'C#'
     url = 'https://docs.microsoft.com/en-us/dotnet/csharp/'
-    aliases = ['csharp', 'c#', 'cs']
-    filenames = ['*.cs']
-    mimetypes = ['text/x-csharp']  # inferred
+    aliases = ('csharp', 'c#', 'cs')
+    filenames = ('*.cs',)
+    mimetypes = ('text/x-csharp',)  # inferred
     version_added = ''
 
     flags = re.MULTILINE | re.DOTALL
@@ -57,7 +66,7 @@ class CSharpLexer(RegexLexer):
     # for the range of allowed unicode characters in identifiers, see
     # http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf
 
-    levels = {
+    levels: typing.ClassVar = {
         'none': r'@?[_a-zA-Z]\w*',
         'basic': ('@?[_' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Nl') + ']' +
                   '[' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Nl', 'Nd', 'Pc',
@@ -68,7 +77,7 @@ class CSharpLexer(RegexLexer):
                                       'Nd', 'Pc', 'Cf', 'Mn', 'Mc') + ']*'),
     }
 
-    tokens = {}
+    tokens: typing.ClassVar = {}
     token_variants = True
 
     for levelname, cs_ident in levels.items():
@@ -196,9 +205,9 @@ class NemerleLexer(RegexLexer):
 
     name = 'Nemerle'
     url = 'http://nemerle.org'
-    aliases = ['nemerle']
-    filenames = ['*.n']
-    mimetypes = ['text/x-nemerle']  # inferred
+    aliases = ('nemerle',)
+    filenames = ('*.n',)
+    mimetypes = ('text/x-nemerle',)  # inferred
     version_added = '1.5'
 
     flags = re.MULTILINE | re.DOTALL
@@ -206,7 +215,7 @@ class NemerleLexer(RegexLexer):
     # for the range of allowed unicode characters in identifiers, see
     # http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-334.pdf
 
-    levels = {
+    levels: typing.ClassVar = {
         'none': r'@?[_a-zA-Z]\w*',
         'basic': ('@?[_' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Nl') + ']' +
                   '[' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Nl', 'Nd', 'Pc',
@@ -217,7 +226,7 @@ class NemerleLexer(RegexLexer):
                                       'Nd', 'Pc', 'Cf', 'Mn', 'Mc') + ']*'),
     }
 
-    tokens = {}
+    tokens: typing.ClassVar = {}
     token_variants = True
 
     for levelname, cs_ident in levels.items():
@@ -357,12 +366,12 @@ class BooLexer(RegexLexer):
 
     name = 'Boo'
     url = 'https://github.com/boo-lang/boo'
-    aliases = ['boo']
-    filenames = ['*.boo']
-    mimetypes = ['text/x-boo']
+    aliases = ('boo',)
+    filenames = ('*.boo',)
+    mimetypes = ('text/x-boo',)
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'(#|//).*$', Comment.Single),
@@ -427,9 +436,9 @@ class VbNetLexer(RegexLexer):
 
     name = 'VB.net'
     url = 'https://docs.microsoft.com/en-us/dotnet/visual-basic/'
-    aliases = ['vb.net', 'vbnet', 'lobas', 'oobas', 'sobas', 'visual-basic', 'visualbasic']
-    filenames = ['*.vb', '*.bas']
-    mimetypes = ['text/x-vbnet', 'text/x-vba']  # (?)
+    aliases = ('vb.net', 'vbnet', 'lobas', 'oobas', 'sobas', 'visual-basic', 'visualbasic')
+    filenames = ('*.vb', '*.bas')
+    mimetypes = ('text/x-vbnet', 'text/x-vba')  # (?)
     version_added = ''
 
     uni_name = '[_' + uni.combine('Ll', 'Lt', 'Lm', 'Nl') + ']' + \
@@ -437,7 +446,7 @@ class VbNetLexer(RegexLexer):
                                  'Cf', 'Mn', 'Mc') + ']*'
 
     flags = re.MULTILINE | re.IGNORECASE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^\s*<.*?>', Name.Attribute),
             (r'\s+', Whitespace),
@@ -537,13 +546,13 @@ class GenericAspxLexer(RegexLexer):
     """
 
     name = 'aspx-gen'
-    filenames = []
-    mimetypes = []
+    filenames = ()
+    mimetypes = ()
     url = 'https://dotnet.microsoft.com/en-us/apps/aspnet'
 
     flags = re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(<%[@=#]?)(.*?)(%>)', bygroups(Name.Tag, Other, Name.Tag)),
             (r'(<script.*?>)(.*?)(</script>)', bygroups(using(XmlLexer),
@@ -562,9 +571,9 @@ class CSharpAspxLexer(DelegatingLexer):
     """
 
     name = 'aspx-cs'
-    aliases = ['aspx-cs']
-    filenames = ['*.aspx', '*.asax', '*.ascx', '*.ashx', '*.asmx', '*.axd']
-    mimetypes = []
+    aliases = ('aspx-cs',)
+    filenames = ('*.aspx', '*.asax', '*.ascx', '*.ashx', '*.asmx', '*.axd')
+    mimetypes = ()
     url = 'https://dotnet.microsoft.com/en-us/apps/aspnet'
     version_added = ''
 
@@ -584,9 +593,9 @@ class VbNetAspxLexer(DelegatingLexer):
     """
 
     name = 'aspx-vb'
-    aliases = ['aspx-vb']
-    filenames = ['*.aspx', '*.asax', '*.ascx', '*.ashx', '*.asmx', '*.axd']
-    mimetypes = []
+    aliases = ('aspx-vb',)
+    filenames = ('*.aspx', '*.asax', '*.ascx', '*.ashx', '*.asmx', '*.axd')
+    mimetypes = ()
     url = 'https://dotnet.microsoft.com/en-us/apps/aspnet'
     version_added = ''
 
@@ -608,12 +617,12 @@ class FSharpLexer(RegexLexer):
 
     name = 'F#'
     url = 'https://fsharp.org/'
-    aliases = ['fsharp', 'f#']
-    filenames = ['*.fs', '*.fsi', '*.fsx']
-    mimetypes = ['text/x-fsharp']
+    aliases = ('fsharp', 'f#')
+    filenames = ('*.fs', '*.fsi', '*.fsx')
+    mimetypes = ('text/x-fsharp',)
     version_added = '1.5'
 
-    keywords = [
+    keywords = (
         'abstract', 'as', 'assert', 'base', 'begin', 'class', 'default',
         'delegate', 'do!', 'do', 'done', 'downcast', 'downto', 'elif', 'else',
         'end', 'exception', 'extern', 'false', 'finally', 'for', 'function',
@@ -623,7 +632,7 @@ class FSharpLexer(RegexLexer):
         'rec', 'return!', 'return', 'select', 'static', 'struct', 'then', 'to',
         'true', 'try', 'type', 'upcast', 'use!', 'use', 'val', 'void', 'when',
         'while', 'with', 'yield!', 'yield',
-    ]
+    )
     # Reserved words; cannot hurt to color them as keywords too.
     keywords += [
         'atomic', 'break', 'checked', 'component', 'const', 'constraint',
@@ -632,28 +641,28 @@ class FSharpLexer(RegexLexer):
         'process', 'protected', 'pure', 'sealed', 'tailcall', 'trait',
         'virtual', 'volatile',
     ]
-    keyopts = [
+    keyopts = (
         '!=', '#', '&&', '&', r'\(', r'\)', r'\*', r'\+', ',', r'-\.',
         '->', '-', r'\.\.', r'\.', '::', ':=', ':>', ':', ';;', ';', '<-',
         r'<\]', '<', r'>\]', '>', r'\?\?', r'\?', r'\[<', r'\[\|', r'\[', r'\]',
         '_', '`', r'\{', r'\|\]', r'\|', r'\}', '~', '<@@', '<@', '=', '@>', '@@>',
-    ]
+    )
 
     operators = r'[!$%&*+\./:<=>?@^|~-]'
-    word_operators = ['and', 'or', 'not']
+    word_operators = ('and', 'or', 'not')
     prefix_syms = r'[!?~]'
     infix_syms = r'[=<>@^|&+\*/$%-]'
-    primitives = [
+    primitives = (
         'sbyte', 'byte', 'char', 'nativeint', 'unativeint', 'float32', 'single',
         'float', 'double', 'int8', 'uint8', 'int16', 'uint16', 'int32',
         'uint32', 'int64', 'uint64', 'decimal', 'unit', 'bool', 'string',
         'list', 'exn', 'obj', 'enum',
-    ]
+    )
 
     # See http://msdn.microsoft.com/en-us/library/dd233181.aspx and/or
     # http://fsharp.org/about/files/spec.pdf for reference.  Good luck.
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'escape-sequence': [
             (r'\\[\\"\'ntbrafv]', String.Escape),
             (r'\\[0-9]{3}', String.Escape),
@@ -770,8 +779,8 @@ class XppLexer(RegexLexer):
 
     name = 'X++'
     url = 'https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-ref/xpp-language-reference'
-    aliases = ['xpp', 'x++']
-    filenames = ['*.xpp']
+    aliases = ('xpp', 'x++')
+    filenames = ('*.xpp',)
     version_added = '2.15'
 
     flags = re.MULTILINE
@@ -821,9 +830,9 @@ class XppLexer(RegexLexer):
                  'webStaticFileStr','webUrlItemStr','webWebPartStr','webletItemStr','webpageDefStr','websiteDefStr','workflowApprovalStr',
                  'workflowCategoryStr','workflowTaskStr','workflowTypeStr')
 
-    tokens = {}
+    tokens: typing.ClassVar = {}
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # method names
             (r'(\s*)\b(else|if)\b([^\n])', bygroups(Whitespace, Keyword, using(this))), # ensure that if is not treated like a function

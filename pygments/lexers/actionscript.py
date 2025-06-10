@@ -9,12 +9,13 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, bygroups, using, this, words, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
 
-__all__ = ['ActionScriptLexer', 'ActionScript3Lexer', 'MxmlLexer']
+__all__ = ['ActionScript3Lexer', 'ActionScriptLexer', 'MxmlLexer']
 
 
 class ActionScriptLexer(RegexLexer):
@@ -23,15 +24,15 @@ class ActionScriptLexer(RegexLexer):
     """
 
     name = 'ActionScript'
-    aliases = ['actionscript', 'as']
-    filenames = ['*.as']
-    mimetypes = ['application/x-actionscript', 'text/x-actionscript',
-                 'text/actionscript']
+    aliases = ('actionscript', 'as')
+    filenames = ('*.as',)
+    mimetypes = ('application/x-actionscript', 'text/x-actionscript',
+                 'text/actionscript')
     url = 'https://en.wikipedia.org/wiki/ActionScript'
     version_added = '0.9'
 
     flags = re.DOTALL
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'//.*?\n', Comment.Single),
@@ -122,17 +123,17 @@ class ActionScript3Lexer(RegexLexer):
 
     name = 'ActionScript 3'
     url = 'https://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/index.html'
-    aliases = ['actionscript3', 'as3']
-    filenames = ['*.as']
-    mimetypes = ['application/x-actionscript3', 'text/x-actionscript3',
-                 'text/actionscript3']
+    aliases = ('actionscript3', 'as3')
+    filenames = ('*.as',)
+    mimetypes = ('application/x-actionscript3', 'text/x-actionscript3',
+                 'text/actionscript3')
     version_added = '0.11'
 
     identifier = r'[$a-zA-Z_]\w*'
     typeidentifier = identifier + r'(?:\.<\w+>)?'
 
     flags = re.DOTALL | re.MULTILINE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'(function\s+)(' + identifier + r')(\s*)(\()',
@@ -207,12 +208,12 @@ class MxmlLexer(RegexLexer):
     """
     flags = re.MULTILINE | re.DOTALL
     name = 'MXML'
-    aliases = ['mxml']
-    filenames = ['*.mxml']
+    aliases = ('mxml',)
+    filenames = ('*.mxml',)
     url = 'https://en.wikipedia.org/wiki/MXML'
     version_added = '1.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             ('[^<&]+', Text),
             (r'&\S*?;', Name.Entity),

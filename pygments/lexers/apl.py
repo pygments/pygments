@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer
 from pygments.token import Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
@@ -21,14 +22,14 @@ class APLLexer(RegexLexer):
     """
     name = 'APL'
     url = 'https://en.m.wikipedia.org/wiki/APL_(programming_language)'
-    aliases = ['apl']
-    filenames = [
+    aliases = ('apl',)
+    filenames = (
         '*.apl', '*.aplf', '*.aplo', '*.apln',  
         '*.aplc', '*.apli', '*.dyalog',
-    ]
+    )
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Whitespace
             # ==========

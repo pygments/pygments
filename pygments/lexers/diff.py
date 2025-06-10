@@ -9,12 +9,13 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups
 from pygments.token import Text, Comment, Operator, Keyword, Name, Generic, \
     Literal, Whitespace
 
-__all__ = ['DiffLexer', 'DarcsPatchLexer', 'WDiffLexer']
+__all__ = ['DarcsPatchLexer', 'DiffLexer', 'WDiffLexer']
 
 
 class DiffLexer(RegexLexer):
@@ -23,13 +24,13 @@ class DiffLexer(RegexLexer):
     """
 
     name = 'Diff'
-    aliases = ['diff', 'udiff']
-    filenames = ['*.diff', '*.patch']
-    mimetypes = ['text/x-diff', 'text/x-patch']
+    aliases = ('diff', 'udiff')
+    filenames = ('*.diff', '*.patch')
+    mimetypes = ('text/x-diff', 'text/x-patch')
     url = 'https://en.wikipedia.org/wiki/Diff'
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'( )(.*)(\n)', bygroups(Whitespace, Text, Whitespace)),
             (r'(!.*|---)(\n)', bygroups(Generic.Strong, Whitespace)),
@@ -62,15 +63,15 @@ class DarcsPatchLexer(RegexLexer):
     """
 
     name = 'Darcs Patch'
-    aliases = ['dpatch']
-    filenames = ['*.dpatch', '*.darcspatch']
+    aliases = ('dpatch',)
+    filenames = ('*.dpatch', '*.darcspatch')
     url = 'https://darcs.net'
     version_added = '0.10'
 
     DPATCH_KEYWORDS = ('hunk', 'addfile', 'adddir', 'rmfile', 'rmdir', 'move',
                        'replace')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'<', Operator),
             (r'>', Operator),
@@ -125,9 +126,9 @@ class WDiffLexer(RegexLexer):
 
     name = 'WDiff'
     url = 'https://www.gnu.org/software/wdiff/'
-    aliases = ['wdiff']
-    filenames = ['*.wdiff']
-    mimetypes = []
+    aliases = ('wdiff',)
+    filenames = ('*.wdiff',)
+    mimetypes = ()
     version_added = '2.2'
 
     flags = re.MULTILINE | re.DOTALL
@@ -141,7 +142,7 @@ class WDiffLexer(RegexLexer):
     del_op = r"\[\-"
     del_cl = r"\-\]"
     normal = r'[^{}[\]+-]+'  # for performance
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (ins_op, Generic.Inserted, 'inserted'),
             (del_op, Generic.Deleted, 'deleted'),

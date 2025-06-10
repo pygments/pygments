@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import ExtendedRegexLexer, RegexLexer, default, words, \
     bygroups, include, using, line_re
@@ -17,12 +18,30 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 from pygments.lexers.shell import BashLexer
 from pygments.lexers.data import JsonLexer
 
-__all__ = ['IniLexer', 'SystemdLexer', 'DesktopLexer', 'RegeditLexer', 'PropertiesLexer',
-           'KconfigLexer', 'Cfengine3Lexer', 'ApacheConfLexer', 'SquidConfLexer',
-           'NginxConfLexer', 'LighttpdConfLexer', 'DockerLexer',
-           'TerraformLexer', 'TermcapLexer', 'TerminfoLexer',
-           'PkgConfigLexer', 'PacmanConfLexer', 'AugeasLexer', 'TOMLLexer',
-           'NestedTextLexer', 'SingularityLexer', 'UnixConfigLexer']
+__all__ = [
+    'ApacheConfLexer',
+    'AugeasLexer',
+    'Cfengine3Lexer',
+    'DesktopLexer',
+    'DockerLexer',
+    'IniLexer',
+    'KconfigLexer',
+    'LighttpdConfLexer',
+    'NestedTextLexer',
+    'NginxConfLexer',
+    'PacmanConfLexer',
+    'PkgConfigLexer',
+    'PropertiesLexer',
+    'RegeditLexer',
+    'SingularityLexer',
+    'SquidConfLexer',
+    'SystemdLexer',
+    'TOMLLexer',
+    'TermcapLexer',
+    'TerminfoLexer',
+    'TerraformLexer',
+    'UnixConfigLexer',
+]
 
 
 class IniLexer(RegexLexer):
@@ -31,15 +50,15 @@ class IniLexer(RegexLexer):
     """
 
     name = 'INI'
-    aliases = ['ini', 'cfg', 'dosini']
-    filenames = [
+    aliases = ('ini', 'cfg', 'dosini')
+    filenames = (
         '*.ini', '*.cfg', '*.inf', '.editorconfig',
-    ]
-    mimetypes = ['text/x-ini', 'text/inf']
+    )
+    mimetypes = ('text/x-ini', 'text/inf')
     url = 'https://en.wikipedia.org/wiki/INI_file'
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'[;#].*', Comment.Single),
@@ -86,12 +105,12 @@ class DesktopLexer(RegexLexer):
 
     name = 'Desktop file'
     url = "https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html"
-    aliases = ['desktop']
-    filenames = ['*.desktop']
-    mimetypes = ['application/x-desktop']
+    aliases = ('desktop',)
+    filenames = ('*.desktop',)
+    mimetypes = ('application/x-desktop',)
     version_added = '2.16'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^[ \t]*\n', Whitespace),
             (r'^(#.*)(\n)', bygroups(Comment.Single, Whitespace)),
@@ -116,14 +135,14 @@ class SystemdLexer(RegexLexer):
 
     name = 'Systemd'
     url = "https://www.freedesktop.org/software/systemd/man/systemd.syntax.html"
-    aliases = ['systemd']
-    filenames = [
+    aliases = ('systemd',)
+    filenames = (
         '*.service', '*.socket', '*.device', '*.mount', '*.automount',
         '*.swap', '*.target', '*.path', '*.timer', '*.slice', '*.scope',
-    ]
+    )
     version_added = '2.16'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^[ \t]*\n', Whitespace),
             (r'^([;#].*)(\n)', bygroups(Comment.Single, Whitespace)),
@@ -160,12 +179,12 @@ class RegeditLexer(RegexLexer):
 
     name = 'reg'
     url = 'http://en.wikipedia.org/wiki/Windows_Registry#.REG_files'
-    aliases = ['registry']
-    filenames = ['*.reg']
-    mimetypes = ['text/x-windows-registry']
+    aliases = ('registry',)
+    filenames = ('*.reg',)
+    mimetypes = ('text/x-windows-registry',)
     version_added = '1.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'Windows Registry Editor.*', Text),
             (r'\s+', Whitespace),
@@ -203,13 +222,13 @@ class PropertiesLexer(RegexLexer):
     """
 
     name = 'Properties'
-    aliases = ['properties', 'jproperties']
-    filenames = ['*.properties']
-    mimetypes = ['text/x-java-properties']
+    aliases = ('properties', 'jproperties')
+    filenames = ('*.properties',)
+    mimetypes = ('text/x-java-properties',)
     url = 'https://en.wikipedia.org/wiki/.properties'
     version_added = '1.4'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # comments
             (r'[!#].*|/{2}.*', Comment.Single),
@@ -277,12 +296,12 @@ class KconfigLexer(RegexLexer):
     """
 
     name = 'Kconfig'
-    aliases = ['kconfig', 'menuconfig', 'linux-config', 'kernel-config']
+    aliases = ('kconfig', 'menuconfig', 'linux-config', 'kernel-config')
     version_added = '1.6'
     # Adjust this if new kconfig file names appear in your environment
-    filenames = ['Kconfig*', '*Config.in*', 'external.in*',
-                 'standard-modules.in']
-    mimetypes = ['text/x-kconfig']
+    filenames = ('Kconfig*', '*Config.in*', 'external.in*',
+                 'standard-modules.in')
+    mimetypes = ('text/x-kconfig',)
     url = 'https://www.kernel.org/doc/html/latest/kbuild/kconfig-language.html'
 
     # No re.MULTILINE, indentation-aware help text needs line-by-line handling
@@ -301,7 +320,7 @@ class KconfigLexer(RegexLexer):
             default('#pop:2')
         ]
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'#.*?\n', Comment.Single),
@@ -356,12 +375,12 @@ class Cfengine3Lexer(RegexLexer):
 
     name = 'CFEngine3'
     url = 'http://cfengine.org'
-    aliases = ['cfengine3', 'cf3']
-    filenames = ['*.cf']
-    mimetypes = []
+    aliases = ('cfengine3', 'cf3')
+    filenames = ('*.cf',)
+    mimetypes = ()
     version_added = '1.5'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*?\n', Comment),
             (r'(body)(\s+)(\S+)(\s+)(control)',
@@ -417,14 +436,14 @@ class ApacheConfLexer(RegexLexer):
     """
 
     name = 'ApacheConf'
-    aliases = ['apacheconf', 'aconf', 'apache']
-    filenames = ['.htaccess', 'apache.conf', 'apache2.conf']
-    mimetypes = ['text/x-apacheconf']
+    aliases = ('apacheconf', 'aconf', 'apache')
+    filenames = ('.htaccess', 'apache.conf', 'apache2.conf')
+    mimetypes = ('text/x-apacheconf',)
     url = 'https://httpd.apache.org/docs/current/configuring.html'
     version_added = '0.6'
     flags = re.MULTILINE | re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'#(.*\\\n)+.*$|(#.*?)$', Comment),
@@ -460,9 +479,9 @@ class SquidConfLexer(RegexLexer):
 
     name = 'SquidConf'
     url = 'http://www.squid-cache.org/'
-    aliases = ['squidconf', 'squid.conf', 'squid']
-    filenames = ['squid.conf']
-    mimetypes = ['text/x-squidconf']
+    aliases = ('squidconf', 'squid.conf', 'squid')
+    filenames = ('squid.conf',)
+    mimetypes = ('text/x-squidconf',)
     version_added = '0.9'
     flags = re.IGNORECASE
 
@@ -559,7 +578,7 @@ class SquidConfLexer(RegexLexer):
     # There is no test where it is used.
     ip = rf'{bare_ip}(/({bare_ip}|\d+))?'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'#', Comment, 'comment'),
@@ -588,12 +607,12 @@ class NginxConfLexer(RegexLexer):
     """
     name = 'Nginx configuration file'
     url = 'http://nginx.net/'
-    aliases = ['nginx']
-    filenames = ['nginx.conf']
-    mimetypes = ['text/x-nginx-conf']
+    aliases = ('nginx',)
+    filenames = ('nginx.conf',)
+    mimetypes = ('text/x-nginx-conf',)
     version_added = '0.11'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(include)(\s+)([^\s;]+)', bygroups(Keyword, Whitespace, Name)),
             (r'[^\s;#]+', Keyword, 'stmt'),
@@ -634,12 +653,12 @@ class LighttpdConfLexer(RegexLexer):
     """
     name = 'Lighttpd configuration file'
     url = 'http://lighttpd.net/'
-    aliases = ['lighttpd', 'lighty']
-    filenames = ['lighttpd.conf']
-    mimetypes = ['text/x-lighttpd-conf']
+    aliases = ('lighttpd', 'lighty')
+    filenames = ('lighttpd.conf',)
+    mimetypes = ('text/x-lighttpd-conf',)
     version_added = '0.11'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*\n', Comment.Single),
             (r'/\S*', Name),  # pathname
@@ -662,9 +681,9 @@ class DockerLexer(RegexLexer):
     """
     name = 'Docker'
     url = 'http://docker.io'
-    aliases = ['docker', 'dockerfile']
-    filenames = ['Dockerfile', '*.docker']
-    mimetypes = ['text/x-dockerfile-config']
+    aliases = ('docker', 'dockerfile')
+    filenames = ('Dockerfile', '*.docker')
+    mimetypes = ('text/x-dockerfile-config',)
     version_added = '2.0'
 
     _keywords = (r'(?:MAINTAINER|EXPOSE|WORKDIR|USER|STOPSIGNAL)')
@@ -672,7 +691,7 @@ class DockerLexer(RegexLexer):
     _lb = r'(?:\s*\\?\s*)'  # dockerfile line break regex
     flags = re.IGNORECASE | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*', Comment),
             (r'(FROM)([ \t]*)(\S*)([ \t]*)(?:(AS)([ \t]*)(\S*))?',
@@ -698,9 +717,9 @@ class TerraformLexer(ExtendedRegexLexer):
 
     name = 'Terraform'
     url = 'https://www.terraform.io/'
-    aliases = ['terraform', 'tf', 'hcl']
-    filenames = ['*.tf', '*.hcl']
-    mimetypes = ['application/x-tf', 'application/x-terraform']
+    aliases = ('terraform', 'tf', 'hcl')
+    filenames = ('*.tf', '*.hcl')
+    mimetypes = ('application/x-tf', 'application/x-terraform')
     version_added = '2.1'
 
     classes = ('backend', 'data', 'module', 'output', 'provider',
@@ -787,7 +806,7 @@ class TerraformLexer(ExtendedRegexLexer):
                 yield amatch.start(), Error, amatch.group()
         ctx.end = len(ctx.text)
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('basic'),
             include('whitespace'),
@@ -867,9 +886,9 @@ class TermcapLexer(RegexLexer):
     This is very simple and minimal.
     """
     name = 'Termcap'
-    aliases = ['termcap']
-    filenames = ['termcap', 'termcap.src']
-    mimetypes = []
+    aliases = ('termcap',)
+    filenames = ('termcap', 'termcap.src')
+    mimetypes = ()
     url = 'https://en.wikipedia.org/wiki/Termcap'
     version_added = '2.1'
 
@@ -878,7 +897,7 @@ class TermcapLexer(RegexLexer):
     #   * separator is ':'
     #   * to embed colon as data, we must use \072
     #   * space after separator is not allowed (mayve)
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^#.*', Comment),
             (r'^[^\s#:|]+', Name.Tag, 'names'),
@@ -914,9 +933,9 @@ class TerminfoLexer(RegexLexer):
     This is very simple and minimal.
     """
     name = 'Terminfo'
-    aliases = ['terminfo']
-    filenames = ['terminfo', 'terminfo.src']
-    mimetypes = []
+    aliases = ('terminfo',)
+    filenames = ('terminfo', 'terminfo.src')
+    mimetypes = ()
     url = 'https://en.wikipedia.org/wiki/Terminfo'
     version_added = '2.1'
 
@@ -925,7 +944,7 @@ class TerminfoLexer(RegexLexer):
     #   * separator is ','
     #   * to embed comma as data, we can use \,
     #   * space after separator is allowed
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^#.*$', Comment),
             (r'^[^\s#,|]+', Name.Tag, 'names'),
@@ -962,12 +981,12 @@ class PkgConfigLexer(RegexLexer):
 
     name = 'PkgConfig'
     url = 'http://www.freedesktop.org/wiki/Software/pkg-config/'
-    aliases = ['pkgconfig']
-    filenames = ['*.pc']
-    mimetypes = []
+    aliases = ('pkgconfig',)
+    filenames = ('*.pc',)
+    mimetypes = ()
     version_added = '2.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*$', Comment.Single),
 
@@ -1030,12 +1049,12 @@ class PacmanConfLexer(RegexLexer):
 
     name = 'PacmanConf'
     url = 'https://www.archlinux.org/pacman/pacman.conf.5.html'
-    aliases = ['pacmanconf']
-    filenames = ['pacman.conf']
-    mimetypes = []
+    aliases = ('pacmanconf',)
+    filenames = ('pacman.conf',)
+    mimetypes = ()
     version_added = '2.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # comment
             (r'#.*$', Comment.Single),
@@ -1074,11 +1093,11 @@ class AugeasLexer(RegexLexer):
     """
     name = 'Augeas'
     url = 'http://augeas.net'
-    aliases = ['augeas']
-    filenames = ['*.aug']
+    aliases = ('augeas',)
+    filenames = ('*.aug',)
     version_added = '2.4'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(module)(\s*)([^\s=]+)', bygroups(Keyword.Namespace, Whitespace, Name.Namespace)),
             (r'(let)(\s*)([^\s=]+)', bygroups(Keyword.Declaration, Whitespace, Name.Variable)),
@@ -1118,9 +1137,9 @@ class TOMLLexer(RegexLexer):
     """
 
     name = 'TOML'
-    aliases = ['toml']
-    filenames = ['*.toml', 'Pipfile', 'poetry.lock']
-    mimetypes = ['application/toml']
+    aliases = ('toml',)
+    filenames = ('*.toml', 'Pipfile', 'poetry.lock')
+    mimetypes = ('application/toml',)
     url = 'https://toml.io'
     version_added = '2.4'
 
@@ -1138,7 +1157,7 @@ class TOMLLexer(RegexLexer):
                 )?
               """
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Note that we make an effort in order to distinguish
             # moments at which we're parsing a key and moments at
@@ -1290,11 +1309,11 @@ class NestedTextLexer(RegexLexer):
 
     name = 'NestedText'
     url = 'https://nestedtext.org'
-    aliases = ['nestedtext', 'nt']
-    filenames = ['*.nt']
+    aliases = ('nestedtext', 'nt')
+    filenames = ('*.nt',)
     version_added = '2.9'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Comment: # ...
             (r'^([ ]*)(#.*)$', bygroups(Whitespace, Comment)),
@@ -1369,8 +1388,8 @@ class SingularityLexer(RegexLexer):
 
     name = 'Singularity'
     url = 'https://www.sylabs.io/guides/3.0/user-guide/definition_files.html'
-    aliases = ['singularity']
-    filenames = ['*.def', 'Singularity']
+    aliases = ('singularity',)
+    filenames = ('*.def', 'Singularity')
     version_added = '2.6'
     flags = re.IGNORECASE | re.MULTILINE | re.DOTALL
 
@@ -1378,7 +1397,7 @@ class SingularityLexer(RegexLexer):
     _section = r'^(%(?:pre|post|setup|environment|help|labels|test|runscript|files|startscript))(\s*)'
     _appsect = r'^(%app(?:install|help|run|labels|env|test|files))(\s*)'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (_section, bygroups(Generic.Heading, Whitespace), 'script'),
             (_appsect, bygroups(Generic.Heading, Whitespace), 'script'),
@@ -1416,12 +1435,12 @@ class UnixConfigLexer(RegexLexer):
     """
 
     name = 'Unix/Linux config files'
-    aliases = ['unixconfig', 'linuxconfig']
-    filenames = []
+    aliases = ('unixconfig', 'linuxconfig')
+    filenames = ()
     url = 'https://en.wikipedia.org/wiki/Configuration_file#Unix_and_Unix-like_operating_systems'
     version_added = '2.12'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^#.*', Comment),
             (r'\n', Whitespace),

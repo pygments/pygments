@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, do_insertions, include, \
     this, using, words
 from pygments.token import Comment, Error, Keyword, Name, Number, Operator, \
@@ -27,8 +28,8 @@ class ArturoLexer(RegexLexer):
     """
 
     name = 'Arturo'
-    aliases = ['arturo', 'art']
-    filenames = ['*.art']
+    aliases = ('arturo', 'art')
+    filenames = ('*.art',)
     url = 'https://arturo-lang.io/'
     version_added = '2.14'
 
@@ -71,7 +72,7 @@ class ArturoLexer(RegexLexer):
 
         yield match.start(6), String.Double, match.group(6)
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r';.*?$', Comment.Single),
             (r'^((\s#!)|(#!)).*?$', Comment.Hashbang),

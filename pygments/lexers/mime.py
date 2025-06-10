@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include
 from pygments.lexers import get_lexer_for_mimetype
@@ -49,10 +50,10 @@ class MIMELexer(RegexLexer):
     """
 
     name = "MIME"
-    aliases = ["mime"]
-    mimetypes = ["multipart/mixed",
+    aliases = ("mime",)
+    mimetypes = ("multipart/mixed",
                  "multipart/related",
-                 "multipart/alternative"]
+                 "multipart/alternative")
     url = 'https://en.wikipedia.org/wiki/MIME'
     version_added = '2.5'
 
@@ -180,9 +181,9 @@ class MIMELexer(RegexLexer):
         self.content_transfer_encoding = match.group(0).lower()
         yield match.start(0), Name.Constant, match.group(0)
 
-    attention_headers = {"content-type", "content-transfer-encoding"}
+    attention_headers: typing.ClassVar = {"content-type", "content-transfer-encoding"}
 
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             (r"^([\w-]+):( *)([\s\S]*?\n)(?![ \t])", get_header_tokens),
             (r"^$[\s\S]+", get_body_tokens),

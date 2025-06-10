@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words, bygroups
 from pygments.token import Text, Comment, Keyword, Name, Literal, Whitespace
 
@@ -20,11 +21,11 @@ class BareLexer(RegexLexer):
     """
     name = 'BARE'
     url = 'https://baremessages.org'
-    filenames = ['*.bare']
-    aliases = ['bare']
+    filenames = ('*.bare',)
+    aliases = ('bare',)
     version_added = '2.7'
 
-    keywords = [
+    keywords = (
         'type',
         'enum',
         'u8',
@@ -45,9 +46,9 @@ class BareLexer(RegexLexer):
         'string',
         'optional',
         'map',
-    ]
+    )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(type)(\s+)([A-Z][a-zA-Z0-9]+)(\s+)(\{)',
              bygroups(Keyword, Whitespace, Name.Class, Whitespace, Text), 'struct'),

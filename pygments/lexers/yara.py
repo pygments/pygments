@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words
 from pygments.token import Comment, String, Name, Text, Punctuation, \
     Operator, Keyword, Whitespace, Number
@@ -22,12 +23,12 @@ class YaraLexer(RegexLexer):
 
     name = 'YARA'
     url = 'https://virustotal.github.io/yara/'
-    aliases = ['yara', 'yar']
-    filenames = ['*.yar']
-    mimetypes = ['text/x-yara']
+    aliases = ('yara', 'yar')
+    filenames = ('*.yar',)
+    mimetypes = ('text/x-yara',)
     version_added = '2.16'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'//.*?$', Comment.Single),

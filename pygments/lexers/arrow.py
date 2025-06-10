@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, default, include
 from pygments.token import Text, Operator, Keyword, Punctuation, Name, \
     String, Number, Whitespace
@@ -26,11 +27,11 @@ class ArrowLexer(RegexLexer):
 
     name = 'Arrow'
     url = 'https://pypi.org/project/py-arrow-lang/'
-    aliases = ['arrow']
-    filenames = ['*.arw']
+    aliases = ('arrow',)
+    filenames = ('*.arw',)
     version_added = '2.7'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'^[|\s]+', Punctuation),

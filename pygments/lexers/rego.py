@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words
 from pygments.token import Comment, Operator, Keyword, Name, String, Number, Punctuation, Whitespace
 
@@ -17,9 +18,9 @@ class RegoLexer(RegexLexer):
     """
     name = 'Rego'
     url = 'https://www.openpolicyagent.org/docs/latest/policy-language/'
-    filenames = ['*.rego']
-    aliases = ['rego']
-    mimetypes = ['text/x-rego']
+    filenames = ('*.rego',)
+    aliases = ('rego',)
+    mimetypes = ('text/x-rego',)
     version_added = '2.19'
 
     reserved_words = (
@@ -34,7 +35,7 @@ class RegoLexer(RegexLexer):
         'input', # Represents synchronously pushed base documents
     )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             (r'\s+', Whitespace),

@@ -29,7 +29,7 @@ from io import StringIO, BytesIO
 __version__ = '2.19.1'
 __docformat__ = 'restructuredtext'
 
-__all__ = ['lex', 'format', 'highlight']
+__all__ = ['format', 'highlight', 'lex']
 
 
 def lex(code, lexer):
@@ -60,7 +60,7 @@ def format(tokens, formatter, outfile=None):  # pylint: disable=redefined-builti
     """
     try:
         if not outfile:
-            realoutfile = getattr(formatter, 'encoding', None) and BytesIO() or StringIO()
+            realoutfile = (getattr(formatter, 'encoding', None) and BytesIO()) or StringIO()
             formatter.format(tokens, realoutfile)
             return realoutfile.getvalue()
         else:

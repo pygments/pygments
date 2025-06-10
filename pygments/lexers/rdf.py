@@ -9,12 +9,13 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, bygroups, default
 from pygments.token import Keyword, Punctuation, String, Number, Operator, \
     Generic, Whitespace, Name, Literal, Comment, Text
 
-__all__ = ['SparqlLexer', 'TurtleLexer', 'ShExCLexer']
+__all__ = ['ShExCLexer', 'SparqlLexer', 'TurtleLexer']
 
 
 class SparqlLexer(RegexLexer):
@@ -22,9 +23,9 @@ class SparqlLexer(RegexLexer):
     Lexer for SPARQL query language.
     """
     name = 'SPARQL'
-    aliases = ['sparql']
-    filenames = ['*.rq', '*.sparql']
-    mimetypes = ['application/sparql-query']
+    aliases = ('sparql',)
+    filenames = ('*.rq', '*.sparql')
+    mimetypes = ('application/sparql-query',)
     url = 'https://www.w3.org/TR/sparql11-query'
     version_added = '2.0'
 
@@ -92,7 +93,7 @@ class SparqlLexer(RegexLexer):
 
     # Lexer token definitions ::
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Text),
             # keywords ::
@@ -180,9 +181,9 @@ class TurtleLexer(RegexLexer):
     Lexer for Turtle data language.
     """
     name = 'Turtle'
-    aliases = ['turtle']
-    filenames = ['*.ttl']
-    mimetypes = ['text/turtle', 'application/x-turtle']
+    aliases = ('turtle',)
+    filenames = ('*.ttl',)
+    mimetypes = ('text/turtle', 'application/x-turtle')
     url = 'https://www.w3.org/TR/turtle'
     version_added = '2.1'
 
@@ -233,12 +234,12 @@ class TurtleLexer(RegexLexer):
                 '(?:(?:[' + PN_CHARS_GRP + '.:]|' + PLX + ')*(?:[' +
                 PN_CHARS_GRP + ':]|' + PLX + '))?')
 
-    patterns = {
+    patterns: typing.ClassVar = {
         'PNAME_NS': r'((?:[a-zA-Z][\w-]*)?\:)',  # Simplified character range
         'IRIREF': r'(<[^<>"{}|^`\\\x00-\x20]*>)'
     }
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Text),
 
@@ -325,9 +326,9 @@ class ShExCLexer(RegexLexer):
     Lexer for ShExC shape expressions language syntax.
     """
     name = 'ShExC'
-    aliases = ['shexc', 'shex']
-    filenames = ['*.shex']
-    mimetypes = ['text/shex']
+    aliases = ('shexc', 'shex')
+    filenames = ('*.shex',)
+    mimetypes = ('text/shex',)
     url = 'https://shex.io/shex-semantics/#shexc'
     version_added = ''
 
@@ -396,7 +397,7 @@ class ShExCLexer(RegexLexer):
 
     # Lexer token definitions ::
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Text),
             # keywords ::

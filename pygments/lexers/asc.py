@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 import re
+import typing
 
 from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Comment, Generic, Name, Operator, String, Whitespace
@@ -21,21 +22,21 @@ class AscLexer(RegexLexer):
     base64 data.
     """
     name = 'ASCII armored'
-    aliases = ['asc', 'pem']
-    filenames = [
+    aliases = ('asc', 'pem')
+    filenames = (
         '*.asc',  # PGP; *.gpg, *.pgp, and *.sig too, but those can be binary
         '*.pem',  # X.509; *.cer, *.crt, *.csr, and key etc too, but those can be binary
         'id_dsa', 'id_ecdsa', 'id_ecdsa_sk', 'id_ed25519', 'id_ed25519_sk',
         'id_rsa',  # SSH private keys
-    ]
-    mimetypes = ['application/pgp-keys', 'application/pgp-encrypted',
-                 'application/pgp-signature', 'application/pem-certificate-chain']
+    )
+    mimetypes = ('application/pgp-keys', 'application/pgp-encrypted',
+                 'application/pgp-signature', 'application/pem-certificate-chain')
     url = 'https://www.openpgp.org'
     version_added = '2.10'
 
     flags = re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'^-----BEGIN [^\n]+-----$', Generic.Heading, 'data'),

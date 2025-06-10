@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, words
 from pygments.token import Comment, Whitespace, Operator, Keyword, String, \
@@ -24,8 +25,8 @@ class Comal80Lexer(RegexLexer):
 
     name = 'COMAL-80'
     url = 'https://en.wikipedia.org/wiki/COMAL'
-    aliases = ['comal', 'comal80']
-    filenames = ['*.cml', '*.comal']
+    aliases = ('comal', 'comal80')
+    filenames = ('*.cml', '*.comal')
     version_added = ''
     flags = re.IGNORECASE
     #
@@ -36,7 +37,7 @@ class Comal80Lexer(RegexLexer):
     _suffix = r"\b(?!['\[\]←£\\])"
     _identifier = r"[a-z]['\[\]←£\\\w]*"
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'//.*\n', Comment.Single),
             (r'\s+', Whitespace),

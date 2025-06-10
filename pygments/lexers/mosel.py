@@ -9,6 +9,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
@@ -393,12 +394,12 @@ class MoselLexer(RegexLexer):
     For the Mosel optimization language.
     """
     name = 'Mosel'
-    aliases = ['mosel']
-    filenames = ['*.mos']
+    aliases = ('mosel',)
+    filenames = ('*.mos',)
     url = 'https://www.fico.com/fico-xpress-optimization/docs/latest/mosel/mosel_lang/dhtml/moselreflang.html'
     version_added = '2.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Text),
             (r'\s+', Text.Whitespace),

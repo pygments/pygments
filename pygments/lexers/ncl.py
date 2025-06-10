@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -22,15 +23,15 @@ class NCLLexer(RegexLexer):
     Lexer for NCL code.
     """
     name = 'NCL'
-    aliases = ['ncl']
-    filenames = ['*.ncl']
-    mimetypes = ['text/ncl']
+    aliases = ('ncl',)
+    filenames = ('*.ncl',)
+    mimetypes = ('text/ncl',)
     url = 'https://www.ncl.ucar.edu'
     version_added = '2.2'
 
     flags = re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r';.*\n', Comment),
             include('strings'),

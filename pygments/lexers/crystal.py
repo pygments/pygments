@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import ExtendedRegexLexer, include, bygroups, default, \
     words, line_re
@@ -31,9 +32,9 @@ class CrystalLexer(ExtendedRegexLexer):
 
     name = 'Crystal'
     url = 'https://crystal-lang.org'
-    aliases = ['cr', 'crystal']
-    filenames = ['*.cr']
-    mimetypes = ['text/x-crystal']
+    aliases = ('cr', 'crystal')
+    filenames = ('*.cr',)
+    mimetypes = ('text/x-crystal',)
     version_added = '2.2'
 
     flags = re.DOTALL | re.MULTILINE
@@ -157,7 +158,7 @@ class CrystalLexer(ExtendedRegexLexer):
 
         return states
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*?$', Comment.Single),
             # keywords

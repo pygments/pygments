@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, default, bygroups
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -24,9 +25,9 @@ class NimrodLexer(RegexLexer):
 
     name = 'Nimrod'
     url = 'http://nim-lang.org/'
-    aliases = ['nimrod', 'nim']
-    filenames = ['*.nim', '*.nimrod']
-    mimetypes = ['text/x-nim']
+    aliases = ('nimrod', 'nim')
+    filenames = ('*.nim', '*.nimrod')
+    mimetypes = ('text/x-nim',)
     version_added = '1.5'
 
     flags = re.MULTILINE | re.IGNORECASE
@@ -42,7 +43,7 @@ class NimrodLexer(RegexLexer):
             new = []
         return "|".join(newWords)
 
-    keywords = [
+    keywords = (
         'addr', 'and', 'as', 'asm', 'bind', 'block', 'break', 'case',
         'cast', 'concept', 'const', 'continue', 'converter', 'defer', 'discard',
         'distinct', 'div', 'do', 'elif', 'else', 'end', 'enum', 'except',
@@ -51,23 +52,23 @@ class NimrodLexer(RegexLexer):
         'not', 'notin', 'object', 'of', 'or', 'out', 'ptr', 'raise',
         'ref', 'return', 'shl', 'shr', 'static', 'try',
         'tuple', 'type', 'using', 'when', 'while', 'xor'
-    ]
+    )
 
-    keywordsPseudo = [
+    keywordsPseudo = (
         'nil', 'true', 'false'
-    ]
+    )
 
-    opWords = [
+    opWords = (
         'and', 'or', 'not', 'xor', 'shl', 'shr', 'div', 'mod', 'in',
         'notin', 'is', 'isnot'
-    ]
+    )
 
-    types = [
+    types = (
         'int', 'int8', 'int16', 'int32', 'int64', 'float', 'float32', 'float64',
         'bool', 'char', 'range', 'array', 'seq', 'set', 'string'
-    ]
+    )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Comments
             (r'##\[', String.Doc, 'doccomment'),

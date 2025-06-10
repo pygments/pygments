@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, words
 from pygments.token import Comment, Keyword, Name, Number, Operator, \
@@ -25,14 +26,14 @@ class QlikLexer(RegexLexer):
     """
 
     name = "Qlik"
-    aliases = ["qlik", "qlikview", "qliksense", "qlikscript"]
-    filenames = ["*.qvs", "*.qvw"]
+    aliases = ("qlik", "qlikview", "qliksense", "qlikscript")
+    filenames = ("*.qvs", "*.qvw")
     url = "https://qlik.com"
     version_added = '2.12'
 
     flags = re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         # Handle multi-line comments
         "comment": [
             (r"\*/", Comment.Multiline, "#pop"),

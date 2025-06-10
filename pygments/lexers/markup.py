@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexers.html import XmlLexer
 from pygments.lexers.javascript import JavascriptLexer
@@ -22,11 +23,22 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Other, Whitespace, Literal
 from pygments.util import get_bool_opt, ClassNotFound
 
-__all__ = ['BBCodeLexer', 'MoinWikiLexer', 'RstLexer', 'TexLexer', 'GroffLexer',
-           'MozPreprocHashLexer', 'MozPreprocPercentLexer',
-           'MozPreprocXulLexer', 'MozPreprocJavascriptLexer',
-           'MozPreprocCssLexer', 'MarkdownLexer', 'OrgLexer', 'TiddlyWiki5Lexer',
-           'WikitextLexer']
+__all__ = [
+    'BBCodeLexer',
+    'GroffLexer',
+    'MarkdownLexer',
+    'MoinWikiLexer',
+    'MozPreprocCssLexer',
+    'MozPreprocHashLexer',
+    'MozPreprocJavascriptLexer',
+    'MozPreprocPercentLexer',
+    'MozPreprocXulLexer',
+    'OrgLexer',
+    'RstLexer',
+    'TexLexer',
+    'TiddlyWiki5Lexer',
+    'WikitextLexer',
+]
 
 
 class BBCodeLexer(RegexLexer):
@@ -35,12 +47,12 @@ class BBCodeLexer(RegexLexer):
     """
 
     name = 'BBCode'
-    aliases = ['bbcode']
-    mimetypes = ['text/x-bbcode']
+    aliases = ('bbcode',)
+    mimetypes = ('text/x-bbcode',)
     url = 'https://www.bbcode.org/'
     version_added = '0.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^[]+', Text),
             # tag/end tag begin
@@ -68,15 +80,15 @@ class MoinWikiLexer(RegexLexer):
     """
 
     name = 'MoinMoin/Trac Wiki markup'
-    aliases = ['trac-wiki', 'moin']
-    filenames = []
-    mimetypes = ['text/x-trac-wiki']
+    aliases = ('trac-wiki', 'moin')
+    filenames = ()
+    mimetypes = ('text/x-trac-wiki',)
     url = 'https://moinmo.in'
     version_added = '0.7'
 
     flags = re.MULTILINE | re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^#.*$', Comment),
             (r'(!)(\S+)', bygroups(Keyword, Text)),  # Ignore-next
@@ -124,9 +136,9 @@ class RstLexer(RegexLexer):
     """
     name = 'reStructuredText'
     url = 'https://docutils.sourceforge.io/rst.html'
-    aliases = ['restructuredtext', 'rst', 'rest']
-    filenames = ['*.rst', '*.rest']
-    mimetypes = ["text/x-rst", "text/prs.fallenstein.rst"]
+    aliases = ('restructuredtext', 'rst', 'rest')
+    filenames = ('*.rst', '*.rest')
+    mimetypes = ("text/x-rst", "text/prs.fallenstein.rst")
     version_added = '0.7'
     flags = re.MULTILINE
 
@@ -175,7 +187,7 @@ class RstLexer(RegexLexer):
     unicode_delimiters = '\u2010\u2011\u2012\u2013\u2014\u00a0'
     end_string_suffix = (rf'((?=$)|(?=[-/:.,; \n\x00{re.escape(unicode_delimiters)}{re.escape(closers)}]))')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Heading with overline
             (r'^(=+|-+|`+|:+|\.+|\'+|"+|~+|\^+|_+|\*+|\++|#+)([ \t]*\n)'
@@ -279,13 +291,13 @@ class TexLexer(RegexLexer):
     """
 
     name = 'TeX'
-    aliases = ['tex', 'latex']
-    filenames = ['*.tex', '*.aux', '*.toc']
-    mimetypes = ['text/x-tex', 'text/x-latex']
+    aliases = ('tex', 'latex')
+    filenames = ('*.tex', '*.aux', '*.toc')
+    mimetypes = ('text/x-tex', 'text/x-latex')
     url = 'https://tug.org'
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'general': [
             (r'%.*?\n', Comment),
             (r'[{}]', Name.Builtin),
@@ -340,13 +352,13 @@ class GroffLexer(RegexLexer):
     """
 
     name = 'Groff'
-    aliases = ['groff', 'nroff', 'man']
-    filenames = ['*.[1-9]', '*.man', '*.1p', '*.3pm']
-    mimetypes = ['application/x-troff', 'text/troff']
+    aliases = ('groff', 'nroff', 'man')
+    filenames = ('*.[1-9]', '*.man', '*.1p', '*.3pm')
+    mimetypes = ('application/x-troff', 'text/troff')
     url = 'https://www.gnu.org/software/groff'
     version_added = '0.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(\.)(\w+)', bygroups(Text, Keyword), 'request'),
             (r'\.', Punctuation, 'request'),
@@ -396,13 +408,13 @@ class MozPreprocHashLexer(RegexLexer):
     Other data is left untouched.
     """
     name = 'mozhashpreproc'
-    aliases = [name]
-    filenames = []
-    mimetypes = []
+    aliases = (name,)
+    filenames = ()
+    mimetypes = ()
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^#', Comment.Preproc, ('expr', 'exprstart')),
             (r'.+', Other),
@@ -437,13 +449,13 @@ class MozPreprocPercentLexer(MozPreprocHashLexer):
     Other data is left untouched.
     """
     name = 'mozpercentpreproc'
-    aliases = [name]
-    filenames = []
-    mimetypes = []
+    aliases = (name,)
+    filenames = ()
+    mimetypes = ()
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
     version_added = '2.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^%', Comment.Preproc, ('expr', 'exprstart')),
             (r'.+', Other),
@@ -457,9 +469,9 @@ class MozPreprocXulLexer(DelegatingLexer):
     `XmlLexer`.
     """
     name = "XUL+mozpreproc"
-    aliases = ['xul+mozpreproc']
-    filenames = ['*.xul.in']
-    mimetypes = []
+    aliases = ('xul+mozpreproc',)
+    filenames = ('*.xul.in',)
+    mimetypes = ()
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
     version_added = '2.0'
 
@@ -473,9 +485,9 @@ class MozPreprocJavascriptLexer(DelegatingLexer):
     `JavascriptLexer`.
     """
     name = "Javascript+mozpreproc"
-    aliases = ['javascript+mozpreproc']
-    filenames = ['*.js.in']
-    mimetypes = []
+    aliases = ('javascript+mozpreproc',)
+    filenames = ('*.js.in',)
+    mimetypes = ()
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
     version_added = '2.0'
 
@@ -489,9 +501,9 @@ class MozPreprocCssLexer(DelegatingLexer):
     `CssLexer`.
     """
     name = "CSS+mozpreproc"
-    aliases = ['css+mozpreproc']
-    filenames = ['*.css.in']
-    mimetypes = []
+    aliases = ('css+mozpreproc',)
+    filenames = ('*.css.in',)
+    mimetypes = ()
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
     version_added = '2.0'
 
@@ -505,9 +517,9 @@ class MarkdownLexer(RegexLexer):
     """
     name = 'Markdown'
     url = 'https://daringfireball.net/projects/markdown/'
-    aliases = ['markdown', 'md']
-    filenames = ['*.md', '*.markdown']
-    mimetypes = ["text/x-markdown"]
+    aliases = ('markdown', 'md')
+    filenames = ('*.md', '*.markdown')
+    mimetypes = ("text/x-markdown",)
     version_added = '2.2'
     flags = re.MULTILINE
 
@@ -538,7 +550,7 @@ class MarkdownLexer(RegexLexer):
 
         yield match.start('terminator'), String.Backtick, match.group('terminator')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # heading with '#' prefix (atx-style)
             (r'(^#[^#].+)(\n)', bygroups(Generic.Heading, Text)),
@@ -624,15 +636,15 @@ class OrgLexer(RegexLexer):
     """
     name = 'Org Mode'
     url = 'https://orgmode.org'
-    aliases = ['org', 'orgmode', 'org-mode']
-    filenames = ['*.org']
-    mimetypes = ["text/org"]
+    aliases = ('org', 'orgmode', 'org-mode')
+    filenames = ('*.org',)
+    mimetypes = ("text/org",)
     version_added = '2.18'
 
     def _inline(start, end):
         return rf'(?<!\w){start}(.|\n(?!\n))+?{end}(?!\w)'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^# .*', Comment.Single),
 
@@ -733,9 +745,9 @@ class TiddlyWiki5Lexer(RegexLexer):
     """
     name = 'tiddler'
     url = 'https://tiddlywiki.com/#TiddlerFiles'
-    aliases = ['tid']
-    filenames = ['*.tid']
-    mimetypes = ["text/vnd.tiddlywiki"]
+    aliases = ('tid',)
+    filenames = ('*.tid',)
+    mimetypes = ("text/vnd.tiddlywiki",)
     version_added = '2.7'
     flags = re.MULTILINE
 
@@ -795,7 +807,7 @@ class TiddlyWiki5Lexer(RegexLexer):
 
         yield match.start(4), String, match.group(4)
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # title in metadata section
             (r'^(title)(:\s)(.+\n)', bygroups(Keyword, Text, Generic.Heading)),
@@ -896,9 +908,9 @@ class WikitextLexer(RegexLexer):
     """
     name = 'Wikitext'
     url = 'https://www.mediawiki.org/wiki/Wikitext'
-    aliases = ['wikitext', 'mediawiki']
-    filenames = []
-    mimetypes = ['text/x-wiki']
+    aliases = ('wikitext', 'mediawiki')
+    filenames = ()
+    mimetypes = ('text/x-wiki',)
     version_added = '2.15'
     flags = re.MULTILINE
 
@@ -1003,37 +1015,37 @@ class WikitextLexer(RegexLexer):
     nbsp_char = r'(?:\t|&nbsp;|&\#0*160;|&\#[Xx]0*[Aa]0;|[ \xA0\u1680\u2000-\u200A\u202F\u205F\u3000])'
     link_address = r'(?:[0-9.]+|\[[0-9a-f:.]+\]|[^\x00-\x20"<>\[\]\x7F\xA0\u1680\u2000-\u200A\u202F\u205F\u3000\uFFFD])'
     link_char_class = r'[^\x00-\x20"<>\[\]\x7F\xA0\u1680\u2000-\u200A\u202F\u205F\u3000\uFFFD]'
-    double_slashes_i = {
+    double_slashes_i: typing.ClassVar = {
         '__FORCETOC__', '__NOCONTENTCONVERT__', '__NOCC__', '__NOEDITSECTION__', '__NOGALLERY__',
         '__NOTITLECONVERT__', '__NOTC__', '__NOTOC__', '__TOC__',
     }
-    double_slashes = {
+    double_slashes: typing.ClassVar = {
         '__EXPECTUNUSEDCATEGORY__',  '__HIDDENCAT__', '__INDEX__',  '__NEWSECTIONLINK__',
         '__NOINDEX__',  '__NONEWSECTIONLINK__',  '__STATICREDIRECT__', '__NOGLOBAL__',
         '__DISAMBIG__', '__EXPECTED_UNCONNECTED_PAGE__',
     }
-    protocols = {
+    protocols: typing.ClassVar = {
         'bitcoin:', 'ftp://', 'ftps://', 'geo:', 'git://', 'gopher://', 'http://', 'https://',
         'irc://', 'ircs://', 'magnet:', 'mailto:', 'mms://', 'news:', 'nntp://', 'redis://',
         'sftp://', 'sip:', 'sips:', 'sms:', 'ssh://', 'svn://', 'tel:', 'telnet://', 'urn:',
         'worldwind://', 'xmpp:', '//',
     }
     non_relative_protocols = protocols - {'//'}
-    html_tags = {
+    html_tags: typing.ClassVar = {
         'abbr', 'b', 'bdi', 'bdo', 'big', 'blockquote', 'br', 'caption', 'center', 'cite', 'code',
         'data', 'dd', 'del', 'dfn', 'div', 'dl', 'dt', 'em', 'font', 'h1', 'h2', 'h3', 'h4', 'h5',
         'h6', 'hr', 'i', 'ins', 'kbd', 'li', 'link', 'mark', 'meta', 'ol', 'p', 'q', 'rb', 'rp',
         'rt', 'rtc', 'ruby', 's', 'samp', 'small', 'span', 'strike', 'strong', 'sub', 'sup',
         'table', 'td', 'th', 'time', 'tr', 'tt', 'u', 'ul', 'var', 'wbr',
     }
-    parser_tags = {
+    parser_tags: typing.ClassVar = {
         'graph', 'charinsert', 'rss', 'chem', 'categorytree', 'nowiki', 'inputbox', 'math',
         'hiero', 'score', 'pre', 'ref', 'translate', 'imagemap', 'templatestyles', 'languages',
         'noinclude', 'mapframe', 'section', 'poem', 'syntaxhighlight', 'includeonly', 'tvar',
         'onlyinclude', 'templatedata', 'langconvert', 'timeline', 'dynamicpagelist', 'gallery',
         'maplink', 'ce', 'references',
     }
-    variant_langs = {
+    variant_langs: typing.ClassVar = {
         # ZhConverter.php
         'zh', 'zh-hans', 'zh-hant', 'zh-cn', 'zh-hk', 'zh-mo', 'zh-my', 'zh-sg', 'zh-tw',
         # WuuConverter.php
@@ -1063,10 +1075,10 @@ class WikitextLexer(RegexLexer):
         # BanConverter.php
         'ban', 'ban-bali', 'ban-x-dharma', 'ban-x-palmleaf', 'ban-x-pku',
     }
-    magic_vars_i = {
+    magic_vars_i: typing.ClassVar = {
         'ARTICLEPATH', 'INT', 'PAGEID', 'SCRIPTPATH', 'SERVER', 'SERVERNAME', 'STYLEPATH',
     }
-    magic_vars = {
+    magic_vars: typing.ClassVar = {
         '!', '=', 'BASEPAGENAME', 'BASEPAGENAMEE', 'CASCADINGSOURCES', 'CONTENTLANGUAGE',
         'CONTENTLANG', 'CURRENTDAY', 'CURRENTDAY2', 'CURRENTDAYNAME', 'CURRENTDOW', 'CURRENTHOUR',
         'CURRENTMONTH', 'CURRENTMONTH2', 'CURRENTMONTH1', 'CURRENTMONTHABBREV', 'CURRENTMONTHNAME',
@@ -1083,13 +1095,13 @@ class WikitextLexer(RegexLexer):
         'ARTICLEPAGENAMEE', 'SUBJECTSPACE', 'ARTICLESPACE', 'SUBJECTSPACEE', 'ARTICLESPACEE',
         'SUBPAGENAME', 'SUBPAGENAMEE', 'TALKPAGENAME', 'TALKPAGENAMEE', 'TALKSPACE', 'TALKSPACEE',
     }
-    parser_functions_i = {
+    parser_functions_i: typing.ClassVar = {
         'ANCHORENCODE', 'BIDI', 'CANONICALURL', 'CANONICALURLE', 'FILEPATH', 'FORMATNUM',
         'FULLURL', 'FULLURLE', 'GENDER', 'GRAMMAR', 'INT', r'\#LANGUAGE', 'LC', 'LCFIRST', 'LOCALURL',
         'LOCALURLE', 'NS', 'NSE', 'PADLEFT', 'PADRIGHT', 'PAGEID', 'PLURAL', 'UC', 'UCFIRST',
         'URLENCODE',
     }
-    parser_functions = {
+    parser_functions: typing.ClassVar = {
         'BASEPAGENAME', 'BASEPAGENAMEE', 'CASCADINGSOURCES', 'DEFAULTSORT', 'DEFAULTSORTKEY',
         'DEFAULTCATEGORYSORT', 'FULLPAGENAME', 'FULLPAGENAMEE', 'NAMESPACE', 'NAMESPACEE',
         'NAMESPACENUMBER', 'NUMBERINGROUP', 'NUMINGROUP', 'NUMBEROFACTIVEUSERS', 'NUMBEROFADMINS',
@@ -1103,7 +1115,7 @@ class WikitextLexer(RegexLexer):
         'INT', 'DISPLAYTITLE', 'PAGESINNAMESPACE', 'PAGESINNS',
     }
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Redirects
             (r"""(?xi)

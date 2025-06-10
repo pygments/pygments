@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words, include, bygroups
 from pygments.token import Comment, Keyword, Name, Number, Punctuation, \
     String, Whitespace
@@ -22,9 +23,9 @@ class ElmLexer(RegexLexer):
 
     name = 'Elm'
     url = 'https://elm-lang.org/'
-    aliases = ['elm']
-    filenames = ['*.elm']
-    mimetypes = ['text/x-elm']
+    aliases = ('elm',)
+    filenames = ('*.elm',)
+    mimetypes = ('text/x-elm',)
     version_added = '2.1'
 
     validName = r'[a-z_][a-zA-Z0-9_\']*'
@@ -42,7 +43,7 @@ class ElmLexer(RegexLexer):
         'let', 'module', 'of', 'port', 'then', 'type', 'where',
     ), suffix=r'\b')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
 
             # Comments

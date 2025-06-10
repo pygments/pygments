@@ -8,11 +8,12 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, include, this, using, words
 from pygments.token import Comment, Keyword, Literal, Name, Number, \
     Operator, Punctuation, String, Text, Whitespace
 
-__all__ = ['BnfLexer', 'AbnfLexer', 'JsgfLexer', 'PegLexer']
+__all__ = ['AbnfLexer', 'BnfLexer', 'JsgfLexer', 'PegLexer']
 
 
 class BnfLexer(RegexLexer):
@@ -42,13 +43,13 @@ class BnfLexer(RegexLexer):
     """
 
     name = 'BNF'
-    aliases = ['bnf']
-    filenames = ['*.bnf']
-    mimetypes = ['text/x-bnf']
+    aliases = ('bnf',)
+    filenames = ('*.bnf',)
+    mimetypes = ('text/x-bnf',)
     url = 'https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form'
     version_added = '2.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(<)([ -;=?-~]+)(>)',
              bygroups(Punctuation, Name.Class, Punctuation)),
@@ -72,9 +73,9 @@ class AbnfLexer(RegexLexer):
 
     name = 'ABNF'
     url = 'http://www.ietf.org/rfc/rfc7405.txt'
-    aliases = ['abnf']
-    filenames = ['*.abnf']
-    mimetypes = ['text/x-abnf']
+    aliases = ('abnf',)
+    filenames = ('*.abnf',)
+    mimetypes = ('text/x-abnf',)
     version_added = '2.1'
 
     _core_rules = (
@@ -82,7 +83,7 @@ class AbnfLexer(RegexLexer):
         'DQUOTE', 'HEXDIG', 'HTAB', 'LF', 'LWSP', 'OCTET',
         'SP', 'VCHAR', 'WSP')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # comment
             (r';.*$', Comment.Single),
@@ -135,12 +136,12 @@ class JsgfLexer(RegexLexer):
     """
     name = 'JSGF'
     url = 'https://www.w3.org/TR/jsgf/'
-    aliases = ['jsgf']
-    filenames = ['*.jsgf']
-    mimetypes = ['application/jsgf', 'application/x-jsgf', 'text/jsgf']
+    aliases = ('jsgf',)
+    filenames = ('*.jsgf',)
+    mimetypes = ('application/jsgf', 'application/x-jsgf', 'text/jsgf')
     version_added = '2.2'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('comments'),
             include('non-comments'),
@@ -226,12 +227,12 @@ class PegLexer(RegexLexer):
 
     name = 'PEG'
     url = 'https://bford.info/pub/lang/peg.pdf'
-    aliases = ['peg']
-    filenames = ['*.peg']
-    mimetypes = ['text/x-peg']
+    aliases = ('peg',)
+    filenames = ('*.peg',)
+    mimetypes = ('text/x-peg',)
     version_added = '2.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Comments
             (r'#.*$', Comment.Single),

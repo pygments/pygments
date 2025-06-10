@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words, include, bygroups
 from pygments.token import Comment, Keyword, Name, Number, Operator, \
     Punctuation, String, Whitespace
@@ -22,14 +23,14 @@ class JLexer(RegexLexer):
 
     name = 'J'
     url = 'http://jsoftware.com/'
-    aliases = ['j']
-    filenames = ['*.ijs']
-    mimetypes = ['text/x-j']
+    aliases = ('j',)
+    filenames = ('*.ijs',)
+    mimetypes = ('text/x-j',)
     version_added = '2.1'
 
     validName = r'\b[a-zA-Z]\w*'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Shebang script
             (r'#!.*$', Comment.Preproc),

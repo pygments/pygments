@@ -42,6 +42,7 @@
 
 import collections
 import re
+import typing
 
 from pygments.lexer import Lexer, RegexLexer, do_insertions, bygroups, words
 from pygments.lexers import _googlesql_builtins
@@ -54,9 +55,18 @@ from pygments.token import Punctuation, Whitespace, Text, Comment, Operator, \
     Keyword, Name, String, Number, Generic, Literal
 
 
-__all__ = ['GoogleSqlLexer', 'PostgresLexer', 'PlPgsqlLexer',
-           'PostgresConsoleLexer', 'PostgresExplainLexer', 'SqlLexer',
-           'TransactSqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'RqlLexer']
+__all__ = [
+    'GoogleSqlLexer',
+    'MySqlLexer',
+    'PlPgsqlLexer',
+    'PostgresConsoleLexer',
+    'PostgresExplainLexer',
+    'PostgresLexer',
+    'RqlLexer',
+    'SqlLexer',
+    'SqliteConsoleLexer',
+    'TransactSqlLexer',
+]
 
 line_re  = re.compile('.*?\n')
 sqlite_prompt_re = re.compile(r'^(?:sqlite|   ...)>(?= )')
@@ -158,13 +168,13 @@ class PostgresLexer(PostgresBase, RegexLexer):
     """
 
     name = 'PostgreSQL SQL dialect'
-    aliases = ['postgresql', 'postgres']
-    mimetypes = ['text/x-postgresql']
+    aliases = ('postgresql', 'postgres')
+    mimetypes = ('text/x-postgresql',)
     url = 'https://www.postgresql.org'
     version_added = '1.5'
 
     flags = re.IGNORECASE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'--.*\n?', Comment.Single),
@@ -214,14 +224,14 @@ class PlPgsqlLexer(PostgresBase, RegexLexer):
     Handle the extra syntax in Pl/pgSQL language.
     """
     name = 'PL/pgSQL'
-    aliases = ['plpgsql']
-    mimetypes = ['text/x-plpgsql']
+    aliases = ('plpgsql',)
+    mimetypes = ('text/x-plpgsql',)
     url = 'https://www.postgresql.org/docs/current/plpgsql.html'
     version_added = '1.5'
 
     flags = re.IGNORECASE
     # FIXME: use inheritance
-    tokens = {name: state[:] for (name, state) in PostgresLexer.tokens.items()}
+    tokens: typing.ClassVar = {name: state[:] for (name, state) in PostgresLexer.tokens.items()}
 
     # extend the keywords list
     for i, pattern in enumerate(tokens['root']):
@@ -236,7 +246,7 @@ class PlPgsqlLexer(PostgresBase, RegexLexer):
         assert 0, "SQL keywords not found"
 
     # Add specific PL/pgSQL rules (before the SQL ones)
-    tokens['root'][:0] = [
+    tokens['root'][:0] = [  # noqa: RUF012
         (r'\%[a-z]\w*\b', Name.Builtin),     # actually, a datatype
         (r':=', Operator),
         (r'\<\<[a-z]\w*\>\>', Name.Label),
@@ -253,14 +263,14 @@ class PsqlRegexLexer(PostgresBase, RegexLexer):
     """
 
     name = 'PostgreSQL console - regexp based lexer'
-    aliases = []    # not public
+    aliases = ()    # not public
 
     flags = re.IGNORECASE
-    tokens = {name: state[:] for (name, state) in PostgresLexer.tokens.items()}
+    tokens: typing.ClassVar = {name: state[:] for (name, state) in PostgresLexer.tokens.items()}
 
     tokens['root'].append(
         (r'\\[^\s]+', Keyword.Pseudo, 'psql-command'))
-    tokens['psql-command'] = [
+    tokens['psql-command'] = [  # noqa: RUF012
         (r'\n', Text, 'root'),
         (r'\s+', Whitespace),
         (r'\\[^\s]+', Keyword.Pseudo),
@@ -309,8 +319,8 @@ class PostgresConsoleLexer(Lexer):
     """
 
     name = 'PostgreSQL console (psql)'
-    aliases = ['psql', 'postgresql-console', 'postgres-console']
-    mimetypes = ['text/x-postgresql-psql']
+    aliases = ('psql', 'postgresql-console', 'postgres-console')
+    mimetypes = ('text/x-postgresql-psql',)
     url = 'https://www.postgresql.org'
     version_added = '1.5'
     _example = "psql/psql_session.txt"
@@ -382,13 +392,13 @@ class PostgresExplainLexer(RegexLexer):
     """
 
     name = 'PostgreSQL EXPLAIN dialect'
-    aliases = ['postgres-explain']
-    filenames = ['*.explain']
-    mimetypes = ['text/x-postgresql-explain']
+    aliases = ('postgres-explain',)
+    filenames = ('*.explain',)
+    mimetypes = ('text/x-postgresql-explain',)
     url = 'https://www.postgresql.org/docs/current/using-explain.html'
     version_added = '2.15'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(:|\(|\)|ms|kB|->|\.\.|\,|\/)', Punctuation),
             (r'(\s+)', Whitespace),
@@ -569,14 +579,14 @@ class SqlLexer(RegexLexer):
     """
 
     name = 'SQL'
-    aliases = ['sql']
-    filenames = ['*.sql']
-    mimetypes = ['text/x-sql']
+    aliases = ('sql',)
+    filenames = ('*.sql',)
+    mimetypes = ('text/x-sql',)
     url = 'https://en.wikipedia.org/wiki/SQL'
     version_added = ''
 
     flags = re.IGNORECASE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'--.*\n?', Comment.Single),
@@ -612,15 +622,15 @@ class TransactSqlLexer(RegexLexer):
     """
 
     name = 'Transact-SQL'
-    aliases = ['tsql', 't-sql']
-    filenames = ['*.sql']
-    mimetypes = ['text/x-tsql']
+    aliases = ('tsql', 't-sql')
+    filenames = ('*.sql',)
+    mimetypes = ('text/x-tsql',)
     url = 'https://www.tsql.info'
     version_added = ''
 
     flags = re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'--.*[$|\n]?', Comment.Single),
@@ -699,13 +709,13 @@ class MySqlLexer(RegexLexer):
     """
 
     name = 'MySQL'
-    aliases = ['mysql']
-    mimetypes = ['text/x-mysql']
+    aliases = ('mysql',)
+    mimetypes = ('text/x-mysql',)
     url = 'https://www.mysql.com'
     version_added = ''
 
     flags = re.IGNORECASE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
 
@@ -886,14 +896,14 @@ class GoogleSqlLexer(RegexLexer):
     """
 
     name = 'GoogleSQL'
-    aliases = ['googlesql', 'zetasql']
-    filenames = ['*.googlesql', '*.googlesql.sql']
-    mimetypes = ['text/x-google-sql', 'text/x-google-sql-aux']
+    aliases = ('googlesql', 'zetasql')
+    filenames = ('*.googlesql', '*.googlesql.sql')
+    mimetypes = ('text/x-google-sql', 'text/x-google-sql-aux')
     url = 'https://cloud.google.com/bigquery/googlesql'
     version_added = '2.19'
 
     flags = re.IGNORECASE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
 
@@ -1044,9 +1054,9 @@ class SqliteConsoleLexer(Lexer):
     """
 
     name = 'sqlite3con'
-    aliases = ['sqlite3']
-    filenames = ['*.sqlite3-console']
-    mimetypes = ['text/x-sqlite3-console']
+    aliases = ('sqlite3',)
+    filenames = ('*.sqlite3-console',)
+    mimetypes = ('text/x-sqlite3-console',)
     url = 'https://www.sqlite.org'
     version_added = '0.11'
     _example = "sqlite3/sqlite3.sqlite3-console"
@@ -1086,13 +1096,13 @@ class RqlLexer(RegexLexer):
     """
     name = 'RQL'
     url = 'http://www.logilab.org/project/rql'
-    aliases = ['rql']
-    filenames = ['*.rql']
-    mimetypes = ['text/x-rql']
+    aliases = ('rql',)
+    filenames = ('*.rql',)
+    mimetypes = ('text/x-rql',)
     version_added = '2.0'
 
     flags = re.IGNORECASE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'(DELETE|SET|INSERT|UNION|DISTINCT|WITH|WHERE|BEING|OR'

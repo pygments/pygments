@@ -8,12 +8,19 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, include, words, bygroups
 from pygments.token import Comment, Operator, Keyword, Name, String, Number, \
     Punctuation, Error, Whitespace
 
-__all__ = ['BrainfuckLexer', 'BefungeLexer', 'RedcodeLexer', 'CAmkESLexer',
-           'CapDLLexer', 'AheuiLexer']
+__all__ = [
+    'AheuiLexer',
+    'BefungeLexer',
+    'BrainfuckLexer',
+    'CAmkESLexer',
+    'CapDLLexer',
+    'RedcodeLexer',
+]
 
 
 class BrainfuckLexer(RegexLexer):
@@ -23,12 +30,12 @@ class BrainfuckLexer(RegexLexer):
 
     name = 'Brainfuck'
     url = 'http://www.muppetlabs.com/~breadbox/bf/'
-    aliases = ['brainfuck', 'bf']
-    filenames = ['*.bf', '*.b']
-    mimetypes = ['application/x-brainfuck']
+    aliases = ('brainfuck', 'bf')
+    filenames = ('*.bf', '*.b')
+    mimetypes = ('application/x-brainfuck',)
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'common': [
             # use different colors for different instruction types
             (r'[.,]+', Name.Tag),
@@ -80,12 +87,12 @@ class BefungeLexer(RegexLexer):
     """
     name = 'Befunge'
     url = 'http://en.wikipedia.org/wiki/Befunge'
-    aliases = ['befunge']
-    filenames = ['*.befunge']
-    mimetypes = ['application/x-befunge']
+    aliases = ('befunge',)
+    filenames = ('*.befunge',)
+    mimetypes = ('application/x-befunge',)
     version_added = '0.7'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[0-9a-f]', Number),
             (r'[+*/%!`-]', Operator),             # Traditional math
@@ -109,11 +116,11 @@ class CAmkESLexer(RegexLexer):
     """
     name = 'CAmkES'
     url = 'https://sel4.systems/CAmkES/'
-    aliases = ['camkes', 'idl4']
-    filenames = ['*.camkes', '*.idl4']
+    aliases = ('camkes', 'idl4')
+    filenames = ('*.camkes', '*.idl4')
     version_added = '2.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # C pre-processor directive
             (r'^(\s*)(#.*)(\n)', bygroups(Whitespace, Comment.Preproc,
@@ -183,11 +190,11 @@ class CapDLLexer(RegexLexer):
     """
     name = 'CapDL'
     url = 'https://ssrg.nicta.com.au/publications/nictaabstracts/Kuz_KLW_10.abstract.pml'
-    aliases = ['capdl']
-    filenames = ['*.cdl']
+    aliases = ('capdl',)
+    filenames = ('*.cdl',)
     version_added = '2.2'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # C pre-processor directive
             (r'^(\s*)(#.*)(\n)',
@@ -235,8 +242,8 @@ class RedcodeLexer(RegexLexer):
     Contributed by Adam Blinkinsop <blinks@acm.org>.
     """
     name = 'Redcode'
-    aliases = ['redcode']
-    filenames = ['*.cw']
+    aliases = ('redcode',)
+    filenames = ('*.cw',)
     url = 'https://en.wikipedia.org/wiki/Core_War'
     version_added = '0.8'
 
@@ -245,7 +252,7 @@ class RedcodeLexer(RegexLexer):
                'ORG', 'EQU', 'END')
     modifiers = ('A', 'B', 'AB', 'BA', 'F', 'X', 'I')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Whitespace:
             (r'\s+', Whitespace),
@@ -272,11 +279,11 @@ class AheuiLexer(RegexLexer):
 
     name = 'Aheui'
     url = 'http://aheui.github.io/'
-    aliases = ['aheui']
-    filenames = ['*.aheui']
+    aliases = ('aheui',)
+    filenames = ('*.aheui',)
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             ('['
              '나-낳냐-냫너-넣녀-녛노-놓뇨-눟뉴-닇'

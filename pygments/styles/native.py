@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, \
      Number, Operator, Generic, Token, Whitespace
@@ -26,7 +27,7 @@ class NativeStyle(Style):
     highlight_color = '#404040'
     line_number_color = '#aaaaaa'
 
-    styles = {
+    styles: typing.ClassVar = {
         Token:              '#d0d0d0',
         Whitespace:         '#666666',
 

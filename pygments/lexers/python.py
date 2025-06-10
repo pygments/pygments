@@ -9,6 +9,7 @@
 """
 
 import keyword
+import typing
 
 from pygments.lexer import DelegatingLexer, RegexLexer, include, \
     bygroups, using, default, words, combined, this
@@ -17,9 +18,16 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Other, Error, Whitespace
 from pygments import unistring as uni
 
-__all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
-           'Python2Lexer', 'Python2TracebackLexer',
-           'CythonLexer', 'DgLexer', 'NumPyLexer']
+__all__ = [
+    'CythonLexer',
+    'DgLexer',
+    'NumPyLexer',
+    'Python2Lexer',
+    'Python2TracebackLexer',
+    'PythonConsoleLexer',
+    'PythonLexer',
+    'PythonTracebackLexer',
+]
 
 
 class PythonLexer(RegexLexer):
@@ -33,8 +41,8 @@ class PythonLexer(RegexLexer):
 
     name = 'Python'
     url = 'https://www.python.org'
-    aliases = ['python', 'py', 'sage', 'python3', 'py3', 'bazel', 'starlark', 'pyi']
-    filenames = [
+    aliases = ('python', 'py', 'sage', 'python3', 'py3', 'bazel', 'starlark', 'pyi')
+    filenames = (
         '*.py',
         '*.pyw',
         # Type stubs
@@ -55,9 +63,9 @@ class PythonLexer(RegexLexer):
         'WORKSPACE',
         # Twisted Application infrastructure
         '*.tac',
-    ]
-    mimetypes = ['text/x-python', 'application/x-python',
-                 'text/x-python3', 'application/x-python3']
+    )
+    mimetypes = ('text/x-python', 'application/x-python',
+                 'text/x-python3', 'application/x-python3')
     version_added = '0.10'
 
     uni_name = f"[{uni.xid_start}][{uni.xid_continue}]*"
@@ -96,7 +104,7 @@ class PythonLexer(RegexLexer):
             # newlines are an error (use "nl" state)
         ]
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             (r'^(\s*)([rRuUbB]{,2})("""(?:.|\n)*?""")',
@@ -425,9 +433,9 @@ class Python2Lexer(RegexLexer):
 
     name = 'Python 2.x'
     url = 'https://www.python.org'
-    aliases = ['python2', 'py2']
-    filenames = []  # now taken over by PythonLexer (3.x)
-    mimetypes = ['text/x-python2', 'application/x-python2']
+    aliases = ('python2', 'py2')
+    filenames = ()  # now taken over by PythonLexer (3.x)
+    mimetypes = ('text/x-python2', 'application/x-python2')
     version_added = ''
 
     def innerstring_rules(ttype):
@@ -443,7 +451,7 @@ class Python2Lexer(RegexLexer):
             # newlines are an error (use "nl" state)
         ]
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             (r'^(\s*)([rRuUbB]{,2})("""(?:.|\n)*?""")',
@@ -638,15 +646,15 @@ class Python2Lexer(RegexLexer):
 
 class _PythonConsoleLexerBase(RegexLexer):
     name = 'Python console session'
-    aliases = ['pycon', 'python-console']
-    mimetypes = ['text/x-python-doctest']
+    aliases = ('pycon', 'python-console')
+    mimetypes = ('text/x-python-doctest',)
 
     """Auxiliary lexer for `PythonConsoleLexer`.
 
     Code tokens are output as ``Token.Other.Code``, traceback tokens as
     ``Token.Other.Traceback``.
     """
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(>>> )(.*\n)', bygroups(Generic.Prompt, Other.Code), 'continuations'),
             # This happens, e.g., when tracebacks are embedded in documentation;
@@ -698,8 +706,8 @@ class PythonConsoleLexer(DelegatingLexer):
     """
 
     name = 'Python console session'
-    aliases = ['pycon', 'python-console']
-    mimetypes = ['text/x-python-doctest']
+    aliases = ('pycon', 'python-console')
+    mimetypes = ('text/x-python-doctest',)
     url = 'https://python.org'
     version_added = ''
 
@@ -732,13 +740,13 @@ class PythonTracebackLexer(RegexLexer):
     """
 
     name = 'Python Traceback'
-    aliases = ['pytb', 'py3tb']
-    filenames = ['*.pytb', '*.py3tb']
-    mimetypes = ['text/x-python-traceback', 'text/x-python3-traceback']
+    aliases = ('pytb', 'py3tb')
+    filenames = ('*.pytb', '*.py3tb')
+    mimetypes = ('text/x-python-traceback', 'text/x-python3-traceback')
     url = 'https://python.org'
     version_added = '1.0'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             (r'^(\^C)?Traceback \(most recent call last\):\n', Generic.Traceback, 'intb'),
@@ -789,13 +797,13 @@ class Python2TracebackLexer(RegexLexer):
     """
 
     name = 'Python 2.x Traceback'
-    aliases = ['py2tb']
-    filenames = ['*.py2tb']
-    mimetypes = ['text/x-python2-traceback']
+    aliases = ('py2tb',)
+    filenames = ('*.py2tb',)
+    mimetypes = ('text/x-python2-traceback',)
     url = 'https://python.org'
     version_added = '0.7'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Cover both (most recent call last) and (innermost last)
             # The optional ^C allows us to catch keyboard interrupt signals.
@@ -834,12 +842,12 @@ class CythonLexer(RegexLexer):
 
     name = 'Cython'
     url = 'https://cython.org'
-    aliases = ['cython', 'pyx', 'pyrex']
-    filenames = ['*.pyx', '*.pxd', '*.pxi']
-    mimetypes = ['text/x-cython', 'application/x-cython']
+    aliases = ('cython', 'pyx', 'pyrex')
+    filenames = ('*.pyx', '*.pxd', '*.pxi')
+    mimetypes = ('text/x-cython', 'application/x-cython')
     version_added = '1.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             (r'^(\s*)("""(?:.|\n)*?""")', bygroups(Whitespace, String.Doc)),
@@ -1013,13 +1021,13 @@ class DgLexer(RegexLexer):
     running on the CPython 3 VM.
     """
     name = 'dg'
-    aliases = ['dg']
-    filenames = ['*.dg']
-    mimetypes = ['text/x-dg']
+    aliases = ('dg',)
+    filenames = ('*.dg',)
+    mimetypes = ('text/x-dg',)
     url = 'http://pyos.github.io/dg'
     version_added = '1.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Text),
             (r'#.*?$', Comment.Single),
@@ -1112,14 +1120,14 @@ class NumPyLexer(PythonLexer):
 
     name = 'NumPy'
     url = 'https://numpy.org/'
-    aliases = ['numpy']
+    aliases = ('numpy',)
     version_added = '0.10'
 
     # override the mimetypes to not inherit them from python
-    mimetypes = []
-    filenames = []
+    mimetypes = ()
+    filenames = ()
 
-    EXTRA_KEYWORDS = {
+    EXTRA_KEYWORDS: typing.ClassVar = {
         'abs', 'absolute', 'accumulate', 'add', 'alen', 'all', 'allclose',
         'alltrue', 'alterdot', 'amax', 'amin', 'angle', 'any', 'append',
         'apply_along_axis', 'apply_over_axes', 'arange', 'arccos', 'arccosh',

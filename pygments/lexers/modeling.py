@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, using, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -17,7 +18,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 from pygments.lexers.html import HtmlLexer
 from pygments.lexers import _stan_builtins
 
-__all__ = ['ModelicaLexer', 'BugsLexer', 'JagsLexer', 'StanLexer']
+__all__ = ['BugsLexer', 'JagsLexer', 'ModelicaLexer', 'StanLexer']
 
 
 class ModelicaLexer(RegexLexer):
@@ -26,16 +27,16 @@ class ModelicaLexer(RegexLexer):
     """
     name = 'Modelica'
     url = 'http://www.modelica.org/'
-    aliases = ['modelica']
-    filenames = ['*.mo']
-    mimetypes = ['text/x-modelica']
+    aliases = ('modelica',)
+    filenames = ('*.mo',)
+    mimetypes = ('text/x-modelica',)
     version_added = '1.1'
 
     flags = re.DOTALL | re.MULTILINE
 
     _name = r"(?:'(?:[^\\']|\\.)+'|[a-zA-Z_]\w*)"
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'whitespace': [
             (r'[\s\ufeff]+', Text),
             (r'//[^\n]*\n?', Comment.Single),
@@ -102,8 +103,8 @@ class BugsLexer(RegexLexer):
     """
 
     name = 'BUGS'
-    aliases = ['bugs', 'winbugs', 'openbugs']
-    filenames = ['*.bug']
+    aliases = ('bugs', 'winbugs', 'openbugs')
+    filenames = ('*.bug',)
     url = 'https://www.mrc-bsu.cam.ac.uk/software/bugs/openbugs'
     version_added = '1.6'
 
@@ -147,7 +148,7 @@ class BugsLexer(RegexLexer):
     http://www.openbugs.info/Manuals/ModelSpecification.html#ContentsAI
     """
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'whitespace': [
             (r"\s+", Text),
         ],
@@ -196,8 +197,8 @@ class JagsLexer(RegexLexer):
     """
 
     name = 'JAGS'
-    aliases = ['jags']
-    filenames = ['*.jag', '*.bug']
+    aliases = ('jags',)
+    filenames = ('*.jag', '*.bug')
     url = 'https://mcmc-jags.sourceforge.io'
     version_added = '1.6'
 
@@ -223,7 +224,7 @@ class JagsLexer(RegexLexer):
         'ddirch', 'dmnorm', 'dwish', 'dmt', 'dmulti', 'dbinom', 'dchisq',
         'dnbinom', 'dweibull', 'ddirich')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'whitespace': [
             (r"\s+", Text),
         ],
@@ -287,12 +288,12 @@ class StanLexer(RegexLexer):
     """
 
     name = 'Stan'
-    aliases = ['stan']
-    filenames = ['*.stan']
+    aliases = ('stan',)
+    filenames = ('*.stan',)
     url = 'https://mc-stan.org'
     version_added = '1.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'whitespace': [
             (r"\s+", Text),
         ],

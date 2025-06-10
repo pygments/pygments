@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, include, using
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
@@ -23,9 +24,9 @@ class ElpiLexer(RegexLexer):
 
     name = 'Elpi'
     url = 'http://github.com/LPCIC/elpi'
-    aliases = ['elpi']
-    filenames = ['*.elpi']
-    mimetypes = ['text/x-elpi']
+    aliases = ('elpi',)
+    filenames = ('*.elpi',)
+    mimetypes = ('text/x-elpi',)
     version_added = '2.11'
 
     lcase_re = r"[a-z]"
@@ -41,7 +42,7 @@ class ElpiLexer(RegexLexer):
     escape_re = rf"\(({constant_re}|{symbol_re})\)"
     const_sym_re = rf"({constant_re}|{symbol_re}|{escape_re})"
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('elpi')
         ],

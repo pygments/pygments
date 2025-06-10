@@ -77,8 +77,8 @@ class TerminalFormatter(Formatter):
         (default: ``False`` = no line numbers).
     """
     name = 'Terminal'
-    aliases = ['terminal', 'console']
-    filenames = []
+    aliases = ('terminal', 'console')
+    filenames = ()
 
     def __init__(self, **options):
         Formatter.__init__(self, **options)
@@ -93,7 +93,7 @@ class TerminalFormatter(Formatter):
 
     def _write_lineno(self, outfile):
         self._lineno += 1
-        outfile.write("%s%04d: " % (self._lineno != 1 and '\n' or '', self._lineno))
+        outfile.write("%s%04d: " % ((self._lineno != 1 and '\n') or '', self._lineno))
 
     def _get_color(self, ttype):
         # self.colorscheme is a dict containing usually generic types, so we

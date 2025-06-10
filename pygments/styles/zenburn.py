@@ -11,6 +11,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Token, Name, Operator, Keyword, Generic, Comment, \
     Number, String, Literal, Punctuation, Error
@@ -33,7 +34,7 @@ class ZenburnStyle(Style):
     line_number_special_color = '#7a8080'
     line_number_special_background_color = '#353535'
 
-    styles = {
+    styles: typing.ClassVar = {
         Token: '#dcdccc',
         Error: '#e37170 bold',
 

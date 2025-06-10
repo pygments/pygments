@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer
 from pygments.token import String, Number, Name, Keyword, Operator, Text, Comment
 
@@ -19,12 +20,12 @@ class RtsLexer(RegexLexer):
     For Riverbed Stingray Traffic Manager
     """
     name = 'TrafficScript'
-    aliases = ['trafficscript', 'rts']
-    filenames = ['*.rts']
+    aliases = ('trafficscript', 'rts')
+    filenames = ('*.rts',)
     url = 'https://riverbed.com'
     version_added = '2.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root' : [
             (r"'(\\\\|\\[^\\]|[^'\\])*'", String),
             (r'"', String, 'escapable-string'),

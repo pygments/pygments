@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import Text, Token, Name, String, Comment, Number
 
@@ -20,9 +21,9 @@ class YangLexer(RegexLexer):
     """
     name = 'YANG'
     url = 'https://tools.ietf.org/html/rfc7950/'
-    aliases = ['yang']
-    filenames = ['*.yang']
-    mimetypes = ['application/yang']
+    aliases = ('yang',)
+    filenames = ('*.yang',)
+    mimetypes = ('application/yang',)
     version_added = '2.7'
 
     #Keywords from RFC7950 ; oriented at BNF style
@@ -60,7 +61,7 @@ class YangLexer(RegexLexer):
 
     suffix_re_pattern = r'(?=[^\w\-:])'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'comments': [
             (r'[^*/]', Comment),
             (r'/\*', Comment, '#push'),

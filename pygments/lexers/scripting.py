@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, default, combined, \
     words
@@ -16,9 +17,20 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Error, Whitespace, Other
 from pygments.util import get_bool_opt, get_list_opt
 
-__all__ = ['LuaLexer', 'LuauLexer', 'MoonScriptLexer', 'ChaiscriptLexer', 'LSLLexer',
-           'AppleScriptLexer', 'RexxLexer', 'MOOCodeLexer', 'HybrisLexer',
-           'EasytrieveLexer', 'JclLexer', 'MiniScriptLexer']
+__all__ = [
+    'AppleScriptLexer',
+    'ChaiscriptLexer',
+    'EasytrieveLexer',
+    'HybrisLexer',
+    'JclLexer',
+    'LSLLexer',
+    'LuaLexer',
+    'LuauLexer',
+    'MOOCodeLexer',
+    'MiniScriptLexer',
+    'MoonScriptLexer',
+    'RexxLexer',
+]
 
 
 def all_lua_builtins():
@@ -50,9 +62,9 @@ class LuaLexer(RegexLexer):
 
     name = 'Lua'
     url = 'https://www.lua.org/'
-    aliases = ['lua']
-    filenames = ['*.lua', '*.wlua']
-    mimetypes = ['text/x-lua', 'application/x-lua']
+    aliases = ('lua',)
+    filenames = ('*.lua', '*.wlua')
+    mimetypes = ('text/x-lua', 'application/x-lua')
     version_added = ''
 
     _comment_multiline = r'(?:--\[(?P<level>=*)\[[\w\W]*?\](?P=level)\])'
@@ -61,7 +73,7 @@ class LuaLexer(RegexLexer):
     _s = rf'(?:{_comment_multiline}|{_comment_single}|{_space})'
     _name = r'(?:[^\W\d]\w*)'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Lua allows a file to start with a shebang.
             (r'#!.*', Comment.Preproc),
@@ -237,15 +249,15 @@ class LuauLexer(RegexLexer):
 
     name = 'Luau'
     url = 'https://luau-lang.org/'
-    aliases = ['luau']
-    filenames = ['*.luau']
+    aliases = ('luau',)
+    filenames = ('*.luau',)
     version_added = '2.18'
 
     _comment_multiline = r'(?:--\[(?P<level>=*)\[[\w\W]*?\](?P=level)\])'
     _comment_single = r'(?:--.*$)'
     _s = r'(?:{}|{}|{})'.format(_comment_multiline, _comment_single, r'\s+')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#!.*', Comment.Hashbang, 'base'),
             default('base'),
@@ -502,12 +514,12 @@ class MoonScriptLexer(LuaLexer):
 
     name = 'MoonScript'
     url = 'http://moonscript.org'
-    aliases = ['moonscript', 'moon']
-    filenames = ['*.moon']
-    mimetypes = ['text/x-moonscript', 'application/x-moonscript']
+    aliases = ('moonscript', 'moon')
+    filenames = ('*.moon',)
+    mimetypes = ('text/x-moonscript', 'application/x-moonscript')
     version_added = '1.5'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#!(.*?)$', Comment.Preproc),
             default('base'),
@@ -571,14 +583,14 @@ class ChaiscriptLexer(RegexLexer):
 
     name = 'ChaiScript'
     url = 'http://chaiscript.com/'
-    aliases = ['chaiscript', 'chai']
-    filenames = ['*.chai']
-    mimetypes = ['text/x-chaiscript', 'application/x-chaiscript']
+    aliases = ('chaiscript', 'chai')
+    filenames = ('*.chai',)
+    mimetypes = ('text/x-chaiscript', 'application/x-chaiscript')
     version_added = '2.0'
 
     flags = re.DOTALL | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'commentsandwhitespace': [
             (r'\s+', Text),
             (r'//.*?\n', Comment.Single),
@@ -636,9 +648,9 @@ class LSLLexer(RegexLexer):
     """
 
     name = 'LSL'
-    aliases = ['lsl']
-    filenames = ['*.lsl']
-    mimetypes = ['text/x-lsl']
+    aliases = ('lsl',)
+    filenames = ('*.lsl',)
+    mimetypes = ('text/x-lsl',)
     url = 'https://wiki.secondlife.com/wiki/Linden_Scripting_Language'
     version_added = '2.0'
 
@@ -663,7 +675,7 @@ class LSLLexer(RegexLexer):
     lsl_reserved_log = r'\b(?:print)\b'
     lsl_operators = r'\+\+|\-\-|<<|>>|&&?|\|\|?|\^|~|[!%<>=*+\-/]=?'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root':
         [
             (r'//.*?\n',                          Comment.Single),
@@ -725,8 +737,8 @@ class AppleScriptLexer(RegexLexer):
 
     name = 'AppleScript'
     url = 'https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html'
-    aliases = ['applescript']
-    filenames = ['*.applescript']
+    aliases = ('applescript',)
+    filenames = ('*.applescript',)
     version_added = '1.0'
 
     flags = re.MULTILINE | re.DOTALL
@@ -988,7 +1000,7 @@ class AppleScriptLexer(RegexLexer):
                         'visible( document rect)?', 'volume', 'width', 'window',
                         'windows menu', 'wraps', 'zoomable', 'zoomed')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Text),
             (r'¬\n', String.Escape),
@@ -1044,13 +1056,13 @@ class RexxLexer(RegexLexer):
     """
     name = 'Rexx'
     url = 'http://www.rexxinfo.org/'
-    aliases = ['rexx', 'arexx']
-    filenames = ['*.rexx', '*.rex', '*.rx', '*.arexx']
-    mimetypes = ['text/x-rexx']
+    aliases = ('rexx', 'arexx')
+    filenames = ('*.rexx', '*.rex', '*.rx', '*.arexx')
+    mimetypes = ('text/x-rexx',)
     version_added = '2.0'
     flags = re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r'/\*', Comment.Multiline, 'comment'),
@@ -1155,12 +1167,12 @@ class MOOCodeLexer(RegexLexer):
     """
     name = 'MOOCode'
     url = 'http://www.moo.mud.org/'
-    filenames = ['*.moo']
-    aliases = ['moocode', 'moo']
-    mimetypes = ['text/x-moocode']
+    filenames = ('*.moo',)
+    aliases = ('moocode', 'moo')
+    mimetypes = ('text/x-moocode',)
     version_added = '0.9'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Numbers
             (r'(0|[1-9][0-9_]*)', Number.Integer),
@@ -1197,15 +1209,15 @@ class HybrisLexer(RegexLexer):
     """
 
     name = 'Hybris'
-    aliases = ['hybris']
-    filenames = ['*.hyb']
-    mimetypes = ['text/x-hybris', 'application/x-hybris']
+    aliases = ('hybris',)
+    filenames = ('*.hyb',)
+    mimetypes = ('text/x-hybris', 'application/x-hybris')
     url = 'https://github.com/evilsocket/hybris'
     version_added = '1.4'
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # method names
             (r'^(\s*(?:function|method|operator\s+)+?)'
@@ -1294,9 +1306,9 @@ class EasytrieveLexer(RegexLexer):
     mainframe's native file formats. It is somewhat comparable to awk.
     """
     name = 'Easytrieve'
-    aliases = ['easytrieve']
-    filenames = ['*.ezt', '*.mac']
-    mimetypes = ['text/x-easytrieve']
+    aliases = ('easytrieve',)
+    filenames = ('*.ezt', '*.mac')
+    mimetypes = ('text/x-easytrieve',)
     url = 'https://www.broadcom.com/products/mainframe/application-development/easytrieve-report-generator'
     version_added = '2.1'
     flags = 0
@@ -1318,7 +1330,7 @@ class EasytrieveLexer(RegexLexer):
     _DELIMITER_PATTERN_CAPTURE = '(' + _DELIMITER_PATTERN + ')'
     _NON_DELIMITER_OR_COMMENT_PATTERN = '[^' + _DELIMITERS_OR_COMENT + ']'
     _OPERATORS_PATTERN = '[.+\\-/=\\[\\](){}<>;,&%¬]'
-    _KEYWORDS = [
+    _KEYWORDS = (
         'AFTER-BREAK', 'AFTER-LINE', 'AFTER-SCREEN', 'AIM', 'AND', 'ATTR',
         'BEFORE', 'BEFORE-BREAK', 'BEFORE-LINE', 'BEFORE-SCREEN', 'BUSHU',
         'BY', 'CALL', 'CASE', 'CHECKPOINT', 'CHKP', 'CHKP-STATUS', 'CLEAR',
@@ -1351,9 +1363,9 @@ class EasytrieveLexer(RegexLexer):
         'TERM-ROWS', 'TERMINATION', 'TITLE', 'TO', 'TRANSFER', 'TRC',
         'UNIQUE', 'UNTIL', 'UPDATE', 'UPPERCASE', 'USER', 'USERID', 'VALUE',
         'VERIFY', 'W', 'WHEN', 'WHILE', 'WORK', 'WRITE', 'X', 'XDM', 'XRST'
-    ]
+    )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\*.*\n', Comment.Single),
             (r'\n+', Whitespace),
@@ -1486,15 +1498,15 @@ class JclLexer(RegexLexer):
     comparable to MS DOS batch and Unix shell scripts.
     """
     name = 'JCL'
-    aliases = ['jcl']
-    filenames = ['*.jcl']
-    mimetypes = ['text/x-jcl']
+    aliases = ('jcl',)
+    filenames = ('*.jcl',)
+    mimetypes = ('text/x-jcl',)
     url = 'https://en.wikipedia.org/wiki/Job_Control_Language'
     version_added = '2.1'
 
     flags = re.IGNORECASE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'//\*.*\n', Comment.Single),
             (r'//', Keyword.Pseudo, 'statement'),
@@ -1569,12 +1581,12 @@ class MiniScriptLexer(RegexLexer):
 
     name = 'MiniScript'
     url = 'https://miniscript.org'
-    aliases = ['miniscript', 'ms']
-    filenames = ['*.ms']
-    mimetypes = ['text/x-minicript', 'application/x-miniscript']
+    aliases = ('miniscript', 'ms')
+    filenames = ('*.ms',)
+    mimetypes = ('text/x-minicript', 'application/x-miniscript')
     version_added = '2.6'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#!(.*?)$', Comment.Preproc),
             default('base'),

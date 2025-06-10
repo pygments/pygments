@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words, include
 from pygments.token import Comment, Name, Number, Punctuation, Operator, \
     Keyword, String, Whitespace
@@ -29,12 +30,12 @@ class MesonLexer(RegexLexer):
 
     name = 'Meson'
     url = 'https://mesonbuild.com/'
-    aliases = ['meson', 'meson.build']
-    filenames = ['meson.build', 'meson_options.txt']
-    mimetypes = ['text/x-meson']
+    aliases = ('meson', 'meson.build')
+    filenames = ('meson.build', 'meson_options.txt')
+    mimetypes = ('text/x-meson',)
     version_added = '2.10'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#.*?$', Comment),
             (r"'''.*'''", String.Single),

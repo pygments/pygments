@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
@@ -21,12 +22,12 @@ class GoLexer(RegexLexer):
     """
     name = 'Go'
     url = 'https://go.dev/'
-    filenames = ['*.go']
-    aliases = ['go', 'golang']
-    mimetypes = ['text/x-gosrc']
+    filenames = ('*.go',)
+    aliases = ('go', 'golang')
+    mimetypes = ('text/x-gosrc',)
     version_added = '1.2'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             (r'\s+', Whitespace),

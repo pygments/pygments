@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import ExtendedRegexLexer, words, default, include, bygroups
 from pygments.token import Comment, Error, Keyword, Literal, Name, Number, \
     Operator, Punctuation, String, Whitespace
@@ -24,8 +25,8 @@ class CleanLexer(ExtendedRegexLexer):
     """
     name = 'Clean'
     url = 'http://clean.cs.ru.nl/Clean'
-    aliases = ['clean']
-    filenames = ['*.icl', '*.dcl']
+    aliases = ('clean',)
+    filenames = ('*.icl', '*.dcl')
     version_added = ''
 
     keywords = (
@@ -44,7 +45,7 @@ class CleanLexer(ExtendedRegexLexer):
     moduleId = r'[a-zA-Z_][a-zA-Z0-9_.`]+'
     classId = '|'.join([lowerId, upperId, funnyId])
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('comments'),
             include('keywords'),

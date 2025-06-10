@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words
 from pygments.token import Comment, Punctuation, Whitespace,\
     Name, Operator, String, Number, Text
@@ -21,13 +22,13 @@ class DaxLexer(RegexLexer):
     Referenced from: https://github.com/sql-bi/SyntaxHighlighterBrushDax
     """
     name = 'Dax'
-    aliases = ['dax']
-    filenames = ['*.dax']
+    aliases = ('dax',)
+    filenames = ('*.dax',)
     url = 'https://learn.microsoft.com/en-us/dax/dax-function-reference'
-    mimetypes = []
+    mimetypes = ()
     version_added = '2.15'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\s+', Whitespace),
             (r"--.*\n?", Comment.Single),	# Comment: Double dash comment

@@ -6,12 +6,13 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words
 from pygments.token import Token
 
 
 class MyLexer(RegexLexer):
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             (
                 words(
@@ -350,7 +351,7 @@ all-whitespace-allowed-one-required-after-thisNOT-WHITESPACE"""
 
 
 class MySecondLexer(RegexLexer):
-    tokens = {
+    tokens: typing.ClassVar = {
         "root": [
             (words(["[", "x"]), Token.Name),
         ],

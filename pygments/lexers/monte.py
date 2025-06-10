@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.token import Comment, Error, Keyword, Name, Number, Operator, \
     Punctuation, String, Whitespace
 from pygments.lexer import RegexLexer, include, words
@@ -81,11 +82,11 @@ class MonteLexer(RegexLexer):
     """
     name = 'Monte'
     url = 'https://monte.readthedocs.io/'
-    aliases = ['monte']
-    filenames = ['*.mt']
+    aliases = ('monte',)
+    filenames = ('*.mt',)
     version_added = '2.2'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Comments
             (r'#[^\n]*\n', Comment),

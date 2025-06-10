@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer
 from pygments.token import Text, Comment, Keyword, String
 
@@ -21,9 +22,9 @@ class X10Lexer(RegexLexer):
 
     name = 'X10'
     url = 'http://x10-lang.org/'
-    aliases = ['x10', 'xten']
-    filenames = ['*.x10']
-    mimetypes = ['text/x-x10']
+    aliases = ('x10', 'xten')
+    filenames = ('*.x10',)
+    mimetypes = ('text/x-x10',)
     version_added = '2.2'
 
     keywords = (
@@ -50,7 +51,7 @@ class X10Lexer(RegexLexer):
         'throws', 'transient'
     )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[^\S\n]+', Text),
             (r'//.*?\n', Comment.Single),

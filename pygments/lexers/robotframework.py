@@ -60,9 +60,9 @@ class RobotFrameworkLexer(Lexer):
     """
     name = 'RobotFramework'
     url = 'http://robotframework.org'
-    aliases = ['robotframework']
-    filenames = ['*.robot', '*.resource']
-    mimetypes = ['text/x-robotframework']
+    aliases = ('robotframework',)
+    filenames = ('*.robot', '*.resource')
+    mimetypes = ('text/x-robotframework',)
     version_added = '1.6'
 
     def __init__(self, **options):
@@ -158,7 +158,7 @@ class RowSplitter:
     _pipe_splitter = re.compile(r'((?:^| +)\|(?: +|$))')
 
     def split(self, row):
-        splitter = (row.startswith('| ') and self._split_from_pipes
+        splitter = ((row.startswith('| ') and self._split_from_pipes)
                     or self._split_from_spaces)
         yield from splitter(row)
         yield '\n'
@@ -306,7 +306,7 @@ class ForLoop(Tokenizer):
         self._in_arguments = False
 
     def _tokenize(self, value, index):
-        token = self._in_arguments and ARGUMENT or SYNTAX
+        token = (self._in_arguments and ARGUMENT) or SYNTAX
         if value.upper() in ('IN', 'IN RANGE'):
             self._in_arguments = True
         return token

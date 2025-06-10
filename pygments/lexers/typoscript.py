@@ -18,12 +18,13 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, using
 from pygments.token import Text, Comment, Name, String, Number, \
     Operator, Punctuation
 
-__all__ = ['TypoScriptLexer', 'TypoScriptCssDataLexer', 'TypoScriptHtmlDataLexer']
+__all__ = ['TypoScriptCssDataLexer', 'TypoScriptHtmlDataLexer', 'TypoScriptLexer']
 
 
 class TypoScriptCssDataLexer(RegexLexer):
@@ -32,11 +33,11 @@ class TypoScriptCssDataLexer(RegexLexer):
     """
 
     name = 'TypoScriptCssData'
-    aliases = ['typoscriptcssdata']
+    aliases = ('typoscriptcssdata',)
     url = 'http://docs.typo3.org/typo3cms/TyposcriptReference/'
     version_added = '2.2'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # marker: ###MARK###
             (r'(.*)(###\w+###)(.*)', bygroups(String, Name.Constant, String)),
@@ -67,11 +68,11 @@ class TypoScriptHtmlDataLexer(RegexLexer):
     """
 
     name = 'TypoScriptHtmlData'
-    aliases = ['typoscripthtmldata']
+    aliases = ('typoscripthtmldata',)
     url = 'http://docs.typo3.org/typo3cms/TyposcriptReference/'
     version_added = '2.2'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # INCLUDE_TYPOSCRIPT
             (r'(INCLUDE_TYPOSCRIPT)', Name.Class),
@@ -103,14 +104,14 @@ class TypoScriptLexer(RegexLexer):
 
     name = 'TypoScript'
     url = 'http://docs.typo3.org/typo3cms/TyposcriptReference/'
-    aliases = ['typoscript']
-    filenames = ['*.typoscript']
-    mimetypes = ['text/x-typoscript']
+    aliases = ('typoscript',)
+    filenames = ('*.typoscript',)
+    mimetypes = ('text/x-typoscript',)
     version_added = '2.2'
 
     flags = re.DOTALL | re.MULTILINE
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('comment'),
             include('constant'),

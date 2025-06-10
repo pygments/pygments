@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 import re
+import typing
 
 from pygments.lexer import RegexLexer, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -22,14 +23,14 @@ class CarbonLexer(RegexLexer):
     """
     name = 'Carbon'
     url = 'https://github.com/carbon-language/carbon-lang'
-    filenames = ['*.carbon']
-    aliases = ['carbon']
-    mimetypes = ['text/x-carbon']
+    filenames = ('*.carbon',)
+    aliases = ('carbon',)
+    mimetypes = ('text/x-carbon',)
     version_added = '2.15'
 
     flags = re.MULTILINE | re.DOTALL
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'\n', Whitespace),
             (r'\s+', Whitespace),

@@ -9,6 +9,7 @@
 """
 
 from string import Template
+import typing
 
 from pygments.lexer import RegexLexer, include, bygroups, using, \
     this, default, words
@@ -23,9 +24,9 @@ class FantomLexer(RegexLexer):
     For Fantom source code.
     """
     name = 'Fantom'
-    aliases = ['fan']
-    filenames = ['*.fan']
-    mimetypes = ['application/x-fantom']
+    aliases = ('fan',)
+    filenames = ('*.fan',)
+    mimetypes = ('application/x-fantom',)
     url = 'https://www.fantom.org'
     version_added = '1.5'
 
@@ -42,7 +43,7 @@ class FantomLexer(RegexLexer):
             )
         )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'comments': [
             (r'(?s)/\*.*?\*/', Comment.Multiline),           # Multiline
             (r'//.*?$', Comment.Single),                    # Single line

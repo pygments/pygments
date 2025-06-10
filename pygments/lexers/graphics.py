@@ -8,13 +8,20 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words, include, bygroups, using, \
     this, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, \
     Number, Punctuation, String, Whitespace
 
-__all__ = ['GLShaderLexer', 'PostScriptLexer', 'AsymptoteLexer', 'GnuplotLexer',
-           'PovrayLexer', 'HLSLShaderLexer']
+__all__ = [
+    'AsymptoteLexer',
+    'GLShaderLexer',
+    'GnuplotLexer',
+    'HLSLShaderLexer',
+    'PostScriptLexer',
+    'PovrayLexer',
+]
 
 
 class GLShaderLexer(RegexLexer):
@@ -22,13 +29,13 @@ class GLShaderLexer(RegexLexer):
     GLSL (OpenGL Shader) lexer.
     """
     name = 'GLSL'
-    aliases = ['glsl']
-    filenames = ['*.vert', '*.frag', '*.geo']
-    mimetypes = ['text/x-glslsrc']
+    aliases = ('glsl',)
+    filenames = ('*.vert', '*.frag', '*.geo')
+    mimetypes = ('text/x-glslsrc',)
     url = 'https://www.khronos.org/api/opengl'
     version_added = '1.1'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#(?:.*\\\n)*.*$', Comment.Preproc),
             (r'//.*$', Comment.Single),
@@ -153,13 +160,13 @@ class HLSLShaderLexer(RegexLexer):
     HLSL (Microsoft Direct3D Shader) lexer.
     """
     name = 'HLSL'
-    aliases = ['hlsl']
-    filenames = ['*.hlsl', '*.hlsli']
-    mimetypes = ['text/x-hlsl']
+    aliases = ('hlsl',)
+    filenames = ('*.hlsl', '*.hlsli')
+    mimetypes = ('text/x-hlsl',)
     url = 'https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl'
     version_added = '2.3'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'#(?:.*\\\n)*.*$', Comment.Preproc),
             (r'//.*$', Comment.Single),
@@ -308,9 +315,9 @@ class PostScriptLexer(RegexLexer):
     """
     name = 'PostScript'
     url = 'https://en.wikipedia.org/wiki/PostScript'
-    aliases = ['postscript', 'postscr']
-    filenames = ['*.ps', '*.eps']
-    mimetypes = ['application/postscript']
+    aliases = ('postscript', 'postscr')
+    filenames = ('*.ps', '*.eps')
+    mimetypes = ('application/postscript',)
     version_added = '1.4'
 
     delimiter = r'()<>\[\]{}/%\s'
@@ -319,7 +326,7 @@ class PostScriptLexer(RegexLexer):
     valid_name_chars = rf'[^{delimiter}]'
     valid_name = rf"{valid_name_chars}+{delimiter_end}"
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # All comment types
             (r'^%!.+$', Comment.Preproc),
@@ -402,15 +409,15 @@ class AsymptoteLexer(RegexLexer):
     """
     name = 'Asymptote'
     url = 'http://asymptote.sf.net/'
-    aliases = ['asymptote', 'asy']
-    filenames = ['*.asy']
-    mimetypes = ['text/x-asymptote']
+    aliases = ('asymptote', 'asy')
+    filenames = ('*.asy',)
+    mimetypes = ('text/x-asymptote',)
     version_added = '1.2'
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/\*.*?\*/)+'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'whitespace': [
             (r'\n', Whitespace),
             (r'\s+', Whitespace),
@@ -530,12 +537,12 @@ class GnuplotLexer(RegexLexer):
 
     name = 'Gnuplot'
     url = 'http://gnuplot.info/'
-    aliases = ['gnuplot']
-    filenames = ['*.plot', '*.plt']
-    mimetypes = ['text/x-gnuplot']
+    aliases = ('gnuplot',)
+    filenames = ('*.plot', '*.plt')
+    mimetypes = ('text/x-gnuplot',)
     version_added = '0.11'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
             (_shortened('bi$nd'), Keyword, 'bind'),
@@ -689,12 +696,12 @@ class PovrayLexer(RegexLexer):
     """
     name = 'POVRay'
     url = 'http://www.povray.org/'
-    aliases = ['pov']
-    filenames = ['*.pov', '*.inc']
-    mimetypes = ['text/x-povray']
+    aliases = ('pov',)
+    filenames = ('*.pov', '*.inc')
+    mimetypes = ('text/x-povray',)
     version_added = '0.11'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'/\*[\w\W]*?\*/', Comment.Multiline),
             (r'//.*$', Comment.Single),

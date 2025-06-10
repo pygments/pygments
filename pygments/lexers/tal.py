@@ -10,6 +10,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words
 from pygments.token import Comment, Keyword, Name, String, Number, \
     Punctuation, Whitespace, Literal
@@ -23,20 +24,20 @@ class TalLexer(RegexLexer):
     """
 
     name = 'Tal'
-    aliases = ['tal', 'uxntal']
-    filenames = ['*.tal']
-    mimetypes = ['text/x-uxntal']
+    aliases = ('tal', 'uxntal')
+    filenames = ('*.tal',)
+    mimetypes = ('text/x-uxntal',)
     url = 'https://wiki.xxiivv.com/site/uxntal.html'
     version_added = '2.12'
 
-    instructions = [
+    instructions = (
         'BRK', 'LIT', 'INC', 'POP', 'DUP', 'NIP', 'SWP', 'OVR', 'ROT',
         'EQU', 'NEQ', 'GTH', 'LTH', 'JMP', 'JCN', 'JSR', 'STH',
         'LDZ', 'STZ', 'LDR', 'STR', 'LDA', 'STA', 'DEI', 'DEO',
         'ADD', 'SUB', 'MUL', 'DIV', 'AND', 'ORA', 'EOR', 'SFT'
-    ]
+    )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         # the comment delimiters must not be adjacent to non-space characters.
         # this means ( foo ) is a valid comment but (foo) is not. this also
         # applies to nested comments.

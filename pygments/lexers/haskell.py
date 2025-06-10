@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import Lexer, RegexLexer, bygroups, do_insertions, \
     default, include, inherit, line_re
@@ -16,9 +17,18 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Whitespace
 from pygments import unistring as uni
 
-__all__ = ['HaskellLexer', 'HspecLexer', 'IdrisLexer', 'AgdaLexer', 'CryptolLexer',
-           'LiterateHaskellLexer', 'LiterateIdrisLexer', 'LiterateAgdaLexer',
-           'LiterateCryptolLexer', 'KokaLexer']
+__all__ = [
+    'AgdaLexer',
+    'CryptolLexer',
+    'HaskellLexer',
+    'HspecLexer',
+    'IdrisLexer',
+    'KokaLexer',
+    'LiterateAgdaLexer',
+    'LiterateCryptolLexer',
+    'LiterateHaskellLexer',
+    'LiterateIdrisLexer',
+]
 
 
 class HaskellLexer(RegexLexer):
@@ -27,9 +37,9 @@ class HaskellLexer(RegexLexer):
     """
     name = 'Haskell'
     url = 'https://www.haskell.org/'
-    aliases = ['haskell', 'hs']
-    filenames = ['*.hs']
-    mimetypes = ['text/x-haskell']
+    aliases = ('haskell', 'hs')
+    filenames = ('*.hs',)
+    mimetypes = ('text/x-haskell',)
     version_added = '0.8'
 
     reserved = ('case', 'class', 'data', 'default', 'deriving', 'do', 'else',
@@ -40,7 +50,7 @@ class HaskellLexer(RegexLexer):
              'DC[1-4]', 'NAK', 'SYN', 'ETB', 'CAN',
              'EM', 'SUB', 'ESC', '[FGRU]S', 'SP', 'DEL')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Whitespace:
             (r'\s+', Whitespace),
@@ -159,12 +169,12 @@ class HspecLexer(HaskellLexer):
     """
 
     name = 'Hspec'
-    aliases = ['hspec']
-    filenames = ['*Spec.hs']
-    mimetypes = []
+    aliases = ('hspec',)
+    filenames = ('*Spec.hs',)
+    mimetypes = ()
     version_added = '2.4'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(it)(\s*)("[^"]*")', bygroups(Text, Whitespace, String.Doc)),
             (r'(describe)(\s*)("[^"]*")', bygroups(Text, Whitespace, String.Doc)),
@@ -182,9 +192,9 @@ class IdrisLexer(RegexLexer):
     """
     name = 'Idris'
     url = 'https://www.idris-lang.org/'
-    aliases = ['idris', 'idr']
-    filenames = ['*.idr']
-    mimetypes = ['text/x-idris']
+    aliases = ('idris', 'idr')
+    filenames = ('*.idr',)
+    mimetypes = ('text/x-idris',)
     version_added = '2.0'
 
     reserved = ('case', 'class', 'data', 'default', 'using', 'do', 'else',
@@ -205,7 +215,7 @@ class IdrisLexer(RegexLexer):
     directives = ('lib', 'link', 'flag', 'include', 'hide', 'freeze', 'access',
                   'default', 'logging', 'dynamic', 'name', 'error_handlers', 'language')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Comments
             (r'^(\s*)(%({}))'.format('|'.join(directives)),
@@ -293,9 +303,9 @@ class AgdaLexer(RegexLexer):
 
     name = 'Agda'
     url = 'http://wiki.portal.chalmers.se/agda/pmwiki.php'
-    aliases = ['agda']
-    filenames = ['*.agda']
-    mimetypes = ['text/x-agda']
+    aliases = ('agda',)
+    filenames = ('*.agda',)
+    mimetypes = ('text/x-agda',)
     version_added = '2.0'
 
     reserved = (
@@ -308,7 +318,7 @@ class AgdaLexer(RegexLexer):
         'variable', 'where', 'with',
     )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Declaration
             (r'^(\s*)([^\s(){}]+)(\s*)(:)(\s*)',
@@ -363,9 +373,9 @@ class CryptolLexer(RegexLexer):
     FIXME: A Cryptol2 lexer based on the lexemes defined in the Haskell 98 Report.
     """
     name = 'Cryptol'
-    aliases = ['cryptol', 'cry']
-    filenames = ['*.cry']
-    mimetypes = ['text/x-cryptol']
+    aliases = ('cryptol', 'cry')
+    filenames = ('*.cry',)
+    mimetypes = ('text/x-cryptol',)
     url = 'https://www.cryptol.net'
     version_added = '2.0'
 
@@ -378,7 +388,7 @@ class CryptolLexer(RegexLexer):
              'DC[1-4]', 'NAK', 'SYN', 'ETB', 'CAN',
              'EM', 'SUB', 'ESC', '[FGRU]S', 'SP', 'DEL')
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Whitespace:
             (r'\s+', Whitespace),
@@ -480,7 +490,7 @@ class CryptolLexer(RegexLexer):
         ],
     }
 
-    EXTRA_KEYWORDS = {'join', 'split', 'reverse', 'transpose', 'width',
+    EXTRA_KEYWORDS: typing.ClassVar = {'join', 'split', 'reverse', 'transpose', 'width',
                       'length', 'tail', '<<', '>>', '<<<', '>>>', 'const',
                       'reg', 'par', 'seq', 'ASSERT', 'undefined', 'error',
                       'trace'}
@@ -517,7 +527,7 @@ class LiterateLexer(Lexer):
     def get_tokens_unprocessed(self, text):
         style = self.options.get('litstyle')
         if style is None:
-            style = (text.lstrip()[0:1] in '%\\') and 'latex' or 'bird'
+            style = ((text.lstrip()[0:1] in '%\\') and 'latex') or 'bird'
 
         code = ''
         insertions = []
@@ -571,9 +581,9 @@ class LiterateHaskellLexer(LiterateLexer):
         is a backslash or percent character, LaTeX is assumed, else Bird.
     """
     name = 'Literate Haskell'
-    aliases = ['literate-haskell', 'lhaskell', 'lhs']
-    filenames = ['*.lhs']
-    mimetypes = ['text/x-literate-haskell']
+    aliases = ('literate-haskell', 'lhaskell', 'lhs')
+    filenames = ('*.lhs',)
+    mimetypes = ('text/x-literate-haskell',)
     url = 'https://wiki.haskell.org/Literate_programming'
     version_added = '0.9'
 
@@ -594,9 +604,9 @@ class LiterateIdrisLexer(LiterateLexer):
         is a backslash or percent character, LaTeX is assumed, else Bird.
     """
     name = 'Literate Idris'
-    aliases = ['literate-idris', 'lidris', 'lidr']
-    filenames = ['*.lidr']
-    mimetypes = ['text/x-literate-idris']
+    aliases = ('literate-idris', 'lidris', 'lidr')
+    filenames = ('*.lidr',)
+    mimetypes = ('text/x-literate-idris',)
     url = 'https://idris2.readthedocs.io/en/latest/reference/literate.html'
     version_added = '2.0'
 
@@ -617,9 +627,9 @@ class LiterateAgdaLexer(LiterateLexer):
         is a backslash or percent character, LaTeX is assumed, else Bird.
     """
     name = 'Literate Agda'
-    aliases = ['literate-agda', 'lagda']
-    filenames = ['*.lagda']
-    mimetypes = ['text/x-literate-agda']
+    aliases = ('literate-agda', 'lagda')
+    filenames = ('*.lagda',)
+    mimetypes = ('text/x-literate-agda',)
     url = 'https://agda.readthedocs.io/en/latest/tools/literate-programming.html'
     version_added = '2.0'
 
@@ -640,9 +650,9 @@ class LiterateCryptolLexer(LiterateLexer):
         is a backslash or percent character, LaTeX is assumed, else Bird.
     """
     name = 'Literate Cryptol'
-    aliases = ['literate-cryptol', 'lcryptol', 'lcry']
-    filenames = ['*.lcry']
-    mimetypes = ['text/x-literate-cryptol']
+    aliases = ('literate-cryptol', 'lcryptol', 'lcry')
+    filenames = ('*.lcry',)
+    mimetypes = ('text/x-literate-cryptol',)
     url = 'https://www.cryptol.net'
     version_added = '2.0'
 
@@ -658,12 +668,12 @@ class KokaLexer(RegexLexer):
 
     name = 'Koka'
     url = 'https://koka-lang.github.io/koka/doc/index.html'
-    aliases = ['koka']
-    filenames = ['*.kk', '*.kki']
-    mimetypes = ['text/x-koka']
+    aliases = ('koka',)
+    filenames = ('*.kk', '*.kki')
+    mimetypes = ('text/x-koka',)
     version_added = '1.6'
 
-    keywords = [
+    keywords = (
         'infix', 'infixr', 'infixl',
         'type', 'cotype', 'rectype', 'alias',
         'struct', 'con',
@@ -676,25 +686,25 @@ class KokaLexer(RegexLexer):
         'rec',
         'try', 'yield', 'enum',
         'interface', 'instance',
-    ]
+    )
 
     # keywords that are followed by a type
-    typeStartKeywords = [
+    typeStartKeywords = (
         'type', 'cotype', 'rectype', 'alias', 'struct', 'enum',
-    ]
+    )
 
     # keywords valid in a type
-    typekeywords = [
+    typekeywords = (
         'forall', 'exists', 'some', 'with',
-    ]
+    )
 
     # builtin names and special names
-    builtin = [
+    builtin = (
         'for', 'while', 'repeat',
         'foreach', 'foreach-indexed',
         'error', 'catch', 'finally',
         'cs', 'js', 'file', 'ref', 'assigned',
-    ]
+    )
 
     # symbols that can be in an operator
     symbols = r'[$%&*+@!/\\^~=.:\-?|<>]+'
@@ -711,7 +721,7 @@ class KokaLexer(RegexLexer):
     tokenConstructor = Generic.Emph
 
     # main lexer
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             include('whitespace'),
 

@@ -9,12 +9,13 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, bygroups, include, words, using, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic
 
-__all__ = ['FortranLexer', 'FortranFixedLexer']
+__all__ = ['FortranFixedLexer', 'FortranLexer']
 
 
 class FortranLexer(RegexLexer):
@@ -23,9 +24,9 @@ class FortranLexer(RegexLexer):
     """
     name = 'Fortran'
     url = 'https://fortran-lang.org/'
-    aliases = ['fortran', 'f90']
-    filenames = ['*.f03', '*.f90', '*.F03', '*.F90']
-    mimetypes = ['text/x-fortran']
+    aliases = ('fortran', 'f90')
+    filenames = ('*.f03', '*.f90', '*.F03', '*.F90')
+    mimetypes = ('text/x-fortran',)
     version_added = '0.10'
     flags = re.IGNORECASE | re.MULTILINE
 
@@ -36,7 +37,7 @@ class FortranLexer(RegexLexer):
     # Builtins:
     # http://gcc.gnu.org/onlinedocs/gcc-3.4.6/g77/Table-of-Intrinsic-Functions.html
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'^#.*\n', Comment.Preproc),
             (r'!.*\n', Comment),
@@ -174,8 +175,8 @@ class FortranFixedLexer(RegexLexer):
     Lexer for fixed format Fortran.
     """
     name = 'FortranFixed'
-    aliases = ['fortranfixed']
-    filenames = ['*.f', '*.F']
+    aliases = ('fortranfixed',)
+    filenames = ('*.f', '*.F')
     url = 'https://fortran-lang.org/'
     version_added = '2.1'
 
@@ -190,7 +191,7 @@ class FortranFixedLexer(RegexLexer):
             if value != '':
                 yield index, token, value
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'[C*].*\n', Comment),
             (r'#.*\n', Comment.Preproc),

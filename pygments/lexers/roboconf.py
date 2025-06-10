@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.lexer import RegexLexer, words, re
 from pygments.token import Text, Operator, Keyword, Name, Comment
 
@@ -19,13 +20,13 @@ class RoboconfGraphLexer(RegexLexer):
     Lexer for Roboconf graph files.
     """
     name = 'Roboconf Graph'
-    aliases = ['roboconf-graph']
-    filenames = ['*.graph']
+    aliases = ('roboconf-graph',)
+    filenames = ('*.graph',)
     url = 'https://roboconf.github.io/en/user-guide/graph-definition.html'
     version_added = '2.1'
 
     flags = re.IGNORECASE | re.MULTILINE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Skip white spaces
             (r'\s+', Text),
@@ -54,13 +55,13 @@ class RoboconfInstancesLexer(RegexLexer):
     Lexer for Roboconf instances files.
     """
     name = 'Roboconf Instances'
-    aliases = ['roboconf-instances']
-    filenames = ['*.instances']
+    aliases = ('roboconf-instances',)
+    filenames = ('*.instances',)
     url = 'https://roboconf.github.io'
     version_added = '2.1'
 
     flags = re.IGNORECASE | re.MULTILINE
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
 
             # Skip white spaces

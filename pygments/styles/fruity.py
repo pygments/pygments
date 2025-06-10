@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Token, Comment, Name, Keyword, \
     Generic, Number, String, Whitespace
@@ -26,7 +27,7 @@ class FruityStyle(Style):
     background_color = '#111111'
     highlight_color = '#333333'
 
-    styles = {
+    styles: typing.ClassVar = {
         Whitespace:         '#888888',
         Token:              '#ffffff',
         Generic.Output:     '#444444 bg:#222222',

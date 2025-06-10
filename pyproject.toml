@@ -65,6 +65,11 @@ path = "pygments/__init__.py"
 target-version = "py38"
 lint.extend-select = [
   "UP",  # "pyupgrade"
+  "RUF", # "ruff"
+]
+lint.extend-ignore = [
+  # Ambiguous letters/quotation marks
+  "RUF001", "RUF003"
 ]
 extend-exclude = [
     # These Python tests are purposefully invalid.

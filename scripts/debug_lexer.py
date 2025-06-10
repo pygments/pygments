@@ -197,7 +197,7 @@ def main(fn, lexer=None, options={}):
         if type == Error and not ignerror:
             print('Error parsing', fn, 'on line', lno)
             if not showall:
-                print('Previous tokens' + (debug_lexer and ' and states' or '') + ':')
+                print('Previous tokens' + ((debug_lexer and ' and states') or '') + ':')
                 for i in range(max(len(tokens) - num, 0), len(tokens)):
                     if debug_lexer:
                         show_token(tokens[i], states[i])

@@ -9,12 +9,13 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
 
-__all__ = ['PrologLexer', 'LogtalkLexer']
+__all__ = ['LogtalkLexer', 'PrologLexer']
 
 
 class PrologLexer(RegexLexer):
@@ -22,13 +23,13 @@ class PrologLexer(RegexLexer):
     Lexer for Prolog files.
     """
     name = 'Prolog'
-    aliases = ['prolog']
-    filenames = ['*.ecl', '*.prolog', '*.pro', '*.pl']
-    mimetypes = ['text/x-prolog']
+    aliases = ('prolog',)
+    filenames = ('*.ecl', '*.prolog', '*.pro', '*.pl')
+    mimetypes = ('text/x-prolog',)
     url = 'https://en.wikipedia.org/wiki/Prolog'
     version_added = ''
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'/\*', Comment.Multiline, 'nested-comment'),
             (r'%.*', Comment.Single),
@@ -95,12 +96,12 @@ class LogtalkLexer(RegexLexer):
 
     name = 'Logtalk'
     url = 'http://logtalk.org/'
-    aliases = ['logtalk']
-    filenames = ['*.lgt', '*.logtalk']
-    mimetypes = ['text/x-logtalk']
+    aliases = ('logtalk',)
+    filenames = ('*.lgt', '*.logtalk')
+    mimetypes = ('text/x-logtalk',)
     version_added = '0.10'
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             # Directives
             (r'^\s*:-\s', Punctuation, 'directive'),

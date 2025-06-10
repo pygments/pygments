@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, words, bygroups
 from pygments.token import Text, Comment, Operator, Keyword, Name, Number, \
@@ -23,9 +24,9 @@ class IDLLexer(RegexLexer):
     """
     name = 'IDL'
     url = 'https://www.l3harrisgeospatial.com/Software-Technology/IDL'
-    aliases = ['idl']
-    filenames = ['*.pro']
-    mimetypes = ['text/idl']
+    aliases = ('idl',)
+    filenames = ('*.pro',)
+    mimetypes = ('text/idl',)
     version_added = '1.6'
 
     flags = re.IGNORECASE | re.MULTILINE
@@ -247,7 +248,7 @@ class IDLLexer(RegexLexer):
         'xyouts', 'zoom', 'zoom_24')
     """Functions from: http://www.exelisvis.com/docs/routines-1.html"""
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r'(^\s*)(;.*?)(\n)', bygroups(Whitespace, Comment.Single,
                 Whitespace)),

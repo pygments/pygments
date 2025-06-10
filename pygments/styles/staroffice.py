@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import typing
 from pygments.style import Style
 from pygments.token import Comment, Error, Literal, Name, Token
 
@@ -22,7 +23,7 @@ class StarofficeStyle(Style):
     name = 'staroffice'
 
     
-    styles = {
+    styles: typing.ClassVar = {
         Token:                  '#000080',   # Blue
         Comment:                '#696969',   # DimGray
         Error:                  '#800000',   # Maroon

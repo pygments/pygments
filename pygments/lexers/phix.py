@@ -9,6 +9,7 @@
 """
 
 import re
+import typing
 
 from pygments.lexer import RegexLexer, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
@@ -25,9 +26,9 @@ class PhixLexer(RegexLexer):
 
     name = 'Phix'
     url = 'http://phix.x10.mx'
-    aliases = ['phix']
-    filenames = ['*.exw']
-    mimetypes = ['text/x-phix']
+    aliases = ('phix',)
+    filenames = ('*.exw',)
+    mimetypes = ('text/x-phix',)
     version_added = '2.14'
 
     flags = re.MULTILINE    # nb: **NOT** re.DOTALL! (totally spanners comment handling)
@@ -334,7 +335,7 @@ class PhixLexer(RegexLexer):
         'true', 'True', 'TRUE', 'VC_SCRNLINES', 'WHITE', 'WINDOWS', 'YELLOW'
     )
 
-    tokens = {
+    tokens: typing.ClassVar = {
         'root': [
             (r"\s+", Whitespace),
             (r'/\*|--/\*|#\[', Comment.Multiline, 'comment'),
