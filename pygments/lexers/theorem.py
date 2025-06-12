@@ -25,10 +25,10 @@ class CoqLexer(RegexLexer):
     """
 
     name = 'Coq'
-    url = 'http://coq.inria.fr/'
-    aliases = ['coq']
+    url = 'https://rocq-prover.org/'
+    aliases = ['coq', 'rocq-prover', 'rocq', 'Rocq']
     filenames = ['*.v']
-    mimetypes = ['text/x-coq']
+    mimetypes = ['text/x-coq', 'text/x-rocq']
     version_added = '1.5'
 
     flags = 0 # no re.MULTILINE
