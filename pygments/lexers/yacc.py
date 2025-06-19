@@ -8,28 +8,22 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, DelegatingLexer, include, bygroups, words
+from pygments.lexer import RegexLexer, DelegatingLexer, include, bygroups, \
+    words, default
 from pygments.token import Keyword, Punctuation, Comment, Other, Name, \
-    Whitespace, String, Operator
-from pygments.lexers.c_cpp import CLexer
+    Whitespace, Operator
+from pygments.lexers.c_cpp import CLexer, CFamilyLexer
 
 __all__ = ['YaccLexer']
 
 class YaccBase(RegexLexer):
-    yaccType = r'<\s*[A-Za-z][*\w\s()]*>' # parentheses are for function pointers
+    yaccType = r'<(?:\s*[A-Za-z][*\w\s()]*|\*)?>' # parentheses are for function pointers
     yaccName = r'[A-Za-z_][-\w.]*'
     yaccVarname = r'\$|-?\d+|[A-Za-z_]\w*|\[' + yaccName + r'\]'
 
     tokens = {
-        # Pilfered from c_cpp.py
-        'string': [
-            (r'"', String, '#pop'),
-            (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|'
-             r'u[a-fA-F0-9]{4}|U[a-fA-F0-9]{8}|[0-7]{1,3})', String.Escape),
-            (r'[^\\"\n]+', String),  # all other characters
-            (r'\\\n', String),  # line continuation
-            (r'\\', String),  # stray backslash
-        ],
+        'string': CFamilyLexer.tokens['string'],
+        'literals': CFamilyLexer.tokens['literals'],
         'yaccVars': [
             (r'(\$)(' + yaccType + r')?(' + yaccVarname + ')',
              bygroups(Name.Variable, Keyword.Type, Name.Variable)),
@@ -47,18 +41,12 @@ class YaccBase(RegexLexer):
             (r'[^}$@%]+|[%}]', Other)
         ],
         'common': [
-            # According to POSIX, just a `%%' token is enough; it doesn't
-            # necessarily have to be on its own line
-            (r'%%', Keyword, '#pop'),
             (r'\{', Other, 'embeddedC'),
             (yaccType, Keyword.Type),
             (r'(?s)/\*.*?\*/', Comment),
             (r'//.*', Comment),
             (r'\s+', Whitespace),
-            # Also purloined from c_cpp.py
-            (r'([LuU]|u8)?(")', bygroups(String.Affix, String), 'string'),
-            (r"([LuU]|u8)?(')(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])(')",
-             bygroups(String.Affix, String.Char, String.Char, String.Char)),
+            include('literals'),
             include('yaccVars')
         ],
         'gettext': [
@@ -67,15 +55,39 @@ class YaccBase(RegexLexer):
             (r'\)', Punctuation, '#pop'),
             include('common')
         ],
+        'define': [
+            (r'(api\.value\.type)(\s+)(union(?:-directive)?|variant)\b',
+             bygroups(Name, Whitespace, Keyword), '#pop'),
+            (r'(api\.value\.union\.name)(\s+)([A-Za-z_]\w*)\b',
+             bygroups(Name, Whitespace, Name.Class), '#pop'),
+            (r'(api\.(?:header|location)\.include)(\s+)'
+             + r'(\{)(\s*)("[^"]+"|<[^>]+>)(\s*)(\})',
+             bygroups(Name, Whitespace, Punctuation, Whitespace,
+                      Comment.PreprocFile, Whitespace, Punctuation),
+             '#pop'),
+            default('#pop')
+        ],
         'declarations': [
+            # According to POSIX, just a `%%' token is enough; it doesn't
+            # necessarily have to be on its own line
+            (r'%%', Keyword, '#pop'),
             (r'%\{', Punctuation, 'POSIXembeddedC'),
-            (r'^(%)([-\w]+)', bygroups(Punctuation, Keyword)),
+            (r'^(%)(define)(\s+)', bygroups(Punctuation, Keyword, Whitespace), 'define'),
+            (r'^(%)([\w-]+)', bygroups(Punctuation, Keyword)),
             (r';', Punctuation),
             (r'(_)(\()', bygroups(Name.Function.Magic, Punctuation), 'gettext'),
             (yaccName, Name),
             include('common')
         ],
+        'predicate': [
+            # Hackily support GNU Bison GLR predicates.  This just keeps
+            # the braces balanced
+            (r'\{', Other, 'embeddedC'),
+            include('common')
+        ],
         'rules': [
+            (r'%%', Keyword, '#pop'),
+            (r'%\?', Keyword, 'predicate'),
             (r'[:;|]', Operator),
             (words(('empty', 'prec'), prefix='%', suffix=r'\b'), Keyword),
             (r'\berror\b', Keyword),

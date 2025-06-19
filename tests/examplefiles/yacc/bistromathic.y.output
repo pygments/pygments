@@ -583,9 +583,7 @@
 'api.header.include' Name
 ' '           Text.Whitespace
 '{'           Punctuation
-'"'           Literal.String
-'parse.h'     Literal.String
-'"'           Literal.String
+'"parse.h"'   Comment.PreprocFile
 '}'           Punctuation
 '\n\n'        Text.Whitespace
 
@@ -687,7 +685,7 @@
 ' '           Text.Whitespace
 'api.value.type' Name
 ' '           Text.Whitespace
-'union'       Name
+'union'       Keyword
 '\n'          Text.Whitespace
 
 '%'           Punctuation
