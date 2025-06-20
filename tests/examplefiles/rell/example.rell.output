@@ -49,7 +49,7 @@
 'ratio'       Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
-'double'      Name.Variable
+'decimal'     Keyword.Type
 ';'           Punctuation
 '\n    '      Text.Whitespace
 'privkey'     Name.Variable
@@ -406,6 +406,9 @@
 '}'           Punctuation
 '\n\n'        Text.Whitespace
 
+'/**\n * Looks like a doc comment.\n */' Comment.Multiline
+'\n'          Text.Whitespace
+
 'function'    Keyword.Declaration
 ' '           Text.Whitespace
 'filter'      Name.Variable
@@ -476,6 +479,9 @@
 '}'           Punctuation
 '\n\n'        Text.Whitespace
 
+'/* What we have here is a multiline\n   comment.\n*/' Comment.Multiline
+'\n'          Text.Whitespace
+
 'operation'   Keyword.Declaration
 ' '           Text.Whitespace
 'the_business' Name.Variable
@@ -519,6 +525,8 @@
 ';'           Punctuation
 '\n    '      Text.Whitespace
 'val'         Keyword.Reserved
+' '           Text.Whitespace
+'/* foo */'   Comment.Multiline
 ' '           Text.Whitespace
 'dec2'        Name.Variable
 ':'           Punctuation
@@ -565,6 +573,8 @@
 ' '           Text.Whitespace
 '55.77e-5'    Literal.Number.Float
 ';'           Punctuation
+' '           Text.Whitespace
+'// hello world!' Comment.Single
 '\n    '      Text.Whitespace
 'val'         Keyword.Reserved
 ' '           Text.Whitespace
