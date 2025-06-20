@@ -38,7 +38,7 @@ class RellLexer(RegexLexer):
              r'if|import|in|include|index|key|limit|module|not|offset|or|'
              r'override|return|update|val|var|when|while)\b', Keyword.Reserved),
             (r'//.*?$', Comment.Single),
-            (r'/\*.*?\*/', Comment.Multiline),
+            (r'/\*(.|\n|\r)*?\*/', Comment.Multiline),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r'\'(\\\\|\\\'|[^\\\'])*\'', String.Single),
             (r'-?[0-9]*\.[0-9]+([eE][+-][0-9]+)?', Number.Float),
