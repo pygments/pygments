@@ -10,6 +10,8 @@
 
 import re
 from pygments.lexer import RegexLexer
+from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
+    Number, Punctuation, Whitespace
 
 __all__ = ['RellLexer']
 
@@ -26,15 +28,6 @@ class RellLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'//.*?$', Comment.Single),
-            (r'/\*.*?\*/', Comment.Multiline)
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
-            (r'"(\\\\|\\'|[^\'])*"', String.Single),
-            (r'x(\'[a-fA-F0-9]*\'|"[a-fA-F0-9]*")', String, 'byte_array'),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
-            (r'@[a-zA-Z_][a-zA-Z0-9_]*', Name.Decorator),
-            (r'-?[0-9]+L?', Number.Integer),
-            (r'-?[0-9]*.[0-9]+([eE][+-][0-9]+)?', Number.Float),
             (r'(big_integer|boolean|byte_array|collection|decimal|gtv|integer|'
              r'iterable|json|list|map|mutable|set|text|virtual)\b',
              Keyword.Type),
@@ -44,5 +37,17 @@ class RellLexer(RegexLexer):
             (r'(abstract|and|break|class|continue|create|delete|else|for|guard|'
              r'if|import|in|include|index|key|limit|module|not|offset|or|'
              r'override|return|update|val|var|when|while)\b', Keyword.Reserved),
+            (r'//.*?$', Comment.Single),
+            (r'/\*.*?\*/', Comment.Multiline),
+            (r'"(\\\\|\\"|[^"])*"', String.Double),
+            (r'\'(\\\\|\\\'|[^\\\'])*\'', String.Single),
+            (r'x(\'[a-fA-F0-9]*\'|"[a-fA-F0-9]*")', Number.Bin),
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
+            (r'@[a-zA-Z_][a-zA-Z0-9_]*', Name.Decorator),
+            (r'-?[0-9]+[lL]?', Number.Integer),
+            (r'-?[0-9]*.[0-9]+([eE][+-][0-9]+)?', Number.Float),
+            (r'[~^*!%&\[\]<>|+=/?-@\$]', Operator),
+            (r'[{}():;,.]', Punctuation),
+            (r'[ \n\t\r]+', Whitespace)
         ],
     }
