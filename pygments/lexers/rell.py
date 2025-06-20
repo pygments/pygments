@@ -46,7 +46,7 @@ class RellLexer(RegexLexer):
             (r'@[a-zA-Z_][a-zA-Z0-9_]*', Name.Decorator),
             (r'-?[0-9]+[lL]?', Number.Integer),
             (r'-?[0-9]*.[0-9]+([eE][+-][0-9]+)?', Number.Float),
-            (r'[~^*!%&\[\]<>|+=/?-@\$]', Operator),
+            (r'[~^*!%&\[\]<>|+=/?\-@\$]', Operator),
             (r'[{}():;,.]', Punctuation),
             (r'[ \n\t\r]+', Whitespace)
         ],
