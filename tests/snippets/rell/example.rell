@@ -1,0 +1,77 @@
+module;
+
+entity house {
+    key id: integer;
+    index street: text;
+}
+
+object status {
+    width: integer;
+    height: integer;
+    ratio: double;
+    privkey: byte_array;
+    big_boi: big_integer;
+    lil_boi: integer;
+}
+
+enum job {
+    SOFTWARE_ENGINEER,
+    HR_REPRESENTATIVE,
+    SYSADMIN,
+    MARKETING,
+    PRODUCT_DESIGN,
+    EXECUTIVE
+}
+
+query q(x: integer): integer = x * x;
+
+query p(x: integer): integer {
+    return x * x;
+}
+
+function f(user: text = 'Bob', score: integer = 123): decimal {
+    return 123.456 + 0.123 - (.456 * 33E+10) / 55.77e-5% 9223372036854775832L + 0 * 123 * -123;
+}
+
+operation register_channel (user_pubkey: pubkey, channel_name: name) {
+    require( op_context.is_signer(user_pubkey) );
+    create channel (
+        owner = user @ {.pubkey == user_pubkey},
+        name = channel_name
+    );
+}
+
+function multiply(x: integer, y: integer) = x * y;
+
+@extendable function f(x: integer) {
+    print('f', x);
+}
+
+@extend(f) function g(x: integer) {
+    print('g', x);
+}
+
+@extend(f) function h(x: integer) {
+    print('h', x);
+}
+
+function filter(values: list<integer>, predicate: (integer) -> boolean): list<integer> {
+    val double = multiply(2, *);
+    return values @* { predicate($) };
+}
+
+operation the_business(x: list<set<map<byte_array, decimal>>>, y: boolean) {
+    val dec1: decimal = 123.456;
+    val dec2: decimal = 0.123;
+    val dec3: decimal = .456;
+    val dec4: decimal = 33E+10;
+    val dec5: decimal = 55.77e-5;
+    val big: big_integer = 9223372036854775832L;
+    val small: integer = 0;
+    val another: integer = 123;
+    val yet_another: integer = -123;
+    val my_text:text = "A double \"quoted\" string. A 'serious' man.";
+    val my_other_text : text = 'A single \'quoted\' string. A "silly" person.';
+    val my_bytes=x'';
+    val more_bytes:byte_array=x'01010101ABCDEFabcdef9876543';
+}
