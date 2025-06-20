@@ -1,0 +1,659 @@
+'module'      Keyword.Reserved
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'entity'      Keyword.Declaration
+' '           Text.Whitespace
+'house'       Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'key'         Keyword.Reserved
+' '           Text.Whitespace
+'id'          Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'integer'     Keyword.Type
+';'           Punctuation
+'\n    '      Text.Whitespace
+'index'       Keyword.Reserved
+' '           Text.Whitespace
+'street'      Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'text'        Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'status'      Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'width'       Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'integer'     Keyword.Type
+';'           Punctuation
+'\n    '      Text.Whitespace
+'height'      Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'integer'     Keyword.Type
+';'           Punctuation
+'\n    '      Text.Whitespace
+'ratio'       Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'double'      Name.Variable
+';'           Punctuation
+'\n    '      Text.Whitespace
+'privkey'     Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'byte_array'  Keyword.Type
+';'           Punctuation
+'\n    '      Text.Whitespace
+'big_boi'     Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'big_integer' Keyword.Type
+';'           Punctuation
+'\n    '      Text.Whitespace
+'lil_boi'     Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'integer'     Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'enum'        Keyword.Declaration
+' '           Text.Whitespace
+'job'         Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'SOFTWARE_ENGINEER' Name.Variable
+','           Punctuation
+'\n    '      Text.Whitespace
+'HR_REPRESENTATIVE' Name.Variable
+','           Punctuation
+'\n    '      Text.Whitespace
+'SYSADMIN'    Name.Variable
+','           Punctuation
+'\n    '      Text.Whitespace
+'MARKETING'   Name.Variable
+','           Punctuation
+'\n    '      Text.Whitespace
+'PRODUCT_DESIGN' Name.Variable
+','           Punctuation
+'\n    '      Text.Whitespace
+'EXECUTIVE'   Name.Variable
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'query'       Keyword.Declaration
+' '           Text.Whitespace
+'q'           Name.Variable
+'('           Punctuation
+'x'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'integer'     Keyword.Type
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'integer'     Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'x'           Name.Variable
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'x'           Name.Variable
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'query'       Keyword.Declaration
+' '           Text.Whitespace
+'p'           Name.Variable
+'('           Punctuation
+'x'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'integer'     Keyword.Type
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'integer'     Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'return'      Keyword.Reserved
+' '           Text.Whitespace
+'x'           Name.Variable
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'x'           Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'function'    Keyword.Declaration
+' '           Text.Whitespace
+'f'           Name.Variable
+'('           Punctuation
+'user'        Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'text'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'Bob'"       Literal.String.Single
+','           Punctuation
+' '           Text.Whitespace
+'score'       Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'integer'     Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'123'         Literal.Number.Integer
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'decimal'     Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'return'      Keyword.Reserved
+' '           Text.Whitespace
+'123.456'     Literal.Number.Float
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'0.123'       Literal.Number.Float
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'.456'        Literal.Number.Float
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'33E+10'      Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'55.77e-5'    Literal.Number.Float
+'%'           Operator
+' '           Text.Whitespace
+'9223372036854775832L' Literal.Number.Integer
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'123'         Literal.Number.Integer
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'-123'        Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'operation'   Keyword.Declaration
+' '           Text.Whitespace
+'register_channel' Name.Variable
+' '           Text.Whitespace
+'('           Punctuation
+'user_pubkey' Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'pubkey'      Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'channel_name' Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'name'        Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'require'     Name.Variable
+'('           Punctuation
+' '           Text.Whitespace
+'op_context'  Name.Variable
+'.'           Punctuation
+'is_signer'   Name.Variable
+'('           Punctuation
+'user_pubkey' Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'create'      Keyword.Reserved
+' '           Text.Whitespace
+'channel'     Name.Variable
+' '           Text.Whitespace
+'('           Punctuation
+'\n        '  Text.Whitespace
+'owner'       Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'user'        Name.Variable
+' '           Text.Whitespace
+'@'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'.'           Punctuation
+'pubkey'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'user_pubkey' Name.Variable
+'}'           Punctuation
+','           Punctuation
+'\n        '  Text.Whitespace
+'name'        Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'channel_name' Name.Variable
+'\n    '      Text.Whitespace
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'function'    Keyword.Declaration
+' '           Text.Whitespace
+'multiply'    Name.Variable
+'('           Punctuation
+'x'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'integer'     Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'y'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'integer'     Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'x'           Name.Variable
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'y'           Name.Variable
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'@extendable' Name.Decorator
+' '           Text.Whitespace
+'function'    Keyword.Declaration
+' '           Text.Whitespace
+'f'           Name.Variable
+'('           Punctuation
+'x'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'integer'     Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'print'       Name.Variable
+'('           Punctuation
+"'f'"         Literal.String.Single
+','           Punctuation
+' '           Text.Whitespace
+'x'           Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'@extend'     Name.Decorator
+'('           Punctuation
+'f'           Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'function'    Keyword.Declaration
+' '           Text.Whitespace
+'g'           Name.Variable
+'('           Punctuation
+'x'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'integer'     Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'print'       Name.Variable
+'('           Punctuation
+"'g'"         Literal.String.Single
+','           Punctuation
+' '           Text.Whitespace
+'x'           Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'@extend'     Name.Decorator
+'('           Punctuation
+'f'           Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'function'    Keyword.Declaration
+' '           Text.Whitespace
+'h'           Name.Variable
+'('           Punctuation
+'x'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'integer'     Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'print'       Name.Variable
+'('           Punctuation
+"'h'"         Literal.String.Single
+','           Punctuation
+' '           Text.Whitespace
+'x'           Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'function'    Keyword.Declaration
+' '           Text.Whitespace
+'filter'      Name.Variable
+'('           Punctuation
+'values'      Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'list'        Keyword.Type
+'<'           Operator
+'integer'     Keyword.Type
+'>'           Operator
+','           Punctuation
+' '           Text.Whitespace
+'predicate'   Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'integer'     Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'boolean'     Keyword.Type
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'list'        Keyword.Type
+'<'           Operator
+'integer'     Keyword.Type
+'>'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'val'         Keyword.Reserved
+' '           Text.Whitespace
+'double'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'multiply'    Name.Variable
+'('           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'*'           Operator
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'return'      Keyword.Reserved
+' '           Text.Whitespace
+'values'      Name.Variable
+' '           Text.Whitespace
+'@'           Operator
+'*'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'predicate'   Name.Variable
+'('           Punctuation
+'$'           Operator
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'operation'   Keyword.Declaration
+' '           Text.Whitespace
+'the_business' Name.Variable
+'('           Punctuation
+'x'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'list'        Keyword.Type
+'<'           Operator
+'set'         Keyword.Type
+'<'           Operator
+'map'         Keyword.Type
+'<'           Operator
+'byte_array'  Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'decimal'     Keyword.Type
+'>'           Operator
+'>'           Operator
+'>'           Operator
+','           Punctuation
+' '           Text.Whitespace
+'y'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'boolean'     Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'val'         Keyword.Reserved
+' '           Text.Whitespace
+'dec1'        Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'decimal'     Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'123.456'     Literal.Number.Float
+';'           Punctuation
+'\n    '      Text.Whitespace
+'val'         Keyword.Reserved
+' '           Text.Whitespace
+'dec2'        Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'decimal'     Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0.123'       Literal.Number.Float
+';'           Punctuation
+'\n    '      Text.Whitespace
+'val'         Keyword.Reserved
+' '           Text.Whitespace
+'dec3'        Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'decimal'     Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'.456'        Literal.Number.Float
+';'           Punctuation
+'\n    '      Text.Whitespace
+'val'         Keyword.Reserved
+' '           Text.Whitespace
+'dec4'        Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'decimal'     Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'33E+10'      Literal.Number.Integer
+';'           Punctuation
+'\n    '      Text.Whitespace
+'val'         Keyword.Reserved
+' '           Text.Whitespace
+'dec5'        Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'decimal'     Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'55.77e-5'    Literal.Number.Float
+';'           Punctuation
+'\n    '      Text.Whitespace
+'val'         Keyword.Reserved
+' '           Text.Whitespace
+'big'         Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'big_integer' Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'9223372036854775832L' Literal.Number.Integer
+';'           Punctuation
+'\n    '      Text.Whitespace
+'val'         Keyword.Reserved
+' '           Text.Whitespace
+'small'       Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'integer'     Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n    '      Text.Whitespace
+'val'         Keyword.Reserved
+' '           Text.Whitespace
+'another'     Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'integer'     Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'123'         Literal.Number.Integer
+';'           Punctuation
+'\n    '      Text.Whitespace
+'val'         Keyword.Reserved
+' '           Text.Whitespace
+'yet_another' Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'integer'     Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'-123'        Literal.Number.Integer
+';'           Punctuation
+'\n    '      Text.Whitespace
+'val'         Keyword.Reserved
+' '           Text.Whitespace
+'my_text'     Name.Variable
+':'           Punctuation
+'text'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"A double \\"quoted\\" string. A \'serious\' man."' Literal.String.Double
+';'           Punctuation
+'\n    '      Text.Whitespace
+'val'         Keyword.Reserved
+' '           Text.Whitespace
+'my_other_text' Name.Variable
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'text'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'\'A single \\\'quoted\\\' string. A "silly" person.\'' Literal.String.Single
+';'           Punctuation
+'\n    '      Text.Whitespace
+'val'         Keyword.Reserved
+' '           Text.Whitespace
+'my_bytes'    Name.Variable
+'='           Operator
+"x''"         Literal.Number.Bin
+';'           Punctuation
+'\n    '      Text.Whitespace
+'val'         Keyword.Reserved
+' '           Text.Whitespace
+'more_bytes'  Name.Variable
+':'           Punctuation
+'byte_array'  Keyword.Type
+'='           Operator
+"x'01010101ABCDEFabcdef9876543'" Literal.Number.Bin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
