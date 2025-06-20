@@ -8,7 +8,7 @@ entity house {
 object status {
     width: integer;
     height: integer;
-    ratio: double;
+    ratio: decimal;
     privkey: byte_array;
     big_boi: big_integer;
     lil_boi: integer;
@@ -55,17 +55,23 @@ function multiply(x: integer, y: integer) = x * y;
     print('h', x);
 }
 
+/**
+ * Looks like a doc comment.
+ */
 function filter(values: list<integer>, predicate: (integer) -> boolean): list<integer> {
     val double = multiply(2, *);
     return values @* { predicate($) };
 }
 
+/* What we have here is a multiline
+   comment.
+*/
 operation the_business(x: list<set<map<byte_array, decimal>>>, y: boolean) {
     val dec1: decimal = 123.456;
-    val dec2: decimal = 0.123;
+    val /* foo */ dec2: decimal = 0.123;
     val dec3: decimal = .456;
     val dec4: decimal = 33E+10;
-    val dec5: decimal = 55.77e-5;
+    val dec5: decimal = 55.77e-5; // hello world!
     val big: big_integer = 9223372036854775832L;
     val small: integer = 0;
     val another: integer = 123;
