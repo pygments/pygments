@@ -1,0 +1,1061 @@
+'/* Scanner for calc++.   -*- C++ -*-\n\n   Copyright (C) 2005-2015, 2018-2021 Free Software Foundation, Inc.\n\n   This file is part of Bison, the GNU Compiler Compiler.\n\n   This program is free software: you can redistribute it and/or modify\n   it under the terms of the GNU General Public License as published by\n   the Free Software Foundation, either version 3 of the License, or\n   (at your option) any later version.\n\n   This program is distributed in the hope that it will be useful,\n   but WITHOUT ANY WARRANTY; without even the implied warranty of\n   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n   GNU General Public License for more details.\n\n   You should have received a copy of the GNU General Public License\n   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */' Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'%{'          Punctuation
+' '           Text.Whitespace
+'/* -*- C++ -*- */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+' '           Text.Whitespace
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'<cerrno>'    Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' '           Text.Whitespace
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'<climits>'   Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' '           Text.Whitespace
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'<cstdlib>'   Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' '           Text.Whitespace
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'<cstring>'   Comment.PreprocFile
+' '           Comment.Single
+'// strerror' Comment.Single
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' '           Text.Whitespace
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'<string>'    Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' '           Text.Whitespace
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'"driver.hh"' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' '           Text.Whitespace
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'"parser.hh"' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'%}'          Punctuation
+'\n\n'        Text.Whitespace
+
+'%{'          Punctuation
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'if defined __clang__' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' define CLANG_VERSION (__clang_major__ * 100 + __clang_minor__)' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text.Whitespace
+
+'// Clang and ICC like to pretend they are GCC.' Comment.Single
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'if defined __GNUC__ && !defined __clang__ && !defined __ICC' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' define GCC_VERSION (__GNUC__ * 100 + __GNUC_MINOR__)' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text.Whitespace
+
+'// Pacify warnings in yy_init_buffer (observed with Flex 2.6.4)' Comment.Single
+'\n'          Text.Whitespace
+
+'// and GCC 6.4.0, 7.3.0 with -O3.' Comment.Single
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'if defined GCC_VERSION && 600 <= GCC_VERSION' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' pragma GCC diagnostic ignored "-Wnull-dereference"' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text.Whitespace
+
+"// This example uses Flex's C back end, yet compiles it as C++." Comment.Single
+'\n'          Text.Whitespace
+
+'// So expect warnings about C style casts and NULL.' Comment.Single
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'if defined CLANG_VERSION && 500 <= CLANG_VERSION' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' pragma clang diagnostic ignored "-Wold-style-cast"' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' pragma clang diagnostic ignored "-Wzero-as-null-pointer-constant"' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'elif defined GCC_VERSION && 407 <= GCC_VERSION' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' pragma GCC diagnostic ignored "-Wold-style-cast"' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' pragma GCC diagnostic ignored "-Wzero-as-null-pointer-constant"' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'define FLEX_VERSION (YY_FLEX_MAJOR_VERSION * 100 + YY_FLEX_MINOR_VERSION)' Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text.Whitespace
+
+'// Old versions of Flex (2.5.35) generate an incomplete documentation comment.' Comment.Single
+'\n'          Text.Whitespace
+
+'//'          Comment.Single
+'\n'          Text.Whitespace
+
+'//  In file included from src/scan-code-c.c:3:' Comment.Single
+'\n'          Text.Whitespace
+
+"//  src/scan-code.c:2198:21: error: empty paragraph passed to '@param' command" Comment.Single
+'\n'          Text.Whitespace
+
+'//        [-Werror,-Wdocumentation]' Comment.Single
+'\n'          Text.Whitespace
+
+'//   * @param line_number' Comment.Single
+'\n'          Text.Whitespace
+
+'//     ~~~~~~~~~~~~~~~~~^' Comment.Single
+'\n'          Text.Whitespace
+
+'//  1 error generated.' Comment.Single
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'if FLEX_VERSION < 206 && defined CLANG_VERSION' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' pragma clang diagnostic ignored "-Wdocumentation"' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text.Whitespace
+
+"// Old versions of Flex (2.5.35) use 'register'.  Warnings introduced in" Comment.Single
+'\n'          Text.Whitespace
+
+'// GCC 7 and Clang 6.' Comment.Single
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'if FLEX_VERSION < 206' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' if defined CLANG_VERSION && 600 <= CLANG_VERSION' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'  pragma clang diagnostic ignored "-Wdeprecated-register"' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' elif defined GCC_VERSION && 700 <= GCC_VERSION' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'  pragma GCC diagnostic ignored "-Wregister"' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' endif'      Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'if FLEX_VERSION < 206' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' if defined CLANG_VERSION' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'  pragma clang diagnostic ignored "-Wconversion"' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'  pragma clang diagnostic ignored "-Wdocumentation"' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'  pragma clang diagnostic ignored "-Wshorten-64-to-32"' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'  pragma clang diagnostic ignored "-Wsign-conversion"' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' elif defined GCC_VERSION' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'  pragma GCC diagnostic ignored "-Wconversion"' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'  pragma GCC diagnostic ignored "-Wsign-conversion"' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' endif'      Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'\n'          Text.Whitespace
+
+'// Flex 2.6.4, GCC 9' Comment.Single
+'\n'          Text.Whitespace
+
+"// warning: useless cast to type 'int' [-Wuseless-cast]" Comment.Single
+'\n'          Text.Whitespace
+
+'// 1361 |   YY_CURRENT_BUFFER_LVALUE->yy_buf_size = (int) (new_size - 2);' Comment.Single
+'\n'          Text.Whitespace
+
+'//      |                                                 ^' Comment.Single
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'if defined GCC_VERSION && 900 <= GCC_VERSION' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+' pragma GCC diagnostic ignored "-Wuseless-cast"' Comment.Preproc
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'%}'          Punctuation
+'\n\n'        Text.Whitespace
+
+'%'           Punctuation
+'option'      Keyword
+' '           Text.Whitespace
+'noyywrap nounput noinput batch debug' Text
+'\n\n'        Text.Whitespace
+
+'%{'          Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'// A number symbol corresponding to the value in S.' Comment.Single
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'yy'          Name
+':'           Operator
+':'           Operator
+'parser'      Name
+':'           Operator
+':'           Operator
+'symbol_type' Name
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'make_NUMBER' Name.Function
+' '           Text.Whitespace
+'('           Punctuation
+'const'       Keyword
+' '           Text.Whitespace
+'std'         Name
+':'           Operator
+':'           Operator
+'string'      Name
+' '           Text.Whitespace
+'&'           Operator
+'s'           Name
+','           Punctuation
+' '           Text.Whitespace
+'const'       Keyword
+' '           Text.Whitespace
+'yy'          Name
+':'           Operator
+':'           Operator
+'parser'      Name
+':'           Operator
+':'           Operator
+'location_type' Name
+'&'           Operator
+' '           Text.Whitespace
+'loc'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'%}'          Punctuation
+'\n\n'        Text.Whitespace
+
+'id'          Name
+'    '        Text.Whitespace
+'[a-zA-Z][a-zA-Z_0-9]*' Literal.String.Regex
+'\n'          Text.Whitespace
+
+'int'         Name
+'   '         Text.Whitespace
+'[0-9]+'      Literal.String.Regex
+'\n'          Text.Whitespace
+
+'blank'       Name
+' '           Text.Whitespace
+'[ \\t\\r]'   Literal.String.Regex
+'\n\n'        Text.Whitespace
+
+'%{'          Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'// Code run each time a pattern is matched.' Comment.Single
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'#'           Comment.Preproc
+' define YY_USER_ACTION  loc.columns (yyleng);' Comment.Preproc
+'\n'          Comment.Preproc
+
+'%}'          Punctuation
+'\n'          Text.Whitespace
+
+'%%'          Keyword
+'\n'          Text.Whitespace
+
+'%{'          Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'// A handy shortcut to the location held by the driver.' Comment.Single
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'yy'          Name
+':'           Operator
+':'           Operator
+'location'    Name
+'&'           Operator
+' '           Text.Whitespace
+'loc'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'drv'         Name
+'.'           Punctuation
+'location'    Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'// Code run each time yylex is called.' Comment.Single
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'loc'         Name
+'.'           Punctuation
+'step'        Name
+' '           Text.Whitespace
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'%}'          Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'blank'       Name
+'}'           Punctuation
+'+'           Literal.String.Regex
+'   '         Text.Whitespace
+'loc'         Name
+'.'           Punctuation
+'step'        Name
+' '           Text.Whitespace
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\\n'         Literal.String.Escape
+'+'           Literal.String.Regex
+'        '    Text.Whitespace
+'loc'         Name
+'.'           Punctuation
+'lines'       Name
+' '           Text.Whitespace
+'('           Punctuation
+'yyleng'      Name.Builtin
+')'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'loc'         Name
+'.'           Punctuation
+'step'        Name
+' '           Text.Whitespace
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'"'           Literal.String
+'-'           Literal.String
+'"'           Literal.String
+'        '    Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'yy'          Name
+':'           Operator
+':'           Operator
+'parser'      Name
+':'           Operator
+':'           Operator
+'make_MINUS'  Name
+'  '          Text.Whitespace
+'('           Punctuation
+'loc'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'"'           Literal.String
+'+'           Literal.String
+'"'           Literal.String
+'        '    Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'yy'          Name
+':'           Operator
+':'           Operator
+'parser'      Name
+':'           Operator
+':'           Operator
+'make_PLUS'   Name
+'   '         Text.Whitespace
+'('           Punctuation
+'loc'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'"'           Literal.String
+'*'           Literal.String
+'"'           Literal.String
+'        '    Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'yy'          Name
+':'           Operator
+':'           Operator
+'parser'      Name
+':'           Operator
+':'           Operator
+'make_STAR'   Name
+'   '         Text.Whitespace
+'('           Punctuation
+'loc'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'"'           Literal.String
+'/'           Literal.String
+'"'           Literal.String
+'        '    Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'yy'          Name
+':'           Operator
+':'           Operator
+'parser'      Name
+':'           Operator
+':'           Operator
+'make_SLASH'  Name
+'  '          Text.Whitespace
+'('           Punctuation
+'loc'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'"'           Literal.String
+'('           Literal.String
+'"'           Literal.String
+'        '    Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'yy'          Name
+':'           Operator
+':'           Operator
+'parser'      Name
+':'           Operator
+':'           Operator
+'make_LPAREN' Name
+' '           Text.Whitespace
+'('           Punctuation
+'loc'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'"'           Literal.String
+')'           Literal.String
+'"'           Literal.String
+'        '    Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'yy'          Name
+':'           Operator
+':'           Operator
+'parser'      Name
+':'           Operator
+':'           Operator
+'make_RPAREN' Name
+' '           Text.Whitespace
+'('           Punctuation
+'loc'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'"'           Literal.String
+':='          Literal.String
+'"'           Literal.String
+'       '     Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'yy'          Name
+':'           Operator
+':'           Operator
+'parser'      Name
+':'           Operator
+':'           Operator
+'make_ASSIGN' Name
+' '           Text.Whitespace
+'('           Punctuation
+'loc'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'int'         Name
+'}'           Punctuation
+'      '      Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'make_NUMBER' Name
+' '           Text.Whitespace
+'('           Punctuation
+'yytext'      Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'loc'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'id'          Name
+'}'           Punctuation
+'       '     Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'yy'          Name
+':'           Operator
+':'           Operator
+'parser'      Name
+':'           Operator
+':'           Operator
+'make_IDENTIFIER' Name
+' '           Text.Whitespace
+'('           Punctuation
+'yytext'      Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'loc'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'.'           Literal.String.Regex
+'          '  Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'             ' Text.Whitespace
+'throw'       Keyword
+' '           Text.Whitespace
+'yy'          Name
+':'           Operator
+':'           Operator
+'parser'      Name
+':'           Operator
+':'           Operator
+'syntax_error' Name
+'\n'          Text.Whitespace
+
+'               ' Text.Whitespace
+'('           Punctuation
+'loc'         Name
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'invalid character: ' Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'std'         Name
+':'           Operator
+':'           Operator
+'string'      Name
+'('           Punctuation
+'yytext'      Name.Builtin
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'<<EOF>>'     Keyword
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'yy'          Name
+':'           Operator
+':'           Operator
+'parser'      Name
+':'           Operator
+':'           Operator
+'make_YYEOF'  Name
+' '           Text.Whitespace
+'('           Punctuation
+'loc'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'%%'          Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'yy'          Name
+':'           Operator
+':'           Operator
+'parser'      Name
+':'           Operator
+':'           Operator
+'symbol_type' Name
+'\n'          Text.Whitespace
+
+'make_NUMBER' Name.Function
+' '           Text.Whitespace
+'('           Punctuation
+'const'       Keyword
+' '           Text.Whitespace
+'std'         Name
+':'           Operator
+':'           Operator
+'string'      Name
+' '           Text.Whitespace
+'&'           Operator
+'s'           Name
+','           Punctuation
+' '           Text.Whitespace
+'const'       Keyword
+' '           Text.Whitespace
+'yy'          Name
+':'           Operator
+':'           Operator
+'parser'      Name
+':'           Operator
+':'           Operator
+'location_type' Name
+'&'           Operator
+' '           Text.Whitespace
+'loc'         Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'errno'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'long'        Keyword.Type
+' '           Text.Whitespace
+'n'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'strtol'      Name
+' '           Text.Whitespace
+'('           Punctuation
+'s'           Name
+'.'           Punctuation
+'c_str'       Name
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'NULL'        Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'!'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'INT_MIN'     Name
+' '           Text.Whitespace
+'<'           Operator
+'='           Operator
+' '           Text.Whitespace
+'n'           Name
+' '           Text.Whitespace
+'&'           Operator
+'&'           Operator
+' '           Text.Whitespace
+'n'           Name
+' '           Text.Whitespace
+'<'           Operator
+'='           Operator
+' '           Text.Whitespace
+'INT_MAX'     Name
+' '           Text.Whitespace
+'&'           Operator
+'&'           Operator
+' '           Text.Whitespace
+'errno'       Name
+' '           Text.Whitespace
+'!'           Operator
+'='           Operator
+' '           Text.Whitespace
+'ERANGE'      Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'throw'       Keyword
+' '           Text.Whitespace
+'yy'          Name
+':'           Operator
+':'           Operator
+'parser'      Name
+':'           Operator
+':'           Operator
+'syntax_error' Name
+' '           Text.Whitespace
+'('           Punctuation
+'loc'         Name
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'integer is out of range: ' Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'s'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'yy'          Name
+':'           Operator
+':'           Operator
+'parser'      Name
+':'           Operator
+':'           Operator
+'make_NUMBER' Name
+' '           Text.Whitespace
+'('           Punctuation
+'('           Punctuation
+'int'         Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'n'           Name
+','           Punctuation
+' '           Text.Whitespace
+'loc'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'void'        Keyword.Type
+'\n'          Text.Whitespace
+
+'driver::scan_begin' Name.Function
+' '           Text.Whitespace
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'yy_flex_debug' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'trace_scanning' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'file'        Name
+'.'           Punctuation
+'empty'       Name
+' '           Text.Whitespace
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'|'           Operator
+'|'           Operator
+' '           Text.Whitespace
+'file'        Name
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'-'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'yyin'        Name.Builtin
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'stdin'       Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'else'        Keyword
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'!'           Operator
+'('           Punctuation
+'yyin'        Name.Builtin
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'fopen'       Name
+' '           Text.Whitespace
+'('           Punctuation
+'file'        Name
+'.'           Punctuation
+'c_str'       Name
+' '           Text.Whitespace
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'r'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'std'         Name
+':'           Operator
+':'           Operator
+'cerr'        Name
+' '           Text.Whitespace
+'<'           Operator
+'<'           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'cannot open ' Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'<'           Operator
+'<'           Operator
+' '           Text.Whitespace
+'file'        Name
+' '           Text.Whitespace
+'<'           Operator
+'<'           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+': '          Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'<'           Operator
+'<'           Operator
+' '           Text.Whitespace
+'strerror'    Name
+' '           Text.Whitespace
+'('           Punctuation
+'errno'       Name
+')'           Punctuation
+' '           Text.Whitespace
+'<'           Operator
+'<'           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'\\n'         Literal.String.Char
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'exit'        Name
+' '           Text.Whitespace
+'('           Punctuation
+'EXIT_FAILURE' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'void'        Keyword.Type
+'\n'          Text.Whitespace
+
+'driver::scan_end' Name.Function
+' '           Text.Whitespace
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'fclose'      Name
+' '           Text.Whitespace
+'('           Punctuation
+'yyin'        Name.Builtin
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
