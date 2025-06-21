@@ -1,4 +1,4 @@
-'/* Parser and scanner for bistromathic.   -*- C -*-\n   Copied from the GNU Bison documentation.\n\n   Copyright (C) 2019-2021 Free Software Foundation, Inc.\n\n   This file is part of Bison, the GNU Compiler Compiler.\n\n   This program is free software: you can redistribute it and/or modify\n   it under the terms of the GNU General Public License as published by\n   the Free Software Foundation, either version 3 of the License, or\n   (at your option) any later version.\n\n   This program is distributed in the hope that it will be useful,\n   but WITHOUT ANY WARRANTY; without even the implied warranty of\n   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n   GNU General Public License for more details.\n\n   You should have received a copy of the GNU General Public License\n   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */' Comment
+'/* Parser and scanner for bistromathic.   -*- C -*-\n   Copied from the GNU Bison documentation.\n\n   Copyright (C) 2019-2021 Free Software Foundation, Inc.\n\n   This file is part of Bison, the GNU Compiler Compiler.\n\n   This program is free software: you can redistribute it and/or modify\n   it under the terms of the GNU General Public License as published by\n   the Free Software Foundation, either version 3 of the License, or\n   (at your option) any later version.\n\n   This program is distributed in the hope that it will be useful,\n   but WITHOUT ANY WARRANTY; without even the implied warranty of\n   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n   GNU General Public License for more details.\n\n   You should have received a copy of the GNU General Public License\n   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */' Comment.Multiline
 '\n\n'        Text.Whitespace
 
 '%'           Punctuation
@@ -9,7 +9,7 @@
 '"'           Literal.String
 '\n\n'        Text.Whitespace
 
-'// Emitted on top of the implementation file.' Comment
+'// Emitted on top of the implementation file.' Comment.Single
 '\n'          Text.Whitespace
 
 '%'           Punctuation
@@ -144,7 +144,7 @@
 '}'           Punctuation
 '\n\n'        Text.Whitespace
 
-'// Emitted in the header file, before the definition of YYSTYPE.' Comment
+'// Emitted in the header file, before the definition of YYSTYPE.' Comment.Single
 '\n'          Text.Whitespace
 
 '%'           Punctuation
@@ -347,7 +347,7 @@
 '}'           Punctuation
 '\n\n'        Text.Whitespace
 
-'// Emitted in the header file, after the definition of YYSTYPE.' Comment
+'// Emitted in the header file, after the definition of YYSTYPE.' Comment.Single
 '\n'          Text.Whitespace
 
 '%'           Punctuation
@@ -398,16 +398,16 @@
 'line'        Name
 ','           Punctuation
 ' '           Text.Whitespace
-'YYSTYPE'     Name
+'YYSTYPE'     Name.Builtin
 ' '           Text.Whitespace
 '*'           Operator
-'yylval'      Name
+'yylval'      Name.Builtin
 ','           Punctuation
 ' '           Text.Whitespace
-'YYLTYPE'     Name
+'YYLTYPE'     Name.Builtin
 ' '           Text.Whitespace
 '*'           Operator
-'yylloc'      Name
+'yylloc'      Name.Builtin
 ','           Punctuation
 '\n'          Text.Whitespace
 
@@ -430,7 +430,7 @@
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
-'YYLTYPE'     Name
+'YYLTYPE'     Name.Builtin
 ' '           Text.Whitespace
 '*'           Operator
 'loc'         Name
@@ -484,7 +484,7 @@
 '}'           Punctuation
 '\n\n'        Text.Whitespace
 
-'// Emitted in the implementation file.' Comment
+'// Emitted in the implementation file.' Comment.Single
 '\n'          Text.Whitespace
 
 '%'           Punctuation
@@ -510,7 +510,7 @@
 'out'         Name
 ','           Punctuation
 ' '           Text.Whitespace
-'YYLTYPE'     Name
+'YYLTYPE'     Name.Builtin
 ' '           Text.Whitespace
 'const'       Keyword
 ' '           Text.Whitespace
@@ -574,7 +574,7 @@
 '}'           Punctuation
 '\n\n'        Text.Whitespace
 
-'// Include the header in the implementation rather than duplicating it.' Comment
+'// Include the header in the implementation rather than duplicating it.' Comment.Single
 '\n'          Text.Whitespace
 
 '%'           Punctuation
@@ -587,7 +587,7 @@
 '}'           Punctuation
 '\n\n'        Text.Whitespace
 
-"// Don't share global variables between the scanner and the parser." Comment
+"// Don't share global variables between the scanner and the parser." Comment.Single
 '\n'          Text.Whitespace
 
 '%'           Punctuation
@@ -598,7 +598,7 @@
 'full'        Name
 '\n\n'        Text.Whitespace
 
-'// Generate a push parser.' Comment
+'// Generate a push parser.' Comment.Single
 '\n'          Text.Whitespace
 
 '%'           Punctuation
@@ -609,10 +609,10 @@
 'push'        Name
 '\n\n'        Text.Whitespace
 
-"// To avoid name clashes (e.g., with C's EOF) prefix token definitions" Comment
+"// To avoid name clashes (e.g., with C's EOF) prefix token definitions" Comment.Single
 '\n'          Text.Whitespace
 
-'// with TOK_ (e.g., TOK_EOF).' Comment
+'// with TOK_ (e.g., TOK_EOF).' Comment.Single
 '\n'          Text.Whitespace
 
 '%'           Punctuation
@@ -625,7 +625,7 @@
 '}'           Punctuation
 '\n\n'        Text.Whitespace
 
-'// Customized syntax error messages (see yyreport_syntax_error)...' Comment
+'// Customized syntax error messages (see yyreport_syntax_error)...' Comment.Single
 '\n'          Text.Whitespace
 
 '%'           Punctuation
@@ -636,14 +636,14 @@
 'custom'      Name
 '\n\n'        Text.Whitespace
 
-'// ... with locations...' Comment
+'// ... with locations...' Comment.Single
 '\n'          Text.Whitespace
 
 '%'           Punctuation
 'locations'   Keyword
 '\n\n'        Text.Whitespace
 
-'// ... and accurate list of expected tokens.' Comment
+'// ... and accurate list of expected tokens.' Comment.Single
 '\n'          Text.Whitespace
 
 '%'           Punctuation
@@ -654,14 +654,14 @@
 'full'        Name
 '\n\n'        Text.Whitespace
 
-'// Generate the parser description file (calc.output).' Comment
+'// Generate the parser description file (calc.output).' Comment.Single
 '\n'          Text.Whitespace
 
 '%'           Punctuation
 'verbose'     Keyword
 '\n\n'        Text.Whitespace
 
-'// User information exchanged with the parser and scanner.' Comment
+'// User information exchanged with the parser and scanner.' Comment.Single
 '\n'          Text.Whitespace
 
 '%'           Punctuation
@@ -677,7 +677,7 @@
 '}'           Punctuation
 '\n\n'        Text.Whitespace
 
-'// Generate YYSTYPE from the types assigned to symbols.' Comment
+'// Generate YYSTYPE from the types assigned to symbols.' Comment.Single
 '\n'          Text.Whitespace
 
 '%'           Punctuation
@@ -745,7 +745,9 @@
 'exit'        Literal.String
 '"'           Literal.String
 '\n  '        Text.Whitespace
-'<double>'    Keyword.Type
+'<'           Punctuation
+'double'      Keyword.Type
+'>'           Punctuation
 '\n    '      Text.Whitespace
 'NUM'         Name
 ' '           Text.Whitespace
@@ -756,7 +758,10 @@
 '"'           Literal.String
 ')'           Punctuation
 '\n  '        Text.Whitespace
-'<symrec*>'   Keyword.Type
+'<'           Punctuation
+'symrec'      Name.Class
+'*'           Punctuation
+'>'           Punctuation
 '\n    '      Text.Whitespace
 'FUN'         Name
 ' '           Text.Whitespace
@@ -780,12 +785,14 @@
 '%'           Punctuation
 'nterm'       Keyword
 ' '           Text.Whitespace
-'<double>'    Keyword.Type
+'<'           Punctuation
+'double'      Keyword.Type
+'>'           Punctuation
 '  '          Text.Whitespace
 'exp'         Name
 '\n\n'        Text.Whitespace
 
-'// Enable run-time traces (yydebug).' Comment
+'// Enable run-time traces (yydebug).' Comment.Single
 '\n'          Text.Whitespace
 
 '%'           Punctuation
@@ -794,7 +801,7 @@
 'parse.trace' Name
 '\n\n'        Text.Whitespace
 
-'// Formatting semantic values in debug traces.' Comment
+'// Formatting semantic values in debug traces.' Comment.Single
 '\n'          Text.Whitespace
 
 '%'           Punctuation
@@ -880,11 +887,13 @@
 ' '           Text.Whitespace
 '}'           Punctuation
 ' '           Text.Whitespace
-'<double>'    Keyword.Type
+'<'           Punctuation
+'double'      Keyword.Type
+'>'           Punctuation
 ';'           Punctuation
 '\n\n\n'      Text.Whitespace
 
-'// Precedence (from lowest to highest) and associativity.' Comment
+'// Precedence (from lowest to highest) and associativity.' Comment.Single
 '\n'          Text.Whitespace
 
 '%'           Punctuation
@@ -924,7 +933,7 @@
 ' '           Text.Whitespace
 'NEG'         Name
 ' '           Text.Whitespace
-'// negation--unary minus' Comment
+'// negation--unary minus' Comment.Single
 '\n'          Text.Whitespace
 
 '%'           Punctuation
@@ -934,12 +943,12 @@
 '^'           Literal.String
 '"'           Literal.String
 '      '      Text.Whitespace
-'// exponentiation' Comment
+'// exponentiation' Comment.Single
 '\n\n'        Text.Whitespace
 
 '%%'          Keyword
 ' '           Text.Whitespace
-'// The grammar follows.' Comment
+'// The grammar follows.' Comment.Single
 '\n'          Text.Whitespace
 
 'input'       Name
@@ -1240,11 +1249,12 @@
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace
-'yyerror'     Name
+'yyerror'     Name.Builtin
 ' '           Text.Whitespace
 '('           Punctuation
 '&'           Operator
-'@$'          Name.Variable
+'@'           Name.Variable
+'$'           Name.Variable
 ','           Punctuation
 ' '           Text.Whitespace
 'uctx'        Name
@@ -1261,7 +1271,7 @@
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace
-'YYERROR'     Name
+'YYERROR'     Name.Builtin
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -1412,7 +1422,7 @@
 ';'           Operator
 '\n\n'        Text.Whitespace
 
-'// End of grammar.' Comment
+'// End of grammar.' Comment.Single
 '\n'          Text.Whitespace
 
 '%%'          Keyword
@@ -2009,7 +2019,7 @@
 'out'         Name
 ','           Punctuation
 ' '           Text.Whitespace
-'YYLTYPE'     Name
+'YYLTYPE'     Name.Builtin
 ' '           Text.Whitespace
 'const'       Keyword
 ' '           Text.Whitespace
@@ -2188,16 +2198,16 @@
 'line'        Name
 ','           Punctuation
 ' '           Text.Whitespace
-'YYSTYPE'     Name
+'YYSTYPE'     Name.Builtin
 ' '           Text.Whitespace
 '*'           Operator
-'yylval'      Name
+'yylval'      Name.Builtin
 ','           Punctuation
 ' '           Text.Whitespace
-'YYLTYPE'     Name
+'YYLTYPE'     Name.Builtin
 ' '           Text.Whitespace
 '*'           Operator
-'yylloc'      Name
+'yylloc'      Name.Builtin
 ','           Punctuation
 '\n'          Text.Whitespace
 
@@ -2236,14 +2246,14 @@
 '// Move the first position onto the last.\n' Comment.Single
 
 '    '        Text.Whitespace
-'yylloc'      Name
+'yylloc'      Name.Builtin
 '-'           Operator
 '>'           Operator
 'first_line'  Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'yylloc'      Name
+'yylloc'      Name.Builtin
 '-'           Operator
 '>'           Operator
 'last_line'   Name
@@ -2251,14 +2261,14 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'yylloc'      Name
+'yylloc'      Name.Builtin
 '-'           Operator
 '>'           Operator
 'first_column' Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'yylloc'      Name
+'yylloc'      Name.Builtin
 '-'           Operator
 '>'           Operator
 'last_column' Name
@@ -2268,7 +2278,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'yylloc'      Name
+'yylloc'      Name.Builtin
 '-'           Operator
 '>'           Operator
 'last_column' Name
@@ -2609,7 +2619,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '&'           Operator
-'yylval'      Name
+'yylval'      Name.Builtin
 '-'           Operator
 '>'           Operator
 'TOK_NUM'     Name
@@ -2650,7 +2660,7 @@
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace
-'yylloc'      Name
+'yylloc'      Name.Builtin
 '-'           Operator
 '>'           Operator
 'last_column' Name
@@ -2959,7 +2969,7 @@
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace
-'yylloc'      Name
+'yylloc'      Name.Builtin
 '-'           Operator
 '>'           Operator
 'last_column' Name
@@ -3054,7 +3064,7 @@
 '\n'          Text.Whitespace
 
 '            ' Text.Whitespace
-'yylval'      Name
+'yylval'      Name.Builtin
 '-'           Operator
 '>'           Operator
 'TOK_VAR'     Name
@@ -3094,10 +3104,10 @@
 '\n'          Text.Whitespace
 
 '      '      Text.Whitespace
-'yyerror'     Name
+'yyerror'     Name.Builtin
 ' '           Text.Whitespace
 '('           Punctuation
-'yylloc'      Name
+'yylloc'      Name.Builtin
 ','           Punctuation
 ' '           Text.Whitespace
 'uctx'        Name
@@ -3555,7 +3565,7 @@
 '  '          Text.Whitespace
 'const'       Keyword
 ' '           Text.Whitespace
-'YYLTYPE'     Name
+'YYLTYPE'     Name.Builtin
 ' '           Text.Whitespace
 '*'           Operator
 'loc'         Name
@@ -4067,7 +4077,7 @@
 '('           Punctuation
 'const'       Keyword
 ' '           Text.Whitespace
-'YYLTYPE'     Name
+'YYLTYPE'     Name.Builtin
 ' '           Text.Whitespace
 '*'           Operator
 'loc'         Name
@@ -4387,7 +4397,7 @@
 'process_line' Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
-'YYLTYPE'     Name
+'YYLTYPE'     Name.Builtin
 ' '           Text.Whitespace
 '*'           Operator
 'lloc'        Name
@@ -4454,7 +4464,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'YYSTYPE'     Name
+'YYSTYPE'     Name.Builtin
 ' '           Text.Whitespace
 'lval'        Name
 ';'           Punctuation
@@ -4467,7 +4477,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'yylex'       Name
+'yylex'       Name.Builtin
 ' '           Text.Whitespace
 '('           Punctuation
 '&'           Operator
@@ -4681,7 +4691,7 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'YYLTYPE'     Name
+'YYLTYPE'     Name.Builtin
 ' '           Text.Whitespace
 'lloc'        Name
 ' '           Text.Whitespace
@@ -4711,7 +4721,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'YYSTYPE'     Name
+'YYSTYPE'     Name.Builtin
 ' '           Text.Whitespace
 'lval'        Name
 ';'           Punctuation
@@ -4724,7 +4734,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'yylex'       Name
+'yylex'       Name.Builtin
 ' '           Text.Whitespace
 '('           Punctuation
 '&'           Operator
@@ -4834,7 +4844,7 @@
 'ps'          Name
 '-'           Operator
 '>'           Operator
-'yynerrs'     Name
+'yynerrs'     Name.Builtin
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -5682,7 +5692,7 @@
 'if'          Keyword
 ' '           Text.Whitespace
 '('           Punctuation
-'yydebug'     Name
+'yydebug'     Name.Builtin
 ')'           Punctuation
 '\n'          Text.Whitespace
 
@@ -6076,7 +6086,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'yydebug'     Name
+'yydebug'     Name.Builtin
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
@@ -6101,7 +6111,7 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'YYLTYPE'     Name
+'YYLTYPE'     Name.Builtin
 ' '           Text.Whitespace
 'lloc'        Name
 ' '           Text.Whitespace

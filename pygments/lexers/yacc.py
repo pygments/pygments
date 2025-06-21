@@ -9,45 +9,94 @@
 """
 
 from pygments.lexer import RegexLexer, DelegatingLexer, include, bygroups, \
-    words, default
+    words, default, inherit
 from pygments.token import Keyword, Punctuation, Comment, Other, Name, \
     Whitespace, Operator
 from pygments.lexers.c_cpp import CLexer, CFamilyLexer
 
 __all__ = ['YaccLexer']
 
+class YaccCLexer(CLexer):
+    tokens = {
+        'keywords': [
+            (r'yy(l(loc|val)|erro[rk]|clear(in|err))\b', Name.Builtin),
+            (words(('parse', 'lex', 'debug', 'nerrs', 'tname', 'char'),
+                   prefix='yy', suffix=r'\b'), Name.Builtin),
+            (words(('ABORT', 'ACCEPT', 'NOMEM', 'EOF', 'error', 'ERROR',
+                    'RECOVERING', 'DEBUG'),
+                   prefix='YY', suffix=r'\b'), Name.Builtin),
+            (r'YY[SL]TYPE\b', Name.Builtin),
+            inherit
+        ]
+    }
+
 class YaccBase(RegexLexer):
-    yaccType = r'<(?:\s*[A-Za-z][*\w\s()]*|\*)?>' # parentheses are for function pointers
     yaccName = r'[A-Za-z_][-\w.]*'
-    yaccVarname = r'\$|-?\d+|[A-Za-z_]\w*|\[' + yaccName + r'\]'
+    sComment = r'//.*'
+    mComment = r'(?s)/\*.*?\*/'
 
     tokens = {
+        # 'string' is a dependency of 'literals' and shouldn't be used directly
         'string': CFamilyLexer.tokens['string'],
         'literals': CFamilyLexer.tokens['literals'],
+        'ctypes': CFamilyLexer.tokens['types'],
+
+        'yaccVarname': [
+            (r'\$|-?\d+|[A-Za-z_]\w*|\[' + yaccName + r'\]', Name.Variable, '#pop'),
+            default('#pop') # don't let a bad variable spoil the whole scan
+        ],
+        'yaccType': [
+            (r'[*()]+', Punctuation), # parentheses are for function pointers
+            (r'>', Punctuation, '#pop'),
+            include('ctypes'),
+            (r'[A-Za-z]\w*', Name.Class)
+        ],
         'yaccVars': [
-            (r'(\$)(' + yaccType + r')?(' + yaccVarname + ')',
-             bygroups(Name.Variable, Keyword.Type, Name.Variable)),
-            (r'@(' + yaccVarname + ')', Name.Variable)
+            (r'(\$)(<)', bygroups(Name.Variable, Punctuation),
+             ('yaccVarname', 'yaccType')),
+            (r'[@$]', Name.Variable, 'yaccVarname')
+        ],
+
+        # Mostly lifted from CFamilyLexer, but with Other instead of String,
+        # because a string may actually be a Comment.PreprocFile
+        'cstring': [
+            (r'"', Other, '#pop'),
+            (r'\\(.|x[a-fA-F0-9]{2,4}|u[a-fA-F0-9]{4}|U[a-fA-F0-9]{8}|'
+             + r'[0-7]{1,3})', Other),
+            (r'[^\\"\n]+', Other),  # all other characters
+            (r'\\\n', Other),  # line continuation
+            (r'\\', Other),  # stray backslash
+        ],
+        'cBase': [
+            (mComment, Other),
+            (sComment, Other),
+            include('yaccVars'),
+            # Also pilfered from CFamilyLexer
+            (r'([LuU]|u8)?"', Other, 'cstring'),
+            (r"([LuU]|u8)?(')(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])(')",
+             Other)
         ],
         'embeddedC': [
             (r'\{', Other, '#push'),
             (r'\}', Other, '#pop'),
-            (r'[^{}$@]+', Other),
-            include('yaccVars')
+            include('cBase'),
+            (r'[^{}$@/\'"]+|/', Other)
         ],
         'POSIXembeddedC': [
             (r'%\}', Punctuation, '#pop'),
-            include('yaccVars'),
-            (r'[^}$@%]+|[%}]', Other)
+            include('cBase'),
+            (r'[^}$@%/\'"]+|[%}/]', Other)
         ],
+
         'common': [
             (r'\{', Other, 'embeddedC'),
-            (yaccType, Keyword.Type),
-            (r'(?s)/\*.*?\*/', Comment),
-            (r'//.*', Comment),
+            (r'<', Punctuation, 'yaccType'),
             (r'\s+', Whitespace),
-            include('literals'),
-            include('yaccVars')
+            (mComment, Comment.Multiline),
+            (sComment, Comment.Single),
+            include('yaccVars'),
+            include('literals')
+
         ],
         'gettext': [
             # GNU Bison specially allows gettext calls around string tokens
@@ -114,4 +163,4 @@ class YaccLexer(DelegatingLexer):
     url = 'https://pubs.opengroup.org/onlinepubs/9799919799/utilities/yacc.html'
     version_added = '2.20'
     def __init__(self, **options):
-        super().__init__(CLexer, YaccBase, **options)
+        super().__init__(YaccCLexer, YaccBase, **options)
