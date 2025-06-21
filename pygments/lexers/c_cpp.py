@@ -82,6 +82,9 @@ class CFamilyLexer(RegexLexer):
         'statements': [
             include('keywords'),
             include('types'),
+            include('literals')
+        ],
+        'literals': [
             (r'([LuU]|u8)?(")', bygroups(String.Affix, String), 'string'),
             (r"([LuU]|u8)?(')(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])(')",
              bygroups(String.Affix, String.Char, String.Char, String.Char)),
