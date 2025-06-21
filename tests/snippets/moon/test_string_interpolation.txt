@@ -1,0 +1,82 @@
+---input---
+"#{wow}"
+"w#{wow}w"
+"#wow"
+"wow#"
+"w#ow"
+
+'#{wow}'
+'w#{wow}w'
+'#wow'
+'wow#'
+'w#ow'
+
+---tokens---
+'"'           Literal.String.Double
+'#{'          Literal.String.Interpol
+'wow'         Name
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'"'           Literal.String.Double
+'w'           Literal.String
+'#{'          Literal.String.Interpol
+'wow'         Name
+'}'           Literal.String.Interpol
+'w'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'"'           Literal.String.Double
+'#'           Literal.String
+'wow'         Literal.String
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'"'           Literal.String.Double
+'wow'         Literal.String
+'#'           Literal.String
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'"'           Literal.String.Double
+'w'           Literal.String
+'#'           Literal.String
+'ow'          Literal.String
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+"'"           Literal.String.Single
+'#'           Literal.String
+'{wow}'       Literal.String
+"'"           Literal.String.Single
+'\n'          Text.Whitespace
+
+"'"           Literal.String.Single
+'w'           Literal.String
+'#'           Literal.String
+'{wow}w'      Literal.String
+"'"           Literal.String.Single
+'\n'          Text.Whitespace
+
+"'"           Literal.String.Single
+'#'           Literal.String
+'wow'         Literal.String
+"'"           Literal.String.Single
+'\n'          Text.Whitespace
+
+"'"           Literal.String.Single
+'wow'         Literal.String
+'#'           Literal.String
+"'"           Literal.String.Single
+'\n'          Text.Whitespace
+
+"'"           Literal.String.Single
+'w'           Literal.String
+'#'           Literal.String
+'ow'          Literal.String
+"'"           Literal.String.Single
+'\n'          Text.Whitespace
