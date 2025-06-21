@@ -7,6 +7,10 @@ provider "aws" {
   value = jsonencode(element("value"))
 }
 
+provider "aws" {
+  value = provider::exampletime::rfc3339_parse("2023-07-25T23:43:16Z")
+}
+
 ---tokens---
 'provider'    Keyword.Reserved
 ' '           Text.Whitespace
@@ -49,6 +53,29 @@ provider "aws" {
 '('           Punctuation
 '"value"'     Literal.String.Double
 ')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'provider'    Keyword.Reserved
+' '           Text.Whitespace
+'"aws"'       Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'value'       Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'provider::exampletime::rfc3339_parse' Name.Function
+'('           Punctuation
+'"2023-07-25T23:43:16Z"' Literal.String.Double
 ')'           Punctuation
 '\n'          Text.Whitespace
 
