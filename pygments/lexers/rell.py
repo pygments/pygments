@@ -28,15 +28,15 @@ class RellLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'(big_integer|boolean|byte_array|collection|decimal|gtv|integer|'
-             r'iterable|json|list|map|mutable|set|text|virtual)\b',
+            (r'(big_integer|boolean|byte_array|decimal|gtv|integer|json|list|'
+             r'map|mutable|set|text|virtual)\b',
              Keyword.Type),
             (r'(false|true|null)\b', Keyword.Constant),
-            (r'(entity|enum|function|namespace|object|operation|query|record|'
+            (r'(entity|enum|function|namespace|object|operation|query|'
              r'struct)\b', Keyword.Declaration),
-            (r'(abstract|and|break|class|continue|create|delete|else|for|guard|'
-             r'if|import|in|include|index|key|limit|module|not|offset|or|'
-             r'override|return|update|val|var|when|while)\b', Keyword.Reserved),
+            (r'(abstract|and|break|continue|create|delete|else|for|if|import|'
+             r'in|index|key|limit|module|not|offset|or|override|return|update|'
+             r'val|var|when|while)\b', Keyword.Reserved),
             (r'//.*?$', Comment.Single),
             (r'/\*(.|\n|\r)*?\*/', Comment.Multiline),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
