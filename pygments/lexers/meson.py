@@ -66,7 +66,7 @@ class MesonLexer(RegexLexer):
         ],
         'expr': [
             (r'(in|and|or|not)\b', Operator.Word),
-            (r'(\*=|/=|%=|\+=|-=|==|!=|\+|-|=)', Operator),
+            (r'([\*/%\+-]=?|==|!=|=)', Operator),
             (r'[\[\]{}:().,?]', Punctuation),
             (words(('true', 'false'), suffix=r'\b'), Keyword.Constant),
             include('builtins'),
