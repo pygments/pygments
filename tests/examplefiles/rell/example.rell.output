@@ -339,6 +339,59 @@
 '}'           Punctuation
 '\n\n'        Text.Whitespace
 
+'@extend'     Name.Decorator
+'('           Punctuation
+'ft4'         Name
+'.'           Punctuation
+'auth'        Name.Attribute
+'.'           Punctuation
+'auth_handler' Name.Attribute
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'function'    Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation.Marker
+' '           Text.Whitespace
+'ft4'         Name
+'.'           Punctuation
+'auth'        Name.Attribute
+'.'           Punctuation
+'add_auth_handler' Name.Attribute
+'('           Punctuation
+'\n    '      Text.Whitespace
+'scope'       Name
+' '           Text.Whitespace
+'='           Punctuation.Marker
+' '           Text.Whitespace
+'"staking_cancel_withdrawal"' Literal.String.Double
+','           Punctuation
+'\n    '      Text.Whitespace
+'flags'       Name
+' '           Text.Whitespace
+'='           Punctuation.Marker
+' '           Text.Whitespace
+'['           Punctuation.Marker
+']'           Punctuation.Marker
+','           Punctuation
+'\n    '      Text.Whitespace
+'message'     Name
+' '           Text.Whitespace
+'='           Punctuation.Marker
+' '           Text.Whitespace
+'staking_cancel_withdrawal_auth_message' Name
+'('           Punctuation
+'*'           Punctuation.Marker
+')'           Punctuation
+'\n'          Text.Whitespace
+
+')'           Punctuation
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
 'function'    Keyword.Declaration
 ' '           Text.Whitespace
 'multiply'    Name.Function

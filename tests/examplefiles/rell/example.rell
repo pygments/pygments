@@ -47,6 +47,13 @@ operation register_channel (user_pubkey: pubkey, channel_name: name) {
     );
 }
 
+@extend(ft4.auth.auth_handler)
+function () = ft4.auth.add_auth_handler(
+    scope = "staking_cancel_withdrawal",
+    flags = [],
+    message = staking_cancel_withdrawal_auth_message(*)
+);
+
 function multiply(x: integer, y: integer) = x * y;
 
 @extendable function f(x: integer) {

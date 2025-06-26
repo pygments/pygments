@@ -9,7 +9,7 @@
 """ 
 
 import re
-from pygments.lexer import RegexLexer, bygroups
+from pygments.lexer import RegexLexer, bygroups, default
 from pygments.token import Comment, Keyword, Name, String, Number, \
         Punctuation, Whitespace
 
@@ -57,5 +57,6 @@ class RellLexer(RegexLexer):
         'function': [
             (r'[ \n\t\r]+', Whitespace),
             (ident, Name.Function, '#pop'),
+            default('#pop'),
         ],
     }
