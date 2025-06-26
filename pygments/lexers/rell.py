@@ -11,7 +11,7 @@
 import re
 from pygments.lexer import RegexLexer
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Whitespace
+    Number, Punctuation, Whitespace, Other, Generic
 
 __all__ = ['RellLexer']
 
@@ -43,11 +43,12 @@ class RellLexer(RegexLexer):
             (r'\'(\\\\|\\\'|[^\\\'])*\'', String.Single),
             (r'-?[0-9]*\.[0-9]+([eE][+-][0-9]+)?', Number.Float),
             (r'-?[0-9]+([eE][+-][0-9]+|[lL])?', Number.Integer),
-            (r'x(\'[a-fA-F0-9]*\'|"[a-fA-F0-9]*")', Number.Bin),
+            (r'x(\'[a-fA-F0-9]*\'|"[a-fA-F0-9]*")', String.Binary),
             (r'[{}():;,.]', Punctuation),
             (r'[ \n\t\r]+', Whitespace),
             (r'@[a-zA-Z_][a-zA-Z0-9_]*', Name.Decorator),
-            (r'[~^*!%&\[\]<>|+=/?\-@\$]', Operator),
+            # Not really keywords, but Keyword.Pseudo is more visually distinct
+            (r'[~^*!%&\[\]<>|+=/?\-@\$]', Keyword.Pseudo),
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
         ],
     }
