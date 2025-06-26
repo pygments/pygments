@@ -103,7 +103,7 @@
 
 'query'       Keyword.Declaration
 ' '           Text.Whitespace
-'q'           Name.Variable
+'q'           Name.Function
 '('           Punctuation
 'x'           Name.Variable
 ':'           Punctuation
@@ -114,11 +114,11 @@
 ' '           Text.Whitespace
 'integer'     Keyword.Type
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation.Marker
 ' '           Text.Whitespace
 'x'           Name.Variable
 ' '           Text.Whitespace
-'*'           Operator
+'*'           Punctuation.Marker
 ' '           Text.Whitespace
 'x'           Name.Variable
 ';'           Punctuation
@@ -126,7 +126,7 @@
 
 'query'       Keyword.Declaration
 ' '           Text.Whitespace
-'p'           Name.Variable
+'p'           Name.Function
 '('           Punctuation
 'x'           Name.Variable
 ':'           Punctuation
@@ -143,7 +143,7 @@
 ' '           Text.Whitespace
 'x'           Name.Variable
 ' '           Text.Whitespace
-'*'           Operator
+'*'           Punctuation.Marker
 ' '           Text.Whitespace
 'x'           Name.Variable
 ';'           Punctuation
@@ -154,14 +154,14 @@
 
 'function'    Keyword.Declaration
 ' '           Text.Whitespace
-'f'           Name.Variable
+'f'           Name.Function
 '('           Punctuation
 'user'        Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
 'text'        Keyword.Type
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation.Marker
 ' '           Text.Whitespace
 "'Bob'"       Literal.String.Single
 ','           Punctuation
@@ -171,7 +171,7 @@
 ' '           Text.Whitespace
 'integer'     Keyword.Type
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation.Marker
 ' '           Text.Whitespace
 '123'         Literal.Number.Integer
 ')'           Punctuation
@@ -185,36 +185,36 @@
 ' '           Text.Whitespace
 '123.456'     Literal.Number.Float
 ' '           Text.Whitespace
-'+'           Operator
+'+'           Punctuation.Marker
 ' '           Text.Whitespace
 '0.123'       Literal.Number.Float
 ' '           Text.Whitespace
-'-'           Operator
+'-'           Punctuation.Marker
 ' '           Text.Whitespace
 '('           Punctuation
 '.456'        Literal.Number.Float
 ' '           Text.Whitespace
-'*'           Operator
+'*'           Punctuation.Marker
 ' '           Text.Whitespace
 '33E+10'      Literal.Number.Integer
 ')'           Punctuation
 ' '           Text.Whitespace
-'/'           Operator
+'/'           Punctuation.Marker
 ' '           Text.Whitespace
 '55.77e-5'    Literal.Number.Float
-'%'           Operator
+'%'           Punctuation.Marker
 ' '           Text.Whitespace
 '9223372036854775832L' Literal.Number.Integer
 ' '           Text.Whitespace
-'+'           Operator
+'+'           Punctuation.Marker
 ' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ' '           Text.Whitespace
-'*'           Operator
+'*'           Punctuation.Marker
 ' '           Text.Whitespace
 '123'         Literal.Number.Integer
 ' '           Text.Whitespace
-'*'           Operator
+'*'           Punctuation.Marker
 ' '           Text.Whitespace
 '-123'        Literal.Number.Integer
 ';'           Punctuation
@@ -225,7 +225,7 @@
 
 'operation'   Keyword.Declaration
 ' '           Text.Whitespace
-'register_channel' Name.Variable
+'register_channel' Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
 'user_pubkey' Name.Variable
@@ -242,12 +242,58 @@
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n    '      Text.Whitespace
+'if'          Keyword.Reserved
+' '           Text.Whitespace
+'('           Punctuation
+'status'      Name.Variable
+'.'           Punctuation
+'ratio'       Name.Attribute
+' '           Text.Whitespace
+'>'           Punctuation.Marker
+' '           Text.Whitespace
+'0.5'         Literal.Number.Float
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'print'       Name.Variable
+'('           Punctuation
+'"Approaching the threshold!"' Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'if'          Keyword.Reserved
+' '           Text.Whitespace
+'('           Punctuation
+'status'      Name.Variable
+' '           Text.Whitespace
+'.'           Punctuation
+' '           Text.Whitespace
+'big_boi'     Name.Attribute
+' '           Text.Whitespace
+'>'           Punctuation.Marker
+' '           Text.Whitespace
+'9000'        Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'print'       Name.Variable
+'('           Punctuation
+'"It\'s over 9000!!!"' Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
 'require'     Name.Variable
 '('           Punctuation
 ' '           Text.Whitespace
 'op_context'  Name.Variable
 '.'           Punctuation
-'is_signer'   Name.Variable
+'is_signer'   Name.Attribute
 '('           Punctuation
 'user_pubkey' Name.Variable
 ')'           Punctuation
@@ -263,18 +309,18 @@
 '\n        '  Text.Whitespace
 'owner'       Name.Variable
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation.Marker
 ' '           Text.Whitespace
 'user'        Name.Variable
 ' '           Text.Whitespace
-'@'           Operator
+'@'           Punctuation.Marker
 ' '           Text.Whitespace
 '{'           Punctuation
 '.'           Punctuation
-'pubkey'      Name.Variable
+'pubkey'      Name.Attribute
 ' '           Text.Whitespace
-'='           Operator
-'='           Operator
+'='           Punctuation.Marker
+'='           Punctuation.Marker
 ' '           Text.Whitespace
 'user_pubkey' Name.Variable
 '}'           Punctuation
@@ -282,7 +328,7 @@
 '\n        '  Text.Whitespace
 'name'        Name.Variable
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation.Marker
 ' '           Text.Whitespace
 'channel_name' Name.Variable
 '\n    '      Text.Whitespace
@@ -295,7 +341,7 @@
 
 'function'    Keyword.Declaration
 ' '           Text.Whitespace
-'multiply'    Name.Variable
+'multiply'    Name.Function
 '('           Punctuation
 'x'           Name.Variable
 ':'           Punctuation
@@ -309,11 +355,11 @@
 'integer'     Keyword.Type
 ')'           Punctuation
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation.Marker
 ' '           Text.Whitespace
 'x'           Name.Variable
 ' '           Text.Whitespace
-'*'           Operator
+'*'           Punctuation.Marker
 ' '           Text.Whitespace
 'y'           Name.Variable
 ';'           Punctuation
@@ -323,7 +369,7 @@
 ' '           Text.Whitespace
 'function'    Keyword.Declaration
 ' '           Text.Whitespace
-'f'           Name.Variable
+'f'           Name.Function
 '('           Punctuation
 'x'           Name.Variable
 ':'           Punctuation
@@ -353,7 +399,7 @@
 ' '           Text.Whitespace
 'function'    Keyword.Declaration
 ' '           Text.Whitespace
-'g'           Name.Variable
+'g'           Name.Function
 '('           Punctuation
 'x'           Name.Variable
 ':'           Punctuation
@@ -383,7 +429,7 @@
 ' '           Text.Whitespace
 'function'    Keyword.Declaration
 ' '           Text.Whitespace
-'h'           Name.Variable
+'h'           Name.Function
 '('           Punctuation
 'x'           Name.Variable
 ':'           Punctuation
@@ -411,15 +457,15 @@
 
 'function'    Keyword.Declaration
 ' '           Text.Whitespace
-'filter'      Name.Variable
+'filter'      Name.Function
 '('           Punctuation
 'values'      Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
 'list'        Keyword.Type
-'<'           Operator
+'<'           Punctuation.Marker
 'integer'     Keyword.Type
-'>'           Operator
+'>'           Punctuation.Marker
 ','           Punctuation
 ' '           Text.Whitespace
 'predicate'   Name.Variable
@@ -429,17 +475,17 @@
 'integer'     Keyword.Type
 ')'           Punctuation
 ' '           Text.Whitespace
-'-'           Operator
-'>'           Operator
+'-'           Punctuation.Marker
+'>'           Punctuation.Marker
 ' '           Text.Whitespace
 'boolean'     Keyword.Type
 ')'           Punctuation
 ':'           Punctuation
 ' '           Text.Whitespace
 'list'        Keyword.Type
-'<'           Operator
+'<'           Punctuation.Marker
 'integer'     Keyword.Type
-'>'           Operator
+'>'           Punctuation.Marker
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n    '      Text.Whitespace
@@ -447,14 +493,14 @@
 ' '           Text.Whitespace
 'double'      Name.Variable
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation.Marker
 ' '           Text.Whitespace
 'multiply'    Name.Variable
 '('           Punctuation
 '2'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text.Whitespace
-'*'           Operator
+'*'           Punctuation.Marker
 ')'           Punctuation
 ';'           Punctuation
 '\n    '      Text.Whitespace
@@ -462,14 +508,14 @@
 ' '           Text.Whitespace
 'values'      Name.Variable
 ' '           Text.Whitespace
-'@'           Operator
-'*'           Operator
+'@'           Punctuation.Marker
+'*'           Punctuation.Marker
 ' '           Text.Whitespace
 '{'           Punctuation
 ' '           Text.Whitespace
 'predicate'   Name.Variable
 '('           Punctuation
-'$'           Operator
+'$'           Punctuation.Marker
 ')'           Punctuation
 ' '           Text.Whitespace
 '}'           Punctuation
@@ -484,24 +530,24 @@
 
 'operation'   Keyword.Declaration
 ' '           Text.Whitespace
-'the_business' Name.Variable
+'the_business' Name.Function
 '('           Punctuation
 'x'           Name.Variable
 ':'           Punctuation
 ' '           Text.Whitespace
 'list'        Keyword.Type
-'<'           Operator
+'<'           Punctuation.Marker
 'set'         Keyword.Type
-'<'           Operator
+'<'           Punctuation.Marker
 'map'         Keyword.Type
-'<'           Operator
+'<'           Punctuation.Marker
 'byte_array'  Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
 'decimal'     Keyword.Type
-'>'           Operator
-'>'           Operator
-'>'           Operator
+'>'           Punctuation.Marker
+'>'           Punctuation.Marker
+'>'           Punctuation.Marker
 ','           Punctuation
 ' '           Text.Whitespace
 'y'           Name.Variable
@@ -519,7 +565,7 @@
 ' '           Text.Whitespace
 'decimal'     Keyword.Type
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation.Marker
 ' '           Text.Whitespace
 '123.456'     Literal.Number.Float
 ';'           Punctuation
@@ -533,7 +579,7 @@
 ' '           Text.Whitespace
 'decimal'     Keyword.Type
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation.Marker
 ' '           Text.Whitespace
 '0.123'       Literal.Number.Float
 ';'           Punctuation
@@ -545,7 +591,7 @@
 ' '           Text.Whitespace
 'decimal'     Keyword.Type
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation.Marker
 ' '           Text.Whitespace
 '.456'        Literal.Number.Float
 ';'           Punctuation
@@ -557,7 +603,7 @@
 ' '           Text.Whitespace
 'decimal'     Keyword.Type
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation.Marker
 ' '           Text.Whitespace
 '33E+10'      Literal.Number.Integer
 ';'           Punctuation
@@ -569,7 +615,7 @@
 ' '           Text.Whitespace
 'decimal'     Keyword.Type
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation.Marker
 ' '           Text.Whitespace
 '55.77e-5'    Literal.Number.Float
 ';'           Punctuation
@@ -583,7 +629,7 @@
 ' '           Text.Whitespace
 'big_integer' Keyword.Type
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation.Marker
 ' '           Text.Whitespace
 '9223372036854775832L' Literal.Number.Integer
 ';'           Punctuation
@@ -595,7 +641,7 @@
 ' '           Text.Whitespace
 'integer'     Keyword.Type
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation.Marker
 ' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ';'           Punctuation
@@ -607,7 +653,7 @@
 ' '           Text.Whitespace
 'integer'     Keyword.Type
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation.Marker
 ' '           Text.Whitespace
 '123'         Literal.Number.Integer
 ';'           Punctuation
@@ -619,7 +665,7 @@
 ' '           Text.Whitespace
 'integer'     Keyword.Type
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation.Marker
 ' '           Text.Whitespace
 '-123'        Literal.Number.Integer
 ';'           Punctuation
@@ -630,7 +676,7 @@
 ':'           Punctuation
 'text'        Keyword.Type
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation.Marker
 ' '           Text.Whitespace
 '"A double \\"quoted\\" string. A \'serious\' man."' Literal.String.Double
 ';'           Punctuation
@@ -643,7 +689,7 @@
 ' '           Text.Whitespace
 'text'        Keyword.Type
 ' '           Text.Whitespace
-'='           Operator
+'='           Punctuation.Marker
 ' '           Text.Whitespace
 '\'A single \\\'quoted\\\' string. A "silly" person.\'' Literal.String.Single
 ';'           Punctuation
@@ -651,8 +697,8 @@
 'val'         Keyword.Reserved
 ' '           Text.Whitespace
 'my_bytes'    Name.Variable
-'='           Operator
-"x''"         Literal.Number.Bin
+'='           Punctuation.Marker
+"x''"         Literal.String.Binary
 ';'           Punctuation
 '\n    '      Text.Whitespace
 'val'         Keyword.Reserved
@@ -660,8 +706,8 @@
 'more_bytes'  Name.Variable
 ':'           Punctuation
 'byte_array'  Keyword.Type
-'='           Operator
-"x'01010101ABCDEFabcdef9876543'" Literal.Number.Bin
+'='           Punctuation.Marker
+"x'01010101ABCDEFabcdef9876543'" Literal.String.Binary
 ';'           Punctuation
 '\n'          Text.Whitespace
 

@@ -9,9 +9,9 @@
 """ 
 
 import re
-from pygments.lexer import RegexLexer
-from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Whitespace, Other, Generic
+from pygments.lexer import RegexLexer, bygroups
+from pygments.token import Comment, Keyword, Name, String, Number, \
+        Punctuation, Whitespace
 
 __all__ = ['RellLexer']
 
@@ -26,14 +26,16 @@ class RellLexer(RegexLexer):
     mimetypes = ['text/x-rell']
     version_added = '2.19.2'
 
+    ident = r'[a-zA-Z_][a-zA-Z0-9_]*'
+
     tokens = {
         'root': [
             (r'(big_integer|boolean|byte_array|decimal|gtv|integer|json|list|'
              r'map|mutable|set|text|virtual)\b',
              Keyword.Type),
             (r'(false|true|null)\b', Keyword.Constant),
-            (r'(entity|enum|function|namespace|object|operation|query|'
-             r'struct)\b', Keyword.Declaration),
+            (r'(entity|enum|namespace|object|struct)\b', Keyword.Declaration),
+            (r'(function|operation|query)\b', Keyword.Declaration, 'function'),
             (r'(abstract|and|break|continue|create|delete|else|for|if|import|'
              r'in|index|key|limit|module|not|offset|or|override|return|update|'
              r'val|var|when|while)\b', Keyword.Reserved),
@@ -44,11 +46,16 @@ class RellLexer(RegexLexer):
             (r'-?[0-9]*\.[0-9]+([eE][+-][0-9]+)?', Number.Float),
             (r'-?[0-9]+([eE][+-][0-9]+|[lL])?', Number.Integer),
             (r'x(\'[a-fA-F0-9]*\'|"[a-fA-F0-9]*")', String.Binary),
+            (r'(\.)([ \n\t\r]*)(' + ident + ')',
+                bygroups(Punctuation, Whitespace, Name.Attribute)),
             (r'[{}():;,.]', Punctuation),
             (r'[ \n\t\r]+', Whitespace),
             (r'@[a-zA-Z_][a-zA-Z0-9_]*', Name.Decorator),
-            # Not really keywords, but Keyword.Pseudo is more visually distinct
-            (r'[~^*!%&\[\]<>|+=/?\-@\$]', Keyword.Pseudo),
-            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
+            (r'[~^*!%&\[\]<>|+=/?\-@\$]', Punctuation.Marker),
+            (ident, Name.Variable),
+        ],
+        'function': [
+            (r'[ \n\t\r]+', Whitespace),
+            (ident, Name.Function, '#pop'),
         ],
     }

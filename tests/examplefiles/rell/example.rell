@@ -34,6 +34,12 @@ function f(user: text = 'Bob', score: integer = 123): decimal {
 }
 
 operation register_channel (user_pubkey: pubkey, channel_name: name) {
+    if (status.ratio > 0.5) {
+        print("Approaching the threshold!");
+    }
+    if (status . big_boi > 9000) {
+        print("It's over 9000!!!");
+    }
     require( op_context.is_signer(user_pubkey) );
     create channel (
         owner = user @ {.pubkey == user_pubkey},
