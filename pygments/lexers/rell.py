@@ -52,7 +52,7 @@ class RellLexer(RegexLexer):
             (r'[ \n\t\r]+', Whitespace),
             (r'@[a-zA-Z_][a-zA-Z0-9_]*', Name.Decorator),
             (r'[~^*!%&\[\]<>|+=/?\-@\$]', Punctuation.Marker),
-            (ident, Name.Variable),
+            (ident, Name),
         ],
         'function': [
             (r'[ \n\t\r]+', Whitespace),

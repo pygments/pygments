@@ -4,13 +4,13 @@
 
 'entity'      Keyword.Declaration
 ' '           Text.Whitespace
-'house'       Name.Variable
+'house'       Name
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n    '      Text.Whitespace
 'key'         Keyword.Reserved
 ' '           Text.Whitespace
-'id'          Name.Variable
+'id'          Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'integer'     Keyword.Type
@@ -18,7 +18,7 @@
 '\n    '      Text.Whitespace
 'index'       Keyword.Reserved
 ' '           Text.Whitespace
-'street'      Name.Variable
+'street'      Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'text'        Keyword.Type
@@ -30,41 +30,41 @@
 
 'object'      Keyword.Declaration
 ' '           Text.Whitespace
-'status'      Name.Variable
+'status'      Name
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n    '      Text.Whitespace
-'width'       Name.Variable
+'width'       Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'integer'     Keyword.Type
 ';'           Punctuation
 '\n    '      Text.Whitespace
-'height'      Name.Variable
+'height'      Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'integer'     Keyword.Type
 ';'           Punctuation
 '\n    '      Text.Whitespace
-'ratio'       Name.Variable
+'ratio'       Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'decimal'     Keyword.Type
 ';'           Punctuation
 '\n    '      Text.Whitespace
-'privkey'     Name.Variable
+'privkey'     Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'byte_array'  Keyword.Type
 ';'           Punctuation
 '\n    '      Text.Whitespace
-'big_boi'     Name.Variable
+'big_boi'     Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'big_integer' Keyword.Type
 ';'           Punctuation
 '\n    '      Text.Whitespace
-'lil_boi'     Name.Variable
+'lil_boi'     Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'integer'     Keyword.Type
@@ -76,26 +76,26 @@
 
 'enum'        Keyword.Declaration
 ' '           Text.Whitespace
-'job'         Name.Variable
+'job'         Name
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n    '      Text.Whitespace
-'SOFTWARE_ENGINEER' Name.Variable
+'SOFTWARE_ENGINEER' Name
 ','           Punctuation
 '\n    '      Text.Whitespace
-'HR_REPRESENTATIVE' Name.Variable
+'HR_REPRESENTATIVE' Name
 ','           Punctuation
 '\n    '      Text.Whitespace
-'SYSADMIN'    Name.Variable
+'SYSADMIN'    Name
 ','           Punctuation
 '\n    '      Text.Whitespace
-'MARKETING'   Name.Variable
+'MARKETING'   Name
 ','           Punctuation
 '\n    '      Text.Whitespace
-'PRODUCT_DESIGN' Name.Variable
+'PRODUCT_DESIGN' Name
 ','           Punctuation
 '\n    '      Text.Whitespace
-'EXECUTIVE'   Name.Variable
+'EXECUTIVE'   Name
 '\n'          Text.Whitespace
 
 '}'           Punctuation
@@ -105,7 +105,7 @@
 ' '           Text.Whitespace
 'q'           Name.Function
 '('           Punctuation
-'x'           Name.Variable
+'x'           Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'integer'     Keyword.Type
@@ -116,11 +116,11 @@
 ' '           Text.Whitespace
 '='           Punctuation.Marker
 ' '           Text.Whitespace
-'x'           Name.Variable
+'x'           Name
 ' '           Text.Whitespace
 '*'           Punctuation.Marker
 ' '           Text.Whitespace
-'x'           Name.Variable
+'x'           Name
 ';'           Punctuation
 '\n\n'        Text.Whitespace
 
@@ -128,7 +128,7 @@
 ' '           Text.Whitespace
 'p'           Name.Function
 '('           Punctuation
-'x'           Name.Variable
+'x'           Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'integer'     Keyword.Type
@@ -141,11 +141,11 @@
 '\n    '      Text.Whitespace
 'return'      Keyword.Reserved
 ' '           Text.Whitespace
-'x'           Name.Variable
+'x'           Name
 ' '           Text.Whitespace
 '*'           Punctuation.Marker
 ' '           Text.Whitespace
-'x'           Name.Variable
+'x'           Name
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -156,7 +156,7 @@
 ' '           Text.Whitespace
 'f'           Name.Function
 '('           Punctuation
-'user'        Name.Variable
+'user'        Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'text'        Keyword.Type
@@ -166,7 +166,7 @@
 "'Bob'"       Literal.String.Single
 ','           Punctuation
 ' '           Text.Whitespace
-'score'       Name.Variable
+'score'       Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'integer'     Keyword.Type
@@ -228,16 +228,16 @@
 'register_channel' Name.Function
 ' '           Text.Whitespace
 '('           Punctuation
-'user_pubkey' Name.Variable
+'user_pubkey' Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'pubkey'      Name.Variable
+'pubkey'      Name
 ','           Punctuation
 ' '           Text.Whitespace
-'channel_name' Name.Variable
+'channel_name' Name
 ':'           Punctuation
 ' '           Text.Whitespace
-'name'        Name.Variable
+'name'        Name
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -245,7 +245,7 @@
 'if'          Keyword.Reserved
 ' '           Text.Whitespace
 '('           Punctuation
-'status'      Name.Variable
+'status'      Name
 '.'           Punctuation
 'ratio'       Name.Attribute
 ' '           Text.Whitespace
@@ -256,7 +256,7 @@
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n        '  Text.Whitespace
-'print'       Name.Variable
+'print'       Name
 '('           Punctuation
 '"Approaching the threshold!"' Literal.String.Double
 ')'           Punctuation
@@ -267,7 +267,7 @@
 'if'          Keyword.Reserved
 ' '           Text.Whitespace
 '('           Punctuation
-'status'      Name.Variable
+'status'      Name
 ' '           Text.Whitespace
 '.'           Punctuation
 ' '           Text.Whitespace
@@ -280,7 +280,7 @@
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n        '  Text.Whitespace
-'print'       Name.Variable
+'print'       Name
 '('           Punctuation
 '"It\'s over 9000!!!"' Literal.String.Double
 ')'           Punctuation
@@ -288,14 +288,14 @@
 '\n    '      Text.Whitespace
 '}'           Punctuation
 '\n    '      Text.Whitespace
-'require'     Name.Variable
+'require'     Name
 '('           Punctuation
 ' '           Text.Whitespace
-'op_context'  Name.Variable
+'op_context'  Name
 '.'           Punctuation
 'is_signer'   Name.Attribute
 '('           Punctuation
-'user_pubkey' Name.Variable
+'user_pubkey' Name
 ')'           Punctuation
 ' '           Text.Whitespace
 ')'           Punctuation
@@ -303,15 +303,15 @@
 '\n    '      Text.Whitespace
 'create'      Keyword.Reserved
 ' '           Text.Whitespace
-'channel'     Name.Variable
+'channel'     Name
 ' '           Text.Whitespace
 '('           Punctuation
 '\n        '  Text.Whitespace
-'owner'       Name.Variable
+'owner'       Name
 ' '           Text.Whitespace
 '='           Punctuation.Marker
 ' '           Text.Whitespace
-'user'        Name.Variable
+'user'        Name
 ' '           Text.Whitespace
 '@'           Punctuation.Marker
 ' '           Text.Whitespace
@@ -322,15 +322,15 @@
 '='           Punctuation.Marker
 '='           Punctuation.Marker
 ' '           Text.Whitespace
-'user_pubkey' Name.Variable
+'user_pubkey' Name
 '}'           Punctuation
 ','           Punctuation
 '\n        '  Text.Whitespace
-'name'        Name.Variable
+'name'        Name
 ' '           Text.Whitespace
 '='           Punctuation.Marker
 ' '           Text.Whitespace
-'channel_name' Name.Variable
+'channel_name' Name
 '\n    '      Text.Whitespace
 ')'           Punctuation
 ';'           Punctuation
@@ -343,13 +343,13 @@
 ' '           Text.Whitespace
 'multiply'    Name.Function
 '('           Punctuation
-'x'           Name.Variable
+'x'           Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'integer'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'y'           Name.Variable
+'y'           Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'integer'     Keyword.Type
@@ -357,11 +357,11 @@
 ' '           Text.Whitespace
 '='           Punctuation.Marker
 ' '           Text.Whitespace
-'x'           Name.Variable
+'x'           Name
 ' '           Text.Whitespace
 '*'           Punctuation.Marker
 ' '           Text.Whitespace
-'y'           Name.Variable
+'y'           Name
 ';'           Punctuation
 '\n\n'        Text.Whitespace
 
@@ -371,7 +371,7 @@
 ' '           Text.Whitespace
 'f'           Name.Function
 '('           Punctuation
-'x'           Name.Variable
+'x'           Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'integer'     Keyword.Type
@@ -379,12 +379,12 @@
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n    '      Text.Whitespace
-'print'       Name.Variable
+'print'       Name
 '('           Punctuation
 "'f'"         Literal.String.Single
 ','           Punctuation
 ' '           Text.Whitespace
-'x'           Name.Variable
+'x'           Name
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -394,14 +394,14 @@
 
 '@extend'     Name.Decorator
 '('           Punctuation
-'f'           Name.Variable
+'f'           Name
 ')'           Punctuation
 ' '           Text.Whitespace
 'function'    Keyword.Declaration
 ' '           Text.Whitespace
 'g'           Name.Function
 '('           Punctuation
-'x'           Name.Variable
+'x'           Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'integer'     Keyword.Type
@@ -409,12 +409,12 @@
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n    '      Text.Whitespace
-'print'       Name.Variable
+'print'       Name
 '('           Punctuation
 "'g'"         Literal.String.Single
 ','           Punctuation
 ' '           Text.Whitespace
-'x'           Name.Variable
+'x'           Name
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -424,14 +424,14 @@
 
 '@extend'     Name.Decorator
 '('           Punctuation
-'f'           Name.Variable
+'f'           Name
 ')'           Punctuation
 ' '           Text.Whitespace
 'function'    Keyword.Declaration
 ' '           Text.Whitespace
 'h'           Name.Function
 '('           Punctuation
-'x'           Name.Variable
+'x'           Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'integer'     Keyword.Type
@@ -439,12 +439,12 @@
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n    '      Text.Whitespace
-'print'       Name.Variable
+'print'       Name
 '('           Punctuation
 "'h'"         Literal.String.Single
 ','           Punctuation
 ' '           Text.Whitespace
-'x'           Name.Variable
+'x'           Name
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -459,7 +459,7 @@
 ' '           Text.Whitespace
 'filter'      Name.Function
 '('           Punctuation
-'values'      Name.Variable
+'values'      Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'list'        Keyword.Type
@@ -468,7 +468,7 @@
 '>'           Punctuation.Marker
 ','           Punctuation
 ' '           Text.Whitespace
-'predicate'   Name.Variable
+'predicate'   Name
 ':'           Punctuation
 ' '           Text.Whitespace
 '('           Punctuation
@@ -491,11 +491,11 @@
 '\n    '      Text.Whitespace
 'val'         Keyword.Reserved
 ' '           Text.Whitespace
-'double'      Name.Variable
+'double'      Name
 ' '           Text.Whitespace
 '='           Punctuation.Marker
 ' '           Text.Whitespace
-'multiply'    Name.Variable
+'multiply'    Name
 '('           Punctuation
 '2'           Literal.Number.Integer
 ','           Punctuation
@@ -506,14 +506,14 @@
 '\n    '      Text.Whitespace
 'return'      Keyword.Reserved
 ' '           Text.Whitespace
-'values'      Name.Variable
+'values'      Name
 ' '           Text.Whitespace
 '@'           Punctuation.Marker
 '*'           Punctuation.Marker
 ' '           Text.Whitespace
 '{'           Punctuation
 ' '           Text.Whitespace
-'predicate'   Name.Variable
+'predicate'   Name
 '('           Punctuation
 '$'           Punctuation.Marker
 ')'           Punctuation
@@ -532,7 +532,7 @@
 ' '           Text.Whitespace
 'the_business' Name.Function
 '('           Punctuation
-'x'           Name.Variable
+'x'           Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'list'        Keyword.Type
@@ -550,7 +550,7 @@
 '>'           Punctuation.Marker
 ','           Punctuation
 ' '           Text.Whitespace
-'y'           Name.Variable
+'y'           Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'boolean'     Keyword.Type
@@ -560,7 +560,7 @@
 '\n    '      Text.Whitespace
 'val'         Keyword.Reserved
 ' '           Text.Whitespace
-'dec1'        Name.Variable
+'dec1'        Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'decimal'     Keyword.Type
@@ -574,7 +574,7 @@
 ' '           Text.Whitespace
 '/* foo */'   Comment.Multiline
 ' '           Text.Whitespace
-'dec2'        Name.Variable
+'dec2'        Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'decimal'     Keyword.Type
@@ -586,7 +586,7 @@
 '\n    '      Text.Whitespace
 'val'         Keyword.Reserved
 ' '           Text.Whitespace
-'dec3'        Name.Variable
+'dec3'        Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'decimal'     Keyword.Type
@@ -598,7 +598,7 @@
 '\n    '      Text.Whitespace
 'val'         Keyword.Reserved
 ' '           Text.Whitespace
-'dec4'        Name.Variable
+'dec4'        Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'decimal'     Keyword.Type
@@ -610,7 +610,7 @@
 '\n    '      Text.Whitespace
 'val'         Keyword.Reserved
 ' '           Text.Whitespace
-'dec5'        Name.Variable
+'dec5'        Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'decimal'     Keyword.Type
@@ -624,7 +624,7 @@
 '\n    '      Text.Whitespace
 'val'         Keyword.Reserved
 ' '           Text.Whitespace
-'big'         Name.Variable
+'big'         Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'big_integer' Keyword.Type
@@ -636,7 +636,7 @@
 '\n    '      Text.Whitespace
 'val'         Keyword.Reserved
 ' '           Text.Whitespace
-'small'       Name.Variable
+'small'       Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'integer'     Keyword.Type
@@ -648,7 +648,7 @@
 '\n    '      Text.Whitespace
 'val'         Keyword.Reserved
 ' '           Text.Whitespace
-'another'     Name.Variable
+'another'     Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'integer'     Keyword.Type
@@ -660,7 +660,7 @@
 '\n    '      Text.Whitespace
 'val'         Keyword.Reserved
 ' '           Text.Whitespace
-'yet_another' Name.Variable
+'yet_another' Name
 ':'           Punctuation
 ' '           Text.Whitespace
 'integer'     Keyword.Type
@@ -672,7 +672,7 @@
 '\n    '      Text.Whitespace
 'val'         Keyword.Reserved
 ' '           Text.Whitespace
-'my_text'     Name.Variable
+'my_text'     Name
 ':'           Punctuation
 'text'        Keyword.Type
 ' '           Text.Whitespace
@@ -683,7 +683,7 @@
 '\n    '      Text.Whitespace
 'val'         Keyword.Reserved
 ' '           Text.Whitespace
-'my_other_text' Name.Variable
+'my_other_text' Name
 ' '           Text.Whitespace
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -696,14 +696,14 @@
 '\n    '      Text.Whitespace
 'val'         Keyword.Reserved
 ' '           Text.Whitespace
-'my_bytes'    Name.Variable
+'my_bytes'    Name
 '='           Punctuation.Marker
 "x''"         Literal.String.Binary
 ';'           Punctuation
 '\n    '      Text.Whitespace
 'val'         Keyword.Reserved
 ' '           Text.Whitespace
-'more_bytes'  Name.Variable
+'more_bytes'  Name
 ':'           Punctuation
 'byte_array'  Keyword.Type
 '='           Punctuation.Marker
