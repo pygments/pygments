@@ -147,7 +147,6 @@ class SshdConfigLexer(Lexer):
             while rest:
                 # Match keyword directives at start of token
                 m_keyword = re.match(r"(\S+)", rest)
-                keyword = ""
 
                 if m_keyword:
                     keyword = m_keyword.group(1)

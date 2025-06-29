@@ -65,7 +65,7 @@ class SshConfigLexer(Lexer):
         "HashKnownHosts",
         "HostbasedAuthentication",
         "HostKeyAlgorithms",
-        "HostName",
+        "Hostname",
         "IdentitiesOnly",
         "IdentityAgent",
         "IdentityFile",

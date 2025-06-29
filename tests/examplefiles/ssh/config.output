@@ -80,7 +80,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'HostName'    Keyword
+'Hostname'    Keyword
 ' '           Text.Whitespace
 'myserver.example.com' Name
 '\n'          Text.Whitespace
@@ -176,7 +176,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'Hostname'    Name
+'Hostname'    Keyword
 ' '           Text.Whitespace
 '"ari.lt"'    Literal.String.Double
 '\n'          Text.Whitespace

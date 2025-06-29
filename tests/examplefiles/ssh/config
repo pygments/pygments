@@ -15,7 +15,7 @@ Host *
     IdentityFile ~/.ssh/id_rsa
 
 Host myserver
-    HostName myserver.example.com
+    Hostname myserver.example.com
     User alice
     Port 2222
     IdentityFile ~/.ssh/id_rsa_myserver
