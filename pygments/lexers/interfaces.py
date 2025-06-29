@@ -1,6 +1,6 @@
 """
     pygments.lexers.interfaces
-    ~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for /etc/network/interfaces.
 

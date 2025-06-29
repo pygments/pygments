@@ -1,6 +1,6 @@
 """
     pygments.lexers.ssh
-    ~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~
 
     Lexer for OpenSSH client configuration files (~/.ssh/config).
 

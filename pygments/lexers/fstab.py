@@ -1,6 +1,6 @@
 """
     pygments.lexers.fstab
-    ~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for Fstab.
 
