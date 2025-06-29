@@ -1,0 +1,430 @@
+'# This is the sshd server system-wide configuration file.  See\n' Comment
+
+'# sshd_config(5) for more information.\n' Comment
+
+'\n'          Text.Whitespace
+
+''            Text
+'# This sshd was compiled with PATH=/usr/local/bin:/usr/bin:/bin:/usr/games\n' Comment
+
+'\n'          Text.Whitespace
+
+''            Text
+'# The strategy used for options in the default sshd_config shipped with\n' Comment
+
+'# OpenSSH is to specify options with their default value where\n' Comment
+
+'# possible, but leave them commented.  Uncommented options override the\n' Comment
+
+'# default value.\n' Comment
+
+'\n'          Text.Whitespace
+
+''            Text
+'Include'     Keyword
+' '           Text.Whitespace
+'/etc/ssh/sshd_config.d/*.conf' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'Port'        Keyword
+' '           Text.Whitespace
+'22'          Literal.Number
+'\n'          Text.Whitespace
+
+'AddressFamily' Keyword
+' '           Text.Whitespace
+'inet'        Literal
+'\n'          Text.Whitespace
+
+'#ListenAddress 0.0.0.0\n' Comment
+
+'#ListenAddress ::\n' Comment
+
+'\n'          Text.Whitespace
+
+''            Text
+'#HostKey /etc/ssh/ssh_host_rsa_key\n' Comment
+
+'#HostKey /etc/ssh/ssh_host_ecdsa_key\n' Comment
+
+'#HostKey /etc/ssh/ssh_host_ed25519_key\n' Comment
+
+'\n'          Text.Whitespace
+
+''            Text
+'# Ciphers and keying\n' Comment
+
+'#RekeyLimit default none\n' Comment
+
+'\n'          Text.Whitespace
+
+''            Text
+'# Logging\n' Comment
+
+'SyslogFacility' Keyword
+' '           Text.Whitespace
+'AUTH'        Name.Constant
+'\n'          Text.Whitespace
+
+'LogLevel'    Keyword
+' '           Text.Whitespace
+'INFO'        Name.Constant
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'# Authentication:\n' Comment
+
+'\n'          Text.Whitespace
+
+''            Text
+'#LoginGraceTime 2m\n' Comment
+
+'#StrictModes yes\n' Comment
+
+'MaxAuthTries' Keyword
+' '           Text.Whitespace
+'3'           Literal.Number
+'\n'          Text.Whitespace
+
+'#MaxSessions 10\n' Comment
+
+'\n'          Text.Whitespace
+
+''            Text
+'#PubkeyAuthentication yes\n' Comment
+
+'\n'          Text.Whitespace
+
+''            Text
+'# Expect .ssh/authorized_keys2 to be disregarded by default in future.\n' Comment
+
+'#AuthorizedKeysFile .ssh/authorized_keys .ssh/authorized_keys2\n' Comment
+
+'\n'          Text.Whitespace
+
+''            Text
+'#AuthorizedPrincipalsFile none\n' Comment
+
+'\n'          Text.Whitespace
+
+''            Text
+'#AuthorizedKeysCommand none\n' Comment
+
+'#AuthorizedKeysCommandUser nobody\n' Comment
+
+'\n'          Text.Whitespace
+
+''            Text
+'# For this to work you will also need host keys in /etc/ssh/ssh_known_hosts\n' Comment
+
+'#HostbasedAuthentication no\n' Comment
+
+"# Change to yes if you don't trust ~/.ssh/known_hosts for\n" Comment
+
+'# HostbasedAuthentication\n' Comment
+
+'#IgnoreUserKnownHosts no\n' Comment
+
+"# Don't read the user's ~/.rhosts and ~/.shosts files\n" Comment
+
+'IgnoreRhosts' Keyword
+' '           Text.Whitespace
+'yes'         Literal
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'# To disable tunneled clear text passwords, change to no here!\n' Comment
+
+'PasswordAuthentication' Keyword
+' '           Text.Whitespace
+'no'          Literal
+'\n'          Text.Whitespace
+
+'#PermitEmptyPasswords no\n' Comment
+
+'\n'          Text.Whitespace
+
+''            Text
+'# Change to yes to enable challenge-response passwords (beware issues with\n' Comment
+
+'# some PAM modules and threads)\n' Comment
+
+'KbdInteractiveAuthentication' Keyword
+' '           Text.Whitespace
+'no'          Literal
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'UsePAM'      Keyword
+' '           Text.Whitespace
+'yes'         Literal
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'AllowAgentForwarding' Keyword
+' '           Text.Whitespace
+'no'          Literal
+'\n'          Text.Whitespace
+
+'AllowTcpForwarding' Keyword
+' '           Text.Whitespace
+'no'          Literal
+'\n'          Text.Whitespace
+
+'GatewayPorts' Keyword
+' '           Text.Whitespace
+'no'          Literal
+'\n'          Text.Whitespace
+
+'X11Forwarding' Keyword
+' '           Text.Whitespace
+'no'          Literal
+'\n'          Text.Whitespace
+
+'X11DisplayOffset' Keyword
+' '           Text.Whitespace
+'10'          Literal.Number
+'\n'          Text.Whitespace
+
+'X11UseLocalhost' Keyword
+' '           Text.Whitespace
+'yes'         Literal
+'\n'          Text.Whitespace
+
+'PermitTTY'   Keyword
+' '           Text.Whitespace
+'yes'         Literal
+'\n'          Text.Whitespace
+
+'PrintMotd'   Keyword
+' '           Text.Whitespace
+'no'          Literal
+'\n'          Text.Whitespace
+
+'PrintLastLog' Keyword
+' '           Text.Whitespace
+'yes'         Literal
+'\n'          Text.Whitespace
+
+'TCPKeepAlive' Keyword
+' '           Text.Whitespace
+'no'          Literal
+'\n'          Text.Whitespace
+
+'PermitUserEnvironment' Keyword
+' '           Text.Whitespace
+'no'          Literal
+'\n'          Text.Whitespace
+
+'Compression' Keyword
+' '           Text.Whitespace
+'delayed'     Name
+'\n'          Text.Whitespace
+
+'ClientAliveInterval' Keyword
+' '           Text.Whitespace
+'0'           Literal.Number
+'\n'          Text.Whitespace
+
+'ClientAliveCountMax' Keyword
+' '           Text.Whitespace
+'3'           Literal.Number
+'\n'          Text.Whitespace
+
+'UseDNS'      Keyword
+' '           Text.Whitespace
+'no'          Literal
+'\n'          Text.Whitespace
+
+'PidFile'     Keyword
+' '           Text.Whitespace
+'/run/sshd.pid' Name
+'\n'          Text.Whitespace
+
+'MaxStartups' Keyword
+' '           Text.Whitespace
+'10:30:100'   Name.Constant
+'\n'          Text.Whitespace
+
+'PermitTunnel' Keyword
+' '           Text.Whitespace
+'no'          Literal
+'\n'          Text.Whitespace
+
+'ChrootDirectory' Keyword
+' '           Text.Whitespace
+'none'        Literal
+'\n'          Text.Whitespace
+
+'VersionAddendum' Keyword
+' '           Text.Whitespace
+'none'        Literal
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'# no default banner path\n' Comment
+
+'Banner'      Keyword
+' '           Text.Whitespace
+'/etc/issue'  Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'# Allow client to pass locale environment variables\n' Comment
+
+'AcceptEnv'   Keyword
+' '           Text.Whitespace
+'LANG'        Name.Constant
+' '           Text.Whitespace
+'LC_CTYPE'    Name.Constant
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'# override default of no subsystems\n' Comment
+
+'Subsystem'   Keyword
+'   '         Text.Whitespace
+'sftp'        Name
+'    '        Text.Whitespace
+'/usr/lib/openssh/sftp-server' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'Match'       Keyword
+' '           Text.Whitespace
+'User'        Literal
+' '           Text.Whitespace
+'anoncvs'     Name
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'X11Forwarding' Keyword
+' '           Text.Whitespace
+'no'          Literal
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'AllowTcpForwarding' Keyword
+' '           Text.Whitespace
+'no'          Literal
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'PermitTTY'   Keyword
+' '           Text.Whitespace
+'no'          Literal
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'ForceCommand' Keyword
+' '           Text.Whitespace
+'cvs'         Name
+' '           Text.Whitespace
+'server'      Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'PermitRootLogin' Keyword
+' '           Text.Whitespace
+'yes'         Literal
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'KexAlgorithms' Keyword
+' '           Text.Whitespace
+'curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'Ciphers'     Keyword
+' '           Text.Whitespace
+'chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'MACs'        Keyword
+' '           Text.Whitespace
+'hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'AuthenticationMethods' Keyword
+' '           Text.Whitespace
+'publickey'   Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'HostKey'     Keyword
+' '           Text.Whitespace
+'/etc/ssh/ssh_host_ed25519_key' Name
+'\n'          Text.Whitespace
+
+'HostKey'     Keyword
+' '           Text.Whitespace
+'/etc/ssh/ssh_host_rsa_key' Name
+'\n'          Text.Whitespace
+
+'HostKey'     Keyword
+' '           Text.Whitespace
+'/etc/ssh/ssh_host_ecdsa_key' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'AllowUsers'  Keyword
+' '           Text.Whitespace
+'ari'         Name
+' '           Text.Whitespace
+'lda'         Name
+' '           Text.Whitespace
+'cubiq'       Name
+' '           Text.Whitespace
+'zayd'        Name
+' '           Text.Whitespace
+'git'         Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'RhostsRSAAuthentication' Keyword
+' '           Text.Whitespace
+'no'          Literal
+'\n'          Text.Whitespace
+
+'HostbasedAuthentication' Keyword
+' '           Text.Whitespace
+'no'          Literal
+'\n'          Text.Whitespace

@@ -1,0 +1,194 @@
+'# This is an example ~/.ssh/config file :)\n' Comment
+
+'\n'          Text.Whitespace
+
+''            Text
+'ServerAliveInterval' Keyword
+' '           Text.Whitespace
+'60'          Literal.Number
+'\n'          Text.Whitespace
+
+'HashKnownHosts' Keyword
+' '           Text.Whitespace
+'yes'         Literal
+'\n'          Text.Whitespace
+
+'HostKeyAlgorithms' Keyword
+' '           Text.Whitespace
+'ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-ed25519,ssh-rsa,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp521,ecdsa-sha2-nistp384,ecdsa-sha2-nistp256' Name
+'\n'          Text.Whitespace
+
+'KexAlgorithms' Keyword
+' '           Text.Whitespace
+'curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256' Name
+'\n'          Text.Whitespace
+
+'MACs'        Keyword
+' '           Text.Whitespace
+'hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com' Name
+'\n'          Text.Whitespace
+
+'Ciphers'     Keyword
+' '           Text.Whitespace
+'chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'Host'        Keyword
+' '           Text.Whitespace
+'*'           Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'ForwardAgent' Keyword
+' '           Text.Whitespace
+'yes'         Literal
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'ForwardX11'  Keyword
+' '           Text.Whitespace
+'no'          Literal
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'ServerAliveInterval' Keyword
+' '           Text.Whitespace
+'60'          Literal.Number
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'ServerAliveCountMax' Keyword
+' '           Text.Whitespace
+'3'           Literal.Number
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'IdentityFile' Keyword
+' '           Text.Whitespace
+'~/.ssh/id_rsa' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'Host'        Keyword
+' '           Text.Whitespace
+'myserver'    Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'HostName'    Keyword
+' '           Text.Whitespace
+'myserver.example.com' Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'User'        Keyword
+' '           Text.Whitespace
+'alice'       Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Port'        Keyword
+' '           Text.Whitespace
+'2222'        Literal.Number
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'IdentityFile' Keyword
+' '           Text.Whitespace
+'~/.ssh/id_rsa_myserver' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'Host'        Keyword
+' '           Text.Whitespace
+'web1'        Name
+' '           Text.Whitespace
+'web2'        Name
+' '           Text.Whitespace
+'web3'        Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'User'        Keyword
+' '           Text.Whitespace
+'deploy'      Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'IdentityFile' Keyword
+' '           Text.Whitespace
+'~/.ssh/id_deploy_key' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'Host'        Keyword
+' '           Text.Whitespace
+'*.internal.example.com' Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'User'        Keyword
+' '           Text.Whitespace
+'internaluser' Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'ProxyJump'   Keyword
+' '           Text.Whitespace
+'gateway.example.com' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'Host'        Keyword
+' '           Text.Whitespace
+'192.168.1.100' Name.Constant
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'User'        Keyword
+' '           Text.Whitespace
+'admin'       Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Port'        Keyword
+' '           Text.Whitespace
+'2200'        Literal.Number
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'Host'        Keyword
+' '           Text.Whitespace
+'"example.com"' Literal.String.Double
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Hostname'    Name
+' '           Text.Whitespace
+'"ari.lt"'    Literal.String.Double
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'StrictHostKeyChecking' Keyword
+' '           Text.Whitespace
+'no'          Literal
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'User'        Keyword
+' '           Text.Whitespace
+'testuser'    Name
+'\n'          Text.Whitespace

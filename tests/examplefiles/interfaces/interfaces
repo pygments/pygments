@@ -1,0 +1,15 @@
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet static
+    address 127.0.0.1
+    netmask 255.255.255.128
+    gateway 127.0.1.1
+
+iface eth0 inet6 static
+    address 2001:db8:0:0:1:0:0:1
+    netmask 64
+    gateway 2001:db8:0:0:1:0:0:2
+
+autoconf 0
