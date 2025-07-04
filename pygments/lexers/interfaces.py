@@ -12,7 +12,7 @@ import re
 
 from pygments.lexer import Lexer
 from pygments.token import (Comment, Keyword, Literal, Name, Number, Text,
-                            Token, Whitespace)
+                            Whitespace)
 
 __all__ = ["InterfacesLexer"]
 
