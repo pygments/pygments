@@ -174,7 +174,7 @@ class SshdConfigLexer(Lexer):
                         m4 = self.ipv4_pattern.match(rest)
                         if m4:
                             ip = m4.group(0)
-                            yield pos, Name.Constant, ip
+                            yield pos, Literal.IP, ip
                             pos += len(ip)
                             rest = rest[len(ip) :]
                             continue

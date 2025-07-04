@@ -189,7 +189,7 @@ class SshConfigLexer(Lexer):
                     m4 = self.ipv4_pattern.match(rest)
                     if m4:
                         ip = m4.group(0)
-                        yield pos, Name.Constant, ip
+                        yield pos, Literal.IP, ip
                         pos += len(ip)
                         rest = rest[len(ip) :]
                         continue
@@ -198,7 +198,7 @@ class SshConfigLexer(Lexer):
                     m6 = self.ipv6_pattern.match(rest)
                     if m6:
                         ip = m6.group(0)
-                        yield pos, Name.Constant, ip
+                        yield pos, Literal.IP, ip
                         pos += len(ip)
                         rest = rest[len(ip) :]
                         continue

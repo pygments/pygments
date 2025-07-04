@@ -11,8 +11,8 @@
 import re
 
 from pygments.lexer import Lexer
-from pygments.token import (Comment, Keyword, Name, Number, Text, Token,
-                            Whitespace)
+from pygments.token import (Comment, Keyword, Literal, Name, Number, Text,
+                            Token, Whitespace)
 
 __all__ = ["InterfacesLexer"]
 
@@ -97,7 +97,7 @@ class InterfacesLexer(Lexer):
                 m4 = self.ipv4_pattern.match(rest)
                 if m4:
                     ip = m4.group(0)
-                    yield pos, Token.Literal.IP, ip
+                    yield pos, Literal.IP, ip
                     pos += len(ip)
                     rest = rest[len(ip) :]
                     continue
@@ -106,7 +106,7 @@ class InterfacesLexer(Lexer):
                 m6 = self.ipv6_pattern.match(rest)
                 if m6:
                     ip = m6.group(0)
-                    yield pos, Token.Literal.IP, ip
+                    yield pos, Literal.IP, ip
                     pos += len(ip)
                     rest = rest[len(ip) :]
                     continue
