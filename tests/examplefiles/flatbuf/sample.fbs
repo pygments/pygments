@@ -1,0 +1,42 @@
+// This is a single-line comment
+/*
+ * This is a multi-line comment.
+ * It can span multiple lines.
+ */
+
+include "mydefinitions.fbs";
+
+namespace MyGame;
+
+attribute "priority";
+
+enum Color : byte { Red = 1, Green, Blue }
+
+union Any { Monster, Weapon, Pickup }
+
+struct Vec3 {
+  x: float;
+  y: float;
+  z: float;
+}
+
+table Monster {
+  pos: Vec3;
+  mana: short = 150;
+  hp: short = 100;
+  name: string;
+  friendly: bool = false (deprecated, priority: 1);
+  inventory: [ubyte];
+  color: Color = Blue;
+  test: Any;
+}
+
+rpc_service MonsterStorage {
+    Store(Monster):StoreResponse;
+    Retrieve(MonsterId):Monster;
+}
+
+table Weapon {}
+table Pickup {}
+
+root_type Monster;
