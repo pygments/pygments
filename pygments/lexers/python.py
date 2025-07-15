@@ -910,7 +910,7 @@ class CythonLexer(RegexLexer):
                 'Exception', 'FloatingPointError', 'FutureWarning', 'GeneratorExit',
                 'IOError', 'ImportError', 'ImportWarning', 'IndentationError',
                 'IndexError', 'KeyError', 'KeyboardInterrupt', 'LookupError',
-                'MemoryError', 'NameError', 'NotImplemented', 'NotImplementedError',
+                'MemoryError', 'NameError', 'NotImplementedError',
                 'OSError', 'OverflowError', 'OverflowWarning',
                 'PendingDeprecationWarning', 'ReferenceError', 'RuntimeError',
                 'RuntimeWarning', 'StandardError', 'StopIteration', 'SyntaxError',
