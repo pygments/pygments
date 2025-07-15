@@ -1,0 +1,64 @@
+---input---
+cdef enum CheeseType:
+    cheddar, edam,
+    camembert
+
+cdef enum CheeseState:
+    hard = 1
+    soft = 2
+    runny = 3
+
+---tokens---
+'cdef'        Keyword
+' '           Text.Whitespace
+'enum'        Keyword
+' '           Text.Whitespace
+'CheeseType'  Name.Class
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'cheddar'     Name
+','           Punctuation
+' '           Text
+'edam'        Name
+','           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'camembert'   Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'cdef'        Keyword
+' '           Text.Whitespace
+'enum'        Keyword
+' '           Text.Whitespace
+'CheeseState' Name.Class
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'hard'        Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Float
+'\n'          Text.Whitespace
+
+'    '        Text
+'soft'        Name
+' '           Text
+'='           Operator
+' '           Text
+'2'           Literal.Number.Float
+'\n'          Text.Whitespace
+
+'    '        Text
+'runny'       Name
+' '           Text
+'='           Operator
+' '           Text
+'3'           Literal.Number.Float
+'\n'          Text.Whitespace
