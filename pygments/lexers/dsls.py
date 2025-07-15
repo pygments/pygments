@@ -99,7 +99,7 @@ class FlatBufLexer(RegexLexer):
             (r'/(\\\n)?\*(.|\n)*?\*(\\\n)?/', Comment.Multiline),
             (r"(include)(\s+)(\"[^\"]+\")", bygroups(Keyword.Preprocessor, Whitespace, String)),
             (r"(attribute)(\s+)(\"[^\"]+\")", bygroups(Keyword.Preprocessor, Whitespace, String)),
-            (r'(namespace)(\s+)([a-zA-Z_]\w*)', bygroups(Keyword.Namespace, Whitespace, Name.Namespace)),
+            (r'(namespace)(\s+)([a-zA-Z_][\w\.]*)', bygroups(Keyword.Namespace, Whitespace, Name.Namespace)),
             (r'(table|struct)(\s+)([a-zA-Z_]\w*)', bygroups(Keyword.Declaration, Whitespace, Name.Class), 'object'),
             (r'(enum|union)(\s+)([a-zA-Z_]\w*)', bygroups(Keyword.Declaration, Whitespace, Name.Class), 'enum'),
             (r'(rpc_service)(\s+)([a-zA-Z_]\w*)', bygroups(Keyword.Declaration, Whitespace, Name.Class), 'rpc'),
@@ -149,7 +149,7 @@ class FlatBufLexer(RegexLexer):
             include('builtins'),
             include('primitives'),
             (r'[ \t\r\n]+', Whitespace),
-            (r"[a-zA-Z_][a-zA-Z0-9_]*", Name.Variable),
+            (r"[a-zA-Z_][a-zA-Z0-9_\.]*", Name.Variable),
             (r"[:;\[\]]", Punctuation),
             (r"=", Operator),
             (r"\}", Punctuation, '#pop:2')
