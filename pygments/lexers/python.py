@@ -938,12 +938,12 @@ class CythonLexer(RegexLexer):
             (r'[a-zA-Z_]\w*', Name.Function, '#pop')
         ],
         'cdef': [
-            (r'(public|readonly|extern|api|inline)\b', Keyword.Reserved),
-            (r'(struct|enum|union|class)\b', Keyword),
-            (r'([a-zA-Z_]\w*)(\s*)(?=[(:#=]|$)',
-             bygroups(Name.Function, Whitespace), '#pop'),
-            (r'([a-zA-Z_]\w*)(\s*)(,)',
-             bygroups(Name.Function, Whitespace, Punctuation)),
+            (r"(public|readonly|extern|api|inline|packed)\b", Keyword.Reserved),
+            (r"(struct|enum|union|class|cppclass)\b(\s+)([a-zA-Z_]\w*)",
+             bygroups(Keyword, Whitespace, Name.Class), "#pop",),
+            (r"([a-zA-Z_]\w*)(\s*)(?=\()", bygroups(Name.Function, Whitespace), "#pop"),
+            (r"([a-zA-Z_]\w*)(\s*)(?=[:,=#\n]|$)", bygroups(Name.Variable, Whitespace), "#pop"),
+            (r"([a-zA-Z_]\w*)(\s*)(,)", bygroups(Name.Variable, Whitespace, Punctuation)),
             (r'from\b', Keyword, '#pop'),
             (r'as\b', Keyword),
             (r':', Punctuation, '#pop'),
