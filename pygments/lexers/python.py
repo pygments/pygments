@@ -861,7 +861,7 @@ class CythonLexer(RegexLexer):
             (r'(cp?def)(\s+)', bygroups(Keyword, Whitespace), 'cdef'),
             # (should actually start a block with only cdefs)
             (r'(cdef)(:)', bygroups(Keyword, Punctuation)),
-            (r'(class|struct)(\s+)', bygroups(Keyword, Whitespace), 'classname'),
+            (r'(class|cppclass|struct)(\s+)', bygroups(Keyword, Whitespace), 'classname'),
             (r'(from)(\s+)', bygroups(Keyword, Whitespace), 'fromimport'),
             (r'(c?import)(\s+)', bygroups(Keyword, Whitespace), 'import'),
             include('builtins'),
