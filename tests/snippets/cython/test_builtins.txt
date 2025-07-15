@@ -1,0 +1,342 @@
+---input---
+__import__
+abs
+all
+any
+apply
+basestring
+bin
+bint
+bool
+buffer
+bytearray
+bytes
+callable
+char
+chr
+classmethod
+cmp
+coerce
+compile
+complex
+delattr
+dict
+dir
+divmod
+double
+enumerate
+eval
+execfile
+exit
+file
+filter
+float
+frozenset
+getattr
+globals
+hasattr
+hash
+hex
+id
+input
+int
+intern
+isinstance
+issubclass
+iter
+len
+list
+locals
+long
+map
+max
+min
+next
+object
+oct
+open
+ord
+pow
+property
+Py_ssize_t
+range
+raw_input
+reduce
+reload
+repr
+reversed
+round
+set
+setattr
+size_t
+slice
+sorted
+staticmethod
+ssize_t
+str
+sum
+super
+tuple
+type
+unichr
+unicode
+unsigned
+vars
+xrange
+zip
+
+---tokens---
+'__import__'  Name.Builtin
+'\n'          Text.Whitespace
+
+'abs'         Name.Builtin
+'\n'          Text.Whitespace
+
+'all'         Name.Builtin
+'\n'          Text.Whitespace
+
+'any'         Name.Builtin
+'\n'          Text.Whitespace
+
+'apply'       Name.Builtin
+'\n'          Text.Whitespace
+
+'basestring'  Name.Builtin
+'\n'          Text.Whitespace
+
+'bin'         Name.Builtin
+'\n'          Text.Whitespace
+
+'bint'        Name.Builtin
+'\n'          Text.Whitespace
+
+'bool'        Name.Builtin
+'\n'          Text.Whitespace
+
+'buffer'      Name.Builtin
+'\n'          Text.Whitespace
+
+'bytearray'   Name.Builtin
+'\n'          Text.Whitespace
+
+'bytes'       Name.Builtin
+'\n'          Text.Whitespace
+
+'callable'    Name.Builtin
+'\n'          Text.Whitespace
+
+'char'        Name.Builtin
+'\n'          Text.Whitespace
+
+'chr'         Name.Builtin
+'\n'          Text.Whitespace
+
+'classmethod' Name.Builtin
+'\n'          Text.Whitespace
+
+'cmp'         Name.Builtin
+'\n'          Text.Whitespace
+
+'coerce'      Name.Builtin
+'\n'          Text.Whitespace
+
+'compile'     Name.Builtin
+'\n'          Text.Whitespace
+
+'complex'     Name.Builtin
+'\n'          Text.Whitespace
+
+'delattr'     Name.Builtin
+'\n'          Text.Whitespace
+
+'dict'        Name.Builtin
+'\n'          Text.Whitespace
+
+'dir'         Name.Builtin
+'\n'          Text.Whitespace
+
+'divmod'      Name.Builtin
+'\n'          Text.Whitespace
+
+'double'      Name.Builtin
+'\n'          Text.Whitespace
+
+'enumerate'   Name.Builtin
+'\n'          Text.Whitespace
+
+'eval'        Name.Builtin
+'\n'          Text.Whitespace
+
+'execfile'    Name.Builtin
+'\n'          Text.Whitespace
+
+'exit'        Name.Builtin
+'\n'          Text.Whitespace
+
+'file'        Name.Builtin
+'\n'          Text.Whitespace
+
+'filter'      Name.Builtin
+'\n'          Text.Whitespace
+
+'float'       Name.Builtin
+'\n'          Text.Whitespace
+
+'frozenset'   Name.Builtin
+'\n'          Text.Whitespace
+
+'getattr'     Name.Builtin
+'\n'          Text.Whitespace
+
+'globals'     Name.Builtin
+'\n'          Text.Whitespace
+
+'hasattr'     Name.Builtin
+'\n'          Text.Whitespace
+
+'hash'        Name.Builtin
+'\n'          Text.Whitespace
+
+'hex'         Name.Builtin
+'\n'          Text.Whitespace
+
+'id'          Name.Builtin
+'\n'          Text.Whitespace
+
+'input'       Name.Builtin
+'\n'          Text.Whitespace
+
+'int'         Name.Builtin
+'\n'          Text.Whitespace
+
+'intern'      Name.Builtin
+'\n'          Text.Whitespace
+
+'isinstance'  Name.Builtin
+'\n'          Text.Whitespace
+
+'issubclass'  Name.Builtin
+'\n'          Text.Whitespace
+
+'iter'        Name.Builtin
+'\n'          Text.Whitespace
+
+'len'         Name.Builtin
+'\n'          Text.Whitespace
+
+'list'        Name.Builtin
+'\n'          Text.Whitespace
+
+'locals'      Name.Builtin
+'\n'          Text.Whitespace
+
+'long'        Name.Builtin
+'\n'          Text.Whitespace
+
+'map'         Name.Builtin
+'\n'          Text.Whitespace
+
+'max'         Name.Builtin
+'\n'          Text.Whitespace
+
+'min'         Name.Builtin
+'\n'          Text.Whitespace
+
+'next'        Name.Builtin
+'\n'          Text.Whitespace
+
+'object'      Name.Builtin
+'\n'          Text.Whitespace
+
+'oct'         Name.Builtin
+'\n'          Text.Whitespace
+
+'open'        Name.Builtin
+'\n'          Text.Whitespace
+
+'ord'         Name.Builtin
+'\n'          Text.Whitespace
+
+'pow'         Name.Builtin
+'\n'          Text.Whitespace
+
+'property'    Keyword
+'\n'          Text.Whitespace
+
+'Py_ssize_t'  Name.Function
+'\n'          Text.Whitespace
+
+'range'       Name.Builtin
+'\n'          Text.Whitespace
+
+'raw_input'   Name.Builtin
+'\n'          Text.Whitespace
+
+'reduce'      Name.Builtin
+'\n'          Text.Whitespace
+
+'reload'      Name.Builtin
+'\n'          Text.Whitespace
+
+'repr'        Name.Builtin
+'\n'          Text.Whitespace
+
+'reversed'    Name.Builtin
+'\n'          Text.Whitespace
+
+'round'       Name.Builtin
+'\n'          Text.Whitespace
+
+'set'         Name.Builtin
+'\n'          Text.Whitespace
+
+'setattr'     Name.Builtin
+'\n'          Text.Whitespace
+
+'size_t'      Name.Builtin
+'\n'          Text.Whitespace
+
+'slice'       Name.Builtin
+'\n'          Text.Whitespace
+
+'sorted'      Name.Builtin
+'\n'          Text.Whitespace
+
+'staticmethod' Name.Builtin
+'\n'          Text.Whitespace
+
+'ssize_t'     Name.Builtin
+'\n'          Text.Whitespace
+
+'str'         Name.Builtin
+'\n'          Text.Whitespace
+
+'sum'         Name.Builtin
+'\n'          Text.Whitespace
+
+'super'       Name.Builtin
+'\n'          Text.Whitespace
+
+'tuple'       Name.Builtin
+'\n'          Text.Whitespace
+
+'type'        Name.Builtin
+'\n'          Text.Whitespace
+
+'unichr'      Name.Builtin
+'\n'          Text.Whitespace
+
+'unicode'     Name.Builtin
+'\n'          Text.Whitespace
+
+'unsigned'    Name.Builtin
+'\n'          Text.Whitespace
+
+'vars'        Name.Builtin
+'\n'          Text.Whitespace
+
+'xrange'      Name.Builtin
+'\n'          Text.Whitespace
+
+'zip'         Name.Builtin
+'\n'          Text.Whitespace
