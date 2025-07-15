@@ -93,10 +93,9 @@ class FlatBufLexer(RegexLexer):
 
     tokens = {
         'root': [
+            include('comments'),
             (r'[ \t]+', Whitespace),
             (r';', Punctuation),
-            (r'/(\\\n)?/(\n|(.|\n)*?[^\\]\n)', Comment.Single),
-            (r'/(\\\n)?\*(.|\n)*?\*(\\\n)?/', Comment.Multiline),
             (r"(include)(\s+)(\"[^\"]+\")", bygroups(Keyword.Preprocessor, Whitespace, String)),
             (r"(attribute)(\s+)(\"[^\"]+\")", bygroups(Keyword.Preprocessor, Whitespace, String)),
             (r'(namespace)(\s+)([a-zA-Z_][\w\.]*)', bygroups(Keyword.Namespace, Whitespace, Name.Namespace)),
@@ -109,6 +108,7 @@ class FlatBufLexer(RegexLexer):
         ],
         'rpc': [
             include('builtins'),
+            include('comments'),
             (r'[ \t\r\n]+', Whitespace),
             (r"\(", Punctuation, 'attribute'),
             (r"[:;]", Punctuation),
@@ -124,10 +124,12 @@ class FlatBufLexer(RegexLexer):
         ],
         'enum_def': [
             include('integers'),
+            include('comments'),
             (r'[ \t\r\n]+', Whitespace),
             (r"[a-zA-Z_][a-zA-Z0-9_]*", Name.Variable),
             (r",", Punctuation),
             (r"=", Operator),
+            (r"\(", Punctuation, 'attribute'),
             (r"\}", Punctuation, '#pop:2')
         ],
         'object': [
@@ -148,11 +150,18 @@ class FlatBufLexer(RegexLexer):
             include('integers'),
             include('builtins'),
             include('primitives'),
+            include('comments'),
             (r'[ \t\r\n]+', Whitespace),
             (r"[a-zA-Z_][a-zA-Z0-9_\.]*", Name.Variable),
             (r"[:;\[\]]", Punctuation),
             (r"=", Operator),
+            (r"\(", Punctuation, 'attribute'),
             (r"\}", Punctuation, '#pop:2')
+        ],
+        'comments': [
+            (r'//(\n|(.|\n)*?[^\\]\n)', Comment.Single),
+            (r'///(\n|(.|\n)*?[^\\]\n)', Comment.Special),
+            (r'/\*(.|\n)*?\*/', Comment.Multiline),
         ],
         'integers': [
             (r"0x[0-9a-fA-F]+", Number.Hex),
