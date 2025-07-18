@@ -12,7 +12,7 @@ from pygments.token import Comment, Keyword, Name, Number, Operator, String, Whi
 
 __all__ = ['KdlLexer']
 
-class CustomLexer(RegexLexer):
+class KdlLexer(RegexLexer):
     """
     For KDL config files.
     """
