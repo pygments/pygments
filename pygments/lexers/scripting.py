@@ -546,13 +546,26 @@ class MoonScriptLexer(LuaLexer):
         'stringescape': [
             (r'''\\([abfnrtv\\"']|\d{1,3})''', String.Escape)
         ],
-        'sqs': [
-            ("'", String.Single, '#pop'),
-            ("[^']+", String)
+        'strings': [
+            (r'[^#\\\'"]+', String),
+            # note that strings are multi-line.
+            # hashmarks, quotes and backslashes must be parsed one at a time
+        ],
+        'interpoling_string': [
+            (r'\}', String.Interpol, "#pop"),
+            include('base')
         ],
         'dqs': [
-            ('"', String.Double, '#pop'),
-            ('[^"]+', String)
+            (r'"', String.Double, '#pop'),
+            (r'\\.|\'', String),  # double-quoted string don't need ' escapes
+            (r'#\{', String.Interpol, "interpoling_string"),
+            (r'#', String),
+            include('strings')
+        ],
+        'sqs': [
+            (r"'", String.Single, '#pop'),
+            (r'#|\\.|"', String),  # single quoted strings don't need " escapses
+            include('strings')
         ]
     }
 
