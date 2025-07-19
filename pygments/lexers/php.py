@@ -250,10 +250,10 @@ class PhpLexer(RegexLexer):
              Name.Function.Magic),
         ],
         'magicconstants': [
-            # source: http://php.net/manual/en/language.constants.predefined.php
+            # source: https://www.php.net/manual/en/language.constants.magic.php
             (words((
                 '__LINE__', '__FILE__', '__DIR__', '__FUNCTION__', '__CLASS__',
-                '__TRAIT__', '__METHOD__', '__NAMESPACE__',),
+                '__TRAIT__', '__METHOD__', '__NAMESPACE__', '__PROPERTY__',),
                 suffix=r'\b'),
              Name.Constant),
         ],
