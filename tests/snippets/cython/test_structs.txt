@@ -1,0 +1,49 @@
+---input---
+cdef struct Eggs:
+    size_t count
+
+cdef packed struct DataStructure:
+    ssize_t length
+    int[4] data
+
+---tokens---
+'cdef'        Keyword
+' '           Text.Whitespace
+'struct'      Keyword
+' '           Text.Whitespace
+'Eggs'        Name.Class
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'size_t'      Name.Builtin
+' '           Text
+'count'       Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'cdef'        Keyword
+' '           Text.Whitespace
+'packed'      Keyword.Reserved
+' '           Text
+'struct'      Keyword
+' '           Text.Whitespace
+'DataStructure' Name.Class
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'ssize_t'     Name.Builtin
+' '           Text
+'length'      Name
+'\n'          Text.Whitespace
+
+'    '        Text
+'int'         Name.Builtin
+'['           Punctuation
+'4'           Literal.Number.Float
+']'           Punctuation
+' '           Text
+'data'        Name
+'\n'          Text.Whitespace

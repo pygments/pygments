@@ -1,0 +1,36 @@
+---input---
+cdef union MyUnion:
+    unsigned int i
+    long long j
+    float f
+
+---tokens---
+'cdef'        Keyword
+' '           Text.Whitespace
+'union'       Keyword
+' '           Text.Whitespace
+'MyUnion'     Name.Class
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'unsigned'    Name.Builtin
+' '           Text
+'int'         Name.Builtin
+' '           Text
+'i'           Name
+'\n'          Text.Whitespace
+
+'    '        Text
+'long'        Name.Builtin
+' '           Text
+'long'        Name.Builtin
+' '           Text
+'j'           Name
+'\n'          Text.Whitespace
+
+'    '        Text
+'float'       Name.Builtin
+' '           Text
+'f'           Name
+'\n'          Text.Whitespace

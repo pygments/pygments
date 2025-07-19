@@ -1,0 +1,131 @@
+---input---
+assert
+async
+await
+break
+by
+continue
+del
+elif
+else
+except
+except?
+exec
+finally
+for
+gil
+global
+if
+include
+lambda
+namespace
+new
+noexcept
+nogil
+pass
+print
+raise
+return
+try
+while
+yield
+as
+with
+
+---tokens---
+'assert'      Keyword
+'\n'          Text.Whitespace
+
+'async'       Keyword
+'\n'          Text.Whitespace
+
+'await'       Keyword
+'\n'          Text.Whitespace
+
+'break'       Keyword
+'\n'          Text.Whitespace
+
+'by'          Keyword
+'\n'          Text.Whitespace
+
+'continue'    Keyword
+'\n'          Text.Whitespace
+
+'del'         Keyword
+'\n'          Text.Whitespace
+
+'elif'        Keyword
+'\n'          Text.Whitespace
+
+'else'        Keyword
+'\n'          Text.Whitespace
+
+'except'      Keyword
+'\n'          Text.Whitespace
+
+'except'      Keyword
+'?'           Operator
+'\n'          Text.Whitespace
+
+'exec'        Keyword
+'\n'          Text.Whitespace
+
+'finally'     Keyword
+'\n'          Text.Whitespace
+
+'for'         Keyword
+'\n'          Text.Whitespace
+
+'gil'         Keyword
+'\n'          Text.Whitespace
+
+'global'      Keyword
+'\n'          Text.Whitespace
+
+'if'          Keyword
+'\n'          Text.Whitespace
+
+'include'     Keyword
+'\n'          Text.Whitespace
+
+'lambda'      Keyword
+'\n'          Text.Whitespace
+
+'namespace'   Keyword
+'\n'          Text.Whitespace
+
+'new'         Keyword
+'\n'          Text.Whitespace
+
+'noexcept'    Keyword
+'\n'          Text.Whitespace
+
+'nogil'       Keyword
+'\n'          Text.Whitespace
+
+'pass'        Keyword
+'\n'          Text.Whitespace
+
+'print'       Keyword
+'\n'          Text.Whitespace
+
+'raise'       Keyword
+'\n'          Text.Whitespace
+
+'return'      Keyword
+'\n'          Text.Whitespace
+
+'try'         Keyword
+'\n'          Text.Whitespace
+
+'while'       Keyword
+'\n'          Text.Whitespace
+
+'yield'       Keyword
+'\n'          Text.Whitespace
+
+'as'          Keyword
+'\n'          Text.Whitespace
+
+'with'        Keyword
+'\n'          Text.Whitespace
