@@ -11,12 +11,20 @@
 import re
 from bisect import bisect
 
-from pygments.lexer import RegexLexer, bygroups, default, include, this, using
+from pygments.lexer import RegexLexer, bygroups, default, include, inherit, \
+    this, using, words
+from pygments.lexers._kakoune_builtins import (
+    attributes as kak_attributes,
+    keywords as kak_keywords,
+    types as kak_types,
+    values as kak_values,
+)
+from pygments.lexers.shell import BashLexer
 from pygments.lexers.python import PythonLexer
-from pygments.token import Comment, Keyword, Name, Number, Operator, \
+from pygments.token import Comment, Keyword, Literal, Name, Number, Operator, \
     Punctuation, String, Text, Whitespace
 
-__all__ = ['AwkLexer', 'SedLexer', 'VimLexer']
+__all__ = ['AwkLexer', 'SedLexer', 'VimLexer', 'KakouneLexer']
 
 
 class AwkLexer(RegexLexer):
@@ -203,3 +211,37 @@ class VimLexer(RegexLexer):
                     yield index, Text, value
             else:
                 yield index, token, value
+
+# note: we implement this as a subclass of the BashLexer
+# because Kakoune syntax is very similar to POSIX sh.
+# the highlighting yielded by this lexer is very close
+# to how Kakoune itself highlights kakscript syntax
+class KakouneLexer(BashLexer):
+    """Lexer for Kakoune script files."""
+
+    name = "Kakoune"
+    aliases = ["kak", "kakoune", "kakrc", "kakscript"]
+    filenames = ["*.kak", "kakrc"]
+    url = "https://kakoune.org/"
+    version_added = "2.19"
+
+    tokens = {
+        "root": [
+            (words(kak_keywords, prefix=r"\b", suffix=r"\b"), Keyword),
+            (
+                words(kak_attributes, prefix=r"\b", suffix=r"\b"),
+                Name.Attribute,
+            ),
+            (words(kak_types, prefix=r"\b", suffix=r"\b"), Name.Class),
+            (words(kak_values, prefix=r"\b", suffix=r"\b"), Literal),
+            (r"\brgba?:[0-9a-fA-F]{6,8}\b", Literal.Number.Hex),
+            (
+                r"(-params )(\b\d+)(\.\.)(\d+\b)",
+                bygroups(Text, Number, Text, Number),
+            ),
+            (r'"(""|[^"])*"', String),
+            (r"'(''|[^'])*'", String),
+            inherit,
+        ]
+    }
+
