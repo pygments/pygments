@@ -145,7 +145,7 @@ class ESQLLexer(RegexLexer):
             # Identifiers
             # Reference: https://www.elastic.co/guide/en/elasticsearch/reference/8.17/esql-syntax.html#esql-identifiers
             (r"`", Name, 'backtick'),
-            (r"[a-zA-Z_@]\w*", Name),
+            (r"[a-z_@]\w*", Name), # Full regex is "[a-zA-Z_@]\w*" but not required as re.IGNORECASE is set
 
             # Processing
             # Reference: https://www.elastic.co/guide/en/elasticsearch/reference/8.17/esql-syntax.html#esql-basic-syntax
