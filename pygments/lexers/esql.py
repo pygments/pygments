@@ -1,6 +1,6 @@
 """
     pygments.lexers.esql
-    ~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~
 
     Lexers for Elasticsearch Query Language (ES|QL).
 
