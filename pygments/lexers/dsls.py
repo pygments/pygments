@@ -173,7 +173,7 @@ class FlatBufLexer(RegexLexer):
         'primitives': [
             (r"\d+\.\d*([eE][+\-]?\d+)?", Number.Float),
             (r'"(\\"|[^"])*"', String),
-            (f'true|false', Name.Variable.Global)
+            (r'true|false', Name.Variable.Global)
         ],
         'builtins': [
             (words(("bool", "byte", "ubyte", "short", "ushort", "int", "uint", "float", "long", "ulong", "double", "string"), prefix=r'\b', suffix=r'\b'), Name.Builtin),
