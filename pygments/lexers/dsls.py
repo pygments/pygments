@@ -90,6 +90,8 @@ class FlatBufLexer(RegexLexer):
     url = 'https://flatbuffers.dev/'
     aliases = ['flatbuffers', 'flatbuf', 'fbs']
     filenames = ['*.fbs']
+    mimetypes = ['text/x-flatbuffers']
+    version_added = '2.20'
 
     tokens = {
         'root': [
@@ -111,7 +113,7 @@ class FlatBufLexer(RegexLexer):
             include('comments'),
             (r'[ \t\r\n]+', Whitespace),
             (r"\(", Punctuation, 'attribute'),
-            (r"[:;]", Punctuation),
+            (r"[:;\{]", Punctuation),
             (r'[a-zA-Z_]\w*', Name.Function),
             (r"\}", Punctuation, '#pop')
         ],
@@ -119,6 +121,7 @@ class FlatBufLexer(RegexLexer):
             include('builtins'),
             (r'[ \t]+', Whitespace),
             (r'[a-zA-Z_]\w*', Name.Class),
+            (r":", Punctuation),
             (r"\(", Punctuation, 'attribute'),
             (r"\{", Punctuation, 'enum_def')
         ],
