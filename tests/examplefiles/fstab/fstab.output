@@ -1,0 +1,171 @@
+'# Example fstab file.\n' Comment
+
+'\n'          Text
+
+'# Static information about the filesystems.\n' Comment
+
+'# See fstab(5) for details.\n' Comment
+
+'\n'          Text
+
+'# <file system>                           <mount point>   <type>    <options>                                                    <dump>  <pass>\n' Comment
+
+'\n'          Text
+
+'UUID=11111111-2222-3333-4444-555555555555' Name.Constant
+'  '          Text.Whitespace
+'/'           Name.Namespace
+'              ' Text.Whitespace
+'ext4'        Keyword.Type
+'      '      Text.Whitespace
+'defaults'    Keyword
+','           Punctuation
+'noatime'     Keyword
+','           Punctuation
+'errors=remount-ro' Keyword
+'                           ' Text.Whitespace
+'1'           Literal.Number.Integer
+'       '     Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'LABEL=home_data' Name.Constant
+'                            ' Text.Whitespace
+'/home'       Name.Namespace
+'          '  Text.Whitespace
+'xfs'         Keyword.Type
+'       '     Text.Whitespace
+'defaults'    Keyword
+','           Punctuation
+'usrquota'    Keyword
+','           Punctuation
+'grpquota'    Keyword
+','           Punctuation
+'noatime'     Keyword
+'                           ' Text.Whitespace
+'1'           Literal.Number.Integer
+'       '     Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'UUID=66666666-7777-8888-9999-000000000000' Name.Constant
+'  '          Text.Whitespace
+'none'        Name.Namespace
+'           ' Text.Whitespace
+'swap'        Keyword.Type
+'      '      Text.Whitespace
+'sw'          Keyword
+'                                                           ' Text.Whitespace
+'0'           Literal.Number.Integer
+'       '     Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'/dev/cdrom'  Name.Constant
+'                                 ' Text.Whitespace
+'/media/cdrom0' Name.Namespace
+'  '          Text.Whitespace
+'iso9660'     Keyword.Type
+'   '         Text.Whitespace
+'ro'          Keyword
+','           Punctuation
+'noauto'      Keyword
+','           Punctuation
+'user'        Keyword
+'                                               ' Text.Whitespace
+'0'           Literal.Number.Integer
+'       '     Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'//192.168.1.10/shared' Name.Constant
+'                      ' Text.Whitespace
+'/mnt/shared' Name.Namespace
+'    '        Text.Whitespace
+'cifs'        Keyword.Type
+'      '      Text.Whitespace
+'credentials' Name.Attribute
+'='           Operator
+'/root/.smbcredentials' Name.Constant
+','           Punctuation
+'iocharset'   Name.Attribute
+'='           Operator
+'utf8'        Name.Constant
+','           Punctuation
+'sec'         Name.Attribute
+'='           Operator
+'ntlmssp'     Name.Constant
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'       '     Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'server:/export/data' Name.Constant
+'                        ' Text.Whitespace
+'/mnt/nfs'    Name.Namespace
+'       '     Text.Whitespace
+'nfs'         Keyword.Type
+'       '     Text.Whitespace
+'defaults'    Keyword
+','           Punctuation
+'_netdev'     Keyword
+','           Punctuation
+'hard'        Keyword
+','           Punctuation
+'intr'        Keyword
+','           Punctuation
+'rsize'       Name.Attribute
+'='           Operator
+'8192'        Name.Constant
+','           Punctuation
+'wsize'       Name.Attribute
+'='           Operator
+'8192'        Name.Constant
+'             ' Text.Whitespace
+'0'           Literal.Number.Integer
+'       '     Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'tmpfs'       Name.Constant
+'                                      ' Text.Whitespace
+'/tmp'        Name.Namespace
+'           ' Text.Whitespace
+'tmpfs'       Keyword.Type
+'     '       Text.Whitespace
+'defaults'    Keyword
+','           Punctuation
+'noatime'     Keyword
+','           Punctuation
+'nosuid'      Keyword
+','           Punctuation
+'nodev'       Keyword
+','           Punctuation
+'size'        Name.Attribute
+'='           Operator
+'2G'          Name.Constant
+'                        ' Text.Whitespace
+'0'           Literal.Number.Integer
+'       '     Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'/var/log'    Name.Constant
+'                                   ' Text.Whitespace
+'/mnt/logbackup' Name.Namespace
+' '           Text.Whitespace
+'none'        Keyword.Type
+'      '      Text.Whitespace
+'bind'        Keyword
+','           Punctuation
+'obscure'     Name.Attribute
+','           Punctuation
+'hello'       Name.Attribute
+'='           Operator
+'1'           Name.Constant
+'                                         ' Text.Whitespace
+'0'           Literal.Number.Integer
+'       '     Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
