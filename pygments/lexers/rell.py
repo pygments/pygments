@@ -9,7 +9,7 @@
 """ 
 
 import re
-from pygments.lexer import RegexLexer, bygroups, default
+from pygments.lexer import RegexLexer, bygroups, default, words
 from pygments.token import Comment, Keyword, Name, String, Number, \
         Punctuation, Whitespace
 
@@ -24,21 +24,26 @@ class RellLexer(RegexLexer):
     aliases = ['rell']
     filenames = ['*.rell']
     mimetypes = ['text/x-rell']
-    version_added = '2.19.2'
+    version_added = '2.20.0'
 
     ident = r'[a-zA-Z_][a-zA-Z0-9_]*'
 
     tokens = {
         'root': [
-            (r'(big_integer|boolean|byte_array|decimal|gtv|integer|json|list|'
-             r'map|mutable|set|text|virtual)\b',
+            (words((
+                'big_integer', 'boolean', 'byte_array', 'decimal', 'gtv',
+                'integer', 'json', 'list', 'map', 'mutable', 'set', 'text',
+                'virtual'), suffix=r'\b'),
              Keyword.Type),
             (r'(false|true|null)\b', Keyword.Constant),
             (r'(entity|enum|namespace|object|struct)\b', Keyword.Declaration),
             (r'(function|operation|query)\b', Keyword.Declaration, 'function'),
-            (r'(abstract|and|break|continue|create|delete|else|for|if|import|'
-             r'in|index|key|limit|module|not|offset|or|override|return|update|'
-             r'val|var|when|while)\b', Keyword.Reserved),
+            (words((
+                'abstract', 'and', 'break', 'continue', 'create', 'delete',
+                'else', 'for', 'if', 'import', 'in', 'index', 'key', 'limit',
+                'module', 'not', 'offset', 'or', 'override', 'return', 'update',
+                'val', 'var', 'when', 'while'), suffix=r'\b'),
+             Keyword.Reserved),
             (r'//.*?$', Comment.Single),
             (r'/\*(.|\n|\r)*?\*/', Comment.Multiline),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
