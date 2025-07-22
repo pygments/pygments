@@ -24,7 +24,7 @@ class RellLexer(RegexLexer):
     aliases = ['rell']
     filenames = ['*.rell']
     mimetypes = ['text/x-rell']
-    version_added = '2.20.0'
+    version_added = '2.20'
 
     ident = r'[a-zA-Z_][a-zA-Z0-9_]*'
 
