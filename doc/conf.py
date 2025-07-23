@@ -233,7 +233,8 @@ man_pages = [
 rst_prolog = f'.. |language_count| replace:: {len(list(pygments.lexers.get_all_lexers()))}'
 
 def pg_context(app, pagename, templatename, ctx, event_arg):
-    ctx['demo_active'] = bool(os.environ.get('WEBSITE_BUILD'))
+    # casting string to bool doesn't work, we'll use 0 to disable
+    ctx['demo_active'] = os.environ.get('WEBSITE_BUILD')  != '0'
 
     if pagename == 'demo':
         ctx['lexers'] = sorted(pygments.lexers.get_all_lexers(plugins=False), key=lambda x: x[0].lower())
