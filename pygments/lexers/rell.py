@@ -1,14 +1,13 @@
 """
     pygments.lexers.rell
-    ~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~
 
     Lexers for the Rell language.
 
     :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
-""" 
+"""
 
-import re
 from pygments.lexer import RegexLexer, bygroups, default, words
 from pygments.token import Comment, Keyword, Name, String, Number, \
         Punctuation, Whitespace
@@ -53,11 +52,12 @@ class RellLexer(RegexLexer):
             (r'x(\'[a-fA-F0-9]*\'|"[a-fA-F0-9]*")', String.Binary),
             (r'(\.)([ \n\t\r]*)(' + ident + ')',
                 bygroups(Punctuation, Whitespace, Name.Attribute)),
-            (r'[{}():;,.]', Punctuation),
+            (r'[{}():;,]+', Punctuation),
             (r'[ \n\t\r]+', Whitespace),
             (r'@[a-zA-Z_][a-zA-Z0-9_]*', Name.Decorator),
             (r'[~^*!%&\[\]<>|+=/?\-@\$]', Punctuation.Marker),
             (ident, Name),
+            (r'(\.)+', Punctuation),
         ],
         'function': [
             (r'[ \n\t\r]+', Whitespace),

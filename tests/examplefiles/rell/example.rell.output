@@ -109,8 +109,7 @@
 ':'           Punctuation
 ' '           Text.Whitespace
 'integer'     Keyword.Type
-')'           Punctuation
-':'           Punctuation
+'):'          Punctuation
 ' '           Text.Whitespace
 'integer'     Keyword.Type
 ' '           Text.Whitespace
@@ -132,8 +131,7 @@
 ':'           Punctuation
 ' '           Text.Whitespace
 'integer'     Keyword.Type
-')'           Punctuation
-':'           Punctuation
+'):'          Punctuation
 ' '           Text.Whitespace
 'integer'     Keyword.Type
 ' '           Text.Whitespace
@@ -174,8 +172,7 @@
 '='           Punctuation.Marker
 ' '           Text.Whitespace
 '123'         Literal.Number.Integer
-')'           Punctuation
-':'           Punctuation
+'):'          Punctuation
 ' '           Text.Whitespace
 'decimal'     Keyword.Type
 ' '           Text.Whitespace
@@ -259,8 +256,7 @@
 'print'       Name
 '('           Punctuation
 '"Approaching the threshold!"' Literal.String.Double
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n    '      Text.Whitespace
 '}'           Punctuation
 '\n    '      Text.Whitespace
@@ -283,8 +279,7 @@
 'print'       Name
 '('           Punctuation
 '"It\'s over 9000!!!"' Literal.String.Double
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n    '      Text.Whitespace
 '}'           Punctuation
 '\n    '      Text.Whitespace
@@ -298,8 +293,7 @@
 'user_pubkey' Name
 ')'           Punctuation
 ' '           Text.Whitespace
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n    '      Text.Whitespace
 'create'      Keyword.Reserved
 ' '           Text.Whitespace
@@ -323,8 +317,7 @@
 '='           Punctuation.Marker
 ' '           Text.Whitespace
 'user_pubkey' Name
-'}'           Punctuation
-','           Punctuation
+'},'          Punctuation
 '\n        '  Text.Whitespace
 'name'        Name
 ' '           Text.Whitespace
@@ -332,8 +325,7 @@
 ' '           Text.Whitespace
 'channel_name' Name
 '\n    '      Text.Whitespace
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '}'           Punctuation
@@ -351,8 +343,7 @@
 
 'function'    Keyword.Declaration
 ' '           Text.Whitespace
-'('           Punctuation
-')'           Punctuation
+'()'          Punctuation
 ' '           Text.Whitespace
 '='           Punctuation.Marker
 ' '           Text.Whitespace
@@ -388,8 +379,7 @@
 ')'           Punctuation
 '\n'          Text.Whitespace
 
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n\n'        Text.Whitespace
 
 'function'    Keyword.Declaration
@@ -438,8 +428,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 'x'           Name
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '}'           Punctuation
@@ -468,8 +457,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 'x'           Name
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '}'           Punctuation
@@ -498,8 +486,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 'x'           Name
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '}'           Punctuation
@@ -532,8 +519,7 @@
 '>'           Punctuation.Marker
 ' '           Text.Whitespace
 'boolean'     Keyword.Type
-')'           Punctuation
-':'           Punctuation
+'):'          Punctuation
 ' '           Text.Whitespace
 'list'        Keyword.Type
 '<'           Punctuation.Marker
@@ -554,8 +540,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '*'           Punctuation.Marker
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n    '      Text.Whitespace
 'return'      Keyword.Reserved
 ' '           Text.Whitespace
@@ -571,8 +556,7 @@
 '$'           Punctuation.Marker
 ')'           Punctuation
 ' '           Text.Whitespace
-'}'           Punctuation
-';'           Punctuation
+'};'          Punctuation
 '\n'          Text.Whitespace
 
 '}'           Punctuation
