@@ -1,0 +1,44 @@
+---input---
+func map (func A -> B), list A -> list B.
+func once (pred) -> .
+
+---tokens---
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'map'         Name.Function
+' '           Text.Whitespace
+'('           Keyword.Mode
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'A'           Keyword.Type
+' '           Text.Whitespace
+'->'          Keyword.Mode
+' '           Text.Whitespace
+'B'           Keyword.Type
+')'           Keyword.Mode
+','           Keyword.Mode
+' '           Text.Whitespace
+'list'        Keyword.Type
+' '           Text.Whitespace
+'A'           Keyword.Type
+' '           Text.Whitespace
+'->'          Keyword.Mode
+' '           Text.Whitespace
+'list'        Keyword.Type
+' '           Text.Whitespace
+'B'           Keyword.Type
+'.'           Text
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'once'        Name.Function
+' '           Text.Whitespace
+'('           Keyword.Mode
+'pred'        Keyword.Declaration
+')'           Keyword.Mode
+' '           Text.Whitespace
+'->'          Keyword.Mode
+' '           Text.Whitespace
+'.'           Text
+'\n'          Text.Whitespace
