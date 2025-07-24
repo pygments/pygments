@@ -280,6 +280,8 @@ LEXERS = {
     'Lean3Lexer': ('pygments.lexers.lean', 'Lean', ('lean', 'lean3'), ('*.lean',), ('text/x-lean', 'text/x-lean3')),
     'Lean4Lexer': ('pygments.lexers.lean', 'Lean4', ('lean4',), ('*.lean',), ('text/x-lean4',)),
     'LessCssLexer': ('pygments.lexers.css', 'LessCss', ('less',), ('*.less',), ('text/x-less-css',)),
+    'LexCLexer': ('pygments.lexers.lex', 'Lex', ('lex', 'flex'), ('*.l', '*.lex'), ()),
+    'LexCppLexer': ('pygments.lexers.lex', 'Lex with C++', ('lex++', 'flex++'), ('*.ll', '*.lpp', '*.lxx', '*.L'), ()),
     'LighttpdConfLexer': ('pygments.lexers.configs', 'Lighttpd configuration file', ('lighttpd', 'lighty'), ('lighttpd.conf',), ('text/x-lighttpd-conf',)),
     'LilyPondLexer': ('pygments.lexers.lilypond', 'LilyPond', ('lilypond',), ('*.ly',), ()),
     'LimboLexer': ('pygments.lexers.inferno', 'Limbo', ('limbo',), ('*.b',), ('text/limbo',)),
