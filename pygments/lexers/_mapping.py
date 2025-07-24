@@ -264,6 +264,7 @@ LEXERS = {
     'KLexer': ('pygments.lexers.q', 'K', ('k',), ('*.k',), ()),
     'KalLexer': ('pygments.lexers.javascript', 'Kal', ('kal',), ('*.kal',), ('text/kal', 'application/kal')),
     'KconfigLexer': ('pygments.lexers.configs', 'Kconfig', ('kconfig', 'menuconfig', 'linux-config', 'kernel-config'), ('Kconfig*', '*Config.in*', 'external.in*', 'standard-modules.in'), ('text/x-kconfig',)),
+    'KdlLexer': ('pygments.lexers.kdl', 'KDL', ('kdl',), ('*.kdl',), ()),
     'KernelLogLexer': ('pygments.lexers.textfmts', 'Kernel log', ('kmsg', 'dmesg'), ('*.kmsg', '*.dmesg'), ()),
     'KokaLexer': ('pygments.lexers.haskell', 'Koka', ('koka',), ('*.kk', '*.kki'), ('text/x-koka',)),
     'KotlinLexer': ('pygments.lexers.jvm', 'Kotlin', ('kotlin',), ('*.kt', '*.kts'), ('text/x-kotlin',)),
