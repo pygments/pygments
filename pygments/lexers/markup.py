@@ -630,7 +630,7 @@ class OrgLexer(RegexLexer):
     version_added = '2.18'
 
     def _inline(start, end):
-        return rf'(?<!\w){start}(.|\n(?!\n))+?{end}(?!\w)'
+        return rf'(?<!\S){start}(.|\n(?!\n))+?{end}(?!\S)'
 
     tokens = {
         'root': [
@@ -693,6 +693,23 @@ class OrgLexer(RegexLexer):
             (r'(?i)^( *CLOSED: )(\[.+?\] *)$',
              bygroups(Generic.Deleted, Literal.Date)),
 
+            # Dates
+            (r'<.+?>', Literal.Date),
+            # Macros
+            (r'\{\{\{.+?\}\}\}', Comment.Preproc),
+            # Footnotes
+            (r'(?<!\[)\[fn:.+?\]', Name.Tag),
+            # Links
+            # Heuristics for matching bare URL links by https://daringfireball.net/2010/07/improved_regex_for_matching_urls
+            (r"""(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))""", Name.Attribute),
+            (r'(?s)(\[\[)(.*?)(\]\[)(.*?)(\]\])',
+             bygroups(Punctuation, Name.Attribute, Punctuation, Name.Tag, Punctuation)),
+            (r'(?s)(\[\[)(.+?)(\]\])', bygroups(Punctuation, Name.Attribute, Punctuation)),
+            (r'(<<)(.+?)(>>)', bygroups(Punctuation, Name.Attribute, Punctuation)),
+
+            # Tables
+            (r'^( *)(\|[ -].*?[ -]\|)$', bygroups(Whitespace, String)),
+
             # Bold
             (_inline(r'\*', r'\*+'), Generic.Strong),
             # Italic
@@ -706,24 +723,9 @@ class OrgLexer(RegexLexer):
             # Underline
             (_inline(r'_', r'_+'), Generic.EmphStrong),
 
-            # Dates
-            (r'<.+?>', Literal.Date),
-            # Macros
-            (r'\{\{\{.+?\}\}\}', Comment.Preproc),
-            # Footnotes
-            (r'(?<!\[)\[fn:.+?\]', Name.Tag),
-            # Links
-            (r'(?s)(\[\[)(.*?)(\]\[)(.*?)(\]\])',
-             bygroups(Punctuation, Name.Attribute, Punctuation, Name.Tag, Punctuation)),
-            (r'(?s)(\[\[)(.+?)(\]\])', bygroups(Punctuation, Name.Attribute, Punctuation)),
-            (r'(<<)(.+?)(>>)', bygroups(Punctuation, Name.Attribute, Punctuation)),
-
-            # Tables
-            (r'^( *)(\|[ -].*?[ -]\|)$', bygroups(Whitespace, String)),
-
             # Any other text
-            (r'[^#*+\-0-9:\\/=~_<{\[|\n]+', Text),
-            (r'[#*+\-0-9:\\/=~_<{\[|\n]', Text),
+            (r'\S+', Text),
+            (r'.', Text),
         ],
     }
 

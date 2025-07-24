@@ -1,61 +1,115 @@
 '# -*- org -*-' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#+title:'    Name.Namespace
 ' Single Post with TOML front matter' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#+author:'   Name.Namespace
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#+date:'     Name.Namespace
 ' 2017-07-20' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#+options:'  Name.Namespace
 ' creator:t toc:2' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#+hugo_base_dir:' Name.Namespace
 ' ../../'     Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#+hugo_categories:' Name.Namespace
 ' cat1 cat2'  Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#+hugo_menu:' Name.Namespace
 ' :menu "foo" :weight 10 :parent main :identifier single-toml' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#+description:' Name.Namespace
 ' Some description for this post.' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'This is a single post. You do not need to set the ' Text
+'This'        Text
+' '           Text
+'is'          Text
+' '           Text
+'a'           Text
+' '           Text
+'single'      Text
+' '           Text
+'post.'       Text
+' '           Text
+'You'         Text
+' '           Text
+'do'          Text
+' '           Text
+'not'         Text
+' '           Text
+'need'        Text
+' '           Text
+'to'          Text
+' '           Text
+'set'         Text
+' '           Text
+'the'         Text
+' '           Text
 '=EXPORT_FILE_NAME=' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'property in here. But then you also lose the tag and property' Text
-'\n'          Text
+'property'    Text
+' '           Text
+'in'          Text
+' '           Text
+'here.'       Text
+' '           Text
+'But'         Text
+' '           Text
+'then'        Text
+' '           Text
+'you'         Text
+' '           Text
+'also'        Text
+' '           Text
+'lose'        Text
+' '           Text
+'the'         Text
+' '           Text
+'tag'         Text
+' '           Text
+'and'         Text
+' '           Text
+'property'    Text
+'\n'          Text.Whitespace
 
-'inheritance Org awesomeness.' Text
-'\n'          Text
+'inheritance' Text
+' '           Text
+'Org'         Text
+' '           Text
+'awesomeness.' Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'line one '   Text
+'line'        Text
+' '           Text
+'one'         Text
+' '           Text
 '\\\\'        Operator
-'\n'          Text
+'\n'          Text.Whitespace
 
-'line two'    Text
-'\n'          Text
+'line'        Text
+' '           Text
+'two'         Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '*bold*'      Generic.Strong
 ' '           Text
@@ -68,205 +122,271 @@
 '+strikethrough+' Generic.Deleted
 ' '           Text
 '_underline_' Generic.EmphStrong
-'\n'          Text
+'\n'          Text.Whitespace
 
 '* First heading in this post' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '** Subheading' Generic.Subheading
 ' :TAG:'      Generic.Emph
-'\n'          Text
+'\n'          Text.Whitespace
 
-'This is a under first heading. ' Text
+'This'        Text
+' '           Text
+'is'          Text
+' '           Text
+'a'           Text
+' '           Text
+'under'       Text
+' '           Text
+'first'       Text
+' '           Text
+'heading.'    Text
+' '           Text
 '<2018-07-27 Fri>' Literal.Date
-'\n'          Text
+'\n'          Text.Whitespace
 
 '* '          Generic.Heading
 'COMMENT'     Comment.Preproc
 ' heading'    Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '** '         Generic.Subheading
 'COMMENT'     Comment.Preproc
 ' subheading' Generic.Subheading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '* '          Generic.Heading
 'TODO'        Generic.Error
 ' heading'    Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '** '         Generic.Subheading
 'TODO'        Generic.Error
 ' subheading' Generic.Subheading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '* '          Generic.Heading
 'DONE'        Generic.Deleted
 ' heading'    Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '** '         Generic.Subheading
 'DONE'        Generic.Deleted
 ' subheading' Generic.Subheading
-'\n'          Text
+'\n'          Text.Whitespace
 
 'CLOSED: '    Generic.Deleted
 '[2018-08-01 Wed 16:17]' Literal.Date
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '{{{n}}}'     Comment.Preproc
-' abc '       Text
+' '           Text
+'abc'         Text
+' '           Text
 '{{{n(,10)}}}' Comment.Preproc
-' def '       Text
+' '           Text
+'def'         Text
+' '           Text
 '{{{n(x,5)}}}' Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '- '          Keyword
-'unordered list item ' Text
+'unordered'   Text
+' '           Text
+'list'        Text
+' '           Text
+'item'        Text
+' '           Text
 '1'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '- '          Keyword
-'unordered list item ' Text
+'unordered'   Text
+' '           Text
+'list'        Text
+' '           Text
+'item'        Text
+' '           Text
 '2'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '- '          Keyword
 'Desc1 ::'    Name.Label
-' Description list item ' Text
+' '           Text
+'Description' Text
+' '           Text
+'list'        Text
+' '           Text
+'item'        Text
+' '           Text
 '1'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '- '          Keyword
 'Desc2 ::'    Name.Label
-' Description list item ' Text
+' '           Text
+'Description' Text
+' '           Text
+'list'        Text
+' '           Text
+'item'        Text
+' '           Text
 '2'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '1.'          Keyword
-' ordered list item ' Text
+' '           Text
+'ordered'     Text
+' '           Text
+'list'        Text
+' '           Text
+'item'        Text
+' '           Text
 '1'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '2.'          Keyword
-' ordered list item ' Text
+' '           Text
+'ordered'     Text
+' '           Text
+'list'        Text
+' '           Text
+'item'        Text
+' '           Text
 '2'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '1)'          Keyword
-' ordered list item ' Text
+' '           Text
+'ordered'     Text
+' '           Text
+'list'        Text
+' '           Text
+'item'        Text
+' '           Text
 '1'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '2)'          Keyword
-' ordered list item ' Text
+' '           Text
+'ordered'     Text
+' '           Text
+'list'        Text
+' '           Text
+'item'        Text
+' '           Text
 '2'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '3)'          Keyword
 ' [@20]'      Generic.Emph
-' asdf'       Text
-'\n'          Text
+' '           Text
+'asdf'        Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '- '          Keyword
 '*bold*'      Generic.Strong
-'\n'          Text
+'\n'          Text.Whitespace
 
 '- '          Keyword
 '/italics/'   Generic.Emph
-'\n'          Text
+'\n'          Text.Whitespace
 
 '- '          Keyword
 '=verbatim='  Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '- '          Keyword
 '~code~'      Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '- '          Keyword
 '+strikethrough+' Generic.Deleted
-'\n'          Text
+'\n'          Text.Whitespace
 
 '- '          Keyword
 '_underline_' Generic.EmphStrong
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#+begin_comment\n' Operator.Word
 
 'this is a\ncomment\n' Comment.Multiline
 
 '#+end_comment' Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
-
-'- '          Keyword
-'09 ::'       Name.Label
-' asdf'       Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '- '          Keyword
 '09 ::'       Name.Label
-' asdf'       Text
-'\n'          Text
+' '           Text
+'asdf'        Text
+'\n'          Text.Whitespace
+
+'- '          Keyword
+'09 ::'       Name.Label
+' '           Text
+'asdf'        Text
+'\n'          Text.Whitespace
 
 '** Checkbox lists                                            ' Generic.Subheading
 ' :checkbox:list:' Generic.Emph
-'\n'          Text
+'\n'          Text.Whitespace
 
 '- '          Keyword
 '[ ]'         Generic.Prompt
-' asdf'       Text
-'\n'          Text
+' '           Text
+'asdf'        Text
+'\n'          Text.Whitespace
 
 '- '          Keyword
 '[X]'         Generic.Prompt
-' def'        Text
-'\n'          Text
+' '           Text
+'def'         Text
+'\n'          Text.Whitespace
 
 '* Dates'     Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '** deadline' Generic.Subheading
-'\n'          Text
+'\n'          Text.Whitespace
 
 'DEADLINE: '  Generic.Error
 '<2018-07-31 Tue>' Literal.Date
-'\n'          Text
+'\n'          Text.Whitespace
 
 'something'   Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '** scheduled' Generic.Subheading
-'\n'          Text
+'\n'          Text.Whitespace
 
 'SCHEDULED: ' Generic.Error
 '<2018-07-31 Tue>' Literal.Date
-'\n'          Text
+'\n'          Text.Whitespace
 
 'something'   Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '* Blocks'    Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#+BEGIN_QUOTE' Operator.Word
 '\n'          Text.Whitespace
@@ -274,9 +394,9 @@
 'quote\nblock\n' Text
 
 '#+END_QUOTE' Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#+begin_example' Operator.Word
 '\n'          Text.Whitespace
@@ -284,17 +404,17 @@
 'example\nblock\n' Text
 
 '#+end_example' Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#+begin_src emacs-lisp' Operator.Word
 '\n(message "hello")\n' Text
 
 '#+end_src'   Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#+begin_details' Operator.Word
 '\n'          Text.Whitespace
@@ -302,206 +422,256 @@
 '#+begin_summary\nWhy is this in *green*?\n' Text
 
 '#+end_summary' Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-'You will learn that later below in ' Text
+'You'         Text
+' '           Text
+'will'        Text
+' '           Text
+'learn'       Text
+' '           Text
+'that'        Text
+' '           Text
+'later'       Text
+' '           Text
+'below'       Text
+' '           Text
+'in'          Text
+' '           Text
 '[['          Punctuation
 '#details-css' Name.Attribute
 ']['          Punctuation
 'CSS'         Name.Tag
 ']]'          Punctuation
-' section.'   Text
-'\n'          Text
+' '           Text
+'section.'    Text
+'\n'          Text.Whitespace
 
-'#'           Text
-'+'           Text
-'end'         Text
-'_'           Text
-'details'     Text
-'\n'          Text
+'#+end_details' Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'#'           Text
-'+'           Text
-'begin'       Text
-'_'           Text
-'export html' Text
-'\n'          Text
+'#+begin_export' Text
+' '           Text
+'html'        Text
+'\n'          Text.Whitespace
 
 '<style>'     Literal.Date
-'\n'          Text
+'\n'          Text.Whitespace
 
-'.my'         Text
-'-'           Text
-'table th,'   Text
-'\n'          Text
-
-'.my'         Text
-'-'           Text
-'table td '   Text
-'{'           Text
-'\n'          Text
-
-'    padding' Text
-':'           Text
+'.my-table'   Text
 ' '           Text
-'2'           Text
-'0'           Text
-'px;'         Text
-'\n'          Text
+'th,'         Text
+'\n'          Text.Whitespace
 
-'    text'    Text
-'-'           Text
-'align'       Text
-':'           Text
-' left;'      Text
-'\n'          Text
+'.my-table'   Text
+' '           Text
+'td'          Text
+' '           Text
+'{'           Text
+'\n'          Text.Whitespace
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'padding:'    Text
+' '           Text
+'20px;'       Text
+'\n'          Text.Whitespace
+
+' '           Text
+' '           Text
+' '           Text
+' '           Text
+'text-align:' Text
+' '           Text
+'left;'       Text
+'\n'          Text.Whitespace
 
 '}'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '</style>'    Literal.Date
-'\n'          Text
+'\n'          Text.Whitespace
 
-'#'           Text
-'+'           Text
-'end'         Text
-'_'           Text
-'export'      Text
-'\n'          Text
+'#+end_export' Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '- '          Keyword
 '{{{latex}}}' Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
 '- '          Keyword
 '{{{xetex}}}' Comment.Preproc
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#+caption:'  Name.Namespace
 ' Declaring Constants' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#+name:'     Name.Namespace
 ' code__decl_constants' Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#+begin_src systemverilog' Operator.Word
 "\nconst bit [7:0] R_CHARACTER = 8'b000_11100; // The /K28.0/ character\nconst bit [7:0] A_CHARACTER = 8'b011_11100; // The /K28.3/ character\nconst bit [7:0] Q_CHARACTER = 8'b100_11100; // The /K28.4/ character\n" Text
 
 '#+end_src'   Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
-'Check out code snippet ' Text
+'Check'       Text
+' '           Text
+'out'         Text
+' '           Text
+'code'        Text
+' '           Text
+'snippet'     Text
+' '           Text
 '[['          Punctuation
 'code__decl_constants]].\n* Links                                                            :some_tag:\n:properties:\n:CUSTOM_ID: links\n:end:\n- [[file:post-yaml.org]]\n- [[file:post-yaml.org' Name.Attribute
 ']['          Punctuation
 'Post exported with YAML front-matter' Name.Tag
 ']]'          Punctuation
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
+
+'- '          Keyword
+'Bare'        Text
+' '           Text
+'url'         Text
+' '           Text
+'https://example.com' Name.Attribute
+'\n'          Text.Whitespace
 
 '- '          Keyword
 '<<target>'   Literal.Date
 '>'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '* Tables'    Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
 ':PROPERTIES:\n' Name.Decorator
 
 ':CUSTOM_ID: tables\n' Comment.Special
 
 ':END:'       Name.Decorator
-'\n'          Text
+'\n'          Text.Whitespace
 
 '| a | b |'   Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '| c | d |'   Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|---+---|'   Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '| a | b |'   Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|---+---|'   Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '| c | d |'   Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|---+---|'   Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
-'Some text '  Text
+'Some'        Text
+' '           Text
+'text'        Text
+' '           Text
 '[fn:2]'      Name.Tag
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#+BEGIN: '   Operator.Word
-'aggregate '  Text
-':'           Text
-'table "original" ' Text
-':'           Text
-'cols "Color count()"' Text
-'\n'          Text
+'aggregate'   Text
+' '           Text
+':table'      Text
+' '           Text
+'"original"'  Text
+' '           Text
+':cols'       Text
+' '           Text
+'"Color'      Text
+' '           Text
+'count()"'    Text
+'\n'          Text.Whitespace
 
 '| Color | count() |' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '|-------+---------|' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '| Red   |       7 |' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '| Blue  |       7 |' Literal.String
-'\n'          Text
+'\n'          Text.Whitespace
 
 '#+END:'      Operator.Word
-'\n'          Text
+'\n'          Text.Whitespace
 
 '* Footnotes' Generic.Heading
-'\n'          Text
+'\n'          Text.Whitespace
 
-'\n'          Text
+'\n'          Text.Whitespace
 
 '[fn:2]'      Name.Tag
-' footnote '  Text
+' '           Text
+'footnote'    Text
+' '           Text
 '2'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '[fn:1]'      Name.Tag
-' For more detail, check out the Org manual ' Text
+' '           Text
+'For'         Text
+' '           Text
+'more'        Text
+' '           Text
+'detail,'     Text
+' '           Text
+'check'       Text
+' '           Text
+'out'         Text
+' '           Text
+'the'         Text
+' '           Text
+'Org'         Text
+' '           Text
+'manual'      Text
+' '           Text
 '[['          Punctuation
 'http://orgmode.org/\nmanual/Footnotes.html' Name.Attribute
 ']['          Punctuation
 'page for footnotes' Name.Tag
 ']]'          Punctuation
 '.'           Text
-'\n'          Text
+'\n'          Text.Whitespace
 
 '* Local Variables' Generic.Heading
 ' :ARCHIVE:'  Generic.Emph
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# Local Variables:' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# org-link-file-path-type: relative' Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
 
 '# End:'      Comment.Single
-'\n'          Text
+'\n'          Text.Whitespace
