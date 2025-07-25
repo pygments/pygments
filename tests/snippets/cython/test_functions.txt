@@ -1,0 +1,93 @@
+---input---
+cdef void function1(bint flag):
+    ...
+
+cpdef unsigned char function2(float arg1):
+    cdef:
+        size_t arg2, arg3
+        char* arg4
+
+def function3(Py_ssize_t index) -> float:
+    raise NotImplemented
+
+---tokens---
+'cdef'        Keyword
+' '           Text.Whitespace
+'void'        Keyword.Type
+' '           Text
+'function1'   Name.Function
+'('           Punctuation
+'bint'        Name.Builtin
+' '           Text
+'flag'        Name
+')'           Punctuation
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'.'           Operator
+'.'           Operator
+'.'           Operator
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'cpdef'       Keyword
+' '           Text.Whitespace
+'unsigned'    Keyword.Type
+' '           Text
+'char'        Keyword.Type
+' '           Text
+'function2'   Name.Function
+'('           Punctuation
+'float'       Name.Builtin
+' '           Text
+'arg1'        Name
+')'           Punctuation
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'cdef'        Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text
+'size_t'      Name.Builtin
+' '           Text
+'arg2'        Name
+','           Punctuation
+' '           Text
+'arg3'        Name
+'\n'          Text.Whitespace
+
+'        '    Text
+'char'        Name.Builtin
+'*'           Operator
+' '           Text
+'arg4'        Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'def'         Keyword
+' '           Text.Whitespace
+'function3'   Name.Function
+'('           Punctuation
+'Py_ssize_t'  Name.Builtin
+' '           Text
+'index'       Name
+')'           Punctuation
+' '           Text
+'-'           Operator
+'>'           Operator
+' '           Text
+'float'       Name.Builtin
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'raise'       Keyword
+' '           Text
+'NotImplemented' Name.Builtin.Pseudo
+'\n'          Text.Whitespace
