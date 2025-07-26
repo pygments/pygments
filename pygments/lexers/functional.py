@@ -13,7 +13,7 @@ from pygments.lexers.lisp import SchemeLexer, CommonLispLexer, RacketLexer, \
     NewLispLexer, ShenLexer
 from pygments.lexers.haskell import HaskellLexer, LiterateHaskellLexer, \
     KokaLexer
-from pygments.lexers.theorem import CoqLexer
+from pygments.lexers.theorem import RocqLexer
 from pygments.lexers.erlang import ErlangLexer, ErlangShellLexer, \
     ElixirConsoleLexer, ElixirLexer
 from pygments.lexers.ml import SMLLexer, OcamlLexer, OpaLexer
