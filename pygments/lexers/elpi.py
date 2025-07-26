@@ -14,7 +14,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 
 __all__ = ['ElpiLexer']
 
-from pygments.lexers.theorem import CoqLexer
+from pygments.lexers.theorem import RocqLexer
 
 class ElpiLexer(RegexLexer):
     """
@@ -156,7 +156,7 @@ class ElpiLexer(RegexLexer):
             (r"\s+", Text.Whitespace),
             (r"(lp:)(\{\{)", bygroups(Number, Punctuation), 'elpi-quote-exit'),
             (rf"(lp:)((?=[A-Z_]){constant_re})", bygroups(Number, Name.Variable)),
-            (r"((?!lp:|\}\}).)+", using(CoqLexer)),
+            (r"((?!lp:|\}\}).)+", using(RocqLexer)),
         ],
         'elpi-quote-exit': [
             include('elpi'),
