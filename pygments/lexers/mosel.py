@@ -397,6 +397,7 @@ class MoselLexer(RegexLexer):
     filenames = ['*.mos']
     url = 'https://www.fico.com/fico-xpress-optimization/docs/latest/mosel/mosel_lang/dhtml/moselreflang.html'
     version_added = '2.6'
+    _example = 'mosel/test.mos'
 
     tokens = {
         'root': [

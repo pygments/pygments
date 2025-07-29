@@ -35,6 +35,7 @@ class JuliaLexer(RegexLexer):
     filenames = ['*.jl']
     mimetypes = ['text/x-julia', 'application/x-julia']
     version_added = '1.6'
+    _example = 'julia/string.jl'
 
     tokens = {
         'root': [
@@ -251,7 +252,7 @@ class JuliaConsoleLexer(Lexer):
     aliases = ['jlcon', 'julia-repl']
     url = 'https://julialang.org/'
     version_added = '1.6'
-    _example = "jlcon/console"
+    _example = 'jlcon/console'
 
     def get_tokens_unprocessed(self, text):
         jllexer = JuliaLexer(**self.options)

@@ -28,6 +28,7 @@ class FantomLexer(RegexLexer):
     mimetypes = ['application/x-fantom']
     url = 'https://www.fantom.org'
     version_added = '1.5'
+    _example = 'fan/test.fan'
 
     # often used regexes
     def s(str):

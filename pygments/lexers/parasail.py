@@ -28,6 +28,7 @@ class ParaSailLexer(RegexLexer):
     filenames = ['*.psi', '*.psl']
     mimetypes = ['text/x-parasail']
     version_added = '2.1'
+    _example = 'parasail/test.psl'
 
     flags = re.MULTILINE
 

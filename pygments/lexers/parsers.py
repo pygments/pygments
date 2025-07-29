@@ -273,6 +273,7 @@ class RagelCppLexer(DelegatingLexer):
     filenames = ['*.rl']
     url = 'http://www.colm.net/open-source/ragel/'
     version_added = '1.1'
+    _example = 'ragel-cpp/ragel-cpp_rlscan.rl'
 
     def __init__(self, **options):
         super().__init__(CppLexer, RagelEmbeddedLexer, **options)
@@ -329,6 +330,7 @@ class AntlrLexer(RegexLexer):
     filenames = []
     url = 'https://www.antlr.org'
     version_added = '1.1'
+    _example = 'antlr/antlr_ANTLRv3.g'
 
     _id = r'[A-Za-z]\w*'
     _TOKEN_REF = r'[A-Z]\w*'
@@ -742,6 +744,7 @@ class TreetopLexer(DelegatingLexer):
     filenames = ['*.treetop', '*.tt']
     url = 'https://cjheath.github.io/treetop'
     version_added = '1.6'
+    _example = 'treetop/metagrammar.treetop'
 
     def __init__(self, **options):
         super().__init__(RubyLexer, TreetopBaseLexer, **options)
@@ -760,6 +763,7 @@ class EbnfLexer(RegexLexer):
     mimetypes = ['text/x-ebnf']
     url = 'https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form'
     version_added = '2.0'
+    _example = 'ebnf/test.ebnf'
 
     tokens = {
         'root': [

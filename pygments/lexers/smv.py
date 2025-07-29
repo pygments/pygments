@@ -26,6 +26,7 @@ class NuSMVLexer(RegexLexer):
     mimetypes = []
     url = 'https://nusmv.fbk.eu'
     version_added = '2.2'
+    _example = 'nusmv/guidance.smv'
 
     tokens = {
         'root': [

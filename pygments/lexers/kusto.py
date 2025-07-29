@@ -50,6 +50,7 @@ class KustoLexer(RegexLexer):
     filenames = ["*.kql", "*.kusto", ".csl"]
     url = "https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query"
     version_added = '2.17'
+    _example = 'kusto/test.kusto'
 
     tokens = {
         "root": [

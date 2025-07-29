@@ -26,6 +26,7 @@ class DevicetreeLexer(RegexLexer):
     filenames = ['*.dts', '*.dtsi']
     mimetypes = ['text/x-c']
     version_added = '2.7'
+    _example = 'devicetree/example.dts'
 
     #: optional Whitespace or /*...*/ style comment
     _ws = r'\s*(?:/[*][^*/]*?[*]/\s*)*'

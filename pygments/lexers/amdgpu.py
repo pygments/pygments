@@ -25,6 +25,7 @@ class AMDGPULexer(RegexLexer):
     filenames = ['*.isa']
     url = 'https://gpuopen.com/amd-isa-documentation'
     version_added = '2.8'
+    _example = 'amdgpu/amdgpu.isa'
 
     flags = re.IGNORECASE
 

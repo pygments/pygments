@@ -28,6 +28,7 @@ class SMLLexer(RegexLexer):
     mimetypes = ['text/x-standardml', 'application/x-standardml']
     url = 'https://en.wikipedia.org/wiki/Standard_ML'
     version_added = '1.5'
+    _example = 'sml/intsyn.fun'
 
     alphanumid_reserved = {
         # Core
@@ -363,6 +364,7 @@ class OcamlLexer(RegexLexer):
     filenames = ['*.ml', '*.mli', '*.mll', '*.mly']
     mimetypes = ['text/x-ocaml']
     version_added = '0.7'
+    _example = 'ocaml/format.ml'
 
     keywords = (
         'and', 'as', 'assert', 'begin', 'class', 'constraint', 'do', 'done',
@@ -455,6 +457,7 @@ class OpaLexer(RegexLexer):
     mimetypes = ['text/x-opa']
     url = 'http://opalang.org'
     version_added = '1.5'
+    _example = 'opa/test.opa'
 
     # most of these aren't strictly keywords
     # but if you color only real keywords, you might just
@@ -778,6 +781,7 @@ class ReasonLexer(RegexLexer):
     filenames = ['*.re', '*.rei']
     mimetypes = ['text/x-reasonml']
     version_added = '2.6'
+    _example = 'reason/test.re'
 
     keywords = (
         'as', 'assert', 'begin', 'class', 'constraint', 'do', 'done', 'downto',
@@ -870,6 +874,7 @@ class FStarLexer(RegexLexer):
     filenames = ['*.fst', '*.fsti']
     mimetypes = ['text/x-fstar']
     version_added = '2.7'
+    _example = 'fstar/example.fst'
 
     keywords = (
         'abstract', 'attributes', 'noeq', 'unopteq', 'and'
