@@ -288,7 +288,7 @@ class DelphiLexer(Lexer):
         'ibts', 'icebp', 'idiv', 'imul', 'in', 'inc', 'insb', 'insd',
         'insw', 'int', 'int01', 'int03', 'int1', 'int3', 'into', 'invd',
         'invlpg', 'iret', 'iretd', 'iretw', 'ja', 'jae', 'jb', 'jbe',
-        'jc', 'jcxz', 'jcxz', 'je', 'jecxz', 'jg', 'jge', 'jl', 'jle',
+        'jc', 'jcxz', 'je', 'jecxz', 'jg', 'jge', 'jl', 'jle',
         'jmp', 'jna', 'jnae', 'jnb', 'jnbe', 'jnc', 'jne', 'jng', 'jnge',
         'jnl', 'jnle', 'jno', 'jnp', 'jns', 'jnz', 'jo', 'jp', 'jpe',
         'jpo', 'js', 'jz', 'lahf', 'lar', 'lcall', 'lds', 'lea', 'leave',
