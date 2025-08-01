@@ -1,0 +1,59 @@
+'local'       Keyword.Declaration
+' '           Text.Whitespace
+'function'    Keyword.Reserved
+' '           Text.Whitespace
+'bribe'       Name.Function
+'()'          Punctuation
+'\n    '      Text.Whitespace
+'tes3ui'      Name.Variable
+'.'           Punctuation
+'showInventorySelectMenu' Name.Function
+'({'          Punctuation
+'\n        '  Text.Whitespace
+'callback'    Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'function'    Keyword.Reserved
+'('           Punctuation
+'e'           Name.Variable
+')'           Punctuation
+'\n            ' Text.Whitespace
+'if'          Keyword.Reserved
+' '           Text.Whitespace
+'e'           Name.Variable
+'.'           Punctuation
+'item'        Name.Property
+' '           Text.Whitespace
+'then'        Keyword.Reserved
+'\n                ' Text.Whitespace
+'local'       Keyword.Declaration
+' '           Text.Whitespace
+'itemWorth'   Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'e'           Name.Variable
+'.'           Punctuation
+'item'        Name.Property
+'.'           Punctuation
+'value'       Name.Property
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'e'           Name.Variable
+'.'           Punctuation
+'count'       Name.Property
+'\n                ' Text.Whitespace
+'-- At last! Now the actual persuasion part. We use `modifier` argument.' Comment.Single
+'\n            ' Text.Whitespace
+'end'         Keyword.Reserved
+'\n        '  Text.Whitespace
+'end'         Keyword.Reserved
+','           Punctuation
+'\n    '      Text.Whitespace
+'})'          Punctuation
+'\n'          Text.Whitespace
+
+'end'         Keyword.Reserved
+'\n'          Text.Whitespace

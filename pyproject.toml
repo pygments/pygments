@@ -1,12 +1,13 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling>=1.27"]
 build-backend = "hatchling.build"
 
 [project]
 name = "Pygments"
 dynamic = ["version"]
 requires-python = ">=3.8"
-license = {text = "BSD-2-Clause"}
+license = "BSD-2-Clause"
+license-files = ["AUTHORS", "LICENSE"]
 authors = [
   {name = "Georg Brandl", email = "georg@python.org"}
 ]
@@ -24,7 +25,6 @@ classifiers = [
     "Intended Audience :: Developers",
     "Intended Audience :: End Users/Desktop",
     "Intended Audience :: System Administrators",
-    "License :: OSI Approved :: BSD License",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",

@@ -1,0 +1,24 @@
+---input---
+"""This is a single line docstring."""
+'''This also is a single line docstring.'''
+"""Multiline
+docstring
+"""
+'''Multiline
+single
+quote
+docstring
+'''
+
+---tokens---
+'"""This is a single line docstring."""' Literal.String.Doc
+'\n'          Text.Whitespace
+
+"'''This also is a single line docstring.'''" Literal.String.Doc
+'\n'          Text.Whitespace
+
+'"""Multiline\ndocstring\n"""' Literal.String.Doc
+'\n'          Text.Whitespace
+
+"'''Multiline\nsingle\nquote\ndocstring\n'''" Literal.String.Doc
+'\n'          Text.Whitespace

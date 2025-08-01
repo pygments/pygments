@@ -1,0 +1,126 @@
+---input---
+from libcpp.vector import vector
+
+cdef class MyClass:
+    cdef readonly unsigned char variable
+    cdef public vector[int]* array
+
+    def __cinit__(self, arg1: unsigned char):
+        self.array = new vector[int]()
+        self.variable = arg1
+
+    def __dealloc__(self):
+        del self.array
+
+---tokens---
+'from'        Keyword
+' '           Text.Whitespace
+'libcpp.vector' Name.Namespace
+' '           Text.Whitespace
+'import'      Keyword
+' '           Text
+'vector'      Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'cdef'        Keyword
+' '           Text.Whitespace
+'class'       Keyword
+' '           Text.Whitespace
+'MyClass'     Name.Class
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'cdef'        Keyword
+' '           Text.Whitespace
+'readonly'    Keyword.Reserved
+' '           Text
+'unsigned'    Keyword.Type
+' '           Text
+'char'        Keyword.Type
+' '           Text
+'variable'    Name.Variable
+'\n'          Text.Whitespace
+
+'    '        Text
+'cdef'        Keyword
+' '           Text.Whitespace
+'public'      Keyword.Reserved
+' '           Text
+'vector'      Keyword.Type
+'['           Text
+'int'         Keyword.Type
+']'           Text
+'*'           Text
+' '           Text
+'array'       Name.Variable
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text
+'def'         Keyword
+' '           Text.Whitespace
+'__cinit__'   Name.Function
+'('           Punctuation
+'self'        Name.Builtin.Pseudo
+','           Punctuation
+' '           Text
+'arg1'        Name
+':'           Punctuation
+' '           Text
+'unsigned'    Name.Builtin
+' '           Text
+'char'        Name.Builtin
+')'           Punctuation
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'array'       Name
+' '           Text
+'='           Operator
+' '           Text
+'new'         Keyword
+' '           Text
+'vector'      Name
+'['           Punctuation
+'int'         Name.Builtin
+']'           Punctuation
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'variable'    Name
+' '           Text
+'='           Operator
+' '           Text
+'arg1'        Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text
+'def'         Keyword
+' '           Text.Whitespace
+'__dealloc__' Name.Function
+'('           Punctuation
+'self'        Name.Builtin.Pseudo
+')'           Punctuation
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text
+'del'         Keyword
+' '           Text
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'array'       Name
+'\n'          Text.Whitespace

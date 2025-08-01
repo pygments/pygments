@@ -1,0 +1,168 @@
+---input---
+# distutils: language = c++
+
+cdef extern from "<vector>" namespace "std":
+    cdef cppclass vector[T]:
+        cppclass iterator:
+            T operator*()
+            iterator operator++()
+            bint operator==(iterator)
+            bint operator!=(iterator)
+        vector()
+        void push_back(T&)
+        T& operator[](int)
+        T& at(int)
+        iterator begin()
+        iterator end()
+
+cdef vector[int].iterator iter
+
+---tokens---
+'# distutils: language = c++' Comment
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'cdef'        Keyword
+' '           Text.Whitespace
+'extern'      Keyword.Reserved
+' '           Text
+'from'        Keyword
+' '           Text
+'"'           Literal.String
+'<vector>'    Literal.String
+'"'           Literal.String
+' '           Text
+'namespace'   Keyword
+' '           Text
+'"'           Literal.String
+'std'         Literal.String
+'"'           Literal.String
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'cdef'        Keyword
+' '           Text.Whitespace
+'cppclass'    Keyword
+' '           Text.Whitespace
+'vector'      Name.Class
+'['           Punctuation
+'T'           Name
+']'           Punctuation
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text
+'cppclass'    Keyword
+' '           Text.Whitespace
+'iterator'    Name.Class
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text
+'T'           Name
+' '           Text
+'operator'    Name
+'*'           Operator
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text
+'iterator'    Name
+' '           Text
+'operator'    Name
+'+'           Operator
+'+'           Operator
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text
+'bint'        Name.Builtin
+' '           Text
+'operator'    Name
+'=='          Operator
+'('           Punctuation
+'iterator'    Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text
+'bint'        Name.Builtin
+' '           Text
+'operator'    Name
+'!='          Operator
+'('           Punctuation
+'iterator'    Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text
+'vector'      Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text
+'void'        Name
+' '           Text
+'push_back'   Name
+'('           Punctuation
+'T'           Name
+'&'           Operator
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text
+'T'           Name
+'&'           Operator
+' '           Text
+'operator'    Name
+'['           Punctuation
+']'           Punctuation
+'('           Punctuation
+'int'         Name.Builtin
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text
+'T'           Name
+'&'           Operator
+' '           Text
+'at'          Name
+'('           Punctuation
+'int'         Name.Builtin
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text
+'iterator'    Name
+' '           Text
+'begin'       Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text
+'iterator'    Name
+' '           Text
+'end'         Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'cdef'        Keyword
+' '           Text.Whitespace
+'vector'      Keyword.Type
+'['           Text
+'int'         Keyword.Type
+']'           Text
+'.'           Text
+'iterator'    Keyword.Type
+' '           Text
+'iter'        Name.Variable
+'\n'          Text.Whitespace
