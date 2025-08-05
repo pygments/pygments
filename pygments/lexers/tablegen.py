@@ -118,7 +118,7 @@ class TableGenLexer(RegexLexer):
             (r'\s+', Whitespace),
 
             (r'/\*', Comment.Multiline, 'comment'),
-            (r'//.*?$', Comment.SingleLine),
+            (r'//.*?$', Comment.Single),
             (r'#(define|ifdef|ifndef|else|endif)', Comment.Preproc),
 
             # Binary/hex numbers. Note that these take priority over names,
