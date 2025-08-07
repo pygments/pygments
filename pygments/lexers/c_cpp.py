@@ -361,7 +361,32 @@ class CppLexer(CFamilyLexer):
             inherit,
         ],
         'root': [
+            include('whitespace'),
+            include('keywords'),
+            include('types_add'),
+            # constructor and destructor
+            (r'(~?' + CFamilyLexer._ident + r')'  #return type, destructor symbol and class name
+             r'(\([^;"\')]*?\))'           # signature
+             r'([^;{]*)(\{)',
+             bygroups(Name.Function, using(this), using(this),
+                      Punctuation),
+             'function'),
+            # function declarations start with sth like [[using std: nodiscard]]
+            (r'(\[\[\s*using\s+\w+:\s*\w+\s*\]\]\s*)'
+             r'(' + CFamilyLexer._namespaced_ident + r'(?:[&*\s])+)'  # return arguments
+             r'(' + CFamilyLexer._possible_comments + r')'
+             r'(' + CFamilyLexer._namespaced_ident + r')'             # method name
+             r'(' + CFamilyLexer._possible_comments + r')'
+             r'(\([^;"\')]*?\))'                         # signature
+             r'(' + CFamilyLexer._possible_comments + r')'
+             r'([^;/"\']*)(;)',
+             bygroups(using(this), 
+                      using(this), using(this, state='whitespace'),
+                      Name.Function, using(this, state='whitespace'),
+                      using(this), using(this, state='whitespace'),
+                      using(this), Punctuation)),
             inherit,
+            include('types'),
             # C++ Microsoft-isms
             (words(('virtual_inheritance', 'uuidof', 'super', 'single_inheritance',
                     'multiple_inheritance', 'interface', 'event'),
@@ -398,6 +423,9 @@ class CppLexer(CFamilyLexer):
         'types': [
             (r'char(16_t|32_t|8_t)\b', Keyword.Type),
             inherit
+        ],
+        'types_add' : [ # in case int recognized as a function, while it's a type
+            (r'\bint\b(?=\()', Keyword.Type),
         ],
         'namespace': [
             (r'[;{]', Punctuation, ('#pop', 'root')),
