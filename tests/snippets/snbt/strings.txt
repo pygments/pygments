@@ -1,0 +1,52 @@
+---input---
+{
+    quoted: 'This is a special character "\N{Snowman}".',
+    quoted_2: "The character can also be represented by \"\u2603\".",
+    unquoted: This_is_a_valid_string,
+    operation: uuid(f81d4fae-7dec-11d0-a765-00a0c91e6bf6)
+}
+
+---tokens---
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'quoted'      Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'This is a special character "' Literal.String.Single
+'\\N{'        Literal.String.Escape
+'Snowman'     Literal.String.Interpol
+'}'           Literal.String.Escape
+'".'          Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+'\n    '      Text.Whitespace
+'quoted_2'    Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'The character can also be represented by ' Literal.String.Double
+'\\"'         Literal.String.Escape
+'\\u2603'     Literal.String.Escape
+'\\"'         Literal.String.Escape
+'.'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'\n    '      Text.Whitespace
+'unquoted'    Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'This_is_a_valid_string' Literal.String
+','           Punctuation
+'\n    '      Text.Whitespace
+'operation'   Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'uuid'        Keyword.Pseudo
+'('           Punctuation
+'f81d4fae-7dec-11d0-a765-00a0c91e6bf6' Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text

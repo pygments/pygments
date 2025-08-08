@@ -39,10 +39,9 @@ class SNBTLexer(RegexLexer):
 
     tokens = {
         "root": [
-            # We only look for the open bracket here since square bracket
-            #  is only valid in NBT pathing (which is a mcfunction idea).
             (r"\{", Punctuation, ("compound", "compound_key")),
-            (r"[^\{]+", Text),
+            (r"\[", Punctuation, "list"),
+            (r"[^\{\[]+", Text),
         ],
 
         "whitespace": [
@@ -55,15 +54,15 @@ class SNBTLexer(RegexLexer):
 
         "literals": [
             (r"(true|false)", Keyword.Constant),
+
             (r"[+-]?[\d_]*\.[\d_]+([eE][+-]?[\d_]+)?[fFdD]?", Number.Float),
             (r"[+-]?[\d_]+\.[\d_]*([eE][+-]?[\d_]+)?[fFdD]?", Number.Float),
-            (r"[+-]?[\d_]+[uUsS]?[bBsSlL]?", Number.Integer),
-            (r"[+-]?0[bB][01_]+[uUsS]?[bBsSlL]?", Number.Bin),
-            (r"[+-]?0[xX][\da-fA-F_]+[uUsS]?[bBsSlL]?", Number.Hex),
+            (r"[+-]?0[bB][01_]+[uUsS]?[bBsSiIlL]?", Number.Bin),
+            (r"[+-]?0[xX][\da-fA-F_]+[uUsS]?[bBsSiIlL]?", Number.Hex),
+            (r"[+-]?[\d_]+[uUsS]?[bBsSiIlL]?", Number.Integer),
 
-            # Builtin functions must try before unquoted string
-            (r"([A-Z_a-z]+)(\()", bygroups(Keyword, Punctuation), "literals.builtin_function"),
-            (r"[A-Z_a-z]+", Text),
+            (r"([a-zA-Z_][a-zA-Z0-9_\.\-+]*)(\()", bygroups(Keyword.Pseudo, Punctuation), "literals.builtin_operation"),
+            (r"[a-zA-Z_][a-zA-Z0-9_\.\-+]*", String),
 
             # Separate states for both types of strings so they don't entangle
             (r'"', String.Double, "literals.string_double"),
@@ -71,11 +70,13 @@ class SNBTLexer(RegexLexer):
         ],
         "literals.string_double": [
             include("literals.string_escape"),
+            (r'\\"', String.Escape),
             (r'[^\\"\n]+', String.Double),
             (r'"', String.Double, "#pop"),
         ],
         "literals.string_single": [
             include("literals.string_escape"),
+            (r"\\'", String.Escape),
             (r"[^\\'\n]+", String.Single),
             (r"'", String.Single, "#pop"),
         ],
@@ -84,13 +85,13 @@ class SNBTLexer(RegexLexer):
             (r"\\u[0-9a-fA-F]{4}", String.Escape),
             (r"\\U[0-9a-fA-F]{8}", String.Escape),
             (r"\\N\{", String.Escape, "literals.string_unicode_name"),
-            (r"\\[bstnfr\\']", String.Escape)
+            (r"\\[bstnfr]", String.Escape)
         ],
         "literals.string_unicode_name": [
-            (r"[-a-zA-Z0-9 ]+", Text),
+            (r"[-a-zA-Z0-9 ]+", String.Interpol),
             (r"\}", String.Escape, "#pop")
         ],
-        "literals.builtin_function": [
+        "literals.builtin_operation": [
             include("whitespace"),
             include("literals"),
             include("operators"),
@@ -98,7 +99,7 @@ class SNBTLexer(RegexLexer):
         ],
 
         "compound_key": [
-            (r"[A-Z_a-z]+", Name.Attribute),
+            (r"[-a-zA-Z0-9_\.+]+", Name.Attribute),
             (r'"', String.Double, "literals.string_double"),
             (r"'", String.Single, "literals.string_single"),
             include("whitespace"),
@@ -115,6 +116,7 @@ class SNBTLexer(RegexLexer):
         ],
 
         "list": [
+            (r"([IBL])(;)", bygroups(Keyword.Pseudo, Punctuation)),
             include("literals"),
             include("operators"),
             include("whitespace"),
