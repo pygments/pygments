@@ -41,7 +41,7 @@ class SNBTLexer(RegexLexer):
         "root": [
             # We only look for the open bracket here since square bracket
             #  is only valid in NBT pathing (which is a mcfunction idea).
-            (r"\{", Punctuation, "compound"),
+            (r"\{", Punctuation, ("compound", "compound_key")),
             (r"[^\{]+", Text),
         ],
 
@@ -55,44 +55,71 @@ class SNBTLexer(RegexLexer):
 
         "literals": [
             (r"(true|false)", Keyword.Constant),
-            (r"-?\d+[eE]-?\d+", Number.Float),
-            (r"-?\d*\.\d+[fFdD]?", Number.Float),
-            (r"-?\d+[bBsSlLfFdD]?", Number.Integer),
+            (r"[+-]?[\d_]*\.[\d_]+([eE][+-]?[\d_]+)?[fFdD]?", Number.Float),
+            (r"[+-]?[\d_]+\.[\d_]*([eE][+-]?[\d_]+)?[fFdD]?", Number.Float),
+            (r"[+-]?[\d_]+[uUsS]?[bBsSlL]?", Number.Integer),
+            (r"[+-]?0[bB][01_]+[uUsS]?[bBsSlL]?", Number.Bin),
+            (r"[+-]?0[xX][\da-fA-F_]+[uUsS]?[bBsSlL]?", Number.Hex),
+
+            # Builtin functions must try before unquoted string
+            (r"([A-Z_a-z]+)(\()", bygroups(Keyword, Punctuation), "literals.builtin_function"),
+            (r"[A-Z_a-z]+", Text),
 
             # Separate states for both types of strings so they don't entangle
             (r'"', String.Double, "literals.string_double"),
             (r"'", String.Single, "literals.string_single"),
         ],
         "literals.string_double": [
-            (r"\\.", String.Escape),
+            include("literals.string_escape"),
             (r'[^\\"\n]+', String.Double),
             (r'"', String.Double, "#pop"),
         ],
         "literals.string_single": [
-            (r"\\.", String.Escape),
+            include("literals.string_escape"),
             (r"[^\\'\n]+", String.Single),
             (r"'", String.Single, "#pop"),
         ],
-
-        "compound": [
-            # this handles the unquoted snbt keys
-            #  note: stringified keys still work
-            (r"[A-Z_a-z]+", Name.Attribute),
-            include("operators"),
+        "literals.string_escape": [
+            (r"\\x[0-9a-fA-F]{2}", String.Escape),
+            (r"\\u[0-9a-fA-F]{4}", String.Escape),
+            (r"\\U[0-9a-fA-F]{8}", String.Escape),
+            (r"\\N\{", String.Escape, "literals.string_unicode_name"),
+            (r"\\[bstnfr\\']", String.Escape)
+        ],
+        "literals.string_unicode_name": [
+            (r"[-a-zA-Z0-9 ]+", Text),
+            (r"\}", String.Escape, "#pop")
+        ],
+        "literals.builtin_function": [
             include("whitespace"),
             include("literals"),
-            (r"\{", Punctuation, "#push"),
+            include("operators"),
+            (r"\)", Punctuation, "#pop"),
+        ],
+
+        "compound_key": [
+            (r"[A-Z_a-z]+", Name.Attribute),
+            (r'"', String.Double, "literals.string_double"),
+            (r"'", String.Single, "literals.string_single"),
+            include("whitespace"),
+            (r":", Punctuation, "#pop"),
+            (r"\}", Punctuation, "#pop:2")
+        ],
+        "compound": [
+            include("whitespace"),
+            include("literals"),
+            (r",", Punctuation, "compound_key"),
+            (r"\{", Punctuation, ("compound", "compound_key")),
             (r"\[", Punctuation, "list"),
             (r"\}", Punctuation, "#pop"),
         ],
 
         "list": [
-            (r"[A-Z_a-z]+", Name.Attribute),
             include("literals"),
             include("operators"),
             include("whitespace"),
             (r"\[", Punctuation, "#push"),
-            (r"\{", Punctuation, "compound"),
+            (r"\{", Punctuation, ("compound", "compound_key")),
             (r"\]", Punctuation, "#pop"),
         ],
     }
@@ -216,7 +243,6 @@ class MCFunctionLexer(RegexLexer):
         "selectors": [
             (r"@[a-z]", Name.Variable),
         ],
-
 
         ## Generic Property Container
         # There are several, differing instances where the language accepts
@@ -384,7 +410,9 @@ class MCSchemaLexer(RegexLexer):
             (r'[\w-]*?(?=:\{?\n)', String.Symbol),
             # title line with a version code, formatted
             # `major.minor.patch-prerelease+buildmeta`
-            (r'([\w-]*?)(:)(\d+)(?:(\.)(\d+)(?:(\.)(\d+)(?:(\-)((?:[^\W_]|-)*(?:\.(?:[^\W_]|-)*)*))?(?:(\+)((?:[^\W_]|-)+(?:\.(?:[^\W_]|-)+)*))?)?)?(?=:\{?\n)', bygroups(String.Symbol, Operator, Number.Integer, Operator, Number.Integer, Operator, Number.Integer, Operator, String, Operator, String)),
+            (r'([\w-]*?)(:)(\d+)(?:(\.)(\d+)(?:(\.)(\d+)(?:(\-)((?:[^\W_]|-)*(?:\.(?:[^\W_]|-)*)*))?(?:(\+)((?:[^\W_]|-)+(?:\.(?:[^\W_]|-)+)*))?)?)?(?=:\{?\n)',
+             bygroups(String.Symbol, Operator, Number.Integer, Operator, Number.Integer, Operator, Number.Integer,
+                      Operator, String, Operator, String)),
 
             (r'.*\n', Text),
         ]
