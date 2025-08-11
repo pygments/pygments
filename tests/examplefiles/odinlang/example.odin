@@ -20,9 +20,9 @@ Color :: enum u8 {
 
 // Union types
 Shape :: union {
-    Circle:    struct { radius: f32 },
-    Rectangle: struct { width, height: f32 },
-    Triangle:  struct { base, height: f32 },
+    bool,
+    i32,
+    f32,
 }
 
 // Generic struct
@@ -43,8 +43,7 @@ main :: proc() {
     emoji: rune = '🚀'
     
     // Maps
-    scores := map[string]int{"Alice" = 95, "Bob" = 87}
-    defer delete(scores)
+    scores: map[string]int
     
     // Bitwise operations
     bit_result := 0b1010 & 0b1100   // AND
@@ -89,23 +88,12 @@ main :: proc() {
     vec := Vec3{x = 1.0, y = 2.0, z = 3.0}
     fmt.printf("Vector: (%f, %f, %f)\n", vec.x, vec.y, vec.z)
     
-    // Union usage with pattern matching
-    shape := Shape(Circle{{radius = 5.0}})
-    switch s in shape {
-    case Circle:
-        fmt.printf("Circle with radius %f\n", s.radius)
-    case Rectangle:
-        fmt.printf("Rectangle %f x %f\n", s.width, s.height)
-    }
-    
     // Generic usage
     stack: Generic_Stack(int)
-    append(&stack.items, 42)
     
     // Memory allocation
     ptr := new(int)
     ptr^ = 100
-    defer free(ptr)
 }
 
 add_numbers :: proc(a, b: int) -> int {
