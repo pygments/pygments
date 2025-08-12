@@ -120,59 +120,17 @@
 '\n'          Text
 
 '    '        Text
-'Circle'      Name.Other
-':'           Punctuation
-'    '        Text
-'struct'      Keyword.Declaration
-' '           Text
-'{'           Punctuation
-' '           Text
-'radius'      Name.Other
-':'           Punctuation
-' '           Text
-'f32'         Keyword.Type
-' '           Text
-'}'           Punctuation
+'bool'        Keyword.Type
 ','           Operator
 '\n'          Text
 
 '    '        Text
-'Rectangle'   Name.Other
-':'           Punctuation
-' '           Text
-'struct'      Keyword.Declaration
-' '           Text
-'{'           Punctuation
-' '           Text
-'width'       Name.Other
-','           Operator
-' '           Text
-'height'      Name.Other
-':'           Punctuation
-' '           Text
-'f32'         Keyword.Type
-' '           Text
-'}'           Punctuation
+'i32'         Keyword.Type
 ','           Operator
 '\n'          Text
 
 '    '        Text
-'Triangle'    Name.Other
-':'           Punctuation
-'  '          Text
-'struct'      Keyword.Declaration
-' '           Text
-'{'           Punctuation
-' '           Text
-'base'        Name.Other
-','           Operator
-' '           Text
-'height'      Name.Other
-':'           Punctuation
-' '           Text
 'f32'         Keyword.Type
-' '           Text
-'}'           Punctuation
 ','           Operator
 '\n'          Text
 
@@ -296,37 +254,13 @@
 
 '    '        Text
 'scores'      Name.Other
-' '           Text
-':='          Operator
+':'           Punctuation
 ' '           Text
 'map'         Keyword.Declaration
 '['           Punctuation
 'string'      Keyword.Type
 ']'           Punctuation
 'int'         Keyword.Type
-'{'           Punctuation
-'"Alice"'     Literal.String
-' '           Text
-'='           Operator
-' '           Text
-'95'          Literal.Number.Integer
-','           Operator
-' '           Text
-'"Bob"'       Literal.String
-' '           Text
-'='           Operator
-' '           Text
-'87'          Literal.Number.Integer
-'}'           Punctuation
-'\n'          Text
-
-'    '        Text
-'defer'       Keyword
-' '           Text
-'delete'      Name.Other
-'('           Punctuation
-'scores'      Name.Other
-')'           Punctuation
 '\n'          Text
 
 '    \n    '  Text
@@ -669,92 +603,6 @@
 '\n'          Text
 
 '    \n    '  Text
-'// Union usage with pattern matching\n' Comment.Single
-
-'    '        Text
-'shape'       Name.Other
-' '           Text
-':='          Operator
-' '           Text
-'Shape'       Name.Other
-'('           Punctuation
-'Circle'      Name.Other
-'{'           Punctuation
-'{'           Punctuation
-'radius'      Name.Other
-' '           Text
-'='           Operator
-' '           Text
-'5.0'         Literal.Number.Float
-'}'           Punctuation
-'}'           Punctuation
-')'           Punctuation
-'\n'          Text
-
-'    '        Text
-'switch'      Keyword
-' '           Text
-'s'           Name.Other
-' '           Text
-'in'          Keyword
-' '           Text
-'shape'       Name.Other
-' '           Text
-'{'           Punctuation
-'\n'          Text
-
-'    '        Text
-'case'        Keyword
-' '           Text
-'Circle'      Name.Other
-':'           Punctuation
-'\n'          Text
-
-'        '    Text
-'fmt'         Name.Other
-'.'           Operator
-'printf'      Name.Other
-'('           Punctuation
-'"Circle with radius %f\\n"' Literal.String
-','           Operator
-' '           Text
-'s'           Name.Other
-'.'           Operator
-'radius'      Name.Other
-')'           Punctuation
-'\n'          Text
-
-'    '        Text
-'case'        Keyword
-' '           Text
-'Rectangle'   Name.Other
-':'           Punctuation
-'\n'          Text
-
-'        '    Text
-'fmt'         Name.Other
-'.'           Operator
-'printf'      Name.Other
-'('           Punctuation
-'"Rectangle %f x %f\\n"' Literal.String
-','           Operator
-' '           Text
-'s'           Name.Other
-'.'           Operator
-'width'       Name.Other
-','           Operator
-' '           Text
-'s'           Name.Other
-'.'           Operator
-'height'      Name.Other
-')'           Punctuation
-'\n'          Text
-
-'    '        Text
-'}'           Punctuation
-'\n'          Text
-
-'    \n    '  Text
 '// Generic usage\n' Comment.Single
 
 '    '        Text
@@ -764,19 +612,6 @@
 'Generic_Stack' Name.Other
 '('           Punctuation
 'int'         Keyword.Type
-')'           Punctuation
-'\n'          Text
-
-'    '        Text
-'append'      Name.Other
-'('           Punctuation
-'&'           Operator
-'stack'       Name.Other
-'.'           Operator
-'items'       Name.Other
-','           Operator
-' '           Text
-'42'          Literal.Number.Integer
 ')'           Punctuation
 '\n'          Text
 
@@ -801,15 +636,6 @@
 '='           Operator
 ' '           Text
 '100'         Literal.Number.Integer
-'\n'          Text
-
-'    '        Text
-'defer'       Keyword
-' '           Text
-'free'        Name.Other
-'('           Punctuation
-'ptr'         Name.Other
-')'           Punctuation
 '\n'          Text
 
 '}'           Punctuation
