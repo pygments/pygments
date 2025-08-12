@@ -201,6 +201,8 @@ div.sphinxsidebarwrapper {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
+    position: sticky;
+    top: 0;
 }
 
 div.sphinxsidebarwrapper > h3:first-child {
@@ -260,7 +262,7 @@ h1 {
 }
 
 h2 {
-    margin: 1.em 0 0.2em 0;
+    margin: 1.0em 0 0.2em 0;
     font-size: 1.5em;
     font-weight: 300;
     padding: 0;
