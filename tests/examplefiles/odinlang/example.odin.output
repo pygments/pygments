@@ -48,16 +48,16 @@
 
 '    '        Text
 'x'           Name.Other
-','           Operator
+','           Punctuation
 ' '           Text
 'y'           Name.Other
-','           Operator
+','           Punctuation
 ' '           Text
 'z'           Name.Other
 ':'           Punctuation
 ' '           Text
 'f32'         Keyword.Type
-','           Operator
+','           Punctuation
 '\n'          Text
 
 '}'           Punctuation
@@ -82,7 +82,7 @@
 '='           Operator
 ' '           Text
 '0'           Literal.Number.Integer
-','           Operator
+','           Punctuation
 '\n'          Text
 
 '    '        Text
@@ -91,7 +91,7 @@
 '='           Operator
 ' '           Text
 '1'           Literal.Number.Integer
-','           Operator
+','           Punctuation
 '\n'          Text
 
 '    '        Text
@@ -100,7 +100,7 @@
 '='           Operator
 ' '           Text
 '2'           Literal.Number.Integer
-','           Operator
+','           Punctuation
 '\n'          Text
 
 '}'           Punctuation
@@ -121,17 +121,17 @@
 
 '    '        Text
 'bool'        Keyword.Type
-','           Operator
+','           Punctuation
 '\n'          Text
 
 '    '        Text
 'i32'         Keyword.Type
-','           Operator
+','           Punctuation
 '\n'          Text
 
 '    '        Text
 'f32'         Keyword.Type
-','           Operator
+','           Punctuation
 '\n'          Text
 
 '}'           Punctuation
@@ -165,7 +165,7 @@
 'dynamic'     Keyword
 ']'           Punctuation
 'T'           Name.Other
-','           Operator
+','           Punctuation
 '\n'          Text
 
 '    '        Text
@@ -173,7 +173,7 @@
 ':'           Punctuation
 ' '           Text
 'int'         Keyword.Type
-','           Operator
+','           Punctuation
 '\n'          Text
 
 '}'           Punctuation
@@ -196,7 +196,7 @@
 
 '    '        Text
 'fmt'         Name.Other
-'.'           Operator
+'.'           Punctuation
 'println'     Name.Other
 '('           Punctuation
 '"Hello, Odin!"' Literal.String
@@ -308,16 +308,16 @@
 ' '           Text
 '{'           Punctuation
 '1'           Literal.Number.Integer
-','           Operator
+','           Punctuation
 ' '           Text
 '2'           Literal.Number.Integer
-','           Operator
+','           Punctuation
 ' '           Text
 '3'           Literal.Number.Integer
-','           Operator
+','           Punctuation
 ' '           Text
 '4'           Literal.Number.Integer
-','           Operator
+','           Punctuation
 ' '           Text
 '5'           Literal.Number.Integer
 '}'           Punctuation
@@ -338,13 +338,13 @@
 '('           Punctuation
 '&'           Operator
 'dynamic_array' Name.Other
-','           Operator
+','           Punctuation
 ' '           Text
 '10'          Literal.Number.Integer
-','           Operator
+','           Punctuation
 ' '           Text
 '20'          Literal.Number.Integer
-','           Operator
+','           Punctuation
 ' '           Text
 '30'          Literal.Number.Integer
 ')'           Punctuation
@@ -386,11 +386,11 @@
 
 '        '    Text
 'fmt'         Name.Other
-'.'           Operator
+'.'           Punctuation
 'printf'      Name.Other
 '('           Punctuation
 '"Number is positive: %d\\n"' Literal.String
-','           Operator
+','           Punctuation
 ' '           Text
 'number'      Name.Other
 ')'           Punctuation
@@ -406,7 +406,7 @@
 
 '        '    Text
 'fmt'         Name.Other
-'.'           Operator
+'.'           Punctuation
 'println'     Name.Other
 '('           Punctuation
 '"Number is zero or negative"' Literal.String
@@ -427,9 +427,8 @@
 ' '           Text
 'in'          Keyword
 ' '           Text
-'0.'          Literal.Number.Float
-'.'           Operator
-'<'           Operator
+'0'           Literal.Number.Integer
+'..<'         Operator
 '5'           Literal.Number.Integer
 ' '           Text
 '{'           Punctuation
@@ -437,11 +436,11 @@
 
 '        '    Text
 'fmt'         Name.Other
-'.'           Operator
+'.'           Punctuation
 'printf'      Name.Other
 '('           Punctuation
 '"Loop iteration: %d\\n"' Literal.String
-','           Operator
+','           Punctuation
 ' '           Text
 'i'           Name.Other
 ')'           Punctuation
@@ -458,7 +457,7 @@
 'switch'      Keyword
 ' '           Text
 'Color'       Name.Other
-'.'           Operator
+'.'           Punctuation
 'RED'         Name.Other
 ' '           Text
 '{'           Punctuation
@@ -467,14 +466,14 @@
 '    '        Text
 'case'        Keyword
 ' '           Text
-'.'           Operator
+'.'           Punctuation
 'RED'         Name.Other
 ':'           Punctuation
 '\n'          Text
 
 '        '    Text
 'fmt'         Name.Other
-'.'           Operator
+'.'           Punctuation
 'println'     Name.Other
 '('           Punctuation
 '"Color is red"' Literal.String
@@ -484,14 +483,14 @@
 '    '        Text
 'case'        Keyword
 ' '           Text
-'.'           Operator
+'.'           Punctuation
 'GREEN'       Name.Other
 ':'           Punctuation
 '\n'          Text
 
 '        '    Text
 'fmt'         Name.Other
-'.'           Operator
+'.'           Punctuation
 'println'     Name.Other
 '('           Punctuation
 '"Color is green"' Literal.String
@@ -499,14 +498,14 @@
 '  \n    '    Text
 'case'        Keyword
 ' '           Text
-'.'           Operator
+'.'           Punctuation
 'BLUE'        Name.Other
 ':'           Punctuation
 '\n'          Text
 
 '        '    Text
 'fmt'         Name.Other
-'.'           Operator
+'.'           Punctuation
 'println'     Name.Other
 '('           Punctuation
 '"Color is blue"' Literal.String
@@ -528,7 +527,7 @@
 'add_numbers' Name.Other
 '('           Punctuation
 '10'          Literal.Number.Integer
-','           Operator
+','           Punctuation
 ' '           Text
 '20'          Literal.Number.Integer
 ')'           Punctuation
@@ -536,11 +535,11 @@
 
 '    '        Text
 'fmt'         Name.Other
-'.'           Operator
+'.'           Punctuation
 'printf'      Name.Other
 '('           Punctuation
 '"Result: %d\\n"' Literal.String
-','           Operator
+','           Punctuation
 ' '           Text
 'result'      Name.Other
 ')'           Punctuation
@@ -561,14 +560,14 @@
 '='           Operator
 ' '           Text
 '1.0'         Literal.Number.Float
-','           Operator
+','           Punctuation
 ' '           Text
 'y'           Name.Other
 ' '           Text
 '='           Operator
 ' '           Text
 '2.0'         Literal.Number.Float
-','           Operator
+','           Punctuation
 ' '           Text
 'z'           Name.Other
 ' '           Text
@@ -580,24 +579,24 @@
 
 '    '        Text
 'fmt'         Name.Other
-'.'           Operator
+'.'           Punctuation
 'printf'      Name.Other
 '('           Punctuation
 '"Vector: (%f, %f, %f)\\n"' Literal.String
-','           Operator
+','           Punctuation
 ' '           Text
 'vec'         Name.Other
-'.'           Operator
+'.'           Punctuation
 'x'           Name.Other
-','           Operator
+','           Punctuation
 ' '           Text
 'vec'         Name.Other
-'.'           Operator
+'.'           Punctuation
 'y'           Name.Other
-','           Operator
+','           Punctuation
 ' '           Text
 'vec'         Name.Other
-'.'           Operator
+'.'           Punctuation
 'z'           Name.Other
 ')'           Punctuation
 '\n'          Text
@@ -631,7 +630,7 @@
 
 '    '        Text
 'ptr'         Name.Other
-'^'           Punctuation
+'^'           Operator
 ' '           Text
 '='           Operator
 ' '           Text
@@ -650,7 +649,7 @@
 'proc'        Keyword.Declaration
 '('           Punctuation
 'a'           Name.Other
-','           Operator
+','           Punctuation
 ' '           Text
 'b'           Name.Other
 ':'           Punctuation
@@ -658,8 +657,7 @@
 'int'         Keyword.Type
 ')'           Punctuation
 ' '           Text
-'-'           Operator
-'>'           Operator
+'->'          Operator
 ' '           Text
 'int'         Keyword.Type
 ' '           Text
@@ -734,8 +732,7 @@
 ' '           Text
 ':='          Operator
 ' '           Text
-'0'           Literal.Number.Integer
-'z9B'         Name.Other
+'0z9B'        Literal.Number.Integer
 '  '          Text
 '// Base 12\n' Comment.Single
 
@@ -763,7 +760,7 @@
 ' '           Text
 ':='          Operator
 ' '           Text
-'2.5i'        Literal.Number
+'2.5i'        Literal.Number.Imaginary
 '\n'          Text
 
 '}'           Punctuation
@@ -784,7 +781,7 @@
 
 '\n'          Text
 
-'@'           Operator
+'@'           Name.Decorator
 '('           Punctuation
 'default_calling_convention' Name.Other
 '='           Operator
@@ -810,7 +807,7 @@
 ':'           Punctuation
 ' '           Text
 'cstring'     Keyword.Type
-','           Operator
+','           Punctuation
 ' '           Text
 '#'           Operator
 'c_vararg'    Name.Other
@@ -818,19 +815,15 @@
 'args'        Name.Other
 ':'           Punctuation
 ' '           Text
-'.'           Operator
-'.'           Operator
+'..'          Operator
 'any'         Keyword.Type
 ')'           Punctuation
 ' '           Text
-'-'           Operator
-'>'           Operator
+'->'          Operator
 ' '           Text
 'i32'         Keyword.Type
 ' '           Text
-'-'           Operator
-'-'           Operator
-'-'           Operator
+'---'         Operator
 '\n'          Text
 
 '}'           Punctuation

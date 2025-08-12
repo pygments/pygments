@@ -74,27 +74,31 @@ class OdinLangLexer(RegexLexer):
                 'i16be', 'u16be', 'i32be', 'u32be', 'i64be', 'u64be', 'i128be', 'u128be', 
                 'f16le', 'f32le', 'f64le', 'f16be', 'f32be', 'f64be', 'byte'), suffix=r'\b'),
              Keyword.Type),
+
             # imaginary_lit
-            (r'\d+i', Number),
-            (r'\d+\.\d*([Ee][-+]\d+)?i', Number),
-            (r'\.\d+([Ee][-+]\d+)?i', Number),
-            (r'\d+[Ee][-+]\d+i', Number),
+            (r'\d+\.\d*([Ee][-+]\d+)?i', Number.Imaginary),
+            (r'\.\d+([Ee][-+]\d+)?i', Number.Imaginary),
+            (r'\d+[Ee][-+]\d+i', Number.Imaginary),
+            (r'\d+i', Number.Imaginary),
+            
             # float_lit
-            (r'\d+(\.\d+[eE][+\-]?\d+|'
-             r'\.\d*|[eE][+\-]?\d+)', Number.Float),
-            (r'\.\d+([eE][+\-]?\d+)?', Number.Float),
+            (r'\d+\.\d+([eE][+\-]?\d+)?', Number.Float),
+            (r'\d+[eE][+\-]?\d+', Number.Float),
+            
             # int_lit
             # -- binary_lit
             (r'0b[01]+', Number.Bin),
             # -- octal_lit
             (r'0o[0-7]+', Number.Oct),
             # -- hex_lit
-            (r'0[x][0-9a-fA-F]+', Number.Hex),
-            # -- decimal_lit
-            (r'([0-9]+)', Number.Integer),
-            (r'(0d[0-9]+)', Number.Integer),
+            (r'0[xX][0-9a-fA-F]+', Number.Hex),
             # -- dozenal_lit
-            (r'(0z[0-9abAB]+)', Number.Integer),
+            (r'0z[0-9abAB]+', Number.Integer),
+            # -- explicit decimal_lit
+            (r'0d[0-9]+', Number.Integer),
+            # -- generic decimal_lit
+            (r'[0-9]+', Number.Integer),
+            
             # char_lit
             (r"""'(\\['"\\abfnrtv]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
              r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|[^\\])'""",
@@ -104,9 +108,17 @@ class OdinLangLexer(RegexLexer):
             (r'`[^`]*`', String),
             # -- interpreted_string_lit
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
-            # Tokens
-            (r'([+-\/%~!=<>]=?|%%=?|---|\?|\|(?:=|\|=?)?|&(?:=|&=?|\~=?)?|>(?:>=?|=)?|<(?:<=?|=)?|:\s*=|:\s*:|\.\.[=<]?|->|[@#$])', Operator),
-            (r'[|^<>=!()\[\]{}.,;:]', Punctuation),
+            
+            # Range operators
+            (r'\.\.[=<]?', Operator),
+            # All other operators
+            (r'(::=|<<=|>>=|%%= |&&=|\|\|=|&~=|::|:=|<<|>>|&&|\|\||&~|==|!=|<=|>=|---|->|[+\-*/%~!=<>&|^?]=?)', Operator),
+            # Attribute marker
+            (r'@', Name.Decorator),
+            # Other symbols
+            (r'[#$]', Operator),
+            (r'[()[\]{}.,;:]', Punctuation),
+            
             # identifier
             (r'[^\W\d]\w*', Name.Other),
         ],
