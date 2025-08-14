@@ -1,0 +1,106 @@
+---input---
+sp {macro*test
+    abs
+    atan2
+    capitalize-symbol
+    compute-heading
+    compute-range
+    concat
+    cos
+    dc
+    deep-copy
+    div
+    dont-learn
+    exec
+    float
+    force-learn
+    ifeq
+    int
+    link-stm-to-ltm
+    make-constant-symbol
+    max
+    min
+    mod
+    rand-float
+    rand-int
+    round-off
+    round-off-heading
+    sin
+    size
+    sqrt
+    strlen
+    timestamp
+    trim
+}
+
+---tokens---
+'sp'          Keyword.Reserved
+' '           Text.Whitespace
+'{'           Punctuation
+'macro*test'  Name.Function
+'\n    '      Text.Whitespace
+'abs'         Name.Function
+'\n    '      Text.Whitespace
+'atan2'       Name.Function
+'\n    '      Text.Whitespace
+'capitalize-symbol' Name.Function
+'\n    '      Text.Whitespace
+'compute-heading' Name.Function
+'\n    '      Text.Whitespace
+'compute-range' Name.Function
+'\n    '      Text.Whitespace
+'concat'      Name.Function
+'\n    '      Text.Whitespace
+'cos'         Name.Function
+'\n    '      Text.Whitespace
+'dc'          Name.Function
+'\n    '      Text.Whitespace
+'deep-copy'   Name.Function
+'\n    '      Text.Whitespace
+'div'         Name.Function
+'\n    '      Text.Whitespace
+'dont-learn'  Name.Function
+'\n    '      Text.Whitespace
+'exec'        Name.Function
+'\n    '      Text.Whitespace
+'float'       Name.Function
+'\n    '      Text.Whitespace
+'force-learn' Name.Function
+'\n    '      Text.Whitespace
+'ifeq'        Name.Function
+'\n    '      Text.Whitespace
+'int'         Name.Function
+'\n    '      Text.Whitespace
+'link-stm-to-ltm' Name.Function
+'\n    '      Text.Whitespace
+'make-constant-symbol' Name.Function
+'\n    '      Text.Whitespace
+'max'         Name.Function
+'\n    '      Text.Whitespace
+'min'         Name.Function
+'\n    '      Text.Whitespace
+'mod'         Name.Function
+'\n    '      Text.Whitespace
+'rand-float'  Name.Function
+'\n    '      Text.Whitespace
+'rand-int'    Name.Function
+'\n    '      Text.Whitespace
+'round-off'   Name.Function
+'\n    '      Text.Whitespace
+'round-off-heading' Name.Function
+'\n    '      Text.Whitespace
+'sin'         Name.Function
+'\n    '      Text.Whitespace
+'size'        Name.Function
+'\n    '      Text.Whitespace
+'sqrt'        Name.Function
+'\n    '      Text.Whitespace
+'strlen'      Name.Function
+'\n    '      Text.Whitespace
+'timestamp'   Name.Function
+'\n    '      Text.Whitespace
+'trim'        Name.Function
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
