@@ -82,6 +82,11 @@ class CFamilyLexer(RegexLexer):
         'statements': [
             include('keywords'),
             include('types'),
+            include('literals'),
+            (r'[~!%^&*+=|?:<>/-]', Operator),
+            (r'[()\[\],.]', Punctuation)
+        ],
+        'literals': [
             (r'([LuU]|u8)?(")', bygroups(String.Affix, String), 'string'),
             (r"([LuU]|u8)?(')(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])(')",
              bygroups(String.Affix, String.Char, String.Char, String.Char)),
@@ -98,8 +103,6 @@ class CFamilyLexer(RegexLexer):
             (r'(-)?0[bB][01](\'?[01])*' + _intsuffix, Number.Bin),
             (r'(-)?0(\'?[0-7])+' + _intsuffix, Number.Oct),
             (r'(-)?' + _decpart + _intsuffix, Number.Integer),
-            (r'[~!%^&*+=|?:<>/-]', Operator),
-            (r'[()\[\],.]', Punctuation),
             (r'(true|false|NULL)\b', Name.Builtin),
             (_ident, Name)
         ],
