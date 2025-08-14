@@ -38,8 +38,11 @@ class GasLexer(RegexLexer):
     string = r'"(\\"|[^"])*"'
     char = r'[\w$.@-]'
     identifier = r'(?:[a-zA-Z$_]' + char + r'*|\.' + char + '+)'
-    number = r'(?:0[xX][a-fA-F0-9]+|#?-?\d+)'
-    register = '%' + identifier + r'\b'
+    number = r'#?(?:0[xX][a-fA-F0-9]+|-?\d+)'
+    # Registers in x64 are identified by being prefixed by a % symbol.
+    # Registers in AArch32 are identified by being r[0-15], pc, lr, or sp.
+    # Registers in AArch64 are identified by being x[0-31], w[0-31], lr, or sp, xzr, wzr
+    register = '(?:%' + identifier + '|[xw](?:[0-9]|[12][0-9]|3[01]|zr)|r[0-9]|r1[0-5]|pc|lr|sp)' + r'\b'
 
     tokens = {
         'root': [
@@ -51,11 +54,11 @@ class GasLexer(RegexLexer):
             (r'[\r\n]+', Text)
         ],
         'directive-args': [
+            (register, Name.Variable),
             (identifier, Name.Constant),
             (string, String),
             ('@' + identifier, Name.Attribute),
             (number, Number.Integer),
-            (register, Name.Variable),
             (r'[\r\n]+', Whitespace, '#pop'),
             (r'([;#]|//).*?\n', Comment.Single, '#pop'),
             (r'/[*].*?[*]/', Comment.Multiline),
@@ -74,11 +77,11 @@ class GasLexer(RegexLexer):
                 bygroups(Number.Hex, Text, Punctuation, Name.Constant,
                          Punctuation, Number.Integer, Punctuation)),
 
+            # Registers
+            (register, Name.Variable),
             # Address constants
             (identifier, Name.Constant),
             (number, Number.Integer),
-            # Registers
-            (register, Name.Variable),
             # Numeric constants
             ('$'+number, Number.Integer),
             (r"$'(.|\\')'", String.Char),
@@ -131,11 +134,23 @@ def _objdump_lexer_tokens(asm_lexer):
                 bygroups(Number.Hex, Whitespace, Punctuation, Name.Function,
                          Punctuation)),
             # Code line with disassembled instructions
-            ('( *)('+hex_re+r'+:)(\t)((?:'+hex_re+hex_re+' )+)( *\t)([a-zA-Z].*?)$',
+            # LLVM objdump with AArch64 code looks like this:
+            #     b570: fd 7b b8 a9     stp x29, x30, [sp, #-128]!
+            # LLVM objdump with AArch64 code with unknown instructions looks like:
+            #     8000: 00 00 a0 e1   <unknown>
+            # LLVM objdump with x64 code looks like this:
+            #       3c: 48 89 e5                        movq    %rsp, %rbp
+            # BinUtils objdump with AArch64 code looks like this:
+            #     b570:       a9b87bfd        stp     x29, x30, [sp, #-128]!
+            # BinUtils objdump with AArch64 code with unknown instructions looks like:
+            #     8000:       e1a00000        .inst   0xe1a00000 ; undefined
+            # BinUtils objdump with x64 code looks like this:
+            #   3c:   48 89 e5                mov    %rsp,%rbp
+            ('( *)('+hex_re+r'+:)(\t| *)((?:'+hex_re+hex_re+' )+|(?:'+hex_re+'{8}))( *[ \t])([.a-zA-Z].*?)$',
                 bygroups(Whitespace, Name.Label, Whitespace, Number.Hex, Whitespace,
                          using(asm_lexer))),
             # Code line without raw instructions (objdump --no-show-raw-insn)
-            ('( *)('+hex_re+r'+:)( *\t)([a-zA-Z].*?)$',
+            ('( *)('+hex_re+r'+:)( *\t)([.a-zA-Z].*?)$',
                 bygroups(Whitespace, Name.Label, Whitespace,
                          using(asm_lexer))),
             # Code line with ascii
