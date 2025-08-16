@@ -1,0 +1,14 @@
+---input---
+_super
+_super.new()
+
+---tokens---
+'_super'      Name.Class
+'\n'          Text.Whitespace
+
+'_super'      Name.Class
+'.'           Punctuation
+'new'         Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace

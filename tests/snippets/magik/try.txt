@@ -1,0 +1,35 @@
+---input---
+_try
+_when e
+_endtry
+
+_try _with cond
+_when e
+_endtry
+
+---tokens---
+'_try'        Keyword
+'\n'          Text.Whitespace
+
+'_when'       Keyword
+' '           Text.Whitespace
+'e'           Name
+'\n'          Text.Whitespace
+
+'_endtry'     Keyword
+'\n\n'        Text.Whitespace
+
+'_try'        Keyword
+' '           Text.Whitespace
+'_with'       Keyword
+' '           Text.Whitespace
+'cond'        Name
+'\n'          Text.Whitespace
+
+'_when'       Keyword
+' '           Text.Whitespace
+'e'           Name
+'\n'          Text.Whitespace
+
+'_endtry'     Keyword
+'\n'          Text.Whitespace

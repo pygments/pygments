@@ -1,0 +1,43 @@
+---input---
+_throw :error
+_throw @error
+_throw "error"
+_throw :error _with a
+_throw :error _with a, b
+
+---tokens---
+'_throw'      Keyword
+' '           Text.Whitespace
+':error'      Literal.String.Symbol
+'\n'          Text.Whitespace
+
+'_throw'      Keyword
+' '           Text.Whitespace
+'@error'      Name.Label
+'\n'          Text.Whitespace
+
+'_throw'      Keyword
+' '           Text.Whitespace
+'"error"'     Literal.String.Double
+'\n'          Text.Whitespace
+
+'_throw'      Keyword
+' '           Text.Whitespace
+':error'      Literal.String.Symbol
+' '           Text.Whitespace
+'_with'       Keyword
+' '           Text.Whitespace
+'a'           Name
+'\n'          Text.Whitespace
+
+'_throw'      Keyword
+' '           Text.Whitespace
+':error'      Literal.String.Symbol
+' '           Text.Whitespace
+'_with'       Keyword
+' '           Text.Whitespace
+'a'           Name
+','           Punctuation
+' '           Text.Whitespace
+'b'           Name
+'\n'          Text.Whitespace

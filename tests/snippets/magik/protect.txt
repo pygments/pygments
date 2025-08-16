@@ -1,0 +1,95 @@
+---input---
+_block
+	stream << external_text_input_stream.new(a_file_name)
+	_protect
+		stream.write("something")
+	_protection
+		stream.close()
+	_endprotect
+_endblock
+
+_block
+	stream << external_text_input_stream.new(a_file_name)
+	_protect _locking _self
+		stream.write("something")
+	_protection
+		stream.close()
+	_endprotect
+_endblock
+
+---tokens---
+'_block'      Keyword
+'\n\t'        Text.Whitespace
+'stream'      Name
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'external_text_input_stream' Name
+'.'           Punctuation
+'new'         Name
+'('           Punctuation
+'a_file_name' Name
+')'           Punctuation
+'\n\t'        Text.Whitespace
+'_protect'    Keyword
+'\n\t\t'      Text.Whitespace
+'stream'      Name
+'.'           Punctuation
+'write'       Name
+'('           Punctuation
+'"something"' Literal.String.Double
+')'           Punctuation
+'\n\t'        Text.Whitespace
+'_protection' Keyword
+'\n\t\t'      Text.Whitespace
+'stream'      Name
+'.'           Punctuation
+'close'       Name
+'('           Punctuation
+')'           Punctuation
+'\n\t'        Text.Whitespace
+'_endprotect' Keyword
+'\n'          Text.Whitespace
+
+'_endblock'   Keyword
+'\n\n'        Text.Whitespace
+
+'_block'      Keyword
+'\n\t'        Text.Whitespace
+'stream'      Name
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'external_text_input_stream' Name
+'.'           Punctuation
+'new'         Name
+'('           Punctuation
+'a_file_name' Name
+')'           Punctuation
+'\n\t'        Text.Whitespace
+'_protect'    Keyword
+' '           Text.Whitespace
+'_locking'    Keyword
+' '           Text.Whitespace
+'_self'       Name.Class
+'\n\t\t'      Text.Whitespace
+'stream'      Name
+'.'           Punctuation
+'write'       Name
+'('           Punctuation
+'"something"' Literal.String.Double
+')'           Punctuation
+'\n\t'        Text.Whitespace
+'_protection' Keyword
+'\n\t\t'      Text.Whitespace
+'stream'      Name
+'.'           Punctuation
+'close'       Name
+'('           Punctuation
+')'           Punctuation
+'\n\t'        Text.Whitespace
+'_endprotect' Keyword
+'\n'          Text.Whitespace
+
+'_endblock'   Keyword
+'\n'          Text.Whitespace
