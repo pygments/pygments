@@ -1,0 +1,383 @@
+---input---
+_loop
+_endloop
+
+_loop
+  _continue
+_endloop
+
+_loop
+  _continue _with _unset
+_endloop
+
+_loop
+  _continue _with (_unset, _unset)
+_endloop
+
+_loop
+  _continue _with _unset, _unset
+_endloop
+
+_loop
+  _leave
+_endloop
+
+_loop
+  _leave _with _unset
+_endloop
+
+_loop
+  _leave _with (_unset, _unset)
+_endloop
+
+_loop
+  _leave _with _unset, _unset
+_endloop
+
+_loop @outer_loop
+_endloop
+
+_loop @outer_loop
+  _continue@outer_loop
+_endloop
+
+_loop @outer_loop
+  _leave@outer_loop
+_endloop
+
+_loop@|InnerLoop|
+  _leave@|InnerLoop|
+_endloop
+
+_loop@||
+  _leave @||
+_endloop
+
+_over simple_vector.fast_elements()
+_loop
+_endloop
+
+_for e _over simple_vector.fast_elements()
+_loop
+_endloop
+
+_for e _over simple_vector.fast_elements()
+_loop @outer_loop
+_endloop
+
+_for e _over simple_vector.fast_elements()
+_loop
+_finally
+_endloop
+
+_while x <= 100
+_loop
+  y +<< x
+  x +<< 1
+_endloop
+
+_while x <= 100
+_loop@outer_loop
+  y +<< x
+  x +<< 1
+_endloop
+
+---tokens---
+'_loop'       Keyword
+'\n'          Text.Whitespace
+
+'_endloop'    Keyword
+'\n\n'        Text.Whitespace
+
+'_loop'       Keyword
+'\n  '        Text.Whitespace
+'_continue'   Keyword
+'\n'          Text.Whitespace
+
+'_endloop'    Keyword
+'\n\n'        Text.Whitespace
+
+'_loop'       Keyword
+'\n  '        Text.Whitespace
+'_continue'   Keyword
+' '           Text.Whitespace
+'_with'       Keyword
+' '           Text.Whitespace
+'_unset'      Literal
+'\n'          Text.Whitespace
+
+'_endloop'    Keyword
+'\n\n'        Text.Whitespace
+
+'_loop'       Keyword
+'\n  '        Text.Whitespace
+'_continue'   Keyword
+' '           Text.Whitespace
+'_with'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'_unset'      Literal
+','           Punctuation
+' '           Text.Whitespace
+'_unset'      Literal
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'_endloop'    Keyword
+'\n\n'        Text.Whitespace
+
+'_loop'       Keyword
+'\n  '        Text.Whitespace
+'_continue'   Keyword
+' '           Text.Whitespace
+'_with'       Keyword
+' '           Text.Whitespace
+'_unset'      Literal
+','           Punctuation
+' '           Text.Whitespace
+'_unset'      Literal
+'\n'          Text.Whitespace
+
+'_endloop'    Keyword
+'\n\n'        Text.Whitespace
+
+'_loop'       Keyword
+'\n  '        Text.Whitespace
+'_leave'      Keyword
+'\n'          Text.Whitespace
+
+'_endloop'    Keyword
+'\n\n'        Text.Whitespace
+
+'_loop'       Keyword
+'\n  '        Text.Whitespace
+'_leave'      Keyword
+' '           Text.Whitespace
+'_with'       Keyword
+' '           Text.Whitespace
+'_unset'      Literal
+'\n'          Text.Whitespace
+
+'_endloop'    Keyword
+'\n\n'        Text.Whitespace
+
+'_loop'       Keyword
+'\n  '        Text.Whitespace
+'_leave'      Keyword
+' '           Text.Whitespace
+'_with'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'_unset'      Literal
+','           Punctuation
+' '           Text.Whitespace
+'_unset'      Literal
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'_endloop'    Keyword
+'\n\n'        Text.Whitespace
+
+'_loop'       Keyword
+'\n  '        Text.Whitespace
+'_leave'      Keyword
+' '           Text.Whitespace
+'_with'       Keyword
+' '           Text.Whitespace
+'_unset'      Literal
+','           Punctuation
+' '           Text.Whitespace
+'_unset'      Literal
+'\n'          Text.Whitespace
+
+'_endloop'    Keyword
+'\n\n'        Text.Whitespace
+
+'_loop'       Keyword
+' '           Text.Whitespace
+'@outer_loop' Name.Label
+'\n'          Text.Whitespace
+
+'_endloop'    Keyword
+'\n\n'        Text.Whitespace
+
+'_loop'       Keyword
+' '           Text.Whitespace
+'@outer_loop' Name.Label
+'\n  '        Text.Whitespace
+'_continue'   Keyword
+'@outer_loop' Name.Label
+'\n'          Text.Whitespace
+
+'_endloop'    Keyword
+'\n\n'        Text.Whitespace
+
+'_loop'       Keyword
+' '           Text.Whitespace
+'@outer_loop' Name.Label
+'\n  '        Text.Whitespace
+'_leave'      Keyword
+'@outer_loop' Name.Label
+'\n'          Text.Whitespace
+
+'_endloop'    Keyword
+'\n\n'        Text.Whitespace
+
+'_loop'       Keyword
+'@'           Punctuation
+'|InnerLoop|' Name.Variable
+'\n  '        Text.Whitespace
+'_leave'      Keyword
+'@'           Punctuation
+'|InnerLoop|' Name.Variable
+'\n'          Text.Whitespace
+
+'_endloop'    Keyword
+'\n\n'        Text.Whitespace
+
+'_loop'       Keyword
+'@'           Punctuation
+'|'           Punctuation
+'|'           Punctuation
+'\n  '        Text.Whitespace
+'_leave'      Keyword
+' '           Text.Whitespace
+'@'           Punctuation
+'|'           Punctuation
+'|'           Punctuation
+'\n'          Text.Whitespace
+
+'_endloop'    Keyword
+'\n\n'        Text.Whitespace
+
+'_over'       Keyword
+' '           Text.Whitespace
+'simple_vector' Name
+'.'           Punctuation
+'fast_elements' Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'_loop'       Keyword
+'\n'          Text.Whitespace
+
+'_endloop'    Keyword
+'\n\n'        Text.Whitespace
+
+'_for'        Keyword
+' '           Text.Whitespace
+'e'           Name
+' '           Text.Whitespace
+'_over'       Keyword
+' '           Text.Whitespace
+'simple_vector' Name
+'.'           Punctuation
+'fast_elements' Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'_loop'       Keyword
+'\n'          Text.Whitespace
+
+'_endloop'    Keyword
+'\n\n'        Text.Whitespace
+
+'_for'        Keyword
+' '           Text.Whitespace
+'e'           Name
+' '           Text.Whitespace
+'_over'       Keyword
+' '           Text.Whitespace
+'simple_vector' Name
+'.'           Punctuation
+'fast_elements' Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'_loop'       Keyword
+' '           Text.Whitespace
+'@outer_loop' Name.Label
+'\n'          Text.Whitespace
+
+'_endloop'    Keyword
+'\n\n'        Text.Whitespace
+
+'_for'        Keyword
+' '           Text.Whitespace
+'e'           Name
+' '           Text.Whitespace
+'_over'       Keyword
+' '           Text.Whitespace
+'simple_vector' Name
+'.'           Punctuation
+'fast_elements' Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'_loop'       Keyword
+'\n'          Text.Whitespace
+
+'_finally'    Keyword
+'\n'          Text.Whitespace
+
+'_endloop'    Keyword
+'\n\n'        Text.Whitespace
+
+'_while'      Keyword
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'<='          Operator
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'_loop'       Keyword
+'\n  '        Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+'+<<'         Operator
+' '           Text.Whitespace
+'x'           Name
+'\n  '        Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'+<<'         Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'_endloop'    Keyword
+'\n\n'        Text.Whitespace
+
+'_while'      Keyword
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'<='          Operator
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'_loop'       Keyword
+'@outer_loop' Name.Label
+'\n  '        Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+'+<<'         Operator
+' '           Text.Whitespace
+'x'           Name
+'\n  '        Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'+<<'         Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'_endloop'    Keyword
+'\n'          Text.Whitespace

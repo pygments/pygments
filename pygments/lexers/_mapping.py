@@ -302,6 +302,7 @@ LEXERS = {
     'MOOCodeLexer': ('pygments.lexers.scripting', 'MOOCode', ('moocode', 'moo'), ('*.moo',), ('text/x-moocode',)),
     'MSDOSSessionLexer': ('pygments.lexers.shell', 'MSDOS Session', ('doscon',), (), ()),
     'Macaulay2Lexer': ('pygments.lexers.macaulay2', 'Macaulay2', ('macaulay2',), ('*.m2',), ()),
+    'MagikLexer': ('pygments.lexers.magik', 'Magik', ('magik',), ('*.magik',), ('text/x-magik',)),
     'MakefileLexer': ('pygments.lexers.make', 'Makefile', ('make', 'makefile', 'mf', 'bsdmake'), ('*.mak', '*.mk', 'Makefile', 'makefile', 'Makefile.*', 'GNUmakefile'), ('text/x-makefile',)),
     'MakoCssLexer': ('pygments.lexers.templates', 'CSS+Mako', ('css+mako',), (), ('text/css+mako',)),
     'MakoHtmlLexer': ('pygments.lexers.templates', 'HTML+Mako', ('html+mako',), (), ('text/html+mako',)),
