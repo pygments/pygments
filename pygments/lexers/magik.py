@@ -1,10 +1,11 @@
 """
-pygments.lexers.magik
-~~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.magik
+    ~~~~~~~~~~~~~~~~~~~~~
 
-Lexer for Magik file format.
+    Lexer for Magik file format.
 
-:license: BSD, see LICENSE for details.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 from pygments.lexer import RegexLexer
