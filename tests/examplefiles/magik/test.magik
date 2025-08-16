@@ -1,0 +1,60 @@
+_package user
+
+_pragma(classify_level=restricted)
+_method attachment_editor.create_document_list(container)
+	## @param {sw:sw_container} container
+
+	main << sw_container.new(container, 2, 1,
+		:outer_spacing, 8,
+		:row_spacing, 8,
+		:row_resize_values, {1, 0})
+
+	.menu_items[:list_document] <<
+		sw_table.new(main,
+			:column_lines?, _true,
+			:model, _self,
+			:aspect, :list_document,
+			:selection_mode, :one,
+			:selection_type, :row,
+			:data_selector, :list_documents|()|,
+			:double_click_notifier, :show_path_name|()|,
+			:selection_notifier, :select_document|()|)
+
+	_if .embedded? _is _false _andif
+	    _self.toolbar_for_floating? _is _false
+	_then _return
+	_endif
+_endmethod
+$
+
+_pragma(classify_level=restricted)
+_method sw_product.requires?(product_name)
+	## @param {sw:symbol} product_name
+	## @return {sw:false}
+
+	>> _self.prerequisites.select(predicate.using(
+		_proc(prerequisite)
+			## @param {sw:simple_vector<E=sw:char16_vector>, E=sw:char16_vector>} prerequisite
+			## @return {sw:false}
+
+			_import product_name
+
+			>> prerequisite.first.as_symbol() = product_name
+		_endproc)).empty?.not
+_endmethod
+$
+
+_pragma(classify_level=restricted)
+logger.define_shared_constant(:log_levels,
+	{:off, :fatal, :error, :warning, :info, :debug, :all}, _false)
+$
+
+_pragma(classify_level=restricted)
+_method logger.log_level << log_level
+	## @param {sw:symbol} log_level
+
+	.log_level << _if log_level _is _unset
+		      _then >> _self.get_log_level_from_system()
+		      _endif.default(log_level)
+_endmethod
+$

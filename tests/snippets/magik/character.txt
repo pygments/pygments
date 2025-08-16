@@ -1,0 +1,46 @@
+---input---
+%a
+%.
+%,
+%-
+%?
+%/
+%|
+% 
+%space
+%newline
+%tab
+
+---tokens---
+'%a'          Literal.String.Char
+'\n'          Text.Whitespace
+
+'%.'          Literal.String.Char
+'\n'          Text.Whitespace
+
+'%,'          Literal.String.Char
+'\n'          Text.Whitespace
+
+'%-'          Literal.String.Char
+'\n'          Text.Whitespace
+
+'%?'          Literal.String.Char
+'\n'          Text.Whitespace
+
+'%/'          Literal.String.Char
+'\n'          Text.Whitespace
+
+'%|'          Literal.String.Char
+'\n'          Text.Whitespace
+
+'% '          Literal.String.Char
+'\n'          Text.Whitespace
+
+'%space'      Literal.String.Char
+'\n'          Text.Whitespace
+
+'%newline'    Literal.String.Char
+'\n'          Text.Whitespace
+
+'%tab'        Literal.String.Char
+'\n'          Text.Whitespace

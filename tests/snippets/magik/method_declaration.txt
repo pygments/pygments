@@ -1,0 +1,369 @@
+---input---
+_method my_object.method
+_endmethod
+
+_method my_object.method()
+_endmethod
+
+_method my_object.method(a)
+_endmethod
+
+_method my_object.method(a, b)
+_endmethod
+
+_method my_object[]
+_endmethod
+
+_method my_object[a]
+_endmethod
+
+_method my_object[a, b]
+_endmethod
+
+_method my_object.method<< a
+_endmethod
+
+_method my_object.method^<< a
+_endmethod
+
+_method my_object[a]<< b
+_endmethod
+
+_method my_object[a]^<< a
+_endmethod
+
+_method my_object.method(a)<< b
+_endmethod
+
+_method my_object.method(a)^<< b
+_endmethod
+
+_method object.method(_gather args)
+_endmethod
+
+_method object.method(first_arg _gather args)
+_endmethod
+
+_method object.method(_optional arg)
+_endmethod
+
+_method object.method(first_arg, _optional second_arg, third_arg)
+_endmethod
+
+_method object.method<< first_arg, second_arg
+_endmethod
+
+_method object.method^<< first_arg, second_arg
+_endmethod
+
+_method object.getName
+_endmethod
+
+_method object.|getName|
+_endmethod
+
+_method |Object|.|getName|
+_endmethod
+
+---tokens---
+'_method'     Keyword
+' '           Text.Whitespace
+'my_object'   Name
+'.'           Punctuation
+'method'      Name
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n\n'        Text.Whitespace
+
+'_method'     Keyword
+' '           Text.Whitespace
+'my_object'   Name
+'.'           Punctuation
+'method'      Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n\n'        Text.Whitespace
+
+'_method'     Keyword
+' '           Text.Whitespace
+'my_object'   Name
+'.'           Punctuation
+'method'      Name
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n\n'        Text.Whitespace
+
+'_method'     Keyword
+' '           Text.Whitespace
+'my_object'   Name
+'.'           Punctuation
+'method'      Name
+'('           Punctuation
+'a'           Name
+','           Punctuation
+' '           Text.Whitespace
+'b'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n\n'        Text.Whitespace
+
+'_method'     Keyword
+' '           Text.Whitespace
+'my_object'   Name
+'['           Punctuation
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n\n'        Text.Whitespace
+
+'_method'     Keyword
+' '           Text.Whitespace
+'my_object'   Name
+'['           Punctuation
+'a'           Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n\n'        Text.Whitespace
+
+'_method'     Keyword
+' '           Text.Whitespace
+'my_object'   Name
+'['           Punctuation
+'a'           Name
+','           Punctuation
+' '           Text.Whitespace
+'b'           Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n\n'        Text.Whitespace
+
+'_method'     Keyword
+' '           Text.Whitespace
+'my_object'   Name
+'.'           Punctuation
+'method'      Name
+'<<'          Operator
+' '           Text.Whitespace
+'a'           Name
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n\n'        Text.Whitespace
+
+'_method'     Keyword
+' '           Text.Whitespace
+'my_object'   Name
+'.'           Punctuation
+'method'      Name
+'^<<'         Operator
+' '           Text.Whitespace
+'a'           Name
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n\n'        Text.Whitespace
+
+'_method'     Keyword
+' '           Text.Whitespace
+'my_object'   Name
+'['           Punctuation
+'a'           Name
+']'           Punctuation
+'<<'          Operator
+' '           Text.Whitespace
+'b'           Name
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n\n'        Text.Whitespace
+
+'_method'     Keyword
+' '           Text.Whitespace
+'my_object'   Name
+'['           Punctuation
+'a'           Name
+']'           Punctuation
+'^<<'         Operator
+' '           Text.Whitespace
+'a'           Name
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n\n'        Text.Whitespace
+
+'_method'     Keyword
+' '           Text.Whitespace
+'my_object'   Name
+'.'           Punctuation
+'method'      Name
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+'<<'          Operator
+' '           Text.Whitespace
+'b'           Name
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n\n'        Text.Whitespace
+
+'_method'     Keyword
+' '           Text.Whitespace
+'my_object'   Name
+'.'           Punctuation
+'method'      Name
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+'^<<'         Operator
+' '           Text.Whitespace
+'b'           Name
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n\n'        Text.Whitespace
+
+'_method'     Keyword
+' '           Text.Whitespace
+'object'      Name
+'.'           Punctuation
+'method'      Name
+'('           Punctuation
+'_gather'     Keyword
+' '           Text.Whitespace
+'args'        Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n\n'        Text.Whitespace
+
+'_method'     Keyword
+' '           Text.Whitespace
+'object'      Name
+'.'           Punctuation
+'method'      Name
+'('           Punctuation
+'first_arg'   Name
+' '           Text.Whitespace
+'_gather'     Keyword
+' '           Text.Whitespace
+'args'        Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n\n'        Text.Whitespace
+
+'_method'     Keyword
+' '           Text.Whitespace
+'object'      Name
+'.'           Punctuation
+'method'      Name
+'('           Punctuation
+'_optional'   Keyword
+' '           Text.Whitespace
+'arg'         Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n\n'        Text.Whitespace
+
+'_method'     Keyword
+' '           Text.Whitespace
+'object'      Name
+'.'           Punctuation
+'method'      Name
+'('           Punctuation
+'first_arg'   Name
+','           Punctuation
+' '           Text.Whitespace
+'_optional'   Keyword
+' '           Text.Whitespace
+'second_arg'  Name
+','           Punctuation
+' '           Text.Whitespace
+'third_arg'   Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n\n'        Text.Whitespace
+
+'_method'     Keyword
+' '           Text.Whitespace
+'object'      Name
+'.'           Punctuation
+'method'      Name
+'<<'          Operator
+' '           Text.Whitespace
+'first_arg'   Name
+','           Punctuation
+' '           Text.Whitespace
+'second_arg'  Name
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n\n'        Text.Whitespace
+
+'_method'     Keyword
+' '           Text.Whitespace
+'object'      Name
+'.'           Punctuation
+'method'      Name
+'^<<'         Operator
+' '           Text.Whitespace
+'first_arg'   Name
+','           Punctuation
+' '           Text.Whitespace
+'second_arg'  Name
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n\n'        Text.Whitespace
+
+'_method'     Keyword
+' '           Text.Whitespace
+'object'      Name
+'.'           Punctuation
+'getName'     Name
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n\n'        Text.Whitespace
+
+'_method'     Keyword
+' '           Text.Whitespace
+'object'      Name
+'.'           Punctuation
+'|getName|'   Name.Variable
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n\n'        Text.Whitespace
+
+'_method'     Keyword
+' '           Text.Whitespace
+'|Object|'    Name.Variable
+'.'           Punctuation
+'|getName|'   Name.Variable
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n'          Text.Whitespace
