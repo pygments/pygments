@@ -93,7 +93,7 @@ class MagikLexer(RegexLexer):
             # Return operators
             (r"(>>|_return)", Operator),
             # Relational operators
-            (r"(?i)(_is|_isnt|_cf|=|~=|<>|>=|<=|<|>)", Operator),
+            (r"(?i)(_isnt|_is|_cf|=|~=|<>|>=|<=|<|>)", Operator),
             # Logical operators
             (r"(?i)\b(_and|_or|_xor|_andif|_orif)\b", Operator),
             # Arithmetic operators
@@ -106,17 +106,17 @@ class MagikLexer(RegexLexer):
             (r"\b\d+\b", Number.Integer),
             (r"\b(?:[2-9]|[1-2]\d|3[0-6])[rR][a-zA-Z0-9]+\b", Number.Integer),
             # Symbols
-            (r":[\w_?!]+", String.Symbol),
+            (r":[\w?!]+", String.Symbol),
             # Piped symbols
             (r":\|[^|]*\|", String.Symbol),
             # Pragma
             (r"(?i)_pragma.*", String.Doc),
             # Identifiers
-            (r"\|[\w_?!]+\|", Name.Variable),
-            (r"![\w_?!]+!", Name.Variable),
-            (r"[\w_?!]+:[\w_?!]+", Name.Variable.Global),
-            (r"@[\w_?!:]+", Name.Label),
-            (r"[\w_?!]+", Name),
+            (r"\|[\w?!]+\|", Name.Variable),
+            (r"![\w?!]+!", Name.Variable),
+            (r"[\w?!]+:[\w?!]+", Name.Variable.Global),
+            (r"@[\w?!:]+", Name.Label),
+            (r"[\w?!]+", Name),
             # Strings
             (r'"([^"\\\n]|\\.)*"', String.Double),
             (r"'([^'\\\n]|\\.)*'", String.Single),
