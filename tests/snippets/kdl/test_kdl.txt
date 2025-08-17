@@ -89,7 +89,7 @@ foo bar=#true baz quux=#false 1 2 3
 
 'smile'       Name.Label
 ' '           Text.Whitespace
-'😁'           Error
+'😁'           Literal.String
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -124,14 +124,9 @@ foo bar=#true baz quux=#false 1 2 3
 
 '// And you can also use non-ASCII unicode!\n' Comment.Single
 
-'ノード'         Name.Label
-'\u3000'      Text.Whitespace
-'お名前='        Name.Attribute
-'ฅ^'          Literal.String
-'•'           Error
-'ﻌ'           Literal.String
-'•'           Error
-'^ฅ'          Literal.String
+'ノード\u3000お名前' Name.Label
+'='           Operator
+'ฅ^•ﻌ•^ฅ'     Literal.String
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
