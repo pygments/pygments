@@ -40,44 +40,27 @@ foo bar=#true baz quux=#false 1 2 3
 '}'           Comment.Multiline
 '\n'          Text.Whitespace
 
-'\n'          Text.Whitespace
-
-'a'           Name.Label
+'\na'         Name.Label
 ';'           Operator
-' '           Text.Whitespace
-'b'           Literal.String
+' b'          Name.Label
 ';'           Operator
-' '           Text.Whitespace
-'c'           Literal.String
+' c'          Name.Label
 ';'           Operator
-'\n'          Text.Whitespace
-
-'\n'          Text.Whitespace
-
-'cool'        Name.Label
-' '           Text.Whitespace
-'/-a="thing" ' Comment.Single
+'\n\ncool'    Name.Label
+' /-a="thing" ' Comment.Single
 'plus='       Name.Attribute
 '"'           Literal.String
 'something else' Literal.String
 '"'           Literal.String
 ' '           Text.Whitespace
 '{'           Operator
-'\n'          Text.Whitespace
-
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-' '           Text.Whitespace
-'stuff'       Literal.String
+'\n    stuff' Name.Label
 '\n'          Text.Whitespace
 
 '}'           Operator
 '\n'          Text.Whitespace
 
-'\n'          Text.Whitespace
-
-'a'           Name.Label
+'\na'         Name.Label
 ' '           Text.Whitespace
 '12.42e8'     Literal.Number.Float
 '\n'          Text.Whitespace
@@ -106,7 +89,7 @@ foo bar=#true baz quux=#false 1 2 3
 
 'smile'       Name.Label
 ' '           Text.Whitespace
-'😁'           Literal.String
+'😁'           Error
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -141,8 +124,14 @@ foo bar=#true baz quux=#false 1 2 3
 
 '// And you can also use non-ASCII unicode!\n' Comment.Single
 
-'ノード\u3000お名前=' Name.Attribute
-'ฅ^•ﻌ•^ฅ'     Literal.String
+'ノード'         Name.Label
+'\u3000'      Text.Whitespace
+'お名前='        Name.Attribute
+'ฅ^'          Literal.String
+'•'           Error
+'ﻌ'           Literal.String
+'•'           Error
+'^ฅ'          Literal.String
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
