@@ -1,0 +1,6 @@
+0000000000000000 <print_var>:
+   0:   55                      push   rbp
+   1:   48 89 e5                mov    rbp, rsp
+   4:   48 8b 05 00 00 00 00    mov    rax, QWORD PTR [rip+0x0]  # <global_var>
+                                4:  R_X86_64_PC32    global_var-0x4
+   b:   89 c6                   mov    esi, eax
