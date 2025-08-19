@@ -361,6 +361,18 @@ class CppLexer(CFamilyLexer):
             inherit,
         ],
         'root': [
+            # functions starting with: std::vector<int>
+            (r'((?!\d)(?:[\w$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|::)*(?:<\s*[a-zA-Z_]\w*\s*>))'  # return arguments
+             r'(' + CFamilyLexer._possible_comments + r')'
+             r'(' + CFamilyLexer._namespaced_ident + r')'             # method name
+             r'(' + CFamilyLexer._possible_comments + r')'
+             r'(\([^;"\')]*?\)\n*)'                         # signature
+             r'(' + CFamilyLexer._possible_comments + r')'
+             r'([^;{/"\']*)(\{)',
+             bygroups(using(this), using(this, state='whitespace'),
+                      Name.Function, using(this, state='whitespace'),
+                      using(this), using(this, state='whitespace'),
+                      using(this), Punctuation), 'function'),
             inherit,
             # C++ Microsoft-isms
             (words(('virtual_inheritance', 'uuidof', 'super', 'single_inheritance',
