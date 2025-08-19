@@ -39,6 +39,7 @@ class YamlLexer(ExtendedRegexLexer):
     filenames = ['*.yaml', '*.yml']
     mimetypes = ['text/x-yaml']
     version_added = '0.11'
+    _example = "yaml/example.yaml"
 
     def something(token_class):
         """Do not produce empty tokens."""
@@ -450,6 +451,7 @@ class JsonLexer(Lexer):
     filenames = ['*.json', '*.jsonl', '*.ndjson', 'Pipfile.lock']
     mimetypes = ['application/json', 'application/json-object', 'application/x-ndjson', 'application/jsonl', 'application/json-seq']
     version_added = '1.5'
+    _example = "json/pypi-dump.json"
 
     # No validation of integers, floats, or constants is done.
     # As long as the characters are members of the following
@@ -712,6 +714,7 @@ class JsonBareObjectLexer(JsonLexer):
     filenames = []
     mimetypes = []
     version_added = '2.2'
+    _example = ""
 
 
 class JsonLdLexer(JsonLexer):
@@ -725,6 +728,7 @@ class JsonLdLexer(JsonLexer):
     filenames = ['*.jsonld']
     mimetypes = ['application/ld+json']
     version_added = '2.0'
+    _example = "jsonld/example.jsonld"
 
     json_ld_keywords = {
         f'"@{keyword}"'

@@ -28,6 +28,7 @@ class MaximaLexer(RegexLexer):
     aliases = ['maxima', 'macsyma']
     filenames = ['*.mac', '*.max']
     version_added = '2.11'
+    _example = 'maxima/foo.mac'
 
     keywords = ('if', 'then', 'else', 'elseif',
                 'do', 'while', 'repeat', 'until',

@@ -26,6 +26,7 @@ class BddLexer(RegexLexer):
     mimetypes = ['text/x-bdd']
     url = 'https://en.wikipedia.org/wiki/Behavior-driven_development'
     version_added = '2.11'
+    _example = 'bdd/example.feature'
 
     step_keywords = (r'Given|When|Then|Add|And|Feature|Scenario Outline|'
                      r'Scenario|Background|Examples|But')

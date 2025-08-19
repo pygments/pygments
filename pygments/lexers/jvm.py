@@ -34,6 +34,7 @@ class JavaLexer(RegexLexer):
     filenames = ['*.java']
     mimetypes = ['text/x-java']
     version_added = ''
+    _example = "java/test.java"
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -127,6 +128,7 @@ class AspectJLexer(JavaLexer):
     filenames = ['*.aj']
     mimetypes = ['text/x-aspectj']
     version_added = '1.6'
+    _example = ""
 
     aj_keywords = {
         'aspect', 'pointcut', 'privileged', 'call', 'execution',
@@ -166,6 +168,7 @@ class ScalaLexer(RegexLexer):
     filenames = ['*.scala']
     mimetypes = ['text/x-scala']
     version_added = ''
+    _example = "scala/declarations.scala"
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -451,6 +454,7 @@ class GosuLexer(RegexLexer):
     mimetypes = ['text/x-gosu']
     url = 'https://gosu-lang.github.io'
     version_added = '1.5'
+    _example = "gosu/example.gs"
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -530,6 +534,7 @@ class GosuTemplateLexer(Lexer):
     mimetypes = ['text/x-gosu-template']
     url = 'https://gosu-lang.github.io'
     version_added = '1.5'
+    _example = "gst/example.gst"
 
     def get_tokens_unprocessed(self, text):
         lexer = GosuLexer()
@@ -548,6 +553,7 @@ class GroovyLexer(RegexLexer):
     filenames = ['*.groovy','*.gradle']
     mimetypes = ['text/x-groovy']
     version_added = '1.5'
+    _example = "groovy/test.groovy"
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -625,6 +631,7 @@ class IokeLexer(RegexLexer):
     aliases = ['ioke', 'ik']
     mimetypes = ['text/x-iokesrc']
     version_added = '1.4'
+    _example = "ioke/intro.ik"
     tokens = {
         'interpolatableText': [
             (r'(\\b|\\e|\\t|\\n|\\f|\\r|\\"|\\\\|\\#|\\\Z|\\u[0-9a-fA-F]{1,4}'
@@ -815,6 +822,7 @@ class ClojureLexer(RegexLexer):
     filenames = ['*.clj', '*.cljc']
     mimetypes = ['text/x-clojure', 'application/x-clojure']
     version_added = '0.11'
+    _example = "clojure/genclass.clj"
 
     special_forms = (
         '.', 'def', 'do', 'fn', 'if', 'let', 'new', 'quote', 'var', 'loop'
@@ -955,6 +963,7 @@ class ClojureScriptLexer(ClojureLexer):
     filenames = ['*.cljs']
     mimetypes = ['text/x-clojurescript', 'application/x-clojurescript']
     version_added = '2.0'
+    _example = "clojurescript/core.cljs"
 
 
 class TeaLangLexer(RegexLexer):
@@ -1015,6 +1024,7 @@ class CeylonLexer(RegexLexer):
     filenames = ['*.ceylon']
     mimetypes = ['text/x-ceylon']
     version_added = '1.6'
+    _example = "ceylon/example.ceylon"
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -1094,6 +1104,7 @@ class KotlinLexer(RegexLexer):
     filenames = ['*.kt', '*.kts']
     mimetypes = ['text/x-kotlin']
     version_added = '1.5'
+    _example = "kotlin/example.kt"
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -1249,6 +1260,7 @@ class XtendLexer(RegexLexer):
     filenames = ['*.xtend']
     mimetypes = ['text/x-xtend']
     version_added = '1.6'
+    _example = "xtend/example.xtend"
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -1314,6 +1326,7 @@ class PigLexer(RegexLexer):
     filenames = ['*.pig']
     mimetypes = ['text/x-pig']
     version_added = '2.0'
+    _example = "pig/test.pig"
 
     flags = re.MULTILINE | re.IGNORECASE
 
@@ -1380,6 +1393,7 @@ class GoloLexer(RegexLexer):
     filenames = ['*.golo']
     aliases = ['golo']
     version_added = '2.0'
+    _example = "golo/example.golo"
 
     tokens = {
         'root': [
@@ -1493,6 +1507,7 @@ class JasminLexer(RegexLexer):
     aliases = ['jasmin', 'jasminxt']
     filenames = ['*.j']
     version_added = '2.0'
+    _example = "jasmin/example.j"
 
     _whitespace = r' \n\t\r'
     _ws = rf'(?:[{_whitespace}]+)'

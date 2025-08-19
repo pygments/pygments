@@ -28,6 +28,7 @@ class ForthLexer(RegexLexer):
     filenames = ['*.frt', '*.fs']
     mimetypes = ['application/x-forth']
     version_added = '2.2'
+    _example = 'forth/demo.frt'
 
     flags = re.IGNORECASE | re.MULTILINE
 

@@ -25,6 +25,7 @@ class PointlessLexer(RegexLexer):
     aliases = ['pointless']
     filenames = ['*.ptls']
     version_added = '2.7'
+    _example = 'pointless/example.ptls'
 
     ops = words([
         "+", "-", "*", "/", "**", "%", "+=", "-=", "*=",

@@ -23,6 +23,7 @@ class CapnProtoLexer(RegexLexer):
     filenames = ['*.capnp']
     aliases = ['capnp']
     version_added = '2.2'
+    _example = 'capnp/pets.capnp'
 
     tokens = {
         'root': [

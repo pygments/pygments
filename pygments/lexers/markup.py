@@ -73,6 +73,7 @@ class MoinWikiLexer(RegexLexer):
     mimetypes = ['text/x-trac-wiki']
     url = 'https://moinmo.in'
     version_added = '0.7'
+    _example = 'trac-wiki/moin_SyntaxReference.txt'
 
     flags = re.MULTILINE | re.IGNORECASE
 
@@ -128,6 +129,7 @@ class RstLexer(RegexLexer):
     filenames = ['*.rst', '*.rest']
     mimetypes = ["text/x-rst", "text/prs.fallenstein.rst"]
     version_added = '0.7'
+    _example = 'rst/functional.rst'
     flags = re.MULTILINE
 
     def _handle_sourcecode(self, match):
@@ -345,6 +347,7 @@ class GroffLexer(RegexLexer):
     mimetypes = ['application/x-troff', 'text/troff']
     url = 'https://www.gnu.org/software/groff'
     version_added = '0.6'
+    _example = 'groff/perlfunc.1'
 
     tokens = {
         'root': [
@@ -462,6 +465,7 @@ class MozPreprocXulLexer(DelegatingLexer):
     mimetypes = []
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
     version_added = '2.0'
+    _example = 'xul+mozpreproc/demo.xul.in'
 
     def __init__(self, **options):
         super().__init__(XmlLexer, MozPreprocHashLexer, **options)
@@ -478,6 +482,7 @@ class MozPreprocJavascriptLexer(DelegatingLexer):
     mimetypes = []
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
     version_added = '2.0'
+    _example = 'javascript+mozpreproc/demo.js.in'
 
     def __init__(self, **options):
         super().__init__(JavascriptLexer, MozPreprocHashLexer, **options)
@@ -494,6 +499,7 @@ class MozPreprocCssLexer(DelegatingLexer):
     mimetypes = []
     url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'
     version_added = '2.0'
+    _example = 'css+mozpreproc/demo.css.in'
 
     def __init__(self, **options):
         super().__init__(CssLexer, MozPreprocPercentLexer, **options)
@@ -509,6 +515,7 @@ class MarkdownLexer(RegexLexer):
     filenames = ['*.md', '*.markdown']
     mimetypes = ["text/x-markdown"]
     version_added = '2.2'
+    _example = 'md/example.md'
     flags = re.MULTILINE
 
     def _handle_codeblock(self, match):
@@ -628,6 +635,7 @@ class OrgLexer(RegexLexer):
     filenames = ['*.org']
     mimetypes = ["text/org"]
     version_added = '2.18'
+    _example = 'org/example.org'
 
     def _inline(start, end):
         return rf'(?<!\w){start}(.|\n(?!\n))+?{end}(?!\w)'
@@ -737,6 +745,7 @@ class TiddlyWiki5Lexer(RegexLexer):
     filenames = ['*.tid']
     mimetypes = ["text/vnd.tiddlywiki"]
     version_added = '2.7'
+    _example = 'tid/TiddlyWiki5.tid'
     flags = re.MULTILINE
 
     def _handle_codeblock(self, match):
@@ -900,6 +909,7 @@ class WikitextLexer(RegexLexer):
     filenames = []
     mimetypes = ['text/x-wiki']
     version_added = '2.15'
+    _example = 'wikitext/article_france.wikitext'
     flags = re.MULTILINE
 
     def nowiki_tag_rules(tag_name):

@@ -27,6 +27,7 @@ class GAPLexer(RegexLexer):
     aliases = ['gap']
     filenames = ['*.g', '*.gd', '*.gi', '*.gap']
     version_added = '2.0'
+    _example = 'gap/example.gi'
 
     tokens = {
         'root': [
@@ -97,7 +98,7 @@ class GAPConsoleLexer(Lexer):
     filenames = ['*.tst']
     url = 'https://www.gap-system.org'
     version_added = '2.14'
-    _example = "gap-repl/euclidean.tst"
+    _example = 'gap-repl/euclidean.tst'
 
     def get_tokens_unprocessed(self, text):
         gaplexer = GAPLexer(**self.options)
@@ -159,6 +160,7 @@ class MathematicaLexer(RegexLexer):
                  'application/vnd.wolfram.mathematica.package',
                  'application/vnd.wolfram.cdf']
     version_added = '2.0'
+    _example = 'mathematica/example.ma'
 
     # http://reference.wolfram.com/mathematica/guide/Syntax.html
     operators = (
@@ -203,6 +205,7 @@ class MuPADLexer(RegexLexer):
     aliases = ['mupad']
     filenames = ['*.mu']
     version_added = '0.8'
+    _example = 'mupad/AlternatingGroup.mu'
 
     tokens = {
         'root': [
@@ -274,6 +277,7 @@ class BCLexer(RegexLexer):
     aliases = ['bc']
     filenames = ['*.bc']
     version_added = '2.1'
+    _example = 'bc/example.bc'
 
     tokens = {
         'root': [
