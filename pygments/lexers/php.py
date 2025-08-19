@@ -226,6 +226,8 @@ class PhpLexer(RegexLexer):
             include('magicconstants'),
             (r'\$\{', Name.Variable, 'variablevariable'),
             (r'\$+' + _ident_inner, Name.Variable),
+            (r'(self|parent)\b(?=\s*::)', Name.Class),
+            (_ident_inner + r'(?=\s*\()', Name.Function),
             (_ident_inner, Name.Other),
             (r'(\d+\.\d*|\d*\.\d+)(e[+-]?[0-9]+)?', Number.Float),
             (r'\d+e[+-]?[0-9]+', Number.Float),
