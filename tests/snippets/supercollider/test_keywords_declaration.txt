@@ -1,0 +1,35 @@
+---input---
+var x = 5;
+arg freq = 440;
+classvar count = 0;
+
+---tokens---
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'arg'         Keyword.Declaration
+' '           Text.Whitespace
+'freq'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'440'         Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'classvar'    Keyword.Declaration
+' '           Text.Whitespace
+'count'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace

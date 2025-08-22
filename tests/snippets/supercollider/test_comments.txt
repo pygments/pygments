@@ -1,0 +1,34 @@
+---input---
+// Single line comment
+x = 42; // Comment after code
+
+/* Multi-line comment */
+/* Nested /* comment */ test */
+
+---tokens---
+'// Single line comment' Comment.Single
+'\n'          Text.Whitespace
+
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'42'          Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'// Comment after code' Comment.Single
+'\n\n'        Text.Whitespace
+
+'/*'          Comment.Multiline
+' Multi-line comment ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'/*'          Comment.Multiline
+' Nested '    Comment.Multiline
+'/*'          Comment.Multiline
+' comment '   Comment.Multiline
+'*/'          Comment.Multiline
+' test '      Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace

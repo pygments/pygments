@@ -1,0 +1,44 @@
+---input---
+x.play;
+{ rrand(1, 2) }.value;
+SinOsc.ar;
+play { LFTri.ar };
+
+---tokens---
+'x'           Name
+'.'           Punctuation
+'play'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+' '           Text.Whitespace
+'rrand'       Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'}.'          Punctuation
+'value'       Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'SinOsc'      Name.Class
+'.'           Punctuation
+'ar'          Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'play'        Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'LFTri'       Name.Class
+'.'           Punctuation
+'ar'          Name
+' '           Text.Whitespace
+'};'          Punctuation
+'\n'          Text.Whitespace

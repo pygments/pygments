@@ -1,0 +1,27 @@
+---input---
+3.14
+-2.5
+1.2e4
+3E-2
+4.5f
+6.7d
+
+---tokens---
+'3.14'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'-'           Operator
+'2.5'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1.2e4'       Literal.Number.Float
+'\n'          Text.Whitespace
+
+'3E-2'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'4.5f'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'6.7d'        Literal.Number.Float
+'\n'          Text.Whitespace

@@ -1,0 +1,26 @@
+---input---
+{ } ( ) [ ]
+; , . :
+
+---tokens---
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+';'           Punctuation
+' '           Text.Whitespace
+','           Punctuation
+' '           Text.Whitespace
+'.'           Punctuation
+' '           Text.Whitespace
+':'           Punctuation
+'\n'          Text.Whitespace

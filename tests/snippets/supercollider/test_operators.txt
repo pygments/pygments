@@ -1,0 +1,64 @@
+---input---
++ - * / % **
+= == === != !== < > <= >=
+&& || ! |==|
+++ -- +/+ <! @ ?? !? ?
+
+---tokens---
+'+'           Operator
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'%'           Operator
+' '           Text.Whitespace
+'**'          Operator
+'\n'          Text.Whitespace
+
+'='           Operator
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'==='         Operator
+' '           Text.Whitespace
+'!='          Operator
+' '           Text.Whitespace
+'!=='         Operator
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'<='          Operator
+' '           Text.Whitespace
+'>='          Operator
+'\n'          Text.Whitespace
+
+'&&'          Operator
+' '           Text.Whitespace
+'||'          Operator
+' '           Text.Whitespace
+'!'           Operator
+' '           Text.Whitespace
+'|==|'        Operator
+'\n'          Text.Whitespace
+
+'++'          Operator
+' '           Text.Whitespace
+'--'          Operator
+' '           Text.Whitespace
+'+/+'         Operator
+' '           Text.Whitespace
+'<!'          Operator
+' '           Text.Whitespace
+'@'           Operator
+' '           Text.Whitespace
+'??'          Operator
+' '           Text.Whitespace
+'!?'          Operator
+' '           Text.Whitespace
+'?'           Operator
+'\n'          Text.Whitespace

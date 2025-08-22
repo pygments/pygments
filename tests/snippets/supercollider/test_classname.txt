@@ -1,0 +1,24 @@
+---input---
+Pbind
+SinOsc
+Bjorklund2
+"class LFSaw in string"
+\Notaclass
+
+---tokens---
+'Pbind'       Name.Class
+'\n'          Text.Whitespace
+
+'SinOsc'      Name.Class
+'\n'          Text.Whitespace
+
+'Bjorklund2'  Name.Class
+'\n'          Text.Whitespace
+
+'"'           Literal.String.Double
+'class LFSaw in string' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'\\Notaclass' Literal.String.Symbol
+'\n'          Text.Whitespace
