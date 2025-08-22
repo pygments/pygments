@@ -1,0 +1,14 @@
+---input---
+0xFF
+0x123ABC
+0x0
+
+---tokens---
+'0xFF'        Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'0x123ABC'    Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'0x0'         Literal.Number.Hex
+'\n'          Text.Whitespace

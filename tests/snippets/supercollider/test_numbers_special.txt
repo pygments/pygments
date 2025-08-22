@@ -1,0 +1,23 @@
+---input---
+5 + inf
+pi
+8pi
+tempi
+
+---tokens---
+'5'           Literal.Number.Integer
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'inf'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'pi'          Literal.Number.Float
+'\n'          Text.Whitespace
+
+'8'           Literal.Number.Integer
+'pi'          Literal.Number.Float
+'\n'          Text.Whitespace
+
+'tempi'       Name
+'\n'          Text.Whitespace
