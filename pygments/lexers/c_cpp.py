@@ -347,7 +347,8 @@ class CppLexer(CFamilyLexer):
     aliases = ['cpp', 'c++']
     filenames = ['*.cpp', '*.hpp', '*.c++', '*.h++',
                  '*.cc', '*.hh', '*.cxx', '*.hxx',
-                 '*.C', '*.H', '*.cp', '*.CPP', '*.tpp']
+                 '*.C', '*.H', '*.cp', '*.CPP', '*.tpp',
+                 '*.cppm', '*.ixx', '*.mxx']
     mimetypes = ['text/x-c++hdr', 'text/x-c++src']
     version_added = ''
     priority = 0.1
@@ -363,8 +364,8 @@ class CppLexer(CFamilyLexer):
         'root': [
             inherit,
             # C++ Microsoft-isms
-            (words(('virtual_inheritance', 'uuidof', 'super', 'single_inheritance',
-                    'multiple_inheritance', 'interface', 'event'),
+            (words(('virtual_inheritance', 'uuidof', 'super', 'extends', 'single_inheritance',
+                    'multiple_inheritance', 'interface', 'implements', 'event'),
                    prefix=r'__', suffix=r'\b'), Keyword.Reserved),
             # Offload C++ extensions, http://offload.codeplay.com/
             (r'__(offload|blockingoffload|outer)\b', Keyword.Pseudo),
@@ -389,7 +390,8 @@ class CppLexer(CFamilyLexer):
                 'decltype', 'noexcept', 'override', 'final', 'constinit', 'consteval',
                 'co_await', 'co_return', 'co_yield', 'requires', 'import', 'module',
                 'typename', 'and', 'and_eq', 'bitand', 'bitor', 'compl', 'not',
-                'not_eq', 'or', 'or_eq', 'xor', 'xor_eq'),
+                'not_eq', 'or', 'or_eq', 'xor', 'xor_eq', 'contract_assert', 'pre', 'post', 
+                'trivially_relocatable_if_eligible', 'replaceable_if_eligible'),
                suffix=r'\b'), Keyword),
             (r'namespace\b', Keyword, 'namespace'),
             (r'(enum)(\s+)', bygroups(Keyword, Whitespace), 'enumname'),
