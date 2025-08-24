@@ -63,7 +63,7 @@ class JavaLexer(RegexLexer):
             (r'(package)(\s+)', bygroups(Keyword.Namespace, Whitespace), 'import'),
             (r'(true|false|null)\b', Keyword.Constant),
             (r'(class|interface)\b', Keyword.Declaration, 'class'),
-            (r'(module)\b', Keyword.Declaration, 'class'),
+            (r'(module)\b', Keyword.Declaration, 'module'),
             (r'(var)(\s+)', bygroups(Keyword.Declaration, Whitespace), 'var'),
             (r'(import(?:\s+(?:static|module))?)(\s+)', bygroups(Keyword.Namespace, Whitespace),
              'import'),
