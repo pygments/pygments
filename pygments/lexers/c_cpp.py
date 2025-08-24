@@ -100,7 +100,7 @@ class CFamilyLexer(RegexLexer):
             (r'(-)?' + _decpart + _intsuffix, Number.Integer),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (r'[()\[\],.]', Punctuation),
-            (r'(true|false|NULL)\b', Name.Builtin),
+            (r'(true|false|NULL|nullptr)\b', Name.Builtin),
             (_ident, Name)
         ],
         'types': [
@@ -113,11 +113,11 @@ class CFamilyLexer(RegexLexer):
         'keywords': [
             (r'(struct|union)(\s+)', bygroups(Keyword, Whitespace), 'classname'),
             (r'case\b', Keyword, 'case-value'),
-            (words(('asm', 'auto', 'break', 'const', 'continue', 'default',
-                    'do', 'else', 'enum', 'extern', 'for', 'goto', 'if',
-                    'register', 'restricted', 'return', 'sizeof', 'struct',
-                    'static', 'switch', 'typedef', 'volatile', 'while', 'union',
-                    'thread_local', 'alignas', 'alignof', 'static_assert', '_Pragma'),
+            (words(('asm', 'auto', 'break', 'const', 'constexpr', 'continue', 'default',
+                    'do', 'else', 'enum', 'extern', 'for', 'goto', 'if', 'register', 
+                    'restricted', 'return', 'sizeof', 'struct', 'static', 'switch', 
+                    'typedef', 'typeof', 'typeof_unqual', 'volatile', 'while', 'union',
+                    'thread_local', 'alignas', 'alignof', 'static_assert', '_Pragma', 'fortran'),
                    suffix=r'\b'), Keyword),
             (words(('inline', '_inline', '__inline', 'naked', 'restrict',
                     'thread'), suffix=r'\b'), Keyword.Reserved),
@@ -128,7 +128,7 @@ class CFamilyLexer(RegexLexer):
                 'asm', 'based', 'except', 'stdcall', 'cdecl',
                 'fastcall', 'declspec', 'finally', 'try',
                 'leave', 'w64', 'unaligned', 'raise', 'noop',
-                'identifier', 'forceinline', 'assume'),
+                'identifier', 'forceinline', 'assume', 'null'),
                 prefix=r'__', suffix=r'\b'), Keyword.Reserved)
         ],
         'root': [
@@ -365,7 +365,7 @@ class CppLexer(CFamilyLexer):
             inherit,
             # C++ Microsoft-isms
             (words(('virtual_inheritance', 'uuidof', 'super', 'extends', 'single_inheritance',
-                    'multiple_inheritance', 'interface', 'implements', 'event'),
+                    'multiple_inheritance', 'interface', 'implements', 'event', 'finally', 'null'),
                    prefix=r'__', suffix=r'\b'), Keyword.Reserved),
             # Offload C++ extensions, http://offload.codeplay.com/
             (r'__(offload|blockingoffload|outer)\b', Keyword.Pseudo),
@@ -386,7 +386,7 @@ class CppLexer(CFamilyLexer):
                 'export', 'friend', 'mutable', 'new', 'operator',
                 'private', 'protected', 'public', 'reinterpret_cast', 'class',
                 '__restrict', 'static_cast', 'template', 'this', 'throw', 'throws',
-                'try', 'typeid', 'using', 'virtual', 'constexpr', 'nullptr', 'concept',
+                'try', 'typeid', 'using', 'virtual', 'concept',
                 'decltype', 'noexcept', 'override', 'final', 'constinit', 'consteval',
                 'co_await', 'co_return', 'co_yield', 'requires', 'import', 'module',
                 'typename', 'and', 'and_eq', 'bitand', 'bitor', 'compl', 'not',
