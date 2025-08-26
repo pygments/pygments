@@ -11,6 +11,8 @@ string"
 \test_symbol
 'symbol'
 'note.On % 42'
+\.postln
+"" + \ + 'a'
 
 ---tokens---
 '"'           Literal.String.Double
@@ -53,4 +55,21 @@ string"
 '\n'          Text.Whitespace
 
 "'note.On % 42'" Literal.String.Symbol
+'\n'          Text.Whitespace
+
+'\\'          Literal.String.Symbol
+'.'           Punctuation
+'postln'      Name
+'\n'          Text.Whitespace
+
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'\\'          Literal.String.Symbol
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+"'a'"         Literal.String.Symbol
 '\n'          Text.Whitespace

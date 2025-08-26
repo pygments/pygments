@@ -64,17 +64,24 @@ class SuperColliderLexer(RegexLexer):
                 Keyword.Declaration),
             (words(('true', 'false', 'nil'), prefix=r'\b', suffix=r'\b'),
                 Keyword.Constant),
-            (words(('thisFunctionDef', 'thisFunction', 'thisMethod',
-                'thisProcess', 'thisThread'), prefix=r'\b', suffix=r'\b'),
-                Keyword.Builtin.Pseudo),
-
-            # _ is a placeholder in partial application
-            (r'\b_\b', Keyword.Builtin.Pseudo),
-            # https://doc.sccode.org/Reference/Partial-Application.html
+            (words(('const', 'context'), prefix=r'\b', suffix=r'\b'),
+                Keyword.Reserved),
         ],
         'identifiers': [
             (r'\b[A-Z]\w*\b', Name.Class),
             (r'~[a-z]\w*\b', Name.Variable),
+
+            (words(('thisFunctionDef', 'thisFunction', 'thisMethod',
+                'thisProcess', 'thisThread', 'this'), prefix=r'\b', suffix=r'\b'),
+                Name.Builtin.Pseudo),
+            
+            # Primitives
+            # https://doc.sccode.org/Guides/WritingPrimitives.html
+            (r'_\w+', Name.Builtin),
+
+            # _ is an argument placeholder in partial application
+            # https://doc.sccode.org/Reference/Partial-Application.html
+            (r'\b_\b', Name.Builtin.Pseudo),
         ],
         'strings': [
             (r'"', String.Double, 'double_quoted_string'),
@@ -82,6 +89,7 @@ class SuperColliderLexer(RegexLexer):
             # https://doc.sccode.org/Reference/Literals.html#Symbols
             (r"'(?:[^']|\\[^fnrtv])*'", String.Symbol),
             (r'\\\w+\b', String.Symbol),
+            (r'\\', String.Symbol),
             
             # Char literal escape characters
             # https://doc.sccode.org/Reference/Literals.html#Characters
@@ -99,7 +107,7 @@ class SuperColliderLexer(RegexLexer):
         'numbers': [
             (r'(\binf\b|pi\b)', Number.Float),
             
-            # Radix float: 12r4A.ABC
+            # Radix float (12r4A.ABC)
             # https://doc.sccode.org/Reference/Literals.html#Radix
             (r'\d+r[0-9a-zA-Z]+(?:\.[0-9A-Z]+)?', Number.Float),
             
@@ -116,24 +124,16 @@ class SuperColliderLexer(RegexLexer):
             (r'\d+', Number.Integer),
         ],
         'punctuation': [
-            (r'[{}()\[\],\.;:]+', Punctuation),
+            (r'[{}()\[\],\.;:#^`]+', Punctuation),
+            (r'<-', Punctuation), # for list comprehensions
         ],
         'operators': [
-            (r'[!@%&*\-+=|<>?/]{1,4}', Operator),
-
-            # Operators in SuperCollider are somewhat complex.
-            # Rather than trying to match every possible operator manually,
-            # this pattern matches operators based on the character set that is
-            # allowed in binary operators in SuperCollider, as documented here:
+            # Binary operators are made with characters from this subset
             # https://doc.sccode.org/Classes/Char.html#*binaryOpCharacters
-            # This may match some invalid operators, but that is preferable
-            # to missing valid ones.
+            (r'[!@%&*\-+=|<>?/]+', Operator),
 
-            # In addition, there are many word operators in SuperCollider,
-            # but there is no complete list of them. They are thus not included
-            # here and will instead be matched as generic Name tokens. This is
-            # reasonable since they work somewhat similarly to methods,
-            # which are also matched as Name tokens.
+            # Other operators in word form are matched as Name tokens below,
+            # since they are synonymous with method names.
 
             # Further information:
             # https://doc.sccode.org/Overviews/Operators.html
@@ -142,11 +142,10 @@ class SuperColliderLexer(RegexLexer):
         'generic_names': [
             (r'[a-z]\w*\b', Name),
 
-            # The rest of the word-character substrings must be method
-            # and variable names. We cannot easily distinguish between
-            # these two identifier types in SuperCollider, so we treat
-            # them as generic Name tokens. This is consistent with the
-            # behaviour of the SuperCollider IDE.
+            # The rest of the word-character substrings must be generic
+            # identifiers - names of methods, parameters, variables...
+            # They are assigned the Name token, which is consistent with
+            # the behaviour of the SuperCollider IDE.
         ],
         'catchall': [
             (r'[^\s]+', Text), 
