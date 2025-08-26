@@ -1,0 +1,75 @@
+---input---
+"Hello World"
+"String with escaped \"quotes\""
+"Path\\to\\file"
+"Multi
+line
+string"
+
+\freq
+\noteOn42
+\test_symbol
+'symbol'
+'note.On % 42'
+\.postln
+"" + \ + 'a'
+
+---tokens---
+'"'           Literal.String.Double
+'Hello World' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'"'           Literal.String.Double
+'String with escaped ' Literal.String.Double
+'\\"'         Literal.String.Escape
+'quotes'      Literal.String.Double
+'\\"'         Literal.String.Escape
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'"'           Literal.String.Double
+'Path'        Literal.String.Double
+'\\\\'        Literal.String.Escape
+'to'          Literal.String.Double
+'\\\\'        Literal.String.Escape
+'file'        Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'"'           Literal.String.Double
+'Multi\nline\nstring' Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text.Whitespace
+
+'\\freq'      Literal.String.Symbol
+'\n'          Text.Whitespace
+
+'\\noteOn42'  Literal.String.Symbol
+'\n'          Text.Whitespace
+
+'\\test_symbol' Literal.String.Symbol
+'\n'          Text.Whitespace
+
+"'symbol'"    Literal.String.Symbol
+'\n'          Text.Whitespace
+
+"'note.On % 42'" Literal.String.Symbol
+'\n'          Text.Whitespace
+
+'\\'          Literal.String.Symbol
+'.'           Punctuation
+'postln'      Name
+'\n'          Text.Whitespace
+
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'\\'          Literal.String.Symbol
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+"'a'"         Literal.String.Symbol
+'\n'          Text.Whitespace

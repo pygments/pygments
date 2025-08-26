@@ -1,0 +1,14 @@
+---input---
+~freq
+~buf17 = ~number
+
+---tokens---
+'~freq'       Name.Variable
+'\n'          Text.Whitespace
+
+'~buf17'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'~number'     Name.Variable
+'\n'          Text.Whitespace

@@ -1,0 +1,34 @@
+---input---
+$a
+$Z
+$5
+$#
+$\t
+$\n
+$\r
+$\\
+
+---tokens---
+'$a'          Literal.String.Char
+'\n'          Text.Whitespace
+
+'$Z'          Literal.String.Char
+'\n'          Text.Whitespace
+
+'$5'          Literal.String.Char
+'\n'          Text.Whitespace
+
+'$#'          Literal.String.Char
+'\n'          Text.Whitespace
+
+'$\\t'        Literal.String.Char
+'\n'          Text.Whitespace
+
+'$\\n'        Literal.String.Char
+'\n'          Text.Whitespace
+
+'$\\r'        Literal.String.Char
+'\n'          Text.Whitespace
+
+'$\\\\'       Literal.String.Char
+'\n'          Text.Whitespace

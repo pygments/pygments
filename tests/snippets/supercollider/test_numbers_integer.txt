@@ -1,0 +1,15 @@
+---input---
+42
+-123
+0
+
+---tokens---
+'42'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'-'           Operator
+'123'         Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace

@@ -1,0 +1,39 @@
+---input---
+8.do(_.postln);
+[1,2,3].collect(_ * 2);
+_ + 5
+
+---tokens---
+'8'           Literal.Number.Integer
+'.'           Punctuation
+'do'          Name
+'('           Punctuation
+'_'           Name.Builtin.Pseudo
+'.'           Punctuation
+'postln'      Name
+');'          Punctuation
+'\n'          Text.Whitespace
+
+'['           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'3'           Literal.Number.Integer
+'].'          Punctuation
+'collect'     Name
+'('           Punctuation
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+');'          Punctuation
+'\n'          Text.Whitespace
+
+'_'           Name.Builtin.Pseudo
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'\n'          Text.Whitespace

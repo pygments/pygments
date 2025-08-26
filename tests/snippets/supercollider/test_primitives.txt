@@ -1,0 +1,18 @@
+---input---
+_Prim_Add
+_prim_add
+_PRIM_ADD
+_someOtherPrimitive42
+
+---tokens---
+'_Prim_Add'   Name.Builtin
+'\n'          Text.Whitespace
+
+'_prim_add'   Name.Builtin
+'\n'          Text.Whitespace
+
+'_PRIM_ADD'   Name.Builtin
+'\n'          Text.Whitespace
+
+'_someOtherPrimitive42' Name.Builtin
+'\n'          Text.Whitespace
