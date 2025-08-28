@@ -52,6 +52,7 @@ class PddlLexer(RegexLexer):
                 ':durative-action', ':duration', ':condition',
                 ':derived', ':domain', ':objects', ':init',
                 ':goal', ':metric', ':length', ':serial', ':parallel',
+                ':axiom', ':implies', ':vars', ':context', ':timeless',
                 # the following are requirements
                 ':strips', ':typing', ':negative-preconditions',
                 ':disjunctive-preconditions', ':equality',
