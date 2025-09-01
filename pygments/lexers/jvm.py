@@ -1162,15 +1162,19 @@ class KotlinLexer(RegexLexer):
             # Operators
             (r'::|!!|\?[:.]', Operator),
             (r'[~^*!%&\[\]<>|+=/?-]', Operator),
-            # Punctuation
-            (r'[{}();:.,]', Punctuation),
             # Strings
             (r'"""', String, 'multiline_string'),
             (r'"', String, 'string'),
             (r"'\\.'|'[^\\]'", String.Char),
             # Numbers
-            (r"[0-9](\.[0-9]*)?([eE][+-][0-9]+)?[flFL]?|"
-             r"0[xX][0-9a-fA-F]+[Ll]?", Number),
+            (r"0[xX][0-9a-fA-F]+(_+[0-9a-fA-F]+)*[uU]?L?", Number.Hex),
+            (r"0[bB][01]+(_+[01]+)*[uU]?L?", Number.Bin),
+            (r"([0-9]+(_+[0-9]+)*)?\.[0-9]+(_+[0-9]+)*([eE][+-]?[0-9]+(_+[0-9]+)*)?[fF]?", Number.Float),
+            (r"[0-9]+(_+[0-9]+)*[eE][+-]?[0-9]+(_+[0-9]+)*[fF]?", Number.Float),
+            (r"[0-9]+(_+[0-9]+)*[fF]"    , Number.Float),
+            (r"[0-9]+(_+[0-9]+)*[uU]?L?", Number.Integer),
+            # Punctuation
+            (r'[{}();:.,]', Punctuation),
             # Identifiers
             (r'' + kt_id + r'((\?[^.])?)', Name) # additionally handle nullable types
         ],
