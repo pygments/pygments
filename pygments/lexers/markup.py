@@ -618,6 +618,7 @@ class MarkdownLexer(RegexLexer):
         self.handlecodeblocks = get_bool_opt(options, 'handlecodeblocks', True)
         RegexLexer.__init__(self, **options)
 
+
 class OrgLexer(RegexLexer):
     """
     For Org Mode markup.
@@ -673,9 +674,18 @@ class OrgLexer(RegexLexer):
             (r'(?i)^( *#\+begin_src .*)((?:.|\n)*?)(^ *#\+end_src *$)',
              bygroups(Operator.Word, Text, Operator.Word)),
 
+            # Example blocks
+            (r'(?i)^( *#\+begin_example *\n)((?:.|\n)*?)(^ *#\+end_example *$)',
+             bygroups(Operator.Word, Text, Operator.Word)),
+
+            # Export blocks: e.g. https://orgmode.org/manual/Quoting-HTML-tags.html#index-BEGIN_005fEXPORT-html
+            # TODO: language-dependent syntax highlighting (see Markdown lexer)
+            (r'(?i)^( *#\+begin_export .*)((?:.|\n)*?)(^ *#\+end_export *$)',
+             bygroups(Operator.Word, Text, Operator.Word)),
+
             # Other blocks
-            (r'(?i)^( *#\+begin_\w+)( *\n)((?:.|\n)*?)(^ *#\+end_\w+)( *$)',
-             bygroups(Operator.Word, Whitespace, Text, Operator.Word, Whitespace)),
+            (r'(?i)^( *#\+begin_)(\w+)( *\n)((?:.|\n)*?)(^ *#\+end_)(\2)( *$)',
+             bygroups(Operator.Word, Operator.Word, Whitespace, Text, Operator.Word, Operator.Word, Whitespace)),
 
             # Keywords
             (r'^(#\+\w+:)(.*)$', bygroups(Name.Namespace, Text)),
@@ -725,9 +735,34 @@ class OrgLexer(RegexLexer):
 
             # Any other text
             (r'\S+', Text),
-            (r'.', Text),
+            (r'\s+', Text),
+            ('.', Text),
         ],
     }
+
+    def get_tokens_unprocessed(self, text):
+        text_token = None
+        for index, token, value in super().get_tokens_unprocessed(text):
+            if token is Text:
+                if text_token is not None and index == text_token[0] + len(text_token[1]):
+                    text_token = text_token[0], text_token[1] + value  # merge adjacent Text tokens
+                    continue
+
+                if text_token is not None:
+                    yield text_token[0], Text, text_token[1]
+
+                text_token = index, value
+                continue
+
+            if text_token is not None:
+                yield text_token[0], Text, text_token[1]
+                text_token = None
+
+            yield index, token, value
+
+        if text_token is not None:
+            yield text_token[0], Text, text_token[1]
+
 
 class TiddlyWiki5Lexer(RegexLexer):
     """
