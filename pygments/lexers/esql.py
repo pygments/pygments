@@ -16,7 +16,7 @@ from pygments.token import (Comment, Keyword, Literal, Name, Number, Operator,
 
 __all__ = ['ESQLLexer']
 
-# Reference: https://www.elastic.co/guide/en/elasticsearch/reference/8.17/esql-time-spans.html#esql-time-spans-table
+# Reference: https://www.elastic.co/guide/en/elasticsearch/reference/current/esql-time-spans.html#esql-time-spans-table
 ESQL_TEMPORAL_UNITS = [
     'year', 'y', 'yr', 'years',
     'quarter', 'q', 'quarters',
@@ -29,7 +29,7 @@ ESQL_TEMPORAL_UNITS = [
     'millisecond', 'ms', 'milliseconds'
 ]
 
-# Reference: https://www.elastic.co/guide/en/elasticsearch/reference/8.17/esql-commands.html
+# Reference: https://www.elastic.co/guide/en/elasticsearch/reference/current/esql-commands.html
 ESQL_COMMANDS = [
     'FROM', 'ROW', 'SHOW', 'DISSECT', 'DROP', 'ENRICH', 'EVAL', 'GROK', 'KEEP', 'LIMIT',
     'MV_EXPAND', 'RENAME', 'SORT', 'STATS', 'WHERE',
@@ -38,7 +38,7 @@ ESQL_COMMANDS = [
     'NULLS LAST', 'BY'
 ]
 
-# Reference: https://www.elastic.co/guide/en/elasticsearch/reference/8.17/esql-functions-operators.html
+# Reference: https://www.elastic.co/guide/en/elasticsearch/reference/current/esql-functions-operators.html
 ESQL_FUNCTIONS = [
     # Aggregate functions
     'AVG', 'COUNT', 'COUNT_DISTINCT', 'MAX', 'MEDIAN', 'MEDIAN_ABSOLUTE_DEVIATION',
@@ -92,7 +92,9 @@ ESQL_KEYWORD_OPERATORS = [
 ]
 
 class ESQLLexer(RegexLexer):
-    """Lexer for Elasticsearch Query Language (ES|QL). Based on Elasticsearch Guide 8.17.
+    """Lexer for Elasticsearch Query Language (ES|QL).
+    First released on ES|QL 8.17.
+    Updated to support ES|QL up to 9.0.
     """
 
     name = "Elasticsearch Query Language"
@@ -110,7 +112,7 @@ class ESQLLexer(RegexLexer):
             (r"\s+", Whitespace),
 
             # Comments
-            # Reference: https://www.elastic.co/guide/en/elasticsearch/reference/8.17/esql-syntax.html#esql-comments
+            # Reference: https://www.elastic.co/guide/en/elasticsearch/reference/current/esql-syntax.html#esql-comments
             (r"//.*\n?", Comment.Single),
             (r"/\*", Comment.Multiline, 'multiline_comments'), # C++ style comments
 
@@ -119,7 +121,7 @@ class ESQLLexer(RegexLexer):
             (r"FROM", Keyword, 'from-source'),
 
             # Timespan literals (a combination of a number and a temporal unit)
-            # Reference: https://www.elastic.co/guide/en/elasticsearch/reference/8.17/esql-syntax.html#esql-timespan-literals
+            # Reference: https://www.elastic.co/guide/en/elasticsearch/reference/current/esql-syntax.html#esql-timespan-literals
             (words(ESQL_TEMPORAL_UNITS, prefix=r"\b\d+\s*", suffix=r"\b"), Literal.Date),
 
             (words(ESQL_COMMANDS, suffix=r"\b"), Keyword),
@@ -129,12 +131,12 @@ class ESQLLexer(RegexLexer):
             (words(ESQL_KEYWORD_OPERATORS, suffix=r"\b"), Operator.Word),
 
             # String literals
-            # Reference: https://www.elastic.co/guide/en/elasticsearch/reference/8.17/esql-syntax.html#esql-string-literals
+            # Reference: https://www.elastic.co/guide/en/elasticsearch/reference/current/esql-syntax.html#esql-string-literals
             (r'"""', String, 'triple_double_string'),
             (r'"', String, 'double_string'),
 
             # Numerical literals
-            # Reference: https://www.elastic.co/guide/en/elasticsearch/reference/8.17/esql-syntax.html#esql-numeric-literals
+            # Reference: https://www.elastic.co/guide/en/elasticsearch/reference/current/esql-syntax.html#esql-numeric-literals
             (r"-?\d+([.]\d*)*[eE]-?\d+", Number),
             (r"\d+[.]\d*|[.]\d+", Number.Float),
             (r"\d+", Number.Integer),
@@ -143,12 +145,12 @@ class ESQLLexer(RegexLexer):
             (r"\bnull\b", Keyword.Constant),
 
             # Identifiers
-            # Reference: https://www.elastic.co/guide/en/elasticsearch/reference/8.17/esql-syntax.html#esql-identifiers
+            # Reference: https://www.elastic.co/guide/en/elasticsearch/reference/current/esql-syntax.html#esql-identifiers
             (r"`", Name, 'backtick'),
             (r"[a-z_@]\w*", Name), # Full regex is "[a-zA-Z_@]\w*" but not required as re.IGNORECASE is set
 
             # Processing
-            # Reference: https://www.elastic.co/guide/en/elasticsearch/reference/8.17/esql-syntax.html#esql-basic-syntax
+            # Reference: https://www.elastic.co/guide/en/elasticsearch/reference/current/esql-syntax.html#esql-basic-syntax
             (r"[|(),\.]+", Punctuation),
         ],
         'from-source': [
