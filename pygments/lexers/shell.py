@@ -35,7 +35,7 @@ class BashLexer(RegexLexer):
                  '.kshrc', 'kshrc',
                  'PKGBUILD']
     mimetypes = ['application/x-sh', 'application/x-shellscript', 'text/x-shellscript']
-    url = 'https://en.wikipedia.org/wiki/Unix_shell'
+    url = 'https://www.gnu.org/software/bash/manual/bash.html'
     version_added = '0.6'
 
     tokens = {
