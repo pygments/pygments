@@ -55,7 +55,7 @@ class BashLexer(RegexLexer):
         ],
         'basic': [
             (r'\b(if|fi|else|while|in|do|done|for|then|return|function|case|'
-             r'select|break|continue|until|esac|elif)(\s*)\b',
+             r'select|break|continue|until|esac|elif)(?![#$?!_*@-]+)(\s*)\b',
              bygroups(Keyword, Whitespace)),
             (r'\b(alias|bg|bind|builtin|caller|cd|command|compgen|'
              r'complete|declare|dirs|disown|echo|enable|eval|exec|exit|'
