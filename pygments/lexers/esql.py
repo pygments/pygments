@@ -156,7 +156,7 @@ class ESQLLexer(RegexLexer):
 
             # Processing
             # Reference: https://www.elastic.co/docs/reference/query-languages/esql/esql-syntax#esql-basic-syntax
-            (r"[|(),\.]+", Punctuation),
+            (r"[|()\[\]{},\.]+", Punctuation),
         ],
         'from-source': [
             (r"\s+", Whitespace),
