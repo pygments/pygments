@@ -16,7 +16,7 @@ from pygments.token import (Comment, Keyword, Literal, Name, Number, Operator,
 
 __all__ = ['ESQLLexer']
 
-# Reference: https://www.elastic.co/guide/en/elasticsearch/reference/current/esql-time-spans.html#esql-time-spans-table
+# Reference: https://www.elastic.co/docs/reference/query-languages/esql/esql-time-spans#esql-time-spans-table
 ESQL_TEMPORAL_UNITS = [
     'year', 'y', 'yr', 'years',
     'quarter', 'q', 'quarters',
@@ -29,52 +29,57 @@ ESQL_TEMPORAL_UNITS = [
     'millisecond', 'ms', 'milliseconds'
 ]
 
-# Reference: https://www.elastic.co/guide/en/elasticsearch/reference/current/esql-commands.html
+# Reference: https://www.elastic.co/docs/reference/query-languages/esql/esql-commands
 ESQL_COMMANDS = [
-    'FROM', 'ROW', 'SHOW', 'DISSECT', 'DROP', 'ENRICH', 'EVAL', 'GROK', 'KEEP', 'LIMIT',
-    'MV_EXPAND', 'RENAME', 'SORT', 'STATS', 'WHERE',
+    # Source commands
+    'FROM', 'ROW', 'SHOW',
+    # Processing commands
+    'CHANGE_POINT', 'COMPLETION', 'DISSECT', 'DROP', 'ENRICH', 'EVAL', 'GROK', 'FORK', 'KEEP', 'LIMIT',
+    'LOOKUP JOIN', 'INLINE_STATS', 'MV_EXPAND', 'RENAME', 'RERANK', 'SAMPLE', 'SORT', 'STATS', 'WHERE',
     # Commands extensions
     'METADATA', 'APPEND_SEPARATOR', 'ON', 'WITH', 'AS', 'ASC', 'DESC', 'NULLS FIRST',
     'NULLS LAST', 'BY'
 ]
 
-# Reference: https://www.elastic.co/guide/en/elasticsearch/reference/current/esql-functions-operators.html
+# Reference: https://www.elastic.co/docs/reference/query-languages/esql/esql-functions-operators
 ESQL_FUNCTIONS = [
     # Aggregate functions
     'AVG', 'COUNT', 'COUNT_DISTINCT', 'MAX', 'MEDIAN', 'MEDIAN_ABSOLUTE_DEVIATION',
-    'MIN', 'PERCENTILE', 'ST_CENTROID_AGG', 'SUM', 'TOP', 'VALUES', 'WEIGHTED_AVG',
+    'MIN', 'PERCENTILE', 'SAMPLE', 'ST_CENTROID_AGG', 'ST_EXTENT_AGG', 'STD_DEV', 'SUM',
+    'TOP', 'VALUES', 'WEIGHTED_AVG', 'PRESENT',
     # Grouping functions
-    'BUCKET',
+    'BUCKET', 'TBUCKET', 'CATEGORIZE',
     # Conditional functions and expressions
     'CASE', 'COALESCE', 'GREATEST', 'LEAST',
     # Date and time functions
-    'DATE_DIFF', 'DATE_EXTRACT', 'DATE_FORMAT', 'DATE_PARSE', 'DATE_TRUNC', 'NOW',
+    'DATE_DIFF', 'DATE_EXTRACT', 'DATE_FORMAT', 'DATE_PARSE', 'DATE_TRUNC', 'DAY_NAME',
+    'MONTH_NAME', 'NOW',
     # IP functions
     'CIDR_MATCH', 'IP_PREFIX',
     # Math functions
-    'ABS', 'ACOS', 'ASIN', 'ATAN', 'ATAN2', 'CBRT', 'CEIL', 'COS', 'COSH', 'E',
-    'EXP', 'FLOOR', 'HYPOT', 'LOG', 'LOG10', 'PI', 'POW', 'ROUND', 'SIGNUM',
-    'SIN', 'SINH', 'SQRT', 'TAN', 'TANH', 'TAU',
+    'ABS', 'ACOS', 'ASIN', 'ATAN', 'ATAN2', 'CBRT', 'CEIL', 'COPY_SIGN', 'COS', 'COSH',
+    'E', 'EXP', 'FLOOR', 'HYPOT', 'LOG', 'LOG10', 'PI', 'POW', 'ROUND', 'ROUND_TO', 'SCALB',
+    'SIGNUM', 'SIN', 'SINH', 'SQRT', 'TAN', 'TANH', 'TAU',
     # Search functions
-    'MATCH', 'QSTR',
+    'KQL', 'MATCH', 'MATCH_PHRASE', 'QSTR',
     # Spatial functions
     'ST_DISTANCE', 'ST_INTERSECTS', 'ST_DISJOINT', 'ST_CONTAINS', 'ST_WITHIN',
-    'ST_X', 'ST_Y',
+    'ST_X', 'ST_Y', 'ST_ENVELOPE', 'ST_XMAX', 'ST_XMIN', 'ST_YMAX', 'ST_YMIN',
+    'ST_GEOTILE', 'ST_GEOHEX', 'ST_GEOHASH',
     # String functions
-    'BIT_LENGTH', 'BYTE_LENGTH', 'CONCAT', 'ENDS_WITH', 'FROM_BASE64', 'LEFT',
-    'LENGTH', 'LOCATE', 'LTRIM', 'REPEAT', 'REPLACE', 'REVERSE', 'RIGHT', 'RTRIM',
-    'SPACE', 'SPLIT', 'STARTS_WITH', 'SUBSTRING', 'TO_BASE64', 'TO_LOWER',
-    'TO_UPPER', 'TRIM',
+    'BIT_LENGTH', 'BYTE_LENGTH', 'CONCAT', 'CONTAINS', 'ENDS_WITH', 'FROM_BASE64', 'HASH',
+    'LEFT', 'LENGTH', 'LOCATE', 'LTRIM', 'MD5', 'REPEAT', 'REPLACE', 'REVERSE', 'RIGHT',
+    'RTRIM', 'SHA1', 'SHA256', 'SPACE', 'SPLIT', 'STARTS_WITH', 'SUBSTRING', 'TO_BASE64',
+    'TO_LOWER', 'TO_UPPER', 'TRIM',
     # Type conversion functions
     'TO_BOOLEAN', 'TO_CARTESIANPOINT', 'TO_CARTESIANSHAPE', 'TO_DATEPERIOD',
-    'TO_DATETIME', 'TO_DEGREES', 'TO_DOUBLE', 'TO_GEOPOINT', 'TO_GEOSHAPE',
-    'TO_INTEGER', 'TO_IP', 'TO_LONG', 'TO_RADIANS', 'TO_STRING', 'TO_TIMEDURATION',
-    'TO_UNSIGNED_LONG', 'TO_VERSION',
+    'TO_DATETIME', 'TO_DATE_NANOS', 'TO_DEGREES', 'TO_DOUBLE', 'TO_GEOHASH', 'TO_GEOHEX',
+    'TO_GEOPOINT', 'TO_GEOSHAPE', 'TO_GEOTILE', 'TO_INTEGER', 'TO_IP', 'TO_LONG',
+    'TO_RADIANS', 'TO_STRING', 'TO_TIMEDURATION', 'TO_UNSIGNED_LONG', 'TO_VERSION',
     # Multi value functions
-    'MV_APPEND', 'MV_AVG', 'MV_CONCAT', 'MV_COUNT', 'MV_DEDUPE', 'MV_FIRST',
-    'MV_LAST', 'MV_MAX', 'MV_MEDIAN', 'MV_MEDIAN', 'MV_MEDIAN_ABSOLUTE_DEVIATION',
-    'MV_MIN', 'MV_PERCENTILE', 'MV_PSERIES_WEIGHTED_SUM', 'MV_SORT', 'MV_SLICE',
-    'MV_SUM', 'MV_ZIP'
+    'MV_APPEND', 'MV_AVG', 'MV_CONCAT', 'MV_CONTAINS', 'MV_COUNT', 'MV_DEDUPE', 'MV_FIRST',
+    'MV_LAST', 'MV_MAX', 'MV_MEDIAN', 'MV_MEDIAN_ABSOLUTE_DEVIATION', 'MV_MIN',
+    'MV_PERCENTILE', 'MV_PSERIES_WEIGHTED_SUM', 'MV_SORT', 'MV_SLICE', 'MV_SUM', 'MV_ZIP'
 ]
 ESQL_OPERATORS = [
     # Binary operators
@@ -94,14 +99,14 @@ ESQL_KEYWORD_OPERATORS = [
 class ESQLLexer(RegexLexer):
     """Lexer for Elasticsearch Query Language (ES|QL).
     First released on ES|QL 8.17.
-    Updated to support ES|QL up to 9.0.
+    Updated to support ES|QL up to 9.1 (including preview).
     """
 
     name = "Elasticsearch Query Language"
     aliases = ["esql", "es|ql"]
     filenames = ["*.esql"] # Not official, we do not add any *.es extension here as it would overlap erlang.ErlangLexer
     mimetypes = []
-    url = "https://www.elastic.co/guide/en/elasticsearch/reference/current/esql.html"
+    url = "https://www.elastic.co/docs/reference/query-languages/esql"
     version_added = '2.20'
 
     flags = re.IGNORECASE
