@@ -167,11 +167,11 @@ class TableGenLexer(RegexLexer):
             (r'"', String, '#pop'),
             include('strings'),
         ],
-        # No escaping inside a code block - everything is literal
+        # NOTE: Must escape (pop Cpplexer) codeblock to avoid infinite loop.
         # Assume that the code inside a code block is C++. This isn't always
         # true in TableGen, but is the far most common scenario.
         'codeblock': [
             (r'\}\]', Text, '#pop'),
-            (r'([^}]+|\}[^]])*', using(CppLexer)),
+            (r'([^}]+|\}[^]])*', using(CppLexer), "#pop"),
         ],
     }
