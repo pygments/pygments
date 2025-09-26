@@ -147,7 +147,7 @@ class TableGenLexer(RegexLexer):
 
             # String literals
             (r'"', String, 'dqs'),
-            (r'\[\{', Text, 'codeblock'),
+            (r'\[\{', Punctuation, 'codeblock'),
 
             # Misc. punctuation
             (r'[-+\[\]{}()<>\.,;:=?#]+', Punctuation),
