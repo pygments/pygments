@@ -99,7 +99,8 @@ class SNBTLexer(RegexLexer):
 
 
 class MCFunctionLexer(RegexLexer):
-    """Lexer for the mcfunction scripting language used in Minecraft
+    """Lexer for the mcfunction scripting language used in Minecraft.
+
     Modelled somewhat after the `GitHub mcfunction grammar <https://github.com/Arcensoth/language-mcfunction>`_.
     """
 
