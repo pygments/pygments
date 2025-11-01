@@ -89,7 +89,7 @@ class ThingsDBLexer(RegexLexer):
              r'json_load|list|log|import|export|root|mod_enum|mod_type|new|'
              r'new_type|now|raise|rand|range|randint|randstr|refs|rename_enum|'
              r'set|set_enum|set_type|str|thing|timeval|try|type|type_assert|'
-             r'type_count|type_info|types_info|nse|wse|backup_info|'
+             r'type_all|type_count|type_info|types_info|nse|wse|backup_info|'
              r'backups_info|backups_ok|counters|del_backup|has_backup|'
              r'new_backup|node_info|nodes_info|reset_counters|restart_module|'
              r'set_log_level|shutdown|has_module|del_module|module_info|'
