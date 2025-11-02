@@ -1,0 +1,84 @@
+---input---
+ENTRY(_start)
+SEARCH_DIR(Directory)
+
+SECTIONS {
+    . = 0x100000;  /* Virtual = Physical at 1MB */
+
+    .text : {
+        *(.text)
+    }
+
+    .bss : {
+        *(.bss)
+    }
+}
+
+---tokens---
+'ENTRY'       Name.Function
+'('           Punctuation
+'_start'      Name.Attribute
+')'           Punctuation
+'\n'          Text
+
+'SEARCH_DIR'  Name.Function
+'('           Punctuation
+'Directory'   Name.Attribute
+')'           Punctuation
+'\n'          Text
+'\n'          Text
+
+'SECTIONS'    Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+'    '        Text.Whitespace
+'.'           Operator
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x100000'    Literal.Number.Hex
+';'           Punctuation
+'  '          Text.Whitespace
+'/*'          Comment.Multiline
+' Virtual = Physical at 1MB ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
+'    '        Text.Whitespace
+'.text'       Name.Label
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+'        '    Text.Whitespace
+'*'           Keyword
+'('           Punctuation
+'.text'       Name.Label
+')'           Punctuation
+'\n'          Text.Whitespace
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
+'    '        Text.Whitespace
+'.bss'        Name.Label
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+'        '    Text.Whitespace
+'*'           Keyword
+'('           Punctuation
+'.bss'        Name.Label
+')'           Punctuation
+'\n'          Text.Whitespace
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+'}'           Punctuation
+'\n'          Text

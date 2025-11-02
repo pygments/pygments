@@ -282,6 +282,7 @@ LEXERS = {
     'LighttpdConfLexer': ('pygments.lexers.configs', 'Lighttpd configuration file', ('lighttpd', 'lighty'), ('lighttpd.conf',), ('text/x-lighttpd-conf',)),
     'LilyPondLexer': ('pygments.lexers.lilypond', 'LilyPond', ('lilypond',), ('*.ly',), ()),
     'LimboLexer': ('pygments.lexers.inferno', 'Limbo', ('limbo',), ('*.b',), ('text/limbo',)),
+    'LinkerScriptLexer': ('pygments.lexers.linkerscript', 'LinkerScript', ('ld',), ('*.ld', '*.lds'), ('text/x-lds',)),
     'LiquidLexer': ('pygments.lexers.templates', 'liquid', ('liquid',), ('*.liquid',), ()),
     'LiterateAgdaLexer': ('pygments.lexers.haskell', 'Literate Agda', ('literate-agda', 'lagda'), ('*.lagda',), ('text/x-literate-agda',)),
     'LiterateCryptolLexer': ('pygments.lexers.haskell', 'Literate Cryptol', ('literate-cryptol', 'lcryptol', 'lcry'), ('*.lcry',), ('text/x-literate-cryptol',)),
