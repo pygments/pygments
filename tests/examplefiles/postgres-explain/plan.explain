@@ -260,3 +260,29 @@ Planning:
 Planning time: 1.589 ms
 Execution time: 970.282 ms
 
+Nested Loop  (cost=0.43..64.45 rows=1000 width=40) (actual time=0.017..0.277 rows=1000.00 loops=1)
+  Buffers: shared hit=15
+  ->  Seq Scan on sessions s  (cost=0.00..17.00 rows=1000 width=24) (actual time=0.006..0.036 rows=1000.00 loops=1)
+        Buffers: shared hit=7
+  ->  Memoize  (cost=0.43..7.50 rows=1 width=16) (actual time=0.000..0.000 rows=1.00 loops=1000)
+        Cache Key: s.user_id
+        Cache Mode: logical
+        Estimates: capacity=2 distinct keys=2 lookups=1000 hit percent=99.80%
+        Hits: 998  Misses: 2  Evictions: 0  Overflows: 0  Memory Usage: 1kB
+        Buffers: shared hit=8
+        ->  Index Scan using users_pkey on users u  (cost=0.42..7.49 rows=1 width=16) (actual time=0.003..0.003 rows=1.00 loops=2)
+              Index Cond: (id = s.user_id)
+              Index Searches: 2
+              Buffers: shared hit=8
+Planning:
+  Buffers: shared hit=39
+Planning Time: 0.219 ms
+Execution Time: 0.318 ms
+
+CTE Scan on cte1 (actual time=0.008..112.987 rows=9999.00 loops=1)
+  Filter: (col1 < 10000)
+  Rows Removed by Filter: 990001
+  Storage: Disk Maximum Storage: 19528kB
+  CTE cte1
+    -> Seq Scan on data1 (actual time=0.005..30.641 rows=1000000.00
+      Disabled: true
