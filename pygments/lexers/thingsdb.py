@@ -107,7 +107,8 @@ class ThingsDBLexer(RegexLexer):
              r'num_arguments_err|operation_err|overflow_err|syntax_err|'
              r'collection_info|type_err|value_err|zero_div_err|whitelist_add|'
              r'whitelist_del|round|abs|ceil|cos|exp|floor|log10|log2|'
-             r'loge|pow|sin|sqrt|tan|is_module)'
+             r'loge|pow|sin|sqrt|tan|is_module|commit|history|set_history|'
+             r'del_history)'
              r'(\()',
              bygroups(Name.Function, Punctuation),
              'arguments'),
