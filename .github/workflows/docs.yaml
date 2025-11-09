@@ -18,11 +18,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Setup Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: "3.x"
     - name: Checkout Pygments
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
     - name: Install tox
       run: pip install -r requirements.txt
     - name: Sphinx build
