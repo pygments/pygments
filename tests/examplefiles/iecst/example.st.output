@@ -1,0 +1,372 @@
+'(*'          Comment.Multiline
+' Example ST Code covering various features ' Comment.Multiline
+'*)'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'FUNCTION_BLOCK' Keyword
+' '           Text.Whitespace
+'FB_Example'  Name
+'\n'          Text.Whitespace
+
+'VAR_INPUT'   Keyword
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Enable'      Name
+'  '          Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'BOOL'        Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'InputVal'    Name
+':'           Operator
+' '           Text.Whitespace
+'REAL'        Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'LimitSet'    Name
+':'           Operator
+' '           Text.Whitespace
+'INT'         Keyword.Type
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'END_VAR'     Keyword
+'\n'          Text.Whitespace
+
+'VAR_OUTPUT'  Keyword
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'OutputVal'   Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'REAL'        Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'StatusFlag'  Name
+':'           Operator
+' '           Text.Whitespace
+'BOOL'        Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'END_VAR'     Keyword
+'\n'          Text.Whitespace
+
+'VAR'         Keyword
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'INT'         Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'temp'        Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'REAL'        Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'TimerInst'   Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'TON'         Name
+';'           Punctuation
+' '           Text.Whitespace
+'// IEC timer instance' Comment.Singleline
+'\n'          Text.Whitespace
+
+'END_VAR'     Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Single line comment' Comment.Singleline
+'\n'          Text.Whitespace
+
+'(*'          Comment.Multiline
+' Multi-line\n   ' Comment.Multiline
+'(*'          Comment.Multiline
+' with nested comment ' Comment.Multiline
+'*)'          Comment.Multiline
+'\n   comment continues ' Comment.Multiline
+'*)'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'IF'          Keyword
+' '           Text.Whitespace
+'Enable'      Name
+' '           Text.Whitespace
+'THEN'        Keyword
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'CASE'        Keyword
+' '           Text.Whitespace
+'LimitSet'    Name
+' '           Text.Whitespace
+'OF'          Keyword
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'TO'          Keyword
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+':'           Operator
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'50'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'10'          Literal.Number.Integer
+':'           Operator
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'ELSE'        Keyword
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'END_CASE'    Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'FOR'         Keyword
+' '           Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'TO'          Keyword
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+'DO'          Keyword
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'temp'        Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'temp'        Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1.0'         Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'END_FOR'     Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'WHILE'       Keyword
+' '           Text.Whitespace
+'temp'        Name
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'InputVal'    Name
+' '           Text.Whitespace
+'DO'          Keyword
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'temp'        Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'temp'        Name
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'1.05'        Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'END_WHILE'   Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'OutputVal'   Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'SIN'         Keyword
+'('           Punctuation
+'InputVal'    Name
+')'           Punctuation
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'2.0'         Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'StatusFlag'  Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'TRUE'        Name.Builtin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'ELSE'        Keyword
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'StatusFlag'  Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'FALSE'       Name.Builtin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'END_IF'      Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// IEC Literals' Comment.Singleline
+'\n'          Text.Whitespace
+
+'VarTime'     Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'T#1h_30m_5s' Literal.Duration
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'VarDate'     Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'D#2025-11-24' Literal.DateTime
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'VarHex'      Name
+'  '          Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'16#F00D'     Literal.Number.Hex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'VarBin'      Name
+'  '          Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'2#1101_0110' Literal.Number.Bin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'VarString'   Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'This is a string literal.' Literal.String
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Function Block call' Comment.Singleline
+'\n'          Text.Whitespace
+
+'TimerInst('  Name.Function
+'IN'          Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'Enable'      Name
+','           Punctuation
+' '           Text.Whitespace
+'PT'          Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'T#5s'        Literal.Duration
+','           Punctuation
+' '           Text.Whitespace
+'Q'           Name
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'StatusFlag'  Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
