@@ -541,26 +541,26 @@ class MarkdownLexer(RegexLexer):
     tokens = {
         'root': [
             # heading with '#' prefix (atx-style)
-            (r'(^#[^#].+)(\n)', bygroups(Generic.Heading, Text)),
+            (r'(^#[^#].+)(\n|\Z)', bygroups(Generic.Heading, Text)),
             # subheading with '#' prefix (atx-style)
-            (r'(^#{2,6}[^#].+)(\n)', bygroups(Generic.Subheading, Text)),
+            (r'(^#{2,6}[^#].+)(\n|\Z)', bygroups(Generic.Subheading, Text)),
             # heading with '=' underlines (Setext-style)
-            (r'^(.+)(\n)(=+)(\n)', bygroups(Generic.Heading, Text, Generic.Heading, Text)),
+            (r'^(.+)(\n)(=+)(\n|\Z)', bygroups(Generic.Heading, Text, Generic.Heading, Text)),
             # subheading with '-' underlines (Setext-style)
-            (r'^(.+)(\n)(-+)(\n)', bygroups(Generic.Subheading, Text, Generic.Subheading, Text)),
+            (r'^(.+)(\n)(-+)(\n|\Z)', bygroups(Generic.Subheading, Text, Generic.Subheading, Text)),
             # task list
-            (r'^(\s*)([*-] )(\[[ xX]\])( .+\n)',
+            (r'^(\s*)([*-] )(\[[ xX]\])( .+(\n|\Z))',
             bygroups(Whitespace, Keyword, Keyword, using(this, state='inline'))),
             # bulleted list
-            (r'^(\s*)([*-])(\s)(.+\n)',
+            (r'^(\s*)([*-])(\s)(.+(\n|\Z))',
             bygroups(Whitespace, Keyword, Whitespace, using(this, state='inline'))),
             # numbered list
-            (r'^(\s*)([0-9]+\.)( .+\n)',
+            (r'^(\s*)([0-9]+\.)( .+(\n|\Z))',
             bygroups(Whitespace, Keyword, using(this, state='inline'))),
             # quote
-            (r'^(\s*>\s)(.+\n)', bygroups(Keyword, Generic.Emph)),
+            (r'^(\s*>\s)(.+(\n|\Z))', bygroups(Keyword, Generic.Emph)),
             # code block fenced by 3 backticks
-            (r'^(\s*```\n[\w\W]*?^\s*```$\n)', String.Backtick),
+            (r'^(\s*```\n[\w\W]*?^\s*```$(\n|\Z))', String.Backtick),
             # code block with language
             # Some tools include extra stuff after the language name, just
             # highlight that as text. For example: https://docs.enola.dev/use/execmd
@@ -572,7 +572,7 @@ class MarkdownLexer(RegexLexer):
                  (?P<extra>.*))?
               (?P<newline>\n)
               (?P<code>(.|\n)*?)
-              (?P<terminator>^\s*```$\n)
+              (?P<terminator>^\s*```$(\n|\Z))
               ''',
              _handle_codeblock),
 
