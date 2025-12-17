@@ -301,13 +301,13 @@ class CLexer(CFamilyLexer):
     tokens = {
         'keywords': [
             (words((
-                '_Alignas', '_Alignof', '_Noreturn', '_Generic', '_Thread_local',
-                '_Static_assert', '_Imaginary', 'noreturn', 'imaginary', 'complex'),
+                '_Alignas', '_Alignof', '_Noreturn', '_Countof', '_Generic', '_Thread_local',
+                '_Static_assert', '_Imaginary', 'countof', 'noreturn', 'imaginary', 'complex'),
                 suffix=r'\b'), Keyword),
             inherit
         ],
         'types': [
-            (words(('_Bool', '_Complex', '_Atomic'), suffix=r'\b'), Keyword.Type),
+            (words(('_Bool', '_Complex', '_Atomic', '_Decimal32', '_Decimal64', '_Decimal128'), suffix=r'\b'), Keyword.Type),
             inherit
         ]
     }
