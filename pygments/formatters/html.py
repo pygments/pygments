@@ -528,7 +528,7 @@ class HtmlFormatter(Formatter):
         """
         Return CSS style definitions for the classes produced by the current
         highlighting style. ``arg`` can be a string or list of selectors to
-        insert before the token type classes. Prepend with .sass to obtain
+        insert before the token type classes. Append with .sass to obtain
         syntactically awesome stylesheet.
         """
         if arg and arg.split('.')[-1] == "sass":
