@@ -121,6 +121,7 @@ class Formatter:
         if self.encoding:
             # wrap the outfile in a StreamWriter
             outfile = codecs.lookup(self.encoding)[3](outfile)
+        # format_unencoded is in the subclass that inherits Formatter
         return self.format_unencoded(tokensource, outfile)
 
     # Allow writing Formatter[str] or Formatter[bytes]. That's equivalent to
