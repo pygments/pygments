@@ -496,6 +496,7 @@ class HtmlFormatter(Formatter):
         c2a = self.class2sass = {} # a for awesome
         for ttype, ndef in self.style:
             name = self._get_css_class(ttype)
+
             style = ''
             sass = list()
             if ndef['color']:
@@ -553,6 +554,21 @@ class HtmlFormatter(Formatter):
         ]
 
         return lines
+    
+    def get_token_sass_defs(self, arg=None) -> List:
+        sasses = sorted([
+            (level, ttype, cls, sass)
+            for cls, (sass, ttype, level) in self.class2sass.items()
+            if cls and sass
+        ])
+
+        prefix = self.get_css_prefix(arg)
+        lines = [
+            [prefix(cls), sass]
+            for (_, _, cls, sass) in sasses
+        ]
+
+        return lines
 
     def get_background_style_defs(self, arg=None):
         prefix = self.get_css_prefix(arg)
@@ -577,13 +593,13 @@ class HtmlFormatter(Formatter):
 
         return lines
     
-    def _get_text_sass(self) -> List[str]:
+    def _get_text_sass(self) -> List:
         if Text in self.ttype2class:
             return self.class2sass[self.ttype2class[Text]][0]
         
         return list()
 
-    def get_background_sass_defs(self, arg=None) -> List[str]:
+    def get_background_sass_defs(self, arg=None) -> List:
         lines = list()
 
         prefix = self.get_css_prefix(arg)
@@ -615,7 +631,7 @@ class HtmlFormatter(Formatter):
 
         return lines
     
-    def get_linenos_sass_defs(self) -> List[str | List]:
+    def get_linenos_sass_defs(self) -> List:
         return [
             ['pre', self._pre_sass],
             ['td.linenos .normal, span.linenos', self._linenos_sass],
