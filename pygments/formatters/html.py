@@ -524,7 +524,7 @@ class HtmlFormatter(Formatter):
                 c2s[name] = (style[:-2], ttype, len(ttype))
                 c2a[name] = (sass, ttype, len(ttype))
 
-    def get_style_defs(self, arg=None):
+    def get_style_defs(self, arg=None) -> str:
         """
         Return CSS style definitions for the classes produced by the current
         highlighting style. ``arg`` can be a string or list of selectors to
@@ -537,6 +537,24 @@ class HtmlFormatter(Formatter):
         style_lines.extend(self.get_token_style_defs(arg))
 
         return '\n'.join(style_lines)
+    
+    def get_sass_defs(self, arg=None) -> str:
+        sass_blocks = self.get_linenos_sass_defs() + self.get_sass_prefix(arg) + [
+            self.get_background_sass_defs() +
+            self.get_token_sass_defs()
+        ]
+        
+        return self._get_sass_line(sass_blocks)
+    
+    def _get_sass_line(self, block: List, indentation: int = 0) -> str:
+        line = ''
+
+        for entry in block:
+            if isinstance(entry, List):
+                entry = self._get_sass_line(entry, indentation + 1)
+            line += '\t' * indentation + entry + '\n'
+
+        return line
 
     def get_token_style_defs(self, arg=None):
         prefix = self.get_css_prefix(arg)
@@ -562,13 +580,12 @@ class HtmlFormatter(Formatter):
             if cls and sass
         ])
 
-        prefix = self.get_css_prefix(arg)
-        lines = [
-            [prefix(cls), sass]
+        blocks = [
+            [f'.{cls}', sass]
             for (_, _, cls, sass) in sasses
         ]
 
-        return lines
+        return blocks
 
     def get_background_style_defs(self, arg=None):
         prefix = self.get_css_prefix(arg)
@@ -600,25 +617,23 @@ class HtmlFormatter(Formatter):
         return list()
 
     def get_background_sass_defs(self, arg=None) -> List:
-        lines = list()
-
-        prefix = self.get_css_prefix(arg)
+        blocks = list()
 
         bg_color = self.style.background_color
         if arg and not self.nobackground and bg_color is not None:
-            lines.append(f"background: {bg_color}")
+            blocks.append(f"background: {bg_color}")
             text_style = self._get_text_sass()
             if text_style:
-                lines += text_style
+                blocks += text_style
 
         hl_color = self.style.highlight_color
         if hl_color is not None:
-            lines.append([
-                prefix('hll'),
+            blocks.append([
+                '.hll',
                 [f"background-color: {hl_color}"]
             ])
 
-        return lines
+        return blocks
 
     def get_linenos_style_defs(self):
         lines = [
@@ -633,9 +648,9 @@ class HtmlFormatter(Formatter):
     
     def get_linenos_sass_defs(self) -> List:
         return [
-            ['pre', self._pre_sass],
-            ['td.linenos .normal, span.linenos', self._linenos_sass],
-            ['td.linenos .special, span.linenos.special', self._linenos_special_sass]
+            'pre', [self._pre_sass],
+            'td.linenos .normal, span.linenos', [self._linenos_sass],
+            'td.linenos .special, span.linenos.special', [self._linenos_special_sass]
         ]
 
     def get_css_prefix(self, arg):
@@ -655,6 +670,17 @@ class HtmlFormatter(Formatter):
             return ', '.join(tmp)
 
         return prefix
+    
+    def get_sass_prefix(self, arg) -> List:
+        if arg is None:
+            arg = ('cssclass' in self.options and '.'+self.cssclass or '')
+        
+        if isinstance(arg, str):
+            args = [arg]
+        else:
+            args = list(arg)
+
+        return args
 
     @property
     def _pre_style(self):

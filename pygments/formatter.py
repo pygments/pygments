@@ -96,7 +96,7 @@ class Formatter:
         self.encoding = options.get('outencoding') or self.encoding
         self.options = options
 
-    def get_style_defs(self, arg=''):
+    def get_style_defs(self, arg='') -> str:
         """
         This method must return statements or declarations suitable to define
         the current style for subsequent highlighted text (e.g. CSS classes
