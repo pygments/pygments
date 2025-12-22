@@ -597,8 +597,10 @@ class HtmlFormatter(Formatter):
 
         hl_color = self.style.highlight_color
         if hl_color is not None:
-            lines.append(prefix('hll'))
-            lines.append([f"background-color: {hl_color}"])
+            lines.append([
+                prefix('hll'),
+                [f"background-color: {hl_color}"]
+            ])
 
         return lines
 
@@ -613,18 +615,12 @@ class HtmlFormatter(Formatter):
 
         return lines
     
-    def get_linenos_sass_defs(self) -> List[str]:
-        pre_sass = "\n\t".join(self._pre_sass)
-        linenos_sass = "\n\t".join(self._linenos_sass)
-        linenos_special_sass = "\n\t".join(self._linenos_special_sass)
-
-        lines = [
-            f'pre {pre_sass}',
-            f'td.linenos .normal, span.linenos {linenos_sass}',
-            f'td.linenos .special, span.linenos.special {linenos_special_sass}',
+    def get_linenos_sass_defs(self) -> List[str | List]:
+        return [
+            ['pre', self._pre_sass],
+            ['td.linenos .normal, span.linenos', self._linenos_sass],
+            ['td.linenos .special, span.linenos.special', self._linenos_special_sass]
         ]
-
-        return lines
 
     def get_css_prefix(self, arg):
         if arg is None:
