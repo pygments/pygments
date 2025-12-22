@@ -14,6 +14,7 @@ import sys
 import os.path
 from io import StringIO
 
+from typing import List
 from pygments.formatter import Formatter
 from pygments.token import Token, Text, STANDARD_TYPES
 from pygments.util import get_bool_opt, get_int_opt, get_list_opt
@@ -577,6 +578,19 @@ class HtmlFormatter(Formatter):
         ]
 
         return lines
+    
+    def get_linenos_sass_defs(self) -> List[str]:
+        pre_sass = "\n\t".join(self._pre_sass)
+        linenos_sass = "\n\t".join(self._linenos_sass)
+        linenos_special_sass = "\n\t".join(self._linenos_special_sass)
+
+        lines = [
+            f'pre {pre_sass}',
+            f'td.linenos .normal, span.linenos {linenos_sass}',
+            f'td.linenos .special, span.linenos.special {linenos_special_sass}',
+        ]
+
+        return lines
 
     def get_css_prefix(self, arg):
         if arg is None:
@@ -599,18 +613,46 @@ class HtmlFormatter(Formatter):
     @property
     def _pre_style(self):
         return 'line-height: 125%;'
+    
+    @property
+    def _pre_sass(self) -> List[str]:
+        return [
+            'line-height: 125%'
+        ]
 
     @property
     def _linenos_style(self):
         color = self.style.line_number_color
         background_color = self.style.line_number_background_color
         return f'color: {color}; background-color: {background_color}; padding-left: 5px; padding-right: 5px;'
+    
+    @property
+    def _linenos_sass(self) -> List[str]:
+        color = self.style.line_number_color
+        background_color = self.style.line_number_background_color
+        return [
+            f'color: {color}'
+            f'background-color: {background_color}',
+            f'padding-left: 5px',
+            f'padding-right: 5px'
+        ]
 
     @property
     def _linenos_special_style(self):
         color = self.style.line_number_special_color
         background_color = self.style.line_number_special_background_color
         return f'color: {color}; background-color: {background_color}; padding-left: 5px; padding-right: 5px;'
+    
+    @property
+    def _linenos_special_sass(self) -> List[str]:
+        color = self.style.line_number_special_color
+        background_color = self.style.line_number_special_background_color
+        return [
+            f'color: {color}',
+            f'background-color: {background_color}',
+            f'padding-left: 5px',
+            f'padding-right: 5px'
+        ]
 
     def _decodeifneeded(self, value):
         if isinstance(value, bytes):
