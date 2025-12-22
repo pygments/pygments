@@ -504,13 +504,13 @@ class HtmlFormatter(Formatter):
                 sass.append(f"color: {webify(ndef['color'])}")
             if ndef['bold']:
                 style += 'font-weight: bold; '
-                sass.append('font-weight: bold')
+                sass.append(f'font-weight: bold')
             if ndef['italic']:
                 style += 'font-style: italic; '
-                sass.append('font-style: italic')
+                sass.append(f'font-style: italic')
             if ndef['underline']:
                 style += 'text-decoration: underline; '
-                sass.append('text-decoration: underline')
+                sass.append(f'text-decoration: underline')
             if ndef['bgcolor']:
                 style += 'background-color: {}; '.format(webify(ndef['bgcolor']))
                 sass.append(f"background-color: {webify(ndef['bgcolor'])}")
@@ -540,8 +540,8 @@ class HtmlFormatter(Formatter):
     
     def get_sass_defs(self, arg=None) -> str:
         sass_blocks = self.get_linenos_sass_defs() + self.get_sass_prefix(arg) + [
-            self.get_background_sass_defs() +
-            self.get_token_sass_defs()
+            self.get_background_sass_defs(arg) +
+            self.get_token_sass_defs(arg)
         ]
         
         return self._get_sass_line(sass_blocks)
@@ -549,12 +549,15 @@ class HtmlFormatter(Formatter):
     def _get_sass_line(self, block: List, indentation: int = 0) -> str:
         line = ''
 
-        for entry in block:
+        for i, entry in enumerate(block):
             if isinstance(entry, List):
                 entry = self._get_sass_line(entry, indentation + 1)
+                line += entry + '\n'
+                continue
+
             line += '\t' * indentation + entry + '\n'
 
-        return line
+        return line.rstrip() + '\n'
 
     def get_token_style_defs(self, arg=None):
         prefix = self.get_css_prefix(arg)
@@ -580,10 +583,9 @@ class HtmlFormatter(Formatter):
             if cls and sass
         ])
 
-        blocks = [
-            [f'.{cls}', sass]
-            for (_, _, cls, sass) in sasses
-        ]
+        blocks = list()
+        for (_, _, cls, sass) in sasses:
+            blocks += [f'.{cls}', sass]
 
         return blocks
 
@@ -628,10 +630,7 @@ class HtmlFormatter(Formatter):
 
         hl_color = self.style.highlight_color
         if hl_color is not None:
-            blocks.append([
-                '.hll',
-                [f"background-color: {hl_color}"]
-            ])
+            blocks += [".hll", [f"background-color: {hl_color}"]]
 
         return blocks
 
@@ -648,9 +647,9 @@ class HtmlFormatter(Formatter):
     
     def get_linenos_sass_defs(self) -> List:
         return [
-            'pre', [self._pre_sass],
-            'td.linenos .normal, span.linenos', [self._linenos_sass],
-            'td.linenos .special, span.linenos.special', [self._linenos_special_sass]
+            'pre', self._pre_sass,
+            'td.linenos .normal, span.linenos', self._linenos_sass,
+            'td.linenos .special, span.linenos.special', self._linenos_special_sass
         ]
 
     def get_css_prefix(self, arg):
@@ -703,7 +702,7 @@ class HtmlFormatter(Formatter):
         color = self.style.line_number_color
         background_color = self.style.line_number_background_color
         return [
-            f'color: {color}'
+            f'color: {color}',
             f'background-color: {background_color}',
             f'padding-left: 5px',
             f'padding-right: 5px'
