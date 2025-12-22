@@ -524,12 +524,16 @@ class HtmlFormatter(Formatter):
                 c2s[name] = (style[:-2], ttype, len(ttype))
                 c2a[name] = (sass, ttype, len(ttype))
 
-    def get_style_defs(self, arg=None) -> str:
+    def get_style_defs(self, arg: str | None = None) -> str:
         """
         Return CSS style definitions for the classes produced by the current
         highlighting style. ``arg`` can be a string or list of selectors to
-        insert before the token type classes.
+        insert before the token type classes. Prepend with .sass to obtain
+        syntactically awesome stylesheet.
         """
+        if arg and arg.split('.')[-1] == "sass":
+            return self.get_sass_defs('.'.join(arg.split('.')[:-1]))
+        
         style_lines = []
 
         style_lines.extend(self.get_linenos_style_defs())
@@ -538,7 +542,7 @@ class HtmlFormatter(Formatter):
 
         return '\n'.join(style_lines)
     
-    def get_sass_defs(self, arg=None) -> str:
+    def get_sass_defs(self, arg: str | None = None) -> str:
         sass_blocks = self.get_linenos_sass_defs() + self.get_sass_prefix(arg) + [
             self.get_background_sass_defs(arg) +
             self.get_token_sass_defs(arg)
