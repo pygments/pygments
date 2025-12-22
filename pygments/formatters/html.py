@@ -13,8 +13,8 @@ import os
 import sys
 import os.path
 from io import StringIO
-
 from typing import List
+
 from pygments.formatter import Formatter
 from pygments.token import Token, Text, STANDARD_TYPES
 from pygments.util import get_bool_opt, get_int_opt, get_list_opt
@@ -516,7 +516,7 @@ class HtmlFormatter(Formatter):
                 sass.append(f"background-color: {webify(ndef['bgcolor'])}")
             if ndef['border']:
                 style += 'border: 1px solid {}; '.format(webify(ndef['border']))
-                sass.append(f"border: 1px solod {webify(ndef['border'])}")
+                sass.append(f"border: 1px solid {webify(ndef['border'])}")
             if style:
                 t2c[ttype] = name
                 # save len(ttype) to enable ordering the styles by
@@ -543,7 +543,7 @@ class HtmlFormatter(Formatter):
 
         return '\n'.join(style_lines)
     
-    def get_sass_defs(self, arg = None) -> str:
+    def get_sass_defs(self, arg: List | str | None = None) -> str:
         sass_blocks = self.get_linenos_sass_defs() + self.get_sass_prefix(arg) + [
             self.get_background_sass_defs(arg) +
             self.get_token_sass_defs(arg)
@@ -551,16 +551,17 @@ class HtmlFormatter(Formatter):
         
         return self._get_sass_line(sass_blocks)
     
-    def _get_sass_line(self, block: List, indentation: int = 0) -> str:
+    def _get_sass_line(self, block: List[str | List], indentation: int = 0) -> str:
         line = str()
 
         for entry in block:
+            if isinstance(entry, str):
+                entry = '\t' * indentation + entry
+            
             if isinstance(entry, List):
                 entry = self._get_sass_line(entry, indentation + 1)
-                line += entry + '\n'
-                continue
 
-            line += '\t' * indentation + entry + '\n'
+            line += entry + '\n'
 
         return line.rstrip() + '\n'
 
@@ -581,15 +582,15 @@ class HtmlFormatter(Formatter):
 
         return lines
     
-    def get_token_sass_defs(self, arg=None) -> List:
-        sasses = sorted([
+    def get_token_sass_defs(self, arg=None) -> List[str | List]:
+        styles = sorted([
             (level, ttype, cls, sass)
             for cls, (sass, ttype, level) in self.class2sass.items()
             if cls and sass
         ])
 
         blocks = list()
-        for (_, _, cls, sass) in sasses:
+        for (_, _, cls, sass) in styles:
             blocks += [f'.{cls}', sass]
 
         return blocks
@@ -623,12 +624,13 @@ class HtmlFormatter(Formatter):
         
         return list()
 
-    def get_background_sass_defs(self, arg=None) -> List:
+    def get_background_sass_defs(self, arg = None) -> List[str | List]:
         blocks = list()
 
         bg_color = self.style.background_color
         if arg and not self.nobackground and bg_color is not None:
             blocks.append(f"background: {bg_color}")
+            
             text_style = self._get_text_sass()
             if text_style:
                 blocks += text_style
@@ -650,7 +652,7 @@ class HtmlFormatter(Formatter):
 
         return lines
     
-    def get_linenos_sass_defs(self) -> List:
+    def get_linenos_sass_defs(self) -> List[str | List]:
         return [
             'pre', self._pre_sass,
             'td.linenos .normal, span.linenos', self._linenos_sass,
@@ -675,9 +677,9 @@ class HtmlFormatter(Formatter):
 
         return prefix
     
-    def get_sass_prefix(self, arg) -> List:
+    def get_sass_prefix(self, arg) -> List[str]:
         if arg is None:
-            arg = ('cssclass' in self.options and '.'+self.cssclass or '')
+            arg = ('cssclass' in self.options and '.' + self.cssclass or '')
         
         if isinstance(arg, str):
             args = [arg]
