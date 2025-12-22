@@ -493,26 +493,35 @@ class HtmlFormatter(Formatter):
     def _create_stylesheet(self):
         t2c = self.ttype2class = {Token: ''}
         c2s = self.class2style = {}
+        c2a = self.class2sass = {} # a for awesome
         for ttype, ndef in self.style:
             name = self._get_css_class(ttype)
             style = ''
+            sass = list()
             if ndef['color']:
                 style += 'color: {}; '.format(webify(ndef['color']))
+                sass.append(f"color: {webify(ndef['color'])}")
             if ndef['bold']:
                 style += 'font-weight: bold; '
+                sass.append('font-weight: bold')
             if ndef['italic']:
                 style += 'font-style: italic; '
+                sass.append('font-style: italic')
             if ndef['underline']:
                 style += 'text-decoration: underline; '
+                sass.append('text-decoration: underline')
             if ndef['bgcolor']:
                 style += 'background-color: {}; '.format(webify(ndef['bgcolor']))
+                sass.append(f"background-color: {webify(ndef['bgcolor'])}")
             if ndef['border']:
                 style += 'border: 1px solid {}; '.format(webify(ndef['border']))
+                sass.append(f"border: 1px solod {webify(ndef['border'])}")
             if style:
                 t2c[ttype] = name
                 # save len(ttype) to enable ordering the styles by
                 # hierarchy (necessary for CSS cascading rules!)
                 c2s[name] = (style[:-2], ttype, len(ttype))
+                c2a[name] = (sass, ttype, len(ttype))
 
     def get_style_defs(self, arg=None):
         """
@@ -565,6 +574,31 @@ class HtmlFormatter(Formatter):
             lines.insert(
                 0, '{} {{ background-color: {} }}'.format(prefix('hll'), hl_color)
             )
+
+        return lines
+    
+    def _get_text_sass(self) -> List[str]:
+        if Text in self.ttype2class:
+            return self.class2sass[self.ttype2class[Text]][0]
+        
+        return list()
+
+    def get_background_sass_defs(self, arg=None) -> List[str]:
+        lines = list()
+
+        prefix = self.get_css_prefix(arg)
+
+        bg_color = self.style.background_color
+        if arg and not self.nobackground and bg_color is not None:
+            lines.append(f"background: {bg_color}")
+            text_style = self._get_text_sass()
+            if text_style:
+                lines += text_style
+
+        hl_color = self.style.highlight_color
+        if hl_color is not None:
+            lines.append(prefix('hll'))
+            lines.append([f"background-color: {hl_color}"])
 
         return lines
 
