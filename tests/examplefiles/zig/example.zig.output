@@ -9,8 +9,7 @@
 '"'           Literal.String
 'std'         Literal.String
 '"'           Literal.String
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 'const'       Keyword.Reserved
@@ -62,8 +61,7 @@
 '"'           Literal.String
 'visib.zig'   Literal.String
 '"'           Literal.String
-')'           Punctuation
-'.'           Punctuation
+').'          Punctuation
 'Visib'       Name
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -91,8 +89,7 @@
 '"'           Literal.String
 'value.zig'   Literal.String
 '"'           Literal.String
-')'           Punctuation
-'.'           Punctuation
+').'          Punctuation
 'Value'       Name
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -122,8 +119,7 @@
 '"'           Literal.String
 'errmsg.zig'  Literal.String
 '"'           Literal.String
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 'const'       Keyword.Reserved
@@ -137,8 +133,7 @@
 '"'           Literal.String
 'scope.zig'   Literal.String
 '"'           Literal.String
-')'           Punctuation
-'.'           Punctuation
+').'          Punctuation
 'Scope'       Name
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -154,8 +149,7 @@
 '"'           Literal.String
 'compilation.zig' Literal.String
 '"'           Literal.String
-')'           Punctuation
-'.'           Punctuation
+').'          Punctuation
 'Compilation' Name
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -177,7 +171,7 @@
 
 '    '        Text.Whitespace
 'id'          Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'Id'          Name
 ','           Punctuation
@@ -185,10 +179,9 @@
 
 '    '        Text.Whitespace
 'name'        Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
-'['           Punctuation
-']'           Punctuation
+'[]'          Punctuation
 'const'       Keyword.Reserved
 ' '           Text.Whitespace
 'u8'          Keyword.Type
@@ -197,7 +190,7 @@
 
 '    '        Text.Whitespace
 'visib'       Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'Visib'       Name
 ','           Punctuation
@@ -205,7 +198,7 @@
 
 '    '        Text.Whitespace
 'resolution'  Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'event'       Name
 '.'           Punctuation
@@ -216,13 +209,12 @@
 'BuildError'  Name
 '!'           Operator
 'void'        Keyword.Type
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
 'parent_scope' Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 '*'           Operator
 'Scope'       Name
@@ -232,11 +224,12 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'// TODO when we destroy the decl, deref the tree scope\n' Comment.Single
+'// TODO when we destroy the decl, deref the tree scope' Comment.Single
+'\n'          Text.Whitespace
 
 '    '        Text.Whitespace
 'tree_scope'  Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 '*'           Operator
 'Scope'       Name
@@ -259,9 +252,7 @@
 'std'         Name
 '.'           Punctuation
 'HashMap'     Name
-'('           Punctuation
-'['           Punctuation
-']'           Punctuation
+'([]'         Punctuation
 'const'       Keyword.Reserved
 ' '           Text.Whitespace
 'u8'          Keyword.Type
@@ -279,8 +270,7 @@
 'mem'         Name
 '.'           Punctuation
 'eql_slice_u8' Name
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -293,7 +283,7 @@
 'cast'        Name
 '('           Punctuation
 'base'        Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 '*'           Operator
 'Decl'        Name
@@ -302,12 +292,12 @@
 'comptime'    Keyword.Reserved
 ' '           Text.Whitespace
 'T'           Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'type'        Keyword.Type
 ')'           Punctuation
 ' '           Text.Whitespace
-'?'           Operator
+'?'           Punctuation
 '*'           Operator
 'T'           Name
 ' '           Text.Whitespace
@@ -322,8 +312,7 @@
 '.'           Punctuation
 'id'          Name
 ' '           Text.Whitespace
-'!'           Operator
-'='           Operator
+'!='          Operator
 ' '           Text.Whitespace
 '@field'      Name.Builtin
 '('           Punctuation
@@ -333,9 +322,7 @@
 '@typeName'   Name.Builtin
 '('           Punctuation
 'T'           Name
-')'           Punctuation
-')'           Punctuation
-')'           Punctuation
+')))'         Punctuation
 ' '           Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
@@ -357,8 +344,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 'base'        Name
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -375,7 +361,7 @@
 'isExported'  Name
 '('           Punctuation
 'base'        Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 '*'           Operator
 'const'       Keyword.Reserved
@@ -384,7 +370,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 'tree'        Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 '*'           Operator
 'ast'         Name
@@ -438,8 +424,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 'base'        Name
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '                ' Text.Whitespace
@@ -450,13 +435,11 @@
 'isExported'  Name
 '('           Punctuation
 'tree'        Name
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '            ' Text.Whitespace
-'}'           Punctuation
-','           Punctuation
+'},'          Punctuation
 '\n'          Text.Whitespace
 
 '            ' Text.Whitespace
@@ -489,7 +472,7 @@
 'getSpan'     Name
 '('           Punctuation
 'base'        Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 '*'           Operator
 'const'       Keyword.Reserved
@@ -545,8 +528,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 'base'        Name
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '                ' Text.Whitespace
@@ -626,13 +608,11 @@
 '\n'          Text.Whitespace
 
 '                ' Text.Whitespace
-'}'           Punctuation
-';'           Punctuation
+'};'          Punctuation
 '\n'          Text.Whitespace
 
 '            ' Text.Whitespace
-'}'           Punctuation
-','           Punctuation
+'},'          Punctuation
 '\n'          Text.Whitespace
 
 '            ' Text.Whitespace
@@ -646,8 +626,7 @@
 '"'           Literal.String
 'TODO'        Literal.String
 '"'           Literal.String
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace
@@ -668,7 +647,7 @@
 'findRootScope' Name
 '('           Punctuation
 'base'        Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 '*'           Operator
 'const'       Keyword.Reserved
@@ -692,9 +671,7 @@
 'parent_scope' Name
 '.'           Punctuation
 'findRoot'    Name
-'('           Punctuation
-')'           Punctuation
-';'           Punctuation
+'();'         Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -733,8 +710,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'}'           Punctuation
-';'           Punctuation
+'};'          Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -755,15 +731,14 @@
 
 '        '    Text.Whitespace
 'base'        Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'Decl'        Name
 ','           Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'}'           Punctuation
-';'           Punctuation
+'};'          Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -784,7 +759,7 @@
 
 '        '    Text.Whitespace
 'base'        Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'Decl'        Name
 ','           Punctuation
@@ -792,7 +767,7 @@
 
 '        '    Text.Whitespace
 'value'       Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'Val'         Name
 ','           Punctuation
@@ -800,7 +775,7 @@
 
 '        '    Text.Whitespace
 'fn_proto'    Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 '*'           Operator
 'ast'         Name
@@ -814,7 +789,8 @@
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace
-'// TODO https://github.com/ziglang/zig/issues/683 and then make this anonymous\n' Comment.Single
+'// TODO https://github.com/ziglang/zig/issues/683 and then make this anonymous' Comment.Single
+'\n'          Text.Whitespace
 
 '        '    Text.Whitespace
 'pub'         Keyword.Reserved
@@ -835,7 +811,7 @@
 
 '            ' Text.Whitespace
 'Unresolved'  Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'void'        Keyword.Type
 ','           Punctuation
@@ -843,7 +819,7 @@
 
 '            ' Text.Whitespace
 'Fn'          Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 '*'           Operator
 'Value'       Name
@@ -854,7 +830,7 @@
 
 '            ' Text.Whitespace
 'FnProto'     Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 '*'           Operator
 'Value'       Name
@@ -864,8 +840,7 @@
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace
-'}'           Punctuation
-';'           Punctuation
+'};'          Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -878,13 +853,13 @@
 'externLibName' Name
 '('           Punctuation
 'self'        Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'Fn'          Name
 ','           Punctuation
 ' '           Text.Whitespace
 'tree'        Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 '*'           Operator
 'ast'         Name
@@ -892,9 +867,7 @@
 'Tree'        Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'?'           Operator
-'['           Punctuation
-']'           Punctuation
+'?[]'         Punctuation
 'const'       Keyword.Reserved
 ' '           Text.Whitespace
 'u8'          Keyword.Type
@@ -920,7 +893,7 @@
 '|'           Operator
 ' '           Text.Whitespace
 'x'           Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
@@ -939,14 +912,13 @@
 'at'          Name
 '('           Punctuation
 'tok_index'   Name
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '                ' Text.Whitespace
 'break'       Keyword
 ' '           Text.Whitespace
-':'           Operator
+':'           Punctuation
 'x'           Name
 ' '           Text.Whitespace
 'switch'      Keyword
@@ -975,8 +947,7 @@
 'tokenSlicePtr' Name
 '('           Punctuation
 'token'       Name
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 '\n'          Text.Whitespace
 
 '                    ' Text.Whitespace
@@ -990,8 +961,7 @@
 '\n'          Text.Whitespace
 
 '                ' Text.Whitespace
-'}'           Punctuation
-';'           Punctuation
+'};'          Punctuation
 '\n'          Text.Whitespace
 
 '            ' Text.Whitespace
@@ -1017,13 +987,13 @@
 'isExported'  Name
 '('           Punctuation
 'self'        Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'Fn'          Name
 ','           Punctuation
 ' '           Text.Whitespace
 'tree'        Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 '*'           Operator
 'ast'         Name
@@ -1068,8 +1038,7 @@
 'at'          Name
 '('           Punctuation
 'tok_index'   Name
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '                ' Text.Whitespace
@@ -1079,8 +1048,7 @@
 '.'           Punctuation
 'id'          Name
 ' '           Text.Whitespace
-'='           Operator
-'='           Operator
+'=='          Operator
 ' '           Text.Whitespace
 'Token'       Name
 '.'           Punctuation
@@ -1114,8 +1082,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'}'           Punctuation
-';'           Punctuation
+'};'          Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -1136,19 +1103,17 @@
 
 '        '    Text.Whitespace
 'base'        Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'Decl'        Name
 ','           Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'}'           Punctuation
-';'           Punctuation
+'};'          Punctuation
 '\n'          Text.Whitespace
 
-'}'           Punctuation
-';'           Punctuation
+'};'          Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -1228,21 +1193,19 @@
 'cmdZen'      Name
 '('           Punctuation
 'allocator'   Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 '*'           Operator
 'Allocator'   Name
 ','           Punctuation
 ' '           Text.Whitespace
 'args'        Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
-'['           Punctuation
-']'           Punctuation
+'[]'          Punctuation
 'const'       Keyword.Reserved
 ' '           Text.Whitespace
-'['           Punctuation
-']'           Punctuation
+'[]'          Punctuation
 'const'       Keyword.Reserved
 ' '           Text.Whitespace
 'u8'          Keyword.Type
@@ -1262,8 +1225,7 @@
 'write'       Name
 '('           Punctuation
 'info_zen'    Name
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '}'           Punctuation
@@ -1312,21 +1274,19 @@
 'cmdInternal' Name
 '('           Punctuation
 'allocator'   Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 '*'           Operator
 'Allocator'   Name
 ','           Punctuation
 ' '           Text.Whitespace
 'args'        Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
-'['           Punctuation
-']'           Punctuation
+'[]'          Punctuation
 'const'       Keyword.Reserved
 ' '           Text.Whitespace
-'['           Punctuation
-']'           Punctuation
+'[]'          Punctuation
 'const'       Keyword.Reserved
 ' '           Text.Whitespace
 'u8'          Keyword.Type
@@ -1346,8 +1306,7 @@
 '.'           Punctuation
 'len'         Name
 ' '           Text.Whitespace
-'='           Operator
-'='           Operator
+'=='          Operator
 ' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ')'           Punctuation
@@ -1363,8 +1322,7 @@
 'write'       Name
 '('           Punctuation
 'usage_internal' Name
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace
@@ -1373,8 +1331,7 @@
 'exit'        Name
 '('           Punctuation
 '1'           Literal.Number.Integer
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -1390,8 +1347,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'['           Punctuation
-']'           Punctuation
+'[]'          Punctuation
 'Command'     Name
 '{'           Punctuation
 'Command'     Name
@@ -1421,9 +1377,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'}'           Punctuation
-'}'           Punctuation
-';'           Punctuation
+'}};'         Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -1461,9 +1415,7 @@
 'args'        Name
 '['           Punctuation
 '0'           Literal.Number.Integer
-']'           Punctuation
-')'           Punctuation
-')'           Punctuation
+']))'         Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
@@ -1481,11 +1433,8 @@
 'args'        Name
 '['           Punctuation
 '1'           Literal.Number.Integer
-'.'           Punctuation
-'.'           Punctuation
-']'           Punctuation
-')'           Punctuation
-';'           Punctuation
+'..'          Operator
+']);'         Punctuation
 '\n'          Text.Whitespace
 
 '            ' Text.Whitespace
@@ -1520,9 +1469,7 @@
 'args'        Name
 '['           Punctuation
 '0'           Literal.Number.Integer
-']'           Punctuation
-')'           Punctuation
-';'           Punctuation
+']);'         Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -1533,8 +1480,7 @@
 'write'       Name
 '('           Punctuation
 'usage_internal' Name
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '}'           Punctuation
@@ -1547,21 +1493,19 @@
 'cmdInternalBuildInfo' Name
 '('           Punctuation
 'allocator'   Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 '*'           Operator
 'Allocator'   Name
 ','           Punctuation
 ' '           Text.Whitespace
 'args'        Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
-'['           Punctuation
-']'           Punctuation
+'[]'          Punctuation
 'const'       Keyword.Reserved
 ' '           Text.Whitespace
-'['           Punctuation
-']'           Punctuation
+'[]'          Punctuation
 'const'       Keyword.Reserved
 ' '           Text.Whitespace
 'u8'          Keyword.Type
@@ -1632,8 +1576,7 @@
 'c'           Name
 '.'           Punctuation
 'ZIG_CMAKE_BINARY_DIR' Name
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace
@@ -1646,8 +1589,7 @@
 'c'           Name
 '.'           Punctuation
 'ZIG_CXX_COMPILER' Name
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace
@@ -1660,8 +1602,7 @@
 'c'           Name
 '.'           Punctuation
 'ZIG_LLVM_CONFIG_EXE' Name
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace
@@ -1674,8 +1615,7 @@
 'c'           Name
 '.'           Punctuation
 'ZIG_LLD_INCLUDE_PATH' Name
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace
@@ -1688,8 +1628,7 @@
 'c'           Name
 '.'           Punctuation
 'ZIG_LLD_LIBRARIES' Name
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace
@@ -1702,8 +1641,7 @@
 'c'           Name
 '.'           Punctuation
 'ZIG_STD_FILES' Name
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace
@@ -1716,8 +1654,7 @@
 'c'           Name
 '.'           Punctuation
 'ZIG_C_HEADER_FILES' Name
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace
@@ -1730,13 +1667,11 @@
 'c'           Name
 '.'           Punctuation
 'ZIG_DIA_GUIDS_LIB' Name
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '}'           Punctuation
@@ -1749,13 +1684,13 @@
 'test__floatuntisf' Name
 '('           Punctuation
 'a'           Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'u128'        Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
 'expected'    Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'f32'         Keyword.Type
 ')'           Punctuation
@@ -1775,8 +1710,7 @@
 '__floatuntisf' Name
 '('           Punctuation
 'a'           Name
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -1786,12 +1720,10 @@
 '('           Punctuation
 'x'           Name
 ' '           Text.Whitespace
-'='           Operator
-'='           Operator
+'=='          Operator
 ' '           Text.Whitespace
 'expected'    Name
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '}'           Punctuation
@@ -1815,8 +1747,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0.0'         Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -1828,8 +1759,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '1.0'         Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -1839,8 +1769,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '2.0'         Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -1850,8 +1779,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '20.0'        Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -1863,8 +1791,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0x1.FFFFFEp+62' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -1874,8 +1801,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0x1.FFFFFCp+62' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -1889,12 +1815,10 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0'           Literal.Number.Integer
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 ' '           Text.Whitespace
 '0x1.000001p+127' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -1906,12 +1830,10 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0'           Literal.Number.Integer
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 ' '           Text.Whitespace
 '0x1.0p+127'  Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -1923,12 +1845,10 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0'           Literal.Number.Integer
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 ' '           Text.Whitespace
 '0x1.000002p+127' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -1942,12 +1862,10 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0'           Literal.Number.Integer
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 ' '           Text.Whitespace
 '0x1.000000p+127' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -1959,8 +1877,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBAp+50' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -1972,8 +1889,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBA8p+50' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -1983,8 +1899,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBACp+50' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -1996,8 +1911,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBBp+50' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -2009,8 +1923,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCB98p+50' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -2020,8 +1933,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCB9Cp+50' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -2031,8 +1943,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCB9p+50' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -2044,8 +1955,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0x1p+64'     Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -2055,8 +1965,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0x1p+64'     Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -2068,8 +1977,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBAp+50' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -2081,8 +1989,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBAp+50' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -2092,8 +1999,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBAp+50' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -2103,8 +2009,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBAp+50' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -2114,8 +2019,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBCp+50' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -2125,8 +2029,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBAp+50' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -2138,8 +2041,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBAp+50' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -2149,8 +2051,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBAp+50' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -2160,8 +2061,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBAp+50' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -2171,8 +2071,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBAp+50' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -2182,8 +2081,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCB8p+50' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -2197,12 +2095,10 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0xCB90000000000001' Literal.Number.Hex
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBAp+76' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -2214,12 +2110,10 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0xCBA0000000000000' Literal.Number.Hex
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBAp+76' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -2231,12 +2125,10 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0xCBAFFFFFFFFFFFFF' Literal.Number.Hex
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBAp+76' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -2248,12 +2140,10 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0xCBB0000000000000' Literal.Number.Hex
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBCp+76' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -2265,12 +2155,10 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0xCBB0000000000001' Literal.Number.Hex
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBCp+76' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -2282,12 +2170,10 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0xCBBFFFFFFFFFFFFF' Literal.Number.Hex
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBCp+76' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -2299,12 +2185,10 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0xCBC0000000000000' Literal.Number.Hex
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBCp+76' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -2316,12 +2200,10 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0xCBC0000000000001' Literal.Number.Hex
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBCp+76' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -2333,12 +2215,10 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0xCBD0000000000000' Literal.Number.Hex
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBCp+76' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -2350,12 +2230,10 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0xCBD0000000000001' Literal.Number.Hex
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBEp+76' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -2367,12 +2245,10 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0xCBDFFFFFFFFFFFFF' Literal.Number.Hex
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBEp+76' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -2384,12 +2260,10 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '0xCBE0000000000000' Literal.Number.Hex
-')'           Punctuation
-','           Punctuation
+'),'          Punctuation
 ' '           Text.Whitespace
 '0x1.FEDCBEp+76' Literal.Number.Float
-')'           Punctuation
-';'           Punctuation
+');'          Punctuation
 '\n'          Text.Whitespace
 
 '}'           Punctuation
@@ -2402,23 +2276,21 @@
 'trimStart'   Name
 '('           Punctuation
 'slice'       Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
-'['           Punctuation
-']'           Punctuation
+'[]'          Punctuation
 'const'       Keyword.Reserved
 ' '           Text.Whitespace
 'u8'          Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
 'ch'          Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'u8'          Keyword.Type
 ')'           Punctuation
 ' '           Text.Whitespace
-'['           Punctuation
-']'           Punctuation
+'[]'          Punctuation
 'const'       Keyword.Reserved
 ' '           Text.Whitespace
 'u8'          Keyword.Type
@@ -2430,7 +2302,7 @@
 'var'         Keyword.Reserved
 ' '           Text.Whitespace
 'i'           Name
-':'           Operator
+':'           Punctuation
 ' '           Text.Whitespace
 'usize'       Keyword.Type
 ' '           Text.Whitespace
@@ -2475,10 +2347,9 @@
 '('           Punctuation
 'b'           Name
 ' '           Text.Whitespace
-'='           Operator
-'='           Operator
+'=='          Operator
 ' '           Text.Whitespace
-"'\\xa3'"     Literal.String.Escape
+"'\\xa3'"     Literal.String.Char
 ')'           Punctuation
 ' '           Text.Whitespace
 'break'       Keyword
@@ -2491,10 +2362,9 @@
 '('           Punctuation
 'b'           Name
 ' '           Text.Whitespace
-'='           Operator
-'='           Operator
+'=='          Operator
 ' '           Text.Whitespace
-"'\\ua3d3'"   Literal.String.Escape
+"'\\u{a3d3}'" Literal.String.Char
 ')'           Punctuation
 ' '           Text.Whitespace
 'break'       Keyword
@@ -2507,10 +2377,9 @@
 '('           Punctuation
 'b'           Name
 ' '           Text.Whitespace
-'='           Operator
-'='           Operator
+'=='          Operator
 ' '           Text.Whitespace
-"'\\Ua3d3d3'" Literal.String.Escape
+"'\\u{a3d3d3}'" Literal.String.Char
 ')'           Punctuation
 ' '           Text.Whitespace
 'break'       Keyword
@@ -2523,10 +2392,9 @@
 '('           Punctuation
 'b'           Name
 ' '           Text.Whitespace
-'='           Operator
-'='           Operator
+'=='          Operator
 ' '           Text.Whitespace
-"'\\t'"       Literal.String.Escape
+"'\\t'"       Literal.String.Char
 ')'           Punctuation
 ' '           Text.Whitespace
 'break'       Keyword
@@ -2539,10 +2407,9 @@
 '('           Punctuation
 'b'           Name
 ' '           Text.Whitespace
-'='           Operator
-'='           Operator
+'=='          Operator
 ' '           Text.Whitespace
-"'\\n'"       Literal.String.Escape
+"'\\n'"       Literal.String.Char
 ')'           Punctuation
 ' '           Text.Whitespace
 'break'       Keyword
@@ -2555,10 +2422,9 @@
 '('           Punctuation
 'b'           Name
 ' '           Text.Whitespace
-'='           Operator
-'='           Operator
+'=='          Operator
 ' '           Text.Whitespace
-"'\\\\'"      Literal.String.Escape
+"'\\\\'"      Literal.String.Char
 ')'           Punctuation
 ' '           Text.Whitespace
 'break'       Keyword
@@ -2571,10 +2437,9 @@
 '('           Punctuation
 'b'           Name
 ' '           Text.Whitespace
-'='           Operator
-'='           Operator
+'=='          Operator
 ' '           Text.Whitespace
-"'\\''"       Literal.String.Escape
+"'\\''"       Literal.String.Char
 ')'           Punctuation
 ' '           Text.Whitespace
 'break'       Keyword
@@ -2587,10 +2452,9 @@
 '('           Punctuation
 'b'           Name
 ' '           Text.Whitespace
-'='           Operator
-'='           Operator
+'=='          Operator
 ' '           Text.Whitespace
-'\'"\''       Literal.String
+'\'"\''       Literal.String.Char
 ')'           Punctuation
 ' '           Text.Whitespace
 'break'       Keyword
@@ -2603,10 +2467,9 @@
 '('           Punctuation
 'b'           Name
 ' '           Text.Whitespace
-'!'           Operator
-'='           Operator
+'!='          Operator
 ' '           Text.Whitespace
-"'n'"         Literal.String
+"'n'"         Literal.String.Char
 ')'           Punctuation
 ' '           Text.Whitespace
 'break'       Keyword
@@ -2619,10 +2482,9 @@
 '('           Punctuation
 'b'           Name
 ' '           Text.Whitespace
-'!'           Operator
-'='           Operator
+'!='          Operator
 ' '           Text.Whitespace
-"'-'"         Literal.String
+"'-'"         Literal.String.Char
 ')'           Punctuation
 ' '           Text.Whitespace
 'break'       Keyword
@@ -2632,8 +2494,7 @@
 '        '    Text.Whitespace
 'i'           Name
 ' '           Text.Whitespace
-'+'           Operator
-'='           Operator
+'+='          Operator
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ';'           Punctuation
@@ -2651,10 +2512,8 @@
 'slice'       Name
 '['           Punctuation
 'i'           Name
-'.'           Punctuation
-'.'           Punctuation
-']'           Punctuation
-';'           Punctuation
+'..'          Operator
+'];'          Punctuation
 '\n'          Text.Whitespace
 
 '}'           Punctuation
