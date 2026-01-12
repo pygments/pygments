@@ -28,29 +28,36 @@ class ZigLexer(RegexLexer):
     mimetypes = ['text/zig']
     version_added = ''
 
+    # === Keywords ===
+
     type_keywords = (
-        words(('bool', 'f16', 'f32', 'f64', 'f128', 'void', 'noreturn', 'type',
-               'anyerror', 'promise', 'i0', 'u0', 'isize',  'usize', 'comptime_int',
-               'comptime_float', 'c_short', 'c_ushort', 'c_int', 'c_uint', 'c_long',
-               'c_ulong', 'c_longlong', 'c_ulonglong', 'c_longdouble', 'c_void'
-               'i8', 'u8', 'i16', 'u16', 'i32', 'u32', 'i64', 'u64', 'i128',
-               'u128'), suffix=r'\b'),
+        words((
+            'bool', 'void', 'noreturn', 'type', 'anyerror', 'anyopaque',
+            'f16', 'f32', 'f64', 'f80', 'f128',
+            'i8', 'u8', 'i16', 'u16', 'i32', 'u32', 'i64', 'u64', 'i128', 'u128',
+            'isize', 'usize', 'comptime_int', 'comptime_float',
+            'c_char', 'c_short', 'c_ushort', 'c_int', 'c_uint', 'c_long',
+            'c_ulong', 'c_longlong', 'c_ulonglong', 'c_longdouble',
+        ), suffix=r'\b'),
         Keyword.Type)
 
     storage_keywords = (
-        words(('const', 'var', 'extern', 'packed', 'export', 'pub', 'noalias',
-               'inline', 'comptime', 'nakedcc', 'stdcallcc', 'volatile', 'allowzero',
-               'align', 'linksection', 'threadlocal'), suffix=r'\b'),
+        words((
+            'const', 'var', 'extern', 'packed', 'export', 'pub', 'noalias',
+            'inline', 'noinline', 'comptime', 'volatile', 'allowzero',
+            'align', 'addrspace', 'linksection', 'threadlocal', 'callconv',
+        ), suffix=r'\b'),
         Keyword.Reserved)
 
     structure_keywords = (
-        words(('struct', 'enum', 'union', 'error'), suffix=r'\b'),
+        words(('struct', 'enum', 'union', 'error', 'opaque'), suffix=r'\b'),
         Keyword)
 
     statement_keywords = (
-        words(('break', 'return', 'continue', 'asm', 'defer', 'errdefer',
-               'unreachable', 'try', 'catch', 'async', 'await', 'suspend',
-               'resume', 'cancel'), suffix=r'\b'),
+        words((
+            'break', 'return', 'continue', 'asm', 'defer', 'errdefer',
+            'unreachable', 'try', 'catch', 'suspend', 'resume', 'nosuspend',
+        ), suffix=r'\b'),
         Keyword)
 
     conditional_keywords = (
@@ -62,18 +69,74 @@ class ZigLexer(RegexLexer):
         Keyword)
 
     other_keywords = (
-        words(('fn', 'usingnamespace', 'test'), suffix=r'\b'),
+        words(('fn', 'test', 'anyframe', 'anytype'), suffix=r'\b'),
         Keyword)
 
     constant_keywords = (
         words(('true', 'false', 'null', 'undefined'), suffix=r'\b'),
         Keyword.Constant)
 
+    # === Number Literals ===
+
+    hex_float = (
+        r'0x[0-9a-fA-F][0-9a-fA-F_]*'
+        r'(?:\.[0-9a-fA-F][0-9a-fA-F_]*(?:[pP][-+]?[0-9][0-9_]*)?'
+        r'|[pP][-+]?[0-9][0-9_]*)', Number.Float)
+
+    dec_float = (
+        r'[0-9][0-9_]*'
+        r'(?:\.[0-9][0-9_]*(?:[eE][-+]?[0-9][0-9_]*)?'
+        r'|[eE][-+]?[0-9][0-9_]*)', Number.Float)
+
+    # === Character Literal ===
+
+    char_literal = (
+        r"'(?:\\x[0-9a-fA-F]{2}|\\u\{[0-9a-fA-F]+\}|\\[nrt'\"\\]|[^\\'\n])'",
+        String.Char)
+
+    # === Operators (ordered longest-first) ===
+
+    operators_4char = (r'<<\|=', Operator)
+
+    operators_3char = (
+        r'(?:\+%=|-%=|\*%=|\+\|=|-\|=|\*\|=|<<=|>>=|<<\|)', Operator)
+
+    operators_2char = (
+        r'(?:\+\+|\*\*|\|\||<<|>>|\+%|-%|\*%|\+\||-\||\*\|'
+        r'|==|!=|<=|>=|\+=|-=|\*=|/=|%=|&=|\|=|\^=|\.\*|\.\?|\.\.)', Operator)
+
+    # === String States ===
+
+    string_rules = [
+        (r'\\x[0-9a-fA-F]{2}', String.Escape),
+        (r'\\u\{[0-9a-fA-F]+\}', String.Escape),
+        (r'\\[nrt\'\"\\]', String.Escape),
+        (r'[^\\\"\n]+', String),
+        (r'"', String, '#pop'),
+        (r'\\', String),
+    ]
+
+    quoted_ident_rules = [
+        (r'\\x[0-9a-fA-F]{2}', String.Escape),
+        (r'\\u\{[0-9a-fA-F]+\}', String.Escape),
+        (r'\\[nrt\'\"\\]', String.Escape),
+        (r'[^\\\"\n]+', Name),
+        (r'"', Name, '#pop'),
+        (r'\\', Name),
+    ]
+
+    # === Tokens ===
+
     tokens = {
         'root': [
+            # Whitespace
             (r'\n', Whitespace),
             (r'\s+', Whitespace),
-            (r'//.*?\n', Comment.Single),
+
+            # Comments
+            (r'//!.*$', Comment.Special),
+            (r'///.*$', Comment.Doc),
+            (r'//.*$', Comment.Single),
 
             # Keywords
             statement_keywords,
@@ -85,41 +148,40 @@ class ZigLexer(RegexLexer):
             conditional_keywords,
             other_keywords,
 
-            # Floats
-            (r'0x[0-9a-fA-F]+\.[0-9a-fA-F]+([pP][\-+]?[0-9a-fA-F]+)?', Number.Float),
-            (r'0x[0-9a-fA-F]+\.?[pP][\-+]?[0-9a-fA-F]+', Number.Float),
-            (r'[0-9]+\.[0-9]+([eE][-+]?[0-9]+)?', Number.Float),
-            (r'[0-9]+\.?[eE][-+]?[0-9]+', Number.Float),
+            # Number literals
+            hex_float,
+            dec_float,
+            (r'0b[01][01_]*', Number.Bin),
+            (r'0o[0-7][0-7_]*', Number.Oct),
+            (r'0x[0-9a-fA-F][0-9a-fA-F_]*', Number.Hex),
+            (r'[0-9][0-9_]*', Number.Integer),
 
-            # Integers
-            (r'0b[01]+', Number.Bin),
-            (r'0o[0-7]+', Number.Oct),
-            (r'0x[0-9a-fA-F]+', Number.Hex),
-            (r'[0-9]+', Number.Integer),
+            # Identifiers
+            (r'@[a-zA-Z_][a-zA-Z0-9_]*', Name.Builtin),
+            (r'@"', Name, 'quoted_ident'),
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
 
-            # Identifier
-            (r'@[a-zA-Z_]\w*', Name.Builtin),
-            (r'[a-zA-Z_]\w*', Name),
+            # Character literal
+            char_literal,
 
-            # Characters
-            (r'\'\\\'\'', String.Escape),
-            (r'\'\\(x[a-fA-F0-9]{2}|u[a-fA-F0-9]{4}|U[a-fA-F0-9]{6}|[nr\\t\'"])\'',
-             String.Escape),
-            (r'\'[^\\\']\'', String),
-
-            # Strings
+            # String literals
             (r'\\\\[^\n]*', String.Heredoc),
-            (r'c\\\\[^\n]*', String.Heredoc),
-            (r'c?"', String, 'string'),
+            (r'"', String, 'string'),
 
-            # Operators, Punctuation
-            (r'[+%=><|^!?/\-*&~:]', Operator),
-            (r'[{}()\[\],.;]', Punctuation)
+            # Operators
+            operators_4char,
+            operators_3char,
+            operators_2char,
+            (r'[+\-*/%&|^~!<>=]', Operator),
+
+            # Punctuation
+            (r'\.\.\.', Punctuation),
+            (r'=>', Punctuation),
+            (r'->', Punctuation),
+            (r'[{}()\[\],.;:?.]+', Punctuation),
         ],
-        'string': [
-            (r'\\(x[a-fA-F0-9]{2}|u[a-fA-F0-9]{4}|U[a-fA-F0-9]{6}|[nr\\t\'"])',
-             String.Escape),
-            (r'[^\\"\n]+', String),
-            (r'"', String, '#pop')
-        ]
+
+        'string': string_rules,
+
+        'quoted_ident': quoted_ident_rules,
     }
