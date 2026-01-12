@@ -18,7 +18,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 from pygments import unistring as uni
 
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
-           'Python2Lexer', 'Python2TracebackLexer',
+           'Python2Lexer', 'Python2TracebackLexer', "PytestSessionLexer", 
            'CythonLexer', 'DgLexer', 'NumPyLexer']
 
 
@@ -824,6 +824,51 @@ class Python2TracebackLexer(RegexLexer):
             (r'( {4,})(\^)', bygroups(Text, Punctuation.Marker), '#pop'),
             default('#pop'),
         ],
+    }
+
+
+class PytestSessionLexer(RegexLexer):
+    """
+    Lexer for pytest session output.
+
+    This lexer highlights:
+    * section headings like "==== FAILURES ===="
+    * subtest lines such as ">   FAILED subtests for..."
+    * captured stdout/stderr markers
+    * assertions and error lines (E   AssertionError)
+    * file:line references
+    """
+
+    name = "Pytest Session"
+    aliases = ["pytest"]
+    filenames = []
+    flags = re.MULTILINE
+
+    tokens = {
+        "root": [
+            # === FAILURES === headers / === ERRORS ===
+            (r"={4,}.*?={4,}", Generic.Heading),
+
+            # --- Captured stdout/stderr --- style headers
+            (r"-{3,}.*?-{3,}", Generic.Subheading),
+
+            # Subtest lines, e.g.:
+            # FAILED [100%] tests/test_file.py::TestClass::test_method[subtest x]
+            (
+                r"^(FAILED|PASSED|ERROR|SKIPPED).*?\[.*?\].*$",
+                Generic.Strong,
+            ),
+
+            # E   AssertionError: message
+            (r"^E\s+.*", Generic.Error),
+
+            # pytest error location lines
+            # example: tests/test_file.py:14: AssertionError
+            (r"^[^\s]+\.py:\d+.*$", Generic.Traceback),
+
+            # fallback
+            (r".+", Text),
+        ]
     }
 
 
