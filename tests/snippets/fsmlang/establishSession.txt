@@ -1,0 +1,172 @@
+---input---
+event MESSAGE_RECEIVED, SESSION_ESTABLISHED;
+    machine establishSession
+    {
+    event ESTABLISH_SESSION_REQUEST, STEP0_RESPONSE, STEP1_RESPONSE;
+    event parent::MESSAGE_RECEIVED;
+
+    state IDLE, AWAITING_RESPONSE;
+
+    /** Start the session establishment process. */
+    action sendStep0Message[ESTABLISH_SESSION_REQUEST, IDLE]  transition AWAITING_RESPONSE;
+
+    /** Continue session establisment */
+    action sendStep1Message[STEP0_RESPONSE, AWAITING_RESPONSE];
+
+    /** Notify parent that session is established. */
+    action notifyParent[STEP1_RESPONSE, AWAITING_RESPONSE] transition IDLE;
+
+    /** Parse the incoming message */
+    action parseMessage[MESSAGE_RECEIVED, AWAITING_RESPONSE];
+
+    /* these lines are informational; they affect the html output, but do not affect any C code generated. */
+    sendStep0Message returns noEvent;
+        
+    sendStep1Message returns noEvent;
+        
+    notifyParent     returns parent::SESSION_ESTABLISHED;
+
+    parseMessage returns STEP0_RESPONSE, STEP1_RESPONSE, noEvent;
+    }
+
+---tokens---
+'event'       Keyword.Declaration
+' '           Text.Whitespace
+'MESSAGE_RECEIVED' Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'SESSION_ESTABLISHED' Name.Variable
+';'           Punctuation
+'\n    '      Text.Whitespace
+'machine'     Keyword.Declaration
+' '           Text.Whitespace
+'establishSession' Name.Variable
+'\n    '      Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'event'       Keyword.Declaration
+' '           Text.Whitespace
+'ESTABLISH_SESSION_REQUEST' Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'STEP0_RESPONSE' Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'STEP1_RESPONSE' Name.Variable
+';'           Punctuation
+'\n    '      Text.Whitespace
+'event'       Keyword.Declaration
+' '           Text.Whitespace
+'parent'      Keyword.Reserved
+'::'          Operator
+'MESSAGE_RECEIVED' Name.Variable
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'state'       Keyword.Declaration
+' '           Text.Whitespace
+'IDLE'        Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'AWAITING_RESPONSE' Name.Variable
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'/** Start the session establishment process. */' Comment.Special
+'\n    '      Text.Whitespace
+'action'      Keyword.Declaration
+' '           Text.Whitespace
+'sendStep0Message' Name.Function
+'['           Punctuation
+'ESTABLISH_SESSION_REQUEST' Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'IDLE'        Name.Variable
+']'           Punctuation
+'  '          Text.Whitespace
+'transition'  Keyword.Reserved
+' '           Text.Whitespace
+'AWAITING_RESPONSE' Name.Variable
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'/** Continue session establisment */' Comment.Special
+'\n    '      Text.Whitespace
+'action'      Keyword.Declaration
+' '           Text.Whitespace
+'sendStep1Message' Name.Function
+'['           Punctuation
+'STEP0_RESPONSE' Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'AWAITING_RESPONSE' Name.Variable
+']'           Punctuation
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'/** Notify parent that session is established. */' Comment.Special
+'\n    '      Text.Whitespace
+'action'      Keyword.Declaration
+' '           Text.Whitespace
+'notifyParent' Name.Function
+'['           Punctuation
+'STEP1_RESPONSE' Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'AWAITING_RESPONSE' Name.Variable
+']'           Punctuation
+' '           Text.Whitespace
+'transition'  Keyword.Reserved
+' '           Text.Whitespace
+'IDLE'        Name.Variable
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'/** Parse the incoming message */' Comment.Special
+'\n    '      Text.Whitespace
+'action'      Keyword.Declaration
+' '           Text.Whitespace
+'parseMessage' Name.Function
+'['           Punctuation
+'MESSAGE_RECEIVED' Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'AWAITING_RESPONSE' Name.Variable
+']'           Punctuation
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'/* these lines are informational; they affect the html output, but do not affect any C code generated. */' Comment.Multiline
+'\n    '      Text.Whitespace
+'sendStep0Message' Name.Function
+' '           Text.Whitespace
+'returns'     Keyword.Reserved
+' '           Text.Whitespace
+'noEvent'     Keyword.Reserved
+';'           Punctuation
+'\n        \n    ' Text.Whitespace
+'sendStep1Message' Name.Function
+' '           Text.Whitespace
+'returns'     Keyword.Reserved
+' '           Text.Whitespace
+'noEvent'     Keyword.Reserved
+';'           Punctuation
+'\n        \n    ' Text.Whitespace
+'notifyParent' Name.Function
+'     '       Text.Whitespace
+'returns'     Keyword.Reserved
+' '           Text.Whitespace
+'parent'      Keyword.Reserved
+'::'          Operator
+'SESSION_ESTABLISHED' Name.Variable
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'parseMessage' Name.Function
+' '           Text.Whitespace
+'returns'     Keyword.Reserved
+' '           Text.Whitespace
+'STEP0_RESPONSE' Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'STEP1_RESPONSE' Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'noEvent'     Keyword.Reserved
+';'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace

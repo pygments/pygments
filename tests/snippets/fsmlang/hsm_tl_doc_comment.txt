@@ -1,0 +1,19 @@
+---input---
+/**
+<p>This machine manages communications using a "stop and wait" protocol. Only one message is allowed to be outstanding.</p>
+<p>Before any message can be exchanged, however, a session must be established with the peer. Establishing a connection
+requires several exchanges to authenticate. The session will remain active as long as messages continue to be
+exchanged with a minimum frequency.</p>
+<p>The user of this machine calls run_hsmCommunicator, passing the SEND_MESSAGE event.  For the first message,
+the machine will be IDLE, and thus needs to queue the message, start the establishSession machine, and transition
+to the ESTABLISHING_SESSION state.  Requests to send messages received in this state will simply be queued. </p>
+<p>While the top level machine is in the ESTABLISHING_SESSION state, the establishSession machine does the establishment work.</p>
+<p>When the establishSession machine receives the STEP1_RESPONSE event, it reports to the top level machine that
+the session is established by returning the parent's SESSION_ESTABLISHED event.  This will move the top level
+machine to its IN_SESSION state and cause it to send the message(s) which are enqueued.</p>
+*/
+
+---tokens---
+''            Text.Whitespace
+'/**\n<p>This machine manages communications using a "stop and wait" protocol. Only one message is allowed to be outstanding.</p>\n<p>Before any message can be exchanged, however, a session must be established with the peer. Establishing a connection\nrequires several exchanges to authenticate. The session will remain active as long as messages continue to be\nexchanged with a minimum frequency.</p>\n<p>The user of this machine calls run_hsmCommunicator, passing the SEND_MESSAGE event.  For the first message,\nthe machine will be IDLE, and thus needs to queue the message, start the establishSession machine, and transition\nto the ESTABLISHING_SESSION state.  Requests to send messages received in this state will simply be queued. </p>\n<p>While the top level machine is in the ESTABLISHING_SESSION state, the establishSession machine does the establishment work.</p>\n<p>When the establishSession machine receives the STEP1_RESPONSE event, it reports to the top level machine that\nthe session is established by returning the parent\'s SESSION_ESTABLISHED event.  This will move the top level\nmachine to its IN_SESSION state and cause it to send the message(s) which are enqueued.</p>\n*/' Comment.Special
+'\n'          Text.Whitespace

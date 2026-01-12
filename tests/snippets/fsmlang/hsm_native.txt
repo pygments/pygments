@@ -1,0 +1,32 @@
+---input---
+native
+{
+#ifndef DBG_PRINTF
+#include <stdio.h>
+#define DBG_PRINTF(A, ...) printf((A), __VA_ARGS__); printf("\n");
+#endif
+
+extern unsigned queue_count;
+}
+
+---tokens---
+'native'      Keyword.Reserved
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'#ifndef DBG_PRINTF\n' Comment.Preprosessor
+
+'#include <stdio.h>\n' Comment.Preprosessor
+
+'#define DBG_PRINTF(A, ...) printf((A), __VA_ARGS__); printf("\\n");\n' Comment.Preprosessor
+
+'#endif\n'    Comment.Preprosessor
+
+'\n'          Text.Whitespace
+
+'extern unsigned queue_count;\n' Text
+
+'}'           Punctuation
+'\n'          Text.Whitespace

@@ -161,6 +161,7 @@ LEXERS = {
     'EvoqueXmlLexer': ('pygments.lexers.templates', 'XML+Evoque', ('xml+evoque',), (), ('application/xml+evoque',)),
     'ExeclineLexer': ('pygments.lexers.shell', 'execline', ('execline',), ('*.exec',), ()),
     'EzhilLexer': ('pygments.lexers.ezhil', 'Ezhil', ('ezhil',), ('*.n',), ('text/x-ezhil',)),
+    'FSMLangLexer': ('pygments.lexers.fsmlang', 'FSMLang', ('fsmlang', 'fsm'), ('*.fsm', '*.fsms'), ()),
     'FSharpLexer': ('pygments.lexers.dotnet', 'F#', ('fsharp', 'f#'), ('*.fs', '*.fsi', '*.fsx'), ('text/x-fsharp',)),
     'FStarLexer': ('pygments.lexers.ml', 'FStar', ('fstar',), ('*.fst', '*.fsti'), ('text/x-fstar',)),
     'FactorLexer': ('pygments.lexers.factor', 'Factor', ('factor',), ('*.factor',), ('text/x-factor',)),

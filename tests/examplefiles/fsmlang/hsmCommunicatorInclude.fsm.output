@@ -1,0 +1,238 @@
+'native'      Keyword.Reserved
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'#ifndef DBG_PRINTF\n' Comment.Preprosessor
+
+'#include <stdio.h>\n' Comment.Preprosessor
+
+'#define DBG_PRINTF(A, ...) printf((A), __VA_ARGS__); printf("\\n");\n' Comment.Preprosessor
+
+'#endif\n'    Comment.Preprosessor
+
+'\n'          Text.Whitespace
+
+'extern unsigned queue_count;\n' Text
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+''            Text.Whitespace
+'/**\n<p>This machine manages communications using a "stop and wait" protocol. Only one message is allowed to be outstanding.</p>\n<p>Before any message can be exchanged, however, a session must be established with the peer. Establishing a connection\nrequires several exchanges to authenticate. The session will remain active as long as messages continue to be\nexchanged with a minimum frequency.</p>\n<p>The user of this machine calls run_hsmCommunicator, passing the SEND_MESSAGE event.  For the first message,\nthe machine will be IDLE, and thus needs to queue the message, start the establishSession machine, and transition\nto the ESTABLISHING_SESSION state.  Requests to send messages received in this state will simply be queued. </p>\n<p>While the top level machine is in the ESTABLISHING_SESSION state, the establishSession machine does the establishment work.</p>\n<p>When the establishSession machine receives the STEP1_RESPONSE event, it reports to the top level machine that\nthe session is established by returning the parent\'s SESSION_ESTABLISHED event.  This will move the top level\nmachine to its IN_SESSION state and cause it to send the message(s) which are enqueued.</p>\n*/' Comment.Special
+'\n'          Text.Whitespace
+
+'machine'     Keyword.Declaration
+' '           Text.Whitespace
+'hsmCommunicator' Name.Variable
+'\n'          Text.Whitespace
+
+'native'      Keyword.Reserved
+' '           Text.Whitespace
+'impl'        Keyword.Reserved
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+"/* \n   The barest skeleton of a queue has only a count.  We aren't really\n   sending messages, after all.\n*/" Comment.Multiline
+'\n'          Text.Whitespace
+
+'unsigned queue_count = 0;\n' Text
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'/** This event comes from our client code, asking us to send a message.\n    */' Comment.Special
+'\n    '      Text.Whitespace
+'event'       Keyword.Declaration
+' '           Text.Whitespace
+'SEND_MESSAGE' Name.Variable
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'/** This event comes from our <i>establishSession</i> submachine, indicating that it has successfully\n        completed its work.  We then forward it to our <i>sendMessage</i> submachine to indicate that\n        it may now begin to send messages.\n    */' Comment.Special
+'\n    '      Text.Whitespace
+'event'       Keyword.Declaration
+' '           Text.Whitespace
+'SESSION_ESTABLISHED' Name.Variable
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+"/** This event comes from our external timer, indicating that we've not tickled it in a while, and\n        thus should close down our session.\n    */" Comment.Special
+'\n    '      Text.Whitespace
+'event'       Keyword.Declaration
+' '           Text.Whitespace
+'SESSION_TIMEOUT' Name.Variable
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+"/** This event comes from our lower comm layers, indicating that a peer message has arrived.\n        While we're in the ESTABLISHING_SESSION state, we forward this event to the <i>establishSession</i>\n        submachine; while in the IN_SESSION state, we forward it to the <i>sendMessage</i> submachine.\n    */" Comment.Special
+'\n    '      Text.Whitespace
+'event'       Keyword.Declaration
+' '           Text.Whitespace
+'MESSAGE_RECEIVED' Name.Variable
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'/** The wakeup state.  Also, this is the state to which the machine\n        returns when a session times out.\n    */' Comment.Special
+'\n    '      Text.Whitespace
+'state'       Keyword.Declaration
+' '           Text.Whitespace
+'IDLE'        Name.Variable
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'/** The machine is establishing a session.  The actual work is being done by the <i>establishSession</i>\n        submachine.  While in this state, the <i>MESSAGE_RECEIVED</i> event is forwarded to that submachine.\n    */' Comment.Special
+'\n    '      Text.Whitespace
+'state'       Keyword.Declaration
+' '           Text.Whitespace
+'ESTABLISHING_SESSION' Name.Variable
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'/** A session has been established, and messages are being exchanged with the peer.  While in this\n        state, the <i>MESSAGE_RECEIVED</i> event is forwarded to the <i>sendMessage</i> submachine.\n    */' Comment.Special
+'\n    '      Text.Whitespace
+'state'       Keyword.Declaration
+' '           Text.Whitespace
+'IN_SESSION'  Name.Variable
+';'           Punctuation
+'\n\n\t '     Text.Whitespace
+'include'     Keyword.Reserved
+' '           Text.Whitespace
+'establishSession.fsms' Text
+'\n\n\t '     Text.Whitespace
+'include'     Keyword.Reserved
+' '           Text.Whitespace
+'"'           Punctuation
+'sendMessage.fsms' Text
+'"'           Punctuation
+'\n\n    '    Text.Whitespace
+'/* these are actions of the top level machine */' Comment.Multiline
+'\n\n    '    Text.Whitespace
+'/** Start the session establishment process by activating the <i>establishSession</i> machine. */' Comment.Special
+'\n    '      Text.Whitespace
+'action'      Keyword.Declaration
+' '           Text.Whitespace
+'startSessionEstablishment' Name.Function
+'['           Punctuation
+'SEND_MESSAGE' Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'IDLE'        Name.Variable
+']'           Punctuation
+' '           Text.Whitespace
+'transition'  Keyword.Reserved
+'  '          Text.Whitespace
+'ESTABLISHING_SESSION' Name.Variable
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'/** Start the session timer and notify the <i>sendMessage</i> machine that the session is established. */' Comment.Special
+'\n    '      Text.Whitespace
+'action'      Keyword.Declaration
+' '           Text.Whitespace
+'completeSessionStart' Name.Function
+'['           Punctuation
+'SESSION_ESTABLISHED' Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'ESTABLISHING_SESSION' Name.Variable
+']'           Punctuation
+' '           Text.Whitespace
+'transition'  Keyword.Reserved
+' '           Text.Whitespace
+'IN_SESSION'  Name.Variable
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'/** Pass the MESSAGE_RECEIVED event along. */' Comment.Special
+'\n    '      Text.Whitespace
+'action'      Keyword.Declaration
+' '           Text.Whitespace
+'passMessageReceived' Name.Function
+'['           Punctuation
+'MESSAGE_RECEIVED' Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'ESTABLISHING_SESSION' Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'IN_SESSION'  Name.Variable
+')'           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'/** Extend the session timer and queue the message */' Comment.Special
+'\n    '      Text.Whitespace
+'action'      Keyword.Declaration
+' '           Text.Whitespace
+'queueMessage' Name.Function
+'['           Punctuation
+'SEND_MESSAGE' Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'ESTABLISHING_SESSION' Name.Variable
+']'           Punctuation
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'/** Extend the session timer and pass the message to be sent to the <i>sendMessage</i> machine. */' Comment.Special
+'\n    '      Text.Whitespace
+'action'      Keyword.Declaration
+' '           Text.Whitespace
+'requestMessageTransmission' Name.Function
+'['           Punctuation
+'SEND_MESSAGE' Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'IN_SESSION'  Name.Variable
+']'           Punctuation
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'transition'  Keyword.Declaration
+' '           Text.Whitespace
+'['           Punctuation
+'SESSION_TIMEOUT' Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'IN_SESSION'  Name.Variable
+']'           Punctuation
+' '           Text.Whitespace
+'IDLE'        Name.Variable
+';'           Punctuation
+'\n\n\n    '  Text.Whitespace
+'/* these lines are informational; they affect the html output, but do not affect any C code generated. */' Comment.Multiline
+'\n    '      Text.Whitespace
+'startSessionEstablishment' Name.Function
+'   '         Text.Whitespace
+'returns'     Keyword.Reserved
+' '           Text.Whitespace
+'establishSession' Name.Variable
+'::'          Operator
+'ESTABLISH_SESSION_REQUEST' Name.Variable
+';'           Punctuation
+'\n    \n    ' Text.Whitespace
+'completeSessionStart' Name.Function
+'        '    Text.Whitespace
+'returns'     Keyword.Reserved
+' '           Text.Whitespace
+'sendMessage' Name.Variable
+'::'          Operator
+'SEND_MESSAGE' Name.Variable
+';'           Punctuation
+'\n    \n    ' Text.Whitespace
+'requestMessageTransmission' Name.Function
+'  '          Text.Whitespace
+'returns'     Keyword.Reserved
+' '           Text.Whitespace
+'sendMessage' Name.Variable
+'::'          Operator
+'SEND_MESSAGE' Name.Variable
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'queueMessage' Name.Function
+'                ' Text.Whitespace
+'returns'     Keyword.Reserved
+' '           Text.Whitespace
+'noEvent'     Keyword.Reserved
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

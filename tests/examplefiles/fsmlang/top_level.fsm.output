@@ -1,0 +1,403 @@
+''            Text.Whitespace
+'/*\n\tHere are some comments\n*/' Comment.Multiline
+'\n'          Text.Whitespace
+
+'native'      Keyword.Reserved
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'#include "test.h"\n' Comment.Preprosessor
+
+'#define INIT_FSM_DATA {.u.bop = {0}}\n' Comment.Preprosessor
+
+'#define NUM_FLOATS 1\n' Comment.Preprosessor
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'machine'     Keyword.Declaration
+' '           Text.Whitespace
+'newMachine'  Name.Variable
+'\n '         Text.Whitespace
+'on'          Keyword.Reserved
+' '           Text.Whitespace
+'transition'  Keyword.Reserved
+' '           Text.Whitespace
+'baz'         Name.Function
+';'           Punctuation
+'\n '         Text.Whitespace
+'native'      Keyword.Reserved
+' '           Text.Whitespace
+'impl'        Keyword.Reserved
+' '           Text.Whitespace
+'{'           Punctuation
+'int foo; '   Text
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'data'        Keyword.Reserved
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n\n '       Text.Whitespace
+'union\n '    Text
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'struct \n  ' Text
+'{'           Punctuation
+'\n  \t'      Text.Whitespace
+'int a[NUM_FLOATS];\n  ' Text
+'}'           Punctuation
+' '           Text.Whitespace
+'foo;\n  \n  struct\n  ' Text
+'{'           Punctuation
+'\n   '       Text.Whitespace
+'float f;\n  ' Text
+'}'           Punctuation
+' '           Text.Whitespace
+'beep;\n \n  int  bop[20];\n ' Text
+'}'           Punctuation
+' '           Text.Whitespace
+'u;\n\n'      Text
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'event'       Keyword.Declaration
+' '           Text.Whitespace
+'e1'          Name.Variable
+' '           Text.Whitespace
+'data'        Keyword.Reserved
+' \n '        Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'char  *  cp;\n  float    f;\n ' Text
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+','           Punctuation
+' '           Text.Whitespace
+'e2'          Name.Variable
+' '           Text.Whitespace
+'data'        Keyword.Reserved
+'\n '         Text.Whitespace
+'{'           Punctuation
+'\n   '       Text.Whitespace
+'int   i;\n   float f;\n ' Text
+'}'           Punctuation
+'\n '         Text.Whitespace
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'event'       Keyword.Declaration
+' '           Text.Whitespace
+'e3'          Name.Variable
+' '           Text.Whitespace
+'data'        Keyword.Reserved
+' '           Text.Whitespace
+'translator'  Keyword.Reserved
+' '           Text.Whitespace
+'xlate_e3'    Name.Function
+'\n '         Text.Whitespace
+'{'           Punctuation
+'\n   '       Text.Whitespace
+'int i;\n   struct\n   ' Text
+'{'           Punctuation
+'\n     '     Text.Whitespace
+'int i;\n     float f;\n   ' Text
+'}'           Punctuation
+' '           Text.Whitespace
+'s;\n '       Text
+'}'           Punctuation
+'\n '         Text.Whitespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'state'       Keyword.Declaration
+' '           Text.Whitespace
+'s1'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'s2'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'s3'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'s4'          Name.Variable
+';'           Punctuation
+'\n\n\t'      Text.Whitespace
+'/** a sub machine */' Comment.Special
+'\n  '        Text.Whitespace
+'machine'     Keyword.Declaration
+' '           Text.Whitespace
+'subMachine1' Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t\t'      Text.Whitespace
+'state'       Keyword.Declaration
+' '           Text.Whitespace
+'ss1'         Name.Variable
+' '           Text.Whitespace
+'on'          Keyword.Reserved
+' '           Text.Whitespace
+'entry'       Keyword.Reserved
+' '           Text.Whitespace
+'foo'         Name.Function
+' '           Text.Whitespace
+'on'          Keyword.Reserved
+' '           Text.Whitespace
+'exit'        Keyword.Reserved
+' '           Text.Whitespace
+'bar'         Name.Function
+'\n           ' Text.Whitespace
+','           Punctuation
+' '           Text.Whitespace
+'ss2'         Name.Variable
+' '           Text.Whitespace
+'on'          Keyword.Reserved
+' '           Text.Whitespace
+'entry'       Keyword.Reserved
+' '           Text.Whitespace
+'on'          Keyword.Reserved
+' '           Text.Whitespace
+'exit'        Keyword.Reserved
+'\n           ' Text.Whitespace
+','           Punctuation
+' '           Text.Whitespace
+'ss3'         Name.Variable
+' '           Text.Whitespace
+'on'          Keyword.Reserved
+' '           Text.Whitespace
+'entry'       Keyword.Reserved
+' '           Text.Whitespace
+'foo1'        Name.Function
+'\n           ' Text.Whitespace
+','           Punctuation
+' '           Text.Whitespace
+'ss4'         Name.Variable
+' '           Text.Whitespace
+'on'          Keyword.Reserved
+' '           Text.Whitespace
+'exit'        Keyword.Reserved
+' '           Text.Whitespace
+'bar1'        Name.Function
+'\n           ' Text.Whitespace
+';'           Punctuation
+'\n\t\t'      Text.Whitespace
+'event'       Keyword.Declaration
+' '           Text.Whitespace
+'ee1'         Name.Variable
+' '           Text.Whitespace
+'data'        Keyword.Reserved
+' '           Text.Whitespace
+'translator'  Keyword.Reserved
+' '           Text.Whitespace
+'ee1_dt'      Name.Function
+' \n            ' Text.Whitespace
+','           Punctuation
+' '           Text.Whitespace
+'ee2'         Name.Variable
+' '           Text.Whitespace
+','           Punctuation
+' '           Text.Whitespace
+'ee3'         Name.Variable
+'\n            ' Text.Whitespace
+';'           Punctuation
+'\n\n\t\t'    Text.Whitespace
+'action'      Keyword.Declaration
+' '           Text.Whitespace
+'aa1'         Name.Function
+'['           Punctuation
+'ee1'         Name.Variable
+','           Punctuation
+'ss1'         Name.Variable
+']'           Punctuation
+' '           Text.Whitespace
+'transition'  Keyword.Reserved
+' '           Text.Whitespace
+'ss2'         Name.Variable
+';'           Punctuation
+'\n\t\t'      Text.Whitespace
+'action'      Keyword.Declaration
+' '           Text.Whitespace
+'aa2'         Name.Function
+'['           Punctuation
+'ee2'         Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'ss1'         Name.Variable
+']'           Punctuation
+' '           Text.Whitespace
+'transition'  Keyword.Reserved
+' '           Text.Whitespace
+'ss3'         Name.Variable
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'}'           Punctuation
+'\n\n\t'      Text.Whitespace
+'/** a second sub machine */' Comment.Special
+'\n  '        Text.Whitespace
+'machine'     Keyword.Declaration
+' '           Text.Whitespace
+'subMachine2' Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t\t'      Text.Whitespace
+'state'       Keyword.Declaration
+' '           Text.Whitespace
+'sss1'        Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'sss2'        Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'sss3'        Name.Variable
+';'           Punctuation
+'\n\t\t'      Text.Whitespace
+'event'       Keyword.Declaration
+' '           Text.Whitespace
+'eee1'        Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'eee2'        Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'eee3'        Name.Variable
+';'           Punctuation
+'\n\n\t\t'    Text.Whitespace
+'action'      Keyword.Declaration
+' '           Text.Whitespace
+'aaa1'        Name.Function
+'['           Punctuation
+'eee1'        Name.Variable
+','           Punctuation
+'sss1'        Name.Variable
+']'           Punctuation
+' '           Text.Whitespace
+'transition'  Keyword.Reserved
+' '           Text.Whitespace
+'sss2'        Name.Variable
+';'           Punctuation
+'\n\t\t'      Text.Whitespace
+'action'      Keyword.Declaration
+' '           Text.Whitespace
+'aaa2'        Name.Function
+'['           Punctuation
+'eee2'        Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'sss1'        Name.Variable
+']'           Punctuation
+' '           Text.Whitespace
+'transition'  Keyword.Reserved
+' '           Text.Whitespace
+'sss3'        Name.Variable
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'}'           Punctuation
+'\n\n\t'      Text.Whitespace
+'//This is a one-line comment\n' Comment.Single
+
+''            Text.Whitespace
+'\t'          Text.Whitespace
+'action'      Keyword.Declaration
+' '           Text.Whitespace
+'a1'          Name.Function
+'['           Punctuation
+'e1'          Name.Variable
+','           Punctuation
+'s1'          Name.Variable
+']'           Punctuation
+' '           Text.Whitespace
+'transition'  Keyword.Reserved
+' '           Text.Whitespace
+'s1'          Name.Variable
+';'           Punctuation
+'\n\n\t'      Text.Whitespace
+'/**\n\t\tA Document Comment\n\t*/' Comment.Special
+'\n\t'        Text.Whitespace
+'action'      Keyword.Declaration
+' '           Text.Whitespace
+'a2'          Name.Function
+'['           Punctuation
+'e1'          Name.Variable
+','           Punctuation
+'('           Punctuation
+'s2'          Name.Variable
+','           Punctuation
+'s3'          Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'transition'  Keyword.Reserved
+' '           Text.Whitespace
+'transitionFn' Name.Function
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'guard'       Keyword.Declaration
+'['           Punctuation
+'('           Punctuation
+'e2'          Name.Variable
+','           Punctuation
+'e3'          Name.Variable
+')'           Punctuation
+','           Punctuation
+'('           Punctuation
+'s1'          Name.Variable
+','           Punctuation
+'s2'          Name.Variable
+','           Punctuation
+'s3'          Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'transitionFn1' Name.Function
+';'           Punctuation
+'\n\n\t'      Text.Whitespace
+'action'      Keyword.Declaration
+' '           Text.Whitespace
+'doNothing'   Name.Function
+'['           Punctuation
+'('           Punctuation
+'all'         Keyword.Reserved
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'s4'          Name.Variable
+']'           Punctuation
+';'           Punctuation
+'\n\n\t'      Text.Whitespace
+'transitionFn' Name.Function
+'  '          Text.Whitespace
+'returns'     Keyword.Reserved
+' '           Text.Whitespace
+'s1'          Name.Variable
+','           Punctuation
+'s2'          Name.Variable
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'transitionFn1' Name.Function
+' '           Text.Whitespace
+'returns'     Keyword.Reserved
+' '           Text.Whitespace
+'s2'          Name.Variable
+','           Punctuation
+'s3'          Name.Variable
+';'           Punctuation
+'\n\n\t'      Text.Whitespace
+'a2'          Name.Function
+' '           Text.Whitespace
+'returns'     Keyword.Reserved
+' '           Text.Whitespace
+'noEvent'     Keyword.Reserved
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

@@ -1,0 +1,13 @@
+---input---
+/** Single line document comment. */
+/**
+Multi-line document comment.
+*/
+
+---tokens---
+''            Text.Whitespace
+'/** Single line document comment. */' Comment.Special
+'\n'          Text.Whitespace
+
+'/**\nMulti-line document comment.\n*/' Comment.Special
+'\n'          Text.Whitespace

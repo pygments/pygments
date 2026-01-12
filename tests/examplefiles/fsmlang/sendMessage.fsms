@@ -1,0 +1,36 @@
+    /**
+    <p>Send a message to the peer.
+    </p>
+    <p>Since the protocol allows only one message to be outsanding, the machine dequeues and transmits a message only
+    from the IDLE state, transitioning to the AWAITING_ACK state immediately thereafter.
+    </p>
+    <p>In the AWAITNG_ACK state, incomming messages are parsed and, when an ACK is found, the machine checks the queue
+    and transitions to the IDLE state.  Checking the queue can return the SEND_MESSAGE event, which will be handled
+    from the IDLE state, thus resulting in a transmission and return to the AWAITING_ACK state.
+    </p>
+    */
+    machine sendMessage
+    {
+    event	parent::SEND_MESSAGE
+                , parent::MESSAGE_RECEIVED
+                , ACK;
+
+    state	IDLE, AWAITING_ACK;
+
+    /** Dequeue and transmit message to the peer. */
+    action	sendMessage[SEND_MESSAGE,IDLE] transition AWAITING_ACK;
+
+    /** Check queue for messages; if found return SEND_MESSAGE; otherwise, return noEvent. */
+    action	checkQueue[ACK,AWAITING_ACK]          transition IDLE;
+
+    action      parseMessage[MESSAGE_RECEIVED, AWAITING_ACK];
+
+    /* these lines are informational; they affect the html output, but do not affect any C code generated. */
+    sendMessage  returns noEvent;
+        
+    checkQueue   returns SEND_MESSAGE, noEvent;
+
+    parseMessage returns ACK, noEvent;
+
+    }
+

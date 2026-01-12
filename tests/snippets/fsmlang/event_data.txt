@@ -1,0 +1,102 @@
+---input---
+event e1
+data
+{
+	int foo;
+}
+;
+
+event e2
+data translator xlate_e2_data
+{
+	int foo;
+}
+;
+
+event e3
+data translator xlate_e2_data
+{
+	int foo;
+	struct {
+		int bar;
+		float baz;
+	} str_t;
+}
+;
+
+event e4;
+
+---tokens---
+'event'       Keyword.Declaration
+' '           Text.Whitespace
+'e1'          Name.Variable
+'\n'          Text.Whitespace
+
+'data'        Keyword.Reserved
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'int foo;\n'  Text
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'event'       Keyword.Declaration
+' '           Text.Whitespace
+'e2'          Name.Variable
+'\n'          Text.Whitespace
+
+'data'        Keyword.Reserved
+' '           Text.Whitespace
+'translator'  Keyword.Reserved
+' '           Text.Whitespace
+'xlate_e2_data' Name.Function
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'int foo;\n'  Text
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'event'       Keyword.Declaration
+' '           Text.Whitespace
+'e3'          Name.Variable
+'\n'          Text.Whitespace
+
+'data'        Keyword.Reserved
+' '           Text.Whitespace
+'translator'  Keyword.Reserved
+' '           Text.Whitespace
+'xlate_e2_data' Name.Function
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'int foo;\n\tstruct ' Text
+'{'           Punctuation
+'\n\t\t'      Text.Whitespace
+'int bar;\n\t\tfloat baz;\n\t' Text
+'}'           Punctuation
+' '           Text.Whitespace
+'str_t;\n'    Text
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'event'       Keyword.Declaration
+' '           Text.Whitespace
+'e4'          Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace

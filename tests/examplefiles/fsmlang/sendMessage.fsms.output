@@ -1,0 +1,109 @@
+''            Text.Whitespace
+'    '        Text.Whitespace
+'/**\n    <p>Send a message to the peer.\n    </p>\n    <p>Since the protocol allows only one message to be outsanding, the machine dequeues and transmits a message only\n    from the IDLE state, transitioning to the AWAITING_ACK state immediately thereafter.\n    </p>\n    <p>In the AWAITNG_ACK state, incomming messages are parsed and, when an ACK is found, the machine checks the queue\n    and transitions to the IDLE state.  Checking the queue can return the SEND_MESSAGE event, which will be handled\n    from the IDLE state, thus resulting in a transmission and return to the AWAITING_ACK state.\n    </p>\n    */' Comment.Special
+'\n    '      Text.Whitespace
+'machine'     Keyword.Declaration
+' '           Text.Whitespace
+'sendMessage' Name.Variable
+'\n    '      Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'event'       Keyword.Declaration
+'\t'          Text.Whitespace
+'parent'      Keyword.Reserved
+'::'          Operator
+'SEND_MESSAGE' Name.Variable
+'\n                ' Text.Whitespace
+','           Punctuation
+' '           Text.Whitespace
+'parent'      Keyword.Reserved
+'::'          Operator
+'MESSAGE_RECEIVED' Name.Variable
+'\n                ' Text.Whitespace
+','           Punctuation
+' '           Text.Whitespace
+'ACK'         Name.Variable
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'state'       Keyword.Declaration
+'\t'          Text.Whitespace
+'IDLE'        Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'AWAITING_ACK' Name.Variable
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'/** Dequeue and transmit message to the peer. */' Comment.Special
+'\n    '      Text.Whitespace
+'action'      Keyword.Declaration
+'\t'          Text.Whitespace
+'sendMessage' Name.Function
+'['           Punctuation
+'SEND_MESSAGE' Name.Variable
+','           Punctuation
+'IDLE'        Name.Variable
+']'           Punctuation
+' '           Text.Whitespace
+'transition'  Keyword.Reserved
+' '           Text.Whitespace
+'AWAITING_ACK' Name.Variable
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'/** Check queue for messages; if found return SEND_MESSAGE; otherwise, return noEvent. */' Comment.Special
+'\n    '      Text.Whitespace
+'action'      Keyword.Declaration
+'\t'          Text.Whitespace
+'checkQueue'  Name.Function
+'['           Punctuation
+'ACK'         Name.Variable
+','           Punctuation
+'AWAITING_ACK' Name.Variable
+']'           Punctuation
+'          '  Text.Whitespace
+'transition'  Keyword.Reserved
+' '           Text.Whitespace
+'IDLE'        Name.Variable
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'action'      Keyword.Declaration
+'      '      Text.Whitespace
+'parseMessage' Name.Function
+'['           Punctuation
+'MESSAGE_RECEIVED' Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'AWAITING_ACK' Name.Variable
+']'           Punctuation
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'/* these lines are informational; they affect the html output, but do not affect any C code generated. */' Comment.Multiline
+'\n    '      Text.Whitespace
+'sendMessage' Name.Function
+'  '          Text.Whitespace
+'returns'     Keyword.Reserved
+' '           Text.Whitespace
+'noEvent'     Keyword.Reserved
+';'           Punctuation
+'\n        \n    ' Text.Whitespace
+'checkQueue'  Name.Function
+'   '         Text.Whitespace
+'returns'     Keyword.Reserved
+' '           Text.Whitespace
+'SEND_MESSAGE' Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'noEvent'     Keyword.Reserved
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'parseMessage' Name.Function
+' '           Text.Whitespace
+'returns'     Keyword.Reserved
+' '           Text.Whitespace
+'ACK'         Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'noEvent'     Keyword.Reserved
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace

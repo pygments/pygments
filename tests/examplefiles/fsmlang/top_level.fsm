@@ -1,0 +1,100 @@
+/*
+	Here are some comments
+*/
+native
+{
+#include "test.h"
+#define INIT_FSM_DATA {.u.bop = {0}}
+#define NUM_FLOATS 1
+}
+
+machine newMachine
+ on transition baz;
+ native impl {int foo; }
+{
+data
+{
+
+ union
+ {
+  struct 
+  {
+  	int a[NUM_FLOATS];
+  } foo;
+  
+  struct
+  {
+   float f;
+  } beep;
+ 
+  int  bop[20];
+ } u;
+
+}
+
+event e1 data 
+ {
+  char  *  cp;
+  float    f;
+ }
+, e2 data
+ {
+   int   i;
+   float f;
+ }
+ ;
+event e3 data translator xlate_e3
+ {
+   int i;
+   struct
+   {
+     int i;
+     float f;
+   } s;
+ }
+ ;
+
+state s1, s2, s3, s4;
+
+	/** a sub machine */
+  machine subMachine1 {
+		state ss1 on entry foo on exit bar
+           , ss2 on entry on exit
+           , ss3 on entry foo1
+           , ss4 on exit bar1
+           ;
+		event ee1 data translator ee1_dt 
+            , ee2 , ee3
+            ;
+
+		action aa1[ee1,ss1] transition ss2;
+		action aa2[ee2, ss1] transition ss3;
+	}
+
+	/** a second sub machine */
+  machine subMachine2 {
+		state sss1, sss2, sss3;
+		event eee1, eee2, eee3;
+
+		action aaa1[eee1,sss1] transition sss2;
+		action aaa2[eee2, sss1] transition sss3;
+	}
+
+	//This is a one-line comment
+	action a1[e1,s1] transition s1;
+
+	/**
+		A Document Comment
+	*/
+	action a2[e1,(s2,s3)] transition transitionFn;
+	guard[(e2,e3),(s1,s2,s3)] transitionFn1;
+
+	action doNothing[(all), s4];
+
+	transitionFn  returns s1,s2;
+	transitionFn1 returns s2,s3;
+
+	a2 returns noEvent;
+
+}
+

@@ -1,0 +1,63 @@
+---input---
+sequence seq start s e, ee, eee;
+sequence start s1 e1, e2, e3;
+sequence seq1 e1, e2, e3;
+sequence e1, e2;
+
+---tokens---
+'sequence'    Keyword.Declaration
+' '           Text.Whitespace
+'seq'         Name.Variable
+' '           Text.Whitespace
+'start'       Keyword.Reserved
+' '           Text.Whitespace
+'s'           Name.Variable
+' '           Text.Whitespace
+'e'           Name.Variable
+','           Operator
+' '           Text.Whitespace
+'ee'          Name.Variable
+','           Operator
+' '           Text.Whitespace
+'eee'         Name.Variable
+';'           Operator
+'\n'          Text.Whitespace
+
+'sequence'    Keyword.Declaration
+' '           Text.Whitespace
+'start'       Keyword.Reserved
+' '           Text.Whitespace
+'s1'          Name.Variable
+' '           Text.Whitespace
+'e1'          Name.Variable
+','           Operator
+' '           Text.Whitespace
+'e2'          Name.Variable
+','           Operator
+' '           Text.Whitespace
+'e3'          Name.Variable
+';'           Operator
+'\n'          Text.Whitespace
+
+'sequence'    Keyword.Declaration
+' '           Text.Whitespace
+'seq1'        Name.Variable
+' '           Text.Whitespace
+'e1'          Name.Variable
+','           Operator
+' '           Text.Whitespace
+'e2'          Name.Variable
+','           Operator
+' '           Text.Whitespace
+'e3'          Name.Variable
+';'           Operator
+'\n'          Text.Whitespace
+
+'sequence'    Keyword.Declaration
+' '           Text.Whitespace
+'e1'          Name.Variable
+','           Operator
+' '           Text.Whitespace
+'e2'          Name.Variable
+';'           Operator
+'\n'          Text.Whitespace

@@ -1,0 +1,115 @@
+---input---
+native
+{
+#include <stdio.h>
+#define DBG_PRINTF(A, ...) printf((A),__VA_ARGS__); printf("\n");
+}
+
+native
+{
+typedef struct
+{
+	int a;
+} str_t;
+}
+
+native implementation
+{
+typedef union
+{
+	int a;
+	float b;
+} union_t;
+}
+
+native impl prologue
+{
+#error "cause"
+}
+
+native epilogue
+{
+#error "cause"
+}
+
+---tokens---
+'native'      Keyword.Reserved
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'#include <stdio.h>\n' Comment.Preprosessor
+
+'#define DBG_PRINTF(A, ...) printf((A),__VA_ARGS__); printf("\\n");\n' Comment.Preprosessor
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'native'      Keyword.Reserved
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'typedef struct\n' Text
+
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'int a;\n'    Text
+
+'}'           Punctuation
+' '           Text.Whitespace
+'str_t;\n'    Text
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'native'      Keyword.Reserved
+' '           Text.Whitespace
+'implementation' Keyword.Reserved
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'typedef union\n' Text
+
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'int a;\n\tfloat b;\n' Text
+
+'}'           Punctuation
+' '           Text.Whitespace
+'union_t;\n'  Text
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'native'      Keyword.Reserved
+' '           Text.Whitespace
+'impl'        Keyword.Reserved
+' '           Text.Whitespace
+'prologue'    Keyword.Reserved
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'#error "cause"\n' Comment.Preprosessor
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'native'      Keyword.Reserved
+' '           Text.Whitespace
+'epilogue'    Keyword.Reserved
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'#error "cause"\n' Comment.Preprosessor
+
+'}'           Punctuation
+'\n'          Text.Whitespace

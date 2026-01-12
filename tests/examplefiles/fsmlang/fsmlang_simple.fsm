@@ -1,0 +1,11 @@
+machine simple
+	actions return events;
+{
+	event e1, e2;
+	state s1, s2;
+
+	action a1[e1, s1] transition s2;
+
+	sequence one start s1 e1, e2;
+}
+

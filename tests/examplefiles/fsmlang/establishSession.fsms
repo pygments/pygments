@@ -1,0 +1,41 @@
+    /**
+    <p>Establish a connection with the peer.
+    </p>
+    <p>Two messages must be exchanged with the peer to successfully establish the session.  The machine needs
+    only two states, IDLE and AWAITING_RESPONSE since the top level machine tracks whether or not it is in a
+    session.  The AWAITING_RESPONSE state serves for both required messages, since the receipt of each message produces
+    a unique event.
+    </p>
+    <p>When the STEP1_RESPONSE event is received, the session is considered established.  This machine will then
+    return the parent's SESSION_ESTABLISHED message and move to its IDLE state.
+    </p>
+    */
+    machine establishSession
+    {
+    event ESTABLISH_SESSION_REQUEST, STEP0_RESPONSE, STEP1_RESPONSE;
+    event parent::MESSAGE_RECEIVED;
+
+    state IDLE, AWAITING_RESPONSE;
+
+    /** Start the session establishment process. */
+    action sendStep0Message[ESTABLISH_SESSION_REQUEST, IDLE]  transition AWAITING_RESPONSE;
+
+    /** Continue session establisment */
+    action sendStep1Message[STEP0_RESPONSE, AWAITING_RESPONSE];
+
+    /** Notify parent that session is established. */
+    action notifyParent[STEP1_RESPONSE, AWAITING_RESPONSE] transition IDLE;
+
+    /** Parse the incoming message */
+    action parseMessage[MESSAGE_RECEIVED, AWAITING_RESPONSE];
+
+    /* these lines are informational; they affect the html output, but do not affect any C code generated. */
+    sendStep0Message returns noEvent;
+        
+    sendStep1Message returns noEvent;
+        
+    notifyParent     returns parent::SESSION_ESTABLISHED;
+
+    parseMessage returns STEP0_RESPONSE, STEP1_RESPONSE, noEvent;
+    }
+

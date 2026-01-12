@@ -1,0 +1,70 @@
+---input---
+event e1, e2;
+state s1, s2;
+action a1[e1,s1] transition s2;
+action a1[e2,s1] transition tfn1;
+action a1[e2,s1] guard tfn1;
+
+---tokens---
+'event'       Keyword.Declaration
+' '           Text.Whitespace
+'e1'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'e2'          Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'state'       Keyword.Declaration
+' '           Text.Whitespace
+'s1'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'s2'          Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'action'      Keyword.Declaration
+' '           Text.Whitespace
+'a1'          Name.Function
+'['           Punctuation
+'e1'          Name.Variable
+','           Punctuation
+'s1'          Name.Variable
+']'           Punctuation
+' '           Text.Whitespace
+'transition'  Keyword.Reserved
+' '           Text.Whitespace
+'s2'          Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'action'      Keyword.Declaration
+' '           Text.Whitespace
+'a1'          Name.Function
+'['           Punctuation
+'e2'          Name.Variable
+','           Punctuation
+'s1'          Name.Variable
+']'           Punctuation
+' '           Text.Whitespace
+'transition'  Keyword.Reserved
+' '           Text.Whitespace
+'tfn1'        Name.Function
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'action'      Keyword.Declaration
+' '           Text.Whitespace
+'a1'          Name.Function
+'['           Punctuation
+'e2'          Name.Variable
+','           Punctuation
+'s1'          Name.Variable
+']'           Punctuation
+' '           Text.Whitespace
+'guard'       Keyword.Reserved
+' '           Text.Whitespace
+'tfn1'        Name.Function
+';'           Punctuation
+'\n'          Text.Whitespace

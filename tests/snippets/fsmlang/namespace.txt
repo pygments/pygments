@@ -1,0 +1,27 @@
+---input---
+parent::EVENT_1;
+returns sub1::EVENT_2;
+returns parent::EVENT_1;
+
+---tokens---
+'parent'      Keyword.Reserved
+'::'          Operator
+'EVENT_1'     Error
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'returns'     Keyword.Reserved
+' '           Text.Whitespace
+'sub1'        Name.Variable
+'::'          Operator
+'EVENT_2'     Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'returns'     Keyword.Reserved
+' '           Text.Whitespace
+'parent'      Keyword.Reserved
+'::'          Operator
+'EVENT_1'     Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace

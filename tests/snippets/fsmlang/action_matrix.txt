@@ -1,0 +1,104 @@
+---input---
+event e1, e2;
+state s1, s2, s3;
+action a1 [e1, s1 ];
+action a1 [(e1,e2), s1 ];
+action a1 [e1, (s1, s2) ];
+action a1 [(e1,e2), (s1,s2,s3) ];
+
+---tokens---
+'event'       Keyword.Declaration
+' '           Text.Whitespace
+'e1'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'e2'          Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'state'       Keyword.Declaration
+' '           Text.Whitespace
+'s1'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'s2'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'s3'          Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'action'      Keyword.Declaration
+' '           Text.Whitespace
+'a1'          Name.Function
+' '           Text.Whitespace
+'['           Punctuation
+'e1'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'s1'          Name.Variable
+' '           Text.Whitespace
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'action'      Keyword.Declaration
+' '           Text.Whitespace
+'a1'          Name.Function
+' '           Text.Whitespace
+'['           Punctuation
+'('           Punctuation
+'e1'          Name.Variable
+','           Punctuation
+'e2'          Name.Variable
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'s1'          Name.Variable
+' '           Text.Whitespace
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'action'      Keyword.Declaration
+' '           Text.Whitespace
+'a1'          Name.Function
+' '           Text.Whitespace
+'['           Punctuation
+'e1'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'s1'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'s2'          Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'action'      Keyword.Declaration
+' '           Text.Whitespace
+'a1'          Name.Function
+' '           Text.Whitespace
+'['           Punctuation
+'('           Punctuation
+'e1'          Name.Variable
+','           Punctuation
+'e2'          Name.Variable
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'s1'          Name.Variable
+','           Punctuation
+'s2'          Name.Variable
+','           Punctuation
+'s3'          Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

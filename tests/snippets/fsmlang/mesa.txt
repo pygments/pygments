@@ -1,0 +1,57 @@
+---input---
+machine foo
+{
+event e1, e2;
+event e1;
+state s1, s2;
+state s2;
+action a1;
+}
+
+---tokens---
+'machine'     Keyword.Declaration
+' '           Text.Whitespace
+'foo'         Name.Variable
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'event'       Keyword.Declaration
+' '           Text.Whitespace
+'e1'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'e2'          Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'event'       Keyword.Declaration
+' '           Text.Whitespace
+'e1'          Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'state'       Keyword.Declaration
+' '           Text.Whitespace
+'s1'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'s2'          Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'state'       Keyword.Declaration
+' '           Text.Whitespace
+'s2'          Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'action'      Keyword.Declaration
+' '           Text.Whitespace
+'a1'          Name.Function
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

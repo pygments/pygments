@@ -1,0 +1,103 @@
+native
+{
+#ifndef DBG_PRINTF
+#include <stdio.h>
+#define DBG_PRINTF(A, ...) printf((A), __VA_ARGS__); printf("\n");
+#endif
+
+extern unsigned queue_count;
+}
+
+/**
+<p>This machine manages communications using a "stop and wait" protocol. Only one message is allowed to be outstanding.</p>
+<p>Before any message can be exchanged, however, a session must be established with the peer. Establishing a connection
+requires several exchanges to authenticate. The session will remain active as long as messages continue to be
+exchanged with a minimum frequency.</p>
+<p>The user of this machine calls run_hsmCommunicator, passing the SEND_MESSAGE event.  For the first message,
+the machine will be IDLE, and thus needs to queue the message, start the establishSession machine, and transition
+to the ESTABLISHING_SESSION state.  Requests to send messages received in this state will simply be queued. </p>
+<p>While the top level machine is in the ESTABLISHING_SESSION state, the establishSession machine does the establishment work.</p>
+<p>When the establishSession machine receives the STEP1_RESPONSE event, it reports to the top level machine that
+the session is established by returning the parent's SESSION_ESTABLISHED event.  This will move the top level
+machine to its IN_SESSION state and cause it to send the message(s) which are enqueued.</p>
+*/
+machine hsmCommunicator
+native impl
+{
+/* 
+   The barest skeleton of a queue has only a count.  We aren't really
+   sending messages, after all.
+*/
+unsigned queue_count = 0;
+}
+{
+    /** This event comes from our client code, asking us to send a message.
+    */
+    event SEND_MESSAGE;
+
+    /** This event comes from our <i>establishSession</i> submachine, indicating that it has successfully
+        completed its work.  We then forward it to our <i>sendMessage</i> submachine to indicate that
+        it may now begin to send messages.
+    */
+    event SESSION_ESTABLISHED;
+
+    /** This event comes from our external timer, indicating that we've not tickled it in a while, and
+        thus should close down our session.
+    */
+    event SESSION_TIMEOUT;
+
+    /** This event comes from our lower comm layers, indicating that a peer message has arrived.
+        While we're in the ESTABLISHING_SESSION state, we forward this event to the <i>establishSession</i>
+        submachine; while in the IN_SESSION state, we forward it to the <i>sendMessage</i> submachine.
+    */
+    event MESSAGE_RECEIVED;
+
+    /** The wakeup state.  Also, this is the state to which the machine
+        returns when a session times out.
+    */
+    state IDLE;
+
+    /** The machine is establishing a session.  The actual work is being done by the <i>establishSession</i>
+        submachine.  While in this state, the <i>MESSAGE_RECEIVED</i> event is forwarded to that submachine.
+    */
+    state ESTABLISHING_SESSION;
+
+    /** A session has been established, and messages are being exchanged with the peer.  While in this
+        state, the <i>MESSAGE_RECEIVED</i> event is forwarded to the <i>sendMessage</i> submachine.
+    */
+    state IN_SESSION;
+
+	 include establishSession.fsms
+
+	 include "sendMessage.fsms"
+
+    /* these are actions of the top level machine */
+
+    /** Start the session establishment process by activating the <i>establishSession</i> machine. */
+    action startSessionEstablishment[SEND_MESSAGE, IDLE] transition  ESTABLISHING_SESSION;
+
+    /** Start the session timer and notify the <i>sendMessage</i> machine that the session is established. */
+    action completeSessionStart[SESSION_ESTABLISHED, ESTABLISHING_SESSION] transition IN_SESSION;
+
+    /** Pass the MESSAGE_RECEIVED event along. */
+    action passMessageReceived[MESSAGE_RECEIVED, (ESTABLISHING_SESSION, IN_SESSION)];
+
+    /** Extend the session timer and queue the message */
+    action queueMessage[SEND_MESSAGE, ESTABLISHING_SESSION];
+
+    /** Extend the session timer and pass the message to be sent to the <i>sendMessage</i> machine. */
+    action requestMessageTransmission[SEND_MESSAGE, IN_SESSION];
+
+    transition [SESSION_TIMEOUT, IN_SESSION] IDLE;
+
+
+    /* these lines are informational; they affect the html output, but do not affect any C code generated. */
+    startSessionEstablishment   returns establishSession::ESTABLISH_SESSION_REQUEST;
+    
+    completeSessionStart        returns sendMessage::SEND_MESSAGE;
+    
+    requestMessageTransmission  returns sendMessage::SEND_MESSAGE;
+
+    queueMessage                returns noEvent;
+}
+

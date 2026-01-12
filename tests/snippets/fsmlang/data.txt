@@ -1,0 +1,40 @@
+---input---
+machine foo
+{
+data
+{
+  int a;
+  struct {
+   1,2,3
+  } str;
+}
+}
+
+
+---tokens---
+'machine'     Keyword.Declaration
+' '           Text.Whitespace
+'foo'         Name.Variable
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'data'        Keyword.Reserved
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'int a;\n  struct ' Text
+'{'           Punctuation
+'\n   '       Text.Whitespace
+'1,2,3\n  '   Text
+'}'           Punctuation
+' '           Text.Whitespace
+'str;\n'      Text
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

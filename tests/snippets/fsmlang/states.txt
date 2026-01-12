@@ -1,0 +1,118 @@
+---input---
+state s1 on entry on exit;
+state s2 on
+	entry on
+	exit;
+state s3
+	on entry s3_entry
+	on exit s3_exit
+	;
+state s4
+	on entry
+	on exit s4_exit
+	;
+state
+ s5
+	on entry
+	on exit s5_exit
+ ,
+ s6
+	on entry s6_entry
+	on exit
+	;
+
+---tokens---
+'state'       Keyword.Declaration
+' '           Text.Whitespace
+'s1'          Name.Variable
+' '           Text.Whitespace
+'on'          Keyword.Reserved
+' '           Text.Whitespace
+'entry'       Keyword.Reserved
+' '           Text.Whitespace
+'on'          Keyword.Reserved
+' '           Text.Whitespace
+'exit'        Keyword.Reserved
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'state'       Name.Variable
+' '           Text.Whitespace
+'s2'          Name.Variable
+' '           Text.Whitespace
+'on'          Keyword.Reserved
+'\n\t'        Text.Whitespace
+'entry'       Keyword.Reserved
+' '           Text.Whitespace
+'on'          Keyword.Reserved
+'\n\t'        Text.Whitespace
+'exit'        Keyword.Reserved
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'state'       Name.Variable
+' '           Text.Whitespace
+'s3'          Name.Variable
+'\n\t'        Text.Whitespace
+'on'          Keyword.Reserved
+' '           Text.Whitespace
+'entry'       Keyword.Reserved
+' '           Text.Whitespace
+'s3_entry'    Name.Function
+'\n\t'        Text.Whitespace
+'on'          Keyword.Reserved
+' '           Text.Whitespace
+'exit'        Keyword.Reserved
+' '           Text.Whitespace
+'s3_exit'     Name.Function
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'state'       Keyword.Declaration
+' '           Text.Whitespace
+'s4'          Name.Variable
+'\n\t'        Text.Whitespace
+'on'          Keyword.Reserved
+' '           Text.Whitespace
+'entry'       Keyword.Reserved
+'\n\t'        Text.Whitespace
+'on'          Keyword.Reserved
+' '           Text.Whitespace
+'exit'        Keyword.Reserved
+' '           Text.Whitespace
+'s4_exit'     Name.Function
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'state'       Keyword.Declaration
+'\n '         Text.Whitespace
+'s5'          Name.Variable
+'\n\t'        Text.Whitespace
+'on'          Keyword.Reserved
+' '           Text.Whitespace
+'entry'       Keyword.Reserved
+'\n\t'        Text.Whitespace
+'on'          Keyword.Reserved
+' '           Text.Whitespace
+'exit'        Keyword.Reserved
+' '           Text.Whitespace
+'s5_exit'     Name.Function
+'\n '         Text.Whitespace
+','           Punctuation
+'\n '         Text.Whitespace
+'s6'          Name.Variable
+'\n\t'        Text.Whitespace
+'on'          Keyword.Reserved
+' '           Text.Whitespace
+'entry'       Keyword.Reserved
+' '           Text.Whitespace
+'s6_entry'    Name.Function
+'\n\t'        Text.Whitespace
+'on'          Keyword.Reserved
+' '           Text.Whitespace
+'exit'        Keyword.Reserved
+'\n\t'        Text.Whitespace
+';'           Punctuation
+'\n'          Text.Whitespace
