@@ -84,31 +84,37 @@
 '* '          Generic.Heading
 'COMMENT'     Comment.Preproc
 ' heading'    Generic.Heading
+'                                                       :tag:' Generic.Emph
 '\n'          Text
 
 '** '         Generic.Subheading
 'COMMENT'     Comment.Preproc
 ' subheading' Generic.Subheading
+'                                                   :tag:' Generic.Emph
 '\n'          Text
 
 '* '          Generic.Heading
 'TODO'        Generic.Error
 ' heading'    Generic.Heading
+'                                                          :tag:' Generic.Emph
 '\n'          Text
 
 '** '         Generic.Subheading
 'TODO'        Generic.Error
 ' subheading' Generic.Subheading
+'                                                      :tag:' Generic.Emph
 '\n'          Text
 
 '* '          Generic.Heading
 'DONE'        Generic.Deleted
 ' heading'    Generic.Heading
+'                                                          :tag:' Generic.Emph
 '\n'          Text
 
 '** '         Generic.Subheading
 'DONE'        Generic.Deleted
 ' subheading' Generic.Subheading
+'                                                      :tag:' Generic.Emph
 '\n'          Text
 
 'CLOSED: '    Generic.Deleted
