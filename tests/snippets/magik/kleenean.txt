@@ -1,0 +1,18 @@
+---input---
+_true
+_True
+_false
+_maybe
+
+---tokens---
+'_true'       Literal
+'\n'          Text.Whitespace
+
+'_True'       Literal
+'\n'          Text.Whitespace
+
+'_false'      Literal
+'\n'          Text.Whitespace
+
+'_maybe'      Literal
+'\n'          Text.Whitespace
