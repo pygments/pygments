@@ -1,0 +1,440 @@
+'package'     Keyword.Namespace
+' '           Text.Whitespace
+'wasi'        Name.Namespace
+':'           Punctuation
+'filesystem'  Name.Namespace
+'@0.2.0'      Name.Label
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'/// A file descriptor resource' Comment.Single
+'\n'          Text.Whitespace
+
+'@since'      Name.Decorator
+'('           Punctuation
+'version'     Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0.2.0'       Literal.Number
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'interface'   Keyword
+' '           Text.Whitespace
+'types'       Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'use'         Keyword
+' '           Text.Whitespace
+'wasi'        Name
+':'           Punctuation
+'clocks'      Name
+'/'           Punctuation
+'wall-clock'  Name
+'.'           Punctuation
+'{'           Punctuation
+'datetime'    Name
+'}'           Punctuation
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'/// File statistics' Comment.Single
+'\n    '      Text.Whitespace
+'record'      Keyword
+' '           Text.Whitespace
+'stat'        Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'ino'         Name
+':'           Punctuation
+' '           Text.Whitespace
+'u64'         Keyword.Type
+','           Punctuation
+'\n        '  Text.Whitespace
+'size'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'u64'         Keyword.Type
+','           Punctuation
+'\n        '  Text.Whitespace
+'mtime'       Name
+':'           Punctuation
+' '           Text.Whitespace
+'datetime'    Name
+','           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n\n    '    Text.Whitespace
+'/// Error codes' Comment.Single
+'\n    '      Text.Whitespace
+'enum'        Keyword
+' '           Text.Whitespace
+'errno'       Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'too-big'     Name
+','           Punctuation
+'\n        '  Text.Whitespace
+'too-small'   Name
+','           Punctuation
+'\n        '  Text.Whitespace
+'not-found'   Name
+','           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n\n    '    Text.Whitespace
+'/// Permission flags' Comment.Single
+'\n    '      Text.Whitespace
+'flags'       Keyword
+' '           Text.Whitespace
+'permissions' Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'read'        Name
+','           Punctuation
+'\n        '  Text.Whitespace
+'write'       Name
+','           Punctuation
+'\n        '  Text.Whitespace
+'exec'        Name
+','           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n\n    '    Text.Whitespace
+'/// A variant type' Comment.Single
+'\n    '      Text.Whitespace
+'variant'     Keyword
+' '           Text.Whitespace
+'filter'      Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'all'         Name
+','           Punctuation
+'\n        '  Text.Whitespace
+'none'        Name
+','           Punctuation
+'\n        '  Text.Whitespace
+'some'        Name
+'('           Punctuation
+'list'        Keyword.Type
+'<'           Punctuation
+'string'      Keyword.Type
+'>'           Punctuation
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n\n    '    Text.Whitespace
+'/// Type aliases' Comment.Single
+'\n    '      Text.Whitespace
+'type'        Keyword
+' '           Text.Whitespace
+'my-u32'      Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'u32'         Keyword.Type
+';'           Punctuation
+'\n    '      Text.Whitespace
+'type'        Keyword
+' '           Text.Whitespace
+'my-result'   Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'result'      Keyword.Type
+'<'           Punctuation
+'string'      Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'errno'       Name
+'>'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'type'        Keyword
+' '           Text.Whitespace
+'fallible'    Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'result'      Keyword.Type
+'<'           Punctuation
+'_'           Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'errno'       Name
+'>'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'type'        Keyword
+' '           Text.Whitespace
+'no-err'      Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'result'      Keyword.Type
+'<'           Punctuation
+'u32'         Keyword.Type
+'>'           Punctuation
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'/// A resource type' Comment.Single
+'\n    '      Text.Whitespace
+'resource'    Keyword
+' '           Text.Whitespace
+'file'        Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'constructor' Keyword
+'('           Punctuation
+'path'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'string'      Keyword.Type
+')'           Punctuation
+';'           Punctuation
+'\n        '  Text.Whitespace
+'read'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'func'        Keyword
+'('           Punctuation
+'n'           Name
+':'           Punctuation
+' '           Text.Whitespace
+'u32'         Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'list'        Keyword.Type
+'<'           Punctuation
+'u8'          Keyword.Type
+'>'           Punctuation
+';'           Punctuation
+'\n        '  Text.Whitespace
+'write'       Name
+':'           Punctuation
+' '           Text.Whitespace
+'func'        Keyword
+'('           Punctuation
+'bytes'       Name
+':'           Punctuation
+' '           Text.Whitespace
+'list'        Keyword.Type
+'<'           Punctuation
+'u8'          Keyword.Type
+'>'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n        '  Text.Whitespace
+'stat'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'static'      Keyword
+' '           Text.Whitespace
+'func'        Keyword
+'('           Punctuation
+'path'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'string'      Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'result'      Keyword.Type
+'<'           Punctuation
+'stat'        Name
+','           Punctuation
+' '           Text.Whitespace
+'errno'       Name
+'>'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n\n    '    Text.Whitespace
+'stat-file'   Name
+':'           Punctuation
+' '           Text.Whitespace
+'func'        Keyword
+'('           Punctuation
+'path'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'string'      Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'result'      Keyword.Type
+'<'           Punctuation
+'stat'        Name
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'@unstable'   Name.Decorator
+'('           Punctuation
+'feature'     Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'experimental-fs' Name.Variable
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'interface'   Keyword
+' '           Text.Whitespace
+'experimental' Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'use'         Keyword
+' '           Text.Whitespace
+'types'       Name
+'.'           Punctuation
+'{'           Punctuation
+'file'        Name
+','           Punctuation
+' '           Text.Whitespace
+'errno'       Name
+'}'           Punctuation
+';'           Punctuation
+'\n    \n    ' Text.Whitespace
+'magic'       Name
+':'           Punctuation
+' '           Text.Whitespace
+'func'        Keyword
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'result'      Keyword.Type
+'<'           Punctuation
+'file'        Name
+','           Punctuation
+' '           Text.Whitespace
+'errno'       Name
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'world'       Keyword
+' '           Text.Whitespace
+'my-world'    Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'import'      Keyword
+' '           Text.Whitespace
+'wasi'        Name
+':'           Punctuation
+'logging'     Name
+'/'           Punctuation
+'logger'      Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'import'      Keyword
+' '           Text.Whitespace
+'types'       Name
+';'           Punctuation
+'\n    \n    ' Text.Whitespace
+'export'      Keyword
+' '           Text.Whitespace
+'run'         Name
+':'           Punctuation
+' '           Text.Whitespace
+'func'        Keyword
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'export'      Keyword
+' '           Text.Whitespace
+'handler'     Name
+':'           Punctuation
+' '           Text.Whitespace
+'interface'   Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'handle'      Name
+':'           Punctuation
+' '           Text.Whitespace
+'func'        Keyword
+'('           Punctuation
+'input'       Name
+':'           Punctuation
+' '           Text.Whitespace
+'string'      Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'string'      Keyword.Type
+';'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'world'       Keyword
+' '           Text.Whitespace
+'union-world' Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'include'     Keyword
+' '           Text.Whitespace
+'my-world'    Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'include'     Keyword
+' '           Text.Whitespace
+'other-world' Name
+' '           Text.Whitespace
+'with'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'foo'         Name
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'bar'         Name
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'/*'          Comment.Multiline
+' \n '        Comment.Multiline
+'*'           Comment.Multiline
+' Block comment\n ' Comment.Multiline
+'*'           Comment.Multiline
+' '           Comment.Multiline
+'/*'          Comment.Multiline
+' Nested block comment ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n '         Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
