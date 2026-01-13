@@ -53,14 +53,14 @@ interface types {
 @unstable(feature = experimental-fs)
 interface experimental {
     use types.{file, errno};
-    
+
     magic: func() -> result<file, errno>;
 }
 
 world my-world {
     import wasi:logging/logger;
     import types;
-    
+
     export run: func();
     export handler: interface {
         handle: func(input: string) -> string;
@@ -72,7 +72,7 @@ world union-world {
     include other-world with { foo as bar };
 }
 
-/* 
+/*
  * Block comment
  * /* Nested block comment */
  */
