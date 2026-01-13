@@ -55,6 +55,8 @@ class PythonLexer(RegexLexer):
         'WORKSPACE',
         # Twisted Application infrastructure
         '*.tac',
+        # Execubot level format
+        '*.pye',
     ]
     mimetypes = ['text/x-python', 'application/x-python',
                  'text/x-python3', 'application/x-python3']
