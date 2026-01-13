@@ -62,12 +62,7 @@ def test_lexer_classes(cls):
              "<major>.<minor>.<micro>).")
     if cls._example is not None:
         assert isinstance(cls._example, str)
-        p = (
-            pathlib.Path(inspect.getabsfile(pygments)).parent.parent
-            / "tests"
-            / "examplefiles"
-            / cls._example
-        )
+        p = pathlib.Path(path.join(TESTDIR, "examplefiles", cls._example))
         assert p.is_file(), f"Example file {p} not found"
         assert p.parent.name in cls.aliases, f"Example file {p} not in alias directory"
     result = cls.analyse_text("abc")
