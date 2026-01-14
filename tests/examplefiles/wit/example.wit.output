@@ -310,7 +310,7 @@
 'errno'       Name
 '}'           Punctuation
 ';'           Punctuation
-'\n    \n    ' Text.Whitespace
+'\n\n    '    Text.Whitespace
 'magic'       Name
 ':'           Punctuation
 ' '           Text.Whitespace
@@ -352,7 +352,7 @@
 ' '           Text.Whitespace
 'types'       Name
 ';'           Punctuation
-'\n    \n    ' Text.Whitespace
+'\n\n    '    Text.Whitespace
 'export'      Keyword
 ' '           Text.Whitespace
 'run'         Name
@@ -427,7 +427,7 @@
 '\n\n'        Text.Whitespace
 
 '/*'          Comment.Multiline
-' \n '        Comment.Multiline
+'\n '         Comment.Multiline
 '*'           Comment.Multiline
 ' Block comment\n ' Comment.Multiline
 '*'           Comment.Multiline
