@@ -14,7 +14,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, bygroups, words
+from pygments.lexer import RegexLexer, bygroups, default, words
 from pygments.token import (
     Comment,
     Keyword,
@@ -147,7 +147,7 @@ class WitLexer(RegexLexer):
         'annotation': [
             (r'\s+', Whitespace),
             (r'\(', Punctuation, 'annotation-params'),
-            (r'', Text, '#pop'),
+            default('#pop'),
         ],
 
         'annotation-params': [
