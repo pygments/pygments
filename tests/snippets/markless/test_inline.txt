@@ -1,0 +1,16 @@
+---input---
+This //should// be **bold**
+
+---tokens---
+'This'        Text
+' '           Text.Whitespace
+'//'          Keyword
+'should'      Generic.Emph
+'//'          Keyword
+' '           Text.Whitespace
+'be'          Text
+' '           Text.Whitespace
+'**'          Keyword
+'bold'        Generic.Strong
+'**'          Keyword
+'\n'          Text.Whitespace
