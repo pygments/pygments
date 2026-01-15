@@ -10,7 +10,7 @@
     The grammar can be found at:
     https://github.com/WebAssembly/component-model/blob/main/design/mvp/WIT.md
 
-    :copyright: Copyright 2006-2026 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -22,7 +22,6 @@ from pygments.token import (
     Number,
     Operator,
     Punctuation,
-    Text,
     Whitespace,
 )
 
