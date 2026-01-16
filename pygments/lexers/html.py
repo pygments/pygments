@@ -202,7 +202,7 @@ class XmlLexer(RegexLexer):
     name = 'XML'
     aliases = ['xml']
     filenames = ['*.xml', '*.xsl', '*.rss', '*.xslt', '*.xsd',
-                 '*.wsdl', '*.wsf', '*.xbrl']
+                 '*.wsdl', '*.wsf', '*.xbrl', '*.pom']
     mimetypes = ['text/xml', 'application/xml', 'image/svg+xml',
                  'application/rss+xml', 'application/atom+xml']
     url = 'https://www.w3.org/XML'
