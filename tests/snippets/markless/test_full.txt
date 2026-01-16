@@ -1,0 +1,655 @@
+---input---
+# Hello there!
+This is a playground for ''Markless''(https://shirakumo.org/docs/markless, color red, large), a //text based// **markup language** intended for __simple__ document and comment publications.
+
+Markless is a relatively new[1] markup standard that focuses on being intuitive first and fast for computers to process second. Being a purely text-based markup, no complicated editor software is required to create documents in it, any simple text editor will do. v(Though of course, having syntax highlighting and previews are nice.)
+
+[1] Development of the standard started in 2015
+
+The Markless standard does not specify its results based on another document format, meaning that an implementation could be written to turn a Markless document into practically any other format[2]. Markless is strict and does not allow for any ambiguities in its markup. This should both make it less confusing for you, and easier to parse for a computer program.
+
+[2] While the output here is HTML, cl-markless for instance can also translate to BBCode, LaTeX, and EPUB, among other formats.
+
+Here's some more useful links:
+- https://shirakumo.org/docs/markless/
+  For a more complete tutorial on Markless' syntax
+- https://shirakumo.org/docs/markless/markless.html
+  The full specification document
+- https://shirakumo.org/project/cl-markless/releases/latest
+  Downloads for cl-markless to convert documents offline
+
+The Markless document standard and ecosystem is brought to you by the ''Shirakumo Collective''(link #logo).
+
+[ image https://shirakumo.org/logo2.png, description Shirakumo Logo, caption The logo for the Shirakumo Team, link https://shirakumo.org, label logo ]
+
+==
+
+:::
+- ::This should //not// be parsed
+:::
+
+:: markless
+- This //should// be parsed
+::
+
+| Quoting for justice
+~ Someone, probably
+
+~ Yukari | And **this** is how you do the
+         | inline quotes.
+~ Haruna | //Woah.//
+
+1. First things first, this <-is great->
+10. Now for something different.
+
+---tokens---
+'# '          Keyword
+'Hello there!' Generic.Heading
+'\n'          Text.Whitespace
+
+'This'        Text
+' '           Text
+'is'          Text
+' '           Text
+'a'           Text
+' '           Text
+'playground'  Text
+' '           Text
+'for'         Text
+' '           Text
+"''"          Keyword
+'Markless'    Text
+"''("         Keyword
+'https://shirakumo.org/docs/markless' Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'color'       Name.Function
+' red'        Literal.String
+','           Punctuation
+' large'      Name.Tag
+')'           Keyword
+','           Text
+' '           Text
+'a'           Text
+' '           Text
+'//'          Keyword
+'text based'  Generic.Emph
+'//'          Keyword
+' '           Text
+'**'          Keyword
+'markup language' Generic.Strong
+'**'          Keyword
+' '           Text
+'intended'    Text
+' '           Text
+'for'         Text
+' '           Text
+'__'          Keyword
+'simple'      Generic.Underline
+'__'          Keyword
+' '           Text
+'document'    Text
+' '           Text
+'and'         Text
+' '           Text
+'comment'     Text
+' '           Text
+'publications.' Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Markless'    Text
+' '           Text
+'is'          Text
+' '           Text
+'a'           Text
+' '           Text
+'relati'      Text
+'v'           Text
+'ely'         Text
+' '           Text
+'new'         Text
+'['           Keyword
+'1'           Name.Variable
+']'           Keyword
+' '           Text
+'markup'      Text
+' '           Text
+'standard'    Text
+' '           Text
+'that'        Text
+' '           Text
+'focuses'     Text
+' '           Text
+'on'          Text
+' '           Text
+'being'       Text
+' '           Text
+'intuiti'     Text
+'v'           Text
+'e'           Text
+' '           Text
+'first'       Text
+' '           Text
+'and'         Text
+' '           Text
+'fast'        Text
+' '           Text
+'for'         Text
+' '           Text
+'computers'   Text
+' '           Text
+'to'          Text
+' '           Text
+'process'     Text
+' '           Text
+'second.'     Text
+' '           Text
+'Being'       Text
+' '           Text
+'a'           Text
+' '           Text
+'purely'      Text
+' '           Text
+'text'        Text
+'-'           Text
+'based'       Text
+' '           Text
+'markup,'     Text
+' '           Text
+'no'          Text
+' '           Text
+'complicated' Text
+' '           Text
+'editor'      Text
+' '           Text
+'software'    Text
+' '           Text
+'is'          Text
+' '           Text
+'required'    Text
+' '           Text
+'to'          Text
+' '           Text
+'create'      Text
+' '           Text
+'documents'   Text
+' '           Text
+'in'          Text
+' '           Text
+'it,'         Text
+' '           Text
+'any'         Text
+' '           Text
+'simple'      Text
+' '           Text
+'text'        Text
+' '           Text
+'editor'      Text
+' '           Text
+'will'        Text
+' '           Text
+'do.'         Text
+' '           Text
+'v('          Keyword
+'Though'      Text
+' '           Text
+'of'          Text
+' '           Text
+'course,'     Text
+' '           Text
+'ha'          Text
+'v'           Text
+'ing'         Text
+' '           Text
+'syntax'      Text
+' '           Text
+'highlighting' Text
+' '           Text
+'and'         Text
+' '           Text
+'pre'         Text
+'v'           Text
+'iews'        Text
+' '           Text
+'are'         Text
+' '           Text
+'nice.'       Text
+')'           Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'['           Keyword
+'1'           Name.Variable
+']'           Keyword
+' '           Text
+'De'          Text
+'v'           Text
+'elopment'    Text
+' '           Text
+'of'          Text
+' '           Text
+'the'         Text
+' '           Text
+'standard'    Text
+' '           Text
+'started'     Text
+' '           Text
+'in'          Text
+' '           Text
+'2015'        Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'The'         Text
+' '           Text
+'Markless'    Text
+' '           Text
+'standard'    Text
+' '           Text
+'does'        Text
+' '           Text
+'not'         Text
+' '           Text
+'specify'     Text
+' '           Text
+'its'         Text
+' '           Text
+'results'     Text
+' '           Text
+'based'       Text
+' '           Text
+'on'          Text
+' '           Text
+'another'     Text
+' '           Text
+'document'    Text
+' '           Text
+'format,'     Text
+' '           Text
+'meaning'     Text
+' '           Text
+'that'        Text
+' '           Text
+'an'          Text
+' '           Text
+'implementation' Text
+' '           Text
+'could'       Text
+' '           Text
+'be'          Text
+' '           Text
+'written'     Text
+' '           Text
+'to'          Text
+' '           Text
+'turn'        Text
+' '           Text
+'a'           Text
+' '           Text
+'Markless'    Text
+' '           Text
+'document'    Text
+' '           Text
+'into'        Text
+' '           Text
+'practically' Text
+' '           Text
+'any'         Text
+' '           Text
+'other'       Text
+' '           Text
+'format'      Text
+'['           Keyword
+'2'           Name.Variable
+']'           Keyword
+'.'           Text
+' '           Text
+'Markless'    Text
+' '           Text
+'is'          Text
+' '           Text
+'strict'      Text
+' '           Text
+'and'         Text
+' '           Text
+'does'        Text
+' '           Text
+'not'         Text
+' '           Text
+'allow'       Text
+' '           Text
+'for'         Text
+' '           Text
+'any'         Text
+' '           Text
+'ambiguities' Text
+' '           Text
+'in'          Text
+' '           Text
+'its'         Text
+' '           Text
+'markup.'     Text
+' '           Text
+'This'        Text
+' '           Text
+'should'      Text
+' '           Text
+'both'        Text
+' '           Text
+'make'        Text
+' '           Text
+'it'          Text
+' '           Text
+'less'        Text
+' '           Text
+'confusing'   Text
+' '           Text
+'for'         Text
+' '           Text
+'you,'        Text
+' '           Text
+'and'         Text
+' '           Text
+'easier'      Text
+' '           Text
+'to'          Text
+' '           Text
+'parse'       Text
+' '           Text
+'for'         Text
+' '           Text
+'a'           Text
+' '           Text
+'computer'    Text
+' '           Text
+'program.'    Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'['           Keyword
+'2'           Name.Variable
+']'           Keyword
+' '           Text
+'While'       Text
+' '           Text
+'the'         Text
+' '           Text
+'output'      Text
+' '           Text
+'here'        Text
+' '           Text
+'is'          Text
+' '           Text
+'HTML,'       Text
+' '           Text
+'cl'          Text
+'-'           Text
+'markless'    Text
+' '           Text
+'for'         Text
+' '           Text
+'instance'    Text
+' '           Text
+'can'         Text
+' '           Text
+'also'        Text
+' '           Text
+'translate'   Text
+' '           Text
+'to'          Text
+' '           Text
+'BBCode,'     Text
+' '           Text
+'LaTeX,'      Text
+' '           Text
+'and'         Text
+' '           Text
+'EPUB,'       Text
+' '           Text
+'among'       Text
+' '           Text
+'other'       Text
+' '           Text
+'formats.'    Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Here'        Text
+"'"           Text
+'s'           Text
+' '           Text
+'some'        Text
+' '           Text
+'more'        Text
+' '           Text
+'useful'      Text
+' '           Text
+'links:'      Text
+'\n'          Text.Whitespace
+
+'- '          Keyword
+'https://shirakumo.org/docs/markless/' Literal.String
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'For'         Text
+' '           Text
+'a'           Text
+' '           Text
+'more'        Text
+' '           Text
+'complete'    Text
+' '           Text
+'tutorial'    Text
+' '           Text
+'on'          Text
+' '           Text
+'Markless'    Text
+"'"           Text
+' '           Text
+'syntax'      Text
+'\n'          Text.Whitespace
+
+'- '          Keyword
+'https://shirakumo.org/docs/markless/markless.html' Literal.String
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'The'         Text
+' '           Text
+'full'        Text
+' '           Text
+'specification' Text
+' '           Text
+'document'    Text
+'\n'          Text.Whitespace
+
+'- '          Keyword
+'https://shirakumo.org/project/cl-markless/releases/latest' Literal.String
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'Downloads'   Text
+' '           Text
+'for'         Text
+' '           Text
+'cl'          Text
+'-'           Text
+'markless'    Text
+' '           Text
+'to'          Text
+' '           Text
+'con'         Text
+'v'           Text
+'ert'         Text
+' '           Text
+'documents'   Text
+' '           Text
+'offline'     Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'The'         Text
+' '           Text
+'Markless'    Text
+' '           Text
+'document'    Text
+' '           Text
+'standard'    Text
+' '           Text
+'and'         Text
+' '           Text
+'ecosystem'   Text
+' '           Text
+'is'          Text
+' '           Text
+'brought'     Text
+' '           Text
+'to'          Text
+' '           Text
+'you'         Text
+' '           Text
+'by'          Text
+' '           Text
+'the'         Text
+' '           Text
+"''"          Keyword
+'Shirakumo'   Text
+' '           Text
+'Collecti'    Text
+'v'           Text
+'e'           Text
+"''("         Keyword
+'link'        Name.Function
+' #logo'      Literal.String
+')'           Keyword
+'.'           Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'[ '          Keyword
+'image'       Name.Function
+' '           Text.Whitespace
+'https://shirakumo.org/logo2.png' Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'description' Name.Function
+' Shirakumo Logo' Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'caption'     Name.Function
+' The logo for the Shirakumo Team' Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'link'        Name.Function
+' https://shirakumo.org' Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'label'       Name.Function
+' logo '      Literal.String
+']'           Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'=='          Literal.Other
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+':::'         Keyword
+''            Text.Whitespace
+''            Name.Function
+''            Literal.String
+'\n'          Text.Whitespace
+
+'- ::This should //not// be parsed\n' Literal.String
+
+':::'         Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'::'          Keyword
+' '           Text.Whitespace
+'markless'    Name.Function
+''            Literal.String
+'\n'          Text.Whitespace
+
+'- '          Keyword
+'This'        Text
+' '           Text
+'//'          Keyword
+'should'      Generic.Emph
+'//'          Keyword
+' '           Text
+'be'          Text
+' '           Text
+'parsed'      Text
+'\n'          Text.Whitespace
+
+'::'          Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'| '          Keyword
+'Quoting for justice' Generic.Inserted
+'\n'          Text.Whitespace
+
+'~ '          Keyword
+'Someone, probably' Name.Entity
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'~ '          Keyword
+'Yukari '     Name.Entity
+'| '          Keyword
+'And **this** is how you do the\n' Generic.Inserted
+
+'         '   Text.Whitespace
+'| '          Keyword
+'inline quotes.' Generic.Inserted
+'\n'          Text.Whitespace
+
+'~ '          Keyword
+'Haruna '     Name.Entity
+'| '          Keyword
+'//Woah.//\n' Generic.Inserted
+
+'\n'          Text.Whitespace
+
+'1.'          Keyword
+' '           Text.Whitespace
+'First'       Text
+' '           Text
+'things'      Text
+' '           Text
+'first,'      Text
+' '           Text
+'this'        Text
+' '           Text
+'<-'          Keyword
+'is great'    Generic.Deleted
+'->'          Keyword
+'\n'          Text.Whitespace
+
+'10.'         Keyword
+' '           Text.Whitespace
+'Now'         Text
+' '           Text
+'for'         Text
+' '           Text
+'something'   Text
+' '           Text
+'different.'  Text
+'\n'          Text.Whitespace
