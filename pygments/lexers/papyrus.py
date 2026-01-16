@@ -214,3 +214,17 @@ class PapyrusSkyrimLexer(RegexLexer):
             (r'[^"\\]+', String.Double),
         ],
     }
+
+    def analyse_text(text):
+        score = 0
+        if re.search(r'ScriptName\s+[a-z0-9_]+', text, re.IGNORECASE):
+            score += 0.7
+            if re.search(r'^End(?:Event|Function|State)\b', text, re.IGNORECASE):
+                score += 0.3
+            if re.search(r'\b(?:ScriptEventName|StructVarName|EndGroup|CustomEventName|CustomEvent|DebugOnly|BetaOnly)\b', text, re.IGNORECASE):
+                # These keywords are specific to other versions of Papyrus (i.e. Fallout 4 and later).
+                score -= 0.5
+            if re.search(r'\b(?:RequiresGuard|ProtectsFunctionLogic|SelfOnly|EndLockGuard|TryLockGuard|EndTryLockGuard)\b', text, re.IGNORECASE):
+                # These keywords are specific to other versions of Papyrus (i.e. Starfield and later).
+                score -= 0.5
+        return max(0.0, min(score, 1.0))
