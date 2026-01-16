@@ -13,6 +13,7 @@ STYLES = {
     'ColorfulStyle': ('pygments.styles.colorful', 'colorful', ()),
     'DefaultStyle': ('pygments.styles.default', 'default', ()),
     'DraculaStyle': ('pygments.styles.dracula', 'dracula', ()),
+    'EmacsDarkStyle': ('pygments.styles.emacs_dark', 'emacs-dark', ()),
     'EmacsStyle': ('pygments.styles.emacs', 'emacs', ()),
     'FriendlyGrayscaleStyle': ('pygments.styles.friendly_grayscale', 'friendly_grayscale', ()),
     'FriendlyStyle': ('pygments.styles.friendly', 'friendly', ()),
