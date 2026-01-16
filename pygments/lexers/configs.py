@@ -22,7 +22,7 @@ __all__ = ['IniLexer', 'SystemdLexer', 'DesktopLexer', 'RegeditLexer', 'Properti
            'NginxConfLexer', 'LighttpdConfLexer', 'DockerLexer',
            'TerraformLexer', 'TermcapLexer', 'TerminfoLexer',
            'PkgConfigLexer', 'PacmanConfLexer', 'AugeasLexer', 'TOMLLexer',
-           'NestedTextLexer', 'SingularityLexer', 'UnixConfigLexer']
+           'NestedTextLexer', 'SingularityLexer', 'UnixConfigLexer', 'BicepLexer']
 
 
 class IniLexer(RegexLexer):
@@ -1429,5 +1429,75 @@ class UnixConfigLexer(RegexLexer):
             (r'[0-9]+', Number),
             (r'((?!\n)[a-zA-Z0-9\_\-\s\(\),]){2,}', Text),
             (r'[^:\n]+', String),
+        ],
+    }
+
+
+class BicepLexer(RegexLexer):
+    """
+    Lexer for Bicep ``.bicep`` files and ``.bicepparam`` files.
+    """
+    name = 'Bicep'
+    aliases = ['bicep', 'bicepparam']
+    filenames = ['*.bicep', '*.bicepparam']
+
+    declarations = ('resource', 'module', 'param', 'var', 'output', 'targetScope')
+
+    types = ('string', 'int', 'bool', 'object', 'array', 'float')
+
+    functions = (
+        'utcNow',
+        'loadJsonContent',
+        'loadYamlContent',
+        'loadTextContent',
+        'readEnvironmentVariable',
+        'resourceId',
+        'resourceGroup',
+        'subscription',
+        'tenant',
+        'reference',
+        'base64',
+        'base64ToString',
+        'concat',
+        'contains',
+        'endsWith',
+        'format',
+        'guid',
+        'indexOf',
+        'join',
+        'length',
+        'padLeft',
+        'replace',
+        'skip',
+        'split',
+        'startsWith',
+        'substring',
+        'toLower',
+        'toUpper',
+        'trim',
+        'uniqueString',
+        'uri',
+        'uriComponent',
+        'first',
+        'last',
+    )
+
+    modifiers = ('existing', 'secure', 'allowed', 'description', 'metadata', 'nullable')
+
+    tokens = {
+        'root': [
+            (r'\s+', Text),
+            (r'//.*?\n', Comment.Single),
+            (r'/\*.*?\*/', Comment.Multiline),
+            (r'\b(' + '|'.join(declarations) + r')\b', Keyword.Declaration),
+            (r'\b(' + '|'.join(types) + r')\b', Keyword.Type),
+            (r'\b(' + '|'.join(functions) + r')\b', Name.Function),
+            (r'\b(' + '|'.join(modifiers) + r')\b', Keyword.Reserved),
+            (r'\b(true|false|null)\b', Keyword.Constant),
+            (r'\b[a-zA-Z_][a-zA-Z0-9_]*\b', Name),
+            (r"'(\\\\|\\'|[^'])*'", String),
+            (r'[0-9]+', Number),
+            (r'[=;:{}()\[\],.]', Punctuation),
+            (r'[+\-*/%]', Operator),
         ],
     }
