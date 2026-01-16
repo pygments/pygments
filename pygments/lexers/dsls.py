@@ -67,7 +67,7 @@ class ProtoBufLexer(RegexLexer):
             (r'[a-zA-Z_][\w.]*', Name),
         ],
         'package': [
-            (r'[a-zA-Z_]\w*', Name.Namespace, '#pop'),
+            (r'[a-zA-Z_][\w\.]*', Name.Namespace, '#pop'),
             default('#pop'),
         ],
         'message': [
