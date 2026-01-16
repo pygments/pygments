@@ -156,7 +156,7 @@ class RPMSpecLexer(RegexLexer):
     url = 'https://rpm-software-management.github.io/rpm/manual/spec.html'
     version_added = '1.6'
 
-    _directives = ('(?:package|prep|build|install|clean|check|pre[a-z]*|'
+    _directives = ('(?:package|prep|conf|build|install|clean|check|generate_buildrequires|pre[a-z]*|'
                    'post[a-z]*|trigger[a-z]*|files)')
 
     tokens = {
