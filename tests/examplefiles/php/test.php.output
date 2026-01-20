@@ -38,7 +38,7 @@
 'if'          Keyword
 '('           Punctuation
 '!'           Operator
-'defined'     Name.Builtin
+'defined'     Name.Function
 '('           Punctuation
 "'UNLOCK'"    Literal.String.Single
 ')'           Punctuation
@@ -127,7 +127,7 @@
 '// Sort dirs and files by path length\n' Comment.Single
 
 '    '        Text
-'uksort'      Name.Builtin
+'uksort'      Name.Function
 '('           Punctuation
 '$this'       Name.Variable
 '->'          Operator
@@ -137,7 +137,7 @@
 "'sort_by_length'" Literal.String.Single
 ');'          Punctuation
 '\n    '      Text
-'uksort'      Name.Builtin
+'uksort'      Name.Function
 '('           Punctuation
 '$this'       Name.Variable
 '->'          Operator
@@ -205,7 +205,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -222,7 +222,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -239,7 +239,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -256,7 +256,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -273,7 +273,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -290,7 +290,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'V'           Literal.String.Double
@@ -307,7 +307,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'V'           Literal.String.Double
@@ -324,7 +324,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'V'           Literal.String.Double
@@ -341,14 +341,14 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'strlen'      Name.Builtin
+'strlen'      Name.Function
 '('           Punctuation
 '$dir'        Name.Variable
 '));'         Punctuation
@@ -360,7 +360,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -413,7 +413,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'V'           Literal.String.Double
@@ -430,7 +430,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'V'           Literal.String.Double
@@ -447,7 +447,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'V'           Literal.String.Double
@@ -467,9 +467,9 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'strlen'      Name.Builtin
+'strlen'      Name.Function
 '('           Punctuation
-'implode'     Name.Builtin
+'implode'     Name.Function
 '('           Punctuation
 "''"          Literal.String.Single
 ','           Punctuation
@@ -523,7 +523,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -540,7 +540,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -557,7 +557,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -574,7 +574,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -591,7 +591,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -608,7 +608,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -625,7 +625,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'V'           Literal.String.Double
@@ -642,7 +642,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'V'           Literal.String.Double
@@ -659,7 +659,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'V'           Literal.String.Double
@@ -676,14 +676,14 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'strlen'      Name.Builtin
+'strlen'      Name.Function
 '('           Punctuation
 '$dir'        Name.Variable
 '));'         Punctuation
@@ -695,7 +695,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -712,7 +712,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -729,7 +729,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -746,7 +746,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -763,7 +763,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'V'           Literal.String.Double
@@ -780,7 +780,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'V'           Literal.String.Double
@@ -891,7 +891,7 @@
 '      '      Text
 'if'          Keyword
 '('           Punctuation
-'function_exists' Name.Builtin
+'function_exists' Name.Function
 '('           Punctuation
 "'gzdeflate'" Literal.String.Single
 '))'          Punctuation
@@ -912,7 +912,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'gzdeflate'   Name.Builtin
+'gzdeflate'   Name.Function
 '('           Punctuation
 '$content'    Name.Variable
 ');'          Punctuation
@@ -924,7 +924,7 @@
 ' '           Text
 'elseif'      Keyword
 '('           Punctuation
-'function_exists' Name.Builtin
+'function_exists' Name.Function
 '('           Punctuation
 "'bzcompress'" Literal.String.Single
 '))'          Punctuation
@@ -945,7 +945,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'bzcompress'  Name.Builtin
+'bzcompress'  Name.Function
 '('           Punctuation
 '$content'    Name.Variable
 ');'          Punctuation
@@ -1000,7 +1000,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -1017,7 +1017,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -1034,7 +1034,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -1051,7 +1051,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -1068,7 +1068,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -1085,14 +1085,14 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'V'           Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'crc32'       Name.Builtin
+'crc32'       Name.Function
 '('           Punctuation
 '$content'    Name.Variable
 '));'         Punctuation
@@ -1104,14 +1104,14 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'V'           Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'strlen'      Name.Builtin
+'strlen'      Name.Function
 '('           Punctuation
 '$compressed_data' Name.Variable
 '));'         Punctuation
@@ -1123,14 +1123,14 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'V'           Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'strlen'      Name.Builtin
+'strlen'      Name.Function
 '('           Punctuation
 '$content'    Name.Variable
 '));'         Punctuation
@@ -1142,14 +1142,14 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'strlen'      Name.Builtin
+'strlen'      Name.Function
 '('           Punctuation
 '$name'       Name.Variable
 '));'         Punctuation
@@ -1161,7 +1161,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -1211,14 +1211,14 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'V'           Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'crc32'       Name.Builtin
+'crc32'       Name.Function
 '('           Punctuation
 '$content'    Name.Variable
 '));'         Punctuation
@@ -1230,14 +1230,14 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'V'           Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'strlen'      Name.Builtin
+'strlen'      Name.Function
 '('           Punctuation
 '$compressed_data' Name.Variable
 '));'         Punctuation
@@ -1249,14 +1249,14 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'V'           Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'strlen'      Name.Builtin
+'strlen'      Name.Function
 '('           Punctuation
 '$content'    Name.Variable
 '));'         Punctuation
@@ -1271,9 +1271,9 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'strlen'      Name.Builtin
+'strlen'      Name.Function
 '('           Punctuation
-'implode'     Name.Builtin
+'implode'     Name.Function
 '('           Punctuation
 "''"          Literal.String.Single
 ','           Punctuation
@@ -1327,7 +1327,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -1344,7 +1344,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -1361,7 +1361,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -1378,7 +1378,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -1395,7 +1395,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -1412,7 +1412,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -1429,14 +1429,14 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'V'           Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'crc32'       Name.Builtin
+'crc32'       Name.Function
 '('           Punctuation
 '$content'    Name.Variable
 '));'         Punctuation
@@ -1448,14 +1448,14 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'V'           Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'strlen'      Name.Builtin
+'strlen'      Name.Function
 '('           Punctuation
 '$compressed_data' Name.Variable
 '));'         Punctuation
@@ -1467,14 +1467,14 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'V'           Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'strlen'      Name.Builtin
+'strlen'      Name.Function
 '('           Punctuation
 '$content'    Name.Variable
 '));'         Punctuation
@@ -1486,14 +1486,14 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'strlen'      Name.Builtin
+'strlen'      Name.Function
 '('           Punctuation
 '$name'       Name.Variable
 '));'         Punctuation
@@ -1505,7 +1505,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -1522,7 +1522,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -1539,7 +1539,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -1556,7 +1556,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -1573,7 +1573,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'V'           Literal.String.Double
@@ -1590,7 +1590,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'V'           Literal.String.Double
@@ -1677,7 +1677,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -1704,7 +1704,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'implode'     Name.Builtin
+'implode'     Name.Function
 '('           Punctuation
 "''"          Literal.String.Single
 ','           Punctuation
@@ -1719,7 +1719,7 @@
 '   '         Text
 '='           Operator
 ' '           Text
-'implode'     Name.Builtin
+'implode'     Name.Function
 '('           Punctuation
 "''"          Literal.String.Single
 ','           Punctuation
@@ -1766,7 +1766,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -1783,7 +1783,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -1800,14 +1800,14 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'count'       Name.Builtin
+'count'       Name.Function
 '('           Punctuation
 '$cd_data'    Name.Variable
 '));'         Punctuation
@@ -1819,14 +1819,14 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'count'       Name.Builtin
+'count'       Name.Function
 '('           Punctuation
 '$cd_data'    Name.Variable
 '));'         Punctuation
@@ -1838,14 +1838,14 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'V'           Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'strlen'      Name.Builtin
+'strlen'      Name.Function
 '('           Punctuation
 '$tmp_cd_data' Name.Variable
 '));'         Punctuation
@@ -1857,14 +1857,14 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'V'           Literal.String.Double
 '"'           Literal.String.Double
 ','           Punctuation
 ' '           Text
-'strlen'      Name.Builtin
+'strlen'      Name.Function
 '('           Punctuation
 '$tmp_file_data' Name.Variable
 '));'         Punctuation
@@ -1876,7 +1876,7 @@
 ' '           Text
 '.='          Operator
 ' '           Text
-'pack'        Name.Builtin
+'pack'        Name.Function
 '('           Punctuation
 '"'           Literal.String.Double
 'v'           Literal.String.Double
@@ -1937,7 +1937,7 @@
 '    '        Text
 'return'      Keyword
 ' '           Text
-'file_put_contents' Name.Builtin
+'file_put_contents' Name.Function
 '('           Punctuation
 '$filename'   Name.Variable
 ','           Punctuation
@@ -1971,7 +1971,7 @@
 'if'          Keyword
 '('           Punctuation
 '!'           Operator
-'file_exists' Name.Builtin
+'file_exists' Name.Function
 '('           Punctuation
 '$file'       Name.Variable
 '))'          Punctuation
@@ -1989,7 +1989,7 @@
 '='           Operator
 ' '           Text
 '@'           Operator
-'file_get_contents' Name.Builtin
+'file_get_contents' Name.Function
 '('           Punctuation
 '$file'       Name.Variable
 ');'          Punctuation
@@ -2080,7 +2080,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'strpos'      Name.Builtin
+'strpos'      Name.Function
 '('           Punctuation
 '$string'     Name.Variable
 ','           Punctuation
@@ -2117,7 +2117,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'substr'      Name.Builtin
+'substr'      Name.Function
 '('           Punctuation
 '$string'     Name.Variable
 ','           Punctuation
@@ -2137,7 +2137,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'unpack'      Name.Builtin
+'unpack'      Name.Function
 '('           Punctuation
 "'vdisc1/'"   Literal.String.Single
 '.'           Operator
@@ -2220,7 +2220,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'substr'      Name.Builtin
+'substr'      Name.Function
 '('           Punctuation
 '$string'     Name.Variable
 ','           Punctuation
@@ -2257,7 +2257,7 @@
 ' '           Text
 '<'           Operator
 ' '           Text
-'strlen'      Name.Builtin
+'strlen'      Name.Function
 '('           Punctuation
 '$cdr'        Name.Variable
 '))'          Punctuation
@@ -2272,7 +2272,7 @@
 '      '      Text
 'if'          Keyword
 '('           Punctuation
-'substr'      Name.Builtin
+'substr'      Name.Function
 '('           Punctuation
 '$cdr'        Name.Variable
 ','           Punctuation
@@ -2302,12 +2302,12 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'unpack'      Name.Builtin
+'unpack'      Name.Function
 '('           Punctuation
 "'vsize'"     Literal.String.Single
 ','           Punctuation
 ' '           Text
-'substr'      Name.Builtin
+'substr'      Name.Function
 '('           Punctuation
 '$cdr'        Name.Variable
 ','           Punctuation
@@ -2329,7 +2329,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'substr'      Name.Builtin
+'substr'      Name.Function
 '('           Punctuation
 '$header'     Name.Variable
 ','           Punctuation
@@ -2358,7 +2358,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'substr'      Name.Builtin
+'substr'      Name.Function
 '('           Punctuation
 '$cdr'        Name.Variable
 ','           Punctuation
@@ -2377,7 +2377,7 @@
 '='           Operator
 ' '           Text
 '@'           Operator
-'unpack'      Name.Builtin
+'unpack'      Name.Function
 '('           Punctuation
 "'Vheader/'"  Literal.String.Single
 '.'           Operator
@@ -2473,7 +2473,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'substr'      Name.Builtin
+'substr'      Name.Function
 '('           Punctuation
 '$cdr'        Name.Variable
 ','           Punctuation
@@ -2508,7 +2508,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'substr'      Name.Builtin
+'substr'      Name.Function
 '('           Punctuation
 '$cdr'        Name.Variable
 ','           Punctuation
@@ -2543,7 +2543,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'substr'      Name.Builtin
+'substr'      Name.Function
 '('           Punctuation
 '$cdr'        Name.Variable
 ','           Punctuation
@@ -2586,7 +2586,7 @@
 '    '        Text
 'if'          Keyword
 '('           Punctuation
-'count'       Name.Builtin
+'count'       Name.Function
 '('           Punctuation
 '$entries'    Name.Variable
 ')'           Punctuation
@@ -2653,7 +2653,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'substr'      Name.Builtin
+'substr'      Name.Function
 '('           Punctuation
 '$string'     Name.Variable
 ','           Punctuation
@@ -2674,7 +2674,7 @@
 '='           Operator
 ' '           Text
 '@'           Operator
-'unpack'      Name.Builtin
+'unpack'      Name.Function
 '('           Punctuation
 "'Vheader/'"  Literal.String.Single
 '.'           Operator
@@ -2769,7 +2769,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'substr'      Name.Builtin
+'substr'      Name.Function
 '('           Punctuation
 '$string'     Name.Variable
 ','           Punctuation
@@ -2826,7 +2826,7 @@
 'if'          Keyword
 '('           Punctuation
 '!'           Operator
-'function_exists' Name.Builtin
+'function_exists' Name.Function
 '('           Punctuation
 "'gzinflate'" Literal.String.Single
 '))'          Punctuation
@@ -2843,7 +2843,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'gzinflate'   Name.Builtin
+'gzinflate'   Name.Function
 '('           Punctuation
 '$data'       Name.Variable
 ');'          Punctuation
@@ -2862,7 +2862,7 @@
 'if'          Keyword
 '('           Punctuation
 '!'           Operator
-'function_exists' Name.Builtin
+'function_exists' Name.Function
 '('           Punctuation
 "'bzdecompress'" Literal.String.Single
 '))'          Punctuation
@@ -2879,7 +2879,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'bzdecompress' Name.Builtin
+'bzdecompress' Name.Function
 '('           Punctuation
 '$data'       Name.Variable
 ');'          Punctuation
@@ -3055,13 +3055,13 @@
 ' '           Text
 'new'         Keyword
 ' '           Text
-'MagicClass'  Name.Other
+'MagicClass'  Name.Function
 '('           Punctuation
 '__DIR__'     Name.Constant
 ');'          Punctuation
 '\n'          Text
 
-'__toString'  Name.Other
+'__toString'  Name.Function
 '();'         Punctuation
 '\n'          Text
 
