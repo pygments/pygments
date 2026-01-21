@@ -10,14 +10,15 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups, using, default
+from pygments.lexer import RegexLexer, include, bygroups, using, default, this, inherit, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
 
 from pygments.lexers.html import HtmlLexer
+from pygments.lexers.jvm import JavaLexer
 from pygments.lexers import _stan_builtins
 
-__all__ = ['ModelicaLexer', 'BugsLexer', 'JagsLexer', 'StanLexer']
+__all__ = ['ModelicaLexer', 'BugsLexer', 'JagsLexer', 'StanLexer', 'UmpleLexer']
 
 
 class ModelicaLexer(RegexLexer):
@@ -364,3 +365,69 @@ class StanLexer(RegexLexer):
             return 1.0
         else:
             return 0.0
+            
+class UmpleLexer(JavaLexer):
+  """
+    Pygments lexer for Umple <https://cruise.umple.org/umple/> source code
+
+    .. versionadded::2.11 
+  """
+
+
+  name="Umple"
+  aliases=['umple']
+  filenames = ['*.ump', '*.umpt']
+  
+  tokens = {
+    'root': [
+        (words(('activate', 'active', 'after', 'afterEvery', 'all', 'around', 'atomic', 'attr', 'attribute', 'before', 'custom', 'deactivate',
+            'debug', 'displayColor','displayColour', 'during', 'emit','entry', 'execute', 'exit', 'generate', 'generated', 'hops', 'include',
+            'includeFilter','inner','isA', 'isFeature', 'key', 'model', 'off', 'Off', 'on', 'On', 'pooled', 'position','position.association',
+            'post', 'prefix', 'primitive', 'queued', 'regex', 'require', 'singleton', 'sorted', 'sub', 'subclass', 'suffix', 'super', 'superclass',
+            'top', 'trace', 'unspecified'),
+            suffix=r'\b'),
+        Keyword),
+      # method names
+      (r'((?:(?:[^\W\d]|\$)[\w.\[\]$<>]*\s+)+?)'  # return arguments
+      r'((?:[^\W\d]|\$)[\w$]*)'                  # method name
+      r'(\s*)(\()',                              # signature start
+      bygroups(using(this), Name.Function, Text.Whitespace, Punctuation)),
+      
+      (words(('around_proceed', 'assertAttribute', 'assertEqual', 'assertFalse',
+            'assertMethod', 'assertNull', 'assertTrue'), suffix=r'\b'), Name.Function),
+      (words(('autounique', 'const', 'defaulted', 'external', 'filter', 'final', 'Final', 'fixml', 'generic',
+            'immutable', 'inner', 'internal', 'ivar', 'lazy', 'mixset', 'pre', 'settable', 'statemachine',
+            'template', 'test', 'tracer', 'trait', 'unique'), suffix=r'\b'),
+       Keyword.Declaration),
+      (r'((queued|pooled)?sm)\b', Keyword),
+      (words(('association', 'associationClass'), suffix=r'\b'), Keyword.Declaration, 'associations'),
+      (r'(distributable)\b(\s+)(RMI|WS|off|forced)', bygroups(Keyword.Reserved, Text.Whitespace, Keyword.Reserved)),
+      (r'(depend)(\s+)([\w.]+\*?)', bygroups(Keyword.Reserved, Text.Whitespace, Keyword.Namespace)),
+      (r'(namespace)\b(\s+)([\w.]+\*?|-)(\s+)?(--redefine)?',
+       bygroups(Keyword.Namespace, Text.Whitespace, Name.Namespace, Text.Whitespace, Keyword)),
+      (r'(strictness)\b(\s+)', bygroups(Keyword.Reserved, Text.Whitespace),'strictness'),
+      (r'(use)\b(\s+)(\w+.ump)\b', bygroups(Keyword.Reserved, Text.Whitespace, Name.Other)),
+      #Attribute types
+      (words(('Boolean', 'Double', 'Float', 'Integer', 'String'), suffix=r'\b'), Keyword.Type),
+      #Alternate Language
+      (words(('Java', 'Php', 'RTCpp', 'SimpleCpp', 'Ruby', 'Cpp', 'Json', 'StructureDiagram', 'Yuml', 'Violet', 'Umlet', 
+            'Simulate', 'TextUml', 'Scxml', 'GvStateDiagram', 'GvClassDiagram', 'GvFeatureDiagram', 'GvClassTrait', 
+            'GvEntityRelationshipDiagram', 'Alloy', 'NuSMV', 'NuSMVOptimizer', 'Papyrus', 'Ecore', 'Xmi', 'Xtext', 'Sql', 
+            'Umple', 'UmpleSelf', 'USE', 'Test', 'SimpleMetrics', 'Uigu2'), suffix=r'\b'), Keyword),
+       #operators
+       (words(('and', 'cardinality', 'giving', 'has', 'not', 'or', 'until', 'where', 'xor'), suffix=r'\b'), Operator.Word),
+       #association
+       (r'([0-9]+[.]+[0-9\*]+)|<@>|->', Operator),
+       inherit
+     ],
+     'associations': [
+       (r'(\s+)([^\W][\w$]+)', bygroups(Text.Whitespace, Name.Class), "#pop"),
+       (r'(\s*[{}])', bygroups(Text.Whitespace), "#pop"),
+     ],
+    'strictness': [
+      (words(('modelOnly', 'noExtraCode', 'none'), suffix=r'\b'), Keyword, "#pop"),
+      (words(('allow', 'ignore', 'expect', 'disallow'), suffix=r'\b'), Keyword, '#pop'),
+    ],
+
+  }
+ 

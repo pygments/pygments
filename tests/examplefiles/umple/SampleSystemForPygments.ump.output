@@ -1,0 +1,558 @@
+'/** \nUmple parsing example for Pygments\nThis is a simplified version of the Access Control 2 example from UmpleOnline\nIt is intended to demonstrate key features of Umple syntax\n * References:\n * http://time.sintef9013.com/uml/mainuml.htm\n**/' Comment.Multiline
+'\n'          Text
+
+'\n'          Text
+
+'namespace'   Keyword.Namespace
+' '           Text
+'accessControlSystem' Name.Namespace
+';'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'//User: a person with known identity and authorization "correct access right" to enter specific access zone\n' Comment.Single
+
+'//User Name: a user name\n' Comment.Single
+
+'class'       Keyword.Declaration
+' '           Text
+'User'        Name.Class
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'*'           Operator
+' '           Text
+'mayEnterThrough' Name
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'*'           Operator
+' '           Text
+'AccessPoint' Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'1'           Literal.Number.Integer
+' '           Text
+'owns'        Name
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'0..1'        Operator
+' '           Text
+'Card'        Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'\n'          Text
+
+'  '          Text
+'name'        Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'\n'          Text
+
+'  '          Text
+'public'      Keyword.Declaration
+' '           Text
+'void'        Keyword.Type
+' '           Text
+'insertCard'  Name.Function
+'('           Punctuation
+'String'      Keyword.Type
+' '           Text
+'cardId'      Name
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'System'      Name
+'.'           Punctuation
+'out'         Name.Attribute
+'.'           Punctuation
+'println'     Name.Attribute
+'('           Punctuation
+'"'           Literal.String
+'User ['      Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+' '           Text
+'getName'     Name
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'"'           Literal.String
+'] is inserting his/her card' Literal.String
+'"'           Literal.String
+' '           Text
+'+'           Operator
+'getCard'     Name
+'('           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'getCardId'   Name.Attribute
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'  '          Text
+'public'      Keyword.Declaration
+' '           Text
+'List'        Name
+' '           Text
+'enterPIN'    Name.Function
+'('           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'no1'         Name
+','           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'no2'         Name
+','           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'no3'         Name
+','           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'no4'         Name
+')'           Punctuation
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'getCard'     Name
+'('           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'addPin'      Name.Attribute
+'('           Punctuation
+'no1'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'\n'          Text
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'Arrays'      Name
+'.'           Punctuation
+'asList'      Name.Attribute
+'('           Punctuation
+'getCard'     Name
+'('           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'getPin'      Name.Attribute
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'//Access Point: each direction of passage through a door is considered as an access point. \n' Comment.Single
+
+'class'       Keyword.Declaration
+' '           Text
+'AccessPoint' Name.Class
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'1'           Literal.Number.Integer
+' '           Text
+'controls'    Name
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'Door'        Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'0..1'        Operator
+' '           Text
+'Autorizer'   Name
+' '           Text
+'->'          Operator
+' '           Text
+'*'           Operator
+' '           Text
+'AccessPoint' Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'\n'          Text
+
+'  '          Text
+'lazy'        Keyword.Declaration
+' '           Text
+'String'      Keyword.Type
+' '           Text
+'cardIdentification' Name
+';'           Punctuation
+'\n'          Text
+
+' '           Text
+'\n'          Text
+
+'  '          Text
+'AccessPointSm' Name
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text
+'waitingCardID' Name
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'cardId'      Name
+'('           Punctuation
+'String'      Keyword.Type
+' '           Text
+'cardID'      Name
+')'           Punctuation
+'  '          Text
+'/'           Operator
+'{'           Punctuation
+'setCardIdentification' Name
+'('           Punctuation
+'cardID'      Name
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'hasMayEnterThrough' Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'{'           Punctuation
+' '           Text
+'for'         Keyword
+'('           Punctuation
+'User'        Name
+' '           Text
+'user'        Name
+':'           Punctuation
+' '           Text
+'getMayEnterThrough' Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'{'           Punctuation
+' '           Text
+'if'          Keyword
+'('           Punctuation
+'user'        Name
+'.'           Punctuation
+'getCard'     Name.Attribute
+'('           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'getCardId'   Name.Attribute
+'('           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'toString'    Name.Attribute
+'('           Punctuation
+')'           Punctuation
+'='           Operator
+'='           Operator
+'getCardIdentification' Name
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'{'           Punctuation
+' '           Text
+'user'        Name
+'.'           Punctuation
+'insertCard'  Name.Attribute
+'('           Punctuation
+'cardID'      Name
+')'           Punctuation
+';'           Punctuation
+'}'           Punctuation
+'}'           Punctuation
+'}'           Punctuation
+'}'           Punctuation
+' '           Text
+'->'          Operator
+'waitingPIN'  Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'pin'         Name
+' '           Text
+'->'          Operator
+'waitingCardID' Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'    '        Text
+'waitingPIN'  Name
+' '           Text
+'{'           Punctuation
+'\n'          Text
+
+'      '      Text
+'pin'         Name
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text
+'no1'         Name
+','           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'no2'         Name
+','           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'no3'         Name
+','           Punctuation
+' '           Text
+'int'         Keyword.Type
+' '           Text
+'no4'         Name
+')'           Punctuation
+' '           Text
+'->'          Operator
+'waitingPIN'  Name
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'after'       Keyword
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'->'          Operator
+'waitingCardID' Name
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text
+
+'  '          Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'//Access Zone: a physical zone where a user is present, accessible through doors\n' Comment.Single
+
+'class'       Keyword.Declaration
+' '           Text
+'AccessZone'  Name.Class
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'//1..2 boundedBy -- 1..* AccessPoint;\n' Comment.Single
+
+'  '          Text
+'1'           Literal.Number.Integer
+' '           Text
+'accessedThrough' Name
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'1..*'        Operator
+' '           Text
+'Door'        Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'\n'          Text
+
+'//Door: controlled passage from one access zone to another \n' Comment.Single
+
+'class'       Keyword.Declaration
+' '           Text
+'Door'        Name.Class
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'boolean'     Keyword.Type
+' '           Text
+'lock'        Name
+'='           Operator
+'false'       Keyword.Constant
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'class'       Keyword.Declaration
+' '           Text
+'ACSystem'    Name.Class
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'Integer'     Keyword.Type
+' '           Text
+'doorTime'    Name
+'='           Operator
+'10'          Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'\n'          Text
+
+'  '          Text
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'//Magnetic stripe card holding a card code and a secrete personal identification number PIN entered by users\n' Comment.Single
+
+'class'       Keyword.Declaration
+' '           Text
+'Card'        Name.Class
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'1'           Literal.Number.Integer
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'Code'        Name
+' '           Text
+'cardId'      Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'//PIN: a unique PIN belonging to only one user. A kind of password\n' Comment.Single
+
+'  '          Text
+'Integer'     Keyword.Type
+'['           Operator
+']'           Operator
+' '           Text
+'pin'         Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'//Card code: a unique identification of a card stored in a machine-readable form on the card\n' Comment.Single
+
+'class'       Keyword.Declaration
+' '           Text
+'Code'        Name.Class
+'{'           Punctuation
+'\n'          Text
+
+'  '          Text
+'String'      Keyword.Type
+' '           Text
+'userID'      Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'association' Keyword.Declaration
+' {'          Text
+'\n'          Text
+
+'   '         Text
+'1'           Literal.Number.Integer
+' '           Text
+'ACSystem'    Name
+' '           Text
+'-'           Operator
+'-'           Operator
+' '           Text
+'*'           Operator
+' '           Text
+'Door'        Name
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
