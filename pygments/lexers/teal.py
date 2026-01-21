@@ -27,6 +27,7 @@ class TealLexer(RegexLexer):
     aliases = ['teal']
     filenames = ['*.teal']
     version_added = '2.9'
+    _example = 'teal/example.teal'
 
     keywords = words({
         'Sender', 'Fee', 'FirstValid', 'FirstValidTime', 'LastValid', 'Note',

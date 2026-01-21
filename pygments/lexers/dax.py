@@ -26,6 +26,7 @@ class DaxLexer(RegexLexer):
     url = 'https://learn.microsoft.com/en-us/dax/dax-function-reference'
     mimetypes = []
     version_added = '2.15'
+    _example = 'dax/dax_example1.dax'
 
     tokens = {
         'root': [

@@ -27,6 +27,7 @@ class ZigLexer(RegexLexer):
     filenames = ['*.zig']
     mimetypes = ['text/zig']
     version_added = ''
+    _example = 'zig/example.zig'
 
     type_keywords = (
         words(('bool', 'f16', 'f32', 'f64', 'f128', 'void', 'noreturn', 'type',

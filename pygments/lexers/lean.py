@@ -26,6 +26,7 @@ class Lean3Lexer(RegexLexer):
     filenames = ['*.lean']
     mimetypes = ['text/x-lean', 'text/x-lean3']
     version_added = '2.0'
+    _example = 'lean/test.lean'
 
     # from https://github.com/leanprover/vscode-lean/blob/1589ca3a65e394b3789409707febbd2d166c9344/syntaxes/lean.json#L186C20-L186C217
     _name_segment = (
@@ -143,6 +144,7 @@ class Lean4Lexer(RegexLexer):
     filenames = ['*.lean']
     mimetypes = ['text/x-lean4']
     version_added = '2.18'
+    _example = 'lean4/Test.lean'
 
     # same as Lean3Lexer, with `!` and `?` allowed
     _name_segment = (

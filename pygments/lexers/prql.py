@@ -28,6 +28,7 @@ class PrqlLexer(RegexLexer):
     filenames = ['*.prql']
     mimetypes = ['application/prql', 'application/x-prql']
     version_added = '2.17'
+    _example = 'prql/example.prql'
 
     builtinTypes = words((
         "bool",

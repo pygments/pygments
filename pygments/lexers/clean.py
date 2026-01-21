@@ -27,6 +27,7 @@ class CleanLexer(ExtendedRegexLexer):
     aliases = ['clean']
     filenames = ['*.icl', '*.dcl']
     version_added = ''
+    _example = 'clean/StdGeneric.icl'
 
     keywords = (
         'case', 'ccall', 'class', 'code', 'code inline', 'derive', 'export',

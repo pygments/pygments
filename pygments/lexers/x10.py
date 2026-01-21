@@ -25,6 +25,7 @@ class X10Lexer(RegexLexer):
     filenames = ['*.x10']
     mimetypes = ['text/x-x10']
     version_added = '2.2'
+    _example = 'x10/example.x10'
 
     keywords = (
         'as', 'assert', 'async', 'at', 'athome', 'ateach', 'atomic',

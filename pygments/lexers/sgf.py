@@ -26,6 +26,7 @@ class SmartGameFormatLexer(RegexLexer):
     aliases = ['sgf']
     filenames = ['*.sgf']
     version_added = '2.4'
+    _example = 'sgf/example.sgf'
 
     tokens = {
         'root': [

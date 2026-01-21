@@ -27,6 +27,7 @@ class AmbientTalkLexer(RegexLexer):
     aliases = ['ambienttalk', 'ambienttalk/2', 'at']
     mimetypes = ['text/x-ambienttalk']
     version_added = '2.0'
+    _example = 'at/hello.at'
 
     flags = re.MULTILINE | re.DOTALL
 

@@ -27,6 +27,7 @@ class TeraTermLexer(RegexLexer):
     filenames = ['*.ttl']
     mimetypes = ['text/x-teratermmacro']
     version_added = '2.4'
+    _example = 'ttl/teraterm.ttl'
 
     tokens = {
         'root': [

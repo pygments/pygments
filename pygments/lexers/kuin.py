@@ -24,6 +24,7 @@ class KuinLexer(RegexLexer):
     aliases = ['kuin']
     filenames = ['*.kn']
     version_added = '2.9'
+    _example = 'kuin/example.kn'
 
     tokens = {
         'root': [

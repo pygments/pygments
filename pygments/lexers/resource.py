@@ -25,6 +25,7 @@ class ResourceLexer(RegexLexer):
     filenames = []
     url = 'https://unicode-org.github.io/icu/userguide/locale/resources.html'
     version_added = '2.0'
+    _example = 'resource/resourcebundle_demo'
 
     _types = (':table', ':array', ':string', ':bin', ':import', ':intvector',
               ':int', ':alias')

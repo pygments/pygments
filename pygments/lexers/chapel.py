@@ -24,6 +24,7 @@ class ChapelLexer(RegexLexer):
     filenames = ['*.chpl']
     aliases = ['chapel', 'chpl']
     version_added = '2.0'
+    _example = 'chapel/99_bottles_of_beer.chpl'
     # mimetypes = ['text/x-chapel']
 
     known_types = ('bool', 'bytes', 'complex', 'imag', 'int', 'locale',

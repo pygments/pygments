@@ -26,6 +26,7 @@ class apdlexer(RegexLexer):
     filenames = ['*.ans']
     url = 'https://www.ansys.com'
     version_added = '2.9'
+    _example = 'apdl/example2apdl.ans'
 
     flags = re.IGNORECASE
 

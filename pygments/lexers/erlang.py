@@ -30,6 +30,7 @@ class ErlangLexer(RegexLexer):
     filenames = ['*.erl', '*.hrl', '*.es', '*.escript']
     mimetypes = ['text/x-erlang']
     version_added = '0.9'
+    _example = 'erlang/test.erl'
 
     keywords = (
         'after', 'begin', 'case', 'catch', 'cond', 'end', 'fun', 'if',
@@ -156,6 +157,7 @@ class ErlangShellLexer(Lexer):
     mimetypes = ['text/x-erl-shellsession']
     url = 'https://www.erlang.org/'
     version_added = '1.1'
+    _example = 'erl/erl_session.erl-sh'
 
     _prompt_re = re.compile(r'(?:\([\w@_.]+\))?\d+>(?=\s|\Z)')
 
@@ -227,6 +229,7 @@ class ElixirLexer(RegexLexer):
     filenames = ['*.ex', '*.eex', '*.exs', '*.leex']
     mimetypes = ['text/x-elixir']
     version_added = '1.5'
+    _example = 'elixir/example_elixir.ex'
 
     KEYWORD = ('fn', 'do', 'end', 'after', 'else', 'rescue', 'catch')
     KEYWORD_OPERATOR = ('not', 'and', 'or', 'when', 'in')
@@ -469,19 +472,6 @@ class ElixirLexer(RegexLexer):
 class ElixirConsoleLexer(Lexer):
     """
     For Elixir interactive console (iex) output like:
-
-    .. sourcecode:: iex
-
-        iex> [head | tail] = [1,2,3]
-        [1,2,3]
-        iex> head
-        1
-        iex> tail
-        [2,3]
-        iex> [head | tail]
-        [1,2,3]
-        iex> length [head | tail]
-        3
     """
 
     name = 'Elixir iex session'
@@ -489,6 +479,7 @@ class ElixirConsoleLexer(Lexer):
     mimetypes = ['text/x-elixir-shellsession']
     url = 'https://elixir-lang.org'
     version_added = '1.5'
+    _example = 'iex/iex_example'
 
     _prompt_re = re.compile(r'(iex|\.{3})((?:\([\w@_.]+\))?\d+|\(\d+\))?> ')
 

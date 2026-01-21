@@ -43,6 +43,7 @@ class QVToLexer(RegexLexer):
     filenames = ['*.qvto']
     url = 'https://www.omg.org/spec/QVT/1.1'
     version_added = ''
+    _example = 'qvto/sample.qvto'
 
     tokens = {
         'root': [

@@ -37,6 +37,7 @@ class RubyLexer(ExtendedRegexLexer):
                  '*.rbx', '*.duby', 'Gemfile', 'Vagrantfile']
     mimetypes = ['text/x-ruby', 'application/x-ruby']
     version_added = ''
+    _example = 'rb/example.rb'
 
     flags = re.DOTALL | re.MULTILINE
 
@@ -402,7 +403,7 @@ class RubyConsoleLexer(Lexer):
     mimetypes = ['text/x-ruby-shellsession']
     url = 'https://www.ruby-lang.org'
     version_added = ''
-    _example = 'rbcon/console'
+    _example = 'rbcon/irb_heredoc'
 
     _prompt_re = re.compile(r'irb\([a-zA-Z_]\w*\):\d{3}:\d+[>*"\'] '
                             r'|>> |\?> ')
@@ -446,6 +447,7 @@ class FancyLexer(RegexLexer):
     aliases = ['fancy', 'fy']
     mimetypes = ['text/x-fancysrc']
     version_added = '1.5'
+    _example = 'fancy/example_file.fy'
 
     tokens = {
         # copied from PerlLexer:

@@ -25,6 +25,7 @@ class SpiceLexer(RegexLexer):
     aliases = ['spice', 'spicelang']
     mimetypes = ['text/x-spice']
     version_added = '2.11'
+    _example = 'spice/dijkstra.spice'
 
     tokens = {
         'root': [

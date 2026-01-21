@@ -158,6 +158,7 @@ class SmartyLexer(RegexLexer):
     filenames = ['*.tpl']
     mimetypes = ['application/x-smarty']
     version_added = ''
+    _example = 'smarty/smarty_example.tpl'
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -342,6 +343,7 @@ class DjangoLexer(RegexLexer):
     mimetypes = ['application/x-django-templating', 'application/x-jinja']
     url = 'https://www.djangoproject.com/documentation/templates'
     version_added = ''
+    _example = 'django/django_sample.html+django'
 
     flags = re.M | re.S
 
@@ -425,6 +427,7 @@ class MyghtyLexer(RegexLexer):
     filenames = ['*.myt', 'autodelegate']
     mimetypes = ['application/x-myghty']
     version_added = '0.6'
+    _example = 'myghty/test.myt'
 
     tokens = {
         'root': [
@@ -591,6 +594,7 @@ class MakoLexer(RegexLexer):
     filenames = ['*.mao']
     mimetypes = ['application/x-mako']
     version_added = '0.7'
+    _example = 'mako/test.mao'
 
     tokens = {
         'root': [
@@ -741,6 +745,7 @@ class CheetahLexer(RegexLexer):
     filenames = ['*.tmpl', '*.spt']
     mimetypes = ['application/x-cheetah', 'application/x-spitfire']
     version_added = ''
+    _example = 'cheetah/cheetah_example.tmpl'
 
     tokens = {
         'root': [
@@ -835,6 +840,7 @@ class GenshiTextLexer(RegexLexer):
     aliases = ['genshitext']
     mimetypes = ['application/x-genshi-text', 'text/x-genshi']
     version_added = ''
+    _example = 'genshitext/genshitext_example.genshitext'
 
     tokens = {
         'root': [
@@ -960,6 +966,7 @@ class GenshiLexer(DelegatingLexer):
     aliases = ['genshi', 'kid', 'xml+genshi', 'xml+kid']
     filenames = ['*.kid']
     version_added = ''
+    _example = 'genshi/genshi_example.xml+genshi.kid'
     alias_filenames = ['*.xml']
     mimetypes = ['application/x-genshi', 'application/x-kid']
     url = 'https://genshi.edgewall.org/'
@@ -1029,6 +1036,7 @@ class RhtmlLexer(DelegatingLexer):
     aliases = ['rhtml', 'html+erb', 'html+ruby']
     filenames = ['*.rhtml']
     version_added = ''
+    _example = 'rhtml/example.rhtml'
     alias_filenames = ['*.html', '*.htm', '*.xhtml']
     mimetypes = ['text/html+ruby']
     url = 'https://github.com/ruby/erb'
@@ -1120,6 +1128,7 @@ class HtmlPhpLexer(DelegatingLexer):
     aliases = ['html+php']
     filenames = ['*.phtml']
     version_added = ''
+    _example = 'html+php/html+php_faulty.phtml'
     alias_filenames = ['*.php', '*.html', '*.htm', '*.xhtml',
                        '*.php[345]']
     mimetypes = ['application/x-php',
@@ -1424,6 +1433,7 @@ class JspLexer(DelegatingLexer):
     mimetypes = ['application/x-jsp']
     url = 'https://projects.eclipse.org/projects/ee4j.jsp'
     version_added = '0.7'
+    _example = 'jsp/test.jsp'
 
     def __init__(self, **options):
         super().__init__(XmlLexer, JspRootLexer, **options)
@@ -1447,6 +1457,7 @@ class EvoqueLexer(RegexLexer):
     mimetypes = ['application/x-evoque']
     url = 'https://gizmojo.org/templating'
     version_added = '1.1'
+    _example = 'evoque/test.evoque'
 
     flags = re.DOTALL
 
@@ -1640,6 +1651,7 @@ class ColdfusionHtmlLexer(DelegatingLexer):
     mimetypes = ['application/x-coldfusion']
     url = 'https://www.adobe.com/products/coldfusion-family.html'
     version_added = ''
+    _example = 'cfm/demo.cfm'
 
     def __init__(self, **options):
         super().__init__(HtmlLexer, ColdfusionMarkupLexer, **options)
@@ -1655,6 +1667,7 @@ class ColdfusionCFCLexer(DelegatingLexer):
     mimetypes = []
     url = 'https://www.adobe.com/products/coldfusion-family.html'
     version_added = '2.0'
+    _example = 'cfc/exampleScript.cfc'
 
     def __init__(self, **options):
         super().__init__(ColdfusionHtmlLexer, ColdfusionLexer, **options)
@@ -1670,6 +1683,7 @@ class SspLexer(DelegatingLexer):
     mimetypes = ['application/x-ssp']
     url = 'https://scalate.github.io/scalate/'
     version_added = '1.4'
+    _example = 'ssp/test.ssp'
 
     def __init__(self, **options):
         super().__init__(XmlLexer, JspRootLexer, **options)
@@ -1717,6 +1731,7 @@ class TeaTemplateLexer(DelegatingLexer):
     mimetypes = ['text/x-tea']
     url = 'https://github.com/teatrove/teatrove'
     version_added = '1.5'
+    _example = 'tea/example.tea'
 
     def __init__(self, **options):
         super().__init__(XmlLexer, TeaTemplateRootLexer, **options)
@@ -1920,6 +1935,7 @@ class HandlebarsHtmlLexer(DelegatingLexer):
     mimetypes = ['text/html+handlebars', 'text/x-handlebars-template']
     url = 'https://handlebarsjs.com/'
     version_added = '2.0'
+    _example = 'html+handlebars/ember.handlebars'
 
     def __init__(self, **options):
         super().__init__(HtmlLexer, HandlebarsLexer, **options)
@@ -1939,6 +1955,7 @@ class YamlJinjaLexer(DelegatingLexer):
     mimetypes = ['text/x-yaml+jinja', 'text/x-sls']
     url = 'https://jinja.palletsprojects.com'
     version_added = '2.0'
+    _example = 'yaml+jinja/example.sls'
 
     def __init__(self, **options):
         super().__init__(YamlLexer, DjangoLexer, **options)
@@ -1953,6 +1970,7 @@ class LiquidLexer(RegexLexer):
     aliases = ['liquid']
     filenames = ['*.liquid']
     version_added = '2.0'
+    _example = 'liquid/example.liquid'
 
     tokens = {
         'root': [
@@ -2162,6 +2180,7 @@ class TwigLexer(RegexLexer):
     mimetypes = ['application/x-twig']
     url = 'https://twig.symfony.com'
     version_added = '2.0'
+    _example = 'twig/twig_test'
 
     flags = re.M | re.S
 
@@ -2322,6 +2341,7 @@ class Angular2HtmlLexer(DelegatingLexer):
     filenames = ['*.ng2']
     url = 'https://angular.io/guide/template-syntax'
     version_added = '2.0'
+    _example = 'html+ng2/example.ng2'
 
     def __init__(self, **options):
         super().__init__(HtmlLexer, Angular2Lexer, **options)
@@ -2337,6 +2357,7 @@ class SqlJinjaLexer(DelegatingLexer):
     filenames = ['*.sql', '*.sql.j2', '*.sql.jinja2']
     url = 'https://jinja.palletsprojects.com'
     version_added = '2.13'
+    _example = 'sql+jinja/example.sql'
 
     def __init__(self, **options):
         super().__init__(SqlLexer, DjangoLexer, **options)

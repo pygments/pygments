@@ -24,6 +24,7 @@ class BoogieLexer(RegexLexer):
     aliases = ['boogie']
     filenames = ['*.bpl']
     version_added = '2.1'
+    _example = 'boogie/test.bpl'
 
     tokens = {
         'root': [
@@ -71,6 +72,7 @@ class SilverLexer(RegexLexer):
     filenames = ['*.sil', '*.vpr']
     url = 'https://github.com/viperproject/silver'
     version_added = '2.2'
+    _example = 'silver/test.sil'
 
     tokens = {
         'root': [

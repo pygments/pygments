@@ -26,6 +26,7 @@ class SourcePawnLexer(RegexLexer):
     mimetypes = ['text/x-sourcepawn']
     url = 'https://github.com/alliedmodders/sourcepawn'
     version_added = '1.6'
+    _example = 'sp/hello.sp'
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/\*.*?\*/)+'
@@ -137,6 +138,7 @@ class PawnLexer(RegexLexer):
     mimetypes = ['text/x-pawn']
     url = 'https://www.compuphase.com/pawn/pawn.htm'
     version_added = '2.0'
+    _example = 'pawn/test.pwn'
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*][\w\W]*?[*]/)+'

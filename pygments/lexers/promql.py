@@ -30,6 +30,7 @@ class PromQLLexer(RegexLexer):
     aliases = ["promql"]
     filenames = ["*.promql"]
     version_added = ''
+    _example = 'promql/example.promql'
 
     base_keywords = (
         words(

@@ -27,6 +27,7 @@ class NCLLexer(RegexLexer):
     mimetypes = ['text/ncl']
     url = 'https://www.ncl.ucar.edu'
     version_added = '2.2'
+    _example = 'ncl/test.ncl'
 
     flags = re.MULTILINE
 

@@ -30,6 +30,7 @@ class PerlLexer(RegexLexer):
     filenames = ['*.pl', '*.pm', '*.t', '*.perl']
     mimetypes = ['text/x-perl', 'application/x-perl']
     version_added = ''
+    _example = 'perl/perl_perl5db.pl'
 
     flags = re.DOTALL | re.MULTILINE
     # TODO: give this to a perl guy who knows how to parse perl...
@@ -236,6 +237,7 @@ class Perl6Lexer(ExtendedRegexLexer):
                  '*.rakutest', '*.rakudoc']
     mimetypes = ['text/x-perl6', 'application/x-perl6']
     version_added = '2.0'
+    _example = 'perl6/test.p6'
     flags = re.MULTILINE | re.DOTALL
 
     PERL6_IDENTIFIER_RANGE = r"['\w:-]"

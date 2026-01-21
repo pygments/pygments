@@ -30,6 +30,7 @@ class AwkLexer(RegexLexer):
     mimetypes = ['application/x-awk']
     url = 'https://en.wikipedia.org/wiki/AWK'
     version_added = '1.5'
+    _example = 'awk/test.awk'
 
     tokens = {
         'commentsandwhitespace': [
@@ -83,6 +84,7 @@ class SedLexer(RegexLexer):
     mimetypes = ['text/x-sed']
     url = 'https://en.wikipedia.org/wiki/Sed'
     version_added = ''
+    _example = 'sed/count_words.sed'
     flags = re.MULTILINE
 
     # Match the contents within delimiters such as /<contents>/
@@ -121,6 +123,7 @@ class VimLexer(RegexLexer):
     mimetypes = ['text/x-vim']
     url = 'https://www.vim.org'
     version_added = '0.8'
+    _example = 'vim/phpcomplete.vim'
 
     flags = re.MULTILINE
 

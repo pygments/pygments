@@ -26,6 +26,7 @@ class YaraLexer(RegexLexer):
     filenames = ['*.yar']
     mimetypes = ['text/x-yara']
     version_added = '2.16'
+    _example = 'yara/example.yar'
 
     tokens = {
         'root': [

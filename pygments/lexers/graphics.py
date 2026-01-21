@@ -27,6 +27,7 @@ class GLShaderLexer(RegexLexer):
     mimetypes = ['text/x-glslsrc']
     url = 'https://www.khronos.org/api/opengl'
     version_added = '1.1'
+    _example = 'glsl/glsl.vert'
 
     tokens = {
         'root': [
@@ -158,6 +159,7 @@ class HLSLShaderLexer(RegexLexer):
     mimetypes = ['text/x-hlsl']
     url = 'https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl'
     version_added = '2.3'
+    _example = 'hlsl/example.hlsl'
 
     tokens = {
         'root': [
@@ -312,6 +314,7 @@ class PostScriptLexer(RegexLexer):
     filenames = ['*.ps', '*.eps']
     mimetypes = ['application/postscript']
     version_added = '1.4'
+    _example = 'postscript/cells.ps'
 
     delimiter = r'()<>\[\]{}/%\s'
     delimiter_end = rf'(?=[{delimiter}])'
@@ -406,6 +409,7 @@ class AsymptoteLexer(RegexLexer):
     filenames = ['*.asy']
     mimetypes = ['text/x-asymptote']
     version_added = '1.2'
+    _example = 'asy/test.asy'
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/\*.*?\*/)+'
@@ -534,6 +538,7 @@ class GnuplotLexer(RegexLexer):
     filenames = ['*.plot', '*.plt']
     mimetypes = ['text/x-gnuplot']
     version_added = '0.11'
+    _example = 'gnuplot/test.plot'
 
     tokens = {
         'root': [
@@ -693,6 +698,7 @@ class PovrayLexer(RegexLexer):
     filenames = ['*.pov', '*.inc']
     mimetypes = ['text/x-povray']
     version_added = '0.11'
+    _example = 'pov/sphere.pov'
 
     tokens = {
         'root': [
