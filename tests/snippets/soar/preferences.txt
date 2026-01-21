@@ -1,0 +1,67 @@
+---input---
+sp {preferences*better
+   (state <s> ^operator <o1> + <o2> +)
+   (<o1> ^name this_is_better)
+   (<o2> ^name <> this_is_better)
+-->
+   (<s> ^operator <o1> > <o2>) 
+}
+
+---tokens---
+'sp'          Keyword.Reserved
+' '           Text.Whitespace
+'{'           Punctuation
+'preferences*better' Name.Function
+'\n   '       Text.Whitespace
+'('           Punctuation
+'state'       Keyword.Reserved
+' '           Text.Whitespace
+'<s>'         Name
+' '           Text.Whitespace
+'^operator'   Name.Variable
+' '           Text.Whitespace
+'<o1>'        Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'<o2>'        Name
+' '           Text.Whitespace
+'+'           Operator
+')'           Punctuation
+'\n   '       Text.Whitespace
+'('           Punctuation
+'<o1>'        Name
+' '           Text.Whitespace
+'^name'       Name.Variable
+' '           Text.Whitespace
+'this_is_better' Literal
+')'           Punctuation
+'\n   '       Text.Whitespace
+'('           Punctuation
+'<o2>'        Name
+' '           Text.Whitespace
+'^name'       Name.Variable
+' '           Text.Whitespace
+'<>'          Operator
+' '           Text.Whitespace
+'this_is_better' Literal
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'-->'         Punctuation
+'\n   '       Text.Whitespace
+'('           Punctuation
+'<s>'         Name
+' '           Text.Whitespace
+'^operator'   Name.Variable
+' '           Text.Whitespace
+'<o1>'        Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'<o2>'        Name
+')'           Punctuation
+' \n'         Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
