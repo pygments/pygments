@@ -63,7 +63,8 @@ class DevicetreeLexer(RegexLexer):
                     '#size-cells', 'reg', 'virtual-reg', 'ranges', 'dma-ranges',
                     'device_type', 'name'), suffix=r'\b'), Keyword.Reserved),
             (r'([~!%^&*+=|?:<>/#-])', Operator),
-            (r'[()\[\]{},.]', Punctuation),
+            (r'[(){},.\]]', Punctuation),
+            (r'\[', Punctuation, 'bytestring'),
             (r'[a-zA-Z_][\w-]*(?=(?:\s*,\s*[a-zA-Z_][\w-]*|(?:' + _ws + r'))*\s*[=;])',
              Name),
             (r'[a-zA-Z_]\w*', Name.Attribute),
@@ -104,5 +105,10 @@ class DevicetreeLexer(RegexLexer):
             (r'[^\\"\n]+', String),  # all other characters
             (r'\\\n', String),  # line continuation
             (r'\\', String),  # stray backslash
+        ],
+        'bytestring': [
+            (r'\]', Punctuation, '#pop'),
+            (r'[0-9a-fA-F]{2}', Number.Hex),
+            (r'\s+', Whitespace),
         ],
     }
