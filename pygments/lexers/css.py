@@ -262,6 +262,7 @@ class CssLexer(RegexLexer):
              bygroups(Name.Builtin, Punctuation), 'function-start'),
             (r'([a-zA-Z_][\w-]+)(\()',
              bygroups(Name.Function, Punctuation), 'function-start'),
+            (r'\(', Punctuation, 'function-start'),
 
             (r'/\*(?:.|\n)*?\*/', Comment),
             include('numeric-values'),
