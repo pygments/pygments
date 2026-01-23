@@ -397,7 +397,14 @@ class LlvmLexer(RegexLexer):
         ],
         'whitespace': [
             (r'(\n|\s+)+', Whitespace),
-            (r';.*?\n', Comment)
+            (r';.*?\n', Comment),
+            (r'/\*', Comment, 'c-comment'),
+        ],
+        'c-comment': [
+            (r'[^*]+', Comment),
+            (r'\*/', Comment, '#pop'),
+            # Consume lone asterisks as non-comment-ending content.
+            (r'\*', Comment),
         ],
         'keyword': [
             # Regular keywords
