@@ -1238,7 +1238,7 @@ class TOMLLexer(RegexLexer):
             default('value'),
         ],
         'inline-table': [
-            # Whitespace (since TOML 1.1.1, same as in array)
+            # Whitespace (since TOML 1.1.0, same as in array)
             (r'\s+', Whitespace),
             (r'#.*', Comment.Single),
 
