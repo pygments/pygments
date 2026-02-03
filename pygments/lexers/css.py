@@ -590,13 +590,43 @@ class LessCssLexer(CssLexer):
     version_added = '2.1'
 
     tokens = {
+        # FIXME: It's not currently possible to simply do the following,
+        #        as `include('basics')` doesn't take overrides into account:
+        # 'basics': [
+        #     (r'//.*\n', Comment.Single),
+        #     (r'/\*(?:.|\n)*?\*/', Comment.Multiline),
+        #     inherit,
+        # ],
         'root': [
             (r'@\w+', Name.Variable),
+            (r'//.*\n', Comment.Single),
+            (r'/\*(?:.|\n)*?\*/', Comment.Multiline),
+            inherit,
+        ],
+        'atcontent': [
+            (r'//.*\n', Comment.Single),
+            (r'/\*(?:.|\n)*?\*/', Comment.Multiline),
+            inherit,
+        ],
+        'atrule': [
+            (r'//.*\n', Comment.Single),
+            (r'/\*(?:.|\n)*?\*/', Comment.Multiline),
             inherit,
         ],
         'content': [
             (r'\{', Punctuation, '#push'),
             (r'//.*\n', Comment.Single),
+            (r'/\*(?:.|\n)*?\*/', Comment.Multiline),
+            inherit,
+        ],
+        'value-start': [
+            (r'//.*\n', Comment.Single),
+            (r'/\*(?:.|\n)*?\*/', Comment.Multiline),
+            inherit,
+        ],
+        'function-start': [
+            (r'//.*\n', Comment.Single),
+            (r'/\*(?:.|\n)*?\*/', Comment.Multiline),
             inherit,
         ],
     }
