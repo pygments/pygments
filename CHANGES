@@ -14,6 +14,11 @@ Version 2.20.0
 - Updated lexers:
 
   * Bash: Fix coloured keyword at the beginning of a name (#2926)
+  * LESS: Support single-line comments (#3005)
+  * LilyPond: Update to 2.25.29 (#2974)
+  * Python: Add ``t``-string support (#3009, #3010)
+
+- Drop Python 3.8, and add Python 3.14 as a supported version (#2987, #3012)
 
 Version 2.19.2
 --------------

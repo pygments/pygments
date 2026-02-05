@@ -118,27 +118,27 @@ class PythonLexer(RegexLexer):
             include('expr'),
         ],
         'expr': [
-            # raw f-strings
-            ('(?i)(rf|fr)(""")',
+            # raw f-strings and t-strings
+            ('(?i)(r[ft]|[ft]r)(""")',
              bygroups(String.Affix, String.Double),
              combined('rfstringescape', 'tdqf')),
-            ("(?i)(rf|fr)(''')",
+            ("(?i)(r[ft]|[ft]r)(''')",
              bygroups(String.Affix, String.Single),
              combined('rfstringescape', 'tsqf')),
-            ('(?i)(rf|fr)(")',
+            ('(?i)(r[ft]|[ft]r)(")',
              bygroups(String.Affix, String.Double),
              combined('rfstringescape', 'dqf')),
-            ("(?i)(rf|fr)(')",
+            ("(?i)(r[ft]|[ft]r)(')",
              bygroups(String.Affix, String.Single),
              combined('rfstringescape', 'sqf')),
-            # non-raw f-strings
-            ('([fF])(""")', bygroups(String.Affix, String.Double),
+            # non-raw f-strings and t-strings
+            ('([fFtT])(""")', bygroups(String.Affix, String.Double),
              combined('fstringescape', 'tdqf')),
-            ("([fF])(''')", bygroups(String.Affix, String.Single),
+            ("([fFtT])(''')", bygroups(String.Affix, String.Single),
              combined('fstringescape', 'tsqf')),
-            ('([fF])(")', bygroups(String.Affix, String.Double),
+            ('([fFtT])(")', bygroups(String.Affix, String.Double),
              combined('fstringescape', 'dqf')),
-            ("([fF])(')", bygroups(String.Affix, String.Single),
+            ("([fFtT])(')", bygroups(String.Affix, String.Single),
              combined('fstringescape', 'sqf')),
             # raw bytes and strings
             ('(?i)(rb|br|r)(""")',
