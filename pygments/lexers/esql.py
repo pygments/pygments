@@ -98,8 +98,11 @@ ESQL_KEYWORD_OPERATORS = [
 
 class ESQLLexer(RegexLexer):
     """Lexer for Elasticsearch Query Language (ES|QL).
-    First released on ES|QL 8.17.
-    Updated to support ES|QL up to 9.1 (including preview).
+
+    ES|QL is a piped language which allows to chain together multiple commands to query data in Kibana from the Elastic stack.
+
+    First released based on ES|QL 8.17.
+    Support ES|QL features (Commands, Functions and Punctuation updates) up to 9.1 version (including preview, 8.18 and 8.19).
     """
 
     name = "Elasticsearch Query Language"
