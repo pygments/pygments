@@ -69,9 +69,7 @@ class XQueryLexer(ExtendedRegexLexer):
     xquery_parse_state = []
 
     ncname = r"(?:[^\W\d](?:\w|-|[.])*)"
-    pitarget_namestartchar = r"(?:[A-KN-WYZ]|_|:|[a-kn-wyz])"
-    pitarget_namechar = r"(?:" + pitarget_namestartchar + r"|-|\.|[0-9])"
-    pitarget = f"{pitarget_namestartchar}+{pitarget_namechar}*"
+    pitarget = r"(?![xX][mM][lL]$)(?:[^\W\d][\w.\-:]*)"
     prefixedname = f"{ncname}:{ncname}"
     unprefixedname = ncname
     qname = f"(?:{prefixedname}|{unprefixedname})"
