@@ -11,12 +11,23 @@
 
 import re
 from re import escape
-from os.path import commonprefix
 from itertools import groupby
 from operator import itemgetter
 
 CS_ESCAPE = re.compile(r'[\[\^\\\-\]]')
 FIRST_ELEMENT = itemgetter(0)
+
+
+def commonprefix(m):
+    """Given an iterable of strings, returns the longest common leading substring"""
+    if not m:
+        return ""
+    s1 = min(m)
+    s2 = max(m)
+    for i, c in enumerate(s1):
+        if c != s2[i]:
+            return s1[:i]
+    return s1
 
 
 def make_charset(letters):
