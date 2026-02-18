@@ -127,6 +127,13 @@ class XQueryLexer(ExtendedRegexLexer):
         ctx.stack.append(lexer.xquery_parse_state.pop())
         ctx.pos = match.end()
 
+    def popstate_xmlpi_callback(lexer, match, ctx):
+        yield match.start(), String.Doc, match.group(1)
+        ctx.stack.append(lexer.xquery_parse_state.pop())
+        ctx.pos = match.end()
+
+
+
     def popstate_kindtest_callback(lexer, match, ctx):
         yield match.start(), Punctuation, match.group(1)
         next_state = lexer.xquery_parse_state.pop()
@@ -512,13 +519,12 @@ class XQueryLexer(ExtendedRegexLexer):
         ],
         'processing_instruction': [
             (r'\s+', Text, 'processing_instruction_content'),
-            (r'\?>', String.Doc, '#pop'),
+            (r'(\?>)', popstate_xmlpi_callback),
             (pitarget, Name),
         ],
         'processing_instruction_content': [
-            (r'\?>', String.Doc, '#pop'),
-            (r'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|[\U00010000-\U0010FFFF]',
-             Literal),
+            (r'(\?>)', popstate_xmlpi_callback),
+            (r'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|[\U00010000-\U0010FFFF]', Literal),
         ],
         'cdata_section': [
             (r']]>', String.Doc, '#pop'),
