@@ -1060,7 +1060,7 @@ class QbeLexer(RegexLexer):
     filenames = ['*.ssa']
     version_added = '2.20'
 
-    ident = r'[a-zA-Z_.][\w.$]*'
+    ident = r'[a-zA-Z_.][\w.\$]*'
     digits_dec = r'(\d+\.\d*|\.\d+|\d+)'
     digits_hex = r'([\da-fA-F]+\.[\da-fA-F]*|\.[\da-fA-F]+|[\da-fA-F]+)'
     float_dec = digits_dec + r'([eE][+-]?\d+)?'
