@@ -21,7 +21,7 @@
     .. _Pygments master branch:
        https://github.com/pygments/pygments/archive/master.zip#egg=Pygments-dev
 
-    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-present by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 from io import StringIO, BytesIO

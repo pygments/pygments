@@ -6,7 +6,7 @@
     Make sure Python (.py) and Bash completion (.bashcomp) files do not
     contain CR/LF newlines.
 
-    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-present by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
