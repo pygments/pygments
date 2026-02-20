@@ -6,7 +6,6 @@
     :license: BSD, see LICENSE for details.
 """
 
-import inspect
 import pathlib
 import random
 from io import StringIO, BytesIO
@@ -18,7 +17,6 @@ import pytest
 from pygments import lexers, formatters, lex, format, __version__
 from pygments.token import _TokenType, Text
 from pygments.lexer import RegexLexer
-import pygments
 from pygments.formatter import Formatter
 from pygments.formatters.img import FontNotFound
 from pygments.lexers import LEXERS
