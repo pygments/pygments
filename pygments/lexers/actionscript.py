@@ -195,7 +195,7 @@ class ActionScript3Lexer(RegexLexer):
     }
 
     def analyse_text(text):
-        if re.search(r'\w+\s*:\s*\w', text):
+        if re.search(r'import\s+flash\.', text):
             return 0.1
         return 0
 

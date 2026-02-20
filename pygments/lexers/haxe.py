@@ -890,7 +890,7 @@ class HaxeLexer(ExtendedRegexLexer):
     }
 
     def analyse_text(text):
-        if re.search(r'\w+\s*:\s*\w', text):
+        if re.search(r':\s*(Int|Float|Bool|Void|Dynamic)\b', text):
             return 0.1
 
 
