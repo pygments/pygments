@@ -13,6 +13,7 @@ import os
 import sys
 import os.path
 from io import StringIO
+from typing import List
 
 from pygments.formatter import Formatter
 from pygments.token import Token, Text, STANDARD_TYPES
@@ -492,33 +493,48 @@ class HtmlFormatter(Formatter):
     def _create_stylesheet(self):
         t2c = self.ttype2class = {Token: ''}
         c2s = self.class2style = {}
+        c2a = self.class2sass = {} # a for awesome
         for ttype, ndef in self.style:
             name = self._get_css_class(ttype)
+
             style = ''
+            sass = list()
             if ndef['color']:
                 style += 'color: {}; '.format(webify(ndef['color']))
+                sass.append(f"color: {webify(ndef['color'])}")
             if ndef['bold']:
                 style += 'font-weight: bold; '
+                sass.append(f'font-weight: bold')
             if ndef['italic']:
                 style += 'font-style: italic; '
+                sass.append(f'font-style: italic')
             if ndef['underline']:
                 style += 'text-decoration: underline; '
+                sass.append(f'text-decoration: underline')
             if ndef['bgcolor']:
                 style += 'background-color: {}; '.format(webify(ndef['bgcolor']))
+                sass.append(f"background-color: {webify(ndef['bgcolor'])}")
             if ndef['border']:
                 style += 'border: 1px solid {}; '.format(webify(ndef['border']))
+                sass.append(f"border: 1px solid {webify(ndef['border'])}")
             if style:
                 t2c[ttype] = name
                 # save len(ttype) to enable ordering the styles by
                 # hierarchy (necessary for CSS cascading rules!)
                 c2s[name] = (style[:-2], ttype, len(ttype))
+                c2a[name] = (sass, ttype, len(ttype))
 
-    def get_style_defs(self, arg=None):
+    def get_style_defs(self, arg = None) -> str:
         """
         Return CSS style definitions for the classes produced by the current
         highlighting style. ``arg`` can be a string or list of selectors to
-        insert before the token type classes.
+        insert before the token type classes. Append '.sass' to the selector
+        string or add 'sass' at the end of the list of selectors to obtain
+        syntactically awesome stylesheet.
         """
+        if isinstance(arg, str) and arg.split('.')[-1] == "sass":
+            return self.get_sass_defs('.'.join(arg.split('.')[:-1]))
+        
         style_lines = []
 
         style_lines.extend(self.get_linenos_style_defs())
@@ -526,6 +542,28 @@ class HtmlFormatter(Formatter):
         style_lines.extend(self.get_token_style_defs(arg))
 
         return '\n'.join(style_lines)
+    
+    def get_sass_defs(self, arg: List | str | None = None) -> str:
+        sass_blocks = self.get_linenos_sass_defs() + self.get_sass_prefix(arg) + [
+            self.get_background_sass_defs(arg) +
+            self.get_token_sass_defs(arg)
+        ]
+        
+        return self._get_sass_line(sass_blocks)
+    
+    def _get_sass_line(self, block: List[str | List], indentation: int = 0) -> str:
+        line = str()
+
+        for entry in block:
+            if isinstance(entry, str):
+                entry = '\t' * indentation + entry
+            
+            if isinstance(entry, List):
+                entry = self._get_sass_line(entry, indentation + 1)
+
+            line += entry + '\n'
+
+        return line.rstrip() + '\n'
 
     def get_token_style_defs(self, arg=None):
         prefix = self.get_css_prefix(arg)
@@ -543,6 +581,19 @@ class HtmlFormatter(Formatter):
         ]
 
         return lines
+    
+    def get_token_sass_defs(self, arg=None) -> List[str | List]:
+        styles = sorted([
+            (level, ttype, cls, sass)
+            for cls, (sass, ttype, level) in self.class2sass.items()
+            if cls and sass
+        ])
+
+        blocks = list()
+        for (_, _, cls, sass) in styles:
+            blocks += [f'.{cls}', sass]
+
+        return blocks
 
     def get_background_style_defs(self, arg=None):
         prefix = self.get_css_prefix(arg)
@@ -566,6 +617,29 @@ class HtmlFormatter(Formatter):
             )
 
         return lines
+    
+    def _get_text_sass(self) -> List:
+        if Text in self.ttype2class:
+            return self.class2sass[self.ttype2class[Text]][0]
+        
+        return list()
+
+    def get_background_sass_defs(self, arg = None) -> List[str | List]:
+        blocks = list()
+
+        bg_color = self.style.background_color
+        if arg and not self.nobackground and bg_color is not None:
+            blocks.append(f"background: {bg_color}")
+            
+            text_style = self._get_text_sass()
+            if text_style:
+                blocks += text_style
+
+        hl_color = self.style.highlight_color
+        if hl_color is not None:
+            blocks += [".hll", [f"background-color: {hl_color}"]]
+
+        return blocks
 
     def get_linenos_style_defs(self):
         lines = [
@@ -577,6 +651,13 @@ class HtmlFormatter(Formatter):
         ]
 
         return lines
+    
+    def get_linenos_sass_defs(self) -> List[str | List]:
+        return [
+            'pre', self._pre_sass,
+            'td.linenos .normal, span.linenos', self._linenos_sass,
+            'td.linenos .special, span.linenos.special', self._linenos_special_sass
+        ]
 
     def get_css_prefix(self, arg):
         if arg is None:
@@ -595,22 +676,59 @@ class HtmlFormatter(Formatter):
             return ', '.join(tmp)
 
         return prefix
+    
+    def get_sass_prefix(self, arg) -> List[str]:
+        if arg is None:
+            arg = ('cssclass' in self.options and '.' + self.cssclass or '')
+        
+        if isinstance(arg, str):
+            args = [arg]
+        else:
+            args = list(arg)
+
+        return args
 
     @property
     def _pre_style(self):
         return 'line-height: 125%;'
+    
+    @property
+    def _pre_sass(self) -> List[str]:
+        return ['line-height: 125%']
 
     @property
     def _linenos_style(self):
         color = self.style.line_number_color
         background_color = self.style.line_number_background_color
         return f'color: {color}; background-color: {background_color}; padding-left: 5px; padding-right: 5px;'
+    
+    @property
+    def _linenos_sass(self) -> List[str]:
+        color = self.style.line_number_color
+        background_color = self.style.line_number_background_color
+        return [
+            f'color: {color}',
+            f'background-color: {background_color}',
+            f'padding-left: 5px',
+            f'padding-right: 5px'
+        ]
 
     @property
     def _linenos_special_style(self):
         color = self.style.line_number_special_color
         background_color = self.style.line_number_special_background_color
         return f'color: {color}; background-color: {background_color}; padding-left: 5px; padding-right: 5px;'
+    
+    @property
+    def _linenos_special_sass(self) -> List[str]:
+        color = self.style.line_number_special_color
+        background_color = self.style.line_number_special_background_color
+        return [
+            f'color: {color}',
+            f'background-color: {background_color}',
+            f'padding-left: 5px',
+            f'padding-right: 5px'
+        ]
 
     def _decodeifneeded(self, value):
         if isinstance(value, bytes):
