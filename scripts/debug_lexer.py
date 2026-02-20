@@ -120,7 +120,7 @@ def decode_atheris(bstr):
         return chr(ch)
 
     chars = struct.unpack('%dI%dx' % divmod(len(bstr), 4), bstr)
-    return ''.join(map(valid_codepoint), chars)
+    return ''.join(map(valid_codepoint, chars))
 
 
 def main(fn, lexer=None, options={}):
