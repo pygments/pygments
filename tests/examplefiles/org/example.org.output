@@ -250,6 +250,7 @@
 
 'DEADLINE: '  Generic.Error
 '<2018-07-31 Tue>' Literal.Date
+''            Text
 '\n'          Text
 
 'something'   Text
@@ -260,9 +261,62 @@
 
 'SCHEDULED: ' Generic.Error
 '<2018-07-31 Tue>' Literal.Date
+''            Text
 '\n'          Text
 
 'something'   Text
+'\n'          Text
+
+'** both'     Generic.Subheading
+'\n'          Text
+
+'DEADLINE: '  Generic.Error
+'<2025-06-01 Sun>' Literal.Date
+' SCHEDULED: ' Generic.Error
+'<2025-05-27 Tue>' Literal.Date
+''            Text
+'\n'          Text
+
+'** '         Generic.Subheading
+'DONE'        Generic.Deleted
+' all of the above' Generic.Subheading
+'\n'          Text
+
+'CLOSED: '    Generic.Deleted
+'[2025-05-27 Tue 20:28]' Literal.Date
+' DEADLINE: ' Generic.Error
+'<2025-06-01 Sun>' Literal.Date
+' SCHEDULED: ' Generic.Error
+'<2025-05-27 Tue>' Literal.Date
+''            Text
+'\n'          Text
+
+'** multideadline' Generic.Subheading
+'\n'          Text
+
+'SCHEDULED: ' Generic.Error
+'<2025-05-27 Tue>' Literal.Date
+' DEADLINE: ' Generic.Error
+'<2025-06-01 Sun>' Literal.Date
+' DEADLINE: ' Generic.Error
+'<2025-09-01 Sun>' Literal.Date
+''            Text
+'\n'          Text
+
+'** '         Generic.Subheading
+'DONE'        Generic.Deleted
+' more all of the above' Generic.Subheading
+'\n'          Text
+
+'CLOSED: '    Generic.Deleted
+'[2025-05-27 Tue 20:28]' Literal.Date
+' SCHEDULED: ' Generic.Error
+'<2025-05-27 Tue>' Literal.Date
+' DEADLINE: ' Generic.Error
+'<2025-06-01 Sun>' Literal.Date
+' DEADLINE: ' Generic.Error
+'<2025-09-01 Sun>' Literal.Date
+''            Text
 '\n'          Text
 
 '* Blocks'    Generic.Heading
