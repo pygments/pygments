@@ -311,6 +311,7 @@ LEXERS = {
     'MapleLexer': ('pygments.lexers.maple', 'Maple', ('maple',), ('*.mpl', '*.mi', '*.mm'), ('text/x-maple',)),
     'MaqlLexer': ('pygments.lexers.business', 'MAQL', ('maql',), ('*.maql',), ('text/x-gooddata-maql', 'application/x-gooddata-maql')),
     'MarkdownLexer': ('pygments.lexers.markup', 'Markdown', ('markdown', 'md'), ('*.md', '*.markdown'), ('text/x-markdown',)),
+    'MarklessLexer': ('pygments.lexers.markup', 'Markless', ('markless',), ('*.mess', '*.markless'), ('text/x-markless',)),
     'MaskLexer': ('pygments.lexers.javascript', 'Mask', ('mask',), ('*.mask',), ('text/x-mask',)),
     'MasonLexer': ('pygments.lexers.templates', 'Mason', ('mason',), ('*.m', '*.mhtml', '*.mc', '*.mi', 'autohandler', 'dhandler'), ('application/x-mason',)),
     'MathematicaLexer': ('pygments.lexers.algebra', 'Mathematica', ('mathematica', 'mma', 'nb'), ('*.nb', '*.cdf', '*.nbp', '*.ma'), ('application/mathematica', 'application/vnd.wolfram.mathematica', 'application/vnd.wolfram.mathematica.package', 'application/vnd.wolfram.cdf')),

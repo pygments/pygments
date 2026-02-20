@@ -1,0 +1,65 @@
+---input---
+::
+a
+::
+
+:: c
+int foo();
+::
+
+:: markless
+This //should// be parsed
+::
+
+---tokens---
+'::'          Keyword
+''            Text.Whitespace
+''            Name.Function
+''            Literal.String
+'\n'          Text.Whitespace
+
+'a\n'         Literal.String
+
+'::'          Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'::'          Keyword
+' '           Text.Whitespace
+'c'           Name.Function
+''            Literal.String
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'foo'         Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'::'          Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'::'          Keyword
+' '           Text.Whitespace
+'markless'    Name.Function
+''            Literal.String
+'\n'          Text.Whitespace
+
+'This'        Text
+' '           Text.Whitespace
+'//'          Keyword
+'should'      Generic.Emph
+'//'          Keyword
+' '           Text.Whitespace
+'be'          Text
+' '           Text.Whitespace
+'parsed'      Text
+'\n'          Text.Whitespace
+
+'::'          Keyword
+'\n'          Text.Whitespace
