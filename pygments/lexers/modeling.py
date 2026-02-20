@@ -314,6 +314,8 @@ class StanLexer(RegexLexer):
              bygroups(Keyword.Namespace, Text, Punctuation)),
             # target keyword
             (r'target\s*\+=', Keyword),
+            # jacobian += statement
+            (r'jacobian\s*\+=', Keyword),
             # Reserved Words
             (r'({})\b'.format(r'|'.join(_stan_builtins.KEYWORDS)), Keyword),
             # Truncation
