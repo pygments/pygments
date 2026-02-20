@@ -1,0 +1,1388 @@
+'declare-option' Keyword
+' '           Text.Whitespace
+'-docstring'  Text
+' '           Text.Whitespace
+'"name of the client in which documentation is to be displayed"' Literal.String
+' '           Text.Whitespace
+'\\\n'        Literal.String.Escape
+
+'    '        Text.Whitespace
+'str'         Name.Class
+' '           Text.Whitespace
+'docsclient'  Text
+'\n\n'        Text.Whitespace
+
+'declare-option' Keyword
+' '           Text.Whitespace
+'-hidden'     Text
+' '           Text.Whitespace
+'range-specs' Name.Class
+' '           Text.Whitespace
+'doc_render_ranges' Text
+'\n'          Text.Whitespace
+
+'declare-option' Keyword
+' '           Text.Whitespace
+'-hidden'     Text
+' '           Text.Whitespace
+'range-specs' Name.Class
+' '           Text.Whitespace
+'doc_links'   Text
+'\n'          Text.Whitespace
+
+'declare-option' Keyword
+' '           Text.Whitespace
+'-hidden'     Text
+' '           Text.Whitespace
+'range-specs' Name.Class
+' '           Text.Whitespace
+'doc_anchors' Text
+'\n\n'        Text.Whitespace
+
+'define-command' Keyword
+' '           Text.Whitespace
+'-hidden'     Text
+' '           Text.Whitespace
+'-params'     Text
+' '           Text.Whitespace
+'4'           Literal.Number
+' '           Text.Whitespace
+'doc-render-regex' Text
+' '           Text.Whitespace
+'%'           Text
+'{'           Operator
+'\n    '      Text.Whitespace
+'evaluate-commands' Keyword
+' '           Text.Whitespace
+'-draft'      Text
+' '           Text.Whitespace
+'%'           Text
+'{'           Operator
+' '           Text.Whitespace
+'try'         Keyword
+' '           Text.Whitespace
+'%'           Text
+'{'           Operator
+'\n        '  Text.Whitespace
+'execute-keys' Keyword
+' '           Text.Whitespace
+'<'           Text
+'percent>'    Text
+' '           Text.Whitespace
+'s'           Text
+' '           Text.Whitespace
+'%arg'        Text
+'{'           Operator
+'1'           Literal.Number
+'}'           Operator
+' '           Text.Whitespace
+'<'           Text
+'ret>'        Text
+'\n        '  Text.Whitespace
+'execute-keys' Keyword
+' '           Text.Whitespace
+'-draft'      Text
+' '           Text.Whitespace
+'s'           Text
+' '           Text.Whitespace
+'%arg'        Text
+'{'           Operator
+'2'           Literal.Number
+'}'           Operator
+' '           Text.Whitespace
+'<'           Text
+'ret>'        Text
+' '           Text.Whitespace
+'d'           Text
+'\n        '  Text.Whitespace
+'execute-keys' Keyword
+' '           Text.Whitespace
+'"%arg{3}"'   Literal.String
+'\n        '  Text.Whitespace
+'evaluate-commands' Keyword
+' '           Text.Whitespace
+'%sh'         Text
+'{'           Operator
+'\n            ' Text.Whitespace
+'face'        Name.Variable
+'='           Operator
+'"$4"'        Literal.String
+'\n            ' Text.Whitespace
+'eval'        Name.Builtin
+' '           Text.Whitespace
+'"set -- $kak_quoted_selections_desc"' Literal.String
+'\n            ' Text.Whitespace
+'ranges'      Name.Attribute
+'='           Operator
+'""'          Literal.String
+'\n            ' Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'desc'        Text
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'"$@"'        Literal.String
+';'           Punctuation
+' '           Text.Whitespace
+'do'          Keyword
+' '           Text.Whitespace
+'ranges'      Name.Attribute
+'='           Operator
+'"$ranges \'$desc|$face\'"' Literal.String
+';'           Punctuation
+' '           Text.Whitespace
+'done'        Keyword
+'\n            ' Text.Whitespace
+'echo'        Keyword
+' '           Text.Whitespace
+'"update-option buffer doc_render_ranges"' Literal.String
+'\n            ' Text.Whitespace
+'echo'        Keyword
+' '           Text.Whitespace
+'"set-option -add buffer doc_render_ranges $ranges"' Literal.String
+'\n        '  Text.Whitespace
+'}'           Operator
+'\n    '      Text.Whitespace
+'}'           Operator
+' '           Text.Whitespace
+'}'           Operator
+'\n'          Text.Whitespace
+
+'}'           Operator
+'\n\n'        Text.Whitespace
+
+'define-command' Keyword
+' '           Text.Whitespace
+'-hidden'     Text
+' '           Text.Whitespace
+'doc-parse-links' Text
+' '           Text.Whitespace
+'%'           Text
+'{'           Operator
+'\n    '      Text.Whitespace
+'evaluate-commands' Keyword
+' '           Text.Whitespace
+'-draft'      Text
+' '           Text.Whitespace
+'%'           Text
+'{'           Operator
+' '           Text.Whitespace
+'try'         Keyword
+' '           Text.Whitespace
+'%'           Text
+'{'           Operator
+'\n        '  Text.Whitespace
+'execute-keys' Keyword
+' '           Text.Whitespace
+'<'           Text
+'percent>'    Text
+' '           Text.Whitespace
+'s'           Text
+' '           Text.Whitespace
+'<'           Text
+'lt>'         Text
+'<'           Text
+'lt>'         Text
+'('           Operator
+'.*?'         Text
+')'           Operator
+',.*?'        Text
+'<'           Text
+'gt>'         Text
+'<'           Text
+'gt>'         Text
+' '           Text.Whitespace
+'<'           Text
+'ret>'        Text
+'\n        '  Text.Whitespace
+'execute-keys' Keyword
+' '           Text.Whitespace
+'-draft'      Text
+' '           Text.Whitespace
+'s'           Text
+' '           Text.Whitespace
+'<'           Text
+'lt>'         Text
+'<'           Text
+'lt>.*,'      Text
+'|'           Punctuation
+'<'           Text
+'gt>'         Text
+'<'           Text
+'gt>'         Text
+' '           Text.Whitespace
+'<'           Text
+'ret>'        Text
+' '           Text.Whitespace
+'d'           Text
+'\n        '  Text.Whitespace
+'execute-keys' Keyword
+' '           Text.Whitespace
+'H'           Text
+'\n        '  Text.Whitespace
+'set-option'  Keyword
+' '           Text.Whitespace
+'buffer'      Keyword
+' '           Text.Whitespace
+'doc_links'   Text
+' '           Text.Whitespace
+'%val'        Text
+'{'           Operator
+'timestamp'   Text
+'}'           Operator
+'\n        '  Text.Whitespace
+'update-option' Keyword
+' '           Text.Whitespace
+'buffer'      Keyword
+' '           Text.Whitespace
+'doc_render_ranges' Text
+'\n        '  Text.Whitespace
+'evaluate-commands' Keyword
+' '           Text.Whitespace
+'-itersel'    Text
+' '           Text.Whitespace
+'%'           Text
+'{'           Operator
+'\n            ' Text.Whitespace
+'set-option'  Keyword
+' '           Text.Whitespace
+'-add'        Text
+' '           Text.Whitespace
+'buffer'      Keyword
+' '           Text.Whitespace
+'doc_links'   Text
+' '           Text.Whitespace
+'"%val{selection_desc}|%reg{1}"' Literal.String
+'\n            ' Text.Whitespace
+'set-option'  Keyword
+' '           Text.Whitespace
+'-add'        Text
+' '           Text.Whitespace
+'buffer'      Keyword
+' '           Text.Whitespace
+'doc_render_ranges' Text
+' '           Text.Whitespace
+'"%val{selection_desc}|default+u"' Literal.String
+'\n        '  Text.Whitespace
+'}'           Operator
+'\n    '      Text.Whitespace
+'}'           Operator
+' '           Text.Whitespace
+'}'           Operator
+'\n'          Text.Whitespace
+
+'}'           Operator
+'\n\n'        Text.Whitespace
+
+'define-command' Keyword
+' '           Text.Whitespace
+'-hidden'     Text
+' '           Text.Whitespace
+'doc-parse-anchors' Text
+' '           Text.Whitespace
+'%'           Text
+'{'           Operator
+'\n    '      Text.Whitespace
+'evaluate-commands' Keyword
+' '           Text.Whitespace
+'-draft'      Text
+' '           Text.Whitespace
+'%'           Text
+'{'           Operator
+' '           Text.Whitespace
+'try'         Keyword
+' '           Text.Whitespace
+'%'           Text
+'{'           Operator
+'\n        '  Text.Whitespace
+'set-option'  Keyword
+' '           Text.Whitespace
+'buffer'      Keyword
+' '           Text.Whitespace
+'doc_anchors' Text
+' '           Text.Whitespace
+'%val'        Text
+'{'           Operator
+'timestamp'   Text
+'}'           Operator
+'\n        '  Text.Whitespace
+'# Find sections as add them as imlicit anchors\n' Comment.Single
+
+'        '    Text.Whitespace
+'execute-keys' Keyword
+' '           Text.Whitespace
+'<'           Text
+'percent>'    Text
+' '           Text.Whitespace
+'s'           Text
+' '           Text.Whitespace
+'^'           Text
+'='           Operator
+'{'           Operator
+'2'           Literal.Number
+','           Text
+'}'           Operator
+'\\h'         Literal.String.Escape
+'+'           Text
+'('           Operator
+'['           Operator
+'^'           Text
+'\\n'         Literal.String.Escape
+']'           Operator
+'+'           Text
+')'           Operator
+'$'           Text
+' '           Text.Whitespace
+'<'           Text
+'ret>'        Text
+'\n        '  Text.Whitespace
+'evaluate-commands' Keyword
+' '           Text.Whitespace
+'-itersel'    Text
+' '           Text.Whitespace
+'%'           Text
+'{'           Operator
+'\n            ' Text.Whitespace
+'set-option'  Keyword
+' '           Text.Whitespace
+'-add'        Text
+' '           Text.Whitespace
+'buffer'      Keyword
+' '           Text.Whitespace
+'doc_anchors' Text
+' '           Text.Whitespace
+'"%val{selection_desc}|%sh{printf \'%s\' ""$kak_main_reg_1"" | tr \'[A-Z ]\' \'[a-z-]\'}"' Literal.String
+'\n        '  Text.Whitespace
+'}'           Operator
+'\n\n        ' Text.Whitespace
+'# Parse explicit anchors and remove their text\n' Comment.Single
+
+'        '    Text.Whitespace
+'execute-keys' Keyword
+' '           Text.Whitespace
+'<'           Text
+'percent>'    Text
+' '           Text.Whitespace
+'s'           Text
+' '           Text.Whitespace
+'\\['         Literal.String.Escape
+'\\['         Literal.String.Escape
+'('           Operator
+'.*?'         Text
+')'           Operator
+'\\]'         Literal.String.Escape
+'\\]'         Literal.String.Escape
+'\\s'         Literal.String.Escape
+'*'           Text
+' '           Text.Whitespace
+'<'           Text
+'ret>'        Text
+'\n        '  Text.Whitespace
+'evaluate-commands' Keyword
+' '           Text.Whitespace
+'-itersel'    Text
+' '           Text.Whitespace
+'%'           Text
+'{'           Operator
+'\n            ' Text.Whitespace
+'set-option'  Keyword
+' '           Text.Whitespace
+'-add'        Text
+' '           Text.Whitespace
+'buffer'      Keyword
+' '           Text.Whitespace
+'doc_anchors' Text
+' '           Text.Whitespace
+'"%val{selection_desc}|%reg{1}"' Literal.String
+'\n        '  Text.Whitespace
+'}'           Operator
+'\n        '  Text.Whitespace
+'execute-keys' Keyword
+' '           Text.Whitespace
+'d'           Text
+'\n        '  Text.Whitespace
+'update-option' Keyword
+' '           Text.Whitespace
+'buffer'      Keyword
+' '           Text.Whitespace
+'doc_anchors' Text
+'\n    '      Text.Whitespace
+'}'           Operator
+' '           Text.Whitespace
+'}'           Operator
+'\n'          Text.Whitespace
+
+'}'           Operator
+'\n\n'        Text.Whitespace
+
+'define-command' Keyword
+' '           Text.Whitespace
+'-hidden'     Text
+' '           Text.Whitespace
+'doc-jump-to-anchor' Text
+' '           Text.Whitespace
+'-params'     Text
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'%'           Text
+'{'           Operator
+'\n    '      Text.Whitespace
+'update-option' Keyword
+' '           Text.Whitespace
+'buffer'      Keyword
+' '           Text.Whitespace
+'doc_anchors' Text
+'\n    '      Text.Whitespace
+'evaluate-commands' Keyword
+' '           Text.Whitespace
+'%sh'         Text
+'{'           Operator
+'\n        '  Text.Whitespace
+'anchor'      Name.Variable
+'='           Operator
+'"$1"'        Literal.String
+'\n        '  Text.Whitespace
+'eval'        Name.Builtin
+' '           Text.Whitespace
+'"set -- $kak_quoted_opt_doc_anchors"' Literal.String
+'\n\n        ' Text.Whitespace
+'shift'       Name.Builtin
+'\n        '  Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'range'       Text
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'"$@"'        Literal.String
+';'           Punctuation
+' '           Text.Whitespace
+'do'          Keyword
+'\n            ' Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'['           Operator
+' '           Text.Whitespace
+'"${range#*|}"' Literal.String
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"$anchor"'   Literal.String
+' '           Text.Whitespace
+']'           Operator
+';'           Punctuation
+' '           Text.Whitespace
+'then'        Keyword
+'\n                ' Text.Whitespace
+'printf'      Name.Builtin
+' '           Text.Whitespace
+"'%s\\n'"     Literal.String
+'  '          Text.Whitespace
+'"select \'${range%|*}\'; execute-keys vv"' Literal.String
+'\n                ' Text.Whitespace
+'exit'        Name.Builtin
+'\n            ' Text.Whitespace
+'fi'          Keyword
+'\n        '  Text.Whitespace
+'done'        Keyword
+'\n        '  Text.Whitespace
+'printf'      Name.Builtin
+' '           Text.Whitespace
+'"fail No such anchor \'%s\'\\n"' Literal.String
+' '           Text.Whitespace
+'"${anchor}"' Literal.String
+'\n    '      Text.Whitespace
+'}'           Operator
+'\n'          Text.Whitespace
+
+'}'           Operator
+'\n\n'        Text.Whitespace
+
+'define-command' Keyword
+' '           Text.Whitespace
+'-hidden'     Text
+' '           Text.Whitespace
+'doc-follow-link' Text
+' '           Text.Whitespace
+'%'           Text
+'{'           Operator
+'\n    '      Text.Whitespace
+'update-option' Keyword
+' '           Text.Whitespace
+'buffer'      Keyword
+' '           Text.Whitespace
+'doc_links'   Text
+'\n    '      Text.Whitespace
+'evaluate-commands' Keyword
+' '           Text.Whitespace
+'%sh'         Text
+'{'           Operator
+'\n        '  Text.Whitespace
+'eval'        Name.Builtin
+' '           Text.Whitespace
+'"set -- $kak_quoted_opt_doc_links"' Literal.String
+'\n        '  Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'link'        Text
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'"$@"'        Literal.String
+';'           Punctuation
+' '           Text.Whitespace
+'do'          Keyword
+'\n            ' Text.Whitespace
+'printf'      Name.Builtin
+' '           Text.Whitespace
+"'%s\\n'"     Literal.String
+' '           Text.Whitespace
+'"$link"'     Literal.String
+'\n        '  Text.Whitespace
+'done'        Keyword
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text.Whitespace
+'awk'         Text
+' '           Text.Whitespace
+'-v'          Text
+' '           Text.Whitespace
+'FS'          Name.Variable
+'='           Operator
+"'[.,|#]'"    Literal.String
+' '           Text.Whitespace
+'\'\n            BEGIN {\n                l=ENVIRON["kak_cursor_line"];\n                c=ENVIRON["kak_cursor_column"];\n            }\n            l >= $1 && c >= $2 && l <= $3 && c <= $4 {\n                if (NF == 6) {\n                    print "doc " $5\n                    if ($6 != "") {\n                        print "doc-jump-to-anchor %{" $6 "}"\n                    }\n                } else {\n                    print "doc-jump-to-anchor %{" $5 "}"\n                }\n                exit\n            }\n        \'' Literal.String
+'\n    '      Text.Whitespace
+'}'           Operator
+'\n'          Text.Whitespace
+
+'}'           Operator
+'\n\n'        Text.Whitespace
+
+'define-command' Keyword
+' '           Text.Whitespace
+'-params'     Text
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'-hidden'     Text
+' '           Text.Whitespace
+'doc-render'  Text
+' '           Text.Whitespace
+'%'           Text
+'{'           Operator
+'\n    '      Text.Whitespace
+'edit'        Keyword
+'!'           Text
+' '           Text.Whitespace
+'-scratch'    Text
+' '           Text.Whitespace
+'"*doc-%sh{basename $1 .asciidoc}*"' Literal.String
+'\n    '      Text.Whitespace
+'execute-keys' Keyword
+' '           Text.Whitespace
+'"!cat \'%arg{1}\'<ret>gg"' Literal.String
+'\n\n    '    Text.Whitespace
+'doc-parse-anchors' Text
+'\n\n    '    Text.Whitespace
+'# Join paragraphs together\n' Comment.Single
+
+'    '        Text.Whitespace
+'try'         Keyword
+' '           Text.Whitespace
+'%'           Text
+'{'           Operator
+'\n        '  Text.Whitespace
+'execute-keys' Keyword
+' '           Text.Whitespace
+'-draft'      Text
+' '           Text.Whitespace
+"'%S\\n{2,}|(?<lt>=\\+)\\n|^[^\\n]+::\\n|^\\h*[*-]\\h+<ret>'" Literal.String
+' '           Text.Whitespace
+'\\\n'        Literal.String.Escape
+
+'            ' Text.Whitespace
+'<'           Text
+'a-K>^'       Text
+'\\h'         Literal.String.Escape
+'*-'          Text
+'{'           Operator
+'2'           Literal.Number
+','           Text
+'}'           Operator
+'('           Operator
+'\\n'         Literal.String.Escape
+'|'           Punctuation
+'\\z'         Literal.String.Escape
+')'           Operator
+'<'           Text
+'ret>'        Text
+' '           Text.Whitespace
+'S'           Text
+'\\n'         Literal.String.Escape
+'\\z'         Literal.String.Escape
+'<'           Text
+'ret>'        Text
+' '           Text.Whitespace
+'<'           Text
+'a-k>'        Text
+'\\n'         Literal.String.Escape
+'<'           Text
+'ret>'        Text
+' '           Text.Whitespace
+'<'           Text
+'a-j>'        Text
+'\n    '      Text.Whitespace
+'}'           Operator
+'\n\n    '    Text.Whitespace
+'# Remove some line end markers\n' Comment.Single
+
+'    '        Text.Whitespace
+'try'         Keyword
+' '           Text.Whitespace
+'%'           Text
+'{'           Operator
+' '           Text.Whitespace
+'execute-keys' Keyword
+' '           Text.Whitespace
+'-draft'      Text
+' '           Text.Whitespace
+'<'           Text
+'percent>'    Text
+' '           Text.Whitespace
+'s'           Text
+' '           Text.Whitespace
+'\\h'         Literal.String.Escape
+'*'           Text
+'('           Operator
+'\\+'         Literal.String.Escape
+'|'           Punctuation
+':'           Text
+'{'           Operator
+'2'           Literal.Number
+','           Text
+'}'           Operator
+')'           Operator
+'$'           Text
+' '           Text.Whitespace
+'<'           Text
+'ret>'        Text
+' '           Text.Whitespace
+'d'           Text
+' '           Text.Whitespace
+'}'           Operator
+'\n\n    '    Text.Whitespace
+'# Setup the doc_render_ranges option\n' Comment.Single
+
+'    '        Text.Whitespace
+'set-option'  Keyword
+' '           Text.Whitespace
+'buffer'      Keyword
+' '           Text.Whitespace
+'doc_render_ranges' Text
+' '           Text.Whitespace
+'%val'        Text
+'{'           Operator
+'timestamp'   Text
+'}'           Operator
+'\n    '      Text.Whitespace
+'doc-render-regex' Text
+' '           Text.Whitespace
+'\\B'         Literal.String.Escape
+'('           Operator
+'?'           Text
+'<'           Text
+'!'           Text
+'\\\\'        Literal.String.Escape
+')'           Operator
+'\\*'         Literal.String.Escape
+'('           Operator
+'?'           Text
+'='           Operator
+'\\S'         Literal.String.Escape
+')'           Operator
+'['           Operator
+'^'           Text
+'\\n'         Literal.String.Escape
+']'           Operator
+'+?'          Text
+'('           Operator
+'?'           Text
+'<'           Text
+'='           Operator
+'\\S'         Literal.String.Escape
+')'           Operator
+'('           Operator
+'?'           Text
+'<'           Text
+'!'           Text
+'\\\\'        Literal.String.Escape
+')'           Operator
+'\\*'         Literal.String.Escape
+'\\B'         Literal.String.Escape
+' '           Text.Whitespace
+'\\A'         Literal.String.Escape
+'|'           Punctuation
+'.'           Text
+'\\z'         Literal.String.Escape
+' '           Text.Whitespace
+"'H'"         Literal.String
+' '           Text.Whitespace
+'default'     Literal
+'+b'          Text
+'\n    '      Text.Whitespace
+'doc-render-regex' Text
+' '           Text.Whitespace
+'\\b'         Literal.String.Escape
+'('           Operator
+'?'           Text
+'<'           Text
+'!'           Text
+'\\\\'        Literal.String.Escape
+')'           Operator
+'_'           Text
+'('           Operator
+'?'           Text
+'='           Operator
+'\\S'         Literal.String.Escape
+')'           Operator
+'['           Operator
+'^'           Text
+'\\n'         Literal.String.Escape
+']'           Operator
+'+?'          Text
+'('           Operator
+'?'           Text
+'<'           Text
+'='           Operator
+'\\S'         Literal.String.Escape
+')'           Operator
+'('           Operator
+'?'           Text
+'<'           Text
+'!'           Text
+'\\\\'        Literal.String.Escape
+')'           Operator
+'_'           Text
+'\\b'         Literal.String.Escape
+' '           Text.Whitespace
+'\\A'         Literal.String.Escape
+'|'           Punctuation
+'.'           Text
+'\\z'         Literal.String.Escape
+' '           Text.Whitespace
+"'H'"         Literal.String
+' '           Text.Whitespace
+'default'     Literal
+'+i'          Text
+'\n    '      Text.Whitespace
+'doc-render-regex' Text
+' '           Text.Whitespace
+'\\B'         Literal.String.Escape
+'('           Operator
+'?'           Text
+'<'           Text
+'!'           Text
+'\\\\'        Literal.String.Escape
+')'           Operator
+'`'           Literal.String.Backtick
+'('           Operator
+'?'           Text
+'='           Operator
+'\\S'         Literal.String.Escape
+')'           Operator
+'['           Operator
+'^'           Text
+'\\n'         Literal.String.Escape
+']'           Operator
+'+?'          Text
+'('           Operator
+'?'           Text
+'<'           Text
+'='           Operator
+'\\S'         Literal.String.Escape
+')'           Operator
+'`'           Literal.String.Backtick
+'\\B'         Literal.String.Escape
+' '           Text.Whitespace
+'\\A'         Literal.String.Escape
+'|'           Punctuation
+'.'           Text
+'\\z'         Literal.String.Escape
+' '           Text.Whitespace
+"'H'"         Literal.String
+' '           Text.Whitespace
+'mono'        Text
+'\n    '      Text.Whitespace
+'doc-render-regex' Text
+' '           Text.Whitespace
+'^'           Text
+'='           Operator
+'\\h'         Literal.String.Escape
+'+'           Text
+'['           Operator
+'^'           Text
+'\\n'         Literal.String.Escape
+']'           Operator
+'+'           Text
+' '           Text.Whitespace
+'^'           Text
+'='           Operator
+'\\h'         Literal.String.Escape
+'+'           Text
+' '           Text.Whitespace
+"'~'"         Literal.String
+' '           Text.Whitespace
+'title'       Text
+'\n    '      Text.Whitespace
+'doc-render-regex' Text
+' '           Text.Whitespace
+'^'           Text
+'='           Operator
+'{'           Operator
+'2'           Literal.Number
+','           Text
+'}'           Operator
+'\\h'         Literal.String.Escape
+'+'           Text
+'['           Operator
+'^'           Text
+'\\n'         Literal.String.Escape
+']'           Operator
+'+'           Text
+' '           Text.Whitespace
+'^'           Text
+'='           Operator
+'{'           Operator
+'2'           Literal.Number
+','           Text
+'}'           Operator
+'\\h'         Literal.String.Escape
+'+'           Text
+' '           Text.Whitespace
+"''"          Literal.String
+' '           Text.Whitespace
+'header'      Text
+'\n    '      Text.Whitespace
+'doc-render-regex' Text
+' '           Text.Whitespace
+'^'           Text
+'\\h'         Literal.String.Escape
+'*-'          Text
+'{'           Operator
+'2'           Literal.Number
+','           Text
+'}'           Operator
+'\\n'         Literal.String.Escape
+'\\h'         Literal.String.Escape
+'*.*?^'       Text
+'\\h'         Literal.String.Escape
+'*-'          Text
+'{'           Operator
+'2'           Literal.Number
+','           Text
+'}'           Operator
+'\\n'         Literal.String.Escape
+' '           Text.Whitespace
+'^'           Text
+'\\h'         Literal.String.Escape
+'*-'          Text
+'{'           Operator
+'2'           Literal.Number
+','           Text
+'}'           Operator
+'\\n'         Literal.String.Escape
+' '           Text.Whitespace
+"''"          Literal.String
+' '           Text.Whitespace
+'block'       Text
+'\n\n    '    Text.Whitespace
+'doc-parse-links' Text
+'\n\n    '    Text.Whitespace
+'# Remove escaping of * and `\n' Comment.Single
+
+'    '        Text.Whitespace
+'try'         Keyword
+' '           Text.Whitespace
+'%'           Text
+'{'           Operator
+' '           Text.Whitespace
+'execute-keys' Keyword
+' '           Text.Whitespace
+'-draft'      Text
+' '           Text.Whitespace
+'<'           Text
+'percent>'    Text
+' '           Text.Whitespace
+'s'           Text
+' '           Text.Whitespace
+'\\\\'        Literal.String.Escape
+'('           Operator
+'('           Operator
+'?'           Text
+'='           Operator
+'\\*'         Literal.String.Escape
+')'           Operator
+'|'           Punctuation
+'('           Operator
+'?'           Text
+'='           Operator
+'`'           Literal.String.Backtick
+')'           Operator
+')'           Operator
+' '           Text.Whitespace
+'<'           Text
+'ret>'        Text
+' '           Text.Whitespace
+'d'           Text
+' '           Text.Whitespace
+'}'           Operator
+'\n    '      Text.Whitespace
+'# Go to beginning of file\n' Comment.Single
+
+'    '        Text.Whitespace
+'execute-keys' Keyword
+' '           Text.Whitespace
+"'gg'"        Literal.String
+'\n\n    '    Text.Whitespace
+'set-option'  Keyword
+' '           Text.Whitespace
+'buffer'      Keyword
+' '           Text.Whitespace
+'readonly'    Name.Builtin
+' '           Text.Whitespace
+'true'        Literal
+'\n    '      Text.Whitespace
+'add-highlighter' Keyword
+' '           Text.Whitespace
+'buffer'      Keyword
+'/'           Text
+' '           Text.Whitespace
+'ranges'      Name.Attribute
+' '           Text.Whitespace
+'doc_render_ranges' Text
+'\n    '      Text.Whitespace
+'add-highlighter' Keyword
+' '           Text.Whitespace
+'buffer'      Keyword
+'/'           Text
+' '           Text.Whitespace
+'wrap'        Name.Attribute
+' '           Text.Whitespace
+'-word'       Text
+' '           Text.Whitespace
+'-indent'     Text
+'\n    '      Text.Whitespace
+'map'         Keyword
+' '           Text.Whitespace
+'buffer'      Keyword
+' '           Text.Whitespace
+'normal'      Name.Attribute
+' '           Text.Whitespace
+'<'           Text
+'ret>'        Text
+' '           Text.Whitespace
+':doc-follow-link' Text
+'<'           Text
+'ret>'        Text
+'\n'          Text.Whitespace
+
+'}'           Operator
+'\n\n'        Text.Whitespace
+
+'define-command' Keyword
+' '           Text.Whitespace
+'doc'         Text
+' '           Text.Whitespace
+'-params '    Text
+'0'           Literal.Number
+'..'          Text
+'2'           Literal.Number
+' '           Text.Whitespace
+'-docstring'  Text
+' '           Text.Whitespace
+'%'           Text
+'{'           Operator
+'\n        '  Text.Whitespace
+'doc'         Text
+' '           Text.Whitespace
+'<'           Text
+'topic>'      Text
+' '           Text.Whitespace
+'['           Operator
+'<'           Text
+'keyword>'    Text
+']'           Operator
+':'           Text
+' '           Text.Whitespace
+'open'        Text
+' '           Text.Whitespace
+'a'           Text
+' '           Text.Whitespace
+'buffer'      Keyword
+' '           Text.Whitespace
+'containing'  Text
+' '           Text.Whitespace
+'documentation' Text
+' '           Text.Whitespace
+'about'       Text
+' '           Text.Whitespace
+'a'           Text
+' '           Text.Whitespace
+'given'       Text
+' '           Text.Whitespace
+'topic'       Text
+'\n        '  Text.Whitespace
+'An'          Text
+' '           Text.Whitespace
+'optional'    Text
+' '           Text.Whitespace
+'keyword'     Text
+' '           Text.Whitespace
+'argument'    Text
+' '           Text.Whitespace
+'can'         Text
+' '           Text.Whitespace
+'be'          Text
+' '           Text.Whitespace
+'passed'      Text
+' '           Text.Whitespace
+'to'          Text
+' '           Text.Whitespace
+'the'         Text
+' '           Text.Whitespace
+'function'    Keyword
+','           Text
+' '           Text.Whitespace
+'which'       Text
+' '           Text.Whitespace
+'will'        Text
+' '           Text.Whitespace
+'be'          Text
+' '           Text.Whitespace
+'automatically' Text
+' '           Text.Whitespace
+'selected'    Text
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'the'         Text
+' '           Text.Whitespace
+'documentation' Text
+'\n\n        ' Text.Whitespace
+'See'         Text
+' '           Text.Whitespace
+'`'           Literal.String.Backtick
+':doc'        Text
+' '           Text.Whitespace
+'doc'         Text
+'`'           Literal.String.Backtick
+' '           Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'details.'    Text
+'\n    '      Text.Whitespace
+'}'           Operator
+' '           Text.Whitespace
+'%'           Text
+'{'           Operator
+'\n    '      Text.Whitespace
+'evaluate-commands' Keyword
+' '           Text.Whitespace
+'%sh'         Text
+'{'           Operator
+'\n        '  Text.Whitespace
+'topic'       Name.Variable
+'='           Operator
+'"doc"'       Literal.String
+'\n        '  Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'['           Operator
+' '           Text.Whitespace
+'$#'          Name.Variable
+' '           Text.Whitespace
+'-ge'         Text
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+']'           Operator
+';'           Punctuation
+' '           Text.Whitespace
+'then'        Keyword
+'\n            ' Text.Whitespace
+'topic'       Name.Variable
+'='           Operator
+'"$1"'        Literal.String
+'\n        '  Text.Whitespace
+'fi'          Keyword
+'\n        '  Text.Whitespace
+'page'        Name.Variable
+'='           Operator
+'$('          Keyword
+'\n            ' Text.Whitespace
+'find'        Text
+' '           Text.Whitespace
+'-L'          Text
+' '           Text.Whitespace
+'\\\n'        Literal.String.Escape
+
+'                ' Text.Whitespace
+'"${kak_config}/autoload/"' Literal.String
+' '           Text.Whitespace
+'\\\n'        Literal.String.Escape
+
+'                ' Text.Whitespace
+'"${kak_runtime}/doc/"' Literal.String
+' '           Text.Whitespace
+'\\\n'        Literal.String.Escape
+
+'                ' Text.Whitespace
+'"${kak_runtime}/rc/"' Literal.String
+' '           Text.Whitespace
+'\\\n'        Literal.String.Escape
+
+'                ' Text.Whitespace
+'-type'       Text
+' '           Text.Whitespace
+'f'           Text
+' '           Text.Whitespace
+'-name'       Text
+' '           Text.Whitespace
+'"$topic.asciidoc"' Literal.String
+' '           Text.Whitespace
+'2'           Literal.Number
+'>/dev/null'  Text
+' '           Text.Whitespace
+'|'           Punctuation
+'\n                ' Text.Whitespace
+'head'        Text
+' '           Text.Whitespace
+'-1'          Text
+'\n        '  Text.Whitespace
+')'           Keyword
+'\n        '  Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'['           Operator
+' '           Text.Whitespace
+'-f'          Text
+' '           Text.Whitespace
+'"${page}"'   Literal.String
+' '           Text.Whitespace
+']'           Operator
+';'           Punctuation
+' '           Text.Whitespace
+'then'        Keyword
+'\n            ' Text.Whitespace
+'jump_cmd'    Name.Variable
+'='           Operator
+'""'          Literal.String
+'\n            ' Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'['           Operator
+' '           Text.Whitespace
+'$#'          Name.Variable
+' '           Text.Whitespace
+'-eq'         Text
+' '           Text.Whitespace
+'2'           Literal.Number
+' '           Text.Whitespace
+']'           Operator
+';'           Punctuation
+' '           Text.Whitespace
+'then'        Keyword
+'\n                ' Text.Whitespace
+'jump_cmd'    Name.Variable
+'='           Operator
+'"doc-jump-to-anchor \'$2\'"' Literal.String
+'\n            ' Text.Whitespace
+'fi'          Keyword
+'\n            ' Text.Whitespace
+'printf'      Name.Builtin
+' '           Text.Whitespace
+'%s'          Text
+'\\\\'        Literal.String.Escape
+'n'           Text
+' '           Text.Whitespace
+'"evaluate-commands -try-client %opt{docsclient} %{ doc-render ${page}; ${jump_cmd} }"' Literal.String
+'\n        '  Text.Whitespace
+'else'        Keyword
+'\n            ' Text.Whitespace
+'printf'      Name.Builtin
+' '           Text.Whitespace
+"'fail No such doc file: %s\\n'" Literal.String
+' '           Text.Whitespace
+'"$topic.asciidoc"' Literal.String
+'\n        '  Text.Whitespace
+'fi'          Keyword
+'\n    '      Text.Whitespace
+'}'           Operator
+'\n'          Text.Whitespace
+
+'}'           Operator
+'\n\n'        Text.Whitespace
+
+'complete-command' Keyword
+' '           Text.Whitespace
+'-menu'       Text
+' '           Text.Whitespace
+'doc'         Text
+' '           Text.Whitespace
+'shell-script-candidates' Text
+' '           Text.Whitespace
+'%'           Text
+'{'           Operator
+'\n    '      Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'"$kak_token_to_complete"' Literal.String
+' '           Text.Whitespace
+'in'          Keyword
+'\n        '  Text.Whitespace
+'0'           Literal.Number
+')'           Operator
+'\n            ' Text.Whitespace
+'find'        Text
+' '           Text.Whitespace
+'-L'          Text
+' '           Text.Whitespace
+'\\\n'        Literal.String.Escape
+
+'                ' Text.Whitespace
+'"${kak_config}/autoload/"' Literal.String
+' '           Text.Whitespace
+'\\\n'        Literal.String.Escape
+
+'                ' Text.Whitespace
+'"${kak_runtime}/doc/"' Literal.String
+' '           Text.Whitespace
+'\\\n'        Literal.String.Escape
+
+'                ' Text.Whitespace
+'"${kak_runtime}/rc/"' Literal.String
+' '           Text.Whitespace
+'\\\n'        Literal.String.Escape
+
+'                ' Text.Whitespace
+'-type'       Text
+' '           Text.Whitespace
+'f'           Text
+' '           Text.Whitespace
+'-name'       Text
+' '           Text.Whitespace
+'"*.asciidoc"' Literal.String
+' '           Text.Whitespace
+'2'           Literal.Number
+'>/dev/null'  Text
+' '           Text.Whitespace
+'|'           Punctuation
+'\n                ' Text.Whitespace
+'sed'         Text
+' '           Text.Whitespace
+"'s,.*/,,; s/\\.[^.]*$//'" Literal.String
+';'           Punctuation
+';'           Punctuation
+'\n        '  Text.Whitespace
+'1'           Literal.Number
+')'           Operator
+'\n            ' Text.Whitespace
+'page'        Name.Variable
+'='           Operator
+'$('          Keyword
+'\n                ' Text.Whitespace
+'find'        Text
+' '           Text.Whitespace
+'-L'          Text
+' '           Text.Whitespace
+'\\\n'        Literal.String.Escape
+
+'                    ' Text.Whitespace
+'"${kak_config}/autoload/"' Literal.String
+' '           Text.Whitespace
+'\\\n'        Literal.String.Escape
+
+'                    ' Text.Whitespace
+'"${kak_runtime}/doc/"' Literal.String
+' '           Text.Whitespace
+'\\\n'        Literal.String.Escape
+
+'                    ' Text.Whitespace
+'"${kak_runtime}/rc/"' Literal.String
+' '           Text.Whitespace
+'\\\n'        Literal.String.Escape
+
+'                    ' Text.Whitespace
+'-type'       Text
+' '           Text.Whitespace
+'f'           Text
+' '           Text.Whitespace
+'-name'       Text
+' '           Text.Whitespace
+'"$1.asciidoc"' Literal.String
+' '           Text.Whitespace
+'2'           Literal.Number
+'>/dev/null'  Text
+' '           Text.Whitespace
+'|'           Punctuation
+'\n                    ' Text.Whitespace
+'head'        Text
+' '           Text.Whitespace
+'-1'          Text
+'\n            ' Text.Whitespace
+')'           Keyword
+'\n            ' Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'['           Operator
+' '           Text.Whitespace
+'-f'          Text
+' '           Text.Whitespace
+'"${page}"'   Literal.String
+' '           Text.Whitespace
+']'           Operator
+';'           Punctuation
+' '           Text.Whitespace
+'then'        Keyword
+'\n                ' Text.Whitespace
+'awk'         Text
+' '           Text.Whitespace
+'\'\n                    /^==+ +/ { sub(/^==+ +/, ""); print }\n                    /^\\[\\[[^\\]]+\\]\\]/ { sub(/^\\[\\[/, ""); sub(/\\]\\].*/, ""); print }\n                \'' Literal.String
+' '           Text.Whitespace
+'<'           Text
+' '           Text.Whitespace
+'$page'       Name.Variable
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text.Whitespace
+'tr'          Text
+' '           Text.Whitespace
+"'[A-Z ]'"    Literal.String
+' '           Text.Whitespace
+"'[a-z-]'"    Literal.String
+'\n            ' Text.Whitespace
+'fi'          Keyword
+';'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'esac'        Keyword
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text.Whitespace
+'sort'        Text
+'\n'          Text.Whitespace
+
+'}'           Operator
+'\n\n'        Text.Whitespace
+
+'alias'       Keyword
+' '           Text.Whitespace
+'global'      Name.Attribute
+' '           Text.Whitespace
+'help'        Name.Builtin
+' '           Text.Whitespace
+'doc'         Text
+'\n'          Text.Whitespace
