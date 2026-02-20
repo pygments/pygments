@@ -41,7 +41,7 @@ STYLE_ENTRY_POINT = 'pygments.styles'
 FILTER_ENTRY_POINT = 'pygments.filters'
 
 
-@functools.lru_cache(maxsize=None)
+@functools.cache
 def iter_entry_points(group_name):
     groups = entry_points()
     if hasattr(groups, 'select'):
