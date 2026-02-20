@@ -1,0 +1,238 @@
+'// PLC configuration' Comment.Singleline
+'\n'          Text.Whitespace
+
+'CONFIGURATION' Keyword
+' '           Text.Whitespace
+'DefaultCfg'  Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'VAR_GLOBAL'  Keyword
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'b_Start_Stop' Name
+':'           Operator
+' '           Text.Whitespace
+'BOOL'        Keyword.Type
+';'           Punctuation
+' '           Text.Whitespace
+'// Global variable to represent a boolean.' Comment.Singleline
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'b_ON_OFF'    Name
+':'           Operator
+' '           Text.Whitespace
+'BOOL'        Keyword.Type
+';'           Punctuation
+' '           Text.Whitespace
+'// Global variable to represent a boolean.' Comment.Singleline
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'Start_Stop'  Name
+' '           Text.Whitespace
+'AT'          Keyword
+' '           Text.Whitespace
+'%IX0.0'      Name.Label
+':'           Operator
+' '           Text.Whitespace
+'BOOL'        Keyword.Type
+';'           Punctuation
+' '           Text.Whitespace
+'// Digital input of the PLC (Address 0.0)' Comment.Singleline
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'ON_OFF'      Name
+' '           Text.Whitespace
+'AT'          Keyword
+' '           Text.Whitespace
+'%QX0.0'      Name.Label
+':'           Operator
+' '           Text.Whitespace
+'BOOL'        Keyword.Type
+';'           Punctuation
+' '           Text.Whitespace
+'// Digital output of the PLC (Address 0.0). (Coil)' Comment.Singleline
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'END_VAR'     Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Schedule the main program to be executed every 20 ms' Comment.Singleline
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'TASK'        Keyword
+' '           Text.Whitespace
+'Tick('       Name.Function
+'INTERVAL'    Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'T#20ms'      Literal.Duration
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'PROGRAM'     Keyword
+' '           Text.Whitespace
+'Main'        Name
+' '           Text.Whitespace
+'WITH'        Keyword
+' '           Text.Whitespace
+'Tick'        Name
+':'           Operator
+' '           Text.Whitespace
+'Monitor_Start_Stop' Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'END_CONFIGURATION' Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'PROGRAM'     Keyword
+' '           Text.Whitespace
+'Monitor_Start_Stop' Name
+' '           Text.Whitespace
+'// Actual Program' Comment.Singleline
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'VAR_EXTERNAL' Keyword
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'Start_Stop'  Name
+':'           Operator
+' '           Text.Whitespace
+'BOOL'        Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'ON_OFF'      Name
+':'           Operator
+' '           Text.Whitespace
+'BOOL'        Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'END_VAR'     Keyword
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'VAR'         Keyword
+' '           Text.Whitespace
+'// Temporary variables for logic handling' Comment.Singleline
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'ONS_Trig'    Name
+':'           Operator
+' '           Text.Whitespace
+'BOOL'        Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'Rising_ONS'  Name
+':'           Operator
+' '           Text.Whitespace
+'BOOL'        Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'END_VAR'     Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Start of Logic' Comment.Singleline
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Catch the Rising Edge One Shot of the Start_Stop input' Comment.Singleline
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'ONS_Trig'    Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'Start_Stop'  Name
+' '           Text.Whitespace
+'AND'         Operator.Word
+' '           Text.Whitespace
+'NOT'         Operator.Word
+' '           Text.Whitespace
+'Rising_ONS'  Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Main Logic for Run_Contact -- Toggle ON / Toggle OFF ---' Comment.Singleline
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'ON_OFF'      Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'('           Punctuation
+'ONS_Trig'    Name
+' '           Text.Whitespace
+'AND'         Operator.Word
+' '           Text.Whitespace
+'NOT'         Operator.Word
+' '           Text.Whitespace
+'ON_OFF'      Name
+')'           Punctuation
+' '           Text.Whitespace
+'OR'          Operator.Word
+' '           Text.Whitespace
+'('           Punctuation
+'ON_OFF'      Name
+' '           Text.Whitespace
+'AND'         Operator.Word
+' '           Text.Whitespace
+'NOT'         Operator.Word
+' '           Text.Whitespace
+'ONS_Trig'    Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Rising One Shot logic' Comment.Singleline
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Rising_ONS'  Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'Start_Stop'  Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'END_PROGRAM' Keyword
+'\n'          Text.Whitespace
