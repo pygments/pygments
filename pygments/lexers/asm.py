@@ -1088,7 +1088,7 @@ class QbeLexer(RegexLexer):
                 Keyword.Declaration),
             (words(('w', 'l', 's', 'd', 'b', 'h', 'ub', 'sb', 'uh', 'sh', 'z',
                 'env'), suffix=r'\b'), Keyword.Type),
-            (r'[a-z]+', Name.Function),
+            (r'[a-z][a-z\d]*\b', Name.Function),
         ],
         'string': [
             (r'\\([bfnrtv\\"]|\d{1,3}|[xX][\da-fA-F]*|\n)', String.Escape),
