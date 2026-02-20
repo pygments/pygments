@@ -1,0 +1,119 @@
+---input---
+FROM logs-*
+| GROK dns.question.name "%{DATA}\\.%{GREEDYDATA:dns.question.registered_domain:string}"
+| STATS unique_queries = COUNT_DISTINCT(dns.question.name) BY dns.question.registered_domain, process.name
+| WHERE unique_queries > 10
+| SORT unique_queries DESC
+| RENAME unique_queries AS `Unique Queries`, dns.question.registered_domain AS `Registered Domain`, process.name AS `Process`
+
+---tokens---
+'FROM'        Keyword
+' '           Text.Whitespace
+'logs-'       Name
+'*'           Name
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'GROK'        Keyword
+' '           Text.Whitespace
+'dns'         Name
+'.'           Punctuation
+'question'    Name
+'.'           Punctuation
+'name'        Name
+' '           Text.Whitespace
+'"'           Literal.String
+'%{DATA}'     Literal.String
+'\\\\'        Literal.String
+'.%{GREEDYDATA:dns.question.registered_domain:string}' Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'STATS'       Keyword
+' '           Text.Whitespace
+'unique_queries' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'COUNT_DISTINCT' Name.Function
+'('           Punctuation
+'dns'         Name
+'.'           Punctuation
+'question'    Name
+'.'           Punctuation
+'name'        Name
+')'           Punctuation
+' '           Text.Whitespace
+'BY'          Keyword
+' '           Text.Whitespace
+'dns'         Name
+'.'           Punctuation
+'question'    Name
+'.'           Punctuation
+'registered_domain' Name
+','           Punctuation
+' '           Text.Whitespace
+'process'     Name
+'.'           Punctuation
+'name'        Name
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'WHERE'       Keyword
+' '           Text.Whitespace
+'unique_queries' Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'SORT'        Keyword
+' '           Text.Whitespace
+'unique_queries' Name
+' '           Text.Whitespace
+'DESC'        Keyword
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'RENAME'      Keyword
+' '           Text.Whitespace
+'unique_queries' Name
+' '           Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'`'           Name
+'Unique Queries' Name
+'`'           Name
+','           Punctuation
+' '           Text.Whitespace
+'dns'         Name
+'.'           Punctuation
+'question'    Name
+'.'           Punctuation
+'registered_domain' Name
+' '           Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'`'           Name
+'Registered Domain' Name
+'`'           Name
+','           Punctuation
+' '           Text.Whitespace
+'process'     Name
+'.'           Punctuation
+'name'        Name
+' '           Text.Whitespace
+'AS'          Keyword
+' '           Text.Whitespace
+'`'           Name
+'Process'     Name
+'`'           Name
+'\n'          Text.Whitespace
