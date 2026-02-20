@@ -72,7 +72,10 @@ class DevicetreeLexer(RegexLexer):
         'root': [
             include('whitespace'),
             include('macro'),
-
+            # Overlay/fragment: &label { ... } or &{/path/to/node} { ... }
+            (r'(&)(?:([A-Za-z_]\w*)|(\{)([^}]+)(\}))(' + _ws + r')(\{)',
+             bygroups(Operator, Name.Function, Punctuation, Name.Namespace,
+                      Punctuation, Comment.Multiline, Punctuation), 'node'),
             # Nodes
             (r'([^/*@\s&]+|/)(@?)((?:0x)?[0-9a-fA-F,]*)(' + _ws + r')(\{)',
              bygroups(Name.Function, Operator, Number.Integer,
@@ -88,7 +91,10 @@ class DevicetreeLexer(RegexLexer):
         'node': [
             include('whitespace'),
             include('macro'),
-
+            # Overlay/fragment: &label { ... } or &{/path/to/node} { ... }
+            (r'(&)(?:([A-Za-z_]\w*)|(\{)([^}]+)(\}))(' + _ws + r')(\{)',
+             bygroups(Operator, Name.Function, Punctuation, Name.Namespace,
+                      Punctuation, Comment.Multiline, Punctuation), '#push'),
             (r'([^/*@\s&]+|/)(@?)((?:0x)?[0-9a-fA-F,]*)(' + _ws + r')(\{)',
              bygroups(Name.Function, Operator, Number.Integer,
                       Comment.Multiline, Punctuation), '#push'),

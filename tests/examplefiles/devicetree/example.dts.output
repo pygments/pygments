@@ -647,6 +647,122 @@
 '\n'          Text.Whitespace
 
 '&'           Operator
+'i2c1'        Name.Function
+' '           Comment.Multiline
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'serlcd'      Name.Function
+'@'           Operator
+'72'          Literal.Number.Integer
+' '           Comment.Multiline
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'compatible'  Keyword.Reserved
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'sparkfun,serlcd' Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'reg'         Keyword.Reserved
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'<'           Operator
+'0x72'        Literal.Number.Hex
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'columns'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'<'           Operator
+'16'          Literal.Number.Integer
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'rows'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'<'           Operator
+'2'           Literal.Number.Integer
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'command-delay-ms' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'<'           Operator
+'10'          Literal.Number.Integer
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'special-command-delay-ms' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'<'           Operator
+'50'          Literal.Number.Integer
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'&'           Operator
+'{'           Punctuation
+'/soc/i2c@e000d800' Name.Namespace
+'}'           Punctuation
+' '           Comment.Multiline
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'status'      Keyword.Reserved
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'okay'        Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'&'           Operator
 'i2c3'        Name.Function
 ' '           Comment.Multiline
 '{'           Punctuation
