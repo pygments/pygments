@@ -1,0 +1,445 @@
+---input---
+model
+schema 1.1
+
+type user
+
+type team
+relations
+    define member: [user, team#member]
+    define reviewer: [user]
+    define wildcard: [user, user:*, team#member with in_company_network] # inline module note
+
+type folder
+relations
+    define parent: [folder]
+    define viewer: [user, team#member] or viewer from parent
+
+type document
+relations
+    define owner: [user]
+    define editor: [user, team#member]
+    define reviewer: ([user] or editor) and member from team
+    define viewer: ([user] or editor) and member from team but not blocked
+    define shared: viewer from parent
+    define conditional_viewer: [user with in_business_hours] or viewer with working_hours
+// keep the comment
+
+condition working_hours(start: timestamp, end: timestamp, allowed_regions: list<string>, window: duration) {
+    start < end && "emea" in allowed_regions
+    note == """triple
+quoted"""
+}
+
+condition in_company_network(req: map<string>, allowed_ranges: list<ipaddress>, client: string) {
+    req.ip in allowed_ranges || req.ip == '127.0.0.1'
+    pattern == r'^10\.0\..*'
+    payload == b"bytes"
+    # fallback to true for trusted devices
+    trusted_device == true
+    client != null
+}
+
+---tokens---
+'model'       Keyword
+'\n'          Text.Whitespace
+
+'schema'      Keyword
+' '           Text.Whitespace
+'1.1'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'type'        Keyword
+' '           Text.Whitespace
+'user'        Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'type'        Keyword
+' '           Text.Whitespace
+'team'        Name
+'\n'          Text.Whitespace
+
+'relations'   Keyword
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'define'      Keyword
+' '           Text.Whitespace
+'member'      Name
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'user'        Name
+','           Punctuation
+' '           Text.Whitespace
+'team'        Name
+'#'           Punctuation
+'member'      Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'define'      Keyword
+' '           Text.Whitespace
+'reviewer'    Name
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'user'        Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'define'      Keyword
+' '           Text.Whitespace
+'wildcard'    Name
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'user'        Name
+','           Punctuation
+' '           Text.Whitespace
+'user:*'      Name
+','           Punctuation
+' '           Text.Whitespace
+'team'        Name
+'#'           Punctuation
+'member'      Name
+' '           Text.Whitespace
+'with'        Keyword
+' '           Text.Whitespace
+'in_company_network' Name
+']'           Punctuation
+' '           Text.Whitespace
+'# inline module note' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'type'        Keyword
+' '           Text.Whitespace
+'folder'      Name
+'\n'          Text.Whitespace
+
+'relations'   Keyword
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'define'      Keyword
+' '           Text.Whitespace
+'parent'      Name
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'folder'      Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'define'      Keyword
+' '           Text.Whitespace
+'viewer'      Name
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'user'        Name
+','           Punctuation
+' '           Text.Whitespace
+'team'        Name
+'#'           Punctuation
+'member'      Name
+']'           Punctuation
+' '           Text.Whitespace
+'or'          Keyword
+' '           Text.Whitespace
+'viewer'      Name
+' '           Text.Whitespace
+'from'        Keyword
+' '           Text.Whitespace
+'parent'      Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'type'        Keyword
+' '           Text.Whitespace
+'document'    Name
+'\n'          Text.Whitespace
+
+'relations'   Keyword
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'define'      Keyword
+' '           Text.Whitespace
+'owner'       Name
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'user'        Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'define'      Keyword
+' '           Text.Whitespace
+'editor'      Name
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'user'        Name
+','           Punctuation
+' '           Text.Whitespace
+'team'        Name
+'#'           Punctuation
+'member'      Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'define'      Keyword
+' '           Text.Whitespace
+'reviewer'    Name
+':'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'['           Punctuation
+'user'        Name
+']'           Punctuation
+' '           Text.Whitespace
+'or'          Keyword
+' '           Text.Whitespace
+'editor'      Name
+')'           Punctuation
+' '           Text.Whitespace
+'and'         Keyword
+' '           Text.Whitespace
+'member'      Name
+' '           Text.Whitespace
+'from'        Keyword
+' '           Text.Whitespace
+'team'        Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'define'      Keyword
+' '           Text.Whitespace
+'viewer'      Name
+':'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'['           Punctuation
+'user'        Name
+']'           Punctuation
+' '           Text.Whitespace
+'or'          Keyword
+' '           Text.Whitespace
+'editor'      Name
+')'           Punctuation
+' '           Text.Whitespace
+'and'         Keyword
+' '           Text.Whitespace
+'member'      Name
+' '           Text.Whitespace
+'from'        Keyword
+' '           Text.Whitespace
+'team'        Name
+' '           Text.Whitespace
+'but not'     Operator.Word
+' '           Text.Whitespace
+'blocked'     Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'define'      Keyword
+' '           Text.Whitespace
+'shared'      Name
+':'           Punctuation
+' '           Text.Whitespace
+'viewer'      Name
+' '           Text.Whitespace
+'from'        Keyword
+' '           Text.Whitespace
+'parent'      Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'define'      Keyword
+' '           Text.Whitespace
+'conditional_viewer' Name
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'user'        Name
+' '           Text.Whitespace
+'with'        Keyword
+' '           Text.Whitespace
+'in_business_hours' Name
+']'           Punctuation
+' '           Text.Whitespace
+'or'          Keyword
+' '           Text.Whitespace
+'viewer'      Name
+' '           Text.Whitespace
+'with'        Keyword
+' '           Text.Whitespace
+'working_hours' Name
+'\n'          Text.Whitespace
+
+'// keep the comment' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'condition'   Keyword
+' '           Text.Whitespace
+'working_hours' Name
+'('           Punctuation
+'start'       Name
+':'           Punctuation
+' '           Text.Whitespace
+'timestamp'   Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'end'         Name
+':'           Punctuation
+' '           Text.Whitespace
+'timestamp'   Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'allowed_regions' Name
+':'           Punctuation
+' '           Text.Whitespace
+'list'        Keyword.Type
+'<'           Punctuation
+'string'      Keyword.Type
+'>'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'window'      Name
+':'           Punctuation
+' '           Text.Whitespace
+'duration'    Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'start'       Name
+' '           Text.Whitespace
+'<'           Punctuation
+' '           Text.Whitespace
+'end'         Name
+' '           Text.Whitespace
+'&&'          Operator
+' '           Text.Whitespace
+'"emea"'      Literal.String.Double
+' '           Text.Whitespace
+'in'          Operator.Word
+' '           Text.Whitespace
+'allowed_regions' Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'note'        Name
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'"""triple\nquoted"""' Literal.String.Double
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'condition'   Keyword
+' '           Text.Whitespace
+'in_company_network' Name
+'('           Punctuation
+'req'         Name
+':'           Punctuation
+' '           Text.Whitespace
+'map'         Keyword.Type
+'<'           Punctuation
+'string'      Keyword.Type
+'>'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'allowed_ranges' Name
+':'           Punctuation
+' '           Text.Whitespace
+'list'        Keyword.Type
+'<'           Punctuation
+'ipaddress'   Keyword.Type
+'>'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'client'      Name
+':'           Punctuation
+' '           Text.Whitespace
+'string'      Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'req.ip'      Name
+' '           Text.Whitespace
+'in'          Operator.Word
+' '           Text.Whitespace
+'allowed_ranges' Name
+' '           Text.Whitespace
+'||'          Operator
+' '           Text.Whitespace
+'req.ip'      Name
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+"'127.0.0.1'" Literal.String.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'pattern'     Name
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+"r'^10\\.0\\..*'" Literal.String.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'payload'     Name
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'b"bytes"'    Literal.String.Double
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'# fallback to true for trusted devices' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'trusted_device' Name
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'true'        Keyword.Constant
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'client'      Name
+' '           Text.Whitespace
+'!='          Operator
+' '           Text.Whitespace
+'null'        Keyword.Constant
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
