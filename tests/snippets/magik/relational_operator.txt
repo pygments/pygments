@@ -1,0 +1,90 @@
+---input---
+a _is a
+a _isnt b
+1 _cf 2
+y +<< x
+1 = 1
+1 ~= 2
+a <> b
+a >= b
+x <= 100
+a < b
+a > b
+
+---tokens---
+'a'           Name
+' '           Text.Whitespace
+'_is'         Operator
+' '           Text.Whitespace
+'a'           Name
+'\n'          Text.Whitespace
+
+'a'           Name
+' '           Text.Whitespace
+'_isnt'       Operator
+' '           Text.Whitespace
+'b'           Name
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'_cf'         Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'y'           Name
+' '           Text.Whitespace
+'+<<'         Operator
+' '           Text.Whitespace
+'x'           Name
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'~='          Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'a'           Name
+' '           Text.Whitespace
+'<>'          Operator
+' '           Text.Whitespace
+'b'           Name
+'\n'          Text.Whitespace
+
+'a'           Name
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'b'           Name
+'\n'          Text.Whitespace
+
+'x'           Name
+' '           Text.Whitespace
+'<='          Operator
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'a'           Name
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'b'           Name
+'\n'          Text.Whitespace
+
+'a'           Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'b'           Name
+'\n'          Text.Whitespace

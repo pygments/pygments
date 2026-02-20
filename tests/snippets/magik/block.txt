@@ -1,0 +1,133 @@
+---input---
+_block
+  _return _unset, _unset
+_endblock
+
+_block
+  _if _true
+  _then _return _unset, _unset
+  _endif
+_endblock
+
+_block
+  >> _unset
+_endblock
+
+_block
+  _if _true _then >> _unset _endif
+_endblock
+
+_block @ label1?
+  _return
+_endblock
+
+_block @ |label1?|
+  _return
+_endblock
+
+_block @ |la.bel1|
+  _return
+_endblock
+
+---tokens---
+'_block'      Keyword
+'\n  '        Text.Whitespace
+'_return'     Operator
+' '           Text.Whitespace
+'_unset'      Literal
+','           Punctuation
+' '           Text.Whitespace
+'_unset'      Literal
+'\n'          Text.Whitespace
+
+'_endblock'   Keyword
+'\n\n'        Text.Whitespace
+
+'_block'      Keyword
+'\n  '        Text.Whitespace
+'_if'         Keyword
+' '           Text.Whitespace
+'_true'       Literal
+'\n  '        Text.Whitespace
+'_then'       Keyword
+' '           Text.Whitespace
+'_return'     Operator
+' '           Text.Whitespace
+'_unset'      Literal
+','           Punctuation
+' '           Text.Whitespace
+'_unset'      Literal
+'\n  '        Text.Whitespace
+'_endif'      Keyword
+'\n'          Text.Whitespace
+
+'_endblock'   Keyword
+'\n\n'        Text.Whitespace
+
+'_block'      Keyword
+'\n  '        Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_unset'      Literal
+'\n'          Text.Whitespace
+
+'_endblock'   Keyword
+'\n\n'        Text.Whitespace
+
+'_block'      Keyword
+'\n  '        Text.Whitespace
+'_if'         Keyword
+' '           Text.Whitespace
+'_true'       Literal
+' '           Text.Whitespace
+'_then'       Keyword
+' '           Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_unset'      Literal
+' '           Text.Whitespace
+'_endif'      Keyword
+'\n'          Text.Whitespace
+
+'_endblock'   Keyword
+'\n\n'        Text.Whitespace
+
+'_block'      Keyword
+' '           Text.Whitespace
+'@'           Punctuation
+' '           Text.Whitespace
+'label1?'     Name
+'\n  '        Text.Whitespace
+'_return'     Operator
+'\n'          Text.Whitespace
+
+'_endblock'   Keyword
+'\n\n'        Text.Whitespace
+
+'_block'      Keyword
+' '           Text.Whitespace
+'@'           Punctuation
+' '           Text.Whitespace
+'|label1?|'   Name.Variable
+'\n  '        Text.Whitespace
+'_return'     Operator
+'\n'          Text.Whitespace
+
+'_endblock'   Keyword
+'\n\n'        Text.Whitespace
+
+'_block'      Keyword
+' '           Text.Whitespace
+'@'           Punctuation
+' '           Text.Whitespace
+'|'           Punctuation
+'la'          Name
+'.'           Punctuation
+'bel1'        Name
+'|'           Punctuation
+'\n  '        Text.Whitespace
+'_return'     Operator
+'\n'          Text.Whitespace
+
+'_endblock'   Keyword
+'\n'          Text.Whitespace

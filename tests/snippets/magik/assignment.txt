@@ -1,0 +1,34 @@
+---input---
+a << 1
+b ^<< 1
+c +<< 1
+d _orif<< a
+
+---tokens---
+'a'           Name
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'b'           Name
+' '           Text.Whitespace
+'^<<'         Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'c'           Name
+' '           Text.Whitespace
+'+<<'         Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'d'           Name
+' '           Text.Whitespace
+'_orif<<'     Operator
+' '           Text.Whitespace
+'a'           Name
+'\n'          Text.Whitespace

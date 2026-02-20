@@ -1,0 +1,36 @@
+---input---
+_handling error _with _proc() _endproc()
+
+_handling error _with _default
+
+_handling _default
+
+---tokens---
+'_handling'   Keyword
+' '           Text.Whitespace
+'error'       Name
+' '           Text.Whitespace
+'_with'       Keyword
+' '           Text.Whitespace
+'_proc'       Keyword
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'_endproc'    Keyword
+'('           Punctuation
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'_handling'   Keyword
+' '           Text.Whitespace
+'error'       Name
+' '           Text.Whitespace
+'_with'       Keyword
+' '           Text.Whitespace
+'_default'    Keyword
+'\n\n'        Text.Whitespace
+
+'_handling'   Keyword
+' '           Text.Whitespace
+'_default'    Keyword
+'\n'          Text.Whitespace

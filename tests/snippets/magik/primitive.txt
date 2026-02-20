@@ -1,0 +1,14 @@
+---input---
+_primitive 512
+_primitive 123
+
+---tokens---
+'_primitive'  Keyword
+' '           Text.Whitespace
+'512'         Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'_primitive'  Keyword
+' '           Text.Whitespace
+'123'         Literal.Number.Integer
+'\n'          Text.Whitespace
