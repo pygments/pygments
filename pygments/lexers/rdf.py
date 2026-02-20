@@ -265,7 +265,7 @@ class TurtleLexer(RegexLexer):
              bygroups(Name.Namespace, Punctuation, Name.Tag)),
 
             # Comment
-            (r'#[^\n]+', Comment),
+            (r'#([^\n]+|$)', Comment),
 
             (r'\b(true|false)\b', Literal),
             (r'[+\-]?\d*\.\d+', Number.Float),
