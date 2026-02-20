@@ -20,7 +20,7 @@ from pygments.token import Text, Name, Number, String, Comment, Punctuation, \
 __all__ = ['GasLexer', 'ObjdumpLexer', 'DObjdumpLexer', 'CppObjdumpLexer',
            'CObjdumpLexer', 'HsailLexer', 'LlvmLexer', 'LlvmMirBodyLexer',
            'LlvmMirLexer', 'NasmLexer', 'NasmObjdumpLexer', 'TasmLexer',
-           'Ca65Lexer', 'Dasm16Lexer']
+           'Ca65Lexer', 'Dasm16Lexer', 'QbeLexer']
 
 
 class GasLexer(RegexLexer):
@@ -1047,5 +1047,52 @@ class Dasm16Lexer(RegexLexer):
             (r'\n', Whitespace),
             (r'\s+', Whitespace),
             (r';.*?\n', Comment)
+        ],
+    }
+
+class QbeLexer(RegexLexer):
+    """
+    Lexer for the QBE intermediate language.
+    """
+    name = 'QBE'
+    url = 'https://c9x.me/compile/doc/il.html'
+    aliases = ['qbe']
+    filenames = ['*.ssa']
+    version_added = '2.20'
+
+    ident = r'[a-zA-Z_.][\w.$]*'
+    digits_dec = r'(\d+\.\d*|\.\d+|\d+)'
+    digits_hex = r'([\da-fA-F]+\.[\da-fA-F]*|\.[\da-fA-F]+|[\da-fA-F]+)'
+    float_dec = digits_dec + r'([eE][+-]?\d+)?'
+    float_hex = r'0[xX]' + digits_hex + r'([pP][+-]?\d+)?'
+
+    tokens = {
+        'root': [
+            (r'\n', Whitespace),
+            (r'\s+', Whitespace),
+            (r'#.*$', Comment.Single),
+            (r':' + ident, Name.Class),
+            (r'\$' + ident, Name.Variable.Global),
+            (r'@' + ident, Name.Label),
+            (r'%' + ident, Name.Variable.Anonymous),
+            # Globals can be quoted.
+            (r'(\$)?(")', bygroups(Name.Variable.Global, String), 'string'),
+            # Floats are parsed by scanf.
+            (r'[sd]_[+-]?(?:' + float_hex + r'|' + float_dec + r')',
+                Number.Float),
+            (r'-?\d+', Number.Integer),
+            (r'[=+\.]+', Operator),
+            (r'[(){},]+', Punctuation),
+            (words(('data', 'function', 'type'), suffix=r'\b'), Keyword),
+            (words(('align', 'export', 'section', 'thread'), suffix=r'\b'),
+                Keyword.Declaration),
+            (words(('w', 'l', 's', 'd', 'b', 'h', 'ub', 'sb', 'uh', 'sh', 'z',
+                'env'), suffix=r'\b'), Keyword.Type),
+            (r'[a-z]+', Name.Function),
+        ],
+        'string': [
+            (r'\\([bfnrtv\\"]|\d{1,3}|[xX][\da-fA-F]*|\n)', String.Escape),
+            (r'"', String, '#pop'),
+            (r'[^\\"]+', String),
         ],
     }
