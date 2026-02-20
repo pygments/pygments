@@ -1351,7 +1351,7 @@
 
 'class'       Keyword
 ' '           Text.Whitespace
-'raz'         Name.Class
+'Raz'         Name.Class
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
@@ -1432,15 +1432,15 @@
 
 'class'       Keyword
 ' '           Text.Whitespace
-'foo'         Name.Class
+'Foo'         Name.Class
 ' '           Text.Whitespace
-'bar'         Name
+'Bar'         Name
 ' '           Text.Whitespace
 ':'           Operator
 ' '           Text.Whitespace
 'public'      Keyword
 ' '           Text.Whitespace
-'raz'         Name
+'Raz'         Name
 '\n'          Text.Whitespace
 
 '{'           Punctuation
@@ -1456,7 +1456,7 @@
 '  '          Text.Whitespace
 'Q_PROPERTY'  Name
 '('           Punctuation
-'arg1'        Name
+'Arg1'        Name
 ' '           Text.Whitespace
 'arg2'        Name
 ')'           Punctuation
@@ -1478,17 +1478,21 @@
 '  '          Text.Whitespace
 'enum'        Keyword
 ' '           Text.Whitespace
-'duck'        Name.Class
+'class'       Keyword
+' '           Text.Whitespace
+'Duck'        Name.Class
 ' '           Text.Whitespace
 '{'           Punctuation
-' '           Text.Whitespace
-'dog'         Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'DOG'         Name
 ','           Punctuation
 ' '           Text.Whitespace
 '// Comment.\n' Comment.Single
 
-'              ' Text.Whitespace
-'cat'         Name
+'    '        Text.Whitespace
+'CAT'         Name
 '  '          Text.Whitespace
 '// Comment (see \\ref replot).\n' Comment.Single
 

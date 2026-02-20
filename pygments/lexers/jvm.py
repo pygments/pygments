@@ -56,7 +56,7 @@ class JavaLexer(RegexLexer):
              bygroups(using(this), Name.Function, Whitespace, Punctuation)),
             (r'@[^\W\d][\w.]*', Name.Decorator),
             (r'(abstract|const|enum|exports|extends|final|implements|native|non-sealed|'
-             r'open|opens|permits|private|protected|provides|public|sealed|static|strictfp|'
+             r'open|opens|permits|private|protected|provides|public|requires|sealed|static|strictfp|'
              r'super|synchronized|throws|to|transient|transitive|uses|volatile|with|yield)\b', Keyword.Declaration),
             (r'(boolean|byte|char|double|float|int|long|short|void)\b',
              Keyword.Type),
