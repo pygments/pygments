@@ -42,6 +42,14 @@
 	status = "okay";
 };
 
+&lan1 {
+	local-mac-address = [00 00 12 13 BE EF];
+};
+
+&lan2 {
+	local-mac-address = [1234ABCD5678];
+};
+
 &ecspi1 {
 	cs-gpios = <&gpio2 30 GPIO_ACTIVE_HIGH>, <&gpio4 11 GPIO_ACTIVE_HIGH>;
 	pinctrl-names = "default";

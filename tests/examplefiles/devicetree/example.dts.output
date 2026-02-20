@@ -251,6 +251,67 @@
 '\n'          Text.Whitespace
 
 '&'           Operator
+'lan1'        Name.Function
+' '           Comment.Multiline
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'local-mac-address' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'00'          Literal.Number.Hex
+' '           Text.Whitespace
+'00'          Literal.Number.Hex
+' '           Text.Whitespace
+'12'          Literal.Number.Hex
+' '           Text.Whitespace
+'13'          Literal.Number.Hex
+' '           Text.Whitespace
+'BE'          Literal.Number.Hex
+' '           Text.Whitespace
+'EF'          Literal.Number.Hex
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'&'           Operator
+'lan2'        Name.Function
+' '           Comment.Multiline
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'local-mac-address' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'12'          Literal.Number.Hex
+'34'          Literal.Number.Hex
+'AB'          Literal.Number.Hex
+'CD'          Literal.Number.Hex
+'56'          Literal.Number.Hex
+'78'          Literal.Number.Hex
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'&'           Operator
 'ecspi1'      Name.Function
 ' '           Comment.Multiline
 '{'           Punctuation
