@@ -27,15 +27,7 @@ class DLexer(RegexLexer):
     version_added = '1.2'
 
     tokens = {
-        'root': [
-            (r'\n', Whitespace),
-            (r'\s+', Whitespace),
-            # (r'\\\n', Text), # line continuations
-            # Comments
-            (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace)),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
-            (r'/\+', Comment.Multiline, 'nested_comment'),
-            # Keywords
+        'keywords': [
             (words((
                 'abstract', 'alias', 'align', 'asm', 'assert', 'auto', 'body',
                 'break', 'case', 'cast', 'catch', 'class', 'const', 'continue',
@@ -62,6 +54,18 @@ class DLexer(RegexLexer):
                 'long', 'real', 'short', 'ubyte', 'ucent', 'uint', 'ulong',
                 'ushort', 'void', 'wchar'), suffix=r'\b'),
              Keyword.Type),
+            (r'(string|wstring|dstring|size_t|ptrdiff_t)\b', Name.Builtin),
+        ],
+        'root': [
+            (r'\n', Whitespace),
+            (r'\s+', Whitespace),
+            # (r'\\\n', Text), # line continuations
+            # Comments
+            (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace)),
+            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'/\+', Comment.Multiline, 'nested_comment'),
+            # Keywords
+            include('keywords'),
             (r'(false|true|null)\b', Keyword.Constant),
             (words((
                 '__FILE__', '__FILE_FULL_PATH__', '__MODULE__', '__LINE__', '__FUNCTION__',
@@ -69,7 +73,6 @@ class DLexer(RegexLexer):
                 '__VENDOR__', '__VERSION__'), suffix=r'\b'),
              Keyword.Pseudo),
             (r'macro\b', Keyword.Reserved),
-            (r'(string|wstring|dstring|size_t|ptrdiff_t)\b', Name.Builtin),
             # FloatLiteral
             # -- HexFloat
             (r'0[xX]([0-9a-fA-F_]*\.[0-9a-fA-F_]+|[0-9a-fA-F_]+)'
