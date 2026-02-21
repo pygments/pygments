@@ -377,6 +377,7 @@ LEXERS = {
     'OutputLexer': ('pygments.lexers.special', 'Text output', ('output',), (), ()),
     'PacmanConfLexer': ('pygments.lexers.configs', 'PacmanConf', ('pacmanconf',), ('pacman.conf',), ()),
     'PanLexer': ('pygments.lexers.dsls', 'Pan', ('pan',), ('*.pan',), ()),
+    'PapyrusSkyrimLexer': ('pygments.lexers.papyrus', 'Papyrus (Skyrim)', ('papyrus-skyrim',), ('*.psc',), ()),
     'ParaSailLexer': ('pygments.lexers.parasail', 'ParaSail', ('parasail',), ('*.psi', '*.psl'), ('text/x-parasail',)),
     'PawnLexer': ('pygments.lexers.pawn', 'Pawn', ('pawn',), ('*.p', '*.pwn', '*.inc'), ('text/x-pawn',)),
     'PddlLexer': ('pygments.lexers.pddl', 'PDDL', ('pddl',), ('*.pddl',), ()),

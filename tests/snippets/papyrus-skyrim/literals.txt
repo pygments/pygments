@@ -1,0 +1,129 @@
+---input---
+Bool a = True
+Bool b = False
+Int c = 0
+Int d = 123
+Int e = -123
+Int f = 0x123ABC
+Float g = 0.0
+Float h = -123.456
+Float i = 123.456
+String j = ""
+String k = "String\n\t\"\\"
+Foo l = None
+
+---tokens---
+'Bool'        Keyword.Type
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'True'        Literal
+'\n'          Text.Whitespace
+
+'Bool'        Keyword.Type
+' '           Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'False'       Literal
+'\n'          Text.Whitespace
+
+'Int'         Keyword.Type
+' '           Text.Whitespace
+'c'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'Int'         Keyword.Type
+' '           Text.Whitespace
+'d'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'123'         Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'Int'         Keyword.Type
+' '           Text.Whitespace
+'e'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'-123'        Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'Int'         Keyword.Type
+' '           Text.Whitespace
+'f'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x123ABC'    Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'Float'       Keyword.Type
+' '           Text.Whitespace
+'g'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0.0'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'Float'       Keyword.Type
+' '           Text.Whitespace
+'h'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'-123.456'    Literal.Number.Float
+'\n'          Text.Whitespace
+
+'Float'       Keyword.Type
+' '           Text.Whitespace
+'i'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'123.456'     Literal.Number.Float
+'\n'          Text.Whitespace
+
+'String'      Keyword.Type
+' '           Text.Whitespace
+'j'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'String'      Keyword.Type
+' '           Text.Whitespace
+'k'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'String'      Literal.String.Double
+'\\n'         Literal.String.Escape
+'\\t'         Literal.String.Escape
+'\\"'         Literal.String.Escape
+'\\\\'        Literal.String.Escape
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'Foo'         Name.Class
+' '           Text.Whitespace
+'l'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'None'        Literal
+'\n'          Text.Whitespace

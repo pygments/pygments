@@ -1,0 +1,52 @@
+---input---
+Int i = 2
+i += 2
+i *= 2
+i /= 2
+i %= 2
+i -= 2
+
+---tokens---
+'Int'         Keyword.Type
+' '           Text.Whitespace
+'i'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'i'           Name.Variable
+' '           Text.Whitespace
+'+='          Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'i'           Name.Variable
+' '           Text.Whitespace
+'*='          Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'i'           Name.Variable
+' '           Text.Whitespace
+'/='          Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'i'           Name.Variable
+' '           Text.Whitespace
+'%='          Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'i'           Name.Variable
+' '           Text.Whitespace
+'-='          Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace

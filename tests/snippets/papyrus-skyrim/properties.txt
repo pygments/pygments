@@ -1,0 +1,118 @@
+---input---
+String Property FullProperty
+  {Doc Comment}
+	String Function Get()
+    {Doc Comment}
+		Return "\"Foo\""
+	EndFunction
+
+  Function Set(String s)
+    {Doc Comment}
+	EndFunction
+EndProperty
+
+Int Property AutoProperty = 123 Auto Hidden Conditional
+
+Int Property AutoReadOnlyProperty = 456 AutoReadOnly
+{Doc Comment}
+
+Int[] Property PrimitiveArrayProperty Auto
+
+Foo[] Property ObjectArrayProperty Auto
+
+---tokens---
+'String'      Keyword.Type
+' '           Text.Whitespace
+'Property'    Keyword.Declaration
+' '           Text.Whitespace
+'FullProperty' Name.Property
+'\n  '        Text.Whitespace
+'{Doc Comment}' Comment.Special
+'\n\t'        Text.Whitespace
+'String'      Keyword.Type
+' '           Text.Whitespace
+'Function'    Keyword.Declaration
+' '           Text.Whitespace
+'Get'         Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n    '      Text.Whitespace
+'{Doc Comment}' Comment.Special
+'\n\t\t'      Text.Whitespace
+'Return'      Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'\\"'         Literal.String.Escape
+'Foo'         Literal.String.Double
+'\\"'         Literal.String.Escape
+'"'           Literal.String.Double
+'\n\t'        Text.Whitespace
+'EndFunction' Keyword.Declaration
+'\n\n  '      Text.Whitespace
+'Function'    Keyword.Declaration
+' '           Text.Whitespace
+'Set'         Name.Function
+'('           Punctuation
+'String'      Keyword.Type
+' '           Text.Whitespace
+'s'           Name.Variable.Instance
+')'           Punctuation
+'\n    '      Text.Whitespace
+'{Doc Comment}' Comment.Special
+'\n\t'        Text.Whitespace
+'EndFunction' Keyword.Declaration
+'\n'          Text.Whitespace
+
+'EndProperty' Keyword.Declaration
+'\n\n'        Text.Whitespace
+
+'Int'         Keyword.Type
+' '           Text.Whitespace
+'Property'    Keyword.Declaration
+' '           Text.Whitespace
+'AutoProperty' Name.Property
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'123'         Literal.Number.Integer
+' '           Text.Whitespace
+'Auto'        Keyword
+' '           Text.Whitespace
+'Hidden'      Keyword
+' '           Text.Whitespace
+'Conditional' Keyword
+'\n\n'        Text.Whitespace
+
+'Int'         Keyword.Type
+' '           Text.Whitespace
+'Property'    Keyword.Declaration
+' '           Text.Whitespace
+'AutoReadOnlyProperty' Name.Property
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'456'         Literal.Number.Integer
+' '           Text.Whitespace
+'AutoReadOnly' Keyword
+'\n'          Text.Whitespace
+
+'{Doc Comment}' Comment.Special
+'\n\n'        Text.Whitespace
+
+'Int[]'       Keyword.Type
+' '           Text.Whitespace
+'Property'    Keyword.Declaration
+' '           Text.Whitespace
+'PrimitiveArrayProperty' Name.Property
+' '           Text.Whitespace
+'Auto'        Keyword
+'\n\n'        Text.Whitespace
+
+'Foo[]'       Name.Class
+' '           Text.Whitespace
+'Property'    Keyword.Declaration
+' '           Text.Whitespace
+'ObjectArrayProperty' Name.Property
+' '           Text.Whitespace
+'Auto'        Keyword
+'\n'          Text.Whitespace

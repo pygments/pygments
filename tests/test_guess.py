@@ -103,6 +103,11 @@ def test_guess_lexer_rexx():
     assert lx.__class__.__name__ == 'RexxLexer'
 
 
+def test_guess_lexer_papyrus_skyrim():
+    lx = guess_lexer(get_input('papyrus-skyrim', 'foo.psc'))
+    assert lx.__class__.__name__ == 'PapyrusSkyrimLexer'
+
+
 def test_easytrieve_can_guess_from_text():
     lx = get_lexer_by_name('easytrieve')
     assert lx.analyse_text('MACRO')
@@ -174,6 +179,7 @@ def test_guess_c_lexer():
     lexer = guess_lexer(code)
     assert lexer.__class__.__name__ == 'CLexer'
 
+
 def test_guess_carbon_lexer():
     code = '''
     package Sorting api;
@@ -190,6 +196,7 @@ def test_guess_carbon_lexer():
     '''
     lexer = guess_lexer(code)
     assert lexer.__class__.__name__ == 'CarbonLexer'
+
 
 def test_cbmbasicv2_analyse_text():
     text = "10 PRINT \"PART 1\""
