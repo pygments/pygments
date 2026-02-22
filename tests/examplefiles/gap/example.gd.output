@@ -20,12 +20,12 @@
 '('           Punctuation
 ' '           Text
 '"SomeProperty"' Literal.String
-','           Operator
+','           Punctuation
 ' '           Text
 'IsLeftModule' Name.Variable
 ' '           Text
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 'DeclareGlobalFunction' Name.Builtin
@@ -34,7 +34,7 @@
 '"SomeGlobalFunction"' Literal.String
 ' '           Text
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -81,7 +81,7 @@
 '('           Punctuation
 ' '           Text
 '"IsQuuxFrobnicator"' Literal.String
-','           Operator
+','           Punctuation
 ' '           Text
 'IsField'     Name.Variable
 ' '           Text
@@ -90,5 +90,5 @@
 'IsGroup'     Name.Variable
 ' '           Text
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace

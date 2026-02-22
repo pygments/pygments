@@ -42,7 +42,7 @@
 '('           Punctuation
 ' '           Text
 'SomeProperty' Name.Variable
-','           Operator
+','           Punctuation
 '\n'          Text.Whitespace
 
 ' '           Text
@@ -50,7 +50,7 @@
 ' '           Text
 ' '           Text
 '"for left modules"' Literal.String
-','           Operator
+','           Punctuation
 '\n'          Text.Whitespace
 
 ' '           Text
@@ -62,10 +62,10 @@
 'IsLeftModule' Name.Variable
 ' '           Text
 ']'           Punctuation
-','           Operator
+','           Punctuation
 ' '           Text
-'0'           Name.Variable
-','           Operator
+'0'           Literal.Number.Integer
+','           Punctuation
 '\n'          Text.Whitespace
 
 ' '           Text
@@ -116,7 +116,7 @@
 'return'      Keyword
 ' '           Text
 'true'        Name.Constant
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 ' '           Text
@@ -124,7 +124,7 @@
 ' '           Text
 ' '           Text
 'fi'          Keyword
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 ' '           Text
@@ -134,7 +134,7 @@
 'TryNextMethod' Keyword
 '('           Punctuation
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 ' '           Text
@@ -144,7 +144,7 @@
 'end'         Keyword
 ' '           Text
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -175,7 +175,7 @@
 '('           Punctuation
 ' '           Text
 'SomeGlobalFunction' Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
 'function'    Keyword
 '('           Punctuation
@@ -200,7 +200,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'3'           Name.Variable
+'3'           Literal.Number.Integer
 ' '           Text
 'then'        Keyword
 '\n'          Text.Whitespace
@@ -215,23 +215,23 @@
 ' '           Text
 'arg'         Name.Variable
 '['           Punctuation
-'1'           Name.Variable
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ' '           Text
 '+'           Operator
 ' '           Text
 'arg'         Name.Variable
 '['           Punctuation
-'2'           Name.Variable
+'2'           Literal.Number.Integer
 ']'           Punctuation
 ' '           Text
 '*'           Operator
 ' '           Text
 'arg'         Name.Variable
 '['           Punctuation
-'3'           Name.Variable
+'3'           Literal.Number.Integer
 ']'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 ' '           Text
@@ -249,7 +249,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'2'           Name.Variable
+'2'           Literal.Number.Integer
 ' '           Text
 'then'        Keyword
 '\n'          Text.Whitespace
@@ -264,14 +264,14 @@
 ' '           Text
 'arg'         Name.Variable
 '['           Punctuation
-'1'           Name.Variable
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ' '           Text
 '-'           Operator
 ' '           Text
 'arg'         Name.Variable
 '['           Punctuation
-'2'           Name.Variable
+'2'           Literal.Number.Integer
 ']'           Punctuation
 '\n'          Text.Whitespace
 
@@ -294,7 +294,7 @@
 '"usage: SomeGlobalFunction( <x>, <y>[, <z>] )"' Literal.String
 ' '           Text
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 ' '           Text
@@ -302,7 +302,7 @@
 ' '           Text
 ' '           Text
 'fi'          Keyword
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 ' '           Text
@@ -312,7 +312,7 @@
 'end'         Keyword
 ' '           Text
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -335,7 +335,7 @@
 'function'    Keyword
 '('           Punctuation
 'x'           Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
 'y'           Name.Variable
 ')'           Punctuation
@@ -348,16 +348,16 @@
 'local'       Keyword
 ' '           Text
 'z'           Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
 'func'        Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
 'tmp'         Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
 'j'           Name.Variable
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 ' '           Text
@@ -372,10 +372,8 @@
 ' '           Text
 '*'           Operator
 ' '           Text
-'1'           Name.Variable
-'.'           Operator
-'0'           Name.Variable
-';'           Operator
+'1.0'         Literal.Number.Float
+';'           Punctuation
 '\n'          Text.Whitespace
 
 ' '           Text
@@ -386,14 +384,14 @@
 ' '           Text
 ':='          Operator
 ' '           Text
-'17'          Name.Variable
+'17'          Literal.Number.Integer
 '^'           Operator
-'17'          Name.Variable
+'17'          Literal.Number.Integer
 ' '           Text
 '-'           Operator
 ' '           Text
 'y'           Name.Variable
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 ' '           Text
@@ -406,15 +404,14 @@
 ' '           Text
 'a'           Name.Variable
 ' '           Text
-'-'           Operator
-'>'           Operator
+'->'          Operator
 ' '           Text
 'a'           Name.Variable
 ' '           Text
 'mod'         Operator.Word
 ' '           Text
-'5'           Name.Variable
-';'           Operator
+'5'           Literal.Number.Integer
+';'           Punctuation
 '\n'          Text.Whitespace
 
 ' '           Text
@@ -429,17 +426,16 @@
 '('           Punctuation
 ' '           Text
 '['           Punctuation
-'1'           Name.Variable
-'.'           Operator
-'.'           Operator
-'50'          Name.Variable
+'1'           Literal.Number.Integer
+'..'          Operator
+'50'          Literal.Number.Integer
 ']'           Punctuation
-','           Operator
+','           Punctuation
 ' '           Text
 'func'        Name.Variable
 ' '           Text
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 ' '           Text
@@ -452,7 +448,7 @@
 ' '           Text
 '>'           Operator
 ' '           Text
-'0'           Name.Variable
+'0'           Literal.Number.Integer
 ' '           Text
 'do'          Keyword
 '\n'          Text.Whitespace
@@ -491,11 +487,11 @@
 'Print'       Name.Variable
 '('           Punctuation
 'j'           Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
 '"\\n"'       Literal.String
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 ' '           Text
@@ -507,7 +503,7 @@
 ' '           Text
 ' '           Text
 'od'          Keyword
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 ' '           Text
@@ -541,8 +537,8 @@
 ' '           Text
 '-'           Operator
 ' '           Text
-'1'           Name.Variable
-';'           Operator
+'1'           Literal.Number.Integer
+';'           Punctuation
 '\n'          Text.Whitespace
 
 ' '           Text
@@ -555,12 +551,12 @@
 ' '           Text
 'until'       Keyword
 ' '           Text
-'0'           Name.Variable
+'0'           Literal.Number.Integer
 ' '           Text
 '<'           Operator
 ' '           Text
-'1'           Name.Variable
-';'           Operator
+'1'           Literal.Number.Integer
+';'           Punctuation
 '\n'          Text.Whitespace
 
 ' '           Text
@@ -578,8 +574,8 @@
 'y'           Name.Variable
 ' '           Text
 '-'           Operator
-'1'           Name.Variable
-';'           Operator
+'1'           Literal.Number.Integer
+';'           Punctuation
 '\n'          Text.Whitespace
 
 ' '           Text
@@ -587,7 +583,7 @@
 ' '           Text
 ' '           Text
 'od'          Keyword
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 ' '           Text
@@ -597,11 +593,11 @@
 'return'      Keyword
 ' '           Text
 'z'           Name.Variable
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 'end'         Keyword
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 ' '           Text
