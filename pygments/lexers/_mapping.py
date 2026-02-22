@@ -202,6 +202,7 @@ LEXERS = {
     'GraphvizLexer': ('pygments.lexers.graphviz', 'Graphviz', ('graphviz', 'dot'), ('*.gv', '*.dot'), ('text/x-graphviz', 'text/vnd.graphviz')),
     'GroffLexer': ('pygments.lexers.markup', 'Groff', ('groff', 'nroff', 'man'), ('*.[1-9]', '*.man', '*.1p', '*.3pm'), ('application/x-troff', 'text/troff')),
     'GroovyLexer': ('pygments.lexers.jvm', 'Groovy', ('groovy',), ('*.groovy', '*.gradle'), ('text/x-groovy',)),
+    'HAProxyLexer': ('pygments.lexers.configs', 'HAProxy', ('haproxy',), ('haproxy.cfg',), ('text/x-haproxy-config',)),
     'HLSLShaderLexer': ('pygments.lexers.graphics', 'HLSL', ('hlsl',), ('*.hlsl', '*.hlsli'), ('text/x-hlsl',)),
     'HTMLUL4Lexer': ('pygments.lexers.ul4', 'HTML+UL4', ('html+ul4',), ('*.htmlul4',), ()),
     'HamlLexer': ('pygments.lexers.html', 'Haml', ('haml',), ('*.haml',), ('text/x-haml',)),
