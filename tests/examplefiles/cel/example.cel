@@ -1,0 +1,228 @@
+// CEL (Common Expression Language) example covering all syntax features.
+
+// --- Boolean and null literals ---
+true
+false
+null
+
+// --- Integer literals ---
+0
+42
+255
+0xff
+0XFF
+0u
+42u
+255u
+0xFFu
+
+// --- Float literals ---
+0.0
+3.14
+3.14e2
+3.14e+2
+3.14e-2
+.5
+.0
+1e10
+1E5
+1.0E+2
+1.5e-10
+0.0e0
+
+// --- String literals ---
+"hello, world"
+'hello, world'
+"escape: \n \t \\ \" \' \` \? \x41 \X41 \u0041 \U00000041 \012"
+'escape: \a \b \f \r \v \xff \u0041'
+"it's fine"
+'say "hi"'
+r"raw \n no escape"
+R'raw \t no escape'
+"""triple
+double
+quoted"""
+'''triple
+single
+quoted'''
+R"uppercase raw double-quoted"
+r"""raw triple: \n \t \\ not processed"""
+R'''raw triple: \n \t \\ not processed'''
+r""""""
+r''''''
+
+// --- Bytes literals ---
+b"bytes"
+b'bytes'
+B"uppercase bytes"
+B'uppercase bytes'
+b"\x00\xFF"
+b'\x00\xFF'
+b'\X00\XFF'
+br"raw bytes"
+rb"raw bytes"
+bR"mixed case"
+Br"mixed case"
+BR"raw bytes"
+RB"raw bytes"
+b"""triple bytes"""
+b'''triple bytes'''
+br"""raw triple bytes"""
+rb'''raw triple bytes'''
+
+// --- Operators ---
+1 + 2 - 3 * 4 / 5 % 6
+1+2*3+4
+a / b % c
+a&&b||c
+a==b!=c
+!!x
+--x
+true&&false
+null==null
+!true && !false
+true||false&&null
+x == y
+x != y
+x < y
+x <= y
+x > y
+x >= y
+a < b && c <= d && e > f && g >= h
+x && y
+x || y
+a || b && c
+!x
+-x
+!a && !b
+-a + -b
+x ? y : z
+a ? b || d : c || e
+a ? b : c ? d : e
+x in [1, 2, 3]
+1 in [1, 2, 3]
+"key" in {"key": 1}
+
+// --- Identifiers and member access ---
+request.auth.claims
+resource.labels.env
+_under_score
+mixedCase123
+café
+_日本語
+r
+b
+r + x
+b.field
+
+// --- Function calls ---
+size(request.path)
+timestamp("2099-01-01T00:00:00Z")
+matches(name, "^[a-z]+$")
+has(resource.labels)
+has(x.y)
+a(1, 2) + b()
+f(a, b,)
+
+// --- Member method calls ---
+"hello".contains("ell")
+x.startsWith("foo")
+[1, 2, 3].all(i, i > 0)
+a.b() + a.b.c(1, 2)
+x.map(y, y > 0).size()
+
+// --- Absolute expressions ---
+.foo
+.func(a, b)
+.pkg.func()
+.google.protobuf.Duration
+.google.protobuf.Timestamp{seconds: 0}
+
+// --- List expressions ---
+[]
+[1, 2, 3]
+[true, false, null]
+["a", "b", "c",]
+[[1, 2], [3]]
+[1, 2+a, 3u][1]
+
+// --- Map expressions ---
+{}
+{"key": "value"}
+{"a": 1, "b": 2,}
+{a: 1, 'b': 2, "c": 3}
+{a: 1,}
+{a + b: 1}
+
+// --- Struct expressions ---
+Foo{}
+google.protobuf.Duration{seconds: 60}
+MyType{field: "value", other: 42}
+MyType{as: 1, return: x}
+Foo{a: 1,}
+a.b{field: 1}
+ext.TestAllTypes{PbVal: test.TestAllTypes{}}
+
+// --- All reserved keywords ---
+as + break + const + continue + else + for
+function + if + import + in + let + loop
+namespace + package + return + var + void + while
+
+// --- Reserved keywords used as field/method names ---
+x.package
+x.namespace()
+x.as
+x.if
+Foo{import: 1, for: 2}
+as(x)
+
+// --- Identifiers that begin with reserved words (must NOT be keywords) ---
+async + breaking + constant + elsewhere + forall
+function_name + iffy + imported + inlet + letting
+looping + namespacer + packaged + returning + variable + voiding + whileTrue
+
+// --- Conditional (ternary) ---
+size(x) > 0 ? x[0] : "default"
+a || b ? c && d : e != f
+
+// --- Index expressions ---
+a[1]
+a[1] + b.c[2.0] + d[1][2] + e[1].f(1, 2)
+
+// --- Parenthesized expressions ---
+(a + b) * c
+(a + b).c
+(a + b)[1]
+((1 + 2) * 3) == 9
+x[0].field.method(arg1, arg2)
+
+// --- Edge cases from spec ---
+// URL in string: // must not become a comment inside a string
+"https://example.com/path"
+{"url": "https://example.com // not a comment"}
+
+// String followed by a comment on the same line
+"test" // this is a comment
+
+// Integer select (not a float): 1.a
+1.a
+
+// `in` as standalone reserved keyword and in arithmetic
+in
+in + 1
+
+// Empty strings
+"" + ''
+
+// Empty triple-quoted strings
+"""""" + ''''''
+
+// Triple-quoted with embedded quotes
+"""text ends with quote" and two quotes"" here"""
+'''line with 'single' and "double" quotes'''
+
+// String with backslash sequences (fallback escapes)
+'C:\path\to\file\newline\n'
+
+// Unicode content
+'🎉😀' == '中文'
