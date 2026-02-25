@@ -56,7 +56,7 @@ class TalLexer(RegexLexer):
         'root': [
             (r'\s+', Whitespace), # spaces
             # Outermost comment *may* be named
-            (r'(?<!\S)\((?=\S*)', Comment.Multiline, 'comment'), # comments
+            (r'(?<!\S)\(', Comment.Multiline, 'comment'), # comments
             (words(instructions, prefix=r'(?<!\S)', suffix=r'2?k?r?(?!\S)'),
              Keyword.Reserved), # instructions
             (r'[][{}](?!\S)', Punctuation), # delimiters
