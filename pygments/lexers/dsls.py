@@ -16,7 +16,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
 
 __all__ = ['ProtoBufLexer', 'ZeekLexer', 'PuppetLexer', 'RslLexer',
-           'MscgenLexer', 'VGLLexer', 'AlloyLexer', 'PanLexer',
+           'MscgenLexer', 'VGLLexer', 'AlloyLexer', 'PanLexer', 'FlatBufLexer',
            'CrmshLexer', 'ThriftLexer', 'FlatlineLexer', 'SnowballLexer']
 
 
@@ -78,6 +78,106 @@ class ProtoBufLexer(RegexLexer):
             (r'[a-zA-Z_]\w*', Name, '#pop'),
             default('#pop'),
         ],
+    }
+
+
+class FlatBufLexer(RegexLexer):
+    """
+    Lexer for Flat Buffer definition files.
+    """
+
+    name = 'Flat Buffers'
+    url = 'https://flatbuffers.dev/'
+    aliases = ['flatbuffers', 'flatbuf', 'fbs']
+    filenames = ['*.fbs']
+    mimetypes = ['text/x-flatbuffers']
+    version_added = '2.20'
+
+    tokens = {
+        'root': [
+            include('comments'),
+            (r'[ \t]+', Whitespace),
+            (r';', Punctuation),
+            (r"(include)(\s+)(\"[^\"]+\")", bygroups(Keyword.Preprocessor, Whitespace, String)),
+            (r"(attribute)(\s+)(\"[^\"]+\")", bygroups(Keyword.Preprocessor, Whitespace, String)),
+            (r'(namespace)(\s+)([a-zA-Z_][\w\.]*)', bygroups(Keyword.Namespace, Whitespace, Name.Namespace)),
+            (r'(table|struct)(\s+)([a-zA-Z_]\w*)', bygroups(Keyword.Declaration, Whitespace, Name.Class), 'object'),
+            (r'(enum|union)(\s+)([a-zA-Z_]\w*)', bygroups(Keyword.Declaration, Whitespace, Name.Class), 'enum'),
+            (r'(rpc_service)(\s+)([a-zA-Z_]\w*)', bygroups(Keyword.Declaration, Whitespace, Name.Class), 'rpc'),
+            (r"(file_extension)(\s+)(\"[^\"]+\")", bygroups(Keyword.Preprocessor, Whitespace, String)),
+            (r"(file_identifier)(\s+)(\"[^\"]+\")", bygroups(Keyword.Preprocessor, Whitespace, String)),
+            (r"(root_type)(\s+)([a-zA-Z_]\w*)", bygroups(Keyword.Preprocessor, Whitespace, Name.Class))
+        ],
+        'rpc': [
+            include('builtins'),
+            include('comments'),
+            (r'[ \t\r\n]+', Whitespace),
+            (r"\(", Punctuation, 'attribute'),
+            (r"[:;\{]", Punctuation),
+            (r'[a-zA-Z_]\w*', Name.Function),
+            (r"\}", Punctuation, '#pop')
+        ],
+        'enum': [
+            include('builtins'),
+            (r'[ \t]+', Whitespace),
+            (r'[a-zA-Z_]\w*', Name.Class),
+            (r":", Punctuation),
+            (r"\(", Punctuation, 'attribute'),
+            (r"\{", Punctuation, 'enum_def')
+        ],
+        'enum_def': [
+            include('integers'),
+            include('comments'),
+            (r'[ \t\r\n]+', Whitespace),
+            (r"[a-zA-Z_][a-zA-Z0-9_]*", Name.Variable),
+            (r",", Punctuation),
+            (r"=", Operator),
+            (r"\(", Punctuation, 'attribute'),
+            (r"\}", Punctuation, '#pop:2')
+        ],
+        'object': [
+            (r'[ \t]+', Whitespace),
+            (r"\(", Punctuation, 'attribute'),
+            (r"\{", Punctuation, 'object_def')
+        ],
+        'attribute': [
+            include('integers'),
+            include('primitives'),
+            (r'[ \t]+', Whitespace),
+            (r"[a-zA-Z_][a-zA-Z0-9_]*", Name.Attribute),
+            (r":", Punctuation),
+            (r",", Punctuation),
+            (r"\)", Punctuation, "#pop")
+        ],
+        'object_def': [
+            include('integers'),
+            include('builtins'),
+            include('primitives'),
+            include('comments'),
+            (r'[ \t\r\n]+', Whitespace),
+            (r"[a-zA-Z_][a-zA-Z0-9_\.]*", Name.Variable),
+            (r"[:;\[\]]", Punctuation),
+            (r"=", Operator),
+            (r"\(", Punctuation, 'attribute'),
+            (r"\}", Punctuation, '#pop:2')
+        ],
+        'comments': [
+            (r'//(\n|(.|\n)*?[^\\]\n)', Comment.Single),
+            (r'///(\n|(.|\n)*?[^\\]\n)', Comment.Special),
+            (r'/\*(.|\n)*?\*/', Comment.Multiline),
+        ],
+        'integers': [
+            (r"0x[0-9a-fA-F]+", Number.Hex),
+            (r"\d+", Number.Integer)
+        ],
+        'primitives': [
+            (r"\d+\.\d*([eE][+\-]?\d+)?", Number.Float),
+            (r'"(\\"|[^"])*"', String),
+            (r'true|false', Name.Variable.Global)
+        ],
+        'builtins': [
+            (words(("bool", "byte", "ubyte", "short", "ushort", "int", "uint", "float", "long", "ulong", "double", "string"), prefix=r'\b', suffix=r'\b'), Name.Builtin),
+        ]
     }
 
 
