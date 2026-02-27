@@ -15,7 +15,7 @@ and tokenized as 'comment' by the lexer.
                                              multiple lines */
 #include <other_plain_include.h>
 
-void dummy_function_to_ensure_lexer_goes_back_to_root_state_after_the_above(char a, int b, float c) {
+void lexer_must_be_in_a_proper_state_to_emit_this_as_a_Function_token(char a, int b, float c) {
     return;
 }
 
@@ -91,7 +91,7 @@ void dummy_function_to_ensure_lexer_goes_back_to_root_state_after_the_above(char
 
 'void'        Keyword.Type
 ' '           Text.Whitespace
-'dummy_function_to_ensure_lexer_goes_back_to_root_state_after_the_above' Name.Function
+'lexer_must_be_in_a_proper_state_to_emit_this_as_a_Function_token' Name.Function
 '('           Punctuation
 'char'        Keyword.Type
 ' '           Text.Whitespace
