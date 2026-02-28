@@ -343,7 +343,7 @@ class DebianControlLexer(RegexLexer):
             (r'\n', Whitespace, '#pop'),
             (r'[,\s]', Text),
             (r'[+.a-zA-Z0-9-]+', Name.Function),
-            (r'\[.*?\]', Name.Entity),
+            (r'(\[)(!?)(.*?)(\])', bygroups(Punctuation, Operator, Name.Entity, Punctuation)),
         ],
         'package_list_vers': [
             (r'\)', Punctuation, '#pop'),
