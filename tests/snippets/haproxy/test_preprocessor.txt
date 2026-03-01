@@ -1,0 +1,39 @@
+---input---
+.if feature(QUIC)
+	bind quic4@:443
+.elif defined(USE_SSL)
+	bind :443 ssl
+.else
+	bind :80
+.endif
+
+---tokens---
+'.if'         Comment.Preproc
+' '           Text.Whitespace
+'feature(QUIC)' Comment.Preproc
+'\n\t'        Text.Whitespace
+'bind'        Name.Attribute
+' '           Text.Whitespace
+'quic4@:443'  Literal.String
+'\n'          Text.Whitespace
+
+'.elif'       Comment.Preproc
+' '           Text.Whitespace
+'defined(USE_SSL)' Comment.Preproc
+'\n\t'        Text.Whitespace
+'bind'        Name.Attribute
+' '           Text.Whitespace
+':443'        Literal.Number
+' '           Text.Whitespace
+'ssl'         Literal.String
+'\n'          Text.Whitespace
+
+'.else'       Comment.Preproc
+'\n\t'        Text.Whitespace
+'bind'        Name.Attribute
+' '           Text.Whitespace
+':80'         Literal.Number
+'\n'          Text.Whitespace
+
+'.endif'      Comment.Preproc
+'\n'          Text.Whitespace
