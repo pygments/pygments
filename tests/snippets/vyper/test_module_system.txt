@@ -1,0 +1,35 @@
+---input---
+from ethereum.ercs import IERC20
+initializes: Ownable
+uses: Ownable
+exports: Ownable.owner
+
+---tokens---
+'from'        Keyword
+' '           Text.Whitespace
+'ethereum.ercs' Name.Namespace
+' '           Text.Whitespace
+'import'      Keyword
+' '           Text.Whitespace
+'IERC20'      Name.Class
+'\n'          Text.Whitespace
+
+'initializes' Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'Ownable'     Name
+'\n'          Text.Whitespace
+
+'uses'        Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'Ownable'     Name
+'\n'          Text.Whitespace
+
+'exports'     Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'Ownable'     Name
+'.'           Punctuation
+'owner'       Name
+'\n'          Text.Whitespace

@@ -1,0 +1,15 @@
+---input---
+flag Status:
+    ACTIVE
+    PAUSED
+
+---tokens---
+'flag'        Keyword
+' '           Text.Whitespace
+'Status'      Name.Class
+':'           Punctuation
+'\n    '      Text.Whitespace
+'ACTIVE'      Name.Constant
+'\n    '      Text.Whitespace
+'PAUSED'      Name.Constant
+'\n'          Text.Whitespace

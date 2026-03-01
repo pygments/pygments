@@ -1,0 +1,11 @@
+---input---
+lock: transient(bool)
+
+---tokens---
+'lock:'       Name.Variable
+' '           Text.Whitespace
+'transient'   Keyword.Declaration
+'('           Punctuation
+'bool'        Keyword.Type
+')'           Punctuation
+'\n'          Text.Whitespace

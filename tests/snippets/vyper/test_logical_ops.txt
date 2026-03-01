@@ -1,0 +1,24 @@
+---input---
+a and b
+c or d
+not e
+
+---tokens---
+'a'           Name
+' '           Text.Whitespace
+'and'         Keyword
+' '           Text.Whitespace
+'b'           Name
+'\n'          Text.Whitespace
+
+'c'           Name
+' '           Text.Whitespace
+'or'          Keyword
+' '           Text.Whitespace
+'d'           Name
+'\n'          Text.Whitespace
+
+'not'         Keyword
+' '           Text.Whitespace
+'e'           Name
+'\n'          Text.Whitespace

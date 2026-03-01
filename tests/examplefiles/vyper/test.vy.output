@@ -1,10 +1,10 @@
-'# pragma version 0.3.10' Comment.Single
+'# pragma version 0.3.10' Comment.Preproc
 '\n'          Text.Whitespace
 
-'# pragma optimize codesize' Comment.Single
+'# pragma optimize codesize' Comment.Preproc
 '\n'          Text.Whitespace
 
-'# pragma evm-version shanghai' Comment.Single
+'# pragma evm-version shanghai' Comment.Preproc
 '\n'          Text.Whitespace
 
 '"""'         Comment.Multiline
@@ -43,7 +43,7 @@
 'implements'  Keyword
 ':'           Punctuation
 ' '           Text.Whitespace
-'ERC20'       Name.Class
+'ERC20'       Name.Constant
 '\n\n'        Text.Whitespace
 
 '# ------------------------------- Interfaces ---------------------------------' Comment.Single
@@ -113,7 +113,10 @@
 ' '           Text.Whitespace
 '_signature:' Name.Variable
 ' '           Text.Whitespace
-'Bytes[65]'   Keyword.Type
+'Bytes'       Keyword.Type
+'['           Punctuation
+'65'          Literal.Number.Integer
+']'           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
 '-'           Operator
@@ -228,12 +231,12 @@
 '\n        '  Text.Whitespace
 '_amounts:'   Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ','           Punctuation
 '\n        '  Text.Whitespace
@@ -380,22 +383,22 @@
 '\n    '      Text.Whitespace
 'token_amounts:' Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 '\n    '      Text.Whitespace
 'fees:'       Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 '\n    '      Text.Whitespace
 'invariant:'  Name.Variable
@@ -421,22 +424,22 @@
 '\n    '      Text.Whitespace
 'token_amounts:' Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 '\n    '      Text.Whitespace
 'fees:'       Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 '\n    '      Text.Whitespace
 'token_supply:' Name.Variable
@@ -487,22 +490,22 @@
 '\n    '      Text.Whitespace
 'token_amounts:' Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 '\n    '      Text.Whitespace
 'fees:'       Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 '\n    '      Text.Whitespace
 'invariant:'  Name.Variable
@@ -623,8 +626,7 @@
 ' '           Text.Whitespace
 '10'          Literal.Number.Integer
 ' '           Text.Whitespace
-'*'           Operator
-'*'           Operator
+'**'          Operator
 ' '           Text.Whitespace
 '18'          Literal.Number.Integer
 '\n\n'        Text.Whitespace
@@ -643,12 +645,12 @@
 '('           Punctuation
 'immutable'   Keyword.Declaration
 '('           Punctuation
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'address'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
@@ -658,24 +660,24 @@
 ' '           Text.Whitespace
 'immutable'   Keyword.Declaration
 '('           Punctuation
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint8'       Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
 
 'stored_balances:' Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 '\n\n'        Text.Whitespace
 
@@ -693,8 +695,7 @@
 ' '           Text.Whitespace
 '10'          Literal.Number.Integer
 ' '           Text.Whitespace
-'*'           Operator
-'*'           Operator
+'**'          Operator
 ' '           Text.Whitespace
 '10'          Literal.Number.Integer
 '\n'          Text.Whitespace
@@ -749,8 +750,7 @@
 ' '           Text.Whitespace
 '10'          Literal.Number.Integer
 ' '           Text.Whitespace
-'*'           Operator
-'*'           Operator
+'**'          Operator
 ' '           Text.Whitespace
 '9'           Literal.Number.Integer
 '\n\n'        Text.Whitespace
@@ -781,8 +781,7 @@
 ' '           Text.Whitespace
 '10'          Literal.Number.Integer
 ' '           Text.Whitespace
-'*'           Operator
-'*'           Operator
+'**'          Operator
 ' '           Text.Whitespace
 '6'           Literal.Number.Integer
 '\n'          Text.Whitespace
@@ -850,12 +849,12 @@
 ' '           Text.Whitespace
 'public'      Keyword.Declaration
 '('           Punctuation
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ')'           Punctuation
 '\n\n'        Text.Whitespace
@@ -867,12 +866,12 @@
 ' '           Text.Whitespace
 'immutable'   Keyword.Declaration
 '('           Punctuation
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
@@ -882,12 +881,12 @@
 
 'oracles:'    Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 '\n\n'        Text.Whitespace
 
@@ -898,12 +897,12 @@
 ' '           Text.Whitespace
 'immutable'   Keyword.Declaration
 '('           Punctuation
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
@@ -912,24 +911,24 @@
 ' '           Text.Whitespace
 'immutable'   Keyword.Declaration
 '('           Punctuation
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ')'           Punctuation
 '\n\n'        Text.Whitespace
 
 'last_prices_packed:' Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 '  '          Text.Whitespace
 '#  packing: last_price, ma_price' Comment.Single
@@ -988,8 +987,7 @@
 ' '           Text.Whitespace
 '('           Punctuation
 '2'           Literal.Number.Integer
-'*'           Operator
-'*'           Operator
+'**'          Operator
 '32'          Literal.Number.Integer
 ' '           Text.Whitespace
 '-'           Operator
@@ -1000,8 +998,7 @@
 '*'           Operator
 ' '           Text.Whitespace
 '256'         Literal.Number.Integer
-'*'           Operator
-'*'           Operator
+'**'          Operator
 '28'          Literal.Number.Integer
 '\n\n'        Text.Whitespace
 
@@ -1075,7 +1072,7 @@
 ' '           Text.Whitespace
 'public'      Keyword.Declaration
 '('           Punctuation
-'HashMap'     Name
+'HashMap'     Keyword.Type
 '['           Punctuation
 'address'     Keyword.Type
 ','           Punctuation
@@ -1089,12 +1086,12 @@
 ' '           Text.Whitespace
 'public'      Keyword.Declaration
 '('           Punctuation
-'HashMap'     Name
+'HashMap'     Keyword.Type
 '['           Punctuation
 'address'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'HashMap'     Name
+'HashMap'     Keyword.Type
 '['           Punctuation
 'address'     Keyword.Type
 ','           Punctuation
@@ -1114,7 +1111,7 @@
 ' '           Text.Whitespace
 'public'      Keyword.Declaration
 '('           Punctuation
-'HashMap'     Name
+'HashMap'     Keyword.Type
 '['           Punctuation
 'address'     Keyword.Type
 ','           Punctuation
@@ -1272,56 +1269,56 @@
 '\n    '      Text.Whitespace
 '_coins:'     Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'address'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ','           Punctuation
 '\n    '      Text.Whitespace
 '_rate_multipliers:' Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ','           Punctuation
 '\n    '      Text.Whitespace
 '_asset_types:' Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint8'       Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ','           Punctuation
 '\n    '      Text.Whitespace
 '_method_ids:' Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'bytes4'      Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ','           Punctuation
 '\n    '      Text.Whitespace
 '_oracles:'   Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'address'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ','           Punctuation
 '\n'          Text.Whitespace
@@ -1363,13 +1360,13 @@
 '_coins'      Name
 ')'           Punctuation
 '\n    '      Text.Whitespace
-'N_COINS'     Name
+'N_COINS'     Name.Constant
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
 '__n_coins'   Name
 '\n    '      Text.Whitespace
-'N_COINS_128' Name
+'N_COINS_128' Name.Constant
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
@@ -1406,25 +1403,25 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'A_PRECISION' Name
+'A_PRECISION' Name.Constant
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'initial_A'   Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'A'           Name
+'A'           Name.Constant
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'future_A'    Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'A'           Name
+'A'           Name.Constant
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'fee'         Name
 ' '           Text.Whitespace
@@ -1432,7 +1429,7 @@
 ' '           Text.Whitespace
 '_fee'        Name
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'offpeg_fee_multiplier' Name
 ' '           Text.Whitespace
@@ -1448,7 +1445,7 @@
 ' '           Text.Whitespace
 '0'           Literal.Number.Integer
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'ma_exp_time' Name
 ' '           Text.Whitespace
@@ -1456,7 +1453,7 @@
 ' '           Text.Whitespace
 '_ma_exp_time' Name
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'D_ma_time'   Name
 ' '           Text.Whitespace
@@ -1466,13 +1463,13 @@
 '  '          Text.Whitespace
 '# <--------- 12 hours default on contract start.' Comment.Single
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'ma_last_time' Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'pack_2'      Name
 '('           Punctuation
@@ -1486,47 +1483,47 @@
 '\n\n    '    Text.Whitespace
 '_call_amount:' Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
 'empty'       Name.Builtin
 '('           Punctuation
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ')'           Punctuation
 '\n    '      Text.Whitespace
 '_scale_factor:' Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
 'empty'       Name.Builtin
 '('           Punctuation
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ')'           Punctuation
 '\n    '      Text.Whitespace
@@ -1538,7 +1535,7 @@
 ' '           Text.Whitespace
 'range'       Name.Builtin
 '('           Punctuation
-'MAX_COINS_128' Name
+'MAX_COINS_128' Name.Constant
 ')'           Punctuation
 ':'           Punctuation
 '\n\n        ' Text.Whitespace
@@ -1550,7 +1547,7 @@
 ' '           Text.Whitespace
 'N_COINS_128:' Name.Variable
 '\n            ' Text.Whitespace
-'break'       Name
+'break'       Keyword
 '\n\n        ' Text.Whitespace
 'if'          Keyword
 ' '           Text.Whitespace
@@ -1558,37 +1555,35 @@
 ' '           Text.Whitespace
 '<'           Operator
 ' '           Text.Whitespace
-'N_COINS_128' Name
+'N_COINS_128' Name.Constant
 ' '           Text.Whitespace
 '-'           Operator
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ':'           Punctuation
 '\n            ' Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'last_prices_packed' Name
 '.'           Punctuation
 'append'      Name
 '('           Punctuation
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'pack_2'      Name
 '('           Punctuation
 '10'          Literal.Number.Integer
-'*'           Operator
-'*'           Operator
+'**'          Operator
 '18'          Literal.Number.Integer
 ','           Punctuation
 ' '           Text.Whitespace
 '10'          Literal.Number.Integer
-'*'           Operator
-'*'           Operator
+'**'          Operator
 '18'          Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
 '\n\n        ' Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'oracles'     Name
 '.'           Punctuation
@@ -1608,8 +1603,7 @@
 '*'           Operator
 ' '           Text.Whitespace
 '2'           Literal.Number.Integer
-'*'           Operator
-'*'           Operator
+'**'          Operator
 '224'         Literal.Number.Integer
 ' '           Text.Whitespace
 '|'           Operator
@@ -1626,7 +1620,7 @@
 ')'           Punctuation
 ')'           Punctuation
 '\n        '  Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'stored_balances' Name
 '.'           Punctuation
@@ -1635,7 +1629,7 @@
 '0'           Literal.Number.Integer
 ')'           Punctuation
 '\n        '  Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'admin_balances' Name
 '.'           Punctuation
@@ -1661,8 +1655,7 @@
 'append'      Name
 '('           Punctuation
 '10'          Literal.Number.Integer
-'*'           Operator
-'*'           Operator
+'**'          Operator
 'convert'     Name.Builtin
 '('           Punctuation
 'ERC20Detailed' Name
@@ -1688,7 +1681,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'ERC4626'     Name
+'ERC4626'     Name.Constant
 '('           Punctuation
 '_coins'      Name
 '['           Punctuation
@@ -1705,8 +1698,7 @@
 'append'      Name
 '('           Punctuation
 '10'          Literal.Number.Integer
-'*'           Operator
-'*'           Operator
+'**'          Operator
 '('           Punctuation
 '18'          Literal.Number.Integer
 ' '           Text.Whitespace
@@ -1774,7 +1766,7 @@
 '\n\n    '    Text.Whitespace
 '# EIP712 related params -----------------' Comment.Single
 '\n    '      Text.Whitespace
-'NAME_HASH'   Name
+'NAME_HASH'   Name.Constant
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
@@ -1787,19 +1779,15 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'block'       Name
-'.'           Punctuation
-'prevhash'    Name
+'block.prevhash' Name.Builtin.Pseudo
 '\n    '      Text.Whitespace
-'CACHED_CHAIN_ID' Name
+'CACHED_CHAIN_ID' Name.Constant
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'chain'       Name
-'.'           Punctuation
-'id'          Name
+'chain.id'    Name.Builtin.Pseudo
 '\n    '      Text.Whitespace
-'CACHED_DOMAIN_SEPARATOR' Name
+'CACHED_DOMAIN_SEPARATOR' Name.Constant
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
@@ -1809,21 +1797,19 @@
 '_abi_encode' Name.Builtin
 '('           Punctuation
 '\n            ' Text.Whitespace
-'EIP712_TYPEHASH' Name
+'EIP712_TYPEHASH' Name.Constant
 ','           Punctuation
 '\n            ' Text.Whitespace
-'NAME_HASH'   Name
+'NAME_HASH'   Name.Constant
 ','           Punctuation
 '\n            ' Text.Whitespace
-'VERSION_HASH' Name
+'VERSION_HASH' Name.Constant
 ','           Punctuation
 '\n            ' Text.Whitespace
-'chain'       Name
-'.'           Punctuation
-'id'          Name
+'chain.id'    Name.Builtin.Pseudo
 ','           Punctuation
 '\n            ' Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 ','           Punctuation
 '\n            ' Text.Whitespace
 'salt'        Name
@@ -1902,7 +1888,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'ERC20'       Name.Class
+'ERC20'       Name.Constant
 '('           Punctuation
 'coins'       Name
 '['           Punctuation
@@ -1912,7 +1898,7 @@
 '.'           Punctuation
 'balanceOf'   Name
 '('           Punctuation
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 ')'           Punctuation
 '\n\n    '    Text.Whitespace
 '# ------------------------- Handle Transfers -----------------------------' Comment.Single
@@ -1929,7 +1915,7 @@
 ' '           Text.Whitespace
 '-'           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'stored_balances' Name
 '['           Punctuation
@@ -1959,7 +1945,7 @@
 '\n        '  Text.Whitespace
 'assert'      Keyword
 ' '           Text.Whitespace
-'ERC20'       Name.Class
+'ERC20'       Name.Constant
 '('           Punctuation
 'coins'       Name
 '['           Punctuation
@@ -1973,7 +1959,7 @@
 'sender'      Name
 ','           Punctuation
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 ','           Punctuation
 ' '           Text.Whitespace
 'dx'          Name
@@ -1981,7 +1967,7 @@
 ' '           Text.Whitespace
 'default_return_value' Name
 '='           Operator
-'True'        Name
+'True'        Keyword.Constant
 '\n        '  Text.Whitespace
 ')'           Punctuation
 '\n\n        ' Text.Whitespace
@@ -1989,7 +1975,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'ERC20'       Name.Class
+'ERC20'       Name.Constant
 '('           Punctuation
 'coins'       Name
 '['           Punctuation
@@ -1999,7 +1985,7 @@
 '.'           Punctuation
 'balanceOf'   Name
 '('           Punctuation
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 ')'           Punctuation
 ' '           Text.Whitespace
 '-'           Operator
@@ -2008,7 +1994,7 @@
 '\n\n    '    Text.Whitespace
 '# --------------------------- Store transferred in amount ---------------------------' Comment.Single
 '\n\n    '    Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'stored_balances' Name
 '['           Punctuation
@@ -2058,7 +2044,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'ERC20'       Name.Class
+'ERC20'       Name.Constant
 '('           Punctuation
 'coins'       Name
 '['           Punctuation
@@ -2068,14 +2054,14 @@
 '.'           Punctuation
 'balanceOf'   Name
 '('           Punctuation
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 ')'           Punctuation
 '\n\n    '    Text.Whitespace
 '# ------------------------- Handle Transfers -----------------------------' Comment.Single
 '\n\n    '    Text.Whitespace
 'assert'      Keyword
 ' '           Text.Whitespace
-'ERC20'       Name.Class
+'ERC20'       Name.Constant
 '('           Punctuation
 'coins'       Name
 '['           Punctuation
@@ -2094,13 +2080,13 @@
 ' '           Text.Whitespace
 'default_return_value' Name
 '='           Operator
-'True'        Name
+'True'        Keyword.Constant
 '\n    '      Text.Whitespace
 ')'           Punctuation
 '\n\n    '    Text.Whitespace
 '# ----------------------- Update Stored Balances -------------------------' Comment.Single
 '\n\n    '    Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'stored_balances' Name
 '['           Punctuation
@@ -2134,12 +2120,12 @@
 '-'           Operator
 '>'           Operator
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ':'           Punctuation
 '\n    '      Text.Whitespace
@@ -2149,12 +2135,12 @@
 '\n    '      Text.Whitespace
 'rates:'      Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
@@ -2163,17 +2149,17 @@
 '\n    '      Text.Whitespace
 'oracles:'    Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'oracles'     Name
 '\n\n    '    Text.Whitespace
@@ -2185,7 +2171,7 @@
 ' '           Text.Whitespace
 'range'       Name.Builtin
 '('           Punctuation
-'MAX_COINS_128' Name
+'MAX_COINS_128' Name.Constant
 ')'           Punctuation
 ':'           Punctuation
 '\n\n        ' Text.Whitespace
@@ -2197,7 +2183,7 @@
 ' '           Text.Whitespace
 'N_COINS_128:' Name.Variable
 '\n            ' Text.Whitespace
-'break'       Name
+'break'       Keyword
 '\n\n        ' Text.Whitespace
 'if'          Keyword
 ' '           Text.Whitespace
@@ -2210,9 +2196,9 @@
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ' '           Text.Whitespace
-'and'         Name
+'and'         Keyword
 ' '           Text.Whitespace
-'not'         Name
+'not'         Keyword
 ' '           Text.Whitespace
 'oracles'     Name
 '['           Punctuation
@@ -2235,7 +2221,7 @@
 'convert'     Name.Builtin
 '('           Punctuation
 '\n                ' Text.Whitespace
-'raw_call'    Name
+'raw_call'    Name.Builtin
 '('           Punctuation
 '\n                    ' Text.Whitespace
 'convert'     Name.Builtin
@@ -2248,8 +2234,7 @@
 '%'           Operator
 ' '           Text.Whitespace
 '2'           Literal.Number.Integer
-'*'           Operator
-'*'           Operator
+'**'          Operator
 '160'         Literal.Number.Integer
 ','           Punctuation
 ' '           Text.Whitespace
@@ -2266,7 +2251,7 @@
 ' '           Text.Whitespace
 '&'           Operator
 ' '           Text.Whitespace
-'ORACLE_BIT_MASK' Name
+'ORACLE_BIT_MASK' Name.Constant
 ')'           Punctuation
 ','           Punctuation
 '\n                    ' Text.Whitespace
@@ -2277,7 +2262,7 @@
 '\n                    ' Text.Whitespace
 'is_static_call' Name
 '='           Operator
-'True'        Name
+'True'        Keyword.Constant
 ','           Punctuation
 '\n                ' Text.Whitespace
 ')'           Punctuation
@@ -2306,7 +2291,7 @@
 'fetched_rate' Name
 ','           Punctuation
 ' '           Text.Whitespace
-'PRECISION'   Name
+'PRECISION'   Name.Constant
 ')'           Punctuation
 '\n\n        ' Text.Whitespace
 'elif'        Keyword
@@ -2346,7 +2331,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'ERC4626'     Name
+'ERC4626'     Name.Constant
 '('           Punctuation
 'coins'       Name
 '['           Punctuation
@@ -2370,7 +2355,7 @@
 ']'           Punctuation
 ','           Punctuation
 '\n                ' Text.Whitespace
-'PRECISION'   Name
+'PRECISION'   Name.Constant
 '\n            ' Text.Whitespace
 ')'           Punctuation
 '  '          Text.Whitespace
@@ -2396,12 +2381,12 @@
 '-'           Operator
 '>'           Operator
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ':'           Punctuation
 '\n    '      Text.Whitespace
@@ -2411,24 +2396,24 @@
 '\n    '      Text.Whitespace
 'result:'     Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
 'empty'       Name.Builtin
 '('           Punctuation
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ')'           Punctuation
 '\n    '      Text.Whitespace
@@ -2448,7 +2433,7 @@
 ' '           Text.Whitespace
 'range'       Name.Builtin
 '('           Punctuation
-'MAX_COINS_128' Name
+'MAX_COINS_128' Name.Constant
 ')'           Punctuation
 ':'           Punctuation
 '\n\n        ' Text.Whitespace
@@ -2460,7 +2445,7 @@
 ' '           Text.Whitespace
 'N_COINS_128:' Name.Variable
 '\n            ' Text.Whitespace
-'break'       Name
+'break'       Keyword
 '\n\n        ' Text.Whitespace
 'if'          Keyword
 ' '           Text.Whitespace
@@ -2474,7 +2459,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'ERC20'       Name.Class
+'ERC20'       Name.Constant
 '('           Punctuation
 'coins'       Name
 '['           Punctuation
@@ -2484,12 +2469,12 @@
 '.'           Punctuation
 'balanceOf'   Name
 '('           Punctuation
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 ')'           Punctuation
 ' '           Text.Whitespace
 '-'           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'admin_balances' Name
 '['           Punctuation
@@ -2503,7 +2488,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'stored_balances' Name
 '['           Punctuation
@@ -2512,7 +2497,7 @@
 ' '           Text.Whitespace
 '-'           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'admin_balances' Name
 '['           Punctuation
@@ -2594,7 +2579,7 @@
 '\n    '      Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_exchange'   Name
 '('           Punctuation
@@ -2617,7 +2602,7 @@
 '_receiver'   Name
 ','           Punctuation
 '\n        '  Text.Whitespace
-'False'       Name
+'False'       Keyword.Constant
 '\n    '      Text.Whitespace
 ')'           Punctuation
 '\n\n\n'      Text.Whitespace
@@ -2682,7 +2667,7 @@
 '\n    '      Text.Whitespace
 'assert'      Keyword
 ' '           Text.Whitespace
-'not'         Name
+'not'         Keyword
 ' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ' '           Text.Whitespace
@@ -2694,7 +2679,7 @@
 '\n    '      Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_exchange'   Name
 '('           Punctuation
@@ -2717,7 +2702,7 @@
 '_receiver'   Name
 ','           Punctuation
 '\n        '  Text.Whitespace
-'True'        Name
+'True'        Keyword.Constant
 ','           Punctuation
 '  '          Text.Whitespace
 '# <--------------------------------------- swap optimistically.' Comment.Single
@@ -2743,12 +2728,12 @@
 '\n    '      Text.Whitespace
 '_amounts:'   Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ','           Punctuation
 '\n    '      Text.Whitespace
@@ -2784,7 +2769,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_A'          Name
 '('           Punctuation
@@ -2792,17 +2777,17 @@
 '\n    '      Text.Whitespace
 'old_balances:' Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_balances'   Name
 '('           Punctuation
@@ -2810,17 +2795,17 @@
 '\n    '      Text.Whitespace
 'rates:'      Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_stored_rates' Name
 '('           Punctuation
@@ -2834,7 +2819,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'get_D_mem'   Name
 '('           Punctuation
@@ -2853,18 +2838,18 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'total_supply' Name
 '\n    '      Text.Whitespace
 'new_balances:' Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
@@ -2881,7 +2866,7 @@
 ' '           Text.Whitespace
 'range'       Name.Builtin
 '('           Punctuation
-'MAX_COINS_128' Name
+'MAX_COINS_128' Name.Constant
 ')'           Punctuation
 ':'           Punctuation
 '\n\n        ' Text.Whitespace
@@ -2893,7 +2878,7 @@
 ' '           Text.Whitespace
 'N_COINS_128:' Name.Variable
 '\n            ' Text.Whitespace
-'break'       Name
+'break'       Keyword
 '\n\n        ' Text.Whitespace
 'if'          Keyword
 ' '           Text.Whitespace
@@ -2915,7 +2900,7 @@
 '+'           Operator
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_transfer_in' Name
 '('           Punctuation
@@ -2932,7 +2917,7 @@
 'msg.sender'  Name.Builtin.Pseudo
 ','           Punctuation
 '\n                ' Text.Whitespace
-'False'       Name
+'False'       Keyword.Constant
 ','           Punctuation
 '  '          Text.Whitespace
 '# expect_optimistic_transfer' Comment.Single
@@ -2962,7 +2947,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'get_D_mem'   Name
 '('           Punctuation
@@ -2977,11 +2962,11 @@
 '\n    '      Text.Whitespace
 'assert'      Keyword
 ' '           Text.Whitespace
-'D1'          Name
+'D1'          Name.Constant
 ' '           Text.Whitespace
 '>'           Operator
 ' '           Text.Whitespace
-'D0'          Name
+'D0'          Name.Constant
 '\n\n    '    Text.Whitespace
 '# We need to recalculate the invariant accounting for fees' Comment.Single
 '\n    '      Text.Whitespace
@@ -2989,24 +2974,24 @@
 '\n    '      Text.Whitespace
 'fees:'       Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
 'empty'       Name.Builtin
 '('           Punctuation
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ')'           Punctuation
 '\n    '      Text.Whitespace
@@ -3058,16 +3043,16 @@
 '='           Operator
 ' '           Text.Whitespace
 '('           Punctuation
-'D0'          Name
+'D0'          Name.Constant
 ' '           Text.Whitespace
 '+'           Operator
 ' '           Text.Whitespace
-'D1'          Name
+'D1'          Name.Constant
 ')'           Punctuation
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
-'N_COINS'     Name
+'N_COINS'     Name.Constant
 '\n        '  Text.Whitespace
 'xs:'         Name.Variable
 ' '           Text.Whitespace
@@ -3093,13 +3078,13 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'fee'         Name
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'N_COINS'     Name
+'N_COINS'     Name.Constant
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
@@ -3109,7 +3094,7 @@
 '*'           Operator
 ' '           Text.Whitespace
 '('           Punctuation
-'N_COINS'     Name
+'N_COINS'     Name.Constant
 ' '           Text.Whitespace
 '-'           Operator
 ' '           Text.Whitespace
@@ -3125,7 +3110,7 @@
 ' '           Text.Whitespace
 'range'       Name.Builtin
 '('           Punctuation
-'MAX_COINS_128' Name
+'MAX_COINS_128' Name.Constant
 ')'           Punctuation
 ':'           Punctuation
 '\n\n            ' Text.Whitespace
@@ -3137,13 +3122,13 @@
 ' '           Text.Whitespace
 'N_COINS_128:' Name.Variable
 '\n                ' Text.Whitespace
-'break'       Name
+'break'       Keyword
 '\n\n            ' Text.Whitespace
 'ideal_balance' Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'D1'          Name
+'D1'          Name.Constant
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
@@ -3154,7 +3139,7 @@
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
-'D0'          Name
+'D0'          Name.Constant
 '\n            ' Text.Whitespace
 'difference'  Name
 ' '           Text.Whitespace
@@ -3229,14 +3214,14 @@
 ')'           Punctuation
 ','           Punctuation
 ' '           Text.Whitespace
-'PRECISION'   Name
+'PRECISION'   Name.Constant
 ')'           Punctuation
 '\n            ' Text.Whitespace
 '_dynamic_fee_i' Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_dynamic_fee' Name
 '('           Punctuation
@@ -3261,10 +3246,10 @@
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
-'FEE_DENOMINATOR' Name
+'FEE_DENOMINATOR' Name.Constant
 ')'           Punctuation
 '\n            ' Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'admin_balances' Name
 '['           Punctuation
@@ -3285,7 +3270,7 @@
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
-'FEE_DENOMINATOR' Name
+'FEE_DENOMINATOR' Name.Constant
 '\n            ' Text.Whitespace
 'new_balances' Name
 '['           Punctuation
@@ -3302,17 +3287,17 @@
 '\n\n        ' Text.Whitespace
 'xp:'         Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_xp_mem'     Name
 '('           Punctuation
@@ -3322,11 +3307,11 @@
 'new_balances' Name
 ')'           Punctuation
 '\n        '  Text.Whitespace
-'D1'          Name
+'D1'          Name.Constant
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'get_D'       Name
 '('           Punctuation
@@ -3347,18 +3332,18 @@
 '*'           Operator
 ' '           Text.Whitespace
 '('           Punctuation
-'D1'          Name
+'D1'          Name.Constant
 ' '           Text.Whitespace
 '-'           Operator
 ' '           Text.Whitespace
-'D0'          Name
+'D0'          Name.Constant
 ')'           Punctuation
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
-'D0'          Name
+'D0'          Name.Constant
 '\n        '  Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'upkeep_oracles' Name
 '('           Punctuation
@@ -3368,7 +3353,7 @@
 'amp'         Name
 ','           Punctuation
 ' '           Text.Whitespace
-'D1'          Name
+'D1'          Name.Constant
 ')'           Punctuation
 '\n\n    '    Text.Whitespace
 'else'        Keyword
@@ -3378,26 +3363,26 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'D1'          Name
+'D1'          Name.Constant
 '  '          Text.Whitespace
 '# Take the dust if there was any' Comment.Single
 '\n\n        ' Text.Whitespace
 '# (re)instantiate D oracle if totalSupply is zero.' Comment.Single
 '\n        '  Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'last_D_packed' Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'pack_2'      Name
 '('           Punctuation
-'D1'          Name
+'D1'          Name.Constant
 ','           Punctuation
 ' '           Text.Whitespace
-'D1'          Name
+'D1'          Name.Constant
 ')'           Punctuation
 '\n\n    '    Text.Whitespace
 'assert'      Keyword
@@ -3422,7 +3407,7 @@
 ' '           Text.Whitespace
 'mint_amount' Name
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'balanceOf'   Name
 '['           Punctuation
@@ -3434,7 +3419,7 @@
 ' '           Text.Whitespace
 'mint_amount' Name
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'total_supply' Name
 ' '           Text.Whitespace
@@ -3471,7 +3456,7 @@
 'fees'        Name
 ','           Punctuation
 ' '           Text.Whitespace
-'D1'          Name
+'D1'          Name.Constant
 ','           Punctuation
 ' '           Text.Whitespace
 'total_supply' Name
@@ -3563,24 +3548,24 @@
 '\n    '      Text.Whitespace
 'xp:'         Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
 'empty'       Name.Builtin
 '('           Punctuation
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ')'           Punctuation
 '\n    '      Text.Whitespace
@@ -3618,11 +3603,11 @@
 'amp'         Name
 ','           Punctuation
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_calc_withdraw_one_coin' Name
 '('           Punctuation
@@ -3645,7 +3630,7 @@
 'Not enough coins removed' Literal.String.Double
 '"'           Literal.String.Double
 '\n\n    '    Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'admin_balances' Name
 '['           Punctuation
@@ -3663,9 +3648,9 @@
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
-'FEE_DENOMINATOR' Name
+'FEE_DENOMINATOR' Name.Constant
 '\n\n    '    Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_burnFrom'   Name
 '('           Punctuation
@@ -3675,7 +3660,7 @@
 '_burn_amount' Name
 ')'           Punctuation
 '\n\n    '    Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_transfer_out' Name
 '('           Punctuation
@@ -3704,12 +3689,12 @@
 'dy'          Name
 ','           Punctuation
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'total_supply' Name
 ')'           Punctuation
 '\n\n    '    Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'upkeep_oracles' Name
 '('           Punctuation
@@ -3719,7 +3704,7 @@
 'amp'         Name
 ','           Punctuation
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 ')'           Punctuation
 '\n\n    '    Text.Whitespace
 'return'      Keyword
@@ -3745,12 +3730,12 @@
 '\n    '      Text.Whitespace
 '_amounts:'   Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ','           Punctuation
 '\n    '      Text.Whitespace
@@ -3786,7 +3771,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_A'          Name
 '('           Punctuation
@@ -3794,17 +3779,17 @@
 '\n    '      Text.Whitespace
 'rates:'      Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_stored_rates' Name
 '('           Punctuation
@@ -3812,17 +3797,17 @@
 '\n    '      Text.Whitespace
 'old_balances:' Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_balances'   Name
 '('           Punctuation
@@ -3834,7 +3819,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'get_D_mem'   Name
 '('           Punctuation
@@ -3849,12 +3834,12 @@
 '\n    '      Text.Whitespace
 'new_balances:' Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
@@ -3869,7 +3854,7 @@
 ' '           Text.Whitespace
 'range'       Name.Builtin
 '('           Punctuation
-'MAX_COINS_128' Name
+'MAX_COINS_128' Name.Constant
 ')'           Punctuation
 ':'           Punctuation
 '\n\n        ' Text.Whitespace
@@ -3881,7 +3866,7 @@
 ' '           Text.Whitespace
 'N_COINS_128:' Name.Variable
 '\n            ' Text.Whitespace
-'break'       Name
+'break'       Keyword
 '\n\n        ' Text.Whitespace
 'if'          Keyword
 ' '           Text.Whitespace
@@ -3908,7 +3893,7 @@
 'i'           Name
 ']'           Punctuation
 '\n            ' Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_transfer_out' Name
 '('           Punctuation
@@ -3930,7 +3915,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'get_D_mem'   Name
 '('           Punctuation
@@ -3949,13 +3934,13 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'fee'         Name
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'N_COINS'     Name
+'N_COINS'     Name.Constant
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
@@ -3965,7 +3950,7 @@
 '*'           Operator
 ' '           Text.Whitespace
 '('           Punctuation
-'N_COINS'     Name
+'N_COINS'     Name.Constant
 ' '           Text.Whitespace
 '-'           Operator
 ' '           Text.Whitespace
@@ -3980,37 +3965,37 @@
 '='           Operator
 ' '           Text.Whitespace
 '('           Punctuation
-'D0'          Name
+'D0'          Name.Constant
 ' '           Text.Whitespace
 '+'           Operator
 ' '           Text.Whitespace
-'D1'          Name
+'D1'          Name.Constant
 ')'           Punctuation
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
-'N_COINS'     Name
+'N_COINS'     Name.Constant
 '\n\n    '    Text.Whitespace
 'fees:'       Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
 'empty'       Name.Builtin
 '('           Punctuation
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ')'           Punctuation
 '\n    '      Text.Whitespace
@@ -4062,7 +4047,7 @@
 ' '           Text.Whitespace
 'range'       Name.Builtin
 '('           Punctuation
-'MAX_COINS_128' Name
+'MAX_COINS_128' Name.Constant
 ')'           Punctuation
 ':'           Punctuation
 '\n\n        ' Text.Whitespace
@@ -4074,13 +4059,13 @@
 ' '           Text.Whitespace
 'N_COINS_128:' Name.Variable
 '\n            ' Text.Whitespace
-'break'       Name
+'break'       Keyword
 '\n\n        ' Text.Whitespace
 'ideal_balance' Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'D1'          Name
+'D1'          Name.Constant
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
@@ -4091,7 +4076,7 @@
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
-'D0'          Name
+'D0'          Name.Constant
 '\n        '  Text.Whitespace
 'difference'  Name
 ' '           Text.Whitespace
@@ -4164,14 +4149,14 @@
 ')'           Punctuation
 ','           Punctuation
 ' '           Text.Whitespace
-'PRECISION'   Name
+'PRECISION'   Name.Constant
 ')'           Punctuation
 '\n        '  Text.Whitespace
 'dynamic_fee' Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_dynamic_fee' Name
 '('           Punctuation
@@ -4196,10 +4181,10 @@
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
-'FEE_DENOMINATOR' Name
+'FEE_DENOMINATOR' Name.Constant
 ')'           Punctuation
 '\n\n        ' Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'admin_balances' Name
 '['           Punctuation
@@ -4220,7 +4205,7 @@
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
-'FEE_DENOMINATOR' Name
+'FEE_DENOMINATOR' Name.Constant
 '\n        '  Text.Whitespace
 'new_balances' Name
 '['           Punctuation
@@ -4235,11 +4220,11 @@
 'i'           Name
 ']'           Punctuation
 '\n\n    '    Text.Whitespace
-'D1'          Name
+'D1'          Name.Constant
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'get_D_mem'   Name
 '('           Punctuation
@@ -4254,7 +4239,7 @@
 '  '          Text.Whitespace
 '# dev: reuse D1 for new D.' Comment.Single
 '\n\n    '    Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'upkeep_oracles' Name
 '('           Punctuation
@@ -4264,7 +4249,7 @@
 'amp'         Name
 ','           Punctuation
 ' '           Text.Whitespace
-'D1'          Name
+'D1'          Name.Constant
 ')'           Punctuation
 '\n\n    '    Text.Whitespace
 'total_supply:' Name.Variable
@@ -4273,7 +4258,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'total_supply' Name
 '\n    '      Text.Whitespace
@@ -4285,11 +4270,11 @@
 ' '           Text.Whitespace
 '('           Punctuation
 '('           Punctuation
-'D0'          Name
+'D0'          Name.Constant
 ' '           Text.Whitespace
 '-'           Operator
 ' '           Text.Whitespace
-'D1'          Name
+'D1'          Name.Constant
 ')'           Punctuation
 ' '           Text.Whitespace
 '*'           Operator
@@ -4298,7 +4283,7 @@
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
-'D0'          Name
+'D0'          Name.Constant
 ')'           Punctuation
 ' '           Text.Whitespace
 '+'           Operator
@@ -4335,7 +4320,7 @@
 ' '           Text.Whitespace
 'burn_amount' Name
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_burnFrom'   Name
 '('           Punctuation
@@ -4358,7 +4343,7 @@
 'fees'        Name
 ','           Punctuation
 ' '           Text.Whitespace
-'D1'          Name
+'D1'          Name.Constant
 ','           Punctuation
 ' '           Text.Whitespace
 'total_supply' Name
@@ -4392,12 +4377,12 @@
 '\n    '      Text.Whitespace
 '_min_amounts:' Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ','           Punctuation
 '\n    '      Text.Whitespace
@@ -4416,7 +4401,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'True'        Name
+'True'        Keyword.Constant
 ','           Punctuation
 '\n'          Text.Whitespace
 
@@ -4425,12 +4410,12 @@
 '-'           Operator
 '>'           Operator
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ':'           Punctuation
 '\n    '      Text.Whitespace
@@ -4444,7 +4429,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'total_supply' Name
 '\n    '      Text.Whitespace
@@ -4460,40 +4445,40 @@
 '\n\n    '    Text.Whitespace
 'amounts:'    Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
 'empty'       Name.Builtin
 '('           Punctuation
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ')'           Punctuation
 '\n    '      Text.Whitespace
 'balances:'   Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_balances'   Name
 '('           Punctuation
@@ -4515,7 +4500,7 @@
 ' '           Text.Whitespace
 'range'       Name.Builtin
 '('           Punctuation
-'MAX_COINS_128' Name
+'MAX_COINS_128' Name.Constant
 ')'           Punctuation
 ':'           Punctuation
 '\n\n        ' Text.Whitespace
@@ -4527,7 +4512,7 @@
 ' '           Text.Whitespace
 'N_COINS_128:' Name.Variable
 '\n            ' Text.Whitespace
-'break'       Name
+'break'       Keyword
 '\n\n        ' Text.Whitespace
 'value'       Name
 ' '           Text.Whitespace
@@ -4569,7 +4554,7 @@
 'value'       Name
 ')'           Punctuation
 '\n        '  Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_transfer_out' Name
 '('           Punctuation
@@ -4582,7 +4567,7 @@
 '_receiver'   Name
 ')'           Punctuation
 '\n\n    '    Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_burnFrom'   Name
 '('           Punctuation
@@ -4605,11 +4590,11 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'unpack_2'    Name
 '('           Punctuation
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'ma_last_time' Name
 ')'           Punctuation
@@ -4620,7 +4605,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'last_D_packed' Name
 '\n    '      Text.Whitespace
@@ -4636,8 +4621,7 @@
 ' '           Text.Whitespace
 '('           Punctuation
 '2'           Literal.Number.Integer
-'*'           Operator
-'*'           Operator
+'**'          Operator
 '128'         Literal.Number.Integer
 ' '           Text.Whitespace
 '-'           Operator
@@ -4645,13 +4629,13 @@
 '1'           Literal.Number.Integer
 ')'           Punctuation
 '\n\n    '    Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'last_D_packed' Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'pack_2'      Name
 '('           Punctuation
@@ -4675,7 +4659,7 @@
 '  '          Text.Whitespace
 '# new_D = proportionally reduce D.' Comment.Single
 '\n        '  Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_calc_moving_average' Name
 '('           Punctuation
@@ -4683,7 +4667,7 @@
 'last_D_packed_current' Name
 ','           Punctuation
 '\n            ' Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'D_ma_time'   Name
 ','           Punctuation
@@ -4718,13 +4702,13 @@
 ' '           Text.Whitespace
 'block.timestamp' Name.Builtin.Pseudo
 '\n\n    '    Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'ma_last_time' Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'pack_2'      Name
 '('           Punctuation
@@ -4755,12 +4739,12 @@
 '\n        '  Text.Whitespace
 'empty'       Name.Builtin
 '('           Punctuation
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ')'           Punctuation
 ','           Punctuation
@@ -4779,7 +4763,7 @@
 ' '           Text.Whitespace
 '_claim_admin_fees:' Name.Variable
 '\n        '  Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_withdraw_admin_fees' Name
 '('           Punctuation
@@ -4804,7 +4788,7 @@
 '\n    @notice Claim admin fees. Callable by anyone.\n    ' Comment.Multiline
 '"""'         Comment.Multiline
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_withdraw_admin_fees' Name
 '('           Punctuation
@@ -4851,7 +4835,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'offpeg_fee_multiplier' Name
 '\n    '      Text.Whitespace
@@ -4881,8 +4865,7 @@
 'xpj'         Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'*'           Operator
-'*'           Operator
+'**'          Operator
 ' '           Text.Whitespace
 '2'           Literal.Number.Integer
 '\n    '      Text.Whitespace
@@ -4906,7 +4889,7 @@
 ' '           Text.Whitespace
 '-'           Operator
 ' '           Text.Whitespace
-'FEE_DENOMINATOR' Name
+'FEE_DENOMINATOR' Name.Constant
 ')'           Punctuation
 ' '           Text.Whitespace
 '*'           Operator
@@ -4927,7 +4910,7 @@
 ' '           Text.Whitespace
 '+'           Operator
 ' '           Text.Whitespace
-'FEE_DENOMINATOR' Name
+'FEE_DENOMINATOR' Name.Constant
 ')'           Punctuation
 '\n    '      Text.Whitespace
 ')'           Punctuation
@@ -4948,23 +4931,23 @@
 '\n    '      Text.Whitespace
 '_xp:'        Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ','           Punctuation
 '\n    '      Text.Whitespace
 'rates:'      Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ','           Punctuation
 '\n    '      Text.Whitespace
@@ -4993,7 +4976,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_A'          Name
 '('           Punctuation
@@ -5005,7 +4988,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'get_D'       Name
 '('           Punctuation
@@ -5021,7 +5004,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'get_y'       Name
 '('           Punctuation
@@ -5040,7 +5023,7 @@
 'amp'         Name
 ','           Punctuation
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 ')'           Punctuation
 '\n\n    '    Text.Whitespace
 'dy:'         Name.Variable
@@ -5074,7 +5057,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_dynamic_fee' Name
 '('           Punctuation
@@ -5110,14 +5093,14 @@
 '2'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'fee'         Name
 ')'           Punctuation
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
-'FEE_DENOMINATOR' Name
+'FEE_DENOMINATOR' Name.Constant
 '\n\n    '    Text.Whitespace
 '# Convert all to real units' Comment.Single
 '\n    '      Text.Whitespace
@@ -5135,7 +5118,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'PRECISION'   Name
+'PRECISION'   Name.Constant
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
@@ -5144,7 +5127,7 @@
 'j'           Name
 ']'           Punctuation
 '\n\n    '    Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'admin_balances' Name
 '['           Punctuation
@@ -5164,13 +5147,13 @@
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
-'FEE_DENOMINATOR' Name
+'FEE_DENOMINATOR' Name.Constant
 '\n    '      Text.Whitespace
 ')'           Punctuation
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'PRECISION'   Name
+'PRECISION'   Name.Constant
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
@@ -5183,12 +5166,12 @@
 '\n    '      Text.Whitespace
 'xp:'         Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
@@ -5215,7 +5198,7 @@
 '\n    '      Text.Whitespace
 '# D is not changed because we did not apply a fee' Comment.Single
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'upkeep_oracles' Name
 '('           Punctuation
@@ -5225,7 +5208,7 @@
 'amp'         Name
 ','           Punctuation
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 ')'           Punctuation
 '\n\n    '    Text.Whitespace
 'return'      Keyword
@@ -5306,17 +5289,17 @@
 '\n\n    '    Text.Whitespace
 'rates:'      Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_stored_rates' Name
 '('           Punctuation
@@ -5324,17 +5307,17 @@
 '\n    '      Text.Whitespace
 'old_balances:' Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_balances'   Name
 '('           Punctuation
@@ -5342,17 +5325,17 @@
 '\n    '      Text.Whitespace
 'xp:'         Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_xp_mem'     Name
 '('           Punctuation
@@ -5372,7 +5355,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_transfer_in' Name
 '('           Punctuation
@@ -5416,7 +5399,7 @@
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
-'PRECISION'   Name
+'PRECISION'   Name.Constant
 '\n    '      Text.Whitespace
 'dy:'         Name.Variable
 ' '           Text.Whitespace
@@ -5424,7 +5407,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '__exchange'  Name
 '('           Punctuation
@@ -5458,7 +5441,7 @@
 '\n\n    '    Text.Whitespace
 '# --------------------------- Do Transfer out ----------------------------' Comment.Single
 '\n\n    '    Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_transfer_out' Name
 '('           Punctuation
@@ -5534,17 +5517,17 @@
 '\n\n    '    Text.Whitespace
 'admin_balances:' Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'admin_balances' Name
 '\n    '      Text.Whitespace
@@ -5556,7 +5539,7 @@
 ' '           Text.Whitespace
 'range'       Name.Builtin
 '('           Punctuation
-'MAX_COINS_128' Name
+'MAX_COINS_128' Name.Constant
 ')'           Punctuation
 ':'           Punctuation
 '\n\n        ' Text.Whitespace
@@ -5568,7 +5551,7 @@
 ' '           Text.Whitespace
 'N_COINS_128:' Name.Variable
 '\n            ' Text.Whitespace
-'break'       Name
+'break'       Keyword
 '\n\n        ' Text.Whitespace
 'if'          Keyword
 ' '           Text.Whitespace
@@ -5582,7 +5565,7 @@
 '0'           Literal.Number.Integer
 ':'           Punctuation
 '\n\n            ' Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_transfer_out' Name
 '('           Punctuation
@@ -5607,7 +5590,7 @@
 ' '           Text.Whitespace
 '0'           Literal.Number.Integer
 '\n\n    '    Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'admin_balances' Name
 ' '           Text.Whitespace
@@ -5647,12 +5630,12 @@
 '\n    '      Text.Whitespace
 'xp:'         Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ','           Punctuation
 '\n    '      Text.Whitespace
@@ -5706,7 +5689,7 @@
 ' '           Text.Whitespace
 '<'           Operator
 ' '           Text.Whitespace
-'N_COINS_128' Name
+'N_COINS_128' Name.Constant
 '  '          Text.Whitespace
 '# dev: j above N_COINS' Comment.Single
 '\n\n    '    Text.Whitespace
@@ -5726,7 +5709,7 @@
 ' '           Text.Whitespace
 '<'           Operator
 ' '           Text.Whitespace
-'N_COINS_128' Name
+'N_COINS_128' Name.Constant
 '\n\n    '    Text.Whitespace
 'amp:'        Name.Variable
 ' '           Text.Whitespace
@@ -5774,7 +5757,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 '\n    '      Text.Whitespace
 'Ann:'        Name.Variable
 ' '           Text.Whitespace
@@ -5786,7 +5769,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'N_COINS'     Name
+'N_COINS'     Name.Constant
 '\n\n    '    Text.Whitespace
 'for'         Keyword
 ' '           Text.Whitespace
@@ -5796,7 +5779,7 @@
 ' '           Text.Whitespace
 'range'       Name.Builtin
 '('           Punctuation
-'MAX_COINS_128' Name
+'MAX_COINS_128' Name.Constant
 ')'           Punctuation
 ':'           Punctuation
 '\n\n        ' Text.Whitespace
@@ -5808,7 +5791,7 @@
 ' '           Text.Whitespace
 'N_COINS_128:' Name.Variable
 '\n            ' Text.Whitespace
-'break'       Name
+'break'       Keyword
 '\n\n        ' Text.Whitespace
 'if'          Keyword
 ' '           Text.Whitespace
@@ -5844,9 +5827,9 @@
 'else'        Keyword
 ':'           Punctuation
 '\n            ' Text.Whitespace
-'continue'    Name
+'continue'    Keyword
 '\n\n        ' Text.Whitespace
-'S_'          Name
+'S_'          Name.Constant
 ' '           Text.Whitespace
 '+'           Operator
 '='           Operator
@@ -5861,7 +5844,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
@@ -5870,7 +5853,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'N_COINS'     Name
+'N_COINS'     Name.Constant
 ')'           Punctuation
 '\n\n    '    Text.Whitespace
 'c'           Name
@@ -5881,11 +5864,11 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'A_PRECISION' Name
+'A_PRECISION' Name.Constant
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
@@ -5894,7 +5877,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'N_COINS'     Name
+'N_COINS'     Name.Constant
 ')'           Punctuation
 '\n    '      Text.Whitespace
 'b:'          Name.Variable
@@ -5903,15 +5886,15 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'S_'          Name
+'S_'          Name.Constant
 ' '           Text.Whitespace
 '+'           Operator
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'A_PRECISION' Name
+'A_PRECISION' Name.Constant
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
@@ -5925,7 +5908,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 '\n\n    '    Text.Whitespace
 'for'         Keyword
 ' '           Text.Whitespace
@@ -5974,7 +5957,7 @@
 ' '           Text.Whitespace
 '-'           Operator
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 ')'           Punctuation
 '\n        '  Text.Whitespace
 '# Equality with the precision of 1' Comment.Single
@@ -6039,12 +6022,12 @@
 '('           Punctuation
 '_xp:'        Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ','           Punctuation
 ' '           Text.Whitespace
@@ -6079,7 +6062,7 @@
 ' '           Text.Whitespace
 '_xp:'        Name.Variable
 '\n        '  Text.Whitespace
-'S'           Name
+'S'           Name.Constant
 ' '           Text.Whitespace
 '+'           Operator
 '='           Operator
@@ -6088,7 +6071,7 @@
 '\n    '      Text.Whitespace
 'if'          Keyword
 ' '           Text.Whitespace
-'S'           Name
+'S'           Name.Constant
 ' '           Text.Whitespace
 '=='          Operator
 ' '           Text.Whitespace
@@ -6105,7 +6088,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'S'           Name
+'S'           Name.Constant
 '\n    '      Text.Whitespace
 'Ann:'        Name.Variable
 ' '           Text.Whitespace
@@ -6117,7 +6100,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'N_COINS'     Name
+'N_COINS'     Name.Constant
 '\n    '      Text.Whitespace
 'D_P:'        Name.Variable
 ' '           Text.Whitespace
@@ -6147,11 +6130,11 @@
 ')'           Punctuation
 ':'           Punctuation
 '\n\n        ' Text.Whitespace
-'D_P'         Name
+'D_P'         Name.Constant
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 '\n        '  Text.Whitespace
 'for'         Keyword
 ' '           Text.Whitespace
@@ -6161,15 +6144,15 @@
 ' '           Text.Whitespace
 '_xp:'        Name.Variable
 '\n            ' Text.Whitespace
-'D_P'         Name
+'D_P'         Name.Constant
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'D_P'         Name
+'D_P'         Name.Constant
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
@@ -6178,18 +6161,18 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'N_COINS'     Name
+'N_COINS'     Name.Constant
 ')'           Punctuation
 '\n        '  Text.Whitespace
 'Dprev'       Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 '\n\n        ' Text.Whitespace
 '# (Ann * S / A_PRECISION + D_P * N_COINS) * D / ((Ann - A_PRECISION) * D / A_PRECISION + (N_COINS + 1) * D_P)' Comment.Single
 '\n        '  Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
@@ -6202,24 +6185,24 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'S'           Name
+'S'           Name.Constant
 ','           Punctuation
 ' '           Text.Whitespace
-'A_PRECISION' Name
+'A_PRECISION' Name.Constant
 ')'           Punctuation
 ' '           Text.Whitespace
 '+'           Operator
 ' '           Text.Whitespace
-'D_P'         Name
+'D_P'         Name.Constant
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'N_COINS'     Name
+'N_COINS'     Name.Constant
 ')'           Punctuation
 ' '           Text.Whitespace
 '*'           Operator
 '\n            ' Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
@@ -6232,22 +6215,22 @@
 ' '           Text.Whitespace
 '-'           Operator
 ' '           Text.Whitespace
-'A_PRECISION' Name
+'A_PRECISION' Name.Constant
 ')'           Punctuation
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 ','           Punctuation
 ' '           Text.Whitespace
-'A_PRECISION' Name
+'A_PRECISION' Name.Constant
 ')'           Punctuation
 ' '           Text.Whitespace
 '+'           Operator
 '\n                ' Text.Whitespace
 'unsafe_add'  Name.Builtin
 '('           Punctuation
-'N_COINS'     Name
+'N_COINS'     Name.Constant
 ','           Punctuation
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
@@ -6255,7 +6238,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'D_P'         Name
+'D_P'         Name.Constant
 '\n            ' Text.Whitespace
 ')'           Punctuation
 '\n        '  Text.Whitespace
@@ -6265,7 +6248,7 @@
 '\n        '  Text.Whitespace
 'if'          Keyword
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 ' '           Text.Whitespace
 '>'           Operator
 ' '           Text.Whitespace
@@ -6273,7 +6256,7 @@
 '\n            ' Text.Whitespace
 'if'          Keyword
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 ' '           Text.Whitespace
 '-'           Operator
 ' '           Text.Whitespace
@@ -6286,7 +6269,7 @@
 '\n                ' Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 '\n        '  Text.Whitespace
 'else'        Keyword
 ':'           Punctuation
@@ -6297,7 +6280,7 @@
 ' '           Text.Whitespace
 '-'           Operator
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 ' '           Text.Whitespace
 '<='          Operator
 ' '           Text.Whitespace
@@ -6306,7 +6289,7 @@
 '\n                ' Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 '\n    '      Text.Whitespace
 '# convergence typically occurs in 4 rounds or less, this should be unreachable!' Comment.Single
 '\n    '      Text.Whitespace
@@ -6338,12 +6321,12 @@
 '\n    '      Text.Whitespace
 'xp:'         Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ','           Punctuation
 '\n    '      Text.Whitespace
@@ -6382,7 +6365,7 @@
 ' '           Text.Whitespace
 '<'           Operator
 ' '           Text.Whitespace
-'N_COINS_128' Name
+'N_COINS_128' Name.Constant
 '  '          Text.Whitespace
 '# dev: i above N_COINS' Comment.Single
 '\n\n    '    Text.Whitespace
@@ -6416,7 +6399,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 '\n    '      Text.Whitespace
 'Ann:'        Name.Variable
 ' '           Text.Whitespace
@@ -6424,11 +6407,11 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'A'           Name
+'A'           Name.Constant
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'N_COINS'     Name
+'N_COINS'     Name.Constant
 '\n\n    '    Text.Whitespace
 'for'         Keyword
 ' '           Text.Whitespace
@@ -6438,7 +6421,7 @@
 ' '           Text.Whitespace
 'range'       Name.Builtin
 '('           Punctuation
-'MAX_COINS_128' Name
+'MAX_COINS_128' Name.Constant
 ')'           Punctuation
 ':'           Punctuation
 '\n\n        ' Text.Whitespace
@@ -6450,7 +6433,7 @@
 ' '           Text.Whitespace
 'N_COINS_128:' Name.Variable
 '\n            ' Text.Whitespace
-'break'       Name
+'break'       Keyword
 '\n\n        ' Text.Whitespace
 'if'          Keyword
 ' '           Text.Whitespace
@@ -6472,9 +6455,9 @@
 'else'        Keyword
 ':'           Punctuation
 '\n            ' Text.Whitespace
-'continue'    Name
+'continue'    Keyword
 '\n        '  Text.Whitespace
-'S_'          Name
+'S_'          Name.Constant
 ' '           Text.Whitespace
 '+'           Operator
 '='           Operator
@@ -6489,7 +6472,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
@@ -6498,7 +6481,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'N_COINS'     Name
+'N_COINS'     Name.Constant
 ')'           Punctuation
 '\n\n    '    Text.Whitespace
 'c'           Name
@@ -6509,11 +6492,11 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'A_PRECISION' Name
+'A_PRECISION' Name.Constant
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
@@ -6522,7 +6505,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'N_COINS'     Name
+'N_COINS'     Name.Constant
 ')'           Punctuation
 '\n    '      Text.Whitespace
 'b:'          Name.Variable
@@ -6531,15 +6514,15 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'S_'          Name
+'S_'          Name.Constant
 ' '           Text.Whitespace
 '+'           Operator
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'A_PRECISION' Name
+'A_PRECISION' Name.Constant
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
@@ -6551,7 +6534,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 '\n\n    '    Text.Whitespace
 'for'         Keyword
 ' '           Text.Whitespace
@@ -6600,7 +6583,7 @@
 ' '           Text.Whitespace
 '-'           Operator
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 ')'           Punctuation
 '\n        '  Text.Whitespace
 '# Equality with the precision of 1' Comment.Single
@@ -6681,7 +6664,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'future_A_time' Name
 '\n    '      Text.Whitespace
@@ -6691,7 +6674,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'future_A'    Name
 '\n\n    '    Text.Whitespace
@@ -6709,7 +6692,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'initial_A'   Name
 '\n        '  Text.Whitespace
@@ -6719,7 +6702,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'initial_A_time' Name
 '\n        '  Text.Whitespace
@@ -6727,7 +6710,7 @@
 '\n        '  Text.Whitespace
 'if'          Keyword
 ' '           Text.Whitespace
-'A1'          Name
+'A1'          Name.Constant
 ' '           Text.Whitespace
 '>'           Operator
 ' '           Text.Whitespace
@@ -6735,16 +6718,16 @@
 '\n            ' Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'A0'          Name
+'A0'          Name.Constant
 ' '           Text.Whitespace
 '+'           Operator
 ' '           Text.Whitespace
 '('           Punctuation
-'A1'          Name
+'A1'          Name.Constant
 ' '           Text.Whitespace
 '-'           Operator
 ' '           Text.Whitespace
-'A0'          Name
+'A0'          Name.Constant
 ')'           Punctuation
 ' '           Text.Whitespace
 '*'           Operator
@@ -6772,16 +6755,16 @@
 '\n            ' Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'A0'          Name
+'A0'          Name.Constant
 ' '           Text.Whitespace
 '-'           Operator
 ' '           Text.Whitespace
 '('           Punctuation
-'A0'          Name
+'A0'          Name.Constant
 ' '           Text.Whitespace
 '-'           Operator
 ' '           Text.Whitespace
-'A1'          Name
+'A1'          Name.Constant
 ')'           Punctuation
 ' '           Text.Whitespace
 '*'           Operator
@@ -6811,7 +6794,7 @@
 '\n        '  Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'A1'          Name
+'A1'          Name.Constant
 '\n\n\n'      Text.Whitespace
 
 '@pure'       Name.Decorator
@@ -6827,23 +6810,23 @@
 '\n    '      Text.Whitespace
 '_rates:'     Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ','           Punctuation
 '\n    '      Text.Whitespace
 '_balances:'  Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 '\n'          Text.Whitespace
 
@@ -6852,35 +6835,35 @@
 '-'           Operator
 '>'           Operator
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ':'           Punctuation
 '\n\n    '    Text.Whitespace
 'result:'     Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
 'empty'       Name.Builtin
 '('           Punctuation
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ')'           Punctuation
 '\n    '      Text.Whitespace
@@ -6892,7 +6875,7 @@
 ' '           Text.Whitespace
 'range'       Name.Builtin
 '('           Punctuation
-'MAX_COINS_128' Name
+'MAX_COINS_128' Name.Constant
 ')'           Punctuation
 ':'           Punctuation
 '\n        '  Text.Whitespace
@@ -6904,7 +6887,7 @@
 ' '           Text.Whitespace
 'N_COINS_128:' Name.Variable
 '\n            ' Text.Whitespace
-'break'       Name
+'break'       Keyword
 '\n        '  Text.Whitespace
 'result'      Name
 '.'           Punctuation
@@ -6924,7 +6907,7 @@
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
-'PRECISION'   Name
+'PRECISION'   Name.Constant
 ')'           Punctuation
 '\n    '      Text.Whitespace
 'return'      Keyword
@@ -6945,23 +6928,23 @@
 '\n    '      Text.Whitespace
 '_rates:'     Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ','           Punctuation
 '\n    '      Text.Whitespace
 '_balances:'  Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ','           Punctuation
 '\n    '      Text.Whitespace
@@ -6980,17 +6963,17 @@
 '\n    '      Text.Whitespace
 'xp:'         Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_xp_mem'     Name
 '('           Punctuation
@@ -7002,7 +6985,7 @@
 '\n    '      Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'get_D'       Name
 '('           Punctuation
@@ -7047,12 +7030,12 @@
 'uint256'     Keyword.Type
 ','           Punctuation
 '\n    '      Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ','           Punctuation
 '\n    '      Text.Whitespace
@@ -7077,7 +7060,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_A'          Name
 '('           Punctuation
@@ -7085,17 +7068,17 @@
 '\n    '      Text.Whitespace
 'rates:'      Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_stored_rates' Name
 '('           Punctuation
@@ -7103,24 +7086,24 @@
 '\n    '      Text.Whitespace
 'xp:'         Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_xp_mem'     Name
 '('           Punctuation
 'rates'       Name
 ','           Punctuation
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_balances'   Name
 '('           Punctuation
@@ -7133,7 +7116,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'get_D'       Name
 '('           Punctuation
@@ -7149,7 +7132,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'total_supply' Name
 '\n    '      Text.Whitespace
@@ -7159,7 +7142,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'D0'          Name
+'D0'          Name.Constant
 ' '           Text.Whitespace
 '-'           Operator
 ' '           Text.Whitespace
@@ -7167,7 +7150,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'D0'          Name
+'D0'          Name.Constant
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
@@ -7179,7 +7162,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'get_y_D'     Name
 '('           Punctuation
@@ -7192,7 +7175,7 @@
 'xp'          Name
 ','           Punctuation
 ' '           Text.Whitespace
-'D1'          Name
+'D1'          Name.Constant
 ')'           Punctuation
 '\n\n    '    Text.Whitespace
 'base_fee:'   Name.Variable
@@ -7201,13 +7184,13 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'fee'         Name
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'N_COINS'     Name
+'N_COINS'     Name.Constant
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
@@ -7217,7 +7200,7 @@
 '*'           Operator
 ' '           Text.Whitespace
 '('           Punctuation
-'N_COINS'     Name
+'N_COINS'     Name.Constant
 ' '           Text.Whitespace
 '-'           Operator
 ' '           Text.Whitespace
@@ -7232,11 +7215,11 @@
 '='           Operator
 ' '           Text.Whitespace
 '('           Punctuation
-'D0'          Name
+'D0'          Name.Constant
 ' '           Text.Whitespace
 '+'           Operator
 ' '           Text.Whitespace
-'D1'          Name
+'D1'          Name.Constant
 ')'           Punctuation
 ' '           Text.Whitespace
 '/'           Operator
@@ -7246,17 +7229,17 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'N_COINS'     Name
+'N_COINS'     Name.Constant
 ')'           Punctuation
 '\n    '      Text.Whitespace
 'xp_reduced:' Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
@@ -7303,7 +7286,7 @@
 ' '           Text.Whitespace
 'range'       Name.Builtin
 '('           Punctuation
-'MAX_COINS_128' Name
+'MAX_COINS_128' Name.Constant
 ')'           Punctuation
 ':'           Punctuation
 '\n\n        ' Text.Whitespace
@@ -7315,7 +7298,7 @@
 ' '           Text.Whitespace
 'N_COINS_128:' Name.Variable
 '\n            ' Text.Whitespace
-'break'       Name
+'break'       Keyword
 '\n\n        ' Text.Whitespace
 'dx_expected' Name
 ' '           Text.Whitespace
@@ -7348,11 +7331,11 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'D1'          Name
+'D1'          Name.Constant
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
-'D0'          Name
+'D0'          Name.Constant
 ' '           Text.Whitespace
 '-'           Operator
 ' '           Text.Whitespace
@@ -7389,11 +7372,11 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'D1'          Name
+'D1'          Name.Constant
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
-'D0'          Name
+'D0'          Name.Constant
 '\n            ' Text.Whitespace
 'xavg'        Name
 ' '           Text.Whitespace
@@ -7405,7 +7388,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_dynamic_fee' Name
 '('           Punctuation
@@ -7437,7 +7420,7 @@
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
-'FEE_DENOMINATOR' Name
+'FEE_DENOMINATOR' Name.Constant
 '\n\n    '    Text.Whitespace
 'dy:'         Name.Variable
 ' '           Text.Whitespace
@@ -7452,7 +7435,7 @@
 ' '           Text.Whitespace
 '-'           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'get_y_D'     Name
 '('           Punctuation
@@ -7465,7 +7448,7 @@
 'xp_reduced'  Name
 ','           Punctuation
 ' '           Text.Whitespace
-'D1'          Name
+'D1'          Name.Constant
 ')'           Punctuation
 '\n    '      Text.Whitespace
 'dy_0:'       Name.Variable
@@ -7487,7 +7470,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'PRECISION'   Name
+'PRECISION'   Name.Constant
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
@@ -7512,7 +7495,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'PRECISION'   Name
+'PRECISION'   Name.Constant
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
@@ -7552,7 +7535,7 @@
 'amp'         Name
 ','           Punctuation
 ' '           Text.Whitespace
-'D1'          Name
+'D1'          Name.Constant
 '\n\n\n'      Text.Whitespace
 
 '# -------------------------- AMM Price Methods -------------------------------' Comment.Single
@@ -7591,8 +7574,7 @@
 '<'           Operator
 ' '           Text.Whitespace
 '2'           Literal.Number.Integer
-'*'           Operator
-'*'           Operator
+'**'          Operator
 '128'         Literal.Number.Integer
 '\n    '      Text.Whitespace
 'assert'      Keyword
@@ -7602,8 +7584,7 @@
 '<'           Operator
 ' '           Text.Whitespace
 '2'           Literal.Number.Integer
-'*'           Operator
-'*'           Operator
+'**'          Operator
 '128'         Literal.Number.Integer
 '\n    '      Text.Whitespace
 'return'      Keyword
@@ -7615,8 +7596,7 @@
 '('           Punctuation
 'p2'          Name
 ' '           Text.Whitespace
-'<'           Operator
-'<'           Operator
+'<<'          Operator
 ' '           Text.Whitespace
 '128'         Literal.Number.Integer
 ')'           Punctuation
@@ -7655,8 +7635,7 @@
 ' '           Text.Whitespace
 '('           Punctuation
 '2'           Literal.Number.Integer
-'*'           Operator
-'*'           Operator
+'**'          Operator
 '128'         Literal.Number.Integer
 ' '           Text.Whitespace
 '-'           Operator
@@ -7667,8 +7646,7 @@
 ' '           Text.Whitespace
 'packed'      Name
 ' '           Text.Whitespace
-'>'           Operator
-'>'           Operator
+'>>'          Operator
 ' '           Text.Whitespace
 '128'         Literal.Number.Integer
 ']'           Punctuation
@@ -7687,12 +7665,12 @@
 '\n    '      Text.Whitespace
 'xp:'         Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ','           Punctuation
 '\n    '      Text.Whitespace
@@ -7712,12 +7690,12 @@
 '-'           Operator
 '>'           Operator
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ':'           Punctuation
 '\n\n    '    Text.Whitespace
@@ -7734,7 +7712,7 @@
 'amp'         Name
 ','           Punctuation
 ' '           Text.Whitespace
-'N_COINS'     Name
+'N_COINS'     Name.Constant
 ')'           Punctuation
 '\n    '      Text.Whitespace
 'Dr:'         Name.Variable
@@ -7745,15 +7723,15 @@
 ' '           Text.Whitespace
 'unsafe_div'  Name.Builtin
 '('           Punctuation
-'D'           Name
+'D'           Name.Constant
 ','           Punctuation
 ' '           Text.Whitespace
 'pow_mod256'  Name.Builtin
 '('           Punctuation
-'N_COINS'     Name
+'N_COINS'     Name.Constant
 ','           Punctuation
 ' '           Text.Whitespace
-'N_COINS'     Name
+'N_COINS'     Name.Constant
 ')'           Punctuation
 ')'           Punctuation
 '\n\n    '    Text.Whitespace
@@ -7765,7 +7743,7 @@
 ' '           Text.Whitespace
 'range'       Name.Builtin
 '('           Punctuation
-'MAX_COINS_128' Name
+'MAX_COINS_128' Name.Constant
 ')'           Punctuation
 ':'           Punctuation
 '\n\n        ' Text.Whitespace
@@ -7777,7 +7755,7 @@
 ' '           Text.Whitespace
 'N_COINS_128:' Name.Variable
 '\n            ' Text.Whitespace
-'break'       Name
+'break'       Keyword
 '\n\n        ' Text.Whitespace
 'Dr'          Name
 ' '           Text.Whitespace
@@ -7787,7 +7765,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
@@ -7798,24 +7776,24 @@
 '\n\n    '    Text.Whitespace
 'p:'          Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
 'empty'       Name.Builtin
 '('           Punctuation
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ')'           Punctuation
 '\n    '      Text.Whitespace
@@ -7825,7 +7803,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'ANN'         Name
+'ANN'         Name.Constant
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
@@ -7836,7 +7814,7 @@
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
-'A_PRECISION' Name
+'A_PRECISION' Name.Constant
 '\n\n    '    Text.Whitespace
 'for'         Keyword
 ' '           Text.Whitespace
@@ -7849,7 +7827,7 @@
 '1'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ')'           Punctuation
 ':'           Punctuation
 '\n\n        ' Text.Whitespace
@@ -7861,15 +7839,14 @@
 ' '           Text.Whitespace
 'N_COINS:'    Name.Variable
 '\n            ' Text.Whitespace
-'break'       Name
+'break'       Keyword
 '\n\n        ' Text.Whitespace
 'p'           Name
 '.'           Punctuation
 'append'      Name
 '('           Punctuation
 '10'          Literal.Number.Integer
-'*'           Operator
-'*'           Operator
+'**'          Operator
 '18'          Literal.Number.Integer
 ' '           Text.Whitespace
 '*'           Operator
@@ -7921,12 +7898,12 @@
 '('           Punctuation
 'xp:'         Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ','           Punctuation
 ' '           Text.Whitespace
@@ -7954,39 +7931,39 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'unpack_2'    Name
 '('           Punctuation
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'ma_last_time' Name
 ')'           Punctuation
 '\n    '      Text.Whitespace
 'last_prices_packed_current:' Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'last_prices_packed' Name
 '\n    '      Text.Whitespace
 'last_prices_packed_new:' Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
@@ -7995,17 +7972,17 @@
 '\n\n    '    Text.Whitespace
 'spot_price:' Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_get_p'      Name
 '('           Punctuation
@@ -8015,7 +7992,7 @@
 'amp'         Name
 ','           Punctuation
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 ')'           Punctuation
 '\n\n    '    Text.Whitespace
 '# -------------------------- Upkeep price oracle -------------------------' Comment.Single
@@ -8028,7 +8005,7 @@
 ' '           Text.Whitespace
 'range'       Name.Builtin
 '('           Punctuation
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ')'           Punctuation
 ':'           Punctuation
 '\n\n        ' Text.Whitespace
@@ -8038,14 +8015,14 @@
 ' '           Text.Whitespace
 '=='          Operator
 ' '           Text.Whitespace
-'N_COINS'     Name
+'N_COINS'     Name.Constant
 ' '           Text.Whitespace
 '-'           Operator
 ' '           Text.Whitespace
 '1'           Literal.Number.Integer
 ':'           Punctuation
 '\n            ' Text.Whitespace
-'break'       Name
+'break'       Keyword
 '\n\n        ' Text.Whitespace
 'if'          Keyword
 ' '           Text.Whitespace
@@ -8068,7 +8045,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'pack_2'      Name
 '('           Punctuation
@@ -8079,7 +8056,7 @@
 ']'           Punctuation
 ','           Punctuation
 '\n                ' Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_calc_moving_average' Name
 '('           Punctuation
@@ -8090,7 +8067,7 @@
 ']'           Punctuation
 ','           Punctuation
 '\n                    ' Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'ma_exp_time' Name
 ','           Punctuation
@@ -8107,7 +8084,7 @@
 '\n            ' Text.Whitespace
 ')'           Punctuation
 '\n\n    '    Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'last_prices_packed' Name
 ' '           Text.Whitespace
@@ -8123,25 +8100,25 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'last_D_packed' Name
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'last_D_packed' Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'pack_2'      Name
 '('           Punctuation
 '\n        '  Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 ','           Punctuation
 '\n        '  Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_calc_moving_average' Name
 '('           Punctuation
@@ -8149,7 +8126,7 @@
 'last_D_packed_current' Name
 ','           Punctuation
 '\n            ' Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'D_ma_time'   Name
 ','           Punctuation
@@ -8201,13 +8178,13 @@
 ' '           Text.Whitespace
 'block.timestamp' Name.Builtin.Pseudo
 '\n\n    '    Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'ma_last_time' Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'pack_2'      Name
 '('           Punctuation
@@ -8270,8 +8247,7 @@
 ' '           Text.Whitespace
 '('           Punctuation
 '2'           Literal.Number.Integer
-'*'           Operator
-'*'           Operator
+'**'          Operator
 '128'         Literal.Number.Integer
 ' '           Text.Whitespace
 '-'           Operator
@@ -8288,8 +8264,7 @@
 '('           Punctuation
 'packed_value' Name
 ' '           Text.Whitespace
-'>'           Operator
-'>'           Operator
+'>>'          Operator
 ' '           Text.Whitespace
 '128'         Literal.Number.Integer
 ')'           Punctuation
@@ -8311,7 +8286,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'exp'         Name
 '('           Punctuation
@@ -8331,8 +8306,7 @@
 '*'           Operator
 ' '           Text.Whitespace
 '10'          Literal.Number.Integer
-'*'           Operator
-'*'           Operator
+'**'          Operator
 '18'          Literal.Number.Integer
 ' '           Text.Whitespace
 '/'           Operator
@@ -8355,8 +8329,7 @@
 ' '           Text.Whitespace
 '('           Punctuation
 '10'          Literal.Number.Integer
-'*'           Operator
-'*'           Operator
+'**'          Operator
 '18'          Literal.Number.Integer
 ' '           Text.Whitespace
 '-'           Operator
@@ -8376,8 +8349,7 @@
 '/'           Operator
 ' '           Text.Whitespace
 '10'          Literal.Number.Integer
-'*'           Operator
-'*'           Operator
+'**'          Operator
 '18'          Literal.Number.Integer
 '\n\n    '    Text.Whitespace
 'return'      Keyword
@@ -8408,7 +8380,7 @@
 '\n    '      Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'last_prices_packed' Name
 '['           Punctuation
@@ -8419,8 +8391,7 @@
 ' '           Text.Whitespace
 '('           Punctuation
 '2'           Literal.Number.Integer
-'*'           Operator
-'*'           Operator
+'**'          Operator
 '128'         Literal.Number.Integer
 ' '           Text.Whitespace
 '-'           Operator
@@ -8453,15 +8424,14 @@
 'return'      Keyword
 ' '           Text.Whitespace
 '('           Punctuation
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'last_prices_packed' Name
 '['           Punctuation
 'i'           Name
 ']'           Punctuation
 ' '           Text.Whitespace
-'>'           Operator
-'>'           Operator
+'>>'          Operator
 ' '           Text.Whitespace
 '128'         Literal.Number.Integer
 ')'           Punctuation
@@ -8498,7 +8468,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_A'          Name
 '('           Punctuation
@@ -8506,29 +8476,29 @@
 '\n    '      Text.Whitespace
 'xp:'         Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_xp_mem'     Name
 '('           Punctuation
 '\n        '  Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_stored_rates' Name
 '('           Punctuation
 ')'           Punctuation
 ','           Punctuation
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_balances'   Name
 '('           Punctuation
@@ -8542,7 +8512,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'get_D'       Name
 '('           Punctuation
@@ -8554,7 +8524,7 @@
 '\n    '      Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_get_p'      Name
 '('           Punctuation
@@ -8564,7 +8534,7 @@
 'amp'         Name
 ','           Punctuation
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 ')'           Punctuation
 '['           Punctuation
 'i'           Name
@@ -8602,12 +8572,12 @@
 '\n    '      Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_calc_moving_average' Name
 '('           Punctuation
 '\n        '  Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'last_prices_packed' Name
 '['           Punctuation
@@ -8615,12 +8585,12 @@
 ']'           Punctuation
 ','           Punctuation
 '\n        '  Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'ma_exp_time' Name
 ','           Punctuation
 '\n        '  Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'ma_last_time' Name
 ' '           Text.Whitespace
@@ -8628,8 +8598,7 @@
 ' '           Text.Whitespace
 '('           Punctuation
 '2'           Literal.Number.Integer
-'*'           Operator
-'*'           Operator
+'**'          Operator
 '128'         Literal.Number.Integer
 ' '           Text.Whitespace
 '-'           Operator
@@ -8668,27 +8637,26 @@
 '\n    '      Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_calc_moving_average' Name
 '('           Punctuation
 '\n        '  Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'last_D_packed' Name
 ','           Punctuation
 '\n        '  Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'D_ma_time'   Name
 ','           Punctuation
 '\n        '  Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'ma_last_time' Name
 ' '           Text.Whitespace
-'>'           Operator
-'>'           Operator
+'>>'          Operator
 ' '           Text.Whitespace
 '128'         Literal.Number.Integer
 '\n    '      Text.Whitespace
@@ -8785,16 +8753,14 @@
 '('           Punctuation
 'x'           Name
 ' '           Text.Whitespace
-'<'           Operator
-'<'           Operator
+'<<'          Operator
 ' '           Text.Whitespace
 '78'          Literal.Number.Integer
 ','           Punctuation
 ' '           Text.Whitespace
 '5'           Literal.Number.Integer
 ' '           Text.Whitespace
-'*'           Operator
-'*'           Operator
+'**'          Operator
 ' '           Text.Whitespace
 '18'          Literal.Number.Integer
 ')'           Punctuation
@@ -8817,8 +8783,7 @@
 '('           Punctuation
 'value'       Name
 ' '           Text.Whitespace
-'<'           Operator
-'<'           Operator
+'<<'          Operator
 ' '           Text.Whitespace
 '96'          Literal.Number.Integer
 ','           Punctuation
@@ -8829,14 +8794,12 @@
 ' '           Text.Whitespace
 '2'           Literal.Number.Integer
 ' '           Text.Whitespace
-'*'           Operator
-'*'           Operator
+'**'          Operator
 ' '           Text.Whitespace
 '95'          Literal.Number.Integer
 ')'           Punctuation
 ' '           Text.Whitespace
-'>'           Operator
-'>'           Operator
+'>>'          Operator
 ' '           Text.Whitespace
 '96'          Literal.Number.Integer
 '\n    '      Text.Whitespace
@@ -8884,8 +8847,7 @@
 'value'       Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'>'           Operator
-'>'           Operator
+'>>'          Operator
 ' '           Text.Whitespace
 '96'          Literal.Number.Integer
 ','           Punctuation
@@ -8925,8 +8887,7 @@
 'y'           Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'>'           Operator
-'>'           Operator
+'>>'          Operator
 ' '           Text.Whitespace
 '96'          Literal.Number.Integer
 ','           Punctuation
@@ -8944,8 +8905,7 @@
 ' '           Text.Whitespace
 '4385272521454847904659076985693276' Literal.Number.Integer
 ' '           Text.Whitespace
-'<'           Operator
-'<'           Operator
+'<<'          Operator
 ' '           Text.Whitespace
 '96'          Literal.Number.Integer
 ')'           Punctuation
@@ -8976,8 +8936,7 @@
 'value'       Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'>'           Operator
-'>'           Operator
+'>>'          Operator
 ' '           Text.Whitespace
 '96'          Literal.Number.Integer
 ','           Punctuation
@@ -8999,8 +8958,7 @@
 'value'       Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'>'           Operator
-'>'           Operator
+'>>'          Operator
 ' '           Text.Whitespace
 '96'          Literal.Number.Integer
 ','           Punctuation
@@ -9022,8 +8980,7 @@
 'value'       Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'>'           Operator
-'>'           Operator
+'>>'          Operator
 ' '           Text.Whitespace
 '96'          Literal.Number.Integer
 ','           Punctuation
@@ -9045,8 +9002,7 @@
 'value'       Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'>'           Operator
-'>'           Operator
+'>>'          Operator
 ' '           Text.Whitespace
 '96'          Literal.Number.Integer
 ','           Punctuation
@@ -9068,8 +9024,7 @@
 'value'       Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'>'           Operator
-'>'           Operator
+'>>'          Operator
 ' '           Text.Whitespace
 '96'          Literal.Number.Integer
 ','           Punctuation
@@ -9139,8 +9094,7 @@
 '3822833074963236453042738258902158003155416615667' Literal.Number.Integer
 ')'           Punctuation
 ' '           Text.Whitespace
-'>'           Operator
-'>'           Operator
+'>>'          Operator
 ' '           Text.Whitespace
 'convert'     Name.Builtin
 '('           Punctuation
@@ -9180,9 +9134,7 @@
 '\n    '      Text.Whitespace
 'if'          Keyword
 ' '           Text.Whitespace
-'chain'       Name
-'.'           Punctuation
-'id'          Name
+'chain.id'    Name.Builtin.Pseudo
 ' '           Text.Whitespace
 '!='          Operator
 ' '           Text.Whitespace
@@ -9196,21 +9148,19 @@
 '_abi_encode' Name.Builtin
 '('           Punctuation
 '\n                ' Text.Whitespace
-'EIP712_TYPEHASH' Name
+'EIP712_TYPEHASH' Name.Constant
 ','           Punctuation
 '\n                ' Text.Whitespace
-'NAME_HASH'   Name
+'NAME_HASH'   Name.Constant
 ','           Punctuation
 '\n                ' Text.Whitespace
-'VERSION_HASH' Name
+'VERSION_HASH' Name.Constant
 ','           Punctuation
 '\n                ' Text.Whitespace
-'chain'       Name
-'.'           Punctuation
-'id'          Name
+'chain.id'    Name.Builtin.Pseudo
 ','           Punctuation
 '\n                ' Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 ','           Punctuation
 '\n                ' Text.Whitespace
 'salt'        Name
@@ -9222,7 +9172,7 @@
 '\n    '      Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'CACHED_DOMAIN_SEPARATOR' Name
+'CACHED_DOMAIN_SEPARATOR' Name.Constant
 '\n\n\n'      Text.Whitespace
 
 '@internal'   Name.Decorator
@@ -9252,7 +9202,7 @@
 '\n    '      Text.Whitespace
 '# #       so the following subtraction would revert on insufficient balance' Comment.Single
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'balanceOf'   Name
 '['           Punctuation
@@ -9264,7 +9214,7 @@
 ' '           Text.Whitespace
 '_value'      Name
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'balanceOf'   Name
 '['           Punctuation
@@ -9308,7 +9258,7 @@
 ')'           Punctuation
 ':'           Punctuation
 '\n\n    '    Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'total_supply' Name
 ' '           Text.Whitespace
@@ -9317,7 +9267,7 @@
 ' '           Text.Whitespace
 '_burn_amount' Name
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'balanceOf'   Name
 '['           Punctuation
@@ -9377,7 +9327,7 @@
 '\n    @dev Transfer token for a specified address\n    @param _to The address to transfer to.\n    @param _value The amount to be transferred.\n    ' Comment.Multiline
 '"""'         Comment.Multiline
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_transfer'   Name
 '('           Punctuation
@@ -9392,7 +9342,7 @@
 '\n    '      Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'True'        Name
+'True'        Keyword.Constant
 '\n\n\n'      Text.Whitespace
 
 '@external'   Name.Decorator
@@ -9433,7 +9383,7 @@
 '\n     @dev Transfer tokens from one address to another.\n     @param _from address The address which you want to send tokens from\n     @param _to address The address which you want to transfer to\n     @param _value uint256 the amount of tokens to be transferred\n    ' Comment.Multiline
 '"""'         Comment.Multiline
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_transfer'   Name
 '('           Punctuation
@@ -9452,7 +9402,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'allowance'   Name
 '['           Punctuation
@@ -9474,7 +9424,7 @@
 ')'           Punctuation
 ':'           Punctuation
 '\n        '  Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'allowance'   Name
 '['           Punctuation
@@ -9494,7 +9444,7 @@
 '\n\n    '    Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'True'        Name
+'True'        Keyword.Constant
 '\n\n\n'      Text.Whitespace
 
 '@external'   Name.Decorator
@@ -9528,7 +9478,7 @@
 '\n    @notice Approve the passed address to transfer the specified amount of\n            tokens on behalf of msg.sender\n    @dev Beware that changing an allowance via this method brings the risk that\n         someone may use both the old and new allowance by unfortunate transaction\n         ordering: https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729\n    @param _spender The address which will transfer the funds\n    @param _value The amount of tokens that may be transferred\n    @return bool success\n    ' Comment.Multiline
 '"""'         Comment.Multiline
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'allowance'   Name
 '['           Punctuation
@@ -9557,7 +9507,7 @@
 '\n    '      Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'True'        Name
+'True'        Keyword.Constant
 '\n\n\n'      Text.Whitespace
 
 '@external'   Name.Decorator
@@ -9640,7 +9590,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'nonces'      Name
 '['           Punctuation
@@ -9659,8 +9609,7 @@
 'concat'      Name.Builtin
 '('           Punctuation
 '\n            ' Text.Whitespace
-'b'           Name
-'"'           Literal.String.Double
+'b"'          Literal.String.Double
 '\\x'         Literal.String.Escape
 '19'          Literal.String.Double
 '\\x'         Literal.String.Escape
@@ -9668,7 +9617,7 @@
 '"'           Literal.String.Double
 ','           Punctuation
 '\n            ' Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_domain_separator' Name
 '('           Punctuation
@@ -9679,7 +9628,7 @@
 '('           Punctuation
 '_abi_encode' Name.Builtin
 '('           Punctuation
-'EIP2612_TYPEHASH' Name
+'EIP2612_TYPEHASH' Name.Constant
 ','           Punctuation
 ' '           Text.Whitespace
 '_owner'      Name
@@ -9710,7 +9659,10 @@
 '\n        '  Text.Whitespace
 'sig:'        Name.Variable
 ' '           Text.Whitespace
-'Bytes[65]'   Keyword.Type
+'Bytes'       Keyword.Type
+'['           Punctuation
+'65'          Literal.Number.Integer
+']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
@@ -9747,7 +9699,7 @@
 '\n        '  Text.Whitespace
 'assert'      Keyword
 ' '           Text.Whitespace
-'ERC1271'     Name
+'ERC1271'     Name.Constant
 '('           Punctuation
 '_owner'      Name
 ')'           Punctuation
@@ -9762,7 +9714,7 @@
 ' '           Text.Whitespace
 '=='          Operator
 ' '           Text.Whitespace
-'ERC1271_MAGIC_VAL' Name
+'ERC1271_MAGIC_VAL' Name.Constant
 '\n    '      Text.Whitespace
 'else'        Keyword
 ':'           Punctuation
@@ -9805,7 +9757,7 @@
 ' '           Text.Whitespace
 '_owner'      Name
 '\n\n    '    Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'allowance'   Name
 '['           Punctuation
@@ -9819,7 +9771,7 @@
 ' '           Text.Whitespace
 '_value'      Name
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'nonces'      Name
 '['           Punctuation
@@ -9849,7 +9801,7 @@
 '\n    '      Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'True'        Name
+'True'        Keyword.Constant
 '\n\n\n'      Text.Whitespace
 
 '@view'       Name.Decorator
@@ -9876,7 +9828,7 @@
 '\n    '      Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_domain_separator' Name
 '('           Punctuation
@@ -9943,7 +9895,7 @@
 'dy'          Name
 ','           Punctuation
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 ')'           Punctuation
 '\n\n\n'      Text.Whitespace
 
@@ -10004,7 +9956,7 @@
 'dx'          Name
 ','           Punctuation
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 ')'           Punctuation
 '\n\n\n'      Text.Whitespace
 
@@ -10040,7 +9992,7 @@
 '\n    '      Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_calc_withdraw_one_coin' Name
 '('           Punctuation
@@ -10086,7 +10038,7 @@
 '\n    '      Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'total_supply' Name
 '\n\n\n'      Text.Whitespace
@@ -10127,7 +10079,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_A'          Name
 '('           Punctuation
@@ -10135,29 +10087,29 @@
 '\n    '      Text.Whitespace
 'xp:'         Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_xp_mem'     Name
 '('           Punctuation
 '\n        '  Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_stored_rates' Name
 '('           Punctuation
 ')'           Punctuation
 ','           Punctuation
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_balances'   Name
 '('           Punctuation
@@ -10171,7 +10123,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'get_D'       Name
 '('           Punctuation
@@ -10187,15 +10139,15 @@
 '\n    '      Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'D'           Name
+'D'           Name.Constant
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'PRECISION'   Name
+'PRECISION'   Name.Constant
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'total_supply' Name
 '\n\n\n'      Text.Whitespace
@@ -10213,12 +10165,12 @@
 '\n    '      Text.Whitespace
 '_amounts:'   Name.Variable
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ','           Punctuation
 '\n    '      Text.Whitespace
@@ -10258,7 +10210,7 @@
 '_is_deposit' Name
 ','           Punctuation
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 ')'           Punctuation
 '\n\n\n'      Text.Whitespace
 
@@ -10282,7 +10234,7 @@
 '\n    '      Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_A'          Name
 '('           Punctuation
@@ -10290,7 +10242,7 @@
 ' '           Text.Whitespace
 '/'           Operator
 ' '           Text.Whitespace
-'A_PRECISION' Name
+'A_PRECISION' Name.Constant
 '\n\n\n'      Text.Whitespace
 
 '@view'       Name.Decorator
@@ -10313,7 +10265,7 @@
 '\n    '      Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_A'          Name
 '('           Punctuation
@@ -10347,7 +10299,7 @@
 '\n    '      Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_balances'   Name
 '('           Punctuation
@@ -10372,18 +10324,18 @@
 '-'           Operator
 '>'           Operator
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ':'           Punctuation
 '\n    '      Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_balances'   Name
 '('           Punctuation
@@ -10405,18 +10357,18 @@
 '-'           Operator
 '>'           Operator
 ' '           Text.Whitespace
-'DynArray'    Name
+'DynArray'    Keyword.Type
 '['           Punctuation
 'uint256'     Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'MAX_COINS'   Name
+'MAX_COINS'   Name.Constant
 ']'           Punctuation
 ':'           Punctuation
 '\n    '      Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_stored_rates' Name
 '('           Punctuation
@@ -10472,7 +10424,7 @@
 'j'           Name
 ','           Punctuation
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 ')'           Punctuation
 '\n\n\n'      Text.Whitespace
 
@@ -10517,13 +10469,13 @@
 ' '           Text.Whitespace
 '>='          Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'initial_A_time' Name
 ' '           Text.Whitespace
 '+'           Operator
 ' '           Text.Whitespace
-'MIN_RAMP_TIME' Name
+'MIN_RAMP_TIME' Name.Constant
 '\n    '      Text.Whitespace
 'assert'      Keyword
 ' '           Text.Whitespace
@@ -10535,7 +10487,7 @@
 ' '           Text.Whitespace
 '+'           Operator
 ' '           Text.Whitespace
-'MIN_RAMP_TIME' Name
+'MIN_RAMP_TIME' Name.Constant
 '  '          Text.Whitespace
 '# dev: insufficient time' Comment.Single
 '\n\n    '    Text.Whitespace
@@ -10545,7 +10497,7 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_A'          Name
 '('           Punctuation
@@ -10561,7 +10513,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'A_PRECISION' Name
+'A_PRECISION' Name.Constant
 '\n\n    '    Text.Whitespace
 'assert'      Keyword
 ' '           Text.Whitespace
@@ -10571,13 +10523,13 @@
 ' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ' '           Text.Whitespace
-'and'         Name
+'and'         Keyword
 ' '           Text.Whitespace
 '_future_A'   Name
 ' '           Text.Whitespace
 '<'           Operator
 ' '           Text.Whitespace
-'MAX_A'       Name
+'MAX_A'       Name.Constant
 '\n    '      Text.Whitespace
 'if'          Keyword
 ' '           Text.Whitespace
@@ -10593,7 +10545,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'MAX_A_CHANGE' Name
+'MAX_A_CHANGE' Name.Constant
 ' '           Text.Whitespace
 '>='          Operator
 ' '           Text.Whitespace
@@ -10612,9 +10564,9 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'MAX_A_CHANGE' Name
+'MAX_A_CHANGE' Name.Constant
 '\n\n    '    Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'initial_A'   Name
 ' '           Text.Whitespace
@@ -10622,7 +10574,7 @@
 ' '           Text.Whitespace
 '_initial_A'  Name
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'future_A'    Name
 ' '           Text.Whitespace
@@ -10630,7 +10582,7 @@
 ' '           Text.Whitespace
 '_future_A_p' Name
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'initial_A_time' Name
 ' '           Text.Whitespace
@@ -10638,7 +10590,7 @@
 ' '           Text.Whitespace
 'block.timestamp' Name.Builtin.Pseudo
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'future_A_time' Name
 ' '           Text.Whitespace
@@ -10693,13 +10645,13 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 '_A'          Name
 '('           Punctuation
 ')'           Punctuation
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'initial_A'   Name
 ' '           Text.Whitespace
@@ -10707,7 +10659,7 @@
 ' '           Text.Whitespace
 'current_A'   Name
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'future_A'    Name
 ' '           Text.Whitespace
@@ -10715,7 +10667,7 @@
 ' '           Text.Whitespace
 'current_A'   Name
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'initial_A_time' Name
 ' '           Text.Whitespace
@@ -10723,7 +10675,7 @@
 ' '           Text.Whitespace
 'block.timestamp' Name.Builtin.Pseudo
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'future_A_time' Name
 ' '           Text.Whitespace
@@ -10782,9 +10734,9 @@
 ' '           Text.Whitespace
 '<='          Operator
 ' '           Text.Whitespace
-'MAX_FEE'     Name
+'MAX_FEE'     Name.Constant
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'fee'         Name
 ' '           Text.Whitespace
@@ -10804,15 +10756,15 @@
 ' '           Text.Whitespace
 '<='          Operator
 ' '           Text.Whitespace
-'MAX_FEE'     Name
+'MAX_FEE'     Name.Constant
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'FEE_DENOMINATOR' Name
+'FEE_DENOMINATOR' Name.Constant
 '  '          Text.Whitespace
 '# dev: offpeg multiplier exceeds maximum' Comment.Single
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'offpeg_fee_multiplier' Name
 ' '           Text.Whitespace
@@ -10871,7 +10823,7 @@
 ' '           Text.Whitespace
 '0'           Literal.Number.Integer
 ' '           Text.Whitespace
-'not'         Name
+'not'         Keyword
 ' '           Text.Whitespace
 'in'          Keyword
 ' '           Text.Whitespace
@@ -10882,7 +10834,7 @@
 '_D_ma_time'  Name
 ']'           Punctuation
 '\n\n    '    Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'ma_exp_time' Name
 ' '           Text.Whitespace
@@ -10890,7 +10842,7 @@
 ' '           Text.Whitespace
 '_ma_exp_time' Name
 '\n    '      Text.Whitespace
-'self'        Name.Attribute
+'self'        Name.Builtin.Pseudo
 '.'           Punctuation
 'D_ma_time'   Name
 ' '           Text.Whitespace
