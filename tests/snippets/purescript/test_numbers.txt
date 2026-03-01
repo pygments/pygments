@@ -1,0 +1,22 @@
+---input---
+42
+0xFF
+3.14
+1.0e10
+1e-3
+
+---tokens---
+'42'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'0xFF'        Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'3.14'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1.0e10'      Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1e-3'        Literal.Number.Float
+'\n'          Text.Whitespace
