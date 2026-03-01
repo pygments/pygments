@@ -1,0 +1,282 @@
+---input---
+module Main where
+
+import Effect.Console
+
+case true of
+  _ -> do
+    let x = 1
+    if false then x else x
+
+class Eq a where
+  eq :: a -> a -> Boolean
+
+data Maybe a = Nothing | Just a
+
+newtype Name = Name String
+
+type Alias = String
+
+derive instance eqName :: Eq Name
+
+foreign import alert :: String -> Effect Unit
+
+instance eqMaybe :: Eq a => Eq (Maybe a) where
+  eq Nothing Nothing = true
+  eq (Just a) (Just b) = eq a b
+  eq _ _ = false
+
+infixl 4 eq as ==
+
+forall a. Eq a => a -> a -> Boolean
+
+ado
+  x <- getLine
+  in x
+
+---tokens---
+'module'      Keyword.Reserved
+' '           Text.Whitespace
+'Main'        Name.Namespace
+' '           Text.Whitespace
+'where'       Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'import'      Keyword.Reserved
+' '           Text.Whitespace
+'Effect.Console' Name.Namespace
+'\n\n'        Text.Whitespace
+
+'case'        Keyword.Reserved
+' '           Text.Whitespace
+'true'        Keyword.Reserved
+' '           Text.Whitespace
+'of'          Keyword.Reserved
+'\n  '        Text.Whitespace
+'_'           Keyword.Reserved
+' '           Text.Whitespace
+'->'          Operator.Word
+' '           Text.Whitespace
+'do'          Keyword.Reserved
+'\n    '      Text.Whitespace
+'let'         Keyword.Reserved
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'='           Operator.Word
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n    '      Text.Whitespace
+'if'          Keyword.Reserved
+' '           Text.Whitespace
+'false'       Keyword.Reserved
+' '           Text.Whitespace
+'then'        Keyword.Reserved
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'else'        Keyword.Reserved
+' '           Text.Whitespace
+'x'           Name
+'\n\n'        Text.Whitespace
+
+'class'       Keyword.Reserved
+' '           Text.Whitespace
+'Eq'          Keyword.Type
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'where'       Keyword.Reserved
+'\n  '        Text.Whitespace
+'eq'          Name
+' '           Text.Whitespace
+'::'          Operator.Word
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'->'          Operator.Word
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'->'          Operator.Word
+' '           Text.Whitespace
+'Boolean'     Keyword.Type
+'\n\n'        Text.Whitespace
+
+'data'        Keyword.Reserved
+' '           Text.Whitespace
+'Maybe'       Keyword.Type
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'='           Operator.Word
+' '           Text.Whitespace
+'Nothing'     Keyword.Type
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'Just'        Keyword.Type
+' '           Text.Whitespace
+'a'           Name
+'\n\n'        Text.Whitespace
+
+'newtype'     Keyword.Reserved
+' '           Text.Whitespace
+'Name'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator.Word
+' '           Text.Whitespace
+'Name'        Keyword.Type
+' '           Text.Whitespace
+'String'      Keyword.Type
+'\n\n'        Text.Whitespace
+
+'type'        Keyword.Reserved
+' '           Text.Whitespace
+'Alias'       Keyword.Type
+' '           Text.Whitespace
+'='           Operator.Word
+' '           Text.Whitespace
+'String'      Keyword.Type
+'\n\n'        Text.Whitespace
+
+'derive'      Keyword.Reserved
+' '           Text.Whitespace
+'instance'    Keyword.Reserved
+' '           Text.Whitespace
+'eqName'      Name
+' '           Text.Whitespace
+'::'          Operator.Word
+' '           Text.Whitespace
+'Eq'          Keyword.Type
+' '           Text.Whitespace
+'Name'        Keyword.Type
+'\n\n'        Text.Whitespace
+
+'foreign'     Keyword.Reserved
+' '           Text.Whitespace
+'import'      Keyword.Reserved
+' '           Text.Whitespace
+'alert'       Name
+' '           Text.Whitespace
+'::'          Operator.Word
+' '           Text.Whitespace
+'String'      Keyword.Type
+' '           Text.Whitespace
+'->'          Operator.Word
+' '           Text.Whitespace
+'Effect'      Keyword.Type
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+'\n\n'        Text.Whitespace
+
+'instance'    Keyword.Reserved
+' '           Text.Whitespace
+'eqMaybe'     Name
+' '           Text.Whitespace
+'::'          Operator.Word
+' '           Text.Whitespace
+'Eq'          Keyword.Type
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'=>'          Operator.Word
+' '           Text.Whitespace
+'Eq'          Keyword.Type
+' '           Text.Whitespace
+'('           Punctuation
+'Maybe'       Keyword.Type
+' '           Text.Whitespace
+'a'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'where'       Keyword.Reserved
+'\n  '        Text.Whitespace
+'eq'          Name
+' '           Text.Whitespace
+'Nothing'     Keyword.Type
+' '           Text.Whitespace
+'Nothing'     Keyword.Type
+' '           Text.Whitespace
+'='           Operator.Word
+' '           Text.Whitespace
+'true'        Keyword.Reserved
+'\n  '        Text.Whitespace
+'eq'          Name
+' '           Text.Whitespace
+'('           Punctuation
+'Just'        Keyword.Type
+' '           Text.Whitespace
+'a'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'Just'        Keyword.Type
+' '           Text.Whitespace
+'b'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator.Word
+' '           Text.Whitespace
+'eq'          Name
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'b'           Name
+'\n  '        Text.Whitespace
+'eq'          Name
+' '           Text.Whitespace
+'_'           Keyword.Reserved
+' '           Text.Whitespace
+'_'           Keyword.Reserved
+' '           Text.Whitespace
+'='           Operator.Word
+' '           Text.Whitespace
+'false'       Keyword.Reserved
+'\n\n'        Text.Whitespace
+
+'infixl'      Keyword.Reserved
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+' '           Text.Whitespace
+'eq'          Name
+' '           Text.Whitespace
+'as'          Name
+' '           Text.Whitespace
+'=='          Operator
+'\n\n'        Text.Whitespace
+
+'forall'      Keyword.Reserved
+' '           Text.Whitespace
+'a'           Name
+'.'           Operator
+' '           Text.Whitespace
+'Eq'          Keyword.Type
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'=>'          Operator.Word
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'->'          Operator.Word
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'->'          Operator.Word
+' '           Text.Whitespace
+'Boolean'     Keyword.Type
+'\n\n'        Text.Whitespace
+
+'ado'         Keyword.Reserved
+'\n  '        Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'<-'          Operator.Word
+' '           Text.Whitespace
+'getLine'     Name
+'\n  '        Text.Whitespace
+'in'          Keyword.Reserved
+' '           Text.Whitespace
+'x'           Name
+'\n'          Text.Whitespace

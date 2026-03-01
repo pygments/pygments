@@ -1,0 +1,43 @@
+---input---
+a :: Int -> Int
+f = \x -> x
+a <- getLine
+a => b
+
+---tokens---
+'a'           Name.Function
+' '           Text.Whitespace
+'::'          Operator.Word
+' '           Text.Whitespace
+'Int'         Keyword.Type
+' '           Text.Whitespace
+'->'          Operator.Word
+' '           Text.Whitespace
+'Int'         Keyword.Type
+'\n'          Text.Whitespace
+
+'f'           Name.Function
+' '           Text.Whitespace
+'='           Operator.Word
+' '           Text.Whitespace
+'\\'          Name.Function
+'x'           Name
+' '           Text.Whitespace
+'->'          Operator.Word
+' '           Text.Whitespace
+'x'           Name
+'\n'          Text.Whitespace
+
+'a'           Name.Function
+' '           Text.Whitespace
+'<-'          Operator.Word
+' '           Text.Whitespace
+'getLine'     Name
+'\n'          Text.Whitespace
+
+'a'           Name.Function
+' '           Text.Whitespace
+'=>'          Operator.Word
+' '           Text.Whitespace
+'b'           Name
+'\n'          Text.Whitespace
