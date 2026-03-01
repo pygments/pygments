@@ -1,0 +1,22 @@
+---input---
+x: bool = True
+y: bool = False
+
+---tokens---
+'x:'          Name.Variable
+' '           Text.Whitespace
+'bool'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'True'        Keyword.Constant
+'\n'          Text.Whitespace
+
+'y:'          Name.Variable
+' '           Text.Whitespace
+'bool'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'False'       Keyword.Constant
+'\n'          Text.Whitespace

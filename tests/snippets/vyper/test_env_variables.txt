@@ -1,0 +1,26 @@
+---input---
+block.prevrandao
+block.basefee
+block.blobbasefee
+tx.origin
+chain.id
+msg.mana
+
+---tokens---
+'block.prevrandao' Name.Builtin.Pseudo
+'\n'          Text.Whitespace
+
+'block.basefee' Name.Builtin.Pseudo
+'\n'          Text.Whitespace
+
+'block.blobbasefee' Name.Builtin.Pseudo
+'\n'          Text.Whitespace
+
+'tx.origin'   Name.Builtin.Pseudo
+'\n'          Text.Whitespace
+
+'chain.id'    Name.Builtin.Pseudo
+'\n'          Text.Whitespace
+
+'msg.mana'    Name.Builtin.Pseudo
+'\n'          Text.Whitespace

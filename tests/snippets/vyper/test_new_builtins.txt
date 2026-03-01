@@ -1,0 +1,40 @@
+---input---
+raw_create(code)
+abi_encode(42)
+blobhash(0)
+epsilon(decimal)
+raw_log(topics, data)
+
+---tokens---
+'raw_create'  Name.Builtin
+'('           Punctuation
+'code'        Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'abi_encode'  Name.Builtin
+'('           Punctuation
+'42'          Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'blobhash'    Name.Builtin
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'epsilon'     Name.Builtin
+'('           Punctuation
+'decimal'     Keyword.Type
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'raw_log'     Name.Builtin
+'('           Punctuation
+'topics'      Name
+','           Punctuation
+' '           Text.Whitespace
+'data'        Name
+')'           Punctuation
+'\n'          Text.Whitespace

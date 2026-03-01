@@ -1,0 +1,30 @@
+---input---
+DynArray[uint256, 100]
+HashMap[address, uint256]
+uint24
+int72
+
+---tokens---
+'DynArray'    Keyword.Type
+'['           Punctuation
+'uint256'     Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'HashMap'     Keyword.Type
+'['           Punctuation
+'address'     Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'uint256'     Keyword.Type
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'uint24'      Keyword.Type
+'\n'          Text.Whitespace
+
+'int72'       Keyword.Type
+'\n'          Text.Whitespace
