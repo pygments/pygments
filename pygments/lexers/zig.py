@@ -22,7 +22,7 @@ class ZigLexer(RegexLexer):
     grammar: https://ziglang.org/documentation/master/#Grammar
     """
     name = 'Zig'
-    url = 'http://www.ziglang.org'
+    url = 'http://ziglang.org'
     aliases = ['zig']
     filenames = ['*.zig']
     mimetypes = ['text/zig']
