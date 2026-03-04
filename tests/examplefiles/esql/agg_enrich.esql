@@ -1,0 +1,8 @@
+FROM logs-*
+| WHERE event.code IS NOT NULL
+| STATS event_code_count = COUNT(event.code) BY event.code,host.name
+| ENRICH win_events ON event.code WITH event_description
+| WHERE event_description IS NOT NULL and host.name IS NOT NULL
+| RENAME event_description AS event.description
+| SORT event_code_count DESC
+| KEEP event_code_count,event.code,host.name,event.description
