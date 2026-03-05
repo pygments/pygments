@@ -4,7 +4,7 @@
 
     Lexer for Splunk Search Processing Language (SPL).
 
-    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2026 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
