@@ -1,0 +1,220 @@
+``` Basic search with index and sourcetype ```
+index=main sourcetype=syslog host=webserver*
+| search status=500 OR status=503
+| where _time > relative_time(now(), "-24h@h")
+
+``` Eval with various functions ```
+| eval
+    duration_mins = round(duration / 60, 2),
+    status_group = case(
+        status < 200, "informational",
+        status < 300, "success",
+        status < 400, "redirect",
+        status < 500, "client_error",
+        true(), "server_error"
+    ),
+    is_slow = if(duration > 5000, true, false),
+    request_id = md5(host . ":" . uri_path),
+    event_hour = strftime(_time, "%Y-%m-%d %H"),
+    tags_list = mvappend(tag1, tag2, tag3),
+    payload = json_object("status", status, "host", host),
+    trimmed = trim(ltrim(rtrim(message))),
+    angle = atan2(y, x),
+    bits = bit_and(flags, 0xFF)
+
+``` Stats and charting functions ```
+| stats
+    count AS total_events,
+    avg(duration) AS avg_duration,
+    max(duration) AS max_duration,
+    min(duration) AS min_duration,
+    dc(user) AS unique_users,
+    sum(bytes) AS total_bytes,
+    stdev(duration) AS duration_stddev,
+    perc(duration, 95) AS p95_duration,
+    earliest(_time) AS first_seen,
+    latest(_time) AS last_seen,
+    values(status) AS status_codes,
+    list(uri_path) AS paths
+    by host, sourcetype
+
+``` Timechart and chart commands ```
+| timechart span=1h count by status
+| chart avg(cpu_pct) over host by datacenter
+
+``` Transaction with multiple clauses ```
+| transaction session_id
+    startswith="login" endswith="logout"
+    maxspan=30m maxpause=5m maxevents=1000
+    keeporphans=true
+
+``` Subsearch ```
+| search [search index=threats earliest=-1h | fields src_ip | format]
+
+``` String operations ```
+| eval
+    lower_name = lower(username),
+    upper_name = upper(username),
+    name_len = len(username),
+    first_three = substr(username, 0, 3),
+    clean = replace(message, "\r\n", " ")
+
+``` Multivalue operations ```
+| makemv delim="," categories
+| mvexpand categories
+| eval mv_count = mvcount(categories)
+| where mvfind(categories, "critical") >= 0
+| eval sorted = mvsort(categories)
+| eval joined = mvjoin(categories, "; ")
+
+``` Table and field operations ```
+| table _time, host, sourcetype, status, duration, message
+| rename duration AS response_time, message AS log_message
+| fields - _raw, _serial, _si
+| sort - response_time
+| head 100
+| tail 50
+
+``` Dedup and filtering ```
+| dedup host, sourcetype sortby -_time
+| where isnotnull(error_code) AND isnum(status)
+| regex message="(?i)error|exception|fail"
+
+``` Lookup ```
+| lookup geo_lookup ip AS src_ip OUTPUT city, country, lat, lon
+| inputlookup user_list.csv WHERE department="engineering"
+
+``` Time modifiers in search ```
+earliest=-7d@d latest=now index=main sourcetype="access_combined"
+| timechart span=1d count
+
+``` Macros (backtick-delimited) ```
+| `my_custom_macro(arg1, arg2)`
+| `get_notable_events`
+
+``` Multiline comment
+spanning multiple
+lines ```
+
+``` Rex and regex ```
+| rex field=message "(?P<error_type>\w+Error): (?P<error_msg>.+)"
+| rex mode=sed "s/password=[^&]*/password=REDACTED/g"
+
+``` Spath for JSON parsing ```
+| spath input=json_field path=data.results{}
+| spath output=user_name path="user.name"
+
+``` Eventstats and streamstats ```
+| eventstats avg(duration) AS global_avg by sourcetype
+| streamstats count AS event_num window=100
+| where duration > global_avg * 2
+
+``` Convert and fieldformat ```
+| convert ctime(_time) AS human_time
+| convert dur2sec(duration)
+| fieldformat total_bytes = tostring(total_bytes, "commas")
+
+``` Append and join ```
+| append [search index=summary sourcetype=daily_report | stats sum(count) AS total]
+| join type=left host [search index=assets | table host, owner, environment]
+
+``` Top and rare ```
+| top limit=20 useother=true status by host
+| rare limit=10 uri_path
+
+``` Boolean and comparison operators ```
+| where (status >= 400 AND status < 500) OR (status == 503)
+| eval result = if(value != 0, 100 / value, null())
+| where NOT cidrmatch("10.0.0.0/8", src_ip)
+| eval check = if(method == "GET" AND status < 300, "ok", "fail")
+
+``` Number formats ```
+| eval pi_val = 3.14159
+| eval big = 1.5e10
+| eval small = 2.3E-5
+| eval count = 42
+| eval pct = 99.9
+
+``` Trig and hyperbolic functions ```
+| eval s = sin(0.5), c = cos(0.5), t = tan(0.5)
+| eval h = hypot(3, 4)
+| eval as = asin(0.5), ac = acos(0.5), at = atan(1.0)
+| eval sh = sinh(1), ch = cosh(1), th = tanh(1)
+
+``` JSON functions ```
+| eval obj = json_object("key", "value")
+| eval arr = json_array("a", "b", "c")
+| eval val = json_extract(payload, "data.items")
+| eval valid = json_valid(raw_json)
+| eval keys = json_keys(payload)
+
+``` Cryptographic functions ```
+| eval hash1 = md5(password)
+| eval hash2 = sha256(token)
+| eval hash3 = sha512(secret)
+
+``` Informational functions ```
+| where isbool(flag) OR isint(count) OR isstr(name)
+| eval t = typeof(value)
+
+``` Conversion functions ```
+| eval n = tonumber(str_val)
+| eval s = tostring(num_val, "hex")
+| eval b = tobool("true")
+
+``` Bitwise functions ```
+| eval result = bit_and(a, b)
+| eval shifted = bit_shift_left(x, 2)
+| eval flipped = bit_not(mask)
+| eval mixed = bit_xor(val1, val2)
+
+``` Collect and mcollect ```
+| collect index=summary marker="daily_report"
+| mcollect index=metrics_store
+
+``` Datamodel ```
+| datamodel "Network_Traffic" "All_Traffic" search
+| tstats count from datamodel=Authentication by user
+
+``` Constants ```
+| eval flag = true
+| eval empty = null
+| eval off = false
+| where value = TRUE OR value = FALSE
+
+``` XOR operator ```
+| where condA XOR condB
+
+``` Wildcard searches ```
+error source=*access* host=web-*
+| search NOT source="*test*"
+
+``` Map command ```
+| map search="search index=detailed host=$host$ | head 10" maxsearches=5
+
+``` Predict and trendline ```
+| predict duration AS predicted_duration algorithm=LLP holdback=24
+| trendline sma5(count) AS trend
+
+``` Geostats ```
+| iplocation src_ip
+| geostats latfield=lat longfield=lon count by country
+
+``` Fill operations ```
+| fillnull value="N/A" field1, field2
+| filldown field3
+
+``` Format and outputcsv ```
+| format maxresults=100
+| outputcsv report_output.csv
+
+``` Set operations ```
+| set diff [search index=a | table host] [search index=b | table host]
+
+``` Bin / bucket ```
+| bin _time span=5m
+| bucket duration bins=10
+
+``` REST and inputcsv ```
+| rest /services/saved/searches
+| inputcsv my_saved_results.csv

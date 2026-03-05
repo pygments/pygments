@@ -1,0 +1,27 @@
+# Basic SPL query with pipe, command, and functions
+
+---input---
+index=main sourcetype=syslog | stats count(host) by sourcetype
+
+---tokens---
+'index'       Name.Variable.Magic
+'='           Operator
+'main'        Name.Other
+' '           Text.Whitespace
+'sourcetype'  Name.Variable.Magic
+'='           Operator
+'syslog'      Name.Other
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text.Whitespace
+'stats'       Keyword
+' '           Text.Whitespace
+'count'       Name.Builtin
+'('           Punctuation
+'host'        Name.Variable.Magic
+')'           Punctuation
+' '           Text.Whitespace
+'by'          Keyword.Pseudo
+' '           Text.Whitespace
+'sourcetype'  Name.Variable.Magic
+'\n'          Text.Whitespace

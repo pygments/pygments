@@ -1,0 +1,24 @@
+# SPL triple-backtick comments
+
+---input---
+| search index=main ``` this is a comment ``` | stats count
+
+---tokens---
+'|'           Punctuation
+' '           Text.Whitespace
+'search'      Keyword
+' '           Text.Whitespace
+'index'       Name.Variable.Magic
+'='           Operator
+'main'        Name.Other
+' '           Text.Whitespace
+'```'         Comment
+' this is a comment ' Comment
+'```'         Comment
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text.Whitespace
+'stats'       Keyword
+' '           Text.Whitespace
+'count'       Name.Other
+'\n'          Text.Whitespace

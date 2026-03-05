@@ -1,0 +1,47 @@
+# Eval and stats functions
+
+---input---
+| eval x=if(len(name)>0, upper(name), "N/A") | stats avg(duration) dc(user)
+
+---tokens---
+'|'           Punctuation
+' '           Text.Whitespace
+'eval'        Keyword
+' '           Text.Whitespace
+'x'           Name.Other
+'='           Operator
+'if'          Name.Builtin
+'('           Punctuation
+'len'         Name.Builtin
+'('           Punctuation
+'name'        Name.Other
+')'           Punctuation
+'>'           Operator
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'upper'       Name.Builtin
+'('           Punctuation
+'name'        Name.Other
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'N/A'         Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text.Whitespace
+'stats'       Keyword
+' '           Text.Whitespace
+'avg'         Name.Builtin
+'('           Punctuation
+'duration'    Name.Other
+')'           Punctuation
+' '           Text.Whitespace
+'dc'          Name.Builtin
+'('           Punctuation
+'user'        Name.Other
+')'           Punctuation
+'\n'          Text.Whitespace

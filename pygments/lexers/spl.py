@@ -2,7 +2,7 @@
     pygments.lexers.spl
     ~~~~~~~~~~~~~~~~~~~
 
-    Lexer for Splunk Processing Language (SPL).
+    Lexer for Splunk Search Processing Language (SPL).
 
     :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
@@ -10,40 +10,36 @@
 
 import re
 
-from pygments.lexer import RegexLexer, bygroups, include, words
-from pygments.token import Comment, Keyword, Name, Number, Operator, \
-    Punctuation, String, Text, Whitespace
+from pygments.lexer import RegexLexer, include, words
+from pygments.token import Comment, Keyword, Literal, Name, Number, \
+    Operator, Punctuation, String, Text, Whitespace
 
 __all__ = ['SplLexer']
 
 
 class SplLexer(RegexLexer):
     """
-    For Splunk Processing Language (SPL) queries.
-
-    Reference: https://help.splunk.com/en/splunk-enterprise/spl-search-reference/
+    For Splunk Search Processing Language (SPL) queries.
     """
 
     name = 'SPL'
-    url = 'https://help.splunk.com/en/splunk-enterprise/spl-search-reference/'
-    aliases = ['spl']
-    filenames = ['*.spl']
+    url = 'https://help.splunk.com/en/splunk-enterprise/search/spl-search-reference/'
+    aliases = ['spl', 'splunk']
+    filenames = ['*.spl', '*.splunk']
     mimetypes = ['text/x-spl']
-    version_added = ''
+    version_added = '2.19'
 
     flags = re.IGNORECASE | re.MULTILINE
 
     # ------------------------------------------------------------------ #
-    # SPL commands — complete alphabetical list from the Splunk 9.x      #
-    # Search Reference "Command quick reference" page.                   #
-    # https://help.splunk.com/en/splunk-enterprise/spl-search-reference/ #
-    #     9.0/quick-reference/command-quick-reference                     #
+    # SPL commands — complete list from the Splunk 9.4 Search Reference  #
+    # "Command quick reference" page.                                    #
     # ------------------------------------------------------------------ #
     _commands = (
         'abstract', 'accum', 'addcoltotals', 'addinfo', 'addtotals',
         'analyzefields', 'anomalies', 'anomalousvalue', 'anomalydetection',
         'append', 'appendcols', 'appendpipe', 'arules', 'associate',
-        'audit', 'autoregress', 'awssnsalert',
+        'autoregress', 'awssnsalert',
         'bin', 'bucket', 'bucketdir',
         'chart', 'cluster', 'cofilter', 'collect', 'concurrency',
         'contingency', 'convert', 'correlate', 'ctable',
@@ -58,7 +54,7 @@ class SplLexer(RegexLexer):
         'iconify', 'inputcsv', 'inputintelligence', 'inputlookup',
         'iplocation',
         'join',
-        'kmeans', 'kvform', 'kv',
+        'kmeans', 'kvform',
         'loadjob', 'localize', 'localop', 'lookup',
         'makecontinuous', 'makemv', 'makeresults', 'map',
         'mcollect', 'metadata', 'metasearch', 'meventcollect',
@@ -82,49 +78,48 @@ class SplLexer(RegexLexer):
         'union', 'uniq', 'untable',
         'walklex', 'where',
         'x11', 'xmlkv', 'xmlunescape', 'xpath', 'xyseries',
-        # Internal / undocumented commands commonly seen
-        'collapse', 'dump', 'findkeywords', 'makejson', 'mcatalog',
-        'noop', 'prjob', 'runshellscript',
     )
 
     # ------------------------------------------------------------------ #
-    # Evaluation functions — from the Splunk "Evaluation functions" page  #
-    # Categories: Comparison/Conditional, Conversion, Cryptographic,     #
-    # Date/Time, Informational, JSON, Mathematical, Multivalue,          #
-    # Statistical, Text, Trig/Hyperbolic.                                #
+    # Evaluation functions — from the Splunk 9.4 "Evaluation functions"  #
+    # reference.  Categories: Bitwise, Comparison/Conditional,           #
+    # Conversion, Cryptographic, Date/Time, Informational, JSON,         #
+    # Mathematical, Multivalue, Statistical, Text, Trig/Hyperbolic.      #
     # ------------------------------------------------------------------ #
     _eval_functions = (
+        # Bitwise
+        'bit_and', 'bit_not', 'bit_or', 'bit_shift_left',
+        'bit_shift_right', 'bit_xor',
         # Comparison and Conditional
         'case', 'cidrmatch', 'coalesce', 'false', 'if', 'in',
         'like', 'lookup', 'match', 'null', 'nullif',
         'searchmatch', 'true', 'validate',
         # Conversion
-        'printf', 'tonumber', 'tostring',
+        'ipmask', 'printf', 'toarray', 'tobool', 'todouble', 'toint',
+        'tomv', 'tonumber', 'toobject', 'tostring',
         # Cryptographic
         'md5', 'sha1', 'sha256', 'sha512',
         # Date and Time
         'now', 'relative_time', 'strftime', 'strptime', 'time',
         # Informational
-        'isbool', 'isint', 'isnotnull', 'isnull', 'isnum', 'isstr',
-        'typeof',
+        'isarray', 'isbool', 'isdouble', 'isint', 'ismv', 'isnotnull',
+        'isnull', 'isnum', 'isobject', 'isstr', 'typeof',
         # JSON
-        'json_object', 'json_append', 'json_array',
-        'json_array_to_mv', 'json_extend',
-        'json_extract', 'json_extract_exact',
-        'json_keys', 'json_set', 'json_set_exact',
-        'json_valid',
+        'json', 'json_append', 'json_array', 'json_array_to_mv',
+        'json_delete', 'json_entries', 'json_extend', 'json_extract',
+        'json_extract_exact', 'json_has_key_exact', 'json_keys',
+        'json_object', 'json_set', 'json_set_exact', 'json_valid',
         # Mathematical
-        'abs', 'ceiling', 'ceil', 'exact', 'exp', 'floor', 'ln',
-        'log', 'pi', 'pow', 'round', 'sigfig', 'sqrt',
+        'abs', 'ceiling', 'exact', 'exp', 'floor', 'ln', 'log', 'pi',
+        'pow', 'round', 'sigfig', 'sqrt', 'sum',
         # Multivalue
         'commands', 'mvappend', 'mvcount', 'mvdedup', 'mvfilter',
-        'mvfind', 'mvindex', 'mvjoin', 'mvmap', 'mvrange',
-        'mvsort', 'mvzip', 'mv_to_json_array',
-        'split',
-        # Statistical
-        'avg', 'max', 'min', 'random', 'sum', 'sumsq',
+        'mvfind', 'mvindex', 'mvjoin', 'mvmap', 'mvrange', 'mvsort',
+        'mvzip', 'mv_to_json_array', 'split',
+        # Statistical eval
+        'avg', 'max', 'min', 'random',
         # Text
-        'len', 'lower', 'ltrim', 'replace', 'rtrim', 'substr',
+        'len', 'lower', 'ltrim', 'replace', 'rtrim', 'spath', 'substr',
         'trim', 'upper', 'urldecode',
         # Trig and Hyperbolic
         'acos', 'acosh', 'asin', 'asinh', 'atan', 'atan2', 'atanh',
@@ -132,15 +127,14 @@ class SplLexer(RegexLexer):
     )
 
     # ------------------------------------------------------------------ #
-    # Statistical / charting functions (used with stats, chart,          #
-    # timechart, eventstats, streamstats, etc.)                          #
+    # Statistical / charting functions (stats, chart, timechart, etc.)   #
     # From "Statistical and charting functions" reference.               #
     # ------------------------------------------------------------------ #
     _stats_functions = (
         # Aggregate
         'avg', 'count', 'dc', 'distinct_count', 'estdc', 'estdc_error',
         'exactperc', 'max', 'mean', 'median', 'min', 'mode',
-        'percentile', 'perc', 'range', 'stdev', 'stdevp',
+        'perc', 'percentile', 'range', 'stdev', 'stdevp',
         'sum', 'sumsq', 'upperperc', 'var', 'varp',
         # Event order
         'first', 'last',
@@ -148,28 +142,17 @@ class SplLexer(RegexLexer):
         'list', 'values',
         # Time
         'earliest', 'earliest_time', 'latest', 'latest_time',
-        'per_day', 'per_hour', 'per_minute', 'per_second', 'rate',
-    )
-
-    # ------------------------------------------------------------------ #
-    # Common search-time parameters / clauses that act like keywords     #
-    # ------------------------------------------------------------------ #
-    _keyword_clauses = (
-        'as', 'by', 'or', 'and', 'not', 'over', 'where', 'output',
-        'outputnew', 'span', 'limit', 'agg', 'allnum', 'delim',
-        'partitions', 'maxtime', 'startswith', 'endswith', 'maxspan',
-        'maxpause', 'maxevents', 'keepevicted', 'mvlist',
-        'connected', 'keeporphans', 'maxopenevents', 'maxopentxn',
-        'keepempty', 'nullstr', 'otherstr', 'sep', 'useother',
-        'usenull', 'cont', 'notin', 'partial', 'consecutive',
+        'per_day', 'per_hour', 'per_minute', 'per_second',
+        'rate', 'rate_avg', 'rate_sum',
     )
 
     # ------------------------------------------------------------------ #
     # Built-in field names / special variables                           #
     # ------------------------------------------------------------------ #
     _builtin_fields = (
-        '_raw', '_time', '_indextime', '_serial', '_si', '_sourcetype',
-        '_subsecond', 'host', 'index', 'linecount', 'punct', 'source',
+        '_indextime', '_raw', '_serial', '_si', '_sourcetype',
+        '_subsecond', '_time',
+        'host', 'index', 'linecount', 'punct', 'source',
         'sourcetype', 'splunk_server', 'splunk_server_group',
         'timestamp', 'eventtype', 'tag',
     )
@@ -179,7 +162,7 @@ class SplLexer(RegexLexer):
             include('comments'),
             include('whitespace'),
 
-            # Pipe — the fundamental SPL delimiter
+            # Pipe — central SPL command separator
             (r'\|', Punctuation),
 
             # Subsearch brackets
@@ -188,58 +171,67 @@ class SplLexer(RegexLexer):
             # Strings
             include('strings'),
 
-            # Numbers (integers, floats, and scientific notation)
+            # Numbers
             include('numbers'),
 
-            # Time modifiers: -24h@h, earliest=, latest=, etc.
-            (r'[+-]?\d+[smhdwqy](?:@[smhdwqy]\d?)?', Number.Other),
+            # Time modifiers: earliest=-24h@h, latest=now
+            (r'(?:earliest|latest|_index_earliest|_index_latest)'
+             r'\s*=\s*(?:"[^"]*"|[^\s\|\]\),]+)', Literal.Date),
 
-            # Comparison / assignment operators
-            (r'[!=<>]=?', Operator),
-            (r'\.\.', Operator),
+            # Boolean operators
+            (words(('AND', 'OR', 'NOT', 'XOR'),
+                   prefix=r'\b', suffix=r'\b'), Operator.Word),
+
+            # Comparison operators
+            (r'[!=<>]=?|==', Operator),
+
+            # Concatenation operator
+            (r'\.', Operator),
 
             # Arithmetic operators
             (r'[+\-*/%]', Operator),
 
-            # Parentheses and other punctuation
-            (r'[(),]', Punctuation),
+            # Keyword clauses
+            (words(('AS', 'BY', 'IN', 'LIKE', 'OVER', 'OUTPUT',
+                    'OUTPUTNEW'),
+                   prefix=r'\b', suffix=r'\b'), Keyword.Pseudo),
 
-            # SPL commands — match at word boundary, case-insensitive
+            # Constants
+            (r'\b(?:true|false|null)\b', Keyword.Constant),
+
+            # Eval and stats functions (followed by opening paren)
+            (words(_eval_functions + _stats_functions,
+                   prefix=r'\b', suffix=r'\b(?=\s*\()'), Name.Builtin),
+
+            # SPL commands
             (words(_commands, suffix=r'\b'), Keyword),
 
-            # Eval / stats functions — followed by opening paren
-            (r'(?:' + '|'.join(_eval_functions) + r')\s*(?=\()',
-             Name.Function),
-            (r'(?:' + '|'.join(_stats_functions) + r')\s*(?=\()',
-             Name.Function),
-
-            # Common keyword-like clauses
-            (words(_keyword_clauses, prefix=r'\b', suffix=r'\b'),
-             Keyword.Pseudo),
-
-            # Boolean literal keywords
-            (r'\b(?:true|false|TRUE|FALSE|True|False)\b', Keyword.Constant),
-
-            # Built-in / internal fields
+            # Built-in fields
             (words(_builtin_fields, prefix=r'\b', suffix=r'\b'),
-             Name.Builtin),
+             Name.Variable.Magic),
 
-            # Wildcard field patterns (field_name=*)
-            (r'[a-zA-Z_]\w*(?:\.\w+)*(?=\s*=)', Name.Variable),
+            # Parentheses, commas
+            (r'[(),]', Punctuation),
+
+            # Equals sign (assignment / comparison)
+            (r'=', Operator),
 
             # Field names and identifiers
             (r'[a-zA-Z_]\w*(?:\.\w+)*', Name.Other),
 
-            # Equals sign (assignment / filter)
-            (r'=', Operator),
-
-            # Catch-all for misc characters
+            # Catch-all
             (r'.', Text),
         ],
 
         'comments': [
-            # SPL uses ``` for inline comments (triple backtick)
-            (r'```.*?```', Comment),
+            # SPL triple-backtick comments (can span multiple lines)
+            (r'```', Comment, 'comment'),
+        ],
+
+        'comment': [
+            (r'```', Comment, '#pop'),
+            (r'`{1,2}', Comment),
+            (r'[^`]+', Comment),
         ],
 
         'whitespace': [
@@ -249,8 +241,10 @@ class SplLexer(RegexLexer):
         'strings': [
             # Double-quoted strings
             (r'"', String.Double, 'string-double'),
-            # Single-quoted field names
+            # Single-quoted strings (field names)
             (r"'", String.Single, 'string-single'),
+            # Backtick macros (single backtick, NOT triple)
+            (r'`(?!``)', String.Backtick, 'string-backtick'),
         ],
 
         'string-double': [
@@ -265,6 +259,11 @@ class SplLexer(RegexLexer):
             (r"'", String.Single, '#pop'),
         ],
 
+        'string-backtick': [
+            (r'[^`]+', String.Backtick),
+            (r'`', String.Backtick, '#pop'),
+        ],
+
         'numbers': [
             # Scientific notation
             (r'\b\d+\.?\d*[eE][+-]?\d+\b', Number.Float),
@@ -275,9 +274,8 @@ class SplLexer(RegexLexer):
         ],
     }
 
-    def analyse_text(text):
-        """Give a slight boost when the text has a pipe character followed
-        by what looks like an SPL command."""
+    def analyse_text(self, text):
+        """Give a slight boost when the text looks like SPL."""
         result = 0.0
         if '| stats ' in text or '| eval ' in text or '| table ' in text:
             result += 0.3
