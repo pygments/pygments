@@ -1,0 +1,29 @@
+# String types in SPL
+
+---input---
+| eval msg="hello \"world\"" | where name='field_name'
+
+---tokens---
+'|'           Punctuation
+' '           Text.Whitespace
+'eval'        Keyword
+' '           Text.Whitespace
+'msg'         Name.Other
+'='           Operator
+'"'           Literal.String.Double
+'hello '      Literal.String.Double
+'\\"'         Literal.String.Escape
+'world'       Literal.String.Double
+'\\"'         Literal.String.Escape
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'name'        Name.Other
+'='           Operator
+"'"           Literal.String.Single
+'field_name'  Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text.Whitespace
