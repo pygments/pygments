@@ -27,7 +27,7 @@ class SplLexer(RegexLexer):
     aliases = ['spl', 'splunk']
     filenames = ['*.spl', '*.splunk']
     mimetypes = ['text/x-spl']
-    version_added = '2.19'
+    version_added = ''
 
     flags = re.IGNORECASE | re.MULTILINE
 
