@@ -1,0 +1,82 @@
+---input---
+5 ** 2
+a ** 2
+1 * 3
+1 * b
+25 / 5
+a / 5
+20 _mod 3
+20 _mod b
+27 _div 3
+a _div b
+
+---tokens---
+'5'           Literal.Number.Integer
+' '           Text.Whitespace
+'**'          Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'a'           Name
+' '           Text.Whitespace
+'**'          Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'b'           Name
+'\n'          Text.Whitespace
+
+'25'          Literal.Number.Integer
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'a'           Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'20'          Literal.Number.Integer
+' '           Text.Whitespace
+'_mod'        Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'20'          Literal.Number.Integer
+' '           Text.Whitespace
+'_mod'        Operator
+' '           Text.Whitespace
+'b'           Name
+'\n'          Text.Whitespace
+
+'27'          Literal.Number.Integer
+' '           Text.Whitespace
+'_div'        Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'a'           Name
+' '           Text.Whitespace
+'_div'        Operator
+' '           Text.Whitespace
+'b'           Name
+'\n'          Text.Whitespace

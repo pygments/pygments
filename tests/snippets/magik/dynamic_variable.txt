@@ -1,0 +1,32 @@
+---input---
+!terminal!
+sw:!terminal!
+|!terminal!|
+|!terminal|!
+!|terminal|!
+!||!
+
+---tokens---
+'!terminal!'  Name.Variable
+'\n'          Text.Whitespace
+
+'sw:!terminal!' Name.Variable.Global
+'\n'          Text.Whitespace
+
+'|!terminal!|' Name.Variable
+'\n'          Text.Whitespace
+
+'|!terminal|' Name.Variable
+'!'           Name
+'\n'          Text.Whitespace
+
+'!'           Name
+'|terminal|'  Name.Variable
+'!'           Name
+'\n'          Text.Whitespace
+
+'!'           Name
+'|'           Punctuation
+'|'           Punctuation
+'!'           Name
+'\n'          Text.Whitespace
