@@ -1602,6 +1602,49 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'interrupt-controller' Name.Function
+'@'           Operator
+'c000000'     Literal.Number.Integer
+' '           Comment.Multiline
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t\t'      Text.Whitespace
+'interrupts-extended' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'&'           Operator
+'gic'         Name.Attribute
+' '           Text.Whitespace
+'0x1'         Literal.Number.Hex
+' '           Text.Whitespace
+'&'           Operator
+'gic'         Name.Attribute
+' '           Text.Whitespace
+'0x2'         Literal.Number.Hex
+' '           Text.Whitespace
+'&'           Operator
+'gic'         Name.Attribute
+'\n'          Text.Whitespace
+
+'\t\t\t                        ' Text.Whitespace
+'0x3'         Literal.Number.Hex
+' '           Text.Whitespace
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
 '\t'          Text.Whitespace
 '}'           Punctuation
 ';'           Punctuation

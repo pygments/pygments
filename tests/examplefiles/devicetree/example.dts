@@ -205,5 +205,10 @@
 			reg = < 0x200000 0x1000 >;
 			qcom,start-offset = < 0x90010 >;
 		};
+
+		interrupt-controller@c000000 {
+			interrupts-extended = < &gic 0x1 &gic 0x2 &gic
+			                        0x3 >;
+		};
 	};
 };
