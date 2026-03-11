@@ -748,22 +748,74 @@ class NasmLexer(RegexLexer):
     floatn = decn + r'\.e?' + decn
     string = r'"(\\"|[^"\n])*"|' + r"'(\\'|[^'\n])*'|" + r"`(\\`|[^`\n])*`"
     declkw = r'(?:res|d)[bwdqt]|times'
-    register = (r'(r[0-9][0-5]?[bwd]?|'
-                r'[a-d][lh]|[er]?[a-d]x|[er]?[sb]p|[er]?[sd]i|[c-gs]s|st[0-7]|'
-                r'mm[0-7]|cr[0-4]|dr[0-367]|tr[3-7]|k[0-7]|'
-                r'[xyz]mm(?:[12][0-9]?|3[01]?|[04-9]))\b')
+    register = (
+        r'(?:'
+        # x86-64 general purpose: rax, rbx, rcx, rdx, rsi, rdi, rbp, rsp,
+        # r8-r15 and their 8/16/32-bit variants (r8b, r8w, r8d, etc.)
+        r'r(?:1[0-5]|[89])[bwd]?|'
+        # 64-bit named GP registers
+        r'r(?:ax|bx|cx|dx|si|di|bp|sp)|'
+        # 32-bit named GP registers
+        r'e(?:ax|bx|cx|dx|si|di|bp|sp)|'
+        # 16-bit named GP registers
+        r'(?:ax|bx|cx|dx|si|di|bp|sp)|'
+        # 8-bit GP registers: al, bl, cl, dl, ah, bh, ch, dh, sil, dil, bpl, spl
+        r'[abcd][lh]|(?:si|di|bp|sp)l|'
+        # Segment registers
+        r'[cdefgs]s|'
+        # FPU stack
+        r'st[0-7]|'
+        # MMX
+        r'mm[0-7]|'
+        # XMM 0-31, YMM 0-31, ZMM 0-31
+        r'[xyz]mm(?:[12][0-9]|3[01]|[0-9])|'
+        # AVX-512 opmask registers
+        r'k[0-7]|'
+        # MPX bound registers
+        r'bnd[0-3]|'
+        # Control registers cr0-cr15
+        r'cr1[0-5]|cr[0-9]|'
+        # Debug registers dr0-dr7
+        r'dr[0-7]|'
+        # Test registers tr0-tr7 (legacy)
+        r'tr[0-7]|'
+        # Instruction pointer registers
+        r'r?(?:e?ip)|'
+        # Flags registers
+        r'r?(?:eflags|flags)|'
+        # Special system registers
+        r'mxcsr|[gil]dtr|tr'
+        r')(?![a-zA-Z0-9_])'
+    )
     wordop = r'seg|wrt|strict|rel|abs'
     type = r'byte|[dq]?word'
-    # Directives must be followed by whitespace, otherwise CPU will match
-    # cpuid for instance.
+    # Preprocessor directives (% prefix, may be indented)
+    preproc_directives = (
+        r'%(?:define|xdefine|undef|assign|defstr|deftok|strcat|strlen|substr|'
+        r'if(?:n?def|n?ctx|id(?:ni)?|num|str|token|macro|istruc|ifdef|'
+        r'ifndef|elifdef|elifndef|elifctx|elifid|elifnum|elifstr)?|'
+        r'elif(?:n?def|n?ctx|id(?:ni)?|num|str|token)?|'
+        r'else|endif|'
+        r'include|push|pop|repl|'
+        r'(?:i?)macro|endmacro|rotate|'
+        r'rep|endrep|exitrep|'
+        r'error|warning|fatal|line|'
+        r'local|arg|stacksize|use|'
+        r'[!])'
+    )
+    # Assembler directives must be followed by whitespace or end-of-line,
+    # to avoid matching e.g. 'cpuid' when scanning for 'CPU'.
+    # TIMES is handled by declkw (as Keyword.Declaration) so is excluded here.
     directives = (r'(?:BITS|USE16|USE32|SECTION|SEGMENT|ABSOLUTE|EXTERN|GLOBAL|'
-                  r'ORG|ALIGN|STRUC|ENDSTRUC|COMMON|CPU|GROUP|UPPERCASE|IMPORT|'
-                  r'EXPORT|LIBRARY|MODULE)(?=\s)')
+                  r'ORG|ALIGN|ALIGNB|STRUC|ENDSTRUC|ISTRUC|IEND|AT|COMMON|CPU|'
+                  r'FLOAT|INCBIN|GROUP|UPPERCASE|IMPORT|EXPORT|LIBRARY|'
+                  r'MODULE)(?=\s|$)')
 
     flags = re.IGNORECASE | re.MULTILINE
     tokens = {
         'root': [
-            (r'^\s*%', Comment.Preproc, 'preproc'),
+            # Preprocessor directives may be indented (issue #728)
+            (r'^\s*' + preproc_directives, Comment.Preproc, 'preproc'),
             include('whitespace'),
             (identifier + ':', Name.Label),
             (rf'({identifier})(\s+)(equ)',
@@ -781,6 +833,10 @@ class NasmLexer(RegexLexer):
             (binn, Number.Bin),
             (floatn, Number.Float),
             (decn, Number.Integer),
+            # Disassembly annotation: <symbol@plt>, <symbol+0xoffset>, etc.
+            # Must be checked before punctuation to prevent '<' being eaten as Operator.
+            (r'<' + identifier + r'(?:@[a-z0-9_.]+)?(?:[+-]0x[0-9a-f]+)?>',
+                Comment.Special),
             include('punctuation'),
             (register, Name.Builtin),
             (identifier, Name.Variable),

@@ -81,7 +81,7 @@
 '    '        Text.Whitespace
 'rdi'         Name.Builtin
 ',['          Punctuation
-'rip'         Name.Variable
+'rip'         Name.Builtin
 '+'           Operator
 '0x0'         Literal.Number.Hex
 ']'           Punctuation
@@ -96,11 +96,7 @@
 '   '         Text.Whitespace
 '1b'          Literal.Number.Bin
 ' '           Text.Whitespace
-'<'           Operator
-'foo'         Name.Variable
-'+'           Operator
-'0x1b'        Literal.Number.Hex
-'>'           Operator
+'<foo+0x1b>'  Comment.Special
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace

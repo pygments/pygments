@@ -1,0 +1,26 @@
+---input---
+call 0x400560 <sprintf@plt>
+jmp 0x400600 <main>
+call 0x400570 <foo+0x10>
+
+---tokens---
+'call'        Name.Function
+' '           Text.Whitespace
+'0x400560'    Literal.Number.Hex
+' '           Text.Whitespace
+'<sprintf@plt>' Comment.Special
+'\n'          Text.Whitespace
+
+'jmp'         Name.Function
+' '           Text.Whitespace
+'0x400600'    Literal.Number.Hex
+' '           Text.Whitespace
+'<main>'      Comment.Special
+'\n'          Text.Whitespace
+
+'call'        Name.Function
+' '           Text.Whitespace
+'0x400570'    Literal.Number.Hex
+' '           Text.Whitespace
+'<foo+0x10>'  Comment.Special
+'\n'          Text.Whitespace
