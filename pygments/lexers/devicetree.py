@@ -65,7 +65,7 @@ class DevicetreeLexer(RegexLexer):
             (r'([~!%^&*+=|?:<>/#-])', Operator),
             (r'[(){},.\]]', Punctuation),
             (r'\[', Punctuation, 'bytestring'),
-            (r'[a-zA-Z_][\w-]*(?=(?:\s*,\s*[a-zA-Z_][\w-]*|(?:' + _ws + r'))*\s*[=;])',
+            (r'[a-zA-Z_][\w-]*(?=(?:\s*,' + _ws + r'[a-zA-Z_][\w-]*)*' + _ws + r'[=;])',
              Name),
             (r'[a-zA-Z_]\w*', Name.Attribute),
         ],
