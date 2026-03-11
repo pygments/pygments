@@ -747,7 +747,6 @@ class NasmLexer(RegexLexer):
     decn = r'[0-9]+'
     floatn = decn + r'\.e?' + decn
     string = r'"(\\"|[^"\n])*"|' + r"'(\\'|[^'\n])*'|" + r"`(\\`|[^`\n])*`"
-    declkw = r'(?:res|d)[bwdqt]|times'
     register = (
         r'(?:'
         # x86-64 general purpose: rax, rbx, rcx, rdx, rsi, rdi, rbp, rsp,
@@ -787,42 +786,53 @@ class NasmLexer(RegexLexer):
         r'mxcsr|[gil]dtr|tr'
         r')(?![a-zA-Z0-9_])'
     )
-    wordop = r'seg|wrt|strict|rel|abs'
-    type = r'byte|[dq]?word'
-    # Preprocessor directives (% prefix, may be indented)
-    preproc_directives = (
-        r'%(?:define|xdefine|undef|assign|defstr|deftok|strcat|strlen|substr|'
-        r'if(?:n?def|n?ctx|id(?:ni)?|num|str|token|macro|istruc|ifdef|'
-        r'ifndef|elifdef|elifndef|elifctx|elifid|elifnum|elifstr)?|'
-        r'elif(?:n?def|n?ctx|id(?:ni)?|num|str|token)?|'
-        r'else|endif|'
-        r'include|push|pop|repl|'
-        r'(?:i?)macro|endmacro|rotate|'
-        r'rep|endrep|exitrep|'
-        r'error|warning|fatal|line|'
-        r'local|arg|stacksize|use|'
-        r'[!])'
-    )
-    # Assembler directives must be followed by whitespace or end-of-line,
+    # Preprocessor directives (% prefix, may be indented; issue #728).
+    # The ^\s*% anchor is embedded in the prefix so no string concatenation
+    # is needed when referencing this words() Future in the tokens dict.
+    preproc_directives = words((
+        'define', 'xdefine', 'undef', 'assign', 'defstr', 'deftok',
+        'strcat', 'strlen', 'substr',
+        'if', 'ifdef', 'ifndef', 'ifmacro',
+        'ifctx', 'ifnctx',
+        'ifidn', 'ifidni', 'ifid',
+        'ifnum', 'ifstr', 'iftoken',
+        'elif', 'elifdef', 'elifndef', 'elifmacro',
+        'elifctx', 'elifnctx',
+        'elifidn', 'elifidni', 'elifid',
+        'elifnum', 'elifstr', 'eliftoken',
+        'else', 'endif',
+        'include', 'push', 'pop', 'repl',
+        'macro', 'imacro', 'endmacro', 'rotate',
+        'rep', 'endrep', 'exitrep',
+        'error', 'warning', 'fatal', 'line',
+        'local', 'arg', 'stacksize', 'use',
+        '!',
+    ), prefix=r'^\s*%')
+    # Assembler directives must be followed by whitespace or end-of-line
     # to avoid matching e.g. 'cpuid' when scanning for 'CPU'.
-    # TIMES is handled by declkw (as Keyword.Declaration) so is excluded here.
-    directives = (r'(?:BITS|USE16|USE32|SECTION|SEGMENT|ABSOLUTE|EXTERN|GLOBAL|'
-                  r'ORG|ALIGN|ALIGNB|STRUC|ENDSTRUC|ISTRUC|IEND|AT|COMMON|CPU|'
-                  r'FLOAT|INCBIN|GROUP|UPPERCASE|IMPORT|EXPORT|LIBRARY|'
-                  r'MODULE)(?=\s|$)')
+    # TIMES is handled as Keyword.Declaration (see tokens dict) so is excluded.
+    directives = words((
+        'BITS', 'USE16', 'USE32', 'SECTION', 'SEGMENT', 'ABSOLUTE',
+        'EXTERN', 'GLOBAL', 'ORG', 'ALIGN', 'ALIGNB', 'STRUC',
+        'ENDSTRUC', 'ISTRUC', 'IEND', 'AT', 'COMMON', 'CPU',
+        'FLOAT', 'INCBIN', 'GROUP', 'UPPERCASE', 'IMPORT', 'EXPORT',
+        'LIBRARY', 'MODULE',
+    ), suffix=r'(?=\s|$)')
 
     flags = re.IGNORECASE | re.MULTILINE
     tokens = {
         'root': [
             # Preprocessor directives may be indented (issue #728)
-            (r'^\s*' + preproc_directives, Comment.Preproc, 'preproc'),
+            (preproc_directives, Comment.Preproc, 'preproc'),
             include('whitespace'),
             (identifier + ':', Name.Label),
             (rf'({identifier})(\s+)(equ)',
                 bygroups(Name.Constant, Whitespace, Keyword.Declaration),
                 'instruction-args'),
             (directives, Keyword, 'instruction-args'),
-            (declkw, Keyword.Declaration, 'instruction-args'),
+            (words(('resb', 'resw', 'resd', 'resq', 'rest',
+                    'db', 'dw', 'dd', 'dq', 'dt', 'times'), suffix=r'\b'),
+             Keyword.Declaration, 'instruction-args'),
             (identifier, Name.Function, 'instruction-args'),
             (r'[\r\n]+', Whitespace)
         ],
@@ -858,8 +868,10 @@ class NasmLexer(RegexLexer):
             (r'[,{}():\[\]]+', Punctuation),
             (r'[&|^<>+*/%~-]+', Operator),
             (r'[$]+', Keyword.Constant),
-            (wordop, Operator.Word),
-            (type, Keyword.Type)
+            (words(('seg', 'wrt', 'strict', 'rel', 'abs'), suffix=r'\b'),
+             Operator.Word),
+            (words(('byte', 'word', 'dword', 'qword'), suffix=r'\b'),
+             Keyword.Type),
         ],
     }
 
