@@ -1,0 +1,19 @@
+---input---
+Temperature ::= INTEGER (-50..150)  -- Temperature in Celsius
+
+---tokens---
+'Temperature' Name.Type
+' '           Text.Whitespace
+'::='         Operator
+' '           Text.Whitespace
+'INTEGER'     Keyword.Type
+' '           Text.Whitespace
+'('           Punctuation
+'-'           Operator
+'50'          Literal.Number.Integer
+'..'          Operator
+'150'         Literal.Number.Integer
+')'           Punctuation
+'  '          Text.Whitespace
+'-- Temperature in Celsius' Comment.Single
+'\n'          Text.Whitespace
