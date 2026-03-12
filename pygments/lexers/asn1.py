@@ -136,7 +136,7 @@ class Asn1Lexer(RegexLexer):
             (r'--.*$', Comment.Single),
             (r'/\*', Comment.Multiline, 'comment'),
             #  Numbers:
-            (r'\d+\.\d*([eE][-+]?\d+)?', Number.Float),
+            (r'\d+\.\d+([eE][-+]?\d+)?', Number.Float),
             (r'\d+', Number.Integer),
             # Identifier:
             (r"&?[a-z][-a-zA-Z0-9]*[a-zA-Z0-9]\b", Name.Variable),
@@ -155,7 +155,7 @@ class Asn1Lexer(RegexLexer):
             # Type identifier:
             (r"&?[A-Z][-a-zA-Z0-9]*[a-zA-Z0-9]\b", Name.Type),
             # Operators:
-            (r"(::=|\.\.\.|\.\.|\[\[|\]\]|\||\^)", Operator),
+            (r"(::=|\.\.\.|\.\.|\[\[|\]\]|\||\^|-)", Operator),
             # Punctuation:
             (r"(\.|,|\{|\}|\(|\)|\[|\])", Punctuation),
             # String:
