@@ -26,6 +26,7 @@ class VCLLexer(RegexLexer):
     mimetypes = ['text/x-vclsrc']
     url = 'https://www.varnish-software.com/developers/tutorials/varnish-configuration-language-vcl'
     version_added = '2.2'
+    _example = 'vcl/varnish.vcl'
 
     def analyse_text(text):
         # If the very first line is 'vcl 4.0;' it's pretty much guaranteed
@@ -167,6 +168,7 @@ class VCLSnippetLexer(VCLLexer):
     filenames = []
     url = 'https://www.varnish-software.com/developers/tutorials/varnish-configuration-language-vcl'
     version_added = '2.2'
+    _example = ""
 
     def analyse_text(text):
         # override method inherited from VCLLexer

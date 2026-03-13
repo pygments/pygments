@@ -25,6 +25,7 @@ class FactorLexer(RegexLexer):
     filenames = ['*.factor']
     mimetypes = ['text/x-factor']
     version_added = '1.4'
+    _example = 'factor/wiki.factor'
 
     builtin_kernel = words((
         '-rot', '2bi', '2bi@', '2bi*', '2curry', '2dip', '2drop', '2dup', '2keep', '2nip',
