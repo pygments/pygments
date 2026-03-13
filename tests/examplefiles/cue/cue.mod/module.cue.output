@@ -1,0 +1,23 @@
+'module'      Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'cue.example' Literal.String.Double
+'"'           Literal.String.Delimiter
+'\n'          Text.Whitespace
+
+'language'    Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'{'           Punctuation.Marker
+'\n\t'        Text.Whitespace
+'version'     Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'v0.14.0'     Literal.String.Double
+'"'           Literal.String.Delimiter
+'\n'          Text.Whitespace
+
+'}'           Punctuation.Marker
+'\n'          Text.Whitespace
