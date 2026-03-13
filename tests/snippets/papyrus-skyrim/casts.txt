@@ -1,0 +1,50 @@
+---input---
+Int a = 1
+Float b = a As Float
+Foo c = None
+Foo d = c As Foo
+
+---tokens---
+'Int'         Keyword.Type
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'Float'       Keyword.Type
+' '           Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'As'          Operator.Word
+' '           Text.Whitespace
+'Float'       Keyword.Type
+'\n'          Text.Whitespace
+
+'Foo'         Name.Class
+' '           Text.Whitespace
+'c'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'None'        Literal
+'\n'          Text.Whitespace
+
+'Foo'         Name.Class
+' '           Text.Whitespace
+'d'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'c'           Name.Variable
+' '           Text.Whitespace
+'As'          Operator.Word
+' '           Text.Whitespace
+'Foo'         Name.Class
+'\n'          Text.Whitespace
