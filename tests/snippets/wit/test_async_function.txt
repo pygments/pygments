@@ -1,0 +1,21 @@
+---input---
+read-async: async func() -> list<u8>;
+
+---tokens---
+'read-async'  Name
+':'           Punctuation
+' '           Text.Whitespace
+'async'       Keyword
+' '           Text.Whitespace
+'func'        Keyword
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'list'        Keyword.Type
+'<'           Punctuation
+'u8'          Keyword.Type
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

@@ -1,0 +1,78 @@
+package wasi:filesystem@0.2.0;
+
+/// A file descriptor resource
+@since(version = 0.2.0)
+interface types {
+    use wasi:clocks/wall-clock.{datetime};
+
+    /// File statistics
+    record stat {
+        ino: u64,
+        size: u64,
+        mtime: datetime,
+    }
+
+    /// Error codes
+    enum errno {
+        too-big,
+        too-small,
+        not-found,
+    }
+
+    /// Permission flags
+    flags permissions {
+        read,
+        write,
+        exec,
+    }
+
+    /// A variant type
+    variant filter {
+        all,
+        none,
+        some(list<string>),
+    }
+
+    /// Type aliases
+    type my-u32 = u32;
+    type my-result = result<string, errno>;
+    type fallible = result<_, errno>;
+    type no-err = result<u32>;
+
+    /// A resource type
+    resource file {
+        constructor(path: string);
+        read: func(n: u32) -> list<u8>;
+        write: func(bytes: list<u8>);
+        stat: static func(path: string) -> result<stat, errno>;
+    }
+
+    stat-file: func(path: string) -> result<stat>;
+}
+
+@unstable(feature = experimental-fs)
+interface experimental {
+    use types.{file, errno};
+
+    magic: func() -> result<file, errno>;
+}
+
+world my-world {
+    import wasi:logging/logger;
+    import types;
+
+    export run: func();
+    export handler: interface {
+        handle: func(input: string) -> string;
+    }
+}
+
+world union-world {
+    include my-world;
+    include other-world with { foo as bar };
+}
+
+/*
+ * Block comment
+ * /* Nested block comment */
+ */
