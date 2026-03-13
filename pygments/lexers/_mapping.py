@@ -77,6 +77,7 @@ LEXERS = {
     'CarbonLexer': ('pygments.lexers.carbon', 'Carbon', ('carbon',), ('*.carbon',), ('text/x-carbon',)),
     'CbmBasicV2Lexer': ('pygments.lexers.basic', 'CBM BASIC V2', ('cbmbas',), ('*.bas',), ()),
     'CddlLexer': ('pygments.lexers.cddl', 'CDDL', ('cddl',), ('*.cddl',), ('text/x-cddl',)),
+    'CELLexer': ('pygments.lexers.cel', 'CEL', ('cel',), ('*.cel',), ()),
     'CeylonLexer': ('pygments.lexers.jvm', 'Ceylon', ('ceylon',), ('*.ceylon',), ('text/x-ceylon',)),
     'Cfengine3Lexer': ('pygments.lexers.configs', 'CFEngine3', ('cfengine3', 'cf3'), ('*.cf',), ()),
     'ChaiscriptLexer': ('pygments.lexers.scripting', 'ChaiScript', ('chaiscript', 'chai'), ('*.chai',), ('text/x-chaiscript', 'application/x-chaiscript')),
