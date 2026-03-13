@@ -1,0 +1,18 @@
+---input---
+sp {
+   -->
+   (interrupt) }
+
+---tokens---
+'sp'          Keyword.Reserved
+' '           Text.Whitespace
+'{'           Punctuation
+'\n   '       Text.Whitespace
+'-->'         Punctuation
+'\n   '       Text.Whitespace
+'('           Punctuation
+'interrupt'   Name.Builtin
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
