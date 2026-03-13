@@ -1,0 +1,65 @@
+-- version swan: 2025.0 graph: 2.0
+function N (i0: int32;
+            I1 : int16;)
+  returns (o0: int32)
+{
+  diagram
+    (#0 expr i0
+    #pragma diagram {"xy":"H-20925;V-3325"} #end)
+    (#1 def tmp
+    #pragma diagram {"xy":"H7000;V-3325"} #end)
+    (#2 expr I1
+    #pragma diagram {"xy":"H-20925;V6925"} #end)
+    (#3 expr tmp
+    #pragma diagram {"xy":"H-20925;V15075"} #end)
+    (#4 def o0
+    #pragma diagram {"xy":"H31150;V8825"} #end)
+    (#5 expr #6 + #7
+      where
+        (#6 group)
+        (#7 group)
+    #pragma diagram {"xy":"H11050;V8825"} #end)
+    (#8 expr (#9 :> int32)
+      where
+        (#9 group)
+    #pragma diagram {"xy":"H-5125;V6925","wh":"14000;7000"} #end)
+    (#10 wire #0 => #1)
+    (#11 wire #2 => #9)
+    (#12 wire #3 => #7
+    #pragma diagram {"wp":"#3 h3537 v-4350 #7"} #end)
+    (#13 wire #8 => #6)
+    (#14 wire #5 => #4)
+    (var
+        tmp;)
+}
+
+type Color = enum {
+  #pragma cg C:enum_val 0 #end RED,
+  #pragma cg C:enum_val 1 #end BLUE
+};
+
+function IsColor(a: Color; b: Color) returns (x: bool)
+  x = (a = b);
+
+node
+  #pragma cg C:name OP1 #end
+  #pragma cg doc This operator operates ##end # #end
+  operator1<<N>>(i0: float32 default = 3.14_f32; i1: Color^N; i2:'a)
+    returns (o1: uint32 last = 42; o2: bool default = true) where 'a integer
+{
+let
+  o1, o2:
+      activate $act if (i0 > 0.) then {
+        var tmp;
+        let tmp = (map (IsColor \ a: RED))<<N>>(i1);
+            o2 = (fold (and))<<N>>(true, tmp);
+            o1 = 0o700 + (i2 :> uint32); -- octal notation
+      }
+      elsif (false -> not (last 'i0 > 1.5e-24)) then {
+        let o1 = 0xFF; /* hexadecimal
+                          notation */
+      }
+      else {
+        let o1 = 0b0101010101010101 /* /* nested comment */ */ + last 'o1;
+      };
+}
