@@ -247,8 +247,8 @@ fn trimStart(slice: []const u8, ch: u8) []const u8 {
     const test_string = "test\"string";
     for (slice) |b| {
         if (b == '\xa3') break;
-        if (b == '\ua3d3') break;
-        if (b == '\Ua3d3d3') break;
+        if (b == '\u{a3d3}') break;
+        if (b == '\u{a3d3d3}') break;
         if (b == '\t') break;
         if (b == '\n') break;
         if (b == '\\') break;
