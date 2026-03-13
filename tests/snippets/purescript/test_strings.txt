@@ -1,0 +1,66 @@
+---input---
+"hello world"
+"escape\n\t\\\""
+"""raw string"""
+"""raw "quotes" here"""
+'a'
+'\n'
+"\x0041"
+"hello\  \world"
+
+---tokens---
+'"'           Literal.String
+'hello world' Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'"'           Literal.String
+'escape'      Literal.String
+'\\'          Literal.String.Escape
+'n'           Literal.String.Escape
+'\\'          Literal.String.Escape
+'t'           Literal.String.Escape
+'\\'          Literal.String.Escape
+'\\'          Literal.String.Escape
+'\\'          Literal.String.Escape
+'"'           Literal.String.Escape
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'"""'         Literal.String
+'raw string'  Literal.String
+'"""'         Literal.String
+'\n'          Text.Whitespace
+
+'"""'         Literal.String
+'raw '        Literal.String
+'"'           Literal.String
+'quotes'      Literal.String
+'"'           Literal.String
+' here'       Literal.String
+'"""'         Literal.String
+'\n'          Text.Whitespace
+
+"'a'"         Literal.String.Char
+'\n'          Text.Whitespace
+
+"'"           Literal.String.Char
+'\\'          Literal.String.Escape
+'n'           Literal.String.Escape
+"'"           Literal.String.Char
+'\n'          Text.Whitespace
+
+'"'           Literal.String
+'\\'          Literal.String.Escape
+'x0041'       Literal.String.Escape
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'"'           Literal.String
+'hello'       Literal.String
+'\\'          Literal.String.Escape
+'  '          Text.Whitespace
+'\\'          Literal.String.Escape
+'world'       Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
