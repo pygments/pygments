@@ -1,0 +1,34 @@
+---input---
+a ** b
+c // d
+x << 2
+y >> 3
+
+---tokens---
+'a'           Name
+' '           Text.Whitespace
+'**'          Operator
+' '           Text.Whitespace
+'b'           Name
+'\n'          Text.Whitespace
+
+'c'           Name
+' '           Text.Whitespace
+'//'          Operator
+' '           Text.Whitespace
+'d'           Name
+'\n'          Text.Whitespace
+
+'x'           Name
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'y'           Name
+' '           Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+'\n'          Text.Whitespace

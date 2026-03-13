@@ -1,0 +1,37 @@
+---input---
+extcall token.transfer(to, amt)
+staticcall token.balanceOf(self)
+delegatecall target.foo()
+
+---tokens---
+'extcall'     Keyword
+' '           Text.Whitespace
+'token'       Name
+'.'           Punctuation
+'transfer'    Name
+'('           Punctuation
+'to'          Name
+','           Punctuation
+' '           Text.Whitespace
+'amt'         Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'staticcall'  Keyword
+' '           Text.Whitespace
+'token'       Name
+'.'           Punctuation
+'balanceOf'   Name
+'('           Punctuation
+'self'        Name.Builtin.Pseudo
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'delegatecall' Keyword
+' '           Text.Whitespace
+'target'      Name
+'.'           Punctuation
+'foo'         Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace

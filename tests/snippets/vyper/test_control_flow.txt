@@ -1,0 +1,34 @@
+---input---
+for i: uint256 in range(10):
+    if i == 5:
+        break
+    continue
+
+---tokens---
+'for'         Keyword
+' '           Text.Whitespace
+'i:'          Name.Variable
+' '           Text.Whitespace
+'uint256'     Keyword.Type
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'range'       Name.Builtin
+'('           Punctuation
+'10'          Literal.Number.Integer
+')'           Punctuation
+':'           Punctuation
+'\n    '      Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+':'           Punctuation
+'\n        '  Text.Whitespace
+'break'       Keyword
+'\n    '      Text.Whitespace
+'continue'    Keyword
+'\n'          Text.Whitespace

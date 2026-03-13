@@ -1,0 +1,15 @@
+---input---
+@deploy
+def __init__():
+
+---tokens---
+'@deploy'     Name.Decorator
+'\n'          Text.Whitespace
+
+'def'         Keyword
+' '           Text.Whitespace
+'__init__'    Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+'\n'          Text.Whitespace
