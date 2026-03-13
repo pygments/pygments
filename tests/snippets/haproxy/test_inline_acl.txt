@@ -1,0 +1,25 @@
+---input---
+frontend web
+	use_backend app if { hdr_beg(host) -i api }
+
+---tokens---
+'frontend'    Keyword
+' '           Text.Whitespace
+'web'         Name.Namespace
+'\n\t'        Text.Whitespace
+'use_backend' Name.Attribute
+' '           Text.Whitespace
+'app'         Literal.String
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'hdr_beg(host)' Literal.String
+' '           Text.Whitespace
+'-i'          Operator
+' '           Text.Whitespace
+'api'         Literal.String
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
