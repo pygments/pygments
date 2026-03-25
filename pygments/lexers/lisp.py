@@ -441,7 +441,7 @@ class CommonLispLexer(RegexLexer):
             (r'(#s)(\()', bygroups(Literal.Other, Punctuation), 'body'),
 
             # path
-            (r'#p?"(\\.|[^"])*"', Literal.Other),
+            (r'#p?"(\\.|[^"\\])*"', Literal.Other),
 
             # reference
             (r'#\d+=', Operator),
