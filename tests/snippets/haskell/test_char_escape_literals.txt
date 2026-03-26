@@ -1,0 +1,18 @@
+---input---
+'\n'
+'\t'
+'\\'
+'a'
+
+---tokens---
+"'\\n'"       Literal.String.Char
+'\n'          Text.Whitespace
+
+"'\\t'"       Literal.String.Char
+'\n'          Text.Whitespace
+
+"'\\\\'"      Literal.String.Char
+'\n'          Text.Whitespace
+
+"'a'"         Literal.String.Char
+'\n'          Text.Whitespace
