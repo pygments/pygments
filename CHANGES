@@ -13,13 +13,33 @@ Version 2.20.0
 
 - Updated lexers:
 
+  * C++: Add C++26 keywords (#2955), add integer literal suffixes (#2966)
+  * Coq renamed to Rocq (#2883, #2908)
+  * Cython: Various improvements (#2932, #2933)
+  * Fennel: Various improvements (#2911)
+  * Java: Add module keywords (#2955)
+  * Lean4: Add operators ``]'``, ``]?``, ``]!``  (#2946)
   * LESS: Support single-line comments (#3005)
   * LilyPond: Update to 2.25.29 (#2974)
+  * Macaulay2: Update to 1.25.05 (#2893)
+  * Mathematica: Various improvements (#2957)
+  * meson: Add additional operators (#2919)
+  * MySQL: Update keywords (#2970)
+  * org-Mode: Support both schedule and deadline (#2899)
+  * PHP: Add ``__PROPERTY__`` magic constant (#2924)
+  * protobuf: Fix namespace tokenization (#2929)
+  * Python: Add ``t``-string support (#2973, #3009, #3010)
+  * Tablegen: Fix infinite loop (#2972, #2940)
   * Tera Term macro: Add commands introduced in v5.3 through v5.6 (#2951)
-  * Python: Add ``t``-string support (#3009, #3010)
   * TOML: Support TOML 1.1.0 (#3026)
+  * Turtle: Allow empty comment lines (#2980)
+  * XML: Added ``.xbrl`` as file ending (#2890, #2891)
 
 - Drop Python 3.8, and add Python 3.14 as a supported version (#2987, #3012)
+- Various improvements to ``autopygmentize`` (#2894)
+- Update ``onedark`` style to support more token types (#2977)
+- Update ``rtt`` style to support more token types (#2895)
+- Cache entry points to improve performance (#2979)
 
 Version 2.19.2
 --------------
