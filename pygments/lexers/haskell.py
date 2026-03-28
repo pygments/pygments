@@ -53,7 +53,8 @@ class HaskellLexer(RegexLexer):
             (r'\bmodule\b', Keyword.Reserved, 'module'),
             (r'\berror\b', Name.Exception),
             (r'\b({})(?!\')\b'.format('|'.join(reserved)), Keyword.Reserved),
-            (r"'[^\\]'", String.Char),  # this has to come before the TH quote
+            (r"'[^\\]'", String.Char),  # character literal
+            (r"'\\.'", String.Char),  # escape character literal (e.g. '\n')
             (r'^[_' + uni.Ll + r'][\w\']*', Name.Function),
             (r"'?[_" + uni.Ll + r"][\w']*", Name),
             (r"('')?[" + uni.Lu + r"][\w\']*", Keyword.Type),
