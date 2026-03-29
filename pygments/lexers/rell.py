@@ -1,6 +1,6 @@
 """
     pygments.lexers.rell
-    ~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for the Rell language.
 
@@ -13,6 +13,7 @@ from pygments.token import Comment, Keyword, Name, String, Number, \
         Punctuation, Whitespace
 
 __all__ = ['RellLexer']
+
 
 class RellLexer(RegexLexer):
     """
