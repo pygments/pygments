@@ -1,6 +1,6 @@
 """
     pygments.lexers.rell
-    ~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~
 
     Lexers for the Rell language.
 
