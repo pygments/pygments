@@ -1,4 +1,5 @@
-from typing import Iterator
+from collections.abc import Iterator
+
 
 # This is an example
 class Math:
@@ -9,6 +10,7 @@ class Math:
         while a < n:
             yield a
             a, b = b, a + b
+
 
 result = sum(Math.fib(42))
 print(f"The answer is {result}")

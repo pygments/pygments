@@ -251,6 +251,67 @@
 '\n'          Text.Whitespace
 
 '&'           Operator
+'lan1'        Name.Function
+' '           Comment.Multiline
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'local-mac-address' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'00'          Literal.Number.Hex
+' '           Text.Whitespace
+'00'          Literal.Number.Hex
+' '           Text.Whitespace
+'12'          Literal.Number.Hex
+' '           Text.Whitespace
+'13'          Literal.Number.Hex
+' '           Text.Whitespace
+'BE'          Literal.Number.Hex
+' '           Text.Whitespace
+'EF'          Literal.Number.Hex
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'&'           Operator
+'lan2'        Name.Function
+' '           Comment.Multiline
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'local-mac-address' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'12'          Literal.Number.Hex
+'34'          Literal.Number.Hex
+'AB'          Literal.Number.Hex
+'CD'          Literal.Number.Hex
+'56'          Literal.Number.Hex
+'78'          Literal.Number.Hex
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'&'           Operator
 'ecspi1'      Name.Function
 ' '           Comment.Multiline
 '{'           Punctuation
@@ -576,6 +637,122 @@
 
 '\t'          Text.Whitespace
 '}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'&'           Operator
+'i2c1'        Name.Function
+' '           Comment.Multiline
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'serlcd'      Name.Function
+'@'           Operator
+'72'          Literal.Number.Integer
+' '           Comment.Multiline
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'compatible'  Keyword.Reserved
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'sparkfun,serlcd' Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'reg'         Keyword.Reserved
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'<'           Operator
+'0x72'        Literal.Number.Hex
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'columns'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'<'           Operator
+'16'          Literal.Number.Integer
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'rows'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'<'           Operator
+'2'           Literal.Number.Integer
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'command-delay-ms' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'<'           Operator
+'10'          Literal.Number.Integer
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'special-command-delay-ms' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'<'           Operator
+'50'          Literal.Number.Integer
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'&'           Operator
+'{'           Punctuation
+'/soc/i2c@e000d800' Name.Namespace
+'}'           Punctuation
+' '           Comment.Multiline
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'status'      Keyword.Reserved
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'okay'        Literal.String
+'"'           Literal.String
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -1415,6 +1592,49 @@
 '<'           Operator
 ' '           Text.Whitespace
 '0x90010'     Literal.Number.Hex
+' '           Text.Whitespace
+'>'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'interrupt-controller' Name.Function
+'@'           Operator
+'c000000'     Literal.Number.Integer
+' '           Comment.Multiline
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t\t'      Text.Whitespace
+'interrupts-extended' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'&'           Operator
+'gic'         Name.Attribute
+' '           Text.Whitespace
+'0x1'         Literal.Number.Hex
+' '           Text.Whitespace
+'&'           Operator
+'gic'         Name.Attribute
+' '           Text.Whitespace
+'0x2'         Literal.Number.Hex
+' '           Text.Whitespace
+'&'           Operator
+'gic'         Name.Attribute
+'\n'          Text.Whitespace
+
+'\t\t\t                        ' Text.Whitespace
+'0x3'         Literal.Number.Hex
 ' '           Text.Whitespace
 '>'           Operator
 ';'           Punctuation

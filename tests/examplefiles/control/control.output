@@ -138,9 +138,18 @@
 '\n '         Text.Whitespace
 'p1'          Name.Function
 ' '           Text
+'['           Punctuation
+'amd64'       Name.Entity
+']'           Punctuation
+' '           Text
 '|'           Operator
 ' '           Text
 'p2'          Name.Function
+' '           Text
+'['           Punctuation
+'!'           Operator
+'riscv64'     Name.Entity
+']'           Punctuation
 ','           Text
 '\n '         Text.Whitespace
 'otherdependancies' Name.Function

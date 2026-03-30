@@ -4,7 +4,7 @@
 
     Lexers for Lispy languages.
 
-    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-present by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -441,7 +441,7 @@ class CommonLispLexer(RegexLexer):
             (r'(#s)(\()', bygroups(Literal.Other, Punctuation), 'body'),
 
             # path
-            (r'#p?"(\\.|[^"])*"', Literal.Other),
+            (r'#p?"(\\.|[^"\\])*"', Literal.Other),
 
             # reference
             (r'#\d+=', Operator),

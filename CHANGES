@@ -3,14 +3,59 @@ Pygments changelog
 
 Pull request numbers before 2.4.2 are not linked as they refer to the now defunct Bitbucket project.
 
+Version 2.21.0
+---------------
+(not released yet)
+
 Version 2.20.0
 --------------
-(unreleased)
+(released March 29th, 2026)
 
 - New lexers:
 
   * ES|QL (#2876)
   * Rell (#2914)
+
+- Updated lexers:
+
+  * archetype: Fix catastrophic backtracking in GUID and ID patterns (#3064)
+  * ASN.1: Recognize minus sign and fix range operator (#3014, #3060)
+  * C++: Add C++26 keywords (#2955), add integer literal suffixes (#2966)
+  * ComponentPascal: Fix ``analyse_text`` (#3028, #3032)
+  * Coq renamed to Rocq (#2883, #2908)
+  * Cython: Various improvements (#2932, #2933)
+  * Debian control: Improve architecture parsing (#3052)
+  * Devicetree: Add support for overlay/fragments (#3021), add bytestring support (#3022), fix catastrophic backtracking (#3057)
+  * Fennel: Various improvements (#2911)
+  * Haskell: Handle escape sequences in character literals (#3069, #1795)
+  * Java: Add module keywords (#2955)
+  * Lean4: Add operators ``]'``, ``]?``, ``]!``  (#2946)
+  * LESS: Support single-line comments (#3005)
+  * LilyPond: Update to 2.25.29 (#2974)
+  * LLVM: Support C-style comments (#3023, #2978)
+  * Lua(u): Fix catastrophic backtracking (#3047)
+  * Macaulay2: Update to 1.25.05 (#2893), 1.25.11 (#2988)
+  * Mathematica: Various improvements (#2957)
+  * meson: Add additional operators (#2919)
+  * MySQL: Update keywords (#2970)
+  * org-Mode: Support both schedule and deadline (#2899)
+  * PHP: Add ``__PROPERTY__`` magic constant (#2924), add reserved keywords (#3002)
+  * PostgreSQL: Add more keywords (#2985)
+  * protobuf: Fix namespace tokenization (#2929)
+  * Python: Add ``t``-string support (#2973, #3009, #3010)
+  * Tablegen: Fix infinite loop (#2972, #2940)
+  * Tera Term macro: Add commands introduced in v5.3 through v5.6 (#2951)
+  * TOML: Support TOML 1.1.0 (#3026, #3027)
+  * Turtle: Allow empty comment lines (#2980)
+  * XML: Added ``.xbrl`` as file ending (#2890, #2891)
+
+- Drop Python 3.8, and add Python 3.14 as a supported version (#2987, #3012)
+- Various improvements to ``autopygmentize`` (#2894)
+- Update ``onedark`` style to support more token types (#2977)
+- Update ``rtt`` style to support more token types (#2895)
+- Cache entry points to improve performance (#2979)
+- Fix ``xterm-256`` color table (#3043)
+- Fix ``kwargs`` dictionary getting mutated on each call (#3044)
 
 Version 2.19.2
 --------------
@@ -71,7 +116,7 @@ Version 2.19.0
 * Add a color for ``Operator.Word`` to the ``rrt`` style (#2709)
 * Fix broken link in the documentation (#2803, #2804)
 * Drop executable bit where not needed (#2781)
-* Reduce Mojo priority relative to Python in ``analyze_text´` (#2771, #2772)
+* Reduce Mojo priority relative to Python in ``analyze_text`` (#2771, #2772)
 * Fix documentation builds (#2712)
 * Match example file names to the lexer's name (#2713, #2715)
 * Ensure lexer metadata is present (#2714)

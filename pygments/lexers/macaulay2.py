@@ -4,7 +4,7 @@
 
     Lexer for Macaulay2.
 
-    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-present by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -13,7 +13,7 @@ from pygments.token import Comment, Keyword, Name, String, Text
 
 __all__ = ['Macaulay2Lexer']
 
-# Auto-generated for Macaulay2-1.25.05. Do not modify this file manually.
+# Auto-generated for Macaulay2-1.25.11. Do not modify this file manually.
 
 M2KEYWORDS = (
     "SPACE",
@@ -138,6 +138,7 @@ M2DATATYPES = (
     "HypertextContainer",
     "HypertextParagraph",
     "HypertextVoid",
+    "IFRAME",
     "IMG",
     "INDENT",
     "INPUT",
@@ -843,6 +844,7 @@ M2FUNCTIONS = (
     "peek",
     "permanents",
     "permutations",
+    "pfaffian",
     "pfaffians",
     "pivots",
     "plus",
@@ -1215,6 +1217,7 @@ M2CONSTANTS = (
     "CotangentSchubert",
     "cotangentSurjection",
     "coverageSummary",
+    "CpMackeyFunctors",
     "Cremona",
     "currentFileDirectory",
     "currentFileName",
@@ -1250,7 +1253,6 @@ M2CONSTANTS = (
     "Dispatch",
     "DivideConquer",
     "DividedPowers",
-    "Divisor",
     "Dmodules",
     "docExample",
     "docTemplate",
@@ -1284,6 +1286,7 @@ M2CONSTANTS = (
     "Exclude",
     "exit",
     "Ext",
+    "ExteriorExtensions",
     "ExteriorIdeals",
     "ExteriorModules",
     "ExtLongExactSequence",
@@ -1397,6 +1400,7 @@ M2CONSTANTS = (
     "Jets",
     "Join",
     "JSON",
+    "JSONRPC",
     "K3Carpets",
     "K3Surfaces",
     "Keep",
@@ -1413,7 +1417,7 @@ M2CONSTANTS = (
     "LengthLimit",
     "Lex",
     "LexIdeals",
-    "LieTypes",
+    "LieAlgebraRepresentations",
     "Limit",
     "Linear",
     "LinearAlgebra",
@@ -1439,6 +1443,7 @@ M2CONSTANTS = (
     "MapleInterface",
     "Markov",
     "MatchingFields",
+    "MatrixFactorizations",
     "MatrixSchubert",
     "Matroids",
     "maxAllowableThreads",
@@ -1490,9 +1495,11 @@ M2CONSTANTS = (
     "NoetherianOperators",
     "NoetherNormalization",
     "NonminimalComplexes",
+    "NonPrincipalTestIdeals",
     "NoPrint",
     "Normaliz",
     "NormalToricVarieties",
+    "NotANumber",
     "notify",
     "NTL",
     "null",
@@ -1535,6 +1542,7 @@ M2CONSTANTS = (
     "Parametrization",
     "Parsing",
     "path",
+    "PathSignatures",
     "PencilsOfQuadrics",
     "Permanents",
     "Permutations",
@@ -1715,6 +1723,7 @@ M2CONSTANTS = (
     "SyzygyLimit",
     "SyzygyMatrix",
     "SyzygyRows",
+    "Tableaux",
     "TangentCone",
     "TateOnProducts",
     "TensorComplexes",
@@ -1787,6 +1796,7 @@ M2CONSTANTS = (
     "VNumber",
     "WebApp",
     "Weights",
+    "WeilDivisors",
     "WeylAlgebra",
     "WeylAlgebras",
     "WeylGroups",

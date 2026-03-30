@@ -1,0 +1,14 @@
+# Base image for the Dockerfile.
+# Published as ghcr.io/pygments/pyodide-base:VERSION
+
+FROM ubuntu:25.04
+
+RUN apt update && apt install -y python3 python3-pip
+# Pin the version to avoid surprises...
+RUN pip install --break-system-packages pyodide-build==0.30.5
+RUN pyodide xbuildenv install 0.28.1
+
+RUN apt install -y git
+
+RUN git clone https://github.com/emscripten-core/emsdk /emsdk
+RUN cd emsdk && PYODIDE_EMSCRIPTEN_VERSION=$(pyodide config get emscripten_version) && ./emsdk install ${PYODIDE_EMSCRIPTEN_VERSION} && ./emsdk activate ${PYODIDE_EMSCRIPTEN_VERSION}

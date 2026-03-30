@@ -7,7 +7,7 @@ async function loadPyodideAndPygments() {
         from pygments.formatters.html import HtmlFormatter
         from pygments.styles import STYLE_MAP
         {s: HtmlFormatter(style=s).get_style_defs('.demo-highlight') for s in STYLE_MAP}
-    `).toJs();
+    `).toJs({dict_converter: Object.fromEntries});
     self.postMessage({loaded: {styles}})
 }
 let pyodideReadyPromise = loadPyodideAndPygments();
@@ -22,9 +22,12 @@ self.onmessage = async (event) => {
         self.pyodide.runPython(`
             import pygments.lexers
 
-            lexer = pygments.lexers.get_lexer_by_name(lexer_name)
+            if hasattr(code, 'to_py'):
+                code = code.to_py()
             if type(code) == memoryview:
                 code = bytes(code)
+
+            lexer = pygments.lexers.get_lexer_by_name(lexer_name)
             tokens = lexer.get_tokens(code)
         `);
 
@@ -51,13 +54,11 @@ self.onmessage = async (event) => {
         self.pyodide.globals.set('code', event.data.guess_lexer.code);
         self.pyodide.globals.set('filename', event.data.guess_lexer.filename);
         const lexer = self.pyodide.runPython(`
-            import sys
-            sys.setrecursionlimit(1000)
-            # TODO: remove after upgrading to Pyodide 0.19
-
             import pygments.lexers
             import pygments.util
 
+            if hasattr(code, 'to_py'):
+                code = code.to_py()
             if type(code) == memoryview:
                 code = bytes(code)
 

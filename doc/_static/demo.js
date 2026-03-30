@@ -32,7 +32,7 @@ styleSelect.addEventListener('change', () => {
     if (!styles)
         // Worker has not loaded yet.
         return;
-    style.textContent = styles.get(styleSelect.value);
+    style.textContent = styles[styleSelect.value];
     updateCopyLink();
     updateContrastWarning();
 });
@@ -92,7 +92,7 @@ highlightWorker.onmessage = (msg) => {
         outputDiv.innerHTML = msg.data.html;
         codeHeader.hidden = false;
         loadingDiv.hidden = true;
-        style.textContent = styles.get(styleSelect.value);
+        style.textContent = styles[styleSelect.value];
     } else if (msg.data.tokens) {
         const table = document.createElement('table');
         table.className = 'tokens';
