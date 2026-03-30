@@ -1,0 +1,17 @@
+---input---
+/*
+ * this is a multiline comment
+*/
+// single comment
+
+---tokens---
+'/*'          Comment.Multiline
+'\n '         Comment.Multiline
+'*'           Comment.Multiline
+' this is a multiline comment\n' Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'// single comment' Comment.Single
+'\n'          Text.Whitespace

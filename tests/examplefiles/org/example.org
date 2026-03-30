@@ -68,6 +68,14 @@ something
 ** scheduled
 SCHEDULED: <2018-07-31 Tue>
 something
+** both
+DEADLINE: <2025-06-01 Sun> SCHEDULED: <2025-05-27 Tue>
+** DONE all of the above
+CLOSED: [2025-05-27 Tue 20:28] DEADLINE: <2025-06-01 Sun> SCHEDULED: <2025-05-27 Tue>
+** multideadline
+SCHEDULED: <2025-05-27 Tue> DEADLINE: <2025-06-01 Sun> DEADLINE: <2025-09-01 Sun>
+** DONE more all of the above
+CLOSED: [2025-05-27 Tue 20:28] SCHEDULED: <2025-05-27 Tue> DEADLINE: <2025-06-01 Sun> DEADLINE: <2025-09-01 Sun>
 * Blocks
 #+BEGIN_QUOTE
 quote

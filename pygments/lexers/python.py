@@ -4,7 +4,7 @@
 
     Lexers for Python and related languages.
 
-    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-present by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -55,6 +55,8 @@ class PythonLexer(RegexLexer):
         'WORKSPACE',
         # Twisted Application infrastructure
         '*.tac',
+        # Execubot level format
+        '*.pye',
     ]
     mimetypes = ['text/x-python', 'application/x-python',
                  'text/x-python3', 'application/x-python3']

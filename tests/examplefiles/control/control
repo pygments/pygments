@@ -23,7 +23,7 @@ Pre-Depends:
  p1 | p2
 Depends:
  python3-bar,
- p1 | p2,
+ p1 [amd64] | p2 [!riscv64],
  otherdependancies,
  ${python3:Depends}
 Provides: x-terminal-emulator

@@ -508,7 +508,7 @@ function &byref() {
 // Test highlighting of magic methods and variables
 class MagicClass {
   public $magic_str;
-  public $ordinary_str;
+  public readonly string $ordinary_str;
 
   public function __construct($some_var) {
     $this->magic_str = __FILE__;
@@ -519,8 +519,17 @@ class MagicClass {
     return $this->magic_str;
   }
 
-  public function nonMagic() {
+  public function nonMagic(): string {
     return $this->ordinary_str;
+  }
+
+  public function getStrings() {
+    yield [ $this->magic_str, $this->nonMagic() ];
+  }
+
+  public function getData() {
+    yield from $this->getStrings();
+    yield 42;
   }
 }
 

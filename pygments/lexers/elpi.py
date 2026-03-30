@@ -4,7 +4,7 @@
 
     Lexer for the `Elpi <http://github.com/LPCIC/elpi>`_ programming language.
 
-    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-present by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -57,6 +57,9 @@ class ElpiLexer(RegexLexer):
             (rf"\b(external pred|pred)(\s+)({const_sym_re})",
              bygroups(Keyword.Declaration, Text.Whitespace, Name.Function),
              'elpi-pred-item'),
+            (rf"\b(func)(\s+)({const_sym_re})",
+             bygroups(Keyword.Declaration, Text.Whitespace, Name.Function),
+             'elpi-func-item'),
             (rf"\b(external type|type)(\s+)(({const_sym_re}(,\s*)?)+)",
              bygroups(Keyword.Declaration, Text.Whitespace, Name.Function),
              'elpi-type'),
@@ -110,6 +113,7 @@ class ElpiLexer(RegexLexer):
         'elpi-type': [
             (r"(ctype\s+)(\")", bygroups(Keyword.Type, String.Double), 'elpi-string'),
             (r'->', Keyword.Type),
+            (r'prop', Keyword.Mode),
             (constant_re, Keyword.Type),
             (r"\(|\)", Keyword.Type),
             (r"\.", Text, '#pop'),
@@ -126,19 +130,41 @@ class ElpiLexer(RegexLexer):
            include('elpi'),
         ],
         'elpi-pred-item': [
-            (r"[io]:", Keyword.Mode, 'elpi-ctype'),
+            (r"[io]:", Keyword.Mode),
             (r"\.", Text, '#pop'),
+            (r",", Keyword.Mode),
+            include('_elpi-inner-pred-fun'),
+            (r"\)", Keyword.Mode, '#pop'),
+            (r"\(", Keyword.Type, '_elpi-type-item'),
             include('_elpi-comment'),
+            include('_elpi-type-item'),
         ],
-        'elpi-ctype': [
-            (r"(ctype\s+)(\")", bygroups(Keyword.Type, String.Double), 'elpi-string'),
+        'elpi-func-item': [
+            (constant_re, Keyword.Type),
+            (r"\.", Text, '#pop'),
+            (r",", Keyword.Mode),
+            (r'->', Keyword.Mode),
+            include('_elpi-inner-pred-fun'),
+            (r"\)", Keyword.Mode, '#pop'),
+            (r"\(", Keyword.Type, '_elpi-type-item'),
+            include('_elpi-comment'),
+            include('_elpi-type-item'),
+        ],
+        '_elpi-inner-pred-fun': [
+            (r"(\()(\s*)(pred)", bygroups(Keyword.Mode,Text.Whitespace,Keyword.Declaration), 'elpi-pred-item'),
+            (r"(\()(\s*)(func)", bygroups(Keyword.Mode,Text.Whitespace,Keyword.Declaration), 'elpi-func-item'),
+        ],
+        '_elpi-type-item': [
             (r'->', Keyword.Type),
             (constant_re, Keyword.Type),
-            (r"\(|\)", Keyword.Type),
-            (r",", Text, '#pop'),
-            (r"\.", Text, '#pop:2'),
+            include('_elpi-inner-pred-fun'),
+            (r"\(", Keyword.Type, '#push'),
+            (r"\)", Keyword.Type, '#pop'),
             include('_elpi-comment'),
         ],
+
+        ''
+
         'elpi-btick': [
             (r'[^` ]+', String.Double),
             (r'`', String.Double, '#pop'),
