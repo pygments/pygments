@@ -187,3 +187,9 @@ def test_console_functions():
     assert console.reset_color() == console.codes['reset']
     assert console.colorize('blue', 'text') == \
         console.codes['blue'] + 'text' + console.codes['reset']
+
+def test_html_escape():
+    assert util.html_escape('test') == 'test'
+    assert util.html_escape('<>&"\'') == '&lt;&gt;&amp;&quot;&#x27;'
+    assert util.html_escape('<>&"\'', quote=False) == '&lt;&gt;&amp;"\''
+    assert util.html_escape(None) == ''

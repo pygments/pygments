@@ -269,3 +269,40 @@ def test_debug_token_types():
     fmt_debug_token_types.format(tokensource, outfile_debug_token_types)
     html_debug_token_types = outfile_debug_token_types.getvalue()
     assert '<span class="n" title="Name">TESTDIR</span>' in html_debug_token_types
+
+
+def test_html_escape_attributes():
+    """Test that HTML special characters in formatter option values are properly escaped"""
+
+    fmt = HtmlFormatter(
+        cssclass='bad<script>',
+        cssstyles='color: "&"',
+        filename='<file\'>.py',
+        lineseparator='<br>',
+        lineanchors='anchor"name',
+        linespans='span&name',
+    )
+    assert fmt.cssclass == 'bad&lt;script&gt;'
+    assert fmt.cssstyles == 'color: &quot;&amp;&quot;'
+    assert fmt.filename == '&lt;file&#x27;&gt;.py'
+    assert fmt.lineseparator == '&lt;br&gt;'
+    assert fmt.lineanchors == 'anchor&quot;name'
+    assert fmt.linespans == 'span&amp;name'
+
+    """Test that None values for these options are handled gracefully.
+    """
+
+    fmt_none = HtmlFormatter(
+        cssclass=None,
+        cssstyles=None,
+        filename=None,
+        lineseparator=None,
+        lineanchors=None,
+        linespans=None,
+    )
+    assert fmt_none.cssclass == ''
+    assert fmt_none.cssstyles == ''
+    assert fmt_none.filename == ''
+    assert fmt_none.lineseparator == ''
+    assert fmt_none.lineanchors == ''
+    assert fmt_none.linespans == ''
