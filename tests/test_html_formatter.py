@@ -272,7 +272,7 @@ def test_debug_token_types():
 
 
 def test_html_escape_attributes():
-    """Test that HTML special characters in formatter option values are properly escaped"""
+    """Test that HTML special characters in formatter option values are properly escaped."""
 
     fmt = HtmlFormatter(
         cssclass='bad<script>',
@@ -289,8 +289,7 @@ def test_html_escape_attributes():
     assert fmt.lineanchors == 'anchor&quot;name'
     assert fmt.linespans == 'span&amp;name'
 
-    """Test that None values for these options are handled gracefully.
-    """
+    """Test that None values for these options are handled gracefully."""
 
     fmt_none = HtmlFormatter(
         cssclass=None,
