@@ -28,7 +28,7 @@ jobs:
         run: uv pip freeze > requirements.txt
       - name: Run pip-audit
         run: uvx pip-audit@2.10.0
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: requirements
           path: requirements.txt
@@ -45,7 +45,7 @@ jobs:
         run: uv pip freeze > requirements-pygments-2.19.txt
       - name: Run pip-audit
         run: uvx pip-audit@2.10.0 -r requirements-pygments-2.19.txt
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: requirements-pygments-2.19
           path: requirements-pygments-2.19.txt
