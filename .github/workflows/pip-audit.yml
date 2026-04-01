@@ -21,5 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v7
+      - name: Install project
+        run: uv pip install --system ".[windows-terminal]"
       - name: Run pip-audit
-        run: uvx pip-audit@2.10.0 -r requirements.txt
+        run: uvx pip-audit@2.10.0
