@@ -20,7 +20,7 @@ jobs:
     name: Dependency vulnerability scan
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: astral-sh/setup-uv@v7
       - name: Install project
         run: uv sync --extra windows-terminal
@@ -37,7 +37,7 @@ jobs:
     name: Dependency vulnerability scan (Pygments 2.19)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: astral-sh/setup-uv@v7
       - name: Create virtual environment and install Pygments 2.19
         run: uv venv && uv pip install "pygments==2.19.*"
