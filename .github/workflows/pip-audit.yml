@@ -7,9 +7,9 @@ on:
   schedule:
     - cron: "0 8 * * 1"
   push:
-    branches:
-      - master
-      - main
+    #branches:
+    #  - master
+    #  - main
   workflow_dispatch:
 
 permissions:
@@ -32,3 +32,20 @@ jobs:
         with:
           name: requirements
           path: requirements.txt
+
+  pip-audit-pygments-2-19:
+    name: Dependency vulnerability scan (Pygments 2.19)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v7
+      - name: Install Pygments 2.19
+        run: uv pip install --system "pygments==2.19.*"
+      - name: Freeze installed packages
+        run: uv pip freeze --system > requirements-pygments-2.19.txt
+      - name: Run pip-audit
+        run: uvx pip-audit@2.10.0 -r requirements-pygments-2.19.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: requirements-pygments-2.19
+          path: requirements-pygments-2.19.txt
