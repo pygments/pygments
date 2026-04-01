@@ -23,9 +23,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v7
       - name: Install project
-        run: uv pip install --system ".[windows-terminal]"
+        run: uv sync --extra windows-terminal
       - name: Freeze installed packages
-        run: uv pip freeze --system > requirements.txt
+        run: uv pip freeze > requirements.txt
       - name: Run pip-audit
         run: uvx pip-audit@2.10.0
       - uses: actions/upload-artifact@v4
@@ -39,10 +39,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v7
-      - name: Install Pygments 2.19
-        run: uv pip install --system "pygments==2.19.*"
+      - name: Create virtual environment and install Pygments 2.19
+        run: uv venv && uv pip install "pygments==2.19.*"
       - name: Freeze installed packages
-        run: uv pip freeze --system > requirements-pygments-2.19.txt
+        run: uv pip freeze > requirements-pygments-2.19.txt
       - name: Run pip-audit
         run: uvx pip-audit@2.10.0 -r requirements-pygments-2.19.txt
       - uses: actions/upload-artifact@v4
