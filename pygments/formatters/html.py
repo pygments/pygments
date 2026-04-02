@@ -16,9 +16,7 @@ from io import StringIO
 
 from pygments.formatter import Formatter
 from pygments.token import Token, Text, STANDARD_TYPES
-from pygments.util import get_bool_opt, get_int_opt, get_list_opt
-
-import html
+from pygments.util import get_bool_opt, get_int_opt, get_list_opt, html_escape
 
 try:
     import ctags
@@ -424,14 +422,14 @@ class HtmlFormatter(Formatter):
         self.nowrap = get_bool_opt(options, 'nowrap', False)
         self.noclasses = get_bool_opt(options, 'noclasses', False)
         self.classprefix = options.get('classprefix', '')
-        self.cssclass = html.escape(self._decodeifneeded(options.get('cssclass', 'highlight')))
-        self.cssstyles = html.escape(self._decodeifneeded(options.get('cssstyles', '')))
+        self.cssclass = html_escape(self._decodeifneeded(options.get('cssclass', 'highlight')))
+        self.cssstyles = html_escape(self._decodeifneeded(options.get('cssstyles', '')))
         self.prestyles = self._decodeifneeded(options.get('prestyles', ''))
         self.cssfile = self._decodeifneeded(options.get('cssfile', ''))
         self.noclobber_cssfile = get_bool_opt(options, 'noclobber_cssfile', False)
         self.tagsfile = self._decodeifneeded(options.get('tagsfile', ''))
         self.tagurlformat = self._decodeifneeded(options.get('tagurlformat', ''))
-        self.filename = html.escape(self._decodeifneeded(options.get('filename', '')))
+        self.filename = html_escape(self._decodeifneeded(options.get('filename', '')))
         self.wrapcode = get_bool_opt(options, 'wrapcode', False)
         self.span_element_openers = {}
         self.debug_token_types = get_bool_opt(options, 'debug_token_types', False)
@@ -454,9 +452,9 @@ class HtmlFormatter(Formatter):
         self.linenostep = abs(get_int_opt(options, 'linenostep', 1))
         self.linenospecial = abs(get_int_opt(options, 'linenospecial', 0))
         self.nobackground = get_bool_opt(options, 'nobackground', False)
-        self.lineseparator = html.escape(options.get('lineseparator', '\n'))
-        self.lineanchors = html.escape(options.get('lineanchors', ''))
-        self.linespans = html.escape(options.get('linespans', ''))
+        self.lineseparator = html_escape(options.get('lineseparator', '\n'))
+        self.lineanchors = html_escape(options.get('lineanchors', ''))
+        self.linespans = html_escape(options.get('linespans', ''))
         self.anchorlinenos = get_bool_opt(options, 'anchorlinenos', False)
         self.hl_lines = set()
         for lineno in get_list_opt(options, 'hl_lines', []):
