@@ -30,7 +30,7 @@
     If you do not want to do that and are willing to accept larger HTML
     output, you can set the INLINESTYLES option below to True.
 
-    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-present by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 

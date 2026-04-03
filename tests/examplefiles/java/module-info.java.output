@@ -1,0 +1,260 @@
+'/**\n * Example Java module descriptor\n * Tests the Java Platform Module System (JPMS) syntax introduced in Java 9\n */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'module'      Keyword.Declaration
+' '           Text
+'com'         Name.Class
+'.'           Punctuation
+'example'     Name.Attribute
+'.'           Punctuation
+'myapp'       Name.Attribute
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Required modules' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'requires'    Keyword.Declaration
+' '           Text.Whitespace
+'java'        Name
+'.'           Punctuation
+'base'        Name.Attribute
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'requires'    Keyword.Declaration
+' '           Text.Whitespace
+'java'        Name
+'.'           Punctuation
+'sql'         Name.Attribute
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'requires'    Keyword.Declaration
+' '           Text.Whitespace
+'transitive'  Keyword.Declaration
+' '           Text.Whitespace
+'java'        Name
+'.'           Punctuation
+'logging'     Name.Attribute
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'requires'    Keyword.Declaration
+' '           Text.Whitespace
+'static'      Keyword.Declaration
+' '           Text.Whitespace
+'java'        Name
+'.'           Punctuation
+'compiler'    Name.Attribute
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Exports'  Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'exports'     Keyword.Declaration
+' '           Text.Whitespace
+'com'         Name
+'.'           Punctuation
+'example'     Name.Attribute
+'.'           Punctuation
+'myapp'       Name.Attribute
+'.'           Punctuation
+'api'         Name.Attribute
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'exports'     Keyword.Declaration
+' '           Text.Whitespace
+'com'         Name
+'.'           Punctuation
+'example'     Name.Attribute
+'.'           Punctuation
+'myapp'       Name.Attribute
+'.'           Punctuation
+'utils'       Name.Attribute
+' '           Text.Whitespace
+'to'          Keyword.Declaration
+' '           Text.Whitespace
+'com'         Name
+'.'           Punctuation
+'example'     Name.Attribute
+'.'           Punctuation
+'client'      Name.Attribute
+','           Punctuation
+' '           Text.Whitespace
+'com'         Name
+'.'           Punctuation
+'example'     Name.Attribute
+'.'           Punctuation
+'server'      Name.Attribute
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Opens for reflection' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'opens'       Keyword.Declaration
+' '           Text.Whitespace
+'com'         Name
+'.'           Punctuation
+'example'     Name.Attribute
+'.'           Punctuation
+'myapp'       Name.Attribute
+'.'           Punctuation
+'internal'    Name.Attribute
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'opens'       Keyword.Declaration
+' '           Text.Whitespace
+'com'         Name
+'.'           Punctuation
+'example'     Name.Attribute
+'.'           Punctuation
+'myapp'       Name.Attribute
+'.'           Punctuation
+'model'       Name.Attribute
+' '           Text.Whitespace
+'to'          Keyword.Declaration
+' '           Text.Whitespace
+'hibernate'   Name
+'.'           Punctuation
+'core'        Name.Attribute
+','           Punctuation
+' '           Text.Whitespace
+'com'         Name
+'.'           Punctuation
+'fasterxml'   Name.Attribute
+'.'           Punctuation
+'jackson'     Name.Attribute
+'.'           Punctuation
+'databind'    Name.Attribute
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Services' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'uses'        Keyword.Declaration
+' '           Text.Whitespace
+'com'         Name
+'.'           Punctuation
+'example'     Name.Attribute
+'.'           Punctuation
+'myapp'       Name.Attribute
+'.'           Punctuation
+'spi'         Name.Attribute
+'.'           Punctuation
+'PluginService' Name.Attribute
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'provides'    Keyword.Declaration
+' '           Text.Whitespace
+'com'         Name
+'.'           Punctuation
+'example'     Name.Attribute
+'.'           Punctuation
+'myapp'       Name.Attribute
+'.'           Punctuation
+'spi'         Name.Attribute
+'.'           Punctuation
+'PluginService' Name.Attribute
+' '           Text.Whitespace
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'with'        Keyword.Declaration
+' '           Text.Whitespace
+'com'         Name
+'.'           Punctuation
+'example'     Name.Attribute
+'.'           Punctuation
+'myapp'       Name.Attribute
+'.'           Punctuation
+'impl'        Name.Attribute
+'.'           Punctuation
+'DefaultPluginService' Name.Attribute
+','           Punctuation
+'\n'          Text.Whitespace
+
+'             ' Text.Whitespace
+'com'         Name
+'.'           Punctuation
+'example'     Name.Attribute
+'.'           Punctuation
+'myapp'       Name.Attribute
+'.'           Punctuation
+'impl'        Name.Attribute
+'.'           Punctuation
+'ExtendedPluginService' Name.Attribute
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Open module example' Comment.Single
+'\n'          Text.Whitespace
+
+'open'        Keyword.Declaration
+' '           Text.Whitespace
+'module'      Keyword.Declaration
+' '           Text
+'com'         Name.Class
+'.'           Punctuation
+'example'     Name.Attribute
+'.'           Punctuation
+'testapp'     Name.Attribute
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'requires'    Keyword.Declaration
+' '           Text.Whitespace
+'junit'       Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'exports'     Keyword.Declaration
+' '           Text.Whitespace
+'com'         Name
+'.'           Punctuation
+'example'     Name.Attribute
+'.'           Punctuation
+'testapp'     Name.Attribute
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

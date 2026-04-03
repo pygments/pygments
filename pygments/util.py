@@ -4,12 +4,13 @@
 
     Utility functions.
 
-    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-present by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 from io import TextIOWrapper
+import html
 
 
 split_path_re = re.compile(r'[/\\ ]')
@@ -286,7 +287,7 @@ def guess_decode(text):
         try:
             import locale
             prefencoding = locale.getpreferredencoding()
-            text = text.decode()
+            text = text.decode(prefencoding)
             return text, prefencoding
         except (UnicodeDecodeError, LookupError):
             text = text.decode('latin1')
@@ -322,3 +323,19 @@ class UnclosingTextIOWrapper(TextIOWrapper):
     # Don't close underlying buffer on destruction.
     def close(self):
         self.flush()
+
+def html_escape(string, quote=True):
+    """Return a safe version of the passed `string`,
+    and an empty string if `None`.
+
+    `NoneType` is not supported by `html.escape`, as `html.escape`
+    uses the built-in `replace` function on `string`, so we need to
+    check for it first.
+
+    Optional flag quote is true by default, which also escapes
+    double and single quotes.
+    See https://docs.python.org/3/library/html.html#html.escape for more details.
+    """
+    if string is not None:
+        return html.escape(string, quote=quote)
+    return ''

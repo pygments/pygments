@@ -1,0 +1,30 @@
+---input---
+node3.children[#node3.children + 1] = node4
+-- print(("Level4 Item %s:" ):format(ref4))
+-- util.dumpTable(data.items)
+
+---tokens---
+'node3'       Name.Variable
+'.'           Punctuation
+'children'    Name.Property
+'['           Punctuation
+'#'           Operator
+'node3'       Name.Variable
+'.'           Punctuation
+'children'    Name.Property
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'node4'       Name.Variable
+'\n'          Text.Whitespace
+
+'-- print(("Level4 Item %s:" ):format(ref4))' Comment.Single
+'\n'          Text.Whitespace
+
+'-- util.dumpTable(data.items)' Comment.Single
+'\n'          Text.Whitespace

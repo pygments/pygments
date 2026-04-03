@@ -7,7 +7,7 @@
     the text where Error tokens are being generated, along
     with some context.
 
-    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-present by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -120,7 +120,7 @@ def decode_atheris(bstr):
         return chr(ch)
 
     chars = struct.unpack('%dI%dx' % divmod(len(bstr), 4), bstr)
-    return ''.join(map(valid_codepoint), chars)
+    return ''.join(map(valid_codepoint, chars))
 
 
 def main(fn, lexer=None, options={}):

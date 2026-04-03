@@ -80,7 +80,7 @@ const inline explicit std::string std::vector::contains(std::vector<char> chars)
 
 // inside classes
 
-class raz {
+class Raz {
     const virtual std::string contains(const std::string str);
 }
 
@@ -89,18 +89,19 @@ else if(flag && func_call()) {}
 new T();
 const operator int() const {} // so int is lexed as type and not function.name
 
-class foo bar : public raz
+class Foo Bar : public Raz
 {
   Q_OBJECT
   /// \cond INCLUDE_QPROPERTIES
-  Q_PROPERTY(arg1 arg2)
+  Q_PROPERTY(Arg1 arg2)
   /// \endcond
 
 public:
   /*!
     Lorem ipsum core vanditi.
   */
-  enum duck { dog, // Comment.
-              cat  // Comment (see \ref replot).
+  enum class Duck {
+    DOG, // Comment.
+    CAT  // Comment (see \ref replot).
   };
 };

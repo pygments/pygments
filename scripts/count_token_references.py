@@ -105,10 +105,10 @@ class FileCount:
 
     def __str__(self):
         if len(self.lines) > 3:
-            lines = ", ".join(f"{line:,}" for line in self.lines[:5])
+            lines = ", ".join(f"{line}" for line in self.lines[:5])
             lines = f"{lines}, ... ({len(lines):,} lines)"
         else:
-            lines = ", ".join(f"{line:,}" for line in self.lines)
+            lines = ", ".join(f"{line}" for line in self.lines)
         return f"{self.filename.name}[{lines}]"
 
     def add(self, linenumber):

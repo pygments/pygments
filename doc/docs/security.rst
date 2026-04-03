@@ -29,3 +29,34 @@ The Pygments authors will treat any bug resulting in long processing times with
 high priority -- it's one of those things that will be fixed in a patch release.
 When reporting a bug where you suspect super-linear execution times, please make
 sure to attach an input to reproduce it.
+
+`pip-audit`, CVEs, and GitHub security advisories
+===============================================
+
+We've seen various CVEs and security advisories filed against Pygments ignoring
+the guideline above. Typically, they'll report a ReDoS (remote
+denial-of-service) vulnerability in Pygments. Generally those advisories will
+provide some input that causes a regex to go into catastrophic backtracking or
+similar, resulting in long processing times. First of all, please note that
+Pygments on its own does not allow remote input -- it's a command line
+application or library, but it has no RPC mechanism, nor does it start a server
+by default. The "remote" part only appears when Pygments is wrapped in a service
+that allows arbitrary user input. In this case, we *strongly* recommend to take
+the security considerations above into account, specifically sandboxing and
+resource limitations.
+
+If your CI pipeline fails because of automated checks for CVEs, we kindly ask
+you to review the particular issue and consider adding an exception before
+asking for an urgent fix. Especially if you're using Pygments for your
+documentation and not wrapping it into a service, you are *not* vulnerable (the
+worst thing that can happen is that someone writes a PR which will cause a
+CI job that builds the docs to time out, but that's what timeouts are for, and
+if someone can send a PR there are many ways to attack your CI infrastructure.)
+`pip-audit` for example allows you to selectively ignore individual security
+issues, making it easy for you to fix your CI while we prepare a new release.
+
+We try to fix security issues, but we do ask everyone to treat user-provided
+input as dangerous and protect in depth against it. If you find a way to make
+Pygments execute arbitrary code, we'll do our best to fix it quickly, but if it
+is a hang, the guidance above applies. We also recommend reading:
+https://lwn.net/Articles/944399/

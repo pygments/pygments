@@ -4,7 +4,7 @@
 
     Lexers for the Rell language.
 
-    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-present by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -13,6 +13,7 @@ from pygments.token import Comment, Keyword, Name, String, Number, \
         Punctuation, Whitespace
 
 __all__ = ['RellLexer']
+
 
 class RellLexer(RegexLexer):
     """

@@ -10,7 +10,7 @@ let c = [{
 ' '           Text.Whitespace
 '='           Punctuation
 ' '           Text.Whitespace
-'[{'          Text
+'[{'          Punctuation
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
@@ -30,5 +30,5 @@ let c = [{
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'}]'          Text
+'}]'          Punctuation
 '\n'          Text.Whitespace

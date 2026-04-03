@@ -17,7 +17,7 @@ pred p3 i:(bool -> prop).
 ' '           Text.Whitespace
 'i:'          Keyword.Mode
 'int'         Keyword.Type
-','           Text
+','           Keyword.Mode
 ' '           Text.Whitespace
 'o:'          Keyword.Mode
 'list'        Keyword.Type
@@ -52,7 +52,7 @@ pred p3 i:(bool -> prop).
 ' '           Text.Whitespace
 'i:'          Keyword.Mode
 'int'         Keyword.Type
-','           Text
+','           Keyword.Mode
 ' '           Text.Whitespace
 'i:'          Keyword.Mode
 'A'           Keyword.Type
