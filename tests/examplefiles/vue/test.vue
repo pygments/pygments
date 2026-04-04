@@ -30,6 +30,10 @@ export default {
     <a v-on:[eventName]="doSomething"> ... </a>
     <a @[eventName]="doSomething"></a>
     <form @submit.prevent="onSubmit">...</form>
+    <!-- v-slot shorthand -->
+    <template #header>header</template>
+    <template #default="slotProps">content</template>
+    <template #[dynamicSlotName]="slotProps">content</template>
     <li v-for="item in items">
         {{ item.message }}
     </li>
