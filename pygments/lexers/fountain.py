@@ -42,9 +42,10 @@ class FountainLexer(Lexer):
         re.IGNORECASE,
     )
     _scene_number_re = re.compile(r'^(.*?)(\s*)(#[-.A-Za-z0-9]+#)$')
+    _inline_scene_number_re = re.compile(r'#[-.A-Za-z0-9]+#')
     _section_re = re.compile(r'^(#+)(\s*.*)$')
     _page_break_re = re.compile(r'^={3,}$')
-    _transition_re = re.compile(r'^[^a-z]+TO:$')
+    _transition_re = re.compile(r'^(?=[^a-z]*[A-Z])[^a-z]*TO:$')
 
     def __init__(self, **options):
         super().__init__(**options)
@@ -246,9 +247,6 @@ class FountainLexer(Lexer):
     def _is_parenthetical(self, stripped):
         return stripped.startswith('(') and stripped.endswith(')')
 
-    def _looks_like_dialogue(self, stripped):
-        return bool(stripped)
-
     def _is_character(self, lines, index, forced=False):
         line, _ = self._split_line(lines[index])
         stripped = line.strip()
@@ -266,7 +264,7 @@ class FountainLexer(Lexer):
         if not self._next_is_nonblank(lines, index):
             return False
         next_line, _ = self._split_line(lines[index + 1])
-        if not self._looks_like_dialogue(next_line.strip()):
+        if not next_line.strip():
             return False
 
         ext_index = body.find('(')
@@ -435,10 +433,11 @@ class FountainLexer(Lexer):
             if tail:
                 yield cursor, Whitespace, tail
         if dual:
-            caret_ws = dual[:-1]
-            if caret_ws:
-                yield offset + len(body), Whitespace, caret_ws
-            yield offset + len(body) + len(caret_ws), Punctuation, '^'
+            # dual[0] is always '^'; dual[1:] is any trailing whitespace
+            yield offset + len(body), Punctuation, '^'
+            trailing = dual[1:]
+            if trailing:
+                yield offset + len(body) + 1, Whitespace, trailing
 
     def _emit_parenthetical(self, line, pos):
         indent = self._indent_len(line)
@@ -525,7 +524,7 @@ class FountainLexer(Lexer):
                 i += 2
                 continue
 
-            match = re.match(r'#[-.A-Za-z0-9]+#', text[i:])
+            match = self._inline_scene_number_re.match(text, i)
             if match is not None:
                 value = match.group(0)
                 yield pos + i, Name.Label, value
@@ -533,10 +532,10 @@ class FountainLexer(Lexer):
                 continue
 
             for marker, token in (
-                ('***', Generic.Strong),
-                ('**', Generic.Strong),
-                ('*', Generic.Emph),
-                ('_', Generic.Emph),
+                ('***', Generic.EmphStrong),  # bold-italic
+                ('**', Generic.Strong),        # bold
+                ('*', Generic.Emph),           # italic
+                ('_', Generic.EmphStrong),     # underline (no dedicated token; EmphStrong is closest)
             ):
                 if text.startswith(marker, i):
                     end = self._find_emphasis_end(text, i, marker)
