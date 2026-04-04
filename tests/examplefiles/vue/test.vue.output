@@ -347,6 +347,54 @@
 'form'        Name.Tag
 '>'           Punctuation
 '\n    '      Text
+'<!-- v-slot shorthand -->' Comment.Multiline
+'\n    '      Text
+'<'           Punctuation
+'template'    Name.Tag
+' '           Text
+'#'           Punctuation
+'header'      Name.Attribute
+'>'           Punctuation
+'header'      Text
+'<'           Punctuation
+'/'           Punctuation
+'template'    Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'template'    Name.Tag
+' '           Text
+'#'           Punctuation
+'default'     Name.Attribute
+'='           Operator
+'"'           Literal.String
+'slotProps'   Name.Other
+'"'           Literal.String
+'>'           Punctuation
+'content'     Text
+'<'           Punctuation
+'/'           Punctuation
+'template'    Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'template'    Name.Tag
+' '           Text
+'#'           Punctuation
+'['           Comment.Preproc
+'dynamicSlotName' Name.Other
+']'           Comment.Preproc
+'='           Operator
+'"'           Literal.String
+'slotProps'   Name.Other
+'"'           Literal.String
+'>'           Punctuation
+'content'     Text
+'<'           Punctuation
+'/'           Punctuation
+'template'    Name.Tag
+'>'           Punctuation
+'\n    '      Text
 '<'           Punctuation
 'li'          Name.Tag
 ' '           Text
