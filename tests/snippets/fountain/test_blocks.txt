@@ -1,0 +1,92 @@
+---input---
+Title: Test Script
+Author:
+    Test Author
+
+INT. LAB - NIGHT #12A#
+
+!SCANNING THE AISLES...
+Where is that pit boss?
+
+@McCLANE
+(V.O.)
+Yippie ki-yay.
+
+>SMASH CUT TO:
+
+> THE END <
+
+===
+
+# Act I
+= Setup.
+
+---tokens---
+'Title'       Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'Test Script' Literal.String
+'\n'          Text.Whitespace
+
+'Author'      Name.Attribute
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Test Author' Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'INT. LAB - NIGHT' Generic.Heading
+' '           Generic.Heading
+'#12A#'       Name.Label
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'!'           Punctuation
+'SCANNING THE AISLES...' Text
+'\n'          Text.Whitespace
+
+'Where is that pit boss?' Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'@'           Punctuation
+'McCLANE'     Name.Label
+'\n'          Text.Whitespace
+
+'(V.O.)'      Name.Decorator
+'\n'          Text.Whitespace
+
+'Yippie ki-yay.' Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'>'           Punctuation
+'SMASH CUT TO:' Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'>'           Punctuation
+' THE END '   Generic.Strong
+'<'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'==='         Operator
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'#'           Punctuation
+' Act I'      Generic.Subheading
+'\n'          Text.Whitespace
+
+'= Setup.'    Comment.Special
+'\n'          Text.Whitespace
