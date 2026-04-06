@@ -1,0 +1,207 @@
+'% MATLAB function argument validation (R2019b+)' Comment
+'\n'          Text.Whitespace
+
+'% https://www.mathworks.com/help/matlab/matlab_prog/function-argument-validation-1.html' Comment
+'\n\n'        Text.Whitespace
+
+'function'    Keyword
+' '           Text.Whitespace
+'result'      Text
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'myFunc'      Name.Function
+'('           Punctuation
+'a, b, c'     Text
+')'           Punctuation
+'\n    '      Text.Whitespace
+'arguments'   Keyword
+'\n        '  Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'double'      Name
+'\n        '  Text.Whitespace
+'b'           Name
+' '           Text.Whitespace
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+':'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'string'      Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"default"'   Literal.String
+'\n        '  Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'{'           Punctuation
+'mustBeNumeric' Name
+','           Punctuation
+' '           Text.Whitespace
+'mustBeNonnegative' Name
+'}'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n    '      Text.Whitespace
+'end'         Keyword
+'\n    '      Text.Whitespace
+'result'      Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'c'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'end'         Keyword
+'\n\n'        Text.Whitespace
+
+'function'    Keyword
+' '           Text.Whitespace
+'result'      Text
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'withRepeating' Name.Function
+'('           Punctuation
+'varargin'    Text
+')'           Punctuation
+'\n    '      Text.Whitespace
+'arguments'   Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'Repeating'   Keyword
+')'           Punctuation
+'\n        '  Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'double'      Name
+'\n    '      Text.Whitespace
+'end'         Keyword
+'\n    '      Text.Whitespace
+'result'      Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'sum'         Name.Builtin
+'('           Punctuation
+'['           Punctuation
+'x'           Name
+'{'           Punctuation
+':'           Punctuation
+'}'           Punctuation
+']'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'end'         Keyword
+'\n\n'        Text.Whitespace
+
+'function'    Keyword
+' '           Text.Whitespace
+'result'      Text
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'withInputOutput' Name.Function
+'('           Punctuation
+'a'           Text
+')'           Punctuation
+'\n    '      Text.Whitespace
+'arguments'   Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'Input'       Keyword
+')'           Punctuation
+'\n        '  Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'double'      Name
+' '           Text.Whitespace
+'{'           Punctuation
+'mustBePositive' Name
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'end'         Keyword
+'\n    '      Text.Whitespace
+'arguments'   Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'Output'      Name
+')'           Punctuation
+'\n        '  Text.Whitespace
+'result'      Name
+' '           Text.Whitespace
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'double'      Name.Builtin
+'\n    '      Text.Whitespace
+'end'         Keyword
+'\n    '      Text.Whitespace
+'result'      Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'sqrt'        Name.Builtin
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'end'         Keyword
+'\n\n'        Text.Whitespace
+
+'% arguments used as a field name (should NOT be a keyword)' Comment
+'\n'          Text.Whitespace
+
+'s'           Name
+'.'           Punctuation
+'arguments'   Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'42'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'disp'        Name.Builtin
+'('           Punctuation
+'s'           Name
+'.'           Punctuation
+'arguments'   Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
