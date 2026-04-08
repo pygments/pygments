@@ -1,0 +1,158 @@
+---input---
+function w $add(w %a, w %b) {              # Define a function add
+@start
+	%c =w add %a, %b                   # Adds the 2 arguments
+	ret %c                             # Return the result
+}
+export function w $main() {                # Main function
+@start
+	%r =w call $add(w 1, w 1)          # Call add(1, 1)
+	call $printf(l $fmt, ..., w %r)    # Show the result
+	ret 0
+}
+data $fmt = { b "One and one make %d!\n", b 0 }
+
+---tokens---
+'function'    Keyword
+' '           Text.Whitespace
+'w'           Keyword.Type
+' '           Text.Whitespace
+'$add'        Name.Variable.Global
+'('           Punctuation
+'w'           Keyword.Type
+' '           Text.Whitespace
+'%a'          Name.Variable.Anonymous
+','           Punctuation
+' '           Text.Whitespace
+'w'           Keyword.Type
+' '           Text.Whitespace
+'%b'          Name.Variable.Anonymous
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'              ' Text.Whitespace
+'# Define a function add' Comment.Single
+'\n'          Text.Whitespace
+
+'@start'      Name.Label
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'%c'          Name.Variable.Anonymous
+' '           Text.Whitespace
+'='           Operator
+'w'           Keyword.Type
+' '           Text.Whitespace
+'add'         Name.Function
+' '           Text.Whitespace
+'%a'          Name.Variable.Anonymous
+','           Punctuation
+' '           Text.Whitespace
+'%b'          Name.Variable.Anonymous
+'                   ' Text.Whitespace
+'# Adds the 2 arguments' Comment.Single
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'ret'         Name.Function
+' '           Text.Whitespace
+'%c'          Name.Variable.Anonymous
+'                             ' Text.Whitespace
+'# Return the result' Comment.Single
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'export'      Keyword.Declaration
+' '           Text.Whitespace
+'function'    Keyword
+' '           Text.Whitespace
+'w'           Keyword.Type
+' '           Text.Whitespace
+'$main'       Name.Variable.Global
+'()'          Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'                ' Text.Whitespace
+'# Main function' Comment.Single
+'\n'          Text.Whitespace
+
+'@start'      Name.Label
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'%r'          Name.Variable.Anonymous
+' '           Text.Whitespace
+'='           Operator
+'w'           Keyword.Type
+' '           Text.Whitespace
+'call'        Name.Function
+' '           Text.Whitespace
+'$add'        Name.Variable.Global
+'('           Punctuation
+'w'           Keyword.Type
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'w'           Keyword.Type
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+')'           Punctuation
+'          '  Text.Whitespace
+'# Call add(1, 1)' Comment.Single
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'call'        Name.Function
+' '           Text.Whitespace
+'$printf'     Name.Variable.Global
+'('           Punctuation
+'l'           Keyword.Type
+' '           Text.Whitespace
+'$fmt'        Name.Variable.Global
+','           Punctuation
+' '           Text.Whitespace
+'...'         Operator
+','           Punctuation
+' '           Text.Whitespace
+'w'           Keyword.Type
+' '           Text.Whitespace
+'%r'          Name.Variable.Anonymous
+')'           Punctuation
+'    '        Text.Whitespace
+'# Show the result' Comment.Single
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'ret'         Name.Function
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'data'        Keyword
+' '           Text.Whitespace
+'$fmt'        Name.Variable.Global
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'b'           Keyword.Type
+' '           Text.Whitespace
+'"'           Literal.String
+'One and one make %d!' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'b'           Keyword.Type
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
