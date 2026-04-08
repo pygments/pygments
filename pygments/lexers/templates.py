@@ -2168,7 +2168,7 @@ class TwigLexer(RegexLexer):
     # Note that a backslash is included in the following two patterns
     # PHP uses a backslash as a namespace separator
     _ident_char = r'[\\\w-]|[^\x00-\x7f]'
-    _ident_begin = r'(?:[\\_a-z]|[^\x00-\x7f])'
+    _ident_begin = r'(?:[\\_a-zA-Z]|[^\x00-\x7f])'
     _ident_end = r'(?:' + _ident_char + ')*'
     _ident_inner = _ident_begin + _ident_end
 

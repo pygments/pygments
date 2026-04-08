@@ -1,0 +1,15 @@
+---input---
+{{ MediaHelper.background(content.media) }}
+
+---tokens---
+'{{'          Comment.Preproc
+' '           Text
+'MediaHelper' Name.Variable
+'.background' Name.Variable
+'('           Operator
+'content'     Name.Variable
+'.media'      Name.Variable
+')'           Operator
+' '           Text
+'}}'          Comment.Preproc
+'\n'          Other
