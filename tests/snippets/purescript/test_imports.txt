@@ -1,0 +1,72 @@
+---input---
+import Data.Maybe
+import Data.Array (head, tail)
+import Data.String as S
+import Data.List hiding (head)
+import Data.Maybe (Maybe(..)) as M
+import Prim (class Partial)
+
+---tokens---
+'import'      Keyword.Reserved
+' '           Text.Whitespace
+'Data.Maybe'  Name.Namespace
+'\n'          Text.Whitespace
+
+'import'      Keyword.Reserved
+' '           Text.Whitespace
+'Data.Array'  Name.Namespace
+' '           Text.Whitespace
+'('           Punctuation
+'head'        Name.Function
+','           Punctuation
+' '           Text.Whitespace
+'tail'        Name.Function
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'import'      Keyword.Reserved
+' '           Text.Whitespace
+'Data.String' Name.Namespace
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'S'           Name
+'\n'          Text.Whitespace
+
+'import'      Keyword.Reserved
+' '           Text.Whitespace
+'Data.List'   Name.Namespace
+' '           Text.Whitespace
+'hiding'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'head'        Name.Function
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'import'      Keyword.Reserved
+' '           Text.Whitespace
+'Data.Maybe'  Name.Namespace
+' '           Text.Whitespace
+'('           Punctuation
+'Maybe'       Keyword.Type
+'('           Punctuation
+'..'          Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'M'           Name
+'\n'          Text.Whitespace
+
+'import'      Keyword.Reserved
+' '           Text.Whitespace
+'Prim'        Name.Namespace
+' '           Text.Whitespace
+'('           Punctuation
+'class'       Keyword.Reserved
+' '           Text.Whitespace
+'Partial'     Keyword.Type
+')'           Punctuation
+'\n'          Text.Whitespace

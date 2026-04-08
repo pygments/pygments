@@ -411,6 +411,7 @@ LEXERS = {
     'PtxLexer': ('pygments.lexers.ptx', 'PTX', ('ptx',), ('*.ptx',), ('text/x-ptx',)),
     'PugLexer': ('pygments.lexers.html', 'Pug', ('pug', 'jade'), ('*.pug', '*.jade'), ('text/x-pug', 'text/x-jade')),
     'PuppetLexer': ('pygments.lexers.dsls', 'Puppet', ('puppet',), ('*.pp',), ()),
+    'PureScriptLexer': ('pygments.lexers.purescript', 'PureScript', ('purescript', 'purs'), ('*.purs',), ('text/x-purescript',)),
     'PyPyLogLexer': ('pygments.lexers.console', 'PyPy Log', ('pypylog', 'pypy'), ('*.pypylog',), ('application/x-pypylog',)),
     'Python2Lexer': ('pygments.lexers.python', 'Python 2.x', ('python2', 'py2'), (), ('text/x-python2', 'application/x-python2')),
     'Python2TracebackLexer': ('pygments.lexers.python', 'Python 2.x Traceback', ('py2tb',), ('*.py2tb',), ('text/x-python2-traceback',)),

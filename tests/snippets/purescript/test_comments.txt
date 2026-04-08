@@ -1,0 +1,36 @@
+---input---
+-- single line comment
+--- also a comment
+--> also a comment
+{- multi line comment -}
+{- nested {- comment -} here -}
+x -- trailing comment
+
+---tokens---
+'-- single line comment' Comment.Single
+'\n'          Text.Whitespace
+
+'--- also a comment' Comment.Single
+'\n'          Text.Whitespace
+
+'--> also a comment' Comment.Single
+'\n'          Text.Whitespace
+
+'{-'          Comment.Multiline
+' multi line comment ' Comment.Multiline
+'-}'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'{-'          Comment.Multiline
+' nested '    Comment.Multiline
+'{-'          Comment.Multiline
+' comment '   Comment.Multiline
+'-}'          Comment.Multiline
+' here '      Comment.Multiline
+'-}'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'x'           Name.Function
+' '           Text.Whitespace
+'-- trailing comment' Comment.Single
+'\n'          Text.Whitespace
