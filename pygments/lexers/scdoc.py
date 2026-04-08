@@ -25,6 +25,7 @@ class ScdocLexer(RegexLexer):
     aliases = ['scdoc', 'scd']
     filenames = ['*.scd', '*.scdoc']
     version_added = '2.5'
+    _example = 'scdoc/scdoc_manual.scd'
     flags = re.MULTILINE
 
     tokens = {
