@@ -19,7 +19,8 @@ from pygments import unistring as uni
 
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
            'Python2Lexer', 'Python2TracebackLexer',
-           'CythonLexer', 'DgLexer', 'NumPyLexer']
+           'CythonLexer', 'DgLexer', 'NumPyLexer',
+           'PyPyConsoleLexer']
 
 
 class PythonLexer(RegexLexer):
@@ -721,6 +722,89 @@ class PythonConsoleLexer(DelegatingLexer):
         class _ReplaceInnerCode(DelegatingLexer):
             def __init__(self, **options):
                 super().__init__(pylexer, _PythonConsoleLexerBase, Other.Code, **options)
+        super().__init__(tblexer, _ReplaceInnerCode, Other.Traceback, **options)
+
+
+class _PyPyConsoleLexerBase(RegexLexer):
+    name = 'PyPy console session'
+    aliases = ['pypycon', 'pypy-console']
+
+    """Auxiliary lexer for `PyPyConsoleLexer`.
+
+    Code tokens are output as ``Token.Other.Code``, traceback tokens as
+    ``Token.Other.Traceback``.
+    """
+    tokens = {
+        'root': [
+            (r'(>>>> )(.*\n)', bygroups(Generic.Prompt, Other.Code), 'continuations'),
+            # This happens, e.g., when tracebacks are embedded in documentation;
+            # trailing whitespaces are often stripped in such contexts.
+            (r'(>>>>)(\n)', bygroups(Generic.Prompt, Whitespace)),
+            (r'(\^C)?Traceback \(most recent call last\):\n', Other.Traceback, 'traceback'),
+            # SyntaxError starts with this
+            (r'  File "[^"]+", line \d+', Other.Traceback, 'traceback'),
+            (r'.*\n', Generic.Output),
+        ],
+        'continuations': [
+            (r'(\.\.\.\. )(.*\n)', bygroups(Generic.Prompt, Other.Code)),
+            # See above.
+            (r'(\.\.\.\.)(\n)', bygroups(Generic.Prompt, Whitespace)),
+            default('#pop'),
+        ],
+        'traceback': [
+            # As soon as we see a traceback, consume everything until the next
+            # >>>> prompt.
+            (r'(?=>>>>( |$))', Text, '#pop'),
+            (r'(KeyboardInterrupt)(\n)', bygroups(Name.Class, Whitespace)),
+            (r'.*\n', Other.Traceback),
+        ],
+    }
+
+
+class PyPyConsoleLexer(DelegatingLexer):
+    """
+    For PyPy console output, such as:
+
+    .. sourcecode:: pypycon
+
+        >>>> a = 'foo'
+        >>>> print(a)
+        foo
+        >>>> 1 / 0
+        Traceback (most recent call last):
+          File "<stdin>", line 1, in <module>
+        ZeroDivisionError: integer division or modulo by zero
+
+    Additional options:
+
+    `python3`
+        Use Python 3 lexer for code.  Default is ``True``.
+
+    .. versionadded:: 2.21
+    """
+
+    name = 'PyPy console session'
+    aliases = ['pypycon', 'pypy-console']
+    mimetypes = []
+    url = 'https://pypy.org'
+    version_added = '2.21'
+
+    def __init__(self, **options):
+        python3 = get_bool_opt(options, 'python3', True)
+        if python3:
+            pylexer = PythonLexer
+            tblexer = PythonTracebackLexer
+        else:
+            pylexer = Python2Lexer
+            tblexer = Python2TracebackLexer
+        # We have two auxiliary lexers. Use DelegatingLexer twice with
+        # different tokens.  TODO: DelegatingLexer should support this
+        # directly, by accepting a tuplet of auxiliary lexers and a tuple of
+        # distinguishing tokens. Then we wouldn't need this intermediary
+        # class.
+        class _ReplaceInnerCode(DelegatingLexer):
+            def __init__(self, **options):
+                super().__init__(pylexer, _PyPyConsoleLexerBase, Other.Code, **options)
         super().__init__(tblexer, _ReplaceInnerCode, Other.Traceback, **options)
 
 
