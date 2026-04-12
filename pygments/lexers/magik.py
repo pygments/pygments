@@ -123,7 +123,7 @@ class MagikLexer(RegexLexer):
             # Character literal
             (r"%([a-zA-Z][a-zA-Z0-9_?!]*|.| )", String.Char),
             # Regex literal
-            (r"/([^/\\]|\\.)*/[qisdlmuCX]*", String.Regex),
+            (r"/([^/\\]|\\.)*/[qisdlmucx]*", String.Regex),
             (r"\\", String.Regex),
             # Punctuation
             (r"[\[\]\|@{}().,;$]", Punctuation),
