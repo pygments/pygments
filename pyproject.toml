@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "Pygments"
 dynamic = ["version"]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = "BSD-2-Clause"
 license-files = ["AUTHORS", "LICENSE"]
 authors = [
@@ -28,7 +28,6 @@ classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
