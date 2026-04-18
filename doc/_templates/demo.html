@@ -6,25 +6,27 @@
 <link rel="stylesheet" type="text/css" href="{{ pathto("_static/demo.css", 1) }}">
 {% endblock %}
 
-{% block htmltitle %}<title>Demo{{ titlesuffix }}</title>{% endblock %}
+{% block htmltitle %}<title>{% trans %}Demo{% endtrans %}{{ titlesuffix }}</title>{% endblock %}
 
 {% block body %}
 {{ body }}
 
-<h1>Try out Pygments!</h1>
+<h1>{% trans %}Try out Pygments!{% endtrans %}</h1>
 
 <noscript>
-    <h2>This website requires JavaScript (and WebAssembly)</h2>
+    <h2>{% trans %}This website requires JavaScript (and WebAssembly){% endtrans %}</h2>
 
-    You can also try out pygments locally by running <code>pip install pygments</code>.
-    Then you can use <a href="{{pathto('docs/cmdline')}}">the command-line interface</a>.
+    {% trans pathto_docs_cmdline = pathto('docs/cmdline') -%}
+    You can also try out pygments locally by running <code>pip install pygments</code>. Then you can use <a href="{{ pathto_docs_cmdline }}">the command-line interface</a>.
+    {%- endtrans %}
 </noscript>
 
 <div id="try">
     <p>
-        <label>Language
+        <label>
+            {% trans %}Language{% endtrans %}
             <select id="lang" autofocus>
-                <option value="">guess the language</option>
+                <option value="">{% trans %}guess the language{% endtrans %}</option>
                 {% for name, info, _, _ in lexers %}
                     <option value="{{info.0}}">{{name}}</option>
                 {% endfor %}
@@ -34,26 +36,27 @@
     </p>
     <p>
         <label>
-            Enter some code:
+            {% trans %}Enter some code:{% endtrans %}
             <textarea id="code" rows="1" cols="60" spellcheck="false"></textarea>
         </label>
     </p>
     <p>
         <label>
-            Alternatively you can upload a file:
+            {% trans %}Alternatively you can upload a file:{% endtrans %}
             <input type="file" id="file">
         </label>
-        <button id="reset-file">Reset</button>
+        <button id="reset-file">{% trans %}Reset{% endtrans %}</button>
     </p>
 	<div id="format-settings">
         <label>
-            Formatter
+            {% trans %}Formatter{% endtrans %}
             <select id=formatter>
-                <option value=html>HTML</option>
-                <option value=tokens>tokens</option>
+                <option value=html>{% trans %}HTML{% endtrans %}</option>
+                <option value=tokens>{% trans %}tokens{% endtrans %}</option>
             </select>
         </label>
-        <label>Style
+        <label>
+            {% trans %}Style{% endtrans %}
             <select id="style">
                 <optgroup label="Good contrast">
                 {% for style in styles_aa %}
@@ -67,14 +70,14 @@
                 </optgroup>
             </select>
         </label>
-        <span id=contrast-warning hidden>style may have poor contrast</span>
+        <span id=contrast-warning hidden>{% trans %}style may have poor contrast{% endtrans %}</span>
     </div>
     </form>
 </div>
 
 <div id="loading" hidden>
     <img src="{{ pathto("_static/spinner.gif", 1) }}" width="20">
-    <span id="loading-text">loading Python...</span>
+    <span id="loading-text">{% trans %}loading Python...{% endtrans %}</span>
 </div>
 
 <style id=css-style></style>
@@ -83,15 +86,21 @@
 
 <div id="code-header" hidden>
     <div class=flex-grow-1></div>
-    <button onclick="download_code()">Download</button>
-    <a id="copylink" role="button">Copy link</a>
-    <span hidden id="uri-too-long">(Copy link unavailable because code too long)</span>
+    <button onclick="download_code()">{% trans %}Download{% endtrans %}</button>
+    <a id="copylink" role="button">{% trans %}Copy link{% endtrans %}</a>
+    <span hidden id="uri-too-long">{% trans %}(Copy link unavailable because code too long){% endtrans %}</span>
 </div>
 
-<p>The highlighting here is performed in-browser using
-    a WebAssembly translation of the latest Pygments master branch, courtesy of
-    <a href="https://github.com/iodide-project/pyodide">Pyodide</a>.</p>
-<p>Your content is neither sent over the web nor stored anywhere.</p>
+<p>
+    {% trans -%}
+    The highlighting here is performed in-browser using a WebAssembly translation of the latest Pygments master branch, courtesy of <a href="https://github.com/iodide-project/pyodide">Pyodide</a>.
+    {%- endtrans %}
+</p>
+<p>
+    {% trans -%}
+    Your content is neither sent over the web nor stored anywhere.
+    {%- endtrans %}
+</p>
 
 <script type="text/javascript" src="{{ pathto("_static/demo.js", 1) }}"></script>
 {% endblock %}
