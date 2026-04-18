@@ -135,4 +135,6 @@ return
 	</outer>
 }
   <tr><td><!-- some commented things-->&nbsp;</td></tr>
+  <tr><td title="Ünicöde in attrïbutes">… and 😎 characters > U+FFFF</td></tr>
+  <?procéssing instruction?>
 </html>
