@@ -1,7 +1,8 @@
 ---input---
-{root: [{compound: 1b}, {compound: 2b, tag: {key: "value"}}]}
+[{root: [{compound: 1b}, {compound: 2b, tag: {key: "value"}}]}]
 
 ---tokens---
+'['           Punctuation
 '{'           Punctuation
 'root'        Name.Attribute
 ':'           Punctuation
@@ -36,4 +37,5 @@
 '}'           Punctuation
 ']'           Punctuation
 '}'           Punctuation
+']'           Punctuation
 '\n'          Text
