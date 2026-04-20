@@ -1,0 +1,15 @@
+# Example fstab file.
+
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system>                           <mount point>   <type>    <options>                                                    <dump>  <pass>
+
+UUID=11111111-2222-3333-4444-555555555555  /              ext4      defaults,noatime,errors=remount-ro                           1       1
+LABEL=home_data                            /home          xfs       defaults,usrquota,grpquota,noatime                           1       2
+UUID=66666666-7777-8888-9999-000000000000  none           swap      sw                                                           0       0
+/dev/cdrom                                 /media/cdrom0  iso9660   ro,noauto,user                                               0       0
+//192.168.1.10/shared                      /mnt/shared    cifs      credentials=/root/.smbcredentials,iocharset=utf8,sec=ntlmssp 0       0
+server:/export/data                        /mnt/nfs       nfs       defaults,_netdev,hard,intr,rsize=8192,wsize=8192             0       0
+tmpfs                                      /tmp           tmpfs     defaults,noatime,nosuid,nodev,size=2G                        0       0
+/var/log                                   /mnt/logbackup none      bind,obscure,hello=1                                         0       0
