@@ -1,0 +1,47 @@
+---input---
+# This is a top-level comment
+SUMMARY = "Hello \
+world"
+SECTION = 'examples'
+HOMEPAGE = "https://example.com/${BPN}"
+# trailing comment
+
+---tokens---
+'# This is a top-level comment' Comment.Single
+'\n'          Text.Whitespace
+
+'SUMMARY'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Hello '      Literal.String.Double
+'\\\n'        Literal.String.Escape
+
+'world'       Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'SECTION'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'examples'    Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text.Whitespace
+
+'HOMEPAGE'    Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'https://example.com/' Literal.String.Double
+'${'          Literal.String.Interpol
+'BPN'         Name.Variable
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'# trailing comment' Comment.Single
+'\n'          Text.Whitespace

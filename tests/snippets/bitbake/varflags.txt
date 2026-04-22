@@ -1,0 +1,41 @@
+---input---
+do_install[depends] = "qemu-native:do_populate_sysroot"
+do_compile[noexec] = "1"
+do_fetch[postfuncs] += "do_extra_fetch"
+
+---tokens---
+'do_install'  Name.Variable
+'['           Punctuation
+'depends'     Name.Attribute
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'qemu-native:do_populate_sysroot' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'do_compile'  Name.Variable
+'['           Punctuation
+'noexec'      Name.Attribute
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'1'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'do_fetch'    Name.Variable
+'['           Punctuation
+'postfuncs'   Name.Attribute
+']'           Punctuation
+' '           Text.Whitespace
+'+='          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'do_extra_fetch' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace

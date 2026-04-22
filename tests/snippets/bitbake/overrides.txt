@@ -1,0 +1,58 @@
+---input---
+FILES:${PN}-doc = "${docdir}"
+RDEPENDS:${PN}:append:class-target = " bash"
+SRC_URI:remove = "file://broken.patch"
+SRC_URI:append:qemux86 = " file://qemu.cfg"
+VAR := "immediate"
+
+---tokens---
+'FILES'       Name.Variable
+':${PN}-doc'  Name.Decorator
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'${'          Literal.String.Interpol
+'docdir'      Name.Variable
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'RDEPENDS'    Name.Variable
+':${PN}:append:class-target' Name.Decorator
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+' bash'       Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'SRC_URI'     Name.Variable
+':remove'     Name.Decorator
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'file://broken.patch' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'SRC_URI'     Name.Variable
+':append:qemux86' Name.Decorator
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+' file://qemu.cfg' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'VAR'         Name.Variable
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'immediate'   Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace

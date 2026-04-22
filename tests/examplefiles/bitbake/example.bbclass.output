@@ -1,0 +1,475 @@
+'# Example BitBake recipe exercising the BitBake lexer.' Comment.Single
+'\n'          Text.Whitespace
+
+'SUMMARY'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Hello world example' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'DESCRIPTION' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'A small recipe used to exercise the BitBake Pygments lexer.' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'HOMEPAGE'    Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'https://example.com/' Literal.String.Double
+'${'          Literal.String.Interpol
+'BPN'         Name.Variable
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'LICENSE'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'MIT'         Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'LIC_FILES_CHKSUM' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'file://COPYING;md5=0000000000000000000000000000000000' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'SRC_URI'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+' '           Literal.String.Double
+'\\\n'        Literal.String.Escape
+
+'    https://example.com/' Literal.String.Double
+'${'          Literal.String.Interpol
+'BPN'         Name.Variable
+'}'           Literal.String.Interpol
+'-'           Literal.String.Double
+'${'          Literal.String.Interpol
+'PV'          Name.Variable
+'}'           Literal.String.Interpol
+'.tar.gz '    Literal.String.Double
+'\\\n'        Literal.String.Escape
+
+'    file://fix-build.patch ' Literal.String.Double
+'\\\n'        Literal.String.Escape
+
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'SRC_URI'     Name.Variable
+'['           Punctuation
+'sha256sum'   Name.Attribute
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'S'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'${'          Literal.String.Interpol
+'WORKDIR'     Name.Variable
+'}'           Literal.String.Interpol
+'/'           Literal.String.Double
+'${'          Literal.String.Interpol
+'BPN'         Name.Variable
+'}'           Literal.String.Interpol
+'-'           Literal.String.Double
+'${'          Literal.String.Interpol
+'PV'          Name.Variable
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'inherit'     Keyword.Namespace
+' '           Text.Whitespace
+'autotools'   Literal.String
+' '           Text.Whitespace
+'pkgconfig'   Literal.String
+'\n'          Text.Whitespace
+
+'inherit_defer' Keyword.Namespace
+' '           Text.Whitespace
+'${'          Literal.String.Interpol
+'PYTHON_PN'   Name.Variable
+'}'           Literal.String.Interpol
+'-setuptools' Literal.String
+'\n'          Text.Whitespace
+
+'include_all' Keyword.Namespace
+' '           Text.Whitespace
+'conf/multilib.conf' Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'DEPENDS'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'zlib openssl' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'RDEPENDS'    Name.Variable
+':${PN}'      Name.Decorator
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'bash'        Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'RDEPENDS'    Name.Variable
+':${PN}:append:class-target' Name.Decorator
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+' systemd'    Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'RRECOMMENDS' Name.Variable
+':${PN}-doc'  Name.Decorator
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'man-pages'   Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'EXTRA_OECONF' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'--disable-static' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'CFLAGS'      Name.Variable
+' '           Text.Whitespace
+'+='          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'-O2'         Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'CFLAGS'      Name.Variable
+':append:qemux86' Name.Decorator
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+' -m32'       Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'PACKAGECONFIG' Name.Variable
+' '           Text.Whitespace
+'??='         Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'${@'         Literal.String.Interpol
+'bb'          Name
+'.'           Operator
+'utils'       Name
+'.'           Operator
+'contains'    Name
+'('           Punctuation
+"'"           Literal.String.Single
+'DISTRO_FEATURES' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'systemd'     Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'systemd'     Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'d'           Name
+')'           Punctuation
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'PACKAGECONFIG' Name.Variable
+'['           Punctuation
+'systemd'     Name.Attribute
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'--with-systemd,--without-systemd,systemd' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'do_compile'  Name.Function
+':prepend'    Name.Decorator
+'() '         Text
+'{\n'         Punctuation
+
+'    '        Text.Whitespace
+'echo'        Name.Builtin
+' '           Text.Whitespace
+'"preparing build"' Literal.String.Double
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'do_install'  Name.Function
+':append'     Name.Decorator
+'() '         Text
+'{\n'         Punctuation
+
+'    '        Text.Whitespace
+'install'     Text
+' '           Text.Whitespace
+'-d'          Text
+' '           Text.Whitespace
+'${'          Literal.String.Interpol
+'D'           Name.Variable
+'}'           Literal.String.Interpol
+'${'          Literal.String.Interpol
+'bindir'      Name.Variable
+'}'           Literal.String.Interpol
+'\n    '      Text.Whitespace
+'install'     Text
+' '           Text.Whitespace
+'-m'          Text
+' '           Text.Whitespace
+'0755'        Literal.Number
+' '           Text.Whitespace
+'${'          Literal.String.Interpol
+'B'           Name.Variable
+'}'           Literal.String.Interpol
+'/hello'      Text
+' '           Text.Whitespace
+'${'          Literal.String.Interpol
+'D'           Name.Variable
+'}'           Literal.String.Interpol
+'${'          Literal.String.Interpol
+'bindir'      Name.Variable
+'}'           Literal.String.Interpol
+'/hello'      Text
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'fakeroot '   Keyword.Type
+'do_rootfs'   Name.Function
+'() '         Text
+'{\n'         Punctuation
+
+'    '        Text.Whitespace
+'echo'        Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'stage rootfs into ' Literal.String.Double
+'${'          Literal.String.Interpol
+'IMAGE_ROOTFS' Name.Variable
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'python'      Keyword
+' do_check'   Name.Function
+'() '         Text
+'{\n'         Punctuation
+
+'    '        Text
+'bb'          Name
+'.'           Operator
+'warn'        Name
+'('           Punctuation
+'"'           Literal.String.Double
+'checking '   Literal.String.Double
+'%s'          Literal.String.Interpol
+'"'           Literal.String.Double
+' '           Text
+'%'           Operator
+' '           Text
+'d'           Name
+'.'           Operator
+'getVar'      Name
+'('           Punctuation
+"'"           Literal.String.Single
+'PN'          Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'fakeroot '   Keyword.Type
+'python'      Keyword
+' () '        Text
+'{\n'         Punctuation
+
+'    '        Text
+'d'           Name
+'.'           Operator
+'setVar'      Name
+'('           Punctuation
+"'"           Literal.String.Single
+'FOO'         Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'bar'         Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'def'         Keyword
+' '           Text.Whitespace
+'my_helper'   Name.Function
+'('           Punctuation
+'d'           Name
+')'           Punctuation
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'d'           Name
+'.'           Operator
+'getVar'      Name
+'('           Punctuation
+"'"           Literal.String.Single
+'PN'          Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+"'"           Literal.String.Single
+'-helper'     Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'addtask'     Keyword
+' '           Text.Whitespace
+'check'       Name
+' '           Text.Whitespace
+'after'       Keyword
+' '           Text.Whitespace
+'do_compile'  Name
+' '           Text.Whitespace
+'before'      Keyword
+' '           Text.Whitespace
+'do_install'  Name
+'\n'          Text.Whitespace
+
+'deltask'     Keyword
+' '           Text.Whitespace
+'do_package_qa' Name
+'\n'          Text.Whitespace
+
+'EXPORT_FUNCTIONS' Keyword
+' '           Text.Whitespace
+'do_install'  Name
+' '           Text.Whitespace
+'do_compile'  Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'do_install'  Name.Variable
+'['           Punctuation
+'depends'     Name.Attribute
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'qemu-native:do_populate_sysroot' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'do_compile'  Name.Variable
+'['           Punctuation
+'noexec'      Name.Attribute
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'1'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
