@@ -1,0 +1,629 @@
+'// C++ attributes (C++11 and later)\n' Comment.Single
+
+'\n'          Text.Whitespace
+
+'[['          Punctuation
+'nodiscard'   Name.Attribute
+']]'          Punctuation
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'compute'     Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'[['          Punctuation
+'deprecated'  Name.Attribute
+'('           Punctuation
+'"'           Literal.String
+'use computeV2 instead' Literal.String
+'"'           Literal.String
+')'           Punctuation
+']]'          Punctuation
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'computeOld'  Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'[['          Punctuation
+'maybe_unused' Name.Attribute
+']]'          Punctuation
+' '           Text.Whitespace
+'static'      Keyword
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'helper'      Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'[['          Punctuation
+'noreturn'    Name.Attribute
+']]'          Punctuation
+' '           Text.Whitespace
+'void'        Keyword.Type
+' '           Text.Whitespace
+'fatalError'  Name
+'('           Punctuation
+'const'       Keyword
+' '           Text.Whitespace
+'char'        Keyword.Type
+'*'           Operator
+' '           Text.Whitespace
+'msg'         Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Vendor-specific attributes\n' Comment.Single
+
+'[['          Punctuation
+'gnu'         Name.Attribute
+':'           Punctuation
+':'           Punctuation
+'always_inline' Name.Attribute
+']]'          Punctuation
+' '           Text.Whitespace
+'inline'      Keyword.Reserved
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'fastAdd'     Name
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text.Whitespace
+'a'           Name
+','           Punctuation
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'b'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'b'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'[['          Punctuation
+'clang'       Name.Attribute
+':'           Punctuation
+':'           Punctuation
+'optnone'     Name.Attribute
+']]'          Punctuation
+' '           Text.Whitespace
+'void'        Keyword.Type
+' '           Text.Whitespace
+'debugOnly'   Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Multiple attributes\n' Comment.Single
+
+'[['          Punctuation
+'nodiscard'   Name.Attribute
+','           Punctuation
+' '           Text.Whitespace
+'gnu'         Name.Attribute
+':'           Punctuation
+':'           Punctuation
+'warn_unused_result' Name.Attribute
+']]'          Punctuation
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'importantResult' Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Attribute with using prefix\n' Comment.Single
+
+'[['          Punctuation
+'using'       Keyword
+' '           Text.Whitespace
+'gnu'         Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'always_inline' Name.Attribute
+','           Punctuation
+' '           Text.Whitespace
+'hot'         Name.Attribute
+']]'          Punctuation
+' '           Text.Whitespace
+'void'        Keyword.Type
+' '           Text.Whitespace
+'optimizedFunc' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// no_unique_address (C++20)\n' Comment.Single
+
+'struct'      Keyword
+' '           Text.Whitespace
+'CompressedPair' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'[['          Punctuation
+'no_unique_address' Name.Attribute
+']]'          Punctuation
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'first'       Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'[['          Punctuation
+'no_unique_address' Name.Attribute
+']]'          Punctuation
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'second'      Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// likely/unlikely (C++20)\n' Comment.Single
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'testLikely'  Name.Function
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'x'           Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'[['          Punctuation
+'likely'      Name.Attribute
+']]'          Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'x'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'else'        Keyword
+' '           Text.Whitespace
+'[['          Punctuation
+'unlikely'    Name.Attribute
+']]'          Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'-'           Operator
+'x'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Fallthrough in switch\n' Comment.Single
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'testFallthrough' Name.Function
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text.Whitespace
+'x'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'switch'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'x'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'+'           Operator
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'[['          Punctuation
+'fallthrough' Name.Attribute
+']]'          Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'x'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'default'     Keyword
+':'           Operator
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Attributes on the line above\n' Comment.Single
+
+'[['          Punctuation
+'nodiscard'   Name.Attribute
+']]'          Punctuation
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'computeV2'   Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'[['          Punctuation
+'gnu'         Name.Attribute
+':'           Punctuation
+':'           Punctuation
+'always_inline' Name.Attribute
+']]'          Punctuation
+'\n'          Text.Whitespace
+
+'inline'      Keyword.Reserved
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'fastMul'     Name
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text.Whitespace
+'a'           Name
+','           Punctuation
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'b'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'b'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'[['          Punctuation
+'deprecated'  Name.Attribute
+'('           Punctuation
+'"'           Literal.String
+'old API'     Literal.String
+'"'           Literal.String
+')'           Punctuation
+']]'          Punctuation
+'\n'          Text.Whitespace
+
+'void'        Keyword.Type
+' '           Text.Whitespace
+'legacyInit'  Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// C++26 annotations\n' Comment.Single
+
+'[['          Punctuation
+'='           Punctuation
+'Override'    Name.Decorator
+']]'          Punctuation
+' '           Text.Whitespace
+'void'        Keyword.Type
+' '           Text.Whitespace
+'draw'        Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'[['          Punctuation
+'='           Punctuation
+'Deprecated'  Name.Decorator
+'('           Punctuation
+'"'           Literal.String
+'use draw_v2' Literal.String
+'"'           Literal.String
+')'           Punctuation
+']]'          Punctuation
+' '           Text.Whitespace
+'void'        Keyword.Type
+' '           Text.Whitespace
+'drawOld'     Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'[['          Punctuation
+'='           Punctuation
+'Contract'    Name.Decorator
+']]'          Punctuation
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'safeDivide'  Name
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text.Whitespace
+'a'           Name
+','           Punctuation
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'b'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// C++26 annotations on type names\n' Comment.Single
+
+'struct'      Keyword
+' '           Text.Whitespace
+'[['          Punctuation
+'='           Punctuation
+'Serializable' Name.Decorator
+']]'          Punctuation
+' '           Text.Whitespace
+'Document'    Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'id'          Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'enum'        Keyword
+' '           Text.Whitespace
+'class'       Keyword
+' '           Text.Whitespace
+'[['          Punctuation
+'='           Punctuation
+'Debug'       Name.Decorator
+']]'          Punctuation
+' '           Text.Whitespace
+'Option'      Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'NONE'        Name
+','           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'VERBOSE'     Name
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'class'       Keyword
+' '           Text.Whitespace
+'[['          Punctuation
+'='           Punctuation
+'Immutable'   Name.Decorator
+']]'          Punctuation
+' '           Text.Whitespace
+'Point'       Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'x'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'y'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Annotations on the line above\n' Comment.Single
+
+'[['          Punctuation
+'='           Punctuation
+'Exported'    Name.Decorator
+']]'          Punctuation
+'\n'          Text.Whitespace
+
+'void'        Keyword.Type
+' '           Text.Whitespace
+'apiFunction' Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'[['          Punctuation
+'='           Punctuation
+'MyLib'       Name.Decorator
+'::'          Punctuation
+'Cacheable'   Name.Decorator
+']]'          Punctuation
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'expensiveCompute' Name
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text.Whitespace
+'n'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

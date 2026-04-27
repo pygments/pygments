@@ -204,6 +204,9 @@ class CFamilyLexer(RegexLexer):
             (r'.*?\n', Comment),
         ],
         'classname': [
+            include('whitespace'),
+            # C/C++ attributes before type name
+            (r'\[\[(?=[^\[\]]*\]\])', Punctuation, 'attribute'),
             (_ident, Name.Class, '#pop'),
             # template specification
             (r'\s*(?=>)', Text, '#pop'),
@@ -215,7 +218,20 @@ class CFamilyLexer(RegexLexer):
             (_ident, Name.Constant),
             include('whitespace'),
             include('statements'),
-        ]
+        ],
+        'attribute': [
+            (r'\]\]', Punctuation, '#pop'),
+            (_ident, Name.Attribute),
+            (r'\(', Punctuation, 'attribute-args'),
+            (r'::', Punctuation),
+            (r',', Punctuation),
+            include('whitespace'),
+        ],
+        'attribute-args': [
+            (r'\)', Punctuation, '#pop'),
+            (r'\(', Punctuation, '#push'),
+            include('statements'),
+        ],
     }
 
     stdlib_types = {
@@ -299,6 +315,11 @@ class CLexer(CFamilyLexer):
     priority = 0.1
 
     tokens = {
+        'statements': [
+            # C23 attributes [[...]] — lookahead to avoid matching ObjC's [[obj msg] msg]
+            (r'\[\[(?=[^\[\]]*\]\])', Punctuation, 'attribute'),
+            inherit,
+        ],
         'keywords': [
             (words((
                 '_Alignas', '_Alignof', '_Noreturn', '_Countof', '_Generic', '_Thread_local',
@@ -359,6 +380,11 @@ class CppLexer(CFamilyLexer):
             (r'((?:[LuU]|u8)?R)(")([^\\()\s]{,16})(\()((?:.|\n)*?)(\)\3)(")',
              bygroups(String.Affix, String, String.Delimiter, String.Delimiter,
                       String, String.Delimiter, String)),
+            # C++26 annotations [[=Annotation]]
+            (r'(\[\[)(=)(' + CFamilyLexer._ident + r')',
+             bygroups(Punctuation, Punctuation, Name.Decorator), 'annotation'),
+            # C++11 attributes [[...]]
+            (r'\[\[(?=[^\[\]]*\]\])', Punctuation, 'attribute'),
             inherit,
         ],
         'root': [
@@ -370,14 +396,36 @@ class CppLexer(CFamilyLexer):
             # Offload C++ extensions, http://offload.codeplay.com/
             (r'__(offload|blockingoffload|outer)\b', Keyword.Pseudo),
         ],
-        'enumname': [
+        'classname': [
             include('whitespace'),
-            # 'enum class' and 'enum struct' C++11 support
-            (words(('class', 'struct'), suffix=r'\b'), Keyword),
+            # C++26 annotations before type name
+            (r'(\[\[)(=)(' + CFamilyLexer._ident + r')',
+             bygroups(Punctuation, Punctuation, Name.Decorator), 'annotation'),
+            # C++ attributes before type name
+            (r'\[\[(?=[^\[\]]*\]\])', Punctuation, 'attribute'),
             (CFamilyLexer._ident, Name.Class, '#pop'),
             # template specification
             (r'\s*(?=>)', Text, '#pop'),
             default('#pop')
+        ],
+        'enumname': [
+            include('whitespace'),
+            # 'enum class' and 'enum struct' C++11 support
+            (words(('class', 'struct'), suffix=r'\b'), Keyword),
+            # C++26 annotations before enum name
+            (r'(\[\[)(=)(' + CFamilyLexer._ident + r')',
+             bygroups(Punctuation, Punctuation, Name.Decorator), 'annotation'),
+            # C++ attributes before enum name
+            (r'\[\[(?=[^\[\]]*\]\])', Punctuation, 'attribute'),
+            (CFamilyLexer._ident, Name.Class, '#pop'),
+            # template specification
+            (r'\s*(?=>)', Text, '#pop'),
+            default('#pop')
+        ],
+        'attribute': [
+            (r'using\b', Keyword),
+            (r':', Punctuation),
+            inherit,
         ],
         'keywords': [
             (r'(class|concept|typename)(\s+)', bygroups(Keyword, Whitespace), 'classname'),
@@ -405,7 +453,20 @@ class CppLexer(CFamilyLexer):
             (r'inline\b', Keyword.Reserved),
             (CFamilyLexer._ident, Name.Namespace),
             include('statement')
-        ]
+        ],
+        'annotation': [
+            (r'\]\]', Punctuation, '#pop'),
+            (r'\(', Punctuation, 'annotation-args'),
+            (r'::', Punctuation),
+            (r',', Punctuation),
+            (CFamilyLexer._ident, Name.Decorator),
+            include('whitespace'),
+        ],
+        'annotation-args': [
+            (r'\)', Punctuation, '#pop'),
+            (r'\(', Punctuation, '#push'),
+            include('statements'),
+        ],
     }
 
     def analyse_text(text):
