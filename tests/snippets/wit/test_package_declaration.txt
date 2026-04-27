@@ -1,0 +1,12 @@
+---input---
+package wasi:http@1.0.0;
+
+---tokens---
+'package'     Keyword.Namespace
+' '           Text.Whitespace
+'wasi'        Name.Namespace
+':'           Punctuation
+'http'        Name.Namespace
+'@1.0.0'      Name.Label
+';'           Punctuation
+'\n'          Text.Whitespace

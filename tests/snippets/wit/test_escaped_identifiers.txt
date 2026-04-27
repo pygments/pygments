@@ -1,0 +1,14 @@
+---input---
+%type
+%import
+%variant
+
+---tokens---
+'%type'       Name.Variable
+'\n'          Text.Whitespace
+
+'%import'     Name.Variable
+'\n'          Text.Whitespace
+
+'%variant'    Name.Variable
+'\n'          Text.Whitespace
