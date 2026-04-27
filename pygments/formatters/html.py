@@ -26,20 +26,6 @@ except ImportError:
 __all__ = ['HtmlFormatter']
 
 
-_escape_html_table = {
-    ord('&'): '&amp;',
-    ord('<'): '&lt;',
-    ord('>'): '&gt;',
-    ord('"'): '&quot;',
-    ord("'"): '&#39;',
-}
-
-
-def escape_html(text, table=_escape_html_table):
-    """Escape &, <, > as well as single and double quotes for HTML."""
-    return text.translate(table)
-
-
 def webify(color):
     if color.startswith('calc') or color.startswith('var'):
         return color
@@ -832,7 +818,7 @@ class HtmlFormatter(Formatter):
     @functools.lru_cache(maxsize=100)
     def _translate_parts(self, value):
         """HTML-escape a value and split it by newlines."""
-        return value.translate(_escape_html_table).split('\n')
+        return html_escape(value).split('\n')
 
     def _format_lines(self, tokensource):
         """

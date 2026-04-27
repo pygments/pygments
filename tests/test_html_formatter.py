@@ -15,9 +15,9 @@ from os import path
 import pytest
 
 from pygments.formatters import HtmlFormatter, NullFormatter
-from pygments.formatters.html import escape_html
 from pygments.lexers import PythonLexer
 from pygments.style import Style
+from pygments.util import html_escape
 
 TESTDIR = path.dirname(path.abspath(__file__))
 TESTFILE = path.join(TESTDIR, 'test_html_formatter.py')
@@ -36,7 +36,7 @@ def test_correct_output():
     nfmt.format(tokensource, noutfile)
 
     stripped_html = re.sub('<.*?>', '', houtfile.getvalue())
-    escaped_text = escape_html(noutfile.getvalue())
+    escaped_text = html_escape(noutfile.getvalue())
     assert stripped_html == escaped_text
 
 
