@@ -1,0 +1,95 @@
+---input---
+SUMMARY = "hello"
+DESCRIPTION ?= "Default description"
+RDEPENDS ??= ""
+PV := "1.0+git${SRCPV}"
+CFLAGS += "-O2"
+EXTRA_OEMAKE =+ "V=1"
+PATH .= ":/usr/local/bin"
+PATH =. "/opt/bin:"
+export CCACHE_DIR = "/var/cache/ccache"
+
+---tokens---
+'SUMMARY'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'hello'       Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'DESCRIPTION' Name.Variable
+' '           Text.Whitespace
+'?='          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Default description' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'RDEPENDS'    Name.Variable
+' '           Text.Whitespace
+'??='         Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'PV'          Name.Variable
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'1.0+git'     Literal.String.Double
+'${'          Literal.String.Interpol
+'SRCPV'       Name.Variable
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'CFLAGS'      Name.Variable
+' '           Text.Whitespace
+'+='          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'-O2'         Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'EXTRA_OEMAKE' Name.Variable
+' '           Text.Whitespace
+'=+'          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'V=1'         Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'PATH'        Name.Variable
+' '           Text.Whitespace
+'.='          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+':/usr/local/bin' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'PATH'        Name.Variable
+' '           Text.Whitespace
+'=.'          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'/opt/bin:'   Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'export '     Keyword.Type
+'CCACHE_DIR'  Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'/var/cache/ccache' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
