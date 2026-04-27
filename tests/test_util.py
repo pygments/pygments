@@ -193,3 +193,6 @@ def test_html_escape():
     assert util.html_escape('<>&"\'') == '&lt;&gt;&amp;&quot;&#x27;'
     assert util.html_escape('<>&"\'', quote=False) == '&lt;&gt;&amp;"\''
     assert util.html_escape(None) == ''
+    assert util.html_escape(2) == '2'
+    assert util.html_escape(2.2) == '2.2'
+    assert util.html_escape(True) == 'True'
