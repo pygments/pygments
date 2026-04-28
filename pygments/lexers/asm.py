@@ -113,6 +113,7 @@ def _objdump_lexer_tokens(asm_lexer):
     Common objdump lexer tokens to wrap an ASM lexer.
     """
     hex_re = r'[0-9A-Za-z]'
+    space_re = r'[ \t]'
     return {
         'root': [
             # File name & format:
@@ -131,29 +132,29 @@ def _objdump_lexer_tokens(asm_lexer):
                 bygroups(Number.Hex, Whitespace, Punctuation, Name.Function,
                          Punctuation)),
             # Code line with disassembled instructions
-            ('( *)('+hex_re+r'+:)(\t)((?:'+hex_re+hex_re+' )+)( *\t)([a-zA-Z].*?)$',
+            ('('+space_re+'*)('+hex_re+r'+:)('+space_re+'+)((?:'+hex_re+hex_re+' )+)('+space_re+'*)([a-zA-Z].*?)$',
                 bygroups(Whitespace, Name.Label, Whitespace, Number.Hex, Whitespace,
                          using(asm_lexer))),
             # Code line without raw instructions (objdump --no-show-raw-insn)
-            ('( *)('+hex_re+r'+:)( *\t)([a-zA-Z].*?)$',
+            ('('+space_re+'*)('+hex_re+r'+:)('+space_re+'+)([a-zA-Z].*?)$',
                 bygroups(Whitespace, Name.Label, Whitespace,
                          using(asm_lexer))),
             # Code line with ascii
-            ('( *)('+hex_re+r'+:)(\t)((?:'+hex_re+hex_re+' )+)( *)(.*?)$',
+            ('('+space_re+'*)('+hex_re+r'+:)('+space_re+'+)((?:'+hex_re+hex_re+' )+)( *)(.*?)$',
                 bygroups(Whitespace, Name.Label, Whitespace, Number.Hex, Whitespace, String)),
             # Continued code line, only raw opcodes without disassembled
             # instruction
-            ('( *)('+hex_re+r'+:)(\t)((?:'+hex_re+hex_re+' )+)$',
+            ('('+space_re+'*)('+hex_re+r'+:)('+space_re+'+)((?:'+hex_re+hex_re+' )+)$',
                 bygroups(Whitespace, Name.Label, Whitespace, Number.Hex)),
             # Skipped a few bytes
-            (r'\t\.\.\.$', Text),
+            ('('+space_re+'*)('+r'\.\.\.'+')$', bygroups(Whitespace, Text)),
             # Relocation line
             # (With offset)
-            (r'(\t\t\t)('+hex_re+r'+:)( )([^\t]+)(\t)(.*?)([-+])(0x'+hex_re+'+)$',
+            (r'('+space_re+'+)('+hex_re+r'+:)( )([^\t]+)('+space_re+')(.*?)([-+])(0x'+hex_re+'+)$',
                 bygroups(Whitespace, Name.Label, Whitespace, Name.Property, Whitespace,
                          Name.Constant, Punctuation, Number.Hex)),
             # (Without offset)
-            (r'(\t\t\t)('+hex_re+r'+:)( )([^\t]+)(\t)(.*?)$',
+            (r'('+space_re+'+)('+hex_re+r'+:)( )([^\t]+)('+space_re+')(.*?)$',
                 bygroups(Whitespace, Name.Label, Whitespace, Name.Property, Whitespace,
                          Name.Constant)),
             (r'[^\n]+\n', Other)
