@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block htmltitle %}<title>Styles{{ titlesuffix }}</title>{% endblock %}
+{% block htmltitle %}<title>{% trans %}Styles{% endtrans %}{{ titlesuffix }}</title>{% endblock %}
 
 {% block body %}
 <style>
@@ -21,10 +21,11 @@ h2 {
 </style>
 {{ body }}
 
-<h1>Styles</h1>
-
-<p>Pygments comes with the following builtin styles.
-For more information about styles refer to <a href="{{ pathto('docs/styles') }}">the documentation</a>.
+<h1>{% trans %}Styles{% endtrans %}</h1>
+<p>
+    {% trans pathto_docs_styles = pathto('docs/styles') -%}
+    Pygments comes with the following builtin styles. For more information about styles refer to <a href="{{ pathto_docs_styles }}">the documentation</a>.
+    {%- endtrans %}
 </p>
 
 <div class=style-gallery>
@@ -36,12 +37,11 @@ For more information about styles refer to <a href="{{ pathto('docs/styles') }}"
 {% endfor %}
 </div>
 
-<h2>Styles with a lower contrast</h2>
+<h2>{% trans %}Styles with a lower contrast{% endtrans %}</h2>
 <p>
-The following styles do not meet the <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html">WCAG 2.1 AA contrast minimum</a>,
-so they might be difficult to read for people with suboptimal vision.
-If you want your highlighted code to be well readable for other people, you
-should use one of the earlier styles instead.
+    {% trans -%}
+    The following styles do not meet the <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html">WCAG 2.1 AA contrast minimum</a>, so they might be difficult to read for people with suboptimal vision. If you want your highlighted code to be well readable for other people, you should use one of the earlier styles instead.
+    {%- endtrans %}
 </p>
 <div class=style-gallery>
     {% for style in styles_sub_aa %}
