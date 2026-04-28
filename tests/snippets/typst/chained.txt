@@ -1,0 +1,25 @@
+---input---
+#datetime.today(
+  
+).display(
+  "foo"
+)bar
+
+---tokens---
+'#datetime'   Name.Variable
+'.'           Punctuation
+'today'       Name.Function
+'('           Punctuation
+'\n  \n'      Text.Whitespace
+
+')'           Punctuation
+'.'           Punctuation
+'display'     Name.Function
+'('           Punctuation
+'\n  '        Text.Whitespace
+'"foo"'       Literal.String.Double
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'bar'         Text
+'\n'          Text.Whitespace
