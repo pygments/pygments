@@ -22,7 +22,8 @@ __all__ = ['IniLexer', 'SystemdLexer', 'DesktopLexer', 'RegeditLexer', 'Properti
            'NginxConfLexer', 'LighttpdConfLexer', 'DockerLexer',
            'TerraformLexer', 'TermcapLexer', 'TerminfoLexer',
            'PkgConfigLexer', 'PacmanConfLexer', 'AugeasLexer', 'TOMLLexer',
-           'NestedTextLexer', 'SingularityLexer', 'UnixConfigLexer']
+           'NestedTextLexer', 'SingularityLexer', 'UnixConfigLexer',
+           'BicepLexer']
 
 
 class IniLexer(RegexLexer):
@@ -1429,5 +1430,157 @@ class UnixConfigLexer(RegexLexer):
             (r'[0-9]+', Number),
             (r'((?!\n)[a-zA-Z0-9\_\-\s\(\),]){2,}', Text),
             (r'[^:\n]+', String),
+        ],
+    }
+
+
+class BicepLexer(RegexLexer):
+    """
+    Lexer for Azure Bicep declarative deployment files.
+
+    Bicep is a domain-specific language for declarative deployment of
+    Azure resources. Source files use the ``.bicep`` extension; parameter
+    files use ``.bicepparam``. Keywords are scoped tightly to the
+    resource-graph grammar; everything else is identifier-or-expression.
+    """
+
+    name = 'Bicep'
+    aliases = ['bicep']
+    filenames = ['*.bicep', '*.bicepparam']
+    url = 'https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/'
+    version_added = '2.20'
+
+    declarations = (
+        'param', 'var', 'resource', 'module', 'output', 'targetScope',
+        'type', 'func', 'metadata', 'extends', 'using', 'extension',
+        'import', 'provider',
+    )
+
+    statement_keywords = ('if', 'else', 'for', 'in')
+
+    builtin_constants = ('true', 'false', 'null')
+
+    builtin_types = (
+        'string', 'int', 'bool', 'array', 'object',
+        'secureString', 'secureObject', 'sys',
+    )
+
+    # Keep the function list short on purpose. Bicep ships hundreds of
+    # functions across the `sys`, `az`, and resource-specific namespaces;
+    # the curated list below covers the ones that show up most often in
+    # tutorials, so they highlight as Name.Builtin instead of plain text
+    # without us pretending to know every function in the language.
+    builtin_functions = (
+        'concat', 'format', 'replace', 'split', 'toLower', 'toUpper',
+        'substring', 'trim', 'length', 'empty', 'contains', 'first',
+        'last', 'min', 'max', 'range', 'union', 'intersection', 'json',
+        'string', 'int', 'bool', 'array', 'createObject', 'items',
+        'resourceId', 'subscriptionResourceId', 'tenantResourceId',
+        'managementGroupResourceId', 'resourceGroup', 'subscription',
+        'tenant', 'managementGroup', 'environment', 'deployment',
+        'reference', 'getSecret', 'listKeys', 'list',
+        'base64', 'base64ToString', 'uri', 'uriComponent',
+        'utcNow', 'dateTimeAdd', 'guid', 'newGuid',
+        'loadTextContent', 'loadFileAsBase64', 'loadJsonContent',
+        'loadYamlContent', 'pickZones', 'cidrSubnet', 'cidrHost',
+    )
+
+    tokens = {
+        'root': [
+            include('comments'),
+            include('whitespace'),
+
+            # Decorators e.g. @description('...'), @secure().
+            (r'(@)([a-zA-Z_]\w*)', bygroups(Punctuation, Name.Decorator)),
+
+            # Top-level declaration keywords introduce a name binding.
+            (words(declarations, prefix=r'\b', suffix=r'\b'),
+             Keyword.Declaration),
+
+            (words(statement_keywords, prefix=r'\b', suffix=r'\b'),
+             Keyword),
+
+            (words(builtin_constants, prefix=r'\b', suffix=r'\b'),
+             Keyword.Constant),
+
+            (words(builtin_types, prefix=r'\b', suffix=r'\b'),
+             Keyword.Type),
+
+            (words(builtin_functions, prefix=r'\b', suffix=r'\b'),
+             Name.Builtin),
+
+            include('strings'),
+            include('numbers'),
+
+            # Resource API version on a resource declaration:
+            #   resource foo 'Microsoft.Network/virtualNetworks@2023-04-01'
+            # The whole single-quoted form is handled in 'strings'; nothing
+            # extra needed here.
+
+            include('punctuation'),
+            include('operators'),
+
+            (r'[a-zA-Z_]\w*', Name),
+        ],
+
+        'whitespace': [
+            (r'\s+', Whitespace),
+        ],
+
+        'comments': [
+            (r'//[^\n]*', Comment.Single),
+            (r'/\*', Comment.Multiline, 'block-comment'),
+        ],
+
+        'block-comment': [
+            (r'[^*/]+', Comment.Multiline),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'[*/]', Comment.Multiline),
+        ],
+
+        'strings': [
+            # Triple-quoted multiline string: '''...'''
+            (r"'''", String, 'multiline-string'),
+
+            # Single-quoted string with optional ${...} interpolation.
+            (r"'", String, 'string'),
+        ],
+
+        'string': [
+            (r"\\.", String.Escape),
+            (r"\$\{", String.Interpol, 'interpol'),
+            (r"'", String, '#pop'),
+            (r"[^'\\$]+", String),
+            (r"\$", String),
+        ],
+
+        'multiline-string': [
+            (r"'''", String, '#pop'),
+            (r"\$\{", String.Interpol, 'interpol'),
+            (r"[^'\\$]+", String),
+            (r"'", String),
+            (r"\$", String),
+            (r"\\.", String.Escape),
+        ],
+
+        'interpol': [
+            (r"\}", String.Interpol, '#pop'),
+            include('root'),
+        ],
+
+        'numbers': [
+            (r'\d+\.\d+', Number.Float),
+            (r'\d+', Number.Integer),
+        ],
+
+        'punctuation': [
+            (r'[\[\](){}]', Punctuation),
+            (r'[,;.]', Punctuation),
+        ],
+
+        'operators': [
+            # Multi-char operators first so '==' isn't mis-tokenised as '='.
+            (r'==|!=|<=|>=|&&|\|\||\?\?|=>|\.\.|\?\.|::', Operator),
+            (r'[=+\-*/%<>!|&?:^]', Operator),
         ],
     }
