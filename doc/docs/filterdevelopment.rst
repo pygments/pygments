@@ -69,7 +69,7 @@ You can also use the `simplefilter` decorator from the `pygments.filter` module:
 
 You can instantiate this filter by calling `uncolor(classtoo=True)`, the same
 way that you would have instantiated the previous filter by calling
-`UncolorFilter(classtoo=True)`. Indeed, The decorator automatically ensures that
+`UncolorFilter(classtoo=True)`. Indeed, the decorator automatically ensures that
 `uncolor` is a class which subclasses an internal filter class. The class
-`uncolo` uses the decorated function as a method for filtering.  (That's why
+`uncolor` uses the decorated function as a method for filtering.  (That's why
 there is a `self` argument that you probably won't end up using in the method.)
