@@ -124,6 +124,22 @@ def test_xml():
     assert not util.looks_like_xml('<html>')
 
 
+
+def test_xml_redos_resistance():
+    """Regression test for GH#2931: ReDoS in tag_re regex.
+
+    The attack string uses repeated angle brackets to trigger catastrophic
+    backtracking in the old regex. With the fix, this must complete
+    in under 2 seconds (previously took 70+ seconds).
+    """
+    import time
+    attack = '<' * 250 + ' ' * 250 + '>' * 250 + '<' * 250
+    t0 = time.time()
+    result = util.looks_like_xml(attack)
+    elapsed = time.time() - t0
+    assert result is False
+    assert elapsed < 2.0, f'ReDoS vulnerability: took {elapsed:.1f}s (should be < 2s)'
+
 def test_format_lines():
     lst = ['cat', 'dog']
     output = util.format_lines('var', lst)
