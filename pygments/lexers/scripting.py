@@ -509,6 +509,10 @@ class MoonScriptLexer(LuaLexer):
     For MoonScript source code.
     """
 
+    # MoonScript does not support Lua-style multiline comments
+    # (--[[ ... ]]). See https://github.com/leafo/moonscript/issues/15
+    _comment_multiline = None
+
     name = 'MoonScript'
     url = 'http://moonscript.org'
     aliases = ['moonscript', 'moon']
