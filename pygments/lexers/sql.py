@@ -764,7 +764,7 @@ class MySqlLexer(RegexLexer):
             (r'[!%&*+/:<=>^|~-]+', Operator),
 
             # Exceptions; these words tokenize differently in different contexts.
-            (r'\b(set)(?!\s*\()', Keyword),
+            (r'\b(set)\b(?!\s*\()', Keyword),
             (r'\b(character)(\s+)(set)\b', bygroups(Keyword, Whitespace, Keyword)),
             # In all other known cases, "SET" is tokenized by MYSQL_DATATYPES.
 
