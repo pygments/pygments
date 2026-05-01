@@ -1,0 +1,31 @@
+---input---
+--[[
+This spans
+multiple lines
+]]
+x = 1
+
+---tokens---
+'--[['        Comment.Single
+'\n'          Text.Whitespace
+
+'This'        Name.Class
+' '           Text
+'spans'       Name
+'\n'          Text.Whitespace
+
+'multiple'    Name
+' '           Text
+'lines'       Name
+'\n'          Text.Whitespace
+
+']'           Keyword.Type
+']'           Keyword.Type
+'\n'          Text.Whitespace
+
+'x'           Name
+' '           Text
+'='           Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
