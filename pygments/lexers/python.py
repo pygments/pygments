@@ -242,9 +242,10 @@ class PythonLexer(RegexLexer):
                 'hasattr', 'hash', 'hex', 'id', 'input', 'int', 'isinstance',
                 'issubclass', 'iter', 'len', 'list', 'locals', 'map', 'max',
                 'memoryview', 'min', 'next', 'object', 'oct', 'open', 'ord', 'pow',
-                'print', 'property', 'range', 'repr', 'reversed', 'round', 'set',
-                'setattr', 'slice', 'sorted', 'staticmethod', 'str', 'sum', 'super',
-                'tuple', 'type', 'vars', 'zip'), prefix=r'(?<!\.)', suffix=r'\b'),
+                'print', 'property', 'range', 'repr', 'reversed', 'round', 'sentinel',
+                'set', 'setattr', 'slice', 'sorted', 'staticmethod', 'str', 'sum',
+                'super', 'tuple', 'type', 'vars', 'zip'), prefix=r'(?<!\.)',
+                suffix=r'\b'),
              Name.Builtin),
             (r'(?<!\.)(self|Ellipsis|NotImplemented|cls)\b', Name.Builtin.Pseudo),
             (words((
