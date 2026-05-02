@@ -1,0 +1,30 @@
+---input---
+lazy import json
+lazy from math import sqrt
+lazy = 3
+
+---tokens---
+'lazy'        Keyword.Namespace
+' '           Text.Whitespace
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'json'        Name.Namespace
+'\n'          Text.Whitespace
+
+'lazy'        Keyword.Namespace
+' '           Text.Whitespace
+'from'        Keyword.Namespace
+' '           Text.Whitespace
+'math'        Name.Namespace
+' '           Text.Whitespace
+'import'      Keyword.Namespace
+' '           Text
+'sqrt'        Name
+'\n'          Text.Whitespace
+
+'lazy'        Name
+' '           Text
+'='           Operator
+' '           Text
+'3'           Literal.Number.Integer
+'\n'          Text.Whitespace
