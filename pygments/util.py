@@ -337,5 +337,7 @@ def html_escape(string, quote=True) -> str:
     See https://docs.python.org/3/library/html.html#html.escape for more details.
     """
     if string is not None:
+        # TODO: Eventually, check that string is a str, and if not, print a
+        #       warning or error here.
         return html.escape(str(string), quote=quote)
     return ''
