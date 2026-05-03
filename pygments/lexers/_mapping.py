@@ -367,6 +367,7 @@ LEXERS = {
     'ObjectiveJLexer': ('pygments.lexers.javascript', 'Objective-J', ('objective-j', 'objectivej', 'obj-j', 'objj'), ('*.j',), ('text/x-objective-j',)),
     'OcamlLexer': ('pygments.lexers.ml', 'OCaml', ('ocaml',), ('*.ml', '*.mli', '*.mll', '*.mly'), ('text/x-ocaml',)),
     'OctaveLexer': ('pygments.lexers.matlab', 'Octave', ('octave',), ('*.m',), ('text/octave',)),
+    'OdinLangLexer': ('pygments.lexers.odin', 'Odin', ('odinlang',), ('*.odin',), ('text/x-odinsrc',)),
     'OdinLexer': ('pygments.lexers.archetype', 'ODIN', ('odin',), ('*.odin',), ('text/odin',)),
     'OmgIdlLexer': ('pygments.lexers.c_like', 'OMG Interface Definition Language', ('omg-idl',), ('*.idl', '*.pidl'), ()),
     'OocLexer': ('pygments.lexers.ooc', 'Ooc', ('ooc',), ('*.ooc',), ('text/x-ooc',)),
