@@ -1,0 +1,2746 @@
+'// Testing macros, annotations, and deriving' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'package'     Keyword.Namespace
+' '           Text.Whitespace
+'example.testing' Name.Namespace
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'std.collection.' Name.Namespace
+'*'           Operator
+'\n'          Text.Whitespace
+
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'std.testing.' Name.Namespace
+'*'           Operator
+'\n'          Text.Whitespace
+
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'std.testing.mock.' Name.Namespace
+'*'           Operator
+'\n'          Text.Whitespace
+
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'std.deriving.' Name.Namespace
+'*'           Operator
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Basic test function' Comment.Single
+'\n'          Text.Whitespace
+
+'@Test'       Name.Decorator
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'basicTest'   Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'result'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'compute'     Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'assertThat'  Name.Class
+'('           Punctuation
+'result'      Name.Class
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'expected'    Name.Class
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Test with configuration' Comment.Single
+'\n'          Text.Whitespace
+
+'@Test'       Name.Decorator
+'['           Punctuation
+'suite'       Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'MathTests'   Literal.String
+'"'           Literal.String
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'mathTest'    Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'sum'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'assertThat'  Name.Class
+'('           Punctuation
+'sum'         Name.Class
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Test with priority' Comment.Single
+'\n'          Text.Whitespace
+
+'@Test'       Name.Decorator
+'['           Punctuation
+'priority'    Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'highPriorityTest' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'verifyCritical' Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Test with timeout' Comment.Single
+'\n'          Text.Whitespace
+
+'@Test'       Name.Decorator
+'['           Punctuation
+'timeout'     Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'5000'        Literal.Number.Integer
+'ms'          Name.Class
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'timedTest'   Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'longRunningOperation' Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Test function throwing' Comment.Single
+'\n'          Text.Whitespace
+
+'@Test'       Name.Decorator
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'throwingTest' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'throwing'    Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'result'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'riskyOperation' Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'assertThat'  Name.Class
+'('           Punctuation
+'result'      Name.Class
+' '           Text.Whitespace
+'!='          Operator
+' '           Text.Whitespace
+'None'        Keyword
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Setup and teardown' Comment.Single
+'\n'          Text.Whitespace
+
+'@Test'       Name.Decorator
+'\n'          Text.Whitespace
+
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'TestSuite'   Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'@Before'     Name.Decorator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'setup'       Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'initializeResources' Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'@After'      Name.Decorator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'teardown'    Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'cleanupResources' Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'@Test'       Name.Decorator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'test1'       Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'verifyState' Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'@Test'       Name.Decorator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'test2'       Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'verifyBehavior' Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'// BeforeAll and AfterAll' Comment.Single
+'\n'          Text.Whitespace
+
+'@BeforeAll'  Name.Decorator
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'globalSetup' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'setupGlobalState' Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'@AfterAll'   Name.Decorator
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'globalTeardown' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'cleanupGlobalState' Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Benchmark annotation' Comment.Single
+'\n'          Text.Whitespace
+
+'@Benchmark'  Name.Decorator
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'performanceTest' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'measureOperation' Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'@Benchmark'  Name.Decorator
+'['           Punctuation
+'iterations'  Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'10000'       Literal.Number.Integer
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'preciseBenchmark' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'preciseMeasurement' Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'@Benchmark'  Name.Decorator
+'['           Punctuation
+'warmup'      Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'warmedBenchmark' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'warmedMeasurement' Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Skip annotation' Comment.Single
+'\n'          Text.Whitespace
+
+'@Skip'       Name.Decorator
+'['           Punctuation
+'"'           Literal.String
+'Not implemented yet' Literal.String
+'"'           Literal.String
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'skippedTest' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'notReady'    Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'@Skip'       Name.Decorator
+'['           Punctuation
+'reason'      Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'Flaky test'  Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'until'       Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'v2.0'        Literal.String
+'"'           Literal.String
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'temporarilySkipped' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Pending annotation' Comment.Single
+'\n'          Text.Whitespace
+
+'@Pending'    Name.Decorator
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'pendingTest' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'needsImplementation' Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Expected failure annotation' Comment.Single
+'\n'          Text.Whitespace
+
+'@ExpectFailure' Name.Decorator
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'testExpectedToFail' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'result'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'buggyFunction' Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'assertThat'  Name.Class
+'('           Punctuation
+'result'      Name.Class
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'wrongValue'  Name.Class
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Test case annotation' Comment.Single
+'\n'          Text.Whitespace
+
+'@TestCase'   Name.Decorator
+'['           Punctuation
+'name'        Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'EdgeCaseTest' Literal.String
+'"'           Literal.String
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'edgeCaseTest' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'testEdgeCase' Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Test with parameters' Comment.Single
+'\n'          Text.Whitespace
+
+'@TestParams' Name.Decorator
+'['           Punctuation
+'values'      Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+']'           Punctuation
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'parameterizedTest' Name.Function
+'('           Punctuation
+'value'       Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'assertThat'  Name.Class
+'('           Punctuation
+'value'       Name.Class
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Grouped tests' Comment.Single
+'\n'          Text.Whitespace
+
+'@TestGroup'  Name.Decorator
+'['           Punctuation
+'name'        Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'ValidationTests' Literal.String
+'"'           Literal.String
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'ValidationSuite' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'@Test'       Name.Decorator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'validateInput' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'@Test'       Name.Decorator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'validateOutput' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'// Assertion macros' Comment.Single
+'\n'          Text.Whitespace
+
+'@Test'       Name.Decorator
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'assertionExamples' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'assertThat'  Name.Class
+'('           Punctuation
+'true'        Keyword.Constant
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'assertThat'  Name.Class
+'('           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'assertThat'  Name.Class
+'('           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'assertThat'  Name.Class
+'('           Punctuation
+'value'       Name.Class
+' '           Text.Whitespace
+'!='          Operator
+' '           Text.Whitespace
+'None'        Keyword
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'assertThat'  Name.Class
+'('           Punctuation
+'value'       Name.Class
+' '           Text.Whitespace
+'is'          Keyword
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'assertThat'  Name.Class
+'('           Punctuation
+'array'       Name.Class
+'.'           Operator
+'size'        Name.Class
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'expect'      Name.Class
+'('           Punctuation
+'value'       Name.Class
+')'           Punctuation
+'.'           Operator
+'toBe'        Name.Class
+'('           Punctuation
+'expected'    Name.Class
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'expect'      Name.Class
+'('           Punctuation
+'value'       Name.Class
+')'           Punctuation
+'.'           Operator
+'not'         Name.Class
+'.'           Operator
+'toBe'        Name.Class
+'('           Punctuation
+'other'       Name.Class
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'expect'      Name.Class
+'('           Punctuation
+'value'       Name.Class
+')'           Punctuation
+'.'           Operator
+'toBeGreaterThan' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'expect'      Name.Class
+'('           Punctuation
+'value'       Name.Class
+')'           Punctuation
+'.'           Operator
+'toBeLessThan' Name.Class
+'('           Punctuation
+'100'         Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'expect'      Name.Class
+'('           Punctuation
+'value'       Name.Class
+')'           Punctuation
+'.'           Operator
+'toBeInRange' Name.Class
+'('           Punctuation
+'0'           Literal.Number.Integer
+'..'          Operator
+'100'         Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'expect'      Name.Class
+'('           Punctuation
+'string'      Name.Class
+')'           Punctuation
+'.'           Operator
+'toContain'   Name.Class
+'('           Punctuation
+'"'           Literal.String
+'substring'   Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'expect'      Name.Class
+'('           Punctuation
+'array'       Name.Class
+')'           Punctuation
+'.'           Operator
+'toHaveSize'  Name.Class
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'assertThrows' Name.Class
+'<'           Punctuation
+'IllegalArgumentException' Keyword.Type
+'>'           Punctuation
+'('           Punctuation
+'{'           Punctuation
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'throwingFunc' Name.Class
+'()'          Keyword.Constant
+' '           Text.Whitespace
+'}'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'assertNoThrow' Name.Class
+'('           Punctuation
+'{'           Punctuation
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'safeFunc'    Name.Class
+'()'          Keyword.Constant
+' '           Text.Whitespace
+'}'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Mock annotations' Comment.Single
+'\n'          Text.Whitespace
+
+'@Mock'       Name.Decorator
+'['           Punctuation
+'OriginalClass' Name.Class
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'MockClass'   Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'originalMethod' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'mockValue'   Name.Class
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'@Mockable'   Name.Decorator
+'\n'          Text.Whitespace
+
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'MockableClass' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'methodToMock' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'originalValue' Name.Class
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'@EnsurePreparedToMock' Name.Decorator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'return'      Keyword
+'('           Punctuation
+'staticFunc'  Name.Class
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'testWithMock' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'mocked'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'MockClass'   Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'assertThat'  Name.Class
+'('           Punctuation
+'mocked'      Name.Class
+'.'           Operator
+'originalMethod' Name.Class
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'mockValue'   Name.Class
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Mock injection' Comment.Single
+'\n'          Text.Whitespace
+
+'@InjectMock' Name.Decorator
+'['           Punctuation
+'MockService' Name.Class
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'testWithInjectedMock' Name.Function
+'('           Punctuation
+'service'     Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Service'     Name.Class
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'result'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'service'     Name.Class
+'.'           Operator
+'execute'     Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'assertThat'  Name.Class
+'('           Punctuation
+'result'      Name.Class
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'mockResult'  Name.Class
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Mock behavior configuration' Comment.Single
+'\n'          Text.Whitespace
+
+'@MockBehavior' Name.Decorator
+'['           Punctuation
+'returns'     Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'42'          Literal.Number.Integer
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'ConfiguredMock' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'getValue'    Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'42'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'// Mock verification' Comment.Single
+'\n'          Text.Whitespace
+
+'@Test'       Name.Decorator
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'verifyMockCalls' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'mock'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'MockClass'   Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'mock'        Name.Class
+'.'           Operator
+'method'      Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'verify'      Name.Class
+'('           Punctuation
+'mock'        Name.Class
+')'           Punctuation
+'.'           Operator
+'method'      Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'verify'      Name.Class
+'('           Punctuation
+'mock'        Name.Class
+','           Punctuation
+' '           Text.Whitespace
+'times'       Name.Class
+'!'           Operator
+':'           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+')'           Punctuation
+'.'           Operator
+'method'      Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'verify'      Name.Class
+'('           Punctuation
+'mock'        Name.Class
+','           Punctuation
+' '           Text.Whitespace
+'never'       Name.Class
+'!'           Operator
+')'           Punctuation
+'.'           Operator
+'otherMethod' Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Custom annotation definition' Comment.Single
+'\n'          Text.Whitespace
+
+'@Annotation' Name.Decorator
+'\n'          Text.Whitespace
+
+'public'      Keyword
+' '           Text.Whitespace
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'Author'      Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'name'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'String'      Keyword.Type
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'init'        Keyword.Declaration
+'('           Punctuation
+'name'        Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'String'      Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'this'        Keyword
+'.'           Operator
+'name'        Name.Class
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'name'        Name.Class
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'@Author'     Name.Decorator
+'['           Punctuation
+'"'           Literal.String
+'John Doe'    Literal.String
+'"'           Literal.String
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'documentedFunction' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Custom annotation with multiple fields' Comment.Single
+'\n'          Text.Whitespace
+
+'@Annotation' Name.Decorator
+'\n'          Text.Whitespace
+
+'public'      Keyword
+' '           Text.Whitespace
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'Version'     Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'major'       Name
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'minor'       Name
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'init'        Keyword.Declaration
+'('           Punctuation
+'major'       Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'minor'       Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'this'        Keyword
+'.'           Operator
+'major'       Name.Class
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'major'       Name.Class
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'this'        Keyword
+'.'           Operator
+'minor'       Name.Class
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'minor'       Name.Class
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'@Version'    Name.Decorator
+'['           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'versionedFunction' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Custom annotation with named parameters' Comment.Single
+'\n'          Text.Whitespace
+
+'@Annotation' Name.Decorator
+'\n'          Text.Whitespace
+
+'public'      Keyword
+' '           Text.Whitespace
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'Config'      Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'enabled'     Name
+'!'           Operator
+':'           Punctuation
+' '           Text.Whitespace
+'Bool'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'true'        Keyword.Constant
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'timeout'     Name
+'!'           Operator
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1000'        Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'init'        Keyword.Declaration
+'()'          Keyword.Constant
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'@Config'     Name.Decorator
+'['           Punctuation
+'enabled'     Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'true'        Keyword
+','           Punctuation
+' '           Text.Whitespace
+'timeout'     Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'5000'        Literal.Number.Integer
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'configuredFunction' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Annotation with target restriction' Comment.Single
+'\n'          Text.Whitespace
+
+'@Annotation' Name.Decorator
+'['           Punctuation
+'target'      Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'MemberFunction' Name.Class
+']'           Punctuation
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'public'      Keyword
+' '           Text.Whitespace
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'MethodOnly'  Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'init'        Keyword.Declaration
+'()'          Keyword.Constant
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'TargetTest'  Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'@MethodOnly' Name.Decorator
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'validTarget' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'// @MethodOnly class InvalidTarget {} // Error: wrong target' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Multiple annotations' Comment.Single
+'\n'          Text.Whitespace
+
+'@Test'       Name.Decorator
+'\n'          Text.Whitespace
+
+'@Benchmark'  Name.Decorator
+'['           Punctuation
+'iterations'  Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'@Author'     Name.Decorator
+'['           Punctuation
+'"'           Literal.String
+'Tester'      Literal.String
+'"'           Literal.String
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'multiAnnotatedTest' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Annotation retention' Comment.Single
+'\n'          Text.Whitespace
+
+'@Annotation' Name.Decorator
+'['           Punctuation
+'retention'   Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'Runtime'     Name.Class
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'public'      Keyword
+' '           Text.Whitespace
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'RuntimeAnnotation' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'init'        Keyword.Declaration
+'()'          Keyword.Constant
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'@RuntimeAnnotation' Name.Decorator
+'\n'          Text.Whitespace
+
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'RuntimeAnnotated' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Deriving basic traits' Comment.Single
+'\n'          Text.Whitespace
+
+'@Derive'     Name.Decorator
+'['           Punctuation
+'ToString'    Name.Class
+','           Punctuation
+' '           Text.Whitespace
+'Hash'        Name.Class
+','           Punctuation
+' '           Text.Whitespace
+'Equatable'   Name.Class
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'struct'      Keyword.Declaration
+' '           Text.Whitespace
+'DeriveExample' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'x'           Name
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'y'           Name
+':'           Punctuation
+' '           Text.Whitespace
+'String'      Keyword.Type
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Using derived methods' Comment.Single
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'derived'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'DeriveExample' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'x'           Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'42'          Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'y'           Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'test'        Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'str'         Name
+':'           Punctuation
+' '           Text.Whitespace
+'String'      Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'derived'     Name.Class
+'.'           Operator
+'toString'    Name.Builtin
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'hash'        Name.Builtin
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'derived'     Name.Class
+'.'           Operator
+'hash'        Name.Builtin
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'areEqual'    Name
+':'           Punctuation
+' '           Text.Whitespace
+'Bool'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'derived'     Name.Class
+'.'           Operator
+'equals'      Name.Builtin
+'('           Punctuation
+'DeriveExample' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'x'           Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'42'          Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'y'           Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'test'        Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'}'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Derive with Compare' Comment.Single
+'\n'          Text.Whitespace
+
+'@Derive'     Name.Decorator
+'['           Punctuation
+'Compare'     Name.Class
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'struct'      Keyword.Declaration
+' '           Text.Whitespace
+'ComparableStruct' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'value'       Name
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Derive with Debug' Comment.Single
+'\n'          Text.Whitespace
+
+'@Derive'     Name.Decorator
+'['           Punctuation
+'Debug'       Name.Class
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'struct'      Keyword.Declaration
+' '           Text.Whitespace
+'DebuggableStruct' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'data'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'String'      Keyword.Type
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Derive with Default' Comment.Single
+'\n'          Text.Whitespace
+
+'@Derive'     Name.Decorator
+'['           Punctuation
+'Default'     Name.Class
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'struct'      Keyword.Declaration
+' '           Text.Whitespace
+'DefaultableStruct' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'enabled'     Name
+':'           Punctuation
+' '           Text.Whitespace
+'Bool'        Keyword.Type
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'count'       Name
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'defaultInst' Name
+':'           Punctuation
+' '           Text.Whitespace
+'DefaultableStruct' Name.Class
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'DefaultableStruct' Name.Class
+'.'           Operator
+'default'     Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Derive with Serializable' Comment.Single
+'\n'          Text.Whitespace
+
+'@Derive'     Name.Decorator
+'['           Punctuation
+'Serializable' Name.Class
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'struct'      Keyword.Declaration
+' '           Text.Whitespace
+'SerializableStruct' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'id'          Name
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'name'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'String'      Keyword.Type
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'serialized'  Name
+':'           Punctuation
+' '           Text.Whitespace
+'String'      Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'structInst'  Name.Class
+'.'           Operator
+'serialize'   Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'deserialized' Name
+':'           Punctuation
+' '           Text.Whitespace
+'SerializableStruct' Name.Class
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'SerializableStruct' Name.Class
+'.'           Operator
+'deserialize' Name.Class
+'('           Punctuation
+'serialized'  Name.Class
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Multiple derive attributes' Comment.Single
+'\n'          Text.Whitespace
+
+'@Derive'     Name.Decorator
+'['           Punctuation
+'ToString'    Name.Class
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'@Derive'     Name.Decorator
+'['           Punctuation
+'Hash'        Name.Class
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'@Derive'     Name.Decorator
+'['           Punctuation
+'Equatable'   Name.Class
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'struct'      Keyword.Declaration
+' '           Text.Whitespace
+'MultiDerive' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'field'       Name
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Derive for enum' Comment.Single
+'\n'          Text.Whitespace
+
+'@Derive'     Name.Decorator
+'['           Punctuation
+'ToString'    Name.Class
+','           Punctuation
+' '           Text.Whitespace
+'Hash'        Name.Class
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'enum'        Keyword.Declaration
+' '           Text.Whitespace
+'DeriveEnum'  Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'OptionA'     Name.Class
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'OptionB'     Name.Class
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'OptionC'     Name.Class
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Custom derive implementation' Comment.Single
+'\n'          Text.Whitespace
+
+'public'      Keyword
+' '           Text.Whitespace
+'macro'       Keyword.Declaration
+' '           Text.Whitespace
+'CustomDerive' Name.Function
+'('           Punctuation
+'attr'        Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'Tokens'      Name.Class
+','           Punctuation
+' '           Text.Whitespace
+'input'       Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'Tokens'      Name.Class
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Tokens'      Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'decl'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'parseDecl'   Name.Class
+'('           Punctuation
+'input'       Name.Class
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'generateCustomMethods' Name.Class
+'('           Punctuation
+'decl'        Name.Class
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'@CustomDerive' Name.Decorator
+'['           Punctuation
+'custom'      Name.Class
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'struct'      Keyword.Declaration
+' '           Text.Whitespace
+'CustomDerived' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'field'       Name
+':'           Punctuation
+' '           Text.Whitespace
+'String'      Keyword.Type
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Built-in compilation annotations' Comment.Single
+'\n'          Text.Whitespace
+
+'@Deprecated' Name.Decorator
+'['           Punctuation
+'"'           Literal.String
+'Use newFunc instead' Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'since'       Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'1.5.0'       Literal.String
+'"'           Literal.String
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'deprecatedFunction' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'@Since'      Name.Decorator
+'['           Punctuation
+'version'     Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'1.0.0'       Literal.String
+'"'           Literal.String
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'versionedFunction' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'42'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Overflow handling annotations' Comment.Single
+'\n'          Text.Whitespace
+
+'@OverflowThrowing' Name.Decorator
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'throwingOverflow' Name.Function
+'('           Punctuation
+'a'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Int8'        Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'b'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Int8'        Keyword.Type
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Int8'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'a'           Name.Class
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'b'           Name.Class
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'@OverflowWrapping' Name.Decorator
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'wrappingOverflow' Name.Function
+'('           Punctuation
+'a'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Int8'        Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'b'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Int8'        Keyword.Type
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Int8'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'a'           Name.Class
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'b'           Name.Class
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'@OverflowSaturating' Name.Decorator
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'saturatingOverflow' Name.Function
+'('           Punctuation
+'a'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Int8'        Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'b'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Int8'        Keyword.Type
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Int8'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'a'           Name.Class
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'b'           Name.Class
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Inline annotation' Comment.Single
+'\n'          Text.Whitespace
+
+'@Inline'     Name.Decorator
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'inlineCandidate' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'simpleComputation' Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'@Inline'     Name.Decorator
+'['           Punctuation
+'always'      Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'true'        Keyword
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'alwaysInline' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'fastOperation' Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// NoInline annotation' Comment.Single
+'\n'          Text.Whitespace
+
+'@NoInline'   Name.Decorator
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'neverInline' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'complexOperation' Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Pure annotation' Comment.Single
+'\n'          Text.Whitespace
+
+'@Pure'       Name.Decorator
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'pureFunction' Name.Function
+'('           Punctuation
+'x'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'x'           Name.Class
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// TailCall annotation' Comment.Single
+'\n'          Text.Whitespace
+
+'@TailCall'   Name.Decorator
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'recursiveFunction' Name.Function
+'('           Punctuation
+'n'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'n'           Name.Class
+' '           Text.Whitespace
+'<='          Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'recursiveFunction' Name.Class
+'('           Punctuation
+'n'           Name.Class
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Annotation checking at runtime' Comment.Single
+'\n'          Text.Whitespace
+
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'AnnotationReader' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'readAnnotations' Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'attrs'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'decl'        Name.Class
+'.'           Operator
+'getAttrs'    Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'attr'        Name.Class
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'attrs'       Name.Class
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'println'     Name.Builtin
+'('           Punctuation
+'attr'        Name.Class
+'.'           Operator
+'name'        Name.Class
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'}'           Punctuation
+'\n        \n        ' Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'decl'        Name.Class
+'.'           Operator
+'hasAttr'     Name.Class
+'('           Punctuation
+'"'           Literal.String
+'Test'        Literal.String
+'"'           Literal.String
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'println'     Name.Builtin
+'('           Punctuation
+'"'           Literal.String
+'Is a test function' Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

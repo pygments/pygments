@@ -1,0 +1,1885 @@
+'// Foreign Function Interface (FFI), unsafe operations, and CPointer' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'package'     Keyword.Namespace
+' '           Text.Whitespace
+'example.ffi' Name.Namespace
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'std.collection.' Name.Namespace
+'*'           Operator
+'\n'          Text.Whitespace
+
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'std.ffi.'    Name.Namespace
+'*'           Operator
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Foreign function declaration' Comment.Single
+'\n'          Text.Whitespace
+
+'foreign'     Keyword.Declaration
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'externalFunc' Name.Function
+'('           Punctuation
+'a'           Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'Int32'       Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'b'           Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'Int32'       Keyword.Type
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Int32'       Keyword.Type
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Foreign function with no return' Comment.Single
+'\n'          Text.Whitespace
+
+'foreign'     Keyword.Declaration
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'voidFunc'    Name.Function
+'()'          Keyword.Constant
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Foreign function with pointer return' Comment.Single
+'\n'          Text.Whitespace
+
+'foreign'     Keyword.Declaration
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'allocMemory' Name.Function
+'('           Punctuation
+'size'        Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'UInt64'      Keyword.Type
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'UInt8'       Keyword.Type
+'>'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Foreign function with CPointer parameter' Comment.Single
+'\n'          Text.Whitespace
+
+'foreign'     Keyword.Declaration
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'processPointer' Name.Function
+'('           Punctuation
+'ptr'         Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'Int64'       Keyword.Type
+'>'           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Foreign class declaration' Comment.Single
+'\n'          Text.Whitespace
+
+'foreign'     Keyword.Declaration
+' '           Text.Whitespace
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'ForeignClass' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'foreign'     Keyword.Declaration
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'method'      Name.Function
+'()'          Keyword.Constant
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'foreign'     Keyword.Declaration
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'methodWithParam' Name.Function
+'('           Punctuation
+'p'           Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Foreign struct declaration' Comment.Single
+'\n'          Text.Whitespace
+
+'foreign'     Keyword.Declaration
+' '           Text.Whitespace
+'struct'      Keyword.Declaration
+' '           Text.Whitespace
+'ForeignStruct' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'field1'      Name
+':'           Punctuation
+' '           Text.Whitespace
+'Int32'       Keyword.Type
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'field2'      Name
+':'           Punctuation
+' '           Text.Whitespace
+'Float64'     Keyword.Type
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// @FastNative annotation for optimization' Comment.Single
+'\n'          Text.Whitespace
+
+'@FastNative' Name.Decorator
+'\n'          Text.Whitespace
+
+'foreign'     Keyword.Declaration
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'optimizedCall' Name.Function
+'()'          Keyword.Constant
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// @Frozen annotation for stable implementation' Comment.Single
+'\n'          Text.Whitespace
+
+'@Frozen'     Name.Decorator
+'\n'          Text.Whitespace
+
+'foreign'     Keyword.Declaration
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'stableForeignFunc' Name.Function
+'()'          Keyword.Constant
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'Nothing'     Keyword.Type
+'>'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// CPointer types' Comment.Single
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'intPtr'      Name
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'Int32'       Keyword.Type
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'Int32'       Keyword.Type
+'>'           Punctuation
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'floatPtr'    Name
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'Float64'     Keyword.Type
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'Float64'     Keyword.Type
+'>'           Punctuation
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'voidPtr'     Name
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'Nothing'     Keyword.Type
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'Nothing'     Keyword.Type
+'>'           Punctuation
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'bytePtr'     Name
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'UInt8'       Keyword.Type
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'UInt8'       Keyword.Type
+'>'           Punctuation
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// CPointer allocation' Comment.Single
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'allocated'   Name
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'Int64'       Keyword.Type
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'Int64'       Keyword.Type
+'>'           Punctuation
+'.'           Operator
+'alloc'       Name.Class
+'('           Punctuation
+'10'          Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// CPointer dereference' Comment.Single
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'value'       Name
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'ptr'         Name.Class
+'.'           Operator
+'item'        Name.Class
+'\n'          Text.Whitespace
+
+'ptr'         Name.Class
+'.'           Operator
+'item'        Name.Class
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'42'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// CPointer array access' Comment.Single
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'arrayValue'  Name
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'ptr'         Name.Class
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'ptr'         Name.Class
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// CPointer arithmetic' Comment.Single
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'offsetPtr'   Name
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'Int64'       Keyword.Type
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'ptr'         Name.Class
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'nextPtr'     Name
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'Int64'       Keyword.Type
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'ptr'         Name.Class
+'.'           Operator
+'next'        Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// CPointer size and capacity' Comment.Single
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'ptrSize'     Name
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'ptr'         Name.Class
+'.'           Operator
+'size'        Name.Class
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'ptrCapacity' Name
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'ptr'         Name.Class
+'.'           Operator
+'capacity'    Name.Class
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// CPointer conversion' Comment.Single
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'fromArray'   Name
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'Int64'       Keyword.Type
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'array'       Name.Class
+'.'           Operator
+'toCPointer'  Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'toCArray'    Name
+':'           Punctuation
+' '           Text.Whitespace
+'CArray'      Name.Class
+'<'           Punctuation
+'Int64'       Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'ptr'         Name.Class
+'.'           Operator
+'toCArray'    Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Unsafe block' Comment.Single
+'\n'          Text.Whitespace
+
+'unsafe'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'rawValue'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'ptr'         Name.Class
+'.'           Operator
+'item'        Name.Class
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'ptr'         Name.Class
+'.'           Operator
+'item'        Name.Class
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'rawValue'    Name.Class
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Unsafe function' Comment.Single
+'\n'          Text.Whitespace
+
+'unsafe'      Keyword
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'unsafeOperation' Name.Function
+'('           Punctuation
+'ptr'         Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'Int64'       Keyword.Type
+'>'           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'ptr'         Name.Class
+'.'           Operator
+'item'        Name.Class
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Unsafe with multiple operations' Comment.Single
+'\n'          Text.Whitespace
+
+'unsafe'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'p1'          Name
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'Int32'       Keyword.Type
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'allocateInt32' Name.Class
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'p2'          Name
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'Int32'       Keyword.Type
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'allocateInt32' Name.Class
+'('           Punctuation
+'10'          Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'result'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'p1'          Name.Class
+'.'           Operator
+'item'        Name.Class
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'p2'          Name.Class
+'.'           Operator
+'item'        Name.Class
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'free'        Name.Class
+'('           Punctuation
+'p1'          Name.Class
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'free'        Name.Class
+'('           Punctuation
+'p2'          Name.Class
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Unsafe with error handling' Comment.Single
+'\n'          Text.Whitespace
+
+'try'         Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'unsafe'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'dangerousPointerOp' Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'catch'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'e'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'NullPointerException' Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'handleNullPointer' Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// CArray (fixed-size array for FFI)' Comment.Single
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'cArray'      Name
+':'           Punctuation
+' '           Text.Whitespace
+'CArray'      Name.Class
+'<'           Punctuation
+'Int64'       Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'CArray'      Name.Class
+'<'           Punctuation
+'Int64'       Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'>'           Punctuation
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'cArray'      Name.Class
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'cArray'      Name.Class
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// CArray to CPointer conversion' Comment.Single
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'cPtr'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'Int64'       Keyword.Type
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'cArray'      Name.Class
+'.'           Operator
+'toCPointer'  Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Native memory management' Comment.Single
+'\n'          Text.Whitespace
+
+'unsafe'      Keyword
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'allocateBuffer' Name.Function
+'('           Punctuation
+'size'        Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'UInt64'      Keyword.Type
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'UInt8'       Keyword.Type
+'>'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'UInt8'       Keyword.Type
+'>'           Punctuation
+'.'           Operator
+'alloc'       Name.Class
+'('           Punctuation
+'size'        Name.Class
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'unsafe'      Keyword
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'freeBuffer'  Name.Function
+'('           Punctuation
+'ptr'         Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'UInt8'       Keyword.Type
+'>'           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'ptr'         Name.Class
+'.'           Operator
+'free'        Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// String conversion for FFI' Comment.Single
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'cString'     Name
+':'           Punctuation
+' '           Text.Whitespace
+'CString'     Name.Class
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'nativeString' Name.Class
+'.'           Operator
+'toCString'   Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'fromCString' Name
+':'           Punctuation
+' '           Text.Whitespace
+'String'      Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'cString'     Name.Class
+'.'           Operator
+'toString'    Name.Builtin
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Callback for foreign function' Comment.Single
+'\n'          Text.Whitespace
+
+'foreign'     Keyword.Declaration
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'registerCallback' Name.Function
+'('           Punctuation
+'cb'          Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'Int64'       Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Register callback' Comment.Single
+'\n'          Text.Whitespace
+
+'registerCallback' Name.Class
+'('           Punctuation
+'{'           Punctuation
+' '           Text.Whitespace
+'x'           Name.Class
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'println'     Name.Builtin
+'('           Punctuation
+'"'           Literal.String
+'Callback received: ' Literal.String
+'${'          Literal.String.Interpol
+'x'           Name.Class
+'}'           Literal.String.Interpol
+'"'           Literal.String
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Function pointer' Comment.Single
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'funcPtr'     Name
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'Nothing'     Keyword.Type
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'getFunctionPointer' Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// CPointer null check' Comment.Single
+'\n'          Text.Whitespace
+
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'ptr'         Name.Class
+'.'           Operator
+'isNull'      Name.Class
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'handleNullPointer' Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// CPointer comparison' Comment.Single
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'areSame'     Name
+':'           Punctuation
+' '           Text.Whitespace
+'Bool'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'ptr1'        Name.Class
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'ptr2'        Name.Class
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'isAfter'     Name
+':'           Punctuation
+' '           Text.Whitespace
+'Bool'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'ptr1'        Name.Class
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'ptr2'        Name.Class
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Foreign function with varargs (pseudo)' Comment.Single
+'\n'          Text.Whitespace
+
+'foreign'     Keyword.Declaration
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'printf'      Name.Function
+'('           Punctuation
+'format'      Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'CString'     Name.Class
+','           Punctuation
+' '           Text.Whitespace
+'...'         Operator
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Int32'       Keyword.Type
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Unsafe memory copy' Comment.Single
+'\n'          Text.Whitespace
+
+'unsafe'      Keyword
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'copyMemory'  Name.Function
+'('           Punctuation
+'dest'        Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'UInt8'       Keyword.Type
+'>'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'src'         Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'UInt8'       Keyword.Type
+'>'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'size'        Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'UInt64'      Keyword.Type
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'i'           Name.Class
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'..'          Operator
+'size'        Name.Class
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'dest'        Name.Class
+'['           Punctuation
+'i'           Name.Class
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'src'         Name.Class
+'['           Punctuation
+'i'           Name.Class
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Foreign function with complex types' Comment.Single
+'\n'          Text.Whitespace
+
+'foreign'     Keyword.Declaration
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'processStruct' Name.Function
+'('           Punctuation
+'s'           Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'ForeignStruct' Name.Class
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'ForeignStruct' Name.Class
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Calling foreign function' Comment.Single
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'result'      Name
+':'           Punctuation
+' '           Text.Whitespace
+'Int32'       Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'externalFunc' Name.Class
+'('           Punctuation
+'10'          Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'20'          Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'structResult' Name
+':'           Punctuation
+' '           Text.Whitespace
+'ForeignStruct' Name.Class
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'processStruct' Name.Class
+'('           Punctuation
+'ForeignStruct' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'field1'      Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'field2'      Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'.0'          Literal.Number.Float
+' '           Text.Whitespace
+'}'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Nested unsafe blocks' Comment.Single
+'\n'          Text.Whitespace
+
+'unsafe'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'innerPtr'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'getPointer'  Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'unsafe'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'innerPtr'    Name.Class
+'.'           Operator
+'item'        Name.Class
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'processValue' Name.Class
+'('           Punctuation
+'innerPtr'    Name.Class
+'.'           Operator
+'item'        Name.Class
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Unsafe with resource management' Comment.Single
+'\n'          Text.Whitespace
+
+'unsafe'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'resource'    Name
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'Resource'    Name.Class
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'acquire'     Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'try'         Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'useResource' Name.Class
+'('           Punctuation
+'resource'    Name.Class
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'finally'     Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'release'     Name.Class
+'('           Punctuation
+'resource'    Name.Class
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// CPointer type conversion' Comment.Single
+'\n'          Text.Whitespace
+
+'unsafe'      Keyword
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'reinterpretCast' Name.Function
+'<'           Punctuation
+'T'           Name
+','           Punctuation
+' '           Text.Whitespace
+'U'           Name
+'>'           Punctuation
+'('           Punctuation
+'ptr'         Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'T'           Name.Class
+'>'           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'U'           Name.Class
+'>'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'ptr'         Name.Class
+'.'           Operator
+'reinterpret' Name.Class
+'<'           Punctuation
+'U'           Name.Class
+'>'           Punctuation
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// FFI with error propagation' Comment.Single
+'\n'          Text.Whitespace
+
+'foreign'     Keyword.Declaration
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'mayFail'     Name.Function
+'()'          Keyword.Constant
+':'           Punctuation
+' '           Text.Whitespace
+'Int32'       Keyword.Type
+' '           Text.Whitespace
+'throwing'    Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'try'         Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'result'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'mayFail'     Name.Class
+'()'          Keyword.Constant
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'catch'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'e'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'ForeignException' Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'println'     Name.Builtin
+'('           Punctuation
+'"'           Literal.String
+'Foreign call failed: ' Literal.String
+'${'          Literal.String.Interpol
+'e'           Name.Class
+'}'           Literal.String.Interpol
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Foreign function with string parameters' Comment.Single
+'\n'          Text.Whitespace
+
+'foreign'     Keyword.Declaration
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'takesString' Name.Function
+'('           Punctuation
+'s'           Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'CString'     Name.Class
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'CString'     Name.Class
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'strResult'   Name
+':'           Punctuation
+' '           Text.Whitespace
+'CString'     Name.Class
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'takesString' Name.Class
+'('           Punctuation
+'"'           Literal.String
+'hello'       Literal.String
+'"'           Literal.String
+'.'           Operator
+'toCString'   Name.Class
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Platform-specific FFI' Comment.Single
+'\n'          Text.Whitespace
+
+'@When'       Name.Decorator
+'['           Punctuation
+'os'          Name.Class
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'linux'       Literal.String
+'"'           Literal.String
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'foreign'     Keyword.Declaration
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'linuxSpecific' Name.Function
+'()'          Keyword.Constant
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'@When'       Name.Decorator
+'['           Punctuation
+'os'          Name.Class
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'windows'     Literal.String
+'"'           Literal.String
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'foreign'     Keyword.Declaration
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'windowsSpecific' Name.Function
+'()'          Keyword.Constant
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Foreign interface' Comment.Single
+'\n'          Text.Whitespace
+
+'foreign'     Keyword.Declaration
+' '           Text.Whitespace
+'interface'   Keyword.Declaration
+' '           Text.Whitespace
+'ForeignInterface' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'foreign'     Keyword.Declaration
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'interfaceMethod' Name.Function
+'()'          Keyword.Constant
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// CPointer as generic type argument' Comment.Single
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'genericPtr'  Name
+':'           Punctuation
+' '           Text.Whitespace
+'GenericContainer' Name.Class
+'<'           Punctuation
+'CPointer'    Name.Class
+'<'           Punctuation
+'Int64'       Keyword.Type
+'>'           Punctuation
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'GenericContainer' Name.Class
+'<'           Punctuation
+'CPointer'    Name.Class
+'<'           Punctuation
+'Int64'       Keyword.Type
+'>'           Punctuation
+'>'           Punctuation
+'('           Punctuation
+'ptr'         Name.Class
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Memory layout annotation' Comment.Single
+'\n'          Text.Whitespace
+
+'@Aligned'    Name.Decorator
+'['           Punctuation
+'16'          Literal.Number.Integer
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'foreign'     Keyword.Declaration
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'alignedOperation' Name.Function
+'('           Punctuation
+'ptr'         Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'Float64'     Keyword.Type
+'>'           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Unit'        Keyword.Type
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Unsafe pointer arithmetic' Comment.Single
+'\n'          Text.Whitespace
+
+'unsafe'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'base'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'Int8'        Keyword.Type
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'buffer'      Name.Class
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'offset'      Name
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'Int8'        Keyword.Type
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'base'        Name.Class
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'item'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'Int8'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'offset'      Name.Class
+'.'           Operator
+'item'        Name.Class
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// CPointer size calculation' Comment.Single
+'\n'          Text.Whitespace
+
+'unsafe'      Keyword
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'calculateSize' Name.Function
+'<'           Punctuation
+'T'           Name
+'>'           Punctuation
+'('           Punctuation
+'ptr'         Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'CPointer'    Name.Class
+'<'           Punctuation
+'T'           Name.Class
+'>'           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Int64'       Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'sizeof'      Name.Builtin
+'<'           Punctuation
+'T'           Name.Class
+'>'           Punctuation
+'()'          Keyword.Constant
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'ptr'         Name.Class
+'.'           Operator
+'size'        Name.Class
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Foreign struct initialization' Comment.Single
+'\n'          Text.Whitespace
+
+'foreign'     Keyword.Declaration
+' '           Text.Whitespace
+'struct'      Keyword.Declaration
+' '           Text.Whitespace
+'Point3D'     Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'x'           Name
+':'           Punctuation
+' '           Text.Whitespace
+'Float64'     Keyword.Type
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'y'           Name
+':'           Punctuation
+' '           Text.Whitespace
+'Float64'     Keyword.Type
+'  '          Text.Whitespace
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'z'           Name
+':'           Punctuation
+' '           Text.Whitespace
+'Float64'     Keyword.Type
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'point3d'     Name
+':'           Punctuation
+' '           Text.Whitespace
+'Point3D'     Name.Class
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Point3D'     Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'x'           Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'.0'          Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'y'           Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'.0'          Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'z'           Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+'.0'          Literal.Number.Float
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Foreign enum' Comment.Single
+'\n'          Text.Whitespace
+
+'foreign'     Keyword.Declaration
+' '           Text.Whitespace
+'enum'        Keyword.Declaration
+' '           Text.Whitespace
+'ForeignEnum' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'ValueA'      Name.Class
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'ValueB'      Name.Class
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'ValueC'      Name.Class
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'foreignEnumVal' Name
+':'           Punctuation
+' '           Text.Whitespace
+'ForeignEnum' Name.Class
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'ForeignEnum' Name.Class
+'.'           Operator
+'ValueA'      Name.Class
+'\n'          Text.Whitespace
