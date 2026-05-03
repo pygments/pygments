@@ -57,15 +57,15 @@ class PureScriptLexer(RegexLexer):
             (r'`', Punctuation),
             #  Operators
             (r'\\(?![' + uni.Sm + uni.So + uni.Sc +
-             r':!#$%&*+.\\/<=>?@^|~-]+)', Name.Function),  # lambda
+             r':!#%&*.\\/?@^-]+)', Name.Function),  # lambda
             # Unicode operators
             (r'[∀→←⇒∷]', Operator.Word),
             (r'(<-|::|->|=>|=)(?![' + uni.Sm + uni.So + uni.Sc +
-             r':!#$%&*+.\\/<=>?@^|~-]+)', Operator.Word),
+             r':!#%&*.\\/?@^-]+)', Operator.Word),
             (r':[' + uni.Sm + uni.So + uni.Sc +
-             r':!#$%&*+.\\/<=>?@^|~-]*', Keyword.Type),  # Constructor operators
+             r':!#%&*.\\/?@^-]*', Keyword.Type),  # Constructor operators
             (r'[' + uni.Sm + uni.So + uni.Sc +
-             r':!#$%&*+.\\/<=>?@^|~-]+', Operator),  # Other operators
+             r':!#%&*.\\/?@^-]+', Operator),  # Other operators
             #  Numbers
             (r'\d(_*\d)*_*e[+-]?\d(_*\d)*', Number.Float),
             (r'\d(_*\d)*\.\d(_*\d)*(_*e[+-]?\d(_*\d)*)?', Number.Float),
@@ -118,7 +118,7 @@ class PureScriptLexer(RegexLexer):
             (r',', Punctuation),
             (r'\.\.', Punctuation),
             (r'[' + uni.Sm + uni.So + uni.Sc +
-             r':!#$%&*+.\\/<=>?@^|~-]+', Operator),
+             r':!#%&*.\\/?@^-]+', Operator),
             (r'\(', Punctuation, 'funclist'),
             (r'\)', Punctuation, '#pop'),
         ],
