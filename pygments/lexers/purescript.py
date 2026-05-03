@@ -1,6 +1,6 @@
 """
     pygments.lexers.purescript
-    ~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for the PureScript language.
 
