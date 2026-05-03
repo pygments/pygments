@@ -23,7 +23,7 @@ doctype_lookup_re = re.compile(r'''
      )
      [^>]*>
 ''', re.DOTALL | re.MULTILINE | re.VERBOSE)
-tag_re = re.compile(r'<(.+?)(\s.*?)?>.*?</.+?>',
+tag_re = re.compile(r'<([a-zA-Z][a-zA-Z0-9._:-]*)(\s[^>]*)?>.*?</\1\s*>',
                     re.IGNORECASE | re.DOTALL | re.MULTILINE)
 xml_decl_re = re.compile(r'\s*<\?xml[^>]*\?>', re.I)
 

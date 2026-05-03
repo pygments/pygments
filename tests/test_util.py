@@ -193,3 +193,18 @@ def test_html_escape():
     assert util.html_escape('<>&"\'') == '&lt;&gt;&amp;&quot;&#x27;'
     assert util.html_escape('<>&"\'', quote=False) == '&lt;&gt;&amp;"\''
     assert util.html_escape(None) == ''
+
+def test_xml_redos_resistance():
+    """Regression test for GH#2931: Catastrophic backtracking in tag_re regex.
+
+    The attack string uses repeated angle brackets to trigger catastrophic
+    backtracking in the old regex. With the fix, this must complete
+    in under 2 seconds (previously took 70+ seconds).
+    """
+    import time
+    attack = '<' * 250 + ' ' * 250 + '>' * 250 + '<' * 250
+    t0 = time.time()
+    result = util.looks_like_xml(attack)
+    elapsed = time.time() - t0
+    assert result is False
+    assert elapsed < 2.0, f'Catastrophic backtracking: took {elapsed:.1f}s (should be < 2s)'
