@@ -257,6 +257,14 @@ def test_filename():
     assert re.search("<span class=\"filename\">test.py</span><pre>", html)
 
 
+def test_filename_none():
+    fmt = HtmlFormatter(filename=None)
+    assert fmt.filename == ''
+    outfile = StringIO()
+    fmt.format(tokensource, outfile)
+    assert '<span class="filename">' not in outfile.getvalue()
+
+
 def test_debug_token_types():
     fmt_nod_token_types = HtmlFormatter(debug_token_types=False)
     outfile_nod_token_types = StringIO()
