@@ -113,8 +113,8 @@ class CFamilyLexer(RegexLexer):
         'keywords': [
             (r'(struct|union)(\s+)', bygroups(Keyword, Whitespace), 'classname'),
             (r'case\b', Keyword, 'case-value'),
-            (words(('asm', 'auto', 'break', 'const', 'constexpr', 'continue', 'default',
-                    'do', 'else', 'enum', 'extern', 'for', 'goto', 'if', 'register', 
+            (words(('asm', 'auto', 'break', 'const', 'constexpr', 'continue', 'countof', 'default',
+                    'defer', 'do', 'else', 'enum', 'extern', 'for', 'goto', 'if', 'register', 
                     'restricted', 'return', 'sizeof', 'struct', 'static', 'switch', 
                     'typedef', 'typeof', 'typeof_unqual', 'volatile', 'while', 'union',
                     'thread_local', 'alignas', 'alignof', 'static_assert', '_Pragma', 'fortran'),
@@ -221,7 +221,7 @@ class CFamilyLexer(RegexLexer):
     stdlib_types = {
         'size_t', 'ssize_t', 'off_t', 'wchar_t', 'ptrdiff_t', 'sig_atomic_t', 'fpos_t',
         'clock_t', 'time_t', 'va_list', 'jmp_buf', 'FILE', 'DIR', 'div_t', 'ldiv_t',
-        'mbstate_t', 'wctrans_t', 'wint_t', 'wctype_t'}
+        'mbstate_t', 'wctrans_t', 'wint_t', 'wctype_t', 'byte'}
     c99_types = {
         'int8_t', 'int16_t', 'int32_t', 'int64_t', 'uint8_t',
         'uint16_t', 'uint32_t', 'uint64_t', 'int_least8_t', 'int_least16_t',
@@ -302,7 +302,7 @@ class CLexer(CFamilyLexer):
         'keywords': [
             (words((
                 '_Alignas', '_Alignof', '_Noreturn', '_Countof', '_Generic', '_Thread_local',
-                '_Static_assert', '_Imaginary', 'countof', 'noreturn', 'imaginary', 'complex'),
+                '_Static_assert', '_Imaginary', 'noreturn', 'imaginary', 'complex'),
                 suffix=r'\b'), Keyword),
             inherit
         ],
