@@ -390,7 +390,7 @@ class PostgresExplainLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'(:|\(|\)|ms|kB|->|\.\.|\,|\/|=|%)', Punctuation),
+            (r'(:|\(|\)|ms|kB|->|\.\.|\,|\/|=|%|text)', Punctuation),
             (r'(\s+)', Whitespace),
 
             # This match estimated cost and effectively measured counters with ANALYZE
@@ -406,7 +406,7 @@ class PostgresExplainLexer(RegexLexer):
                     'Index Searches', 'Storage', 'Disk Maximum Storage'), suffix=r'\b'),
              Comment.Single),
 
-            (r'(hit|read|dirtied|written|write|time|calls)(=)', bygroups(Comment.Single, Operator)),
+            (r'(hit|read|dirtied|written|write|time|calls|records|bytes|allocated|used|output|format)(=)', bygroups(Comment.Single, Operator)),
             (r'(shared|temp|local)', Keyword.Pseudo),
 
             # We move to sort state in order to emphasize specific keywords (especially disk access)
@@ -427,7 +427,8 @@ class PostgresExplainLexer(RegexLexer):
              Comment.Preproc, 'predicate'),
 
             # Special keyword to handle ON CONFLICT
-            (r'Conflict ', Comment.Preproc, 'conflict'),
+            (r'Conflict(ing)? ', Comment.Preproc, 'conflict'),
+            (r'(Tuples Inserted: )', Comment.Preproc, 'predicate'),
 
             # Special keyword for InitPlan or SubPlan
             (r'(InitPlan|SubPlan)( )(\d+)( )',
@@ -438,7 +439,7 @@ class PostgresExplainLexer(RegexLexer):
                     'Planning Time', 'Execution time', 'Execution Time',
                     'Workers Planned', 'Workers Launched', 'Buffers',
                     'Planning', 'Worker', 'Query Identifier', 'Time',
-                    'Full-sort Groups', 'Pre-sorted Groups'), suffix=r'\b'), Comment.Preproc),
+                    'Full-sort Groups', 'Pre-sorted Groups', 'Serialization'), suffix=r'\b'), Comment.Preproc),
 
             # Emphasize these keywords
 
@@ -447,6 +448,7 @@ class PostgresExplainLexer(RegexLexer):
                     'Heap Fetches', 'never executed'),
                    suffix=r'\b'), Name.Exception),
             (r'(I/O Timings)(:)( )', bygroups(Name.Exception, Punctuation, Whitespace)),
+            (r'(WAL)(:)( )', bygroups(Name.Exception, Punctuation, Whitespace)),
 
             (words(_postgres_builtins.EXPLAIN_KEYWORDS, suffix=r'\b'), Keyword),
 
@@ -544,6 +546,7 @@ class PostgresExplainLexer(RegexLexer):
             (r'(Resolution: )(\w+)', bygroups(Comment.Preproc, Name.Variable)),
             (r'(Arbiter \w+:)', Comment.Preproc, 'object_name'),
             (r'(Filter: )', Comment.Preproc, 'predicate'),
+            (r'(Tuples: )', Comment.Preproc, 'predicate'),
         ],
         'setting': [
             (r'([a-z_]*?)(\s*)(=)(\s*)(\'.*?\')', bygroups(Name.Attribute, Whitespace, Operator, Whitespace, String)),
