@@ -17,7 +17,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 from pygments.util import ClassNotFound
 
 __all__ = ['IrcLogsLexer', 'TodotxtLexer', 'HttpLexer', 'GettextLexer',
-           'NotmuchLexer', 'KernelLogLexer']
+           'NotmuchLexer', 'KernelLogLexer', 'TextWithCommentLexer']
 
 
 class IrcLogsLexer(RegexLexer):
@@ -433,4 +433,25 @@ class KernelLogLexer(RegexLexer):
             include('base'),
             (r'.+\n', Generic.Error, '#pop')
         ]
+    }
+
+
+class TextWithCommentLexer(RegexLexer):
+    """
+    Lexer that highlights ``#`` comments but displays everything else as text.
+    """
+    name = 'Text with comments'
+    aliases = ['text-with-comments']
+    filenames = []
+    mimetypes = []
+    url = ""
+    version_added = '2.21'
+
+    tokens = {
+        'root': [
+            (r'^#.*$', Comment),
+            (r'\s#.*$', Comment),
+            (r'[^\s#]+', Text),
+            (r'.', Text),
+        ],
     }
