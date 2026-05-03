@@ -26,7 +26,7 @@ class CELLexer(RegexLexer):
     filenames = ['*.cel']
     mimetypes = []
     url = 'https://cel.dev'
-    version_added = '2.19'
+    version_added = '2.21'
 
     flags = re.MULTILINE | re.UNICODE
 
