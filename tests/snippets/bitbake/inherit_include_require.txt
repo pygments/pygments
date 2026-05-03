@@ -1,0 +1,57 @@
+---input---
+inherit autotools pkgconfig
+inherit_defer ${PYTHON_PN}-setuptools
+include conf/distro/${DISTRO}.conf
+include_all conf/multilib.conf
+require recipes-core/images/core-image-minimal.bb
+inherit \
+    cmake \
+    systemd
+
+---tokens---
+'inherit'     Keyword.Namespace
+' '           Text.Whitespace
+'autotools'   Literal.String
+' '           Text.Whitespace
+'pkgconfig'   Literal.String
+'\n'          Text.Whitespace
+
+'inherit_defer' Keyword.Namespace
+' '           Text.Whitespace
+'${'          Literal.String.Interpol
+'PYTHON_PN'   Name.Variable
+'}'           Literal.String.Interpol
+'-setuptools' Literal.String
+'\n'          Text.Whitespace
+
+'include'     Keyword.Namespace
+' '           Text.Whitespace
+'conf/distro/' Literal.String
+'${'          Literal.String.Interpol
+'DISTRO'      Name.Variable
+'}'           Literal.String.Interpol
+'.conf'       Literal.String
+'\n'          Text.Whitespace
+
+'include_all' Keyword.Namespace
+' '           Text.Whitespace
+'conf/multilib.conf' Literal.String
+'\n'          Text.Whitespace
+
+'require'     Keyword.Namespace
+' '           Text.Whitespace
+'recipes-core/images/core-image-minimal.bb' Literal.String
+'\n'          Text.Whitespace
+
+'inherit'     Keyword.Namespace
+' '           Text.Whitespace
+'\\\n'        Text
+
+'    '        Text.Whitespace
+'cmake'       Literal.String
+' '           Text.Whitespace
+'\\\n'        Text
+
+'    '        Text.Whitespace
+'systemd'     Literal.String
+'\n'          Text.Whitespace

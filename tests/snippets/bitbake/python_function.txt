@@ -1,0 +1,100 @@
+---input---
+python do_check() {
+    bb.warn("checking %s" % d.getVar('PN'))
+}
+
+fakeroot python () {
+    d.setVar('FOO', 'bar')
+}
+
+def my_helper(d):
+    return d.getVar('PN') + '-helper'
+
+
+---tokens---
+'python'      Keyword
+' do_check'   Name.Function
+'() '         Text
+'{\n'         Punctuation
+
+'    '        Text
+'bb'          Name
+'.'           Operator
+'warn'        Name
+'('           Punctuation
+'"'           Literal.String.Double
+'checking '   Literal.String.Double
+'%s'          Literal.String.Interpol
+'"'           Literal.String.Double
+' '           Text
+'%'           Operator
+' '           Text
+'d'           Name
+'.'           Operator
+'getVar'      Name
+'('           Punctuation
+"'"           Literal.String.Single
+'PN'          Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'fakeroot '   Keyword.Type
+'python'      Keyword
+' () '        Text
+'{\n'         Punctuation
+
+'    '        Text
+'d'           Name
+'.'           Operator
+'setVar'      Name
+'('           Punctuation
+"'"           Literal.String.Single
+'FOO'         Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'bar'         Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'def'         Keyword
+' '           Text.Whitespace
+'my_helper'   Name.Function
+'('           Punctuation
+'d'           Name
+')'           Punctuation
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'d'           Name
+'.'           Operator
+'getVar'      Name
+'('           Punctuation
+"'"           Literal.String.Single
+'PN'          Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+"'"           Literal.String.Single
+'-helper'     Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text.Whitespace

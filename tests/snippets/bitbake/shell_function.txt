@@ -1,0 +1,65 @@
+---input---
+do_install() {
+    install -d ${D}${bindir}
+    install -m 0755 ${B}/hello ${D}${bindir}/hello
+}
+
+fakeroot do_rootfs() {
+    echo "building rootfs"
+}
+
+---tokens---
+'do_install'  Name.Function
+'() '         Text
+'{\n'         Punctuation
+
+'    '        Text.Whitespace
+'install'     Text
+' '           Text.Whitespace
+'-d'          Text
+' '           Text.Whitespace
+'${'          Literal.String.Interpol
+'D'           Name.Variable
+'}'           Literal.String.Interpol
+'${'          Literal.String.Interpol
+'bindir'      Name.Variable
+'}'           Literal.String.Interpol
+'\n    '      Text.Whitespace
+'install'     Text
+' '           Text.Whitespace
+'-m'          Text
+' '           Text.Whitespace
+'0755'        Literal.Number
+' '           Text.Whitespace
+'${'          Literal.String.Interpol
+'B'           Name.Variable
+'}'           Literal.String.Interpol
+'/hello'      Text
+' '           Text.Whitespace
+'${'          Literal.String.Interpol
+'D'           Name.Variable
+'}'           Literal.String.Interpol
+'${'          Literal.String.Interpol
+'bindir'      Name.Variable
+'}'           Literal.String.Interpol
+'/hello'      Text
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'fakeroot '   Keyword.Type
+'do_rootfs'   Name.Function
+'() '         Text
+'{\n'         Punctuation
+
+'    '        Text.Whitespace
+'echo'        Name.Builtin
+' '           Text.Whitespace
+'"building rootfs"' Literal.String.Double
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
