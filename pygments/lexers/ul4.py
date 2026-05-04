@@ -32,6 +32,7 @@ class UL4Lexer(RegexLexer):
     filenames = ['*.ul4']
     url = 'https://python.livinglogic.de/UL4.html'
     version_added = '2.12'
+    _example = 'ul4/example_operators.ul4'
 
     tokens = {
         "root": [

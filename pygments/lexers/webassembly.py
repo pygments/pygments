@@ -70,6 +70,7 @@ class WatLexer(RegexLexer):
     aliases = ['wast', 'wat']
     filenames = ['*.wat', '*.wast']
     version_added = '2.9'
+    _example = 'wat/fib.wat'
 
     tokens = {
         'root': [

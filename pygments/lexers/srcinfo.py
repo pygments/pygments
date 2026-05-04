@@ -41,6 +41,7 @@ class SrcinfoLexer(RegexLexer):
     filenames = ['.SRCINFO']
     url = 'https://wiki.archlinux.org/title/.SRCINFO'
     version_added = '2.11'
+    _example = 'srcinfo/thunderbird.SRCINFO'
 
     tokens = {
         'root': [

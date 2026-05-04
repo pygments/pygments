@@ -27,6 +27,7 @@ class SmalltalkLexer(RegexLexer):
     aliases = ['smalltalk', 'squeak', 'st']
     mimetypes = ['text/x-smalltalk']
     version_added = '0.10'
+    _example = 'smalltalk/Object.st'
 
     tokens = {
         'root': [
@@ -146,6 +147,7 @@ class NewspeakLexer(RegexLexer):
     aliases = ['newspeak', ]
     mimetypes = ['text/x-newspeak']
     version_added = '1.1'
+    _example = 'newspeak/example.ns2'
 
     tokens = {
         'root': [

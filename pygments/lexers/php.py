@@ -32,6 +32,7 @@ class ZephirLexer(RegexLexer):
     aliases = ['zephir']
     filenames = ['*.zep']
     version_added = '2.0'
+    _example = 'zephir/test.zep'
 
     zephir_keywords = ['fetch', 'echo', 'isset', 'empty']
     zephir_type = ['bit', 'bits', 'string']
@@ -86,21 +87,13 @@ class ZephirLexer(RegexLexer):
 
 class PsyshConsoleLexer(Lexer):
     """
-    For PsySH console output, such as:
-
-    .. sourcecode:: psysh
-
-        >>> $greeting = function($name): string {
-        ...     return "Hello, {$name}";
-        ... };
-        => Closure($name): string {#2371 …3}
-        >>> $greeting('World')
-        => "Hello, World"
+    For PsySH console output.
     """
     name = 'PsySH console session for PHP'
     url = 'https://psysh.org/'
     aliases = ['psysh']
     version_added = '2.7'
+    _example = 'psysh/psysh_test.psysh'
 
     def __init__(self, **options):
         options['startinline'] = True
@@ -171,6 +164,7 @@ class PhpLexer(RegexLexer):
     filenames = ['*.php', '*.php[345]', '*.inc']
     mimetypes = ['text/x-php']
     version_added = ''
+    _example = 'php/test.php'
 
     # Note that a backslash is included, PHP uses a backslash as a namespace
     # separator.
