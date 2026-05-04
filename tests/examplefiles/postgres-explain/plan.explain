@@ -286,3 +286,36 @@ CTE Scan on cte1 (actual time=0.008..112.987 rows=9999.00 loops=1)
   CTE cte1
     -> Seq Scan on data1 (actual time=0.005..30.641 rows=1000000.00
       Disabled: true
+
+Insert on ors  (cost=0.00..79846.86 rows=0 width=0) (actual time=703487.455..703487.456 rows=0 loops=1)
+  Conflict Resolution: UPDATE
+  Conflict Arbiter Indexes: ors_pkey
+  Tuples Inserted: 1463858
+  Conflicting Tuples: 520
+  Buffers: shared hit=134607432 read=1408365 dirtied=1814890 written=1648664, local read=73254 written=500
+  I/O Timings: shared read=121391.102 write=157190.855, local read=987.309 write=68.623
+  WAL: records=30130122 bytes=6727188243
+  ->  Seq Scan on ors_temp  (cost=0.00..79846.86 rows=659286 width=803) (actual time=0.334..2981.827 rows=1464378 loops=1)
+        Buffers: local read=73254 written=500
+        I/O Timings: local read=987.309 write=68.623
+
+
+Merge Full Join  (cost=0.85..0.91 rows=1 width=48) (actual time=0.064..0.067 rows=1 loops=1)
+  Buffers: shared hit=8
+  ->  Limit  (cost=0.42..0.45 rows=1 width=24) (actual time=0.035..0.035 rows=1 loops=1)
+        Buffers: shared hit=4
+        ->  Index Scan using idx on checks  (cost=0.42..10179.57 rows=413173 width=24) (actual time=0.034..0.034 rows=1 loops=1)
+              Buffers: shared hit=4
+  ->  Materialize  (cost=0.42..0.45 rows=1 width=24) (actual time=0.025..0.026 rows=1 loops=1)
+        Buffers: shared hit=4
+        ->  Limit  (cost=0.42..0.45 rows=1 width=24) (actual time=0.022..0.023 rows=1 loops=1)
+              Buffers: shared hit=4
+              ->  Index Scan using idx on blocks  (cost=0.42..18753.53 rows=764710 width=24) (actual time=0.022..0.022 rows=1 loops=1)
+                    Buffers: shared hit=4
+Settings: work_mem = '19MB', effective_cache_size = '10790MB', jit = 'off', random_page_cost = '1.1'
+Planning:
+  Memory: used=72kB  allocated=128kB
+Planning Time: 0.263 ms
+Serialization: time=0.008 ms  output=1kB  format=text
+Execution Time: 0.109 ms
+

@@ -1,0 +1,91 @@
+---input---
+S = "${WORKDIR}/${BPN}-${PV}"
+PN_PYTHON = "${@d.getVar('PN').replace('-', '_')}"
+PACKAGECONFIG = "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}"
+
+---tokens---
+'S'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'${'          Literal.String.Interpol
+'WORKDIR'     Name.Variable
+'}'           Literal.String.Interpol
+'/'           Literal.String.Double
+'${'          Literal.String.Interpol
+'BPN'         Name.Variable
+'}'           Literal.String.Interpol
+'-'           Literal.String.Double
+'${'          Literal.String.Interpol
+'PV'          Name.Variable
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'PN_PYTHON'   Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'${@'         Literal.String.Interpol
+'d'           Name
+'.'           Operator
+'getVar'      Name
+'('           Punctuation
+"'"           Literal.String.Single
+'PN'          Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'.'           Operator
+'replace'     Name
+'('           Punctuation
+"'"           Literal.String.Single
+'-'           Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'_'           Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'PACKAGECONFIG' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'${@'         Literal.String.Interpol
+'bb'          Name
+'.'           Operator
+'utils'       Name
+'.'           Operator
+'contains'    Name
+'('           Punctuation
+"'"           Literal.String.Single
+'DISTRO_FEATURES' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'systemd'     Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'systemd'     Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+'d'           Name
+')'           Punctuation
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
