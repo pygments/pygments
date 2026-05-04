@@ -1,0 +1,109 @@
+---input---
+Function Empty()
+  ; Nothing
+EndFunction
+
+Function Arg(Bar b)
+  ; Nothing
+EndFunction
+
+Function ArgDef(Int i= ;/ Comment /; 0x123)
+  ; Nothing
+EndFunction
+
+Int Function RetInt(Float f)
+  Return f As Int
+EndFunction
+
+Bar Function RetObj(Bar b)
+  Return b
+EndFunction
+
+---tokens---
+'Function'    Keyword.Declaration
+' '           Text.Whitespace
+'Empty'       Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n  '        Text.Whitespace
+'; Nothing\n' Comment.Single
+
+'EndFunction' Keyword.Declaration
+'\n\n'        Text.Whitespace
+
+'Function'    Keyword.Declaration
+' '           Text.Whitespace
+'Arg'         Name.Function
+'('           Punctuation
+'Bar'         Name.Class
+' '           Text.Whitespace
+'b'           Name.Variable.Instance
+')'           Punctuation
+'\n  '        Text.Whitespace
+'; Nothing\n' Comment.Single
+
+'EndFunction' Keyword.Declaration
+'\n\n'        Text.Whitespace
+
+'Function'    Keyword.Declaration
+' '           Text.Whitespace
+'ArgDef'      Name.Function
+'('           Punctuation
+'Int'         Keyword.Type
+' '           Text.Whitespace
+'i'           Name.Variable.Instance
+'='           Operator
+' '           Text.Whitespace
+';/ Comment /;' Comment.Multiline
+' '           Text.Whitespace
+'0x123'       Literal.Number.Hex
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'; Nothing\n' Comment.Single
+
+'EndFunction' Keyword.Declaration
+'\n\n'        Text.Whitespace
+
+'Int'         Keyword.Type
+' '           Text.Whitespace
+'Function'    Keyword.Declaration
+' '           Text.Whitespace
+'RetInt'      Name.Function
+'('           Punctuation
+'Float'       Keyword.Type
+' '           Text.Whitespace
+'f'           Name.Variable.Instance
+')'           Punctuation
+'\n  '        Text.Whitespace
+'Return'      Keyword
+' '           Text.Whitespace
+'f'           Name.Variable
+' '           Text.Whitespace
+'As'          Operator.Word
+' '           Text.Whitespace
+'Int'         Keyword.Type
+'\n'          Text.Whitespace
+
+'EndFunction' Keyword.Declaration
+'\n\n'        Text.Whitespace
+
+'Bar'         Name.Class
+' '           Text.Whitespace
+'Function'    Keyword.Declaration
+' '           Text.Whitespace
+'RetObj'      Name.Function
+'('           Punctuation
+'Bar'         Name.Class
+' '           Text.Whitespace
+'b'           Name.Variable.Instance
+')'           Punctuation
+'\n  '        Text.Whitespace
+'Return'      Keyword
+' '           Text.Whitespace
+'b'           Name.Variable
+'\n'          Text.Whitespace
+
+'EndFunction' Keyword.Declaration
+'\n'          Text.Whitespace
