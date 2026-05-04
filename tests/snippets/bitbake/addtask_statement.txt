@@ -1,0 +1,49 @@
+---input---
+addtask install after do_compile before do_package
+deltask do_configure
+addhandler my_eventhandler
+EXPORT_FUNCTIONS do_install do_compile
+my_eventhandler[eventmask] = "bb.event.RecipePreFinalise"
+
+---tokens---
+'addtask'     Keyword
+' '           Text.Whitespace
+'install'     Name
+' '           Text.Whitespace
+'after'       Keyword
+' '           Text.Whitespace
+'do_compile'  Name
+' '           Text.Whitespace
+'before'      Keyword
+' '           Text.Whitespace
+'do_package'  Name
+'\n'          Text.Whitespace
+
+'deltask'     Keyword
+' '           Text.Whitespace
+'do_configure' Name
+'\n'          Text.Whitespace
+
+'addhandler'  Keyword
+' '           Text.Whitespace
+'my_eventhandler' Name
+'\n'          Text.Whitespace
+
+'EXPORT_FUNCTIONS' Keyword
+' '           Text.Whitespace
+'do_install'  Name
+' '           Text.Whitespace
+'do_compile'  Name
+'\n'          Text.Whitespace
+
+'my_eventhandler' Name.Variable
+'['           Punctuation
+'eventmask'   Name.Attribute
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'bb.event.RecipePreFinalise' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace

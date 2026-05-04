@@ -1,0 +1,20 @@
+---input---
+f x = ?todo
+g = ?myHole
+
+---tokens---
+'f'           Name.Function
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'='           Operator.Word
+' '           Text.Whitespace
+'?todo'       Name.Variable
+'\n'          Text.Whitespace
+
+'g'           Name.Function
+' '           Text.Whitespace
+'='           Operator.Word
+' '           Text.Whitespace
+'?myHole'     Name.Variable
+'\n'          Text.Whitespace

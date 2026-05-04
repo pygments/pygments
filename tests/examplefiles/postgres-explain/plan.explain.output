@@ -5216,4 +5216,581 @@
 '      '      Text.Whitespace
 'Disabled'    Comment.Preproc
 ': true'      Name.Variable
+'\n\n'        Text.Whitespace
+
+'Insert'      Keyword
+' '           Text.Whitespace
+'on'          Punctuation
+' '           Text.Whitespace
+'ors'         Name.Variable
+'  '          Text.Whitespace
+'(cost'       Name.Class
+'='           Punctuation
+'0.00'        Literal.Number.Float
+'..'          Punctuation
+'79846.86'    Literal.Number.Float
+' '           Text.Whitespace
+'rows'        Name.Class
+'='           Punctuation
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'width'       Name.Class
+'='           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'(actual'     Name.Class
+' '           Text.Whitespace
+'time'        Name.Class
+'='           Punctuation
+'703487.455'  Literal.Number.Float
+'..'          Punctuation
+'703487.456'  Literal.Number.Float
+' '           Text.Whitespace
+'rows'        Name.Class
+'='           Punctuation
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'loops'       Name.Class
+'='           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'Conflict '   Comment.Preproc
+'Resolution: ' Comment.Preproc
+'UPDATE'      Name.Variable
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'Conflict '   Comment.Preproc
+'Arbiter Indexes:' Comment.Preproc
+' '           Text.Whitespace
+'ors_pkey'    Name.Variable
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'Tuples Inserted: ' Comment.Preproc
+'1463858'     Name.Variable
+'\n  '        Text.Whitespace
+'Conflicting ' Comment.Preproc
+'Tuples: '    Comment.Preproc
+'520'         Name.Variable
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'Buffers'     Comment.Preproc
+':'           Punctuation
+' '           Text.Whitespace
+'shared'      Keyword.Pseudo
+' '           Text.Whitespace
+'hit'         Comment.Single
+'='           Operator
+'134607432'   Literal.Number.Integer
+' '           Text.Whitespace
+'read'        Comment.Single
+'='           Operator
+'1408365'     Literal.Number.Integer
+' '           Text.Whitespace
+'dirtied'     Comment.Single
+'='           Operator
+'1814890'     Literal.Number.Integer
+' '           Text.Whitespace
+'written'     Comment.Single
+'='           Operator
+'1648664'     Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'local'       Keyword.Pseudo
+' '           Text.Whitespace
+'read'        Comment.Single
+'='           Operator
+'73254'       Literal.Number.Integer
+' '           Text.Whitespace
+'written'     Comment.Single
+'='           Operator
+'500'         Literal.Number.Integer
+'\n  '        Text.Whitespace
+'I/O Timings' Name.Exception
+':'           Punctuation
+' '           Text.Whitespace
+'shared'      Keyword.Pseudo
+' '           Text.Whitespace
+'read'        Comment.Single
+'='           Operator
+'121391.102'  Literal.Number.Float
+' '           Text.Whitespace
+'write'       Comment.Single
+'='           Operator
+'157190.855'  Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'local'       Keyword.Pseudo
+' '           Text.Whitespace
+'read'        Comment.Single
+'='           Operator
+'987.309'     Literal.Number.Float
+' '           Text.Whitespace
+'write'       Comment.Single
+'='           Operator
+'68.623'      Literal.Number.Float
+'\n  '        Text.Whitespace
+'WAL'         Name.Exception
+':'           Punctuation
+' '           Text.Whitespace
+'records'     Comment.Single
+'='           Operator
+'30130122'    Literal.Number.Integer
+' '           Text.Whitespace
+'bytes'       Comment.Single
+'='           Operator
+'6727188243'  Literal.Number.Integer
+'\n  '        Text.Whitespace
+'->'          Punctuation
+'  '          Text.Whitespace
+'Seq Scan'    Keyword
+' '           Text.Whitespace
+'on'          Punctuation
+' '           Text.Whitespace
+'ors_temp'    Name.Variable
+'  '          Text.Whitespace
+'(cost'       Name.Class
+'='           Punctuation
+'0.00'        Literal.Number.Float
+'..'          Punctuation
+'79846.86'    Literal.Number.Float
+' '           Text.Whitespace
+'rows'        Name.Class
+'='           Punctuation
+'659286'      Literal.Number.Integer
+' '           Text.Whitespace
+'width'       Name.Class
+'='           Punctuation
+'803'         Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'(actual'     Name.Class
+' '           Text.Whitespace
+'time'        Name.Class
+'='           Punctuation
+'0.334'       Literal.Number.Float
+'..'          Punctuation
+'2981.827'    Literal.Number.Float
+' '           Text.Whitespace
+'rows'        Name.Class
+'='           Punctuation
+'1464378'     Literal.Number.Integer
+' '           Text.Whitespace
+'loops'       Name.Class
+'='           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'Buffers'     Comment.Preproc
+':'           Punctuation
+' '           Text.Whitespace
+'local'       Keyword.Pseudo
+' '           Text.Whitespace
+'read'        Comment.Single
+'='           Operator
+'73254'       Literal.Number.Integer
+' '           Text.Whitespace
+'written'     Comment.Single
+'='           Operator
+'500'         Literal.Number.Integer
+'\n        '  Text.Whitespace
+'I/O Timings' Name.Exception
+':'           Punctuation
+' '           Text.Whitespace
+'local'       Keyword.Pseudo
+' '           Text.Whitespace
+'read'        Comment.Single
+'='           Operator
+'987.309'     Literal.Number.Float
+' '           Text.Whitespace
+'write'       Comment.Single
+'='           Operator
+'68.623'      Literal.Number.Float
+'\n\n\n'      Text.Whitespace
+
+'Merge'       Keyword
+' '           Text.Whitespace
+'Full Join'   Keyword.Type
+'  '          Text.Whitespace
+'('           Punctuation
+'cost'        Name.Class
+'='           Punctuation
+'0.85'        Literal.Number.Float
+'..'          Punctuation
+'0.91'        Literal.Number.Float
+' '           Text.Whitespace
+'rows'        Name.Class
+'='           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'width'       Name.Class
+'='           Punctuation
+'48'          Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'actual'      Name.Class
+' '           Text.Whitespace
+'time'        Name.Class
+'='           Punctuation
+'0.064'       Literal.Number.Float
+'..'          Punctuation
+'0.067'       Literal.Number.Float
+' '           Text.Whitespace
+'rows'        Name.Class
+'='           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'loops'       Name.Class
+'='           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n  '        Text.Whitespace
+'Buffers'     Comment.Preproc
+':'           Punctuation
+' '           Text.Whitespace
+'shared'      Keyword.Pseudo
+' '           Text.Whitespace
+'hit'         Comment.Single
+'='           Operator
+'8'           Literal.Number.Integer
+'\n  '        Text.Whitespace
+'->'          Punctuation
+'  '          Text.Whitespace
+'Limit'       Keyword
+'  '          Text.Whitespace
+'('           Punctuation
+'cost'        Name.Class
+'='           Punctuation
+'0.42'        Literal.Number.Float
+'..'          Punctuation
+'0.45'        Literal.Number.Float
+' '           Text.Whitespace
+'rows'        Name.Class
+'='           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'width'       Name.Class
+'='           Punctuation
+'24'          Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'actual'      Name.Class
+' '           Text.Whitespace
+'time'        Name.Class
+'='           Punctuation
+'0.035'       Literal.Number.Float
+'..'          Punctuation
+'0.035'       Literal.Number.Float
+' '           Text.Whitespace
+'rows'        Name.Class
+'='           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'loops'       Name.Class
+'='           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n        '  Text.Whitespace
+'Buffers'     Comment.Preproc
+':'           Punctuation
+' '           Text.Whitespace
+'shared'      Keyword.Pseudo
+' '           Text.Whitespace
+'hit'         Comment.Single
+'='           Operator
+'4'           Literal.Number.Integer
+'\n        '  Text.Whitespace
+'->'          Punctuation
+'  '          Text.Whitespace
+'Index Scan'  Keyword
+' '           Text.Whitespace
+'using'       Punctuation
+' '           Text.Whitespace
+'idx'         Name.Variable
+' '           Text.Whitespace
+'on'          Punctuation
+' '           Text.Whitespace
+'checks'      Name.Variable
+'  '          Text.Whitespace
+'(cost'       Name.Class
+'='           Punctuation
+'0.42'        Literal.Number.Float
+'..'          Punctuation
+'10179.57'    Literal.Number.Float
+' '           Text.Whitespace
+'rows'        Name.Class
+'='           Punctuation
+'413173'      Literal.Number.Integer
+' '           Text.Whitespace
+'width'       Name.Class
+'='           Punctuation
+'24'          Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'(actual'     Name.Class
+' '           Text.Whitespace
+'time'        Name.Class
+'='           Punctuation
+'0.034'       Literal.Number.Float
+'..'          Punctuation
+'0.034'       Literal.Number.Float
+' '           Text.Whitespace
+'rows'        Name.Class
+'='           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'loops'       Name.Class
+'='           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'              ' Text.Whitespace
+'Buffers'     Comment.Preproc
+':'           Punctuation
+' '           Text.Whitespace
+'shared'      Keyword.Pseudo
+' '           Text.Whitespace
+'hit'         Comment.Single
+'='           Operator
+'4'           Literal.Number.Integer
+'\n  '        Text.Whitespace
+'->'          Punctuation
+'  '          Text.Whitespace
+'Materialize' Keyword
+'  '          Text.Whitespace
+'('           Punctuation
+'cost'        Name.Class
+'='           Punctuation
+'0.42'        Literal.Number.Float
+'..'          Punctuation
+'0.45'        Literal.Number.Float
+' '           Text.Whitespace
+'rows'        Name.Class
+'='           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'width'       Name.Class
+'='           Punctuation
+'24'          Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'actual'      Name.Class
+' '           Text.Whitespace
+'time'        Name.Class
+'='           Punctuation
+'0.025'       Literal.Number.Float
+'..'          Punctuation
+'0.026'       Literal.Number.Float
+' '           Text.Whitespace
+'rows'        Name.Class
+'='           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'loops'       Name.Class
+'='           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n        '  Text.Whitespace
+'Buffers'     Comment.Preproc
+':'           Punctuation
+' '           Text.Whitespace
+'shared'      Keyword.Pseudo
+' '           Text.Whitespace
+'hit'         Comment.Single
+'='           Operator
+'4'           Literal.Number.Integer
+'\n        '  Text.Whitespace
+'->'          Punctuation
+'  '          Text.Whitespace
+'Limit'       Keyword
+'  '          Text.Whitespace
+'('           Punctuation
+'cost'        Name.Class
+'='           Punctuation
+'0.42'        Literal.Number.Float
+'..'          Punctuation
+'0.45'        Literal.Number.Float
+' '           Text.Whitespace
+'rows'        Name.Class
+'='           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'width'       Name.Class
+'='           Punctuation
+'24'          Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'actual'      Name.Class
+' '           Text.Whitespace
+'time'        Name.Class
+'='           Punctuation
+'0.022'       Literal.Number.Float
+'..'          Punctuation
+'0.023'       Literal.Number.Float
+' '           Text.Whitespace
+'rows'        Name.Class
+'='           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'loops'       Name.Class
+'='           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n              ' Text.Whitespace
+'Buffers'     Comment.Preproc
+':'           Punctuation
+' '           Text.Whitespace
+'shared'      Keyword.Pseudo
+' '           Text.Whitespace
+'hit'         Comment.Single
+'='           Operator
+'4'           Literal.Number.Integer
+'\n              ' Text.Whitespace
+'->'          Punctuation
+'  '          Text.Whitespace
+'Index Scan'  Keyword
+' '           Text.Whitespace
+'using'       Punctuation
+' '           Text.Whitespace
+'idx'         Name.Variable
+' '           Text.Whitespace
+'on'          Punctuation
+' '           Text.Whitespace
+'blocks'      Name.Variable
+'  '          Text.Whitespace
+'(cost'       Name.Class
+'='           Punctuation
+'0.42'        Literal.Number.Float
+'..'          Punctuation
+'18753.53'    Literal.Number.Float
+' '           Text.Whitespace
+'rows'        Name.Class
+'='           Punctuation
+'764710'      Literal.Number.Integer
+' '           Text.Whitespace
+'width'       Name.Class
+'='           Punctuation
+'24'          Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'(actual'     Name.Class
+' '           Text.Whitespace
+'time'        Name.Class
+'='           Punctuation
+'0.022'       Literal.Number.Float
+'..'          Punctuation
+'0.022'       Literal.Number.Float
+' '           Text.Whitespace
+'rows'        Name.Class
+'='           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'loops'       Name.Class
+'='           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'                    ' Text.Whitespace
+'Buffers'     Comment.Preproc
+':'           Punctuation
+' '           Text.Whitespace
+'shared'      Keyword.Pseudo
+' '           Text.Whitespace
+'hit'         Comment.Single
+'='           Operator
+'4'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'Settings'    Comment.Preproc
+':'           Punctuation
+' '           Text.Whitespace
+'work_mem'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'19MB'"      Literal.String
+', '          Punctuation
+'effective_cache_size' Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'10790MB'"   Literal.String
+', '          Punctuation
+'jit'         Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'off'"       Literal.String
+', '          Punctuation
+'random_page_cost' Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'1.1'"       Literal.String
+'\n'          Text.Whitespace
+
+'Planning'    Comment.Preproc
+':'           Punctuation
+'\n  '        Text.Whitespace
+'Memory'      Comment.Single
+':'           Punctuation
+' '           Text.Whitespace
+'used'        Comment.Single
+'='           Operator
+'72'          Literal.Number.Integer
+'kB'          Punctuation
+'  '          Text.Whitespace
+'allocated'   Comment.Single
+'='           Operator
+'128'         Literal.Number.Integer
+'kB'          Punctuation
+'\n'          Text.Whitespace
+
+'Planning Time' Comment.Preproc
+':'           Punctuation
+' '           Text.Whitespace
+'0.263'       Literal.Number.Float
+' '           Text.Whitespace
+'ms'          Punctuation
+'\n'          Text.Whitespace
+
+'Serialization' Comment.Preproc
+':'           Punctuation
+' '           Text.Whitespace
+'time'        Comment.Single
+'='           Operator
+'0.008'       Literal.Number.Float
+' '           Text.Whitespace
+'ms'          Punctuation
+'  '          Text.Whitespace
+'output'      Comment.Single
+'='           Operator
+'1'           Literal.Number.Integer
+'kB'          Punctuation
+'  '          Text.Whitespace
+'format'      Comment.Single
+'='           Operator
+'text'        Punctuation
+'\n'          Text.Whitespace
+
+'Execution Time' Comment.Preproc
+':'           Punctuation
+' '           Text.Whitespace
+'0.109'       Literal.Number.Float
+' '           Text.Whitespace
+'ms'          Punctuation
 '\n'          Text.Whitespace

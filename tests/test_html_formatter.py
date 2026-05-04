@@ -15,9 +15,9 @@ from os import path
 import pytest
 
 from pygments.formatters import HtmlFormatter, NullFormatter
-from pygments.formatters.html import escape_html
 from pygments.lexers import PythonLexer
 from pygments.style import Style
+from pygments.util import html_escape
 
 TESTDIR = path.dirname(path.abspath(__file__))
 TESTFILE = path.join(TESTDIR, 'test_html_formatter.py')
@@ -36,7 +36,7 @@ def test_correct_output():
     nfmt.format(tokensource, noutfile)
 
     stripped_html = re.sub('<.*?>', '', houtfile.getvalue())
-    escaped_text = escape_html(noutfile.getvalue())
+    escaped_text = html_escape(noutfile.getvalue())
     assert stripped_html == escaped_text
 
 
@@ -257,6 +257,14 @@ def test_filename():
     assert re.search("<span class=\"filename\">test.py</span><pre>", html)
 
 
+def test_filename_none():
+    fmt = HtmlFormatter(filename=None)
+    assert fmt.filename == ''
+    outfile = StringIO()
+    fmt.format(tokensource, outfile)
+    assert '<span class="filename">' not in outfile.getvalue()
+
+
 def test_debug_token_types():
     fmt_nod_token_types = HtmlFormatter(debug_token_types=False)
     outfile_nod_token_types = StringIO()
@@ -269,3 +277,39 @@ def test_debug_token_types():
     fmt_debug_token_types.format(tokensource, outfile_debug_token_types)
     html_debug_token_types = outfile_debug_token_types.getvalue()
     assert '<span class="n" title="Name">TESTDIR</span>' in html_debug_token_types
+
+
+def test_html_escape_attributes():
+    """Test that HTML special characters in formatter option values are properly escaped."""
+
+    fmt = HtmlFormatter(
+        cssclass='bad<script>',
+        cssstyles='color: "&"',
+        filename='<file\'>.py',
+        lineseparator='<br>',
+        lineanchors='anchor"name',
+        linespans='span&name',
+    )
+    assert fmt.cssclass == 'bad&lt;script&gt;'
+    assert fmt.cssstyles == 'color: &quot;&amp;&quot;'
+    assert fmt.filename == '&lt;file&#x27;&gt;.py'
+    assert fmt.lineseparator == '&lt;br&gt;'
+    assert fmt.lineanchors == 'anchor&quot;name'
+    assert fmt.linespans == 'span&amp;name'
+
+    """Test that None values for these options are handled gracefully."""
+
+    fmt_none = HtmlFormatter(
+        cssclass=None,
+        cssstyles=None,
+        filename=None,
+        lineseparator=None,
+        lineanchors=None,
+        linespans=None,
+    )
+    assert fmt_none.cssclass == ''
+    assert fmt_none.cssstyles == ''
+    assert fmt_none.filename == ''
+    assert fmt_none.lineseparator == ''
+    assert fmt_none.lineanchors == ''
+    assert fmt_none.linespans == ''

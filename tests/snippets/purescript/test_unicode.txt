@@ -1,0 +1,39 @@
+---input---
+∀ a. a → a
+a ⇒ b
+a ∷ Int
+a ← getLine
+
+---tokens---
+'∀'           Operator.Word
+' '           Text.Whitespace
+'a'           Name
+'.'           Operator
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'→'           Operator.Word
+' '           Text.Whitespace
+'a'           Name
+'\n'          Text.Whitespace
+
+'a'           Name.Function
+' '           Text.Whitespace
+'⇒'           Operator.Word
+' '           Text.Whitespace
+'b'           Name
+'\n'          Text.Whitespace
+
+'a'           Name.Function
+' '           Text.Whitespace
+'∷'           Operator.Word
+' '           Text.Whitespace
+'Int'         Keyword.Type
+'\n'          Text.Whitespace
+
+'a'           Name.Function
+' '           Text.Whitespace
+'←'           Operator.Word
+' '           Text.Whitespace
+'getLine'     Name
+'\n'          Text.Whitespace
