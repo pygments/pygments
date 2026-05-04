@@ -1,0 +1,22 @@
+---input---
+_abstract _private _iter _method object.abstract_private_iter()
+_endmethod
+
+---tokens---
+'_abstract'   Keyword
+' '           Text.Whitespace
+'_private'    Keyword
+' '           Text.Whitespace
+'_iter'       Keyword
+' '           Text.Whitespace
+'_method'     Keyword
+' '           Text.Whitespace
+'object'      Name
+'.'           Punctuation
+'abstract_private_iter' Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n'          Text.Whitespace

@@ -1,0 +1,17 @@
+---input---
+_thisthread.sleep(10)
+_thisthread.background_priority
+
+---tokens---
+'_thisthread' Name.Builtin
+'.'           Punctuation
+'sleep'       Name
+'('           Punctuation
+'10'          Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'_thisthread' Name.Builtin
+'.'           Punctuation
+'background_priority' Name
+'\n'          Text.Whitespace
