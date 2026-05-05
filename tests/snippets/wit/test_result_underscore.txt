@@ -1,0 +1,12 @@
+---input---
+result<_, errno>
+
+---tokens---
+'result'      Keyword.Type
+'<'           Punctuation
+'_'           Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'errno'       Name
+'>'           Punctuation
+'\n'          Text.Whitespace

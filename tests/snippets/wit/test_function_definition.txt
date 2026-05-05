@@ -1,0 +1,20 @@
+---input---
+my-func: func(x: u32) -> string;
+
+---tokens---
+'my-func'     Name
+':'           Punctuation
+' '           Text.Whitespace
+'func'        Keyword
+'('           Punctuation
+'x'           Name
+':'           Punctuation
+' '           Text.Whitespace
+'u32'         Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'string'      Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace
