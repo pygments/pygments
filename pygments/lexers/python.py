@@ -231,7 +231,7 @@ class PythonLexer(RegexLexer):
             (r'(^[ \t]*)'                    # beginning of line + indentation
              r'(type)\b'                     # the keyword 'type' followed by
              r'([ \t]+)(' + uni_name + r')'  # the type alias name
-             r'(?=[ \t]*(?:[^\n]*)?=)',      # followed by an eventual assignment
+             r'(?=[^\n]*=)',                 # followed by an eventual assignment
              bygroups(Text, Keyword, Text, Name.Class)),
         ],
         'soft-keywords-inner': [
