@@ -233,6 +233,12 @@ class PythonLexer(RegexLexer):
                                        # pattern matching (but None/True/False is ok)
              r'|'.join(k for k in keyword.kwlist if k[0].islower()) + r')\b))',
              bygroups(Text, Keyword), 'soft-keywords-inner'),
+            # `type` soft keyword
+            (r'(^[ \t]*)'                    # beginning of line + indentation
+             r'(type)\b'                     # the keyword 'type' followed by
+             r'([ \t]+)(' + uni_name + r')'  # the type alias name
+             r'(?=[^\n]*=)',                 # followed by an eventual assignment
+             bygroups(Text, Keyword, Text, Name.Class)),
         ],
         'soft-keywords-inner': [
             # optional `_` keyword

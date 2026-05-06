@@ -1,0 +1,76 @@
+---input---
+type alias = int | str
+
+type Pair[L: int, R: (int, str)] = tuple[L, R]
+
+print(type(alias))
+
+type = 3
+
+---tokens---
+'type'        Keyword
+' '           Text
+'alias'       Name.Class
+' '           Text
+'='           Operator
+' '           Text
+'int'         Name.Builtin
+' '           Text
+'|'           Operator
+' '           Text
+'str'         Name.Builtin
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'type'        Keyword
+' '           Text
+'Pair'        Name.Class
+'['           Punctuation
+'L'           Name
+':'           Punctuation
+' '           Text
+'int'         Name.Builtin
+','           Punctuation
+' '           Text
+'R'           Name
+':'           Punctuation
+' '           Text
+'('           Punctuation
+'int'         Name.Builtin
+','           Punctuation
+' '           Text
+'str'         Name.Builtin
+')'           Punctuation
+']'           Punctuation
+' '           Text
+'='           Operator
+' '           Text
+'tuple'       Name.Builtin
+'['           Punctuation
+'L'           Name
+','           Punctuation
+' '           Text
+'R'           Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+'('           Punctuation
+'type'        Name.Builtin
+'('           Punctuation
+'alias'       Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'type'        Name.Builtin
+' '           Text
+'='           Operator
+' '           Text
+'3'           Literal.Number.Integer
+'\n'          Text.Whitespace
