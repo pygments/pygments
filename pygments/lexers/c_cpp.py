@@ -93,7 +93,7 @@ class CFamilyLexer(RegexLexer):
             (r'(-)?(' + _decpart + r'\.' + _decpart + r'|\.' + _decpart + r'|' +
              _decpart + r')[eE][+-]?' + _decpart + r'[fFlL]?', Number.Float),
             (r'(-)?((' + _decpart + r'\.(' + _decpart + r')?|\.' +
-             _decpart + r')[fFlL]?)|(' + _decpart + r'[fFlL])', Number.Float),
+             _decpart + r')[fFlL]?)|(' + _decpart + r'[fF])', Number.Float),
             (r'(-)?0[xX]' + _hexpart + _intsuffix, Number.Hex),
             (r'(-)?0[bB][01](\'?[01])*' + _intsuffix, Number.Bin),
             (r'(-)?0(\'?[0-7])+' + _intsuffix, Number.Oct),
