@@ -1,0 +1,15 @@
+---input---
+# this is a comment
+global
+	daemon # inline comment
+
+---tokens---
+'# this is a comment' Comment.Single
+'\n'          Text.Whitespace
+
+'global'      Keyword
+'\n\t'        Text.Whitespace
+'daemon'      Literal.String
+' '           Text.Whitespace
+'# inline comment' Comment.Single
+'\n'          Text.Whitespace
