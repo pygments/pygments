@@ -1,0 +1,32 @@
+---input---
+Title
+=====
+
+Subtitle
+--------
+
+Section
+~~~~~~~
+
+---tokens---
+'Title'       Generic.Heading
+'\n'          Text
+
+'====='       Generic.Heading
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'Subtitle'    Generic.Heading
+'\n'          Text
+
+'--------'    Generic.Heading
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'Section'     Generic.Heading
+'\n'          Text
+
+'~~~~~~~'     Generic.Heading
+'\n'          Text

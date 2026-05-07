@@ -1,0 +1,22 @@
+---input---
+:doc:`document`
+
+`document`:doc:
+
+`inline reference`_
+
+---tokens---
+':doc:'       Name.Attribute
+'`document`'  Name.Variable
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'`document`'  Name.Variable
+':doc:'       Name.Attribute
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'`inline reference`_' Literal.String
+'\n'          Text.Whitespace
