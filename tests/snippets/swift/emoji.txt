@@ -1,6 +1,7 @@
 ---input---
 func test() {
     let 😆 = "hello😆"
+    var a🥶2 = "bye"
     let test = "test1"
     return 😆
 }
@@ -28,6 +29,18 @@ class 🐍 {
 ' '           Text.Whitespace
 '"'           Literal.String
 'hello😆'      Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'    '        Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'a🥶2'         Name.Variable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'bye'         Literal.String
 '"'           Literal.String
 '\n'          Text
 
