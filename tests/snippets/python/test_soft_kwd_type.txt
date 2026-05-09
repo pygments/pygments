@@ -1,7 +1,9 @@
 ---input---
 type alias = int | str
 
-type Pair[L: int, R: (int, str)] = tuple[L, R]
+type Pair[
+    L: int, R: (int, str)
+] = tuple[L, R]
 
 print(type(alias))
 
@@ -27,6 +29,9 @@ type = 3
 ' '           Text
 'Pair'        Name.Class
 '['           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
 'L'           Name
 ':'           Punctuation
 ' '           Text
@@ -42,6 +47,8 @@ type = 3
 ' '           Text
 'str'         Name.Builtin
 ')'           Punctuation
+'\n'          Text.Whitespace
+
 ']'           Punctuation
 ' '           Text
 '='           Operator
