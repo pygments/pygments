@@ -14,3 +14,15 @@ Scenario Outline: My detailed scenario #string
     | x    | subtract | remain#der |
     | 12   | 5\|3     |  #73       |
     | #the | 10       |  15        |
+
+Rule: Grouped scenarios
+
+  Example: Basic example
+    Given something
+
+  Scenario Template: Template alias
+    Given value <x>
+
+    Scenarios:
+      | x |
+      | 1 |
