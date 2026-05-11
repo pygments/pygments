@@ -1,0 +1,40 @@
+'/*\n * Multi-character literals\n */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'A'           Literal.String.Char
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'ab'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'ab12'        Literal.String.Char
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'abcd'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'ABCD'        Literal.String.Char
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
