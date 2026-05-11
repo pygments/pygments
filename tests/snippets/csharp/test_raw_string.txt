@@ -1,0 +1,32 @@
+---input---
+public string A = """
+$
+""";
+public string B = $"""
+hello {1+1}
+""";
+
+---tokens---
+'public'      Keyword
+' '           Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'A'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"""\n$\n"""' Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'public'      Keyword
+' '           Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'B'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'$"""\nhello {1+1}\n"""' Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
