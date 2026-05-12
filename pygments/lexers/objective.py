@@ -306,8 +306,8 @@ class SwiftLexer(RegexLexer):
                    r"""\U00050000-\U0005FFFD\U00060000-\U0006FFFD\U00070000-\U0007FFFD\U00080000-\U0008FFFD"""
                    r"""\U00090000-\U0009FFFD\U000A0000-\U000AFFFD\U000B0000-\U000BFFFD\U000C0000-\U000CFFFD"""
                    r"""\U000D0000-\U000DFFFD\U000E0000-\U000EFFFD]""")
-    _ident_chars = r'([\w\u0300-\u036F\u1DC0-\u1DFF\u20D0-\u20FF\uFE20-\uFE2F])*(' + _ident_head + r')*'
-    _ident_full = r'(' + _ident_head + r'(' + _ident_chars + r')*)'
+    _ident_chars = r'([\w\u0300-\u036F\u1DC0-\u1DFF\u20D0-\u20FF\uFE20-\uFE2F' + _ident_head[1:-1]  + '])*'
+    _ident_full = r'(' + _ident_head + r'(' + _ident_chars + r'))'
 
     tokens = {
         'root': [
