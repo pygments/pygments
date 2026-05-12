@@ -1,0 +1,131 @@
+'61('         Punctuation
+'\n  '        Text.Whitespace
+'17('         Punctuation
+'\n    '      Text.Whitespace
+'['           Punctuation
+'\n      '    Text.Whitespace
+'/ protected /' Comment.Multiline
+' '           Text.Whitespace
+'<<'          Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'/ alg /'     Comment.Multiline
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+':'           Punctuation
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+' '           Text.Whitespace
+'/ HMAC-256-64 /' Comment.Multiline
+'\n      '    Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'>>'          Punctuation
+','           Punctuation
+'\n      '    Text.Whitespace
+'/ unprotected /' Comment.Multiline
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'/ kid /'     Comment.Multiline
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+':'           Punctuation
+' '           Text.Whitespace
+"h'"          Literal.String.Binary
+'53796d6d6574726963323536' Literal.String.Binary
+"'"           Literal.String.Binary
+' '           Text.Whitespace
+"/ 'Symmetric256' /" Comment.Multiline
+'\n      '    Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+'\n      '    Text.Whitespace
+'/ payload /' Comment.Multiline
+' '           Text.Whitespace
+'<<'          Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'/ iss /'     Comment.Multiline
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'coap://as.example.com' Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n        '  Text.Whitespace
+'/ sub /'     Comment.Multiline
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'erikw'       Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n        '  Text.Whitespace
+'/ aud /'     Comment.Multiline
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'coap://light.example.com' Literal.String
+'"'           Literal.String
+','           Punctuation
+'\n        '  Text.Whitespace
+'/ exp /'     Comment.Multiline
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+':'           Punctuation
+' '           Text.Whitespace
+'1444064944'  Literal.Number.Integer
+','           Punctuation
+'\n        '  Text.Whitespace
+'/ nbf /'     Comment.Multiline
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+':'           Punctuation
+' '           Text.Whitespace
+'1443944944'  Literal.Number.Integer
+','           Punctuation
+'\n        '  Text.Whitespace
+'/ iat /'     Comment.Multiline
+' '           Text.Whitespace
+'6'           Literal.Number.Integer
+':'           Punctuation
+' '           Text.Whitespace
+'1443944944'  Literal.Number.Integer
+','           Punctuation
+'\n        '  Text.Whitespace
+'/ cti /'     Comment.Multiline
+' '           Text.Whitespace
+'7'           Literal.Number.Integer
+':'           Punctuation
+' '           Text.Whitespace
+"h'"          Literal.String.Binary
+'0b71'        Literal.String.Binary
+"'"           Literal.String.Binary
+'\n      '    Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'>>'          Punctuation
+','           Punctuation
+'\n      '    Text.Whitespace
+'/ tag /'     Comment.Multiline
+' '           Text.Whitespace
+"h'"          Literal.String.Binary
+'093101ef6d789200' Literal.String.Binary
+"'"           Literal.String.Binary
+'\n    '      Text.Whitespace
+']'           Punctuation
+'\n  '        Text.Whitespace
+')'           Punctuation
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace

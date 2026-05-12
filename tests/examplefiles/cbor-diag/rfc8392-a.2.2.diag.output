@@ -1,0 +1,50 @@
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'/ k /'       Comment.Multiline
+'   '         Text.Whitespace
+'-1'          Literal.Number.Integer
+':'           Punctuation
+' '           Text.Whitespace
+"h'"          Literal.String.Binary
+'403697de87af64611c1d32a05dab0fe1fcb715a86ab435f1' Literal.String.Binary
+'\n                ' Text.Whitespace
+'ec99192d79569388' Literal.String.Binary
+"'"           Literal.String.Binary
+'\n  '        Text.Whitespace
+'/ kty /'     Comment.Multiline
+'  '          Text.Whitespace
+'1'           Literal.Number.Integer
+':'           Punctuation
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+' '           Text.Whitespace
+'/ Symmetric /' Comment.Multiline
+','           Punctuation
+'\n  '        Text.Whitespace
+'/ kid /'     Comment.Multiline
+'  '          Text.Whitespace
+'4'           Literal.Number.Integer
+':'           Punctuation
+' '           Text.Whitespace
+"h'"          Literal.String.Binary
+'53796d6d6574726963323536' Literal.String.Binary
+"'"           Literal.String.Binary
+' '           Text.Whitespace
+"/ 'Symmetric256' /" Comment.Multiline
+','           Punctuation
+'\n  '        Text.Whitespace
+'/ alg /'     Comment.Multiline
+'  '          Text.Whitespace
+'3'           Literal.Number.Integer
+':'           Punctuation
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+' '           Text.Whitespace
+'/* HMAC 256/64 */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'/* I have modified the previous comment from RFC8392,\n     replacing slash-comment into a slash-start-comment\n     because the slash in the middle of the comment was breaking\n     it */' Comment.Multiline
+'\n'          Text.Whitespace

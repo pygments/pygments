@@ -1,0 +1,24 @@
+96(
+  [
+    / protected h'a10101' / << {
+        / alg / 1:1 / AES-GCM 128 /
+      } >> ,
+    / unprotected / {
+      / iv / 5:h'02d1f7e6f26c43d4868d87ce'
+    },
+    / ciphertext / h'64f84d913ba60a76070a9a48f26e97e863e28529d8f5335e5f0165eee976b4a5f6c6f09d',
+    / recipients / [
+      [
+        / protected / h'a101381f' / {
+            \ alg \ 1:-32 \ ECDH-SS+A128KW \
+          } / ,
+        / unprotected / {
+          / static kid / -3:'peregrin.took@tuckborough.example',
+          / kid / 4:'meriadoc.brandybuck@buckland.example',
+          / U nonce / -22:h'0101'
+        },
+        / ciphertext / h'41e0d76f579dbd0d936a662d54d8582037de2e366fde1c62'
+      ]
+    ]
+  ]
+)
