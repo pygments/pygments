@@ -1,0 +1,89 @@
+'Long Header Packet' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'Header Form' Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'1'           Literal.Number
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+','           Punctuation
+'\n  '        Text.Whitespace
+'Fixed Bit'   Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'1'           Literal.Number
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+','           Punctuation
+'\n  '        Text.Whitespace
+'Long Packet Type' Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'2'           Literal.Number
+')'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'Type-Specific Bits' Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'4'           Literal.Number
+')'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'Version'     Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'32'          Literal.Number
+')'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'Destination Connection ID Length' Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'8'           Literal.Number
+')'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'Destination Connection ID' Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'0'           Literal.Number
+'..'          Operator
+'160'         Literal.Number
+')'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'Source Connection ID Length' Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'8'           Literal.Number
+')'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'Source Connection ID' Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'0'           Literal.Number
+'..'          Operator
+'160'         Literal.Number
+')'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'Type-Specific Payload' Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'..'          Operator
+')'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
