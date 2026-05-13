@@ -1,0 +1,26 @@
+---input---
+echo 'testing \' quotes'
+echo 'testing quotes'
+echo ''
+echo '\''
+
+---tokens---
+'echo'        Keyword
+' '           Text
+"'testing \\' quotes'" Literal.String.Single
+'\n'          Text
+
+'echo'        Keyword
+' '           Text
+"'testing quotes'" Literal.String.Single
+'\n'          Text
+
+'echo'        Keyword
+' '           Text
+"''"          Literal.String.Single
+'\n'          Text
+
+'echo'        Keyword
+' '           Text
+"'\\''"       Literal.String.Single
+'\n'          Text
