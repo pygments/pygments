@@ -120,6 +120,7 @@ class HttpLexer(RegexLexer):
 
     name = 'HTTP'
     aliases = ['http']
+    filenames = ['*.http']
     url = 'https://httpwg.org/specs'
     version_added = '1.5'
 

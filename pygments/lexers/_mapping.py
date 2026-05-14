@@ -220,7 +220,7 @@ LEXERS = {
     'HtmlLexer': ('pygments.lexers.html', 'HTML', ('html',), ('*.html', '*.htm', '*.xhtml', '*.xslt'), ('text/html', 'application/xhtml+xml')),
     'HtmlPhpLexer': ('pygments.lexers.templates', 'HTML+PHP', ('html+php',), ('*.phtml',), ('application/x-php', 'application/x-httpd-php', 'application/x-httpd-php3', 'application/x-httpd-php4', 'application/x-httpd-php5')),
     'HtmlSmartyLexer': ('pygments.lexers.templates', 'HTML+Smarty', ('html+smarty',), (), ('text/html+smarty',)),
-    'HttpLexer': ('pygments.lexers.textfmts', 'HTTP', ('http',), (), ()),
+    'HttpLexer': ('pygments.lexers.textfmts', 'HTTP', ('http',), ('*.http',), ()),
     'HxmlLexer': ('pygments.lexers.haxe', 'Hxml', ('haxeml', 'hxml'), ('*.hxml',), ()),
     'HyLexer': ('pygments.lexers.lisp', 'Hy', ('hylang', 'hy'), ('*.hy',), ('text/x-hy', 'application/x-hy')),
     'HybrisLexer': ('pygments.lexers.scripting', 'Hybris', ('hybris',), ('*.hyb',), ('text/x-hybris', 'application/x-hybris')),
