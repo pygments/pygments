@@ -189,7 +189,7 @@ class PythonLexer(RegexLexer):
         ],
         'expr-inside-fstring': [
             (r'#[^\n]*', Comment.Single),
-            (r'\n', Whitespace, '#pop'),
+            (r'\n', Whitespace),
             (r'[{([]', Punctuation, 'expr-inside-fstring-inner'),
             # without format specifier
             (r'(=\s*)?'         # debug (https://bugs.python.org/issue36817)
