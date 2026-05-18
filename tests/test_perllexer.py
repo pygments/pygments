@@ -121,7 +121,7 @@ def test_match_with_dollar_sign(lexer):
     assert_fast_tokenization(lexer, 'm$' + '\\'*999)
 
 
-# Regex substitutions with various delimeters.
+# Regex substitutions with various delimiters.
 
 def test_substitution_with_slash(lexer):
     assert_single_token(lexer, 's/aaa/bbb/g', String.Regex)

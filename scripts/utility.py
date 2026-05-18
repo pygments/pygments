@@ -12,7 +12,7 @@ import os.path
 
 def unpack_output_file(path):
     """
-    Unpack an output file into objects contining the line number, the text,
+    Unpack an output file into objects containing the line number, the text,
     and the token name. The output file can be either a ``.output`` file
     containing a token stream, or a ``.txt`` with input and tokens.
     """
