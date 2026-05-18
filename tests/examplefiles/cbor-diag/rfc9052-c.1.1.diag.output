@@ -1,0 +1,78 @@
+'98('         Punctuation
+'\n  '        Text.Whitespace
+'['           Punctuation
+'\n    '      Text.Whitespace
+'/ protected /' Comment.Multiline
+' '           Text.Whitespace
+"h'"          Literal.String.Binary
+"'"           Literal.String.Binary
+','           Punctuation
+'\n    '      Text.Whitespace
+'/ unprotected /' Comment.Multiline
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'/ payload /' Comment.Multiline
+' '           Text.Whitespace
+"'"           Literal.String.Binary
+'This is the content.' Literal.String.Binary
+"'"           Literal.String.Binary
+','           Punctuation
+'\n    '      Text.Whitespace
+'/ signatures /' Comment.Multiline
+' '           Text.Whitespace
+'['           Punctuation
+'\n      '    Text.Whitespace
+'['           Punctuation
+'\n        '  Text.Whitespace
+"/ protected h'a10126' /" Comment.Multiline
+' '           Text.Whitespace
+'<<'          Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'/ alg /'     Comment.Multiline
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+':'           Punctuation
+'-7'          Literal.Number.Integer
+' '           Text.Whitespace
+'/ ECDSA 256 /' Comment.Multiline
+'\n          ' Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'>>'          Punctuation
+','           Punctuation
+'\n        '  Text.Whitespace
+'/ unprotected /' Comment.Multiline
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text.Whitespace
+'/ kid /'     Comment.Multiline
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+':'           Punctuation
+"'"           Literal.String.Binary
+'11'          Literal.String.Binary
+"'"           Literal.String.Binary
+'\n        '  Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+'\n        '  Text.Whitespace
+'/ signature /' Comment.Multiline
+' '           Text.Whitespace
+"h'"          Literal.String.Binary
+'e2aeafd40d69d19dfe6e52077c5d7ff4e408282cbefb5d06cbf414af2e19d982ac45ac98b8544c908b4507de1e90b717c3d34816fe926a2b98f53afd2fa0f30a' Literal.String.Binary
+"'"           Literal.String.Binary
+'\n      '    Text.Whitespace
+']'           Punctuation
+'\n    '      Text.Whitespace
+']'           Punctuation
+'\n  '        Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace

@@ -1,0 +1,28 @@
+96(
+  [
+    / protected h'a10101' / << {
+        / alg / 1:1 / AES-GCM 128 /
+      } >>,
+    / unprotected / {
+      / iv / 5:h'c9cf4df2fe6c632bf7886413'
+    },
+    / ciphertext / h'7adbe2709ca818fb415f1e5df66f4e1a51053ba6d65a1a0c52a357da7a644b8070a151b0',
+    / recipients / [
+      [
+        / protected h'a1013818' / << {
+            / alg / 1:-25 / ECDH-ES + HKDF-256 /
+          } >>,
+        / unprotected / {
+          / ephemeral / -1:{
+            / kty / 1:2,
+            / crv / -1:1,
+            / x / -2:h'98f50a4ff6c05861c8860d13a638ea56c3f5ad7590bbfbf054e1c7b4d91d6280',
+            / y / -3:true
+          },
+          / kid / 4:'meriadoc.brandybuck@buckland.example'
+        },
+        / ciphertext / h''
+      ]
+    ]
+  ]
+)

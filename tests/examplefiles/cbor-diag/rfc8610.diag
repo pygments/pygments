@@ -1,0 +1,44 @@
+[
+    h'48656c6c6f20776f726c64',
+    h'48 65 6c 6c 6f 20 77 6f 72 6c 64',
+    h'4 86 56c 6c6f
+        20776 f726c64',
+    'hello world',
+    h'68656c6c6f20776f726c64',
+    <<1>>,
+    h'01',
+    <<1, 2>>,
+    h'0102',
+    <<"foo", null>>,
+    h'63666F6FF6',
+    <<>>,
+    h'',
+    "Hello world",
+    "Hello " "world",
+    "Hello" h'20' "world",
+    "" h'48656c6c6f20776f726c64' "",
+    'Hello world',
+    'Hello ' 'world',
+    'Hello ' h'776f726c64',
+    'Hello' h'20' 'world',
+    '' h'48656c6c6f20776f726c64' '' b64'',
+    h'4 86 56c 6c6f' h' 20776 f726c64',
+    4711,
+    0x1267,
+    0o11147,
+    0b1001001100111,
+    1.5,
+    0x1.8p0,
+    0x18p-4,
+    h'68656c6c6f20776f726c64',
+    h'68 65 6c /doubled l!/ 6c 6f /hello/ 20 /space/ 77 6f 72 6c 64' /world/,
+    /grasp-message/ [
+        /M_DISCOVERY/ 1,
+        /session-id/ 10584416,
+        /objective/ [
+            /objective-name/ "opsonize",
+            /D, N, S/ 7,
+            /loop-count/ 105
+        ]
+    ]
+]

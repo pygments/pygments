@@ -1,0 +1,50 @@
+'16('         Punctuation
+'\n  '        Text.Whitespace
+'['           Punctuation
+'\n    '      Text.Whitespace
+"/ protected h'a1010a' /" Comment.Multiline
+' '           Text.Whitespace
+'<<'          Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'/ alg /'     Comment.Multiline
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+':'           Punctuation
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+'/ AES-CCM-16-64-128 /' Comment.Multiline
+'\n      '    Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'>>'          Punctuation
+' '           Text.Whitespace
+','           Punctuation
+'\n    '      Text.Whitespace
+'/ unprotected /' Comment.Multiline
+' '           Text.Whitespace
+'{'           Punctuation
+'\n      '    Text.Whitespace
+'/ partial iv /' Comment.Multiline
+' '           Text.Whitespace
+'6'           Literal.Number.Integer
+':'           Punctuation
+"h'"          Literal.String.Binary
+'61a7'        Literal.String.Binary
+"'"           Literal.String.Binary
+'\n    '      Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'/ ciphertext /' Comment.Multiline
+' '           Text.Whitespace
+"h'"          Literal.String.Binary
+'252a8911d465c125b6764739700f0141ed09192de139e053bd09abca' Literal.String.Binary
+"'"           Literal.String.Binary
+'\n  '        Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace

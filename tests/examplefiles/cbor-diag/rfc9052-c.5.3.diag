@@ -1,0 +1,20 @@
+97(
+  [
+    / protected h'a1010e' / << {
+        / alg / 1:14 / AES-CBC-MAC-128//64 /
+      } >> ,
+    / unprotected / {},
+    / payload / 'This is the content.',
+    / tag / h'36f5afaf0bab5d43',
+    / recipients / [
+      [
+        / protected / h'',
+        / unprotected / {
+          / alg / 1:-5 / A256KW /,
+          / kid / 4:'018c0ae5-4d9b-471b-bfd6-eef314bc7037'
+        },
+        / ciphertext / h'711ab0dc2fc4585dce27effa6781c8093eba906f227b6eb0'
+      ]
+    ]
+  ]
+)

@@ -1,0 +1,49 @@
+'17('         Punctuation
+'\n  '        Text.Whitespace
+'['           Punctuation
+'\n    '      Text.Whitespace
+"/ protected h'a1010f' /" Comment.Multiline
+' '           Text.Whitespace
+'<<'          Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'/ alg /'     Comment.Multiline
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+':'           Punctuation
+'15'          Literal.Number.Integer
+' '           Text.Whitespace
+'/ AES-CBC-MAC-256/' Comment.Multiline
+'/64 /'       Comment.Multiline
+'\n      '    Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'>>'          Punctuation
+' '           Text.Whitespace
+','           Punctuation
+'\n    '      Text.Whitespace
+'/ unprotected /' Comment.Multiline
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'/ payload /' Comment.Multiline
+' '           Text.Whitespace
+"'"           Literal.String.Binary
+'This is the content.' Literal.String.Binary
+"'"           Literal.String.Binary
+','           Punctuation
+'\n    '      Text.Whitespace
+'/ tag /'     Comment.Multiline
+' '           Text.Whitespace
+"h'"          Literal.String.Binary
+'726043745027214f' Literal.String.Binary
+"'"           Literal.String.Binary
+'\n  '        Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace

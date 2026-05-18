@@ -1,0 +1,89 @@
+'['           Punctuation
+'\n    '      Text.Whitespace
+'0('          Punctuation
+'"'           Literal.String
+'2013-03-21T20:04:00Z' Literal.String
+'"'           Literal.String
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'1('          Punctuation
+'1363896240'  Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'0x12345678'  Literal.Number.Float
+','           Punctuation
+'\n    '      Text.Whitespace
+"h'"          Literal.String.Binary
+'12345678'    Literal.String.Binary
+"'"           Literal.String.Binary
+','           Punctuation
+'\n    '      Text.Whitespace
+"b32'"        Literal.String.Binary
+'CI2FM6A'     Literal.String.Binary
+"'"           Literal.String.Binary
+','           Punctuation
+'\n    '      Text.Whitespace
+"b64'"        Literal.String.Binary
+'EjRWeA'      Literal.String.Binary
+"'"           Literal.String.Binary
+','           Punctuation
+'\n    '      Text.Whitespace
+'simple(42)'  Keyword
+','           Punctuation
+'\n    '      Text.Whitespace
+'1.5'         Literal.Number.Float
+','           Punctuation
+'\n    '      Text.Whitespace
+'[_'          Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+']'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'1.5_1'       Literal.Number.Float
+','           Punctuation
+'\n    '      Text.Whitespace
+'1.5_3'       Literal.Number.Float
+','           Punctuation
+'\n    '      Text.Whitespace
+'(_'          Punctuation
+' '           Text.Whitespace
+"h'"          Literal.String.Binary
+'0123'        Literal.String.Binary
+"'"           Literal.String.Binary
+','           Punctuation
+' '           Text.Whitespace
+"h'"          Literal.String.Binary
+'4567'        Literal.String.Binary
+"'"           Literal.String.Binary
+')'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'(_'          Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'foo'         Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'bar'         Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+']'           Punctuation
+'\n'          Text.Whitespace
