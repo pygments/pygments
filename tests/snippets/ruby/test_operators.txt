@@ -1,0 +1,18 @@
+---input---
+a <=> b
+a => b
+
+---tokens---
+'a'           Name
+' '           Text.Whitespace
+'<=>'         Operator
+' '           Text.Whitespace
+'b'           Name
+'\n'          Text.Whitespace
+
+'a'           Name
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'b'           Name
+'\n'          Text.Whitespace
