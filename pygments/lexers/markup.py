@@ -596,7 +596,7 @@ class MarkdownLexer(RegexLexer):
             # strikethrough
             (r'([^~]?)(~~[^~ \n][^~\n]*~~)', bygroups(Text, Generic.Deleted)),
             # mentions and topics (twitter and github stuff)
-            (r'[@#][\w/:-]+', Name.Entity),
+            (r'[@#][\w/:]+', Name.Entity),
             # (image?) links eg: ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
             (r'(!?\[)([^]]+)(\])(\()([^)]+)(\))',
              bygroups(Text, Name.Tag, Text, Text, Name.Attribute, Text)),
