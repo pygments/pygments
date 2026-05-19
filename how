@@ -1,2625 +1,0 @@
-[1mdiff --git a/pygments/lexers/markup.py b/pygments/lexers/markup.py[m
-[1mindex 41b5d795..f5189655 100644[m
-[1m--- a/pygments/lexers/markup.py[m
-[1m+++ b/pygments/lexers/markup.py[m
-[36m@@ -1,1659 +1,1659 @@[m
-[31m-"""[m
-[31m-    pygments.lexers.markup[m
-[31m-    ~~~~~~~~~~~~~~~~~~~~~~[m
-[31m-[m
-[31m-    Lexers for non-HTML markup languages.[m
-[31m-[m
-[31m-    :copyright: Copyright 2006-present by the Pygments team, see AUTHORS.[m
-[31m-    :license: BSD, see LICENSE for details.[m
-[31m-"""[m
-[31m-[m
-[31m-import re[m
-[31m-[m
-[31m-from pygments.lexers.html import XmlLexer[m
-[31m-from pygments.lexers.javascript import JavascriptLexer[m
-[31m-from pygments.lexers.css import CssLexer[m
-[31m-from pygments.lexers.lilypond import LilyPondLexer[m
-[31m-from pygments.lexers.data import JsonLexer[m
-[31m-[m
-[31m-from pygments.lexer import RegexLexer, DelegatingLexer, include, bygroups, \[m
-[31m-    using, this, do_insertions, default, words[m
-[31m-from pygments.token import Text, Comment, Operator, Keyword, Name, String, \[m
-[31m-    Number, Punctuation, Generic, Other, Whitespace, Literal[m
-[31m-from pygments.util import get_bool_opt, ClassNotFound[m
-[31m-[m
-[31m-__all__ = ['BBCodeLexer', 'MoinWikiLexer', 'RstLexer', 'TexLexer', 'GroffLexer',[m
-[31m-           'MozPreprocHashLexer', 'MozPreprocPercentLexer',[m
-[31m-           'MozPreprocXulLexer', 'MozPreprocJavascriptLexer',[m
-[31m-           'MozPreprocCssLexer', 'MarkdownLexer', 'OrgLexer', 'TiddlyWiki5Lexer',[m
-[31m-           'WikitextLexer'][m
-[31m-[m
-[31m-[m
-[31m-class BBCodeLexer(RegexLexer):[m
-[31m-    """[m
-[31m-    A lexer that highlights BBCode(-like) syntax.[m
-[31m-    """[m
-[31m-[m
-[31m-    name = 'BBCode'[m
-[31m-    aliases = ['bbcode'][m
-[31m-    mimetypes = ['text/x-bbcode'][m
-[31m-    url = 'https://www.bbcode.org/'[m
-[31m-    version_added = '0.6'[m
-[31m-[m
-[31m-    tokens = {[m
-[31m-        'root': [[m
-[31m-            (r'[^[]+', Text),[m
-[31m-            # tag/end tag begin[m
-[31m-            (r'\[/?\w+', Keyword, 'tag'),[m
-[31m-            # stray bracket[m
-[31m-            (r'\[', Text),[m
-[31m-        ],[m
-[31m-        'tag': [[m
-[31m-            (r'\s+', Text),[m
-[31m-            # attribute with value[m
-[31m-            (r'(\w+)(=)("?[^\s"\]]+"?)',[m
-[31m-             bygroups(Name.Attribute, Operator, String)),[m
-[31m-            # tag argument (a la [color=green])[m
-[31m-            (r'(=)("?[^\s"\]]+"?)',[m
-[31m-             bygroups(Operator, String)),[m
-[31m-            # tag end[m
-[31m-            (r'\]', Keyword, '#pop'),[m
-[31m-        ],[m
-[31m-    }[m
-[31m-[m
-[31m-[m
-[31m-class MoinWikiLexer(RegexLexer):[m
-[31m-    """[m
-[31m-    For MoinMoin (and Trac) Wiki markup.[m
-[31m-    """[m
-[31m-[m
-[31m-    name = 'MoinMoin/Trac Wiki markup'[m
-[31m-    aliases = ['trac-wiki', 'moin'][m
-[31m-    filenames = [][m
-[31m-    mimetypes = ['text/x-trac-wiki'][m
-[31m-    url = 'https://moinmo.in'[m
-[31m-    version_added = '0.7'[m
-[31m-[m
-[31m-    flags = re.MULTILINE | re.IGNORECASE[m
-[31m-[m
-[31m-    tokens = {[m
-[31m-        'root': [[m
-[31m-            (r'^#.*$', Comment),[m
-[31m-            (r'(!)(\S+)', bygroups(Keyword, Text)),  # Ignore-next[m
-[31m-            # Titles[m
-[31m-            (r'^(=+)([^=]+)(=+)(\s*#.+)?$',[m
-[31m-             bygroups(Generic.Heading, using(this), Generic.Heading, String)),[m
-[31m-            # Literal code blocks, with optional shebang[m
-[31m-            (r'(\{\{\{)(\n#!.+)?', bygroups(Name.Builtin, Name.Namespace), 'codeblock'),[m
-[31m-            (r'(\'\'\'?|\|\||`|__|~~|\^|,,|::)', Comment),  # Formatting[m
-[31m-            # Lists[m
-[31m-            (r'^( +)([.*-])( )', bygroups(Text, Name.Builtin, Text)),[m
-[31m-            (r'^( +)([a-z]{1,5}\.)( )', bygroups(Text, Name.Builtin, Text)),[m
-[31m-            # Other Formatting[m
-[31m-            (r'\[\[\w+.*?\]\]', Keyword),  # Macro[m
-[31m-            (r'(\[[^\s\]]+)(\s+[^\]]+?)?(\])',[m
-[31m-             bygroups(Keyword, String, Keyword)),  # Link[m
-[31m-            (r'^----+$', Keyword),  # Horizontal rules[m
-[31m-            (r'[^\n\'\[{!_~^,|]+', Text),[m
-[31m-            (r'\n', Text),[m
-[31m-            (r'.', Text),[m
-[31m-        ],[m
-[31m-        'codeblock': [[m
-[31m-            (r'\}\}\}', Name.Builtin, '#pop'),[m
-[31m-            # these blocks are allowed to be nested in Trac, but not MoinMoin[m
-[31m-            (r'\{\{\{', Text, '#push'),[m
-[31m-            (r'[^{}]+', Comment.Preproc),  # slurp boring text[m
-[31m-            (r'.', Comment.Preproc),  # allow loose { or }[m
-[31m-        ],[m
-[31m-    }[m
-[31m-[m
-[31m-[m
-[31m-class RstLexer(RegexLexer):[m
-[31m-    """[m
-[31m-    For reStructuredText markup.[m
-[31m-[m
-[31m-    Additional options accepted:[m
-[31m-[m
-[31m-    `handlecodeblocks`[m
-[31m-        Highlight the contents of ``.. sourcecode:: language``,[m
-[31m-        ``.. code:: language`` and ``.. code-block:: language``[m
-[31m-        directives with a lexer for the given language (default:[m
-[31m-        ``True``).[m
-[31m-[m
-[31m-        .. versionadded:: 0.8[m
-[31m-    """[m
-[31m-    name = 'reStructuredText'[m
-[31m-    url = 'https://docutils.sourceforge.io/rst.html'[m
-[31m-    aliases = ['restructuredtext', 'rst', 'rest'][m
-[31m-    filenames = ['*.rst', '*.rest'][m
-[31m-    mimetypes = ["text/x-rst", "text/prs.fallenstein.rst"][m
-[31m-    version_added = '0.7'[m
-[31m-    flags = re.MULTILINE[m
-[31m-[m
-[31m-    def _handle_sourcecode(self, match):[m
-[31m-        from pygments.lexers import get_lexer_by_name[m
-[31m-[m
-[31m-        # section header[m
-[31m-        yield match.start(1), Punctuation, match.group(1)[m
-[31m-        yield match.start(2), Text, match.group(2)[m
-[31m-        yield match.start(3), Operator.Word, match.group(3)[m
-[31m-        yield match.start(4), Punctuation, match.group(4)[m
-[31m-        yield match.start(5), Text, match.group(5)[m
-[31m-        yield match.start(6), Keyword, match.group(6)[m
-[31m-        yield match.start(7), Text, match.group(7)[m
-[31m-[m
-[31m-        # lookup lexer if wanted and existing[m
-[31m-        lexer = None[m
-[31m-        if self.handlecodeblocks:[m
-[31m-            try:[m
-[31m-                lexer = get_lexer_by_name(match.group(6).strip())[m
-[31m-            except ClassNotFound:[m
-[31m-                pass[m
-[31m-        indention = match.group(8)[m
-[31m-        indention_size = len(indention)[m
-[31m-        code = (indention + match.group(9) + match.group(10) + match.group(11))[m
-[31m-[m
-[31m-        # no lexer for this language. handle it like it was a code block[m
-[31m-        if lexer is None:[m
-[31m-            yield match.start(8), String, code[m
-[31m-            return[m
-[31m-[m
-[31m-        # highlight the lines with the lexer.[m
-[31m-        ins = [][m
-[31m-        codelines = code.splitlines(True)[m
-[31m-        code = ''[m
-[31m-        for line in codelines:[m
-[31m-            if len(line) > indention_size:[m
-[31m-                ins.append((len(code), [(0, Text, line[:indention_size])]))[m
-[31m-                code += line[indention_size:][m
-[31m-            else:[m
-[31m-                code += line[m
-[31m-        yield from do_insertions(ins, lexer.get_tokens_unprocessed(code))[m
-[31m-[m
-[31m-    # from docutils.parsers.rst.states[m
-[31m-    closers = '\'")]}>\u2019\u201d\xbb!?'[m
-[31m-    unicode_delimiters = '\u2010\u2011\u2012\u2013\u2014\u00a0'[m
-[31m-    end_string_suffix = (rf'((?=$)|(?=[-/:.,; \n\x00{re.escape(unicode_delimiters)}{re.escape(closers)}]))')[m
-[31m-[m
-[31m-    tokens = {[m
-[31m-        'root': [[m
-[31m-            # Heading with overline[m
-[31m-            (r'^(=+|-+|`+|:+|\.+|\'+|"+|~+|\^+|_+|\*+|\++|#+)([ \t]*\n)'[m
-[31m-             r'(.+)(\n)(\1)(\n)',[m
-[31m-             bygroups(Generic.Heading, Text, Generic.Heading,[m
-[31m-                      Text, Generic.Heading, Text)),[m
-[31m-            # Plain heading[m
-[31m-            (r'^(\S.*)(\n)(={3,}|-{3,}|`{3,}|:{3,}|\.{3,}|\'{3,}|"{3,}|'[m
-[31m-             r'~{3,}|\^{3,}|_{3,}|\*{3,}|\+{3,}|#{3,})(\n)',[m
-[31m-             bygroups(Generic.Heading, Text, Generic.Heading, Text)),[m
-[31m-            # Bulleted lists[m
-[31m-            (r'^(\s*)([-*+])( .+\n(?:\1  .+\n)*)',[m
-[31m-             bygroups(Text, Number, using(this, state='inline'))),[m
-[31m-            # Numbered lists[m
-[31m-            (r'^(\s*)([0-9#ivxlcmIVXLCM]+\.)( .+\n(?:\1  .+\n)*)',[m
-[31m-             bygroups(Text, Number, using(this, state='inline'))),[m
-[31m-            (r'^(\s*)(\(?[0-9#ivxlcmIVXLCM]+\))( .+\n(?:\1  .+\n)*)',[m
-[31m-             bygroups(Text, Number, using(this, state='inline'))),[m
-[31m-            # Numbered, but keep words at BOL from becoming lists[m
-[31m-            (r'^(\s*)([A-Z]+\.)( .+\n(?:\1  .+\n)+)',[m
-[31m-             bygroups(Text, Number, using(this, state='inline'))),[m
-[31m-            (r'^(\s*)(\(?[A-Za-z]+\))( .+\n(?:\1  .+\n)+)',[m
-[31m-             bygroups(Text, Number, using(this, state='inline'))),[m
-[31m-            # Line blocks[m
-[31m-            (r'^(\s*)(\|)( .+\n(?:\|  .+\n)*)',[m
-[31m-             bygroups(Text, Operator, using(this, state='inline'))),[m
-[31m-            # Sourcecode directives[m
-[31m-            (r'^( *\.\.)(\s*)((?:source)?code(?:-block)?)(::)([ \t]*)([^\n]+)'[m
-[31m-             r'(\n[ \t]*\n)([ \t]+)(.*)(\n)((?:(?:\8.*)?\n)+)',[m
-[31m-             _handle_sourcecode),[m
-[31m-            # A directive[m
-[31m-            (r'^( *\.\.)(\s*)([\w:-]+?)(::)(?:([ \t]*)(.*))',[m
-[31m-             bygroups(Punctuation, Text, Operator.Word, Punctuation, Text,[m
-[31m-                      using(this, state='inline'))),[m
-[31m-            # A reference target[m
-[31m-            (r'^( *\.\.)(\s*)(_(?:[^:\\]|\\.)+:)(.*?)$',[m
-[31m-             bygroups(Punctuation, Text, Name.Tag, using(this, state='inline'))),[m
-[31m-            # A footnote/citation target[m
-[31m-            (r'^( *\.\.)(\s*)(\[.+\])(.*?)$',[m
-[31m-             bygroups(Punctuation, Text, Name.Tag, using(this, state='inline'))),[m
-[31m-            # A substitution def[m
-[31m-            (r'^( *\.\.)(\s*)(\|.+\|)(\s*)([\w:-]+?)(::)(?:([ \t]*)(.*))',[m
-[31m-             bygroups(Punctuation, Text, Name.Tag, Text, Operator.Word,[m
-[31m-                      Punctuation, Text, using(this, state='inline'))),[m
-[31m-            # Comments[m
-[31m-            (r'^ *\.\..*(\n( +.*\n|\n)+)?', Comment),[m
-[31m-            # Field list marker[m
-[31m-            (r'^( *)(:(?:\\\\|\\:|[^:\n])+:(?=\s))([ \t]*)',[m
-[31m-             bygroups(Text, Name.Class, Text)),[m
-[31m-            # Definition list[m
-[31m-            (r'^(\S.*(?<!::)\n)((?:(?: +.*)\n)+)',[m
-[31m-             bygroups(using(this, state='inline'), using(this, state='inline'))),[m
-[31m-            # Code blocks[m
-[31m-            (r'(::)(\n[ \t]*\n)([ \t]+)(.*)(\n)((?:(?:\3.*)?\n)+)',[m
-[31m-             bygroups(String.Escape, Text, String, String, Text, String)),[m
-[31m-            include('inline'),[m
-[31m-        ],[m
-[31m-        'inline': [[m
-[31m-            (r'\\.', Text),  # escape[m
-[31m-            (r'``', String, 'literal'),  # code[m
-[31m-            (r'(`.+?)(<.+?>)(`__?)',  # reference with inline target[m
-[31m-             bygroups(String, String.Interpol, String)),[m
-[31m-            (r'`.+?`__?', String),  # reference[m
-[31m-            (r'(`.+?`)(:[a-zA-Z0-9:-]+?:)?',[m
-[31m-             bygroups(Name.Variable, Name.Attribute)),  # role[m
-[31m-            (r'(:[a-zA-Z0-9:-]+?:)(`.+?`)',[m
-[31m-             bygroups(Name.Attribute, Name.Variable)),  # role (content first)[m
-[31m-            (r'\*\*.+?\*\*', Generic.Strong),  # Strong emphasis[m
-[31m-            (r'\*.+?\*', Generic.Emph),  # Emphasis[m
-[31m-            (r'\[.*?\]_', String),  # Footnote or citation[m
-[31m-            (r'<.+?>', Name.Tag),   # Hyperlink[m
-[31m-            (r'[^\\\n\[*`:]+', Text),[m
-[31m-            (r'.', Text),[m
-[31m-        ],[m
-[31m-        'literal': [[m
-[31m-            (r'[^`]+', String),[m
-[31m-            (r'``' + end_string_suffix, String, '#pop'),[m
-[31m-            (r'`', String),[m
-[31m-        ][m
-[31m-    }[m
-[31m-[m
-[31m-    def __init__(self, **options):[m
-[31m-        self.handlecodeblocks = get_bool_opt(options, 'handlecodeblocks', True)[m
-[31m-        RegexLexer.__init__(self, **options)[m
-[31m-[m
-[31m-    def analyse_text(text):[m
-[31m-        if text[:2] == '..' and text[2:3] != '.':[m
-[31m-            return 0.3[m
-[31m-        p1 = text.find("\n")[m
-[31m-        p2 = text.find("\n", p1 + 1)[m
-[31m-        if (p2 > -1 and              # has two lines[m
-[31m-                p1 * 2 + 1 == p2 and     # they are the same length[m
-[31m-                text[p1+1] in '-=' and   # the next line both starts and ends with[m
-[31m-                text[p1+1] == text[p2-1]):  # ...a sufficiently high header[m
-[31m-            return 0.5[m
-[31m-[m
-[31m-[m
-[31m-class TexLexer(RegexLexer):[m
-[31m-    """[m
-[31m-    Lexer for the TeX and LaTeX typesetting languages.[m
-[31m-    """[m
-[31m-[m
-[31m-    name = 'TeX'[m
-[31m-    aliases = ['tex', 'latex'][m
-[31m-    filenames = ['*.tex', '*.aux', '*.toc'][m
-[31m-    mimetypes = ['text/x-tex', 'text/x-latex'][m
-[31m-    url = 'https://tug.org'[m
-[31m-    version_added = ''[m
-[31m-[m
-[31m-    tokens = {[m
-[31m-        'general': [[m
-[31m-            (r'%.*?\n', Comment),[m
-[31m-            (r'[{}]', Name.Builtin),[m
-[31m-            (r'[&_^]', Name.Builtin),[m
-[31m-        ],[m
-[31m-        'root': [[m
-[31m-            (r'\\\[', String.Backtick, 'displaymath'),[m
-[31m-            (r'\\\(', String, 'inlinemath'),[m
-[31m-            (r'\$\$', String.Backtick, 'displaymath'),[m
-[31m-            (r'\$', String, 'inlinemath'),[m
-[31m-            (r'\\([a-zA-Z@_:]+|\S?)', Keyword, 'command'),[m
-[31m-            (r'\\$', Keyword),[m
-[31m-            include('general'),[m
-[31m-            (r'[^\\$%&_^{}]+', Text),[m
-[31m-        ],[m
-[31m-        'math': [[m
-[31m-            (r'\\([a-zA-Z]+|\S?)', Name.Variable),[m
-[31m-            include('general'),[m
-[31m-            (r'[0-9]+', Number),[m
-[31m-            (r'[-=!+*/()\[\]]', Operator),[m
-[31m-            (r'[^=!+*/()\[\]\\$%&_^{}0-9-]+', Name.Builtin),[m
-[31m-        ],[m
-[31m-        'inlinemath': [[m
-[31m-            (r'\\\)', String, '#pop'),[m
-[31m-            (r'\$', String, '#pop'),[m
-[31m-            include('math'),[m
-[31m-        ],[m
-[31m-        'displaymath': [[m
-[31m-            (r'\\\]', String, '#pop'),[m
-[31m-            (r'\$\$', String, '#pop'),[m
-[31m-            (r'\$', Name.Builtin),[m
-[31m-            include('math'),[m
-[31m-        ],[m
-[31m-        'command': [[m
-[31m-            (r'\[.*?\]', Name.Attribute),[m
-[31m-            (r'\*', Keyword),[m
-[31m-            default('#pop'),[m
-[31m-        ],[m
-[31m-    }[m
-[31m-[m
-[31m-    def analyse_text(text):[m
-[31m-        for start in ("\\documentclass", "\\input", "\\documentstyle",[m
-[31m-                      "\\relax"):[m
-[31m-            if text[:len(start)] == start:[m
-[31m-                return True[m
-[31m-[m
-[31m-[m
-[31m-class GroffLexer(RegexLexer):[m
-[31m-    """[m
-[31m-    Lexer for the (g)roff typesetting language, supporting groff[m
-[31m-    extensions. Mainly useful for highlighting manpage sources.[m
-[31m-    """[m
-[31m-[m
-[31m-    name = 'Groff'[m
-[31m-    aliases = ['groff', 'nroff', 'man'][m
-[31m-    filenames = ['*.[1-9]', '*.man', '*.1p', '*.3pm'][m
-[31m-    mimetypes = ['application/x-troff', 'text/troff'][m
-[31m-    url = 'https://www.gnu.org/software/groff'[m
-[31m-    version_added = '0.6'[m
-[31m-[m
-[31m-    tokens = {[m
-[31m-        'root': [[m
-[31m-            (r'(\.)(\w+)', bygroups(Text, Keyword), 'request'),[m
-[31m-            (r'\.', Punctuation, 'request'),[m
-[31m-            # Regular characters, slurp till we find a backslash or newline[m
-[31m-            (r'[^\\\n]+', Text, 'textline'),[m
-[31m-            default('textline'),[m
-[31m-        ],[m
-[31m-        'textline': [[m
-[31m-            include('escapes'),[m
-[31m-            (r'[^\\\n]+', Text),[m
-[31m-            (r'\n', Text, '#pop'),[m
-[31m-        ],[m
-[31m-        'escapes': [[m
-[31m-            # groff has many ways to write escapes.[m
-[31m-            (r'\\"[^\n]*', Comment),[m
-[31m-            (r'\\[fn]\w', String.Escape),[m
-[31m-            (r'\\\(.{2}', String.Escape),[m
-[31m-            (r'\\.\[.*\]', String.Escape),[m
-[31m-            (r'\\.', String.Escape),[m
-[31m-            (r'\\\n', Text, 'request'),[m
-[31m-        ],[m
-[31m-        'request': [[m
-[31m-            (r'\n', Text, '#pop'),[m
-[31m-            include('escapes'),[m
-[31m-            (r'"[^\n"]+"', String.Double),[m
-[31m-            (r'\d+', Number),[m
-[31m-            (r'\S+', String),[m
-[31m-            (r'\s+', Text),[m
-[31m-        ],[m
-[31m-    }[m
-[31m-[m
-[31m-    def analyse_text(text):[m
-[31m-        if text[:1] != '.':[m
-[31m-            return False[m
-[31m-        if text[:3] == '.\\"':[m
-[31m-            return True[m
-[31m-        if text[:4] == '.TH ':[m
-[31m-            return True[m
-[31m-        if text[1:3].isalnum() and text[3].isspace():[m
-[31m-            return 0.9[m
-[31m-[m
-[31m-[m
-[31m-class MozPreprocHashLexer(RegexLexer):[m
-[31m-    """[m
-[31m-    Lexer for Mozilla Preprocessor files (with '#' as the marker).[m
-[31m-[m
-[31m-    Other data is left untouched.[m
-[31m-    """[m
-[31m-    name = 'mozhashpreproc'[m
-[31m-    aliases = [name][m
-[31m-    filenames = [][m
-[31m-    mimetypes = [][m
-[31m-    url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'[m
-[31m-    version_added = '2.0'[m
-[31m-[m
-[31m-    tokens = {[m
-[31m-        'root': [[m
-[31m-            (r'^#', Comment.Preproc, ('expr', 'exprstart')),[m
-[31m-            (r'.+', Other),[m
-[31m-        ],[m
-[31m-        'exprstart': [[m
-[31m-            (r'(literal)(.*)', bygroups(Comment.Preproc, Text), '#pop:2'),[m
-[31m-            (words(([m
-[31m-                'define', 'undef', 'if', 'ifdef', 'ifndef', 'else', 'elif',[m
-[31m-                'elifdef', 'elifndef', 'endif', 'expand', 'filter', 'unfilter',[m
-[31m-                'include', 'includesubst', 'error')),[m
-[31m-             Comment.Preproc, '#pop'),[m
-[31m-        ],[m
-[31m-        'expr': [[m
-[31m-            (words(('!', '!=', '==', '&&', '||')), Operator),[m
-[31m-            (r'(defined)(\()', bygroups(Keyword, Punctuation)),[m
-[31m-            (r'\)', Punctuation),[m
-[31m-            (r'[0-9]+', Number.Decimal),[m
-[31m-            (r'__\w+?__', Name.Variable),[m
-[31m-            (r'@\w+?@', Name.Class),[m
-[31m-            (r'\w+', Name),[m
-[31m-            (r'\n', Text, '#pop'),[m
-[31m-            (r'\s+', Text),[m
-[31m-            (r'\S', Punctuation),[m
-[31m-        ],[m
-[31m-    }[m
-[31m-[m
-[31m-[m
-[31m-class MozPreprocPercentLexer(MozPreprocHashLexer):[m
-[31m-    """[m
-[31m-    Lexer for Mozilla Preprocessor files (with '%' as the marker).[m
-[31m-[m
-[31m-    Other data is left untouched.[m
-[31m-    """[m
-[31m-    name = 'mozpercentpreproc'[m
-[31m-    aliases = [name][m
-[31m-    filenames = [][m
-[31m-    mimetypes = [][m
-[31m-    url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'[m
-[31m-    version_added = '2.0'[m
-[31m-[m
-[31m-    tokens = {[m
-[31m-        'root': [[m
-[31m-            (r'^%', Comment.Preproc, ('expr', 'exprstart')),[m
-[31m-            (r'.+', Other),[m
-[31m-        ],[m
-[31m-    }[m
-[31m-[m
-[31m-[m
-[31m-class MozPreprocXulLexer(DelegatingLexer):[m
-[31m-    """[m
-[31m-    Subclass of the `MozPreprocHashLexer` that highlights unlexed data with the[m
-[31m-    `XmlLexer`.[m
-[31m-    """[m
-[31m-    name = "XUL+mozpreproc"[m
-[31m-    aliases = ['xul+mozpreproc'][m
-[31m-    filenames = ['*.xul.in'][m
-[31m-    mimetypes = [][m
-[31m-    url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'[m
-[31m-    version_added = '2.0'[m
-[31m-[m
-[31m-    def __init__(self, **options):[m
-[31m-        super().__init__(XmlLexer, MozPreprocHashLexer, **options)[m
-[31m-[m
-[31m-[m
-[31m-class MozPreprocJavascriptLexer(DelegatingLexer):[m
-[31m-    """[m
-[31m-    Subclass of the `MozPreprocHashLexer` that highlights unlexed data with the[m
-[31m-    `JavascriptLexer`.[m
-[31m-    """[m
-[31m-    name = "Javascript+mozpreproc"[m
-[31m-    aliases = ['javascript+mozpreproc'][m
-[31m-    filenames = ['*.js.in'][m
-[31m-    mimetypes = [][m
-[31m-    url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'[m
-[31m-    version_added = '2.0'[m
-[31m-[m
-[31m-    def __init__(self, **options):[m
-[31m-        super().__init__(JavascriptLexer, MozPreprocHashLexer, **options)[m
-[31m-[m
-[31m-[m
-[31m-class MozPreprocCssLexer(DelegatingLexer):[m
-[31m-    """[m
-[31m-    Subclass of the `MozPreprocHashLexer` that highlights unlexed data with the[m
-[31m-    `CssLexer`.[m
-[31m-    """[m
-[31m-    name = "CSS+mozpreproc"[m
-[31m-    aliases = ['css+mozpreproc'][m
-[31m-    filenames = ['*.css.in'][m
-[31m-    mimetypes = [][m
-[31m-    url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'[m
-[31m-    version_added = '2.0'[m
-[31m-[m
-[31m-    def __init__(self, **options):[m
-[31m-        super().__init__(CssLexer, MozPreprocPercentLexer, **options)[m
-[31m-[m
-[31m-[m
-[31m-class MarkdownLexer(RegexLexer):[m
-[31m-    """[m
-[31m-    For Markdown markup.[m
-[31m-    """[m
-[31m-    name = 'Markdown'[m
-[31m-    url = 'https://daringfireball.net/projects/markdown/'[m
-[31m-    aliases = ['markdown', 'md'][m
-[31m-    filenames = ['*.md', '*.markdown'][m
-[31m-    mimetypes = ["text/x-markdown"][m
-[31m-    version_added = '2.2'[m
-[31m-    flags = re.MULTILINE[m
-[31m-[m
-[31m-    def _handle_codeblock(self, match):[m
-[31m-        from pygments.lexers import get_lexer_by_name[m
-[31m-[m
-[31m-        yield match.start('initial'), String.Backtick, match.group('initial')[m
-[31m-        yield match.start('lang'), String.Backtick, match.group('lang')[m
-[31m-        if match.group('afterlang') is not None:[m
-[31m-            yield match.start('whitespace'), Whitespace, match.group('whitespace')[m
-[31m-            yield match.start('extra'), Text, match.group('extra')[m
-[31m-        yield match.start('newline'), Whitespace, match.group('newline')[m
-[31m-[m
-[31m-        # lookup lexer if wanted and existing[m
-[31m-        lexer = None[m
-[31m-        if self.handlecodeblocks:[m
-[31m-            try:[m
-[31m-                lexer = get_lexer_by_name(match.group('lang').strip())[m
-[31m-            except ClassNotFound:[m
-[31m-                pass[m
-[31m-        code = match.group('code')[m
-[31m-        # no lexer for this language. handle it like it was a code block[m
-[31m-        if lexer is None:[m
-[31m-            yield match.start('code'), String, code[m
-[31m-        else:[m
-[31m-            # FIXME: aren't the offsets wrong?[m
-[31m-            yield from do_insertions([], lexer.get_tokens_unprocessed(code))[m
-[31m-[m
-[31m-        yield match.start('terminator'), String.Backtick, match.group('terminator')[m
-[31m-[m
-[31m-    tokens = {[m
-[31m-        'root': [[m
-[31m-            # heading with '#' prefix (atx-style)[m
-[31m-            (r'(^#[^#].+)(\n)', bygroups(Generic.Heading, Text)),[m
-[31m-            # subheading with '#' prefix (atx-style)[m
-[31m-            (r'(^#{2,6}[^#].+)(\n)', bygroups(Generic.Subheading, Text)),[m
-[31m-            # heading with '=' underlines (Setext-style)[m
-[31m-            (r'^(.+)(\n)(=+)(\n)', bygroups(Generic.Heading, Text, Generic.Heading, Text)),[m
-[31m-            # subheading with '-' underlines (Setext-style)[m
-[31m-            (r'^(.+)(\n)(-+)(\n)', bygroups(Generic.Subheading, Text, Generic.Subheading, Text)),[m
-[31m-            # task list[m
-[31m-            (r'^(\s*)([*-] )(\[[ xX]\])( .+\n)',[m
-[31m-            bygroups(Whitespace, Keyword, Keyword, using(this, state='inline'))),[m
-[31m-            # bulleted list[m
-[31m-            (r'^(\s*)([*-])(\s)(.+\n)',[m
-[31m-            bygroups(Whitespace, Keyword, Whitespace, using(this, state='inline'))),[m
-[31m-            # numbered list[m
-[31m-            (r'^(\s*)([0-9]+\.)( .+\n)',[m
-[31m-            bygroups(Whitespace, Keyword, using(this, state='inline'))),[m
-[31m-            # quote[m
-[31m-            (r'^(\s*>\s)(.+\n)', bygroups(Keyword, Generic.Emph)),[m
-[31m-            # code block fenced by 3 backticks[m
-[31m-            (r'^(\s*```\n[\w\W]*?^\s*```$\n)', String.Backtick),[m
-[31m-            # code block with language[m
-[31m-            # Some tools include extra stuff after the language name, just[m
-[31m-            # highlight that as text. For example: https://docs.enola.dev/use/execmd[m
-[31m-            (r'''(?x)[m
-[31m-              ^(?P<initial>\s*```)[m
-[31m-              (?P<lang>[\w\-]+)[m
-[31m-              (?P<afterlang>[m
-[31m-                 (?P<whitespace>[^\S\n]+)[m
-[31m-                 (?P<extra>.*))?[m
-[31m-              (?P<newline>\n)[m
-[31m-              (?P<code>(.|\n)*?)[m
-[31m-              (?P<terminator>^\s*```$\n)[m
-[31m-              ''',[m
-[31m-             _handle_codeblock),[m
-[31m-[m
-[31m-            include('inline'),[m
-[31m-        ],[m
-[31m-        'inline': [[m
-[31m-            # escape[m
-[31m-            (r'\\.', Text),[m
-[31m-            # inline code[m
-[31m-            (r'([^`]?)(`[^`\n]+`)', bygroups(Text, String.Backtick)),[m
-[31m-            # warning: the following rules eat outer tags.[m
-[31m-            # eg. **foo _bar_ baz** => foo and baz are not recognized as bold[m
-[31m-            # bold fenced by '**'[m
-[31m-            (r'([^\*]?)(\*\*[^* \n][^*\n]*\*\*)', bygroups(Text, Generic.Strong)),[m
-[31m-            # bold fenced by '__'[m
-[31m-            (r'([^_]?)(__[^_ \n][^_\n]*__)', bygroups(Text, Generic.Strong)),[m
-[31m-            # italics fenced by '*'[m
-[31m-            (r'([^\*]?)(\*[^* \n][^*\n]*\*)', bygroups(Text, Generic.Emph)),[m
-[31m-            # italics fenced by '_'[m
-[31m-            (r'([^_]?)(_[^_ \n][^_\n]*_)', bygroups(Text, Generic.Emph)),[m
-[31m-            # strikethrough[m
-[31m-            (r'([^~]?)(~~[^~ \n][^~\n]*~~)', bygroups(Text, Generic.Deleted)),[m
-[31m-            # mentions and topics (twitter and github stuff)[m
-[31m-            (r'[@#][\w/:]+', Name.Entity),[m
-[31m-            # (image?) links eg: ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)[m
-[31m-            (r'(!?\[)([^]]+)(\])(\()([^)]+)(\))',[m
-[31m-             bygroups(Text, Name.Tag, Text, Text, Name.Attribute, Text)),[m
-[31m-            # reference-style links, e.g.:[m
-[31m-            #   [an example][id][m
-[31m-            #   [id]: http://example.com/[m
-[31m-            (r'(\[)([^]]+)(\])(\[)([^]]*)(\])',[m
-[31m-             bygroups(Text, Name.Tag, Text, Text, Name.Label, Text)),[m
-[31m-            (r'^(\s*\[)([^]]*)(\]:\s*)(.+)',[m
-[31m-             bygroups(Text, Name.Label, Text, Name.Attribute)),[m
-[31m-[m
-[31m-            # general text, must come last![m
-[31m-            (r'[^\\\s]+', Text),[m
-[31m-            (r'.', Text),[m
-[31m-        ],[m
-[31m-    }[m
-[31m-[m
-[31m-    def __init__(self, **options):[m
-[31m-        self.handlecodeblocks = get_bool_opt(options, 'handlecodeblocks', True)[m
-[31m-        RegexLexer.__init__(self, **options)[m
-[31m-[m
-[31m-class OrgLexer(RegexLexer):[m
-[31m-    """[m
-[31m-    For Org Mode markup.[m
-[31m-    """[m
-[31m-    name = 'Org Mode'[m
-[31m-    url = 'https://orgmode.org'[m
-[31m-    aliases = ['org', 'orgmode', 'org-mode'][m
-[31m-    filenames = ['*.org'][m
-[31m-    mimetypes = ["text/org"][m
-[31m-    version_added = '2.18'[m
-[31m-[m
-[31m-    def _inline(start, end):[m
-[31m-        return rf'(?<!\w){start}(.|\n(?!\n))+?{end}(?!\w)'[m
-[31m-[m
-[31m-    tokens = {[m
-[31m-        'root': [[m
-[31m-            (r'^# .*', Comment.Single),[m
-[31m-[m
-[31m-            # Headings[m
-[31m-            (r'^(\* )(COMMENT)( .*)',[m
-[31m-             bygroups(Generic.Heading, Comment.Preproc, Generic.Heading)),[m
-[31m-            (r'^(\*\*+ )(COMMENT)( .*)',[m
-[31m-             bygroups(Generic.Subheading, Comment.Preproc, Generic.Subheading)),[m
-[31m-            (r'^(\* )(DONE)( .*)',[m
-[31m-             bygroups(Generic.Heading, Generic.Deleted, Generic.Heading)),[m
-[31m-            (r'^(\*\*+ )(DONE)( .*)',[m
-[31m-             bygroups(Generic.Subheading, Generic.Deleted, Generic.Subheading)),[m
-[31m-            (r'^(\* )(TODO)( .*)',[m
-[31m-             bygroups(Generic.Heading, Generic.Error, Generic.Heading)),[m
-[31m-            (r'^(\*\*+ )(TODO)( .*)',[m
-[31m-             bygroups(Generic.Subheading, Generic.Error, Generic.Subheading)),[m
-[31m-[m
-[31m-            (r'^(\* .+?)( :[a-zA-Z0-9_@:]+:)?$', bygroups(Generic.Heading, Generic.Emph)),[m
-[31m-            (r'^(\*\*+ .+?)( :[a-zA-Z0-9_@:]+:)?$', bygroups(Generic.Subheading, Generic.Emph)),[m
-[31m-[m
-[31m-            # Unordered lists items, including TODO items and description items[m
-[31m-            (r'^(?:( *)([+-] )|( +)(\* ))(\[[ X-]\])?(.+ ::)?',[m
-[31m-             bygroups(Whitespace, Keyword, Whitespace, Keyword, Generic.Prompt, Name.Label)),[m
-[31m-[m
-[31m-            # Ordered list items[m
-[31m-            (r'^( *)([0-9]+[.)])( \[@[0-9]+\])?', bygroups(Whitespace, Keyword, Generic.Emph)),[m
-[31m-[m
-[31m-            # Dynamic blocks[m
-[31m-            (r'(?i)^( *#\+begin: *)((?:.|\n)*?)(^ *#\+end: *$)',[m
-[31m-             bygroups(Operator.Word, using(this), Operator.Word)),[m
-[31m-[m
-[31m-            # Comment blocks[m
-[31m-            (r'(?i)^( *#\+begin_comment *\n)((?:.|\n)*?)(^ *#\+end_comment *$)',[m
-[31m-             bygroups(Operator.Word, Comment.Multiline, Operator.Word)),[m
-[31m-[m
-[31m-            # Source code blocks[m
-[31m-            # TODO: language-dependent syntax highlighting (see Markdown lexer)[m
-[31m-            (r'(?i)^( *#\+begin_src .*)((?:.|\n)*?)(^ *#\+end_src *$)',[m
-[31m-             bygroups(Operator.Word, Text, Operator.Word)),[m
-[31m-[m
-[31m-            # Other blocks[m
-[31m-            (r'(?i)^( *#\+begin_\w+)( *\n)((?:.|\n)*?)(^ *#\+end_\w+)( *$)',[m
-[31m-             bygroups(Operator.Word, Whitespace, Text, Operator.Word, Whitespace)),[m
-[31m-[m
-[31m-            # Keywords[m
-[31m-            (r'^(#\+\w+:)(.*)$', bygroups(Name.Namespace, Text)),[m
-[31m-[m
-[31m-            # Properties and drawers[m
-[31m-            (r'(?i)^( *:\w+: *\n)((?:.|\n)*?)(^ *:end: *$)',[m
-[31m-             bygroups(Name.Decorator, Comment.Special, Name.Decorator)),[m
-[31m-[m
-[31m-            # Line break operator[m
-[31m-            (r'\\\\$', Operator),[m
-[31m-[m
-[31m-            (r'^\s*CLOSED:\s+', Generic.Deleted, 'dateline'),[m
-[31m-            (r'^\s*(?:DEADLINE:|SCHEDULED:)\s+', Generic.Error, 'dateline'),[m
-[31m-[m
-[31m-            # Bold[m
-[31m-            (_inline(r'\*', r'\*+'), Generic.Strong),[m
-[31m-            # Italic[m
-[31m-            (_inline(r'/', r'/'), Generic.Emph),[m
-[31m-            # Verbatim[m
-[31m-            (_inline(r'=', r'='), String), # TODO token[m
-[31m-            # Code[m
-[31m-            (_inline(r'~', r'~'), String),[m
-[31m-            # Strikethrough[m
-[31m-            (_inline(r'\+', r'\+'), Generic.Deleted),[m
-[31m-            # Underline[m
-[31m-            (_inline(r'_', r'_+'), Generic.EmphStrong),[m
-[31m-[m
-[31m-            # Dates[m
-[31m-            (r'<.+?>', Literal.Date),[m
-[31m-            # Macros[m
-[31m-            (r'\{\{\{.+?\}\}\}', Comment.Preproc),[m
-[31m-            # Footnotes[m
-[31m-            (r'(?<!\[)\[fn:.+?\]', Name.Tag),[m
-[31m-            # Links[m
-[31m-            (r'(?s)(\[\[)(.*?)(\]\[)(.*?)(\]\])',[m
-[31m-             bygroups(Punctuation, Name.Attribute, Punctuation, Name.Tag, Punctuation)),[m
-[31m-            (r'(?s)(\[\[)(.+?)(\]\])', bygroups(Punctuation, Name.Attribute, Punctuation)),[m
-[31m-            (r'(<<)(.+?)(>>)', bygroups(Punctuation, Name.Attribute, Punctuation)),[m
-[31m-[m
-[31m-            # Tables[m
-[31m-            (r'^( *)(\|[ -].*?[ -]\|)$', bygroups(Whitespace, String)),[m
-[31m-[m
-[31m-            # Any other text[m
-[31m-            (r'[^#*+\-0-9:\\/=~_<{\[|\n]+', Text),[m
-[31m-            (r'[#*+\-0-9:\\/=~_<{\[|\n]', Text),[m
-[31m-        ],[m
-[31m-        'dateline': [[m
-[31m-            (r'\s*CLOSED:\s+', Generic.Deleted),[m
-[31m-            (r'\s*(?:DEADLINE:|SCHEDULED:)\s+', Generic.Error),[m
-[31m-            (r'\[.+?\]', Literal.Date),[m
-[31m-            (r'<[^>]+?>', Literal.Date),[m
-[31m-            (r'(\s*)$', Text, '#pop'),[m
-[31m-            (r'.', Text),[m
-[31m-        ],[m
-[31m-    }[m
-[31m-[m
-[31m-class TiddlyWiki5Lexer(RegexLexer):[m
-[31m-    """[m
-[31m-    For TiddlyWiki5 markup.[m
-[31m-    """[m
-[31m-    name = 'tiddler'[m
-[31m-    url = 'https://tiddlywiki.com/#TiddlerFiles'[m
-[31m-    aliases = ['tid'][m
-[31m-    filenames = ['*.tid'][m
-[31m-    mimetypes = ["text/vnd.tiddlywiki"][m
-[31m-    version_added = '2.7'[m
-[31m-    flags = re.MULTILINE[m
-[31m-[m
-[31m-    def _handle_codeblock(self, match):[m
-[31m-        """[m
-[31m-        match args: 1:backticks, 2:lang_name, 3:newline, 4:code, 5:backticks[m
-[31m-        """[m
-[31m-        from pygments.lexers import get_lexer_by_name[m
-[31m-[m
-[31m-        # section header[m
-[31m-        yield match.start(1), String, match.group(1)[m
-[31m-        yield match.start(2), String, match.group(2)[m
-[31m-        yield match.start(3), Text,   match.group(3)[m
-[31m-[m
-[31m-        # lookup lexer if wanted and existing[m
-[31m-        lexer = None[m
-[31m-        if self.handlecodeblocks:[m
-[31m-            try:[m
-[31m-                lexer = get_lexer_by_name(match.group(2).strip())[m
-[31m-            except ClassNotFound:[m
-[31m-                pass[m
-[31m-        code = match.group(4)[m
-[31m-[m
-[31m-        # no lexer for this language. handle it like it was a code block[m
-[31m-        if lexer is None:[m
-[31m-            yield match.start(4), String, code[m
-[31m-            return[m
-[31m-[m
-[31m-        yield from do_insertions([], lexer.get_tokens_unprocessed(code))[m
-[31m-[m
-[31m-        yield match.start(5), String, match.group(5)[m
-[31m-[m
-[31m-    def _handle_cssblock(self, match):[m
-[31m-        """[m
-[31m-        match args: 1:style tag 2:newline, 3:code, 4:closing style tag[m
-[31m-        """[m
-[31m-        from pygments.lexers import get_lexer_by_name[m
-[31m-[m
-[31m-        # section header[m
-[31m-        yield match.start(1), String, match.group(1)[m
-[31m-        yield match.start(2), String, match.group(2)[m
-[31m-[m
-[31m-        lexer = None[m
-[31m-        if self.handlecodeblocks:[m
-[31m-            try:[m
-[31m-                lexer = get_lexer_by_name('css')[m
-[31m-            except ClassNotFound:[m
-[31m-                pass[m
-[31m-        code = match.group(3)[m
-[31m-[m
-[31m-        # no lexer for this language. handle it like it was a code block[m
-[31m-        if lexer is None:[m
-[31m-            yield match.start(3), String, code[m
-[31m-            return[m
-[31m-[m
-[31m-        yield from do_insertions([], lexer.get_tokens_unprocessed(code))[m
-[31m-[m
-[31m-        yield match.start(4), String, match.group(4)[m
-[31m-[m
-[31m-    tokens = {[m
-[31m-        'root': [[m
-[31m-            # title in metadata section[m
-[31m-            (r'^(title)(:\s)(.+\n)', bygroups(Keyword, Text, Generic.Heading)),[m
-[31m-            # headings[m
-[31m-            (r'^(!)([^!].+\n)', bygroups(Generic.Heading, Text)),[m
-[31m-            (r'^(!{2,6})(.+\n)', bygroups(Generic.Subheading, Text)),[m
-[31m-            # bulleted or numbered lists or single-line block quotes[m
-[31m-            # (can be mixed)[m
-[31m-            (r'^(\s*)([*#>]+)(\s*)(.+\n)',[m
-[31m-             bygroups(Text, Keyword, Text, using(this, state='inline'))),[m
-[31m-            # multi-line block quotes[m
-[31m-            (r'^(<<<.*\n)([\w\W]*?)(^<<<.*$)', bygroups(String, Text, String)),[m
-[31m-            # table header[m
-[31m-            (r'^(\|.*?\|h)$', bygroups(Generic.Strong)),[m
-[31m-            # table footer or caption[m
-[31m-            (r'^(\|.*?\|[cf])$', bygroups(Generic.Emph)),[m
-[31m-            # table class[m
-[31m-            (r'^(\|.*?\|k)$', bygroups(Name.Tag)),[m
-[31m-            # definitions[m
-[31m-            (r'^(;.*)$', bygroups(Generic.Strong)),[m
-[31m-            # text block[m
-[31m-            (r'^(```\n)([\w\W]*?)(^```$)', bygroups(String, Text, String)),[m
-[31m-            # code block with language[m
-[31m-            (r'^(```)(\w+)(\n)([\w\W]*?)(^```$)', _handle_codeblock),[m
-[31m-            # CSS style block[m
-[31m-            (r'^(<style>)(\n)([\w\W]*?)(^</style>$)', _handle_cssblock),[m
-[31m-[m
-[31m-            include('keywords'),[m
-[31m-            include('inline'),[m
-[31m-        ],[m
-[31m-        'keywords': [[m
-[31m-            (words(([m
-[31m-                '\\define', '\\end', 'caption', 'created', 'modified', 'tags',[m
-[31m-                'title', 'type'), prefix=r'^', suffix=r'\b'),[m
-[31m-             Keyword),[m
-[31m-        ],[m
-[31m-        'inline': [[m
-[31m-            # escape[m
-[31m-            (r'\\.', Text),[m
-[31m-            # created or modified date[m
-[31m-            (r'\d{17}', Number.Integer),[m
-[31m-            # italics[m
-[31m-            (r'(\s)(//[^/]+//)((?=\W|\n))',[m
-[31m-             bygroups(Text, Generic.Emph, Text)),[m
-[31m-            # superscript[m
-[31m-            (r'(\s)(\^\^[^\^]+\^\^)', bygroups(Text, Generic.Emph)),[m
-[31m-            # subscript[m
-[31m-            (r'(\s)(,,[^,]+,,)', bygroups(Text, Generic.Emph)),[m
-[31m-            # underscore[m
-[31m-            (r'(\s)(__[^_]+__)', bygroups(Text, Generic.Strong)),[m
-[31m-            # bold[m
-[31m-            (r"(\s)(''[^']+'')((?=\W|\n))",[m
-[31m-             bygroups(Text, Generic.Strong, Text)),[m
-[31m-            # strikethrough[m
-[31m-            (r'(\s)(~~[^~]+~~)((?=\W|\n))',[m
-[31m-             bygroups(Text, Generic.Deleted, Text)),[m
-[31m-            # TiddlyWiki variables[m
-[31m-            (r'<<[^>]+>>', Name.Tag),[m
-[31m-            (r'\$\$[^$]+\$\$', Name.Tag),[m
-[31m-            (r'\$\([^)]+\)\$', Name.Tag),[m
-[31m-            # TiddlyWiki style or class[m
-[31m-            (r'^@@.*$', Name.Tag),[m
-[31m-            # HTML tags[m
-[31m-            (r'</?[^>]+>', Name.Tag),[m
-[31m-            # inline code[m
-[31m-            (r'`[^`]+`', String.Backtick),[m
-[31m-            # HTML escaped symbols[m
-[31m-            (r'&\S*?;', String.Regex),[m
-[31m-            # Wiki links[m
-[31m-            (r'(\[{2})([^]\|]+)(\]{2})', bygroups(Text, Name.Tag, Text)),[m
-[31m-            # External links[m
-[31m-            (r'(\[{2})([^]\|]+)(\|)([^]\|]+)(\]{2})',[m
-[31m-            bygroups(Text, Name.Tag, Text, Name.Attribute, Text)),[m
-[31m-            # Transclusion[m
-[31m-            (r'(\{{2})([^}]+)(\}{2})', bygroups(Text, Name.Tag, Text)),[m
-[31m-            # URLs[m
-[31m-            (r'(\b.?.?tps?://[^\s"]+)', bygroups(Name.Attribute)),[m
-[31m-[m
-[31m-            # general text, must come last![m
-[31m-            (r'[\w]+', Text),[m
-[31m-            (r'.', Text)[m
-[31m-        ],[m
-[31m-    }[m
-[31m-[m
-[31m-    def __init__(self, **options):[m
-[31m-        self.handlecodeblocks = get_bool_opt(options, 'handlecodeblocks', True)[m
-[31m-        RegexLexer.__init__(self, **options)[m
-[31m-[m
-[31m-[m
-[31m-class WikitextLexer(RegexLexer):[m
-[31m-    """[m
-[31m-    For MediaWiki Wikitext.[m
-[31m-[m
-[31m-    Parsing Wikitext is tricky, and results vary between different MediaWiki[m
-[31m-    installations, so we only highlight common syntaxes (built-in or from[m
-[31m-    popular extensions), and also assume templates produce no unbalanced[m
-[31m-    syntaxes.[m
-[31m-    """[m
-[31m-    name = 'Wikitext'[m
-[31m-    url = 'https://www.mediawiki.org/wiki/Wikitext'[m
-[31m-    aliases = ['wikitext', 'mediawiki'][m
-[31m-    filenames = [][m
-[31m-    mimetypes = ['text/x-wiki'][m
-[31m-    version_added = '2.15'[m
-[31m-    flags = re.MULTILINE[m
-[31m-[m
-[31m-    def nowiki_tag_rules(tag_name):[m
-[31m-        return [[m
-[31m-            (rf'(?i)(</)({tag_name})(\s*)(>)', bygroups(Punctuation,[m
-[31m-             Name.Tag, Whitespace, Punctuation), '#pop'),[m
-[31m-            include('entity'),[m
-[31m-            include('text'),[m
-[31m-        ][m
-[31m-[m
-[31m-    def plaintext_tag_rules(tag_name):[m
-[31m-        return [[m
-[31m-            (rf'(?si)(.*?)(</)({tag_name})(\s*)(>)', bygroups(Text,[m
-[31m-             Punctuation, Name.Tag, Whitespace, Punctuation), '#pop'),[m
-[31m-        ][m
-[31m-[m
-[31m-    def delegate_tag_rules(tag_name, lexer, **lexer_kwargs):[m
-[31m-        return [[m
-[31m-            (rf'(?i)(</)({tag_name})(\s*)(>)', bygroups(Punctuation,[m
-[31m-             Name.Tag, Whitespace, Punctuation), '#pop'),[m
-[31m-            (rf'(?si).+?(?=</{tag_name}\s*>)', using(lexer, **lexer_kwargs)),[m
-[31m-        ][m
-[31m-[m
-[31m-    def text_rules(token):[m
-[31m-        return [[m
-[31m-            (r'\w+', token),[m
-[31m-            (r'[^\S\n]+', token),[m
-[31m-            (r'(?s).', token),[m
-[31m-        ][m
-[31m-[m
-[31m-    def handle_syntaxhighlight(self, match, ctx):[m
-[31m-        from pygments.lexers import get_lexer_by_name[m
-[31m-[m
-[31m-        attr_content = match.group()[m
-[31m-        start = 0[m
-[31m-        index = 0[m
-[31m-        while True:[m
-[31m-            index = attr_content.find('>', start)[m
-[31m-            # Exclude comment end (-->)[m
-[31m-            if attr_content[index-2:index] != '--':[m
-[31m-                break[m
-[31m-            start = index + 1[m
-[31m-[m
-[31m-        if index == -1:[m
-[31m-            # No tag end[m
-[31m-            yield from self.get_tokens_unprocessed(attr_content, stack=['root', 'attr'])[m
-[31m-            return[m
-[31m-        attr = attr_content[:index][m
-[31m-        yield from self.get_tokens_unprocessed(attr, stack=['root', 'attr'])[m
-[31m-        yield match.start(3) + index, Punctuation, '>'[m
-[31m-[m
-[31m-        lexer = None[m
-[31m-        content = attr_content[index+1:][m
-[31m-        lang_match = re.findall(r'\blang=("|\'|)(\w+)(\1)', attr)[m
-[31m-[m
-[31m-        if len(lang_match) >= 1:[m
-[31m-            # Pick the last match in case of multiple matches[m
-[31m-            lang = lang_match[-1][1][m
-[31m-            try:[m
-[31m-                lexer = get_lexer_by_name(lang)[m
-[31m-            except ClassNotFound:[m
-[31m-                pass[m
-[31m-[m
-[31m-        if lexer is None:[m
-[31m-            yield match.start() + index + 1, Text, content[m
-[31m-        else:[m
-[31m-            yield from lexer.get_tokens_unprocessed(content)[m
-[31m-[m
-[31m-    def handle_score(self, match, ctx):[m
-[31m-        attr_content = match.group()[m
-[31m-        start = 0[m
-[31m-        index = 0[m
-[31m-        while True:[m
-[31m-            index = attr_content.find('>', start)[m
-[31m-            # Exclude comment end (-->)[m
-[31m-            if attr_content[index-2:index] != '--':[m
-[31m-                break[m
-[31m-            start = index + 1[m
-[31m-[m
-[31m-        if index == -1:[m
-[31m-            # No tag end[m
-[31m-            yield from self.get_tokens_unprocessed(attr_content, stack=['root', 'attr'])[m
-[31m-            return[m
-[31m-        attr = attr_content[:index][m
-[31m-        content = attr_content[index+1:][m
-[31m-        yield from self.get_tokens_unprocessed(attr, stack=['root', 'attr'])[m
-[31m-        yield match.start(3) + index, Punctuation, '>'[m
-[31m-[m
-[31m-        lang_match = re.findall(r'\blang=("|\'|)(\w+)(\1)', attr)[m
-[31m-        # Pick the last match in case of multiple matches[m
-[31m-        lang = lang_match[-1][1] if len(lang_match) >= 1 else 'lilypond'[m
-[31m-[m
-[31m-        if lang == 'lilypond':  # Case sensitive[m
-[31m-            yield from LilyPondLexer().get_tokens_unprocessed(content)[m
-[31m-        else:  # ABC[m
-[31m-            # FIXME: Use ABC lexer in the future[m
-[31m-            yield match.start() + index + 1, Text, content[m
-[31m-[m
-[31m-    # a-z removed to prevent linter from complaining, REMEMBER to use (?i)[m
-[31m-    title_char = r' %!"$&\'()*,\-./0-9:;=?@A-Z\\\^_`~+\u0080-\uFFFF'[m
-[31m-    nbsp_char = r'(?:\t|&nbsp;|&\#0*160;|&\#[Xx]0*[Aa]0;|[ \xA0\u1680\u2000-\u200A\u202F\u205F\u3000])'[m
-[31m-    link_address = r'(?:[0-9.]+|\[[0-9a-f:.]+\]|[^\x00-\x20"<>\[\]\x7F\xA0\u1680\u2000-\u200A\u202F\u205F\u3000\uFFFD])'[m
-[31m-    link_char_class = r'[^\x00-\x20"<>\[\]\x7F\xA0\u1680\u2000-\u200A\u202F\u205F\u3000\uFFFD]'[m
-[31m-    double_slashes_i = {[m
-[31m-        '__FORCETOC__', '__NOCONTENTCONVERT__', '__NOCC__', '__NOEDITSECTION__', '__NOGALLERY__',[m
-[31m-        '__NOTITLECONVERT__', '__NOTC__', '__NOTOC__', '__TOC__',[m
-[31m-    }[m
-[31m-    double_slashes = {[m
-[31m-        '__EXPECTUNUSEDCATEGORY__',  '__HIDDENCAT__', '__INDEX__',  '__NEWSECTIONLINK__',[m
-[31m-        '__NOINDEX__',  '__NONEWSECTIONLINK__',  '__STATICREDIRECT__', '__NOGLOBAL__',[m
-[31m-        '__DISAMBIG__', '__EXPECTED_UNCONNECTED_PAGE__',[m
-[31m-    }[m
-[31m-    protocols = {[m
-[31m-        'bitcoin:', 'ftp://', 'ftps://', 'geo:', 'git://', 'gopher://', 'http://', 'https://',[m
-[31m-        'irc://', 'ircs://', 'magnet:', 'mailto:', 'mms://', 'news:', 'nntp://', 'redis://',[m
-[31m-        'sftp://', 'sip:', 'sips:', 'sms:', 'ssh://', 'svn://', 'tel:', 'telnet://', 'urn:',[m
-[31m-        'worldwind://', 'xmpp:', '//',[m
-[31m-    }[m
-[31m-    non_relative_protocols = protocols - {'//'}[m
-[31m-    html_tags = {[m
-[31m-        'abbr', 'b', 'bdi', 'bdo', 'big', 'blockquote', 'br', 'caption', 'center', 'cite', 'code',[m
-[31m-        'data', 'dd', 'del', 'dfn', 'div', 'dl', 'dt', 'em', 'font', 'h1', 'h2', 'h3', 'h4', 'h5',[m
-[31m-        'h6', 'hr', 'i', 'ins', 'kbd', 'li', 'link', 'mark', 'meta', 'ol', 'p', 'q', 'rb', 'rp',[m
-[31m-        'rt', 'rtc', 'ruby', 's', 'samp', 'small', 'span', 'strike', 'strong', 'sub', 'sup',[m
-[31m-        'table', 'td', 'th', 'time', 'tr', 'tt', 'u', 'ul', 'var', 'wbr',[m
-[31m-    }[m
-[31m-    parser_tags = {[m
-[31m-        'graph', 'charinsert', 'rss', 'chem', 'categorytree', 'nowiki', 'inputbox', 'math',[m
-[31m-        'hiero', 'score', 'pre', 'ref', 'translate', 'imagemap', 'templatestyles', 'languages',[m
-[31m-        'noinclude', 'mapframe', 'section', 'poem', 'syntaxhighlight', 'includeonly', 'tvar',[m
-[31m-        'onlyinclude', 'templatedata', 'langconvert', 'timeline', 'dynamicpagelist', 'gallery',[m
-[31m-        'maplink', 'ce', 'references',[m
-[31m-    }[m
-[31m-    variant_langs = {[m
-[31m-        # ZhConverter.php[m
-[31m-        'zh', 'zh-hans', 'zh-hant', 'zh-cn', 'zh-hk', 'zh-mo', 'zh-my', 'zh-sg', 'zh-tw',[m
-[31m-        # WuuConverter.php[m
-[31m-        'wuu', 'wuu-hans', 'wuu-hant',[m
-[31m-        # UzConverter.php[m
-[31m-        'uz', 'uz-latn', 'uz-cyrl',[m
-[31m-        # TlyConverter.php[m
-[31m-        'tly', 'tly-cyrl',[m
-[31m-        # TgConverter.php[m
-[31m-        'tg', 'tg-latn',[m
-[31m-        # SrConverter.php[m
-[31m-        'sr', 'sr-ec', 'sr-el',[m
-[31m-        # ShiConverter.php[m
-[31m-        'shi', 'shi-tfng', 'shi-latn',[m
-[31m-        # ShConverter.php[m
-[31m-        'sh-latn', 'sh-cyrl',[m
-[31m-        # KuConverter.php[m
-[31m-        'ku', 'ku-arab', 'ku-latn',[m
-[31m-        # IuConverter.php[m
-[31m-        'iu', 'ike-cans', 'ike-latn',[m
-[31m-        # GanConverter.php[m
-[31m-        'gan', 'gan-hans', 'gan-hant',[m
-[31m-        # EnConverter.php[m
-[31m-        'en', 'en-x-piglatin',[m
-[31m-        # CrhConverter.php[m
-[31m-        'crh', 'crh-cyrl', 'crh-latn',[m
-[31m-        # BanConverter.php[m
-[31m-        'ban', 'ban-bali', 'ban-x-dharma', 'ban-x-palmleaf', 'ban-x-pku',[m
-[31m-    }[m
-[31m-    magic_vars_i = {[m
-[31m-        'ARTICLEPATH', 'INT', 'PAGEID', 'SCRIPTPATH', 'SERVER', 'SERVERNAME', 'STYLEPATH',[m
-[31m-    }[m
-[31m-    magic_vars = {[m
-[31m-        '!', '=', 'BASEPAGENAME', 'BASEPAGENAMEE', 'CASCADINGSOURCES', 'CONTENTLANGUAGE',[m
-[31m-        'CONTENTLANG', 'CURRENTDAY', 'CURRENTDAY2', 'CURRENTDAYNAME', 'CURRENTDOW', 'CURRENTHOUR',[m
-[31m-        'CURRENTMONTH', 'CURRENTMONTH2', 'CURRENTMONTH1', 'CURRENTMONTHABBREV', 'CURRENTMONTHNAME',[m
-[31m-        'CURRENTMONTHNAMEGEN', 'CURRENTTIME', 'CURRENTTIMESTAMP', 'CURRENTVERSION', 'CURRENTWEEK',[m
-[31m-        'CURRENTYEAR', 'DIRECTIONMARK', 'DIRMARK', 'FULLPAGENAME', 'FULLPAGENAMEE', 'LOCALDAY',[m
-[31m-        'LOCALDAY2', 'LOCALDAYNAME', 'LOCALDOW', 'LOCALHOUR', 'LOCALMONTH', 'LOCALMONTH2',[m
-[31m-        'LOCALMONTH1', 'LOCALMONTHABBREV', 'LOCALMONTHNAME', 'LOCALMONTHNAMEGEN', 'LOCALTIME',[m
-[31m-        'LOCALTIMESTAMP', 'LOCALWEEK', 'LOCALYEAR', 'NAMESPACE', 'NAMESPACEE', 'NAMESPACENUMBER',[m
-[31m-        'NUMBEROFACTIVEUSERS', 'NUMBEROFADMINS', 'NUMBEROFARTICLES', 'NUMBEROFEDITS',[m
-[31m-        'NUMBEROFFILES', 'NUMBEROFPAGES', 'NUMBEROFUSERS', 'PAGELANGUAGE', 'PAGENAME', 'PAGENAMEE',[m
-[31m-        'REVISIONDAY', 'REVISIONDAY2', 'REVISIONID', 'REVISIONMONTH', 'REVISIONMONTH1',[m
-[31m-        'REVISIONSIZE', 'REVISIONTIMESTAMP', 'REVISIONUSER', 'REVISIONYEAR', 'ROOTPAGENAME',[m
-[31m-        'ROOTPAGENAMEE', 'SITENAME', 'SUBJECTPAGENAME', 'ARTICLEPAGENAME', 'SUBJECTPAGENAMEE',[m
-[31m-        'ARTICLEPAGENAMEE', 'SUBJECTSPACE', 'ARTICLESPACE', 'SUBJECTSPACEE', 'ARTICLESPACEE',[m
-[31m-        'SUBPAGENAME', 'SUBPAGENAMEE', 'TALKPAGENAME', 'TALKPAGENAMEE', 'TALKSPACE', 'TALKSPACEE',[m
-[31m-    }[m
-[31m-    parser_functions_i = {[m
-[31m-        'ANCHORENCODE', 'BIDI', 'CANONICALURL', 'CANONICALURLE', 'FILEPATH', 'FORMATNUM',[m
-[31m-        'FULLURL', 'FULLURLE', 'GENDER', 'GRAMMAR', 'INT', r'\#LANGUAGE', 'LC', 'LCFIRST', 'LOCALURL',[m
-[31m-        'LOCALURLE', 'NS', 'NSE', 'PADLEFT', 'PADRIGHT', 'PAGEID', 'PLURAL', 'UC', 'UCFIRST',[m
-[31m-        'URLENCODE',[m
-[31m-    }[m
-[31m-    parser_functions = {[m
-[31m-        'BASEPAGENAME', 'BASEPAGENAMEE', 'CASCADINGSOURCES', 'DEFAULTSORT', 'DEFAULTSORTKEY',[m
-[31m-        'DEFAULTCATEGORYSORT', 'FULLPAGENAME', 'FULLPAGENAMEE', 'NAMESPACE', 'NAMESPACEE',[m
-[31m-        'NAMESPACENUMBER', 'NUMBERINGROUP', 'NUMINGROUP', 'NUMBEROFACTIVEUSERS', 'NUMBEROFADMINS',[m
-[31m-        'NUMBEROFARTICLES', 'NUMBEROFEDITS', 'NUMBEROFFILES', 'NUMBEROFPAGES', 'NUMBEROFUSERS',[m
-[31m-        'PAGENAME', 'PAGENAMEE', 'PAGESINCATEGORY', 'PAGESINCAT', 'PAGESIZE', 'PROTECTIONEXPIRY',[m
-[31m-        'PROTECTIONLEVEL', 'REVISIONDAY', 'REVISIONDAY2', 'REVISIONID', 'REVISIONMONTH',[m
-[31m-        'REVISIONMONTH1', 'REVISIONTIMESTAMP', 'REVISIONUSER', 'REVISIONYEAR', 'ROOTPAGENAME',[m
-[31m-        'ROOTPAGENAMEE', 'SUBJECTPAGENAME', 'ARTICLEPAGENAME', 'SUBJECTPAGENAMEE',[m
-[31m-        'ARTICLEPAGENAMEE', 'SUBJECTSPACE', 'ARTICLESPACE', 'SUBJECTSPACEE', 'ARTICLESPACEE',[m
-[31m-        'SUBPAGENAME', 'SUBPAGENAMEE', 'TALKPAGENAME', 'TALKPAGENAMEE', 'TALKSPACE', 'TALKSPACEE',[m
-[31m-        'INT', 'DISPLAYTITLE', 'PAGESINNAMESPACE', 'PAGESINNS',[m
-[31m-    }[m
-[31m-[m
-[31m-    tokens = {[m
-[31m-        'root': [[m
-[31m-            # Redirects[m
-[31m-            (r"""(?xi)[m
-[31m-                (\A\s*?)(\#REDIRECT:?) # may contain a colon[m
-[31m-                (\s+)(\[\[) (?=[^\]\n]* \]\]$)[m
-[31m-            """,[m
-[31m-             bygroups(Whitespace, Keyword, Whitespace, Punctuation), 'redirect-inner'),[m
-[31m-            # Subheadings[m
-[31m-            (r'^(={2,6})(.+?)(\1)(\s*$\n)',[m
-[31m-             bygroups(Generic.Subheading, Generic.Subheading, Generic.Subheading, Whitespace)),[m
-[31m-            # Headings[m
-[31m-            (r'^(=.+?=)(\s*$\n)',[m
-[31m-             bygroups(Generic.Heading, Whitespace)),[m
-[31m-            # Double-slashed magic words[m
-[31m-            (words(double_slashes_i, prefix=r'(?i)'), Name.Function.Magic),[m
-[31m-            (words(double_slashes), Name.Function.Magic),[m
-[31m-            # Raw URLs[m
-[31m-            (r'(?i)\b(?:{}){}{}*'.format('|'.join(protocols),[m
-[31m-             link_address, link_char_class), Name.Label),[m
-[31m-            # Magic links[m
-[31m-            (rf'\b(?:RFC|PMID){nbsp_char}+[0-9]+\b',[m
-[31m-             Name.Function.Magic),[m
-[31m-            (r"""(?x)[m
-[31m-                \bISBN {nbsp_char}[m
-[31m-                (?: 97[89] {nbsp_dash}? )?[m
-[31m-                (?: [0-9] {nbsp_dash}? ){{9}} # escape format()[m
-[31m-                [0-9Xx]\b[m
-[31m-            """.format(nbsp_char=nbsp_char, nbsp_dash=f'(?:-|{nbsp_char})'), Name.Function.Magic),[m
-[31m-            include('list'),[m
-[31m-            include('inline'),[m
-[31m-            include('text'),[m
-[31m-        ],[m
-[31m-        'redirect-inner': [[m
-[31m-            (r'(\]\])(\s*?\n)', bygroups(Punctuation, Whitespace), '#pop'),[m
-[31m-            (r'(\#)([^#]*?)', bygroups(Punctuation, Name.Label)),[m
-[31m-            (rf'(?i)[{title_char}]+', Name.Tag),[m
-[31m-        ],[m
-[31m-        'list': [[m
-[31m-            # Description lists[m
-[31m-            (r'^;', Keyword, 'dt'),[m
-[31m-            # Ordered lists, unordered lists and indents[m
-[31m-            (r'^[#:*]+', Keyword),[m
-[31m-            # Horizontal rules[m
-[31m-            (r'^-{4,}', Keyword),[m
-[31m-        ],[m
-[31m-        'inline': [[m
-[31m-            # Signatures[m
-[31m-            (r'~{3,5}', Keyword),[m
-[31m-            # Entities[m
-[31m-            include('entity'),[m
-[31m-            # Bold & italic[m
-[31m-            (r"('')(''')(?!')", bygroups(Generic.Emph,[m
-[31m-             Generic.EmphStrong), 'inline-italic-bold'),[m
-[31m-            (r"'''(?!')", Generic.Strong, 'inline-bold'),[m
-[31m-            (r"''(?!')", Generic.Emph, 'inline-italic'),[m
-[31m-            # Comments & parameters & templates[m
-[31m-            include('replaceable'),[m
-[31m-            # Media links[m
-[31m-            ([m
-[31m-                r"""(?xi)[m
-[31m-                (\[\[)[m
-[31m-                    (File|Image) (:)[m
-[31m-                    ((?: [{}] | \{{{{2,3}}[^{{}}]*?\}}{{2,3}} | <!--[\s\S]*?--> )*)[m
-[31m-                    (?: (\#) ([{}]*?) )?[m
-[31m-                """.format(title_char, f'{title_char}#'),[m
-[31m-                bygroups(Punctuation, Name.Namespace,  Punctuation,[m
-[31m-                         using(this, state=['wikilink-name']), Punctuation, Name.Label),[m
-[31m-                'medialink-inner'[m
-[31m-            ),[m
-[31m-            # Wikilinks[m
-[31m-            ([m
-[31m-                r"""(?xi)[m
-[31m-                (\[\[)(?!{}) # Should not contain URLs[m
-[31m-                    (?: ([{}]*) (:))?[m
-[31m-                    ((?: [{}] | \{{{{2,3}}[^{{}}]*?\}}{{2,3}} | <!--[\s\S]*?--> )*?)[m
-[31m-                    (?: (\#) ([{}]*?) )?[m
-[31m-                (\]\])[m
-[31m-                """.format('|'.join(protocols), title_char.replace('/', ''),[m
-[31m-                       title_char, f'{title_char}#'),[m
-[31m-                bygroups(Punctuation, Name.Namespace,  Punctuation,[m
-[31m-                         using(this, state=['wikilink-name']), Punctuation, Name.Label, Punctuation)[m
-[31m-            ),[m
-[31m-            ([m
-[31m-                r"""(?xi)[m
-[31m-                (\[\[)(?!{})[m
-[31m-                    (?: ([{}]*) (:))?[m
-[31m-                    ((?: [{}] | \{{{{2,3}}[^{{}}]*?\}}{{2,3}} | <!--[\s\S]*?--> )*?)[m
-[31m-                    (?: (\#) ([{}]*?) )?[m
-[31m-                    (\|)[m
-[31m-                """.format('|'.join(protocols), title_char.replace('/', ''),[m
-[31m-                       title_char, f'{title_char}#'),[m
-[31m-                bygroups(Punctuation, Name.Namespace,  Punctuation,[m
-[31m-                         using(this, state=['wikilink-name']), Punctuation, Name.Label, Punctuation),[m
-[31m-                'wikilink-inner'[m
-[31m-            ),[m
-[31m-            # External links[m
-[31m-            ([m
-[31m-                r"""(?xi)[m
-[31m-                (\[)[m
-[31m-                    ((?:{}) {} {}*)[m
-[31m-                    (\s*)[m
-[31m-                """.format('|'.join(protocols), link_address, link_char_class),[m
-[31m-                bygroups(Punctuation, Name.Label, Whitespace),[m
-[31m-                'extlink-inner'[m
-[31m-            ),[m
-[31m-            # Tables[m
-[31m-            (r'^(:*)(\s*?)(\{\|)([^\n]*)$', bygroups(Keyword,[m
-[31m-             Whitespace, Punctuation, using(this, state=['root', 'attr'])), 'table'),[m
-[31m-            # HTML tags[m
-[31m-            (r'(?i)(<)({})\b'.format('|'.join(html_tags)),[m
-[31m-             bygroups(Punctuation, Name.Tag), 'tag-inner-ordinary'),[m
-[31m-            (r'(?i)(</)({})\b(\s*)(>)'.format('|'.join(html_tags)),[m
-[31m-             bygroups(Punctuation, Name.Tag, Whitespace, Punctuation)),[m
-[31m-            # <nowiki>[m
-[31m-            (r'(?i)(<)(nowiki)\b', bygroups(Punctuation,[m
-[31m-             Name.Tag), ('tag-nowiki', 'tag-inner')),[m
-[31m-            # <pre>[m
-[31m-            (r'(?i)(<)(pre)\b', bygroups(Punctuation,[m
-[31m-             Name.Tag), ('tag-pre', 'tag-inner')),[m
-[31m-            # <categorytree>[m
-[31m-            (r'(?i)(<)(categorytree)\b', bygroups([m
-[31m-                Punctuation, Name.Tag), ('tag-categorytree', 'tag-inner')),[m
-[31m-            # <hiero>[m
-[31m-            (r'(?i)(<)(hiero)\b', bygroups(Punctuation,[m
-[31m-             Name.Tag), ('tag-hiero', 'tag-inner')),[m
-[31m-            # <math>[m
-[31m-            (r'(?i)(<)(math)\b', bygroups(Punctuation,[m
-[31m-             Name.Tag), ('tag-math', 'tag-inner')),[m
-[31m-            # <chem>[m
-[31m-            (r'(?i)(<)(chem)\b', bygroups(Punctuation,[m
-[31m-             Name.Tag), ('tag-chem', 'tag-inner')),[m
-[31m-            # <ce>[m
-[31m-            (r'(?i)(<)(ce)\b', bygroups(Punctuation,[m
-[31m-             Name.Tag), ('tag-ce', 'tag-inner')),[m
-[31m-            # <charinsert>[m
-[31m-            (r'(?i)(<)(charinsert)\b', bygroups([m
-[31m-                Punctuation, Name.Tag), ('tag-charinsert', 'tag-inner')),[m
-[31m-            # <templatedata>[m
-[31m-            (r'(?i)(<)(templatedata)\b', bygroups([m
-[31m-                Punctuation, Name.Tag), ('tag-templatedata', 'tag-inner')),[m
-[31m-            # <gallery>[m
-[31m-            (r'(?i)(<)(gallery)\b', bygroups([m
-[31m-                Punctuation, Name.Tag), ('tag-gallery', 'tag-inner')),[m
-[31m-            # <graph>[m
-[31m-            (r'(?i)(<)(gallery)\b', bygroups([m
-[31m-                Punctuation, Name.Tag), ('tag-graph', 'tag-inner')),[m
-[31m-            # <dynamicpagelist>[m
-[31m-            (r'(?i)(<)(dynamicpagelist)\b', bygroups([m
-[31m-                Punctuation, Name.Tag), ('tag-dynamicpagelist', 'tag-inner')),[m
-[31m-            # <inputbox>[m
-[31m-            (r'(?i)(<)(inputbox)\b', bygroups([m
-[31m-                Punctuation, Name.Tag), ('tag-inputbox', 'tag-inner')),[m
-[31m-            # <rss>[m
-[31m-            (r'(?i)(<)(rss)\b', bygroups([m
-[31m-                Punctuation, Name.Tag), ('tag-rss', 'tag-inner')),[m
-[31m-            # <imagemap>[m
-[31m-            (r'(?i)(<)(imagemap)\b', bygroups([m
-[31m-                Punctuation, Name.Tag), ('tag-imagemap', 'tag-inner')),[m
-[31m-            # <syntaxhighlight>[m
-[31m-            (r'(?i)(</)(syntaxhighlight)\b(\s*)(>)',[m
-[31m-             bygroups(Punctuation, Name.Tag, Whitespace, Punctuation)),[m
-[31m-            (r'(?si)(<)(syntaxhighlight)\b([^>]*?(?<!/)>.*?)(?=</\2\s*>)',[m
-[31m-             bygroups(Punctuation, Name.Tag, handle_syntaxhighlight)),[m
-[31m-            # <syntaxhighlight>: Fallback case for self-closing tags[m
-[31m-            (r'(?i)(<)(syntaxhighlight)\b(\s*?)((?:[^>]|-->)*?)(/\s*?(?<!--)>)', bygroups([m
-[31m-                Punctuation, Name.Tag, Whitespace, using(this, state=['root', 'attr']), Punctuation)),[m
-[31m-            # <source>[m
-[31m-            (r'(?i)(</)(source)\b(\s*)(>)',[m
-[31m-             bygroups(Punctuation, Name.Tag, Whitespace, Punctuation)),[m
-[31m-            (r'(?si)(<)(source)\b([^>]*?(?<!/)>.*?)(?=</\2\s*>)',[m
-[31m-             bygroups(Punctuation, Name.Tag, handle_syntaxhighlight)),[m
-[31m-            # <source>: Fallback case for self-closing tags[m
-[31m-            (r'(?i)(<)(source)\b(\s*?)((?:[^>]|-->)*?)(/\s*?(?<!--)>)', bygroups([m
-[31m-                Punctuation, Name.Tag, Whitespace, using(this, state=['root', 'attr']), Punctuation)),[m
-[31m-            # <score>[m
-[31m-            (r'(?i)(</)(score)\b(\s*)(>)',[m
-[31m-             bygroups(Punctuation, Name.Tag, Whitespace, Punctuation)),[m
-[31m-            (r'(?si)(<)(score)\b([^>]*?(?<!/)>.*?)(?=</\2\s*>)',[m
-[31m-             bygroups(Punctuation, Name.Tag, handle_score)),[m
-[31m-            # <score>: Fallback case for self-closing tags[m
-[31m-            (r'(?i)(<)(score)\b(\s*?)((?:[^>]|-->)*?)(/\s*?(?<!--)>)', bygroups([m
-[31m-                Punctuation, Name.Tag, Whitespace, using(this, state=['root', 'attr']), Punctuation)),[m
-[31m-            # Other parser tags[m
-[31m-            (r'(?i)(<)({})\b'.format('|'.join(parser_tags)),[m
-[31m-             bygroups(Punctuation, Name.Tag), 'tag-inner-ordinary'),[m
-[31m-            (r'(?i)(</)({})\b(\s*)(>)'.format('|'.join(parser_tags)),[m
-[31m-             bygroups(Punctuation, Name.Tag, Whitespace, Punctuation)),[m
-[31m-            # LanguageConverter markups[m
-[31m-            ([m
-[31m-                r"""(?xi)[m
-[31m-                (-\{{) # Use {{ to escape format()[m
-[31m-                    ([^|]) (\|)[m
-[31m-                    (?:[m
-[31m-                        (?: ([^;]*?) (=>))?[m
-[31m-                        (\s* (?:{variants}) \s*) (:)[m
-[31m-                    )?[m
-[31m-                """.format(variants='|'.join(variant_langs)),[m
-[31m-                bygroups(Punctuation, Keyword, Punctuation,[m
-[31m-                         using(this, state=['root', 'lc-raw']),[m
-[31m-                         Operator, Name.Label, Punctuation),[m
-[31m-                'lc-inner'[m
-[31m-            ),[m
-[31m-            # LanguageConverter markups: composite conversion grammar[m
-[31m-            ([m
-[31m-                r"""(?xi)[m
-[31m-                (-\{)[m
-[31m-                    ([a-z\s;-]*?) (\|)[m
-[31m-                """,[m
-[31m-                bygroups(Punctuation,[m
-[31m-                         using(this, state=['root', 'lc-flag']),[m
-[31m-                         Punctuation),[m
-[31m-                'lc-raw'[m
-[31m-            ),[m
-[31m-            # LanguageConverter markups: fallbacks[m
-[31m-            ([m
-[31m-                r"""(?xi)[m
-[31m-                (-\{{) (?!\{{) # Use {{ to escape format()[m
-[31m-                    (?: (\s* (?:{variants}) \s*) (:))?[m
-[31m-                """.format(variants='|'.join(variant_langs)),[m
-[31m-                bygroups(Punctuation, Name.Label, Punctuation),[m
-[31m-                'lc-inner'[m
-[31m-            ),[m
-[31m-        ],[m
-[31m-        'wikilink-name': [[m
-[31m-            include('replaceable'),[m
-[31m-            (r'[^{<]+', Name.Tag),[m
-[31m-            (r'(?s).', Name.Tag),[m
-[31m-        ],[m
-[31m-        'wikilink-inner': [[m
-[31m-            # Quit in case of another wikilink[m
-[31m-            (r'(?=\[\[)', Punctuation, '#pop'),[m
-[31m-            (r'\]\]', Punctuation, '#pop'),[m
-[31m-            include('inline'),[m
-[31m-            include('text'),[m
-[31m-        ],[m
-[31m-        'medialink-inner': [[m
-[31m-            (r'\]\]', Punctuation, '#pop'),[m
-[31m-            (r'(\|)([^\n=|]*)(=)',[m
-[31m-             bygroups(Punctuation, Name.Attribute, Operator)),[m
-[31m-            (r'\|', Punctuation),[m
-[31m-            include('inline'),[m
-[31m-            include('text'),[m
-[31m-        ],[m
-[31m-        'quote-common': [[m
-[31m-            # Quit in case of link/template endings[m
-[31m-            (r'(?=\]\]|\{\{|\}\})', Punctuation, '#pop'),[m
-[31m-            (r'\n', Text, '#pop'),[m
-[31m-        ],[m
-[31m-        'inline-italic': [[m
-[31m-            include('quote-common'),[m
-[31m-            (r"('')(''')(?!')", bygroups(Generic.Emph,[m
-[31m-             Generic.Strong), ('#pop', 'inline-bold')),[m
-[31m-            (r"'''(?!')", Generic.EmphStrong, ('#pop', 'inline-italic-bold')),[m
-[31m-            (r"''(?!')", Generic.Emph, '#pop'),[m
-[31m-            include('inline'),[m
-[31m-            include('text-italic'),[m
-[31m-        ],[m
-[31m-        'inline-bold': [[m
-[31m-            include('quote-common'),[m
-[31m-            (r"(''')('')(?!')", bygroups([m
-[31m-                Generic.Strong, Generic.Emph), ('#pop', 'inline-italic')),[m
-[31m-            (r"'''(?!')", Generic.Strong, '#pop'),[m
-[31m-            (r"''(?!')", Generic.EmphStrong, ('#pop', 'inline-bold-italic')),[m
-[31m-            include('inline'),[m
-[31m-            include('text-bold'),[m
-[31m-        ],[m
-[31m-        'inline-bold-italic': [[m
-[31m-            include('quote-common'),[m
-[31m-            (r"('')(''')(?!')", bygroups(Generic.EmphStrong,[m
-[31m-             Generic.Strong), '#pop'),[m
-[31m-            (r"'''(?!')", Generic.EmphStrong, ('#pop', 'inline-italic')),[m
-[31m-            (r"''(?!')", Generic.EmphStrong, ('#pop', 'inline-bold')),[m
-[31m-            include('inline'),[m
-[31m-            include('text-bold-italic'),[m
-[31m-        ],[m
-[31m-        'inline-italic-bold': [[m
-[31m-            include('quote-common'),[m
-[31m-            (r"(''')('')(?!')", bygroups([m
-[31m-                Generic.EmphStrong, Generic.Emph), '#pop'),[m
-[31m-            (r"'''(?!')", Generic.EmphStrong, ('#pop', 'inline-italic')),[m
-[31m-            (r"''(?!')", Generic.EmphStrong, ('#pop', 'inline-bold')),[m
-[31m-            include('inline'),[m
-[31m-            include('text-bold-italic'),[m
-[31m-        ],[m
-[31m-        'lc-flag': [[m
-[31m-            (r'\s+', Whitespace),[m
-[31m-            (r';', Punctuation),[m
-[31m-            *text_rules(Keyword),[m
-[31m-        ],[m
-[31m-        'lc-inner': [[m
-[31m-            ([m
-[31m-                r"""(?xi)[m
-[31m-                (;)[m
-[31m-                (?: ([^;]*?) (=>))?[m
-[31m-                (\s* (?:{variants}) \s*) (:)[m
-[31m-                """.format(variants='|'.join(variant_langs)),[m
-[31m-                bygroups(Punctuation, using(this, state=['root', 'lc-raw']),[m
-[31m-                         Operator, Name.Label, Punctuation)[m
-[31m-            ),[m
-[31m-            (r';?\s*?\}-', Punctuation, '#pop'),[m
-[31m-            include('inline'),[m
-[31m-            include('text'),[m
-[31m-        ],[m
-[31m-        'lc-raw': [[m
-[31m-            (r'\}-', Punctuation, '#pop'),[m
-[31m-            include('inline'),[m
-[31m-            include('text'),[m
-[31m-        ],[m
-[31m-        'replaceable': [[m
-[31m-            # Comments[m
-[31m-            (r'<!--[\s\S]*?(?:-->|\Z)', Comment.Multiline),[m
-[31m-            # Parameters[m
-[31m-            ([m
-[31m-                r"""(?x)[m
-[31m-                (\{{3})[m
-[31m-                    ([^|]*?)[m
-[31m-                    (?=\}{3}|\|)[m
-[31m-                """,[m
-[31m-                bygroups(Punctuation, Name.Variable),[m
-[31m-                'parameter-inner',[m
-[31m-            ),[m
-[31m-            # Magic variables[m
-[31m-            (r'(?i)(\{{\{{)(\s*)({})(\s*)(\}}\}})'.format('|'.join(magic_vars_i)),[m
-[31m-             bygroups(Punctuation, Whitespace, Name.Function, Whitespace, Punctuation)),[m
-[31m-            (r'(\{{\{{)(\s*)({})(\s*)(\}}\}})'.format('|'.join(magic_vars)),[m
-[31m-                bygroups(Punctuation, Whitespace, Name.Function, Whitespace, Punctuation)),[m
-[31m-            # Parser functions & templates[m
-[31m-            (r'\{\{', Punctuation, 'template-begin-space'),[m
-[31m-            # <tvar> legacy syntax[m
-[31m-            (r'(?i)(<)(tvar)\b(\|)([^>]*?)(>)', bygroups(Punctuation,[m
-[31m-             Name.Tag, Punctuation, String, Punctuation)),[m
-[31m-            (r'</>', Punctuation, '#pop'),[m
-[31m-            # <tvar>[m
-[31m-            (r'(?i)(<)(tvar)\b', bygroups(Punctuation, Name.Tag), 'tag-inner-ordinary'),[m
-[31m-            (r'(?i)(</)(tvar)\b(\s*)(>)',[m
-[31m-             bygroups(Punctuation, Name.Tag, Whitespace, Punctuation)),[m
-[31m-        ],[m
-[31m-        'parameter-inner': [[m
-[31m-            (r'\}{3}', Punctuation, '#pop'),[m
-[31m-            (r'\|', Punctuation),[m
-[31m-            include('inline'),[m
-[31m-            include('text'),[m
-[31m-        ],[m
-[31m-        'template-begin-space': [[m
-[31m-            # Templates allow line breaks at the beginning, and due to how MediaWiki handles[m
-[31m-            # comments, an extra state is required to handle things like {{\n<!---->\n name}}[m
-[31m-            (r'<!--[\s\S]*?(?:-->|\Z)', Comment.Multiline),[m
-[31m-            (r'\s+', Whitespace),[m
-[31m-            # Parser functions[m
-[31m-            ([m
-[31m-                r'(?i)(\#[{}]*?|{})(:)'.format(title_char,[m
-[31m-                                           '|'.join(parser_functions_i)),[m
-[31m-                bygroups(Name.Function, Punctuation), ('#pop', 'template-inner')[m
-[31m-            ),[m
-[31m-            ([m
-[31m-                r'({})(:)'.format('|'.join(parser_functions)),[m
-[31m-                bygroups(Name.Function, Punctuation), ('#pop', 'template-inner')[m
-[31m-            ),[m
-[31m-            # Templates[m
-[31m-            ([m
-[31m-                rf'(?i)([{title_char}]*?)(:)',[m
-[31m-                bygroups(Name.Namespace, Punctuation), ('#pop', 'template-name')[m
-[31m-            ),[m
-[31m-            default(('#pop', 'template-name'),),[m
-[31m-        ],[m
-[31m-        'template-name': [[m
-[31m-            (r'(\s*?)(\|)', bygroups(Text, Punctuation), ('#pop', 'template-inner')),[m
-[31m-            (r'\}\}', Punctuation, '#pop'),[m
-[31m-            (r'\n', Text, '#pop'),[m
-[31m-            include('replaceable'),[m
-[31m-            *text_rules(Name.Tag),[m
-[31m-        ],[m
-[31m-        'template-inner': [[m
-[31m-            (r'\}\}', Punctuation, '#pop'),[m
-[31m-            (r'\|', Punctuation),[m
-[31m-            ([m
-[31m-                r"""(?x)[m
-[31m-                    (?<=\|)[m
-[31m-                    ( (?: (?! \{\{ | \}\} )[^=\|<])*? ) # Exclude templates and tags[m
-[31m-                    (=)[m
-[31m-                """,[m
-[31m-                bygroups(Name.Label, Operator)[m
-[31m-            ),[m
-[31m-            include('inline'),[m
-[31m-            include('text'),[m
-[31m-        ],[m
-[31m-        'table': [[m
-[31m-            # Use [ \t\n\r\0\x0B] instead of \s to follow PHP trim() behavior[m
-[31m-            # Endings[m
-[31m-            (r'^([ \t\n\r\0\x0B]*?)(\|\})',[m
-[31m-             bygroups(Whitespace, Punctuation), '#pop'),[m
-[31m-            # Table rows[m
-[31m-            (r'^([ \t\n\r\0\x0B]*?)(\|-+)(.*)$', bygroups(Whitespace, Punctuation,[m
-[31m-             using(this, state=['root', 'attr']))),[m
-[31m-            # Captions[m
-[31m-            ([m
-[31m-                r"""(?x)[m
-[31m-                ^([ \t\n\r\0\x0B]*?)(\|\+)[m
-[31m-                # Exclude links, template and tags[m
-[31m-                (?: ( (?: (?! \[\[ | \{\{ )[^|\n<] )*? )(\|) )?[m
-[31m-                (.*?)$[m
-[31m-                """,[m
-[31m-                bygroups(Whitespace, Punctuation, using(this, state=[[m
-[31m-                         'root', 'attr']), Punctuation, Generic.Heading),[m
-[31m-            ),[m
-[31m-            # Table data[m
-[31m-            ([m
-[31m-                r"""(?x)[m
-[31m-                ( ^(?:[ \t\n\r\0\x0B]*?)\| | \|\| )[m
-[31m-                (?: ( (?: (?! \[\[ | \{\{ )[^|\n<] )*? )(\|)(?!\|) )?[m
-[31m-                """,[m
-[31m-                bygroups(Punctuation, using(this, state=[[m
-[31m-                         'root', 'attr']), Punctuation),[m
-[31m-            ),[m
-[31m-            # Table headers[m
-[31m-            ([m
-[31m-                r"""(?x)[m
-[31m-                ( ^(?:[ \t\n\r\0\x0B]*?)!  )[m
-[31m-                (?: ( (?: (?! \[\[ | \{\{ )[^|\n<] )*? )(\|)(?!\|) )?[m
-[31m-                """,[m
-[31m-                bygroups(Punctuation, using(this, state=[[m
-[31m-                         'root', 'attr']), Punctuation),[m
-[31m-                'table-header',[m
-[31m-            ),[m
-[31m-            include('list'),[m
-[31m-            include('inline'),[m
-[31m-            include('text'),[m
-[31m-        ],[m
-[31m-        'table-header': [[m
-[31m-            # Requires another state for || handling inside headers[m
-[31m-            (r'\n', Text, '#pop'),[m
-[31m-            ([m
-[31m-                r"""(?x)[m
-[31m-                (!!|\|\|)[m
-[31m-                (?:[m
-[31m-                    ( (?: (?! \[\[ | \{\{ )[^|\n<] )*? )[m
-[31m-                    (\|)(?!\|)[m
-[31m-                )?[m
-[31m-                """,[m
-[31m-                bygroups(Punctuation, using(this, state=[[m
-[31m-                         'root', 'attr']), Punctuation)[m
-[31m-            ),[m
-[31m-            *text_rules(Generic.Subheading),[m
-[31m-        ],[m
-[31m-        'entity': [[m
-[31m-            (r'&\S*?;', Name.Entity),[m
-[31m-        ],[m
-[31m-        'dt': [[m
-[31m-            (r'\n', Text, '#pop'),[m
-[31m-            include('inline'),[m
-[31m-            (r':', Keyword, '#pop'),[m
-[31m-            include('text'),[m
-[31m-        ],[m
-[31m-        'extlink-inner': [[m
-[31m-            (r'\]', Punctuation, '#pop'),[m
-[31m-            include('inline'),[m
-[31m-            include('text'),[m
-[31m-        ],[m
-[31m-        'nowiki-ish': [[m
-[31m-            include('entity'),[m
-[31m-            include('text'),[m
-[31m-        ],[m
-[31m-        'attr': [[m
-[31m-            include('replaceable'),[m
-[31m-            (r'\s+', Whitespace),[m
-[31m-            (r'(=)(\s*)(")', bygroups(Operator, Whitespace, String.Double), 'attr-val-2'),[m
-[31m-            (r"(=)(\s*)(')", bygroups(Operator, Whitespace, String.Single), 'attr-val-1'),[m
-[31m-            (r'(=)(\s*)', bygroups(Operator, Whitespace), 'attr-val-0'),[m
-[31m-            (r'[\w:-]+', Name.Attribute),[m
-[31m-[m
-[31m-        ],[m
-[31m-        'attr-val-0': [[m
-[31m-            (r'\s', Whitespace, '#pop'),[m
-[31m-            include('replaceable'),[m
-[31m-            *text_rules(String),[m
-[31m-        ],[m
-[31m-        'attr-val-1': [[m
-[31m-            (r"'", String.Single, '#pop'),[m
-[31m-            include('replaceable'),[m
-[31m-            *text_rules(String.Single),[m
-[31m-        ],[m
-[31m-        'attr-val-2': [[m
-[31m-            (r'"', String.Double, '#pop'),[m
-[31m-            include('replaceable'),[m
-[31m-            *text_rules(String.Double),[m
-[31m-        ],[m
-[31m-        'tag-inner-ordinary': [[m
-[31m-            (r'/?\s*>', Punctuation, '#pop'),[m
-[31m-            include('tag-attr'),[m
-[31m-        ],[m
-[31m-        'tag-inner': [[m
-[31m-            # Return to root state for self-closing tags[m
-[31m-            (r'/\s*>', Punctuation, '#pop:2'),[m
-[31m-            (r'\s*>', Punctuation, '#pop'),[m
-[31m-            include('tag-attr'),[m
-[31m-        ],[m
-[31m-        # There states below are just like their non-tag variants, the key difference is[m
-[31m-        # they forcibly quit when encountering tag closing markup[m
-[31m-        'tag-attr': [[m
-[31m-            include('replaceable'),[m
-[31m-            (r'\s+', Whitespace),[m
-[31m-            (r'(=)(\s*)(")', bygroups(Operator,[m
-[31m-             Whitespace, String.Double), 'tag-attr-val-2'),[m
-[31m-            (r"(=)(\s*)(')", bygroups(Operator,[m
-[31m-             Whitespace, String.Single), 'tag-attr-val-1'),[m
-[31m-            (r'(=)(\s*)', bygroups(Operator, Whitespace), 'tag-attr-val-0'),[m
-[31m-            (r'[\w:-]+', Name.Attribute),[m
-[31m-[m
-[31m-        ],[m
-[31m-        'tag-attr-val-0': [[m
-[31m-            (r'\s', Whitespace, '#pop'),[m
-[31m-            (r'/?>', Punctuation, '#pop:2'),[m
-[31m-            include('replaceable'),[m
-[31m-            *text_rules(String),[m
-[31m-        ],[m
-[31m-        'tag-attr-val-1': [[m
-[31m-            (r"'", String.Single, '#pop'),[m
-[31m-            (r'/?>', Punctuation, '#pop:2'),[m
-[31m-            include('replaceable'),[m
-[31m-            *text_rules(String.Single),[m
-[31m-        ],[m
-[31m-        'tag-attr-val-2': [[m
-[31m-            (r'"', String.Double, '#pop'),[m
-[31m-            (r'/?>', Punctuation, '#pop:2'),[m
-[31m-            include('replaceable'),[m
-[31m-            *text_rules(String.Double),[m
-[31m-        ],[m
-[31m-        'tag-nowiki': nowiki_tag_rules('nowiki'),[m
-[31m-        'tag-pre': nowiki_tag_rules('pre'),[m
-[31m-        'tag-categorytree': plaintext_tag_rules('categorytree'),[m
-[31m-        'tag-dynamicpagelist': plaintext_tag_rules('dynamicpagelist'),[m
-[31m-        'tag-hiero': plaintext_tag_rules('hiero'),[m
-[31m-        'tag-inputbox': plaintext_tag_rules('inputbox'),[m
-[31m-        'tag-imagemap': plaintext_tag_rules('imagemap'),[m
-[31m-        'tag-charinsert': plaintext_tag_rules('charinsert'),[m
-[31m-        'tag-timeline': plaintext_tag_rules('timeline'),[m
-[31m-        'tag-gallery': plaintext_tag_rules('gallery'),[m
-[31m-        'tag-graph': plaintext_tag_rules('graph'),[m
-[31m-        'tag-rss': plaintext_tag_rules('rss'),[m
-[31m-        'tag-math': delegate_tag_rules('math', TexLexer, state='math'),[m
-[31m-        'tag-chem': delegate_tag_rules('chem', TexLexer, state='math'),[m
-[31m-        'tag-ce': delegate_tag_rules('ce', TexLexer, state='math'),[m
-[31m-        'tag-templatedata': delegate_tag_rules('templatedata', JsonLexer),[m
-[31m-        'text-italic': text_rules(Generic.Emph),[m
-[31m-        'text-bold': text_rules(Generic.Strong),[m
-[31m-        'text-bold-italic': text_rules(Generic.EmphStrong),[m
-[31m-        'text': text_rules(Text),[m
-[31m-    }[m
-[32m+[m[32m"""[m[41m[m
-[32m+[m[32m    pygments.lexers.markup[m[41m[m
-[32m+[m[32m    ~~~~~~~~~~~~~~~~~~~~~~[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    Lexers for non-HTML markup languages.[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    :copyright: Copyright 2006-present by the Pygments team, see AUTHORS.[m[41m[m
-[32m+[m[32m    :license: BSD, see LICENSE for details.[m[41m[m
-[32m+[m[32m"""[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32mimport re[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32mfrom pygments.lexers.html import XmlLexer[m[41m[m
-[32m+[m[32mfrom pygments.lexers.javascript import JavascriptLexer[m[41m[m
-[32m+[m[32mfrom pygments.lexers.css import CssLexer[m[41m[m
-[32m+[m[32mfrom pygments.lexers.lilypond import LilyPondLexer[m[41m[m
-[32m+[m[32mfrom pygments.lexers.data import JsonLexer[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32mfrom pygments.lexer import RegexLexer, DelegatingLexer, include, bygroups, \[m[41m[m
-[32m+[m[32m    using, this, do_insertions, default, words[m[41m[m
-[32m+[m[32mfrom pygments.token import Text, Comment, Operator, Keyword, Name, String, \[m[41m[m
-[32m+[m[32m    Number, Punctuation, Generic, Other, Whitespace, Literal[m[41m[m
-[32m+[m[32mfrom pygments.util import get_bool_opt, ClassNotFound[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m__all__ = ['BBCodeLexer', 'MoinWikiLexer', 'RstLexer', 'TexLexer', 'GroffLexer',[m[41m[m
-[32m+[m[32m           'MozPreprocHashLexer', 'MozPreprocPercentLexer',[m[41m[m
-[32m+[m[32m           'MozPreprocXulLexer', 'MozPreprocJavascriptLexer',[m[41m[m
-[32m+[m[32m           'MozPreprocCssLexer', 'MarkdownLexer', 'OrgLexer', 'TiddlyWiki5Lexer',[m[41m[m
-[32m+[m[32m           'WikitextLexer'][m[41m[m
-[32m+[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32mclass BBCodeLexer(RegexLexer):[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[32m    A lexer that highlights BBCode(-like) syntax.[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    name = 'BBCode'[m[41m[m
-[32m+[m[32m    aliases = ['bbcode'][m[41m[m
-[32m+[m[32m    mimetypes = ['text/x-bbcode'][m[41m[m
-[32m+[m[32m    url = 'https://www.bbcode.org/'[m[41m[m
-[32m+[m[32m    version_added = '0.6'[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    tokens = {[m[41m[m
-[32m+[m[32m        'root': [[m[41m[m
-[32m+[m[32m            (r'[^[]+', Text),[m[41m[m
-[32m+[m[32m            # tag/end tag begin[m[41m[m
-[32m+[m[32m            (r'\[/?\w+', Keyword, 'tag'),[m[41m[m
-[32m+[m[32m            # stray bracket[m[41m[m
-[32m+[m[32m            (r'\[', Text),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m        'tag': [[m[41m[m
-[32m+[m[32m            (r'\s+', Text),[m[41m[m
-[32m+[m[32m            # attribute with value[m[41m[m
-[32m+[m[32m            (r'(\w+)(=)("?[^\s"\]]+"?)',[m[41m[m
-[32m+[m[32m             bygroups(Name.Attribute, Operator, String)),[m[41m[m
-[32m+[m[32m            # tag argument (a la [color=green])[m[41m[m
-[32m+[m[32m            (r'(=)("?[^\s"\]]+"?)',[m[41m[m
-[32m+[m[32m             bygroups(Operator, String)),[m[41m[m
-[32m+[m[32m            # tag end[m[41m[m
-[32m+[m[32m            (r'\]', Keyword, '#pop'),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m    }[m[41m[m
-[32m+[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32mclass MoinWikiLexer(RegexLexer):[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[32m    For MoinMoin (and Trac) Wiki markup.[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    name = 'MoinMoin/Trac Wiki markup'[m[41m[m
-[32m+[m[32m    aliases = ['trac-wiki', 'moin'][m[41m[m
-[32m+[m[32m    filenames = [][m[41m[m
-[32m+[m[32m    mimetypes = ['text/x-trac-wiki'][m[41m[m
-[32m+[m[32m    url = 'https://moinmo.in'[m[41m[m
-[32m+[m[32m    version_added = '0.7'[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    flags = re.MULTILINE | re.IGNORECASE[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    tokens = {[m[41m[m
-[32m+[m[32m        'root': [[m[41m[m
-[32m+[m[32m            (r'^#.*$', Comment),[m[41m[m
-[32m+[m[32m            (r'(!)(\S+)', bygroups(Keyword, Text)),  # Ignore-next[m[41m[m
-[32m+[m[32m            # Titles[m[41m[m
-[32m+[m[32m            (r'^(=+)([^=]+)(=+)(\s*#.+)?$',[m[41m[m
-[32m+[m[32m             bygroups(Generic.Heading, using(this), Generic.Heading, String)),[m[41m[m
-[32m+[m[32m            # Literal code blocks, with optional shebang[m[41m[m
-[32m+[m[32m            (r'(\{\{\{)(\n#!.+)?', bygroups(Name.Builtin, Name.Namespace), 'codeblock'),[m[41m[m
-[32m+[m[32m            (r'(\'\'\'?|\|\||`|__|~~|\^|,,|::)', Comment),  # Formatting[m[41m[m
-[32m+[m[32m            # Lists[m[41m[m
-[32m+[m[32m            (r'^( +)([.*-])( )', bygroups(Text, Name.Builtin, Text)),[m[41m[m
-[32m+[m[32m            (r'^( +)([a-z]{1,5}\.)( )', bygroups(Text, Name.Builtin, Text)),[m[41m[m
-[32m+[m[32m            # Other Formatting[m[41m[m
-[32m+[m[32m            (r'\[\[\w+.*?\]\]', Keyword),  # Macro[m[41m[m
-[32m+[m[32m            (r'(\[[^\s\]]+)(\s+[^\]]+?)?(\])',[m[41m[m
-[32m+[m[32m             bygroups(Keyword, String, Keyword)),  # Link[m[41m[m
-[32m+[m[32m            (r'^----+$', Keyword),  # Horizontal rules[m[41m[m
-[32m+[m[32m            (r'[^\n\'\[{!_~^,|]+', Text),[m[41m[m
-[32m+[m[32m            (r'\n', Text),[m[41m[m
-[32m+[m[32m            (r'.', Text),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m        'codeblock': [[m[41m[m
-[32m+[m[32m            (r'\}\}\}', Name.Builtin, '#pop'),[m[41m[m
-[32m+[m[32m            # these blocks are allowed to be nested in Trac, but not MoinMoin[m[41m[m
-[32m+[m[32m            (r'\{\{\{', Text, '#push'),[m[41m[m
-[32m+[m[32m            (r'[^{}]+', Comment.Preproc),  # slurp boring text[m[41m[m
-[32m+[m[32m            (r'.', Comment.Preproc),  # allow loose { or }[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m    }[m[41m[m
-[32m+[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32mclass RstLexer(RegexLexer):[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[32m    For reStructuredText markup.[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    Additional options accepted:[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    `handlecodeblocks`[m[41m[m
-[32m+[m[32m        Highlight the contents of ``.. sourcecode:: language``,[m[41m[m
-[32m+[m[32m        ``.. code:: language`` and ``.. code-block:: language``[m[41m[m
-[32m+[m[32m        directives with a lexer for the given language (default:[m[41m[m
-[32m+[m[32m        ``True``).[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        .. versionadded:: 0.8[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[32m    name = 'reStructuredText'[m[41m[m
-[32m+[m[32m    url = 'https://docutils.sourceforge.io/rst.html'[m[41m[m
-[32m+[m[32m    aliases = ['restructuredtext', 'rst', 'rest'][m[41m[m
-[32m+[m[32m    filenames = ['*.rst', '*.rest'][m[41m[m
-[32m+[m[32m    mimetypes = ["text/x-rst", "text/prs.fallenstein.rst"][m[41m[m
-[32m+[m[32m    version_added = '0.7'[m[41m[m
-[32m+[m[32m    flags = re.MULTILINE[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    def _handle_sourcecode(self, match):[m[41m[m
-[32m+[m[32m        from pygments.lexers import get_lexer_by_name[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        # section header[m[41m[m
-[32m+[m[32m        yield match.start(1), Punctuation, match.group(1)[m[41m[m
-[32m+[m[32m        yield match.start(2), Text, match.group(2)[m[41m[m
-[32m+[m[32m        yield match.start(3), Operator.Word, match.group(3)[m[41m[m
-[32m+[m[32m        yield match.start(4), Punctuation, match.group(4)[m[41m[m
-[32m+[m[32m        yield match.start(5), Text, match.group(5)[m[41m[m
-[32m+[m[32m        yield match.start(6), Keyword, match.group(6)[m[41m[m
-[32m+[m[32m        yield match.start(7), Text, match.group(7)[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        # lookup lexer if wanted and existing[m[41m[m
-[32m+[m[32m        lexer = None[m[41m[m
-[32m+[m[32m        if self.handlecodeblocks:[m[41m[m
-[32m+[m[32m            try:[m[41m[m
-[32m+[m[32m                lexer = get_lexer_by_name(match.group(6).strip())[m[41m[m
-[32m+[m[32m            except ClassNotFound:[m[41m[m
-[32m+[m[32m                pass[m[41m[m
-[32m+[m[32m        indention = match.group(8)[m[41m[m
-[32m+[m[32m        indention_size = len(indention)[m[41m[m
-[32m+[m[32m        code = (indention + match.group(9) + match.group(10) + match.group(11))[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        # no lexer for this language. handle it like it was a code block[m[41m[m
-[32m+[m[32m        if lexer is None:[m[41m[m
-[32m+[m[32m            yield match.start(8), String, code[m[41m[m
-[32m+[m[32m            return[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        # highlight the lines with the lexer.[m[41m[m
-[32m+[m[32m        ins = [][m[41m[m
-[32m+[m[32m        codelines = code.splitlines(True)[m[41m[m
-[32m+[m[32m        code = ''[m[41m[m
-[32m+[m[32m        for line in codelines:[m[41m[m
-[32m+[m[32m            if len(line) > indention_size:[m[41m[m
-[32m+[m[32m                ins.append((len(code), [(0, Text, line[:indention_size])]))[m[41m[m
-[32m+[m[32m                code += line[indention_size:][m[41m[m
-[32m+[m[32m            else:[m[41m[m
-[32m+[m[32m                code += line[m[41m[m
-[32m+[m[32m        yield from do_insertions(ins, lexer.get_tokens_unprocessed(code))[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    # from docutils.parsers.rst.states[m[41m[m
-[32m+[m[32m    closers = '\'")]}>\u2019\u201d\xbb!?'[m[41m[m
-[32m+[m[32m    unicode_delimiters = '\u2010\u2011\u2012\u2013\u2014\u00a0'[m[41m[m
-[32m+[m[32m    end_string_suffix = (rf'((?=$)|(?=[-/:.,; \n\x00{re.escape(unicode_delimiters)}{re.escape(closers)}]))')[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    tokens = {[m[41m[m
-[32m+[m[32m        'root': [[m[41m[m
-[32m+[m[32m            # Heading with overline[m[41m[m
-[32m+[m[32m            (r'^(=+|-+|`+|:+|\.+|\'+|"+|~+|\^+|_+|\*+|\++|#+)([ \t]*\n)'[m[41m[m
-[32m+[m[32m             r'(.+)(\n)(\1)(\n)',[m[41m[m
-[32m+[m[32m             bygroups(Generic.Heading, Text, Generic.Heading,[m[41m[m
-[32m+[m[32m                      Text, Generic.Heading, Text)),[m[41m[m
-[32m+[m[32m            # Plain heading[m[41m[m
-[32m+[m[32m            (r'^(\S.*)(\n)(={3,}|-{3,}|`{3,}|:{3,}|\.{3,}|\'{3,}|"{3,}|'[m[41m[m
-[32m+[m[32m             r'~{3,}|\^{3,}|_{3,}|\*{3,}|\+{3,}|#{3,})(\n)',[m[41m[m
-[32m+[m[32m             bygroups(Generic.Heading, Text, Generic.Heading, Text)),[m[41m[m
-[32m+[m[32m            # Bulleted lists[m[41m[m
-[32m+[m[32m            (r'^(\s*)([-*+])( .+\n(?:\1  .+\n)*)',[m[41m[m
-[32m+[m[32m             bygroups(Text, Number, using(this, state='inline'))),[m[41m[m
-[32m+[m[32m            # Numbered lists[m[41m[m
-[32m+[m[32m            (r'^(\s*)([0-9#ivxlcmIVXLCM]+\.)( .+\n(?:\1  .+\n)*)',[m[41m[m
-[32m+[m[32m             bygroups(Text, Number, using(this, state='inline'))),[m[41m[m
-[32m+[m[32m            (r'^(\s*)(\(?[0-9#ivxlcmIVXLCM]+\))( .+\n(?:\1  .+\n)*)',[m[41m[m
-[32m+[m[32m             bygroups(Text, Number, using(this, state='inline'))),[m[41m[m
-[32m+[m[32m            # Numbered, but keep words at BOL from becoming lists[m[41m[m
-[32m+[m[32m            (r'^(\s*)([A-Z]+\.)( .+\n(?:\1  .+\n)+)',[m[41m[m
-[32m+[m[32m             bygroups(Text, Number, using(this, state='inline'))),[m[41m[m
-[32m+[m[32m            (r'^(\s*)(\(?[A-Za-z]+\))( .+\n(?:\1  .+\n)+)',[m[41m[m
-[32m+[m[32m             bygroups(Text, Number, using(this, state='inline'))),[m[41m[m
-[32m+[m[32m            # Line blocks[m[41m[m
-[32m+[m[32m            (r'^(\s*)(\|)( .+\n(?:\|  .+\n)*)',[m[41m[m
-[32m+[m[32m             bygroups(Text, Operator, using(this, state='inline'))),[m[41m[m
-[32m+[m[32m            # Sourcecode directives[m[41m[m
-[32m+[m[32m            (r'^( *\.\.)(\s*)((?:source)?code(?:-block)?)(::)([ \t]*)([^\n]+)'[m[41m[m
-[32m+[m[32m             r'(\n[ \t]*\n)([ \t]+)(.*)(\n)((?:(?:\8.*)?\n)+)',[m[41m[m
-[32m+[m[32m             _handle_sourcecode),[m[41m[m
-[32m+[m[32m            # A directive[m[41m[m
-[32m+[m[32m            (r'^( *\.\.)(\s*)([\w:-]+?)(::)(?:([ \t]*)(.*))',[m[41m[m
-[32m+[m[32m             bygroups(Punctuation, Text, Operator.Word, Punctuation, Text,[m[41m[m
-[32m+[m[32m                      using(this, state='inline'))),[m[41m[m
-[32m+[m[32m            # A reference target[m[41m[m
-[32m+[m[32m            (r'^( *\.\.)(\s*)(_(?:[^:\\]|\\.)+:)(.*?)$',[m[41m[m
-[32m+[m[32m             bygroups(Punctuation, Text, Name.Tag, using(this, state='inline'))),[m[41m[m
-[32m+[m[32m            # A footnote/citation target[m[41m[m
-[32m+[m[32m            (r'^( *\.\.)(\s*)(\[.+\])(.*?)$',[m[41m[m
-[32m+[m[32m             bygroups(Punctuation, Text, Name.Tag, using(this, state='inline'))),[m[41m[m
-[32m+[m[32m            # A substitution def[m[41m[m
-[32m+[m[32m            (r'^( *\.\.)(\s*)(\|.+\|)(\s*)([\w:-]+?)(::)(?:([ \t]*)(.*))',[m[41m[m
-[32m+[m[32m             bygroups(Punctuation, Text, Name.Tag, Text, Operator.Word,[m[41m[m
-[32m+[m[32m                      Punctuation, Text, using(this, state='inline'))),[m[41m[m
-[32m+[m[32m            # Comments[m[41m[m
-[32m+[m[32m            (r'^ *\.\..*(\n( +.*\n|\n)+)?', Comment),[m[41m[m
-[32m+[m[32m            # Field list marker[m[41m[m
-[32m+[m[32m            (r'^( *)(:(?:\\\\|\\:|[^:\n])+:(?=\s))([ \t]*)',[m[41m[m
-[32m+[m[32m             bygroups(Text, Name.Class, Text)),[m[41m[m
-[32m+[m[32m            # Definition list[m[41m[m
-[32m+[m[32m            (r'^(\S.*(?<!::)\n)((?:(?: +.*)\n)+)',[m[41m[m
-[32m+[m[32m             bygroups(using(this, state='inline'), using(this, state='inline'))),[m[41m[m
-[32m+[m[32m            # Code blocks[m[41m[m
-[32m+[m[32m            (r'(::)(\n[ \t]*\n)([ \t]+)(.*)(\n)((?:(?:\3.*)?\n)+)',[m[41m[m
-[32m+[m[32m             bygroups(String.Escape, Text, String, String, Text, String)),[m[41m[m
-[32m+[m[32m            include('inline'),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m        'inline': [[m[41m[m
-[32m+[m[32m            (r'\\.', Text),  # escape[m[41m[m
-[32m+[m[32m            (r'``', String, 'literal'),  # code[m[41m[m
-[32m+[m[32m            (r'(`.+?)(<.+?>)(`__?)',  # reference with inline target[m[41m[m
-[32m+[m[32m             bygroups(String, String.Interpol, String)),[m[41m[m
-[32m+[m[32m            (r'`.+?`__?', String),  # reference[m[41m[m
-[32m+[m[32m            (r'(`.+?`)(:[a-zA-Z0-9:-]+?:)?',[m[41m[m
-[32m+[m[32m             bygroups(Name.Variable, Name.Attribute)),  # role[m[41m[m
-[32m+[m[32m            (r'(:[a-zA-Z0-9:-]+?:)(`.+?`)',[m[41m[m
-[32m+[m[32m             bygroups(Name.Attribute, Name.Variable)),  # role (content first)[m[41m[m
-[32m+[m[32m            (r'\*\*.+?\*\*', Generic.Strong),  # Strong emphasis[m[41m[m
-[32m+[m[32m            (r'\*.+?\*', Generic.Emph),  # Emphasis[m[41m[m
-[32m+[m[32m            (r'\[.*?\]_', String),  # Footnote or citation[m[41m[m
-[32m+[m[32m            (r'<.+?>', Name.Tag),   # Hyperlink[m[41m[m
-[32m+[m[32m            (r'[^\\\n\[*`:]+', Text),[m[41m[m
-[32m+[m[32m            (r'.', Text),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m        'literal': [[m[41m[m
-[32m+[m[32m            (r'[^`]+', String),[m[41m[m
-[32m+[m[32m            (r'``' + end_string_suffix, String, '#pop'),[m[41m[m
-[32m+[m[32m            (r'`', String),[m[41m[m
-[32m+[m[32m        ][m[41m[m
-[32m+[m[32m    }[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    def __init__(self, **options):[m[41m[m
-[32m+[m[32m        self.handlecodeblocks = get_bool_opt(options, 'handlecodeblocks', True)[m[41m[m
-[32m+[m[32m        RegexLexer.__init__(self, **options)[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    def analyse_text(text):[m[41m[m
-[32m+[m[32m        if text[:2] == '..' and text[2:3] != '.':[m[41m[m
-[32m+[m[32m            return 0.3[m[41m[m
-[32m+[m[32m        p1 = text.find("\n")[m[41m[m
-[32m+[m[32m        p2 = text.find("\n", p1 + 1)[m[41m[m
-[32m+[m[32m        if (p2 > -1 and              # has two lines[m[41m[m
-[32m+[m[32m                p1 * 2 + 1 == p2 and     # they are the same length[m[41m[m
-[32m+[m[32m                text[p1+1] in '-=' and   # the next line both starts and ends with[m[41m[m
-[32m+[m[32m                text[p1+1] == text[p2-1]):  # ...a sufficiently high header[m[41m[m
-[32m+[m[32m            return 0.5[m[41m[m
-[32m+[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32mclass TexLexer(RegexLexer):[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[32m    Lexer for the TeX and LaTeX typesetting languages.[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    name = 'TeX'[m[41m[m
-[32m+[m[32m    aliases = ['tex', 'latex'][m[41m[m
-[32m+[m[32m    filenames = ['*.tex', '*.aux', '*.toc'][m[41m[m
-[32m+[m[32m    mimetypes = ['text/x-tex', 'text/x-latex'][m[41m[m
-[32m+[m[32m    url = 'https://tug.org'[m[41m[m
-[32m+[m[32m    version_added = ''[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    tokens = {[m[41m[m
-[32m+[m[32m        'general': [[m[41m[m
-[32m+[m[32m            (r'%.*?\n', Comment),[m[41m[m
-[32m+[m[32m            (r'[{}]', Name.Builtin),[m[41m[m
-[32m+[m[32m            (r'[&_^]', Name.Builtin),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m        'root': [[m[41m[m
-[32m+[m[32m            (r'\\\[', String.Backtick, 'displaymath'),[m[41m[m
-[32m+[m[32m            (r'\\\(', String, 'inlinemath'),[m[41m[m
-[32m+[m[32m            (r'\$\$', String.Backtick, 'displaymath'),[m[41m[m
-[32m+[m[32m            (r'\$', String, 'inlinemath'),[m[41m[m
-[32m+[m[32m            (r'\\([a-zA-Z@_:]+|\S?)', Keyword, 'command'),[m[41m[m
-[32m+[m[32m            (r'\\$', Keyword),[m[41m[m
-[32m+[m[32m            include('general'),[m[41m[m
-[32m+[m[32m            (r'[^\\$%&_^{}]+', Text),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m        'math': [[m[41m[m
-[32m+[m[32m            (r'\\([a-zA-Z]+|\S?)', Name.Variable),[m[41m[m
-[32m+[m[32m            include('general'),[m[41m[m
-[32m+[m[32m            (r'[0-9]+', Number),[m[41m[m
-[32m+[m[32m            (r'[-=!+*/()\[\]]', Operator),[m[41m[m
-[32m+[m[32m            (r'[^=!+*/()\[\]\\$%&_^{}0-9-]+', Name.Builtin),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m        'inlinemath': [[m[41m[m
-[32m+[m[32m            (r'\\\)', String, '#pop'),[m[41m[m
-[32m+[m[32m            (r'\$', String, '#pop'),[m[41m[m
-[32m+[m[32m            include('math'),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m        'displaymath': [[m[41m[m
-[32m+[m[32m            (r'\\\]', String, '#pop'),[m[41m[m
-[32m+[m[32m            (r'\$\$', String, '#pop'),[m[41m[m
-[32m+[m[32m            (r'\$', Name.Builtin),[m[41m[m
-[32m+[m[32m            include('math'),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m        'command': [[m[41m[m
-[32m+[m[32m            (r'\[.*?\]', Name.Attribute),[m[41m[m
-[32m+[m[32m            (r'\*', Keyword),[m[41m[m
-[32m+[m[32m            default('#pop'),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m    }[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    def analyse_text(text):[m[41m[m
-[32m+[m[32m        for start in ("\\documentclass", "\\input", "\\documentstyle",[m[41m[m
-[32m+[m[32m                      "\\relax"):[m[41m[m
-[32m+[m[32m            if text[:len(start)] == start:[m[41m[m
-[32m+[m[32m                return True[m[41m[m
-[32m+[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32mclass GroffLexer(RegexLexer):[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[32m    Lexer for the (g)roff typesetting language, supporting groff[m[41m[m
-[32m+[m[32m    extensions. Mainly useful for highlighting manpage sources.[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    name = 'Groff'[m[41m[m
-[32m+[m[32m    aliases = ['groff', 'nroff', 'man'][m[41m[m
-[32m+[m[32m    filenames = ['*.[1-9]', '*.man', '*.1p', '*.3pm'][m[41m[m
-[32m+[m[32m    mimetypes = ['application/x-troff', 'text/troff'][m[41m[m
-[32m+[m[32m    url = 'https://www.gnu.org/software/groff'[m[41m[m
-[32m+[m[32m    version_added = '0.6'[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    tokens = {[m[41m[m
-[32m+[m[32m        'root': [[m[41m[m
-[32m+[m[32m            (r'(\.)(\w+)', bygroups(Text, Keyword), 'request'),[m[41m[m
-[32m+[m[32m            (r'\.', Punctuation, 'request'),[m[41m[m
-[32m+[m[32m            # Regular characters, slurp till we find a backslash or newline[m[41m[m
-[32m+[m[32m            (r'[^\\\n]+', Text, 'textline'),[m[41m[m
-[32m+[m[32m            default('textline'),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m        'textline': [[m[41m[m
-[32m+[m[32m            include('escapes'),[m[41m[m
-[32m+[m[32m            (r'[^\\\n]+', Text),[m[41m[m
-[32m+[m[32m            (r'\n', Text, '#pop'),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m        'escapes': [[m[41m[m
-[32m+[m[32m            # groff has many ways to write escapes.[m[41m[m
-[32m+[m[32m            (r'\\"[^\n]*', Comment),[m[41m[m
-[32m+[m[32m            (r'\\[fn]\w', String.Escape),[m[41m[m
-[32m+[m[32m            (r'\\\(.{2}', String.Escape),[m[41m[m
-[32m+[m[32m            (r'\\.\[.*\]', String.Escape),[m[41m[m
-[32m+[m[32m            (r'\\.', String.Escape),[m[41m[m
-[32m+[m[32m            (r'\\\n', Text, 'request'),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m        'request': [[m[41m[m
-[32m+[m[32m            (r'\n', Text, '#pop'),[m[41m[m
-[32m+[m[32m            include('escapes'),[m[41m[m
-[32m+[m[32m            (r'"[^\n"]+"', String.Double),[m[41m[m
-[32m+[m[32m            (r'\d+', Number),[m[41m[m
-[32m+[m[32m            (r'\S+', String),[m[41m[m
-[32m+[m[32m            (r'\s+', Text),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m    }[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    def analyse_text(text):[m[41m[m
-[32m+[m[32m        if text[:1] != '.':[m[41m[m
-[32m+[m[32m            return False[m[41m[m
-[32m+[m[32m        if text[:3] == '.\\"':[m[41m[m
-[32m+[m[32m            return True[m[41m[m
-[32m+[m[32m        if text[:4] == '.TH ':[m[41m[m
-[32m+[m[32m            return True[m[41m[m
-[32m+[m[32m        if text[1:3].isalnum() and text[3].isspace():[m[41m[m
-[32m+[m[32m            return 0.9[m[41m[m
-[32m+[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32mclass MozPreprocHashLexer(RegexLexer):[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[32m    Lexer for Mozilla Preprocessor files (with '#' as the marker).[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    Other data is left untouched.[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[32m    name = 'mozhashpreproc'[m[41m[m
-[32m+[m[32m    aliases = [name][m[41m[m
-[32m+[m[32m    filenames = [][m[41m[m
-[32m+[m[32m    mimetypes = [][m[41m[m
-[32m+[m[32m    url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'[m[41m[m
-[32m+[m[32m    version_added = '2.0'[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    tokens = {[m[41m[m
-[32m+[m[32m        'root': [[m[41m[m
-[32m+[m[32m            (r'^#', Comment.Preproc, ('expr', 'exprstart')),[m[41m[m
-[32m+[m[32m            (r'.+', Other),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m        'exprstart': [[m[41m[m
-[32m+[m[32m            (r'(literal)(.*)', bygroups(Comment.Preproc, Text), '#pop:2'),[m[41m[m
-[32m+[m[32m            (words(([m[41m[m
-[32m+[m[32m                'define', 'undef', 'if', 'ifdef', 'ifndef', 'else', 'elif',[m[41m[m
-[32m+[m[32m                'elifdef', 'elifndef', 'endif', 'expand', 'filter', 'unfilter',[m[41m[m
-[32m+[m[32m                'include', 'includesubst', 'error')),[m[41m[m
-[32m+[m[32m             Comment.Preproc, '#pop'),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m        'expr': [[m[41m[m
-[32m+[m[32m            (words(('!', '!=', '==', '&&', '||')), Operator),[m[41m[m
-[32m+[m[32m            (r'(defined)(\()', bygroups(Keyword, Punctuation)),[m[41m[m
-[32m+[m[32m            (r'\)', Punctuation),[m[41m[m
-[32m+[m[32m            (r'[0-9]+', Number.Decimal),[m[41m[m
-[32m+[m[32m            (r'__\w+?__', Name.Variable),[m[41m[m
-[32m+[m[32m            (r'@\w+?@', Name.Class),[m[41m[m
-[32m+[m[32m            (r'\w+', Name),[m[41m[m
-[32m+[m[32m            (r'\n', Text, '#pop'),[m[41m[m
-[32m+[m[32m            (r'\s+', Text),[m[41m[m
-[32m+[m[32m            (r'\S', Punctuation),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m    }[m[41m[m
-[32m+[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32mclass MozPreprocPercentLexer(MozPreprocHashLexer):[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[32m    Lexer for Mozilla Preprocessor files (with '%' as the marker).[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    Other data is left untouched.[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[32m    name = 'mozpercentpreproc'[m[41m[m
-[32m+[m[32m    aliases = [name][m[41m[m
-[32m+[m[32m    filenames = [][m[41m[m
-[32m+[m[32m    mimetypes = [][m[41m[m
-[32m+[m[32m    url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'[m[41m[m
-[32m+[m[32m    version_added = '2.0'[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    tokens = {[m[41m[m
-[32m+[m[32m        'root': [[m[41m[m
-[32m+[m[32m            (r'^%', Comment.Preproc, ('expr', 'exprstart')),[m[41m[m
-[32m+[m[32m            (r'.+', Other),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m    }[m[41m[m
-[32m+[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32mclass MozPreprocXulLexer(DelegatingLexer):[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[32m    Subclass of the `MozPreprocHashLexer` that highlights unlexed data with the[m[41m[m
-[32m+[m[32m    `XmlLexer`.[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[32m    name = "XUL+mozpreproc"[m[41m[m
-[32m+[m[32m    aliases = ['xul+mozpreproc'][m[41m[m
-[32m+[m[32m    filenames = ['*.xul.in'][m[41m[m
-[32m+[m[32m    mimetypes = [][m[41m[m
-[32m+[m[32m    url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'[m[41m[m
-[32m+[m[32m    version_added = '2.0'[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    def __init__(self, **options):[m[41m[m
-[32m+[m[32m        super().__init__(XmlLexer, MozPreprocHashLexer, **options)[m[41m[m
-[32m+[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32mclass MozPreprocJavascriptLexer(DelegatingLexer):[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[32m    Subclass of the `MozPreprocHashLexer` that highlights unlexed data with the[m[41m[m
-[32m+[m[32m    `JavascriptLexer`.[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[32m    name = "Javascript+mozpreproc"[m[41m[m
-[32m+[m[32m    aliases = ['javascript+mozpreproc'][m[41m[m
-[32m+[m[32m    filenames = ['*.js.in'][m[41m[m
-[32m+[m[32m    mimetypes = [][m[41m[m
-[32m+[m[32m    url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'[m[41m[m
-[32m+[m[32m    version_added = '2.0'[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    def __init__(self, **options):[m[41m[m
-[32m+[m[32m        super().__init__(JavascriptLexer, MozPreprocHashLexer, **options)[m[41m[m
-[32m+[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32mclass MozPreprocCssLexer(DelegatingLexer):[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[32m    Subclass of the `MozPreprocHashLexer` that highlights unlexed data with the[m[41m[m
-[32m+[m[32m    `CssLexer`.[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[32m    name = "CSS+mozpreproc"[m[41m[m
-[32m+[m[32m    aliases = ['css+mozpreproc'][m[41m[m
-[32m+[m[32m    filenames = ['*.css.in'][m[41m[m
-[32m+[m[32m    mimetypes = [][m[41m[m
-[32m+[m[32m    url = 'https://firefox-source-docs.mozilla.org/build/buildsystem/preprocessor.html'[m[41m[m
-[32m+[m[32m    version_added = '2.0'[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    def __init__(self, **options):[m[41m[m
-[32m+[m[32m        super().__init__(CssLexer, MozPreprocPercentLexer, **options)[m[41m[m
-[32m+[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32mclass MarkdownLexer(RegexLexer):[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[32m    For Markdown markup.[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[32m    name = 'Markdown'[m[41m[m
-[32m+[m[32m    url = 'https://daringfireball.net/projects/markdown/'[m[41m[m
-[32m+[m[32m    aliases = ['markdown', 'md'][m[41m[m
-[32m+[m[32m    filenames = ['*.md', '*.markdown'][m[41m[m
-[32m+[m[32m    mimetypes = ["text/x-markdown"][m[41m[m
-[32m+[m[32m    version_added = '2.2'[m[41m[m
-[32m+[m[32m    flags = re.MULTILINE[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    def _handle_codeblock(self, match):[m[41m[m
-[32m+[m[32m        from pygments.lexers import get_lexer_by_name[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        yield match.start('initial'), String.Backtick, match.group('initial')[m[41m[m
-[32m+[m[32m        yield match.start('lang'), String.Backtick, match.group('lang')[m[41m[m
-[32m+[m[32m        if match.group('afterlang') is not None:[m[41m[m
-[32m+[m[32m            yield match.start('whitespace'), Whitespace, match.group('whitespace')[m[41m[m
-[32m+[m[32m            yield match.start('extra'), Text, match.group('extra')[m[41m[m
-[32m+[m[32m        yield match.start('newline'), Whitespace, match.group('newline')[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        # lookup lexer if wanted and existing[m[41m[m
-[32m+[m[32m        lexer = None[m[41m[m
-[32m+[m[32m        if self.handlecodeblocks:[m[41m[m
-[32m+[m[32m            try:[m[41m[m
-[32m+[m[32m                lexer = get_lexer_by_name(match.group('lang').strip())[m[41m[m
-[32m+[m[32m            except ClassNotFound:[m[41m[m
-[32m+[m[32m                pass[m[41m[m
-[32m+[m[32m        code = match.group('code')[m[41m[m
-[32m+[m[32m        # no lexer for this language. handle it like it was a code block[m[41m[m
-[32m+[m[32m        if lexer is None:[m[41m[m
-[32m+[m[32m            yield match.start('code'), String, code[m[41m[m
-[32m+[m[32m        else:[m[41m[m
-[32m+[m[32m            # FIXME: aren't the offsets wrong?[m[41m[m
-[32m+[m[32m            yield from do_insertions([], lexer.get_tokens_unprocessed(code))[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        yield match.start('terminator'), String.Backtick, match.group('terminator')[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    tokens = {[m[41m[m
-[32m+[m[32m        'root': [[m[41m[m
-[32m+[m[32m            # heading with '#' prefix (atx-style)[m[41m[m
-[32m+[m[32m            (r'(^#[^#].+)(\n)', bygroups(Generic.Heading, Text)),[m[41m[m
-[32m+[m[32m            # subheading with '#' prefix (atx-style)[m[41m[m
-[32m+[m[32m            (r'(^#{2,6}[^#].+)(\n)', bygroups(Generic.Subheading, Text)),[m[41m[m
-[32m+[m[32m            # heading with '=' underlines (Setext-style)[m[41m[m
-[32m+[m[32m            (r'^(.+)(\n)(=+)(\n)', bygroups(Generic.Heading, Text, Generic.Heading, Text)),[m[41m[m
-[32m+[m[32m            # subheading with '-' underlines (Setext-style)[m[41m[m
-[32m+[m[32m            (r'^(.+)(\n)(-+)(\n)', bygroups(Generic.Subheading, Text, Generic.Subheading, Text)),[m[41m[m
-[32m+[m[32m            # task list[m[41m[m
-[32m+[m[32m            (r'^(\s*)([*-] )(\[[ xX]\])( .+\n)',[m[41m[m
-[32m+[m[32m            bygroups(Whitespace, Keyword, Keyword, using(this, state='inline'))),[m[41m[m
-[32m+[m[32m            # bulleted list[m[41m[m
-[32m+[m[32m            (r'^(\s*)([*-])(\s)(.+\n)',[m[41m[m
-[32m+[m[32m            bygroups(Whitespace, Keyword, Whitespace, using(this, state='inline'))),[m[41m[m
-[32m+[m[32m            # numbered list[m[41m[m
-[32m+[m[32m            (r'^(\s*)([0-9]+\.)( .+\n)',[m[41m[m
-[32m+[m[32m            bygroups(Whitespace, Keyword, using(this, state='inline'))),[m[41m[m
-[32m+[m[32m            # quote[m[41m[m
-[32m+[m[32m            (r'^(\s*>\s)(.+\n)', bygroups(Keyword, Generic.Emph)),[m[41m[m
-[32m+[m[32m            # code block fenced by 3 backticks[m[41m[m
-[32m+[m[32m            (r'^(\s*```\n[\w\W]*?^\s*```$\n)', String.Backtick),[m[41m[m
-[32m+[m[32m            # code block with language[m[41m[m
-[32m+[m[32m            # Some tools include extra stuff after the language name, just[m[41m[m
-[32m+[m[32m            # highlight that as text. For example: https://docs.enola.dev/use/execmd[m[41m[m
-[32m+[m[32m            (r'''(?x)[m[41m[m
-[32m+[m[32m              ^(?P<initial>\s*```)[m[41m[m
-[32m+[m[32m              (?P<lang>[\w\-]+)[m[41m[m
-[32m+[m[32m              (?P<afterlang>[m[41m[m
-[32m+[m[32m                 (?P<whitespace>[^\S\n]+)[m[41m[m
-[32m+[m[32m                 (?P<extra>.*))?[m[41m[m
-[32m+[m[32m              (?P<newline>\n)[m[41m[m
-[32m+[m[32m              (?P<code>(.|\n)*?)[m[41m[m
-[32m+[m[32m              (?P<terminator>^\s*```$\n)[m[41m[m
-[32m+[m[32m              ''',[m[41m[m
-[32m+[m[32m             _handle_codeblock),[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m            include('inline'),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m        'inline': [[m[41m[m
-[32m+[m[32m            # escape[m[41m[m
-[32m+[m[32m            (r'\\.', Text),[m[41m[m
-[32m+[m[32m            # inline code[m[41m[m
-[32m+[m[32m            (r'([^`]?)(`[^`\n]+`)', bygroups(Text, String.Backtick)),[m[41m[m
-[32m+[m[32m            # warning: the following rules eat outer tags.[m[41m[m
-[32m+[m[32m            # eg. **foo _bar_ baz** => foo and baz are not recognized as bold[m[41m[m
-[32m+[m[32m            # bold fenced by '**'[m[41m[m
-[32m+[m[32m            (r'([^\*]?)(\*\*[^* \n][^*\n]*\*\*)', bygroups(Text, Generic.Strong)),[m[41m[m
-[32m+[m[32m            # bold fenced by '__'[m[41m[m
-[32m+[m[32m            (r'([^_]?)(__[^_ \n][^_\n]*__)', bygroups(Text, Generic.Strong)),[m[41m[m
-[32m+[m[32m            # italics fenced by '*'[m[41m[m
-[32m+[m[32m            (r'([^\*]?)(\*[^* \n][^*\n]*\*)', bygroups(Text, Generic.Emph)),[m[41m[m
-[32m+[m[32m            # italics fenced by '_'[m[41m[m
-[32m+[m[32m            (r'([^_]?)(_[^_ \n][^_\n]*_)', bygroups(Text, Generic.Emph)),[m[41m[m
-[32m+[m[32m            # strikethrough[m[41m[m
-[32m+[m[32m            (r'([^~]?)(~~[^~ \n][^~\n]*~~)', bygroups(Text, Generic.Deleted)),[m[41m[m
-[32m+[m[32m            # mentions and topics (twitter and github stuff)[m[41m[m
-[32m+[m[32m            (r'[@#][\w/:-]+', Name.Entity),[m[41m[m
-[32m+[m[32m            # (image?) links eg: ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)[m[41m[m
-[32m+[m[32m            (r'(!?\[)([^]]+)(\])(\()([^)]+)(\))',[m[41m[m
-[32m+[m[32m             bygroups(Text, Name.Tag, Text, Text, Name.Attribute, Text)),[m[41m[m
-[32m+[m[32m            # reference-style links, e.g.:[m[41m[m
-[32m+[m[32m            #   [an example][id][m[41m[m
-[32m+[m[32m            #   [id]: http://example.com/[m[41m[m
-[32m+[m[32m            (r'(\[)([^]]+)(\])(\[)([^]]*)(\])',[m[41m[m
-[32m+[m[32m             bygroups(Text, Name.Tag, Text, Text, Name.Label, Text)),[m[41m[m
-[32m+[m[32m            (r'^(\s*\[)([^]]*)(\]:\s*)(.+)',[m[41m[m
-[32m+[m[32m             bygroups(Text, Name.Label, Text, Name.Attribute)),[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m            # general text, must come last![m[41m[m
-[32m+[m[32m            (r'[^\\\s]+', Text),[m[41m[m
-[32m+[m[32m            (r'.', Text),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m    }[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    def __init__(self, **options):[m[41m[m
-[32m+[m[32m        self.handlecodeblocks = get_bool_opt(options, 'handlecodeblocks', True)[m[41m[m
-[32m+[m[32m        RegexLexer.__init__(self, **options)[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32mclass OrgLexer(RegexLexer):[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[32m    For Org Mode markup.[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[32m    name = 'Org Mode'[m[41m[m
-[32m+[m[32m    url = 'https://orgmode.org'[m[41m[m
-[32m+[m[32m    aliases = ['org', 'orgmode', 'org-mode'][m[41m[m
-[32m+[m[32m    filenames = ['*.org'][m[41m[m
-[32m+[m[32m    mimetypes = ["text/org"][m[41m[m
-[32m+[m[32m    version_added = '2.18'[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    def _inline(start, end):[m[41m[m
-[32m+[m[32m        return rf'(?<!\w){start}(.|\n(?!\n))+?{end}(?!\w)'[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    tokens = {[m[41m[m
-[32m+[m[32m        'root': [[m[41m[m
-[32m+[m[32m            (r'^# .*', Comment.Single),[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m            # Headings[m[41m[m
-[32m+[m[32m            (r'^(\* )(COMMENT)( .*)',[m[41m[m
-[32m+[m[32m             bygroups(Generic.Heading, Comment.Preproc, Generic.Heading)),[m[41m[m
-[32m+[m[32m            (r'^(\*\*+ )(COMMENT)( .*)',[m[41m[m
-[32m+[m[32m             bygroups(Generic.Subheading, Comment.Preproc, Generic.Subheading)),[m[41m[m
-[32m+[m[32m            (r'^(\* )(DONE)( .*)',[m[41m[m
-[32m+[m[32m             bygroups(Generic.Heading, Generic.Deleted, Generic.Heading)),[m[41m[m
-[32m+[m[32m            (r'^(\*\*+ )(DONE)( .*)',[m[41m[m
-[32m+[m[32m             bygroups(Generic.Subheading, Generic.Deleted, Generic.Subheading)),[m[41m[m
-[32m+[m[32m            (r'^(\* )(TODO)( .*)',[m[41m[m
-[32m+[m[32m             bygroups(Generic.Heading, Generic.Error, Generic.Heading)),[m[41m[m
-[32m+[m[32m            (r'^(\*\*+ )(TODO)( .*)',[m[41m[m
-[32m+[m[32m             bygroups(Generic.Subheading, Generic.Error, Generic.Subheading)),[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m            (r'^(\* .+?)( :[a-zA-Z0-9_@:]+:)?$', bygroups(Generic.Heading, Generic.Emph)),[m[41m[m
-[32m+[m[32m            (r'^(\*\*+ .+?)( :[a-zA-Z0-9_@:]+:)?$', bygroups(Generic.Subheading, Generic.Emph)),[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m            # Unordered lists items, including TODO items and description items[m[41m[m
-[32m+[m[32m            (r'^(?:( *)([+-] )|( +)(\* ))(\[[ X-]\])?(.+ ::)?',[m[41m[m
-[32m+[m[32m             bygroups(Whitespace, Keyword, Whitespace, Keyword, Generic.Prompt, Name.Label)),[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m            # Ordered list items[m[41m[m
-[32m+[m[32m            (r'^( *)([0-9]+[.)])( \[@[0-9]+\])?', bygroups(Whitespace, Keyword, Generic.Emph)),[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m            # Dynamic blocks[m[41m[m
-[32m+[m[32m            (r'(?i)^( *#\+begin: *)((?:.|\n)*?)(^ *#\+end: *$)',[m[41m[m
-[32m+[m[32m             bygroups(Operator.Word, using(this), Operator.Word)),[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m            # Comment blocks[m[41m[m
-[32m+[m[32m            (r'(?i)^( *#\+begin_comment *\n)((?:.|\n)*?)(^ *#\+end_comment *$)',[m[41m[m
-[32m+[m[32m             bygroups(Operator.Word, Comment.Multiline, Operator.Word)),[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m            # Source code blocks[m[41m[m
-[32m+[m[32m            # TODO: language-dependent syntax highlighting (see Markdown lexer)[m[41m[m
-[32m+[m[32m            (r'(?i)^( *#\+begin_src .*)((?:.|\n)*?)(^ *#\+end_src *$)',[m[41m[m
-[32m+[m[32m             bygroups(Operator.Word, Text, Operator.Word)),[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m            # Other blocks[m[41m[m
-[32m+[m[32m            (r'(?i)^( *#\+begin_\w+)( *\n)((?:.|\n)*?)(^ *#\+end_\w+)( *$)',[m[41m[m
-[32m+[m[32m             bygroups(Operator.Word, Whitespace, Text, Operator.Word, Whitespace)),[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m            # Keywords[m[41m[m
-[32m+[m[32m            (r'^(#\+\w+:)(.*)$', bygroups(Name.Namespace, Text)),[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m            # Properties and drawers[m[41m[m
-[32m+[m[32m            (r'(?i)^( *:\w+: *\n)((?:.|\n)*?)(^ *:end: *$)',[m[41m[m
-[32m+[m[32m             bygroups(Name.Decorator, Comment.Special, Name.Decorator)),[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m            # Line break operator[m[41m[m
-[32m+[m[32m            (r'\\\\$', Operator),[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m            (r'^\s*CLOSED:\s+', Generic.Deleted, 'dateline'),[m[41m[m
-[32m+[m[32m            (r'^\s*(?:DEADLINE:|SCHEDULED:)\s+', Generic.Error, 'dateline'),[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m            # Bold[m[41m[m
-[32m+[m[32m            (_inline(r'\*', r'\*+'), Generic.Strong),[m[41m[m
-[32m+[m[32m            # Italic[m[41m[m
-[32m+[m[32m            (_inline(r'/', r'/'), Generic.Emph),[m[41m[m
-[32m+[m[32m            # Verbatim[m[41m[m
-[32m+[m[32m            (_inline(r'=', r'='), String), # TODO token[m[41m[m
-[32m+[m[32m            # Code[m[41m[m
-[32m+[m[32m            (_inline(r'~', r'~'), String),[m[41m[m
-[32m+[m[32m            # Strikethrough[m[41m[m
-[32m+[m[32m            (_inline(r'\+', r'\+'), Generic.Deleted),[m[41m[m
-[32m+[m[32m            # Underline[m[41m[m
-[32m+[m[32m            (_inline(r'_', r'_+'), Generic.EmphStrong),[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m            # Dates[m[41m[m
-[32m+[m[32m            (r'<.+?>', Literal.Date),[m[41m[m
-[32m+[m[32m            # Macros[m[41m[m
-[32m+[m[32m            (r'\{\{\{.+?\}\}\}', Comment.Preproc),[m[41m[m
-[32m+[m[32m            # Footnotes[m[41m[m
-[32m+[m[32m            (r'(?<!\[)\[fn:.+?\]', Name.Tag),[m[41m[m
-[32m+[m[32m            # Links[m[41m[m
-[32m+[m[32m            (r'(?s)(\[\[)(.*?)(\]\[)(.*?)(\]\])',[m[41m[m
-[32m+[m[32m             bygroups(Punctuation, Name.Attribute, Punctuation, Name.Tag, Punctuation)),[m[41m[m
-[32m+[m[32m            (r'(?s)(\[\[)(.+?)(\]\])', bygroups(Punctuation, Name.Attribute, Punctuation)),[m[41m[m
-[32m+[m[32m            (r'(<<)(.+?)(>>)', bygroups(Punctuation, Name.Attribute, Punctuation)),[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m            # Tables[m[41m[m
-[32m+[m[32m            (r'^( *)(\|[ -].*?[ -]\|)$', bygroups(Whitespace, String)),[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m            # Any other text[m[41m[m
-[32m+[m[32m            (r'[^#*+\-0-9:\\/=~_<{\[|\n]+', Text),[m[41m[m
-[32m+[m[32m            (r'[#*+\-0-9:\\/=~_<{\[|\n]', Text),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m        'dateline': [[m[41m[m
-[32m+[m[32m            (r'\s*CLOSED:\s+', Generic.Deleted),[m[41m[m
-[32m+[m[32m            (r'\s*(?:DEADLINE:|SCHEDULED:)\s+', Generic.Error),[m[41m[m
-[32m+[m[32m            (r'\[.+?\]', Literal.Date),[m[41m[m
-[32m+[m[32m            (r'<[^>]+?>', Literal.Date),[m[41m[m
-[32m+[m[32m            (r'(\s*)$', Text, '#pop'),[m[41m[m
-[32m+[m[32m            (r'.', Text),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m    }[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32mclass TiddlyWiki5Lexer(RegexLexer):[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[32m    For TiddlyWiki5 markup.[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[32m    name = 'tiddler'[m[41m[m
-[32m+[m[32m    url = 'https://tiddlywiki.com/#TiddlerFiles'[m[41m[m
-[32m+[m[32m    aliases = ['tid'][m[41m[m
-[32m+[m[32m    filenames = ['*.tid'][m[41m[m
-[32m+[m[32m    mimetypes = ["text/vnd.tiddlywiki"][m[41m[m
-[32m+[m[32m    version_added = '2.7'[m[41m[m
-[32m+[m[32m    flags = re.MULTILINE[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    def _handle_codeblock(self, match):[m[41m[m
-[32m+[m[32m        """[m[41m[m
-[32m+[m[32m        match args: 1:backticks, 2:lang_name, 3:newline, 4:code, 5:backticks[m[41m[m
-[32m+[m[32m        """[m[41m[m
-[32m+[m[32m        from pygments.lexers import get_lexer_by_name[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        # section header[m[41m[m
-[32m+[m[32m        yield match.start(1), String, match.group(1)[m[41m[m
-[32m+[m[32m        yield match.start(2), String, match.group(2)[m[41m[m
-[32m+[m[32m        yield match.start(3), Text,   match.group(3)[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        # lookup lexer if wanted and existing[m[41m[m
-[32m+[m[32m        lexer = None[m[41m[m
-[32m+[m[32m        if self.handlecodeblocks:[m[41m[m
-[32m+[m[32m            try:[m[41m[m
-[32m+[m[32m                lexer = get_lexer_by_name(match.group(2).strip())[m[41m[m
-[32m+[m[32m            except ClassNotFound:[m[41m[m
-[32m+[m[32m                pass[m[41m[m
-[32m+[m[32m        code = match.group(4)[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        # no lexer for this language. handle it like it was a code block[m[41m[m
-[32m+[m[32m        if lexer is None:[m[41m[m
-[32m+[m[32m            yield match.start(4), String, code[m[41m[m
-[32m+[m[32m            return[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        yield from do_insertions([], lexer.get_tokens_unprocessed(code))[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        yield match.start(5), String, match.group(5)[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    def _handle_cssblock(self, match):[m[41m[m
-[32m+[m[32m        """[m[41m[m
-[32m+[m[32m        match args: 1:style tag 2:newline, 3:code, 4:closing style tag[m[41m[m
-[32m+[m[32m        """[m[41m[m
-[32m+[m[32m        from pygments.lexers import get_lexer_by_name[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        # section header[m[41m[m
-[32m+[m[32m        yield match.start(1), String, match.group(1)[m[41m[m
-[32m+[m[32m        yield match.start(2), String, match.group(2)[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        lexer = None[m[41m[m
-[32m+[m[32m        if self.handlecodeblocks:[m[41m[m
-[32m+[m[32m            try:[m[41m[m
-[32m+[m[32m                lexer = get_lexer_by_name('css')[m[41m[m
-[32m+[m[32m            except ClassNotFound:[m[41m[m
-[32m+[m[32m                pass[m[41m[m
-[32m+[m[32m        code = match.group(3)[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        # no lexer for this language. handle it like it was a code block[m[41m[m
-[32m+[m[32m        if lexer is None:[m[41m[m
-[32m+[m[32m            yield match.start(3), String, code[m[41m[m
-[32m+[m[32m            return[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        yield from do_insertions([], lexer.get_tokens_unprocessed(code))[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        yield match.start(4), String, match.group(4)[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    tokens = {[m[41m[m
-[32m+[m[32m        'root': [[m[41m[m
-[32m+[m[32m            # title in metadata section[m[41m[m
-[32m+[m[32m            (r'^(title)(:\s)(.+\n)', bygroups(Keyword, Text, Generic.Heading)),[m[41m[m
-[32m+[m[32m            # headings[m[41m[m
-[32m+[m[32m            (r'^(!)([^!].+\n)', bygroups(Generic.Heading, Text)),[m[41m[m
-[32m+[m[32m            (r'^(!{2,6})(.+\n)', bygroups(Generic.Subheading, Text)),[m[41m[m
-[32m+[m[32m            # bulleted or numbered lists or single-line block quotes[m[41m[m
-[32m+[m[32m            # (can be mixed)[m[41m[m
-[32m+[m[32m            (r'^(\s*)([*#>]+)(\s*)(.+\n)',[m[41m[m
-[32m+[m[32m             bygroups(Text, Keyword, Text, using(this, state='inline'))),[m[41m[m
-[32m+[m[32m            # multi-line block quotes[m[41m[m
-[32m+[m[32m            (r'^(<<<.*\n)([\w\W]*?)(^<<<.*$)', bygroups(String, Text, String)),[m[41m[m
-[32m+[m[32m            # table header[m[41m[m
-[32m+[m[32m            (r'^(\|.*?\|h)$', bygroups(Generic.Strong)),[m[41m[m
-[32m+[m[32m            # table footer or caption[m[41m[m
-[32m+[m[32m            (r'^(\|.*?\|[cf])$', bygroups(Generic.Emph)),[m[41m[m
-[32m+[m[32m            # table class[m[41m[m
-[32m+[m[32m            (r'^(\|.*?\|k)$', bygroups(Name.Tag)),[m[41m[m
-[32m+[m[32m            # definitions[m[41m[m
-[32m+[m[32m            (r'^(;.*)$', bygroups(Generic.Strong)),[m[41m[m
-[32m+[m[32m            # text block[m[41m[m
-[32m+[m[32m            (r'^(```\n)([\w\W]*?)(^```$)', bygroups(String, Text, String)),[m[41m[m
-[32m+[m[32m            # code block with language[m[41m[m
-[32m+[m[32m            (r'^(```)(\w+)(\n)([\w\W]*?)(^```$)', _handle_codeblock),[m[41m[m
-[32m+[m[32m            # CSS style block[m[41m[m
-[32m+[m[32m            (r'^(<style>)(\n)([\w\W]*?)(^</style>$)', _handle_cssblock),[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m            include('keywords'),[m[41m[m
-[32m+[m[32m            include('inline'),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m        'keywords': [[m[41m[m
-[32m+[m[32m            (words(([m[41m[m
-[32m+[m[32m                '\\define', '\\end', 'caption', 'created', 'modified', 'tags',[m[41m[m
-[32m+[m[32m                'title', 'type'), prefix=r'^', suffix=r'\b'),[m[41m[m
-[32m+[m[32m             Keyword),[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m        'inline': [[m[41m[m
-[32m+[m[32m            # escape[m[41m[m
-[32m+[m[32m            (r'\\.', Text),[m[41m[m
-[32m+[m[32m            # created or modified date[m[41m[m
-[32m+[m[32m            (r'\d{17}', Number.Integer),[m[41m[m
-[32m+[m[32m            # italics[m[41m[m
-[32m+[m[32m            (r'(\s)(//[^/]+//)((?=\W|\n))',[m[41m[m
-[32m+[m[32m             bygroups(Text, Generic.Emph, Text)),[m[41m[m
-[32m+[m[32m            # superscript[m[41m[m
-[32m+[m[32m            (r'(\s)(\^\^[^\^]+\^\^)', bygroups(Text, Generic.Emph)),[m[41m[m
-[32m+[m[32m            # subscript[m[41m[m
-[32m+[m[32m            (r'(\s)(,,[^,]+,,)', bygroups(Text, Generic.Emph)),[m[41m[m
-[32m+[m[32m            # underscore[m[41m[m
-[32m+[m[32m            (r'(\s)(__[^_]+__)', bygroups(Text, Generic.Strong)),[m[41m[m
-[32m+[m[32m            # bold[m[41m[m
-[32m+[m[32m            (r"(\s)(''[^']+'')((?=\W|\n))",[m[41m[m
-[32m+[m[32m             bygroups(Text, Generic.Strong, Text)),[m[41m[m
-[32m+[m[32m            # strikethrough[m[41m[m
-[32m+[m[32m            (r'(\s)(~~[^~]+~~)((?=\W|\n))',[m[41m[m
-[32m+[m[32m             bygroups(Text, Generic.Deleted, Text)),[m[41m[m
-[32m+[m[32m            # TiddlyWiki variables[m[41m[m
-[32m+[m[32m            (r'<<[^>]+>>', Name.Tag),[m[41m[m
-[32m+[m[32m            (r'\$\$[^$]+\$\$', Name.Tag),[m[41m[m
-[32m+[m[32m            (r'\$\([^)]+\)\$', Name.Tag),[m[41m[m
-[32m+[m[32m            # TiddlyWiki style or class[m[41m[m
-[32m+[m[32m            (r'^@@.*$', Name.Tag),[m[41m[m
-[32m+[m[32m            # HTML tags[m[41m[m
-[32m+[m[32m            (r'</?[^>]+>', Name.Tag),[m[41m[m
-[32m+[m[32m            # inline code[m[41m[m
-[32m+[m[32m            (r'`[^`]+`', String.Backtick),[m[41m[m
-[32m+[m[32m            # HTML escaped symbols[m[41m[m
-[32m+[m[32m            (r'&\S*?;', String.Regex),[m[41m[m
-[32m+[m[32m            # Wiki links[m[41m[m
-[32m+[m[32m            (r'(\[{2})([^]\|]+)(\]{2})', bygroups(Text, Name.Tag, Text)),[m[41m[m
-[32m+[m[32m            # External links[m[41m[m
-[32m+[m[32m            (r'(\[{2})([^]\|]+)(\|)([^]\|]+)(\]{2})',[m[41m[m
-[32m+[m[32m            bygroups(Text, Name.Tag, Text, Name.Attribute, Text)),[m[41m[m
-[32m+[m[32m            # Transclusion[m[41m[m
-[32m+[m[32m            (r'(\{{2})([^}]+)(\}{2})', bygroups(Text, Name.Tag, Text)),[m[41m[m
-[32m+[m[32m            # URLs[m[41m[m
-[32m+[m[32m            (r'(\b.?.?tps?://[^\s"]+)', bygroups(Name.Attribute)),[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m            # general text, must come last![m[41m[m
-[32m+[m[32m            (r'[\w]+', Text),[m[41m[m
-[32m+[m[32m            (r'.', Text)[m[41m[m
-[32m+[m[32m        ],[m[41m[m
-[32m+[m[32m    }[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    def __init__(self, **options):[m[41m[m
-[32m+[m[32m        self.handlecodeblocks = get_bool_opt(options, 'handlecodeblocks', True)[m[41m[m
-[32m+[m[32m        RegexLexer.__init__(self, **options)[m[41m[m
-[32m+[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32mclass WikitextLexer(RegexLexer):[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[32m    For MediaWiki Wikitext.[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    Parsing Wikitext is tricky, and results vary between different MediaWiki[m[41m[m
-[32m+[m[32m    installations, so we only highlight common syntaxes (built-in or from[m[41m[m
-[32m+[m[32m    popular extensions), and also assume templates produce no unbalanced[m[41m[m
-[32m+[m[32m    syntaxes.[m[41m[m
-[32m+[m[32m    """[m[41m[m
-[32m+[m[32m    name = 'Wikitext'[m[41m[m
-[32m+[m[32m    url = 'https://www.mediawiki.org/wiki/Wikitext'[m[41m[m
-[32m+[m[32m    aliases = ['wikitext', 'mediawiki'][m[41m[m
-[32m+[m[32m    filenames = [][m[41m[m
-[32m+[m[32m    mimetypes = ['text/x-wiki'][m[41m[m
-[32m+[m[32m    version_added = '2.15'[m[41m[m
-[32m+[m[32m    flags = re.MULTILINE[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    def nowiki_tag_rules(tag_name):[m[41m[m
-[32m+[m[32m        return [[m[41m[m
-[32m+[m[32m            (rf'(?i)(</)({tag_name})(\s*)(>)', bygroups(Punctuation,[m[41m[m
-[32m+[m[32m             Name.Tag, Whitespace, Punctuation), '#pop'),[m[41m[m
-[32m+[m[32m            include('entity'),[m[41m[m
-[32m+[m[32m            include('text'),[m[41m[m
-[32m+[m[32m        ][m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    def plaintext_tag_rules(tag_name):[m[41m[m
-[32m+[m[32m        return [[m[41m[m
-[32m+[m[32m            (rf'(?si)(.*?)(</)({tag_name})(\s*)(>)', bygroups(Text,[m[41m[m
-[32m+[m[32m             Punctuation, Name.Tag, Whitespace, Punctuation), '#pop'),[m[41m[m
-[32m+[m[32m        ][m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    def delegate_tag_rules(tag_name, lexer, **lexer_kwargs):[m[41m[m
-[32m+[m[32m        return [[m[41m[m
-[32m+[m[32m            (rf'(?i)(</)({tag_name})(\s*)(>)', bygroups(Punctuation,[m[41m[m
-[32m+[m[32m             Name.Tag, Whitespace, Punctuation), '#pop'),[m[41m[m
-[32m+[m[32m            (rf'(?si).+?(?=</{tag_name}\s*>)', using(lexer, **lexer_kwargs)),[m[41m[m
-[32m+[m[32m        ][m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    def text_rules(token):[m[41m[m
-[32m+[m[32m        return [[m[41m[m
-[32m+[m[32m            (r'\w+', token),[m[41m[m
-[32m+[m[32m            (r'[^\S\n]+', token),[m[41m[m
-[32m+[m[32m            (r'(?s).', token),[m[41m[m
-[32m+[m[32m        ][m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    def handle_syntaxhighlight(self, match, ctx):[m[41m[m
-[32m+[m[32m        from pygments.lexers import get_lexer_by_name[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        attr_content = match.group()[m[41m[m
-[32m+[m[32m        start = 0[m[41m[m
-[32m+[m[32m        index = 0[m[41m[m
-[32m+[m[32m        while True:[m[41m[m
-[32m+[m[32m            index = attr_content.find('>', start)[m[41m[m
-[32m+[m[32m            # Exclude comment end (-->)[m[41m[m
-[32m+[m[32m            if attr_content[index-2:index] != '--':[m[41m[m
-[32m+[m[32m                break[m[41m[m
-[32m+[m[32m            start = index + 1[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        if index == -1:[m[41m[m
-[32m+[m[32m            # No tag end[m[41m[m
-[32m+[m[32m            yield from self.get_tokens_unprocessed(attr_content, stack=['root', 'attr'])[m[41m[m
-[32m+[m[32m            return[m[41m[m
-[32m+[m[32m        attr = attr_content[:index][m[41m[m
-[32m+[m[32m        yield from self.get_tokens_unprocessed(attr, stack=['root', 'attr'])[m[41m[m
-[32m+[m[32m        yield match.start(3) + index, Punctuation, '>'[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        lexer = None[m[41m[m
-[32m+[m[32m        content = attr_content[index+1:][m[41m[m
-[32m+[m[32m        l
