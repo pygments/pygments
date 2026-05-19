@@ -211,8 +211,8 @@ class JuliaLexer(RegexLexer):
         ],
 
         'regex': [
-            (r'((?<!\\)")([imsxa]*)?', bygroups(String.Regex, String.Affix), '#pop'),
-            (r'.*?(?=((?<!\\)"))', String.Regex),
+            (r'(")([imsxa]*)?', bygroups(String.Regex, String.Affix), '#pop'),
+            (r'.*?((?=(?<!\\)")|(?=(?<=\\\\)"))', String.Regex),
         ],
 
         'tqregex': [
