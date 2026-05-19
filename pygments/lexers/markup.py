@@ -618,6 +618,7 @@ class MarkdownLexer(RegexLexer):
         self.handlecodeblocks = get_bool_opt(options, 'handlecodeblocks', True)
         RegexLexer.__init__(self, **options)
 
+
 class OrgLexer(RegexLexer):
     """
     For Org Mode markup.
@@ -630,7 +631,7 @@ class OrgLexer(RegexLexer):
     version_added = '2.18'
 
     def _inline(start, end):
-        return rf'(?<!\w){start}(.|\n(?!\n))+?{end}(?!\w)'
+        return rf'(?<!\S){start}(.|\n(?!\n))+?{end}(?!\S)'
 
     tokens = {
         'root': [
@@ -673,9 +674,18 @@ class OrgLexer(RegexLexer):
             (r'(?i)^( *#\+begin_src .*)((?:.|\n)*?)(^ *#\+end_src *$)',
              bygroups(Operator.Word, Text, Operator.Word)),
 
+            # Example blocks
+            (r'(?i)^( *#\+begin_example *\n)((?:.|\n)*?)(^ *#\+end_example *$)',
+             bygroups(Operator.Word, Text, Operator.Word)),
+
+            # Export blocks: e.g. https://orgmode.org/manual/Quoting-HTML-tags.html#index-BEGIN_005fEXPORT-html
+            # TODO: language-dependent syntax highlighting (see Markdown lexer)
+            (r'(?i)^( *#\+begin_export .*)((?:.|\n)*?)(^ *#\+end_export *$)',
+             bygroups(Operator.Word, Text, Operator.Word)),
+
             # Other blocks
-            (r'(?i)^( *#\+begin_\w+)( *\n)((?:.|\n)*?)(^ *#\+end_\w+)( *$)',
-             bygroups(Operator.Word, Whitespace, Text, Operator.Word, Whitespace)),
+            (r'(?i)^( *#\+begin_)(\w+)( *\n)((?:.|\n)*?)(^ *#\+end_)(\2)( *$)',
+             bygroups(Operator.Word, Operator.Word, Whitespace, Text, Operator.Word, Operator.Word, Whitespace)),
 
             # Keywords
             (r'^(#\+\w+:)(.*)$', bygroups(Name.Namespace, Text)),
@@ -690,6 +700,23 @@ class OrgLexer(RegexLexer):
             (r'^\s*CLOSED:\s+', Generic.Deleted, 'dateline'),
             (r'^\s*(?:DEADLINE:|SCHEDULED:)\s+', Generic.Error, 'dateline'),
 
+            # Dates
+            (r'<.+?>', Literal.Date),
+            # Macros
+            (r'\{\{\{.+?\}\}\}', Comment.Preproc),
+            # Footnotes
+            (r'(?<!\[)\[fn:.+?\]', Name.Tag),
+            # Links
+            # Heuristics for matching bare URL links by https://daringfireball.net/2010/07/improved_regex_for_matching_urls
+            (r"""(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))""", Name.Attribute),
+            (r'(?s)(\[\[)(.*?)(\]\[)(.*?)(\]\])',
+             bygroups(Punctuation, Name.Attribute, Punctuation, Name.Tag, Punctuation)),
+            (r'(?s)(\[\[)(.+?)(\]\])', bygroups(Punctuation, Name.Attribute, Punctuation)),
+            (r'(<<)(.+?)(>>)', bygroups(Punctuation, Name.Attribute, Punctuation)),
+
+            # Tables
+            (r'^( *)(\|[ -].*?[ -]\|)$', bygroups(Whitespace, String)),
+
             # Bold
             (_inline(r'\*', r'\*+'), Generic.Strong),
             # Italic
@@ -703,24 +730,10 @@ class OrgLexer(RegexLexer):
             # Underline
             (_inline(r'_', r'_+'), Generic.EmphStrong),
 
-            # Dates
-            (r'<.+?>', Literal.Date),
-            # Macros
-            (r'\{\{\{.+?\}\}\}', Comment.Preproc),
-            # Footnotes
-            (r'(?<!\[)\[fn:.+?\]', Name.Tag),
-            # Links
-            (r'(?s)(\[\[)(.*?)(\]\[)(.*?)(\]\])',
-             bygroups(Punctuation, Name.Attribute, Punctuation, Name.Tag, Punctuation)),
-            (r'(?s)(\[\[)(.+?)(\]\])', bygroups(Punctuation, Name.Attribute, Punctuation)),
-            (r'(<<)(.+?)(>>)', bygroups(Punctuation, Name.Attribute, Punctuation)),
-
-            # Tables
-            (r'^( *)(\|[ -].*?[ -]\|)$', bygroups(Whitespace, String)),
-
             # Any other text
-            (r'[^#*+\-0-9:\\/=~_<{\[|\n]+', Text),
-            (r'[#*+\-0-9:\\/=~_<{\[|\n]', Text),
+            (r'\S+', Text),
+            (r'\s+', Text),
+            ('.', Text),
         ],
         'dateline': [
             (r'\s*CLOSED:\s+', Generic.Deleted),
@@ -731,6 +744,30 @@ class OrgLexer(RegexLexer):
             (r'.', Text),
         ],
     }
+
+    def get_tokens_unprocessed(self, text):
+        text_token = None
+        for index, token, value in super().get_tokens_unprocessed(text):
+            if token is Text:
+                if text_token is not None and index == text_token[0] + len(text_token[1]):
+                    text_token = text_token[0], text_token[1] + value  # merge adjacent Text tokens
+                    continue
+
+                if text_token is not None:
+                    yield text_token[0], Text, text_token[1]
+
+                text_token = index, value
+                continue
+
+            if text_token is not None:
+                yield text_token[0], Text, text_token[1]
+                text_token = None
+
+            yield index, token, value
+
+        if text_token is not None:
+            yield text_token[0], Text, text_token[1]
+
 
 class TiddlyWiki5Lexer(RegexLexer):
     """

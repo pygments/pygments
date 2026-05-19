@@ -2,60 +2,32 @@
 '\n'          Text
 
 '#+title:'    Name.Namespace
-' Single Post with TOML front matter' Text
-'\n'          Text
+' Single Post with TOML front matter\n' Text
 
 '#+author:'   Name.Namespace
 '\n'          Text
 
 '#+date:'     Name.Namespace
-' 2017-07-20' Text
-'\n'          Text
+' 2017-07-20\n' Text
 
 '#+options:'  Name.Namespace
-' creator:t toc:2' Text
-'\n'          Text
-
-'\n'          Text
+' creator:t toc:2\n\n' Text
 
 '#+hugo_base_dir:' Name.Namespace
-' ../../'     Text
-'\n'          Text
+' ../../\n'   Text
 
 '#+hugo_categories:' Name.Namespace
-' cat1 cat2'  Text
-'\n'          Text
+' cat1 cat2\n' Text
 
 '#+hugo_menu:' Name.Namespace
-' :menu "foo" :weight 10 :parent main :identifier single-toml' Text
-'\n'          Text
+' :menu "foo" :weight 10 :parent main :identifier single-toml\n' Text
 
 '#+description:' Name.Namespace
-' Some description for this post.' Text
-'\n'          Text
-
-'\n'          Text
-
-'This is a single post. You do not need to set the ' Text
+' Some description for this post.\n\nThis is a single post. You do not need to set the ' Text
 '=EXPORT_FILE_NAME=' Literal.String
-'\n'          Text
-
-'property in here. But then you also lose the tag and property' Text
-'\n'          Text
-
-'inheritance Org awesomeness.' Text
-'\n'          Text
-
-'\n'          Text
-
-'line one '   Text
+'\nproperty in here. But then you also lose the tag and property\ninheritance Org awesomeness.\n\nline one ' Text
 '\\\\'        Operator
-'\n'          Text
-
-'line two'    Text
-'\n'          Text
-
-'\n'          Text
+'\nline two\n\n' Text
 
 '*bold*'      Generic.Strong
 ' '           Text
@@ -75,9 +47,7 @@
 
 '** Subheading' Generic.Subheading
 ' :TAG:'      Generic.Emph
-'\n'          Text
-
-'This is a under first heading. ' Text
+'\nThis is a under first heading. ' Text
 '<2018-07-27 Fri>' Literal.Date
 '\n'          Text
 
@@ -113,75 +83,44 @@
 
 'CLOSED: '    Generic.Deleted
 '[2018-08-01 Wed 16:17]' Literal.Date
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text
 
 '{{{n}}}'     Comment.Preproc
 ' abc '       Text
 '{{{n(,10)}}}' Comment.Preproc
 ' def '       Text
 '{{{n(x,5)}}}' Comment.Preproc
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text
 
 '- '          Keyword
-'unordered list item ' Text
-'1'           Text
-'\n'          Text
+'unordered list item 1\n' Text
 
 '- '          Keyword
-'unordered list item ' Text
-'2'           Text
-'\n'          Text
+'unordered list item 2\n' Text
 
 '- '          Keyword
 'Desc1 ::'    Name.Label
-' Description list item ' Text
-'1'           Text
-'\n'          Text
+' Description list item 1\n' Text
 
 '- '          Keyword
 'Desc2 ::'    Name.Label
-' Description list item ' Text
-'2'           Text
-'\n'          Text
-
-'\n'          Text
+' Description list item 2\n\n' Text
 
 '1.'          Keyword
-' ordered list item ' Text
-'1'           Text
-'\n'          Text
+' ordered list item 1\n' Text
 
 '2.'          Keyword
-' ordered list item ' Text
-'2'           Text
-'\n'          Text
-
-'\n'          Text
-
-'\n'          Text
+' ordered list item 2\n\n\n' Text
 
 '1)'          Keyword
-' ordered list item ' Text
-'1'           Text
-'\n'          Text
+' ordered list item 1\n' Text
 
 '2)'          Keyword
-' ordered list item ' Text
-'2'           Text
-'\n'          Text
+' ordered list item 2\n' Text
 
 '3)'          Keyword
 ' [@20]'      Generic.Emph
-' asdf'       Text
-'\n'          Text
-
-'\n'          Text
-
-'\n'          Text
+' asdf\n\n\n' Text
 
 '- '          Keyword
 '*bold*'      Generic.Strong
@@ -205,28 +144,22 @@
 
 '- '          Keyword
 '_underline_' Generic.EmphStrong
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text
 
 '#+begin_comment\n' Operator.Word
 
 'this is a\ncomment\n' Comment.Multiline
 
 '#+end_comment' Operator.Word
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text
 
 '- '          Keyword
 '09 ::'       Name.Label
-' asdf'       Text
-'\n'          Text
+' asdf\n'     Text
 
 '- '          Keyword
 '09 ::'       Name.Label
-' asdf'       Text
-'\n'          Text
+' asdf\n'     Text
 
 '** Checkbox lists                                            ' Generic.Subheading
 ' :checkbox:list:' Generic.Emph
@@ -234,13 +167,11 @@
 
 '- '          Keyword
 '[ ]'         Generic.Prompt
-' asdf'       Text
-'\n'          Text
+' asdf\n'     Text
 
 '- '          Keyword
 '[X]'         Generic.Prompt
-' def'        Text
-'\n'          Text
+' def\n'      Text
 
 '* Dates'     Generic.Heading
 '\n'          Text
@@ -250,22 +181,14 @@
 
 'DEADLINE: '  Generic.Error
 '<2018-07-31 Tue>' Literal.Date
-''            Text
-'\n'          Text
-
-'something'   Text
-'\n'          Text
+'\nsomething\n' Text
 
 '** scheduled' Generic.Subheading
 '\n'          Text
 
 'SCHEDULED: ' Generic.Error
 '<2018-07-31 Tue>' Literal.Date
-''            Text
-'\n'          Text
-
-'something'   Text
-'\n'          Text
+'\nsomething\n' Text
 
 '** both'     Generic.Subheading
 '\n'          Text
@@ -274,7 +197,6 @@
 '<2025-06-01 Sun>' Literal.Date
 ' SCHEDULED: ' Generic.Error
 '<2025-05-27 Tue>' Literal.Date
-''            Text
 '\n'          Text
 
 '** '         Generic.Subheading
@@ -288,7 +210,6 @@
 '<2025-06-01 Sun>' Literal.Date
 ' SCHEDULED: ' Generic.Error
 '<2025-05-27 Tue>' Literal.Date
-''            Text
 '\n'          Text
 
 '** multideadline' Generic.Subheading
@@ -300,7 +221,6 @@
 '<2025-06-01 Sun>' Literal.Date
 ' DEADLINE: ' Generic.Error
 '<2025-09-01 Sun>' Literal.Date
-''            Text
 '\n'          Text
 
 '** '         Generic.Subheading
@@ -316,116 +236,49 @@
 '<2025-06-01 Sun>' Literal.Date
 ' DEADLINE: ' Generic.Error
 '<2025-09-01 Sun>' Literal.Date
-''            Text
 '\n'          Text
 
 '* Blocks'    Generic.Heading
 '\n'          Text
 
-'#+BEGIN_QUOTE' Operator.Word
+'#+BEGIN_'    Operator.Word
+'QUOTE'       Operator.Word
 '\n'          Text.Whitespace
 
 'quote\nblock\n' Text
 
-'#+END_QUOTE' Operator.Word
-'\n'          Text
+'#+END_'      Operator.Word
+'QUOTE'       Operator.Word
+'\n\n'        Text
 
-'\n'          Text
-
-'#+begin_example' Operator.Word
-'\n'          Text.Whitespace
+'#+begin_example\n' Operator.Word
 
 'example\nblock\n' Text
 
 '#+end_example' Operator.Word
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text
 
 '#+begin_src emacs-lisp' Operator.Word
 '\n(message "hello")\n' Text
 
 '#+end_src'   Operator.Word
-'\n'          Text
+'\n\n'        Text
 
-'\n'          Text
-
-'#+begin_details' Operator.Word
+'#+begin_'    Operator.Word
+'details'     Operator.Word
 '\n'          Text.Whitespace
 
-'#+begin_summary\nWhy is this in *green*?\n' Text
+'#+begin_summary\nWhy is this in *green*?\n#+end_summary\nYou will learn that later below in [[#details-css][CSS]] section.\n' Text
 
-'#+end_summary' Operator.Word
-'\n'          Text
+'#+end_'      Operator.Word
+'details'     Operator.Word
+'\n\n'        Text
 
-'You will learn that later below in ' Text
-'[['          Punctuation
-'#details-css' Name.Attribute
-']['          Punctuation
-'CSS'         Name.Tag
-']]'          Punctuation
-' section.'   Text
-'\n'          Text
+'#+begin_export html' Operator.Word
+'\n<style>\n.my-table th,\n.my-table td {\n    padding: 20px;\n    text-align: left;\n}\n</style>\n' Text
 
-'#'           Text
-'+'           Text
-'end'         Text
-'_'           Text
-'details'     Text
-'\n'          Text
-
-'\n'          Text
-
-'#'           Text
-'+'           Text
-'begin'       Text
-'_'           Text
-'export html' Text
-'\n'          Text
-
-'<style>'     Literal.Date
-'\n'          Text
-
-'.my'         Text
-'-'           Text
-'table th,'   Text
-'\n'          Text
-
-'.my'         Text
-'-'           Text
-'table td '   Text
-'{'           Text
-'\n'          Text
-
-'    padding' Text
-':'           Text
-' '           Text
-'2'           Text
-'0'           Text
-'px;'         Text
-'\n'          Text
-
-'    text'    Text
-'-'           Text
-'align'       Text
-':'           Text
-' left;'      Text
-'\n'          Text
-
-'}'           Text
-'\n'          Text
-
-'</style>'    Literal.Date
-'\n'          Text
-
-'#'           Text
-'+'           Text
-'end'         Text
-'_'           Text
-'export'      Text
-'\n'          Text
-
-'\n'          Text
+'#+end_export' Operator.Word
+'\n\n'        Text
 
 '- '          Keyword
 '{{{latex}}}' Comment.Preproc
@@ -436,32 +289,31 @@
 '\n'          Text
 
 '#+caption:'  Name.Namespace
-' Declaring Constants' Text
-'\n'          Text
+' Declaring Constants\n' Text
 
 '#+name:'     Name.Namespace
-' code__decl_constants' Text
-'\n'          Text
+' code__decl_constants\n' Text
 
 '#+begin_src systemverilog' Operator.Word
 "\nconst bit [7:0] R_CHARACTER = 8'b000_11100; // The /K28.0/ character\nconst bit [7:0] A_CHARACTER = 8'b011_11100; // The /K28.3/ character\nconst bit [7:0] Q_CHARACTER = 8'b100_11100; // The /K28.4/ character\n" Text
 
 '#+end_src'   Operator.Word
-'\n'          Text
-
-'Check out code snippet ' Text
+'\nCheck out code snippet ' Text
 '[['          Punctuation
 'code__decl_constants]].\n* Links                                                            :some_tag:\n:properties:\n:CUSTOM_ID: links\n:end:\n- [[file:post-yaml.org]]\n- [[file:post-yaml.org' Name.Attribute
 ']['          Punctuation
 'Post exported with YAML front-matter' Name.Tag
 ']]'          Punctuation
-'.'           Text
+'.\n'         Text
+
+'- '          Keyword
+'Bare url '   Text
+'https://example.com' Name.Attribute
 '\n'          Text
 
 '- '          Keyword
 '<<target>'   Literal.Date
-'>'           Text
-'\n'          Text
+'>\n'         Text
 
 '* Tables'    Generic.Heading
 '\n'          Text
@@ -477,9 +329,7 @@
 '\n'          Text
 
 '| c | d |'   Literal.String
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text
 
 '|---+---|'   Literal.String
 '\n'          Text
@@ -494,23 +344,12 @@
 '\n'          Text
 
 '|---+---|'   Literal.String
-'\n'          Text
-
-'\n'          Text
-
-'Some text '  Text
+'\n\nSome text ' Text
 '[fn:2]'      Name.Tag
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text
 
 '#+BEGIN: '   Operator.Word
-'aggregate '  Text
-':'           Text
-'table "original" ' Text
-':'           Text
-'cols "Color count()"' Text
-'\n'          Text
+'aggregate :table "original" :cols "Color count()"\n' Text
 
 '| Color | count() |' Literal.String
 '\n'          Text
@@ -528,14 +367,10 @@
 '\n'          Text
 
 '* Footnotes' Generic.Heading
-'\n'          Text
-
-'\n'          Text
+'\n\n'        Text
 
 '[fn:2]'      Name.Tag
-' footnote '  Text
-'2'           Text
-'\n'          Text
+' footnote 2\n' Text
 
 '[fn:1]'      Name.Tag
 ' For more detail, check out the Org manual ' Text
@@ -544,8 +379,7 @@
 ']['          Punctuation
 'page for footnotes' Name.Tag
 ']]'          Punctuation
-'.'           Text
-'\n'          Text
+'.\n'         Text
 
 '* Local Variables' Generic.Heading
 ' :ARCHIVE:'  Generic.Emph
