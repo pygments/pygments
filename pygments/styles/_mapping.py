@@ -46,7 +46,7 @@ STYLES = {
     'StataDarkStyle': ('pygments.styles.stata_dark', 'stata-dark', ()),
     'StataLightStyle': ('pygments.styles.stata_light', 'stata-light', ()),
     'TangoStyle': ('pygments.styles.tango', 'tango', ()),
-    'TomorrowNightEightiesStyle':('pygments.styles.tomorrow_night_eighties', 'tomorrow-night-eighties',()),
+    'TomorrownighteightiesStyle': ('pygments.styles.tomorrow_night_eighties', 'tomorrow-night-eighties', ()),
     'TracStyle': ('pygments.styles.trac', 'trac', ()),
     'VimStyle': ('pygments.styles.vim', 'vim', ()),
     'VisualStudioStyle': ('pygments.styles.vs', 'vs', ()),

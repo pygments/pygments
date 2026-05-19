@@ -16,6 +16,7 @@ from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, Text, \
      Number, Operator, Generic, Whitespace, Punctuation, Other, Literal
 
+__all__ = ['TomorrownighteightiesStyle']
 
 BACKGROUND = "#2d2d2d"
 CURRENT_LINE = "#393939"
@@ -37,10 +38,9 @@ class TomorrownighteightiesStyle(Style):
     Port of the Tomorrow Night Eighties colour scheme https://github.com/chriskempson/tomorrow-theme
     """
 
-    default_style = ''
+    name = 'tomorrow-night-eighties'
 
-    background_color = BACKGROUND
-    highlight_color = SELECTION
+    default_style = ''
 
     background_color = BACKGROUND
     highlight_color = SELECTION
