@@ -1,14 +1,14 @@
 ---input---
 r"hello"
-r"he\llo"
+r"he\\llo"
 r"hello\""
 r"hello\\"
-r"a*+?.|()\^#"
+r"a*+?.|()\\^#"
 r"a\"bc"
 r""
 r""i
 r"hello"i
-r"he\llo"m
+r"he\\llo"m
 r"hello\""x
 r"hello\\"s
 
@@ -21,7 +21,7 @@ r"hello\\"s
 
 'r'           Literal.String.Affix
 '"'           Literal.String.Regex
-'he\\llo'     Literal.String.Regex
+'he\\\\llo'   Literal.String.Regex
 '"'           Literal.String.Regex
 '\n'          Text.Whitespace
 
@@ -39,7 +39,7 @@ r"hello\\"s
 
 'r'           Literal.String.Affix
 '"'           Literal.String.Regex
-'a*+?.|()\\^#' Literal.String.Regex
+'a*+?.|()\\\\^#' Literal.String.Regex
 '"'           Literal.String.Regex
 '\n'          Text.Whitespace
 
@@ -69,7 +69,7 @@ r"hello\\"s
 
 'r'           Literal.String.Affix
 '"'           Literal.String.Regex
-'he\\llo'     Literal.String.Regex
+'he\\\\llo'   Literal.String.Regex
 '"'           Literal.String.Regex
 'm'           Literal.String.Affix
 '\n'          Text.Whitespace
