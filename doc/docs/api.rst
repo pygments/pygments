@@ -58,7 +58,8 @@ The base lexer class from which all lexers are derived is:
 .. autoclass:: Lexer
    :members: __init__, add_filter, get_tokens, get_tokens_unprocessed, analyse_text
 
-There are several base class derived from ``Lexer`` you can use to build your lexer from:
+There are several base classes derived from ``Lexer`` you can use to build your
+lexer from:
 
 .. autoclass:: pygments.lexer.RegexLexer
 .. autoclass:: pygments.lexer.ExtendedRegexLexer
