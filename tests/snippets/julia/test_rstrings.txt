@@ -1,18 +1,39 @@
 ---input---
 r"hello"
+r"he\llo"
+r"hello\""
+r"hello\\"
 r"a*+?.|()\^#"
 r"a\"bc"
 r""
 r""i
-r"a"i
-r"b"m
-r"c"x
-r"d"a
+r"hello"i
+r"he\llo"m
+r"hello\""x
+r"hello\\"s
 
 ---tokens---
 'r'           Literal.String.Affix
 '"'           Literal.String.Regex
 'hello'       Literal.String.Regex
+'"'           Literal.String.Regex
+'\n'          Text.Whitespace
+
+'r'           Literal.String.Affix
+'"'           Literal.String.Regex
+'he\\llo'     Literal.String.Regex
+'"'           Literal.String.Regex
+'\n'          Text.Whitespace
+
+'r'           Literal.String.Affix
+'"'           Literal.String.Regex
+'hello\\"'    Literal.String.Regex
+'"'           Literal.String.Regex
+'\n'          Text.Whitespace
+
+'r'           Literal.String.Affix
+'"'           Literal.String.Regex
+'hello\\\\'   Literal.String.Regex
 '"'           Literal.String.Regex
 '\n'          Text.Whitespace
 
@@ -41,28 +62,28 @@ r"d"a
 
 'r'           Literal.String.Affix
 '"'           Literal.String.Regex
-'a'           Literal.String.Regex
+'hello'       Literal.String.Regex
 '"'           Literal.String.Regex
 'i'           Literal.String.Affix
 '\n'          Text.Whitespace
 
 'r'           Literal.String.Affix
 '"'           Literal.String.Regex
-'b'           Literal.String.Regex
+'he\\llo'     Literal.String.Regex
 '"'           Literal.String.Regex
 'm'           Literal.String.Affix
 '\n'          Text.Whitespace
 
 'r'           Literal.String.Affix
 '"'           Literal.String.Regex
-'c'           Literal.String.Regex
+'hello\\"'    Literal.String.Regex
 '"'           Literal.String.Regex
 'x'           Literal.String.Affix
 '\n'          Text.Whitespace
 
 'r'           Literal.String.Affix
 '"'           Literal.String.Regex
-'d'           Literal.String.Regex
+'hello\\\\'   Literal.String.Regex
 '"'           Literal.String.Regex
-'a'           Literal.String.Affix
+'s'           Literal.String.Affix
 '\n'          Text.Whitespace
