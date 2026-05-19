@@ -14,7 +14,7 @@
 
 from pygments.style import Style
 from pygments.token import Keyword, Name, Comment, String, Error, Text, \
-     Number, Operator, Generic, Whitespace, Punctuation, Other, Literal
+     Number, Operator, Generic, Whitespace, Punctuation, Other, Literal, Token
 
 __all__ = ['TomorrownighteightiesStyle']
 
@@ -50,7 +50,7 @@ class TomorrownighteightiesStyle(Style):
         Text:                      FOREGROUND,  # class:  ''
         Whitespace:                "",          # class: 'w'
         Error:                     RED,         # class: 'err'
-        Other:                     "",          # class 'x'
+        Other:                     FOREGROUND,          # class 'x'
 
         Comment:                   COMMENT,   # class: 'c'
         Comment.Multiline:         "",        # class: 'cm'
@@ -114,15 +114,18 @@ class TomorrownighteightiesStyle(Style):
         String.Single:             "",          # class: 's1'
         String.Symbol:             "",          # class: 'ss'
 
-        Generic:                   "",                    # class: 'g'
+        Generic:                   FOREGROUND,            # class: 'g'
         Generic.Deleted:           RED,                   # class: 'gd',
-        Generic.Emph:              "italic",              # class: 'ge'
-        Generic.Error:             "",                    # class: 'gr'
+        Generic.Emph:              "italic " + FOREGROUND,              # class: 'ge'
+        Generic.Error:             RED,                    # class: 'gr'
         Generic.Heading:           "bold " + FOREGROUND,  # class: 'gh'
         Generic.Inserted:          GREEN,                 # class: 'gi'
-        Generic.Output:            "",                    # class: 'go'
+        Generic.Output:            FOREGROUND,                    # class: 'go'
         Generic.Prompt:            "bold " + COMMENT,     # class: 'gp'
-        Generic.Strong:            "bold",                # class: 'gs'
+        Generic.Strong:            "bold " + FOREGROUND,                # class: 'gs'
         Generic.Subheading:        "bold " + AQUA,        # class: 'gu'
-        Generic.Traceback:         "",                    # class: 'gt'
+        Generic.Traceback:         RED,                    # class: 'gt'
+
+        Token:                     FOREGROUND,          # class: 'x' - default
+        Token.Escape:              FOREGROUND,      # class: 'esc'
     }
