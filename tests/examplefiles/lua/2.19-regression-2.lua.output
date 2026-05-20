@@ -3,12 +3,14 @@
 'function'    Keyword.Reserved
 ' '           Text.Whitespace
 'bribe'       Name.Function
-'()'          Punctuation
+'('           Punctuation
+')'           Punctuation
 '\n    '      Text.Whitespace
 'tes3ui'      Name.Variable
 '.'           Punctuation
 'showInventorySelectMenu' Name.Function
-'({'          Punctuation
+'('           Punctuation
+'{'           Punctuation
 '\n        '  Text.Whitespace
 'callback'    Name.Variable
 ' '           Text.Whitespace
@@ -52,7 +54,8 @@
 'end'         Keyword.Reserved
 ','           Punctuation
 '\n    '      Text.Whitespace
-'})'          Punctuation
+'}'           Punctuation
+')'           Punctuation
 '\n'          Text.Whitespace
 
 'end'         Keyword.Reserved
