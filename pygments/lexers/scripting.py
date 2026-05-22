@@ -92,7 +92,7 @@ class LuaLexer(RegexLexer):
             (r'::', Punctuation, 'label'),
             (r'\.{3}', Punctuation),
             (r'[+\-*%^&|#]|//?|>>|<<|\.\.|[=~<>]=?', Operator),
-            (r'[\[\]{}().,:;]', Punctuation),
+            (r'[\[\]{}().,:;]+', Punctuation),
             (r'(and|or|not)\b', Operator.Word),
 
             (words([
