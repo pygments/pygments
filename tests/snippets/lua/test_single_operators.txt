@@ -6,9 +6,7 @@ expr = (((1 + 1 - #("" .. "") * 1 / 1 % 1 << 1) ^ 1 // 1 & ~0 | 1 >> 1) == 4) an
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'('           Punctuation
-'('           Punctuation
-'('           Punctuation
+'((('         Punctuation
 '1'           Literal.Number.Integer
 ' '           Text.Whitespace
 '+'           Operator

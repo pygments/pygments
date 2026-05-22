@@ -105,7 +105,7 @@ class LuaLexer(RegexLexer):
 
             (r'function\b', Keyword.Reserved, 'funcname'),
 
-            (words(all_lua_builtins(), suffix=r"\b"), Name.Builtin),
+            (words(all_lua_builtins(), suffix=r'\b'), Name.Builtin),
             (fr'[A-Za-z_]\w*(?={_s_la}*\()', Name.Function),
             (fr'[A-Za-z_]\w*(?={_s_la}*[.:])', Name.Variable, 'varname'),
             (fr'[A-Za-z_]\w*(?={_s_la}*<.+?>)', Name.Variable, 'varname'),
