@@ -1,0 +1,82 @@
+'Example Structure' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'One-bit Field' Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'1'           Literal.Number
+')'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'7-bit Field with Fixed Value' Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'7'           Literal.Number
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'61'          Literal.Number
+','           Punctuation
+'\n  '        Text.Whitespace
+'Field with Variable-Length Integer' Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'i'           Keyword
+')'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'Arbitrary-Length Field' Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'..'          Operator
+')'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'Variable-Length Field' Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'8'           Literal.Number
+'..'          Operator
+'24'          Literal.Number
+')'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'Field With Minimum Length' Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'16'          Literal.Number
+'..'          Operator
+')'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'Field With Maximum Length' Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'..'          Operator
+'128'         Literal.Number
+')'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'['           Text.Whitespace
+'Optional Field' Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'64'          Literal.Number
+')'           Punctuation
+']'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'Repeated Field' Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'8'           Literal.Number
+')'           Punctuation
+' '           Text.Whitespace
+'...'         Name.Property
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

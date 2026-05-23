@@ -1,0 +1,13 @@
+Retry Packet {
+  Header Form (1) = 1,
+  Fixed Bit (1) = 1,
+  Long Packet Type (2) = 3,
+  Unused (4),
+  Version (32),
+  Destination Connection ID Length (8),
+  Destination Connection ID (0..160),
+  Source Connection ID Length (8),
+  Source Connection ID (0..160),
+  Retry Token (..),
+  Retry Integrity Tag (128),
+}

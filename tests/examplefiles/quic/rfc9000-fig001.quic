@@ -1,0 +1,11 @@
+Example Structure {
+  One-bit Field (1),
+  7-bit Field with Fixed Value (7) = 61,
+  Field with Variable-Length Integer (i),
+  Arbitrary-Length Field (..),
+  Variable-Length Field (8..24),
+  Field With Minimum Length (16..),
+  Field With Maximum Length (..128),
+  [Optional Field (64)],
+  Repeated Field (8) ...,
+}
