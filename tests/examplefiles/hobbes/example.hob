@@ -1,0 +1,128 @@
+/*
+ * maybe
+ */
+
+// [doc] constructs a maybe out of a value
+just :: a -> (()+a)
+just x = |1=x|
+
+// by the monotype requirement one must write e.g. `nothing :: (()+int)`
+nothing :: (()+a)
+nothing = |0=()|
+
+either :: (()+a, b, a -> b) -> b
+either x d f = case x of |0:_=d,1:y=f(y)|
+
+eitherC :: (()+a, b, exists E.(((E, a)->b) * E)) -> b
+eitherC x d f = case x of |0:_=d,1:y=apply(f,y)|
+
+// [doc] returns true iff its argument contains a value
+isJust :: (()+a) -> bool
+isJust x = case x of |0:_=false, 1:_=true|
+
+dropNulls :: [()+a] -> [a]
+dropNulls xs = [x | |1=x| <- xs]
+
+// [doc] returns true iff its argument is nothing
+isNothing :: (()+a) -> bool
+isNothing x = case x of |0:_=true,1:_=false|
+
+// an easy way to check for the null case in nullable types (assuming the null value is on the left)
+isNull :: (()+a) -> bool
+isNull = isNothing
+
+fromMaybe :: (a,()+a) -> a
+fromMaybe d x = either(x,d,id)
+
+mmap :: (a -> b, ()+a) -> (()+b)
+mmap f x = case x of |0:_=|0=()|, 1:y=|1=f(y)||
+
+mmapC :: (exists E.(((E, a) -> b) * E), ()+a) -> (()+b)
+mmapC f x = case x of |0:_=|0=()|, 1:y=|1=apply(f,y)||
+
+instance SeqDesc (l+r) "either" r
+
+// [doc] Functor over a Either (with potential default on the left type)
+instance Map f c a b "either" (l+a) "either" (l+b) where
+  fmap f la = case la of |0:l=|0=l|, 1:a=|1=apply(f,a)||
+
+instance (HasDef l) => FilterMap p pc f c a b "either" (l+a) "either" (l+b) where
+  ffilterMap p f la = case la of |0:l=|0=l|, 1:a=if (apply(p,a)) then |1=apply(f,a)| else |0=def||
+
+instance (HasDef l) => FilterMMap f c a b "either" (l+a) "either" (l+b) where
+  ffilterMMap f la = case la of |0:l=|0=l|, 1:a=case apply(f,a) of |0:_=|0=def|,1:b=|1=b|||
+
+atm :: (Array as a, Convert i long) => (as, i) -> (()+a)
+atm xs i = elementM(xs, i)
+
+atMay :: (Convert b long) => ([a],b) -> (()+a)
+atMay = atm 
+
+headMay :: [a] -> (()+a)
+headMay xs = atm(xs,0L)
+
+tailMay :: [a] -> (()+[a])
+tailMay xs = if (length(xs) == 0L) then nothing else just(xs[1:])
+
+// [doc] either just the one element of a size-1 array or nothing
+justOne :: [a] -> (()+a)
+justOne xs = if (length(xs) == 1) then just(xs[0]) else nothing
+
+// [doc] just the first element of an array or nothing
+justFirst :: [a] -> (()+a)
+justFirst xs = if (length(xs) == 0) then nothing else just(xs[0])
+
+// [doc] just the last element of an array or nothing
+justLast :: [a] -> (()+a)
+justLast xs = if (length(xs) == 0) then nothing else just(xs[length(xs)-1])
+
+// [doc] map a function over a maybe
+mapm :: (a -> b, (()+a)) -> (()+b)
+mapm f m = match m with | |1=x| -> just(f(x)) | _ -> nothing
+
+// arithmetic on maybe values
+instance (Add a b c, HasZero a, HasZero b) => Add (()+a) (()+b) (()+c) where
+  mx + my = match mx my with | |1=x| |1=y| -> just(x+y) | |1=x| _ -> just(x+(zero::b)) | _ |1=y| -> just((zero::a)+y) | _ _ -> nothing
+instance (Add a b c) => Add (()+a) (()+b) (()+c) where
+  mx + my = match mx my with | |1=x| |1=y| -> just(x+y) | _ _ -> nothing
+instance (Add a b c) => Add (()+a) b (()+c) where
+  mx + y = match mx with | |1=x| -> just(x+y) | _ -> nothing
+instance (Add a b c) => Add a (()+b) (()+c) where
+  x + my = match my with | |1=y| -> just(x+y) | _ -> nothing
+
+instance (Subtract a b c, HasZero a, HasZero b) => Subtract (()+a) (()+b) (()+c) where
+  mx - my = match mx my with | |1=x| |1=y| -> just(x-y) | |1=x| _ -> just(x-(zero::b)) | _ |1=y| -> just((zero::a)-y) | _ _ -> nothing
+instance (Subtract a b c) => Subtract (()+a) (()+b) (()+c) where
+  mx - my = match mx my with | |1=x| |1=y| -> just(x-y) | _ _ -> nothing
+instance (Subtract a b c) => Subtract (()+a) b (()+c) where
+  mx - y = match mx with | |1=x| -> just(x-y) | _ -> nothing
+instance (Subtract a b c) => Subtract a (()+b) (()+c) where
+  x - my = match my with | |1=y| -> just(x-y) | _ -> nothing
+
+instance (Multiply a b c, HasOne a, HasOne b) => Multiply (()+a) (()+b) (()+c) where
+  mx * my = match mx my with | |1=x| |1=y| -> just(x*y) | |1=x| _ -> just(x*(one::b)) | _ |1=y| -> just((one::a)*y) | _ _ -> nothing
+instance (Multiply a b c) => Multiply (()+a) (()+b) (()+c) where
+  mx * my = match mx my with | |1=x| |1=y| -> just(x*y) | _ _ -> nothing
+instance (Multiply a b c) => Multiply (()+a) b (()+c) where
+  mx * y = match mx with | |1=x| -> just(x*y) | _ -> nothing
+instance (Multiply a b c) => Multiply a (()+b) (()+c) where
+  x * my = match my with | |1=y| -> just(x*y) | _ -> nothing
+
+instance (Divide a b c, HasOne a, HasOne b) => Divide (()+a) (()+b) (()+c) where
+  mx / my = match mx my with | |1=x| |1=y| -> just(x/y) | |1=x| _ -> just(x/(one::b)) | _ |1=y| -> just((one::a)/y) | _ _ -> nothing
+instance (Divide a b c) => Divide (()+a) (()+b) (()+c) where
+  mx / my = match mx my with | |1=x| |1=y| -> just(x/y) | _ _ -> nothing
+instance (Divide a b c) => Divide (()+a) b (()+c) where
+  mx / y = match mx with | |1=x| -> just(x/y) | _ -> nothing
+instance (Divide a b c) => Divide a (()+b) (()+c) where
+  x / my = match my with | |1=y| -> just(x/y) | _ -> nothing
+
+// split a variant tag out into an equivalent enumeration
+class Enum a b | a -> b where
+  enum :: a -> b
+
+instance (v=|lbl:h+0|, |lbl:()+0|=e) => Enum v e where
+  enum = unsafeCast
+instance (v=|lbl:h+t|, Enum t vt, |lbl:()+vt|=e) => Enum v e where
+  enum = unsafeCast
+
