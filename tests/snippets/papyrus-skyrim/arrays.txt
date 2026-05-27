@@ -1,0 +1,32 @@
+---input---
+Int[] a = New Int[5]
+Foo[] b = New Foo[5]
+
+---tokens---
+'Int[]'       Keyword.Type
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'New'         Operator.Word
+' '           Text.Whitespace
+'Int'         Keyword.Type
+'['           Punctuation
+'5'           Literal
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'Foo[]'       Name.Class
+' '           Text.Whitespace
+'b'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'New'         Operator.Word
+' '           Text.Whitespace
+'Foo'         Name.Class
+'['           Punctuation
+'5'           Literal
+']'           Punctuation
+'\n'          Text.Whitespace
