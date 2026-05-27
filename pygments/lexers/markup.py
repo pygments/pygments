@@ -25,8 +25,8 @@ from pygments.util import get_bool_opt, ClassNotFound
 __all__ = ['BBCodeLexer', 'MoinWikiLexer', 'RstLexer', 'TexLexer', 'GroffLexer',
            'MozPreprocHashLexer', 'MozPreprocPercentLexer',
            'MozPreprocXulLexer', 'MozPreprocJavascriptLexer',
-           'MozPreprocCssLexer', 'MarkdownLexer', 'OrgLexer', 'TiddlyWiki5Lexer',
-           'WikitextLexer']
+           'MozPreprocCssLexer', 'MarkdownLexer', 'MarklessLexer', 'OrgLexer',
+           'TiddlyWiki5Lexer', 'WikitextLexer']
 
 
 class BBCodeLexer(RegexLexer):
@@ -614,6 +614,225 @@ class MarkdownLexer(RegexLexer):
         ],
     }
 
+    def __init__(self, **options):
+        self.handlecodeblocks = get_bool_opt(options, 'handlecodeblocks', True)
+        RegexLexer.__init__(self, **options)
+
+class MarklessLexer(RegexLexer):
+    """
+    For Markless markup.
+    """
+    name = 'Markless'
+    url = 'https://shirakumo.org/docs/markless'
+    aliases = ['markless']
+    filenames = ['*.mess', '*.markless']
+    mimetypes = ["text/x-markless"]
+    version_added = '2.20'
+    flags = re.MULTILINE
+
+    def _handle_codeblock(self, match):
+        from pygments.lexers import get_lexer_by_name
+        # Same logic as for Markdown above.
+        yield match.start(1), Keyword, match.group(1)
+        yield match.start(2), Text.Whitespace, match.group(2)
+        yield match.start(3), Name.Function, match.group(3)
+        yield match.start(4), String, match.group(4)
+        yield match.start(5), Text.Whitespace, match.group(5)
+
+        lexer = None
+        if self.handlecodeblocks:
+            try:
+                lexer = get_lexer_by_name(match.group(3))
+            except ClassNotFound:
+                pass
+        if lexer is None:
+            yield match.start(6), String, match.group(6)
+        else:
+            yield from do_insertions([], lexer.get_tokens_unprocessed(match.group(6)))
+
+        yield match.start(7), Keyword, match.group(7)
+
+    colors = [
+        'indian-red', 'light-coral', 'salmon', 'dark-salmon', 'light-salmon', 'crimson', 'red',
+        'firebrick', 'dark-red', 'pink', 'light-pink', 'hot-pink', 'deep-pink', 'medium-violet-red',
+        'pale-violet-red', 'coral', 'tomato', 'orange-red', 'dark-orange', 'orange', 'gold',
+        'yellow', 'light-yellow', 'lemon-chiffon', 'light-goldenrod-yellow', 'papayawhip',
+        'moccasin', 'peachpuff', 'pale-goldenrod', 'khaki', 'dark-khaki', 'lavender', 'thistle',
+        'plum', 'violet', 'orchid', 'fuchsia', 'magenta', 'medium-orchid', 'medium-purple',
+        'rebecca-purple', 'blue-violet', 'dark-violet', 'dark-orchid', 'dark-magenta', 'purple',
+        'indigo', 'slate-blue', 'dark-slate-blue', 'medium-slate-blue', 'green-yellow',
+        'chartreuse', 'lawn-green', 'lime', 'lime-green', 'pale-green', 'light-green',
+        'medium-spring-green', 'spring-green', 'medium-sea-green', 'sea-green', 'forest-green',
+        'green', 'dark-green', 'yellow-green', 'olive-drab', 'olive', 'dark-olive-green',
+        'medium-aquamarine', 'dark-sea-green', 'light-sea-green', 'dark-cyan', 'teal', 'aqua',
+        'cyan', 'light-cyan', 'pale-turquoise', 'aquamarine', 'turquoise', 'medium-turquoise',
+        'dark-turquoise', 'cadet-blue', 'steel-blue', 'light-steel-blue', 'powder-blue',
+        'light-blue', 'sky-blue', 'light-sky-blue', 'deep-sky-blue', 'dodger-blue',
+        'cornflower-blue', 'royal-blue', 'blue', 'medium-blue', 'dark-blue', 'navy',
+        'midnight-blue', 'cornsilk', 'blanched-almond', 'bisque', 'navajo-white', 'wheat',
+        'burlywood', 'tan', 'rosy-brown', 'sandy-brown', 'goldenrod', 'dark-goldenrod', 'peru',
+        'chocolate', 'saddle-brown', 'sienna', 'brown', 'maroon', 'white', 'snow', 'honeydew',
+        'mintcream', 'azure', 'alice-blue', 'ghost-white', 'white-smoke', 'seashell', 'beige',
+        'oldlace', 'floral-white', 'ivory', 'antique-white', 'linen', 'lavenderblush', 'mistyrose',
+        'gainsboro', 'light-gray', 'silver', 'dark-gray', 'gray', 'dim-gray', 'light-slate-gray',
+        'slate-gray', 'dark-slate-gray'
+    ]
+    sizes = [
+        'microscopic', 'tiny', 'small', 'normal', 'big', 'large', 'huge', 'gigantic'
+    ]
+
+    tokens = {
+        'root': [
+            include('header'),
+            include('ordered-list'),
+            include('unordered-list'),
+            include('code-block'),
+            include('blockquote'),
+            include('blockquote-header'),
+            include('align'),
+            include('comment'),
+            include('instruction'),
+            include('embed'),
+            include('footnote'),
+            include('horizontal-rule'),
+            include('paragraph'),
+        ],
+        'header': [
+            (r'(# )(.*)$', bygroups(Keyword, Generic.Heading), 'inline'),
+            (r'(##+)(.*)$', bygroups(Keyword, Generic.Subheading), 'inline'),
+        ],
+        'ordered-list': [
+            (r'([0-9]+\.)', Keyword),
+        ],
+        'unordered-list': [
+            (r'(- )', Keyword),
+        ],
+        'code-block': [
+            (r'(::+)( *)(\w*)([^\n]*)(\n)([\w\W]*?)(^\1$)', _handle_codeblock),
+        ],
+        'blockquote': [
+            (r'(\| )(.*)$', bygroups(Keyword, Generic.Inserted)),
+        ],
+        'blockquote-header': [
+            (r'(~ )([^|\n]+)(\| )(.*?\n)',
+             bygroups(Keyword, Name.Entity, Keyword, Generic.Inserted), 'inline-blockquote'),
+            (r'(~ )(.*)$', bygroups(Keyword, Name.Entity)),
+        ],
+        'inline-blockquote': [
+            (r'^(   +)(\| )(.*$)', bygroups(Text.Whitespace, Keyword, Generic.Inserted)),
+            default('#pop'),
+        ],
+        'align': [
+            (r'(\|\|)|(\|<)|(\|>)|(><)', Keyword),
+        ],
+        'comment': [
+            (r'(;[; ]).*?$', Comment.Single),
+        ],
+        'instruction': [
+            (r'(! )([^ ]+)(.+?)$', bygroups(Keyword, Name.Function, Name.Variable)),
+        ],
+        'embed': [
+            (r'(\[ )([^ ]+)( )([^,]+)', bygroups(Keyword, Name.Function, Text.Whitespace, String),
+             'embed-options'),
+        ],
+        'embed-options': [
+            (r'\\.', Text),
+            (r',', Punctuation),
+            (r'\]?$', Keyword, '#pop'),
+            # Generic key or key/value pair
+            (r'( *)([^, \]]+)([^,\]]+)?', bygroups(Text.Whitespace, Name.Function, String)),
+            (r'.', Text),
+        ],
+        'footnote': [
+            (r'(\[)([0-9]+)(\])', bygroups(Keyword, Name.Variable, Keyword), 'inline'),
+        ],
+        'horizontal-rule': [
+            (r'(==+)$', Literal.Other),
+        ],
+        'paragraph': [
+            (r' +', Text.Whitespace, 'inline'),
+            default('inline'),
+        ],
+        # Inline directives
+        'inline': [
+            include('escapes'),
+            include('dashes'),
+            include('newline'),
+            include('italic'),
+            include('underline'),
+            include('bold'),
+            include('strikethrough'),
+            include('code'),
+            include('compound'),
+            include('footnote-reference'),
+            include('subtext'),
+            include('supertext'),
+            include('url'),
+            (r'\n', Text.Whitespace, '#pop'),
+            (r"[^\\/_*<`'v^ \-\[\n]+", Text),
+            (r" ", Text.Whitespace),
+            (r"[\\/_*<`'v^\-\[]", Text),
+        ],
+        'escapes': [
+            (r'\\.', Text),
+        ],
+        'dashes': [
+            (r'-{2,3}', Text.Punctuation),
+        ],
+        'newline': [
+            (r'-/-', Text.Whitespace),
+        ],
+        'italic': [
+            (r'(//)(.*?)(\1)', bygroups(Keyword, Generic.Emph, Keyword)),
+        ],
+        'underline': [
+            (r'(__)(.*?)(\1)', bygroups(Keyword, Generic.Underline, Keyword)),
+        ],
+        'bold': [
+            (r'(\*\*)(.*?)(\1)', bygroups(Keyword, Generic.Strong, Keyword)),
+        ],
+        'strikethrough': [
+            (r'(<-)(.*?)(->)', bygroups(Keyword, Generic.Deleted, Keyword)),
+        ],
+        'code': [
+            (r'(``+)(.*?)(\\1)', bygroups(Keyword, Literal.String.Backtick, Keyword)),
+        ],
+        'compound': [
+            (r"(''+)(.*?)(''\()", bygroups(Keyword, using(this, state='inline'), Keyword),
+             'compound-options'),
+        ],
+        'compound-options': [
+            (r'\\.', Text),
+            (r',', Punctuation),
+            (r'\)', Keyword, '#pop'),
+            # Hex Color
+            (r' *#[0-9A-Fa-f]{3,6} *', Literal.Number.Hex),
+            # Named Color
+            (r' *({}) *'.format('|'.join(colors)), Literal.Other),
+            # Named size
+            (r' *({}) *'.format('|'.join(sizes)), Name.Tag),
+            # Options
+            (r' *(bold|italic|underline|strikethrough|subtext|supertext|spoiler) *', Name.Builtin),
+            # URL. Note the missing ) and , in the match.
+            (r' *\w[-\w+.]*://[\w$\-.+!*\'(&/:;=?@%#\\]+ *', String),
+            # Generic key or key/value pair
+            (r'( *)([^, )]+)( [^,)]+)?', bygroups(Text.Whitespace, Name.Function, String)),
+            (r'.', Text),
+        ],
+        'footnote-reference': [
+            (r'(\[)([0-9]+)(\])', bygroups(Keyword, Name.Variable, Keyword)),
+        ],
+        'subtext': [
+            (r'(v\()(.*?)(\))', bygroups(Keyword, using(this, state='inline'), Keyword)),
+        ],
+        'supertext': [
+            (r'(\^\()(.*?)(\))', bygroups(Keyword, using(this, state='inline'), Keyword)),
+        ],
+        'url': [
+            (r'\w[-\w+.]*://[\w\$\-.+!*\'()&,/:;=?@%#\\]+', String),
+        ],
+    }
+    
     def __init__(self, **options):
         self.handlecodeblocks = get_bool_opt(options, 'handlecodeblocks', True)
         RegexLexer.__init__(self, **options)
