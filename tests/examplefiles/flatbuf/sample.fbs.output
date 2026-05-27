@@ -1,0 +1,250 @@
+'// This is a single-line comment\n' Comment.Single
+
+'/*\n * This is a multi-line comment.\n * It can span multiple lines.\n */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'include'     Keyword.Preprocessor
+' '           Text.Whitespace
+'"mydefinitions.fbs"' Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'namespace'   Keyword.Namespace
+' '           Text.Whitespace
+'MyNamespace.MyGame' Name.Namespace
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'attribute'   Keyword.Preprocessor
+' '           Text.Whitespace
+'"priority"'  Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'enum'        Keyword.Declaration
+' '           Text.Whitespace
+'Color'       Name.Class
+':'           Punctuation
+' '           Text.Whitespace
+'byte'        Name.Builtin
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'Red'         Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'Green'       Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'Blue'        Name.Variable
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'union'       Keyword.Declaration
+' '           Text.Whitespace
+'Any'         Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'Monster'     Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'Weapon'      Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'Pickup'      Name.Variable
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'struct'      Keyword.Declaration
+' '           Text.Whitespace
+'Vec3'        Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'x'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'float'       Name.Builtin
+';'           Punctuation
+'\n  '        Text.Whitespace
+'y'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'float'       Name.Builtin
+';'           Punctuation
+'\n  '        Text.Whitespace
+'z'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'float'       Name.Builtin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'table'       Keyword.Declaration
+' '           Text.Whitespace
+'Monster'     Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'pos'         Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Vec3'        Name.Variable
+';'           Punctuation
+'\n  '        Text.Whitespace
+'mana'        Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'short'       Name.Builtin
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'150'         Literal.Number.Integer
+';'           Punctuation
+'\n  '        Text.Whitespace
+'hp'          Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'short'       Name.Builtin
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+';'           Punctuation
+'\n  '        Text.Whitespace
+'name'        Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'string'      Name.Builtin
+';'           Punctuation
+'\n  '        Text.Whitespace
+'friendly'    Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'bool'        Name.Builtin
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'false'       Name.Variable.Global
+' '           Text.Whitespace
+'('           Punctuation
+'deprecated'  Name.Attribute
+','           Punctuation
+' '           Text.Whitespace
+'priority'    Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'inventory'   Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'ubyte'       Name.Builtin
+']'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'color'       Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Color'       Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Blue'        Name.Variable
+';'           Punctuation
+'\n  '        Text.Whitespace
+'test'        Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Any'         Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'rpc_service' Keyword.Declaration
+' '           Text.Whitespace
+'MonsterStorage' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'/// Documentation comment\n' Comment.Single
+
+'    '        Text.Whitespace
+'Store'       Name.Function
+'('           Punctuation
+'Monster'     Name.Attribute
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'StoreResponse' Name.Function
+';'           Punctuation
+'\n    '      Text.Whitespace
+'Retrieve'    Name.Function
+'('           Punctuation
+'MonsterId'   Name.Attribute
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'Monster'     Name.Function
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'table'       Keyword.Declaration
+' '           Text.Whitespace
+'Weapon'      Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'table'       Keyword.Declaration
+' '           Text.Whitespace
+'Pickup'      Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'root_type'   Keyword.Preprocessor
+' '           Text.Whitespace
+'Monster'     Name.Class
+';'           Punctuation
+'\n'          Text.Whitespace
