@@ -1,0 +1,42 @@
+---input---
+123456
+-987
+s_1.
+d_-.2
+s_+3
+d_123.456e3
+s_0x1.
+d_-0X.2
+s_+0x3
+d_0XABC.DEFp-3
+
+---tokens---
+'123456'      Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'-987'        Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'s_1.'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'d_-.2'       Literal.Number.Float
+'\n'          Text.Whitespace
+
+'s_+3'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'d_123.456e3' Literal.Number.Float
+'\n'          Text.Whitespace
+
+'s_0x1.'      Literal.Number.Float
+'\n'          Text.Whitespace
+
+'d_-0X.2'     Literal.Number.Float
+'\n'          Text.Whitespace
+
+'s_+0x3'      Literal.Number.Float
+'\n'          Text.Whitespace
+
+'d_0XABC.DEFp-3' Literal.Number.Float
+'\n'          Text.Whitespace
