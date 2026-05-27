@@ -22,7 +22,8 @@ __all__ = ['IniLexer', 'SystemdLexer', 'DesktopLexer', 'RegeditLexer', 'Properti
            'NginxConfLexer', 'LighttpdConfLexer', 'DockerLexer',
            'TerraformLexer', 'TermcapLexer', 'TerminfoLexer',
            'PkgConfigLexer', 'PacmanConfLexer', 'AugeasLexer', 'TOMLLexer',
-           'NestedTextLexer', 'SingularityLexer', 'UnixConfigLexer']
+           'NestedTextLexer', 'SingularityLexer', 'UnixConfigLexer',
+           'HAProxyLexer']
 
 
 class IniLexer(RegexLexer):
@@ -1431,3 +1432,145 @@ class UnixConfigLexer(RegexLexer):
             (r'[^:\n]+', String),
         ],
     }
+
+
+class HAProxyLexer(RegexLexer):
+    """
+    Lexer for HAProxy configuration files.
+    """
+    name = 'HAProxy'
+    url = 'https://www.haproxy.org/'
+    aliases = ['haproxy']
+    filenames = ['haproxy.cfg']
+    mimetypes = ['text/x-haproxy-config']
+    version_added = '2.20'
+
+    flags = re.MULTILINE
+
+    _sections = (
+        r'global|defaults|frontend|backend|listen|resolvers|peers|mailers|'
+        r'cache|userlist|http-errors|ring|log-forward|crt-store|fcgi-app|'
+        r'program|traces'
+    )
+
+    tokens = {
+        'root': [
+            (r'\s+', Whitespace),
+            (r'#.*$', Comment.Single),
+
+            # preprocessor directives
+            (r'^(\.(?:if|elif))([ \t]+)(.*$)',
+             bygroups(Comment.Preproc, Whitespace, Comment.Preproc)),
+            (r'^\.(?:else|endif)\b.*$', Comment.Preproc),
+            (r'^(\.notice)([ \t]+)(.*$)',
+             bygroups(Comment.Preproc, Whitespace, String)),
+
+            # sections that take no name (global, traces)
+            (r'^(global|traces)(?=\s*$)', Keyword),
+
+            # sections that take an optional or required name
+            (rf'^({_sections})([ \t]+)(\S+)',
+             bygroups(Keyword, Whitespace, Name.Namespace)),
+
+            # fallback for section keywords without name
+            (rf'^({_sections})(?=\s*$)', Keyword),
+
+            include('option'),
+        ],
+        'option': [
+            (r'\s+', Whitespace),
+            (r'#.*$', Comment.Single),
+
+            # environment variables
+            (r'\$\{[^}]+\}', Name.Variable),
+            (r'\$[A-Za-z_][A-Za-z0-9_]*', Name.Variable),
+
+            # inline ACL expressions: { ... }
+            (r'\{', Punctuation, 'inline_acl'),
+
+            # quoted strings
+            (r'"', String.Double, 'string_double'),
+            (r"'", String.Single, 'string_single'),
+
+            # multi-word directive keywords
+            (r'\b(?:http-request|http-response|http-after-response|'
+             r'http-check|tcp-request|tcp-response|tcp-check|'
+             r'log-format|log-format-sd)\b', Name.Attribute),
+
+            # common directive keywords
+            (r'\b(?:acl|backlog|balance|bind|compression|cookie|'
+             r'default_backend|default-server|description|disabled|'
+             r'dispatch|enabled|errorfile|errorfiles|errorloc|'
+             r'filter|force-persist|fullconn|grace|hash-type|'
+             r'id|ignore-persist|load-server-state-from-file|'
+             r'log|log-tag|max-keep-alive-queue|maxconn|mode|'
+             r'monitor-uri|nameserver|option|persist|'
+             r'rate-limit|redirect|retries|retry-on|server|'
+             r'server-template|source|stats|stick-table|'
+             r'stick|timeout|unique-id-format|unique-id-header|'
+             r'use_backend|use-server|use-fcgi-app)\b', Name.Attribute),
+
+            # sub-keywords for timeout, option, stats, etc.
+            (r'\b(?:client|server|connect|check|queue|tarpit|'
+             r'http-keep-alive|http-request|tunnel|'
+             r'httplog|tcplog|httpchk|smtpchk|'
+             r'ldap-check|mysql-check|pgsql-check|'
+             r'redis-check|ssl-hello-chk|'
+             r'forwardfor|httpclose|http-keep-alive|'
+             r'http-server-close|http-pretend-keepalive|'
+             r'abortonclose|allbackups|checkcache|clitcpka|'
+             r'contstats|dontlog-normal|dontlognull|'
+             r'http-ignore-probes|http-no-delay|http-use-proxy-header|'
+             r'independent-streams|log-health-checks|'
+             r'log-separate-errors|logasap|nolinger|'
+             r'persist|prefer-last-server|redispatch|'
+             r'socket-stats|splice-auto|splice-request|'
+             r'splice-response|srvtcpka|tcp-smart-accept|'
+             r'tcp-smart-connect|transparent)\b', Name.Builtin),
+
+            # boolean-like values
+            (r'\b(?:if|unless)\b', Keyword),
+            (r'\b(?:on|off|enable|disable|true|false)\b', Name.Constant),
+
+            # numeric values with time/size suffixes
+            (r'\b\d+(?:\.\d+)?(?:us|ms|s|m|h|d)\b', Number),
+            (r'\b\d+(?:\.\d+)?(?:[kmgKMG])?\b', Number),
+
+            # IP addresses with optional port and CIDR
+            (r'\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(?:/\d{1,2})?(?::\d+)?\b',
+             Number),
+            (r':\d+\b', Number),
+
+            # ACL flags
+            (r'(?<=\s)-[imMnufdpbrteSsOTHL]+\b', Operator),
+
+            # paths
+            (r'/[^\s#]*', String),
+            # catch-all for other words
+            (r'[^\s#{}\'"$]+', String),
+        ],
+        'inline_acl': [
+            (r'\}', Punctuation, '#pop'),
+            include('option'),
+        ],
+        'string_double': [
+            (r'\\[\\nrt"# ]', String.Escape),
+            (r'[^"\\]+', String.Double),
+            (r'"', String.Double, '#pop'),
+        ],
+        'string_single': [
+            (r"\\[\\']", String.Escape),
+            (r"[^'\\]+", String.Single),
+            (r"'", String.Single, '#pop'),
+        ],
+    }
+
+    def analyse_text(text):
+        result = 0.0
+        if re.search(r'^(?:frontend|backend|listen)\s+\S+', text, re.MULTILINE):
+            result += 0.2
+        if re.search(r'\b(?:use_backend|default_backend)\b', text):
+            result += 0.2
+        if re.search(r'^global\s*$', text, re.MULTILINE):
+            result += 0.1
+        return result

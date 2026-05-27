@@ -1,0 +1,57 @@
+---input---
+global
+	daemon
+
+defaults http
+	mode http
+
+frontend web
+	bind :80
+
+backend app
+	balance roundrobin
+
+listen health
+	bind :9000
+
+---tokens---
+'global'      Keyword
+'\n\t'        Text.Whitespace
+'daemon'      Literal.String
+'\n\n'        Text.Whitespace
+
+'defaults'    Keyword
+' '           Text.Whitespace
+'http'        Name.Namespace
+'\n\t'        Text.Whitespace
+'mode'        Name.Attribute
+' '           Text.Whitespace
+'http'        Literal.String
+'\n\n'        Text.Whitespace
+
+'frontend'    Keyword
+' '           Text.Whitespace
+'web'         Name.Namespace
+'\n\t'        Text.Whitespace
+'bind'        Name.Attribute
+' '           Text.Whitespace
+':80'         Literal.Number
+'\n\n'        Text.Whitespace
+
+'backend'     Keyword
+' '           Text.Whitespace
+'app'         Name.Namespace
+'\n\t'        Text.Whitespace
+'balance'     Name.Attribute
+' '           Text.Whitespace
+'roundrobin'  Literal.String
+'\n\n'        Text.Whitespace
+
+'listen'      Keyword
+' '           Text.Whitespace
+'health'      Name.Namespace
+'\n\t'        Text.Whitespace
+'bind'        Name.Attribute
+' '           Text.Whitespace
+':9000'       Literal.Number
+'\n'          Text.Whitespace
