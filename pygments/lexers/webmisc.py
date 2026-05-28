@@ -68,22 +68,8 @@ class XQueryLexer(ExtendedRegexLexer):
 
     xquery_parse_state = []
 
-    # FIX UNICODE LATER
-    # ncnamestartchar = (
-    #    r"[A-Z]|_|[a-z]|[\u00C0-\u00D6]|[\u00D8-\u00F6]|[\u00F8-\u02FF]|"
-    #    r"[\u0370-\u037D]|[\u037F-\u1FFF]|[\u200C-\u200D]|[\u2070-\u218F]|"
-    #    r"[\u2C00-\u2FEF]|[\u3001-\uD7FF]|[\uF900-\uFDCF]|[\uFDF0-\uFFFD]|"
-    #    r"[\u10000-\uEFFFF]"
-    # )
-    ncnamestartchar = r"(?:[A-Z]|_|[a-z])"
-    # FIX UNICODE LATER
-    # ncnamechar = ncnamestartchar + (r"|-|\.|[0-9]|\u00B7|[\u0300-\u036F]|"
-    #                                 r"[\u203F-\u2040]")
-    ncnamechar = r"(?:" + ncnamestartchar + r"|-|\.|[0-9])"
-    ncname = f"(?:{ncnamestartchar}+{ncnamechar}*)"
-    pitarget_namestartchar = r"(?:[A-KN-WYZ]|_|:|[a-kn-wyz])"
-    pitarget_namechar = r"(?:" + pitarget_namestartchar + r"|-|\.|[0-9])"
-    pitarget = f"{pitarget_namestartchar}+{pitarget_namechar}*"
+    ncname = r"(?:[^\W\d](?:\w|-|[.])*)"
+    pitarget = r"(?![xX][mM][lL]$)(?:[^\W\d][\w.\-:]*)"
     prefixedname = f"{ncname}:{ncname}"
     unprefixedname = ncname
     qname = f"(?:{prefixedname}|{unprefixedname})"
@@ -94,20 +80,27 @@ class XQueryLexer(ExtendedRegexLexer):
     stringdouble = r'(?:"(?:' + entityref + r'|' + charref + r'|""|[^&"])*")'
     stringsingle = r"(?:'(?:" + entityref + r"|" + charref + r"|''|[^&'])*')"
 
-    # FIX UNICODE LATER
-    # elementcontentchar = (r'\t|\r|\n|[\u0020-\u0025]|[\u0028-\u003b]|'
-    #                       r'[\u003d-\u007a]|\u007c|[\u007e-\u007F]')
-    elementcontentchar = r'[A-Za-z]|\s|\d|[!"#$%()*+,\-./:;=?@\[\\\]^_\'`|~]'
-    # quotattrcontentchar = (r'\t|\r|\n|[\u0020-\u0021]|[\u0023-\u0025]|'
-    #                        r'[\u0027-\u003b]|[\u003d-\u007a]|\u007c|[\u007e-\u007F]')
-    quotattrcontentchar = r'[A-Za-z]|\s|\d|[!#$%()*+,\-./:;=?@\[\\\]^_\'`|~]'
-    # aposattrcontentchar = (r'\t|\r|\n|[\u0020-\u0025]|[\u0028-\u003b]|'
-    #                        r'[\u003d-\u007a]|\u007c|[\u007e-\u007F]')
-    aposattrcontentchar = r'[A-Za-z]|\s|\d|[!"#$%()*+,\-./:;=?@\[\\\]^_`|~]'
-
     # CHAR elements - fix the above elementcontentchar, quotattrcontentchar,
     #                 aposattrcontentchar
     # x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]
+    # 
+    # Characters for exclusion:
+    #
+    # " U+0022 QUOTATION MARK
+    # & U+0026 AMPERSAND
+    # ' U+0027 APOSTROPHE
+    # < U+003C LESS-THAN SIGN
+    # > U+003E GREATER-THAN SIGN
+    # { U+007B LEFT CURLY BRACKET
+    # } U+007D RIGHT CURLY BRACKET
+    _char_rest = r'|[\u0080-\uD7FF]|[\uE000-\uFFFD]|[\U00010000-\U0010FFFF]'
+    elementcontentchar = (r'\t|\r|\n|[\u0020-\u0025]|[\u0028-\u003b]|' 
+                          r'[\u003d-\u007a]|\u007c|[\u007e-\u007F]' + _char_rest)
+    quotattrcontentchar = (r'\t|\r|\n|[\u0020-\u0021]|[\u0023-\u0025]|'
+                           r'[\u0027-\u003b]|[\u003d-\u007a]|\u007c|[\u007e-\u007F]' + _char_rest)
+    aposattrcontentchar = (r'\t|\r|\n|[\u0020-\u0025]|[\u0028-\u003b]|'
+                           r'[\u003d-\u007a]|\u007c|[\u007e-\u007F]' + _char_rest)
+
 
     flags = re.DOTALL | re.MULTILINE
 
@@ -133,6 +126,13 @@ class XQueryLexer(ExtendedRegexLexer):
         yield match.start(), String.Doc, match.group(1)
         ctx.stack.append(lexer.xquery_parse_state.pop())
         ctx.pos = match.end()
+
+    def popstate_xmlpi_callback(lexer, match, ctx):
+        yield match.start(), String.Doc, match.group(1)
+        ctx.stack.append(lexer.xquery_parse_state.pop())
+        ctx.pos = match.end()
+
+
 
     def popstate_kindtest_callback(lexer, match, ctx):
         yield match.start(), Punctuation, match.group(1)
@@ -519,13 +519,12 @@ class XQueryLexer(ExtendedRegexLexer):
         ],
         'processing_instruction': [
             (r'\s+', Text, 'processing_instruction_content'),
-            (r'\?>', String.Doc, '#pop'),
+            (r'(\?>)', popstate_xmlpi_callback),
             (pitarget, Name),
         ],
         'processing_instruction_content': [
-            (r'\?>', String.Doc, '#pop'),
-            (r'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|[\U00010000-\U0010FFFF]',
-             Literal),
+            (r'(\?>)', popstate_xmlpi_callback),
+            (r'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|[\U00010000-\U0010FFFF]', Literal),
         ],
         'cdata_section': [
             (r']]>', String.Doc, '#pop'),
