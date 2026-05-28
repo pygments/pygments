@@ -1,0 +1,14 @@
+---input---
+(S1 ^operator O3 +)
+
+---tokens---
+'('           Punctuation
+'S1'          Name
+' '           Text.Whitespace
+'^operator'   Name.Variable
+' '           Text.Whitespace
+'O3'          Literal
+' '           Text.Whitespace
+'+'           Operator
+')'           Punctuation
+'\n'          Text.Whitespace
