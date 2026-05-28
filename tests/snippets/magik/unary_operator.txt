@@ -1,0 +1,24 @@
+---input---
++5
+-36
+_not 5
+~ 36
+
+---tokens---
+'+'           Operator
+'5'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'-'           Operator
+'36'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'_not'        Operator
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'~'           Operator
+' '           Text.Whitespace
+'36'          Literal.Number.Integer
+'\n'          Text.Whitespace

@@ -1,0 +1,360 @@
+---input---
+_block
+  _dynamic !terminal!
+  _dynamic !output!, !terminal!
+_endblock
+
+_block
+  _dynamic _import !terminal!
+_endblock
+
+_block
+  _global gis_program_manager
+  _global sw:gis_program_manager
+  _global !current_view!
+  _global gis_program_manager, sw:sw_module_manager, !current_view!
+_endblock
+
+_global gis_program_manager << _unset
+_global !current_view! << _unset
+
+_global _constant gis_program_manager << _unset
+_global _constant !current_view! << _unset
+
+_block
+  _import x
+_endblock
+
+_block
+  _local a_name
+  _local a_init << 1
+  _local (a_init, _gather a_gather) << (_scatter b_values)
+  _local (_gather a_init) << b_values
+  _local a_init << _false, b_init
+  _local a_init << _false, b_init << _true
+  _local a_init << _false, b_init, c_init << _true
+_endblock
+
+_block
+  _constant max_size << 1
+_endblock
+
+_block
+  _constant _local max_size << 1
+_endblock
+
+_block
+  _local _constant max_size << 1
+_endblock
+
+def_slotted_exemplar(:exemplar, {}, {}, {_class |com.gesmallworld.magik.language.MagikFinalisable|})
+
+def_slotted_exemplar(:another_exemplar, {}, _unset, {_class |com.gesmallworld.magik.html5.MagikHTML5Component|})
+
+---tokens---
+'_block'      Keyword
+'\n  '        Text.Whitespace
+'_dynamic'    Keyword
+' '           Text.Whitespace
+'!terminal!'  Name.Variable
+'\n  '        Text.Whitespace
+'_dynamic'    Keyword
+' '           Text.Whitespace
+'!output!'    Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'!terminal!'  Name.Variable
+'\n'          Text.Whitespace
+
+'_endblock'   Keyword
+'\n\n'        Text.Whitespace
+
+'_block'      Keyword
+'\n  '        Text.Whitespace
+'_dynamic'    Keyword
+' '           Text.Whitespace
+'_import'     Keyword
+' '           Text.Whitespace
+'!terminal!'  Name.Variable
+'\n'          Text.Whitespace
+
+'_endblock'   Keyword
+'\n\n'        Text.Whitespace
+
+'_block'      Keyword
+'\n  '        Text.Whitespace
+'_global'     Keyword
+' '           Text.Whitespace
+'gis_program_manager' Name
+'\n  '        Text.Whitespace
+'_global'     Keyword
+' '           Text.Whitespace
+'sw:gis_program_manager' Name.Variable.Global
+'\n  '        Text.Whitespace
+'_global'     Keyword
+' '           Text.Whitespace
+'!current_view!' Name.Variable
+'\n  '        Text.Whitespace
+'_global'     Keyword
+' '           Text.Whitespace
+'gis_program_manager' Name
+','           Punctuation
+' '           Text.Whitespace
+'sw:sw_module_manager' Name.Variable.Global
+','           Punctuation
+' '           Text.Whitespace
+'!current_view!' Name.Variable
+'\n'          Text.Whitespace
+
+'_endblock'   Keyword
+'\n\n'        Text.Whitespace
+
+'_global'     Keyword
+' '           Text.Whitespace
+'gis_program_manager' Name
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'_unset'      Literal
+'\n'          Text.Whitespace
+
+'_global'     Keyword
+' '           Text.Whitespace
+'!current_view!' Name.Variable
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'_unset'      Literal
+'\n\n'        Text.Whitespace
+
+'_global'     Keyword
+' '           Text.Whitespace
+'_constant'   Keyword
+' '           Text.Whitespace
+'gis_program_manager' Name
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'_unset'      Literal
+'\n'          Text.Whitespace
+
+'_global'     Keyword
+' '           Text.Whitespace
+'_constant'   Keyword
+' '           Text.Whitespace
+'!current_view!' Name.Variable
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'_unset'      Literal
+'\n\n'        Text.Whitespace
+
+'_block'      Keyword
+'\n  '        Text.Whitespace
+'_import'     Keyword
+' '           Text.Whitespace
+'x'           Name
+'\n'          Text.Whitespace
+
+'_endblock'   Keyword
+'\n\n'        Text.Whitespace
+
+'_block'      Keyword
+'\n  '        Text.Whitespace
+'_local'      Keyword
+' '           Text.Whitespace
+'a_name'      Name
+'\n  '        Text.Whitespace
+'_local'      Keyword
+' '           Text.Whitespace
+'a_init'      Name
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n  '        Text.Whitespace
+'_local'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'a_init'      Name
+','           Punctuation
+' '           Text.Whitespace
+'_gather'     Keyword
+' '           Text.Whitespace
+'a_gather'    Name
+')'           Punctuation
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'('           Punctuation
+'_scatter'    Keyword
+' '           Text.Whitespace
+'b_values'    Name
+')'           Punctuation
+'\n  '        Text.Whitespace
+'_local'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'_gather'     Keyword
+' '           Text.Whitespace
+'a_init'      Name
+')'           Punctuation
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'b_values'    Name
+'\n  '        Text.Whitespace
+'_local'      Keyword
+' '           Text.Whitespace
+'a_init'      Name
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'_false'      Literal
+','           Punctuation
+' '           Text.Whitespace
+'b_init'      Name
+'\n  '        Text.Whitespace
+'_local'      Keyword
+' '           Text.Whitespace
+'a_init'      Name
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'_false'      Literal
+','           Punctuation
+' '           Text.Whitespace
+'b_init'      Name
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'_true'       Literal
+'\n  '        Text.Whitespace
+'_local'      Keyword
+' '           Text.Whitespace
+'a_init'      Name
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'_false'      Literal
+','           Punctuation
+' '           Text.Whitespace
+'b_init'      Name
+','           Punctuation
+' '           Text.Whitespace
+'c_init'      Name
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'_true'       Literal
+'\n'          Text.Whitespace
+
+'_endblock'   Keyword
+'\n\n'        Text.Whitespace
+
+'_block'      Keyword
+'\n  '        Text.Whitespace
+'_constant'   Keyword
+' '           Text.Whitespace
+'max_size'    Name
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'_endblock'   Keyword
+'\n\n'        Text.Whitespace
+
+'_block'      Keyword
+'\n  '        Text.Whitespace
+'_constant'   Keyword
+' '           Text.Whitespace
+'_local'      Keyword
+' '           Text.Whitespace
+'max_size'    Name
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'_endblock'   Keyword
+'\n\n'        Text.Whitespace
+
+'_block'      Keyword
+'\n  '        Text.Whitespace
+'_local'      Keyword
+' '           Text.Whitespace
+'_constant'   Keyword
+' '           Text.Whitespace
+'max_size'    Name
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'_endblock'   Keyword
+'\n\n'        Text.Whitespace
+
+'def_slotted_exemplar' Name
+'('           Punctuation
+':exemplar'   Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'_class'      Keyword
+' '           Text.Whitespace
+'|'           Punctuation
+'com'         Name
+'.'           Punctuation
+'gesmallworld' Name
+'.'           Punctuation
+'magik'       Name
+'.'           Punctuation
+'language'    Name
+'.'           Punctuation
+'MagikFinalisable' Name
+'|'           Punctuation
+'}'           Punctuation
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'def_slotted_exemplar' Name
+'('           Punctuation
+':another_exemplar' Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'_unset'      Literal
+','           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'_class'      Keyword
+' '           Text.Whitespace
+'|'           Punctuation
+'com'         Name
+'.'           Punctuation
+'gesmallworld' Name
+'.'           Punctuation
+'magik'       Name
+'.'           Punctuation
+'html5'       Name
+'.'           Punctuation
+'MagikHTML5Component' Name
+'|'           Punctuation
+'}'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace

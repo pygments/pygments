@@ -1,0 +1,50 @@
+---input---
+_catch :error
+_endcatch
+
+_catch @error
+_endcatch
+
+_catch "error"
+_endcatch
+
+_catch :error
+  >> _true
+_endcatch
+
+---tokens---
+'_catch'      Keyword
+' '           Text.Whitespace
+':error'      Literal.String.Symbol
+'\n'          Text.Whitespace
+
+'_endcatch'   Keyword
+'\n\n'        Text.Whitespace
+
+'_catch'      Keyword
+' '           Text.Whitespace
+'@error'      Name.Label
+'\n'          Text.Whitespace
+
+'_endcatch'   Keyword
+'\n\n'        Text.Whitespace
+
+'_catch'      Keyword
+' '           Text.Whitespace
+'"error"'     Literal.String.Double
+'\n'          Text.Whitespace
+
+'_endcatch'   Keyword
+'\n\n'        Text.Whitespace
+
+'_catch'      Keyword
+' '           Text.Whitespace
+':error'      Literal.String.Symbol
+'\n  '        Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_true'       Literal
+'\n'          Text.Whitespace
+
+'_endcatch'   Keyword
+'\n'          Text.Whitespace

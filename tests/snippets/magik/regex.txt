@@ -1,0 +1,99 @@
+---input---
+/Hello\,\s\w+!/
+/Hello\,\s\w+!/i
+/[a-t]-[1-4]/
+/a\/b/i
+/abc\d{2,4}/i
+/Foo(bAr)?/i
+/[aB]*c,/im
+//
+
+---tokens---
+'/'           Operator
+'Hello'       Name
+'\\'          Literal.String.Regex
+','           Punctuation
+'\\'          Literal.String.Regex
+'s'           Name
+'\\'          Literal.String.Regex
+'w'           Name
+'+'           Operator
+'!'           Name
+'/'           Operator
+'\n'          Text.Whitespace
+
+'/'           Operator
+'Hello'       Name
+'\\'          Literal.String.Regex
+','           Punctuation
+'\\'          Literal.String.Regex
+'s'           Name
+'\\'          Literal.String.Regex
+'w'           Name
+'+'           Operator
+'!'           Name
+'/'           Operator
+'i'           Name
+'\n'          Text.Whitespace
+
+'/'           Operator
+'['           Punctuation
+'a'           Name
+'-'           Operator
+'t'           Name
+']'           Punctuation
+'-'           Operator
+'['           Punctuation
+'1'           Literal.Number.Integer
+'-'           Operator
+'4'           Literal.Number.Integer
+']'           Punctuation
+'/'           Operator
+'\n'          Text.Whitespace
+
+'/'           Operator
+'a'           Name
+'\\'          Literal.String.Regex
+'/'           Operator
+'b'           Name
+'/'           Operator
+'i'           Name
+'\n'          Text.Whitespace
+
+'/'           Operator
+'abc'         Name
+'\\'          Literal.String.Regex
+'d'           Name
+'{'           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'4'           Literal.Number.Integer
+'}'           Punctuation
+'/'           Operator
+'i'           Name
+'\n'          Text.Whitespace
+
+'/'           Operator
+'Foo'         Name
+'('           Punctuation
+'bAr'         Name
+')'           Punctuation
+'?'           Name
+'/'           Operator
+'i'           Name
+'\n'          Text.Whitespace
+
+'/'           Operator
+'['           Punctuation
+'aB'          Name
+']'           Punctuation
+'*'           Operator
+'c'           Name
+','           Punctuation
+'/'           Operator
+'im'          Name
+'\n'          Text.Whitespace
+
+'/'           Operator
+'/'           Operator
+'\n'          Text.Whitespace

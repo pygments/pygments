@@ -1,0 +1,22 @@
+---input---
+_pragma(classify_level=basic)
+_pragma(classify_level=basic, topic=pygments)
+_pragma(classify_level=basic, topic={pygments, magik})
+_pragma(classify_level=basic, topic={pygments}, usage=subclassable)
+_pragma(classify_level=basic, topic=pygments, usage={redefinable, subclassable})
+
+---tokens---
+'_pragma(classify_level=basic)' Literal.String.Doc
+'\n'          Text.Whitespace
+
+'_pragma(classify_level=basic, topic=pygments)' Literal.String.Doc
+'\n'          Text.Whitespace
+
+'_pragma(classify_level=basic, topic={pygments, magik})' Literal.String.Doc
+'\n'          Text.Whitespace
+
+'_pragma(classify_level=basic, topic={pygments}, usage=subclassable)' Literal.String.Doc
+'\n'          Text.Whitespace
+
+'_pragma(classify_level=basic, topic=pygments, usage={redefinable, subclassable})' Literal.String.Doc
+'\n'          Text.Whitespace
