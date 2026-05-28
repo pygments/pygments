@@ -637,18 +637,18 @@ class OrgLexer(RegexLexer):
             (r'^# .*', Comment.Single),
 
             # Headings
-            (r'^(\* )(COMMENT)( .*)',
-             bygroups(Generic.Heading, Comment.Preproc, Generic.Heading)),
-            (r'^(\*\*+ )(COMMENT)( .*)',
-             bygroups(Generic.Subheading, Comment.Preproc, Generic.Subheading)),
-            (r'^(\* )(DONE)( .*)',
-             bygroups(Generic.Heading, Generic.Deleted, Generic.Heading)),
-            (r'^(\*\*+ )(DONE)( .*)',
-             bygroups(Generic.Subheading, Generic.Deleted, Generic.Subheading)),
-            (r'^(\* )(TODO)( .*)',
-             bygroups(Generic.Heading, Generic.Error, Generic.Heading)),
-            (r'^(\*\*+ )(TODO)( .*)',
-             bygroups(Generic.Subheading, Generic.Error, Generic.Subheading)),
+            (r'^(\* )(COMMENT)( .*?)( *:[a-zA-Z0-9_@:]+:)?$',
+             bygroups(Generic.Heading, Comment.Preproc, Generic.Heading, Generic.Emph)),
+            (r'^(\*\*+ )(COMMENT)( .*?)( *:[a-zA-Z0-9_@:]+:)?$',
+             bygroups(Generic.Subheading, Comment.Preproc, Generic.Subheading, Generic.Emph)),
+            (r'^(\* )(DONE)( .*?)( *:[a-zA-Z0-9_@:]+:)?$',
+             bygroups(Generic.Heading, Generic.Deleted, Generic.Heading, Generic.Emph)),
+            (r'^(\*\*+ )(DONE)( .*?)( *:[a-zA-Z0-9_@:]+:)?$',
+             bygroups(Generic.Subheading, Generic.Deleted, Generic.Subheading, Generic.Emph)),
+            (r'^(\* )(TODO)( .*?)( *:[a-zA-Z0-9_@:]+:)?$',
+             bygroups(Generic.Heading, Generic.Error, Generic.Heading, Generic.Emph)),
+            (r'^(\*\*+ )(TODO)( .*?)( *:[a-zA-Z0-9_@:]+:)?$',
+             bygroups(Generic.Subheading, Generic.Error, Generic.Subheading, Generic.Emph)),
 
             (r'^(\* .+?)( :[a-zA-Z0-9_@:]+:)?$', bygroups(Generic.Heading, Generic.Emph)),
             (r'^(\*\*+ .+?)( :[a-zA-Z0-9_@:]+:)?$', bygroups(Generic.Subheading, Generic.Emph)),
@@ -681,6 +681,7 @@ class OrgLexer(RegexLexer):
             (r'^(#\+\w+:)(.*)$', bygroups(Name.Namespace, Text)),
 
             # Properties and drawers
+            (r'(?i)^( *:\w+:\.\.\. *\n)', Name.Decorator),
             (r'(?i)^( *:\w+: *\n)((?:.|\n)*?)(^ *:end: *$)',
              bygroups(Name.Decorator, Comment.Special, Name.Decorator)),
 
