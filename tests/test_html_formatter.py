@@ -118,6 +118,13 @@ def test_lineanchors_with_startnum():
     html = outfile.getvalue()
     assert re.search("<pre>\\s*<span>\\s*</span>\\s*<a id=\"foo-5\" name=\"foo-5\" href=\"#foo-5\">", html)
 
+def test_linenos_inline_with_nowrap():
+    optdict = dict(linenos="inline", nowrap=True)
+    outfile = StringIO()
+    fmt = HtmlFormatter(**optdict)
+    fmt.format(tokensource, outfile)
+    html = outfile.getvalue()
+    assert re.search("^<span class=\"linenos\">  1", html)
 
 def test_valid_output():
     # test all available wrappers
