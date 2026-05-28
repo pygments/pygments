@@ -1,0 +1,95 @@
+'#!/bin/bash\n' Comment.Hashbang
+
+'\n'          Text.Whitespace
+
+'make'        Text
+' '           Text.Whitespace
+'-f'          Text
+' '           Text.Whitespace
+'Makefile'    Text
+'\n\n'        Text.Whitespace
+
+'# For testing purposes, not intented to be correct\n' Comment.Single
+
+'do-release-upgrade' Text
+'\n'          Text.Whitespace
+
+'do--release-upgrade' Text
+'\n'          Text.Whitespace
+
+'do_something' Text
+'\n'          Text.Whitespace
+
+'doanotherthing' Text
+'\n'          Text.Whitespace
+
+'do@arobase'  Text
+'\n'          Text.Whitespace
+
+'do?question' Text
+'\n'          Text.Whitespace
+
+'do!exclamation' Text
+'\n'          Text.Whitespace
+
+'do@!?test'   Text
+'\n'          Text.Whitespace
+
+'lets-do-it'  Text
+'\n'          Text.Whitespace
+
+'if-else-script' Text
+'\n\n'        Text.Whitespace
+
+'do'          Keyword
+'\n    '      Text.Whitespace
+'true'        Text
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'done'        Keyword
+'\n'          Text.Whitespace
+
+'until'       Keyword
+' '           Text.Whitespace
+'['           Operator
+' '           Text.Whitespace
+'false'       Name.Builtin
+' '           Text.Whitespace
+']'           Operator
+'\n\n'        Text.Whitespace
+
+'num'         Name.Variable
+'='           Operator
+'15'          Literal.Number
+'\n'          Text.Whitespace
+
+'if'          Keyword
+' '           Text.Whitespace
+'['           Operator
+' '           Text.Whitespace
+'$num'        Name.Variable
+' '           Text.Whitespace
+'-gt'         Text
+' '           Text.Whitespace
+'10'          Literal.Number
+' '           Text.Whitespace
+']'           Operator
+';'           Punctuation
+' '           Text.Whitespace
+'then'        Keyword
+'\n  '        Text.Whitespace
+'echo'        Name.Builtin
+' '           Text.Whitespace
+'"Number is greater than 10"' Literal.String.Double
+'\n'          Text.Whitespace
+
+'else'        Keyword
+'\n  '        Text.Whitespace
+'echo'        Name.Builtin
+' '           Text.Whitespace
+'"Number is 10 or less"' Literal.String.Double
+'\n'          Text.Whitespace
+
+'fi'          Keyword
+'\n'          Text.Whitespace

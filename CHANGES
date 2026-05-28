@@ -15,6 +15,7 @@ Version 2.21.0
 
 - Updated lexers:
 
+  * Bash: Fix coloured keyword at the beginning of a name (#2926)
   * C++: Add C23/C++26 attributes (#3084)
 
 - Fix catastrophic backtracking in ``looks_like_xml`` (#2931, #3112)
