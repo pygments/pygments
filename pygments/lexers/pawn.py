@@ -90,7 +90,7 @@ class SourcePawnLexer(RegexLexer):
                 'CookieAccess', 'CookieMenu', 'CookieMenuAction', 'NetFlow',
                 'ConVarBounds', 'QueryCookie', 'ReplySource',
                 'ConVarQueryResult', 'ConVarQueryFinished', 'Function',
-                'Action', 'Identity', 'PluginStatus', 'PluginInfo', 'DBResult',
+                'Identity', 'PluginStatus', 'PluginInfo', 'DBResult',
                 'DBBindType', 'DBPriority', 'PropType', 'PropFieldType',
                 'MoveType', 'RenderMode', 'RenderFx', 'EventHookMode',
                 'EventHook', 'FileType', 'FileTimeMode', 'PathType',
