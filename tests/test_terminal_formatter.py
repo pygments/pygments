@@ -9,6 +9,8 @@
 import re
 from io import StringIO
 
+import pytest
+
 from pygments.lexers.sql import PlPgsqlLexer
 from pygments.formatters import TerminalFormatter, Terminal256Formatter, \
     HtmlFormatter, LatexFormatter
@@ -53,6 +55,24 @@ def test_reasonable_output_lineno():
 
     for a, b in zip(DEMO_TEXT.splitlines(), plain.splitlines()):
         assert a in b
+
+
+@pytest.mark.parametrize("linenostart", [-1, 0, 1, 2, 3])
+def test_reasonable_output_linenostart(linenostart):
+    out = StringIO()
+    TerminalFormatter(linenos=True, linenostart=linenostart).format(DEMO_TOKENS, out)
+    plain = strip_ansi(out.getvalue())
+    assert DEMO_TEXT.count("\n") + 1 == plain.count("\n")
+    print(repr(plain))
+
+    linenostart = abs(linenostart)
+
+    for i, (demo_line, plain_line) in enumerate(
+        zip(DEMO_TEXT.splitlines(), plain.splitlines())
+    ):
+        line_no, source = plain_line.split(": ", 1)
+        assert source == demo_line
+        assert int(line_no) == i + linenostart
 
 
 class MyStyle(Style):
