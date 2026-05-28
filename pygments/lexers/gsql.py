@@ -28,6 +28,7 @@ class GSQLLexer(RegexLexer):
     aliases = ['gsql']
     filenames = ['*.gsql']
     version_added = '2.10'
+    _example = 'gsql/test.gsql'
 
     flags = re.MULTILINE | re.IGNORECASE
 

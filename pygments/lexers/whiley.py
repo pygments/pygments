@@ -25,6 +25,7 @@ class WhileyLexer(RegexLexer):
     aliases = ['whiley']
     mimetypes = ['text/x-whiley']
     version_added = '2.2'
+    _example = 'whiley/example.whiley'
 
     # See the language specification:
     # http://whiley.org/download/WhileyLanguageSpec.pdf

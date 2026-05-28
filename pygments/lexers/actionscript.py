@@ -127,6 +127,7 @@ class ActionScript3Lexer(RegexLexer):
     mimetypes = ['application/x-actionscript3', 'text/x-actionscript3',
                  'text/actionscript3']
     version_added = '0.11'
+    _example = 'as3/as3_test.as'
 
     identifier = r'[$a-zA-Z_]\w*'
     typeidentifier = identifier + r'(?:\.<\w+>)?'

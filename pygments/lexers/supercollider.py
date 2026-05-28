@@ -28,6 +28,7 @@ class SuperColliderLexer(RegexLexer):
     filenames = ['*.sc', '*.scd']
     mimetypes = ['application/supercollider', 'text/supercollider']
     version_added = '2.1'
+    _example = 'sc/example.scd'
 
     flags = re.DOTALL | re.MULTILINE
     tokens = {

@@ -25,6 +25,7 @@ class RustLexer(RegexLexer):
     aliases = ['rust', 'rs']
     mimetypes = ['text/rust', 'text/x-rust']
     version_added = '1.6'
+    _example = 'rust/eval.rs'
 
     keyword_types = (words((
         'u8', 'u16', 'u32', 'u64', 'u128', 'i8', 'i16', 'i32', 'i64', 'i128',

@@ -30,6 +30,7 @@ class AdaLexer(RegexLexer):
     mimetypes = ['text/x-ada']
     url = 'https://www.adaic.org'
     version_added = '1.3'
+    _example = 'ada/test.adb'
 
     flags = re.MULTILINE | re.IGNORECASE
 

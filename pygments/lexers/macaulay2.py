@@ -1814,6 +1814,7 @@ class Macaulay2Lexer(RegexLexer):
     aliases = ['macaulay2']
     filenames = ['*.m2']
     version_added = '2.12'
+    _example = 'macaulay2/test.m2'
 
     tokens = {
         'root': [

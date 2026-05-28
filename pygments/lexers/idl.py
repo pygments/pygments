@@ -27,6 +27,7 @@ class IDLLexer(RegexLexer):
     filenames = ['*.pro']
     mimetypes = ['text/idl']
     version_added = '1.6'
+    _example = 'idl/idl_sample.pro'
 
     flags = re.IGNORECASE | re.MULTILINE
 

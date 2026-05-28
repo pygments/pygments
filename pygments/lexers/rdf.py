@@ -27,6 +27,7 @@ class SparqlLexer(RegexLexer):
     mimetypes = ['application/sparql-query']
     url = 'https://www.w3.org/TR/sparql11-query'
     version_added = '2.0'
+    _example = 'sparql/sparql.rq'
 
     # character group definitions ::
 
@@ -185,6 +186,7 @@ class TurtleLexer(RegexLexer):
     mimetypes = ['text/turtle', 'application/x-turtle']
     url = 'https://www.w3.org/TR/turtle'
     version_added = '2.1'
+    _example = 'turtle/example.ttl'
 
     # character group definitions ::
     PN_CHARS_BASE_GRP = ('a-zA-Z'
@@ -330,6 +332,7 @@ class ShExCLexer(RegexLexer):
     mimetypes = ['text/shex']
     url = 'https://shex.io/shex-semantics/#shexc'
     version_added = ''
+    _example = 'shexc/example.shex'
 
     # character group definitions ::
 

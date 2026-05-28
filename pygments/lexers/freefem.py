@@ -29,6 +29,7 @@ class FreeFemLexer(CppLexer):
     filenames = ['*.edp']
     mimetypes = ['text/x-freefem']
     version_added = '2.4'
+    _example = 'freefem/freefem.edp'
 
     # Language operators
     operators = {'+', '-', '*', '.*', '/', './', '%', '^', '^-1', ':', '\''}

@@ -29,6 +29,7 @@ class PhixLexer(RegexLexer):
     filenames = ['*.exw']
     mimetypes = ['text/x-phix']
     version_added = '2.14'
+    _example = 'phix/example.exw'
 
     flags = re.MULTILINE    # nb: **NOT** re.DOTALL! (totally spanners comment handling)
 

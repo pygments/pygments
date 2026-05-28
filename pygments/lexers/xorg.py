@@ -22,6 +22,7 @@ class XorgLexer(RegexLexer):
     filenames = ['xorg.conf']
     mimetypes = []
     version_added = ''
+    _example = 'xorg.conf/xorg.conf'
 
     tokens = {
         'root': [

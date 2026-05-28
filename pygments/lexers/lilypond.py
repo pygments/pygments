@@ -58,6 +58,7 @@ class LilyPondLexer(SchemeLexer):
     filenames = ['*.ly']
     mimetypes = []
     version_added = '2.11'
+    _example = 'lilypond/example.ly'
 
     flags = re.DOTALL | re.MULTILINE
 

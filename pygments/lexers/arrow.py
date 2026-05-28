@@ -29,6 +29,7 @@ class ArrowLexer(RegexLexer):
     aliases = ['arrow']
     filenames = ['*.arw']
     version_added = '2.7'
+    _example = 'arrow/primesieve.arw'
 
     tokens = {
         'root': [

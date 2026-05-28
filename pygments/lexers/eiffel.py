@@ -25,6 +25,7 @@ class EiffelLexer(RegexLexer):
     filenames = ['*.e']
     mimetypes = ['text/x-eiffel']
     version_added = '2.0'
+    _example = 'eiffel/example.e'
 
     tokens = {
         'root': [

@@ -23,6 +23,7 @@ class VyperLexer(RegexLexer):
     filenames = ['*.vy']
     url = "https://vyper.readthedocs.io"
     version_added = '2.17'
+    _example = 'vyper/test.vy'
 
     tokens = {
         'root': [

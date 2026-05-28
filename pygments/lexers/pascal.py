@@ -30,6 +30,7 @@ class PortugolLexer(Lexer):
     mimetypes = []
     url = "https://www.apoioinformatica.inf.br/produtos/visualg/linguagem"
     version_added = ''
+    _example = 'portugol/example.alg'
 
     def __init__(self, **options):
         Lexer.__init__(self, **options)
@@ -63,6 +64,7 @@ class DelphiLexer(Lexer):
     mimetypes = ['text/x-pascal']
     url = 'https://www.embarcadero.com/products/delphi'
     version_added = ''
+    _example = 'delphi/example.pas'
 
     TURBO_PASCAL_KEYWORDS = (
         'absolute', 'and', 'array', 'asm', 'begin', 'break', 'case',

@@ -142,6 +142,7 @@ class CsoundScoreLexer(CsoundLexer):
     aliases = ['csound-score', 'csound-sco']
     filenames = ['*.sco']
     version_added = '2.1'
+    _example = 'csound-score/test.sco'
 
     tokens = {
         'root': [
@@ -207,6 +208,7 @@ class CsoundOrchestraLexer(CsoundLexer):
     aliases = ['csound', 'csound-orc']
     filenames = ['*.orc', '*.udo']
     version_added = '2.1'
+    _example = 'csound/test.orc'
 
     user_defined_opcodes = set()
 
@@ -417,6 +419,7 @@ class CsoundDocumentLexer(RegexLexer):
     filenames = ['*.csd']
     url = 'https://csound.com'
     version_added = '2.1'
+    _example = 'csound-document/test.csd'
 
     # These tokens are based on those in XmlLexer in pygments/lexers/html.py. Making
     # CsoundDocumentLexer a subclass of XmlLexer rather than RegexLexer may seem like a

@@ -25,6 +25,7 @@ class RitaLexer(RegexLexer):
     aliases = ['rita']
     mimetypes = ['text/rita']
     version_added = '2.11'
+    _example = 'rita/example.rita'
 
     tokens = {
         'root': [
