@@ -1,0 +1,35 @@
+---input---
+include "application.conf"
+include required(file("local.conf"))
+include url("https://example.com/config")
+
+---tokens---
+'include'     Keyword.Namespace
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'application.conf' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'include'     Keyword.Namespace
+' '           Text.Whitespace
+'required'    Keyword.Namespace
+'('           Punctuation
+'file'        Keyword.Namespace
+'('           Punctuation
+'"'           Literal.String.Double
+'local.conf'  Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'include'     Keyword.Namespace
+' '           Text.Whitespace
+'url'         Keyword.Namespace
+'('           Punctuation
+'"'           Literal.String.Double
+'https://example.com/config' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text.Whitespace

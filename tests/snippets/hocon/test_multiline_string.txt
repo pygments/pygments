@@ -1,0 +1,19 @@
+---input---
+greeting = """
+hello "world"
+"""
+
+---tokens---
+'greeting'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"""'         Literal.String.Double
+'\nhello '    Literal.String.Double
+'"'           Literal.String.Double
+'world'       Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Literal.String.Double
+
+'"""'         Literal.String.Double
+'\n'          Text.Whitespace
