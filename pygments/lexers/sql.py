@@ -56,7 +56,7 @@ from pygments.token import Punctuation, Whitespace, Text, Comment, Operator, \
 
 __all__ = ['GoogleSqlLexer', 'PostgresLexer', 'PlPgsqlLexer',
            'PostgresConsoleLexer', 'PostgresExplainLexer', 'SqlLexer',
-           'TransactSqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'RqlLexer']
+           'TransactSqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'RqlLexer', 'PsqlRegexLexer']
 
 line_re  = re.compile('.*?\n')
 sqlite_prompt_re = re.compile(r'^(?:sqlite|   ...)>(?= )')
