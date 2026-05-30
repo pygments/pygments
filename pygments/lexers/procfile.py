@@ -11,7 +11,7 @@
 from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Name, Number, String, Text, Punctuation
 
-__all__ = ["ProcfileLexer"]
+__all__ = ["ProcfileLexer", 'ProcfileLexer']
 
 
 class ProcfileLexer(RegexLexer):
