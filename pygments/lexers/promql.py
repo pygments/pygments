@@ -12,7 +12,7 @@ from pygments.lexer import RegexLexer, bygroups, default, words
 from pygments.token import Comment, Keyword, Name, Number, Operator, \
     Punctuation, String, Whitespace
 
-__all__ = ["PromQLLexer"]
+__all__ = ["PromQLLexer", 'PromQLLexer']
 
 
 class PromQLLexer(RegexLexer):
