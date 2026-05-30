@@ -90,7 +90,7 @@ class AdaLexer(RegexLexer):
         'end': [
             ('(if|case|record|loop|select)', Keyword.Reserved),
             (r'"[^"]+"|[\w.]+', Name.Function),
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (';', Punctuation, '#pop'),
         ],
         'type_def': [
