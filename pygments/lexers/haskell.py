@@ -18,7 +18,7 @@ from pygments import unistring as uni
 
 __all__ = ['HaskellLexer', 'HspecLexer', 'IdrisLexer', 'AgdaLexer', 'CryptolLexer',
            'LiterateHaskellLexer', 'LiterateIdrisLexer', 'LiterateAgdaLexer',
-           'LiterateCryptolLexer', 'KokaLexer']
+           'LiterateCryptolLexer', 'KokaLexer', 'LiterateLexer']
 
 
 class HaskellLexer(RegexLexer):
