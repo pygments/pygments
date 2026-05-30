@@ -11,7 +11,7 @@
 from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Name, Literal, String, Punctuation, Whitespace
 
-__all__ = ["SmartGameFormatLexer"]
+__all__ = ["SmartGameFormatLexer", 'SmartGameFormatLexer']
 
 
 class SmartGameFormatLexer(RegexLexer):
