@@ -12,7 +12,7 @@ from pygments.lexer import RegexLexer, include, bygroups, words
 from pygments.token import Whitespace, Name, String,  Punctuation, Keyword, \
     Operator, Number
 
-__all__ = ["NumbaIRLexer"]
+__all__ = ["NumbaIRLexer", 'NumbaIRLexer']
 
 class NumbaIRLexer(RegexLexer):
     """
