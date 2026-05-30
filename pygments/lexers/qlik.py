@@ -16,7 +16,7 @@ from pygments.token import Comment, Keyword, Name, Number, Operator, \
 from pygments.lexers._qlik_builtins import OPERATORS_LIST, STATEMENT_LIST, \
     SCRIPT_FUNCTIONS, CONSTANT_LIST
 
-__all__ = ["QlikLexer"]
+__all__ = ["QlikLexer", 'QlikLexer']
 
 
 class QlikLexer(RegexLexer):
