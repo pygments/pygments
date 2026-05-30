@@ -29,7 +29,7 @@ __all__ = ['RagelLexer', 'RagelEmbeddedLexer', 'RagelCLexer', 'RagelDLexer',
            'AntlrPerlLexer', 'AntlrRubyLexer', 'AntlrCppLexer',
            'AntlrCSharpLexer', 'AntlrObjectiveCLexer',
            'AntlrJavaLexer', 'AntlrActionScriptLexer',
-           'TreetopLexer', 'EbnfLexer']
+           'TreetopLexer', 'EbnfLexer', 'TreetopBaseLexer']
 
 
 class RagelLexer(RegexLexer):
