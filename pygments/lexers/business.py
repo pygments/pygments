@@ -543,7 +543,7 @@ class GoodDataCLLexer(RegexLexer):
             # Punctuation
             (r';', Punctuation),
             # Space is not significant
-            (r'\s+', Text)
+            (r'\s+', Whitespace)
         ],
         'args-list': [
             (r'\)', Punctuation, '#pop'),
