@@ -11,7 +11,7 @@
 from pygments.lexer import RegexLexer, words
 from pygments.token import Whitespace, Comment, String, Keyword, Name, Text
 
-__all__ = ["MIPSLexer"]
+__all__ = ["MIPSLexer", 'MIPSLexer']
 
 
 class MIPSLexer(RegexLexer):
