@@ -35,7 +35,7 @@ from pygments.token import (
 )
 from pygments.util import shebang_matches
 
-__all__ = ["MojoLexer"]
+__all__ = ["MojoLexer", 'MojoLexer']
 
 
 class MojoLexer(RegexLexer):
