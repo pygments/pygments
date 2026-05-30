@@ -13,11 +13,11 @@ from pygments.lexer import RegexLexer, words, include, bygroups, using, \
 from pygments.token import Text, Comment, Operator, Keyword, Name, \
     Number, Punctuation, String, Whitespace
 
-__all__ = ['GLShaderLexer', 'PostScriptLexer', 'AsymptoteLexer', 'GnuplotLexer',
+__all__ = ['GlslLexer', 'PostScriptLexer', 'AsymptoteLexer', 'GnuplotLexer',
            'PovrayLexer', 'HLSLShaderLexer']
 
 
-class GLShaderLexer(RegexLexer):
+class GlslLexer(RegexLexer):
     """
     GLSL (OpenGL Shader) lexer.
     """
