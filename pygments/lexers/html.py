@@ -62,7 +62,7 @@ class HtmlLexer(RegexLexer):
                       Punctuation)),
         ],
         'tag': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'([\w:-]+\s*)(=)(\s*)', bygroups(Name.Attribute, Operator, Text),
              'attr'),
             (r'[\w:-]+', Name.Attribute),
@@ -140,7 +140,7 @@ class DtdLexer(RegexLexer):
         ],
 
         'common': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'(%|&)[^;]*;', Name.Entity),
             ('<!--', Comment, 'comment'),
             (r'[(|)*,?+]', Operator),
@@ -352,14 +352,14 @@ class HamlLexer(ExtendedRegexLexer):
         ],
 
         'html-attributes': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'[\w:-]+[ \t]*=', Name.Attribute, 'html-attribute-value'),
             (r'[\w:-]+', Name.Attribute),
             (r'\)', Text, '#pop'),
         ],
 
         'html-attribute-value': [
-            (r'[ \t]+', Text),
+            (r'[ \t]+', Whitespace),
             (r'\w+', Name.Variable, '#pop'),
             (r'@\w+', Name.Variable.Instance, '#pop'),
             (r'\$\w+', Name.Variable.Global, '#pop'),
@@ -464,14 +464,14 @@ class ScamlLexer(ExtendedRegexLexer):
         ],
 
         'html-attributes': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'[\w:-]+[ \t]*=', Name.Attribute, 'html-attribute-value'),
             (r'[\w:-]+', Name.Attribute),
             (r'\)', Text, '#pop'),
         ],
 
         'html-attribute-value': [
-            (r'[ \t]+', Text),
+            (r'[ \t]+', Whitespace),
             (r'\w+', Name.Variable, '#pop'),
             (r'@\w+', Name.Variable.Instance, '#pop'),
             (r'\$\w+', Name.Variable.Global, '#pop'),
@@ -573,14 +573,14 @@ class PugLexer(ExtendedRegexLexer):
         ],
 
         'html-attributes': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'[\w:-]+[ \t]*=', Name.Attribute, 'html-attribute-value'),
             (r'[\w:-]+', Name.Attribute),
             (r'\)', Text, '#pop'),
         ],
 
         'html-attribute-value': [
-            (r'[ \t]+', Text),
+            (r'[ \t]+', Whitespace),
             (r'\w+', Name.Variable, '#pop'),
             (r'@\w+', Name.Variable.Instance, '#pop'),
             (r'\$\w+', Name.Variable.Global, '#pop'),
@@ -647,7 +647,7 @@ class VueLexer(HtmlLexer):
             inherit,
         ],
         'tag': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (r'((?:[@:]|v-)(?:[.\w:-]|\[[^\]]*?\])+\s*)(=)(\s*)',
              bygroups(using(this, state=['name']), Operator, Text),
              'attr-directive'),
