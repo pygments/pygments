@@ -21,7 +21,7 @@ from pygments.lexers._lilypond_builtins import (
 )
 from pygments.token import Token
 
-__all__ = ["LilyPondLexer"]
+__all__ = ["LilyPondLexer", 'LilyPondLexer']
 
 # In LilyPond, (unquoted) name tokens only contain letters, hyphens,
 # and underscores, where hyphens and underscores must not start or end
