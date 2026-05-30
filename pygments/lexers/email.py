@@ -13,7 +13,7 @@ from pygments.lexers.mime import MIMELexer
 from pygments.token import Text, Keyword, Name, String, Number, Comment
 from pygments.util import get_bool_opt
 
-__all__ = ["EmailLexer"]
+__all__ = ["EmailLexer", 'EmailHeaderLexer', 'EmailLexer']
 
 
 class EmailHeaderLexer(RegexLexer):
