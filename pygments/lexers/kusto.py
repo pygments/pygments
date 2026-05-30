@@ -12,7 +12,7 @@ from pygments.lexer import RegexLexer, words
 from pygments.token import (Comment, Keyword, Name, Number, Punctuation,
                             String, Whitespace)
 
-__all__ = ["KustoLexer"]
+__all__ = ["KustoLexer", 'KustoLexer']
 
 # Although these all seem to be keywords
 # https://github.com/microsoft/Kusto-Query-Language/blob/master/src/Kusto.Language/Syntax/SyntaxFacts.cs
