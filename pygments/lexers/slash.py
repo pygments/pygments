@@ -12,7 +12,7 @@ from pygments.lexer import ExtendedRegexLexer, bygroups, DelegatingLexer
 from pygments.token import Name, Number, String, Comment, Punctuation, \
     Other, Keyword, Operator, Whitespace
 
-__all__ = ['SlashLexer']
+__all__ = ['SlashLexer', 'SlashLanguageLexer']
 
 
 class SlashLanguageLexer(ExtendedRegexLexer):
