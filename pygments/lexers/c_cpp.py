@@ -16,7 +16,7 @@ from pygments.util import get_bool_opt
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
 
-__all__ = ['CLexer', 'CppLexer']
+__all__ = ['CLexer', 'CppLexer', 'CFamilyLexer']
 
 
 class CFamilyLexer(RegexLexer):
