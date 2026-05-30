@@ -338,7 +338,7 @@ class FoxProLexer(RegexLexer):
              r'RightClick|SCCInit|SCCDestroy|Scrolled|Timer|UIEnable|'
              r'UnDock|UnloadReport|Unload|UpClick|Valid|When)', Name.Function),
 
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             # everything else is not colored
             (r'.', Text),
         ],
