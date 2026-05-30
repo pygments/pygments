@@ -12,7 +12,7 @@ from pygments.lexer import RegexLexer, words, include, bygroups, inherit
 from pygments.token import Comment, Name, Number, Operator, Punctuation, \
     String, Whitespace, Literal, Generic
 
-__all__ = ["KLexer", "QLexer"]
+__all__ = ["KLexer", "QLexer", 'KLexer', 'QLexer']
 
 
 class KLexer(RegexLexer):
