@@ -183,7 +183,7 @@ class ActionScript3Lexer(RegexLexer):
         'type': [
             (r'(\s*)(:)(\s*)(' + typeidentifier + r'|\*)',
              bygroups(Whitespace, Operator, Whitespace, Keyword.Type), '#pop:2'),
-            (r'\s+', Text, '#pop:2'),
+            (r'\s+', Whitespace, '#pop:2'),
             default('#pop:2')
         ],
         'defval': [
