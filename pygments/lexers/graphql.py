@@ -17,7 +17,7 @@ from pygments.token import (Comment, Keyword, Name, Number, Punctuation, String,
                             Whitespace)
 
 
-__all__ = ["GraphQLLexer"]
+__all__ = ["GraphQLLexer", 'GraphQLLexer']
 
 OPERATION_TYPES = ("query", "mutation", "subscription")
 BUILTIN_TYPES = ("Int", "Float", "String", "Boolean", "ID")
