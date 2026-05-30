@@ -15,7 +15,7 @@ from pygments.lexers import get_lexer_for_mimetype
 from pygments.token import Text, Name, String, Operator, Comment, Other
 from pygments.util import get_int_opt, ClassNotFound
 
-__all__ = ["MIMELexer"]
+__all__ = ["MIMELexer", 'MIMELexer']
 
 
 class MIMELexer(RegexLexer):
