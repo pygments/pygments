@@ -21,7 +21,7 @@ from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Comment, Name, Literal, String, Text, Punctuation, \
     Keyword
 
-__all__ = ["SieveLexer"]
+__all__ = ["SieveLexer", 'SieveLexer']
 
 
 class SieveLexer(RegexLexer):
