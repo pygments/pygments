@@ -15,7 +15,7 @@ import re
 from pygments.lexer import RegexLexer, bygroups
 from pygments.token import Comment, Name, Text, Punctuation, String, Keyword
 
-__all__ = ["WoWTocLexer"]
+__all__ = ["WoWTocLexer", 'WoWTocLexer']
 
 def _create_tag_line_pattern(inner_pattern, ignore_case=False):
     return ((r"(?i)" if ignore_case else r"")
