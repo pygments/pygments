@@ -15,7 +15,7 @@ from pygments.lexers._usd_builtins import COMMON_ATTRIBUTES, KEYWORDS, \
 from pygments.token import Comment, Keyword, Name, Number, Operator, \
     Punctuation, String, Text, Whitespace
 
-__all__ = ["UsdLexer"]
+__all__ = ["UsdLexer", 'UsdLexer']
 
 
 def _keywords(words, type_):
