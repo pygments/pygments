@@ -45,7 +45,7 @@ __all__ = ['HtmlPhpLexer', 'XmlPhpLexer', 'CssPhpLexer',
            'LassoCssLexer', 'LassoJavascriptLexer', 'HandlebarsLexer',
            'HandlebarsHtmlLexer', 'YamlJinjaLexer', 'LiquidLexer',
            'TwigLexer', 'TwigHtmlLexer', 'Angular2Lexer', 'Angular2HtmlLexer',
-           'SqlJinjaLexer']
+           'SqlJinjaLexer', 'CheetahPythonLexer', 'GenshiMarkupLexer', 'JspRootLexer', 'ColdfusionMarkupLexer', 'TeaTemplateRootLexer']
 
 
 class ErbLexer(Lexer):
