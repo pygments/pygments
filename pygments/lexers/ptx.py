@@ -12,7 +12,7 @@ from pygments.lexer import RegexLexer, include, words
 from pygments.token import Comment, Keyword, Name, String, Number, \
     Punctuation, Whitespace, Operator
 
-__all__ = ["PtxLexer"]
+__all__ = ["PtxLexer", 'PtxLexer']
 
 
 class PtxLexer(RegexLexer):
