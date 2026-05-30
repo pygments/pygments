@@ -19,7 +19,7 @@ from pygments import unistring as uni
 from pygments.lexers.html import XmlLexer
 
 __all__ = ['CSharpLexer', 'NemerleLexer', 'BooLexer', 'VbNetLexer',
-           'CSharpAspxLexer', 'VbNetAspxLexer', 'FSharpLexer', 'XppLexer']
+           'CSharpAspxLexer', 'VbNetAspxLexer', 'FSharpLexer', 'XppLexer', 'GenericAspxLexer']
 
 
 class CSharpLexer(RegexLexer):
