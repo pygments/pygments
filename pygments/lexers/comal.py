@@ -14,7 +14,7 @@ from pygments.lexer import RegexLexer, words
 from pygments.token import Comment, Whitespace, Operator, Keyword, String, \
     Number, Name, Punctuation
 
-__all__ = ["Comal80Lexer"]
+__all__ = ["Comal80Lexer", 'Comal80Lexer']
 
 
 class Comal80Lexer(RegexLexer):
