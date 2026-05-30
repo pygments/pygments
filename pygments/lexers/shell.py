@@ -19,7 +19,7 @@ from pygments.util import shebang_matches
 __all__ = ['BashLexer', 'BashSessionLexer', 'TcshLexer', 'BatchLexer',
            'SlurmBashLexer', 'MSDOSSessionLexer', 'PowerShellLexer',
            'PowerShellSessionLexer', 'TcshSessionLexer', 'FishShellLexer',
-           'ExeclineLexer']
+           'ExeclineLexer', 'ShellSessionBaseLexer']
 
 
 class BashLexer(RegexLexer):
