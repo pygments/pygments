@@ -22,7 +22,7 @@ from pygments.token import (
     Whitespace,
 )
 
-__all__ = ["BlueprintLexer"]
+__all__ = ["BlueprintLexer", 'BlueprintLexer']
 
 
 class BlueprintLexer(RegexLexer):
