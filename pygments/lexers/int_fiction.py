@@ -49,7 +49,7 @@ class Inform6Lexer(RegexLexer):
             default('directive')
         ],
         '_whitespace': [
-            (r'\s+', Text),
+            (r'\s+', Whitespace),
             (rf'![^{_newline}]*', Comment.Single)
         ],
         'default': [
@@ -606,7 +606,7 @@ class Inform7Lexer(RegexLexer):
                 (rf'(?i)[a(|{_newline}]', Text)
             ],
             '+phrase-definition': [
-                (r'\s+', Text),
+                (r'\s+', Whitespace),
                 (r'\[', Comment.Multiline, '+comment'),
                 (rf'(\([{_dash}])(.*?)([{_dash}]\))',
                  bygroups(Punctuation,
@@ -616,7 +616,7 @@ class Inform7Lexer(RegexLexer):
                 default('#pop')
             ],
             '+use-option': [
-                (r'\s+', Text),
+                (r'\s+', Whitespace),
                 (r'\[', Comment.Multiline, '+comment'),
                 (rf'(\([{_dash}])(.*?)([{_dash}]\))',
                  bygroups(Punctuation,
@@ -644,13 +644,13 @@ class Inform7Lexer(RegexLexer):
                 default('#pop')
             ],
             '+documentation-heading': [
-                (r'\s+', Text),
+                (r'\s+', Whitespace),
                 (r'\[', Comment.Multiline, '+comment'),
                 (r'(?i)documentation\s+', Text, '+documentation-heading2'),
                 default('#pop')
             ],
             '+documentation-heading2': [
-                (r'\s+', Text),
+                (r'\s+', Whitespace),
                 (r'\[', Comment.Multiline, '+comment'),
                 (rf'[{_dash}]{{4}}\s', Text, '+documentation'),
                 default('#pop:2')
