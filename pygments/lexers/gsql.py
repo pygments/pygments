@@ -14,7 +14,7 @@ from pygments.lexer import RegexLexer, include, bygroups, using, this, words
 from pygments.token import Keyword, Punctuation, Comment, Operator, Name, \
     String, Number, Whitespace
 
-__all__ = ["GSQLLexer"]
+__all__ = ["GSQLLexer", 'GSQLLexer']
 
 
 class GSQLLexer(RegexLexer):
