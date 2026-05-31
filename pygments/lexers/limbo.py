@@ -2,7 +2,7 @@
     pygments.lexers.limbo
     ~~~~~~~~~~~~~~~~~~~~~~~
 
-    Lexers for Inferno os and all the related stuff.
+    Lexer for Limbo.
 
     :copyright: Copyright 2006-present by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
