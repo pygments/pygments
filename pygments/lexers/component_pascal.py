@@ -2,7 +2,7 @@
     pygments.lexers.component_pascal
     ~~~~~~~~~~~~~~~~~~~~~~
 
-    Lexers for Oberon family languages.
+    Lexer for Component Pascal language.
 
     :copyright: Copyright 2006-present by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
