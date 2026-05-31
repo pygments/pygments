@@ -1,5 +1,5 @@
 """
-    pygments.lexers.nimrod
+    pygments.lexers.nim
     ~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for the Nim language (formerly known as Nimrod).
@@ -14,16 +14,16 @@ from pygments.lexer import RegexLexer, include, default, bygroups
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Error
 
-__all__ = ['NimrodLexer']
+__all__ = ['NimLexer']
 
 
-class NimrodLexer(RegexLexer):
+class NimLexer(RegexLexer):
     """
     For Nim source code.
     """
 
-    name = 'Nimrod'
-    url = 'http://nim-lang.org/'
+    name = 'Nim'
+    url = 'https://nim-lang.org/'
     aliases = ['nimrod', 'nim']
     filenames = ['*.nim', '*.nimrod']
     mimetypes = ['text/x-nim']
@@ -50,7 +50,9 @@ class NimrodLexer(RegexLexer):
         'is', 'isnot', 'iterator', 'let', 'mixin', 'mod',
         'not', 'notin', 'object', 'of', 'or', 'out', 'ptr', 'raise',
         'ref', 'return', 'shl', 'shr', 'static', 'try',
-        'tuple', 'type', 'using', 'when', 'while', 'xor'
+        'tuple', 'type', 'using', 'when', 'while', 'xor',
+        # Nim 2.x
+        'sink', 'lent', 'owned',
     ]
 
     keywordsPseudo = [

@@ -19,7 +19,7 @@ from pygments import unistring as uni
 
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
            'Python2Lexer', 'Python2TracebackLexer',
-           'CythonLexer', 'DgLexer', 'NumPyLexer']
+           'CythonLexer', 'DgLexer', 'NumPyLexer', 'StarlarkLexer']
 
 
 class PythonLexer(RegexLexer):
@@ -33,7 +33,7 @@ class PythonLexer(RegexLexer):
 
     name = 'Python'
     url = 'https://www.python.org'
-    aliases = ['python', 'py', 'sage', 'python3', 'py3', 'bazel', 'starlark', 'pyi']
+    aliases = ['python', 'py', 'sage', 'python3', 'py3', 'pyi']
     filenames = [
         '*.py',
         '*.pyw',
@@ -47,12 +47,6 @@ class PythonLexer(RegexLexer):
         '*.sc',
         'SConstruct',
         'SConscript',
-        # Skylark/Starlark (used by Bazel, Buck, and Pants)
-        '*.bzl',
-        'BUCK',
-        'BUILD',
-        'BUILD.bazel',
-        'WORKSPACE',
         # Twisted Application infrastructure
         '*.tac',
         # Execubot level format
@@ -250,7 +244,9 @@ class PythonLexer(RegexLexer):
                 'max', 'memoryview', 'min', 'next', 'object', 'oct', 'open', 'ord',
                 'pow', 'print', 'property', 'range', 'repr', 'reversed', 'round',
                 'sentinel', 'set', 'setattr', 'slice', 'sorted', 'staticmethod', 'str',
-                'sum', 'super', 'tuple', 'type', 'vars', 'zip'), prefix=r'(?<!\.)',
+                'sum', 'super', 'tuple', 'type', 'vars', 'zip',
+                # Python 3.15+
+                'frozendict', 'sentinel'), prefix=r'(?<!\.)',
                 suffix=r'\b'),
              Name.Builtin),
             (r'(?<!\.)(self|Ellipsis|NotImplemented|cls)\b', Name.Builtin.Pseudo),
@@ -647,7 +643,6 @@ class Python2Lexer(RegexLexer):
 
 class _PythonConsoleLexerBase(RegexLexer):
     name = 'Python console session'
-    aliases = ['pycon', 'python-console']
     mimetypes = ['text/x-python-doctest']
 
     """Auxiliary lexer for `PythonConsoleLexer`.
@@ -1209,3 +1204,48 @@ class NumPyLexer(PythonLexer):
         return (shebang_matches(text, r'pythonw?(3(\.\d)?)?') or
                 'import ' in ltext) \
             and ('import numpy' in ltext or 'from numpy import' in ltext)
+class StarlarkLexer(RegexLexer):
+    """
+    Lexer for Starlark (https://github.com/bazelbuild/starlark).
+    .. versionadded:: 2.21
+    """
+    name = 'Starlark'
+    url = 'https://github.com/bazelbuild/starlark'
+    aliases = ['starlark', 'bazel', 'bzl']
+    filenames = ['*.bzl', 'BUCK', 'BUILD', 'BUILD.bazel',
+                 'WORKSPACE', 'WORKSPACE.bazel']
+    mimetypes = ['text/x-starlark', 'text/x-bazel']
+    version_added = '2.21'
+    _KEYWORDS = (
+        'and', 'break', 'continue', 'def', 'elif', 'else', 'for',
+        'if', 'in', 'lambda', 'not', 'or', 'pass', 'return', 'while',
+    )
+    _BUILTINS = (
+        'abs', 'all', 'any', 'bool', 'dict', 'dir', 'enumerate', 'float',
+        'getattr', 'hasattr', 'hash', 'int', 'len', 'list', 'map', 'max',
+        'min', 'print', 'range', 'repr', 'reversed', 'sorted', 'str',
+        'tuple', 'type', 'zip',
+        'aspect', 'attr', 'depset', 'fail', 'glob', 'load',
+        'module_extension', 'provider', 'repository_rule', 'rule',
+        'select', 'struct', 'tag_class', 'Label', 'visibility',
+    )
+    tokens = {
+        'root': [
+            (r'\n', Whitespace),
+            (r'[^\S\n]+', Whitespace),
+            (r'#.*$', Comment.Single),
+            (r"\"\"\"", String.Double, "tdqs"),
+            (r\"'''\", String.Single, 'tsqs'),
+            (r"\"", String.Double, "dqs"),
+            (r\"'\", String.Single, 'sqs'),
+            (r'0[xX][0-9a-fA-F]+', Number.Hex),
+            (r'[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?', Number.Float),
+            (r'[0-9]+', Number.Integer),
+            (words(_KEYWORDS, suffix=r'\b'), Keyword),
+            (r'(True|False|None)\b', Keyword.Constant),
+            (words(_BUILTINS, prefix=r'(?<!\.)', suffix=r'\b'), Name.Builtin),
+            (r'!=|==|<<|>>|[-~+/*%=<>&^|.]', Operator),
+            (r'[{}\[\]():,;]', Punctuation),
+            (r'[^\W\d]\w*', Name),
+        ],
+    }

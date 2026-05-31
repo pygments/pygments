@@ -1,5 +1,5 @@
 """
-    pygments.lexers.gcodelexer
+    pygments.lexers.gcode
     ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for the G Code Language.

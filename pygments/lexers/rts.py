@@ -1,5 +1,5 @@
 """
-    pygments.lexers.trafficscript
+    pygments.lexers.rts
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexer for RiverBed's TrafficScript (RTS) language.
@@ -18,7 +18,7 @@ class RtsLexer(RegexLexer):
     """
     For Riverbed Stingray Traffic Manager
     """
-    name = 'TrafficScript'
+    name = 'RTS'
     aliases = ['trafficscript', 'rts']
     filenames = ['*.rts']
     url = 'https://riverbed.com'

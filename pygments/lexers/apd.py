@@ -1,5 +1,5 @@
 """
-    pygments.lexers.apdlexer
+    pygments.lexers.apd
     ~~~~~~~~~~~~~~~~~~~~~~~~
 
     Lexers for ANSYS Parametric Design Language.
@@ -14,10 +14,10 @@ from pygments.lexer import RegexLexer, include, words, default
 from pygments.token import Comment, Keyword, Name, Number, Operator, \
     String, Generic, Punctuation, Whitespace, Escape
 
-__all__ = ['apdlexer']
+__all__ = ['ApdLexer']
 
 
-class apdlexer(RegexLexer):
+class ApdLexer(RegexLexer):
     """
     For APDL source code.
     """

@@ -1,8 +1,8 @@
 """
-    pygments.lexers.dalvik
+    pygments.lexers.smali
     ~~~~~~~~~~~~~~~~~~~~~~
 
-    Pygments lexers for Dalvik VM-related languages.
+    Pygments lexer for Smali language.
 
     :copyright: Copyright 2006-present by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
@@ -15,7 +15,6 @@ from pygments.token import Keyword, Text, Comment, Name, String, Number, \
     Punctuation, Whitespace
 
 __all__ = ['SmaliLexer']
-
 
 class SmaliLexer(RegexLexer):
     """

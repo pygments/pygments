@@ -30,8 +30,8 @@ class DaxLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Whitespace),
-            (r"--.*\n?", Comment.Single),	# Comment: Double dash comment
-            (r"//.*\n?", Comment.Single),	# Comment: Double backslash comment
+            (r"--.*\n?", Comment.Single),  # Comment: Double dash comment
+            (r"//.*\n?", Comment.Single),  # Comment: Double backslash comment
             (r'/\*', Comment.Multiline, 'multiline-comments'),
             (words(('abs', 'accrint', 'accrintm', 'acos', 'acosh', 'acot', 'acoth',
                     'addcolumns', 'addmissingitems', 'all', 'allcrossfiltered',
@@ -114,7 +114,7 @@ class DaxLexer(RegexLexer):
             (r'\b(IN|NOT)\b', Operator.Word),
             (r'"', String, 'string'), #StringLiteral
             (r"'(?:[^']|'')*'(?!')(?:\[[ \w]+\])?|\w+\[[ \w]+\]",
-                Name.Attribute),	# Column reference
+                Name.Attribute),  # Column reference
             (r"\[[ \w]+\]", Name.Attribute), #Measure reference
             (r'(?<!\w)(\d+\.?\d*|\.\d+\b)', Number),# Number
             (r'[\[\](){}`,.]', Punctuation), #Parenthesis

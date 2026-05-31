@@ -1536,7 +1536,7 @@ class ColdfusionLexer(RegexLexer):
     """
     Coldfusion statements
     """
-    name = 'cfstatement'
+    name = 'ColdFusion'
     aliases = ['cfs']
     filenames = []
     mimetypes = []
