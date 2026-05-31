@@ -463,7 +463,7 @@ LEXERS = {
     'RqlLexer': ('pygments.lexers.sql', 'RQL', ('rql',), ('*.rql',), ('text/x-rql',)),
     'RslLexer': ('pygments.lexers.dsls', 'RSL', ('rsl',), ('*.rsl',), ('text/rsl',)),
     'RstLexer': ('pygments.lexers.markup', 'reStructuredText', ('restructuredtext', 'rst', 'rest'), ('*.rst', '*.rest'), ('text/x-rst', 'text/prs.fallenstein.rst')),
-    'RtsLexer': ('pygments.lexers.trafficscript', 'TrafficScript', ('trafficscript', 'rts'), ('*.rts',), ()),
+    'RtsLexer': ('pygments.lexers.rts', 'TrafficScript', ('trafficscript', 'rts'), ('*.rts',), ()),
     'RubyConsoleLexer': ('pygments.lexers.ruby', 'Ruby irb session', ('rbcon', 'irb'), (), ('text/x-ruby-shellsession',)),
     'RubyLexer': ('pygments.lexers.ruby', 'Ruby', ('ruby', 'rb', 'duby'), ('*.rb', '*.rbw', 'Rakefile', '*.rake', '*.gemspec', '*.rbx', '*.duby', 'Gemfile', 'Vagrantfile'), ('text/x-ruby', 'application/x-ruby')),
     'RustLexer': ('pygments.lexers.rust', 'Rust', ('rust', 'rs'), ('*.rs', '*.rs.in'), ('text/rust', 'text/x-rust')),
