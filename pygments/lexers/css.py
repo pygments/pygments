@@ -142,6 +142,15 @@ _functional_notation_keyword_values = (
     'scaleX', 'scaleY', 'scaleZ', 'sepia', 'shade', 'skewX', 'skewY', 'steps',
     'tint', 'toggle', 'translate', 'translate3d', 'translateX', 'translateY',
     'translateZ', 'whiteness',
+    # CSS Color Level 4+
+    'color-mix', 'color-contrast', 'oklch', 'oklab', 'lch', 'lab',
+    'hwb', 'color',
+    # CSS Math
+    'round', 'mod', 'rem', 'sin', 'cos', 'tan',
+    'asin', 'acos', 'atan', 'atan2', 'pow', 'sqrt', 'hypot',
+    'log', 'exp', 'abs', 'sign',
+    # CSS Shapes Level 2
+    'path', 'xywh', 'shape',
 )
 # Note! Handle url(...) separately.
 
