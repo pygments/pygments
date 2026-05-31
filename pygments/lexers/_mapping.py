@@ -102,7 +102,7 @@ LEXERS = {
     'ColdfusionLexer': ('pygments.lexers.templates', 'cfstatement', ('cfs',), (), ()),
     'Comal80Lexer': ('pygments.lexers.comal', 'COMAL-80', ('comal', 'comal80'), ('*.cml', '*.comal'), ()),
     'CommonLispLexer': ('pygments.lexers.lisp', 'Common Lisp', ('common-lisp', 'cl', 'lisp'), ('*.cl', '*.lisp'), ('text/x-common-lisp',)),
-    'ComponentPascalLexer': ('pygments.lexers.oberon', 'Component Pascal', ('componentpascal', 'cp'), ('*.cp', '*.cps'), ('text/x-component-pascal',)),
+    'ComponentPascalLexer': ('pygments.lexers.component_pascal', 'Component Pascal', ('componentpascal', 'cp'), ('*.cp', '*.cps'), ('text/x-component-pascal',)),
     'CplintLexer': ('pygments.lexers.cplint', 'cplint', ('cplint',), ('*.ecl', '*.prolog', '*.pro', '*.pl', '*.P', '*.lpad', '*.cpl'), ('text/x-cplint',)),
     'CppLexer': ('pygments.lexers.c_cpp', 'C++', ('cpp', 'c++'), ('*.cpp', '*.hpp', '*.c++', '*.h++', '*.cc', '*.hh', '*.cxx', '*.hxx', '*.C', '*.H', '*.cp', '*.CPP', '*.tpp', '*.cppm', '*.ixx', '*.mxx'), ('text/x-c++hdr', 'text/x-c++src')),
     'CppObjdumpLexer': ('pygments.lexers.asm', 'cpp-objdump', ('cpp-objdump', 'c++-objdumb', 'cxx-objdump'), ('*.cpp-objdump', '*.c++-objdump', '*.cxx-objdump'), ('text/x-cpp-objdump',)),
