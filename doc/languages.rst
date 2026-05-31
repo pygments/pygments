@@ -1,12 +1,5 @@
 :orphan:
 
-   AQL
-   C--
-   Fennel
-   GQL
-   Gremlin
-   HolyC
-   jq
 Languages
 =========
 
@@ -15,12 +8,6 @@ Languages
 ... that's all?
 ---------------
 
-   LuaJIT
-   MLIR
-   Nim
-   Starlark
-   Teal
-   V
 Well, why not write your own? Contributing to Pygments is easy and fun. Take a
 look at the :doc:`docs on lexer development <docs/lexerdevelopment>`. Pull
 requests are welcome on `GitHub <https://github.com/pygments/pygments>`_.
