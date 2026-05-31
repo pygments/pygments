@@ -624,10 +624,6 @@ class MoonScriptLexer(LuaLexer):
                 token = Operator
             yield index, token, value
 
-
-
-
-
 class LuaJITLexer(LuaLexer):
     """
     For LuaJIT source code (https://luajit.org/).
@@ -645,18 +641,7 @@ class LuaJITLexer(LuaLexer):
     mimetypes = ['text/x-luajit']
     version_added = '2.21'
 
-    _LUAJIT_MODULES = frozenset([
-        'ffi', 'bit', 'jit',
-        'ffi.C', 'ffi.cdef', 'ffi.load', 'ffi.new', 'ffi.typeof', 'ffi.cast',
-        'ffi.metatype', 'ffi.gc', 'ffi.string', 'ffi.copy', 'ffi.fill',
-        'ffi.sizeof', 'ffi.alignof', 'ffi.offsetof', 'ffi.istype',
-        'ffi.errno', 'ffi.os', 'ffi.arch', 'ffi.abi',
-        'bit.tobit', 'bit.tohex', 'bit.bnot', 'bit.band', 'bit.bor',
-        'bit.bxor', 'bit.lshift', 'bit.rshift', 'bit.arshift',
-        'bit.rol', 'bit.ror', 'bit.bswap',
-        'jit.on', 'jit.off', 'jit.flush', 'jit.status',
-        'jit.version', 'jit.os', 'jit.arch',
-    ])
+    _LUAJIT_MODULES = frozenset(all_luajit_builtins())
 
     def get_tokens_unprocessed(self, text):
         import re as _re
