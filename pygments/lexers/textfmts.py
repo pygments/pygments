@@ -17,7 +17,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 from pygments.util import ClassNotFound
 
 __all__ = ['IrcLogsLexer', 'TodotxtLexer', 'HttpLexer', 'GettextLexer',
-           'NotmuchLexer', 'KernelLogLexer']
+           'NotmuchLexer', 'KernelLogLexer', 'TextWithCommentLexer']
 
 
 class IrcLogsLexer(RegexLexer):
@@ -433,4 +433,26 @@ class KernelLogLexer(RegexLexer):
             include('base'),
             (r'.+\n', Generic.Error, '#pop')
         ]
+    }
+
+
+class TextWithCommentLexer(RegexLexer):
+    """
+    Lexer that highlights ``#`` comments but displays everything else as text.
+    Useful for example for ``.gitignore`` files, interactive git rebasing sessions,
+    or just config-style files.
+    Note that the ``#`` character has to be preceded by a whitespace character.
+    """
+    name = 'Text with comments'
+    aliases = ['text-with-comments']
+    url = ''
+    version_added = '2.21'
+
+    tokens = {
+        'root': [
+            (r'^(#.*)(\n?)', bygroups(Comment.Single, Text.Whitespace)),
+            (r'([^\n]*?[ \t])(#.*)(\n?)', bygroups(Text, Comment.Single, Text.Whitespace)),
+            (r'\n', Text.Whitespace),
+            (r'[^\n]+', Text),
+        ],
     }
