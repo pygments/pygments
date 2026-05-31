@@ -355,7 +355,7 @@ LEXERS = {
     'NewLispLexer': ('pygments.lexers.lisp', 'NewLisp', ('newlisp',), ('*.lsp', '*.nl', '*.kif'), ('text/x-newlisp', 'application/x-newlisp')),
     'NewspeakLexer': ('pygments.lexers.smalltalk', 'Newspeak', ('newspeak',), ('*.ns2',), ('text/x-newspeak',)),
     'NginxConfLexer': ('pygments.lexers.configs', 'Nginx configuration file', ('nginx',), ('nginx.conf',), ('text/x-nginx-conf',)),
-    'NimrodLexer': ('pygments.lexers.nimrod', 'Nimrod', ('nimrod', 'nim'), ('*.nim', '*.nimrod'), ('text/x-nim',)),
+    'NimLexer': ('pygments.lexers.nim', 'Nim', ('nimrod', 'nim'), ('*.nim', '*.nimrod', '*.nims'), ('text/x-nim',)),
     'NitLexer': ('pygments.lexers.nit', 'Nit', ('nit',), ('*.nit',), ()),
     'NixLexer': ('pygments.lexers.nix', 'Nix', ('nixos', 'nix'), ('*.nix',), ('text/x-nix',)),
     'NodeConsoleLexer': ('pygments.lexers.javascript', 'Node.js REPL console session', ('nodejsrepl',), (), ('text/x-nodejsrepl',)),
