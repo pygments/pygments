@@ -34,3 +34,25 @@ int main(int argc, char **argv)
     timedReduction<<<dimBlock, 256, 256, 0>>>(dinput, doutput, dtimer);
     cudaDeviceReset();
 }
+
+// Modern CUDA is compiled as C++, so C++ constructs are valid.
+namespace example {
+
+template <typename T>
+__global__ void scale(T* data, T factor)
+{
+    constexpr int stride = 32;
+    auto idx = blockIdx.x * blockDim.x + threadIdx.x;
+    data[idx * stride] *= factor;
+}
+
+class Buffer {
+public:
+    explicit Buffer(int n) noexcept : size_(n), ptr_(nullptr) {}
+    ~Buffer() { cudaFree(ptr_); }
+private:
+    int size_;
+    float* ptr_;
+};
+
+}  // namespace example
