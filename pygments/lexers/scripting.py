@@ -16,95 +16,9 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Error, Whitespace, Other
 from pygments.util import get_bool_opt, get_list_opt
 
-__all__ = ['MoonScriptLexer', 'ChaiscriptLexer', 'LSLLexer',
-           'AppleScriptLexer', 'RexxLexer', 'MOOCodeLexer', 'HybrisLexer',
+__all__ = ['ChaiscriptLexer', 'LSLLexer', 'AppleScriptLexer',
+           'RexxLexer', 'MOOCodeLexer', 'HybrisLexer',
            'EasytrieveLexer', 'JclLexer', 'MiniScriptLexer']
-
-
-def all_lua_builtins():
-        return [w for values in MODULES.values() for w in values]
-
-class MoonScriptLexer(LuaLexer):
-    """
-    For MoonScript source code.
-    """
-
-    name = 'MoonScript'
-    url = 'http://moonscript.org'
-    aliases = ['moonscript', 'moon']
-    filenames = ['*.moon']
-    mimetypes = ['text/x-moonscript', 'application/x-moonscript']
-    version_added = '1.5'
-
-    tokens = {
-        'root': [
-            (r'#!(.*?)$', Comment.Preproc),
-            default('base'),
-        ],
-        'base': [
-            ('--.*$', Comment.Single),
-            (r'(?i)(\d*\.\d+|\d+\.\d*)(e[+-]?\d+)?', Number.Float),
-            (r'(?i)\d+e[+-]?\d+', Number.Float),
-            (r'(?i)0x[0-9a-f]*', Number.Hex),
-            (r'\d+', Number.Integer),
-            (r'\n', Whitespace),
-            (r'[^\S\n]+', Text),
-            (r'(?s)\[(=*)\[.*?\]\1\]', String),
-            (r'(->|=>)', Name.Function),
-            (r':[a-zA-Z_]\w*', Name.Variable),
-            (r'(==|!=|~=|<=|>=|\.\.\.|\.\.|[=+\-*/%^<>#!.\\:])', Operator),
-            (r'[;,]', Punctuation),
-            (r'[\[\]{}()]', Keyword.Type),
-            (r'[a-zA-Z_]\w*:', Name.Variable),
-            (words((
-                'class', 'extends', 'if', 'then', 'super', 'do', 'with',
-                'import', 'export', 'while', 'elseif', 'return', 'for', 'in',
-                'from', 'when', 'using', 'else', 'and', 'or', 'not', 'switch',
-                'break'), suffix=r'\b'),
-             Keyword),
-            (r'(true|false|nil)\b', Keyword.Constant),
-            (r'(and|or|not)\b', Operator.Word),
-            (r'(self)\b', Name.Builtin.Pseudo),
-            (r'@@?([a-zA-Z_]\w*)?', Name.Variable.Class),
-            (r'[A-Z]\w*', Name.Class),  # proper name
-            (words(all_lua_builtins(), suffix=r"\b"), Name.Builtin),
-            (r'[A-Za-z_]\w*', Name),
-            ("'", String.Single, combined('stringescape', 'sqs')),
-            ('"', String.Double, combined('stringescape', 'dqs'))
-        ],
-        'stringescape': [
-            (r'''\\([abfnrtv\\"']|\d{1,3})''', String.Escape)
-        ],
-        'strings': [
-            (r'[^#\\\'"]+', String),
-            # note that strings are multi-line.
-            # hashmarks, quotes and backslashes must be parsed one at a time
-        ],
-        'interpoling_string': [
-            (r'\}', String.Interpol, "#pop"),
-            include('base')
-        ],
-        'dqs': [
-            (r'"', String.Double, '#pop'),
-            (r'\\.|\'', String),  # double-quoted string don't need ' escapes
-            (r'#\{', String.Interpol, "interpoling_string"),
-            (r'#', String),
-            include('strings')
-        ],
-        'sqs': [
-            (r"'", String.Single, '#pop'),
-            (r'#|\\.|"', String),  # single quoted strings don't need " escapses
-            include('strings')
-        ]
-    }
-
-    def get_tokens_unprocessed(self, text):
-        # set . as Operator instead of Punctuation
-        for index, token, value in LuaLexer.get_tokens_unprocessed(self, text):
-            if token == Punctuation and value == ".":
-                token = Operator
-            yield index, token, value
-
 
 class ChaiscriptLexer(RegexLexer):
     """
