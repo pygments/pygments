@@ -485,7 +485,7 @@ LEXERS = {
     'SlashLexer': ('pygments.lexers.slash', 'Slash', ('slash',), ('*.sla',), ()),
     'SlimLexer': ('pygments.lexers.webmisc', 'Slim', ('slim',), ('*.slim',), ('text/x-slim',)),
     'SlurmBashLexer': ('pygments.lexers.shell', 'Slurm', ('slurm', 'sbatch'), ('*.sl',), ()),
-    'SmaliLexer': ('pygments.lexers.dalvik', 'Smali', ('smali',), ('*.smali',), ('text/smali',)),
+    'SmaliLexer': ('pygments.lexers.smali', 'Smali', ('smali',), ('*.smali',), ('text/smali',)),
     'SmalltalkLexer': ('pygments.lexers.smalltalk', 'Smalltalk', ('smalltalk', 'squeak', 'st'), ('*.st',), ('text/x-smalltalk',)),
     'SmartGameFormatLexer': ('pygments.lexers.sgf', 'SmartGameFormat', ('sgf',), ('*.sgf',), ()),
     'SmartyLexer': ('pygments.lexers.templates', 'Smarty', ('smarty',), ('*.tpl',), ('application/x-smarty',)),
