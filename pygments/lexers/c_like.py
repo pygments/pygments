@@ -20,7 +20,7 @@ from pygments.lexers import _mql_builtins
 
 __all__ = ['PikeLexer', 'NesCLexer', 'ClayLexer', 'ECLexer', 'ValaLexer',
            'CudaLexer', 'SwigLexer', 'MqlLexer', 'ArduinoLexer', 'CharmciLexer',
-           'OmgIdlLexer', 'PromelaLexer']
+           'OmgIdlLexer', 'PromelaLexer', 'HolyCLexer', 'CmmLexer']
 
 
 class PikeLexer(CppLexer):
@@ -734,5 +734,66 @@ class PromelaLexer(CLexer):
              Keyword.Declaration),
             # MetaTerms (keywords)
             (r'skip\b', Keyword),
+        ],
+    }
+
+class HolyCLexer(CppLexer):
+    '''
+    Lexer for HolyC (TempleOS).
+    .. versionadded:: 2.21
+    '''
+    name = 'HolyC'
+    url = 'https://templeos.org/'
+    aliases = ['holyc']
+    filenames = ['*.HC', '*.HH', '*.ZC', '*.ZH']
+    mimetypes = ['text/x-holyc']
+    version_added = '2.21'
+    EXTRA_KEYWORDS = {
+        'U0', 'U8', 'U16', 'U32', 'U64',
+        'I8', 'I16', 'I32', 'I64', 'F64', 'Bool',
+        'Print', 'Exit', 'Free', 'MAlloc', 'CAlloc',
+        'MemSet', 'MemCpy', 'StrLen', 'StrCpy', 'StrCmp',
+    }
+    def get_tokens_unprocessed(self, text):
+        for index, token, value in CppLexer.get_tokens_unprocessed(self, text):
+            if token is Name and value in self.EXTRA_KEYWORDS:
+                yield index, Keyword.Type, value
+            else:
+                yield index, token, value
+
+
+class CmmLexer(RegexLexer):
+    '''
+    Lexer for C-- (C minus minus), GHC intermediate representation.
+    .. versionadded:: 2.21
+    '''
+    name = 'C--'
+    url = 'https://www.cs.tufts.edu/~nr/c--/'
+    aliases = ['cmm', 'c--']
+    filenames = ['*.cmm']
+    mimetypes = ['text/x-cmm']
+    version_added = '2.21'
+    tokens = {
+        'root': [
+            (r'\\s+', Whitespace),
+            (r'//.*$', Comment.Single),
+            (r'/\\*', Comment.Multiline, 'comment'),
+            (words(('section','import','export','foreign','pragma',
+                    'if','else','while','return','jump','call',
+                    'bits8','bits16','bits32','bits64','bits128',
+                    'float32','float64','stackdata','reserve','align',
+                    ), suffix=r'\\b'), Keyword),
+            (r'0[xX][0-9a-fA-F]+', Number.Hex),
+            (r'\\d+\\.\\d*', Number.Float),
+            (r'\\d+', Number.Integer),
+            (r'"(?:\\\\.|[^"\\\\])*"', String.Double),
+            (r'[+\\-*/%&|^~<>=!]', Operator),
+            (r'[(){};:,\\[\\]]', Punctuation),
+            (r'[a-zA-Z_]\\w*', Name),
+        ],
+        'comment': [
+            (r'[^*/]+', Comment.Multiline),
+            (r'\\*/', Comment.Multiline, '#pop'),
+            (r'[*/]', Comment.Multiline),
         ],
     }
