@@ -187,7 +187,7 @@ LEXERS = {
     'GLShaderLexer': ('pygments.lexers.graphics', 'GLSL', ('glsl',), ('*.vert', '*.frag', '*.geo'), ('text/x-glslsrc',)),
     'GSQLLexer': ('pygments.lexers.gsql', 'GSQL', ('gsql',), ('*.gsql',), ()),
     'GasLexer': ('pygments.lexers.asm', 'GAS', ('gas', 'asm'), ('*.s', '*.S'), ('text/x-gas',)),
-    'GcodeLexer': ('pygments.lexers.gcodelexer', 'g-code', ('gcode',), ('*.gcode',), ()),
+    'GcodeLexer': ('pygments.lexers.gcode', 'g-code', ('gcode',), ('*.gcode',), ()),
     'GenshiLexer': ('pygments.lexers.templates', 'Genshi', ('genshi', 'kid', 'xml+genshi', 'xml+kid'), ('*.kid',), ('application/x-genshi', 'application/x-kid')),
     'GenshiTextLexer': ('pygments.lexers.templates', 'Genshi Text', ('genshitext',), (), ('application/x-genshi-text', 'text/x-genshi')),
     'GettextLexer': ('pygments.lexers.textfmts', 'Gettext Catalog', ('pot', 'po'), ('*.pot', '*.po'), ('application/x-gettext', 'text/x-gettext', 'text/gettext')),
