@@ -184,7 +184,7 @@ LEXERS = {
     'GAPConsoleLexer': ('pygments.lexers.algebra', 'GAP session', ('gap-console', 'gap-repl'), ('*.tst',), ()),
     'GAPLexer': ('pygments.lexers.algebra', 'GAP', ('gap',), ('*.g', '*.gd', '*.gi', '*.gap'), ()),
     'GDScriptLexer': ('pygments.lexers.gdscript', 'GDScript', ('gdscript', 'gd'), ('*.gd',), ('text/x-gdscript', 'application/x-gdscript')),
-    'GLShaderLexer': ('pygments.lexers.graphics', 'GLSL', ('glsl',), ('*.vert', '*.frag', '*.geo'), ('text/x-glslsrc',)),
+    'GlslLexer': ('pygments.lexers.graphics', 'GLSL', ('glsl',), ('*.vert', '*.frag', '*.geo'), ('text/x-glslsrc',)),
     'GSQLLexer': ('pygments.lexers.gsql', 'GSQL', ('gsql',), ('*.gsql',), ()),
     'GasLexer': ('pygments.lexers.asm', 'GAS', ('gas', 'asm'), ('*.s', '*.S'), ('text/x-gas',)),
     'GcodeLexer': ('pygments.lexers.gcode', 'g-code', ('gcode',), ('*.gcode',), ()),
