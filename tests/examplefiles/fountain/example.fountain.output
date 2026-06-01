@@ -1,0 +1,87 @@
+'Title'       Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'Example Fountain' Literal.String
+'\n'          Text.Whitespace
+
+'Credit'      Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'Written by'  Literal.String
+'\n'          Text.Whitespace
+
+'Author'      Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'Pygments Test Suite' Literal.String
+'\n'          Text.Whitespace
+
+'Contact'     Name.Attribute
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'555 Example St.' Literal.String
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Brno'        Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'#'           Punctuation
+' ACT I'      Generic.Subheading
+'\n'          Text.Whitespace
+
+'= Opening image.' Comment.Special
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'INT. OFFICE - DAY' Generic.Heading
+' '           Generic.Heading
+'#1#'         Name.Label
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'BRICK'       Name.Label
+'\n'          Text.Whitespace
+
+'(quietly)'   Name.Decorator
+'\n'          Text.Whitespace
+
+'This is '    Literal.String
+'*'           Punctuation
+'important'   Generic.Emph
+'*'           Punctuation
+'.'           Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'STEEL'       Name.Label
+' '           Text.Whitespace
+'^'           Punctuation
+'\n'          Text.Whitespace
+
+'And '        Literal.String
+'**'          Punctuation
+'urgent'      Generic.Strong
+'**'          Punctuation
+'.'           Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'>'           Punctuation
+' CUT TO BLACK.' Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'>'           Punctuation
+' THE END '   Generic.Strong
+'<'           Punctuation
+'\n'          Text.Whitespace
