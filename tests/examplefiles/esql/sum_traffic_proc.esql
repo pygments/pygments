@@ -1,0 +1,7 @@
+FROM logs-endpoint
+| WHERE process.name == "curl.exe"
+| STATS bytes = SUM(destination.bytes) BY destination.address
+| EVAL kb =  bytes/1024
+| SORT kb DESC
+| LIMIT 10
+| KEEP kb,destination.address
