@@ -585,6 +585,10 @@ class MarkdownLexer(RegexLexer):
             (r'([^`]?)(`[^`\n]+`)', bygroups(Text, String.Backtick)),
             # warning: the following rules eat outer tags.
             # eg. **foo _bar_ baz** => foo and baz are not recognized as bold
+            # bold-italics fenced by '***'
+            (r'([^\*]?)(\*\*\*[^* \n][^*\n]*\*\*\*)', bygroups(Text, Generic.EmphStrong)),
+            # bold-italics fenced by '___'
+            (r'([^_]?)(___[^_ \n][^_\n]*___)', bygroups(Text, Generic.EmphStrong)),
             # bold fenced by '**'
             (r'([^\*]?)(\*\*[^* \n][^*\n]*\*\*)', bygroups(Text, Generic.Strong)),
             # bold fenced by '__'
