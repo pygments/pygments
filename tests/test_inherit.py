@@ -11,6 +11,10 @@ from pygments.token import Text
 
 
 class One(RegexLexer):
+    # These tests inspect the raw rule order produced by ``inherit``; disable
+    # the simple-rule merging so individual rules remain observable.
+    merge_simple_rules = False
+
     tokens = {
         'root': [
             ('a', Text),
