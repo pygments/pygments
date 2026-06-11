@@ -14,8 +14,8 @@ import pytest
 
 from pygments.lexer import RegexLexer, bygroups
 from pygments.lexers import get_lexer_by_name
-from pygments.token import (Text, Whitespace, Number, Name, Operator,
-                            Punctuation, Keyword, Other)
+from pygments.token import (Whitespace, Number, Name, Operator,
+                            Punctuation, Other)
 
 
 class SampleLexer(RegexLexer):
