@@ -102,7 +102,7 @@ class JavascriptLexer(RegexLexer):
              r'Number|Object|RegExp|String|Promise|Proxy|decodeURI|'
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
              r'eval|isFinite|isNaN|parseFloat|parseInt|DataView|'
-             r'document|window|globalThis|global|Symbol|Intl|'
+             r'document|window|globalThis|global|arguments|Symbol|Intl|'
              r'WeakSet|WeakMap|Set|Map|Reflect|JSON|Atomics|'
              r'Int(?:8|16|32)Array|BigInt64Array|Float32Array|Float64Array|'
              r'Uint8ClampedArray|Uint(?:8|16|32)Array|BigUint64Array)\b', Name.Builtin),
