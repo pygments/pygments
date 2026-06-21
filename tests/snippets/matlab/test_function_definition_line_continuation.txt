@@ -1,0 +1,26 @@
+---input---
+function [o1, ...
+    o2] = my_fun(a1, ...
+    a2)
+end
+
+---tokens---
+'function'    Keyword
+' '           Text.Whitespace
+'['           Punctuation
+'o1, ...\n    o2' Text
+']'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'my_fun'      Name.Function
+'('           Punctuation
+'a1, '        Text
+'...\n'       Comment
+
+'    a2'      Text
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'end'         Keyword
+'\n'          Text.Whitespace
