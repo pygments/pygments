@@ -1,0 +1,17 @@
+---input---
+puts a-$foo-b
+puts ${foo-bar}
+
+---tokens---
+'puts'        Name.Builtin
+' '           Text.Whitespace
+'a-'          Text
+'$foo'        Name.Variable
+'-'           Operator
+'b'           Text
+'\n'          Text
+
+'puts'        Name.Builtin
+' '           Text.Whitespace
+'${foo-bar}'  Name.Variable
+'\n'          Text
