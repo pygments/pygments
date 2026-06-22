@@ -96,7 +96,7 @@ class Formatter:
         self.encoding = options.get('outencoding') or self.encoding
         self.options = options
 
-    def get_style_defs(self, arg=''):
+    def get_style_defs(self, arg='') -> str:
         """
         This method must return statements or declarations suitable to define
         the current style for subsequent highlighted text (e.g. CSS classes
@@ -121,6 +121,7 @@ class Formatter:
         if self.encoding:
             # wrap the outfile in a StreamWriter
             outfile = codecs.lookup(self.encoding)[3](outfile)
+        # format_unencoded is in the subclass that inherits Formatter
         return self.format_unencoded(tokensource, outfile)
 
     # Allow writing Formatter[str] or Formatter[bytes]. That's equivalent to
