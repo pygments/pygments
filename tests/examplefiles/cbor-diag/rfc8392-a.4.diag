@@ -1,0 +1,22 @@
+61(
+  17(
+    [
+      / protected / << {
+        / alg / 1: 4 / HMAC-256-64 /
+      } >>,
+      / unprotected / {
+        / kid / 4: h'53796d6d6574726963323536' / 'Symmetric256' /
+      },
+      / payload / << {
+        / iss / 1: "coap://as.example.com",
+        / sub / 2: "erikw",
+        / aud / 3: "coap://light.example.com",
+        / exp / 4: 1444064944,
+        / nbf / 5: 1443944944,
+        / iat / 6: 1443944944,
+        / cti / 7: h'0b71'
+      } >>,
+      / tag / h'093101ef6d789200'
+    ]
+  )
+)

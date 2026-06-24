@@ -1,0 +1,20 @@
+97(
+  [
+    / protected h'a1010f' / << {
+        / alg / 1:15 / AES-CBC-MAC-256//64 /
+      } >> ,
+    / unprotected / {},
+    / payload / 'This is the content.',
+    / tag / h'9e1226ba1f81b848',
+    / recipients / [
+      [
+        / protected / h'',
+        / unprotected / {
+          / alg / 1:-6 / direct /,
+          / kid / 4:'our-secret'
+        },
+        / ciphertext / h''
+      ]
+    ]
+  ]
+)

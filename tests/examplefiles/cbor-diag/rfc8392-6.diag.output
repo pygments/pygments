@@ -1,0 +1,15 @@
+'/ CWT CBOR tag /' Comment.Multiline
+' '           Text.Whitespace
+'61('         Punctuation
+'\n  '        Text.Whitespace
+'/ COSE_Mac0 CBOR tag /' Comment.Multiline
+' '           Text.Whitespace
+'17('         Punctuation
+'\n    '      Text.Whitespace
+'/ COSE_Mac0 object /' Comment.Multiline
+'\n  '        Text.Whitespace
+')'           Punctuation
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace

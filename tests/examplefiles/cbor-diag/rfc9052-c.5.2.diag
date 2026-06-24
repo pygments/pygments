@@ -1,0 +1,23 @@
+97(
+  [
+    / protected h'a10105' / << {
+        / alg / 1:5 / HMAC 256//256 /
+      } >> ,
+    / unprotected / {},
+    / payload / 'This is the content.',
+    / tag / h'81a03448acd3d305376eaa11fb3fe416a955be2cbe7ec96f012c994bc3f16a41',
+    / recipients / [
+      [
+        / protected h'a101381a' / << {
+            / alg / 1:-27 / ECDH-SS + HKDF-256 /
+          } >> ,
+        / unprotected / {
+          / static kid / -3:'peregrin.took@tuckborough.example',
+          / kid / 4:'meriadoc.brandybuck@buckland.example',
+          / U nonce / -22:h'4d8553e7e74f3c6a3a9dd3ef286a8195cbf8a23d19558ccfec7d34b824f42d92bd06bd2c7f0271f0214e141fb779ae2856abf585a58368b017e7f2a9e5ce4db5'
+        },
+        / ciphertext / h''
+      ]
+    ]
+  ]
+)

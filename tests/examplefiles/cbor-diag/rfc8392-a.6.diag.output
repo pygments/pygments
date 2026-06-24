@@ -1,0 +1,79 @@
+'16('         Punctuation
+'\n  '        Text.Whitespace
+'['           Punctuation
+'\n    '      Text.Whitespace
+'/ protected /' Comment.Multiline
+' '           Text.Whitespace
+'<<'          Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n      '    Text.Whitespace
+'/ alg /'     Comment.Multiline
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+':'           Punctuation
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+'/ AES-CCM-16-64-128 /' Comment.Multiline
+'\n    '      Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'>>'          Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'/ unprotected /' Comment.Multiline
+' '           Text.Whitespace
+'{'           Punctuation
+'\n      '    Text.Whitespace
+'/ kid /'     Comment.Multiline
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+':'           Punctuation
+' '           Text.Whitespace
+"h'"          Literal.String.Binary
+'53796d6d6574726963313238' Literal.String.Binary
+"'"           Literal.String.Binary
+' '           Text.Whitespace
+"/ 'Symmetric128' /" Comment.Multiline
+','           Punctuation
+'\n      '    Text.Whitespace
+'/ iv /'      Comment.Multiline
+'  '          Text.Whitespace
+'5'           Literal.Number.Integer
+':'           Punctuation
+' '           Text.Whitespace
+"h'"          Literal.String.Binary
+'4a0694c0e69ee6b5956655c7b2' Literal.String.Binary
+"'"           Literal.String.Binary
+'\n    '      Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'/ ciphertext /' Comment.Multiline
+' '           Text.Whitespace
+"h'"          Literal.String.Binary
+'f6b0914f993de822cc47e5e57a188d7960b528a7474' Literal.String.Binary
+'\n                     ' Text.Whitespace
+'46fe12f0e7de05650dec74724366763f167a29c002d' Literal.String.Binary
+'\n                     ' Text.Whitespace
+'fd15b34d8993391cf49bc91127f545dba8703d66f5b' Literal.String.Binary
+'\n                     ' Text.Whitespace
+'7f1ae91237503d371e6333df9708d78c4fb8a8386c8' Literal.String.Binary
+'\n                     ' Text.Whitespace
+'ff09dc49af768b23179deab78d96490a66d5724fb33' Literal.String.Binary
+'\n                     ' Text.Whitespace
+'900c60799d9872fac6da3bdb89043d67c2a05414ce3' Literal.String.Binary
+'\n                     ' Text.Whitespace
+'31b5b8f1ed8ff7138f45905db2c4d5bc8045ab372bf' Literal.String.Binary
+'\n                     ' Text.Whitespace
+'f142631610a7e0f677b7e9b0bc73adefdcee16d9d5d' Literal.String.Binary
+'\n                     ' Text.Whitespace
+'284c616abeab5d8c291ce0' Literal.String.Binary
+"'"           Literal.String.Binary
+'\n  '        Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace

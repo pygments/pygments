@@ -1,0 +1,137 @@
+'96('         Punctuation
+'\n  '        Text.Whitespace
+'['           Punctuation
+'\n    '      Text.Whitespace
+"/ protected h'a10101' /" Comment.Multiline
+' '           Text.Whitespace
+'<<'          Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'/ alg /'     Comment.Multiline
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+':'           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'/ AES-GCM 128 /' Comment.Multiline
+'\n      '    Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'>>'          Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'/ unprotected /' Comment.Multiline
+' '           Text.Whitespace
+'{'           Punctuation
+'\n      '    Text.Whitespace
+'/ iv /'      Comment.Multiline
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+':'           Punctuation
+"h'"          Literal.String.Binary
+'c9cf4df2fe6c632bf7886413' Literal.String.Binary
+"'"           Literal.String.Binary
+'\n    '      Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'/ ciphertext /' Comment.Multiline
+' '           Text.Whitespace
+"h'"          Literal.String.Binary
+'7adbe2709ca818fb415f1e5df66f4e1a51053ba6d65a1a0c52a357da7a644b8070a151b0' Literal.String.Binary
+"'"           Literal.String.Binary
+','           Punctuation
+'\n    '      Text.Whitespace
+'/ recipients /' Comment.Multiline
+' '           Text.Whitespace
+'['           Punctuation
+'\n      '    Text.Whitespace
+'['           Punctuation
+'\n        '  Text.Whitespace
+"/ protected h'a1013818' /" Comment.Multiline
+' '           Text.Whitespace
+'<<'          Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'/ alg /'     Comment.Multiline
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+':'           Punctuation
+'-25'         Literal.Number.Integer
+' '           Text.Whitespace
+'/ ECDH-ES + HKDF-256 /' Comment.Multiline
+'\n          ' Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'>>'          Punctuation
+','           Punctuation
+'\n        '  Text.Whitespace
+'/ unprotected /' Comment.Multiline
+' '           Text.Whitespace
+'{'           Punctuation
+'\n          ' Text.Whitespace
+'/ ephemeral /' Comment.Multiline
+' '           Text.Whitespace
+'-1'          Literal.Number.Integer
+':'           Punctuation
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'/ kty /'     Comment.Multiline
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+':'           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+'\n            ' Text.Whitespace
+'/ crv /'     Comment.Multiline
+' '           Text.Whitespace
+'-1'          Literal.Number.Integer
+':'           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'\n            ' Text.Whitespace
+'/ x /'       Comment.Multiline
+' '           Text.Whitespace
+'-2'          Literal.Number.Integer
+':'           Punctuation
+"h'"          Literal.String.Binary
+'98f50a4ff6c05861c8860d13a638ea56c3f5ad7590bbfbf054e1c7b4d91d6280' Literal.String.Binary
+"'"           Literal.String.Binary
+','           Punctuation
+'\n            ' Text.Whitespace
+'/ y /'       Comment.Multiline
+' '           Text.Whitespace
+'-3'          Literal.Number.Integer
+':'           Punctuation
+'true'        Keyword.Constant
+'\n          ' Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+'\n          ' Text.Whitespace
+'/ kid /'     Comment.Multiline
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+':'           Punctuation
+"'"           Literal.String.Binary
+'meriadoc.brandybuck@buckland.example' Literal.String.Binary
+"'"           Literal.String.Binary
+'\n        '  Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+'\n        '  Text.Whitespace
+'/ ciphertext /' Comment.Multiline
+' '           Text.Whitespace
+"h'"          Literal.String.Binary
+"'"           Literal.String.Binary
+'\n      '    Text.Whitespace
+']'           Punctuation
+'\n    '      Text.Whitespace
+']'           Punctuation
+'\n  '        Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace
