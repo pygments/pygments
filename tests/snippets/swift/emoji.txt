@@ -1,0 +1,90 @@
+---input---
+func test() {
+    let 😆 = "hello😆"
+    var a🥶2 = "bye"
+    let test = "test1"
+    return 😆
+}
+
+class 🐍 {
+    var 🥶 = "test2"
+}
+
+---tokens---
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'test'        Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'😆'           Name.Variable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'hello😆'      Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'    '        Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'a🥶2'         Name.Variable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'bye'         Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'test'        Name.Variable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'test1'       Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'😆'           Name
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'🐍'           Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text
+
+'    '        Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'🥶'           Name.Variable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'test2'       Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
