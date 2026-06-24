@@ -1,0 +1,65 @@
+'ACK Frame'   Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'Type'        Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'i'           Keyword
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x02'        Literal.Number.Hex
+'..0x03'      Name.Property
+','           Punctuation
+'\n  '        Text.Whitespace
+'Largest Acknowledged' Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'i'           Keyword
+')'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'ACK Delay'   Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'i'           Keyword
+')'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'ACK Range Count' Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'i'           Keyword
+')'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'First ACK Range' Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'i'           Keyword
+')'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+'ACK Range'   Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'..'          Operator
+')'           Punctuation
+' '           Text.Whitespace
+'...'         Name.Property
+','           Punctuation
+'\n  '        Text.Whitespace
+'['           Text.Whitespace
+'ECN Counts'  Name.Property
+' '           Text.Whitespace
+'('           Punctuation
+'..'          Operator
+')'           Punctuation
+']'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
