@@ -17,6 +17,8 @@ __all__ = ['Formatter']
 
 
 def _lookup_style(style):
+    if style is None:
+        style = 'default'
     if isinstance(style, str):
         return get_style_by_name(style)
     return style
