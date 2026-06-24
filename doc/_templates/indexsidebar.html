@@ -1,18 +1,32 @@
 <section>
-<h3>Download</h3>
-<p>Current version: <b>{{ version }}</b><br><a href="{{ pathto('docs/changelog') }}">Changelog</a></p>
-<p>Get Pygments from the <a href="https://pypi.python.org/pypi/Pygments">Python Package
-    Index</a>, or install it with:</p>
+<h3>{% trans %}Download{% endtrans %}</h3>
+<p>
+  {% trans pathto_docs_changelog = pathto('docs/changelog') -%}
+  Current version: <b>{{ version }}</b><br><a href="{{ pathto_docs_changelog }}">Changelog</a>
+  {%- endtrans %}
+</p>
+<p>
+  {% trans -%}
+  Get Pygments from the <a href="https://pypi.python.org/pypi/Pygments">Python Package Index</a>, or install it with:
+  {%- endtrans %}
+</p>
 <pre>pip install Pygments</pre>
 </section>
 <section>
-<h3>Questions? Suggestions?</h3>
+<h3>{% trans %}Questions? Suggestions?{% endtrans %}</h3>
 
 <p><img src="{{ pathto("_static/github.png", 1) }}" width="24" />
-    Clone at <a href="https://github.com/pygments/pygments">GitHub</a>.</p>
-<p>You can also open an issue at the
-  <a href="https://github.com/pygments/pygments/issues">tracker</a>.</p>
+  {% trans %}Clone at <a href="https://github.com/pygments/pygments">GitHub</a>.{% endtrans %}
+</p>
+<p>
+  {% trans -%}
+  You can also open an issue at the <a href="https://github.com/pygments/pygments/issues">tracker</a>.
+  {%- endtrans %}
+</p>
 </section>
 
-<p class="logo">A <a href="https://www.pocoo.org/">
-    <img src="{{ pathto("_static/pocoo.png", 1) }}" /></a> project</a></p>
+<p class="logo">
+  {% trans pathto_static_pocoo_png = pathto('_static/pocoo.png', 1) -%}
+  A <a href="https://www.pocoo.org/"><img src="{{ pathto_static_pocoo_png }}" /></a> project</a>
+  {%- endtrans %}
+</p>
