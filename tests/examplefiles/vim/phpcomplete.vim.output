@@ -68,7 +68,7 @@
 '\n'          Text.Whitespace
 
 '\t\t'        Text
-'unlet'       Text
+'unlet'       Keyword
 '!'           Punctuation
 ' '           Text
 'b'           Keyword
@@ -490,7 +490,7 @@
 '\n'          Text.Whitespace
 
 '\t\t'        Text
-'unlet'       Text
+'unlet'       Keyword
 '!'           Punctuation
 ' '           Text
 'b'           Keyword
@@ -5005,7 +5005,7 @@
 
 '\n'          Text.Whitespace
 
-'endfunction' Keyword
+'endfunction' Text
 '\n'          Text.Whitespace
 
 '" vim:set foldmethod=marker:' Comment
