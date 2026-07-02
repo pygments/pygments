@@ -34,6 +34,7 @@ Version 2.21.0
   * Kotlin: Don't let a nullable type marker (``?``) consume the following
     character, so ``Foo?,`` and ``a?:b`` tokenize correctly (#2964)
   * YAML: Add ``yml`` alias (#3169)
+  * Swift: Keep ``func`` a keyword in ``class func`` type methods (#1125)
 
 - Fix catastrophic backtracking in ``looks_like_xml`` (#2931, #3112)
 - Improve monokai theme colors (#3100)
