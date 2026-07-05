@@ -1,0 +1,45 @@
+---input---
+enum Suit {
+    DIAMOND
+    CLUB
+}
+
+intEnum FaceCard {
+    JACK = 11
+    QUEEN = 12
+}
+
+---tokens---
+'enum'        Keyword.Declaration
+' Suit'       Name.Class
+' '           Text.Whitespace
+'{'           Text
+'\n    '      Text.Whitespace
+'DIAMOND'     Name.Variable.Class
+'\n    '      Text.Whitespace
+'CLUB'        Name.Variable.Class
+'\n'          Text.Whitespace
+
+'}'           Text
+'\n\n'        Text.Whitespace
+
+'intEnum'     Keyword.Declaration
+' FaceCard'   Name.Class
+' '           Text.Whitespace
+'{'           Text
+'\n    '      Text.Whitespace
+'JACK'        Name.Variable.Class
+' '           Text.Whitespace
+'='           Name.Decorator
+' '           Text.Whitespace
+'11'          Literal.Number
+'\n    '      Text.Whitespace
+'QUEEN'       Name.Variable.Class
+' '           Text.Whitespace
+'='           Name.Decorator
+' '           Text.Whitespace
+'12'          Literal.Number
+'\n'          Text.Whitespace
+
+'}'           Text
+'\n'          Text.Whitespace
