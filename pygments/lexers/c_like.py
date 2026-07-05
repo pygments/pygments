@@ -274,7 +274,7 @@ class ValaLexer(RegexLexer):
     }
 
 
-class CudaLexer(CLexer):
+class CudaLexer(CppLexer):
     """
     For NVIDIA CUDA™ source.
     """
@@ -304,7 +304,7 @@ class CudaLexer(CLexer):
     execution_confs = {'<<<', '>>>'}
 
     def get_tokens_unprocessed(self, text, stack=('root',)):
-        for index, token, value in CLexer.get_tokens_unprocessed(self, text, stack):
+        for index, token, value in CppLexer.get_tokens_unprocessed(self, text, stack):
             if token is Name:
                 if value in self.variable_qualifiers:
                     token = Keyword.Type
