@@ -1,0 +1,28 @@
+---input---
+operation GetUser {
+    input := {
+        userId: String
+    }
+}
+
+---tokens---
+'operation'   Keyword.Declaration
+' GetUser'    Name.Class
+' '           Text.Whitespace
+'{'           Text
+'\n    '      Text.Whitespace
+'input'       Name.Variable.Class
+' '           Text.Whitespace
+':='          Name.Decorator
+' '           Text.Whitespace
+'{'           Text
+'\n        '  Text.Whitespace
+'userId:'     Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+'\n    '      Text.Whitespace
+'}'           Text
+'\n'          Text.Whitespace
+
+'}'           Text
+'\n'          Text.Whitespace

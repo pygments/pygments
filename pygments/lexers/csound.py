@@ -303,7 +303,7 @@ class CsoundOrchestraLexer(CsoundLexer):
             include('whitespace and macro uses'),
 
             # https://github.com/csound/csound/search?q=XIDENT+path%3AEngine+filename%3Acsound_orc.lex
-            (r'0|[afijkKoOpPStV\[\]]+', Keyword.Type),
+            (r'0|[afijJkKoOpPStV\[\]]+', Keyword.Type),
 
             (r',', Punctuation),
             (r'\n', Whitespace, '#pop')
