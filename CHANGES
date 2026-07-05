@@ -17,6 +17,7 @@ Version 2.21.0
 
   * C++: Add C23/C++26 attributes (#3084)
   * JavaScript: Highlight the ``arguments`` object (#3146)
+  * Ruby: Don't duplicate the body of an unterminated heredoc (#2998)
   * Kotlin: Don't let a nullable type marker (``?``) consume the following
     character, so ``Foo?,`` and ``a?:b`` tokenize correctly (#2964)
   * YAML: Add ``yml`` alias (#3169)
