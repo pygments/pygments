@@ -1,0 +1,30 @@
+---input---
+a =- 10
+a =~ 10
+a =# ""
+
+---tokens---
+'a'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+'-'           Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'a'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+'~'           Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'a'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+'#'           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace

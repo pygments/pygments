@@ -1,0 +1,39 @@
+---input---
+local a < const> = 10
+local b<const>, c<close> = 10, false
+
+---tokens---
+'local'       Keyword.Declaration
+' '           Text.Whitespace
+'a'           Name.Variable
+' '           Text.Whitespace
+'<'           Punctuation
+' '           Text.Whitespace
+'const'       Name.Attribute
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'local'       Keyword.Declaration
+' '           Text.Whitespace
+'b'           Name.Variable
+'<'           Punctuation
+'const'       Name.Attribute
+'>'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'c'           Name.Variable
+'<'           Punctuation
+'close'       Name.Attribute
+'>'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'false'       Keyword.Constant
+'\n'          Text.Whitespace
