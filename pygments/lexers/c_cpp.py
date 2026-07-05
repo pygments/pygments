@@ -47,7 +47,7 @@ class CFamilyLexer(RegexLexer):
     # are embedded in larger regexes, that can cause the stuff*? to
     # match more than it would have if the regex had been used in
     # a standalone way ...
-    _comment_single = r'//(?:.|(?<=\\)\n)*\n'
+    _comment_single = r'//(?:\\[^\S\n]*\n|[^\n])*\n'
     _comment_multiline = r'/(?:\\\n)?[*](?:[^*]|[*](?!(?:\\\n)?/))*[*](?:\\\n)?/'
 
     # Regex to match optional comments
@@ -73,7 +73,7 @@ class CFamilyLexer(RegexLexer):
              bygroups(Whitespace, Name.Label, Whitespace, Punctuation)),
             (r'\n', Whitespace),
             (r'[^\S\n]+', Whitespace),
-            (r'\\\n', Text),  # line continuation
+            (r'\\[^\S\n]*\n', Text),  # line continuation
             (_comment_single, Comment.Single),
             (_comment_multiline, Comment.Multiline),
             # Open until EOF, so no ending delimiter
@@ -190,11 +190,11 @@ class CFamilyLexer(RegexLexer):
             (r'('+_ws1+r')(include)('+_ws1+r')(<[^>]+>)([^\n]*)',
                 bygroups(using(this), Comment.Preproc, using(this),
                          Comment.PreprocFile, Comment.Single)),
-            (r'[^/\n]+', Comment.Preproc),
+            (r'[^/\\\n]+', Comment.Preproc),
             (r'/[*](.|\n)*?[*]/', Comment.Multiline),
             (r'//.*?\n', Comment.Single, '#pop'),
             (r'/', Comment.Preproc),
-            (r'(?<=\\)\n', Comment.Preproc),
+            (r'\\[^\S\n]*\n', Comment.Preproc),
             (r'\n', Comment.Preproc, '#pop'),
         ],
         'if0': [

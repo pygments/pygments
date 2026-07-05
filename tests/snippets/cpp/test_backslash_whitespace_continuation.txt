@@ -1,0 +1,32 @@
+---input---
+int x = 0;
+
+// a comment \ 
+x += 10;
+
+#define TEST \ 
+x += 20;
+
+---tokens---
+'int'         Keyword.Type
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// a comment \\ \nx += 10;\n' Comment.Single
+
+'\n'          Text.Whitespace
+
+'#'           Comment.Preproc
+'define TEST ' Comment.Preproc
+'\\ \n'       Comment.Preproc
+
+'x += 20;'    Comment.Preproc
+'\n'          Comment.Preproc
