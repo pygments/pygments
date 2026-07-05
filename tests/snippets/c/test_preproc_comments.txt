@@ -1,0 +1,120 @@
+Everything that follows an include directive, up to the end of the line or 
+potentially further for multi-line comments, is ignored by a C/C++ compiler
+and tokenized as 'comment' by the lexer.
+
+---input---
+#include <plain_include.h>
+#include "with_spaces_before_new_line.h"     
+#include <file1.h>  compiler-ignored text
+#include <file2.h>  // single-line comment
+#include <file2.h>   /* multi-line comment on single line */
+#include <file3.h>   /* multi-line comment on
+                        multiple lines */
+#include <file4.h>  compiler-ignored text // with single-line comment
+#include <file5.h>  compiler-ignored text  /* with multi-line comment on
+                                             multiple lines */
+#include <other_plain_include.h>
+
+void lexer_must_be_in_a_proper_state_to_emit_this_as_a_Function_token(char a, int b, float c) {
+    return;
+}
+
+---tokens---
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'<plain_include.h>' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'"with_spaces_before_new_line.h"' Comment.PreprocFile
+'     '       Text.Whitespace
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'<file1.h>'   Comment.PreprocFile
+'  '          Text.Whitespace
+'compiler-ignored text' Comment.Single
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'<file2.h>'   Comment.PreprocFile
+'  '          Text.Whitespace
+'// single-line comment' Comment.Single
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'<file2.h>'   Comment.PreprocFile
+'   '         Text.Whitespace
+'/* multi-line comment on single line */' Comment.Multiline
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'<file3.h>'   Comment.PreprocFile
+'   '         Text.Whitespace
+'/* multi-line comment on\n                        multiple lines */' Comment.Multiline
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'<file4.h>'   Comment.PreprocFile
+'  '          Text.Whitespace
+'compiler-ignored text // with single-line comment' Comment.Single
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'<file5.h>'   Comment.PreprocFile
+'  '          Text.Whitespace
+'compiler-ignored text  /* with multi-line comment on\n                                             multiple lines */' Comment.Multiline
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'<other_plain_include.h>' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'\n'          Text.Whitespace
+
+'void'        Keyword.Type
+' '           Text.Whitespace
+'lexer_must_be_in_a_proper_state_to_emit_this_as_a_Function_token' Name.Function
+'('           Punctuation
+'char'        Keyword.Type
+' '           Text.Whitespace
+'a'           Name
+','           Punctuation
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'b'           Name
+','           Punctuation
+' '           Text.Whitespace
+'float'       Keyword.Type
+' '           Text.Whitespace
+'c'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

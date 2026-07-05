@@ -1,0 +1,36 @@
+---input---
+class Pencere
+{
+    Düğme düğme;
+    void ğĞiletiGöster() {}
+}
+
+---tokens---
+'class'       Keyword
+' '           Text.Whitespace
+'Pencere'     Name
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Düğme'       Name
+' '           Text.Whitespace
+'düğme'       Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'void'        Keyword.Type
+' '           Text.Whitespace
+'ğĞiletiGöster' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

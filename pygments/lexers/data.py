@@ -35,7 +35,7 @@ class YamlLexer(ExtendedRegexLexer):
 
     name = 'YAML'
     url = 'http://yaml.org/'
-    aliases = ['yaml']
+    aliases = ['yaml', 'yml']
     filenames = ['*.yaml', '*.yml']
     mimetypes = ['text/x-yaml']
     version_added = '0.11'

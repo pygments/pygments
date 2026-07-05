@@ -1,0 +1,22 @@
+---input---
+function f() {
+    return arguments;
+}
+
+---tokens---
+'function'    Keyword.Declaration
+' '           Text.Whitespace
+'f'           Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'arguments'   Name.Builtin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
