@@ -17,6 +17,7 @@ import pytest
 from pygments.formatters import HtmlFormatter, NullFormatter
 from pygments.lexers import PythonLexer
 from pygments.style import Style
+from pygments.token import Name
 from pygments.util import html_escape
 
 TESTDIR = path.dirname(path.abspath(__file__))
@@ -189,6 +190,23 @@ def test_get_style_defs_contains_style_specific_line_numbers_styles():
         'span.linenos.special '
         '{ color: #00ff00; background-color: #ffffff; padding-left: 5px; padding-right: 5px; }'
     )
+
+
+def test_get_style_defs_allows_transparent_color():
+    class TransparentStyle(Style):
+        styles = {
+            Name: 'transparent bg:transparent border:transparent',
+        }
+
+    ndef = TransparentStyle.style_for_token(Name)
+    assert ndef['color'] == 'transparent'
+    assert ndef['bgcolor'] == 'transparent'
+    assert ndef['border'] == 'transparent'
+
+    assert (
+        '.n { color: transparent; background-color: transparent; '
+        'border: 1px solid transparent } /* Name */'
+    ) in HtmlFormatter(style=TransparentStyle).get_style_defs()
 
 
 @pytest.mark.parametrize(

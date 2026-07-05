@@ -79,7 +79,9 @@ fileInputResetButton.addEventListener('click', () => {
 
 let styles;
 
-const highlightWorker = new Worker("/_static/demo-worker.js");
+const highlightWorker = new Worker(
+    `/_static/demo-worker.js?wheel=${encodeURIComponent(pygmentsWheelName)}`,
+    { type: 'module' });
 highlightWorker.onmessage = (msg) => {
     if (msg.data.loaded) {
         styles = msg.data.loaded.styles;

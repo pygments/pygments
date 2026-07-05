@@ -1,0 +1,14 @@
+---input---
+$version: "2.0"
+$operationInputSuffix: "Request"
+
+---tokens---
+'$version'    Keyword.Declaration
+':'           Name.Decorator
+' "2.0"'      Name.Class
+'\n'          Text.Whitespace
+
+'$operationInputSuffix' Keyword.Declaration
+':'           Name.Decorator
+' "Request"'  Name.Class
+'\n'          Text.Whitespace

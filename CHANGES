@@ -17,10 +17,23 @@ Version 2.21.0
 
   * C++: Add C23/C++26 attributes (#3084)
   * WebAssembly: Recognize sign-extension operators (#2991, #3160)
+  * C++: Highlight a function following a namespace body (#2928)
+  * JavaScript: Highlight the ``arguments`` object (#3146)
+  * Tcl: Stop ``$name`` variable references at a dash (#1720)
+  * TypeScript: Only treat ``module`` as a keyword when followed by
+    whitespace, so identifiers like ``modules`` and ``module.exports``
+    are highlighted correctly (#2823)
+  * Ruby: Don't duplicate the body of an unterminated heredoc (#2998)
+  * Kotlin: Don't let a nullable type marker (``?``) consume the following
+    character, so ``Foo?,`` and ``a?:b`` tokenize correctly (#2964)
+  * YAML: Add ``yml`` alias (#3169)
 
 - Fix catastrophic backtracking in ``looks_like_xml`` (#2931, #3112)
 - Improve monokai theme colors (#3100)
 - Improve handling of non-string types in ``html_escape`` to fix broken clients (#3090, #3086)
+- LaTeX formatter: honor the wrapped lexer's ``stripnl`` and other input
+  options when ``escapeinside`` is set, so blank lines are no longer stripped
+  under ``stripnl=false`` (#2975)
 
 Version 2.20.0
 --------------

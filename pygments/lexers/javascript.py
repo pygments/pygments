@@ -102,7 +102,7 @@ class JavascriptLexer(RegexLexer):
              r'Number|Object|RegExp|String|Promise|Proxy|decodeURI|'
              r'decodeURIComponent|encodeURI|encodeURIComponent|'
              r'eval|isFinite|isNaN|parseFloat|parseInt|DataView|'
-             r'document|window|globalThis|global|Symbol|Intl|'
+             r'document|window|globalThis|global|arguments|Symbol|Intl|'
              r'WeakSet|WeakMap|Set|Map|Reflect|JSON|Atomics|'
              r'Int(?:8|16|32)Array|BigInt64Array|Float32Array|Float64Array|'
              r'Uint8ClampedArray|Uint(?:8|16|32)Array|BigUint64Array)\b', Name.Builtin),
@@ -162,7 +162,10 @@ class TypeScriptLexer(JavascriptLexer):
             # Match variable type keywords
             (r'\b(string|boolean|number)\b', Keyword.Type),
             # Match stuff like: module name {...}
-            (r'\b(module)(\s*)([\w?.$]+)(\s*)',
+            # Require whitespace after `module` so identifiers that merely
+            # start with it (e.g. `modules`) or property access (`module.x`)
+            # are not mis-tokenized as the contextual namespace keyword.
+            (r'\b(module)(\s+)([\w?.$]+)(\s*)',
              bygroups(Keyword.Reserved, Whitespace, Name.Other, Whitespace), 'slashstartsregex'),
             # Match stuff like: (function: return type)
             (r'([\w?.$]+)(\s*)(:)(\s*)([\w?.$]+)',
