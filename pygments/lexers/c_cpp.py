@@ -369,7 +369,7 @@ class CppLexer(CFamilyLexer):
     filenames = ['*.cpp', '*.hpp', '*.c++', '*.h++',
                  '*.cc', '*.hh', '*.cxx', '*.hxx',
                  '*.C', '*.H', '*.cp', '*.CPP', '*.tpp',
-                 '*.cppm', '*.ixx', '*.mxx']
+                 '*.cppm', '*.ixx', '*.mxx', '*.ipp']
     mimetypes = ['text/x-c++hdr', 'text/x-c++src']
     version_added = ''
     priority = 0.1
