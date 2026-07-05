@@ -184,12 +184,12 @@ class CFamilyLexer(RegexLexer):
             (r'\\', String),  # stray backslash
         ],
         'macro': [
-            (r'('+_ws1+r')(include)('+_ws1+r')("[^"]+")([^\n]*)',
+            (r'('+_ws1+r')(include)('+_ws1+r')("[^"]+"|<[^>]+>)([^\S\n]*)([^/\n]*/[*](.|\n)*?[*]/)',
                 bygroups(using(this), Comment.Preproc, using(this),
-                         Comment.PreprocFile, Comment.Single)),
-            (r'('+_ws1+r')(include)('+_ws1+r')(<[^>]+>)([^\n]*)',
+                         Comment.PreprocFile, using(this), Comment.Multiline)),
+            (r'('+_ws1+r')(include)('+_ws1+r')("[^"]+"|<[^>]+>)([^\S\n]*)([^\n]*)',
                 bygroups(using(this), Comment.Preproc, using(this),
-                         Comment.PreprocFile, Comment.Single)),
+                         Comment.PreprocFile, using(this), Comment.Single)),
             (r'[^/\n]+', Comment.Preproc),
             (r'/[*](.|\n)*?[*]/', Comment.Multiline),
             (r'//.*?\n', Comment.Single, '#pop'),
