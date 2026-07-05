@@ -449,10 +449,15 @@ class CppLexer(CFamilyLexer):
             inherit
         ],
         'namespace': [
-            (r'[;{]', Punctuation, ('#pop', 'root')),
+            (r';', Punctuation, ('#pop', 'root')),
+            (r'\{', Punctuation, ('#pop', 'namespace-body')),
             (r'inline\b', Keyword.Reserved),
             (CFamilyLexer._ident, Name.Namespace),
             include('statement')
+        ],
+        'namespace-body': [
+            (r'\}', Punctuation, '#pop'),
+            include('root'),
         ],
         'annotation': [
             (r'\]\]', Punctuation, '#pop'),

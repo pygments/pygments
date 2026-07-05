@@ -16,6 +16,7 @@ Version 2.21.0
 - Updated lexers:
 
   * C++: Add C23/C++26 attributes (#3084)
+  * C++: Highlight a function following a namespace body (#2928)
   * JavaScript: Highlight the ``arguments`` object (#3146)
   * TypeScript: Only treat ``module`` as a keyword when followed by
     whitespace, so identifiers like ``modules`` and ``module.exports``
