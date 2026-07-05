@@ -1,0 +1,16 @@
+---input---
+@documentation("""
+    A text block with "interior" quotes and a {"json": "value"}.
+    """)
+string Documented
+
+---tokens---
+'@documentation' Name.Decorator
+'('           Text
+'"""\n    A text block with "interior" quotes and a {"json": "value"}.\n    """' Literal.String.Doc
+')'           Text
+'\n'          Text.Whitespace
+
+'string'      Keyword.Declaration
+' Documented' Name.Class
+'\n'          Text.Whitespace
