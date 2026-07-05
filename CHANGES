@@ -17,6 +17,9 @@ Version 2.21.0
 
   * C++: Add C23/C++26 attributes (#3084)
   * JavaScript: Highlight the ``arguments`` object (#3146)
+  * TypeScript: Only treat ``module`` as a keyword when followed by
+    whitespace, so identifiers like ``modules`` and ``module.exports``
+    are highlighted correctly (#2823)
   * Ruby: Don't duplicate the body of an unterminated heredoc (#2998)
   * Kotlin: Don't let a nullable type marker (``?``) consume the following
     character, so ``Foo?,`` and ``a?:b`` tokenize correctly (#2964)
