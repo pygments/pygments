@@ -1,0 +1,56 @@
+---input---
+val x: MyType? = null
+fun f(a: Foo?, b: Bar)
+val y: Baz?=null
+val z = a?:b
+
+---tokens---
+'val'         Keyword.Declaration
+' '           Text.Whitespace
+'x'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'MyType?'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'null'        Keyword.Constant
+'\n'          Text.Whitespace
+
+'fun'         Keyword.Declaration
+' '           Text.Whitespace
+'f'           Name.Function
+'('           Punctuation
+'a'           Name
+':'           Punctuation
+' '           Text.Whitespace
+'Foo?'        Name
+','           Punctuation
+' '           Text.Whitespace
+'b'           Name
+':'           Punctuation
+' '           Text.Whitespace
+'Bar'         Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'val'         Keyword.Declaration
+' '           Text.Whitespace
+'y'           Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Baz?'        Name
+'='           Operator
+'null'        Keyword.Constant
+'\n'          Text.Whitespace
+
+'val'         Keyword.Declaration
+' '           Text.Whitespace
+'z'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'a'           Name
+'?:'          Operator
+'b'           Name
+'\n'          Text.Whitespace

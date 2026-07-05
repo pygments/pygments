@@ -1,8 +1,10 @@
-importScripts('/_static/pyodide/pyodide.js');
+import { loadPyodide } from "https://cdn.jsdelivr.net/pyodide/v314.0.2/full/pyodide.mjs";
+
+const wheelName = new URLSearchParams(self.location.search).get('wheel');
 
 async function loadPyodideAndPygments() {
     self.pyodide = await loadPyodide();
-    await self.pyodide.loadPackage(["Pygments"]);
+    await self.pyodide.loadPackage(new URL(`/_static/${wheelName}`, self.location).href);
     const styles = self.pyodide.runPython(`
         from pygments.formatters.html import HtmlFormatter
         from pygments.styles import STYLE_MAP

@@ -369,7 +369,7 @@ class CppLexer(CFamilyLexer):
     filenames = ['*.cpp', '*.hpp', '*.c++', '*.h++',
                  '*.cc', '*.hh', '*.cxx', '*.hxx',
                  '*.C', '*.H', '*.cp', '*.CPP', '*.tpp',
-                 '*.cppm', '*.ixx', '*.mxx']
+                 '*.cppm', '*.ixx', '*.mxx', '*.ipp']
     mimetypes = ['text/x-c++hdr', 'text/x-c++src']
     version_added = ''
     priority = 0.1
@@ -449,10 +449,15 @@ class CppLexer(CFamilyLexer):
             inherit
         ],
         'namespace': [
-            (r'[;{]', Punctuation, ('#pop', 'root')),
+            (r';', Punctuation, ('#pop', 'root')),
+            (r'\{', Punctuation, ('#pop', 'namespace-body')),
             (r'inline\b', Keyword.Reserved),
             (CFamilyLexer._ident, Name.Namespace),
             include('statement')
+        ],
+        'namespace-body': [
+            (r'\}', Punctuation, '#pop'),
+            include('root'),
         ],
         'annotation': [
             (r'\]\]', Punctuation, '#pop'),

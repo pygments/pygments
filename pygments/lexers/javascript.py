@@ -162,7 +162,10 @@ class TypeScriptLexer(JavascriptLexer):
             # Match variable type keywords
             (r'\b(string|boolean|number)\b', Keyword.Type),
             # Match stuff like: module name {...}
-            (r'\b(module)(\s*)([\w?.$]+)(\s*)',
+            # Require whitespace after `module` so identifiers that merely
+            # start with it (e.g. `modules`) or property access (`module.x`)
+            # are not mis-tokenized as the contextual namespace keyword.
+            (r'\b(module)(\s+)([\w?.$]+)(\s*)',
              bygroups(Keyword.Reserved, Whitespace, Name.Other, Whitespace), 'slashstartsregex'),
             # Match stuff like: (function: return type)
             (r'([\w?.$]+)(\s*)(:)(\s*)([\w?.$]+)',

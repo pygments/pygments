@@ -1,0 +1,34 @@
+---input---
+{ modules: 0 }
+module.exports = foo;
+module Foo { }
+
+---tokens---
+'{'           Punctuation
+' '           Text.Whitespace
+'modules'     Name.Other
+':'           Operator
+' '           Text.Whitespace
+'0'           Keyword.Type
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'module'      Name.Other
+'.'           Punctuation
+'exports'     Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'foo'         Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'module'      Keyword.Reserved
+' '           Text.Whitespace
+'Foo'         Name.Other
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
