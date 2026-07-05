@@ -1,0 +1,89 @@
+---input---
+r"hello"
+r"he\\llo"
+r"hello\""
+r"hello\\"
+r"a*+?.|()\\^#"
+r"a\"bc"
+r""
+r""i
+r"hello"i
+r"he\\llo"m
+r"hello\""x
+r"hello\\"s
+
+---tokens---
+'r'           Literal.String.Affix
+'"'           Literal.String.Regex
+'hello'       Literal.String.Regex
+'"'           Literal.String.Regex
+'\n'          Text.Whitespace
+
+'r'           Literal.String.Affix
+'"'           Literal.String.Regex
+'he\\\\llo'   Literal.String.Regex
+'"'           Literal.String.Regex
+'\n'          Text.Whitespace
+
+'r'           Literal.String.Affix
+'"'           Literal.String.Regex
+'hello\\"'    Literal.String.Regex
+'"'           Literal.String.Regex
+'\n'          Text.Whitespace
+
+'r'           Literal.String.Affix
+'"'           Literal.String.Regex
+'hello\\\\'   Literal.String.Regex
+'"'           Literal.String.Regex
+'\n'          Text.Whitespace
+
+'r'           Literal.String.Affix
+'"'           Literal.String.Regex
+'a*+?.|()\\\\^#' Literal.String.Regex
+'"'           Literal.String.Regex
+'\n'          Text.Whitespace
+
+'r'           Literal.String.Affix
+'"'           Literal.String.Regex
+'a\\"bc'      Literal.String.Regex
+'"'           Literal.String.Regex
+'\n'          Text.Whitespace
+
+'r'           Literal.String.Affix
+'"'           Literal.String.Regex
+'"'           Literal.String.Regex
+'\n'          Text.Whitespace
+
+'r'           Literal.String.Affix
+'"'           Literal.String.Regex
+'"'           Literal.String.Regex
+'i'           Literal.String.Affix
+'\n'          Text.Whitespace
+
+'r'           Literal.String.Affix
+'"'           Literal.String.Regex
+'hello'       Literal.String.Regex
+'"'           Literal.String.Regex
+'i'           Literal.String.Affix
+'\n'          Text.Whitespace
+
+'r'           Literal.String.Affix
+'"'           Literal.String.Regex
+'he\\\\llo'   Literal.String.Regex
+'"'           Literal.String.Regex
+'m'           Literal.String.Affix
+'\n'          Text.Whitespace
+
+'r'           Literal.String.Affix
+'"'           Literal.String.Regex
+'hello\\"'    Literal.String.Regex
+'"'           Literal.String.Regex
+'x'           Literal.String.Affix
+'\n'          Text.Whitespace
+
+'r'           Literal.String.Affix
+'"'           Literal.String.Regex
+'hello\\\\'   Literal.String.Regex
+'"'           Literal.String.Regex
+'s'           Literal.String.Affix
+'\n'          Text.Whitespace

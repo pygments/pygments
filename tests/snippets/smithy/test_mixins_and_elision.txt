@@ -1,0 +1,32 @@
+---input---
+structure UserDetails for User with [BaseMixin] {
+    $id
+    name: String
+}
+
+---tokens---
+'structure'   Keyword.Declaration
+' UserDetails' Name.Class
+' '           Text.Whitespace
+'for'         Keyword.Declaration
+' '           Text.Whitespace
+'User'        Name.Variable.Class
+' '           Text.Whitespace
+'with'        Keyword.Declaration
+' '           Text.Whitespace
+'['           Text
+'BaseMixin'   Name.Variable.Class
+']'           Text
+' '           Text.Whitespace
+'{'           Text
+'\n    '      Text.Whitespace
+'$'           Name.Decorator
+'id'          Name.Variable.Class
+'\n    '      Text.Whitespace
+'name:'       Name.Label
+' '           Text.Whitespace
+'String'      Name.Variable.Class
+'\n'          Text.Whitespace
+
+'}'           Text
+'\n'          Text.Whitespace

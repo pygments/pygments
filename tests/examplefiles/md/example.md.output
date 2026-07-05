@@ -237,6 +237,38 @@
 ' '           Text
 'is'          Text
 ' '           Text
+'bold-italics:' Text
+' '           Text
+'***bold italics***' Generic.EmphStrong
+' '           Text
+'___bold italics___' Generic.EmphStrong
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'The'         Text
+' '           Text
+'following'   Text
+' '           Text
+'is'          Text
+' '           Text
+'not'         Text
+' '           Text
+'bold-italics:' Text
+' '           Text
+'snake***case***word' Text
+' '           Text
+'snake___case___word' Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'The'         Text
+' '           Text
+'following'   Text
+' '           Text
+'is'          Text
+' '           Text
 'strikethrough:' Text
 ' '           Text
 '~~bold~~'    Generic.Deleted
