@@ -596,7 +596,7 @@ LEXERS = {
     'XtendLexer': ('pygments.lexers.jvm', 'Xtend', ('xtend',), ('*.xtend',), ('text/x-xtend',)),
     'XtlangLexer': ('pygments.lexers.lisp', 'xtlang', ('extempore',), ('*.xtm',), ()),
     'YamlJinjaLexer': ('pygments.lexers.templates', 'YAML+Jinja', ('yaml+jinja', 'salt', 'sls'), ('*.sls', '*.yaml.j2', '*.yml.j2', '*.yaml.jinja2', '*.yml.jinja2'), ('text/x-yaml+jinja', 'text/x-sls')),
-    'YamlLexer': ('pygments.lexers.data', 'YAML', ('yaml',), ('*.yaml', '*.yml'), ('text/x-yaml',)),
+    'YamlLexer': ('pygments.lexers.data', 'YAML', ('yaml', 'yml'), ('*.yaml', '*.yml'), ('text/x-yaml',)),
     'YangLexer': ('pygments.lexers.yang', 'YANG', ('yang',), ('*.yang',), ('application/yang',)),
     'YaraLexer': ('pygments.lexers.yara', 'YARA', ('yara', 'yar'), ('*.yar',), ('text/x-yara',)),
     'ZeekLexer': ('pygments.lexers.dsls', 'Zeek', ('zeek', 'bro'), ('*.zeek', '*.bro'), ()),

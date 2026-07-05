@@ -105,3 +105,24 @@ def test_embedded_lexer():
         (Token.Escape, '$1 + z^2$'),
         (Token.Generic.Output, '\n'),
     ]
+
+
+def test_embedded_lexer_inherits_options():
+    # gh-2975: wrapping a lexer in LatexEmbeddedLexer (as the command line
+    # does when `escapeinside` is set) must not override the wrapped lexer's
+    # input-preprocessing options such as `stripnl`. Previously the wrapper
+    # was built with default options, so `stripnl=False` was ignored and
+    # leading/trailing blank lines were stripped anyway.
+    from pygments.lexers.special import TextLexer
+
+    inner = TextLexer(stripnl=False)
+    wrapped = LatexEmbeddedLexer('|', '|', inner)
+    assert wrapped.stripnl is False
+
+    src = '\nLINE\n'
+    # The blank leading line survives, exactly as with the unwrapped lexer.
+    assert list(wrapped.get_tokens(src)) == list(inner.get_tokens(src))
+    assert list(wrapped.get_tokens(src))[0][1].startswith('\n')
+
+    # An option passed explicitly to the wrapper still takes precedence.
+    assert LatexEmbeddedLexer('|', '|', inner, stripnl=True).stripnl is True
