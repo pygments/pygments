@@ -2,12 +2,19 @@ import re
 
 from pygments.util import format_lines
 
-r_line = re.compile(r"^(syn keyword vimCommand contained|syn keyword vimOption "
-                    r"contained|syn keyword vimAutoEvent contained)\s+(.*)")
+r_line = re.compile(r"^("
+                    r"syn keyword vim(?:Un)?Map contained|"
+                    r"syn keyword vimAbb|"
+                    r"syn keyword vimAutoCmd|"
+                    r"syn keyword vimAutoEvent contained)"
+                    r"syn keyword vimCommand(?: contained)?|"
+                    r"syn keyword vimFuncName contained|"
+                    r"syn keyword vimOption contained|"
+                    r"syn keyword vimSyn(?:Case|Type)? contained|"
+                    r"\s+(.+)$")
 r_item = re.compile(r"(\w+)(?:\[(\w+)\])?")
 
 HEADER = '''\
-# -*- coding: utf-8 -*-
 """
     pygments.lexers._vim_builtins
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -40,12 +47,12 @@ def getkw(input, output):
         m = r_line.match(line)
         if m:
             # Decide which output gets mapped to d
-            if 'vimCommand' in m.group(1):
-                d = output_info['command']
-            elif 'AutoEvent' in m.group(1):
+            if 'vimAutoEvent' in m.group(1):
                 d = output_info['auto']
-            else:
+            elif 'vimOption' in m.group(1):
                 d = output_info['option']
+            else:
+                d = output_info['command']
 
             # Extract all the shortened versions
             for i in r_item.finditer(m.group(2)):

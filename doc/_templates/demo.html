@@ -89,9 +89,10 @@
 </div>
 
 <p>The highlighting here is performed in-browser using
-    a WebAssembly translation of the latest Pygments master branch, courtesy of
-    <a href="https://github.com/iodide-project/pyodide">Pyodide</a>.</p>
+    the latest Pygments master branch, running through a WASM Python interpreter, courtesy of
+    <a href="https://pyodide.org/">Pyodide</a>.</p>
 <p>Your content is neither sent over the web nor stored anywhere.</p>
 
+<script>const pygmentsWheelName = "{{ wheel_filename }}";</script>
 <script type="text/javascript" src="{{ pathto("_static/demo.js", 1) }}"></script>
 {% endblock %}
