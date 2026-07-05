@@ -273,7 +273,8 @@ def pg_context(app, pagename, templatename, ctx, event_arg):
         def sortkey(s):
             return (-s['bg_luminance'], s['name'])
         # the default style is always displayed first
-        default_style = ctx['styles_aa'].pop(0)
+        default_style = next(s for s in ctx['styles_aa'] if s['name'] == 'default')
+        ctx['styles_aa'].remove(default_style)
         ctx['styles_aa'].sort(key=sortkey)
         ctx['styles_aa'].insert(0, default_style)
         ctx['styles_sub_aa'].sort(key=sortkey)
