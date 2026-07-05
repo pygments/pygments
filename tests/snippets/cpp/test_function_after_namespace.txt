@@ -1,0 +1,18 @@
+---input---
+namespace {}
+void fn();
+
+---tokens---
+'namespace'   Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'void'        Keyword.Type
+' '           Text.Whitespace
+'fn'          Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

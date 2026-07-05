@@ -27,7 +27,7 @@ __all__ = ['HtmlFormatter']
 
 
 def webify(color):
-    if color.startswith('calc') or color.startswith('var'):
+    if color == 'transparent' or color.startswith('calc') or color.startswith('var'):
         return color
     else:
         # Check if the color can be shortened from 6 to 3 characters

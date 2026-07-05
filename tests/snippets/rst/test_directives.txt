@@ -1,0 +1,17 @@
+---input---
+.. image:: picture.png
+   :alt: Sample
+---tokens---
+'..'          Punctuation
+' '           Text
+'image'       Operator.Word
+'::'          Punctuation
+' '           Text
+'picture.png' Text
+'\n'          Text.Whitespace
+
+'   '         Text
+':alt:'       Name.Class
+' '           Text
+'Sample'      Text
+'\n'          Text.Whitespace
