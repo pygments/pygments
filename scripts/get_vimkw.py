@@ -3,14 +3,18 @@ import re
 from pygments.util import format_lines
 
 r_line = re.compile(r"^("
-                    r"syn keyword vim(?:Un)?Map contained|"
+                    r"syn keyword vim(?:Un)?Map(?: contained)?|"
                     r"syn keyword vimAbb|"
-                    r"syn keyword vimAutoCmd|"
-                    r"syn keyword vimAutoEvent contained)"
+                    r"syn keyword vimAutoEvent contained|"
                     r"syn keyword vimCommand(?: contained)?|"
+                    r"syn keyword vimCommandModifier contained|"
+                    r"syn keyword vimDoCommand contained|"
                     r"syn keyword vimFuncName contained|"
-                    r"syn keyword vimOption contained|"
+                    r"syn keyword vimMenu|"
+                    r"syn keyword vimOption(?:VarName)? contained|"
                     r"syn keyword vimSyn(?:Case|Type)? contained|"
+                    r"syn keyword vimType contained|"
+                    r"syn keyword vimVimVarName contained)"
                     r"\s+(.+)$")
 r_item = re.compile(r"(\w+)(?:\[(\w+)\])?")
 
@@ -58,10 +62,6 @@ def getkw(input, output):
             for i in r_item.finditer(m.group(2)):
                 d.append('({!r},{!r})'.format(i.group(1), "{}{}".format(i.group(1), i.group(2) or '')))
 
-    output_info['option'].append("('nnoremap','nnoremap')")
-    output_info['option'].append("('inoremap','inoremap')")
-    output_info['option'].append("('vnoremap','vnoremap')")
-
     for key, keywordlist in output_info.items():
         keywordlist.sort()
         body = format_lines('var', keywordlist, raw=True, indent_level=1)
@@ -74,5 +74,5 @@ def is_keyword(w, keywords):
     return False
 
 if __name__ == "__main__":
-    getkw("/usr/share/vim/vim74/syntax/vim.vim",
+    getkw("/usr/share/vim/vim92/syntax/vim.vim",
           "pygments/lexers/_vim_builtins.py")

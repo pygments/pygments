@@ -148,10 +148,11 @@ class VimLexer(RegexLexer):
             (r'#[0-9a-f]{6}', Number.Hex),
             (r'^:', Punctuation),
             (r'[()<>+=!|,~-]', Punctuation),  # Inexact list.  Looks decent.
-            (words(( 'abort', 'const', 'echo', 'endif', 'eval', 'execute',
-                    'for', 'function', 'let', 'unlet', 'unset'),
-                   suffix=r'\b', prefix=r'\b'),
-             Keyword),
+            (words(('abort', 'catch', 'const', 'echo', 'else', 'elseif',
+                    'endfor', 'endif', 'endif', 'endwhile', 'eval', 'execute',
+                    'for', 'function', 'if', 'in', 'let', 'return', 'set',
+                    'setg', 'setl', 'throw', 'unlet', 'unset', 'while'),
+                   suffix=r'\b', prefix=r'\b'), Keyword),
             (r'\b(NONE|bold|italic|underline|dark|light)\b', Name.Builtin),
             (r'\b\w+\b', Name.Other),  # These are postprocessed below
             (r'.', Text),
