@@ -18,6 +18,7 @@ Version 2.21.0
   * C++: Add C23/C++26 attributes (#3084)
   * CUDA: Derive from the C++ lexer instead of C to highlight C++
     constructs such as ``template``, ``class`` and ``namespace`` (#3127)
+  * Markdown: Highlight bold-italics (``***...***`` and ``___...___``) (#3067)
   * WebAssembly: Recognize sign-extension operators (#2991, #3160)
   * C++: Highlight a function following a namespace body (#2928)
   * JavaScript: Highlight the ``arguments`` object (#3146)

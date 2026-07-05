@@ -29,6 +29,10 @@ The following is bold: __bold__ __two or more words__
 The following is not bold: snake**case**word
 The following is not bold: snake__case__word
 
+The following is bold-italics: ***bold italics*** ___bold italics___
+
+The following is not bold-italics: snake***case***word snake___case___word
+
 The following is strikethrough: ~~bold~~
 The following is not strikethrough: snake~~case~~word
 
