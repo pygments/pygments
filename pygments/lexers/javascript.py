@@ -845,8 +845,8 @@ class ObjectiveJLexer(RegexLexer):
             (r'\s+', Whitespace),
             (r'(\\)(\n)',
                 bygroups(String.Escape, Whitespace)),  # line continuation
-            (r'//(\n|(.|\n)*?[^\\]\n)', Comment.Single),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'//(\n|[\s\S]*?[^\\]\n)', Comment.Single),
+            (r'/(\\\n)?[*][\s\S]*?[*](\\\n)?/', Comment.Multiline),
             (r'<!--', Comment),
         ],
         'slashstartsregex': [
@@ -995,7 +995,7 @@ class ObjectiveJLexer(RegexLexer):
         ],
         'macro': [
             (r'[^/\n]+', Comment.Preproc),
-            (r'/[*](.|\n)*?[*]/', Comment.Multiline),
+            (r'/[*][\s\S]*?[*]/', Comment.Multiline),
             (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace), '#pop'),
             (r'/', Comment.Preproc),
             (r'(?<=\\)\n', Whitespace),

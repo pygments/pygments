@@ -427,7 +427,7 @@ class CsoundDocumentLexer(RegexLexer):
     # be XML files.
     tokens = {
         'root': [
-            (r'/[*](.|\n)*?[*]/', Comment.Multiline),
+            (r'/[*][\s\S]*?[*]/', Comment.Multiline),
             (r'(?:;|//).*$', Comment.Single),
             (r'[^/;<]+|/(?!/)', Text),
 

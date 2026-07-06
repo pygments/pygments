@@ -33,7 +33,7 @@ class DLexer(RegexLexer):
             # (r'\\\n', Text), # line continuations
             # Comments
             (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace)),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'/(\\\n)?[*][\s\S]*?[*](\\\n)?/', Comment.Multiline),
             (r'/\+', Comment.Multiline, 'nested_comment'),
             # Keywords
             (words((

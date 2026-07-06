@@ -746,7 +746,7 @@ class CheetahLexer(RegexLexer):
         'root': [
             (r'(##[^\n]*)$',
              (bygroups(Comment))),
-            (r'#[*](.|\n)*?[*]#', Comment),
+            (r'#[*][\s\S]*?[*]#', Comment),
             (r'#end[^#\n]*(?:#|$)', Comment.Preproc),
             (r'#slurp$', Comment.Preproc),
             (r'(#[a-zA-Z]+)([^#\n]*)(#|$)',

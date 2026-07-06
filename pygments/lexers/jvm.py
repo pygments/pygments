@@ -1446,7 +1446,7 @@ class GoloLexer(RegexLexer):
             (r'"""', String, combined('stringescape', 'triplestring')),
             (r'"', String, combined('stringescape', 'doublestring')),
             (r"'", String, combined('stringescape', 'singlestring')),
-            (r'----((.|\n)*?)----', String.Doc)
+            (r'----([\s\S]*?)----', String.Doc)
 
         ],
 

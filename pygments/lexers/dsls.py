@@ -35,8 +35,8 @@ class ProtoBufLexer(RegexLexer):
         'root': [
             (r'[ \t]+', Whitespace),
             (r'[,;{}\[\]()<>]', Punctuation),
-            (r'/(\\\n)?/(\n|(.|\n)*?[^\\]\n)', Comment.Single),
-            (r'/(\\\n)?\*(.|\n)*?\*(\\\n)?/', Comment.Multiline),
+            (r'/(\\\n)?/(\n|[\s\S]*?[^\\]\n)', Comment.Single),
+            (r'/(\\\n)?\*[\s\S]*?\*(\\\n)?/', Comment.Multiline),
             (words((
                 'import', 'option', 'optional', 'required', 'repeated',
                 'reserved', 'default', 'packed', 'ctype', 'extensions', 'to',
@@ -372,7 +372,7 @@ class PuppetLexer(RegexLexer):
 
         'comments': [
             (r'(\s*)(#.*)$', bygroups(Whitespace, Comment)),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'/(\\\n)?[*][\s\S]*?[*](\\\n)?/', Comment.Multiline),
         ],
 
         'operators': [
