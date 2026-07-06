@@ -17,7 +17,7 @@ import pytest
 from pygments.formatters import HtmlFormatter, NullFormatter
 from pygments.lexers import PythonLexer
 from pygments.style import Style
-from pygments.token import Name
+from pygments.token import Name, Token
 from pygments.util import html_escape
 
 TESTDIR = path.dirname(path.abspath(__file__))
@@ -42,6 +42,23 @@ def test_correct_output():
     # text escaped the same way.
     escaped_text = html_escape(noutfile.getvalue(), quote=False)
     assert stripped_html == escaped_text
+
+
+def test_quotes_in_token_text_are_not_escaped():
+    # Token values are emitted as element text content, so " and ' are left
+    # as-is (html.escape(..., quote=False)); only &, < and > are escaped.
+    # This documents the behaviour introduced in PR #3185.
+    fmt = HtmlFormatter(nowrap=True)
+    outfile = StringIO()
+    fmt.format([(Token.Text, 'a "b" \'c\' & <d>\n')], outfile)
+    output = outfile.getvalue()
+
+    assert '"b"' in output       # double quotes stay literal
+    assert "'c'" in output       # single quotes stay literal
+    assert '&quot;' not in output
+    assert '&#x27;' not in output
+    assert '&amp;' in output      # ampersand is still escaped
+    assert '&lt;d&gt;' in output  # angle brackets are still escaped
 
 
 def test_external_css():
