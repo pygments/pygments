@@ -161,7 +161,7 @@ class SlashLanguageLexer(ExtendedRegexLexer):
             (r'\.',                     Operator),
             (r'::',                     Operator),
             (r':',                      Operator),
-            (r'(\s|\n)+',               Whitespace),
+            (r'\s+',                    Whitespace),
             (r'[a-z_][a-zA-Z0-9_\']*',  Name.Variable),
         ],
     }

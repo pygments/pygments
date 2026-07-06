@@ -285,7 +285,7 @@ class HsailLexer(RegexLexer):
             (r'[=<>{}\[\]()*.,:;!]|x\b', Punctuation)
         ],
         'whitespace': [
-            (r'(\n|\s)+', Whitespace),
+            (r'\s+', Whitespace),
         ],
         'comments': [
             (r'/\*.*?\*/', Comment.Multiline),
@@ -396,7 +396,7 @@ class LlvmLexer(RegexLexer):
             (r'[=<>{}\[\]()*.,!]|x\b', Punctuation)
         ],
         'whitespace': [
-            (r'(\n|\s+)+', Whitespace),
+            (r'\s+', Whitespace),
             (r';.*?\n', Comment),
             (r'/\*', Comment, 'c-comment'),
         ],
