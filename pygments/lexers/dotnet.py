@@ -134,7 +134,7 @@ class CSharpLexer(RegexLexer):
                 (r'(global)(::)', bygroups(Keyword, Punctuation)),
                 (r'(bool|byte|char|decimal|double|dynamic|float|int|long|object|'
                  r'sbyte|short|string|uint|ulong|ushort|var)\b\??', Keyword.Type),
-                (r'(class|struct)(\s+)', bygroups(Keyword, Whitespace), 'class'),
+                (r'(class|struct|union)(\s+)', bygroups(Keyword, Whitespace), 'class'),
                 (r'(namespace|using)(\s+)', bygroups(Keyword, Whitespace), 'namespace'),
                 (cs_ident, Name),
             ],
