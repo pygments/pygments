@@ -2198,7 +2198,7 @@
 '\t\t\t\t'    Text
 'let'         Keyword
 ' '           Text
-'val'         Text
+'val'         Keyword
 ' '           Text
 '='           Punctuation
 ' '           Text
@@ -2220,7 +2220,7 @@
 '\t\t\t\t'    Text
 'let'         Keyword
 ' '           Text
-'val'         Text
+'val'         Keyword
 ' '           Text
 '='           Punctuation
 ' '           Text
@@ -2240,7 +2240,7 @@
 '\t\t\t'      Text
 'if'          Keyword
 ' '           Text
-'val'         Text
+'val'         Keyword
 ' '           Text
 '!'           Punctuation
 '~'           Punctuation
@@ -2255,7 +2255,7 @@
 '['           Text
 'adddollar'   Text
 '.'           Text
-'val'         Text
+'val'         Keyword
 ']'           Text
 ' '           Text
 '='           Punctuation
@@ -2789,7 +2789,7 @@
 '\t\t\t\t\t'  Text
 'let'         Keyword
 ' '           Text
-'fname'       Text
+'fname'       Keyword
 ' '           Text
 '='           Punctuation
 ' '           Text
@@ -2844,7 +2844,7 @@
 '.'           Text
 "') - '"      Literal.String.Single
 '.'           Text
-'fname'       Text
+'fname'       Keyword
 '\n'          Text.Whitespace
 
 '\t\t\t\t'    Text
@@ -3460,7 +3460,7 @@
 '\t\t\t\t'    Text
 'let'         Keyword
 ' '           Text
-'val'         Text
+'val'         Keyword
 ' '           Text
 '='           Punctuation
 ' '           Text
@@ -3486,7 +3486,7 @@
 '\t\t\t\t'    Text
 'let'         Keyword
 ' '           Text
-'val'         Text
+'val'         Keyword
 ' '           Text
 '='           Punctuation
 ' '           Text
@@ -3510,7 +3510,7 @@
 '\t\t\t'      Text
 'if'          Keyword
 ' '           Text
-'val'         Text
+'val'         Keyword
 ' '           Text
 '!'           Punctuation
 '='           Punctuation
@@ -3523,7 +3523,7 @@
 ' '           Text
 'int_vars'    Text
 '['           Text
-'val'         Text
+'val'         Keyword
 ']'           Text
 ' '           Text
 '='           Punctuation
@@ -4326,7 +4326,7 @@
 '\t\t\t\t\t'  Text
 'let'         Keyword
 ' '           Text
-'fname'       Text
+'fname'       Keyword
 ' '           Text
 '='           Punctuation
 ' '           Text
@@ -4381,7 +4381,7 @@
 '.'           Text
 "') - '"      Literal.String.Single
 '.'           Text
-'fname'       Text
+'fname'       Keyword
 '\n'          Text.Whitespace
 
 '\t\t\t\t'    Text
