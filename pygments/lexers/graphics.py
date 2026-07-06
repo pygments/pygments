@@ -408,7 +408,7 @@ class AsymptoteLexer(RegexLexer):
     version_added = '1.2'
 
     #: optional Comment or Whitespace
-    _ws = r'(?:\s|//.*?\n|/\*.*?\*/)+'
+    _ws = r'(?:\s|//[^\n]*\n|/\*.*?\*/)+'
 
     tokens = {
         'whitespace': [

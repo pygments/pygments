@@ -192,7 +192,7 @@ class CFamilyLexer(RegexLexer):
                          Comment.PreprocFile, using(this), Comment.Single)),
             (r'[^/\n]+', Comment.Preproc),
             (r'/[*][\s\S]*?[*]/', Comment.Multiline),
-            (r'//.*?\n', Comment.Single, '#pop'),
+            (r'//[^\n]*\n', Comment.Single, '#pop'),
             (r'/', Comment.Preproc),
             (r'(?<=\\)\n', Comment.Preproc),
             (r'\n', Comment.Preproc, '#pop'),
@@ -201,7 +201,7 @@ class CFamilyLexer(RegexLexer):
             (r'^\s*#if.*?(?<!\\)\n', Comment.Preproc, '#push'),
             (r'^\s*#el(?:se|if).*\n', Comment.Preproc, '#pop'),
             (r'^\s*#endif.*?(?<!\\)\n', Comment.Preproc, '#pop'),
-            (r'.*?\n', Comment),
+            (r'[^\n]*\n', Comment),
         ],
         'classname': [
             include('whitespace'),

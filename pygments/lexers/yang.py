@@ -76,7 +76,7 @@ class YangLexer(RegexLexer):
             (r"'(?:\\'|[^'])*?'", String.Single),
 
             (r'/\*', Comment, 'comments'),
-            (r'//.*?$', Comment),
+            (r'//[^\n]*$', Comment),
 
             #match BNF stmt for `node-identifier` with [ prefix ":"]
             (r'(?:^|(?<=[\s{};]))([\w.-]+)(:)([\w.-]+)(?=[\s{};])',

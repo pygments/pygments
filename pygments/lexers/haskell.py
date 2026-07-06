@@ -45,7 +45,7 @@ class HaskellLexer(RegexLexer):
             # Whitespace:
             (r'\s+', Whitespace),
             # (r'--\s*|.*$', Comment.Doc),
-            (r'--(?![!#$%&*+./<=>?@^|_~:\\]).*?$', Comment.Single),
+            (r'--(?![!#$%&*+./<=>?@^|_~:\\])[^\n]*$', Comment.Single),
             (r'\{-', Comment.Multiline, 'comment'),
             # Lexemes:
             #  Identifiers
@@ -114,7 +114,7 @@ class HaskellLexer(RegexLexer):
             (r'\s+', Whitespace),
             (r'[' + uni.Lu + r']\w*', Keyword.Type),
             (r'(_[\w\']+|[' + uni.Ll + r'][\w\']*)', Name.Function),
-            (r'--(?![!#$%&*+./<=>?@^|_~:\\]).*?$', Comment.Single),
+            (r'--(?![!#$%&*+./<=>?@^|_~:\\])[^\n]*$', Comment.Single),
             (r'\{-', Comment.Multiline, 'comment'),
             (r',', Punctuation),
             (r'[:!#$%&*+.\\/<=>?@^|~-]+', Operator),
@@ -316,7 +316,7 @@ class AgdaLexer(RegexLexer):
              bygroups(Whitespace, Name.Function, Whitespace,
                       Operator.Word, Whitespace)),
             # Comments
-            (r'--(?![!#$%&*+./<=>?@^|_~:\\]).*?$', Comment.Single),
+            (r'--(?![!#$%&*+./<=>?@^|_~:\\])[^\n]*$', Comment.Single),
             (r'\{-', Comment.Multiline, 'comment'),
             # Holes
             (r'\{!', Comment.Directive, 'hole'),

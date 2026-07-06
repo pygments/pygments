@@ -26,7 +26,7 @@ class CapnProtoLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'#.*?$', Comment.Single),
+            (r'#[^\n]*$', Comment.Single),
             (r'@[0-9a-zA-Z]*', Name.Decorator),
             (r'=', Literal, 'expression'),
             (r':', Name.Class, 'type'),

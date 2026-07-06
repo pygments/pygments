@@ -17,7 +17,7 @@ from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
 __all__ = ['RConsoleLexer', 'SLexer', 'RdLexer']
 
 
-line_re  = re.compile('.*?\n')
+line_re  = re.compile('[^\n]*\n')
 
 
 class RConsoleLexer(Lexer):

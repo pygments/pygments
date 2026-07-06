@@ -79,7 +79,7 @@ class BoaLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'#.*?$', Comment.Single),
+            (r'#[^\n]*$', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline),
             (reserved, Keyword.Reserved),
             (built_in_functions, Name.Function),

@@ -257,12 +257,12 @@ class SourcesListLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Whitespace),
-            (r'#.*?$', Comment),
+            (r'#[^\n]*$', Comment),
             (r'^(deb(?:-src)?)(\s+)',
              bygroups(Keyword, Whitespace), 'distribution')
         ],
         'distribution': [
-            (r'#.*?$', Comment, '#pop'),
+            (r'#[^\n]*$', Comment, '#pop'),
             (r'\$\(ARCH\)', Name.Variable),
             (r'[^\s$[]+', String),
             (r'\[', String.Other, 'escaped-distribution'),
@@ -276,7 +276,7 @@ class SourcesListLexer(RegexLexer):
             (r'\$', String.Other)
         ],
         'components': [
-            (r'#.*?$', Comment, '#pop:2'),
+            (r'#[^\n]*$', Comment, '#pop:2'),
             (r'$', Text, '#pop:2'),
             (r'\s+', Whitespace),
             (r'\S+', Keyword.Pseudo),

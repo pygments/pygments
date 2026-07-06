@@ -35,7 +35,7 @@ class ForthLexer(RegexLexer):
         'root': [
             (r'\s+', Whitespace),
             # All comment types
-            (r'\\.*?$', Comment.Single),
+            (r'\\[^\n]*$', Comment.Single),
             (r'\([\s].*?\)', Comment.Single),
             # defining words. The next word is a new command name
             (r'(:|variable|constant|value|buffer:)(\s+)',

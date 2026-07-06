@@ -332,7 +332,7 @@ class MCSchemaLexer(RegexLexer):
     tokens = {
         'commentsandwhitespace': [
             (r'\s+', Whitespace),
-            (r'//.*?$', Comment.Single),
+            (r'//[^\n]*$', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline)
         ],
         'slashstartsregex': [

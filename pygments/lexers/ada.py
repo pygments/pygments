@@ -36,7 +36,7 @@ class AdaLexer(RegexLexer):
     tokens = {
         'root': [
             (r'[^\S\n]+', Text),
-            (r'--.*?\n', Comment.Single),
+            (r'--[^\n]*\n', Comment.Single),
             (r'[^\S\n]+', Text),
             (r'function|procedure|entry', Keyword.Declaration, 'subprogram'),
             (r'(subtype|type)(\s+)(\w+)',

@@ -154,6 +154,6 @@ class BSTLexer(RegexLexer):
         ],
         'whitespace': [
             (r'\s+', Whitespace),
-            ('%.*?$', Comment.Single),
+            (r'%[^\n]*$', Comment.Single),
         ],
     }

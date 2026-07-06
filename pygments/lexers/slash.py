@@ -67,7 +67,7 @@ class SlashLanguageLexer(ExtendedRegexLexer):
             (r"'[a-zA-Z0-9_]+",         String),
             (r'%r{',                    String.Regex,       move_state("regexp")),
             (r'/\*.*?\*/',              Comment.Multiline),
-            (r"(#|//).*?\n",            Comment.Single),
+            (r"(#|//)[^\n]*\n",            Comment.Single),
             (r'-?[0-9]+e[+-]?[0-9]+',   Number.Float),
             (r'-?[0-9]+\.[0-9]+(e[+-]?[0-9]+)?', Number.Float),
             (r'-?[0-9]+',               Number.Integer),

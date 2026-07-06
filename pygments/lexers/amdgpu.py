@@ -34,7 +34,7 @@ class AMDGPULexer(RegexLexer):
             (r'[\r\n]+', Text),
             (r'(([a-z_0-9])*:([a-z_0-9])*)', Name.Attribute),
             (r'(\[|\]|\(|\)|,|\:|\&)', Text),
-            (r'([;#]|//).*?\n', Comment.Single),
+            (r'([;#]|//)[^\n]*\n', Comment.Single),
             (r'((s_)?(scratch|ds|buffer|flat|image)_[a-z0-9_]+)', Keyword.Reserved),
             (r'(_lo|_hi)', Name.Variable),
             (r'(vmcnt|lgkmcnt|expcnt)', Name.Attribute),

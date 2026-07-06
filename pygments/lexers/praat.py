@@ -117,8 +117,8 @@ class PraatLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'(\s+)(#.*?$)',  bygroups(Whitespace, Comment.Single)),
-            (r'^#.*?$',        Comment.Single),
+            (r'(\s+)(#[^\n]*$)',  bygroups(Whitespace, Comment.Single)),
+            (r'^#[^\n]*$',        Comment.Single),
             (r';[^\n]*',       Comment.Single),
             (r'\s+',           Whitespace),
 
@@ -271,7 +271,7 @@ class PraatLexer(RegexLexer):
             (r'[^\'"\n]+',  String),
         ],
         'old_form': [
-            (r'(\s+)(#.*?$)',  bygroups(Whitespace, Comment.Single)),
+            (r'(\s+)(#[^\n]*$)',  bygroups(Whitespace, Comment.Single)),
             (r'\s+', Whitespace),
 
             (r'(optionmenu|choice)([ \t]+)(\S+)(:)([ \t]+)',

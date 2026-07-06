@@ -73,8 +73,8 @@ class ArturoLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r';.*?$', Comment.Single),
-            (r'^((\s#!)|(#!)).*?$', Comment.Hashbang),
+            (r';[^\n]*$', Comment.Single),
+            (r'^((\s#!)|(#!))[^\n]*$', Comment.Hashbang),
 
             # Constants
             (words(('false', 'true', 'maybe'),      # boolean

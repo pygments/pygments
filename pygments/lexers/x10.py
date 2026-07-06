@@ -53,7 +53,7 @@ class X10Lexer(RegexLexer):
     tokens = {
         'root': [
             (r'[^\S\n]+', Text),
-            (r'//.*?\n', Comment.Single),
+            (r'//[^\n]*\n', Comment.Single),
             (r'/\*[\s\S]*?\*/', Comment.Multiline),
             (r'\b({})\b'.format('|'.join(keywords)), Keyword),
             (r'\b({})\b'.format('|'.join(types)), Keyword.Type),

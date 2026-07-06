@@ -80,7 +80,7 @@ class WatLexer(RegexLexer):
             (words(builtins), Name.Builtin, 'arguments'),
             (words(['i32', 'i64', 'f32', 'f64']), Keyword.Type),
             (r'\$[A-Za-z0-9!#$%&\'*+./:<=>?@\\^_`|~-]+', Name.Variable), # yes, all of the are valid in identifiers
-            (r';;.*?$', Comment.Single),
+            (r';;[^\n]*$', Comment.Single),
             (r'\(;', Comment.Multiline, 'nesting_comment'),
             (r'[+-]?0x[\dA-Fa-f](_?[\dA-Fa-f])*(.([\dA-Fa-f](_?[\dA-Fa-f])*)?)?([pP][+-]?[\dA-Fa-f](_?[\dA-Fa-f])*)?', Number.Float),
             (r'[+-]?\d.\d(_?\d)*[eE][+-]?\d(_?\d)*', Number.Float),

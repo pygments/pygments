@@ -26,7 +26,7 @@ __all__ = ['MatlabLexer', 'MatlabSessionLexer', 'OctaveLexer', 'ScilabLexer']
 # the signature, which is valid in all three languages.
 _deffunc = [
     (r'[ \t]+', Whitespace),
-    (r'\.\.\..*?\n', Comment),  # line continuation
+    (r'\.\.\.[^\n]*\n', Comment),  # line continuation
     # output argument(s): `[a, b] =` (may span continuations) or `y =`
     (r'(\[)([^\]]*)(\])([ \t]*)(=)',
      bygroups(Punctuation, Text, Punctuation, Whitespace, Punctuation)),
@@ -39,7 +39,7 @@ _deffunc = [
 ]
 
 _deffunc_args = [
-    (r'\.\.\..*?\n', Comment),  # line continuation
+    (r'\.\.\.[^\n]*\n', Comment),  # line continuation
     (r'\)', Punctuation, '#pop:2'),
     (r'[^)\n.]+', Text),
     (r'[.\n]', Text),
@@ -2754,7 +2754,7 @@ class MatlabLexer(RegexLexer):
             return 0.2
 
 
-line_re  = re.compile('.*?\n')
+line_re  = re.compile('[^\n]*\n')
 
 
 class MatlabSessionLexer(Lexer):
@@ -3251,7 +3251,7 @@ class ScilabLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'//.*?$', Comment.Single),
+            (r'//[^\n]*$', Comment.Single),
             (r'^\s*function\b', Keyword, 'deffunc'),
 
             (words((

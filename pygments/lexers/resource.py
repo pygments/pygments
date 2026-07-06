@@ -32,7 +32,7 @@ class ResourceLexer(RegexLexer):
     flags = re.MULTILINE | re.IGNORECASE
     tokens = {
         'root': [
-            (r'//.*?$', Comment),
+            (r'//[^\n]*$', Comment),
             (r'"', String, 'string'),
             (r'-?\d+', Number.Integer),
             (r'[,{}]', Operator),

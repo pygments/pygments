@@ -33,7 +33,7 @@ class CodeQLLexer(RegexLexer):
         'root': [
             # Whitespace and comments
             (r'\s+', Whitespace),
-            (r'//.*?\n', Comment.Single),
+            (r'//[^\n]*\n', Comment.Single),
             (r'/\*', Comment.Multiline, 'multiline-comments'),
 
              # Keywords

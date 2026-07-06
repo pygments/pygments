@@ -210,7 +210,7 @@ class MuPADLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'//.*?$', Comment.Single),
+            (r'//[^\n]*$', Comment.Single),
             (r'/\*', Comment.Multiline, 'comment'),
             (r'"(?:[^"\\]|\\.)*"', String),
             (r'\(|\)|\[|\]|\{|\}', Punctuation),

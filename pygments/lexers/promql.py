@@ -140,7 +140,7 @@ class PromQLLexer(RegexLexer):
             (r"-?[0-9]+\.[0-9]+", Number.Float),
             (r"-?[0-9]+", Number.Integer),
             # Comments
-            (r"#.*?$", Comment.Single),
+            (r"#[^\n]*$", Comment.Single),
             # Operators
             (r"(\+|\-|\*|\/|\%|\^)", Operator),
             (r"==|!=|>=|<=|<|>", Operator),

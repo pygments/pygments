@@ -73,7 +73,7 @@ class ZigLexer(RegexLexer):
         'root': [
             (r'\n', Whitespace),
             (r'\s+', Whitespace),
-            (r'//.*?\n', Comment.Single),
+            (r'//[^\n]*\n', Comment.Single),
 
             # Keywords
             statement_keywords,

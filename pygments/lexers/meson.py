@@ -36,7 +36,7 @@ class MesonLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'#.*?$', Comment),
+            (r'#[^\n]*$', Comment),
             (r"'''.*'''", String.Single),
             (r'[1-9][0-9]*', Number.Integer),
             (r'0o[0-7]+', Number.Oct),

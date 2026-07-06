@@ -57,9 +57,9 @@ class GasLexer(RegexLexer):
             (number, Number.Integer),
             (register, Name.Variable),
             (r'[\r\n]+', Whitespace, '#pop'),
-            (r'([;#]|//).*?\n', Comment.Single, '#pop'),
+            (r'([;#]|//)[^\n]*\n', Comment.Single, '#pop'),
             (r'/[*].*?[*]/', Comment.Multiline),
-            (r'/[*].*?\n[\w\W]*?[*]/', Comment.Multiline, '#pop'),
+            (r'/[*][^\n]*\n[\w\W]*?[*]/', Comment.Multiline, '#pop'),
 
             include('punctuation'),
             include('whitespace')
@@ -83,9 +83,9 @@ class GasLexer(RegexLexer):
             ('$'+number, Number.Integer),
             (r"$'(.|\\')'", String.Char),
             (r'[\r\n]+', Whitespace, '#pop'),
-            (r'([;#]|//).*?\n', Comment.Single, '#pop'),
+            (r'([;#]|//)[^\n]*\n', Comment.Single, '#pop'),
             (r'/[*].*?[*]/', Comment.Multiline),
-            (r'/[*].*?\n[\w\W]*?[*]/', Comment.Multiline, '#pop'),
+            (r'/[*][^\n]*\n[\w\W]*?[*]/', Comment.Multiline, '#pop'),
 
             include('punctuation'),
             include('whitespace')
@@ -93,7 +93,7 @@ class GasLexer(RegexLexer):
         'whitespace': [
             (r'\n', Whitespace),
             (r'\s+', Whitespace),
-            (r'([;#]|//).*?\n', Comment.Single),
+            (r'([;#]|//)[^\n]*\n', Comment.Single),
             (r'/[*][\w\W]*?[*]/', Comment.Multiline)
         ],
         'punctuation': [
@@ -289,7 +289,7 @@ class HsailLexer(RegexLexer):
         ],
         'comments': [
             (r'/\*.*?\*/', Comment.Multiline),
-            (r'//.*?\n', Comment.Single),
+            (r'//[^\n]*\n', Comment.Single),
         ],
         'keyword': [
             # Types
@@ -397,7 +397,7 @@ class LlvmLexer(RegexLexer):
         ],
         'whitespace': [
             (r'\s+', Whitespace),
-            (r';.*?\n', Comment),
+            (r';[^\n]*\n', Comment),
             (r'/\*', Comment, 'c-comment'),
         ],
         'c-comment': [
@@ -789,7 +789,7 @@ class NasmLexer(RegexLexer):
         ],
         'preproc': [
             (r'[^;\n]+', Comment.Preproc),
-            (r';.*?\n', Comment.Single, '#pop'),
+            (r';[^\n]*\n', Comment.Single, '#pop'),
             (r'\n', Comment.Preproc, '#pop'),
         ],
         'whitespace': [
@@ -891,7 +891,7 @@ class TasmLexer(RegexLexer):
         ],
         'preproc': [
             (r'[^;\n]+', Comment.Preproc),
-            (r';.*?\n', Comment.Single, '#pop'),
+            (r';[^\n]*\n', Comment.Single, '#pop'),
             (r'\n', Comment.Preproc, '#pop'),
         ],
         'whitespace': [
@@ -1032,7 +1032,7 @@ class Dasm16Lexer(RegexLexer):
 
         'instruction-line' : [
             (r'[\r\n]+', Whitespace, '#pop'),
-            (r';.*?$', Comment, '#pop'),
+            (r';[^\n]*$', Comment, '#pop'),
             include('whitespace')
         ],
 
@@ -1053,6 +1053,6 @@ class Dasm16Lexer(RegexLexer):
         'whitespace': [
             (r'\n', Whitespace),
             (r'\s+', Whitespace),
-            (r';.*?\n', Comment)
+            (r';[^\n]*\n', Comment)
         ],
     }

@@ -37,7 +37,7 @@ class PureScriptLexer(RegexLexer):
             # Whitespace
             (r'\s+', Whitespace),
             # Single-line comments
-            (r'--.*?$', Comment.Single),
+            (r'--[^\n]*$', Comment.Single),
             # Multi-line comments
             (r'\{-', Comment.Multiline, 'comment'),
             # Lexemes:
@@ -113,7 +113,7 @@ class PureScriptLexer(RegexLexer):
             (r"\b(class|type)(?!')\b", Keyword.Reserved),
             (r'[' + uni.Lu + r']\w*', Keyword.Type),
             (r'(_[\w\']+|[' + uni.Ll + r'][\w\']*)', Name.Function),
-            (r'--.*?$', Comment.Single),
+            (r'--[^\n]*$', Comment.Single),
             (r'\{-', Comment.Multiline, 'comment'),
             (r',', Punctuation),
             (r'\.\.', Punctuation),
