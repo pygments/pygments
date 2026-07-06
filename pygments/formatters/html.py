@@ -828,12 +828,14 @@ class HtmlFormatter(Formatter):
         nocls = self.noclasses
         lsep = self.lineseparator
         tagsfile = self.tagsfile
+        span_openers = self.span_element_openers
+        translate = self._translate_parts
 
         lspan = ''
         line = []
         for ttype, value in tokensource:
             try:
-                cspan = self.span_element_openers[ttype]
+                cspan = span_openers[ttype]
             except KeyError:
                 title = ' title="{}"'.format('.'.join(ttype)) if self.debug_token_types else ''
                 if nocls:
@@ -849,9 +851,9 @@ class HtmlFormatter(Formatter):
                         cspan = f'<span class="{css_class}"{title}>'
                     else:
                         cspan = ''
-                self.span_element_openers[ttype] = cspan
+                span_openers[ttype] = cspan
 
-            parts = self._translate_parts(value)
+            parts = translate(value)
 
             if tagsfile and ttype in Token.Name:
                 filename, linenumber = self._lookup_ctag(value)
@@ -866,31 +868,34 @@ class HtmlFormatter(Formatter):
                         (url, self.lineanchors, linenumber, parts[0])
                     parts[-1] = parts[-1] + "</a>"
 
-            # for all but the last line
-            for part in parts[:-1]:
-                if line:
-                    # Also check for part being non-empty, so we avoid creating
-                    # empty <span> tags
-                    if lspan != cspan and part:
-                        line.extend(((lspan and '</span>'), cspan, part,
-                                     (cspan and '</span>'), lsep))
-                    else:  # both are the same, or the current part was empty
-                        line.extend((part, (lspan and '</span>'), lsep))
-                    yield 1, ''.join(line)
-                    line = []
-                elif part:
-                    yield 1, ''.join((cspan, part, (cspan and '</span>'), lsep))
-                else:
-                    yield 1, lsep
+            # for all but the last line (skipped entirely for single-line
+            # tokens, which are the common case, to avoid the parts[:-1] slice)
+            if len(parts) > 1:
+                for part in parts[:-1]:
+                    if line:
+                        # Also check for part being non-empty, so we avoid
+                        # creating empty <span> tags
+                        if lspan != cspan and part:
+                            line.extend(((lspan and '</span>'), cspan, part,
+                                         (cspan and '</span>'), lsep))
+                        else:  # both are the same, or the current part was empty
+                            line.extend((part, (lspan and '</span>'), lsep))
+                        yield 1, ''.join(line)
+                        line = []
+                    elif part:
+                        yield 1, ''.join((cspan, part, (cspan and '</span>'), lsep))
+                    else:
+                        yield 1, lsep
             # for the last line
-            if line and parts[-1]:
+            last = parts[-1]
+            if line and last:
                 if lspan != cspan:
-                    line.extend(((lspan and '</span>'), cspan, parts[-1]))
+                    line.extend(((lspan and '</span>'), cspan, last))
                     lspan = cspan
                 else:
-                    line.append(parts[-1])
-            elif parts[-1]:
-                line = [cspan, parts[-1]]
+                    line.append(last)
+            elif last:
+                line = [cspan, last]
                 lspan = cspan
             # else we neither have to open a new span nor set lspan
 
