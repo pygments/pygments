@@ -37,7 +37,10 @@ def test_correct_output():
     nfmt.format(tokensource, noutfile)
 
     stripped_html = re.sub('<.*?>', '', houtfile.getvalue())
-    escaped_text = html_escape(noutfile.getvalue())
+    # The formatter escapes token values as element text content, where the
+    # quote characters do not need escaping (quote=False), so compare against
+    # text escaped the same way.
+    escaped_text = html_escape(noutfile.getvalue(), quote=False)
     assert stripped_html == escaped_text
 
 
