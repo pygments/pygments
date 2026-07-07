@@ -569,7 +569,7 @@ LEXERS = {
     'VerifpalLexer': ('pygments.lexers.verifpal', 'Verifpal', ('verifpal',), ('*.vp',), ('text/x-verifpal',)),
     'VerilogLexer': ('pygments.lexers.hdl', 'verilog', ('verilog', 'v'), ('*.v',), ('text/x-verilog',)),
     'VhdlLexer': ('pygments.lexers.hdl', 'vhdl', ('vhdl',), ('*.vhdl', '*.vhd'), ('text/x-vhdl',)),
-    'VimLexer': ('pygments.lexers.textedit', 'VimL', ('vim',), ('*.vim', '.vimrc', '.exrc', '.gvimrc', '_vimrc', '_exrc', '_gvimrc', 'vimrc', 'gvimrc'), ('text/x-vim',)),
+    'VimLexer': ('pygments.lexers.textedit', 'VimL', ('vim', 'vimscript', 'viml'), ('*.vim', '.vimrc', '.exrc', '.gvimrc', '_vimrc', '_exrc', '_gvimrc', 'vimrc', 'gvimrc'), ('text/x-vim',)),
     'VisualPrologGrammarLexer': ('pygments.lexers.vip', 'Visual Prolog Grammar', ('visualprologgrammar',), ('*.vipgrm',), ()),
     'VisualPrologLexer': ('pygments.lexers.vip', 'Visual Prolog', ('visualprolog',), ('*.pro', '*.cl', '*.i', '*.pack', '*.ph'), ()),
     'VueLexer': ('pygments.lexers.html', 'Vue', ('vue',), ('*.vue',), ()),
