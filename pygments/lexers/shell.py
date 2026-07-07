@@ -240,20 +240,18 @@ class BashSessionLexer(ShellSessionBaseLexer):
     # the command text that follows on the same line.
     _ps1rgx = re.compile(r'''
         ^(
+            # Prompt may start with a bracketed/parenthesized prefix, e.g. "[venv]" or "(main)".
+            (?:\[.*?\]|\(\S+\)\s*)?
             (?:
-                # Prompt may start with a bracketed/parenthesized prefix, e.g. "[venv]" or "(main)".
-                (?:\[.*?\]|\(\S+\)\s*)?
-                (?:
-                    # Shell name such as "sh-3.2"
-                    |sh\S*?
-                    # Common "user@host[:path]"-style prompt fragments.
-                    |\w+\S+[@:]\S+(?:\s+\S+)?
-                    # Busybox puts the path before the sigil, e.g. "/var/log #"
-                    |[a-z0-9~/]+
-                    # Bracketed host-style prompt fragments.
-                    |\[\S+[@:][^\n]+\].+
-                )?
-            )
+                # Shell name such as "sh-3.2"
+                |sh\S*?
+                # Common "user@host[:path]"-style prompt fragments.
+                |\w+\S+[@:]\S+(?:\s+\S+)?
+                # Busybox puts the path before the sigil, e.g. "/var/log #"
+                |[a-z0-9~/]+
+                # Bracketed host-style prompt fragments.
+                |\[\S+[@:][^\n]+\].+
+            )?
             # Final prompt sigil and optional surrounding whitespace.
             \s*[$#%❯]\s*
         )
