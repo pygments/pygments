@@ -142,9 +142,15 @@ class OdinLangLexer(RegexLexer):
 
     def analyse_text(text):
         """Disambiguate from openEHR ODIN, which also uses *.odin."""
-        # every Odin-lang file starts with a package declaration
-        if re.search(r'^\s*package\s+\w+', text, re.MULTILINE):
-            return 0.9
+        result = 0.0
+        # Odin's collection-style imports, e.g. import "core:fmt", are distinctive.
+        if re.search(r'import\s+"\w+:', text):
+            result += 0.5
+        # `name :: proc/struct/enum/union` declarations are distinctive Odin syntax.
         if re.search(r'\w+\s*::\s*(proc|struct|enum|union)\b', text):
-            return 0.5
-        return 0.0
+            result += 0.3
+        # Odin's package declaration is just "package name", unlike similar
+        # declarations in other languages (e.g. Carbon's "package name api;").
+        if re.search(r'^\s*package\s+\w+\s*$', text, re.MULTILINE):
+            result += 0.1
+        return min(result, 1.0)
