@@ -32,7 +32,7 @@ class GoLexer(RegexLexer):
             (r'\s+', Whitespace),
             (r'(\\)(\n)', bygroups(Text, Whitespace)),  # line continuations
             (r'//(.*?)$', Comment.Single),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'/(\\\n)?[*][\s\S]*?[*](\\\n)?/', Comment.Multiline),
             (r'(import|package)\b', Keyword.Namespace),
             (r'(var|func|struct|map|chan|type|interface|const)\b',
              Keyword.Declaration),
