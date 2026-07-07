@@ -13,6 +13,8 @@
     :license: BSD, see LICENSE for details.
 """
 
+import re
+
 from pygments.lexer import RegexLexer, include, bygroups, using, default
 from pygments.token import Text, Comment, Name, Literal, Number, String, \
     Punctuation, Keyword, Operator, Generic, Whitespace
@@ -142,6 +144,13 @@ class OdinLexer(AtomsLexer):
     mimetypes = ['text/odin']
     url = 'https://github.com/openEHR/odin'
     version_added = '2.1'
+
+    def analyse_text(text):
+        """Disambiguate from the Odin programming language, which also uses *.odin."""
+        # openEHR ODIN is a data notation built from `attribute = <...>` blocks
+        if re.search(r'^\s*[\w-]+\s*=\s*<', text, re.MULTILINE):
+            return 0.7
+        return 0.0
 
     tokens = {
         'path': [

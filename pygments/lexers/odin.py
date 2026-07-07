@@ -1,6 +1,16 @@
+"""
+    pygments.lexers.odin
+    ~~~~~~~~~~~~~~~~~~~~
+
+    Lexers for the Odin programming language.
+
+    :copyright: Copyright 2006-2025 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+"""
+
 import re
 
-from pygments.lexer import RegexLexer, bygroups, words, include
+from pygments.lexer import RegexLexer, bygroups, words
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation
 
@@ -9,16 +19,16 @@ __all__ = ['OdinLangLexer']
 
 class OdinLangLexer(RegexLexer):
     """
-    For `Odin <https://odin-lang.org>` source.
+    For Odin source code.
     """
     name = 'Odin'
     url = 'https://odin-lang.org'
     filenames = ['*.odin']
     aliases = ['odinlang']
     mimetypes = ['text/x-odinsrc']
-    version_added = '2.20' 
+    version_added = '2.20'
 
-    flags = re.MULTILINE | re.UNICODE
+    flags = re.MULTILINE
 
     tokens = {
         'root': [
@@ -31,47 +41,47 @@ class OdinLangLexer(RegexLexer):
             (r'(proc|struct|union|enum|bit_set|matrix|map|typeid|using)\b',
              Keyword.Declaration),
             (words((
-                'asm', 'auto_cast', 'bit_set', 'break', 'case', 'cast', 
-                'context', 'continue', 'defer', 'distinct', 'do', 
-                'dynamic', 'else', 'enum', 'fallthrough', 'for', 'foreign', 
-                'if', 'import', 'in', 'map', 'matrix', 'not_in', 'or_else', 
-                'or_return', 'package', 'proc', 'return', 'struct', 'switch', 
+                'asm', 'auto_cast', 'bit_set', 'break', 'case', 'cast',
+                'context', 'continue', 'defer', 'distinct', 'do',
+                'dynamic', 'else', 'enum', 'fallthrough', 'for', 'foreign',
+                'if', 'import', 'in', 'map', 'matrix', 'not_in', 'or_else',
+                'or_return', 'package', 'proc', 'return', 'struct', 'switch',
                 'transmute', 'typeid', 'union', 'using', 'when', 'where'), suffix=r'\b'),
              Keyword),
             (r'(true|false|nil)\b', Keyword.Constant),
             # It seems the builtin types aren't actually keywords, but
             # can be used as functions. So we need two declarations.
             (words((
-                'bool', 'b8', 'b16', 'b32', 'b64', 
-                'i8', 'u8', 'i16', 'u16', 'i32', 'u32', 'i64', 'u64', 'i128', 'u128', 
-                'rune', 
-                'f16', 'f32', 'f64', 
-                'complex32', 'complex64', 'complex128', 
-                'quaternion64', 'quaternion128', 'quaternion256', 
-                'int', 'uint', 'uintptr', 'rawptr', 
-                'string', 'cstring', 'any', 'typeid', 
-                'i16le', 'u16le', 'i32le', 'u32le', 'i64le', 'u64le', 'i128le', 'u128le', 
-                'i16be', 'u16be', 'i32be', 'u32be', 'i64be', 'u64be', 'i128be', 'u128be', 
-                'f16le', 'f32le', 'f64le', 'f16be', 'f32be', 'f64be', 'byte', 
+                'bool', 'b8', 'b16', 'b32', 'b64',
+                'i8', 'u8', 'i16', 'u16', 'i32', 'u32', 'i64', 'u64', 'i128', 'u128',
+                'rune',
+                'f16', 'f32', 'f64',
+                'complex32', 'complex64', 'complex128',
+                'quaternion64', 'quaternion128', 'quaternion256',
+                'int', 'uint', 'uintptr', 'rawptr',
+                'string', 'cstring', 'any', 'typeid',
+                'i16le', 'u16le', 'i32le', 'u32le', 'i64le', 'u64le', 'i128le', 'u128le',
+                'i16be', 'u16be', 'i32be', 'u32be', 'i64be', 'u64be', 'i128be', 'u128be',
+                'f16le', 'f32le', 'f64le', 'f16be', 'f32be', 'f64be', 'byte',
 
-                'len', 'cap', 'size_of', 'align_of', 'offset_of', 'offset_of_by_string', 
-                'type_of', 'type_info_of', 'typeid_of', 'swizzle', 'complex', 
-                'quaternion', 'real', 'imag', 'jmag', 'kmag', 'conj', 
-                'expand_to_tuple', 'min', 'max', 'abs', 'clamp', 
-                'soa_zip', 'soa_unzip', 'transpose', 'outer_product', 
+                'len', 'cap', 'size_of', 'align_of', 'offset_of', 'offset_of_by_string',
+                'type_of', 'type_info_of', 'typeid_of', 'swizzle', 'complex',
+                'quaternion', 'real', 'imag', 'jmag', 'kmag', 'conj',
+                'expand_to_tuple', 'min', 'max', 'abs', 'clamp',
+                'soa_zip', 'soa_unzip', 'transpose', 'outer_product',
                 'hadamard_product', 'matrix_flatten'), suffix=r'\b(\()'),
              bygroups(Name.Builtin, Punctuation)),
             (words((
-                'bool', 'b8', 'b16', 'b32', 'b64', 
-                'i8', 'u8', 'i16', 'u16', 'i32', 'u32', 'i64', 'u64', 'i128', 'u128', 
-                'rune', 
-                'f16', 'f32', 'f64', 
-                'complex32', 'complex64', 'complex128', 
-                'quaternion64', 'quaternion128', 'quaternion256', 
-                'int', 'uint', 'uintptr', 'rawptr', 
-                'string', 'cstring', 'any', 'typeid', 
-                'i16le', 'u16le', 'i32le', 'u32le', 'i64le', 'u64le', 'i128le', 'u128le', 
-                'i16be', 'u16be', 'i32be', 'u32be', 'i64be', 'u64be', 'i128be', 'u128be', 
+                'bool', 'b8', 'b16', 'b32', 'b64',
+                'i8', 'u8', 'i16', 'u16', 'i32', 'u32', 'i64', 'u64', 'i128', 'u128',
+                'rune',
+                'f16', 'f32', 'f64',
+                'complex32', 'complex64', 'complex128',
+                'quaternion64', 'quaternion128', 'quaternion256',
+                'int', 'uint', 'uintptr', 'rawptr',
+                'string', 'cstring', 'any', 'typeid',
+                'i16le', 'u16le', 'i32le', 'u32le', 'i64le', 'u64le', 'i128le', 'u128le',
+                'i16be', 'u16be', 'i32be', 'u32be', 'i64be', 'u64be', 'i128be', 'u128be',
                 'f16le', 'f32le', 'f64le', 'f16be', 'f32be', 'f64be', 'byte'), suffix=r'\b'),
              Keyword.Type),
 
@@ -80,11 +90,11 @@ class OdinLangLexer(RegexLexer):
             (r'\.\d+([Ee][-+]\d+)?i', Number.Imaginary),
             (r'\d+[Ee][-+]\d+i', Number.Imaginary),
             (r'\d+i', Number.Imaginary),
-            
+
             # float_lit
             (r'\d+\.\d+([eE][+\-]?\d+)?', Number.Float),
             (r'\d+[eE][+\-]?\d+', Number.Float),
-            
+
             # int_lit
             # -- binary_lit
             (r'0b[01]+', Number.Bin),
@@ -98,7 +108,7 @@ class OdinLangLexer(RegexLexer):
             (r'0d[0-9]+', Number.Integer),
             # -- generic decimal_lit
             (r'[0-9]+', Number.Integer),
-            
+
             # char_lit
             (r"""'(\\['"\\abfnrtv]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
              r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|[^\\])'""",
@@ -108,17 +118,17 @@ class OdinLangLexer(RegexLexer):
             (r'`[^`]*`', String),
             # -- interpreted_string_lit
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
-            
+
             # Range operators
             (r'\.\.[=<]?', Operator),
             # All other operators
-            (r'(::=|<<=|>>=|%%= |&&=|\|\|=|&~=|::|:=|<<|>>|&&|\|\||&~|==|!=|<=|>=|---|->|[+\-*/%~!=<>&|^?]=?)', Operator),
+            (r'(::=|<<=|>>=|%%=|&&=|\|\|=|&~=|%%|::|:=|<<|>>|&&|\|\||&~|==|!=|<=|>=|---|->|[+\-*/%~!=<>&|^?]=?)', Operator),
             # Attribute marker
             (r'@', Name.Decorator),
             # Other symbols
             (r'[#$]', Operator),
             (r'[()[\]{}.,;:]', Punctuation),
-            
+
             # identifier
             (r'[^\W\d]\w*', Name.Other),
         ],
@@ -129,3 +139,12 @@ class OdinLangLexer(RegexLexer):
             (r'[*/]', Comment.Multiline),
         ],
     }
+
+    def analyse_text(text):
+        """Disambiguate from openEHR ODIN, which also uses *.odin."""
+        # every Odin-lang file starts with a package declaration
+        if re.search(r'^\s*package\s+\w+', text, re.MULTILINE):
+            return 0.9
+        if re.search(r'\w+\s*::\s*(proc|struct|enum|union)\b', text):
+            return 0.5
+        return 0.0
