@@ -235,9 +235,36 @@ class BashSessionLexer(ShellSessionBaseLexer):
     _example = "console/example.sh-session"
 
     _innerLexerCls = BashLexer
-    _ps1rgx = re.compile(
-        r'^((?:(?:\[.*?\])|(?:\(\S+\))?(?:| |sh\S*?|\w+\S+[@:]\S+(?:\s+\S+)' \
-        r'?|\[\S+[@:][^\n]+\].+))\s*[$#%❯]\s*)(.*\n?)')
+    # Prompt detection for interactive shell sessions.
+    # Group 1 captures the full prompt prefix and Group 2 captures
+    # the command text that follows on the same line.
+    _ps1rgx = re.compile(r'''
+        ^(
+            (?:
+                # Prompt may start with a bracketed prefix, e.g. "[venv]".
+                (?:\[.*?\])
+                |
+                # Prompt may start with a parenthesized prefix, e.g. "(venv)".
+                (?:\(\S+\))?
+                (?:
+                    # Empty/userless prompt body
+                    |
+                    # A plain whitespace body before the final prompt sigil.
+                    \s
+                    # Shell name such as "sh-3.2"
+                    |sh\S*?
+                    # Common "user@host[:path]"-style prompt fragments.
+                    |\w+\S+[@:]\S+(?:\s+\S+)?
+                    # Bracketed host-style prompt fragments.
+                    |\[\S+[@:][^\n]+\].+
+                )
+            )
+            # Final prompt sigil and optional surrounding whitespace.
+            \s*[$#%❯]\s*
+        )
+        # Command entered at the prompt (optionally ending in a newline).
+        (.*\n?)
+    ''', re.VERBOSE)
     _ps2 = '> '
 
 
