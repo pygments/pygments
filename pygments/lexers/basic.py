@@ -48,7 +48,7 @@ class BlitzMaxLexer(RegexLexer):
             (r'(\.\.)(\n)', bygroups(Text, Whitespace)),  # Line continuation
             # Comments
             (r"'.*?\n", Comment.Single),
-            (r'([ \t]*)\bRem\n(\n|.)*?\s*\bEnd([ \t]*)Rem', Comment.Multiline),
+            (r'([ \t]*)\bRem\n[\s\S]*?\s*\bEnd([ \t]*)Rem', Comment.Multiline),
             # Data types
             ('"', String.Double, 'string'),
             # Numbers

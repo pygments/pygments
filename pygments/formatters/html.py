@@ -13,6 +13,7 @@ import os
 import sys
 import os.path
 from io import StringIO
+from html import escape as _escape
 
 from pygments.formatter import Formatter
 from pygments.token import Token, Text, STANDARD_TYPES
@@ -817,8 +818,14 @@ class HtmlFormatter(Formatter):
 
     @functools.lru_cache(maxsize=100)
     def _translate_parts(self, value):
-        """HTML-escape a value and split it by newlines."""
-        return html_escape(value).split('\n')
+        """HTML-escape a value and split it by newlines.
+
+        ``quote=False`` is intentional: token values are emitted as element
+        text content (inside ``<span>``/``<pre>``), where ``"`` and ``'`` do
+        not need escaping.  Skipping those two replacements is measurably
+        faster on the per-token hot path.
+        """
+        return _escape(value, quote=False).split('\n')
 
     def _format_lines(self, tokensource):
         """

@@ -106,7 +106,7 @@ class ClayLexer(RegexLexer):
         'root': [
             (r'\s+', Whitespace),
             (r'//.*?$', Comment.Single),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'/(\\\n)?[*][\s\S]*?[*](\\\n)?/', Comment.Multiline),
             (words(('public', 'private', 'import', 'as', 'record', 'variant',
                     'instance', 'define', 'overload', 'default',
                     'external', 'alias', 'rvalue', 'ref',
@@ -197,8 +197,8 @@ class ValaLexer(RegexLexer):
             (r'\n', Whitespace),
             (r'\s+', Whitespace),
             (r'\\\n', Text),  # line continuation
-            (r'//(\n|(.|\n)*?[^\\]\n)', Comment.Single),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'//(\n|[\s\S]*?[^\\]\n)', Comment.Single),
+            (r'/(\\\n)?[*][\s\S]*?[*](\\\n)?/', Comment.Multiline),
         ],
         'statements': [
             (r'[L@]?"', String, 'string'),

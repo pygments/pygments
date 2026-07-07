@@ -442,8 +442,8 @@ class MyghtyLexer(RegexLexer):
             (r'</&>', Name.Tag),
             (r'(?s)(<%!?)(.*?)(%>)',
              bygroups(Name.Tag, using(PythonLexer), Name.Tag)),
-            (r'(?<=^)#[^\n]*(\n|\Z)', Comment),
-            (r'(?<=^)(%)([^\n]*)(\n|\Z)',
+            (r'^#[^\n]*(\n|\Z)', Comment),
+            (r'^(%)([^\n]*)(\n|\Z)',
              bygroups(Name.Tag, using(PythonLexer), Other)),
             (r"""(?sx)
                  (.+?)               # anything, followed by:
@@ -554,8 +554,8 @@ class MasonLexer(RegexLexer):
             (r'</&>', Name.Tag),
             (r'(?s)(<%!?)(.*?)(%>)',
              bygroups(Name.Tag, using(PerlLexer), Name.Tag)),
-            (r'(?<=^)#[^\n]*(\n|\Z)', Comment),
-            (r'(?<=^)(%)([^\n]*)(\n|\Z)',
+            (r'^#[^\n]*(\n|\Z)', Comment),
+            (r'^(%)([^\n]*)(\n|\Z)',
              bygroups(Name.Tag, using(PerlLexer), Other)),
             (r"""(?sx)
                  (.+?)               # anything, followed by:
@@ -746,7 +746,7 @@ class CheetahLexer(RegexLexer):
         'root': [
             (r'(##[^\n]*)$',
              (bygroups(Comment))),
-            (r'#[*](.|\n)*?[*]#', Comment),
+            (r'#[*][\s\S]*?[*]#', Comment),
             (r'#end[^#\n]*(?:#|$)', Comment.Preproc),
             (r'#slurp$', Comment.Preproc),
             (r'(#[a-zA-Z]+)([^#\n]*)(#|$)',
