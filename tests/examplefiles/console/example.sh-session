@@ -16,4 +16,5 @@ root@host:~#
 sh-3.1$ # on hardy
 sh$ # on etch
 (virtualenv-name)user@host:~$ ls -a
+[main] user@host:~$ ls -a
 
