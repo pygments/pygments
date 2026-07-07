@@ -241,11 +241,8 @@ class BashSessionLexer(ShellSessionBaseLexer):
     _ps1rgx = re.compile(r'''
         ^(
             (?:
-                # Prompt may start with a bracketed prefix, e.g. "[venv]".
-                (?:\[.*?\])
-                |
-                # Prompt may start with a parenthesized prefix, e.g. "(venv)".
-                (?:\(\S+\))?
+                # Prompt may start with a bracketed/parenthesized prefix, e.g. "[venv]" or "(main)".
+                (?:\[.*?\]|\(\S+\)\s*)?
                 (?:
                     # Empty/userless prompt body
                     |
