@@ -30,7 +30,6 @@ class EiffelLexer(RegexLexer):
         'root': [
             (r'[^\S\n]+', Whitespace),
             (r'--.*?$', Comment.Single),
-            (r'[^\S\n]+', Whitespace),
             # Please note that keyword and operator are case insensitive.
             (r'(?i)(true|false|void|current|result|precursor)\b', Keyword.Constant),
             (r'(?i)(not|xor|implies|or)\b', Operator.Word),
