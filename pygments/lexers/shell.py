@@ -244,8 +244,6 @@ class BashSessionLexer(ShellSessionBaseLexer):
                 # Prompt may start with a bracketed/parenthesized prefix, e.g. "[venv]" or "(main)".
                 (?:\[.*?\]|\(\S+\)\s*)?
                 (?:
-                    # A plain whitespace body before the final prompt sigil.
-                    \s
                     # Shell name such as "sh-3.2"
                     |sh\S*?
                     # Common "user@host[:path]"-style prompt fragments.
