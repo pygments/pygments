@@ -255,6 +255,8 @@ class BashSessionLexer(ShellSessionBaseLexer):
                     |sh\S*?
                     # Common "user@host[:path]"-style prompt fragments.
                     |\w+\S+[@:]\S+(?:\s+\S+)?
+                    # Busybox puts the path before the sigil, e.g. "/var/log #"
+                    |[a-z0-9~/]+
                     # Bracketed host-style prompt fragments.
                     |\[\S+[@:][^\n]+\].+
                 )
