@@ -5,6 +5,7 @@
 import os
 import re
 import sys
+import glob
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -141,7 +142,7 @@ html_additional_pages = {
 
 if os.environ.get('WEBSITE_BUILD'):
     html_additional_pages['demo'] = 'demo.html'
-    html_static_path.append('_build/pyodide')
+    html_static_path.append('_build/wheel')
 
 # If false, no module index is generated.
 #html_domain_indices = True
@@ -238,6 +239,9 @@ def pg_context(app, pagename, templatename, ctx, event_arg):
 
     if pagename == 'demo':
         ctx['lexers'] = sorted(pygments.lexers.get_all_lexers(plugins=False), key=lambda x: x[0].lower())
+        # We need the wheel name for the demo to work, and we don't want to pass
+        # the version in here, so we just glob any wheel as there's only one
+        ctx['wheel_filename'] = os.path.basename(glob.glob('_build/wheel/pygments-*.whl')[0])
 
     if pagename in ('styles', 'demo'):
         with open('examples/example.py', encoding='utf-8') as f:
@@ -269,7 +273,8 @@ def pg_context(app, pagename, templatename, ctx, event_arg):
         def sortkey(s):
             return (-s['bg_luminance'], s['name'])
         # the default style is always displayed first
-        default_style = ctx['styles_aa'].pop(0)
+        default_style = next(s for s in ctx['styles_aa'] if s['name'] == 'default')
+        ctx['styles_aa'].remove(default_style)
         ctx['styles_aa'].sort(key=sortkey)
         ctx['styles_aa'].insert(0, default_style)
         ctx['styles_sub_aa'].sort(key=sortkey)

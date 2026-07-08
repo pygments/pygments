@@ -1,0 +1,50 @@
+---input---
+func plain() {}
+class func typeMethod() {}
+public class func publicTypeMethod() {}
+class Named {}
+
+---tokens---
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'plain'       Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'typeMethod'  Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'public'      Keyword.Declaration
+' '           Text.Whitespace
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'publicTypeMethod' Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'Named'       Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text

@@ -1,0 +1,77 @@
+---input---
+public string A = """
+raw
+""";
+public string B = $"""
+interpolated {x}
+""";
+public string C = $$"""
+double {x} interpolated {{y}}
+""";
+public string D = """" 
+four quotes
+"""";
+public string E = $$""""
+double dollar four quotes {{x}}
+"""";
+
+---tokens---
+'public'      Keyword
+' '           Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'A'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"""\nraw\n"""' Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'public'      Keyword
+' '           Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'B'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'$"""\ninterpolated {x}\n"""' Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'public'      Keyword
+' '           Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'C'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'$$"""\ndouble {x} interpolated {{y}}\n"""' Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'public'      Keyword
+' '           Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'D'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"""" \nfour quotes\n""""' Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'public'      Keyword
+' '           Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'E'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'$$""""\ndouble dollar four quotes {{x}}\n""""' Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace

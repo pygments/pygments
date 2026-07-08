@@ -2,12 +2,23 @@ import re
 
 from pygments.util import format_lines
 
-r_line = re.compile(r"^(syn keyword vimCommand contained|syn keyword vimOption "
-                    r"contained|syn keyword vimAutoEvent contained)\s+(.*)")
+r_line = re.compile(r"^("
+                    r"syn keyword vim(?:Un)?Map(?: contained)?|"
+                    r"syn keyword vimAbb|"
+                    r"syn keyword vimAutoEvent contained|"
+                    r"syn keyword vimCommand(?: contained)?|"
+                    r"syn keyword vimCommandModifier contained|"
+                    r"syn keyword vimDoCommand contained|"
+                    r"syn keyword vimFuncName contained|"
+                    r"syn keyword vimMenu|"
+                    r"syn keyword vimOption(?:VarName)? contained|"
+                    r"syn keyword vimSyn(?:Case|Type)? contained|"
+                    r"syn keyword vimType contained|"
+                    r"syn keyword vimVimVarName contained)"
+                    r"\s+(.+)$")
 r_item = re.compile(r"(\w+)(?:\[(\w+)\])?")
 
 HEADER = '''\
-# -*- coding: utf-8 -*-
 """
     pygments.lexers._vim_builtins
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -40,20 +51,16 @@ def getkw(input, output):
         m = r_line.match(line)
         if m:
             # Decide which output gets mapped to d
-            if 'vimCommand' in m.group(1):
-                d = output_info['command']
-            elif 'AutoEvent' in m.group(1):
+            if 'vimAutoEvent' in m.group(1):
                 d = output_info['auto']
-            else:
+            elif 'vimOption' in m.group(1):
                 d = output_info['option']
+            else:
+                d = output_info['command']
 
             # Extract all the shortened versions
             for i in r_item.finditer(m.group(2)):
                 d.append('({!r},{!r})'.format(i.group(1), "{}{}".format(i.group(1), i.group(2) or '')))
-
-    output_info['option'].append("('nnoremap','nnoremap')")
-    output_info['option'].append("('inoremap','inoremap')")
-    output_info['option'].append("('vnoremap','vnoremap')")
 
     for key, keywordlist in output_info.items():
         keywordlist.sort()
@@ -67,5 +74,5 @@ def is_keyword(w, keywords):
     return False
 
 if __name__ == "__main__":
-    getkw("/usr/share/vim/vim74/syntax/vim.vim",
+    getkw("/usr/share/vim/vim92/syntax/vim.vim",
           "pygments/lexers/_vim_builtins.py")

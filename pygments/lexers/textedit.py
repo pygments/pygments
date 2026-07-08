@@ -11,7 +11,7 @@
 import re
 from bisect import bisect
 
-from pygments.lexer import RegexLexer, bygroups, default, include, this, using
+from pygments.lexer import RegexLexer, bygroups, default, include, this, using, words
 from pygments.lexers.python import PythonLexer
 from pygments.token import Comment, Keyword, Name, Number, Operator, \
     Punctuation, String, Text, Whitespace
@@ -148,8 +148,11 @@ class VimLexer(RegexLexer):
             (r'#[0-9a-f]{6}', Number.Hex),
             (r'^:', Punctuation),
             (r'[()<>+=!|,~-]', Punctuation),  # Inexact list.  Looks decent.
-            (r'\b(let|if|else|endif|elseif|fun|function|endfunction)\b',
-             Keyword),
+            (words(('abort', 'catch', 'const', 'echo', 'else', 'elseif',
+                    'endfor', 'endif', 'endif', 'endwhile', 'eval', 'execute',
+                    'for', 'function', 'if', 'in', 'let', 'return', 'set',
+                    'setg', 'setl', 'throw', 'unlet', 'unset', 'while'),
+                   suffix=r'\b', prefix=r'\b'), Keyword),
             (r'\b(NONE|bold|italic|underline|dark|light)\b', Name.Builtin),
             (r'\b\w+\b', Name.Other),  # These are postprocessed below
             (r'.', Text),

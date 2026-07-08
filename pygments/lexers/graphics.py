@@ -32,7 +32,7 @@ class GLShaderLexer(RegexLexer):
         'root': [
             (r'#(?:.*\\\n)*.*$', Comment.Preproc),
             (r'//.*$', Comment.Single),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'/(\\\n)?[*][\s\S]*?[*](\\\n)?/', Comment.Multiline),
             (r'\+|-|~|!=?|\*|/|%|<<|>>|<=?|>=?|==?|&&?|\^|\|\|?',
              Operator),
             (r'[?:]', Operator),  # quick hack for ternary
@@ -163,7 +163,7 @@ class HLSLShaderLexer(RegexLexer):
         'root': [
             (r'#(?:.*\\\n)*.*$', Comment.Preproc),
             (r'//.*$', Comment.Single),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'/(\\\n)?[*][\s\S]*?[*](\\\n)?/', Comment.Multiline),
             (r'\+|-|~|!=?|\*|/|%|<<|>>|<=?|>=?|==?|&&?|\^|\|\|?',
              Operator),
             (r'[?:]', Operator),  # quick hack for ternary
@@ -415,8 +415,8 @@ class AsymptoteLexer(RegexLexer):
             (r'\n', Whitespace),
             (r'\s+', Whitespace),
             (r'(\\)(\n)', bygroups(Text, Whitespace)),  # line continuation
-            (r'//(\n|(.|\n)*?[^\\]\n)', Comment),
-            (r'/(\\\n)?\*(.|\n)*?\*(\\\n)?/', Comment),
+            (r'//(\n|[\s\S]*?[^\\]\n)', Comment),
+            (r'/(\\\n)?\*[\s\S]*?\*(\\\n)?/', Comment),
         ],
         'statements': [
             # simple string (TeX friendly)

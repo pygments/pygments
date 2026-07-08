@@ -102,16 +102,16 @@
 
 'let'         Keyword
 ' '           Text
-'py'          Keyword
+'py'          Text
 ' '           Text
 '='           Punctuation
 ' '           Text
 '42'          Literal.Number
 '\n'          Text.Whitespace
 
-'echo'        Text
+'echo'        Keyword
 ' '           Text
-'py'          Keyword
+'py'          Text
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -125,7 +125,7 @@
 '42'          Literal.Number
 '\n'          Text.Whitespace
 
-'echo'        Text
+'echo'        Keyword
 ' '           Text
 'foo'         Text
 '\n'          Text.Whitespace

@@ -10,7 +10,7 @@ You can use Pygments from the shell, provided you installed the
     $ pygmentize test.py
     print "Hello World"
 
-will print the file test.py to standard output, using the Python lexer
+will print the file ``test.py`` to standard output, using the Python lexer
 (inferred from the file name extension) and the terminal formatter (because
 you didn't give an explicit formatter name).
 
@@ -26,11 +26,11 @@ detect the maximum number of colors that the terminal supports. The difference
 between color formatters for 16 and 256 colors is immense, but there is a less
 noticeable difference between color formatters for 256 and 16 million colors.
 
-Here's the process of how it detects the maxiumum number of colors
+Here's the process of how it detects the maximum number of colors
 supported by your terminal. If the ``COLORTERM`` environment variable is set to
 either ``truecolor`` or ``24bit``, it will use a 16 million color representation
 (like ``terminal16m``). Next, it will try to find ``256`` is anywhere in the
-environment variable ``TERM``, which it will use a 256-color representaion
+environment variable ``TERM``, which it will use a 256-color representation
 (such as ``terminal256``).  When neither of those are found, it falls back to a
 the 16 color representation (like ``terminal``).
 
@@ -38,9 +38,9 @@ If you want HTML output::
 
     $ pygmentize -f html -l python -o test.html test.py
 
-As you can see, the -l option explicitly selects a lexer. As seen above, if you
-give an input file name and it has an extension that Pygments recognizes, you can
-omit this option.
+As you can see, the ``-l`` option explicitly selects a lexer. As seen above, if
+you give an input file name and it has an extension that Pygments recognizes,
+you can omit this option.
 
 The ``-o`` option gives an output file name. If it is not given, output is
 written to stdout.
@@ -134,7 +134,7 @@ follows::
 
     $ pygmentize -g setup.py
 
-Note though, that this option is not very relaiable, and probably should be
+Note though, that this option is not very reliable, and probably should be
 used only if Pygments is not able to guess the correct lexer from the file's
 extension.
 

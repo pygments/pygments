@@ -106,7 +106,7 @@ class LogtalkLexer(RegexLexer):
             (r'^\s*:-\s', Punctuation, 'directive'),
             # Comments
             (r'%.*?\n', Comment),
-            (r'/\*(.|\n)*?\*/', Comment),
+            (r'/\*[\s\S]*?\*/', Comment),
             # Whitespace
             (r'\n', Text),
             (r'\s+', Text),
@@ -298,7 +298,7 @@ class LogtalkLexer(RegexLexer):
             (r'[()\[\],.|]', Text),
             # Comments
             (r'%.*?\n', Comment),
-            (r'/\*(.|\n)*?\*/', Comment),
+            (r'/\*[\s\S]*?\*/', Comment),
             # Whitespace
             (r'\n', Text),
             (r'\s+', Text),

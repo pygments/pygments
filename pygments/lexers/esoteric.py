@@ -121,7 +121,7 @@ class CAmkESLexer(RegexLexer):
 
             # Whitespace, comments
             (r'\s+', Whitespace),
-            (r'/\*(.|\n)*?\*/', Comment),
+            (r'/\*[\s\S]*?\*/', Comment),
             (r'//.*$', Comment),
 
             (r'[\[(){},.;\]]', Punctuation),
@@ -195,7 +195,7 @@ class CapDLLexer(RegexLexer):
 
             # Whitespace, comments
             (r'\s+', Whitespace),
-            (r'/\*(.|\n)*?\*/', Comment),
+            (r'/\*[\s\S]*?\*/', Comment),
             (r'(//|--).*$', Comment),
 
             (r'[<>\[(){},:;=\]]', Punctuation),
