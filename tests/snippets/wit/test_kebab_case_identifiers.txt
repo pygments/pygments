@@ -1,0 +1,17 @@
+Kebab-case identifiers that start with type names should be tokenized
+as single Name tokens, not split into type + error.
+
+---input---
+tuple-arg
+list-result
+string-list
+
+---tokens---
+'tuple-arg'   Name
+'\n'          Text.Whitespace
+
+'list-result' Name
+'\n'          Text.Whitespace
+
+'string-list' Name
+'\n'          Text.Whitespace

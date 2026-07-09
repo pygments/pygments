@@ -1,0 +1,8 @@
+---input---
+/* block */
+
+---tokens---
+'/*'          Comment.Multiline
+' block '     Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace

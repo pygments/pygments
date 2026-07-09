@@ -1,0 +1,12 @@
+---input---
+/* outer /* nested */ outer */
+
+---tokens---
+'/*'          Comment.Multiline
+' outer '     Comment.Multiline
+'/*'          Comment.Multiline
+' nested '    Comment.Multiline
+'*/'          Comment.Multiline
+' outer '     Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace

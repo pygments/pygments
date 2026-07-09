@@ -1,0 +1,11 @@
+---input---
+package unused:%import;
+
+---tokens---
+'package'     Keyword.Namespace
+' '           Text.Whitespace
+'unused'      Name.Namespace
+':'           Punctuation
+'%import'     Name.Namespace
+';'           Punctuation
+'\n'          Text.Whitespace

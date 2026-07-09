@@ -1,0 +1,50 @@
+---input---
+list<u8>
+tuple<u8, u8>
+option<string>
+result<ok, err>
+future<string>
+stream<u8>
+
+---tokens---
+'list'        Keyword.Type
+'<'           Punctuation
+'u8'          Keyword.Type
+'>'           Punctuation
+'\n'          Text.Whitespace
+
+'tuple'       Keyword.Type
+'<'           Punctuation
+'u8'          Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'u8'          Keyword.Type
+'>'           Punctuation
+'\n'          Text.Whitespace
+
+'option'      Keyword.Type
+'<'           Punctuation
+'string'      Keyword.Type
+'>'           Punctuation
+'\n'          Text.Whitespace
+
+'result'      Keyword.Type
+'<'           Punctuation
+'ok'          Name
+','           Punctuation
+' '           Text.Whitespace
+'err'         Name
+'>'           Punctuation
+'\n'          Text.Whitespace
+
+'future'      Keyword.Type
+'<'           Punctuation
+'string'      Keyword.Type
+'>'           Punctuation
+'\n'          Text.Whitespace
+
+'stream'      Keyword.Type
+'<'           Punctuation
+'u8'          Keyword.Type
+'>'           Punctuation
+'\n'          Text.Whitespace
