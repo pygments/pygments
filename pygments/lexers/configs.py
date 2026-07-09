@@ -745,9 +745,11 @@ class TerraformLexer(ExtendedRegexLexer):
     type_conversion_functions = ('can', 'defaults', 'tobool', 'tolist', 'tomap',
                                  'tonumber', 'toset', 'tostring', 'try')
 
+    provider_functions = (r'provider::\w+::\w+',)
+
     builtins = numeric_functions + string_functions + collection_functions + encoding_functions +\
         filesystem_functions + date_time_functions + hash_crypto_functions + ip_network_functions +\
-        type_conversion_functions
+        type_conversion_functions + provider_functions
     builtins_re = "({})".format(('|').join(builtins))
 
     def heredoc_callback(self, match, ctx):
