@@ -21,6 +21,7 @@ from pygments import cmdline, highlight
 
 TESTDIR = path.dirname(path.abspath(__file__))
 TESTFILE = path.join(TESTDIR, 'test_cmdline.py')
+TESTFILE_TINY = os.path.join(TESTDIR, "examplefiles", "python", "py3_test.py")
 
 TESTCODE = '''\
 def func(args):
@@ -229,6 +230,41 @@ def test_C_opt():
     assert 'python' == o.strip()
     o = check_success('-C', stdin='x')
     assert 'text' == o.strip()
+
+
+def _fix_line_endings(text):
+    """Converts *text* to have the correct line endings for os."""
+    return text.replace('\n', os.linesep)
+
+
+@pytest.mark.parametrize('opts,transform', [
+    (('--color',), None),
+    (('--strip-escapes=raw',), None),
+    (('--strip-escapes=semi-raw',), _fix_line_endings),
+    (('--strip-escapes=off',), _fix_line_endings),
+])
+def test_strip_escapes_opt(opts, transform):
+    # tests output of main using the --color option to the result of using the api
+    # near copy of test_normal
+    from pygments.lexers import PythonLexer
+    from pygments.formatters import TerminalFormatter
+
+    # filename = TESTFILE
+    filename = TESTFILE_TINY
+    cmdline_output = check_success(
+        *opts, '-lpython', '-fterminal', filename
+        )
+
+    with open(filename, 'rb') as fp:
+        code = fp.read()
+
+    highlight_output = highlight(code, PythonLexer(), TerminalFormatter())
+    if transform:
+        target_output = transform(highlight_output)
+    else:
+        target_output = highlight_output
+    # ignore trailing whitespace for the moment.
+    assert cmdline_output.rstrip() == target_output.rstrip()
 
 
 @pytest.mark.parametrize('opts', [
