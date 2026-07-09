@@ -1,0 +1,26 @@
+---input---
+# This is a comment
+ # This might also be a comment
+" docstrings
+ " docstrings can have spaces in front
+  " docstrings can have multiple spaces in front
+""" docstrings in multiple """
+  """ docstrings in multiple """
+
+---tokens---
+'# This is a comment' Comment.Single
+'\n '         Text.Whitespace
+'# This might also be a comment' Comment.Single
+'\n'          Text.Whitespace
+
+'" docstrings' Comment.Single
+'\n '         Text.Whitespace
+'" docstrings can have spaces in front' Comment.Single
+'\n  '        Text.Whitespace
+'" docstrings can have multiple spaces in front' Comment.Single
+'\n'          Text.Whitespace
+
+'""" docstrings in multiple """' Comment.Single
+'\n  '        Text.Whitespace
+'""" docstrings in multiple """' Comment.Single
+'\n'          Text.Whitespace
