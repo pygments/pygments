@@ -46,6 +46,7 @@ Version 2.21.0
 - LaTeX formatter: honor the wrapped lexer's ``stripnl`` and other input
   options when ``escapeinside`` is set, so blank lines are no longer stripped
   under ``stripnl=false`` (#2975)
+- Speed up ``RegexLexer`` by merging runs of consecutive simple rules (#3155)
 
 Version 2.20.0
 --------------
