@@ -1,0 +1,15 @@
+# Named-character escapes such as \[Nu] must not produce Error tokens.
+# See https://github.com/pygments/pygments/issues/3097
+
+---input---
+(45*\[Nu])/32
+
+---tokens---
+'('           Punctuation
+'45'          Literal.Number.Integer
+'*'           Operator
+'\\[Nu]'      Literal.String.Escape
+')'           Punctuation
+'/'           Operator
+'32'          Literal.Number.Integer
+'\n'          Text.Whitespace
