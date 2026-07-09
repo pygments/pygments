@@ -1,0 +1,86 @@
+---input---
+#for idx in range(10) {"foo"} {"bar"}; "e"
+"f"
+#if foo == bar.baz(
+
+).qox(x => {
+  let y = [z]
+}) {"a"}"b" "c"; "d"
+"e"
+
+---tokens---
+'#for'        Keyword.Reserved
+' '           Text.Whitespace
+'idx'         Name.Variable
+' '           Text.Whitespace
+'in'          Keyword.Reserved
+' '           Text.Whitespace
+'range'       Name.Function
+'('           Punctuation
+'10'          Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'"foo"'       Literal.String.Double
+'}'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'"bar"'       Literal.String.Double
+'}'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'"e"'         Text
+'\n'          Text.Whitespace
+
+'"f"'         Text
+'\n'          Text.Whitespace
+
+'#if'         Keyword.Reserved
+' '           Text.Whitespace
+'foo'         Name.Variable
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'bar'         Name.Variable
+'.'           Punctuation
+'baz'         Name.Function
+'('           Punctuation
+'\n\n'        Text.Whitespace
+
+')'           Punctuation
+'.'           Punctuation
+'qox'         Name.Function
+'('           Punctuation
+'x'           Name.Variable
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'y'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'z'           Text
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'"a"'         Literal.String.Double
+'}'           Punctuation
+'"b"'         Literal.String.Double
+' '           Text.Whitespace
+'"c"'         Literal.String.Double
+';'           Punctuation
+' '           Text.Whitespace
+'"d"'         Text
+'\n'          Text.Whitespace
+
+'"e"'         Text
+'\n'          Text.Whitespace
