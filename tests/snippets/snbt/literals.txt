@@ -1,5 +1,5 @@
 ---input---
-{int: 1, byte: 0b, short: 1s, long: 10000L, float: 10.0f, double: 20.0}
+{int: 1, byte: 0b, short: 1s, long: +10000L, float: 1.1e-23f, double: 20.000_001, binary: 0b10us, hex: 0x0d_721sl}
 
 ---tokens---
 '{'           Punctuation
@@ -24,18 +24,30 @@
 'long'        Name.Attribute
 ':'           Punctuation
 ' '           Text.Whitespace
-'10000L'      Literal.Number.Integer
+'+10000L'     Literal.Number.Integer
 ','           Punctuation
 ' '           Text.Whitespace
 'float'       Name.Attribute
 ':'           Punctuation
 ' '           Text.Whitespace
-'10.0f'       Literal.Number.Float
+'1.1e-23f'    Literal.Number.Float
 ','           Punctuation
 ' '           Text.Whitespace
 'double'      Name.Attribute
 ':'           Punctuation
 ' '           Text.Whitespace
-'20.0'        Literal.Number.Float
+'20.000_001'  Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'binary'      Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'0b10us'      Literal.Number.Bin
+','           Punctuation
+' '           Text.Whitespace
+'hex'         Name.Attribute
+':'           Punctuation
+' '           Text.Whitespace
+'0x0d_721sl'  Literal.Number.Hex
 '}'           Punctuation
 '\n'          Text
