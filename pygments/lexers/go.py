@@ -65,7 +65,7 @@ class GoLexer(RegexLexer):
             (r'\.\d+([eE][+\-]?\d+)?', Number.Float),
             # int_lit
             # -- octal_lit
-            (r'0[0-7]+', Number.Oct),
+            (r'0[oO]?[0-7]+', Number.Oct),
             # -- hex_lit
             (r'0[xX][0-9a-fA-F]+', Number.Hex),
             # -- decimal_lit
