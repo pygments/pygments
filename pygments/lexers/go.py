@@ -45,11 +45,6 @@ class GoLexer(RegexLexer):
             # It seems the builtin types aren't actually keywords, but
             # can be used as functions. So we need two declarations.
             (words((
-                'uint', 'uint8', 'uint16', 'uint32', 'uint64',
-                'int', 'int8', 'int16', 'int32', 'int64',
-                'float32', 'float64',
-                'complex64', 'complex128', 'byte', 'rune',
-                'string', 'bool', 'error', 'uintptr', 'any', 'comparable',
                 'print', 'println', 'panic', 'recover', 'close', 'complex',
                 'real', 'imag', 'len', 'cap', 'append', 'copy', 'delete',
                 'new', 'make', 'min', 'max', 'clear'), suffix=r'\b(\()'),
