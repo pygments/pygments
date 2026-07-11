@@ -65,13 +65,13 @@ class GoLexer(RegexLexer):
             (r'\.\d+([eE][+\-]?\d+)?', Number.Float),
             # int_lit
             # -- binary_lit
-            (r'0[bB][01]+', Number.Bin),
+            (r'0[bB](_?[01])+', Number.Bin),
             # -- octal_lit
-            (r'0[oO]?[0-7]+', Number.Oct),
+            (r'0[oO]?(_?[0-7])+', Number.Oct),
             # -- hex_lit
-            (r'0[xX][0-9a-fA-F]+', Number.Hex),
+            (r'0[xX](_?[0-9a-fA-F])+', Number.Hex),
             # -- decimal_lit
-            (r'(0|[1-9][0-9]*)', Number.Integer),
+            (r'(0|[1-9](_?[0-9])*)', Number.Integer),
             # char_lit
             (r"""'(\\['"\\abfnrtv]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
              r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|[^\\])'""",
