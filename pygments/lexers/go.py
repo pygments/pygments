@@ -47,7 +47,7 @@ class GoLexer(RegexLexer):
             (words((
                 'uint', 'uint8', 'uint16', 'uint32', 'uint64',
                 'int', 'int8', 'int16', 'int32', 'int64',
-                'float', 'float32', 'float64',
+                'float32', 'float64',
                 'complex64', 'complex128', 'byte', 'rune',
                 'string', 'bool', 'error', 'uintptr', 'any', 'comparable',
                 'print', 'println', 'panic', 'recover', 'close', 'complex',
@@ -57,7 +57,7 @@ class GoLexer(RegexLexer):
             (words((
                 'uint', 'uint8', 'uint16', 'uint32', 'uint64',
                 'int', 'int8', 'int16', 'int32', 'int64',
-                'float', 'float32', 'float64',
+                'float32', 'float64',
                 'complex64', 'complex128', 'byte', 'rune',
                 'string', 'bool', 'error', 'uintptr', 'any', 'comparable'), suffix=r'\b'),
              Keyword.Type),
