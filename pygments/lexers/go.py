@@ -34,7 +34,7 @@ class GoLexer(RegexLexer):
             (r'//(.*?)$', Comment.Single),
             (r'/(\\\n)?[*][\s\S]*?[*](\\\n)?/', Comment.Multiline),
             (r'(import|package)\b', Keyword.Namespace),
-            (r'(var|func|struct|map|chan|type|interface|const)\b',
+            (r'(var|func|struct|type|interface|const)\b',
              Keyword.Declaration),
             (words((
                 'break', 'default', 'select', 'case', 'defer', 'go',
@@ -42,8 +42,6 @@ class GoLexer(RegexLexer):
                 'continue', 'for', 'return'), suffix=r'\b'),
              Keyword),
             (r'(true|false|iota|nil)\b', Keyword.Constant),
-            # It seems the builtin types aren't actually keywords, but
-            # can be used as functions. So we need two declarations.
             (words((
                 'print', 'println', 'panic', 'recover', 'close', 'complex',
                 'real', 'imag', 'len', 'cap', 'append', 'copy', 'delete',
@@ -52,7 +50,7 @@ class GoLexer(RegexLexer):
             (words((
                 'uint', 'uint8', 'uint16', 'uint32', 'uint64',
                 'int', 'int8', 'int16', 'int32', 'int64',
-                'float32', 'float64',
+                'float32', 'float64', 'map', 'chan',
                 'complex64', 'complex128', 'byte', 'rune',
                 'string', 'bool', 'error', 'uintptr', 'any', 'comparable'), suffix=r'\b'),
              Keyword.Type),
