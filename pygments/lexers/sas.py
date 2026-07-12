@@ -131,8 +131,8 @@ class SASLexer(RegexLexer):
         'comments': [
             (r'^\s*\*.*?;', Comment),
             (r'/\*.*?\*/', Comment),
-            (r'^\s*\*(.|\n)*?;', Comment.Multiline),
-            (r'/[*](.|\n)*?[*]/', Comment.Multiline),
+            (r'^\s*\*[\s\S]*?;', Comment.Multiline),
+            (r'/[*][\s\S]*?[*]/', Comment.Multiline),
         ],
         # Special highlight for proc, data, quit, run
         'proc-data': [

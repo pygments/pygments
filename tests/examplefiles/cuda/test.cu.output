@@ -310,3 +310,192 @@
 
 '}'           Punctuation
 '\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Modern CUDA is compiled as C++, so C++ constructs are valid.\n' Comment.Single
+
+'namespace'   Keyword
+' '           Text.Whitespace
+'example'     Name.Namespace
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'template'    Keyword
+' '           Text.Whitespace
+'<'           Operator
+'typename'    Keyword
+' '           Text.Whitespace
+'T'           Name.Class
+'>'           Operator
+'\n'          Text.Whitespace
+
+'__global__'  Keyword.Reserved
+' '           Text.Whitespace
+'void'        Keyword.Type
+' '           Text.Whitespace
+'scale'       Name
+'('           Punctuation
+'T'           Name
+'*'           Operator
+' '           Text.Whitespace
+'data'        Name
+','           Punctuation
+' '           Text.Whitespace
+'T'           Name
+' '           Text.Whitespace
+'factor'      Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'constexpr'   Keyword
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'stride'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'32'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'auto'        Keyword
+' '           Text.Whitespace
+'idx'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'blockIdx'    Name.Builtin
+'.'           Punctuation
+'x'           Name
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'blockDim'    Name.Builtin
+'.'           Punctuation
+'x'           Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'threadIdx'   Name.Builtin
+'.'           Punctuation
+'x'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'data'        Name
+'['           Punctuation
+'idx'         Name
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'stride'      Name
+']'           Punctuation
+' '           Text.Whitespace
+'*'           Operator
+'='           Operator
+' '           Text.Whitespace
+'factor'      Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'class'       Keyword
+' '           Text.Whitespace
+'Buffer'      Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'public'      Keyword
+':'           Operator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'explicit'    Keyword
+' '           Text.Whitespace
+'Buffer'      Name
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text.Whitespace
+'n'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'noexcept'    Keyword
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'size_'       Name
+'('           Punctuation
+'n'           Name
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'ptr_'        Name
+'('           Punctuation
+'nullptr'     Name.Builtin
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'~'           Operator
+'Buffer'      Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'cudaFree'    Name
+'('           Punctuation
+'ptr_'        Name
+')'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'private'     Keyword
+':'           Operator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'size_'       Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'float'       Keyword.Type
+'*'           Operator
+' '           Text.Whitespace
+'ptr_'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'  '          Text.Whitespace
+'// namespace example\n' Comment.Single

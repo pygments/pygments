@@ -100,3 +100,29 @@ def test_same_length_suffix_grouping():
     assert rex.groups == 2
     groups = rex.match('am').groups()
     assert groups == ('a', 'm')
+
+
+def test_duplicates():
+    # duplicate words must not produce a redundant character class like [ss]
+    opt = regex_opt(('as', 'abstract', 'and', 'as', 'break'))
+    print(opt)
+    assert '[ss]' not in opt
+    rex = re.compile(opt)
+    assert rex.match('as')
+    assert rex.match('abstract')
+    assert rex.match('and')
+    assert rex.match('break')
+    assert not rex.match('x')
+    assert rex.groups == 1
+
+
+def test_duplicate_single_chars():
+    # duplicate one-character words must be collapsed in the character class
+    opt = regex_opt(('a', 'a', 'b'))
+    print(opt)
+    assert opt.count('a') == 1
+    rex = re.compile(opt)
+    assert rex.match('a')
+    assert rex.match('b')
+    assert not rex.match('c')
+    assert rex.groups == 1

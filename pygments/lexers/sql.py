@@ -951,7 +951,7 @@ class GoogleSqlLexer(RegexLexer):
             (r'\?', Name.Variable),  # For demonstrating prepared statements
 
             # Exceptions; these words tokenize differently in different contexts.
-            (r'\b(set)(?!\s*\()', Keyword),
+            (r'\b(set)\b(?!\s*\()', Keyword),
             (r'\b(character)(\s+)(set)\b', bygroups(Keyword, Whitespace, Keyword)),
 
             # Constants, types, keywords, functions, operators

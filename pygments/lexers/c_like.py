@@ -106,15 +106,19 @@ class ClayLexer(RegexLexer):
         'root': [
             (r'\s+', Whitespace),
             (r'//.*?$', Comment.Single),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
-            (r'\b(public|private|import|as|record|variant|instance'
-             r'|define|overload|default|external|alias'
-             r'|rvalue|ref|forward|inline|noinline|forceinline'
-             r'|enum|var|and|or|not|if|else|goto|return|while'
-             r'|switch|case|break|continue|for|in|true|false|try|catch|throw'
-             r'|finally|onerror|staticassert|eval|when|newtype'
-             r'|__FILE__|__LINE__|__COLUMN__|__ARG__'
-             r')\b', Keyword),
+            (r'/(\\\n)?[*][\s\S]*?[*](\\\n)?/', Comment.Multiline),
+            (words(('public', 'private', 'import', 'as', 'record', 'variant',
+                    'instance', 'define', 'overload', 'default',
+                    'external', 'alias', 'rvalue', 'ref',
+                    'forward', 'inline', 'noinline',
+                    'forceinline', 'enum', 'var', 'and', 'or',
+                    'not', 'if', 'else', 'goto', 'return',
+                    'while', 'switch', 'case', 'break',
+                    'continue', 'for', 'in', 'true', 'false',
+                    'try', 'catch', 'throw', 'finally',
+                    'onerror', 'staticassert', 'eval', 'when',
+                    'newtype', '__FILE__', '__LINE__',
+                    '__COLUMN__', '__ARG__'), prefix=r'\b', suffix=r'\b'), Keyword),
             (r'[~!%^&*+=|:<>/-]', Operator),
             (r'[#(){}\[\],;.]', Punctuation),
             (r'0x[0-9a-fA-F]+[LlUu]*', Number.Hex),
@@ -193,8 +197,8 @@ class ValaLexer(RegexLexer):
             (r'\n', Whitespace),
             (r'\s+', Whitespace),
             (r'\\\n', Text),  # line continuation
-            (r'//(\n|(.|\n)*?[^\\]\n)', Comment.Single),
-            (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
+            (r'//(\n|[\s\S]*?[^\\]\n)', Comment.Single),
+            (r'/(\\\n)?[*][\s\S]*?[*](\\\n)?/', Comment.Multiline),
         ],
         'statements': [
             (r'[L@]?"', String, 'string'),
@@ -274,7 +278,7 @@ class ValaLexer(RegexLexer):
     }
 
 
-class CudaLexer(CLexer):
+class CudaLexer(CppLexer):
     """
     For NVIDIA CUDA™ source.
     """
@@ -304,7 +308,7 @@ class CudaLexer(CLexer):
     execution_confs = {'<<<', '>>>'}
 
     def get_tokens_unprocessed(self, text, stack=('root',)):
-        for index, token, value in CLexer.get_tokens_unprocessed(self, text, stack):
+        for index, token, value in CppLexer.get_tokens_unprocessed(self, text, stack):
             if token is Name:
                 if value in self.variable_qualifiers:
                     token = Keyword.Type

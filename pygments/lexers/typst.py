@@ -106,7 +106,7 @@ class TypstLexer(RegexLexer):
         ],
         'comment': [
             (r'//.*$', Comment.Single),
-            (r'/[*](.|\n)*?[*]/', Comment.Multiline),
+            (r'/[*][\s\S]*?[*]/', Comment.Multiline),
         ],
         'code': [
             include('comment'),

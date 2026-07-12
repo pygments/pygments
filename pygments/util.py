@@ -324,6 +324,7 @@ class UnclosingTextIOWrapper(TextIOWrapper):
     def close(self):
         self.flush()
 
+
 def html_escape(string, quote=True) -> str:
     """Return a safe version of the passed `string`,
     and an empty string if `None`.

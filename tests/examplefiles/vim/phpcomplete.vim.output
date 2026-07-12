@@ -68,7 +68,7 @@
 '\n'          Text.Whitespace
 
 '\t\t'        Text
-'unlet'       Text
+'unlet'       Keyword
 '!'           Punctuation
 ' '           Text
 'b'           Keyword
@@ -86,7 +86,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'getpos'      Text
+'getpos'      Keyword
 '('           Punctuation
 "'.'"         Literal.String.Single
 ')'           Punctuation
@@ -99,7 +99,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'searchpairpos' Text
+'searchpairpos' Keyword
 '('           Punctuation
 "'<?'"        Literal.String.Single
 ','           Punctuation
@@ -128,7 +128,7 @@
 '   '         Text
 '='           Punctuation
 ' '           Text
-'searchpairpos' Text
+'searchpairpos' Keyword
 '('           Punctuation
 "'<?'"        Literal.String.Single
 ','           Punctuation
@@ -222,7 +222,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'getline'     Text
+'getline'     Keyword
 '('           Punctuation
 "'.'"         Literal.String.Single
 ')'           Punctuation
@@ -271,11 +271,11 @@
 '\t\t\t'      Text
 'let'         Keyword
 ' '           Text
-'line'        Text
+'line'        Keyword
 ' '           Text
 '='           Punctuation
 ' '           Text
-'getline'     Text
+'getline'     Keyword
 '('           Punctuation
 "'.'"         Literal.String.Single
 ')'           Punctuation
@@ -305,7 +305,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'line'        Text
+'line'        Keyword
 '('           Punctuation
 "'.'"         Literal.String.Single
 ')'           Punctuation
@@ -341,7 +341,7 @@
 '&'           Text
 '&'           Text
 ' '           Text
-'line'        Text
+'line'        Keyword
 '['           Text
 'start'       Keyword
 ' '           Text
@@ -380,7 +380,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'getline'     Text
+'getline'     Keyword
 '('           Punctuation
 "'.'"         Literal.String.Single
 ')'           Punctuation
@@ -422,7 +422,7 @@
 '\t'          Text
 'if'          Keyword
 ' '           Text
-'exists'      Text
+'exists'      Keyword
 '('           Punctuation
 '"b:php_menu"' Literal.String.Double
 ')'           Punctuation
@@ -471,7 +471,7 @@
 '\t'          Text
 'if'          Keyword
 ' '           Text
-'exists'      Text
+'exists'      Keyword
 '('           Punctuation
 '"b:compl_context"' Literal.String.Double
 ')'           Punctuation
@@ -490,7 +490,7 @@
 '\n'          Text.Whitespace
 
 '\t\t'        Text
-'unlet'       Text
+'unlet'       Keyword
 '!'           Punctuation
 ' '           Text
 'b'           Keyword
@@ -508,7 +508,7 @@
 'if'          Keyword
 ' '           Text
 '!'           Punctuation
-'exists'      Text
+'exists'      Keyword
 '('           Punctuation
 "'g:php_builtin_functions'" Literal.String.Single
 ')'           Punctuation
@@ -537,7 +537,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'substitute'  Text
+'substitute'  Keyword
 '('           Punctuation
 'context'     Text
 ','           Punctuation
@@ -574,11 +574,11 @@
 '\t\t'        Text
 'let'         Keyword
 ' '           Text
-'file'        Keyword
+'file'        Text
 ' '           Text
 '='           Punctuation
 ' '           Text
-'getline'     Text
+'getline'     Keyword
 '('           Punctuation
 '1'           Literal.Number
 ','           Punctuation
@@ -590,9 +590,9 @@
 '\t\t'        Text
 'call'        Keyword
 ' '           Text
-'filter'      Text
+'filter'      Keyword
 '('           Punctuation
-'file'        Keyword
+'file'        Text
 ','           Punctuation
 '\n'          Text.Whitespace
 
@@ -612,9 +612,9 @@
 ' '           Text
 'join'        Keyword
 '('           Punctuation
-'map'         Text
+'map'         Keyword
 '('           Punctuation
-'tagfiles'    Text
+'tagfiles'    Keyword
 '('           Punctuation
 ')'           Punctuation
 ','           Punctuation
@@ -633,7 +633,7 @@
 ' '           Text
 'join'        Keyword
 '('           Punctuation
-'file'        Keyword
+'file'        Text
 ','           Punctuation
 ' '           Text
 "' '"         Literal.String.Single
@@ -647,7 +647,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'split'       Text
+'split'       Keyword
 '('           Punctuation
 'jfile'       Text
 ','           Punctuation
@@ -684,7 +684,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'i'           Keyword
 ','           Punctuation
@@ -748,9 +748,9 @@
 ' '           Text
 'join'        Keyword
 '('           Punctuation
-'map'         Text
+'map'         Keyword
 '('           Punctuation
-'tagfiles'    Text
+'tagfiles'    Keyword
 '('           Punctuation
 ')'           Punctuation
 ','           Punctuation
@@ -792,7 +792,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'getqflist'   Text
+'getqflist'   Keyword
 '('           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
@@ -800,7 +800,7 @@
 '\t\t\t'      Text
 'if'          Keyword
 ' '           Text
-'len'         Text
+'len'         Keyword
 '('           Punctuation
 'qflist'      Text
 ')'           Punctuation
@@ -836,7 +836,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'field'       Text
 '['           Text
@@ -880,7 +880,7 @@
 'if'          Keyword
 ' '           Text
 '!'           Punctuation
-'exists'      Text
+'exists'      Keyword
 '('           Punctuation
 '"g:php_omni_bi_classes"' Literal.String.Double
 ')'           Punctuation
@@ -906,7 +906,7 @@
 ' '           Text
 'in'          Keyword
 ' '           Text
-'keys'        Text
+'keys'        Keyword
 '('           Punctuation
 'g'           Keyword
 ':'           Text
@@ -921,7 +921,7 @@
 ':'           Text
 'php_omni_bi_classes' Text
 '['           Text
-'substitute'  Text
+'substitute'  Keyword
 '('           Punctuation
 'i'           Keyword
 ','           Punctuation
@@ -960,7 +960,7 @@
 ' '           Text
 'sort'        Keyword
 '('           Punctuation
-'keys'        Text
+'keys'        Keyword
 '('           Punctuation
 'int_classes' Text
 ')'           Punctuation
@@ -977,7 +977,7 @@
 ' '           Text
 'sort'        Keyword
 '('           Punctuation
-'keys'        Text
+'keys'        Keyword
 '('           Punctuation
 'ext_classes' Text
 ')'           Punctuation
@@ -994,7 +994,7 @@
 ' '           Text
 'sort'        Keyword
 '('           Punctuation
-'keys'        Text
+'keys'        Keyword
 '('           Punctuation
 'g'           Keyword
 ':'           Text
@@ -1033,7 +1033,7 @@
 '\t\t\t\t'    Text
 'call'        Keyword
 ' '           Text
-'add'         Text
+'add'         Keyword
 '('           Punctuation
 'res'         Keyword
 ','           Punctuation
@@ -1251,7 +1251,7 @@
 ' '           Text
 'in'          Keyword
 ' '           Text
-'keys'        Text
+'keys'        Keyword
 '('           Punctuation
 'g'           Keyword
 ':'           Text
@@ -1284,7 +1284,7 @@
 '{'           Text
 "'word'"      Literal.String.Single
 ':'           Text
-'substitute'  Text
+'substitute'  Keyword
 '('           Punctuation
 'object'      Text
 ','           Punctuation
@@ -1343,7 +1343,7 @@
 '\t\t\t'      Text
 'if'          Keyword
 ' '           Text
-'filereadable' Text
+'filereadable' Keyword
 '('           Punctuation
 'classlocation' Text
 ')'           Punctuation
@@ -1356,7 +1356,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'readfile'    Text
+'readfile'    Keyword
 '('           Punctuation
 'classlocation' Text
 ')'           Punctuation
@@ -1400,7 +1400,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'split'       Text
+'split'       Keyword
 '('           Punctuation
 'classcontent' Text
 ','           Punctuation
@@ -1443,9 +1443,9 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'filter'      Text
+'filter'      Keyword
 '('           Punctuation
-'deepcopy'    Text
+'deepcopy'    Keyword
 '('           Punctuation
 'sccontent'   Text
 ')'           Punctuation
@@ -1482,7 +1482,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'split'       Text
+'split'       Keyword
 '('           Punctuation
 'jfuncs'      Text
 ','           Punctuation
@@ -1519,7 +1519,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'i'           Keyword
 ','           Punctuation
@@ -1539,7 +1539,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'i'           Keyword
 ','           Punctuation
@@ -1599,9 +1599,9 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'filter'      Text
+'filter'      Keyword
 '('           Punctuation
-'deepcopy'    Text
+'deepcopy'    Keyword
 '('           Punctuation
 'sccontent'   Text
 ')'           Punctuation
@@ -1638,7 +1638,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'split'       Text
+'split'       Keyword
 '('           Punctuation
 'jvars'       Text
 ','           Punctuation
@@ -1675,7 +1675,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'i'           Keyword
 ','           Punctuation
@@ -1736,7 +1736,7 @@
 '\t\t\t\t'    Text
 'call'        Keyword
 ' '           Text
-'extend'      Text
+'extend'      Keyword
 '('           Punctuation
 'all_values'  Text
 ','           Punctuation
@@ -1748,7 +1748,7 @@
 '\t\t\t\t'    Text
 'call'        Keyword
 ' '           Text
-'extend'      Text
+'extend'      Keyword
 '('           Punctuation
 'all_values'  Text
 ','           Punctuation
@@ -1768,7 +1768,7 @@
 ' '           Text
 'sort'        Keyword
 '('           Punctuation
-'keys'        Text
+'keys'        Keyword
 '('           Punctuation
 'all_values'  Text
 ')'           Punctuation
@@ -1803,7 +1803,7 @@
 '\t\t\t\t\t\t' Text
 'call'        Keyword
 ' '           Text
-'add'         Text
+'add'         Keyword
 '('           Punctuation
 'res'         Keyword
 ','           Punctuation
@@ -1830,7 +1830,7 @@
 '\t\t\t\t\t\t' Text
 'call'        Keyword
 ' '           Text
-'add'         Text
+'add'         Keyword
 '('           Punctuation
 'res2'        Text
 ','           Punctuation
@@ -1889,7 +1889,7 @@
 '\t\t\t\t\t'  Text
 'if'          Keyword
 ' '           Text
-'has_key'     Text
+'has_key'     Keyword
 '('           Punctuation
 'c_variables' Text
 ','           Punctuation
@@ -2002,7 +2002,7 @@
 '{'           Text
 "'word'"      Literal.String.Single
 ':'           Text
-'substitute'  Text
+'substitute'  Keyword
 '('           Punctuation
 'i'           Keyword
 ','           Punctuation
@@ -2118,11 +2118,11 @@
 '\t\t'        Text
 'let'         Keyword
 ' '           Text
-'file'        Keyword
+'file'        Text
 ' '           Text
 '='           Punctuation
 ' '           Text
-'getline'     Text
+'getline'     Keyword
 '('           Punctuation
 '1'           Literal.Number
 ','           Punctuation
@@ -2140,7 +2140,7 @@
 ' '           Text
 'join'        Keyword
 '('           Punctuation
-'file'        Keyword
+'file'        Text
 ','           Punctuation
 ' '           Text
 "' '"         Literal.String.Single
@@ -2154,7 +2154,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'split'       Text
+'split'       Keyword
 '('           Punctuation
 'jfile'       Text
 ','           Punctuation
@@ -2198,11 +2198,11 @@
 '\t\t\t\t'    Text
 'let'         Keyword
 ' '           Text
-'val'         Text
+'val'         Keyword
 ' '           Text
 '='           Punctuation
 ' '           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'i'           Keyword
 ','           Punctuation
@@ -2220,11 +2220,11 @@
 '\t\t\t\t'    Text
 'let'         Keyword
 ' '           Text
-'val'         Text
+'val'         Keyword
 ' '           Text
 '='           Punctuation
 ' '           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'i'           Keyword
 ','           Punctuation
@@ -2240,7 +2240,7 @@
 '\t\t\t'      Text
 'if'          Keyword
 ' '           Text
-'val'         Text
+'val'         Keyword
 ' '           Text
 '!'           Punctuation
 '~'           Punctuation
@@ -2255,7 +2255,7 @@
 '['           Text
 'adddollar'   Text
 '.'           Text
-'val'         Text
+'val'         Keyword
 ']'           Text
 ' '           Text
 '='           Punctuation
@@ -2286,9 +2286,9 @@
 ' '           Text
 'join'        Keyword
 '('           Punctuation
-'map'         Text
+'map'         Keyword
 '('           Punctuation
-'tagfiles'    Text
+'tagfiles'    Keyword
 '('           Punctuation
 ')'           Punctuation
 ','           Punctuation
@@ -2327,7 +2327,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'substitute'  Text
+'substitute'  Keyword
 '('           Punctuation
 'a'           Keyword
 ':'           Text
@@ -2363,7 +2363,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'getqflist'   Text
+'getqflist'   Keyword
 '('           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
@@ -2371,7 +2371,7 @@
 '\t\t\t'      Text
 'if'          Keyword
 ' '           Text
-'len'         Text
+'len'         Keyword
 '('           Punctuation
 'qflist'      Text
 ')'           Punctuation
@@ -2398,7 +2398,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'field'       Text
 '['           Text
@@ -2458,7 +2458,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'field'       Text
 '['           Text
@@ -2511,7 +2511,7 @@
 '\t\t'        Text
 'call'        Keyword
 ' '           Text
-'extend'      Text
+'extend'      Keyword
 '('           Punctuation
 'int_vars'    Text
 ','           Punctuation
@@ -2526,11 +2526,11 @@
 '\t\t'        Text
 'let'         Keyword
 ' '           Text
-'file'        Keyword
+'file'        Text
 ' '           Text
 '='           Punctuation
 ' '           Text
-'getline'     Text
+'getline'     Keyword
 '('           Punctuation
 '1'           Literal.Number
 ','           Punctuation
@@ -2542,9 +2542,9 @@
 '\t\t'        Text
 'call'        Keyword
 ' '           Text
-'filter'      Text
+'filter'      Keyword
 '('           Punctuation
-'file'        Keyword
+'file'        Text
 ','           Punctuation
 '\n'          Text.Whitespace
 
@@ -2564,9 +2564,9 @@
 ' '           Text
 'join'        Keyword
 '('           Punctuation
-'map'         Text
+'map'         Keyword
 '('           Punctuation
-'tagfiles'    Text
+'tagfiles'    Keyword
 '('           Punctuation
 ')'           Punctuation
 ','           Punctuation
@@ -2585,7 +2585,7 @@
 ' '           Text
 'join'        Keyword
 '('           Punctuation
-'file'        Keyword
+'file'        Text
 ','           Punctuation
 ' '           Text
 "' '"         Literal.String.Single
@@ -2599,7 +2599,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'split'       Text
+'split'       Keyword
 '('           Punctuation
 'jfile'       Text
 ','           Punctuation
@@ -2636,7 +2636,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'i'           Keyword
 ','           Punctuation
@@ -2656,7 +2656,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'i'           Keyword
 ','           Punctuation
@@ -2736,7 +2736,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'getqflist'   Text
+'getqflist'   Keyword
 '('           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
@@ -2744,7 +2744,7 @@
 '\t\t\t'      Text
 'if'          Keyword
 ' '           Text
-'len'         Text
+'len'         Keyword
 '('           Punctuation
 'qflist'      Text
 ')'           Punctuation
@@ -2774,7 +2774,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'field'       Text
 '['           Text
@@ -2789,11 +2789,11 @@
 '\t\t\t\t\t'  Text
 'let'         Keyword
 ' '           Text
-'fname'       Text
+'fname'       Keyword
 ' '           Text
 '='           Punctuation
 ' '           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'field'       Text
 '['           Text
@@ -2812,7 +2812,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'field'       Text
 '['           Text
@@ -2844,7 +2844,7 @@
 '.'           Text
 "') - '"      Literal.String.Single
 '.'           Text
-'fname'       Text
+'fname'       Keyword
 '\n'          Text.Whitespace
 
 '\t\t\t\t'    Text
@@ -2875,7 +2875,7 @@
 '\t\t'        Text
 'call'        Keyword
 ' '           Text
-'extend'      Text
+'extend'      Keyword
 '('           Punctuation
 'all_values'  Text
 ','           Punctuation
@@ -2887,7 +2887,7 @@
 '\t\t'        Text
 'call'        Keyword
 ' '           Text
-'extend'      Text
+'extend'      Keyword
 '('           Punctuation
 'all_values'  Text
 ','           Punctuation
@@ -2899,7 +2899,7 @@
 '\t\t'        Text
 'call'        Keyword
 ' '           Text
-'extend'      Text
+'extend'      Keyword
 '('           Punctuation
 'all_values'  Text
 ','           Punctuation
@@ -2913,7 +2913,7 @@
 '\t\t'        Text
 'call'        Keyword
 ' '           Text
-'extend'      Text
+'extend'      Keyword
 '('           Punctuation
 'all_values'  Text
 ','           Punctuation
@@ -2935,7 +2935,7 @@
 ' '           Text
 'sort'        Keyword
 '('           Punctuation
-'keys'        Text
+'keys'        Keyword
 '('           Punctuation
 'all_values'  Text
 ')'           Punctuation
@@ -2960,7 +2960,7 @@
 '\t\t\t\t'    Text
 'call'        Keyword
 ' '           Text
-'add'         Text
+'add'         Keyword
 '('           Punctuation
 'res'         Keyword
 ','           Punctuation
@@ -3015,7 +3015,7 @@
 '\t\t\t'      Text
 'if'          Keyword
 ' '           Text
-'has_key'     Text
+'has_key'     Keyword
 '('           Punctuation
 'int_vars'    Text
 ','           Punctuation
@@ -3116,7 +3116,7 @@
 '{'           Text
 "'word'"      Literal.String.Single
 ':'           Text
-'substitute'  Text
+'substitute'  Keyword
 '('           Punctuation
 'i'           Keyword
 ','           Punctuation
@@ -3380,11 +3380,11 @@
 '\t\t'        Text
 'let'         Keyword
 ' '           Text
-'file'        Keyword
+'file'        Text
 ' '           Text
 '='           Punctuation
 ' '           Text
-'getline'     Text
+'getline'     Keyword
 '('           Punctuation
 '1'           Literal.Number
 ','           Punctuation
@@ -3402,7 +3402,7 @@
 ' '           Text
 'join'        Keyword
 '('           Punctuation
-'file'        Keyword
+'file'        Text
 ','           Punctuation
 ' '           Text
 "' '"         Literal.String.Single
@@ -3416,7 +3416,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'split'       Text
+'split'       Keyword
 '('           Punctuation
 'jfile'       Text
 ','           Punctuation
@@ -3460,11 +3460,11 @@
 '\t\t\t\t'    Text
 'let'         Keyword
 ' '           Text
-'val'         Text
+'val'         Keyword
 ' '           Text
 '='           Punctuation
 ' '           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'i'           Keyword
 ','           Punctuation
@@ -3486,11 +3486,11 @@
 '\t\t\t\t'    Text
 'let'         Keyword
 ' '           Text
-'val'         Text
+'val'         Keyword
 ' '           Text
 '='           Punctuation
 ' '           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'i'           Keyword
 ','           Punctuation
@@ -3510,7 +3510,7 @@
 '\t\t\t'      Text
 'if'          Keyword
 ' '           Text
-'val'         Text
+'val'         Keyword
 ' '           Text
 '!'           Punctuation
 '='           Punctuation
@@ -3523,7 +3523,7 @@
 ' '           Text
 'int_vars'    Text
 '['           Text
-'val'         Text
+'val'         Keyword
 ']'           Text
 ' '           Text
 '='           Punctuation
@@ -3544,7 +3544,7 @@
 '\t\t'        Text
 'call'        Keyword
 ' '           Text
-'extend'      Text
+'extend'      Keyword
 '('           Punctuation
 'int_vars'    Text
 ','           Punctuation
@@ -3566,9 +3566,9 @@
 ' '           Text
 'join'        Keyword
 '('           Punctuation
-'map'         Text
+'map'         Keyword
 '('           Punctuation
-'tagfiles'    Text
+'tagfiles'    Keyword
 '('           Punctuation
 ')'           Punctuation
 ','           Punctuation
@@ -3607,7 +3607,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'substitute'  Text
+'substitute'  Keyword
 '('           Punctuation
 'a'           Keyword
 ':'           Text
@@ -3643,7 +3643,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'getqflist'   Text
+'getqflist'   Keyword
 '('           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
@@ -3651,7 +3651,7 @@
 '\t\t\t'      Text
 'if'          Keyword
 ' '           Text
-'len'         Text
+'len'         Keyword
 '('           Punctuation
 'qflist'      Text
 ')'           Punctuation
@@ -3680,7 +3680,7 @@
 ' '           Text
 "'$'"         Literal.String.Single
 '.'           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'field'       Text
 '['           Text
@@ -3740,7 +3740,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'field'       Text
 '['           Text
@@ -3790,7 +3790,7 @@
 '\t\t'        Text
 'call'        Keyword
 ' '           Text
-'extend'      Text
+'extend'      Keyword
 '('           Punctuation
 'int_vars'    Text
 ','           Punctuation
@@ -3808,7 +3808,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'keys'        Text
+'keys'        Keyword
 '('           Punctuation
 'int_vars'    Text
 ')'           Punctuation
@@ -3825,7 +3825,7 @@
 ' '           Text
 'sort'        Keyword
 '('           Punctuation
-'keys'        Text
+'keys'        Keyword
 '('           Punctuation
 'int_vars'    Text
 ')'           Punctuation
@@ -3850,7 +3850,7 @@
 '\t\t\t\t'    Text
 'call'        Keyword
 ' '           Text
-'add'         Text
+'add'         Keyword
 '('           Punctuation
 'res'         Keyword
 ','           Punctuation
@@ -4063,11 +4063,11 @@
 '\t\t'        Text
 'let'         Keyword
 ' '           Text
-'file'        Keyword
+'file'        Text
 ' '           Text
 '='           Punctuation
 ' '           Text
-'getline'     Text
+'getline'     Keyword
 '('           Punctuation
 '1'           Literal.Number
 ','           Punctuation
@@ -4079,9 +4079,9 @@
 '\t\t'        Text
 'call'        Keyword
 ' '           Text
-'filter'      Text
+'filter'      Keyword
 '('           Punctuation
-'file'        Keyword
+'file'        Text
 ','           Punctuation
 '\n'          Text.Whitespace
 
@@ -4101,9 +4101,9 @@
 ' '           Text
 'join'        Keyword
 '('           Punctuation
-'map'         Text
+'map'         Keyword
 '('           Punctuation
-'tagfiles'    Text
+'tagfiles'    Keyword
 '('           Punctuation
 ')'           Punctuation
 ','           Punctuation
@@ -4122,7 +4122,7 @@
 ' '           Text
 'join'        Keyword
 '('           Punctuation
-'file'        Keyword
+'file'        Text
 ','           Punctuation
 ' '           Text
 "' '"         Literal.String.Single
@@ -4136,7 +4136,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'split'       Text
+'split'       Keyword
 '('           Punctuation
 'jfile'       Text
 ','           Punctuation
@@ -4173,7 +4173,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'i'           Keyword
 ','           Punctuation
@@ -4193,7 +4193,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'i'           Keyword
 ','           Punctuation
@@ -4273,7 +4273,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'getqflist'   Text
+'getqflist'   Keyword
 '('           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
@@ -4281,7 +4281,7 @@
 '\t\t\t'      Text
 'if'          Keyword
 ' '           Text
-'len'         Text
+'len'         Keyword
 '('           Punctuation
 'qflist'      Text
 ')'           Punctuation
@@ -4311,7 +4311,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'field'       Text
 '['           Text
@@ -4326,11 +4326,11 @@
 '\t\t\t\t\t'  Text
 'let'         Keyword
 ' '           Text
-'fname'       Text
+'fname'       Keyword
 ' '           Text
 '='           Punctuation
 ' '           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'field'       Text
 '['           Text
@@ -4349,7 +4349,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'field'       Text
 '['           Text
@@ -4381,7 +4381,7 @@
 '.'           Text
 "') - '"      Literal.String.Single
 '.'           Text
-'fname'       Text
+'fname'       Keyword
 '\n'          Text.Whitespace
 
 '\t\t\t\t'    Text
@@ -4402,7 +4402,7 @@
 '\t\t'        Text
 'call'        Keyword
 ' '           Text
-'extend'      Text
+'extend'      Keyword
 '('           Punctuation
 'int_functions' Text
 ','           Punctuation
@@ -4414,7 +4414,7 @@
 '\t\t'        Text
 'call'        Keyword
 ' '           Text
-'extend'      Text
+'extend'      Keyword
 '('           Punctuation
 'int_functions' Text
 ','           Punctuation
@@ -4431,11 +4431,11 @@
 '\t\t'        Text
 'let'         Keyword
 ' '           Text
-'file'        Keyword
+'file'        Text
 ' '           Text
 '='           Punctuation
 ' '           Text
-'getline'     Text
+'getline'     Keyword
 '('           Punctuation
 '1'           Literal.Number
 ','           Punctuation
@@ -4447,9 +4447,9 @@
 '\t\t'        Text
 'call'        Keyword
 ' '           Text
-'filter'      Text
+'filter'      Keyword
 '('           Punctuation
-'file'        Keyword
+'file'        Text
 ','           Punctuation
 ' '           Text
 '\'v:val =~ "define\\\\s*("\'' Literal.String.Single
@@ -4465,7 +4465,7 @@
 ' '           Text
 'join'        Keyword
 '('           Punctuation
-'file'        Keyword
+'file'        Text
 ','           Punctuation
 ' '           Text
 "' '"         Literal.String.Single
@@ -4479,7 +4479,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'split'       Text
+'split'       Keyword
 '('           Punctuation
 'jfile'       Text
 ','           Punctuation
@@ -4516,7 +4516,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'i'           Keyword
 ','           Punctuation
@@ -4577,9 +4577,9 @@
 ' '           Text
 'join'        Keyword
 '('           Punctuation
-'map'         Text
+'map'         Keyword
 '('           Punctuation
-'tagfiles'    Text
+'tagfiles'    Keyword
 '('           Punctuation
 ')'           Punctuation
 ','           Punctuation
@@ -4632,7 +4632,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'getqflist'   Text
+'getqflist'   Keyword
 '('           Punctuation
 ')'           Punctuation
 '\n'          Text.Whitespace
@@ -4640,7 +4640,7 @@
 '\t\t\t'      Text
 'if'          Keyword
 ' '           Text
-'len'         Text
+'len'         Keyword
 '('           Punctuation
 'qflist'      Text
 ')'           Punctuation
@@ -4667,7 +4667,7 @@
 ' '           Text
 '='           Punctuation
 ' '           Text
-'matchstr'    Text
+'matchstr'    Keyword
 '('           Punctuation
 'field'       Text
 '['           Text
@@ -4710,7 +4710,7 @@
 '\t\t'        Text
 'call'        Keyword
 ' '           Text
-'extend'      Text
+'extend'      Keyword
 '('           Punctuation
 'int_constants' Text
 ','           Punctuation
@@ -4741,7 +4741,7 @@
 '\t\t'        Text
 'call'        Keyword
 ' '           Text
-'extend'      Text
+'extend'      Keyword
 '('           Punctuation
 'all_values'  Text
 ','           Punctuation
@@ -4756,7 +4756,7 @@
 '\t\t'        Text
 'call'        Keyword
 ' '           Text
-'extend'      Text
+'extend'      Keyword
 '('           Punctuation
 'all_values'  Text
 ','           Punctuation
@@ -4771,7 +4771,7 @@
 '\t\t'        Text
 'call'        Keyword
 ' '           Text
-'extend'      Text
+'extend'      Keyword
 '('           Punctuation
 'all_values'  Text
 ','           Punctuation
@@ -4793,7 +4793,7 @@
 ' '           Text
 'sort'        Keyword
 '('           Punctuation
-'keys'        Text
+'keys'        Keyword
 '('           Punctuation
 'all_values'  Text
 ')'           Punctuation
@@ -4818,7 +4818,7 @@
 '\t\t\t\t'    Text
 'call'        Keyword
 ' '           Text
-'add'         Text
+'add'         Keyword
 '('           Punctuation
 'res'         Keyword
 ','           Punctuation
@@ -4873,7 +4873,7 @@
 '\t\t\t'      Text
 'if'          Keyword
 ' '           Text
-'has_key'     Text
+'has_key'     Keyword
 '('           Punctuation
 'int_functions' Text
 ','           Punctuation
@@ -4929,7 +4929,7 @@
 '\t\t\t'      Text
 'elseif'      Keyword
 ' '           Text
-'has_key'     Text
+'has_key'     Keyword
 '('           Punctuation
 'int_constants' Text
 ','           Punctuation
@@ -5005,7 +5005,7 @@
 
 '\n'          Text.Whitespace
 
-'endfunction' Keyword
+'endfunction' Text
 '\n'          Text.Whitespace
 
 '" vim:set foldmethod=marker:' Comment

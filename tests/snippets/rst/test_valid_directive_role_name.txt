@@ -1,0 +1,53 @@
+---input---
+.. custom-dir::
+.. custom:dir::
+.. custom.dir::
+.. custom+dir::
+
+:custom-role:`content`
+:custom:role:`content`
+:custom.role:`content`
+:custom+role:`content`
+
+---tokens---
+'..'          Punctuation
+' '           Text
+'custom-dir'  Operator.Word
+'::'          Punctuation
+'\n'          Text.Whitespace
+
+'..'          Punctuation
+' '           Text
+'custom:dir'  Operator.Word
+'::'          Punctuation
+'\n'          Text.Whitespace
+
+'..'          Punctuation
+' '           Text
+'custom.dir'  Operator.Word
+'::'          Punctuation
+'\n'          Text.Whitespace
+
+'..'          Punctuation
+' '           Text
+'custom+dir'  Operator.Word
+'::'          Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+':custom-role:' Name.Attribute
+'`content`'   Name.Variable
+'\n'          Text.Whitespace
+
+':custom:role:' Name.Attribute
+'`content`'   Name.Variable
+'\n'          Text.Whitespace
+
+':custom.role:' Name.Attribute
+'`content`'   Name.Variable
+'\n'          Text.Whitespace
+
+':custom+role:' Name.Attribute
+'`content`'   Name.Variable
+'\n'          Text.Whitespace
