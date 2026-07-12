@@ -817,7 +817,7 @@ class FishShellLexer(RegexLexer):
             (r'(?s)\$?"(\\\\|\\[0-7]+|\\.|[^"\\$])*"', String.Double),
             (r'"', String.Double, 'string'),
             (r"(?s)\$'(\\\\|\\[0-7]+|\\.|[^'\\])*'", String.Single),
-            (r"(?s)'.*?((?<!\\)'|(\\\\)')", String.Single),
+            (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
             (r';', Punctuation),
             (r'&|\||\^|<|>', Operator),
             (r'\s+', Text),
