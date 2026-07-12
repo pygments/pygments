@@ -416,7 +416,7 @@ class HtmlFormatter(Formatter):
         self.noclobber_cssfile = get_bool_opt(options, 'noclobber_cssfile', False)
         self.tagsfile = self._decodeifneeded(options.get('tagsfile', ''))
         self.tagurlformat = self._decodeifneeded(options.get('tagurlformat', ''))
-        self.filename = html_escape(self._decodeifneeded(options.get('filename', '') or ''))
+        self.filename = html_escape(self._decodeifneeded(options.get('filename', '')))
         self.wrapcode = get_bool_opt(options, 'wrapcode', False)
         self.span_element_openers = {}
         self.debug_token_types = get_bool_opt(options, 'debug_token_types', False)
