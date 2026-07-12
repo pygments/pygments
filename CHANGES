@@ -48,6 +48,7 @@ Version 2.21.0
 - LaTeX formatter: honor the wrapped lexer's ``stripnl`` and other input
   options when ``escapeinside`` is set, so blank lines are no longer stripped
   under ``stripnl=false`` (#2975)
+- Recognize LaTeX math environments as math in the TeX lexer (#3034)
 
 Version 2.20.0
 --------------

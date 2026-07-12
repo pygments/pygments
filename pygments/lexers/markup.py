@@ -305,6 +305,9 @@ class TexLexer(RegexLexer):
             (r'[&_^]', Name.Builtin),
         ],
         'root': [
+            (r'(\\begin)(\{)((?:display)?math|equation\*?|align\*?)(\})',
+             bygroups(Keyword, Name.Builtin, Name.Builtin, Name.Builtin),
+             'environmentmath'),
             (r'\\\[', String.Backtick, 'displaymath'),
             (r'\\\(', String, 'inlinemath'),
             (r'\$\$', String.Backtick, 'displaymath'),
@@ -330,6 +333,11 @@ class TexLexer(RegexLexer):
             (r'\\\]', String, '#pop'),
             (r'\$\$', String, '#pop'),
             (r'\$', Name.Builtin),
+            include('math'),
+        ],
+        'environmentmath': [
+            (r'(\\end)(\{)((?:display)?math|equation\*?|align\*?)(\})',
+             bygroups(Keyword, Name.Builtin, Name.Builtin, Name.Builtin), '#pop'),
             include('math'),
         ],
         'command': [
