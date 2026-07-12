@@ -1,0 +1,48 @@
+---input---
+string email = "tux@kernel.org";
+if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.match(email)) {
+    stdout.printf("Valid email address\n");
+}
+
+---tokens---
+'string'      Keyword.Type
+' '           Text.Whitespace
+'email'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'tux@kernel.org' Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$/i' Literal.String.Regex
+'.'           Punctuation
+'match'       Name
+'('           Punctuation
+'email'       Name
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'stdout'      Name
+'.'           Punctuation
+'printf'      Name
+'('           Punctuation
+'"'           Literal.String
+'Valid email address' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

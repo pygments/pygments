@@ -201,6 +201,8 @@ class ValaLexer(RegexLexer):
             (r'/(\\\n)?[*][\s\S]*?[*](\\\n)?/', Comment.Multiline),
         ],
         'statements': [
+            (r'(\()(\s*)(/(?:\\.|[^/\\\n])*/[ismxo]*)',
+             bygroups(Punctuation, Whitespace, String.Regex)),
             (r'[L@]?"', String, 'string'),
             (r"L?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'",
              String.Char),
