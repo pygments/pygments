@@ -16,6 +16,7 @@ Version 2.21.0
 - Updated lexers:
 
   * Boogie: Add missing Boogie and Civl Verifier keywords (#3156)
+  * INI: Don't treat quoted continuation values containing colons as keys (#2844)
   * C++: Add C23/C++26 attributes (#3084)
   * D: Allow non-ASCII (Unicode) identifiers (#1088)
   * CUDA: Derive from the C++ lexer instead of C to highlight C++

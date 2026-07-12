@@ -3,6 +3,9 @@
     key 1 = "value1"
     key 2 = "value2" # comment
     key 3 = "value3 ; value 3bis" ; comment
+    key 4 = [
+        'value4:',
+    ]
 
 ---tokens---
 '[section]'   Keyword
@@ -34,4 +37,16 @@
 '"'           Literal.String
 ' '           Text.Whitespace
 '; comment'   Comment.Single
+'\n    '      Text.Whitespace
+'key 4'       Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Literal.String
+'\n        '  Text.Whitespace
+"'value4"     Name.Attribute
+':'           Operator
+"',"          Literal.String
+'\n    '      Text.Whitespace
+']'           Name.Attribute
 '\n'          Text.Whitespace
