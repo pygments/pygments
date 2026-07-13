@@ -3,6 +3,7 @@
  */
 
 #include <iostream>
+#include <cstddef>
 
 int main() {
     char *_str      = "a normal string";
@@ -15,6 +16,18 @@ int main() {
 as a delimiter)"""";
 
     std::cout << R_str << std::endl;
+
+    long i1 = 12l;
+    long i2 = 12L;
+
+    std::size_t i3 = 12z;
+    std::size_t i4 = 12Z;
+
+    float f1 = 12f;
+    float f2 = 12F;
+
+    long double d1 = 12.0l;
+    long double d2 = 12.0L;
 
     return 0;
 }
