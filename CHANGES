@@ -33,6 +33,7 @@ Version 2.21.0
   * Ruby: Don't duplicate the body of an unterminated heredoc (#2998)
   * Ruby: Treat ``<<`` after ``)``, ``]`` or ``}`` as the shift operator
     rather than the start of a heredoc (#760)
+  * Kotlin: Support companion objects without an explicit name (#2525)
   * Kotlin: Don't let a nullable type marker (``?``) consume the following
     character, so ``Foo?,`` and ``a?:b`` tokenize correctly (#2964)
   * YAML: Add ``yml`` alias (#3169)
