@@ -349,6 +349,8 @@ class YamlLexer(ExtendedRegexLexer):
             (r'[ ]+$', Whitespace),
             # line breaks are ignored
             (r'\n+', Whitespace),
+            # non-breaking spaces are a part of the value
+            (r'\xa0+', Name.Variable),
             # other whitespaces are a part of the value
             (r'[ ]+', Name.Variable),
         ],
@@ -403,7 +405,7 @@ class YamlLexer(ExtendedRegexLexer):
             # line breaks are ignored
             (r'\n+', Whitespace, 'plain-scalar-in-block-context-new-line'),
             # other whitespaces are a part of the value
-            (r'[ ]+', Literal.Scalar.Plain),
+            (r'[ \xa0]+', Literal.Scalar.Plain),
             # regular non-whitespace characters
             (r'(?::(?!\s)|[^\s:])+', Literal.Scalar.Plain),
         ],
@@ -420,7 +422,7 @@ class YamlLexer(ExtendedRegexLexer):
             # line breaks are ignored
             (r'\n+', Whitespace),
             # other whitespaces are a part of the value
-            (r'[ ]+', Name.Variable),
+            (r'[ \xa0]+', Name.Variable),
             # regular non-whitespace characters
             (r'[^\s,:?\[\]{}]+', Name.Variable),
         ],

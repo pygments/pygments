@@ -35,7 +35,8 @@ Version 2.21.0
     rather than the start of a heredoc (#760)
   * Kotlin: Don't let a nullable type marker (``?``) consume the following
     character, so ``Foo?,`` and ``a?:b`` tokenize correctly (#2964)
-  * YAML: Add ``yml`` alias (#3169)
+  * YAML: Add ``yml`` alias (#3169), recognize non-breaking spaces as valid
+    scalar content (#2827)
   * Swift: Keep ``func`` a keyword in ``class func`` type methods (#1125)
   * Mathematica: Recognize ``\[Name]`` named-character escapes such as
     ``\[Nu]`` instead of emitting an ``Error`` token (#3097)
