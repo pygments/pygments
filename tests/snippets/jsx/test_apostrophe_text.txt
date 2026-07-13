@@ -1,0 +1,35 @@
+---input---
+const View = () => <div>I'm the Block view component!</div>;
+
+---tokens---
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'View'        Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'=>'          Punctuation
+' '           Text.Whitespace
+'<'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'I'           Name.Other
+"'"           Text
+'m'           Name.Other
+' '           Text.Whitespace
+'the'         Name.Other
+' '           Text.Whitespace
+'Block'       Name.Other
+' '           Text.Whitespace
+'view'        Name.Other
+' '           Text.Whitespace
+'component'   Name.Other
+'!'           Operator
+'</'          Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
