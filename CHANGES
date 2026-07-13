@@ -39,6 +39,7 @@ Version 2.21.0
   * Swift: Keep ``func`` a keyword in ``class func`` type methods (#1125)
   * Mathematica: Recognize ``\[Name]`` named-character escapes such as
     ``\[Nu]`` instead of emitting an ``Error`` token (#3097)
+  * Vala: Recognize verbatim strings before ordinary quoted strings (#2861)
 
 - Fix catastrophic backtracking in ``looks_like_xml`` (#2931, #3112)
 - Improve monokai theme colors (#3100)
