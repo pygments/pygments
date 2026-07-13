@@ -4,6 +4,9 @@ StormEvents
 | where State == "FLORIDA"
 | count
 
+resources
+| project owner=tags.owner
+
 ---tokens---
 'StormEvents' Name
 '\n'          Text.Whitespace
@@ -26,8 +29,7 @@ StormEvents
 '01'          Literal.Number.Integer
 ')'           Punctuation
 ' '           Text.Whitespace
-'.'           Error
-'.'           Error
+'..'          Punctuation
 ' '           Text.Whitespace
 'datetime'    Keyword
 '('           Punctuation
@@ -56,4 +58,18 @@ StormEvents
 '|'           Punctuation
 ' '           Text.Whitespace
 'count'       Keyword
+'\n\n'        Text.Whitespace
+
+'resources'   Name
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'project'     Keyword
+' '           Text.Whitespace
+'owner'       Name
+'='           Punctuation
+'tags'        Name
+'.'           Punctuation
+'owner'       Name
 '\n'          Text.Whitespace
