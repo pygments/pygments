@@ -129,6 +129,7 @@ class WDiffLexer(RegexLexer):
     filenames = ['*.wdiff']
     mimetypes = []
     version_added = '2.2'
+    _example = 'wdiff/wdiff_example1.wdiff'
 
     flags = re.MULTILINE | re.DOTALL
 

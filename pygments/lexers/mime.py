@@ -55,6 +55,7 @@ class MIMELexer(RegexLexer):
                  "multipart/alternative"]
     url = 'https://en.wikipedia.org/wiki/MIME'
     version_added = '2.5'
+    _example = 'mime/MIME_example.eml'
 
     def __init__(self, **options):
         super().__init__(**options)

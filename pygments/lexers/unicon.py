@@ -28,6 +28,7 @@ class UniconLexer(RegexLexer):
     mimetypes = ['text/unicon']
     url = 'https://www.unicon.org'
     version_added = '2.4'
+    _example = 'unicon/example.icn'
 
     flags = re.MULTILINE
 
@@ -173,6 +174,7 @@ class IconLexer(RegexLexer):
     mimetypes = []
     url = 'https://www2.cs.arizona.edu/icon'
     version_added = '1.6'
+    _example = 'icon/example.icon'
 
     flags = re.MULTILINE
 
@@ -314,6 +316,7 @@ class UcodeLexer(RegexLexer):
     mimetypes = []
     url = 'http://www.unicon.org'
     version_added = '2.4'
+    _example = 'ucode/example.u1'
 
     flags = re.MULTILINE
 

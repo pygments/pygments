@@ -26,6 +26,7 @@ class GraphvizLexer(RegexLexer):
     filenames = ['*.gv', '*.dot']
     mimetypes = ['text/x-graphviz', 'text/vnd.graphviz']
     version_added = '2.8'
+    _example = 'graphviz/graphviz-dot.gv'
     tokens = {
         'root': [
             (r'\s+', Whitespace),

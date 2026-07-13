@@ -25,6 +25,7 @@ class GoLexer(RegexLexer):
     aliases = ['go', 'golang']
     mimetypes = ['text/x-gosrc']
     version_added = '1.2'
+    _example = 'go/generics.go'
 
     tokens = {
         'root': [

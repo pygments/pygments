@@ -25,6 +25,7 @@ class NitLexer(RegexLexer):
     aliases = ['nit']
     filenames = ['*.nit']
     version_added = '2.0'
+    _example = 'nit/all.nit'
     tokens = {
         'root': [
             (r'#.*?$', Comment.Single),

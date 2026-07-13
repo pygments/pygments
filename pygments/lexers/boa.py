@@ -24,6 +24,7 @@ class BoaLexer(RegexLexer):
     filenames = ['*.boa']
     url = 'https://boa.cs.iastate.edu/docs'
     version_added = '2.4'
+    _example = 'boa/example.boa'
 
     reserved = words(
         ('input', 'output', 'of', 'weight', 'before', 'after', 'stop',

@@ -32,6 +32,7 @@ class PikeLexer(CppLexer):
     filenames = ['*.pike', '*.pmod']
     mimetypes = ['text/x-pike']
     version_added = '2.0'
+    _example = 'pike/FakeFile.pike'
 
     tokens = {
         'statements': [
@@ -73,6 +74,7 @@ class NesCLexer(CLexer):
     filenames = ['*.nc']
     mimetypes = ['text/x-nescsrc']
     version_added = '2.0'
+    _example = 'nesc/IPDispatchP.nc'
 
     tokens = {
         'statements': [
@@ -101,6 +103,7 @@ class ClayLexer(RegexLexer):
     mimetypes = ['text/x-clay']
     url = 'http://claylabs.com/clay'
     version_added = '2.0'
+    _example = 'clay/example.clay'
 
     tokens = {
         'root': [
@@ -157,6 +160,7 @@ class ECLexer(CLexer):
     mimetypes = ['text/x-echdr', 'text/x-ecsrc']
     url = 'https://ec-lang.org'
     version_added = '1.5'
+    _example = 'ec/test.ec'
 
     tokens = {
         'statements': [
@@ -288,6 +292,7 @@ class CudaLexer(CppLexer):
     mimetypes = ['text/x-cuda']
     url = 'https://developer.nvidia.com/category/zone/cuda-zone'
     version_added = '1.6'
+    _example = 'cuda/test.cu'
 
     function_qualifiers = {'__device__', '__global__', '__host__',
                            '__noinline__', '__forceinline__'}
@@ -334,6 +339,7 @@ class SwigLexer(CppLexer):
     filenames = ['*.swg', '*.i']
     mimetypes = ['text/swig']
     version_added = '2.0'
+    _example = 'swig/swig_java.swg'
     priority = 0.04  # Lower than C/C++ and Objective C/C++
 
     tokens = {
@@ -400,6 +406,7 @@ class MqlLexer(CppLexer):
     filenames = ['*.mq4', '*.mq5', '*.mqh']
     mimetypes = ['text/x-mql']
     version_added = '2.0'
+    _example = 'mql/example.mq4'
 
     tokens = {
         'statements': [
@@ -427,6 +434,7 @@ class ArduinoLexer(CppLexer):
     filenames = ['*.ino']
     mimetypes = ['text/x-arduino']
     version_added = '2.1'
+    _example = 'arduino/Blink.ino'
 
     # Language sketch main structure functions
     structure = {'setup', 'loop'}
@@ -550,6 +558,7 @@ class CharmciLexer(CppLexer):
     aliases = ['charmci']
     filenames = ['*.ci']
     version_added = '2.4'
+    _example = 'charmci/Charmci.ci'
 
     mimetypes = []
 
@@ -581,6 +590,7 @@ class OmgIdlLexer(CLexer):
     filenames = ['*.idl', '*.pidl']
     mimetypes = []
     version_added = '2.9'
+    _example = 'omg-idl/example.idl'
 
     scoped_name = r'((::)?\w+)+'
 
@@ -674,6 +684,7 @@ class PromelaLexer(CLexer):
     mimetypes = ['text/x-promela']
     url = 'https://spinroot.com/spin/whatispin.html'
     version_added = '2.18'
+    _example = 'promela/sample.pml'
 
     # Promela's language reference:
     # https://spinroot.com/spin/Man/promela.html

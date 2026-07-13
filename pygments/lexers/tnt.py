@@ -28,6 +28,7 @@ class TNTLexer(Lexer):
     aliases = ['tnt']
     filenames = ['*.tnt']
     version_added = '2.7'
+    _example = 'tnt/example.tnt'
 
     cur = []
 

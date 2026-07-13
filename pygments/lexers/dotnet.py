@@ -51,6 +51,7 @@ class CSharpLexer(RegexLexer):
     filenames = ['*.cs']
     mimetypes = ['text/x-csharp']  # inferred
     version_added = ''
+    _example = 'csharp/test.cs'
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -201,6 +202,7 @@ class NemerleLexer(RegexLexer):
     filenames = ['*.n']
     mimetypes = ['text/x-nemerle']  # inferred
     version_added = '1.5'
+    _example = 'nemerle/nemerle_sample.n'
 
     flags = re.MULTILINE | re.DOTALL
 
@@ -367,6 +369,7 @@ class BooLexer(RegexLexer):
     filenames = ['*.boo']
     mimetypes = ['text/x-boo']
     version_added = ''
+    _example = 'boo/test.boo'
 
     tokens = {
         'root': [
@@ -442,6 +445,7 @@ class VbNetLexer(RegexLexer):
     filenames = ['*.vb', '*.bas']
     mimetypes = ['text/x-vbnet', 'text/x-vba']  # (?)
     version_added = ''
+    _example = 'vb.net/test.vb'
 
     uni_name = '[_' + uni.combine('Ll', 'Lt', 'Lm', 'Nl') + ']' + \
                '[' + uni.combine('Ll', 'Lt', 'Lm', 'Nl', 'Nd', 'Pc',
@@ -579,6 +583,7 @@ class CSharpAspxLexer(DelegatingLexer):
     mimetypes = []
     url = 'https://dotnet.microsoft.com/en-us/apps/aspnet'
     version_added = ''
+    _example = 'aspx-cs/aspx-cs_example.aspx'
 
     def __init__(self, **options):
         super().__init__(CSharpLexer, GenericAspxLexer, **options)
@@ -601,6 +606,7 @@ class VbNetAspxLexer(DelegatingLexer):
     mimetypes = []
     url = 'https://dotnet.microsoft.com/en-us/apps/aspnet'
     version_added = ''
+    _example = 'aspx-vb/example2.aspx'
 
     def __init__(self, **options):
         super().__init__(VbNetLexer, GenericAspxLexer, **options)
@@ -624,6 +630,7 @@ class FSharpLexer(RegexLexer):
     filenames = ['*.fs', '*.fsi', '*.fsx']
     mimetypes = ['text/x-fsharp']
     version_added = '1.5'
+    _example = 'fsharp/Deflate.fs'
 
     keywords = [
         'abstract', 'as', 'assert', 'base', 'begin', 'class', 'default',
@@ -785,6 +792,7 @@ class XppLexer(RegexLexer):
     aliases = ['xpp', 'x++']
     filenames = ['*.xpp']
     version_added = '2.15'
+    _example = 'xpp/test.xpp'
 
     flags = re.MULTILINE
 

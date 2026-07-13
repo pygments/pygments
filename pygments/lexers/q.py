@@ -158,6 +158,7 @@ class QLexer(KLexer):
     aliases = ["q"]
     filenames = ["*.q"]
     version_added = '2.12'
+    _example = 'q/example.q'
 
     tokens = {
         "root": [

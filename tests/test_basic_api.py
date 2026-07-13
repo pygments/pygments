@@ -58,7 +58,7 @@ def test_lexer_classes(cls):
             (f"Lexer class {cls.__name__} has a wrong version_added attribute. "
              "It should be a version number like <major>.<minor> (but not "
              "<major>.<minor>.<micro>).")
-    if cls._example is not None:
+    if cls._example:
         assert isinstance(cls._example, str)
         p = pathlib.Path(path.join(TESTDIR, "examplefiles", cls._example))
         assert p.is_file(), f"Example file {p} not found"

@@ -29,6 +29,7 @@ class HaxeLexer(ExtendedRegexLexer):
     filenames = ['*.hx', '*.hxsl']
     mimetypes = ['text/haxe', 'text/x-haxe', 'text/x-hx']
     version_added = '1.3'
+    _example = 'hx/OrderedMap.hx'
 
     # keywords extracted from lexer.mll in the haxe compiler source
     keyword = (r'(?:function|class|static|var|if|else|while|do|for|'

@@ -36,6 +36,7 @@ class BlueprintLexer(RegexLexer):
     mimetypes = ["text/x-blueprint"]
     url = "https://gitlab.gnome.org/jwestman/blueprint-compiler"
     version_added = '2.16'
+    _example = 'blueprint/test.blp'
 
     flags = re.IGNORECASE
     tokens = {

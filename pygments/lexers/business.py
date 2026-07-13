@@ -30,6 +30,7 @@ class CobolLexer(RegexLexer):
     mimetypes = ['text/x-cobol']
     url = 'https://en.wikipedia.org/wiki/COBOL'
     version_added = '1.6'
+    _example = "cobol/example.cob"
 
     flags = re.IGNORECASE | re.MULTILINE
 
@@ -229,6 +230,7 @@ class CobolFreeformatLexer(CobolLexer):
     mimetypes = []
     url = 'https://opencobol.add1tocobol.com'
     version_added = '1.6'
+    _example = ""
 
     flags = re.IGNORECASE | re.MULTILINE
 
@@ -458,6 +460,7 @@ class OpenEdgeLexer(RegexLexer):
     mimetypes = ['text/x-openedge', 'application/x-openedge']
     url = 'https://www.progress.com/openedge/features/abl'
     version_added = '1.5'
+    _example = 'openedge/example.cls'
 
     types = (r'(?i)(^|(?<=[^\w\-]))(CHARACTER|CHAR|CHARA|CHARAC|CHARACT|CHARACTE|'
              r'COM-HANDLE|DATE|DATETIME|DATETIME-TZ|'
@@ -527,6 +530,7 @@ class GoodDataCLLexer(RegexLexer):
     mimetypes = ['text/x-gooddata-cl']
     url = 'https://github.com/gooddata/GoodData-CL'
     version_added = '1.4'
+    _example = 'gooddata-cl/test.gdc'
 
     flags = re.IGNORECASE
 
@@ -574,6 +578,7 @@ class MaqlLexer(RegexLexer):
     mimetypes = ['text/x-gooddata-maql', 'application/x-gooddata-maql']
     url = 'https://help.gooddata.com/doc/enterprise/en/dashboards-and-insights/maql-analytical-query-language'
     version_added = '1.4'
+    _example = 'maql/test.maql'
 
     flags = re.IGNORECASE
     tokens = {

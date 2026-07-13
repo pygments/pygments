@@ -30,6 +30,7 @@ class LdifLexer(RegexLexer):
     mimetypes = ["text/x-ldif"]
     url = "https://datatracker.ietf.org/doc/html/rfc2849"
     version_added = '2.17'
+    _example = 'ldif/rfc2849.ldif'
 
     tokens = {
         'root': [
@@ -113,6 +114,7 @@ class LdaprcLexer(RegexLexer):
     mimetypes = ["text/x-ldapconf"]
     url = 'https://www.openldap.org/software//man.cgi?query=ldap.conf&sektion=5&apropos=0&manpath=OpenLDAP+2.4-Release'
     version_added = '2.17'
+    _example = 'ldaprc/ldaprc'
 
     _sasl_keywords = r'SASL_(?:MECH|REALM|AUTHCID|AUTHZID|CBINDING)'
     _tls_keywords = r'TLS_(?:CACERT|CACERTDIR|CERT|ECNAME|KEY|CIPHER_SUITE|PROTOCOL_MIN|RANDFILE|CRLFILE)'
