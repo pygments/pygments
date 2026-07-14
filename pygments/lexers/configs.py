@@ -44,7 +44,7 @@ class IniLexer(RegexLexer):
             (r'\s+', Whitespace),
             (r'[;#].*', Comment.Single),
             (r'(\[.*?\])([ \t]*)$', bygroups(Keyword, Whitespace)),
-            (r'''(.*?)([ \t]*)([=:])([ \t]*)(["'])''',
+            (r'''(?![ \t]*["'])(.*?)([ \t]*)([=:])([ \t]*)(["'])''',
              bygroups(Name.Attribute, Whitespace, Operator, Whitespace, String),
              "quoted_value"),
             (r'(.*?)([ \t]*)([=:])([ \t]*)([^;#\n]*)(\\)(\s+)',
