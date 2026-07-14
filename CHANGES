@@ -49,6 +49,7 @@ Version 2.21.0
 - LaTeX formatter: honor the wrapped lexer's ``stripnl`` and other input
   options when ``escapeinside`` is set, so blank lines are no longer stripped
   under ``stripnl=false`` (#2975)
+- Recognize LaTeX math environments as math in the TeX lexer (#3034)
 - Groff formatter: don't duplicate a character when word-wrapping (``wrap``)
   a token that is not at the end of a line (#3201)
 
