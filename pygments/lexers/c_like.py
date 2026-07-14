@@ -245,7 +245,7 @@ class ValaLexer(RegexLexer):
                 'ulong', 'unichar', 'ushort'), suffix=r'\b'),
              Keyword.Type),
             (r'(true|false|null)\b', Name.Builtin),
-            (r'[a-zA-Z_]\w*', Name),
+            (r'@?[a-zA-Z_]\w*', Name),
         ],
         'root': [
             include('whitespace'),
