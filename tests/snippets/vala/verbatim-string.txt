@@ -1,0 +1,15 @@
+---input---
+string verbatim = """This is a so-called "verbatim string".
+   Verbatim strings don't process escape sequences, such as \n, \t, \\, etc.
+   They may contain quotes and may span multiple lines.""";
+
+---tokens---
+'string'      Keyword.Type
+' '           Text.Whitespace
+'verbatim'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"""This is a so-called "verbatim string".\n   Verbatim strings don\'t process escape sequences, such as \\n, \\t, \\\\, etc.\n   They may contain quotes and may span multiple lines."""' Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace

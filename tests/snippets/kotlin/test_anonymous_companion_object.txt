@@ -1,0 +1,40 @@
+---input---
+class MyClass {
+    companion object {
+        fun create(): MyClass = MyClass()
+    }
+}
+
+---tokens---
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'MyClass'     Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'companion'   Keyword.Declaration
+' '           Text.Whitespace
+'object'      Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'fun'         Keyword.Declaration
+' '           Text.Whitespace
+'create'      Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'MyClass'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'MyClass'     Name
+'('           Punctuation
+')'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

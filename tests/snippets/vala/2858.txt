@@ -1,0 +1,82 @@
+---input---
+int main (string[] args) {
+   #if COND
+     message ("COND IS DEFINED");
+   #elif OTHER_COND
+     message ("OTHER_COND IS DEFINED");
+   #else
+     message ("COND IS NOT DEFINED");
+   #endif
+   return 0;
+}
+
+---tokens---
+'int'         Keyword.Type
+' '           Text.Whitespace
+'main'        Name
+' '           Text.Whitespace
+'('           Punctuation
+'string'      Keyword.Type
+'['           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'args'        Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'   #if COND' Comment.Preproc
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'message'     Name
+' '           Text.Whitespace
+'('           Punctuation
+'"'           Literal.String
+'COND IS DEFINED' Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   #elif OTHER_COND' Comment.Preproc
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'message'     Name
+' '           Text.Whitespace
+'('           Punctuation
+'"'           Literal.String
+'OTHER_COND IS DEFINED' Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   #else'    Comment.Preproc
+'\n'          Text.Whitespace
+
+'     '       Text.Whitespace
+'message'     Name
+' '           Text.Whitespace
+'('           Punctuation
+'"'           Literal.String
+'COND IS NOT DEFINED' Literal.String
+'"'           Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'   #endif'   Comment.Preproc
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

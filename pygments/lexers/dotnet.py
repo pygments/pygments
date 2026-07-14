@@ -97,6 +97,7 @@ class CSharpLexer(RegexLexer):
                 (r'[()\[\];:,.]', Punctuation),
                 (r'[{}]', Punctuation),
                 (r'\$*"{3,}.*?"{3,}', String),
+                (r'(?:\$@|@\$)"(""|[^"])*"', String),
                 (r'@"(""|[^"])*"', String),
                 (r'\$?"(\\\\|\\[^\\]|[^"\\\n])*["\n]', String),
                 (r"'\\.'|'[^\\]'", String.Char),

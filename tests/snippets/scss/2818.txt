@@ -1,0 +1,39 @@
+---input---
+$border-radius:               1rem;
+.searchButton.btn.btn-secondary {
+    border-radius: 0 $border-radius $border-radius 0;
+}
+
+---tokens---
+'$border-radius' Name.Variable
+':'           Operator
+'               ' Text.Whitespace
+'1'           Literal.Number.Integer
+'rem'         Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'.'           Name.Class
+'searchButton' Name.Class
+'.'           Name.Class
+'btn'         Name.Class
+'.'           Name.Class
+'btn-secondary' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'border-radius' Name.Tag
+':'           Name.Decorator
+' '           Text.Whitespace
+'0'           Name.Tag
+' '           Text.Whitespace
+'$border-radius' Name.Variable
+' '           Text.Whitespace
+'$border-radius' Name.Variable
+' '           Text.Whitespace
+'0'           Name.Tag
+';'           Operator
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

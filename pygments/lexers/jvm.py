@@ -1184,6 +1184,7 @@ class KotlinLexer(RegexLexer):
             (r'' + kt_id + r'(\?(?![.:]))?', Name)
         ],
         'class': [
+            (r'\{', Punctuation, '#pop'),
             (kt_id, Name.Class, '#pop')
         ],
         'variable': [
