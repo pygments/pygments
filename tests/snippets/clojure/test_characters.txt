@@ -1,0 +1,31 @@
+---input---
+(str \a \A \1 \( \space \newline \tab \formfeed \backspace \return \u00ff \o377)
+
+---tokens---
+'('           Punctuation
+'str '        Name.Builtin
+'\\a'         Literal.String.Char
+' '           Text.Whitespace
+'\\A'         Literal.String.Char
+' '           Text.Whitespace
+'\\1'         Literal.String.Char
+' '           Text.Whitespace
+'\\('         Literal.String.Char
+' '           Text.Whitespace
+'\\space'     Literal.String.Char
+' '           Text.Whitespace
+'\\newline'   Literal.String.Char
+' '           Text.Whitespace
+'\\tab'       Literal.String.Char
+' '           Text.Whitespace
+'\\formfeed'  Literal.String.Char
+' '           Text.Whitespace
+'\\backspace' Literal.String.Char
+' '           Text.Whitespace
+'\\return'    Literal.String.Char
+' '           Text.Whitespace
+'\\u00ff'     Literal.String.Char
+' '           Text.Whitespace
+'\\o377'      Literal.String.Char
+')'           Punctuation
+'\n'          Text.Whitespace

@@ -362,6 +362,7 @@ common_sass_tokens = {
         (r'\.', Name.Class, 'class'),
         (r'\#', Name.Namespace, 'id'),
         (r'[\w-]+', Name.Tag),
+        (r'\$[\w-]+', Name.Variable),
         (r'#\{', String.Interpol, 'interpolation'),
         (r'&', Keyword),
         (r'[~^*!&\[\]()<>|+=@:;,./?-]', Operator),

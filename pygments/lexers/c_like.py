@@ -194,6 +194,7 @@ class ValaLexer(RegexLexer):
     tokens = {
         'whitespace': [
             (r'^\s*#if\s+0', Comment.Preproc, 'if0'),
+            (r'^\s*#(?:if|elif|else|endif)\b[^\n]*', Comment.Preproc),
             (r'\n', Whitespace),
             (r'\s+', Whitespace),
             (r'\\\n', Text),  # line continuation
@@ -201,10 +202,10 @@ class ValaLexer(RegexLexer):
             (r'/(\\\n)?[*][\s\S]*?[*](\\\n)?/', Comment.Multiline),
         ],
         'statements': [
+            (r'(?s)""".*?"""', String),  # verbatim strings
             (r'[L@]?"', String, 'string'),
             (r"L?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'",
              String.Char),
-            (r'(?s)""".*?"""', String),  # verbatim strings
             (r'(\d+\.\d*|\.\d+|\d+)[eE][+-]?\d+[lL]?', Number.Float),
             (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
             (r'0x[0-9a-fA-F]+[Ll]?', Number.Hex),
