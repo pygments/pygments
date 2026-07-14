@@ -194,6 +194,7 @@ class ValaLexer(RegexLexer):
     tokens = {
         'whitespace': [
             (r'^\s*#if\s+0', Comment.Preproc, 'if0'),
+            (r'^\s*#(?:if|elif|else|endif)\b[^\n]*', Comment.Preproc),
             (r'\n', Whitespace),
             (r'\s+', Whitespace),
             (r'\\\n', Text),  # line continuation
