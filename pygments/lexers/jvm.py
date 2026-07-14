@@ -911,7 +911,8 @@ class ClojureLexer(RegexLexer):
             # strings, symbols and characters
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             (r"'" + valid_name, String.Symbol),
-            (r"\\(.|[a-z]+)", String.Char),
+            (r"\\(?:newline|space|tab|formfeed|backspace|return"
+             r"|u[0-9a-fA-F]{4}|o[0-7]{1,3}|.)", String.Char),
 
             # keywords
             (r'::?#?' + valid_name, String.Symbol),
