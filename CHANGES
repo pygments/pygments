@@ -43,6 +43,8 @@ Version 2.21.0
   * Swift: Keep ``func`` a keyword in ``class func`` type methods (#1125)
   * Mathematica: Recognize ``\[Name]`` named-character escapes such as
     ``\[Nu]`` instead of emitting an ``Error`` token (#3097)
+  * Clojure: Recognize named, octal and unicode character literals such as
+    ``\space`` and ``\o377`` as a single token (#979)
   * C#: Recognize interpolated verbatim strings with either ``$@`` or ``@$``
     prefixes (#2685)
   * Kusto: Recognize member-access dots in dynamic objects (#2779)
