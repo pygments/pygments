@@ -78,3 +78,16 @@ def test_inheritance_custom_tokens():
 
 .fi"""
     assert highlight("ab", ToyLexer(), GroffFormatter(style=ToyStyle)) == expected
+
+
+def test_wrap_does_not_duplicate_characters():
+    # A piece longer than ``wrap`` that does not end in a newline must not
+    # have a character duplicated when it is soft-wrapped. The tail slice used
+    # to reach one character too far to the left when there was no trailing
+    # newline, repeating the last character of the preceding full chunk.
+    fmt = GroffFormatter(wrap=4)
+    assert fmt._wrap_line("abcdefghij") == "abcd\nefgh\nij"
+
+    # A piece that does end in a newline still keeps that trailing newline.
+    fmt = GroffFormatter(wrap=4)
+    assert fmt._wrap_line("123456\n") == "1234\n56\n"
