@@ -1,0 +1,63 @@
+---input---
+{
+  local numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  even_numbers: numbers[1::2],
+}
+
+---tokens---
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'local'       Keyword
+' '           Text.Whitespace
+'numbers'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'4'           Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'5'           Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'6'           Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'7'           Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'8'           Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'9'           Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'10'          Literal.Number.Float
+']'           Punctuation
+','           Punctuation
+'\n  '        Text.Whitespace
+''            Text
+'even_numbers' Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'numbers'     Name.Variable
+'['           Punctuation
+'1'           Literal.Number.Float
+':'           Operator
+':'           Operator
+'2'           Literal.Number.Float
+']'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

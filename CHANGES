@@ -25,6 +25,7 @@ Version 2.21.0
   * C++: Highlight a function following a namespace body (#2928)
   * JavaScript: Highlight the ``arguments`` object (#3146)
   * JSX: Allow apostrophes in element text (#2816)
+  * Jsonnet: Recognize colons in array slice expressions (#2828)
   * MATLAB, Octave, Scilab: Allow ``...`` line continuations in function
     definition signatures (#659)
   * Tcl: Stop ``$name`` variable references at a dash (#1720)
@@ -32,14 +33,21 @@ Version 2.21.0
     whitespace, so identifiers like ``modules`` and ``module.exports``
     are highlighted correctly (#2823)
   * Ruby: Don't duplicate the body of an unterminated heredoc (#2998)
+  * SCSS: Recognize variable references in property values (#2818)
   * Ruby: Treat ``<<`` after ``)``, ``]`` or ``}`` as the shift operator
     rather than the start of a heredoc (#760)
+  * Kotlin: Support companion objects without an explicit name (#2525)
   * Kotlin: Don't let a nullable type marker (``?``) consume the following
     character, so ``Foo?,`` and ``a?:b`` tokenize correctly (#2964)
   * YAML: Add ``yml`` alias (#3169)
   * Swift: Keep ``func`` a keyword in ``class func`` type methods (#1125)
   * Mathematica: Recognize ``\[Name]`` named-character escapes such as
     ``\[Nu]`` instead of emitting an ``Error`` token (#3097)
+  * C#: Recognize interpolated verbatim strings with either ``$@`` or ``@$``
+    prefixes (#2685)
+  * Kusto: Recognize member-access dots in dynamic objects (#2779)
+  * Vala: Recognize verbatim strings before ordinary quoted strings (#2861)
+  * Vala: Recognize conditional compilation directives (#2858)
 
 - Fix catastrophic backtracking in ``looks_like_xml`` (#2931, #3112)
 - Improve monokai theme colors (#3100)
@@ -49,6 +57,9 @@ Version 2.21.0
 - LaTeX formatter: honor the wrapped lexer's ``stripnl`` and other input
   options when ``escapeinside`` is set, so blank lines are no longer stripped
   under ``stripnl=false`` (#2975)
+- Recognize LaTeX math environments as math in the TeX lexer (#3034)
+- Groff formatter: don't duplicate a character when word-wrapping (``wrap``)
+  a token that is not at the end of a line (#3201)
 
 Version 2.20.0
 --------------

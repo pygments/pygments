@@ -6,7 +6,11 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexers.markup import MarkdownLexer, RstLexer, TiddlyWiki5Lexer
+import pytest
+
+from pygments.lexers.markup import (
+    MarkdownLexer, RstLexer, TexLexer, TiddlyWiki5Lexer)
+from pygments.token import Name, Operator
 
 
 def assert_token_offsets(lexer, text):
@@ -47,3 +51,15 @@ def test_rst_code_block_offsets():
 
 def test_tiddlywiki_code_block_offsets():
     assert_token_offsets(TiddlyWiki5Lexer(), TIDDLYWIKI_CODE)
+
+
+@pytest.mark.parametrize('environment', [
+    'math', 'displaymath', 'equation', 'equation*', 'align', 'align*',
+])
+def test_tex_math_environments(environment):
+    tokens = list(TexLexer().get_tokens(
+        rf'\begin{{{environment}}}x+1\end{{{environment}}}'
+    ))
+
+    assert (Name.Builtin, 'x') in tokens
+    assert (Operator, '+') in tokens
