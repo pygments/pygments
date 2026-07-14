@@ -1,0 +1,363 @@
+---input---
+            Named pipes
+         ┌───────┴───────┐
+┌──────┐ ┌─────┐   ┌─────┐ ┌──────┐
+│Client│ │reply│   │query│ │Server│
+└───┬──┘ └─┬───┘   └─┬───┘ └───┬──┘
+    │      │         │         │
+    │      │         │  ┌──────╢
+    │      │    block│  │ wait ║
+    │query │         │  └─────>║
+    ├───────────────>│         │
+    ╟─────┐│         ├────────>│
+    ║wait ││block    │         ║process
+    ║<────┘│         │         ║
+    │      │<──────────────────┤
+    │<─────┤         │    reply│
+    │      │         │         │
+    ┊      ┊         ┊         ┊
+
+
+        ←  genes  →
+     ┌────────────────┐
+     │ var:"id",[…]   │
+     └────────────────┘
+     ┏━━━━━━━━━━━━━━━━┓  ┌────────────────┐
+     ┃ X:             ┃  │ obs:           │  ↑
+     ┃ counts         ┃┓ │ "sample",[…]   │ cells
+     ┃                ┃┃ │                │  ↓
+     ┗━━━━━━━━━━━━━━━━┛┃┓└────────────────┘
+      ┃layers["ranks"] ┃┃
+      ┗━━━━━━━━━━━━━━━━┛┃
+       ┃layers["zscore"]┃
+       ┗━━━━━━━━━━━━━━━━┛
+        ←  genes  →
+     ┌────────────────┐
+     │ varp:          │┐
+     │ "correlations" ││  ↑
+     │                ││ genes
+     │                ││  ↓
+     │                ││
+     └────────────────┘│
+      │ "p-values"     │
+      └────────────────┘
+         ←  genes  →
+
+
+ ╭─────────╮                 ╭───────╮                 ╭─────────╮
+ │My_source├──┤edge_source├──┤My_edge├──┤edge_target├──┤My_target│
+ ╰┬────────╯                 ╰┬──────╯                 ╰────┬────╯
+  ┊                           ┊                             ┊
+  ╰my_prop:this               ╰my_edge_prop:that            ╽
+
+
+---tokens---
+'            ' Text.Whitespace
+'Named'       Text
+' '           Text.Whitespace
+'pipes'       Text
+'\n         ' Text.Whitespace
+'┌───────┴───────┐' Comment
+'\n'          Text.Whitespace
+
+'┌──────┐'    Comment
+' '           Text.Whitespace
+'┌─────┐'     Comment
+'   '         Text.Whitespace
+'┌─────┐'     Comment
+' '           Text.Whitespace
+'┌──────┐'    Comment
+'\n'          Text.Whitespace
+
+'│'           Comment
+'Client'      Text
+'│'           Comment
+' '           Text.Whitespace
+'│'           Comment
+'reply'       Text
+'│'           Comment
+'   '         Text.Whitespace
+'│'           Comment
+'query'       Text
+'│'           Comment
+' '           Text.Whitespace
+'│'           Comment
+'Server'      Text
+'│'           Comment
+'\n'          Text.Whitespace
+
+'└───┬──┘'    Comment
+' '           Text.Whitespace
+'└─┬───┘'     Comment
+'   '         Text.Whitespace
+'└─┬───┘'     Comment
+' '           Text.Whitespace
+'└───┬──┘'    Comment
+'\n    '      Text.Whitespace
+'│'           Comment
+'      '      Text.Whitespace
+'│'           Comment
+'         '   Text.Whitespace
+'│'           Comment
+'         '   Text.Whitespace
+'│'           Comment
+'\n    '      Text.Whitespace
+'│'           Comment
+'      '      Text.Whitespace
+'│'           Comment
+'         '   Text.Whitespace
+'│'           Comment
+'  '          Text.Whitespace
+'┌──────╢'    Comment
+'\n    '      Text.Whitespace
+'│'           Comment
+'      '      Text.Whitespace
+'│'           Comment
+'    '        Text.Whitespace
+'block'       Text
+'│'           Comment
+'  '          Text.Whitespace
+'│'           Comment
+' '           Text.Whitespace
+'wait'        Text
+' '           Text.Whitespace
+'║'           Comment
+'\n    '      Text.Whitespace
+'│'           Comment
+'query'       Text
+' '           Text.Whitespace
+'│'           Comment
+'         '   Text.Whitespace
+'│'           Comment
+'  '          Text.Whitespace
+'└─────'      Comment
+'>'           Text
+'║'           Comment
+'\n    '      Text.Whitespace
+'├───────────────' Comment
+'>'           Text
+'│'           Comment
+'         '   Text.Whitespace
+'│'           Comment
+'\n    '      Text.Whitespace
+'╟─────┐│'    Comment
+'         '   Text.Whitespace
+'├────────'   Comment
+'>'           Text
+'│'           Comment
+'\n    '      Text.Whitespace
+'║'           Comment
+'wait'        Text
+' '           Text.Whitespace
+'││'          Comment
+'block'       Text
+'    '        Text.Whitespace
+'│'           Comment
+'         '   Text.Whitespace
+'║'           Comment
+'process'     Text
+'\n    '      Text.Whitespace
+'║'           Comment
+'<'           Text
+'────┘│'      Comment
+'         '   Text.Whitespace
+'│'           Comment
+'         '   Text.Whitespace
+'║'           Comment
+'\n    '      Text.Whitespace
+'│'           Comment
+'      '      Text.Whitespace
+'│'           Comment
+'<'           Text
+'──────────────────┤' Comment
+'\n    '      Text.Whitespace
+'│'           Comment
+'<'           Text
+'─────┤'      Comment
+'         '   Text.Whitespace
+'│'           Comment
+'    '        Text.Whitespace
+'reply'       Text
+'│'           Comment
+'\n    '      Text.Whitespace
+'│'           Comment
+'      '      Text.Whitespace
+'│'           Comment
+'         '   Text.Whitespace
+'│'           Comment
+'         '   Text.Whitespace
+'│'           Comment
+'\n    '      Text.Whitespace
+'┊'           Comment
+'      '      Text.Whitespace
+'┊'           Comment
+'         '   Text.Whitespace
+'┊'           Comment
+'         '   Text.Whitespace
+'┊'           Comment
+'\n\n\n        ' Text.Whitespace
+'←'           Text
+'  '          Text.Whitespace
+'genes'       Text
+'  '          Text.Whitespace
+'→'           Text
+'\n     '     Text.Whitespace
+'┌────────────────┐' Comment
+'\n     '     Text.Whitespace
+'│'           Comment
+' '           Text.Whitespace
+'var:"id",[…]' Text
+'   '         Text.Whitespace
+'│'           Comment
+'\n     '     Text.Whitespace
+'└────────────────┘' Comment
+'\n     '     Text.Whitespace
+'┏━━━━━━━━━━━━━━━━┓' Comment
+'  '          Text.Whitespace
+'┌────────────────┐' Comment
+'\n     '     Text.Whitespace
+'┃'           Comment
+' '           Text.Whitespace
+'X:'          Text
+'             ' Text.Whitespace
+'┃'           Comment
+'  '          Text.Whitespace
+'│'           Comment
+' '           Text.Whitespace
+'obs:'        Text
+'           ' Text.Whitespace
+'│'           Comment
+'  '          Text.Whitespace
+'↑'           Text
+'\n     '     Text.Whitespace
+'┃'           Comment
+' '           Text.Whitespace
+'counts'      Text
+'         '   Text.Whitespace
+'┃┓'          Comment
+' '           Text.Whitespace
+'│'           Comment
+' '           Text.Whitespace
+'"sample",[…]' Text
+'   '         Text.Whitespace
+'│'           Comment
+' '           Text.Whitespace
+'cells'       Text
+'\n     '     Text.Whitespace
+'┃'           Comment
+'                ' Text.Whitespace
+'┃┃'          Comment
+' '           Text.Whitespace
+'│'           Comment
+'                ' Text.Whitespace
+'│'           Comment
+'  '          Text.Whitespace
+'↓'           Text
+'\n     '     Text.Whitespace
+'┗━━━━━━━━━━━━━━━━┛┃┓└────────────────┘' Comment
+'\n      '    Text.Whitespace
+'┃'           Comment
+'layers["ranks"]' Text
+' '           Text.Whitespace
+'┃┃'          Comment
+'\n      '    Text.Whitespace
+'┗━━━━━━━━━━━━━━━━┛┃' Comment
+'\n       '   Text.Whitespace
+'┃'           Comment
+'layers["zscore"]' Text
+'┃'           Comment
+'\n       '   Text.Whitespace
+'┗━━━━━━━━━━━━━━━━┛' Comment
+'\n        '  Text.Whitespace
+'←'           Text
+'  '          Text.Whitespace
+'genes'       Text
+'  '          Text.Whitespace
+'→'           Text
+'\n     '     Text.Whitespace
+'┌────────────────┐' Comment
+'\n     '     Text.Whitespace
+'│'           Comment
+' '           Text.Whitespace
+'varp:'       Text
+'          '  Text.Whitespace
+'│┐'          Comment
+'\n     '     Text.Whitespace
+'│'           Comment
+' '           Text.Whitespace
+'"correlations"' Text
+' '           Text.Whitespace
+'││'          Comment
+'  '          Text.Whitespace
+'↑'           Text
+'\n     '     Text.Whitespace
+'│'           Comment
+'                ' Text.Whitespace
+'││'          Comment
+' '           Text.Whitespace
+'genes'       Text
+'\n     '     Text.Whitespace
+'│'           Comment
+'                ' Text.Whitespace
+'││'          Comment
+'  '          Text.Whitespace
+'↓'           Text
+'\n     '     Text.Whitespace
+'│'           Comment
+'                ' Text.Whitespace
+'││'          Comment
+'\n     '     Text.Whitespace
+'└────────────────┘│' Comment
+'\n      '    Text.Whitespace
+'│'           Comment
+' '           Text.Whitespace
+'"p-values"'  Text
+'     '       Text.Whitespace
+'│'           Comment
+'\n      '    Text.Whitespace
+'└────────────────┘' Comment
+'\n         ' Text.Whitespace
+'←'           Text
+'  '          Text.Whitespace
+'genes'       Text
+'  '          Text.Whitespace
+'→'           Text
+'\n\n\n '     Text.Whitespace
+'╭─────────╮' Comment
+'                 ' Text.Whitespace
+'╭───────╮'   Comment
+'                 ' Text.Whitespace
+'╭─────────╮' Comment
+'\n '         Text.Whitespace
+'│'           Comment
+'My_source'   Text
+'├──┤'        Comment
+'edge_source' Text
+'├──┤'        Comment
+'My_edge'     Text
+'├──┤'        Comment
+'edge_target' Text
+'├──┤'        Comment
+'My_target'   Text
+'│'           Comment
+'\n '         Text.Whitespace
+'╰┬────────╯' Comment
+'                 ' Text.Whitespace
+'╰┬──────╯'   Comment
+'                 ' Text.Whitespace
+'╰────┬────╯' Comment
+'\n  '        Text.Whitespace
+'┊'           Comment
+'                           ' Text.Whitespace
+'┊'           Comment
+'                             ' Text.Whitespace
+'┊'           Comment
+'\n  '        Text.Whitespace
+'╰'           Comment
+'my_prop:this' Text
+'               ' Text.Whitespace
+'╰'           Comment
+'my_edge_prop:that' Text
+'            ' Text.Whitespace
+'╽'           Comment
+'\n'          Text.Whitespace
