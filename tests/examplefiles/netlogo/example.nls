@@ -1,0 +1,40 @@
+;; Example code for the NetLogo language (https://netlogo.org)
+
+breed [cats cat]
+breed [rats rat]
+
+cats-own [
+  feral?
+]
+
+to setup
+  clear-all
+
+  create-cats 10 [
+    set color orange
+    set feral? one-of [true false]
+  ]
+
+  create-rats 100 [
+    set color gray
+  ]
+end
+
+to go
+  ask cats [
+    lt random-normal 0 .456e2
+
+    let speed 1.23
+
+    if feral? [
+      fd 2 * speed
+    ]
+
+    fd speed
+  ]
+
+  ask rats [
+    lt random-normal 0 .345e2
+    fd 3
+  ]
+end
