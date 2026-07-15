@@ -15,6 +15,7 @@ Version 2.21.0
 
 - Updated lexers:
 
+  * Bash: Fix coloured keyword at the beginning of a name (#2926)
   * Boogie: Add missing Boogie and Civl Verifier keywords (#3156)
   * Clojure: Recognize named, octal and unicode character literals such as
     ``\space`` and ``\o377`` as a single token (#979)
