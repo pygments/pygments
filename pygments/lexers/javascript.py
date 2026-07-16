@@ -860,8 +860,8 @@ class ObjectiveJLexer(RegexLexer):
             (r'\n', Whitespace, '#pop'),
         ],
         'statements': [
-            (r'(L|@)?"', String, 'string'),
-            (r"(L|@)?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'",
+            (r'[L@]?"', String, 'string'),
+            (r"[L@]?'(\\.|\\[0-7]{1,3}|\\x[a-fA-F0-9]{1,2}|[^\\\'\n])'",
              String.Char),
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
             (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),

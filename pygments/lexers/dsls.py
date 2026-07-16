@@ -287,7 +287,7 @@ class ZeekLexer(RegexLexer):
             # operator.
             (r'/(?=.*/)', String.Regex, 'regex'),
 
-            (r'(T|F)\b', Keyword.Constant),
+            (r'[TF]\b', Keyword.Constant),
 
             # Port
             (r'\d{1,5}/(udp|tcp|icmp|unknown)\b', Number),

@@ -218,7 +218,7 @@ class CapDLLexer(RegexLexer):
 
             # Literals
             (r'0[xX][\da-fA-F]+', Number.Hex),
-            (r'\d+(\.\d+)?(k|M)?', Number),
+            (r'\d+(\.\d+)?[kM]?', Number),
             (words(('bits',), suffix=r'\b'), Number),
             (words(('cspace', 'vspace', 'reply_slot', 'caller_slot',
                     'ipc_buffer_slot'), suffix=r'\b'), Number),

@@ -1627,7 +1627,7 @@ class NewLispLexer(RegexLexer):
             (r'\[text\]*', String, "tagstring"),
 
             # 'special' operators...
-            (r"('|:)", Operator),
+            (r"[':]", Operator),
 
             # highlight the builtins
             (words(builtins, suffix=r'\b'),

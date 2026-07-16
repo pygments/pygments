@@ -141,7 +141,7 @@ class DtdLexer(RegexLexer):
 
         'common': [
             (r'\s+', Text),
-            (r'(%|&)[^;]*;', Name.Entity),
+            (r'[%&][^;]*;', Name.Entity),
             ('<!--', Comment, 'comment'),
             (r'[(|)*,?+]', Operator),
             (r'"[^"]*"', String.Double),

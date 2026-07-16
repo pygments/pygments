@@ -335,11 +335,11 @@ class PostScriptLexer(RegexLexer):
             # Numbers
             (r'<[0-9A-Fa-f]+>' + delimiter_end, Number.Hex),
             # Slight abuse: use Oct to signify any explicit base system
-            (r'[0-9]+\#(\-|\+)?([0-9]+\.?|[0-9]*\.[0-9]+|[0-9]+\.[0-9]*)'
-             r'((e|E)[0-9]+)?' + delimiter_end, Number.Oct),
-            (r'(\-|\+)?([0-9]+\.?|[0-9]*\.[0-9]+|[0-9]+\.[0-9]*)((e|E)[0-9]+)?'
+            (r'[0-9]+\#[+-]?([0-9]+\.?|[0-9]*\.[0-9]+|[0-9]+\.[0-9]*)'
+             r'([eE][0-9]+)?' + delimiter_end, Number.Oct),
+            (r'[+-]?([0-9]+\.?|[0-9]*\.[0-9]+|[0-9]+\.[0-9]*)([eE][0-9]+)?'
              + delimiter_end, Number.Float),
-            (r'(\-|\+)?[0-9]+' + delimiter_end, Number.Integer),
+            (r'[+-]?[0-9]+' + delimiter_end, Number.Integer),
 
             # References
             (rf'\/{valid_name}', Name.Variable),
