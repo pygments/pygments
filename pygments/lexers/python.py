@@ -12,6 +12,7 @@ import keyword
 
 from pygments.lexer import DelegatingLexer, RegexLexer, include, \
     bygroups, using, default, words, combined, this
+from pygments.lexers.shell import BashLexer
 from pygments.util import get_bool_opt, shebang_matches
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Other, Error, Whitespace
@@ -19,7 +20,8 @@ from pygments import unistring as uni
 
 __all__ = ['PythonLexer', 'PythonConsoleLexer', 'PythonTracebackLexer',
            'Python2Lexer', 'Python2TracebackLexer',
-           'CythonLexer', 'DgLexer', 'NumPyLexer']
+           'CythonLexer', 'DgLexer', 'NumPyLexer',
+           'StarlarkLexer', 'CoconutLexer', 'IPythonConsoleLexer']
 
 
 class PythonLexer(RegexLexer):
@@ -33,7 +35,7 @@ class PythonLexer(RegexLexer):
 
     name = 'Python'
     url = 'https://www.python.org'
-    aliases = ['python', 'py', 'sage', 'python3', 'py3', 'bazel', 'starlark', 'pyi']
+    aliases = ['python', 'py', 'sage', 'python3', 'py3', 'pyi']
     filenames = [
         '*.py',
         '*.pyw',
@@ -730,6 +732,48 @@ class PythonConsoleLexer(DelegatingLexer):
                 super().__init__(pylexer, _PythonConsoleLexerBase, Other.Code, **options)
         super().__init__(tblexer, _ReplaceInnerCode, Other.Traceback, **options)
 
+class IPythonConsoleLexer(RegexLexer):
+    """
+    For `IPython <https://ipython.org/>`_ console sessions and ``.ipy`` scripts.
+
+    Handles IPython-specific syntax:
+
+    - ``In [1]:`` / ``Out[1]:`` prompts
+    - ``!cmd`` and ``!!cmd`` shell commands
+    - ``%magic`` line magics and ``%%magic`` cell magics
+    - ``obj?`` and ``obj??`` help queries
+
+    .. versionadded:: 2.21
+    """
+
+    name = 'IPython console session'
+    url = 'https://ipython.org/'
+    aliases = ['ipython', 'ipy', 'ipython-console']
+    filenames = ['*.ipy']
+    mimetypes = ['text/x-ipython']
+    version_added = '2.21'
+
+    tokens = {
+        'root': [
+            (r'^(In \[)(\d+)(\]: )',
+             bygroups(Generic.Prompt, Generic.Prompt.LineNo, Generic.Prompt)),
+            (r'^(Out\[)(\d+)(\]: )',
+             bygroups(Generic.Output, Generic.Output, Generic.Output)),
+            (r'^(   \.\.\.+:? ?)', Generic.Prompt),
+            (r'^(%%\w+)([ \t].*)?$',
+             bygroups(Name.Decorator, using(PythonLexer))),
+            (r'^(%\w+)(.*)?$',
+             bygroups(Name.Decorator, using(PythonLexer))),
+            (r'^(!{1,2})(.*)$',
+             bygroups(Operator, using(BashLexer))),
+            (r'^(\?{1,2})(.+)$',
+             bygroups(Operator, using(PythonLexer))),
+            (r'^(.+?)(\?{1,2})$',
+             bygroups(using(PythonLexer), Operator)),
+            (r'^(.+)$', using(PythonLexer)),
+            (r'\n', Whitespace),
+        ],
+    }
 
 class PythonTracebackLexer(RegexLexer):
     """
@@ -835,6 +879,35 @@ class Python2TracebackLexer(RegexLexer):
         ],
     }
 
+class StarlarkLexer(PythonLexer):
+    """
+    For `Starlark <https://bazel.build/rules/language>`_ (Bazel/Buck) source.
+
+    Starlark is a Python dialect used for build rules. ``PythonLexer``
+    no longer claims Starlark file patterns.
+
+    .. versionadded:: 2.21
+    """
+
+    name = 'Starlark'
+    url = 'https://bazel.build/rules/language'
+    aliases = ['starlark', 'bazel', 'bzl']
+    filenames = ['*.bzl', 'BUILD', 'BUILD.bazel', 'WORKSPACE', 'WORKSPACE.bazel']
+    mimetypes = ['text/x-starlark', 'text/x-bazel']
+    version_added = '2.21'
+
+    STARLARK_BUILTINS = frozenset([
+        'aspect', 'attr', 'config_setting', 'depset', 'filegroup',
+        'genrule', 'glob', 'load', 'package', 'provider',
+        'repository_rule', 'rule', 'select', 'struct', 'workspace',
+    ])
+
+    def get_tokens_unprocessed(self, text):
+        for index, token, value in PythonLexer.get_tokens_unprocessed(self, text):
+            if token is Name and value in self.STARLARK_BUILTINS:
+                yield index, Name.Builtin, value
+            else:
+                yield index, token, value
 
 class CythonLexer(RegexLexer):
     """
@@ -1114,6 +1187,33 @@ class DgLexer(RegexLexer):
         ],
     }
 
+class CoconutLexer(PythonLexer):
+    """
+    For `Coconut <https://coconut-lang.org/>`_ source code.
+
+    Coconut is a functional-style Python superset that compiles to Python.
+    ``.coco`` / ``.coconut`` files are not recognized by ``PythonLexer``.
+
+    .. versionadded:: 2.21
+    """
+
+    name = 'Coconut'
+    url = 'https://coconut-lang.org/'
+    aliases = ['coconut', 'coco']
+    filenames = ['*.coco', '*.coconut']
+    mimetypes = ['text/x-coconut']
+    version_added = '2.21'
+
+    COCONUT_KEYWORDS = frozenset([
+        'addpattern', 'case', 'data', 'match', 'operator', 'where', 'with',
+    ])
+
+    def get_tokens_unprocessed(self, text):
+        for index, token, value in PythonLexer.get_tokens_unprocessed(self, text):
+            if token is Name and value in self.COCONUT_KEYWORDS:
+                yield index, Keyword, value
+            else:
+                yield index, token, value
 
 class NumPyLexer(PythonLexer):
     """
@@ -1209,3 +1309,5 @@ class NumPyLexer(PythonLexer):
         return (shebang_matches(text, r'pythonw?(3(\.\d)?)?') or
                 'import ' in ltext) \
             and ('import numpy' in ltext or 'from numpy import' in ltext)
+
+
