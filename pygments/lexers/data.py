@@ -349,10 +349,8 @@ class YamlLexer(ExtendedRegexLexer):
             (r'[ ]+$', Whitespace),
             # line breaks are ignored
             (r'\n+', Whitespace),
-            # non-breaking spaces are a part of the value
-            (r'\xa0+', Name.Variable),
             # other whitespaces are a part of the value
-            (r'[ ]+', Name.Variable),
+            (r'[ \xa0]+', Name.Variable),
         ],
 
         # single-quoted scalars
