@@ -59,6 +59,9 @@ pygmentize = "pygments.cmdline:main"
 [tool.hatch.build.targets.wheel]
 packages = ["pygments"]
 
+[tool.hatch.build.targets.sdist]
+exclude = ["/tests"]
+
 [tool.hatch.version]
 path = "pygments/__init__.py"
 
