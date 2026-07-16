@@ -162,6 +162,7 @@ def test_L_opt():
     o = check_success('-L', 'lexer')
     assert 'Lexers' in o and 'Formatters' not in o
     check_success('-L', 'lexers')
+    check_failure('-L', 'invalid-kind', code=2)
 
 
 def test_O_opt():
