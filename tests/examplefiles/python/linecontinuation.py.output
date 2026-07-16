@@ -49,9 +49,12 @@
 'path'        Name
 '\n'          Text.Whitespace
 
-'from'        Keyword.Namespace
-' \\\n        ' Text.Whitespace
-'os'          Name.Namespace
+'from'        Keyword
+' '           Text
+'\\\n'        Text
+
+'        '    Text
+'os'          Name
 ' '           Text
 '\\\n'        Text
 

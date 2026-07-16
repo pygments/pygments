@@ -119,10 +119,12 @@ class PythonLexer(RegexLexer):
             (r'^(lazy)((?:\s|\\\s)+)(import)((?:\s|\\\s)+)',
              bygroups(Keyword.Namespace, Whitespace, Keyword.Namespace, Whitespace),
              'import'),
-            (r'(from)((?:\s|\\\s)+)', bygroups(Keyword.Namespace, Whitespace),
-             'fromimport'),
+            (r'(from)((?:\s|\\\s)+)(?=(?:\.*' + uni_name + r'|\.+)'
+             r'(?:\s*\.\s*' + uni_name + r')*\s+import\b)',
+             bygroups(Keyword.Namespace, Whitespace), 'fromimport'),
             (r'(import)((?:\s|\\\s)+)', bygroups(Keyword.Namespace, Whitespace),
              'import'),
+            (r'from\b', Keyword),
             include('expr'),
         ],
         'expr': [

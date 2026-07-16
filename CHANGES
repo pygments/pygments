@@ -40,6 +40,7 @@ Version 2.21.0
     ``\[Nu]`` instead of emitting an ``Error`` token (#3097)
   * MATLAB, Octave, Scilab: Allow ``...`` line continuations in function
     definition signatures (#659)
+  * Python: Distinguish exception chaining from import statements (#2880)
   * Ruby: Don't duplicate the body of an unterminated heredoc (#2998)
   * Ruby: Treat ``<<`` after ``)``, ``]`` or ``}`` as the shift operator
     rather than the start of a heredoc (#760)

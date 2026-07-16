@@ -1,0 +1,38 @@
+# Regression test for exception chaining being recognized as an import (#2880)
+
+---input---
+try:
+    raise Exception
+except Exception as error:
+    raise RuntimeError from error
+
+---tokens---
+'try'         Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'raise'       Keyword
+' '           Text
+'Exception'   Name.Exception
+'\n'          Text.Whitespace
+
+'except'      Keyword
+' '           Text
+'Exception'   Name.Exception
+' '           Text
+'as'          Keyword
+' '           Text
+'error'       Name
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'raise'       Keyword
+' '           Text
+'RuntimeError' Name.Exception
+' '           Text
+'from'        Keyword
+' '           Text
+'error'       Name
+'\n'          Text.Whitespace
