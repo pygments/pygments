@@ -1,0 +1,146 @@
+'package'     Keyword.Namespace
+' '           Text.Whitespace
+'main'        Name.Other
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'main'        Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'float'       Name.Other
+' '           Text.Whitespace
+'float32'     Keyword.Type
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'_'           Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'float64'     Keyword.Type
+'('           Punctuation
+'float'       Name.Other
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'_'           Name.Other
+' '           Text.Whitespace
+'map'         Keyword.Type
+'['           Punctuation
+'string'      Keyword.Type
+']'           Punctuation
+'any'         Keyword.Type
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'_'           Name.Other
+' '           Text.Whitespace
+'chan'        Keyword.Type
+' '           Text.Whitespace
+'int'         Keyword.Type
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'_'           Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'...'         Punctuation
+']'           Punctuation
+'int'         Keyword.Type
+'{'           Punctuation
+'0o755'       Literal.Number.Oct
+','           Punctuation
+' '           Text.Whitespace
+'0O_644'      Literal.Number.Oct
+','           Punctuation
+' '           Text.Whitespace
+'0777'        Literal.Number.Oct
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'x'           Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0b1100'      Literal.Number.Bin
+' '           Text.Whitespace
+'^'           Operator
+' '           Text.Whitespace
+'0B1001'      Literal.Number.Bin
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'0b00_10'     Literal.Number.Bin
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'_'           Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1_000_000'   Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'_'           Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x_fefe_1a3d' Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'_'           Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'!'           Operator
+'('           Punctuation
+'x'           Name.Other
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'&&'          Operator
+' '           Text.Whitespace
+'x'           Name.Other
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'8'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'x'           Name.Other
+' '           Text.Whitespace
+'^='          Operator
+' '           Text.Whitespace
+'0b_0101'     Literal.Number.Bin
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

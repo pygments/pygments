@@ -1,0 +1,22 @@
+---input---
+Console.WriteLine($@"C:\Users\{username}\Desktop");
+Console.WriteLine(@$"C:\Users\{username}\Desktop");
+
+---tokens---
+'Console'     Name
+'.'           Punctuation
+'WriteLine'   Name
+'('           Punctuation
+'$@"C:\\Users\\{username}\\Desktop"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'Console'     Name
+'.'           Punctuation
+'WriteLine'   Name
+'('           Punctuation
+'@$"C:\\Users\\{username}\\Desktop"' Literal.String
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

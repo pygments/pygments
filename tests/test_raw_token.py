@@ -66,3 +66,18 @@ def test_invalid_raw_token():
         highlight(b"Token.Text\t'\xff'", RawTokenLexer(), RawTokenFormatter())
         == b"Token.Text\t'\\xff'\n"
     )
+
+
+def test_raw_token_error_color():
+    # ``error_color`` wraps Error tokens in an ANSI color. The output stream is
+    # binary, so the colorized line must stay bytes (regression test for the
+    # ``str``/``bytes`` mix that crashed the formatter).
+    from pygments.console import codes
+
+    out = highlight("$", PythonLexer(), RawTokenFormatter(error_color="red"))
+    assert out == (
+        codes["red"].encode()
+        + b"Token.Error\t'$'\n"
+        + codes["reset"].encode()
+        + b"Token.Text.Whitespace\t'\\n'\n"
+    )
