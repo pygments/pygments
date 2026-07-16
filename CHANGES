@@ -50,7 +50,8 @@ Version 2.21.0
   * TypeScript: Only treat ``module`` as a keyword when followed by
     whitespace, so identifiers like ``modules`` and ``module.exports``
     are highlighted correctly (#2823)
-  * YAML: Add ``yml`` alias (#3169)
+  * YAML: Add ``yml`` alias (#3169), recognize non-breaking spaces as valid
+    scalar content (#2827)
   * Vala: Recognize verbatim strings before ordinary quoted strings (#2861)
   * Vala: Recognize conditional compilation directives (#2858)
   * WebAssembly: Recognize sign-extension operators (#2991, #3160)

@@ -1,0 +1,11 @@
+---input---
+foo: bar baz
+
+---tokens---
+'foo'         Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'bar'         Literal.Scalar.Plain
+'\xa0'        Literal.Scalar.Plain
+'baz'         Literal.Scalar.Plain
+'\n'          Text.Whitespace
