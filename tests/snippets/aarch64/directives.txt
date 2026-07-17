@@ -1,0 +1,47 @@
+---input---
+        mov     x0, #1; ret
+        .section .rodata
+msg:    .asciz  "hello, world"
+        .align  4
+        .word   0x1234, label
+
+---tokens---
+'        '    Text.Whitespace
+'mov'         Keyword
+'     '       Text.Whitespace
+'x0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'#1'          Literal.Number
+';'           Punctuation
+' '           Text.Whitespace
+'ret'         Keyword
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'.section'    Keyword.Pseudo
+' '           Text.Whitespace
+'.rodata'     Name.Constant
+'\n'          Text.Whitespace
+
+'msg:'        Name.Label
+'    '        Text.Whitespace
+'.asciz'      Keyword.Pseudo
+'  '          Text.Whitespace
+'"hello, world"' Literal.String
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'.align'      Keyword.Pseudo
+'  '          Text.Whitespace
+'4'           Literal.Number
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'.word'       Keyword.Pseudo
+'   '         Text.Whitespace
+'0x1234'      Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'label'       Name.Constant
+'\n'          Text.Whitespace

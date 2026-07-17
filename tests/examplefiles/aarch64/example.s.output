@@ -1,0 +1,229 @@
+'// AArch64 assembly example: strlen and a small SIMD add.' Comment.Single
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'.arch'       Keyword.Pseudo
+'   '         Text.Whitespace
+'armv8'       Name.Constant
+'-'           Punctuation
+'a'           Name.Constant
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'.text'       Keyword.Pseudo
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'.global'     Keyword.Pseudo
+' '           Text.Whitespace
+'strlen'      Name.Constant
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'.type'       Keyword.Pseudo
+'   '         Text.Whitespace
+'strlen'      Name.Constant
+','           Punctuation
+' '           Text.Whitespace
+'%function'   Name.Constant
+'\n'          Text.Whitespace
+
+'strlen:'     Name.Label
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'mov'         Keyword
+'     '       Text.Whitespace
+'x1'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'x0'          Name.Builtin
+'\n'          Text.Whitespace
+
+'.Lloop:'     Name.Label
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'ldrb'        Keyword
+'    '        Text.Whitespace
+'w2'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'x1'          Name.Builtin
+'],'          Punctuation
+' '           Text.Whitespace
+'#1'          Literal.Number
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'cbnz'        Keyword
+'    '        Text.Whitespace
+'w2'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'.Lloop'      Name.Constant
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'sub'         Keyword
+'     '       Text.Whitespace
+'x0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'x1'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'x0'          Name.Builtin
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'sub'         Keyword
+'     '       Text.Whitespace
+'x0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'x0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'#1'          Literal.Number
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'ret'         Keyword
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'.size'       Keyword.Pseudo
+'   '         Text.Whitespace
+'strlen'      Name.Constant
+','           Punctuation
+' '           Text.Whitespace
+'.'           Name.Constant
+'-'           Punctuation
+'strlen'      Name.Constant
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'.global'     Keyword.Pseudo
+' '           Text.Whitespace
+'vec_add'     Name.Constant
+'\n'          Text.Whitespace
+
+'vec_add:'    Name.Label
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'ld1'         Keyword
+'     '       Text.Whitespace
+'{'           Punctuation
+'v0.4s'       Name.Builtin
+'},'          Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'x0'          Name.Builtin
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'ld1'         Keyword
+'     '       Text.Whitespace
+'{'           Punctuation
+'v1.4s'       Name.Builtin
+'},'          Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'x1'          Name.Builtin
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'fadd'        Keyword
+'    '        Text.Whitespace
+'v2.4s'       Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'v0.4s'       Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'v1.4s'       Name.Builtin
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'st1'         Keyword
+'     '       Text.Whitespace
+'{'           Punctuation
+'v2.4s'       Name.Builtin
+'},'          Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'x2'          Name.Builtin
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'ret'         Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'.global'     Keyword.Pseudo
+' '           Text.Whitespace
+'cond_example' Name.Constant
+'\n'          Text.Whitespace
+
+'cond_example:' Name.Label
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'cmp'         Keyword
+'     '       Text.Whitespace
+'x0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'#0'          Literal.Number
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'csel'        Keyword
+'    '        Text.Whitespace
+'x0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'x1'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'x2'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'eq'          Name.Constant
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'b.lt'        Keyword
+'    '        Text.Whitespace
+'.Lneg'       Name.Constant
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'ret'         Keyword
+'\n'          Text.Whitespace
+
+'.Lneg:'      Name.Label
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'neg'         Keyword
+'     '       Text.Whitespace
+'x0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'x0'          Name.Builtin
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'ret'         Keyword
+'\n'          Text.Whitespace

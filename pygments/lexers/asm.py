@@ -20,7 +20,7 @@ from pygments.token import Text, Name, Number, String, Comment, Punctuation, \
 __all__ = ['GasLexer', 'ObjdumpLexer', 'DObjdumpLexer', 'CppObjdumpLexer',
            'CObjdumpLexer', 'HsailLexer', 'LlvmLexer', 'LlvmMirBodyLexer',
            'LlvmMirLexer', 'NasmLexer', 'NasmObjdumpLexer', 'TasmLexer',
-           'Ca65Lexer', 'Dasm16Lexer']
+           'Ca65Lexer', 'Dasm16Lexer', 'AArch64Lexer']
 
 
 class GasLexer(RegexLexer):
@@ -1056,3 +1056,79 @@ class Dasm16Lexer(RegexLexer):
             (r';.*?\n', Comment)
         ],
     }
+
+
+class AArch64Lexer(RegexLexer):
+    """
+    Lexer for AArch64 (ARM64) assembly, in the GNU assembler (GAS) dialect.
+    """
+    name = 'AArch64'
+    aliases = ['aarch64', 'arm64']
+    # ``.s``/``.S`` are claimed by GasLexer; this lexer is selected via its
+    # aliases, MIME type or ``analyse_text`` rather than by file name.
+    filenames = []
+    mimetypes = ['text/x-aarch64']
+    url = 'https://developer.arm.com/documentation/ddi0602/latest'
+    version_added = '2.21'
+
+    flags = re.IGNORECASE
+
+    identifier = r'[a-z_.$][\w.$]*'
+
+    #: General-purpose registers (x0-x30, w0-w30) and their aliases.
+    gpr = r'(?:[wx](?:[12][0-9]|30|[0-9])|[wx]zr|[wx]sp|sp|lr|fp|pc)\b'
+    #: FP/SIMD registers (v/q/d/s/h/b 0-31) with an optional arrangement
+    #: specifier such as ``.16b``, ``.4s`` or ``.2d``.
+    simd = r'(?:[vqdshb](?:3[01]|[12][0-9]|[0-9]))(?:\.\d*[bhsd])?\b'
+
+    #: Numeric literal without a leading sign (hex, binary or decimal/float).
+    number = r'0x[0-9a-f]+|0b[01]+|\d+\.?\d*(?:e[+-]?\d+)?'
+
+    tokens = {
+        'root': [
+            include('whitespace'),
+            # Labels, including numeric local labels such as ``1:``.
+            (r'(?:[0-9]+|' + identifier + r'):', Name.Label),
+            # Directives such as ``.text``, ``.global foo`` or ``.4byte``.
+            (r'\.[\w.$]+', Keyword.Pseudo, 'instruction-args'),
+            # The mnemonic is simply the first word of a statement (this also
+            # covers conditional branches such as ``b.eq``); whatever follows
+            # is treated as an operand.  This avoids enumerating the huge and
+            # ever-growing AArch64 instruction set.
+            (identifier, Keyword, 'instruction-args'),
+            (r'\n', Whitespace),
+        ],
+        'instruction-args': [
+            (r'\n', Whitespace, '#pop'),
+            (r';', Punctuation, '#pop'),  # statement separator
+            include('whitespace'),
+            (gpr, Name.Builtin),
+            (simd, Name.Builtin),
+            # Local label references such as ``1f`` (forward) or ``2b`` (back).
+            (r'\d+[fb]\b', Name.Label),
+            # Strings; tolerate an unterminated literal at end of line.
+            (r'"(\\.|[^"\\\n])*"?', String),
+            # Immediates keep their sign after ``#``; bare ``+``/``-`` in an
+            # expression such as ``sym+4`` stays punctuation.
+            (r'#[+-]?(?:' + number + r')', Number),
+            (number, Number),
+            # Symbols and operand keywords (condition codes, shifts, ...).
+            (r'[@%]?' + identifier, Name.Constant),
+            (r'[\[\](){}!,:=|+\-*/&^~<>@#]+', Punctuation),
+        ],
+        'whitespace': [
+            (r'[ \t]+', Whitespace),
+            (r'//.*', Comment.Single),
+            (r'/\*[\s\S]*?\*/', Comment.Multiline),
+        ],
+    }
+
+    def analyse_text(text):
+        result = 0
+        if re.search(r'\b(?:stp|ldp)\s+x\d', text, re.IGNORECASE):
+            result += 0.3
+        if re.search(r'\bb\.(?:eq|ne|lt|gt|le|ge)\b', text, re.IGNORECASE):
+            result += 0.2
+        if re.search(r'\.arch\s+armv[0-9]+', text, re.IGNORECASE):
+            result += 0.3
+        return min(result, 1.0)

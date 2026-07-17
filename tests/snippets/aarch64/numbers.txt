@@ -1,0 +1,80 @@
+---input---
+        mov     x0, #0xdead
+        mov     w1, #0b1010
+        movz    x2, #42
+        add     x3, x3, #-8
+        fmov    d0, #1.5
+        fmov    s1, #2.0e3
+        ldr     x4, [x5, #-16]!
+
+---tokens---
+'        '    Text.Whitespace
+'mov'         Keyword
+'     '       Text.Whitespace
+'x0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'#0xdead'     Literal.Number
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'mov'         Keyword
+'     '       Text.Whitespace
+'w1'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'#0b1010'     Literal.Number
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'movz'        Keyword
+'    '        Text.Whitespace
+'x2'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'#42'         Literal.Number
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'add'         Keyword
+'     '       Text.Whitespace
+'x3'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'x3'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'#-8'         Literal.Number
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'fmov'        Keyword
+'    '        Text.Whitespace
+'d0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'#1.5'        Literal.Number
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'fmov'        Keyword
+'    '        Text.Whitespace
+'s1'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'#2.0e3'      Literal.Number
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'ldr'         Keyword
+'     '       Text.Whitespace
+'x4'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'x5'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'#-16'        Literal.Number
+']!'          Punctuation
+'\n'          Text.Whitespace

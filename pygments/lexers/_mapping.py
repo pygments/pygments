@@ -2,6 +2,7 @@
 # DO NOT EDIT BY HAND; run `tox -e mapfiles` instead.
 
 LEXERS = {
+    'AArch64Lexer': ('pygments.lexers.asm', 'AArch64', ('aarch64', 'arm64'), (), ('text/x-aarch64',)),
     'ABAPLexer': ('pygments.lexers.business', 'ABAP', ('abap',), ('*.abap', '*.ABAP'), ('text/x-abap',)),
     'AMDGPULexer': ('pygments.lexers.amdgpu', 'AMDGPU', ('amdgpu',), ('*.isa',), ()),
     'APLLexer': ('pygments.lexers.apl', 'APL', ('apl',), ('*.apl', '*.aplf', '*.aplo', '*.apln', '*.aplc', '*.apli', '*.dyalog'), ()),
