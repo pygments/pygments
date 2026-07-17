@@ -1,0 +1,19 @@
+---input---
+## documentation
+
+## multi
+## line
+## documentation
+
+---tokens---
+'## documentation' Comment.Special
+'\n\n'        Text.Whitespace
+
+'## multi'    Comment.Special
+'\n'          Text.Whitespace
+
+'## line'     Comment.Special
+'\n'          Text.Whitespace
+
+'## documentation' Comment.Special
+'\n'          Text.Whitespace
