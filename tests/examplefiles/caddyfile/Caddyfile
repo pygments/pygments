@@ -1,0 +1,79 @@
+# Global options block
+{
+	email admin@example.com
+	admin off
+	http_port 80
+	https_port 443
+	default_sni example.com
+	log {
+		output file /var/log/caddy/access.log
+		format json
+		level INFO
+	}
+}
+
+# Reusable snippet
+(logging) {
+	log {
+		output file /var/log/caddy/{args[0]}.log
+	}
+}
+
+# Simple static site
+example.com {
+	root * /srv/www
+	file_server
+	encode gzip zstd
+
+	import logging example
+
+	@api {
+		path /api/*
+		method GET POST
+	}
+	handle @api {
+		reverse_proxy localhost:8080 {
+			header_up Host {http.request.host}
+			header_up X-Real-IP {remote_host}
+			lb_policy round_robin
+		}
+	}
+
+	@websockets {
+		header Connection *Upgrade*
+		header Upgrade websocket
+	}
+
+	redir /old /new permanent
+
+	respond /health 200
+
+	respond <<HTML 200
+	<html>
+		<body>Hello from {http.request.uri}</body>
+	</html>
+	HTML
+
+	header {
+		Strict-Transport-Security "max-age=31536000;"
+		-Server
+	}
+
+	tls {$ACME_EMAIL} {
+		protocols tls1.2 tls1.3
+	}
+
+	basic_auth {
+		alice $2a$14$hashedpasswordhere
+	}
+}
+
+# Redirect www to apex
+www.example.com {
+	redir https://example.com{uri} permanent
+}
+
+:8080 {
+	metrics /metrics
+	respond "It works!" 200
+}

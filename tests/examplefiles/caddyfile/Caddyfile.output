@@ -1,0 +1,275 @@
+'# Global options block' Comment.Single
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'email'       Text
+' '           Text.Whitespace
+'admin@example.com' Text
+'\n\t'        Text.Whitespace
+'admin'       Text
+' '           Text.Whitespace
+'off'         Text
+'\n\t'        Text.Whitespace
+'http_port'   Text
+' '           Text.Whitespace
+'80'          Literal.Number
+'\n\t'        Text.Whitespace
+'https_port'  Text
+' '           Text.Whitespace
+'443'         Literal.Number
+'\n\t'        Text.Whitespace
+'default_sni' Text
+' '           Text.Whitespace
+'example.com' Text
+'\n\t'        Text.Whitespace
+'log'         Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t\t'      Text.Whitespace
+'output'      Text
+' '           Text.Whitespace
+'file'        Text
+' '           Text.Whitespace
+'/var/log/caddy/access.log' Text
+'\n\t\t'      Text.Whitespace
+'format'      Text
+' '           Text.Whitespace
+'json'        Text
+'\n\t\t'      Text.Whitespace
+'level'       Text
+' '           Text.Whitespace
+'INFO'        Text
+'\n\t'        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'# Reusable snippet' Comment.Single
+'\n'          Text.Whitespace
+
+'('           Punctuation
+'logging'     Text
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'log'         Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t\t'      Text.Whitespace
+'output'      Text
+' '           Text.Whitespace
+'file'        Text
+' '           Text.Whitespace
+'/var/log/caddy/' Text
+'{args[0]}'   Name.Variable
+'.log'        Text
+'\n\t'        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'# Simple static site' Comment.Single
+'\n'          Text.Whitespace
+
+'example.com' Text
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'root'        Keyword
+' '           Text.Whitespace
+'*'           Text
+' '           Text.Whitespace
+'/srv/www'    Text
+'\n\t'        Text.Whitespace
+'file_server' Keyword
+'\n\t'        Text.Whitespace
+'encode'      Keyword
+' '           Text.Whitespace
+'gzip'        Text
+' '           Text.Whitespace
+'zstd'        Text
+'\n\n\t'      Text.Whitespace
+'import'      Keyword
+' '           Text.Whitespace
+'logging'     Text
+' '           Text.Whitespace
+'example'     Text
+'\n\n\t'      Text.Whitespace
+'@api'        Name.Decorator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t\t'      Text.Whitespace
+'path'        Text
+' '           Text.Whitespace
+'/api/*'      Text
+'\n\t\t'      Text.Whitespace
+'method'      Text
+' '           Text.Whitespace
+'GET'         Text
+' '           Text.Whitespace
+'POST'        Text
+'\n\t'        Text.Whitespace
+'}'           Punctuation
+'\n\t'        Text.Whitespace
+'handle'      Keyword
+' '           Text.Whitespace
+'@api'        Name.Decorator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t\t'      Text.Whitespace
+'reverse_proxy' Keyword
+' '           Text.Whitespace
+'localhost:8080' Text
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t\t\t'    Text.Whitespace
+'header_up'   Text
+' '           Text.Whitespace
+'Host'        Text
+' '           Text.Whitespace
+'{http.request.host}' Name.Variable
+'\n\t\t\t'    Text.Whitespace
+'header_up'   Text
+' '           Text.Whitespace
+'X-Real-IP'   Text
+' '           Text.Whitespace
+'{remote_host}' Name.Variable
+'\n\t\t\t'    Text.Whitespace
+'lb_policy'   Text
+' '           Text.Whitespace
+'round_robin' Text
+'\n\t\t'      Text.Whitespace
+'}'           Punctuation
+'\n\t'        Text.Whitespace
+'}'           Punctuation
+'\n\n\t'      Text.Whitespace
+'@websockets' Name.Decorator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t\t'      Text.Whitespace
+'header'      Keyword
+' '           Text.Whitespace
+'Connection'  Text
+' '           Text.Whitespace
+'*Upgrade*'   Text
+'\n\t\t'      Text.Whitespace
+'header'      Keyword
+' '           Text.Whitespace
+'Upgrade'     Text
+' '           Text.Whitespace
+'websocket'   Text
+'\n\t'        Text.Whitespace
+'}'           Punctuation
+'\n\n\t'      Text.Whitespace
+'redir'       Keyword
+' '           Text.Whitespace
+'/old'        Text
+' '           Text.Whitespace
+'/new'        Text
+' '           Text.Whitespace
+'permanent'   Text
+'\n\n\t'      Text.Whitespace
+'respond'     Keyword
+' '           Text.Whitespace
+'/health'     Text
+' '           Text.Whitespace
+'200'         Literal.Number
+'\n\n\t'      Text.Whitespace
+'respond'     Keyword
+' '           Text.Whitespace
+'<<'          Operator
+'HTML'        Literal.String.Delimiter
+' '           Text.Whitespace
+'200'         Literal.Number
+'\n'          Text.Whitespace
+
+'\t<html>\n\t\t<body>Hello from {http.request.uri}</body>\n\t</html>\n' Literal.String.Heredoc
+
+'\t'          Text.Whitespace
+'HTML'        Literal.String.Delimiter
+'\n\n\t'      Text.Whitespace
+'header'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t\t'      Text.Whitespace
+'Strict-Transport-Security' Text
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'max-age=31536000;' Literal.String.Double
+'"'           Literal.String.Double
+'\n\t\t'      Text.Whitespace
+'-Server'     Text
+'\n\t'        Text.Whitespace
+'}'           Punctuation
+'\n\n\t'      Text.Whitespace
+'tls'         Keyword
+' '           Text.Whitespace
+'{$ACME_EMAIL}' Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t\t'      Text.Whitespace
+'protocols'   Text
+' '           Text.Whitespace
+'tls1.2'      Text
+' '           Text.Whitespace
+'tls1.3'      Text
+'\n\t'        Text.Whitespace
+'}'           Punctuation
+'\n\n\t'      Text.Whitespace
+'basic_auth'  Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t\t'      Text.Whitespace
+'alice'       Text
+' '           Text.Whitespace
+'$2a$14$hashedpasswordhere' Text
+'\n\t'        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'# Redirect www to apex' Comment.Single
+'\n'          Text.Whitespace
+
+'www.example.com' Text
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'redir'       Keyword
+' '           Text.Whitespace
+'https://example.com' Text
+'{uri}'       Name.Variable
+' '           Text.Whitespace
+'permanent'   Text
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+':8080'       Text
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'metrics'     Keyword
+' '           Text.Whitespace
+'/metrics'    Text
+'\n\t'        Text.Whitespace
+'respond'     Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'It works!'   Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'200'         Literal.Number
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

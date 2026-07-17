@@ -1,0 +1,22 @@
+---input---
+example.com {
+	root * /srv/www
+	file_server
+}
+
+---tokens---
+'example.com' Text
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'root'        Keyword
+' '           Text.Whitespace
+'*'           Text
+' '           Text.Whitespace
+'/srv/www'    Text
+'\n\t'        Text.Whitespace
+'file_server' Keyword
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

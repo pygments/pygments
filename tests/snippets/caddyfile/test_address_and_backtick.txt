@@ -1,0 +1,26 @@
+---input---
+192.168.1.1:8080 {
+	respond `raw {not.a.placeholder}`
+	reverse_proxy header respond
+}
+
+---tokens---
+'192.168.1.1:8080' Text
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'respond'     Keyword
+' '           Text.Whitespace
+'`'           Literal.String.Backtick
+'raw {not.a.placeholder}' Literal.String.Backtick
+'`'           Literal.String.Backtick
+'\n\t'        Text.Whitespace
+'reverse_proxy' Keyword
+' '           Text.Whitespace
+'header'      Text
+' '           Text.Whitespace
+'respond'     Text
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

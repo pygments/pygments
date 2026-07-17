@@ -1,0 +1,31 @@
+---input---
+@api path /api/*
+reverse_proxy @api localhost:8080 {
+	header_up Host {http.request.host}
+}
+
+---tokens---
+'@api'        Name.Decorator
+' '           Text.Whitespace
+'path'        Text
+' '           Text.Whitespace
+'/api/*'      Text
+'\n'          Text.Whitespace
+
+'reverse_proxy' Keyword
+' '           Text.Whitespace
+'@api'        Name.Decorator
+' '           Text.Whitespace
+'localhost:8080' Text
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'header_up'   Text
+' '           Text.Whitespace
+'Host'        Text
+' '           Text.Whitespace
+'{http.request.host}' Name.Variable
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
