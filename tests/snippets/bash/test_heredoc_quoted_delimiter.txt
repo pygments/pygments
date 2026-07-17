@@ -1,0 +1,10 @@
+---input---
+cat <<"EOF"
+$not_expanded
+EOF
+
+---tokens---
+'cat'         Text
+' '           Text.Whitespace
+'<<"EOF"\n$not_expanded\nEOF' Literal.String
+'\n'          Text.Whitespace
