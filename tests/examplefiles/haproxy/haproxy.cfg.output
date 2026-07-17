@@ -1,0 +1,795 @@
+'# This configuration creates a classical reverse-proxy and load balancer for' Comment.Single
+'\n'          Text.Whitespace
+
+'# public services. It presents ports 80 and 443 (with 80 redirecting to 443),' Comment.Single
+'\n'          Text.Whitespace
+
+'# enables caching up to one hour, and load-balances the service on a farm of' Comment.Single
+'\n'          Text.Whitespace
+
+'# 4 servers on private IP addresses which are checked using HTTP checks and' Comment.Single
+'\n'          Text.Whitespace
+
+'# by maintaining stickiness via session cookies. It offloads TLS processing' Comment.Single
+'\n'          Text.Whitespace
+
+'# and enables HTTP compression. It uses HAProxy 2.4.' Comment.Single
+'\n\n'        Text.Whitespace
+
+'# The global section deals with process-wide settings (security, resource usage)' Comment.Single
+'\n'          Text.Whitespace
+
+'global'      Keyword
+'\n\t'        Text.Whitespace
+'default-path' Literal.String
+' '           Text.Whitespace
+'config'      Literal.String
+'\n\t'        Text.Whitespace
+'zero-warning' Literal.String
+'\n\t'        Text.Whitespace
+'chroot'      Literal.String
+' '           Text.Whitespace
+'/var/empty'  Literal.String
+'\n\t'        Text.Whitespace
+'user'        Literal.String
+' '           Text.Whitespace
+'haproxy'     Literal.String
+'\n\t'        Text.Whitespace
+'group'       Literal.String
+' '           Text.Whitespace
+'haproxy'     Literal.String
+'\n\t'        Text.Whitespace
+'daemon'      Literal.String
+'\n\t'        Text.Whitespace
+'pidfile'     Literal.String
+' '           Text.Whitespace
+'/var/run/haproxy-svc1.pid' Literal.String
+'\n\t'        Text.Whitespace
+'hard-stop-after' Literal.String
+' '           Text.Whitespace
+'5m'          Literal.Number
+'\n\t'        Text.Whitespace
+'stats'       Name.Attribute
+' '           Text.Whitespace
+'socket'      Literal.String
+' '           Text.Whitespace
+'/var/run/haproxy-svc1.sock' Literal.String
+' '           Text.Whitespace
+'level'       Literal.String
+' '           Text.Whitespace
+'admin'       Literal.String
+' '           Text.Whitespace
+'mode'        Name.Attribute
+' '           Text.Whitespace
+'600'         Literal.Number
+' '           Text.Whitespace
+'user'        Literal.String
+' '           Text.Whitespace
+'haproxy'     Literal.String
+' '           Text.Whitespace
+'expose-fd'   Literal.String
+' '           Text.Whitespace
+'listeners'   Literal.String
+'\n\t'        Text.Whitespace
+'stats'       Name.Attribute
+' '           Text.Whitespace
+'timeout'     Name.Attribute
+' '           Text.Whitespace
+'1h'          Literal.Number
+'\n\t'        Text.Whitespace
+'log'         Name.Attribute
+' '           Text.Whitespace
+'stderr'      Literal.String
+' '           Text.Whitespace
+'local0'      Literal.String
+' '           Text.Whitespace
+'info'        Literal.String
+'\n\t'        Text.Whitespace
+'ssl-default-bind-ciphers' Literal.String
+' '           Text.Whitespace
+'ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256' Literal.String
+'\n\t'        Text.Whitespace
+'ssl-default-bind-ciphersuites' Literal.String
+' '           Text.Whitespace
+'TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384' Literal.String
+'\n\t'        Text.Whitespace
+'ssl-default-bind-options' Literal.String
+' '           Text.Whitespace
+'prefer-client-ciphers' Literal.String
+' '           Text.Whitespace
+'no-sslv3'    Literal.String
+' '           Text.Whitespace
+'no-tlsv10'   Literal.String
+' '           Text.Whitespace
+'no-tlsv11'   Literal.String
+'\n\t'        Text.Whitespace
+'maxconn'     Name.Attribute
+' '           Text.Whitespace
+'10000'       Literal.Number
+'\n\t'        Text.Whitespace
+'uid'         Literal.String
+' '           Text.Whitespace
+'200'         Literal.Number
+'\n\t'        Text.Whitespace
+'gid'         Literal.String
+' '           Text.Whitespace
+'200'         Literal.Number
+'\n\t'        Text.Whitespace
+'tune.bufsize' Literal.String
+' '           Text.Whitespace
+'16384'       Literal.Number
+'\n\t'        Text.Whitespace
+'tune.ssl.default-dh-param' Literal.String
+' '           Text.Whitespace
+'2048'        Literal.Number
+'\n\n'        Text.Whitespace
+
+'defaults'    Keyword
+' '           Text.Whitespace
+'http'        Name.Namespace
+'\n\t'        Text.Whitespace
+'mode'        Name.Attribute
+' '           Text.Whitespace
+'http'        Literal.String
+'\n\t'        Text.Whitespace
+'option'      Name.Attribute
+' '           Text.Whitespace
+'httplog'     Name.Builtin
+'\n\t'        Text.Whitespace
+'log'         Name.Attribute
+' '           Text.Whitespace
+'global'      Literal.String
+'\n\t'        Text.Whitespace
+'timeout'     Name.Attribute
+' '           Text.Whitespace
+'client'      Name.Builtin
+' '           Text.Whitespace
+'1m'          Literal.Number
+'\n\t'        Text.Whitespace
+'timeout'     Name.Attribute
+' '           Text.Whitespace
+'server'      Name.Attribute
+' '           Text.Whitespace
+'1m'          Literal.Number
+'\n\t'        Text.Whitespace
+'timeout'     Name.Attribute
+' '           Text.Whitespace
+'connect'     Name.Builtin
+' '           Text.Whitespace
+'10s'         Literal.Number
+'\n\t'        Text.Whitespace
+'timeout'     Name.Attribute
+' '           Text.Whitespace
+'http-keep-alive' Name.Builtin
+' '           Text.Whitespace
+'2m'          Literal.Number
+'\n\t'        Text.Whitespace
+'timeout'     Name.Attribute
+' '           Text.Whitespace
+'queue'       Name.Builtin
+' '           Text.Whitespace
+'15s'         Literal.Number
+'\n\t'        Text.Whitespace
+'timeout'     Name.Attribute
+' '           Text.Whitespace
+'tunnel'      Name.Builtin
+' '           Text.Whitespace
+'4h'          Literal.Number
+'\n\n'        Text.Whitespace
+
+'frontend'    Keyword
+' '           Text.Whitespace
+'stats'       Name.Namespace
+'\n\t'        Text.Whitespace
+'bind'        Name.Attribute
+' '           Text.Whitespace
+':8181'       Literal.Number
+'\n\t'        Text.Whitespace
+'stats'       Name.Attribute
+' '           Text.Whitespace
+'uri'         Literal.String
+' '           Text.Whitespace
+'/'           Literal.String
+'\n\t'        Text.Whitespace
+'stats'       Name.Attribute
+' '           Text.Whitespace
+'show-modules' Literal.String
+'\n\n'        Text.Whitespace
+
+'.if'         Comment.Preproc
+' '           Text.Whitespace
+'feature(QUIC)' Comment.Preproc
+'\n'          Text.Whitespace
+
+'frontend'    Keyword
+' '           Text.Whitespace
+'pub1'        Name.Namespace
+'\n\t'        Text.Whitespace
+'bind'        Name.Attribute
+' '           Text.Whitespace
+':80'         Literal.Number
+' '           Text.Whitespace
+'name'        Literal.String
+' '           Text.Whitespace
+'clear'       Literal.String
+'\n\t'        Text.Whitespace
+'bind'        Name.Attribute
+' '           Text.Whitespace
+':443'        Literal.Number
+' '           Text.Whitespace
+'name'        Literal.String
+' '           Text.Whitespace
+'secure'      Literal.String
+' '           Text.Whitespace
+'ssl'         Literal.String
+' '           Text.Whitespace
+'crt'         Literal.String
+' '           Text.Whitespace
+'pub1.pem'    Literal.String
+'\n\t'        Text.Whitespace
+'bind'        Name.Attribute
+' '           Text.Whitespace
+'quic4@:443'  Literal.String
+' '           Text.Whitespace
+'name'        Literal.String
+' '           Text.Whitespace
+'quic'        Literal.String
+' '           Text.Whitespace
+'ssl'         Literal.String
+' '           Text.Whitespace
+'crt'         Literal.String
+' '           Text.Whitespace
+'pub1.pem'    Literal.String
+' '           Text.Whitespace
+'allow-0rtt'  Literal.String
+'\n\t'        Text.Whitespace
+'http-response' Name.Attribute
+' '           Text.Whitespace
+'add-header'  Literal.String
+' '           Text.Whitespace
+'alt-svc'     Literal.String
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'h3=":443"; ma=90000' Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text.Whitespace
+
+'.else'       Comment.Preproc
+'\n'          Text.Whitespace
+
+'frontend'    Keyword
+' '           Text.Whitespace
+'pub1'        Name.Namespace
+'\n\t'        Text.Whitespace
+'bind'        Name.Attribute
+' '           Text.Whitespace
+':80'         Literal.Number
+' '           Text.Whitespace
+'name'        Literal.String
+' '           Text.Whitespace
+'clear'       Literal.String
+'\n\t'        Text.Whitespace
+'bind'        Name.Attribute
+' '           Text.Whitespace
+':443'        Literal.Number
+' '           Text.Whitespace
+'name'        Literal.String
+' '           Text.Whitespace
+'secure'      Literal.String
+' '           Text.Whitespace
+'ssl'         Literal.String
+' '           Text.Whitespace
+'crt'         Literal.String
+' '           Text.Whitespace
+'pub1.pem'    Literal.String
+'\n'          Text.Whitespace
+
+'.endif'      Comment.Preproc
+'\n\n\t'      Text.Whitespace
+'http-after-response' Name.Attribute
+' '           Text.Whitespace
+'set-header'  Literal.String
+' '           Text.Whitespace
+'Strict-Transport-Security' Literal.String
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'max-age=31536000' Literal.String.Double
+'"'           Literal.String.Double
+'\n\t'        Text.Whitespace
+'http-request' Name.Attribute
+' '           Text.Whitespace
+'redirect'    Name.Attribute
+' '           Text.Whitespace
+'scheme'      Literal.String
+' '           Text.Whitespace
+'https'       Literal.String
+' '           Text.Whitespace
+'code'        Literal.String
+' '           Text.Whitespace
+'301'         Literal.Number
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'!'           Literal.String
+'{'           Punctuation
+' '           Text.Whitespace
+'ssl_fc'      Literal.String
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\t'        Text.Whitespace
+'option'      Name.Attribute
+' '           Text.Whitespace
+'http-ignore-probes' Name.Builtin
+'\n\t'        Text.Whitespace
+'http-request' Name.Attribute
+' '           Text.Whitespace
+'del-header'  Literal.String
+' '           Text.Whitespace
+'x-forwarded-for' Literal.String
+'\n\t'        Text.Whitespace
+'option'      Name.Attribute
+' '           Text.Whitespace
+'forwardfor'  Name.Builtin
+'\n\t'        Text.Whitespace
+'compression' Name.Attribute
+' '           Text.Whitespace
+'algo'        Literal.String
+' '           Text.Whitespace
+'deflate'     Literal.String
+' '           Text.Whitespace
+'gzip'        Literal.String
+'\n\t'        Text.Whitespace
+'compression' Name.Attribute
+' '           Text.Whitespace
+'type'        Literal.String
+' '           Text.Whitespace
+'text/'       Literal.String
+' '           Text.Whitespace
+'application/javascript' Literal.String
+' '           Text.Whitespace
+'application/xhtml+xml' Literal.String
+' '           Text.Whitespace
+'image/x-icon' Literal.String
+'\n\t'        Text.Whitespace
+'http-request' Name.Attribute
+' '           Text.Whitespace
+'cache-use'   Literal.String
+' '           Text.Whitespace
+'cache'       Literal.String
+'\n\t'        Text.Whitespace
+'http-response' Name.Attribute
+' '           Text.Whitespace
+'cache-store' Literal.String
+' '           Text.Whitespace
+'cache'       Literal.String
+'\n\t'        Text.Whitespace
+'default_backend' Name.Attribute
+' '           Text.Whitespace
+'app1'        Literal.String
+'\n\t'        Text.Whitespace
+'acl'         Name.Attribute
+' '           Text.Whitespace
+'is_static'   Literal.String
+' '           Text.Whitespace
+'path_beg'    Literal.String
+' '           Text.Whitespace
+'/static'     Literal.String
+' '           Text.Whitespace
+'/images'     Literal.String
+'\n\t'        Text.Whitespace
+'acl'         Name.Attribute
+' '           Text.Whitespace
+'host_match'  Literal.String
+' '           Text.Whitespace
+'hdr(host)'   Literal.String
+' '           Text.Whitespace
+'-i'          Operator
+' '           Text.Whitespace
+'www.example.com' Literal.String
+'\n\t'        Text.Whitespace
+'use_backend' Name.Attribute
+' '           Text.Whitespace
+'static'      Literal.String
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'is_static'   Literal.String
+'\n\t'        Text.Whitespace
+'use_backend' Name.Attribute
+' '           Text.Whitespace
+'app1'        Literal.String
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'hdr_beg(host)' Literal.String
+' '           Text.Whitespace
+'-i'          Operator
+' '           Text.Whitespace
+'api'         Literal.String
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\t'        Text.Whitespace
+'use_backend' Name.Attribute
+' '           Text.Whitespace
+'app1'        Literal.String
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'path_beg'    Literal.String
+' '           Text.Whitespace
+'/api'        Literal.String
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'||'          Literal.String
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'path_beg'    Literal.String
+' '           Text.Whitespace
+'/v2'         Literal.String
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'cache'       Keyword
+' '           Text.Whitespace
+'cache'       Name.Namespace
+'\n\t'        Text.Whitespace
+'total-max-size' Literal.String
+' '           Text.Whitespace
+'200'         Literal.Number
+'\n\t'        Text.Whitespace
+'max-object-size' Literal.String
+' '           Text.Whitespace
+'10485760'    Literal.Number
+'\n\t'        Text.Whitespace
+'max-age'     Literal.String
+' '           Text.Whitespace
+'3600'        Literal.Number
+'\n\t'        Text.Whitespace
+'process-vary' Literal.String
+' '           Text.Whitespace
+'on'          Name.Constant
+'\n\n'        Text.Whitespace
+
+'backend'     Keyword
+' '           Text.Whitespace
+'app1'        Name.Namespace
+'\n\t'        Text.Whitespace
+'balance'     Name.Attribute
+' '           Text.Whitespace
+'random'      Literal.String
+'\n\t'        Text.Whitespace
+'option'      Name.Attribute
+' '           Text.Whitespace
+'abortonclose' Name.Builtin
+'\n\t'        Text.Whitespace
+'cookie'      Name.Attribute
+' '           Text.Whitespace
+'app1'        Literal.String
+' '           Text.Whitespace
+'insert'      Literal.String
+' '           Text.Whitespace
+'indirect'    Literal.String
+' '           Text.Whitespace
+'nocache'     Literal.String
+'\n\t'        Text.Whitespace
+'option'      Name.Attribute
+' '           Text.Whitespace
+'httpchk'     Name.Builtin
+'\n\t'        Text.Whitespace
+'http-check'  Name.Attribute
+' '           Text.Whitespace
+'send'        Literal.String
+' '           Text.Whitespace
+'meth'        Literal.String
+' '           Text.Whitespace
+'GET'         Literal.String
+' '           Text.Whitespace
+'uri'         Literal.String
+' '           Text.Whitespace
+'/'           Literal.String
+' '           Text.Whitespace
+'ver'         Literal.String
+' '           Text.Whitespace
+'HTTP/1.1'    Literal.String
+' '           Text.Whitespace
+'hdr'         Literal.String
+' '           Text.Whitespace
+'host'        Literal.String
+' '           Text.Whitespace
+'svc1.example.com' Literal.String
+'\n\t'        Text.Whitespace
+'server'      Name.Attribute
+' '           Text.Whitespace
+'srv1'        Literal.String
+' '           Text.Whitespace
+'192.0'       Literal.Number
+'.2.1:80'     Literal.String
+' '           Text.Whitespace
+'cookie'      Name.Attribute
+' '           Text.Whitespace
+'s1'          Literal.String
+' '           Text.Whitespace
+'maxconn'     Name.Attribute
+' '           Text.Whitespace
+'100'         Literal.Number
+' '           Text.Whitespace
+'check'       Name.Builtin
+' '           Text.Whitespace
+'inter'       Literal.String
+' '           Text.Whitespace
+'1s'          Literal.Number
+'\n\t'        Text.Whitespace
+'server'      Name.Attribute
+' '           Text.Whitespace
+'srv2'        Literal.String
+' '           Text.Whitespace
+'192.0'       Literal.Number
+'.2.2:80'     Literal.String
+' '           Text.Whitespace
+'cookie'      Name.Attribute
+' '           Text.Whitespace
+'s2'          Literal.String
+' '           Text.Whitespace
+'maxconn'     Name.Attribute
+' '           Text.Whitespace
+'100'         Literal.Number
+' '           Text.Whitespace
+'check'       Name.Builtin
+' '           Text.Whitespace
+'inter'       Literal.String
+' '           Text.Whitespace
+'1s'          Literal.Number
+'\n\t'        Text.Whitespace
+'server'      Name.Attribute
+' '           Text.Whitespace
+'srv3'        Literal.String
+' '           Text.Whitespace
+'192.0'       Literal.Number
+'.2.3:80'     Literal.String
+' '           Text.Whitespace
+'cookie'      Name.Attribute
+' '           Text.Whitespace
+'s3'          Literal.String
+' '           Text.Whitespace
+'maxconn'     Name.Attribute
+' '           Text.Whitespace
+'100'         Literal.Number
+' '           Text.Whitespace
+'check'       Name.Builtin
+' '           Text.Whitespace
+'inter'       Literal.String
+' '           Text.Whitespace
+'1s'          Literal.Number
+'\n\t'        Text.Whitespace
+'server'      Name.Attribute
+' '           Text.Whitespace
+'srv4'        Literal.String
+' '           Text.Whitespace
+'192.0'       Literal.Number
+'.2.4:80'     Literal.String
+' '           Text.Whitespace
+'cookie'      Name.Attribute
+' '           Text.Whitespace
+'s4'          Literal.String
+' '           Text.Whitespace
+'maxconn'     Name.Attribute
+' '           Text.Whitespace
+'100'         Literal.Number
+' '           Text.Whitespace
+'check'       Name.Builtin
+' '           Text.Whitespace
+'inter'       Literal.String
+' '           Text.Whitespace
+'1s'          Literal.Number
+'\n\n'        Text.Whitespace
+
+'backend'     Keyword
+' '           Text.Whitespace
+'static'      Name.Namespace
+'\n\t'        Text.Whitespace
+'mode'        Name.Attribute
+' '           Text.Whitespace
+'http'        Literal.String
+'\n\t'        Text.Whitespace
+'balance'     Name.Attribute
+' '           Text.Whitespace
+'roundrobin'  Literal.String
+'\n\t'        Text.Whitespace
+'option'      Name.Attribute
+' '           Text.Whitespace
+'prefer-last-server' Name.Builtin
+'\n\t'        Text.Whitespace
+'retries'     Name.Attribute
+' '           Text.Whitespace
+'2'           Literal.Number
+'\n\t'        Text.Whitespace
+'option'      Name.Attribute
+' '           Text.Whitespace
+'redispatch'  Name.Builtin
+'\n\t'        Text.Whitespace
+'timeout'     Name.Attribute
+' '           Text.Whitespace
+'connect'     Name.Builtin
+' '           Text.Whitespace
+'5s'          Literal.Number
+'\n\t'        Text.Whitespace
+'timeout'     Name.Attribute
+' '           Text.Whitespace
+'server'      Name.Attribute
+' '           Text.Whitespace
+'5s'          Literal.Number
+'\n\t'        Text.Whitespace
+'option'      Name.Attribute
+' '           Text.Whitespace
+'httpchk'     Name.Builtin
+' '           Text.Whitespace
+'HEAD'        Literal.String
+' '           Text.Whitespace
+'/favicon.ico' Literal.String
+'\n\t'        Text.Whitespace
+'server'      Name.Attribute
+' '           Text.Whitespace
+'statsrv1'    Literal.String
+' '           Text.Whitespace
+'192.168'     Literal.Number
+'.1.8:80'     Literal.String
+' '           Text.Whitespace
+'check'       Name.Builtin
+' '           Text.Whitespace
+'inter'       Literal.String
+' '           Text.Whitespace
+'1000'        Literal.Number
+'\n\t'        Text.Whitespace
+'server'      Name.Attribute
+' '           Text.Whitespace
+'statsrv2'    Literal.String
+' '           Text.Whitespace
+'192.168'     Literal.Number
+'.1.9:80'     Literal.String
+' '           Text.Whitespace
+'check'       Name.Builtin
+' '           Text.Whitespace
+'inter'       Literal.String
+' '           Text.Whitespace
+'1000'        Literal.Number
+'\n\n'        Text.Whitespace
+
+'listen'      Keyword
+' '           Text.Whitespace
+'health-check' Name.Namespace
+'\n\t'        Text.Whitespace
+'bind'        Name.Attribute
+' '           Text.Whitespace
+':9000'       Literal.Number
+'\n\t'        Text.Whitespace
+'mode'        Name.Attribute
+' '           Text.Whitespace
+'http'        Literal.String
+'\n\t'        Text.Whitespace
+'monitor-uri' Name.Attribute
+' '           Text.Whitespace
+'/health'     Literal.String
+'\n\t'        Text.Whitespace
+'option'      Name.Attribute
+' '           Text.Whitespace
+'httplog'     Name.Builtin
+'\n\t'        Text.Whitespace
+'server'      Name.Attribute
+' '           Text.Whitespace
+'local'       Literal.String
+' '           Text.Whitespace
+'127.0'       Literal.Number
+'.0.1:8080'   Literal.String
+' '           Text.Whitespace
+'check'       Name.Builtin
+'\n\n'        Text.Whitespace
+
+'resolvers'   Keyword
+' '           Text.Whitespace
+'mydns'       Name.Namespace
+'\n\t'        Text.Whitespace
+'nameserver'  Name.Attribute
+' '           Text.Whitespace
+'dns1'        Literal.String
+' '           Text.Whitespace
+'10.0'        Literal.Number
+'.0.1:53'     Literal.String
+'\n\t'        Text.Whitespace
+'nameserver'  Name.Attribute
+' '           Text.Whitespace
+'dns2'        Literal.String
+' '           Text.Whitespace
+'10.0'        Literal.Number
+'.0.2:53'     Literal.String
+'\n\t'        Text.Whitespace
+'resolve_retries' Literal.String
+' '           Text.Whitespace
+'3'           Literal.Number
+'\n\t'        Text.Whitespace
+'timeout'     Name.Attribute
+' '           Text.Whitespace
+'resolve'     Literal.String
+' '           Text.Whitespace
+'1s'          Literal.Number
+'\n\t'        Text.Whitespace
+'timeout'     Name.Attribute
+' '           Text.Whitespace
+'retry'       Literal.String
+' '           Text.Whitespace
+'1s'          Literal.Number
+'\n\t'        Text.Whitespace
+'hold'        Literal.String
+' '           Text.Whitespace
+'valid'       Literal.String
+' '           Text.Whitespace
+'10s'         Literal.Number
+'\n\n'        Text.Whitespace
+
+'peers'       Keyword
+' '           Text.Whitespace
+'mypeers'     Name.Namespace
+'\n\t'        Text.Whitespace
+'peer'        Literal.String
+' '           Text.Whitespace
+'haproxy1'    Literal.String
+' '           Text.Whitespace
+'192.168'     Literal.Number
+'.1.1:1024'   Literal.String
+'\n\t'        Text.Whitespace
+'peer'        Literal.String
+' '           Text.Whitespace
+'haproxy2'    Literal.String
+' '           Text.Whitespace
+'192.168'     Literal.Number
+'.1.2:1024'   Literal.String
+'\n\n'        Text.Whitespace
+
+'userlist'    Keyword
+' '           Text.Whitespace
+'myusers'     Name.Namespace
+'\n\t'        Text.Whitespace
+'group'       Literal.String
+' '           Text.Whitespace
+'admins'      Literal.String
+' '           Text.Whitespace
+'users'       Literal.String
+' '           Text.Whitespace
+'admin'       Literal.String
+'\n\t'        Text.Whitespace
+'user'        Literal.String
+' '           Text.Whitespace
+'admin'       Literal.String
+' '           Text.Whitespace
+'insecure-password' Literal.String
+' '           Text.Whitespace
+'changeme'    Literal.String
+'\n\t'        Text.Whitespace
+'user'        Literal.String
+' '           Text.Whitespace
+'guest'       Literal.String
+' '           Text.Whitespace
+'insecure-password' Literal.String
+' '           Text.Whitespace
+'guest'       Literal.String
+'\n\n'        Text.Whitespace
+
+'.notice'     Comment.Preproc
+' '           Text.Whitespace
+"'Configuration loaded successfully'" Literal.String
+'\n\n'        Text.Whitespace
+
+'# Environment variable usage' Comment.Single
+'\n'          Text.Whitespace
+
+'# bind :${HAPROXY_PORT}' Comment.Single
+'\n'          Text.Whitespace
+
+'# server app1 ${APP_HOST}:${APP_PORT} check' Comment.Single
+'\n'          Text.Whitespace

@@ -1,0 +1,34 @@
+---input---
+global
+	timeout connect 5s
+	maxconn 10000
+	hard-stop-after 5m
+	http-after-response set-header Strict-Transport-Security "max-age=31536000"
+
+---tokens---
+'global'      Keyword
+'\n\t'        Text.Whitespace
+'timeout'     Name.Attribute
+' '           Text.Whitespace
+'connect'     Name.Builtin
+' '           Text.Whitespace
+'5s'          Literal.Number
+'\n\t'        Text.Whitespace
+'maxconn'     Name.Attribute
+' '           Text.Whitespace
+'10000'       Literal.Number
+'\n\t'        Text.Whitespace
+'hard-stop-after' Literal.String
+' '           Text.Whitespace
+'5m'          Literal.Number
+'\n\t'        Text.Whitespace
+'http-after-response' Name.Attribute
+' '           Text.Whitespace
+'set-header'  Literal.String
+' '           Text.Whitespace
+'Strict-Transport-Security' Literal.String
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'max-age=31536000' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
