@@ -1,0 +1,394 @@
+'// Basic CUE example showcasing key language features' Comment.Single
+'\n'          Text.Whitespace
+
+'package'     Keyword.Namespace
+' '           Text.Whitespace
+'example'     Name.Namespace
+'\n\n'        Text.Whitespace
+
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'"'           Punctuation.Marker
+'strings'     Literal.String
+'"'           Punctuation.Marker
+'\n\n'        Text.Whitespace
+
+'// Basic value definitions' Comment.Single
+'\n'          Text.Whitespace
+
+'name'        Name.Property
+':'           Punctuation.Marker
+'   '         Text.Whitespace
+'strings'     Name.Namespace
+'.'           Punctuation.Marker
+'ToUpper'     Name.Namespace
+'('           Punctuation.Marker
+'"'           Literal.String.Delimiter
+'John'        Literal.String.Double
+'"'           Literal.String.Delimiter
+')'           Punctuation.Marker
+'\n'          Text.Whitespace
+
+'age'         Name.Property
+':'           Punctuation.Marker
+'    '        Text.Whitespace
+'30'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'active'      Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'true'        Keyword.Constant
+'\n\n'        Text.Whitespace
+
+'// Constraints and validation' Comment.Single
+'\n'          Text.Whitespace
+
+'score'       Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'>'           Operator
+'50'          Literal.Number.Integer
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+'<'           Operator
+'100'         Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'score'       Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'75'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'email'       Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'=~'          Operator
+'"'           Literal.String.Delimiter
+'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+' Literal.String.Double
+'\\\\'        Literal.String.Escape
+'.[a-zA-Z]{2,}$' Literal.String.Double
+'"'           Literal.String.Delimiter
+'\n'          Text.Whitespace
+
+'email'       Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'cueckoo@cuelang.org' Literal.String.Double
+'"'           Literal.String.Delimiter
+'\n\n'        Text.Whitespace
+
+'// Structs and nested structures' Comment.Single
+'\n'          Text.Whitespace
+
+'#person'     Name.Entity
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'{'           Punctuation.Marker
+'\n\t'        Text.Whitespace
+'name'        Name.Property
+'!'           Operator
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'string'      Keyword.Type
+'\n\t'        Text.Whitespace
+'age'         Name.Property
+'?'           Punctuation
+':'           Punctuation.Marker
+'  '          Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+'>='          Operator
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+'<='          Operator
+'120'         Literal.Number.Integer
+'\n\t'        Text.Whitespace
+'address'     Name.Property
+'?'           Punctuation
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'{'           Punctuation.Marker
+'\n\t\t'      Text.Whitespace
+'street'      Name.Property
+'?'           Punctuation
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'string'      Keyword.Type
+'\n\t\t'      Text.Whitespace
+'city'        Name.Property
+'?'           Punctuation
+':'           Punctuation.Marker
+'   '         Text.Whitespace
+'string'      Keyword.Type
+'\n\t\t'      Text.Whitespace
+'zip'         Name.Property
+'?'           Punctuation
+':'           Punctuation.Marker
+'    '        Text.Whitespace
+'=~'          Operator
+'"'           Literal.String.Delimiter
+'^[0-9]{5}(-[0-9]{4})?$' Literal.String.Double
+'"'           Literal.String.Delimiter
+'\n\t'        Text.Whitespace
+'}'           Punctuation.Marker
+'\n'          Text.Whitespace
+
+'}'           Punctuation.Marker
+'\n\n'        Text.Whitespace
+
+'// Lists and comprehensions' Comment.Single
+'\n'          Text.Whitespace
+
+'users'       Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'['           Punctuation.Marker
+'\n\t'        Text.Whitespace
+'{'           Punctuation.Marker
+'name'        Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'Alice'       Literal.String.Double
+'"'           Literal.String.Delimiter
+','           Punctuation
+' '           Text.Whitespace
+'role'        Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'admin'       Literal.String.Double
+'"'           Literal.String.Delimiter
+'}'           Punctuation.Marker
+','           Punctuation
+'\n\t'        Text.Whitespace
+'{'           Punctuation.Marker
+'name'        Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'Bob'         Literal.String.Double
+'"'           Literal.String.Delimiter
+','           Punctuation
+' '           Text.Whitespace
+'role'        Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'user'        Literal.String.Double
+'"'           Literal.String.Delimiter
+'}'           Punctuation.Marker
+','           Punctuation
+'\n'          Text.Whitespace
+
+']'           Punctuation.Marker
+'\n\n'        Text.Whitespace
+
+'// For comprehension' Comment.Single
+'\n'          Text.Whitespace
+
+'userNames'   Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'['           Punctuation.Marker
+'for'         Keyword
+' '           Text.Whitespace
+'u'           Name
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'users'       Name.Property
+' '           Text.Whitespace
+'{'           Punctuation.Marker
+'u'           Name.Property
+'.'           Operator
+'name'        Name.Property
+'}'           Punctuation.Marker
+']'           Punctuation.Marker
+'\n\n'        Text.Whitespace
+
+'// Conditionals' Comment.Single
+'\n'          Text.Whitespace
+
+'if'          Keyword
+' '           Text.Whitespace
+'age'         Name.Property
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+' '           Text.Whitespace
+'{'           Punctuation.Marker
+'\n\t'        Text.Whitespace
+'status'      Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'pending'     Literal.String.Double
+'"'           Literal.String.Delimiter
+'\n'          Text.Whitespace
+
+'}'           Punctuation.Marker
+'\n\n'        Text.Whitespace
+
+'// Templates and definitions' Comment.Single
+'\n'          Text.Whitespace
+
+'#User'       Name.Entity
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'{'           Punctuation.Marker
+'\n\t'        Text.Whitespace
+'name'        Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'string'      Keyword.Type
+'\n\t'        Text.Whitespace
+'age'         Name.Property
+':'           Punctuation.Marker
+'  '          Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+'>='          Operator
+'0'           Literal.Number.Integer
+'\n\t'        Text.Whitespace
+'role'        Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'admin'       Literal.String.Double
+'"'           Literal.String.Delimiter
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'user'        Literal.String.Double
+'"'           Literal.String.Delimiter
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'guest'       Literal.String.Double
+'"'           Literal.String.Delimiter
+'\n'          Text.Whitespace
+
+'}'           Punctuation.Marker
+'\n\n'        Text.Whitespace
+
+'// String interpolation' Comment.Single
+'\n'          Text.Whitespace
+
+'greeting'    Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'Hello, '     Literal.String.Double
+'\\('         Punctuation
+'name'        Name.Property
+')'           Punctuation
+'! You are '  Literal.String.Double
+'\\('         Punctuation
+'age'         Name.Property
+')'           Punctuation
+' years old.' Literal.String.Double
+'"'           Literal.String.Delimiter
+'\n\n'        Text.Whitespace
+
+'// Functions' Comment.Single
+'\n'          Text.Whitespace
+
+'doubleAge'   Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'age'         Name.Property
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n\n'        Text.Whitespace
+
+'// Let expressions' Comment.Single
+'\n'          Text.Whitespace
+
+'let'         Keyword
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'result'      Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'x'           Name.Property
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n\n'        Text.Whitespace
+
+'// Hidden fields' Comment.Single
+'\n'          Text.Whitespace
+
+'_internal'   Name.Variable.Magic
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'secret'      Literal.String.Double
+'"'           Literal.String.Delimiter
+'\n\n'        Text.Whitespace
+
+'// Optional fields' Comment.Single
+'\n'          Text.Whitespace
+
+'optional'    Name.Property
+'?'           Punctuation
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'string'      Keyword.Type
+'\n\n'        Text.Whitespace
+
+'// Disjunctions' Comment.Single
+'\n'          Text.Whitespace
+
+'status'      Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'*'           Operator
+'"'           Literal.String.Delimiter
+'active'      Literal.String.Double
+'"'           Literal.String.Delimiter
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'inactive'    Literal.String.Double
+'"'           Literal.String.Delimiter
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'pending'     Literal.String.Double
+'"'           Literal.String.Delimiter
+'\n\n'        Text.Whitespace
+
+'// Numbers with units' Comment.Single
+'\n'          Text.Whitespace
+
+'memory'      Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'8Gi'         Literal.Number.Integer
+'\n'          Text.Whitespace
