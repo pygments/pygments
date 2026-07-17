@@ -1,0 +1,157 @@
+---input---
+FROM logs-*
+| WHERE NOT CIDR_MATCH(destination.ip, "10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16")
+| STATS destcount = COUNT(destination.ip) BY user.name, host.name
+| ENRICH ldap_lookup_new ON user.name
+| WHERE group.name IS NOT NULL
+| EVAL follow_up = CASE(destcount >= 100, "true","false")
+| SORT destcount DESC
+| KEEP destcount, host.name, user.name, group.name, follow_up
+
+---tokens---
+'FROM'        Keyword
+' '           Text.Whitespace
+'logs-'       Name
+'*'           Name
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'WHERE'       Keyword
+' '           Text.Whitespace
+'NOT'         Operator.Word
+' '           Text.Whitespace
+'CIDR_MATCH'  Name.Function
+'('           Punctuation
+'destination' Name
+'.'           Punctuation
+'ip'          Name
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'10.0.0.0/8'  Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'172.16.0.0/12' Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'192.168.0.0/16' Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'STATS'       Keyword
+' '           Text.Whitespace
+'destcount'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'COUNT'       Name.Function
+'('           Punctuation
+'destination' Name
+'.'           Punctuation
+'ip'          Name
+')'           Punctuation
+' '           Text.Whitespace
+'BY'          Keyword
+' '           Text.Whitespace
+'user'        Name
+'.'           Punctuation
+'name'        Name
+','           Punctuation
+' '           Text.Whitespace
+'host'        Name
+'.'           Punctuation
+'name'        Name
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'ENRICH'      Keyword
+' '           Text.Whitespace
+'ldap_lookup_new' Name
+' '           Text.Whitespace
+'ON'          Keyword
+' '           Text.Whitespace
+'user'        Name
+'.'           Punctuation
+'name'        Name
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'WHERE'       Keyword
+' '           Text.Whitespace
+'group'       Name
+'.'           Punctuation
+'name'        Name
+' '           Text.Whitespace
+'IS NOT NULL' Operator.Word
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'EVAL'        Keyword
+' '           Text.Whitespace
+'follow_up'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'CASE'        Name.Function
+'('           Punctuation
+'destcount'   Name
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'true'        Literal.String
+'"'           Literal.String
+','           Punctuation
+'"'           Literal.String
+'false'       Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'SORT'        Keyword
+' '           Text.Whitespace
+'destcount'   Name
+' '           Text.Whitespace
+'DESC'        Keyword
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'KEEP'        Keyword
+' '           Text.Whitespace
+'destcount'   Name
+','           Punctuation
+' '           Text.Whitespace
+'host'        Name
+'.'           Punctuation
+'name'        Name
+','           Punctuation
+' '           Text.Whitespace
+'user'        Name
+'.'           Punctuation
+'name'        Name
+','           Punctuation
+' '           Text.Whitespace
+'group'       Name
+'.'           Punctuation
+'name'        Name
+','           Punctuation
+' '           Text.Whitespace
+'follow_up'   Name
+'\n'          Text.Whitespace
