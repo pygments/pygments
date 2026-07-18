@@ -89,14 +89,15 @@ class GoLexer(RegexLexer):
             # -- decimal_lit
             (r'(0|[1-9](_?[0-9])*)', Number.Integer),
             # rune_lit
-            (r"""'(\\['"\\abfnrtv]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
-             r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|[^\\])'""",
-             String.Char),
+            (r"(')(\\(?:[0-7]{3}|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8}|['\\abfnrtv]))(')",
+             bygroups(String.Char, String.Escape, String.Char)),
+            (r"'[^'\\\n]'", String.Char),
             # string_lit
             # -- raw_string_lit
-            (r'`[^`]*`', String),
+            (r'`[^`]*`', String.Backtick),
             # -- interpreted_string_lit
-            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
+            (r'"[^"\\\n]*"', String), # single token in simple cases
+            (r'"', String, 'string'),
             # operators
             (r'(<<=|>>=|<<|>>|<=|>=|&\^=|&\^|\+=|-=|\*=|/=|%=|&=|\|=|\^=|&&|\|\|'
              r'|<-|\+\+|--|==|!=|:=|[+\-*/%&!=<>|^])', Operator),
@@ -104,5 +105,10 @@ class GoLexer(RegexLexer):
             (r'(\.\.\.|[()\[\]{}.,;:~])', Punctuation),
             # identifier
             (r'[^\W\d]\w*', Name.Other),
+        ],
+        'string': [
+            (r'\\([0-7]{3}|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8}|["\\abfnrtv])', String.Escape),
+            (r'[^"\\\n]*"', String, '#pop'),
+            (r'[^"\\\n]+', String)
         ]
     }
