@@ -1,0 +1,16 @@
+---input---
+let here = __FUNCTION__ in ()
+
+---tokens---
+'let'         Keyword
+' '           Text
+'here'        Name
+' '           Text
+'='           Operator
+' '           Text
+'__FUNCTION__' Name
+' '           Text
+'in'          Keyword
+' '           Text
+'()'          Name.Builtin.Pseudo
+'\n'          Text
