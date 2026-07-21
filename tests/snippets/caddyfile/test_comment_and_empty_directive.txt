@@ -1,0 +1,19 @@
+---input---
+# a comment
+:8080 {
+	log
+}
+
+---tokens---
+'# a comment' Comment.Single
+'\n'          Text.Whitespace
+
+':8080'       Text
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'log'         Keyword
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

@@ -1,0 +1,18 @@
+---input---
+respond <<HTML 200
+<h1>Hello {http.request.uri}</h1>
+HTML
+
+---tokens---
+'respond'     Keyword
+' '           Text.Whitespace
+'<<'          Operator
+'HTML'        Literal.String.Delimiter
+' '           Text.Whitespace
+'200'         Literal.Number
+'\n'          Text.Whitespace
+
+'<h1>Hello {http.request.uri}</h1>\n' Literal.String.Heredoc
+
+'HTML'        Literal.String.Delimiter
+'\n'          Text.Whitespace

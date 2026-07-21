@@ -1,0 +1,20 @@
+---input---
+{
+	email admin@example.com
+	tls {$ACME_EMAIL}
+}
+
+---tokens---
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'email'       Text
+' '           Text.Whitespace
+'admin@example.com' Text
+'\n\t'        Text.Whitespace
+'tls'         Keyword
+' '           Text.Whitespace
+'{$ACME_EMAIL}' Name.Variable
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

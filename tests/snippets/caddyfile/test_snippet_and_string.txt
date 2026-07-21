@@ -1,0 +1,30 @@
+---input---
+(snippet) {
+	respond "OK {http.request.host}" 200
+}
+import snippet
+
+---tokens---
+'('           Punctuation
+'snippet'     Text
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'respond'     Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'OK '         Literal.String.Double
+'{http.request.host}' Name.Variable
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'200'         Literal.Number
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'import'      Keyword
+' '           Text.Whitespace
+'snippet'     Text
+'\n'          Text.Whitespace

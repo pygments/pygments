@@ -73,6 +73,7 @@ LEXERS = {
     'CSharpAspxLexer': ('pygments.lexers.dotnet', 'aspx-cs', ('aspx-cs',), ('*.aspx', '*.asax', '*.ascx', '*.ashx', '*.asmx', '*.axd'), ()),
     'CSharpLexer': ('pygments.lexers.dotnet', 'C#', ('csharp', 'c#', 'cs'), ('*.cs',), ('text/x-csharp',)),
     'Ca65Lexer': ('pygments.lexers.asm', 'ca65 assembler', ('ca65',), ('*.s',), ()),
+    'CaddyfileLexer': ('pygments.lexers.configs', 'Caddyfile', ('caddyfile', 'caddy'), ('Caddyfile',), ()),
     'CadlLexer': ('pygments.lexers.archetype', 'cADL', ('cadl',), ('*.cadl',), ()),
     'CapDLLexer': ('pygments.lexers.esoteric', 'CapDL', ('capdl',), ('*.cdl',), ()),
     'CapnProtoLexer': ('pygments.lexers.capnproto', "Cap'n Proto", ('capnp',), ('*.capnp',), ()),

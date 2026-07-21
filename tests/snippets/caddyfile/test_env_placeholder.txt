@@ -1,0 +1,21 @@
+---input---
+tls {$EMAIL}
+route {
+	file_server
+}
+
+---tokens---
+'tls'         Keyword
+' '           Text.Whitespace
+'{$EMAIL}'    Name.Variable
+'\n'          Text.Whitespace
+
+'route'       Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'file_server' Keyword
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
