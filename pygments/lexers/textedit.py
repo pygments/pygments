@@ -149,9 +149,10 @@ class VimLexer(RegexLexer):
             (r'^:', Punctuation),
             (r'[()<>+=!|,~-]', Punctuation),  # Inexact list.  Looks decent.
             (words(('abort', 'catch', 'const', 'echo', 'else', 'elseif',
-                    'endfor', 'endif', 'endif', 'endwhile', 'eval', 'execute',
-                    'for', 'function', 'if', 'in', 'let', 'return', 'set',
-                    'setg', 'setl', 'throw', 'unlet', 'unset', 'while'),
+                    'endfor', 'endif', 'endif', 'endfunction', 'endwhile',
+                    'eval', 'execute', 'for', 'function', 'if', 'in', 'let',
+                    'return', 'set', 'setg', 'setl', 'throw', 'unlet', 'unset',
+                    'while'),
                    suffix=r'\b', prefix=r'\b'), Keyword),
             (r'\b(NONE|bold|italic|underline|dark|light)\b', Name.Builtin),
             (r'\b\w+\b', Name.Other),  # These are postprocessed below

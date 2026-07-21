@@ -10,7 +10,7 @@ Version 2.21.0
 - New lexers:
 
   * BitBake (#3103)
-  * Caddyfile
+  * Caddyfile (#3225)
   * CEL (#3048)
   * PureScript (#1077, #3054)
 
@@ -18,44 +18,79 @@ Version 2.21.0
 
   * Bash: Fix coloured keyword at the beginning of a name (#2926)
   * Boogie: Add missing Boogie and Civl Verifier keywords (#3156)
+  * C#:
+    - Recognize interpolated verbatim strings with either ``$@`` or ``@$``
+      prefixes (#2685)
+    - Support dollar-prefixed and multi-quote raw strings (#3129, #2897)
+    - Recognize ``union`` (#3182)
+  * C/C++:
+    - Add C23/C++26 attributes (#3084)
+    - Add more C2Y keywords (#3092)
+    - Highlight a function following a namespace body (#2928)
+    - Fix C/C++ lexer support for multiline pre-processor comments (#3051)
+    - Add ``.ipp`` as a file extension (#3141, #1008)
   * Clojure: Recognize named, octal and unicode character literals such as
     ``\space`` and ``\o377`` as a single token (#979)
+  * Csound: Add missing opcode parameter type letter (#3161)
   * CUDA: Derive from the C++ lexer instead of C to highlight C++
     constructs such as ``template``, ``class`` and ``namespace`` (#3127)
-  * C++: Add C23/C++26 attributes (#3084)
-  * C++: Highlight a function following a namespace body (#2928)
-  * C#: Recognize interpolated verbatim strings with either ``$@`` or ``@$``
-    prefixes (#2685)
   * D: Allow non-ASCII (Unicode) identifiers (#1088)
+  * Fish: Fix single quote backslash escape (#3138, #2821)
+  * Go: Various lexer improvements (#3199)
+  * GoogleSQL: Require a word break after ``SET`` (#3167)
+  * Hexdump: Only match valid digits (#3200, #2847)
   * JavaScript: Highlight the ``arguments`` object (#3146)
   * Jsonnet: Recognize colons in array slice expressions (#2828)
   * JSX: Allow apostrophes in element text (#2816)
+  * Julia: Fix rstrings backslash (#3140, #2537)
   * Kotlin: Support companion objects without an explicit name (#2525)
   * Kotlin: Don't let a nullable type marker (``?``) consume the following
     character, so ``Foo?,`` and ``a?:b`` tokenize correctly (#2964)
   * Kusto: Recognize member-access dots in dynamic objects (#2779)
-  * Markdown: Highlight bold-italics (``***...***`` and ``___...___``) (#3067)
+  * Lua: Various improvements (#3143)
+  * Macaulay2: Update symbols to 1.26.05 (#3120)
+  * Markdown:
+    - Highlight bold-italics (``***...***`` and ``___...___``) (#3067)
+    - Fix mention regex to support hyphens in usernames (#3139, #3135)
   * Markdown, reStructuredText, TiddlyWiki5: Fix wrong token offsets for
     embedded code blocks (#3133)
   * Mathematica: Recognize ``\[Name]`` named-character escapes such as
     ``\[Nu]`` instead of emitting an ``Error`` token (#3097)
   * MATLAB, Octave, Scilab: Allow ``...`` line continuations in function
     definition signatures (#659)
+  * MySQL: Require a word break after ``SET`` (#3110)
+  * PostgreSQL: Add more keywords (#3066)
+  * Python:
+    - Recognize ``sentinel`` (#3114)
+    - Recognize ``frozendict`` (#3119)
+    - Recognize lazy imports (#3115)
+  * reStructuredText: Allow ``.`` and ``+`` in directive/role names (#3085)
   * Ruby: Don't duplicate the body of an unterminated heredoc (#2998)
   * Ruby: Treat ``<<`` after ``)``, ``]`` or ``}`` as the shift operator
     rather than the start of a heredoc (#760)
   * SCSS: Recognize variable references in property values (#2818)
+  * Shell: Recognize chevron prompts (#3096)
+  * Smithy: Fix text blocks and add missing syntax (#3168)
   * Swift: Keep ``func`` a keyword in ``class func`` type methods (#1125)
   * Tcl: Stop ``$name`` variable references at a dash (#1720)
   * TeX: Recognize LaTeX math environments as math (#3034)
+  * Twig: Allow uppercase letters at the start of identifiers (#3159, #2965)
   * TypeScript: Only treat ``module`` as a keyword when followed by
     whitespace, so identifiers like ``modules`` and ``module.exports``
     are highlighted correctly (#2823)
-  * YAML: Add ``yml`` alias (#3169), recognize non-breaking spaces as valid
-    scalar content (#2827)
   * Vala: Recognize verbatim strings before ordinary quoted strings (#2861)
   * Vala: Recognize conditional compilation directives (#2858)
+  * Vim:
+    - Bump the syntax file to vim 9.2 (#3183, #3174)
+    - Small improvements to the VimScript lexer (#3173)
+  * YAML: Add ``yml`` alias (#3169), recognize non-breaking spaces as valid
+    scalar content (#2827)
   * WebAssembly: Recognize sign-extension operators (#2991, #3160)
+  * XML: Mark SVG files as XML (#3093)
+
+- New styles:
+
+  * Night Owl (#3132)
 
 - Fix catastrophic backtracking in ``looks_like_xml`` (#2931, #3112)
 - Improve monokai theme colors (#3100)
@@ -66,6 +101,10 @@ Version 2.21.0
 - RawTokenFormatter: fix a crash when ``error_color`` is set (#3215)
 - Groff formatter: don't duplicate a character when word-wrapping (``wrap``)
   a token that is not at the end of a line (#3201)
+- Add support for Python 3.15 (#3099)
+- Fix invalid ``-L`` values report success (#3217)
+- Allow ``transparent`` as a color style definition (#3180, #3170)
+- HtmlFormatter: ``"`` and ``'`` now render literally (#3185)
 
 Version 2.20.0
 --------------

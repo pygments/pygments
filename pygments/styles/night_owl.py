@@ -44,7 +44,7 @@ class NightOwlStyle(Style):
     Based on the VS Code Night Owl theme:
     https://github.com/sdras/night-owl-vscode-theme
 
-    .. versionadded:: 2.19
+    .. versionadded:: 2.21
     """
 
     name = 'night-owl'
