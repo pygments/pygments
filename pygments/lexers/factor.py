@@ -247,8 +247,6 @@ class FactorLexer(RegexLexer):
             (r'(PREDICATE:)(\s+)(\S+)(\s+)(<)(\s+)(\S+)',
              bygroups(Keyword, Whitespace, Name.Class, Whitespace,
                  Punctuation, Whitespace, Name.Class)),
-            (r'(C:)(\s+)(\S+)(\s+)(\S+)',
-             bygroups(Keyword, Whitespace, Name.Function, Whitespace, Name.Class)),
             (r'(INSTANCE:)(\s+)(\S+)(\s+)(\S+)',
              bygroups(Keyword, Whitespace, Name.Class, Whitespace, Name.Class)),
             (r'(SLOT:)(\s+)(\S+)', bygroups(Keyword, Whitespace, Name.Function)),
