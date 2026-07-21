@@ -66,6 +66,8 @@ Version 2.21.0
 - RawTokenFormatter: fix a crash when ``error_color`` is set (#3215)
 - Groff formatter: don't duplicate a character when word-wrapping (``wrap``)
   a token that is not at the end of a line (#3201)
+- Exclude the ``tests`` directory from the source distribution to reduce its
+  size
 
 Version 2.20.0
 --------------
