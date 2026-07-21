@@ -285,7 +285,7 @@ class ABAPLexer(RegexLexer):
             (r'(\s+)([\w\-]+)([=\-]>)([\w\-~]+)',
              bygroups(Whitespace, Name.Variable, Operator, Name.Function)),
             # call methodnames returning style
-            (r'(?<=(=|-)>)([\w\-~]+)(?=\()', Name.Function),
+            (r'(?<=[=-]>)([\w\-~]+)(?=\()', Name.Function),
 
             # text elements
             (r'(TEXT)(-)(\d{3})',

@@ -115,7 +115,7 @@ class LogtalkLexer(RegexLexer):
             (r'0b[01]+', Number.Bin),
             (r'0o[0-7]+', Number.Oct),
             (r'0x[0-9a-fA-F]+', Number.Hex),
-            (r'\d+\.?\d*((e|E)(\+|-)?\d+)?', Number),
+            (r'\d+\.?\d*(?:[eE][+-]?\d+)?', Number),
             # Variables
             (r'([A-Z_][a-zA-Z0-9_]*)', Name.Variable),
             # Event handlers
@@ -145,7 +145,7 @@ class LogtalkLexer(RegexLexer):
             (r'\blogtalk_make\b', Keyword),
             # Database
             (r'(clause|retract(all)?)(?=[(])', Keyword),
-            (r'a(bolish|ssert(a|z))(?=[(])', Keyword),
+            (r'a(bolish|ssert[az])(?=[(])', Keyword),
             # Control constructs
             (r'(ca(ll|tch)|throw)(?=[(])', Keyword),
             (r'(fa(il|lse)|true|(instantiation|system)_error)\b', Keyword),
@@ -282,7 +282,7 @@ class LogtalkLexer(RegexLexer):
             (r'0b[01]+', Number.Bin),
             (r'0o[0-7]+', Number.Oct),
             (r'0x[0-9a-fA-F]+', Number.Hex),
-            (r'\d+\.?\d*((e|E)(\+|-)?\d+)?', Number),
+            (r'\d+\.?\d*(?:[eE][+-]?\d+)?', Number),
             # Variables
             (r'([A-Z_][a-zA-Z0-9_]*)', Name.Variable),
             # Atoms

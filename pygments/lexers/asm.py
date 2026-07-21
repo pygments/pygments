@@ -258,7 +258,7 @@ class HsailLexer(RegexLexer):
     # Numeric Constant
     float = r'((\d+\.)|(\d*\.\d+))[eE][+-]?\d+'
     hexfloat = r'0[xX](([0-9a-fA-F]+\.[0-9a-fA-F]*)|([0-9a-fA-F]*\.[0-9a-fA-F]+))[pP][+-]?\d+'
-    ieeefloat = r'0((h|H)[0-9a-fA-F]{4}|(f|F)[0-9a-fA-F]{8}|(d|D)[0-9a-fA-F]{16})'
+    ieeefloat = r'0(?:[hH][0-9a-fA-F]{4}|[fF][0-9a-fA-F]{8}|[dD][0-9a-fA-F]{16})'
 
     tokens = {
         'root': [
