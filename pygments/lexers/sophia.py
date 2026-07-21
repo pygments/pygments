@@ -54,7 +54,7 @@ class SophiaLexer(RegexLexer):
             (r'(true|false)\b', Keyword.Constant),
             (r'\b([A-Z][\w\']*)(?=\s*\.)', Name.Class, 'dotted'),
             (r'\b([A-Z][\w\']*)', Name.Function),
-            (r'//.*?\n', Comment.Single),
+            (r'//[^\n]*\n', Comment.Single),
             (r'\/\*(?!/)', Comment.Multiline, 'comment'),
 
             (r'0[xX][\da-fA-F][\da-fA-F_]*', Number.Hex),

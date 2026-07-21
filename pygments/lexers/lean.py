@@ -38,7 +38,7 @@ class Lean3Lexer(RegexLexer):
             (r'\s+', Whitespace),
             (r'/--', String.Doc, 'docstring'),
             (r'/-', Comment, 'comment'),
-            (r'--.*?$', Comment.Single),
+            (r'--[^\n]*$', Comment.Single),
             (words((
                     'forall', 'fun', 'Pi', 'from', 'have', 'show', 'assume', 'suffices',
                     'let', 'if', 'else', 'then', 'in', 'with', 'calc', 'match',

@@ -102,7 +102,7 @@ class SmaliLexer(RegexLexer):
             (r'[ZBSCIJFDV\[]+', Keyword.Type),
         ],
         'comment': [
-            (r'#.*?\n', Comment),
+            (r'#[^\n]*\n', Comment),
         ],
     }
 

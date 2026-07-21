@@ -114,7 +114,7 @@ class DylanLexer(RegexLexer):
             (r'\s+', Whitespace),
 
             # single line comment
-            (r'//.*?\n', Comment.Single),
+            (r'//[^\n]*\n', Comment.Single),
 
             # lid header
             (r'([a-z0-9-]+)(:)([ \t]*)(.*(?:\n[ \t].+)*)',

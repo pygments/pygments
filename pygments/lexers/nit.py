@@ -27,7 +27,7 @@ class NitLexer(RegexLexer):
     version_added = '2.0'
     tokens = {
         'root': [
-            (r'#.*?$', Comment.Single),
+            (r'#[^\n]*$', Comment.Single),
             (words((
                 'package', 'module', 'import', 'class', 'abstract', 'interface',
                 'universal', 'enum', 'end', 'fun', 'type', 'init', 'redef',

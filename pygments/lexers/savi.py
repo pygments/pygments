@@ -45,10 +45,10 @@ class SaviLexer(RegexLexer):
     tokens = {
       "root": [
         # Line Comment
-        (r'//.*?$', Comment.Single),
+        (r'//[^\n]*$', Comment.Single),
 
         # Doc Comment
-        (r'::.*?$', Comment.Single),
+        (r'::[^\n]*$', Comment.Single),
 
         # Capability Operator
         (r'(\')(\w+)(?=[^\'])', bygroups(Operator, Name)),

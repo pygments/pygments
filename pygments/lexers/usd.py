@@ -65,7 +65,7 @@ class UsdLexer(RegexLexer):
         _keywords(TYPES, Keyword.Type) +
         [
             (r"[(){}\[\]]", Punctuation),
-            ("#.*?$", Comment.Single),
+            (r"#[^\n]*$", Comment.Single),
             (",", Punctuation),
             (";", Punctuation),  # ";"s are allowed to combine separate metadata lines
             ("=", Operator),

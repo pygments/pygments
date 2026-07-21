@@ -30,8 +30,8 @@ class YaraLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Whitespace),
-            (r'//.*?$', Comment.Single),
-            (r'\#.*?$', Comment.Single),
+            (r'//[^\n]*$', Comment.Single),
+            (r'\#[^\n]*$', Comment.Single),
             (r'/\*', Comment.Multiline, 'comment'),
             (words(('rule', 'private', 'global', 'import', 'include'),
                    prefix=r'\b', suffix=r'\b'),

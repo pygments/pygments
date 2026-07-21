@@ -256,7 +256,7 @@ class ABAPLexer(RegexLexer):
         'common': [
             (r'\s+', Whitespace),
             (r'^\*.*$', Comment.Single),
-            (r'\".*?\n', Comment.Single),
+            (r'\"[^\n]*\n', Comment.Single),
             (r'##\w+', Comment.Special),
         ],
         'variable-names': [

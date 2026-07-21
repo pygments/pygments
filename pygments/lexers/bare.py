@@ -57,7 +57,7 @@ class BareLexer(RegexLexer):
              bygroups(Keyword, Whitespace, Name, Whitespace), 'typedef'),
             (r'(enum)(\s+)([A-Z][a-zA-Z0-9]+)(\s+\{)',
              bygroups(Keyword, Whitespace, Name.Class, Whitespace), 'enum'),
-            (r'#.*?$', Comment),
+            (r'#[^\n]*$', Comment),
             (r'\s+', Whitespace),
         ],
         'struct': [
@@ -76,7 +76,7 @@ class BareLexer(RegexLexer):
         ],
         'typedef': [
             (r'\[\]', Text),
-            (r'#.*?$', Comment, '#pop'),
+            (r'#[^\n]*$', Comment, '#pop'),
             (r'(\[)(\d+)(\])', bygroups(Text, Literal, Text)),
             (r'<|>', Text),
             (r'\(', Text, 'union'),
@@ -95,7 +95,7 @@ class BareLexer(RegexLexer):
             (r'([A-Z][A-Z0-9_]*)(\s*=\s*)(\d+)',
              bygroups(Name.Attribute, Text, Literal)),
             (r'([A-Z][A-Z0-9_]*)', bygroups(Name.Attribute)),
-            (r'#.*?$', Comment),
+            (r'#[^\n]*$', Comment),
             (r'\s+', Whitespace),
         ],
     }

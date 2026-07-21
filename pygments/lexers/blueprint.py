@@ -49,7 +49,7 @@ class BlueprintLexer(RegexLexer):
         ],
         "whitespace": [
             (r"\s+", Whitespace),
-            (r"//.*?\n", Comment.Single),
+            (r"//[^\n]*\n", Comment.Single),
             (r"/\*", Comment.Multiline, "comment-multiline"),
         ],
         "comment-multiline": [

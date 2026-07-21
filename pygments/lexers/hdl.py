@@ -29,7 +29,7 @@ class VerilogLexer(RegexLexer):
     version_added = '1.4'
 
     #: optional Comment or Whitespace
-    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
+    _ws = r'(?:\s|//[^\n]*\n|/[*].*?[*]/)+'
 
     tokens = {
         'root': [
@@ -119,7 +119,7 @@ class VerilogLexer(RegexLexer):
         'macro': [
             (r'[^/\n]+', Comment.Preproc),
             (r'/[*][\s\S]*?[*]/', Comment.Multiline),
-            (r'//.*?\n', Comment.Single, '#pop'),
+            (r'//[^\n]*\n', Comment.Single, '#pop'),
             (r'/', Comment.Preproc),
             (r'(?<=\\)\n', Comment.Preproc),
             (r'\n', Whitespace, '#pop'),
@@ -156,7 +156,7 @@ class SystemVerilogLexer(RegexLexer):
     version_added = '1.5'
 
     #: optional Comment or Whitespace
-    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
+    _ws = r'(?:\s|//[^\n]*\n|/[*].*?[*]/)+'
 
     tokens = {
         'root': [
@@ -359,7 +359,7 @@ class SystemVerilogLexer(RegexLexer):
         'macro': [
             (r'[^/\n]+', Comment.Preproc),
             (r'/[*][\s\S]*?[*]/', Comment.Multiline),
-            (r'//.*?$', Comment.Single, '#pop'),
+            (r'//[^\n]*$', Comment.Single, '#pop'),
             (r'/', Comment.Preproc),
             (r'(?<=\\)\n', Comment.Preproc),
             (r'\n', Whitespace, '#pop'),
@@ -386,7 +386,7 @@ class VhdlLexer(RegexLexer):
         'root': [
             (r'\s+', Whitespace),
             (r'(\\)(\n)', bygroups(String.Escape, Whitespace)),  # line continuation
-            (r'--.*?$', Comment.Single),
+            (r'--[^\n]*$', Comment.Single),
             (r'/(\\\n)?[*][\s\S]*?[*](\\\n)?/', Comment.Multiline),
             (r"'(U|X|0|1|Z|W|L|H|-)'", String.Char),
             (r'[~!%^&*+=|?:<>/-]', Operator),

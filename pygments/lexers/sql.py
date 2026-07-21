@@ -58,7 +58,7 @@ __all__ = ['GoogleSqlLexer', 'PostgresLexer', 'PlPgsqlLexer',
            'PostgresConsoleLexer', 'PostgresExplainLexer', 'SqlLexer',
            'TransactSqlLexer', 'MySqlLexer', 'SqliteConsoleLexer', 'RqlLexer']
 
-line_re  = re.compile('.*?\n')
+line_re  = re.compile('[^\n]*\n')
 sqlite_prompt_re = re.compile(r'^(?:sqlite|   ...)>(?= )')
 
 language_re = re.compile(r"\s+LANGUAGE\s+'?(\w+)'?", re.IGNORECASE)
@@ -278,7 +278,7 @@ re_psql_command = re.compile(r'(\s*)(\\.+?)(\s+)$')
 re_error = re.compile(r'(ERROR|FATAL):')
 re_message = re.compile(
     r'((?:DEBUG|INFO|NOTICE|WARNING|ERROR|'
-    r'FATAL|HINT|DETAIL|CONTEXT|LINE [0-9]+):)(.*?\n)')
+    r'FATAL|HINT|DETAIL|CONTEXT|LINE [0-9]+):)([^\n]*\n)')
 
 
 class lookahead:

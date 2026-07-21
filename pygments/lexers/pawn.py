@@ -28,7 +28,7 @@ class SourcePawnLexer(RegexLexer):
     version_added = '1.6'
 
     #: optional Comment or Whitespace
-    _ws = r'(?:\s|//.*?\n|/\*.*?\*/)+'
+    _ws = r'(?:\s|//[^\n]*\n|/\*.*?\*/)+'
     #: only one /* */ style comment
     _ws1 = r'\s*(?:/[*].*?[*]/\s*)*'
 
@@ -72,7 +72,7 @@ class SourcePawnLexer(RegexLexer):
         'macro': [
             (r'[^/\n]+', Comment.Preproc),
             (r'/\*[\s\S]*?\*/', Comment.Multiline),
-            (r'//.*?\n', Comment.Single, '#pop'),
+            (r'//[^\n]*\n', Comment.Single, '#pop'),
             (r'/', Comment.Preproc),
             (r'(?<=\\)\n', Comment.Preproc),
             (r'\n', Comment.Preproc, '#pop'),
@@ -80,7 +80,7 @@ class SourcePawnLexer(RegexLexer):
         'if0': [
             (r'^\s*#if.*?(?<!\\)\n', Comment.Preproc, '#push'),
             (r'^\s*#endif.*?(?<!\\)\n', Comment.Preproc, '#pop'),
-            (r'.*?\n', Comment),
+            (r'[^\n]*\n', Comment),
         ]
     }
 
@@ -139,7 +139,7 @@ class PawnLexer(RegexLexer):
     version_added = '2.0'
 
     #: optional Comment or Whitespace
-    _ws = r'(?:\s|//.*?\n|/[*][\w\W]*?[*]/)+'
+    _ws = r'(?:\s|//[^\n]*\n|/[*][\w\W]*?[*]/)+'
     #: only one /* */ style comment
     _ws1 = r'\s*(?:/[*].*?[*]/\s*)*'
 
@@ -183,7 +183,7 @@ class PawnLexer(RegexLexer):
         'macro': [
             (r'[^/\n]+', Comment.Preproc),
             (r'/\*[\s\S]*?\*/', Comment.Multiline),
-            (r'//.*?\n', Comment.Single, '#pop'),
+            (r'//[^\n]*\n', Comment.Single, '#pop'),
             (r'/', Comment.Preproc),
             (r'(?<=\\)\n', Comment.Preproc),
             (r'\n', Comment.Preproc, '#pop'),
@@ -191,7 +191,7 @@ class PawnLexer(RegexLexer):
         'if0': [
             (r'^\s*#if.*?(?<!\\)\n', Comment.Preproc, '#push'),
             (r'^\s*#endif.*?(?<!\\)\n', Comment.Preproc, '#pop'),
-            (r'.*?\n', Comment),
+            (r'[^\n]*\n', Comment),
         ]
     }
 

@@ -484,7 +484,7 @@ class OpaLexer(RegexLexer):
         # factorizing these rules, because they are inserted many times
         'comments': [
             (r'/\*', Comment, 'nested-comment'),
-            (r'//.*?$', Comment),
+            (r'//[^\n]*$', Comment),
         ],
         'comments-and-spaces': [
             include('comments'),
@@ -811,7 +811,7 @@ class ReasonLexer(RegexLexer):
             (r'false|true|\(\)|\[\]', Name.Builtin.Pseudo),
             (r'\b([A-Z][\w\']*)(?=\s*\.)', Name.Namespace, 'dotted'),
             (r'\b([A-Z][\w\']*)', Name.Class),
-            (r'//.*?\n', Comment.Single),
+            (r'//[^\n]*\n', Comment.Single),
             (r'\/\*(?!/)', Comment.Multiline, 'comment'),
             (r'\b({})\b'.format('|'.join(keywords)), Keyword),
             (r'({})'.format('|'.join(keyopts[::-1])), Operator.Word),

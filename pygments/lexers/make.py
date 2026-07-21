@@ -85,7 +85,7 @@ class BaseMakefileLexer(RegexLexer):
             # special variables
             (r'\$[<@$+%?|*]', Keyword),
             (r'\s+', Whitespace),
-            (r'#.*?\n', Comment),
+            (r'#[^\n]*\n', Comment),
             (r'((?:un)?export)(\s+)(?=[\w${}\t -]+\n)',
              bygroups(Keyword, Whitespace), 'export'),
             (r'(?:un)?export\s+', Keyword),
@@ -118,7 +118,7 @@ class BaseMakefileLexer(RegexLexer):
         ],
         'block-header': [
             (r'[,|]', Punctuation),
-            (r'#.*?\n', Comment, '#pop'),
+            (r'#[^\n]*\n', Comment, '#pop'),
             (r'\\\n', Text),  # line continuation
             (r'\$\(', Keyword, 'expansion'),
             (r'[a-zA-Z_]+', Name),

@@ -109,7 +109,7 @@ class DLexer(RegexLexer):
             (r'q"\(', String, 'delimited_parenthesis'),
             (r'q"<', String, 'delimited_angle'),
             (r'q"\{', String, 'delimited_curly'),
-            (r'q"([^\W\d]\w*)\n.*?\n\1"', String),
+            (r'q"([^\W\d]\w*)\n[^\n]*\n\1"', String),
             (r'q"(.).*?\1"', String),
             # -- TokenString
             (r'q\{', String, 'token_string'),

@@ -29,7 +29,7 @@ class EiffelLexer(RegexLexer):
     tokens = {
         'root': [
             (r'[^\S\n]+', Whitespace),
-            (r'--.*?$', Comment.Single),
+            (r'--[^\n]*$', Comment.Single),
             (r'[^\S\n]+', Whitespace),
             # Please note that keyword and operator are case insensitive.
             (r'(?i)(true|false|void|current|result|precursor)\b', Keyword.Constant),

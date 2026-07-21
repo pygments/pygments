@@ -25,7 +25,7 @@ class HareLexer(RegexLexer):
     mimetypes = ['text/x-hare']
     version_added = '2.19'
 
-    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
+    _ws = r'(?:\s|//[^\n]*\n|/[*].*?[*]/)+'
     _ws1 = r'\s*(?:/[*].*?[*]/\s*)?'
 
     tokens = {
@@ -34,7 +34,7 @@ class HareLexer(RegexLexer):
             (r'@[a-z]+', Comment.Preproc),
             (r'\n', Whitespace),
             (r'\s+', Whitespace),
-            (r'//.*?$', Comment.Single),
+            (r'//[^\n]*$', Comment.Single),
         ],
         'statements': [
             (r'"', String, 'string'),

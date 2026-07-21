@@ -38,7 +38,7 @@ class RegoLexer(RegexLexer):
         'root': [
             (r'\n', Whitespace),
             (r'\s+', Whitespace),
-            (r'#.*?$', Comment.Single),
+            (r'#[^\n]*$', Comment.Single),
             (words(reserved_words, suffix=r'\b'), Keyword),
             (words(builtins, suffix=r'\b'), Name.Builtin),
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),

@@ -1032,7 +1032,7 @@ class DgLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'#.*?$', Comment.Single),
+            (r'#[^\n]*$', Comment.Single),
 
             (r'(?i)0b[01]+', Number.Bin),
             (r'(?i)0o[0-7]+', Number.Oct),

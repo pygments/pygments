@@ -45,9 +45,9 @@ class FantomLexer(RegexLexer):
     tokens = {
         'comments': [
             (r'(?s)/\*.*?\*/', Comment.Multiline),           # Multiline
-            (r'//.*?$', Comment.Single),                    # Single line
+            (r'//[^\n]*$', Comment.Single),                    # Single line
             # TODO: highlight references in fandocs
-            (r'\*\*.*?$', Comment.Special),                 # Fandoc
+            (r'\*\*[^\n]*$', Comment.Special),                 # Fandoc
             (r'#.*$', Comment.Single)                       # Shell-style
         ],
         'literals': [

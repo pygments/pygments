@@ -44,7 +44,7 @@ class RellLexer(RegexLexer):
                 'module', 'not', 'offset', 'or', 'override', 'return', 'update',
                 'val', 'var', 'when', 'while'), suffix=r'\b'),
              Keyword.Reserved),
-            (r'//.*?$', Comment.Single),
+            (r'//[^\n]*$', Comment.Single),
             (r'/\*[\s\S]*?\*/', Comment.Multiline),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
             (r'\'(\\\\|\\\'|[^\\\'])*\'', String.Single),

@@ -72,7 +72,7 @@ class SieveLexer(RegexLexer):
              Name.Tag, 'text'),
         ],
         'text': [
-            (r'[^.].*?\n', String),
+            (r'[^.][^\n]*\n', String),
             (r'^\.', Punctuation, "#pop"),
         ]
     }

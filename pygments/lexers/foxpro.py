@@ -43,7 +43,7 @@ class FoxProLexer(RegexLexer):
             # before matching string literals.
             (r'(?<=\w)\[[0-9, ]+\]', Text),
             (r'\'[^\'\n]*\'|"[^"\n]*"|\[[^]*]\]', String),
-            (r'(^\s*\*|&&|&amp;&amp;).*?\n', Comment.Single),
+            (r'(^\s*\*|&&|&amp;&amp;)[^\n]*\n', Comment.Single),
 
             (r'(ABS|ACLASS|ACOPY|ACOS|ADATABASES|ADBOBJECTS|ADDBS|'
              r'ADDPROPERTY|ADEL|ADIR|ADLLS|ADOCKSTATE|AELEMENT|AERROR|'
@@ -343,7 +343,7 @@ class FoxProLexer(RegexLexer):
             (r'.', Text),
         ],
         'newline': [
-            (r'\*.*?$', Comment.Single, '#pop'),
+            (r'\*[^\n]*$', Comment.Single, '#pop'),
             (r'(ACCEPT|ACTIVATE\s*MENU|ACTIVATE\s*POPUP|ACTIVATE\s*SCREEN|'
              r'ACTIVATE\s*WINDOW|APPEND|APPEND\s*FROM|APPEND\s*FROM\s*ARRAY|'
              r'APPEND\s*GENERAL|APPEND\s*MEMO|ASSIST|AVERAGE|BLANK|BROWSE|'

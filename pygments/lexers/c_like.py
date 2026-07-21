@@ -105,7 +105,7 @@ class ClayLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Whitespace),
-            (r'//.*?$', Comment.Single),
+            (r'//[^\n]*$', Comment.Single),
             (r'/(\\\n)?[*][\s\S]*?[*](\\\n)?/', Comment.Multiline),
             (words(('public', 'private', 'import', 'as', 'record', 'variant',
                     'instance', 'define', 'overload', 'default',
@@ -268,7 +268,7 @@ class ValaLexer(RegexLexer):
             (r'^\s*#if.*?(?<!\\)\n', Comment.Preproc, '#push'),
             (r'^\s*#el(?:se|if).*\n', Comment.Preproc, '#pop'),
             (r'^\s*#endif.*?(?<!\\)\n', Comment.Preproc, '#pop'),
-            (r'.*?\n', Comment),
+            (r'[^\n]*\n', Comment),
         ],
         'class': [
             (r'[a-zA-Z_]\w*', Name.Class, '#pop')

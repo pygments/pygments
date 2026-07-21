@@ -300,7 +300,7 @@ class TexLexer(RegexLexer):
 
     tokens = {
         'general': [
-            (r'%.*?\n', Comment),
+            (r'%[^\n]*\n', Comment),
             (r'[{}]', Name.Builtin),
             (r'[&_^]', Name.Builtin),
         ],

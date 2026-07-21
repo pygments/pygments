@@ -402,7 +402,7 @@ class MoselLexer(RegexLexer):
         'root': [
             (r'\n', Text),
             (r'\s+', Text.Whitespace),
-            (r'!.*?\n', Comment.Single),
+            (r'![^\n]*\n', Comment.Single),
             (r'\(![\s\S]*?!\)', Comment.Multiline),
             (words((
                 'and', 'as', 'break', 'case', 'count', 'declarations', 'do',
