@@ -1,0 +1,213 @@
+'package'     Keyword.Namespace
+' '           Text.Whitespace
+'main'        Name.Other
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'"fmt"'       Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'main'        Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'_'           Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+']'           Punctuation
+'rune'        Keyword.Type
+'{'           Punctuation
+"'"           Literal.String.Char
+'\\a'         Literal.String.Escape
+"'"           Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'\\b'         Literal.String.Escape
+"'"           Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'\\f'         Literal.String.Escape
+"'"           Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'\\n'         Literal.String.Escape
+"'"           Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'\\r'         Literal.String.Escape
+"'"           Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'\\t'         Literal.String.Escape
+"'"           Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'\\v'         Literal.String.Escape
+"'"           Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'\\\\'        Literal.String.Escape
+"'"           Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Char
+"\\'"         Literal.String.Escape
+"'"           Literal.String.Char
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'_'           Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+']'           Punctuation
+'rune'        Keyword.Type
+'{'           Punctuation
+"'"           Literal.String.Char
+'\\000'       Literal.String.Escape
+"'"           Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'\\007'       Literal.String.Escape
+"'"           Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'\\377'       Literal.String.Escape
+"'"           Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'\\x07'       Literal.String.Escape
+"'"           Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'\\xff'       Literal.String.Escape
+"'"           Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'\\u12e4'     Literal.String.Escape
+"'"           Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'\\U00101234' Literal.String.Escape
+"'"           Literal.String.Char
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'_'           Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+']'           Punctuation
+'rune'        Keyword.Type
+'{'           Punctuation
+"'a'"         Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+"'ä'"         Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+"'本'"         Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+'\'"\''       Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+"'ß'"         Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+"'€'"         Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+"'@'"         Literal.String.Char
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'_'           Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"simple aä本\'ß€@"' Literal.String
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'_'           Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'\\a'         Literal.String.Escape
+' '           Literal.String
+'\\b'         Literal.String.Escape
+' '           Literal.String
+'\\f'         Literal.String.Escape
+' '           Literal.String
+'\\n'         Literal.String.Escape
+' '           Literal.String
+'\\r'         Literal.String.Escape
+' '           Literal.String
+'\\t'         Literal.String.Escape
+' '           Literal.String
+'\\v'         Literal.String.Escape
+' '           Literal.String
+'\\\\'        Literal.String.Escape
+' '           Literal.String
+'\\"'         Literal.String.Escape
+' '           Literal.String
+'\\000'       Literal.String.Escape
+' '           Literal.String
+'\\007'       Literal.String.Escape
+' '           Literal.String
+'\\377'       Literal.String.Escape
+' '           Literal.String
+'\\x07'       Literal.String.Escape
+' '           Literal.String
+'\\xff'       Literal.String.Escape
+' '           Literal.String
+'\\u12e4'     Literal.String.Escape
+' '           Literal.String
+'\\U00101234' Literal.String.Escape
+' aä本\'ß€@"'  Literal.String
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'fmt'         Name.Other
+'.'           Punctuation
+'Println'     Name.Other
+'('           Punctuation
+'`\\a \\b \\f \\n \\r \\t \\v \\\\ \\" \\000 \\007 \\377 \\x07 \\xff \\u12e4 \\U00101234 aä本\'ß€@ newline->\n\t<-tab`' Literal.String.Backtick
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
