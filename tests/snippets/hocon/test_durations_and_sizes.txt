@@ -1,0 +1,41 @@
+---input---
+timeout = 30 seconds
+retry = 250ms
+buffer = 5 MiB
+window = 2 d
+
+---tokens---
+'timeout'     Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'30'          Literal.Number
+' '           Text.Whitespace
+'seconds'     Keyword.Type
+'\n'          Text.Whitespace
+
+'retry'       Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'250'         Literal.Number
+'ms'          Keyword.Type
+'\n'          Text.Whitespace
+
+'buffer'      Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'5'           Literal.Number
+' '           Text.Whitespace
+'MiB'         Keyword.Type
+'\n'          Text.Whitespace
+
+'window'      Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'2'           Literal.Number
+' '           Text.Whitespace
+'d'           Keyword.Type
+'\n'          Text.Whitespace
