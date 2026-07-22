@@ -62,7 +62,7 @@ class PerlLexer(RegexLexer):
             # common delimiters
             (r's/(\\\\|\\[^\\]|[^\\/])*/(\\\\|\\[^\\]|[^\\/])*/[egimosx]*',
                 String.Regex),
-            (r's!(\\\\|\\!|[^!])*!(\\\\|\\!|[^!])*![egimosx]*', String.Regex),
+            (r's!(\\\\|\\[^\\]|[^\\!])*!(\\\\|\\[^\\]|[^\\!])*![egimosx]*', String.Regex),
             (r's\\(\\\\|[^\\])*\\(\\\\|[^\\])*\\[egimosx]*', String.Regex),
             (r's@(\\\\|\\[^\\]|[^\\@])*@(\\\\|\\[^\\]|[^\\@])*@[egimosx]*',
                 String.Regex),

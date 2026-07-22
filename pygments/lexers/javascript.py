@@ -830,13 +830,13 @@ class ObjectiveJLexer(RegexLexer):
             (';', Punctuation),
         ],
         'whitespace': [
-            (r'(@import)(\s+)("(?:\\\\|\\"|[^"])*")',
+            (r'(@import)(\s+)("(?:\\\\|\\[^\\]|[^"\\])*")',
              bygroups(Comment.Preproc, Whitespace, String.Double)),
-            (r'(@import)(\s+)(<(?:\\\\|\\>|[^>])*>)',
+            (r'(@import)(\s+)(<(?:\\\\|\\[^\\]|[^>\\])*>)',
              bygroups(Comment.Preproc, Whitespace, String.Double)),
-            (r'(#(?:include|import))(\s+)("(?:\\\\|\\"|[^"])*")',
+            (r'(#(?:include|import))(\s+)("(?:\\\\|\\[^\\]|[^"\\])*")',
              bygroups(Comment.Preproc, Whitespace, String.Double)),
-            (r'(#(?:include|import))(\s+)(<(?:\\\\|\\>|[^>])*>)',
+            (r'(#(?:include|import))(\s+)(<(?:\\\\|\\[^\\]|[^>\\])*>)',
              bygroups(Comment.Preproc, Whitespace, String.Double)),
 
             (r'#if\s+0', Comment.Preproc, 'if0'),

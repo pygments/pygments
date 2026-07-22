@@ -282,8 +282,8 @@ class FactorLexer(RegexLexer):
 
             # strings
             (r'"""\s(?:.|\n)*?\s"""', String),
-            (r'"(?:\\\\|\\"|[^"])*"', String),
-            (r'(\S+")(\s+)((?:\\\\|\\"|[^"])*")',
+            (r'"(?:\\\\|\\[^\\]|[^"\\])*"', String),
+            (r'(\S+")(\s+)((?:\\\\|\\[^\\]|[^"\\])*")',
                 bygroups(String, Whitespace, String)),
             (r'(CHAR:)(\s+)(\\[\\abfnrstv]|[^\\]\S*)(\s)',
                 bygroups(String.Char, Whitespace, String.Char, Whitespace)),

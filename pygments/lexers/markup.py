@@ -236,7 +236,7 @@ class RstLexer(RegexLexer):
             # Comments
             (r'^ *\.\..*(\n( +.*\n|\n)+)?', Comment),
             # Field list marker
-            (r'^( *)(:(?:\\\\|\\:|[^:\n])+:(?=\s))([ \t]*)',
+            (r'^( *)(:(?:\\\\|\\[^\\]|[^:\n\\])+:(?=\s))([ \t]*)',
              bygroups(Text, Name.Class, Text)),
             # Definition list
             (r'^(\S.*(?<!::)\n)((?:(?: +.*)\n)+)',

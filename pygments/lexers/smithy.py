@@ -75,8 +75,8 @@ class SmithyLexer(RegexLexer):
             # Text block: """...""", spanning escapes, lone 1-2 quotes, and any
             # other character up to the closing triple quote.
             (r'"""(?:\\.|"{1,2}(?!")|[^"\\])*"""', String.Doc),
-            (r'"(\\\\|\n|\\"|[^"])*"', String.Double),
-            (r"'(\\\\|\n|\\'|[^'])*'", String.Single),
+            (r'"(\\\\|\n|\\[^\\]|[^"\\])*"', String.Double),
+            (r"'(\\\\|\n|\\[^\\]|[^'\\])*'", String.Single),
             (r'[:,]+', Punctuation),
             (r'\s+', Whitespace),
         ]
