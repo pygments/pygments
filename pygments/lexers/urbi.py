@@ -115,11 +115,11 @@ class UrbiscriptLexer(ExtendedRegexLexer):
             (r"'", String.Single, "string.single"),
         ],
         'string.double': [
-            (r'((?:\\\\|\\"|[^"])*?)(\\B\((\d+)\)\()', blob_callback),
+            (r'((?:\\\\|\\[^\\]|[^"\\])*?)(\\B\((\d+)\)\()', blob_callback),
             (r'(\\\\|\\[^\\]|[^"\\])*?"', String.Double, '#pop'),
         ],
         'string.single': [
-            (r"((?:\\\\|\\'|[^'])*?)(\\B\((\d+)\)\()", blob_callback),
+            (r"((?:\\\\|\\[^\\]|[^'\\])*?)(\\B\((\d+)\)\()", blob_callback),
             (r"(\\\\|\\[^\\]|[^'\\])*?'", String.Single, '#pop'),
         ],
         # from http://pygments.org/docs/lexerdevelopment/#changing-states

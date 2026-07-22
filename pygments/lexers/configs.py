@@ -174,7 +174,7 @@ class RegeditLexer(RegexLexer):
             (r'(\[)(-?)(HKEY_[A-Z_]+)(.*?\])$',
              bygroups(Keyword, Operator, Name.Builtin, Keyword)),
             # String keys, which obey somewhat normal escaping
-            (r'("(?:\\"|\\\\|[^"])+")([ \t]*)(=)([ \t]*)',
+            (r'("(?:\\\\|\\[^\\]|[^"\\])+")([ \t]*)(=)([ \t]*)',
              bygroups(Name.Attribute, Whitespace, Operator, Whitespace),
              'value'),
             # Bare keys (includes @)

@@ -42,7 +42,7 @@ class RegoLexer(RegexLexer):
             (words(reserved_words, suffix=r'\b'), Keyword),
             (words(builtins, suffix=r'\b'), Name.Builtin),
             (r'[a-zA-Z_][a-zA-Z0-9_]*', Name),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
             (r'`[^`]*`', String.Backtick),
             (r'-?\d+(\.\d+)?', Number),
             (r'(==|!=|<=|>=|:=)', Operator),  # Compound operators
