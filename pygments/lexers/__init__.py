@@ -18,6 +18,7 @@ from pygments.lexers._mapping import LEXERS
 from pygments.modeline import get_filetype_from_buffer
 from pygments.plugin import find_plugin_lexers
 from pygments.util import ClassNotFound, guess_decode
+from pygments.lexers.custom_yaml import CustomYamlLexer
 
 COMPAT = {
     'Python3Lexer': 'PythonLexer',
