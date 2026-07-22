@@ -1,0 +1,106 @@
+---input---
+        add     x0, x1, x2, lsl #3
+        ldp     x29, x30, [sp], #16
+        ins     v0.d[1], x0
+        tbl     v0.16b, {v1.16b, v2.16b}, v3.16b
+        mrs     x0, tpidr_el0
+        movi    v0.4s, #0
+        mov     wzr, w0
+        mov     sp, x28
+
+---tokens---
+'        '    Text.Whitespace
+'add'         Keyword
+'     '       Text.Whitespace
+'x0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'x1'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'x2'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'lsl'         Name.Constant
+' '           Text.Whitespace
+'#3'          Literal.Number
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'ldp'         Keyword
+'     '       Text.Whitespace
+'x29'         Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'x30'         Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'sp'          Name.Builtin
+'],'          Punctuation
+' '           Text.Whitespace
+'#16'         Literal.Number
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'ins'         Keyword
+'     '       Text.Whitespace
+'v0.d'        Name.Builtin
+'['           Punctuation
+'1'           Literal.Number
+'],'          Punctuation
+' '           Text.Whitespace
+'x0'          Name.Builtin
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'tbl'         Keyword
+'     '       Text.Whitespace
+'v0.16b'      Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'v1.16b'      Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'v2.16b'      Name.Builtin
+'},'          Punctuation
+' '           Text.Whitespace
+'v3.16b'      Name.Builtin
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'mrs'         Keyword
+'     '       Text.Whitespace
+'x0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'tpidr_el0'   Name.Constant
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'movi'        Keyword
+'    '        Text.Whitespace
+'v0.4s'       Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'#0'          Literal.Number
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'mov'         Keyword
+'     '       Text.Whitespace
+'wzr'         Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'w0'          Name.Builtin
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'mov'         Keyword
+'     '       Text.Whitespace
+'sp'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'x28'         Name.Builtin
+'\n'          Text.Whitespace

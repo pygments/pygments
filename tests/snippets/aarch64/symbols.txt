@@ -1,0 +1,47 @@
+---input---
+        adrp    x0, sym@PAGE
+        add     x0, x0, sym@PAGEOFF
+        bl      printf
+        futurensn x0, x1, x2
+
+---tokens---
+'        '    Text.Whitespace
+'adrp'        Keyword
+'    '        Text.Whitespace
+'x0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'sym'         Name.Constant
+'@PAGE'       Name.Constant
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'add'         Keyword
+'     '       Text.Whitespace
+'x0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'x0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'sym'         Name.Constant
+'@PAGEOFF'    Name.Constant
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'bl'          Keyword
+'      '      Text.Whitespace
+'printf'      Name.Constant
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'futurensn'   Keyword
+' '           Text.Whitespace
+'x0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'x1'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'x2'          Name.Builtin
+'\n'          Text.Whitespace

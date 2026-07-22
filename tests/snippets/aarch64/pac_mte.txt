@@ -1,0 +1,103 @@
+---input---
+func:
+        paciasp
+        bti     c
+        pacia   x0, x1
+        autiasp
+        irg     x0, x0
+        addg    x0, x0, #16, #1
+        stg     x0, [x1]
+        st2g    x0, [x1, #32]
+        ldg     x0, [x1]
+        retab
+
+---tokens---
+'func:'       Name.Label
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'paciasp'     Keyword
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'bti'         Keyword
+'     '       Text.Whitespace
+'c'           Name.Constant
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'pacia'       Keyword
+'   '         Text.Whitespace
+'x0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'x1'          Name.Builtin
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'autiasp'     Keyword
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'irg'         Keyword
+'     '       Text.Whitespace
+'x0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'x0'          Name.Builtin
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'addg'        Keyword
+'    '        Text.Whitespace
+'x0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'x0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'#16'         Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'#1'          Literal.Number
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'stg'         Keyword
+'     '       Text.Whitespace
+'x0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'x1'          Name.Builtin
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'st2g'        Keyword
+'    '        Text.Whitespace
+'x0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'x1'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'#32'         Literal.Number
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'ldg'         Keyword
+'     '       Text.Whitespace
+'x0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'x1'          Name.Builtin
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'retab'       Keyword
+'\n'          Text.Whitespace
