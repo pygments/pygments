@@ -1,0 +1,36 @@
+# Test that ``from`` in exception chaining (``raise X from Y``) is a plain
+# keyword and its cause a normal name, while a genuine ``from ... import ...``
+# statement is still tokenized as a namespace import.
+
+---input---
+raise Exception from e
+raise ValueError from None
+from os import path
+
+---tokens---
+'raise'       Keyword
+' '           Text
+'Exception'   Name.Exception
+' '           Text
+'from'        Keyword
+' '           Text
+'e'           Name
+'\n'          Text.Whitespace
+
+'raise'       Keyword
+' '           Text
+'ValueError'  Name.Exception
+' '           Text
+'from'        Keyword
+' '           Text
+'None'        Keyword.Constant
+'\n'          Text.Whitespace
+
+'from'        Keyword.Namespace
+' '           Text.Whitespace
+'os'          Name.Namespace
+' '           Text.Whitespace
+'import'      Keyword.Namespace
+' '           Text
+'path'        Name
+'\n'          Text.Whitespace
