@@ -9,6 +9,7 @@
 """
 
 import re
+from copy import copy
 
 from pygments.lexer import RegexLexer, bygroups, default
 from pygments.token import Keyword, Punctuation, String, Number, Operator, \
@@ -17,7 +18,36 @@ from pygments.token import Keyword, Punctuation, String, Number, Operator, \
 __all__ = ['SparqlLexer', 'TurtleLexer', 'ShExCLexer']
 
 
-class SparqlLexer(RegexLexer):
+class _RdfLexer(RegexLexer):
+    """Regex lexer that skips impossible prefixed-name retries."""
+
+    def get_tokens_unprocessed(self, text, stack=('root',)):
+        rules = list(self._tokens['root'])
+        patterns = [rule[0] for rule in self.tokens['root']]
+        index = patterns.index(self.PNAME)
+        matcher, action, new_state = rules[index]
+        prefix_run = re.compile(self.PN_PREFIX_RUN, self.flags).match
+        skip_until = 0
+
+        def match_prefixed_name(text, pos):
+            nonlocal skip_until
+            if pos < skip_until:
+                return None
+            match = matcher(text, pos)
+            if match is None:
+                run = prefix_run(text, pos)
+                if run is not None:
+                    skip_until = run.end()
+            return match
+
+        rules[index] = match_prefixed_name, action, new_state
+        lexer = copy(self)
+        lexer._tokens = dict(self._tokens)
+        lexer._tokens['root'] = rules
+        yield from RegexLexer.get_tokens_unprocessed(lexer, text, stack)
+
+
+class SparqlLexer(_RdfLexer):
     """
     Lexer for SPARQL query language.
     """
@@ -75,6 +105,8 @@ class SparqlLexer(RegexLexer):
 
     PN_PREFIX = PN_CHARS_BASE + '(?:[' + PN_CHARS_GRP + '.]*' + PN_CHARS + ')?'
 
+    PN_PREFIX_RUN = PN_CHARS_BASE + '[' + PN_CHARS_GRP + '.]*'
+
     VARNAME = '[0-9' + PN_CHARS_U_GRP + '][' + PN_CHARS_U_GRP + \
               '0-9\u00b7\u0300-\u036f\u203f-\u2040]*'
 
@@ -87,6 +119,8 @@ class SparqlLexer(RegexLexer):
     PN_LOCAL = ('(?:[' + PN_CHARS_U_GRP + ':0-9' + ']|' + PLX + ')' +
                 '(?:(?:[' + PN_CHARS_GRP + '.:]|' + PLX + ')*(?:[' +
                 PN_CHARS_GRP + ':]|' + PLX + '))?')
+
+    PNAME = r'(' + PN_PREFIX + r')?(\:)(' + PN_LOCAL + r')?'
 
     EXPONENT = r'[eE][+-]?\d+'
 
@@ -110,8 +144,7 @@ class SparqlLexer(RegexLexer):
             #  # variables ::
             ('[?$]' + VARNAME, Name.Variable),
             # prefixed names ::
-            (r'(' + PN_PREFIX + r')?(\:)(' + PN_LOCAL + r')?',
-             bygroups(Name.Namespace, Punctuation, Name.Tag)),
+            (PNAME, bygroups(Name.Namespace, Punctuation, Name.Tag)),
             # function names ::
             (r'(?i)(str|lang|langmatches|datatype|bound|iri|uri|bnode|rand|abs|'
              r'ceil|floor|round|concat|strlen|ucase|lcase|encode_for_uri|'
@@ -175,7 +208,7 @@ class SparqlLexer(RegexLexer):
     }
 
 
-class TurtleLexer(RegexLexer):
+class TurtleLexer(_RdfLexer):
     """
     Lexer for Turtle data language.
     """
@@ -215,6 +248,8 @@ class TurtleLexer(RegexLexer):
 
     PN_PREFIX = PN_CHARS_BASE + '(?:[' + PN_CHARS_GRP + '.]*' + PN_CHARS + ')?'
 
+    PN_PREFIX_RUN = PN_CHARS_BASE + '[' + PN_CHARS_GRP + '.]*'
+
     HEX_GRP = '0-9A-Fa-f'
 
     HEX = '[' + HEX_GRP + ']'
@@ -232,6 +267,8 @@ class TurtleLexer(RegexLexer):
     PN_LOCAL = ('(?:[' + PN_CHARS_U_GRP + ':0-9' + ']|' + PLX + ')' +
                 '(?:(?:[' + PN_CHARS_GRP + '.:]|' + PLX + ')*(?:[' +
                 PN_CHARS_GRP + ':]|' + PLX + '))?')
+
+    PNAME = r'(' + PN_PREFIX + r')?(\:)(' + PN_LOCAL + r')?'
 
     patterns = {
         'PNAME_NS': r'((?:[a-zA-Z][\w-]*)?\:)',  # Simplified character range
@@ -257,8 +294,7 @@ class TurtleLexer(RegexLexer):
             (r'{IRIREF}'.format(**patterns), Name.Variable),
 
             # PrefixedName
-            (r'(' + PN_PREFIX + r')?(\:)(' + PN_LOCAL + r')?',
-             bygroups(Name.Namespace, Punctuation, Name.Tag)),
+            (PNAME, bygroups(Name.Namespace, Punctuation, Name.Tag)),
 
             # BlankNodeLabel
             (r'(_)(:)([' + PN_CHARS_U_GRP + r'0-9]([' + PN_CHARS_GRP + r'.]*' + PN_CHARS + ')?)',
@@ -320,7 +356,7 @@ class TurtleLexer(RegexLexer):
                 return 0.80
 
 
-class ShExCLexer(RegexLexer):
+class ShExCLexer(_RdfLexer):
     """
     Lexer for ShExC shape expressions language syntax.
     """
@@ -382,6 +418,8 @@ class ShExCLexer(RegexLexer):
 
     PN_PREFIX = PN_CHARS_BASE + '(?:[' + PN_CHARS_GRP + '.]*' + PN_CHARS + ')?'
 
+    PN_PREFIX_RUN = PN_CHARS_BASE + '[' + PN_CHARS_GRP + '.]*'
+
     PERCENT = '%' + HEX + HEX
 
     PN_LOCAL_ESC = r'\\' + PN_LOCAL_ESC_CHARS
@@ -391,6 +429,8 @@ class ShExCLexer(RegexLexer):
     PN_LOCAL = ('(?:[' + PN_CHARS_U_GRP + ':0-9' + ']|' + PLX + ')' +
                 '(?:(?:[' + PN_CHARS_GRP + '.:]|' + PLX + ')*(?:[' +
                 PN_CHARS_GRP + ':]|' + PLX + '))?')
+
+    PNAME = r'(' + PN_PREFIX + r')?(\:)(' + PN_LOCAL + r')?'
 
     EXPONENT = r'[eE][+-]?\d+'
 
@@ -411,8 +451,7 @@ class ShExCLexer(RegexLexer):
             # blank nodes ::
             ('(' + BLANK_NODE_LABEL + ')', Name.Label),
             # prefixed names ::
-            (r'(' + PN_PREFIX + r')?(\:)(' + PN_LOCAL + ')?',
-             bygroups(Name.Namespace, Punctuation, Name.Tag)),
+            (PNAME, bygroups(Name.Namespace, Punctuation, Name.Tag)),
             # boolean literals ::
             (r'(true|false)', Keyword.Constant),
             # double literals ::
