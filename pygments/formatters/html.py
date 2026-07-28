@@ -405,13 +405,13 @@ class HtmlFormatter(Formatter):
 
     def __init__(self, **options):
         Formatter.__init__(self, **options)
-        self.title = self._decodeifneeded(self.title)
+        self.title = html_escape(self._decodeifneeded(self.title))
         self.nowrap = get_bool_opt(options, 'nowrap', False)
         self.noclasses = get_bool_opt(options, 'noclasses', False)
-        self.classprefix = options.get('classprefix', '')
+        self.classprefix = html_escape(options.get('classprefix', ''))
         self.cssclass = html_escape(self._decodeifneeded(options.get('cssclass', 'highlight')))
         self.cssstyles = html_escape(self._decodeifneeded(options.get('cssstyles', '')))
-        self.prestyles = self._decodeifneeded(options.get('prestyles', ''))
+        self.prestyles = html_escape(self._decodeifneeded(options.get('prestyles', '')))
         self.cssfile = self._decodeifneeded(options.get('cssfile', ''))
         self.noclobber_cssfile = get_bool_opt(options, 'noclobber_cssfile', False)
         self.tagsfile = self._decodeifneeded(options.get('tagsfile', ''))
@@ -457,7 +457,7 @@ class HtmlFormatter(Formatter):
         the classprefix option."""
         ttypeclass = _get_ttype_class(ttype)
         if ttypeclass:
-            return self.classprefix + ttypeclass
+            return self.classprefix + html_escape(ttypeclass)
         return ''
 
     def _get_css_classes(self, ttype):
@@ -636,7 +636,7 @@ class HtmlFormatter(Formatter):
 
             yield 0, (DOC_HEADER_EXTERNALCSS %
                       dict(title=self.title,
-                           cssfile=self.cssfile,
+                           cssfile=html_escape(self.cssfile),
                            encoding=self.encoding))
         else:
             yield 0, (DOC_HEADER %
@@ -844,7 +844,7 @@ class HtmlFormatter(Formatter):
             try:
                 cspan = span_openers[ttype]
             except KeyError:
-                title = ' title="{}"'.format('.'.join(ttype)) if self.debug_token_types else ''
+                title = ' title="{}"'.format(html_escape('.'.join(ttype))) if self.debug_token_types else ''
                 if nocls:
                     css_style = self._get_css_inline_styles(ttype)
                     if css_style:
