@@ -1,0 +1,2426 @@
+'###############################################' Comment.Single
+'\n'          Text.Whitespace
+
+'# FILE: date.pat' Comment.Single
+'\n'          Text.Whitespace
+
+'# SUBJ: comment' Comment.Single
+'\n'          Text.Whitespace
+
+'# AUTH: AM'  Comment.Single
+'\n'          Text.Whitespace
+
+'# CREATED: 11/Jul/04 01:42:17' Comment.Single
+'\n'          Text.Whitespace
+
+'# MODIFIED:' Comment.Single
+'\n'          Text.Whitespace
+
+'###############################################' Comment.Single
+'\n\n'        Text.Whitespace
+
+'@CODE'       Keyword.Declaration
+'\n'          Text.Whitespace
+
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'hello'       Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@@CODE'      Keyword.Declaration
+'\n\n'        Text.Whitespace
+
+'@NODES'      Keyword.Declaration
+' '           Text.Whitespace
+'_TEXTZONE'   Name.Variable
+'\n\n'        Text.Whitespace
+
+'# 0900 GMT'  Comment.Single
+'\n'          Text.Whitespace
+
+'@POST'       Keyword.Declaration
+'\n  '        Text.Whitespace
+'++'          Operator
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+"don't splice" Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'single'      Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@RULES'      Keyword.Declaration
+'\n'          Text.Whitespace
+
+'_date'       Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'layer'       Name.Attribute
+'='           Operator
+'('           Punctuation
+'_noun'       Name.Variable
+' '           Text.Whitespace
+'_np'         Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'<-'          Operator
+'\n\t'        Text.Whitespace
+'_xNUM'       Name.Constant
+'\n\t'        Text.Whitespace
+'_xWILD'      Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'star'        Name.Attribute
+' '           Text.Whitespace
+'match'       Name.Attribute
+'='           Operator
+'('           Punctuation
+'_xWHITE'     Name.Constant
+' '           Text.Whitespace
+'_nbsp'       Name.Variable
+')'           Punctuation
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'_xWILD'      Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'one'         Name.Attribute
+' '           Text.Whitespace
+'match'       Name.Attribute
+'='           Operator
+'('           Punctuation
+'GMT'         Name
+' '           Text.Whitespace
+'PST'         Name
+' '           Text.Whitespace
+'MST'         Name
+' '           Text.Whitespace
+'CST'         Name
+' '           Text.Whitespace
+'EST'         Name
+')'           Punctuation
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'@@'          Keyword.Declaration
+'\n\n\n'      Text.Whitespace
+
+'@POST'       Keyword.Declaration
+'\n  '        Text.Whitespace
+'++'          Operator
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+"don't splice" Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'temporal'    Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n  '        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'dy'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'num'         Name.Builtin
+'('           Punctuation
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'$text'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'mo'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'num'         Name.Builtin
+'('           Punctuation
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'$text'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'yr'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'num'         Name.Builtin
+'('           Punctuation
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'$text'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'sem'         Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'date'        Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text.Whitespace
+'++'          Operator
+'X'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'date ref'    Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'# Normalize year.' Comment.Single
+'\n  '        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'yr'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'20'          Literal.Number.Integer
+')'           Punctuation
+'\n    '      Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'yr'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'yr'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'2000'        Literal.Number.Integer
+';'           Punctuation
+'\n  '        Text.Whitespace
+'else'        Keyword
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'yr'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+')'           Punctuation
+'\n    '      Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'yr'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'yr'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1900'        Literal.Number.Integer
+';'           Punctuation
+'\n  '        Text.Whitespace
+'single'      Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@RULES'      Keyword.Declaration
+'\n'          Text.Whitespace
+
+'_date'       Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'layer'       Name.Attribute
+'='           Operator
+'('           Punctuation
+'_noun'       Name.Variable
+' '           Text.Whitespace
+'_np'         Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'<-'          Operator
+' \n    '     Text.Whitespace
+'_xNUM'       Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+']'           Punctuation
+'\t'          Text.Whitespace
+'### (1)'     Comment.Single
+'\n    '      Text.Whitespace
+'\\/'         Literal.String.Escape
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+']'           Punctuation
+'\t\t'        Text.Whitespace
+'### (2)'     Comment.Single
+'\n    '      Text.Whitespace
+'_xNUM'       Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+']'           Punctuation
+'\t'          Text.Whitespace
+'### (3)'     Comment.Single
+'\n    '      Text.Whitespace
+'\\/'         Literal.String.Escape
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+']'           Punctuation
+'\t\t'        Text.Whitespace
+'### (4)'     Comment.Single
+'\n    '      Text.Whitespace
+'_xNUM'       Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+']'           Punctuation
+'\t'          Text.Whitespace
+'### (5)'     Comment.Single
+'\n    '      Text.Whitespace
+'@@'          Keyword.Declaration
+'\n\n'        Text.Whitespace
+
+'@CHECK'      Keyword.Declaration
+'\n\t'        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'dy'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'num'         Name.Builtin
+'('           Punctuation
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'$text'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'4'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'yr'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'num'         Name.Builtin
+'('           Punctuation
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'$text'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'7'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'dy'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'31'          Literal.Number.Integer
+')'           Punctuation
+'\n\t\t'      Text.Whitespace
+'fail'        Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'yr'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+')'           Punctuation
+'\n\t\t'      Text.Whitespace
+'fail'        Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@POST'       Keyword.Declaration
+'\n  '        Text.Whitespace
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'mypos'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'NP'          Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'mo'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'monthtonum'  Name.Function
+'('           Punctuation
+'strtolower'  Name.Builtin
+'('           Punctuation
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'$text'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'sem'         Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'date'        Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text.Whitespace
+'++'          Operator
+'X'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'date ref'    Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'7'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+"don't splice" Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\t'          Text.Whitespace
+'# Keep this np.' Comment.Single
+'\n  \t'      Text.Whitespace
+"# (Don't want to lose useful work.)" Comment.Single
+'\n  '        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'bracket'     Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n  '        Text.Whitespace
+'single'      Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@RULES'      Keyword.Declaration
+'\n'          Text.Whitespace
+
+'_date'       Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'layer'       Name.Attribute
+'='           Operator
+'('           Punctuation
+'_noun'       Name.Variable
+' '           Text.Whitespace
+'_np'         Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'<-'          Operator
+'\n\t'        Text.Whitespace
+'_xWILD'      Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+' '           Text.Whitespace
+'one'         Name.Attribute
+' '           Text.Whitespace
+'match'       Name.Attribute
+'='           Operator
+'('           Punctuation
+'\n\t'        Text.Whitespace
+'_month'      Name.Variable
+'\n\t'        Text.Whitespace
+'January'     Name
+' '           Text.Whitespace
+'February'    Name
+' '           Text.Whitespace
+'March'       Name
+' '           Text.Whitespace
+'April'       Name
+' '           Text.Whitespace
+'May'         Name
+' '           Text.Whitespace
+'June'        Name
+' '           Text.Whitespace
+'July'        Name
+' '           Text.Whitespace
+'August'      Name
+'\n\t'        Text.Whitespace
+'September'   Name
+' '           Text.Whitespace
+'October'     Name
+' '           Text.Whitespace
+'November'    Name
+' '           Text.Whitespace
+'December'    Name
+'\n\t\n\t'    Text.Whitespace
+'Jan'         Name
+' '           Text.Whitespace
+'Feb'         Name
+' '           Text.Whitespace
+'Mar'         Name
+' '           Text.Whitespace
+'Apr'         Name
+' '           Text.Whitespace
+'May'         Name
+' '           Text.Whitespace
+'Jun'         Name
+' '           Text.Whitespace
+'Jul'         Name
+' '           Text.Whitespace
+'Aug'         Name
+' '           Text.Whitespace
+'Sep'         Name
+' '           Text.Whitespace
+'Sept'        Name
+' '           Text.Whitespace
+'Oct'         Name
+' '           Text.Whitespace
+'Nov'         Name
+' '           Text.Whitespace
+'Dec'         Name
+'\n\t\t'      Text.Whitespace
+')'           Punctuation
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'\\.'         Literal.String.Escape
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+' '           Text.Whitespace
+'opt'         Name.Attribute
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'_xWHITE'     Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+' '           Text.Whitespace
+'star'        Name.Attribute
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'_xNUM'       Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'\\,'         Literal.String.Escape
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+' '           Text.Whitespace
+'opt'         Name.Attribute
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'_xWHITE'     Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+' '           Text.Whitespace
+'star'        Name.Attribute
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'_xNUM'       Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'@@'          Keyword.Declaration
+'\n\n'        Text.Whitespace
+
+'# num month num' Comment.Single
+'\n'          Text.Whitespace
+
+'# day month year' Comment.Single
+'\n'          Text.Whitespace
+
+'# year month day' Comment.Single
+'\n'          Text.Whitespace
+
+'@CHECK'      Keyword.Declaration
+'\n  '        Text.Whitespace
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'xx'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'num'         Name.Builtin
+'('           Punctuation
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'$text'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'!'           Operator
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'7'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text.Whitespace
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'xx'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'31'          Literal.Number.Integer
+' '           Text.Whitespace
+'||'          Operator
+' '           Text.Whitespace
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'xx'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+')'           Punctuation
+'\n\t  '      Text.Whitespace
+'fail'        Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'dy'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'xx'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'succeed'     Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'}'           Punctuation
+'\n  '        Text.Whitespace
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'zz'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'num'         Name.Builtin
+'('           Punctuation
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'$text'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'7'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'xx'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'<='          Operator
+' '           Text.Whitespace
+'31'          Literal.Number.Integer
+')'           Punctuation
+'\n    '      Text.Whitespace
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'# Check dd mo yy' Comment.Single
+'\n\t'        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'dy'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'xx'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'yr'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'zz'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'}'           Punctuation
+'\n  '        Text.Whitespace
+'else'        Keyword
+'\n    '      Text.Whitespace
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'# Check yy mo dd' Comment.Single
+'\n\t'        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'yr'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'xx'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'dy'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'zz'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'}'           Punctuation
+'\n  '        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'dy'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'31'          Literal.Number.Integer
+')'           Punctuation
+'\n\t'        Text.Whitespace
+'fail'        Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'yr'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'90'          Literal.Number.Integer
+'\n   '       Text.Whitespace
+'||'          Operator
+' '           Text.Whitespace
+'('           Punctuation
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'yr'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'99'          Literal.Number.Integer
+' '           Text.Whitespace
+'&&'          Operator
+' '           Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'yr'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'1900'        Literal.Number.Integer
+')'           Punctuation
+'\n   '       Text.Whitespace
+'||'          Operator
+' '           Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'yr'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'2050'        Literal.Number.Integer
+')'           Punctuation
+'\n\t'        Text.Whitespace
+'fail'        Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@POST'       Keyword.Declaration
+'\n  '        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'7'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text.Whitespace
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'flag'        Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n  '        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'mo'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'monthtonum'  Name.Function
+'('           Punctuation
+'strtolower'  Name.Builtin
+'('           Punctuation
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'$text'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n  \t'      Text.Whitespace
+"# (Don't want to lose useful work.)" Comment.Single
+'\n  '        Text.Whitespace
+'group'       Name.Builtin
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'7'           Literal.Number.Integer
+','           Punctuation
+'"'           Literal.String.Double
+'_date'       Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'group'       Name.Builtin
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'"'           Literal.String.Double
+'_noun'       Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'nountonp'    Name.Function
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'sem'         Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'date'        Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text.Whitespace
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'mo'          Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'mo'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'yr'          Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'yr'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'dy'          Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'dy'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'++'          Operator
+'X'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'date ref'    Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'flag'        Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+"don't splice" Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\t'          Text.Whitespace
+'# Keep this np.' Comment.Single
+'\n    '      Text.Whitespace
+'X'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'date node'   Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'}'           Punctuation
+'\n  '        Text.Whitespace
+'getdate'     Name.Function
+'('           Punctuation
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@RULES'      Keyword.Declaration
+'\n'          Text.Whitespace
+
+'_xNIL'       Name.Constant
+' '           Text.Whitespace
+'<-'          Operator
+'\n\t'        Text.Whitespace
+'_xNUM'       Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'_xWILD'      Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+' '           Text.Whitespace
+'star'        Name.Attribute
+' '           Text.Whitespace
+'match'       Name.Attribute
+'='           Operator
+'('           Punctuation
+'_xWHITE'     Name.Constant
+' '           Text.Whitespace
+'\\-'         Literal.String.Escape
+' '           Text.Whitespace
+')'           Punctuation
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'_xWILD'      Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+' '           Text.Whitespace
+'one'         Name.Attribute
+' '           Text.Whitespace
+'match'       Name.Attribute
+'='           Operator
+'('           Punctuation
+'\n\t'        Text.Whitespace
+'_month'      Name.Variable
+'\n\t'        Text.Whitespace
+'January'     Name
+' '           Text.Whitespace
+'February'    Name
+' '           Text.Whitespace
+'March'       Name
+' '           Text.Whitespace
+'April'       Name
+' '           Text.Whitespace
+'May'         Name
+' '           Text.Whitespace
+'June'        Name
+' '           Text.Whitespace
+'July'        Name
+' '           Text.Whitespace
+'August'      Name
+'\n\t'        Text.Whitespace
+'September'   Name
+' '           Text.Whitespace
+'October'     Name
+' '           Text.Whitespace
+'November'    Name
+' '           Text.Whitespace
+'December'    Name
+'\n\t\n\t'    Text.Whitespace
+'Jan'         Name
+' '           Text.Whitespace
+'Feb'         Name
+' '           Text.Whitespace
+'Mar'         Name
+' '           Text.Whitespace
+'Apr'         Name
+' '           Text.Whitespace
+'May'         Name
+' '           Text.Whitespace
+'Jun'         Name
+' '           Text.Whitespace
+'Jul'         Name
+' '           Text.Whitespace
+'Aug'         Name
+' '           Text.Whitespace
+'Sep'         Name
+' '           Text.Whitespace
+'Sept'        Name
+' '           Text.Whitespace
+'Oct'         Name
+' '           Text.Whitespace
+'Nov'         Name
+' '           Text.Whitespace
+'Dec'         Name
+'\n\t\t'      Text.Whitespace
+')'           Punctuation
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'\\.'         Literal.String.Escape
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+' '           Text.Whitespace
+'opt'         Name.Attribute
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'\\,'         Literal.String.Escape
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+' '           Text.Whitespace
+'opt'         Name.Attribute
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'_xWILD'      Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+' '           Text.Whitespace
+'star'        Name.Attribute
+' '           Text.Whitespace
+'match'       Name.Attribute
+'='           Operator
+'('           Punctuation
+'_xWHITE'     Name.Constant
+' '           Text.Whitespace
+'\\-'         Literal.String.Escape
+' '           Text.Whitespace
+')'           Punctuation
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'_xNUM'       Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+' '           Text.Whitespace
+'opt'         Name.Attribute
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'@@'          Keyword.Declaration
+'\n\n'        Text.Whitespace
+
+'@CHECK'      Keyword.Declaration
+'\n\t'        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'dy'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'mooryr'      Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'num'         Name.Builtin
+'('           Punctuation
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'$text'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'ch'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'strpiece'    Name.Builtin
+'('           Punctuation
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'$text'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'ch'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'0'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'&&'          Operator
+' '           Text.Whitespace
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'mooryr'      Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n\t\t'      Text.Whitespace
+'&&'          Operator
+' '           Text.Whitespace
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'mooryr'      Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'<='          Operator
+' '           Text.Whitespace
+'9'           Literal.Number.Integer
+')'           Punctuation
+'\n\t  '      Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'yr'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'2000'        Literal.Number.Integer
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'mooryr'      Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'else'        Keyword
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'mooryr'      Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'1900'        Literal.Number.Integer
+'\n\t '       Text.Whitespace
+'&&'          Operator
+' '           Text.Whitespace
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'mooryr'      Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'<='          Operator
+' '           Text.Whitespace
+'2100'        Literal.Number.Integer
+')'           Punctuation
+'\n\t  '      Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'yr'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'mooryr'      Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'else'        Keyword
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'mooryr'      Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'90'          Literal.Number.Integer
+' '           Text.Whitespace
+'&&'          Operator
+' '           Text.Whitespace
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'mooryr'      Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'<='          Operator
+' '           Text.Whitespace
+'99'          Literal.Number.Integer
+')'           Punctuation
+'\n\t  '      Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'yr'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1900'        Literal.Number.Integer
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'mooryr'      Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'else'        Keyword
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'mooryr'      Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'<='          Operator
+' '           Text.Whitespace
+'31'          Literal.Number.Integer
+')'           Punctuation
+'\n\t  '      Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'dy'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'L'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'mooryr'      Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'else'        Keyword
+'\n\t  '      Text.Whitespace
+'fail'        Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@POST'       Keyword.Declaration
+'\n  '        Text.Whitespace
+'chpos'       Name.Function
+'('           Punctuation
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'"'           Literal.String.Double
+'NP'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'mo'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'monthtonum'  Name.Function
+'('           Punctuation
+'strtolower'  Name.Builtin
+'('           Punctuation
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'$text'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'sem'         Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'date'        Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'year'        Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'$text'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\t '         Text.Whitespace
+'# 02/13/14 AM.' Comment.Single
+'\n  '        Text.Whitespace
+'++'          Operator
+'X'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'date ref'    Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'single'      Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@RULES'      Keyword.Declaration
+'\n'          Text.Whitespace
+
+'_date'       Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'layer'       Name.Attribute
+'='           Operator
+'('           Punctuation
+'_noun'       Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'<-'          Operator
+'\n\t'        Text.Whitespace
+'_xWILD'      Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+' '           Text.Whitespace
+'one'         Name.Attribute
+' '           Text.Whitespace
+'match'       Name.Attribute
+'='           Operator
+'('           Punctuation
+'\n\t'        Text.Whitespace
+'_month'      Name.Variable
+'\n\t'        Text.Whitespace
+'January'     Name
+' '           Text.Whitespace
+'February'    Name
+' '           Text.Whitespace
+'March'       Name
+' '           Text.Whitespace
+'April'       Name
+' '           Text.Whitespace
+'May'         Name
+' '           Text.Whitespace
+'June'        Name
+' '           Text.Whitespace
+'July'        Name
+' '           Text.Whitespace
+'August'      Name
+'\n\t'        Text.Whitespace
+'September'   Name
+' '           Text.Whitespace
+'October'     Name
+' '           Text.Whitespace
+'November'    Name
+' '           Text.Whitespace
+'December'    Name
+'\n\t\n\t'    Text.Whitespace
+'Jan'         Name
+' '           Text.Whitespace
+'Feb'         Name
+' '           Text.Whitespace
+'Mar'         Name
+' '           Text.Whitespace
+'Apr'         Name
+' '           Text.Whitespace
+'May'         Name
+' '           Text.Whitespace
+'Jun'         Name
+' '           Text.Whitespace
+'Jul'         Name
+' '           Text.Whitespace
+'Aug'         Name
+' '           Text.Whitespace
+'Sep'         Name
+' '           Text.Whitespace
+'Sept'        Name
+' '           Text.Whitespace
+'Oct'         Name
+' '           Text.Whitespace
+'Nov'         Name
+' '           Text.Whitespace
+'Dec'         Name
+'\n\t\t'      Text.Whitespace
+')'           Punctuation
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'\\.'         Literal.String.Escape
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+' '           Text.Whitespace
+'opt'         Name.Attribute
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'\\,'         Literal.String.Escape
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+' '           Text.Whitespace
+'opt'         Name.Attribute
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'_xWHITE'     Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+' '           Text.Whitespace
+'star'        Name.Attribute
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'_xNUM'       Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'@@'          Keyword.Declaration
+'\n\n'        Text.Whitespace
+
+'# pretagged corpus stuff.' Comment.Single
+'\n'          Text.Whitespace
+
+'@POST'       Keyword.Declaration
+'\n '         Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'sem'         Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'date'        Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text.Whitespace
+'++'          Operator
+'X'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'date ref'    Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n '         Text.Whitespace
+'single'      Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@RULES'      Keyword.Declaration
+'\n'          Text.Whitespace
+
+'_date'       Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'layer'       Name.Attribute
+'='           Operator
+'('           Punctuation
+'_noun'       Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'<-'          Operator
+'\n\t'        Text.Whitespace
+'_month'      Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'_xNUM'       Name.Constant
+'\n\t'        Text.Whitespace
+'@@'          Keyword.Declaration
+'\n\n'        Text.Whitespace
+
+'@POST'       Keyword.Declaration
+'\n  '        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'day'         Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'strtolower'  Name.Builtin
+'('           Punctuation
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'$text'       Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'sem'         Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'date'        Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text.Whitespace
+'pncopyvars'  Name.Builtin
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'mypos'       Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'NP'          Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'ne'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n  '        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'ne type'     Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'date'        Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text.Whitespace
+'++'          Operator
+'X'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'date ref'    Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'ne type conf' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'95'          Literal.Number.Integer
+';'           Punctuation
+'\n  '        Text.Whitespace
+'single'      Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@RULES'      Keyword.Declaration
+'\n'          Text.Whitespace
+
+'_day'        Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'layer'       Name.Attribute
+'='           Operator
+'('           Punctuation
+'_date'       Name.Variable
+' '           Text.Whitespace
+'_noun'       Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'_xWILD'      Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+' '           Text.Whitespace
+'one'         Name.Attribute
+' '           Text.Whitespace
+'match'       Name.Attribute
+'='           Operator
+'('           Punctuation
+'\n\t'        Text.Whitespace
+'Sunday'      Name
+' '           Text.Whitespace
+'Monday'      Name
+' '           Text.Whitespace
+'Tuesday'     Name
+' '           Text.Whitespace
+'Wednesday'   Name
+' '           Text.Whitespace
+'Thursday'    Name
+' '           Text.Whitespace
+'Friday'      Name
+' '           Text.Whitespace
+'Saturday'    Name
+'\n\t'        Text.Whitespace
+')'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'@@'          Keyword.Declaration
+'\n\n'        Text.Whitespace
+
+'@POST'       Keyword.Declaration
+'\n  '        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'hr'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'num'         Name.Builtin
+'('           Punctuation
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'$text'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'min'         Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'num'         Name.Builtin
+'('           Punctuation
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'$text'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text.Whitespace
+'S'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'am/pm'       Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'$text'       Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'single'      Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@RULES'      Keyword.Declaration
+'\n'          Text.Whitespace
+
+'_daytime'    Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'layer'       Name.Attribute
+'='           Operator
+'('           Punctuation
+'_noun'       Name.Variable
+' '           Text.Whitespace
+'_np'         Name.Variable
+')'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'<-'          Operator
+'\n\t'        Text.Whitespace
+'_xNUM'       Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'\\:'         Literal.String.Escape
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'_xNUM'       Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'_xWHITE'     Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+' '           Text.Whitespace
+'star'        Name.Attribute
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'_xWILD'      Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+' '           Text.Whitespace
+'opt'         Name.Attribute
+' '           Text.Whitespace
+'match'       Name.Attribute
+'='           Operator
+'('           Punctuation
+'AM'          Name
+' '           Text.Whitespace
+'PM'          Name
+')'           Punctuation
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'@@'          Keyword.Declaration
+'\n\n\n'      Text.Whitespace
+
+'# Put some semantics on.\t# 04/15/05 AM.' Comment.Single
+'\n'          Text.Whitespace
+
+'@POST'       Keyword.Declaration
+'\n  '        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'G'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'conform treebank' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+')'           Punctuation
+'\n    '      Text.Whitespace
+'{'           Punctuation
+'\n\t'        Text.Whitespace
+'chpos'       Name.Function
+'('           Punctuation
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+'"'           Literal.String.Double
+'NN'          Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'bracket'     Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n\t'        Text.Whitespace
+'}'           Punctuation
+'\n  '        Text.Whitespace
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'sem'         Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'date'        Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text.Whitespace
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'advl'        Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\t'          Text.Whitespace
+'# Possible standalone adverbial.' Comment.Single
+'\n'          Text.Whitespace
+
+'@RULES'      Keyword.Declaration
+'\n'          Text.Whitespace
+
+'_xNIL'       Name.Constant
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'_xWILD'      Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+' '           Text.Whitespace
+'one'         Name.Attribute
+' '           Text.Whitespace
+'match'       Name.Attribute
+'='           Operator
+'('           Punctuation
+'\n\t'        Text.Whitespace
+'today'       Name
+' '           Text.Whitespace
+'yesterday'   Name
+' '           Text.Whitespace
+'tomorrow'    Name
+'\n\t'        Text.Whitespace
+')'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'@@'          Keyword.Declaration
+'\n\n'        Text.Whitespace
+
+'@POST'       Keyword.Declaration
+'\n  '        Text.Whitespace
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'sem'         Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'date'        Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n  '        Text.Whitespace
+'++'          Operator
+'X'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'date ref'    Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@RULES'      Keyword.Declaration
+'\n'          Text.Whitespace
+
+'_xNIL'       Name.Constant
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'_xWILD'      Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+' '           Text.Whitespace
+'one'         Name.Attribute
+' '           Text.Whitespace
+'match'       Name.Attribute
+'='           Operator
+'('           Punctuation
+'\n\t'        Text.Whitespace
+'millennium'  Name
+' '           Text.Whitespace
+'millennia'   Name
+' '           Text.Whitespace
+'millenniums' Name
+'\n\t'        Text.Whitespace
+'century'     Name
+' '           Text.Whitespace
+'centuries'   Name
+'\n\t'        Text.Whitespace
+'decade'      Name
+' '           Text.Whitespace
+'decades'     Name
+'\n\t'        Text.Whitespace
+'year'        Name
+' '           Text.Whitespace
+'years'       Name
+'\n\t'        Text.Whitespace
+'month'       Name
+' '           Text.Whitespace
+'months'      Name
+'\n\t'        Text.Whitespace
+'week'        Name
+' '           Text.Whitespace
+'weeks'       Name
+'\n\t'        Text.Whitespace
+'day'         Name
+' '           Text.Whitespace
+'days'        Name
+'\n\t'        Text.Whitespace
+'evening'     Name
+' '           Text.Whitespace
+'evenings'    Name
+'\n\t'        Text.Whitespace
+'night'       Name
+' '           Text.Whitespace
+'nights'      Name
+'\n\t'        Text.Whitespace
+'morning'     Name
+' '           Text.Whitespace
+'mornings'    Name
+'\n\t'        Text.Whitespace
+'noon'        Name
+' '           Text.Whitespace
+'noons'       Name
+'\n\t'        Text.Whitespace
+'afternoon'   Name
+' '           Text.Whitespace
+'afternoons'  Name
+'\n\t'        Text.Whitespace
+'hour'        Name
+' '           Text.Whitespace
+'hours'       Name
+'\n\t'        Text.Whitespace
+'minute'      Name
+' '           Text.Whitespace
+'minutes'     Name
+'\n\t'        Text.Whitespace
+'second'      Name
+' '           Text.Whitespace
+'seconds'     Name
+'\n\t'        Text.Whitespace
+'time'        Name
+' '           Text.Whitespace
+'date'        Name
+' '           Text.Whitespace
+'season'      Name
+'\t'          Text.Whitespace
+'# 01/12/05 AM.' Comment.Single
+'\n\t'        Text.Whitespace
+'holiday'     Name
+' '           Text.Whitespace
+'holidays'    Name
+'\n\t'        Text.Whitespace
+'quarter'     Name
+' '           Text.Whitespace
+'quarters'    Name
+'\t'          Text.Whitespace
+'# ambig, of course.' Comment.Single
+'\n\t'        Text.Whitespace
+')'           Punctuation
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'@@'          Keyword.Declaration
+'\n'          Text.Whitespace

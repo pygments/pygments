@@ -1,0 +1,42 @@
+---input---
+@RULES
+_contraction <-
+	_xWILD [s plus match=(_xCAP \- )]
+	\' [s opt]
+	@@
+
+---tokens---
+'@RULES'      Keyword.Declaration
+'\n'          Text.Whitespace
+
+'_contraction' Name.Variable
+' '           Text.Whitespace
+'<-'          Operator
+'\n\t'        Text.Whitespace
+'_xWILD'      Name.Constant
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+' '           Text.Whitespace
+'plus'        Name.Attribute
+' '           Text.Whitespace
+'match'       Name.Attribute
+'='           Operator
+'('           Punctuation
+'_xCAP'       Name.Variable
+' '           Text.Whitespace
+'\\-'         Literal.String.Escape
+' '           Text.Whitespace
+')'           Punctuation
+']'           Punctuation
+'\n\t'        Text.Whitespace
+"\\'"         Literal.String.Escape
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+' '           Text.Whitespace
+'opt'         Name.Attribute
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'@@'          Keyword.Declaration
+'\n'          Text.Whitespace
