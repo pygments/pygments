@@ -16,7 +16,7 @@ import pytest
 
 from pygments.formatters import LatexFormatter
 from pygments.formatters.latex import LatexEmbeddedLexer
-from pygments.lexers import PythonLexer, PythonConsoleLexer
+from pygments.lexers import PythonLexer, PythonConsoleLexer, get_lexer_by_name
 from pygments.token import Token
 
 TESTDIR = path.dirname(path.abspath(__file__))
@@ -105,6 +105,27 @@ def test_embedded_lexer():
         (Token.Escape, '$1 + z^2$'),
         (Token.Generic.Output, '\n'),
     ]
+
+
+def test_escape_token_from_a_lexer_is_escaped():
+    # Token.Escape marks the verbatim LaTeX that LatexEmbeddedLexer produces,
+    # but a couple of lexers also use it for their own escape syntax. Without
+    # `escapeinside` it comes from the highlighted file, so it gets escaped.
+    src = '%\\immediate\\write18{id}%\n'
+    tokensource = list(get_lexer_by_name('ansys').get_tokens(src))
+    assert (Token.Escape, '%\\immediate\\write18{id}%') in tokensource
+
+    outfile = StringIO()
+    LatexFormatter(nowrap=True).format(tokensource, outfile)
+    assert '\\write18' not in outfile.getvalue()
+    assert r'\PYZbs{}write18' in outfile.getvalue()
+
+
+def test_escape_token_stays_verbatim_with_escapeinside():
+    outfile = StringIO()
+    LatexFormatter(nowrap=True, escapeinside='||').format(
+        [(Token.Escape, '$z^2$')], outfile)
+    assert '$z^2$' in outfile.getvalue()
 
 
 def test_embedded_lexer_inherits_options():
