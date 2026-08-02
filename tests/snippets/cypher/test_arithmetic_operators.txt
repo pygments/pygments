@@ -1,0 +1,69 @@
+---input---
+MATCH (p) SET p += {age: 38} RETURN p.a + 1, p.b - 2, p.c / 3, p.d % 4, p.e ^ 5
+
+---tokens---
+'MATCH'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'p'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'SET'         Keyword
+' '           Text.Whitespace
+'p'           Name
+' '           Text.Whitespace
+'+='          Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'age'         Name
+':'           Punctuation
+' '           Text.Whitespace
+'38'          Literal.Number
+'}'           Punctuation
+' '           Text.Whitespace
+'RETURN'      Keyword
+' '           Text.Whitespace
+'p'           Name
+'.'           Punctuation
+'a'           Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'p'           Name
+'.'           Punctuation
+'b'           Name
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'p'           Name
+'.'           Punctuation
+'c'           Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'3'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'p'           Name
+'.'           Punctuation
+'d'           Name
+' '           Text.Whitespace
+'%'           Operator
+' '           Text.Whitespace
+'4'           Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'p'           Name
+'.'           Punctuation
+'e'           Name
+' '           Text.Whitespace
+'^'           Operator
+' '           Text.Whitespace
+'5'           Literal.Number
+'\n'          Text.Whitespace
