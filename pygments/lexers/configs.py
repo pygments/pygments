@@ -247,7 +247,7 @@ class PropertiesLexer(RegexLexer):
             # line continuations; these gobble whitespace at the beginning of the next line
             (r'(\\\n)([^\S\n]*)', bygroups(String.Escape, Whitespace)),
             # other escapes
-            (r'\\(.|\n)', String.Escape),
+            (r'\\([\s\S])', String.Escape),
         ],
     }
 
@@ -448,7 +448,7 @@ class ApacheConfLexer(RegexLexer):
              r'os|productonly|full|emerg|alert|crit|error|warn|'
              r'notice|info|debug|registry|script|inetd|standalone|'
              r'user|group)\b', Keyword),
-            (r'"([^"\\]*(?:\\(.|\n)[^"\\]*)*)"', String.Double),
+            (r'"([^"\\]*(?:\\([\s\S])[^"\\]*)*)"', String.Double),
             (r'[^\s"\\]+', Text)
         ],
     }

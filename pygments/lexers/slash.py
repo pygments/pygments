@@ -52,13 +52,13 @@ class SlashLanguageLexer(ExtendedRegexLexer):
         ],
         "regexp": [
             (r'}[a-z]*',            String.Regex,       move_state("slash")),
-            (r'\\(.|\n)',           String.Regex),
+            (r'\\([\s\S])',           String.Regex),
             (r'{',                  String.Regex,       "regexp_r"),
             (r'.|\n',               String.Regex),
         ],
         "regexp_r": [
             (r'}[a-z]*',            String.Regex,       "#pop"),
-            (r'\\(.|\n)',           String.Regex),
+            (r'\\([\s\S])',           String.Regex),
             (r'{',                  String.Regex,       "regexp_r"),
         ],
         "slash": [

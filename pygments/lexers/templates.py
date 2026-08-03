@@ -1548,7 +1548,7 @@ class ColdfusionLexer(RegexLexer):
     tokens = {
         'root': [
             (r'//.*?\n', Comment.Single),
-            (r'/\*(?:.|\n)*?\*/', Comment.Multiline),
+            (r'/\*[\s\S]*?\*/', Comment.Multiline),
             (r'\+\+|--', Operator),
             (r'[-+*/^&=!]', Operator),
             (r'<=|>=|<|>|==', Operator),

@@ -144,7 +144,7 @@ class SASLexer(RegexLexer):
             (r'^\s*(datalines|cards)\s*;\s*$', Keyword, 'data'),
         ],
         'data': [
-            (r'(.|\n)*^\s*;\s*$', Other, '#pop'),
+            (r'([\s\S])*^\s*;\s*$', Other, '#pop'),
         ],
         # Special highlight for put NOTE|ERROR|WARNING (order matters)
         'logs': [

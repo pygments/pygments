@@ -29,7 +29,7 @@ class CsoundLexer(RegexLexer):
     tokens = {
         'whitespace': [
             (r'[ \t]+', Whitespace),
-            (r'/[*](?:.|\n)*?[*]/', Comment.Multiline),
+            (r'/[*][\s\S]*?[*]/', Comment.Multiline),
             (r'(?:;|//).*$', Comment.Single),
             (r'(\\)(\n)', bygroups(Text, Whitespace))
         ],
@@ -441,15 +441,15 @@ class CsoundDocumentLexer(RegexLexer):
 
         'orchestra': [
             (r'<\s*/\s*CsInstruments\s*>', Name.Tag, '#pop'),
-            (r'(.|\n)+?(?=<\s*/\s*CsInstruments\s*>)', using(CsoundOrchestraLexer))
+            (r'([\s\S])+?(?=<\s*/\s*CsInstruments\s*>)', using(CsoundOrchestraLexer))
         ],
         'score': [
             (r'<\s*/\s*CsScore\s*>', Name.Tag, '#pop'),
-            (r'(.|\n)+?(?=<\s*/\s*CsScore\s*>)', using(CsoundScoreLexer))
+            (r'([\s\S])+?(?=<\s*/\s*CsScore\s*>)', using(CsoundScoreLexer))
         ],
         'HTML': [
             (r'<\s*/\s*[Hh][Tt][Mm][Ll]\s*>', Name.Tag, '#pop'),
-            (r'(.|\n)+?(?=<\s*/\s*[Hh][Tt][Mm][Ll]\s*>)', using(HtmlLexer))
+            (r'([\s\S])+?(?=<\s*/\s*[Hh][Tt][Mm][Ll]\s*>)', using(HtmlLexer))
         ],
 
         'tag': [

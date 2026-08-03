@@ -101,9 +101,9 @@ class PythonLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\n', Whitespace),
-            (r'^(\s*)([rRuUbB]{,2})("""(?:.|\n)*?""")',
+            (r'^(\s*)([rRuUbB]{,2})("""[\s\S]*?""")',
              bygroups(Whitespace, String.Affix, String.Doc)),
-            (r"^(\s*)([rRuUbB]{,2})('''(?:.|\n)*?''')",
+            (r"^(\s*)([rRuUbB]{,2})('''[\s\S]*?''')",
              bygroups(Whitespace, String.Affix, String.Doc)),
             (r'\A#!.+$', Comment.Hashbang),
             (r'#.*$', Comment.Single),
@@ -455,9 +455,9 @@ class Python2Lexer(RegexLexer):
     tokens = {
         'root': [
             (r'\n', Whitespace),
-            (r'^(\s*)([rRuUbB]{,2})("""(?:.|\n)*?""")',
+            (r'^(\s*)([rRuUbB]{,2})("""[\s\S]*?""")',
              bygroups(Whitespace, String.Affix, String.Doc)),
-            (r"^(\s*)([rRuUbB]{,2})('''(?:.|\n)*?''')",
+            (r"^(\s*)([rRuUbB]{,2})('''[\s\S]*?''')",
              bygroups(Whitespace, String.Affix, String.Doc)),
             (r'[^\S\n]+', Text),
             (r'\A#!.+$', Comment.Hashbang),
@@ -851,8 +851,8 @@ class CythonLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\n', Whitespace),
-            (r'^(\s*)("""(?:.|\n)*?""")', bygroups(Whitespace, String.Doc)),
-            (r"^(\s*)('''(?:.|\n)*?''')", bygroups(Whitespace, String.Doc)),
+            (r'^(\s*)("""[\s\S]*?""")', bygroups(Whitespace, String.Doc)),
+            (r"^(\s*)('''[\s\S]*?''')", bygroups(Whitespace, String.Doc)),
             (r'[^\S\n]+', Text),
             (r'#.*$', Comment),
             (r'[]{}:(),;[]', Punctuation),

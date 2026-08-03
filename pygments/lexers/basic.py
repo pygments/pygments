@@ -457,7 +457,6 @@ class QBasicLexer(RegexLexer):
             (r'\-?\d*\.\d+[@|#]?', Number.Float),
             (r'\-?\d+[@|#]', Number.Float),
             (r'\-?\d+#?', Number.Integer.Long),
-            (r'\-?\d+#?', Number.Integer),
             (r'!=|==|:=|\.=|<<|>>|[-~+/\\*%=<>&^|?:!.]', Operator),
             (r'[\[\]{}(),;]', Punctuation),
             (r'[\w]+', Name.Variable.Global),

@@ -540,7 +540,7 @@ class MscgenLexer(RegexLexer):
         ],
         'comments': [
             (r'(?://|#).*?\n', Comment.Single),
-            (r'/\*(?:.|\n)*?\*/', Comment.Multiline),
+            (r'/\*[\s\S]*?\*/', Comment.Multiline),
             (r'[ \t\r\n]+', Whitespace)
         ]
     }

@@ -186,7 +186,7 @@ class RstLexer(RegexLexer):
     # from docutils.parsers.rst.states
     closers = '\'")]}>\u2019\u201d\xbb!?'
     unicode_delimiters = '\u2010\u2011\u2012\u2013\u2014\u00a0'
-    end_string_suffix = (rf'((?=$)|(?=[-/:.,; \n\x00{re.escape(unicode_delimiters)}{re.escape(closers)}]))')
+    end_string_suffix = (rf'($|(?=[-/:.,; \n\x00{re.escape(unicode_delimiters)}{re.escape(closers)}]))')
 
     tokens = {
         'root': [
@@ -593,7 +593,7 @@ class MarkdownLexer(RegexLexer):
                  (?P<whitespace>[^\S\n]+)
                  (?P<extra>.*))?
               (?P<newline>\n)
-              (?P<code>(.|\n)*?)
+              (?P<code>([\s\S])*?)
               (?P<terminator>^\s*```$\n)
               ''',
              _handle_codeblock),
@@ -687,27 +687,27 @@ class OrgLexer(RegexLexer):
             (r'^( *)([0-9]+[.)])( \[@[0-9]+\])?', bygroups(Whitespace, Keyword, Generic.Emph)),
 
             # Dynamic blocks
-            (r'(?i)^( *#\+begin: *)((?:.|\n)*?)(^ *#\+end: *$)',
+            (r'(?i)^( *#\+begin: *)([\s\S]*?)(^ *#\+end: *$)',
              bygroups(Operator.Word, using(this), Operator.Word)),
 
             # Comment blocks
-            (r'(?i)^( *#\+begin_comment *\n)((?:.|\n)*?)(^ *#\+end_comment *$)',
+            (r'(?i)^( *#\+begin_comment *\n)([\s\S]*?)(^ *#\+end_comment *$)',
              bygroups(Operator.Word, Comment.Multiline, Operator.Word)),
 
             # Source code blocks
             # TODO: language-dependent syntax highlighting (see Markdown lexer)
-            (r'(?i)^( *#\+begin_src .*)((?:.|\n)*?)(^ *#\+end_src *$)',
+            (r'(?i)^( *#\+begin_src .*)([\s\S]*?)(^ *#\+end_src *$)',
              bygroups(Operator.Word, Text, Operator.Word)),
 
             # Other blocks
-            (r'(?i)^( *#\+begin_\w+)( *\n)((?:.|\n)*?)(^ *#\+end_\w+)( *$)',
+            (r'(?i)^( *#\+begin_\w+)( *\n)([\s\S]*?)(^ *#\+end_\w+)( *$)',
              bygroups(Operator.Word, Whitespace, Text, Operator.Word, Whitespace)),
 
             # Keywords
             (r'^(#\+\w+:)(.*)$', bygroups(Name.Namespace, Text)),
 
             # Properties and drawers
-            (r'(?i)^( *:\w+: *\n)((?:.|\n)*?)(^ *:end: *$)',
+            (r'(?i)^( *:\w+: *\n)([\s\S]*?)(^ *:end: *$)',
              bygroups(Name.Decorator, Comment.Special, Name.Decorator)),
 
             # Line break operator

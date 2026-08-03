@@ -676,7 +676,7 @@ class LlvmMirLexer(RegexLexer):
             # Documents end with '...' or '---'
             (r'(\.\.\.|(?=---))', Keyword, '#pop'),
             # Delegate to the LlvmLexer
-            (r'((?:.|\n)+?)(?=(\.\.\.|---))', bygroups(using(LlvmLexer))),
+            (r'([\s\S]+?)(?=(\.\.\.|---))', bygroups(using(LlvmLexer))),
         ],
         'llvm_mir': [
             # Comments are hashes at the YAML level
@@ -717,10 +717,10 @@ class LlvmMirLexer(RegexLexer):
             # We have to pop llvm_mir_body and llvm_mir
             (r'(\.\.\.|(?=---))', Keyword, '#pop:2'),
             # Delegate the body block to the LlvmMirBodyLexer
-            (r'((?:.|\n)+?)(?=\.\.\.|---)', bygroups(using(LlvmMirBodyLexer))),
+            (r'([\s\S]+?)(?=\.\.\.|---)', bygroups(using(LlvmMirBodyLexer))),
             # The '...' is optional. If we didn't already find it then it isn't
             # there. There might be a '---' instead though.
-            (r'(?!\.\.\.|---)((?:.|\n)+)', bygroups(using(LlvmMirBodyLexer))),
+            (r'(?!\.\.\.|---)([\s\S]+)', bygroups(using(LlvmMirBodyLexer))),
         ],
     }
 

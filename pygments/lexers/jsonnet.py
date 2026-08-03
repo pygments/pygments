@@ -54,7 +54,7 @@ class JsonnetLexer(RegexLexer):
             (r'@".*"', String),
             (r"'", String, 'singlestring'),
             (r'"', String, 'doublestring'),
-            (r'\|\|\|(.|\n)*\|\|\|', String),
+            (r'\|\|\|([\s\S])*\|\|\|', String),
             # Jsonnet has no integers, only an IEEE754 64-bit float
             (r'[+-]?[0-9]+(.[0-9])?', Number.Float),
             (r'[!$~+\-&|^=<>*/%:]', Operator),

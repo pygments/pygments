@@ -249,8 +249,6 @@ class KalLexer(RegexLexer):
                 bygroups(Keyword, Whitespace, Keyword)),
             (r'(?<![.$])(inherits)(\s+)(from)?\b',
                 bygroups(Keyword, Whitespace, Keyword)),
-            (r'(?<![.$])(for)(\s+)(parallel|series)?\b',
-                bygroups(Keyword, Whitespace, Keyword)),
             (words((
                 'in', 'of', 'while', 'until', 'break', 'return', 'continue',
                 'when', 'if', 'unless', 'else', 'otherwise', 'throw', 'raise',
