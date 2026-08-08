@@ -565,9 +565,9 @@
 ' '           Text.Whitespace
 ':='          Operator
 ' '           Text.Whitespace
-"@'"          Literal.String.Other
-'@Customer*'  Literal.String.Other
-"'"           Literal.String.Other
+"@'"          Literal.String.Single
+'@Customer*'  Literal.String.Single
+"'"           Literal.String.Single
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -1262,7 +1262,7 @@
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace
-'modify'      Keyword
+'modify'      Name
 '('           Punctuation
 '"Name 2"'    Name.Variable
 ')'           Punctuation

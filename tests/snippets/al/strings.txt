@@ -1,6 +1,6 @@
 ---input---
 Path := 'C:\temp\';
-Text := 'not a /* block */ or // line comment';
+Msg := 'not a /* block */ or // line comment';
 Doubled := 'It''s here';
 Verbatim := @'first
 second';
@@ -16,7 +16,7 @@ second';
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'Text'        Keyword.Type
+'Msg'         Name
 ' '           Text.Whitespace
 ':='          Operator
 ' '           Text.Whitespace
@@ -42,8 +42,8 @@ second';
 ' '           Text.Whitespace
 ':='          Operator
 ' '           Text.Whitespace
-"@'"          Literal.String.Other
-'first\nsecond' Literal.String.Other
-"'"           Literal.String.Other
+"@'"          Literal.String.Single
+'first\nsecond' Literal.String.Single
+"'"           Literal.String.Single
 ';'           Punctuation
 '\n'          Text.Whitespace

@@ -36,8 +36,8 @@ OBJECT_TYPES = (
     'Report', 'TestPage', 'XmlPort',
 )
 
-# Sections of an object body.  These are unambiguous: they are never used as
-# ordinary identifiers.
+# Sections of an object body.  A few of these double as member names, as in
+# ``Dict.Keys()``, so the rule that matches them refuses to match after a dot.
 SECTION_KEYWORDS = (
     'actions', 'dataset', 'elements', 'fields', 'fieldgroups', 'keys',
     'labels', 'layout', 'rendering', 'requestpage', 'schema', 'views',
@@ -46,15 +46,17 @@ SECTION_KEYWORDS = (
 # Elements of an object body, the operations a page or table extension can
 # apply to them, and the parts of a filter or CalcFormula expression.  Unlike
 # the sections above these are ordinary words, so they are only recognised
-# where they are directly followed by an opening parenthesis.  Words that are
-# also method names, ``Count`` and ``Max`` among them, are left out.
+# directly before an opening parenthesis and never after a dot, which keeps
+# ``RecRef.Field(1)`` and ``Dict.Values()`` out of it.  Words that remain
+# ambiguous even then are left out: ``Modify``, ``Max`` and ``Min`` are far
+# more often a method or a helper procedure than a keyword.
 ELEMENT_KEYWORDS = (
     'action', 'actionref', 'addafter', 'addbefore', 'addfirst', 'addlast',
-    'area', 'assembly', 'average', 'chartpart', 'column', 'const', 'cuegroup',
-    'dataitem', 'exist', 'field', 'fieldattribute', 'fieldelement',
+    'area', 'assembly', 'average', 'chartpart', 'column', 'const', 'count',
+    'cuegroup', 'dataitem', 'exist', 'field', 'fieldattribute', 'fieldelement',
     'fieldgroup', 'filter', 'fixed', 'grid', 'group', 'key', 'label', 'lookup',
-    'modify', 'moveafter', 'movebefore', 'movefirst', 'movelast', 'part',
-    'repeater', 'separator', 'sum', 'systempart', 'tableelement',
+    'moveafter', 'movebefore', 'movefirst', 'movelast', 'order', 'part',
+    'repeater', 'separator', 'sorting', 'sum', 'systempart', 'tableelement',
     'textattribute', 'textelement', 'type', 'upperlimit', 'usercontrol',
     'value', 'view', 'where',
 )
@@ -101,7 +103,8 @@ class ALLexer(RegexLexer):
             # tells them apart from array indexing.
             (r'(^[^\S\n]*)(\[)', bygroups(Whitespace, Name.Decorator),
              'attribute'),
-            (r'(^[^\S\n]*)(#[^\S\n]*(?:if|elif|else|endif|pragma|region|endregion)\b.*)',
+            (r'(^[^\S\n]*)(#[^\S\n]*(?:if|elif|else|endif|define|undef'
+             r'|pragma|region|endregion)\b.*)',
              bygroups(Whitespace, Comment.Preproc)),
             include('whitespace'),
             include('comments'),
@@ -163,11 +166,13 @@ class ALLexer(RegexLexer):
             (words(('false', 'true'), suffix=r'\b'), Keyword.Constant),
             (r'[a-z_]\w*', Name.Decorator),
             include('literals'),
+            # ``[EventSubscriber(ObjectType::Table, ...)]`` and its like.
+            (r'::', Operator),
             (r'[(),.]', Punctuation),
             default('#pop'),
         ],
         'literals': [
-            (r"@'", String.Other, 'verbatim-string'),
+            (r"@'", String.Single, 'verbatim-string'),
             (r"'", String.Single, 'string'),
             (r'"[^"\n]*"', Name.Variable),
             (r'\d+(?:DT|D|T)\b', Literal.Date),
@@ -182,9 +187,10 @@ class ALLexer(RegexLexer):
             (r'\n', Whitespace, '#pop'),
         ],
         'verbatim-string': [
+            # Unlike an ordinary string, this one may span lines.
             (r"''", String.Escape),
-            (r"'", String.Other, '#pop'),
-            (r"[^']+", String.Other),
+            (r"'", String.Single, '#pop'),
+            (r"[^']+", String.Single),
         ],
         'keywords': [
             (words(('false', 'true'), suffix=r'\b'), Keyword.Constant),
@@ -196,9 +202,13 @@ class ALLexer(RegexLexer):
                    suffix=r'\b'), Keyword),
             (words(('event', 'internal', 'local', 'protected', 'runonclient',
                     'temporary', 'var'), suffix=r'\b'), Keyword.Declaration),
-            (words(SECTION_KEYWORDS, suffix=r'\b'), Keyword),
-            (words(ELEMENT_KEYWORDS, suffix=r'(?=[^\S\n]*\()'), Keyword),
-            (words(BUILTIN_TYPES, suffix=r'\b'), Keyword.Type),
+            # A keyword never follows a dot; a member of the same name can.
+            (words(SECTION_KEYWORDS, prefix=r'(?<![.\w])', suffix=r'\b'),
+             Keyword),
+            (words(ELEMENT_KEYWORDS, prefix=r'(?<![.\w])',
+                   suffix=r'(?=[^\S\n]*\()'), Keyword),
+            (words(BUILTIN_TYPES, prefix=r'(?<![.\w])', suffix=r'\b'),
+             Keyword.Type),
         ],
         'operators': [
             # ``|``, ``&``, ``@`` and a lone ``*`` are the filter expression

@@ -1,7 +1,7 @@
 ---input---
 codeunit 50100 Foo { }
-profileextension 50100 "Profile Ext" extends "Base Profile" { }
-pagecustomization 50100 Cust customizes "Customer Card" { }
+profileextension "Profile Ext" extends "Base Profile" { }
+pagecustomization Cust customizes "Customer Card" { }
 permissionsetextension 50100 Pse extends "Base Set" { }
 dotnet { }
 
@@ -19,8 +19,6 @@ dotnet { }
 
 'profileextension' Keyword.Declaration
 ' '           Text.Whitespace
-'50100'       Literal.Number.Integer
-' '           Text.Whitespace
 '"Profile Ext"' Name.Class
 ' '           Text.Whitespace
 'extends'     Keyword
@@ -33,8 +31,6 @@ dotnet { }
 '\n'          Text.Whitespace
 
 'pagecustomization' Keyword.Declaration
-' '           Text.Whitespace
-'50100'       Literal.Number.Integer
 ' '           Text.Whitespace
 'Cust'        Name.Class
 ' '           Text.Whitespace

@@ -1,5 +1,5 @@
 ---input---
-[IntegrationEvent(false, false)]
+[EventSubscriber(ObjectType::Table, Database::Customer, 'OnAfterInsert', '', false, false)]
 local procedure OnBeforeFoo(var Sender: Codeunit "Foo")
 begin
     Values[1] := Values[2];
@@ -7,8 +7,27 @@ end;
 
 ---tokens---
 '['           Name.Decorator
-'IntegrationEvent' Name.Decorator
+'EventSubscriber' Name.Decorator
 '('           Punctuation
+'ObjectType'  Name.Decorator
+'::'          Operator
+'Table'       Name.Decorator
+','           Punctuation
+' '           Text.Whitespace
+'Database'    Name.Decorator
+'::'          Operator
+'Customer'    Name.Decorator
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'OnAfterInsert' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text.Whitespace
 'false'       Keyword.Constant
 ','           Punctuation
 ' '           Text.Whitespace
