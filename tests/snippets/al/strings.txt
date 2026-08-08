@@ -1,0 +1,49 @@
+---input---
+Path := 'C:\temp\';
+Text := 'not a /* block */ or // line comment';
+Doubled := 'It''s here';
+Verbatim := @'first
+second';
+
+---tokens---
+'Path'        Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'C:\\temp\\'  Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'Text'        Keyword.Type
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'not a /* block */ or // line comment' Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'Doubled'     Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'It'          Literal.String.Single
+"''"          Literal.String.Escape
+'s here'      Literal.String.Single
+"'"           Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'Verbatim'    Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+"@'"          Literal.String.Other
+'first\nsecond' Literal.String.Other
+"'"           Literal.String.Other
+';'           Punctuation
+'\n'          Text.Whitespace

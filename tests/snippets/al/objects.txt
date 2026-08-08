@@ -1,0 +1,70 @@
+---input---
+codeunit 50100 Foo { }
+profileextension 50100 "Profile Ext" extends "Base Profile" { }
+pagecustomization 50100 Cust customizes "Customer Card" { }
+permissionsetextension 50100 Pse extends "Base Set" { }
+dotnet { }
+
+---tokens---
+'codeunit'    Keyword.Declaration
+' '           Text.Whitespace
+'50100'       Literal.Number.Integer
+' '           Text.Whitespace
+'Foo'         Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'profileextension' Keyword.Declaration
+' '           Text.Whitespace
+'50100'       Literal.Number.Integer
+' '           Text.Whitespace
+'"Profile Ext"' Name.Class
+' '           Text.Whitespace
+'extends'     Keyword
+' '           Text.Whitespace
+'"Base Profile"' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'pagecustomization' Keyword.Declaration
+' '           Text.Whitespace
+'50100'       Literal.Number.Integer
+' '           Text.Whitespace
+'Cust'        Name.Class
+' '           Text.Whitespace
+'customizes'  Keyword
+' '           Text.Whitespace
+'"Customer Card"' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'permissionsetextension' Keyword.Declaration
+' '           Text.Whitespace
+'50100'       Literal.Number.Integer
+' '           Text.Whitespace
+'Pse'         Name.Class
+' '           Text.Whitespace
+'extends'     Keyword
+' '           Text.Whitespace
+'"Base Set"'  Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'dotnet'      Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace

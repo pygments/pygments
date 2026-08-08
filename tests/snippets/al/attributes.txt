@@ -1,0 +1,57 @@
+---input---
+[IntegrationEvent(false, false)]
+local procedure OnBeforeFoo(var Sender: Codeunit "Foo")
+begin
+    Values[1] := Values[2];
+end;
+
+---tokens---
+'['           Name.Decorator
+'IntegrationEvent' Name.Decorator
+'('           Punctuation
+'false'       Keyword.Constant
+','           Punctuation
+' '           Text.Whitespace
+'false'       Keyword.Constant
+')'           Punctuation
+']'           Name.Decorator
+'\n'          Text.Whitespace
+
+'local'       Keyword.Declaration
+' '           Text.Whitespace
+'procedure'   Keyword.Declaration
+' '           Text.Whitespace
+'OnBeforeFoo' Name.Function
+'('           Punctuation
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'Sender'      Name
+':'           Punctuation
+' '           Text.Whitespace
+'Codeunit'    Keyword.Type
+' '           Text.Whitespace
+'"Foo"'       Name.Class
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'begin'       Keyword
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Values'      Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'Values'      Name
+'['           Punctuation
+'2'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'end'         Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
