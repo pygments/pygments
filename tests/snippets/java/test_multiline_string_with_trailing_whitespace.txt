@@ -1,0 +1,58 @@
+---input---
+public class Quine {
+	String plain = """   
+		no need to escape "quotes" here
+		""";
+	String tabbed = """	
+		also "fine"
+		""";
+}
+
+---tokens---
+'public'      Keyword.Declaration
+' '           Text.Whitespace
+'class'       Keyword.Declaration
+' '           Text
+'Quine'       Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'String'      Name
+' '           Text.Whitespace
+'plain'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"""   \n'    Literal.String
+
+'\t\tno need to escape ' Literal.String
+'"'           Literal.String
+'quotes'      Literal.String
+'"'           Literal.String
+' here\n\t\t' Literal.String
+'"""'         Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'String'      Name
+' '           Text.Whitespace
+'tabbed'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"""\t\n'     Literal.String
+
+'\t\talso '   Literal.String
+'"'           Literal.String
+'fine'        Literal.String
+'"'           Literal.String
+'\n\t\t'      Literal.String
+'"""'         Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
