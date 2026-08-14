@@ -365,6 +365,8 @@ class SystemVerilogLexer(RegexLexer):
             (r'\n', Whitespace, '#pop'),
         ],
         'import': [
+            # DPI import, e.g. `import "DPI-C" function void f();`
+            (r'"[^"]*"', String, '#pop'),
             (r'[\w:]+\*?', Name.Namespace, '#pop')
         ]
     }

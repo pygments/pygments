@@ -1,0 +1,28 @@
+# The SystemVerilog lexer must handle a DPI import (IEEE 1800 `import "DPI-C"`),
+# not just package imports. Regression test for #2765.
+
+---input---
+import "DPI-C" function void thing(int a, int b);
+
+---tokens---
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'"DPI-C"'     Literal.String
+' '           Text.Whitespace
+'function'    Keyword
+' '           Text.Whitespace
+'void'        Keyword.Type
+' '           Text.Whitespace
+'thing'       Name
+'('           Punctuation
+'int'         Keyword.Type
+' '           Text.Whitespace
+'a'           Name
+','           Punctuation
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'b'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
