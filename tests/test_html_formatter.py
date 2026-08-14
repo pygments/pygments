@@ -351,3 +351,24 @@ def test_html_escape_attributes():
     assert fmt_none.lineseparator == ''
     assert fmt_none.lineanchors == ''
     assert fmt_none.linespans == ''
+
+
+def test_linenostep_width_uses_visible_numbers():
+    """Hidden linenostep numbers must not pad the gutter (#2341)."""
+    tokens = list(PythonLexer().get_tokens("import foo\n" * 13))
+    for linenos in ("table", "inline"):
+        outfile = StringIO()
+        HtmlFormatter(linenos=linenos, linenostep=8).format(tokens, outfile)
+        html = outfile.getvalue()
+        assert "> 8<" not in html
+        assert ">8<" in html
+
+
+def test_linenos_width_still_pads_when_all_numbers_are_shown():
+    tokens = list(PythonLexer().get_tokens("import foo\n" * 13))
+    outfile = StringIO()
+    HtmlFormatter(linenos="table").format(tokens, outfile)
+    html = outfile.getvalue()
+    assert "> 1<" in html
+    assert ">13<" in html
+
