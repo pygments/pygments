@@ -622,7 +622,9 @@ class MarkdownLexer(RegexLexer):
             # strikethrough
             (r'([^~]?)(~~[^~ \n][^~\n]*~~)', bygroups(Text, Generic.Deleted)),
             # mentions and topics (twitter and github stuff)
-            (r'[@#][\w/:-]+', Name.Entity),
+            # GitHub bot accounts carry a literal `[bot]` suffix, e.g.
+            # `@dependabot[bot]`, which is part of the user name.
+            (r'@[\w/:-]+(?:\[bot\])?|#[\w/:-]+', Name.Entity),
             # (image?) links eg: ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
             (r'(!?\[)([^]]+)(\])(\()([^)]+)(\))',
              bygroups(Text, Name.Tag, Text, Text, Name.Attribute, Text)),
