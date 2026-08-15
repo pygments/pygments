@@ -163,3 +163,9 @@ begin  -- circuits of add32csa
     sta: fadd port map(aa(I), sum_in(I), cin(I) , sum_out(I), cout(I));
   end generate stage;  
 end architecture circuits; -- of add32csa
+
+  -- extended identifiers (VHDL-93): delimited by backslashes,
+  -- may contain any printing characters
+  \Buffer\ <= \1st value\;
+  signal \a b\ : std_logic;
+  \weird!id\ <= '0';
