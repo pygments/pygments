@@ -1,0 +1,119 @@
+---input---
+component Counter {
+  state counter = 0
+
+  fun increment {
+    next { counter: counter + 1 }
+  }
+
+  fun render {
+    <div>
+      <button onClick={decrement}>"Decrement"</button>
+      <span>"#{counter}"</span>
+    </div>
+  }
+
+  style root {
+    color: red;
+  }
+}
+
+---tokens---
+'component'   Keyword
+' '           Text.Whitespace
+'Counter'     Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'state'       Keyword
+' '           Text.Whitespace
+'counter'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n\n  '      Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'increment'   Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'next'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'counter'     Name
+':'           Punctuation
+' '           Text.Whitespace
+'counter'     Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n\n  '      Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'render'      Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'<'           Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n      '    Text.Whitespace
+'<'           Punctuation
+'button'      Name.Tag
+' '           Text.Whitespace
+'onClick'     Name.Attribute
+'='           Operator
+'{'           Punctuation
+'decrement'   Name
+'}'           Punctuation
+'>'           Punctuation
+'"'           Literal.String
+'Decrement'   Literal.String
+'"'           Literal.String
+'</'          Punctuation
+'button'      Name.Tag
+'>'           Punctuation
+'\n      '    Text.Whitespace
+'<'           Punctuation
+'span'        Name.Tag
+'>'           Punctuation
+'"'           Literal.String
+'#{'          Literal.String.Interpol
+'counter'     Name
+'}'           Punctuation
+'"'           Literal.String
+'</'          Punctuation
+'span'        Name.Tag
+'>'           Punctuation
+'\n    '      Text.Whitespace
+'</'          Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n\n  '      Text.Whitespace
+'style'       Keyword
+' '           Text.Whitespace
+'root'        Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'color'       Name.Tag
+':'           Operator
+' '           Text.Whitespace
+'red'         Name.Tag
+';'           Operator
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

@@ -323,6 +323,7 @@ LEXERS = {
     'MesonLexer': ('pygments.lexers.meson', 'Meson', ('meson', 'meson.build'), ('meson.build', 'meson.options', 'meson_options.txt'), ('text/x-meson',)),
     'MiniDLexer': ('pygments.lexers.d', 'MiniD', ('minid',), (), ('text/x-minidsrc',)),
     'MiniScriptLexer': ('pygments.lexers.scripting', 'MiniScript', ('miniscript', 'ms'), ('*.ms',), ('text/x-minicript', 'application/x-miniscript')),
+    'MintLexer': ('pygments.lexers.mint', 'Mint', ('mint',), ('*.mint',), ('text/x-mint',)),
     'ModelicaLexer': ('pygments.lexers.modeling', 'Modelica', ('modelica',), ('*.mo',), ('text/x-modelica',)),
     'Modula2Lexer': ('pygments.lexers.modula2', 'Modula-2', ('modula2', 'm2'), ('*.def', '*.mod'), ('text/x-modula2',)),
     'MoinWikiLexer': ('pygments.lexers.markup', 'MoinMoin/Trac Wiki markup', ('trac-wiki', 'moin'), (), ('text/x-trac-wiki',)),
