@@ -35,6 +35,8 @@ Version 2.21.0
   * CUDA: Derive from the C++ lexer instead of C to highlight C++
     constructs such as ``template``, ``class`` and ``namespace`` (#3127)
   * D: Allow non-ASCII (Unicode) identifiers (#1088)
+  * Docker: Recognize alternative Dockerfile naming conventions and the
+    ``text/x-dockerfile`` MIME type (#2870)
   * Fish: Fix single quote backslash escape (#3138, #2821)
   * Go: Various lexer improvements (#3199)
   * GoogleSQL: Require a word break after ``SET`` (#3167)
