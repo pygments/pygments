@@ -27,7 +27,7 @@ class BashLexer(RegexLexer):
     Lexer for (ba|k|z|)sh shell scripts.
     """
 
-    name = 'Bash'
+    name = 'Shell'
     aliases = ['bash', 'sh', 'ksh', 'zsh', 'shell', 'openrc']
     filenames = ['*.sh', '*.ksh', '*.bash', '*.ebuild', '*.eclass',
                  '*.exheres-0', '*.exlib', '*.zsh',
@@ -222,11 +222,11 @@ class ShellSessionBaseLexer(Lexer):
 
 class BashSessionLexer(ShellSessionBaseLexer):
     """
-    Lexer for Bash shell sessions, i.e. command lines, including a
+    Lexer for shell sessions, i.e. command lines, including a
     prompt, interspersed with output.
     """
 
-    name = 'Bash Session'
+    name = 'Shell Session'
     aliases = ['console', 'shell-session']
     filenames = ['*.sh-session', '*.shell-session']
     mimetypes = ['application/x-shell-session', 'application/x-sh-session']
