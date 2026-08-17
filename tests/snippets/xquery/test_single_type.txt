@@ -1,0 +1,25 @@
+---input---
+$x castable as xs:date? and $y cast as xs:integer
+
+---tokens---
+'$'           Name.Variable
+'x'           Name
+' '           Text.Whitespace
+'castable'    Keyword
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'xs:date'     Keyword.Type
+'?'           Operator
+' '           Text.Whitespace
+'and'         Operator.Word
+' '           Text.Whitespace
+'$'           Name.Variable
+'y'           Name
+' '           Text.Whitespace
+'cast'        Keyword
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'xs:integer'  Keyword.Type
+'\n'          Text.Whitespace

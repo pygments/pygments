@@ -1,0 +1,49 @@
+---input---
+try { 1 } catch * { 2 } finally { 3 },
+try { 4 } finally { 5 }
+
+---tokens---
+'try'         Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'catch'       Keyword
+' '           Text.Whitespace
+'*'           Name.Tag
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'finally'     Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'try'         Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'finally'     Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace

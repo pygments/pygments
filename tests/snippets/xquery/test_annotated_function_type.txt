@@ -1,0 +1,43 @@
+---input---
+declare function local:apply($u as %updating fn(*)) as empty-sequence() {
+  $u()
+};
+
+---tokens---
+'declare'     Keyword.Declaration
+' '           Text.Whitespace
+'function'    Keyword.Declaration
+' '           Text.Whitespace
+'local:apply' Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'u'           Name
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'%'           Name.Decorator
+'updating'    Name.Decorator
+' '           Text.Whitespace
+'fn'          Keyword.Type
+'('           Punctuation
+'*'           Operator
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'empty-sequence' Keyword.Type
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'$'           Name.Variable
+'u'           Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

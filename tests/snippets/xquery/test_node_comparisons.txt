@@ -1,0 +1,48 @@
+---input---
+$a is $b, $a is-not $b, $a precedes $b, $a follows-or-is $b, $a << $b
+
+---tokens---
+'$'           Name.Variable
+'a'           Name
+' '           Text.Whitespace
+'is'          Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'b'           Name
+','           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'a'           Name
+' '           Text.Whitespace
+'is-not'      Operator.Word
+' '           Text.Whitespace
+'$'           Name.Variable
+'b'           Name
+','           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'a'           Name
+' '           Text.Whitespace
+'precedes'    Operator.Word
+' '           Text.Whitespace
+'$'           Name.Variable
+'b'           Name
+','           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'a'           Name
+' '           Text.Whitespace
+'follows-or-is' Operator.Word
+' '           Text.Whitespace
+'$'           Name.Variable
+'b'           Name
+','           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'a'           Name
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'$'           Name.Variable
+'b'           Name
+'\n'          Text.Whitespace

@@ -1,0 +1,24 @@
+---input---
+``[Hello `{ $name }`, welcome to `{ $place }`!]``
+
+---tokens---
+'``['         Literal.String.Other
+'Hello '      Literal.String.Other
+'`{'          Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'name'        Name
+' '           Text.Whitespace
+'}'           Punctuation
+'`'           Punctuation
+', welcome to ' Literal.String.Other
+'`{'          Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'place'       Name
+' '           Text.Whitespace
+'}'           Punctuation
+'`'           Punctuation
+'!'           Literal.String.Other
+']``'         Literal.String.Other
+'\n'          Text.Whitespace

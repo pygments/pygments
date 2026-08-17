@@ -1,0 +1,58 @@
+---input---
+for tumbling window $w in (1, 2, 3, 4)
+    start when true()
+    only end when false()
+return count($w)
+
+---tokens---
+'for'         Keyword
+' '           Text.Whitespace
+'tumbling'    Keyword
+' '           Text.Whitespace
+'window'      Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'w'           Name
+' '           Text.Whitespace
+'in'          Operator.Word
+' '           Text.Whitespace
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+')'           Punctuation
+'\n    '      Text.Whitespace
+'start'       Keyword
+' '           Text.Whitespace
+'when'        Keyword
+' '           Text.Whitespace
+'true'        Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n    '      Text.Whitespace
+'only'        Keyword
+' '           Text.Whitespace
+'end'         Keyword
+' '           Text.Whitespace
+'when'        Keyword
+' '           Text.Whitespace
+'false'       Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'return'      Keyword
+' '           Text.Whitespace
+'count'       Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'w'           Name
+')'           Punctuation
+'\n'          Text.Whitespace

@@ -1,0 +1,36 @@
+---input---
+element #p:a { attribute #q:b { 1 }, namespace #r { "http://example.com" } }
+
+---tokens---
+'element'     Keyword
+' '           Text.Whitespace
+'#'           Punctuation
+'p:a'         Literal.String.Symbol
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'attribute'   Keyword
+' '           Text.Whitespace
+'#'           Punctuation
+'q:b'         Literal.String.Symbol
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'namespace'   Keyword
+' '           Text.Whitespace
+'#'           Punctuation
+'r'           Literal.String.Symbol
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'"http://example.com"' Literal.String.Double
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace

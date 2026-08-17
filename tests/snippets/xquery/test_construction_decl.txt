@@ -1,0 +1,41 @@
+---input---
+declare construction strip;
+for $x in (1, 2) order by $x collation 'http://x' return $x
+
+---tokens---
+'declare'     Keyword.Declaration
+' '           Text
+'construction' Keyword.Declaration
+' '           Text.Whitespace
+'strip'       Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'for'         Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'x'           Name
+' '           Text.Whitespace
+'in'          Operator.Word
+' '           Text.Whitespace
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'order by'    Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'x'           Name
+' '           Text.Whitespace
+'collation'   Keyword
+' '           Text.Whitespace
+"'http://x'"  Literal.String.Single
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'x'           Name
+'\n'          Text.Whitespace

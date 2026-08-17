@@ -1,0 +1,39 @@
+---input---
+for key $k value $v in { "a": 1 }
+return $k || $v
+
+---tokens---
+'for'         Keyword
+' '           Text.Whitespace
+'key'         Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'k'           Name
+' '           Text.Whitespace
+'value'       Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'v'           Name
+' '           Text.Whitespace
+'in'          Operator.Word
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'"a"'         Literal.String.Double
+':'           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'return'      Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'k'           Name
+' '           Text.Whitespace
+'||'          Operator
+' '           Text.Whitespace
+'$'           Name.Variable
+'v'           Name
+'\n'          Text.Whitespace

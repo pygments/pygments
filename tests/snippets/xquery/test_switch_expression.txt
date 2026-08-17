@@ -1,0 +1,36 @@
+---input---
+switch ($value)
+  case 1 return "one"
+  case "a" return "letter"
+  default return "other"
+
+---tokens---
+'switch'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'$'           Name.Variable
+'value'       Name
+')'           Punctuation
+'\n  '        Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'"one"'       Literal.String.Double
+'\n  '        Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'"a"'         Literal.String.Double
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'"letter"'    Literal.String.Double
+'\n  '        Text.Whitespace
+'default'     Keyword
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'"other"'     Literal.String.Double
+'\n'          Text.Whitespace

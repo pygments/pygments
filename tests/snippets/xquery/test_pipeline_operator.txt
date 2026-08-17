@@ -1,0 +1,26 @@
+---input---
+(1, 2, 3) -> count() -> string()
+
+---tokens---
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'count'       Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'string'      Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace

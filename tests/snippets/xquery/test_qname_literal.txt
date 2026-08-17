@@ -1,0 +1,16 @@
+---input---
+#local:name, #name, count#1
+
+---tokens---
+'#'           Punctuation
+'local:name'  Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+'#'           Punctuation
+'name'        Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+'count'       Name.Function
+'#'           Keyword.Type
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace

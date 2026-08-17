@@ -1,0 +1,31 @@
+---input---
+validate type xs:string { "a" },
+validate lax { <a/> }
+
+---tokens---
+'validate'    Keyword
+' '           Text.Whitespace
+'type'        Keyword
+' '           Text.Whitespace
+'xs:string'   Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'"a"'         Literal.String.Double
+' '           Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'validate'    Keyword
+' '           Text.Whitespace
+'lax'         Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'<'           Name.Tag
+'a'           Name.Tag
+'/>'          Name.Tag
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
