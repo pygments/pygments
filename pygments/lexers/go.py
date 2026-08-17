@@ -54,15 +54,31 @@ class GoLexer(RegexLexer):
                 'complex64', 'complex128', 'byte', 'rune',
                 'string', 'bool', 'error', 'uintptr', 'any', 'comparable'), suffix=r'\b'),
              Keyword.Type),
+            # https://go.dev/ref/spec
             # imaginary_lit
-            (r'\d+i', Number),
-            (r'\d+\.\d*([Ee][-+]\d+)?i', Number),
-            (r'\.\d+([Ee][-+]\d+)?i', Number),
-            (r'\d+[Ee][-+]\d+i', Number),
+            # -- binary_lit "i"
+            (r'(0[bB](?:_?[01])+)(i)', bygroups(Number.Bin, Name.Builtin)),
+            # -- octal_lit "i" (but o or O required)
+            (r'(0[oO](?:_?[0-7])+)(i)', bygroups(Number.Oct, Name.Builtin)),
+            # -- hex_lit "i"
+            (r'(0[xX](?:_?[0-9a-fA-F])+)(i)', bygroups(Number.Hex, Name.Builtin)),
+            # -- hex_float_lit "i"
+            (r'(0[xX](?:_?[a-fA-F\d])+\.?(?:[a-fA-F\d](?:_?[a-fA-F\d])*)?[pP][+-]?\d(?:_?\d)*)(i)', bygroups(Number.Float.Hex, Name.Builtin)),
+            (r'(0[xX]\.[a-fA-F\d](?:_?[a-fA-F\d])*[pP][+-]?\d(?:_?\d)*)(i)', bygroups(Number.Float.Hex, Name.Builtin)),
+            # -- decimal_digits "i"
+            (r'([0-9](?:_?[0-9])*)(i)', bygroups(Number.Integer, Name.Builtin)),
+            # -- decimal_float_lit "i"
+            (r'(\d(?:_?\d)*\.(?:\d(?:_?\d)*)?(?:[eE][+-]?\d(?:_?\d)*)?)(i)', bygroups(Number.Float, Name.Builtin)),
+            (r'(\d(?:_?\d)*[eE][+-]?\d(?:_?\d)*)(i)', bygroups(Number.Float, Name.Builtin)),
+            (r'(\.\d(?:_?\d)*(?:[eE][+-]?\d(?:_?\d)*)?)(i)', bygroups(Number.Float, Name.Builtin)),
             # float_lit
-            (r'\d+(\.\d+[eE][+\-]?\d+|'
-             r'\.\d*|[eE][+\-]?\d+)', Number.Float),
-            (r'\.\d+([eE][+\-]?\d+)?', Number.Float),
+            # -- hex_float_lit
+            (r'0[xX](_?[a-fA-F\d])+\.?([a-fA-F\d](_?[a-fA-F\d])*)?[pP][+-]?\d(_?\d)*', Number.Float.Hex),
+            (r'0[xX]\.[a-fA-F\d](_?[a-fA-F\d])*[pP][+-]?\d(_?\d)*', Number.Float.Hex),
+            # -- decimal_float_lit
+            (r'\d(_?\d)*\.(\d(_?\d)*)?([eE][+-]?\d(_?\d)*)?', Number.Float),
+            (r'\d(_?\d)*[eE][+-]?\d(_?\d)*', Number.Float),
+            (r'\.\d(_?\d)*([eE][+-]?\d(_?\d)*)?', Number.Float),
             # int_lit
             # -- binary_lit
             (r'0[bB](_?[01])+', Number.Bin),
@@ -72,20 +88,27 @@ class GoLexer(RegexLexer):
             (r'0[xX](_?[0-9a-fA-F])+', Number.Hex),
             # -- decimal_lit
             (r'(0|[1-9](_?[0-9])*)', Number.Integer),
-            # char_lit
-            (r"""'(\\['"\\abfnrtv]|\\x[0-9a-fA-F]{2}|\\[0-7]{1,3}"""
-             r"""|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8}|[^\\])'""",
-             String.Char),
-            # StringLiteral
+            # rune_lit
+            (r"(')(\\(?:[0-7]{3}|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8}|['\\abfnrtv]))(')",
+             bygroups(String.Char, String.Escape, String.Char)),
+            (r"'[^'\\\n]'", String.Char),
+            # string_lit
             # -- raw_string_lit
-            (r'`[^`]*`', String),
+            (r'`[^`]*`', String.Backtick),
             # -- interpreted_string_lit
-            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
-            # Tokens
+            (r'"[^"\\\n]*"', String), # single token in simple cases
+            (r'"', String, 'string'),
+            # operators
             (r'(<<=|>>=|<<|>>|<=|>=|&\^=|&\^|\+=|-=|\*=|/=|%=|&=|\|=|\^=|&&|\|\|'
              r'|<-|\+\+|--|==|!=|:=|[+\-*/%&!=<>|^])', Operator),
+            # punctuation
             (r'(\.\.\.|[()\[\]{}.,;:~])', Punctuation),
             # identifier
             (r'[^\W\d]\w*', Name.Other),
+        ],
+        'string': [
+            (r'\\([0-7]{3}|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8}|["\\abfnrtv])', String.Escape),
+            (r'[^"\\\n]*"', String, '#pop'),
+            (r'[^"\\\n]+', String)
         ]
     }

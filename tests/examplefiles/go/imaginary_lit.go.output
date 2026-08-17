@@ -1,0 +1,313 @@
+'package'     Keyword.Namespace
+' '           Text.Whitespace
+'main'        Name.Other
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'"fmt"'       Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'main'        Name.Other
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'_'           Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+']'           Punctuation
+'complex128'  Keyword.Type
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0.'          Literal.Number.Float
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0_0.'        Literal.Number.Float
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0.0'         Literal.Number.Float
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0.0_0'       Literal.Number.Float
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0.e0'        Literal.Number.Float
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0.e0'        Literal.Number.Float
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0.e+0'       Literal.Number.Float
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0.e-0'       Literal.Number.Float
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0.0e0'       Literal.Number.Float
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0.0_0e0'     Literal.Number.Float
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0.0e0_0'     Literal.Number.Float
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0e0'         Literal.Number.Float
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0_0e0'       Literal.Number.Float
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'.0'          Literal.Number.Float
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'.0_0'        Literal.Number.Float
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'.0e0'        Literal.Number.Float
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'.0e0_0'      Literal.Number.Float
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0xfp0'       Literal.Number.Float.Hex
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0xfp0'       Literal.Number.Float.Hex
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0xfp+0'      Literal.Number.Float.Hex
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0xfp-0'      Literal.Number.Float.Hex
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0xfp0_0'     Literal.Number.Float.Hex
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0xf_fp0'     Literal.Number.Float.Hex
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0x_fp0'      Literal.Number.Float.Hex
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0xf.p0'      Literal.Number.Float.Hex
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0xf_f.p0'    Literal.Number.Float.Hex
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0x_f.p0'     Literal.Number.Float.Hex
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0xf.fp0'     Literal.Number.Float.Hex
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0xf.f_fp0'   Literal.Number.Float.Hex
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0x.fp0'      Literal.Number.Float.Hex
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0x.f_fp0'    Literal.Number.Float.Hex
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'1234567890.1234567890e123' Literal.Number.Float
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0e4567890'   Literal.Number.Float
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0xabcdef.abcdefp0123' Literal.Number.Float.Hex
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0x0123456789.0123456789p456' Literal.Number.Float.Hex
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0xABCDEF.ABCDEFp789' Literal.Number.Float.Hex
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0x_fa0_1E.D2_bbp-3_0_1' Literal.Number.Float.Hex
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'1234'        Literal.Number.Integer
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'01234'       Literal.Number.Integer
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0o1234'      Literal.Number.Oct
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0b10101'     Literal.Number.Bin
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t\t'        Text.Whitespace
+'0xabcdef'    Literal.Number.Hex
+'i'           Name.Builtin
+','           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'fmt'         Name.Other
+'.'           Punctuation
+'Println'     Name.Other
+'('           Punctuation
+'"compiles"'  Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
