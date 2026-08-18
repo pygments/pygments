@@ -9,8 +9,6 @@
 """
 
 import re
-import sys
-import types
 import fnmatch
 from os.path import basename
 
@@ -137,21 +135,12 @@ def get_formatter_for_filename(fn, **options):
     raise ClassNotFound(f"no formatter found for file name {fn!r}")
 
 
-class _automodule(types.ModuleType):
+def __getattr__(name):
     """Automatically import formatters."""
-
-    def __getattr__(self, name):
-        info = FORMATTERS.get(name)
-        if info:
-            _load_formatters(info[0])
-            cls = _formatter_cache[info[1]]
-            setattr(self, name, cls)
-            return cls
-        raise AttributeError(name)
-
-
-oldmod = sys.modules[__name__]
-newmod = _automodule(__name__)
-newmod.__dict__.update(oldmod.__dict__)
-sys.modules[__name__] = newmod
-del newmod.newmod, newmod.oldmod, newmod.sys, newmod.types
+    info = FORMATTERS.get(name)
+    if info:
+        _load_formatters(info[0])
+        cls = _formatter_cache[info[1]]
+        globals()[name] = cls
+        return cls
+    raise AttributeError(name)
