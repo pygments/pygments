@@ -9,8 +9,6 @@
 """
 
 import re
-import sys
-import types
 import fnmatch
 from os.path import basename
 
@@ -213,8 +211,7 @@ def get_lexer_for_filename(_fn, code=None, **options):
     """Get a lexer for a filename.
 
     Return a `Lexer` subclass instance that has a filename pattern
-    matching `fn`. The lexer is given the `options` at its
-    instantiation.
+    matching `fn`. The lexer is given the `options` at its instantiation.
 
     Raise :exc:`pygments.util.ClassNotFound` if no lexer for that filename
     is found.
@@ -340,23 +337,14 @@ def guess_lexer(_text, **options):
     return best_lexer[1](**options)
 
 
-class _automodule(types.ModuleType):
+def __getattr__(name):
     """Automatically import lexers."""
-
-    def __getattr__(self, name):
-        info = LEXERS.get(name)
-        if info:
-            _load_lexers(info[0])
-            cls = _lexer_cache[info[1]]
-            setattr(self, name, cls)
-            return cls
-        if name in COMPAT:
-            return getattr(self, COMPAT[name])
-        raise AttributeError(name)
-
-
-oldmod = sys.modules[__name__]
-newmod = _automodule(__name__)
-newmod.__dict__.update(oldmod.__dict__)
-sys.modules[__name__] = newmod
-del newmod.newmod, newmod.oldmod, newmod.sys, newmod.types
+    info = LEXERS.get(name)
+    if info:
+        _load_lexers(info[0])
+        cls = _lexer_cache[info[1]]
+        globals()[name] = cls
+        return cls
+    if name in COMPAT:
+        return __getattr__(COMPAT[name])
+    raise AttributeError(name)
