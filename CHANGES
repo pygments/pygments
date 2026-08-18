@@ -7,6 +7,11 @@ Version 2.22.0
 --------------
 (not released yet)
 
+- Updated lexers:
+
+  * PostScript: Recognize immediately evaluated names such as ``//name``
+    as a single token (#1487)
+
 Version 2.21.0
 ---------------
 (released August 17th, 2026)

@@ -1,0 +1,15 @@
+---input---
+/ND
+//ND
+///ND
+
+---tokens---
+'/ND'         Name.Variable
+'\n'          Text.Whitespace
+
+'//ND'        Name.Variable
+'\n'          Text.Whitespace
+
+'/'           Error
+'//ND'        Name.Variable
+'\n'          Text.Whitespace
