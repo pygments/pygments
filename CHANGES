@@ -56,6 +56,7 @@ Version 2.21.0
   * Markdown:
     - Highlight bold-italics (``***...***`` and ``___...___``) (#3067)
     - Fix mention regex to support hyphens in usernames (#3139, #3135)
+    - Recognize GitHub bot accounts (``@dependabot[bot]``) as mentions (#3252)
   * Markdown, reStructuredText, TiddlyWiki5: Fix wrong token offsets for
     embedded code blocks (#3133)
   * Mathematica: Recognize ``\[Name]`` named-character escapes such as
