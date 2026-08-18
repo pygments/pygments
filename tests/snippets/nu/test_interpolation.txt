@@ -1,0 +1,25 @@
+---input---
+let msg = $"total: (1 + 2) items, path=($env.HOME)"
+
+---tokens---
+'let'         Keyword
+' '           Text.Whitespace
+'msg'         Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'$"'          Literal.String.Double
+'total: '     Literal.String.Double
+'('           Literal.String.Interpol
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+')'           Literal.String.Interpol
+' items, path=' Literal.String.Double
+'('           Literal.String.Interpol
+'$env.HOME'   Name.Variable
+')'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text.Whitespace

@@ -1,0 +1,24 @@
+---input---
+let xs = [1kb 3.5mb 30sec 0xff 0o755 1_000]
+
+---tokens---
+'let'         Keyword
+' '           Text.Whitespace
+'xs'          Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'1kb'         Literal.Number
+' '           Text.Whitespace
+'3.5mb'       Literal.Number
+' '           Text.Whitespace
+'30sec'       Literal.Number
+' '           Text.Whitespace
+'0xff'        Literal.Number.Hex
+' '           Text.Whitespace
+'0o755'       Literal.Number.Oct
+' '           Text.Whitespace
+'1_000'       Literal.Number.Integer
+']'           Punctuation
+'\n'          Text.Whitespace

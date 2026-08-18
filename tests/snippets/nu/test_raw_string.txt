@@ -1,0 +1,12 @@
+---input---
+let raw = r#'no \n (not-interp) here'#
+
+---tokens---
+'let'         Keyword
+' '           Text.Whitespace
+'raw'         Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"r#'no \\n (not-interp) here'#" Literal.String.Other
+'\n'          Text.Whitespace
