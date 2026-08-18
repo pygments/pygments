@@ -647,6 +647,19 @@ class HtmlFormatter(Formatter):
         yield from inner
         yield 0, DOC_FOOTER
 
+    def _linenos_width(self, last_lineno):
+        """Width of the largest line number that linenostep will print."""
+        step = self.linenostep
+        start = self.linenostart
+        if last_lineno < start:
+            return 1
+        if step <= 1:
+            return len(str(last_lineno))
+        last_shown = last_lineno - (last_lineno % step)
+        if last_shown < start:
+            return 1
+        return len(str(last_shown))
+
     def _wrap_tablelinenos(self, inner):
         dummyoutfile = StringIO()
         lncount = 0
@@ -656,7 +669,7 @@ class HtmlFormatter(Formatter):
             dummyoutfile.write(line)
 
         fl = self.linenostart
-        mw = len(str(lncount + fl - 1))
+        mw = self._linenos_width(lncount + fl - 1)
         sp = self.linenospecial
         st = self.linenostep
         anchor_name = self.lineanchors or self.linespans
@@ -721,7 +734,7 @@ class HtmlFormatter(Formatter):
         sp = self.linenospecial
         st = self.linenostep
         num = self.linenostart
-        mw = len(str(len(inner_lines) + num - 1))
+        mw = self._linenos_width(len(inner_lines) + num - 1)
         anchor_name = self.lineanchors or self.linespans
         aln = self.anchorlinenos
         nocls = self.noclasses
