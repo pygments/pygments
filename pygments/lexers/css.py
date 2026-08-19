@@ -270,6 +270,8 @@ class CssLexer(RegexLexer):
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
             (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
             (r'[a-zA-Z_-]\w*', Name),
+            # parenthesized sub-expressions, e.g. in calc()
+            (r'\(', Punctuation, '#push'),
             (r'\)', Punctuation, '#pop'),
         ],
         'urls': [
