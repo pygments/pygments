@@ -154,9 +154,17 @@ _frequency_units = (
     'Hz', 'kHz',
 )
 _length_units = (
-    'em', 'ex', 'ch', 'rem',
-    'vh', 'vw', 'vmin', 'vmax',
+    'em', 'ex', 'ch', 'rem', 'cap', 'ic', 'lh', 'rlh',
+    'rex', 'rch', 'rcap', 'ric',
+    'vh', 'vw', 'vmin', 'vmax', 'vi', 'vb',
+    'svh', 'svw', 'svmin', 'svmax', 'svi', 'svb',
+    'lvh', 'lvw', 'lvmin', 'lvmax', 'lvi', 'lvb',
+    'dvh', 'dvw', 'dvmin', 'dvmax', 'dvi', 'dvb',
+    'cqw', 'cqh', 'cqi', 'cqb', 'cqmin', 'cqmax',
     'px', 'mm', 'cm', 'in', 'pt', 'pc', 'q',
+)
+_flex_units = (
+    'fr',
 )
 _resolution_units = (
     'dpi', 'dpcm', 'dppx',
@@ -165,7 +173,7 @@ _time_units = (
     's', 'ms',
 )
 _all_units = _angle_units + _frequency_units + _length_units + \
-    _resolution_units + _time_units
+    _resolution_units + _time_units + _flex_units
 
 
 class CssLexer(RegexLexer):
