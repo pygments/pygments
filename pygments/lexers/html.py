@@ -42,7 +42,10 @@ class HtmlLexer(RegexLexer):
     tokens = {
         'root': [
             ('[^<&]+', Text),
-            (r'&\S*?;', Name.Entity),
+            (r'&(?:#x[0-9a-f]+|#[0-9]+|[a-z][a-z0-9]*);', Name.Entity),
+            # an ampersand that does not start a character reference
+            # (e.g. "AT&T", "a & b") is ordinary text in HTML
+            (r'&', Text),
             (r'\<\!\[CDATA\[.*?\]\]\>', Comment.Preproc),
             (r'<!--.*?-->', Comment.Multiline),
             (r'<\?.*?\?>', Comment.Preproc),
