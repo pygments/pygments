@@ -1,0 +1,35 @@
+---input---
+%placeholder
+  color: red
+
+a
+  @extend %placeholder
+
+---tokens---
+''            Text.Whitespace
+'%'           Name.Class
+'placeholder' Name.Class
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+''            Name.Attribute
+'color'       Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'red'         Name.Entity
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text.Whitespace
+'a'           Name.Tag
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'@extend'     Keyword
+' '           Text.Whitespace
+'%'           Name.Class
+'placeholder' Name.Class
+'\n'          Text.Whitespace
+
+''            Text.Whitespace

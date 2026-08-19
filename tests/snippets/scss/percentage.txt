@@ -1,0 +1,41 @@
+---input---
+a {
+    width: 50%;
+    background: linear-gradient(red 0%, blue 100%);
+}
+
+---tokens---
+'a'           Name.Tag
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'width'       Name.Tag
+':'           Name.Decorator
+' '           Text.Whitespace
+'50'          Name.Tag
+'%'           Operator
+';'           Operator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'background'  Name.Tag
+':'           Name.Decorator
+' '           Text.Whitespace
+'linear-gradient' Name.Tag
+'('           Operator
+'red'         Name.Tag
+' '           Text.Whitespace
+'0'           Name.Tag
+'%'           Operator
+','           Operator
+' '           Text.Whitespace
+'blue'        Name.Tag
+' '           Text.Whitespace
+'100'         Name.Tag
+'%'           Operator
+')'           Operator
+';'           Operator
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
