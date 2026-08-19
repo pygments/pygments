@@ -77,7 +77,7 @@ class JavascriptLexer(RegexLexer):
             # integers
             (r'(\.[0-9]+|[0-9]+\.[0-9]*|[0-9]+)([eE][-+]?[0-9]+)?', Number.Float),
 
-            (r'\.\.\.|=>', Punctuation),
+            (r'\.\.\.|=>', Punctuation, 'slashstartsregex'),
             (r'\+\+|--|~|\?\?=?|\?|:|\\(?=\n)|'
              r'(<<|>>>?|==?|!=?|(?:\*\*|\|\||&&|[-<>+*%&|^/]))=?', Operator, 'slashstartsregex'),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
