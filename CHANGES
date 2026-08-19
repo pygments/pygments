@@ -7,6 +7,12 @@ Version 2.22.0
 --------------
 (not released yet)
 
+- Updated lexers:
+
+  * Batch: Recognize a variable expansion with substring or replacement
+    syntax (``%var:~0,1%``) inside a token, and fix exponential backtracking
+    on many caret escapes in an ``if`` operand (#3274)
+
 Version 2.21.0
 ---------------
 (released August 17th, 2026)

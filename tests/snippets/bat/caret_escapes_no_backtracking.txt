@@ -1,0 +1,83 @@
+# Many caret escapes in an ``if`` operand used to backtrack exponentially
+# while checking for a following ``/?``.
+
+---input---
+if ^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a^a NEQ x echo y
+
+---tokens---
+'if'          Keyword
+' '           Text
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+'^a'          Literal.String.Escape
+' '           Text
+'NEQ'         Operator.Word
+' '           Text
+'x'           Text
+' '           Text
+'echo'        Keyword
+' '           Text
+'y'           Text
+''            Text
+'\n'          Text

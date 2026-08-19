@@ -272,8 +272,22 @@ class BatchLexer(RegexLexer):
                  rf'\^[^%{_nl}])[^={_nl}]*=(?:[^%{_nl}^]|\^[^%{_nl}])*)?)?%))|'
                  rf'(?:\^?![^!:{_nl}]+(?::(?:~(?:-?\d+)?(?:,(?:-?\d+)?)?|(?:'
                  rf'[^!{_nl}^]|\^[^!{_nl}])[^={_nl}]*=(?:[^!{_nl}^]|\^[^!{_nl}])*)?)?\^?!))')
-    _core_token = rf'(?:(?:(?:\^[{_nl}]?)?[^"{_nlws}{_punct}])+)'
-    _core_token_compound = rf'(?:(?:(?:\^[{_nl}]?)?[^"{_nlws}{_punct})])+)'
+    # A token is a run of plain characters, where ``^`` escapes the next one
+    # (optionally across a line break).  Two details matter here:
+    #
+    # * a run stops where a variable expansion starts, so that a token like
+    #   ``abc%var:~0,1%`` or ``^%var:~0,1%`` is not cut off at the comma
+    #   inside the expansion;
+    # * each ``^`` is matched in exactly one way (as an escape if a token
+    #   character follows, as a plain character otherwise), so that a pattern
+    #   failing after the token (e.g. the check for ``/?``) cannot backtrack
+    #   exponentially through ``^a^a^a...``.
+    _core_token = (rf'(?:(?:\^[{_nl}]?(?!{_variable})[^"{_nlws}{_punct}]|'
+                   rf'\^(?![{_nl}]?(?!{_variable})[^"{_nlws}{_punct}])|'
+                   rf'(?!{_variable})[^"{_nlws}{_punct}^])+)')
+    _core_token_compound = (rf'(?:(?:\^[{_nl}]?(?!{_variable})[^"{_nlws}{_punct})]|'
+                            rf'\^(?![{_nl}]?(?!{_variable})[^"{_nlws}{_punct})])|'
+                            rf'(?!{_variable})[^"{_nlws}{_punct})^])+)')
     _token = rf'(?:[{_punct}]+|{_core_token})'
     _token_compound = rf'(?:[{_punct}]+|{_core_token_compound})'
     _stoken = (rf'(?:[{_punct}]+|(?:{_string}|{_variable}|{_core_token})+)')
@@ -441,7 +455,9 @@ class BatchLexer(RegexLexer):
         'redirect/compound': _make_redirect_state(True),
         'variable-or-escape': [
             (_variable, Name.Variable),
-            (rf'%%|\^[{_nl}]?(\^!|[\w\W])', String.Escape)
+            # ``%`` expansion happens before ``^`` is processed, so a caret
+            # cannot escape the ``%`` that starts a variable expansion.
+            (rf'%%|\^[{_nl}]?(\^!|(?!{_variable})[\w\W])', String.Escape)
         ],
         'string': [
             (r'"', String.Double, '#pop'),

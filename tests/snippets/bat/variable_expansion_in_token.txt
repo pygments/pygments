@@ -1,0 +1,62 @@
+# A variable expansion with substring or replacement syntax is recognized
+# even when it does not start the token, and a caret before an expansion
+# does not escape its ``%``.
+
+---input---
+if abc%VAR:~0,1% NEQ x echo y
+if ^%VAR:~0,1% NEQ x echo y
+if "%VAR:a=b%"=="c" echo x > out%VAR:~-1%.txt
+
+
+---tokens---
+'if'          Keyword
+' '           Text
+'abc'         Text
+'%VAR:~0,1%'  Name.Variable
+' '           Text
+'NEQ'         Operator.Word
+' '           Text
+'x'           Text
+' '           Text
+'echo'        Keyword
+' '           Text
+'y'           Text
+''            Text
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'^'           Text
+'%VAR:~0,1%'  Name.Variable
+' '           Text
+'NEQ'         Operator.Word
+' '           Text
+'x'           Text
+' '           Text
+'echo'        Keyword
+' '           Text
+'y'           Text
+''            Text
+'\n'          Text
+
+'if'          Keyword
+' '           Text
+'"'           Literal.String.Double
+'%VAR:a=b%'   Name.Variable
+'"'           Literal.String.Double
+'=='          Operator
+'"'           Literal.String.Double
+'c'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'echo'        Keyword
+' '           Text
+'x'           Text
+' '           Text
+'>'           Punctuation
+' '           Text
+'out'         Text
+'%VAR:~-1%'   Name.Variable
+'.txt'        Text
+''            Text
+'\n'          Text
