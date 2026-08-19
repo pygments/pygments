@@ -1,0 +1,44 @@
+---input---
+val regex = """^\s*hw\.ramSize\s*=\s*(.+?)\s*$"""
+val price = "cost: $ 5, $amount, $1"
+
+---tokens---
+'val'         Keyword.Declaration
+' '           Text.Whitespace
+'regex'       Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"""'         Literal.String
+'^'           Literal.String
+'\\'          Literal.String
+'s*hw'        Literal.String
+'\\'          Literal.String
+'.ramSize'    Literal.String
+'\\'          Literal.String
+'s*='         Literal.String
+'\\'          Literal.String
+'s*(.+?)'     Literal.String
+'\\'          Literal.String
+'s*'          Literal.String
+'$'           Literal.String
+'"""'         Literal.String
+'\n'          Text.Whitespace
+
+'val'         Keyword.Declaration
+' '           Text.Whitespace
+'price'       Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'cost: '      Literal.String
+'$'           Literal.String
+' 5, '        Literal.String
+'$'           Literal.String.Interpol
+'amount'      Name
+', '          Literal.String
+'$'           Literal.String
+'1'           Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace

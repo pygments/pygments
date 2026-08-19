@@ -272,8 +272,11 @@ class BatchLexer(RegexLexer):
                  rf'\^[^%{_nl}])[^={_nl}]*=(?:[^%{_nl}^]|\^[^%{_nl}])*)?)?%))|'
                  rf'(?:\^?![^!:{_nl}]+(?::(?:~(?:-?\d+)?(?:,(?:-?\d+)?)?|(?:'
                  rf'[^!{_nl}^]|\^[^!{_nl}])[^={_nl}]*=(?:[^!{_nl}^]|\^[^!{_nl}])*)?)?\^?!))')
-    _core_token = rf'(?:(?:(?:\^[{_nl}]?)?[^"{_nlws}{_punct}])+)'
-    _core_token_compound = rf'(?:(?:(?:\^[{_nl}]?)?[^"{_nlws}{_punct})])+)'
+    # A run of plain characters stops where a variable expansion starts, so
+    # that a token like ``abc%var:~0,1%`` or ``^%var:~0,1%`` is not cut off
+    # at the comma inside the expansion.
+    _core_token = rf'(?:(?:(?:\^[{_nl}]?)?(?!{_variable})[^"{_nlws}{_punct}])+)'
+    _core_token_compound = rf'(?:(?:(?:\^[{_nl}]?)?(?!{_variable})[^"{_nlws}{_punct})])+)'
     _token = rf'(?:[{_punct}]+|{_core_token})'
     _token_compound = rf'(?:[{_punct}]+|{_core_token_compound})'
     _stoken = (rf'(?:[{_punct}]+|(?:{_string}|{_variable}|{_core_token})+)')
@@ -441,7 +444,9 @@ class BatchLexer(RegexLexer):
         'redirect/compound': _make_redirect_state(True),
         'variable-or-escape': [
             (_variable, Name.Variable),
-            (rf'%%|\^[{_nl}]?(\^!|[\w\W])', String.Escape)
+            # ``%`` expansion happens before ``^`` is processed, so a caret
+            # cannot escape the ``%`` that starts a variable expansion.
+            (rf'%%|\^[{_nl}]?(\^!|(?!{_variable})[\w\W])', String.Escape)
         ],
         'string': [
             (r'"', String.Double, '#pop'),
