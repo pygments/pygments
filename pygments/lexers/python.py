@@ -199,12 +199,14 @@ class PythonLexer(RegexLexer):
              r'(\![sraf])?'     # conversion
              r':', String.Interpol, '#pop'),
             (r'\s+', Whitespace),  # allow new lines
+            (r'#.*$', Comment.Single),  # allowed since Python 3.12
             include('expr'),
         ],
         'expr-inside-fstring-inner': [
             (r'[{([]', Punctuation, 'expr-inside-fstring-inner'),
             (r'[])}]', Punctuation, '#pop'),
             (r'\s+', Whitespace),  # allow new lines
+            (r'#.*$', Comment.Single),  # allowed since Python 3.12
             include('expr'),
         ],
         'expr-keywords': [
