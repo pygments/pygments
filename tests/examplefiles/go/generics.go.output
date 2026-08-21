@@ -1,13 +1,13 @@
 'package'     Keyword.Namespace
 ' '           Text.Whitespace
-'generics'    Name.Other
+'generics'    Name.Namespace
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
 'type'        Keyword.Declaration
 ' '           Text.Whitespace
-'Int'         Name.Other
+'Int'         Name.Class
 ' '           Text.Whitespace
 'interface'   Keyword.Declaration
 ' '           Text.Whitespace
@@ -15,27 +15,27 @@
 '\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
-'~'           Punctuation
+'~'           Operator
 'int'         Keyword.Type
 ' '           Text.Whitespace
 '|'           Operator
 ' '           Text.Whitespace
-'~'           Punctuation
+'~'           Operator
 'int8'        Keyword.Type
 ' '           Text.Whitespace
 '|'           Operator
 ' '           Text.Whitespace
-'~'           Punctuation
+'~'           Operator
 'int16'       Keyword.Type
 ' '           Text.Whitespace
 '|'           Operator
 ' '           Text.Whitespace
-'~'           Punctuation
+'~'           Operator
 'int32'       Keyword.Type
 ' '           Text.Whitespace
 '|'           Operator
 ' '           Text.Whitespace
-'~'           Punctuation
+'~'           Operator
 'int64'       Keyword.Type
 '\n'          Text.Whitespace
 
@@ -46,19 +46,19 @@
 
 'func'        Keyword.Declaration
 ' '           Text.Whitespace
-'Abs'         Name.Other
+'Abs'         Name.Function
 '['           Punctuation
-'T'           Name.Other
+'T'           Name
 ' '           Text.Whitespace
-'Int'         Name.Other
+'Int'         Name
 ']'           Punctuation
 '('           Punctuation
-'v'           Name.Other
+'v'           Name
 ' '           Text.Whitespace
-'T'           Name.Other
+'T'           Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'T'           Name.Other
+'T'           Name
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
@@ -66,7 +66,7 @@
 '\t'          Text.Whitespace
 'if'          Keyword
 ' '           Text.Whitespace
-'v'           Name.Other
+'v'           Name
 ' '           Text.Whitespace
 '<'           Operator
 ' '           Text.Whitespace
@@ -79,7 +79,7 @@
 'return'      Keyword
 ' '           Text.Whitespace
 '-'           Operator
-'v'           Name.Other
+'v'           Name
 '\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
@@ -93,7 +93,7 @@
 '\t\t'        Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'v'           Name.Other
+'v'           Name
 '\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
@@ -107,19 +107,19 @@
 
 'func'        Keyword.Declaration
 ' '           Text.Whitespace
-'Equal'       Name.Other
+'Equal'       Name.Function
 '['           Punctuation
-'T'           Name.Other
+'T'           Name
 ' '           Text.Whitespace
 'comparable'  Keyword.Type
 ']'           Punctuation
 '('           Punctuation
-'a'           Name.Other
+'a'           Name
 ','           Punctuation
 ' '           Text.Whitespace
-'b'           Name.Other
+'b'           Name
 ' '           Text.Whitespace
-'T'           Name.Other
+'T'           Name
 ')'           Punctuation
 ' '           Text.Whitespace
 'bool'        Keyword.Type
@@ -130,11 +130,11 @@
 '\t'          Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'a'           Name.Other
+'a'           Name
 ' '           Text.Whitespace
 '=='          Operator
 ' '           Text.Whitespace
-'b'           Name.Other
+'b'           Name
 '\n'          Text.Whitespace
 
 '}'           Punctuation
@@ -144,20 +144,20 @@
 
 'func'        Keyword.Declaration
 ' '           Text.Whitespace
-'PtrOf'       Name.Other
+'PtrOf'       Name.Function
 '['           Punctuation
-'T'           Name.Other
+'T'           Name
 ' '           Text.Whitespace
 'any'         Keyword.Type
 ']'           Punctuation
 '('           Punctuation
-'v'           Name.Other
+'v'           Name
 ' '           Text.Whitespace
-'T'           Name.Other
+'T'           Name
 ')'           Punctuation
 ' '           Text.Whitespace
 '*'           Operator
-'T'           Name.Other
+'T'           Name
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
@@ -166,7 +166,7 @@
 'return'      Keyword
 ' '           Text.Whitespace
 '&'           Operator
-'v'           Name.Other
+'v'           Name
 '\n'          Text.Whitespace
 
 '}'           Punctuation

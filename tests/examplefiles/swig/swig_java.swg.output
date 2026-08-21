@@ -69,9 +69,9 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -89,9 +89,9 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -115,9 +115,9 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -159,7 +159,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -262,7 +262,7 @@
 
 'SWIGINTERN'  Name
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -270,7 +270,7 @@
 ' '           Text.Whitespace
 'SWIG_UnpackData' Name
 '('           Punctuation
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -293,7 +293,7 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -317,9 +317,9 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -361,7 +361,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -379,7 +379,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -697,7 +697,7 @@
 'bool'        Keyword.Type
 ','           Punctuation
 '               ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'bool'        Keyword.Type
 ' '           Text.Whitespace
@@ -716,7 +716,7 @@
 'char'        Keyword.Type
 ','           Punctuation
 '               ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -737,7 +737,7 @@
 'char'        Keyword.Type
 ','           Punctuation
 '        '    Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'signed'      Keyword.Type
 ' '           Text.Whitespace
@@ -760,7 +760,7 @@
 'char'        Keyword.Type
 ','           Punctuation
 '      '      Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -781,7 +781,7 @@
 'short'       Keyword.Type
 ','           Punctuation
 '              ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'short'       Keyword.Type
 ' '           Text.Whitespace
@@ -802,7 +802,7 @@
 'short'       Keyword.Type
 ','           Punctuation
 '     '       Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -823,7 +823,7 @@
 'int'         Keyword.Type
 ','           Punctuation
 '                ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -844,7 +844,7 @@
 'int'         Keyword.Type
 ','           Punctuation
 '       '     Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -865,7 +865,7 @@
 'long'        Keyword.Type
 ','           Punctuation
 '               ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -886,7 +886,7 @@
 'long'        Keyword.Type
 ','           Punctuation
 '      '      Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -909,7 +909,7 @@
 'long'        Keyword.Type
 ','           Punctuation
 '          '  Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -934,7 +934,7 @@
 'long'        Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -957,7 +957,7 @@
 'float'       Keyword.Type
 ','           Punctuation
 '              ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'float'       Keyword.Type
 ' '           Text.Whitespace
@@ -976,7 +976,7 @@
 'double'      Keyword.Type
 ','           Punctuation
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'double'      Keyword.Type
 ' '           Text.Whitespace
@@ -1009,7 +1009,7 @@
 'bool'        Keyword.Type
 ','           Punctuation
 '               ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'bool'        Keyword.Type
 ' '           Text.Whitespace
@@ -1028,7 +1028,7 @@
 'char'        Keyword.Type
 ','           Punctuation
 '               ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -1049,7 +1049,7 @@
 'char'        Keyword.Type
 ','           Punctuation
 '        '    Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'signed'      Keyword.Type
 ' '           Text.Whitespace
@@ -1072,7 +1072,7 @@
 'char'        Keyword.Type
 ','           Punctuation
 '      '      Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -1093,7 +1093,7 @@
 'short'       Keyword.Type
 ','           Punctuation
 '              ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'short'       Keyword.Type
 ' '           Text.Whitespace
@@ -1114,7 +1114,7 @@
 'short'       Keyword.Type
 ','           Punctuation
 '     '       Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -1135,7 +1135,7 @@
 'int'         Keyword.Type
 ','           Punctuation
 '                ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -1156,7 +1156,7 @@
 'int'         Keyword.Type
 ','           Punctuation
 '       '     Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -1177,7 +1177,7 @@
 'long'        Keyword.Type
 ','           Punctuation
 '               ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -1198,7 +1198,7 @@
 'long'        Keyword.Type
 ','           Punctuation
 '      '      Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -1221,7 +1221,7 @@
 'long'        Keyword.Type
 ','           Punctuation
 '          '  Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -1246,7 +1246,7 @@
 'long'        Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -1269,7 +1269,7 @@
 'float'       Keyword.Type
 ','           Punctuation
 '              ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'float'       Keyword.Type
 ' '           Text.Whitespace
@@ -1288,7 +1288,7 @@
 'double'      Keyword.Type
 ','           Punctuation
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'double'      Keyword.Type
 ' '           Text.Whitespace
@@ -1321,7 +1321,7 @@
 'bool'        Keyword.Type
 ','           Punctuation
 '               ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'bool'        Keyword.Type
 ' '           Text.Whitespace
@@ -1340,7 +1340,7 @@
 'char'        Keyword.Type
 ','           Punctuation
 '               ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -1361,7 +1361,7 @@
 'char'        Keyword.Type
 ','           Punctuation
 '        '    Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'signed'      Keyword.Type
 ' '           Text.Whitespace
@@ -1384,7 +1384,7 @@
 'char'        Keyword.Type
 ','           Punctuation
 '      '      Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -1405,7 +1405,7 @@
 'short'       Keyword.Type
 ','           Punctuation
 '              ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'short'       Keyword.Type
 ' '           Text.Whitespace
@@ -1426,7 +1426,7 @@
 'short'       Keyword.Type
 ','           Punctuation
 '     '       Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -1447,7 +1447,7 @@
 'int'         Keyword.Type
 ','           Punctuation
 '                ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -1468,7 +1468,7 @@
 'int'         Keyword.Type
 ','           Punctuation
 '       '     Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -1489,7 +1489,7 @@
 'long'        Keyword.Type
 ','           Punctuation
 '               ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -1510,7 +1510,7 @@
 'long'        Keyword.Type
 ','           Punctuation
 '      '      Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -1533,7 +1533,7 @@
 'long'        Keyword.Type
 ','           Punctuation
 '          '  Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -1558,7 +1558,7 @@
 'long'        Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -1581,7 +1581,7 @@
 'float'       Keyword.Type
 ','           Punctuation
 '              ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'float'       Keyword.Type
 ' '           Text.Whitespace
@@ -1600,7 +1600,7 @@
 'double'      Keyword.Type
 ','           Punctuation
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'double'      Keyword.Type
 ' '           Text.Whitespace
@@ -4612,7 +4612,7 @@
 'long'        Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -5126,7 +5126,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '('           Punctuation
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -5194,7 +5194,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '('           Punctuation
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -5242,7 +5242,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '('           Punctuation
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -5431,7 +5431,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '('           Punctuation
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -5482,7 +5482,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '('           Punctuation
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -5561,7 +5561,7 @@
 'in'          Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'bool'        Keyword.Type
 ' '           Text.Whitespace
@@ -5618,7 +5618,7 @@
 'SWIGWARN_TYPEMAP_THREAD_UNSAFE_MSG' Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'bool'        Keyword.Type
 ' '           Text.Whitespace
@@ -5628,7 +5628,7 @@
 '%'           Operator
 '{'           Punctuation
 ' '           Text.Whitespace
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 '$*1_ltype'   Name
 ' '           Text.Whitespace
@@ -5674,7 +5674,7 @@
 'javadirectorin' Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'bool'        Keyword.Type
 ' '           Text.Whitespace
@@ -5690,7 +5690,7 @@
 'javadirectorout' Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'bool'        Keyword.Type
 ' '           Text.Whitespace
@@ -5708,7 +5708,7 @@
 'in'          Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -5724,7 +5724,7 @@
 '\n'          Text.Whitespace
 
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'signed'      Keyword.Type
 ' '           Text.Whitespace
@@ -5742,7 +5742,7 @@
 '\n'          Text.Whitespace
 
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -5760,7 +5760,7 @@
 '\n'          Text.Whitespace
 
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'short'       Keyword.Type
 ' '           Text.Whitespace
@@ -5776,7 +5776,7 @@
 '\n'          Text.Whitespace
 
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -5794,7 +5794,7 @@
 '\n'          Text.Whitespace
 
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -5810,7 +5810,7 @@
 '\n'          Text.Whitespace
 
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -5828,7 +5828,7 @@
 '\n'          Text.Whitespace
 
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -5844,7 +5844,7 @@
 '\n'          Text.Whitespace
 
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -5862,7 +5862,7 @@
 '\n'          Text.Whitespace
 
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -5880,7 +5880,7 @@
 '\n'          Text.Whitespace
 
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'float'       Keyword.Type
 ' '           Text.Whitespace
@@ -5896,7 +5896,7 @@
 '\n'          Text.Whitespace
 
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'double'      Keyword.Type
 ' '           Text.Whitespace
@@ -5948,7 +5948,7 @@
 'SWIGWARN_TYPEMAP_THREAD_UNSAFE_MSG' Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -5957,7 +5957,7 @@
 '\n'          Text.Whitespace
 
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'signed'      Keyword.Type
 ' '           Text.Whitespace
@@ -5968,7 +5968,7 @@
 '\n'          Text.Whitespace
 
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -5979,7 +5979,7 @@
 '\n'          Text.Whitespace
 
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'short'       Keyword.Type
 ' '           Text.Whitespace
@@ -5988,7 +5988,7 @@
 '\n'          Text.Whitespace
 
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -5999,7 +5999,7 @@
 '\n'          Text.Whitespace
 
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -6008,7 +6008,7 @@
 '\n'          Text.Whitespace
 
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -6019,7 +6019,7 @@
 '\n'          Text.Whitespace
 
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -6028,7 +6028,7 @@
 '\n'          Text.Whitespace
 
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -6039,7 +6039,7 @@
 '\n'          Text.Whitespace
 
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -6050,7 +6050,7 @@
 '\n'          Text.Whitespace
 
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'float'       Keyword.Type
 ' '           Text.Whitespace
@@ -6059,7 +6059,7 @@
 '\n'          Text.Whitespace
 
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'double'      Keyword.Type
 ' '           Text.Whitespace
@@ -6069,7 +6069,7 @@
 '%'           Operator
 '{'           Punctuation
 ' '           Text.Whitespace
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 '$*1_ltype'   Name
 ' '           Text.Whitespace
@@ -6117,7 +6117,7 @@
 '"'           Literal.String
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'bool'        Keyword.Type
 ' '           Text.Whitespace
@@ -6140,7 +6140,7 @@
 '"'           Literal.String
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -6163,7 +6163,7 @@
 '"'           Literal.String
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'signed'      Keyword.Type
 ' '           Text.Whitespace
@@ -6188,7 +6188,7 @@
 '"'           Literal.String
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -6213,7 +6213,7 @@
 '"'           Literal.String
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'short'       Keyword.Type
 ' '           Text.Whitespace
@@ -6236,7 +6236,7 @@
 '"'           Literal.String
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -6261,7 +6261,7 @@
 '"'           Literal.String
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -6284,7 +6284,7 @@
 '"'           Literal.String
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -6309,7 +6309,7 @@
 '"'           Literal.String
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -6332,7 +6332,7 @@
 '"'           Literal.String
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -6357,7 +6357,7 @@
 '"'           Literal.String
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -6382,7 +6382,7 @@
 '"'           Literal.String
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'float'       Keyword.Type
 ' '           Text.Whitespace
@@ -6405,7 +6405,7 @@
 '"'           Literal.String
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'double'      Keyword.Type
 ' '           Text.Whitespace
@@ -6423,7 +6423,7 @@
 'javadirectorin' Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -6439,7 +6439,7 @@
 '\n'          Text.Whitespace
 
 '                         ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'signed'      Keyword.Type
 ' '           Text.Whitespace
@@ -6457,7 +6457,7 @@
 '\n'          Text.Whitespace
 
 '                         ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -6475,7 +6475,7 @@
 '\n'          Text.Whitespace
 
 '                         ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'short'       Keyword.Type
 ' '           Text.Whitespace
@@ -6491,7 +6491,7 @@
 '\n'          Text.Whitespace
 
 '                         ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -6509,7 +6509,7 @@
 '\n'          Text.Whitespace
 
 '                         ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -6525,7 +6525,7 @@
 '\n'          Text.Whitespace
 
 '                         ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -6543,7 +6543,7 @@
 '\n'          Text.Whitespace
 
 '                         ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -6559,7 +6559,7 @@
 '\n'          Text.Whitespace
 
 '                         ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -6577,7 +6577,7 @@
 '\n'          Text.Whitespace
 
 '                         ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -6595,7 +6595,7 @@
 '\n'          Text.Whitespace
 
 '                         ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'float'       Keyword.Type
 ' '           Text.Whitespace
@@ -6611,7 +6611,7 @@
 '\n'          Text.Whitespace
 
 '                         ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'double'      Keyword.Type
 ' '           Text.Whitespace
@@ -6637,7 +6637,7 @@
 'javadirectorout' Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -6653,7 +6653,7 @@
 '\n'          Text.Whitespace
 
 '                          ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'signed'      Keyword.Type
 ' '           Text.Whitespace
@@ -6671,7 +6671,7 @@
 '\n'          Text.Whitespace
 
 '                          ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -6689,7 +6689,7 @@
 '\n'          Text.Whitespace
 
 '                          ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'short'       Keyword.Type
 ' '           Text.Whitespace
@@ -6705,7 +6705,7 @@
 '\n'          Text.Whitespace
 
 '                          ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -6723,7 +6723,7 @@
 '\n'          Text.Whitespace
 
 '                          ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -6739,7 +6739,7 @@
 '\n'          Text.Whitespace
 
 '                          ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -6757,7 +6757,7 @@
 '\n'          Text.Whitespace
 
 '                          ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -6773,7 +6773,7 @@
 '\n'          Text.Whitespace
 
 '                          ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -6791,7 +6791,7 @@
 '\n'          Text.Whitespace
 
 '                          ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -6809,7 +6809,7 @@
 '\n'          Text.Whitespace
 
 '                          ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'float'       Keyword.Type
 ' '           Text.Whitespace
@@ -6825,7 +6825,7 @@
 '\n'          Text.Whitespace
 
 '                          ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'double'      Keyword.Type
 ' '           Text.Whitespace
@@ -6853,7 +6853,7 @@
 'out'         Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'bool'        Keyword.Type
 ' '           Text.Whitespace
@@ -6882,7 +6882,7 @@
 'out'         Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -6911,7 +6911,7 @@
 'out'         Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'signed'      Keyword.Type
 ' '           Text.Whitespace
@@ -6942,7 +6942,7 @@
 'out'         Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -6973,7 +6973,7 @@
 'out'         Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'short'       Keyword.Type
 ' '           Text.Whitespace
@@ -7002,7 +7002,7 @@
 'out'         Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -7033,7 +7033,7 @@
 'out'         Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -7062,7 +7062,7 @@
 'out'         Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -7093,7 +7093,7 @@
 'out'         Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -7122,7 +7122,7 @@
 'out'         Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -7153,7 +7153,7 @@
 'out'         Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -7184,7 +7184,7 @@
 'out'         Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'float'       Keyword.Type
 ' '           Text.Whitespace
@@ -7213,7 +7213,7 @@
 'out'         Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'double'      Keyword.Type
 ' '           Text.Whitespace
@@ -7250,7 +7250,7 @@
 'in'          Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -7571,7 +7571,7 @@
 'SWIGWARN_TYPEMAP_THREAD_UNSAFE_MSG' Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -7586,7 +7586,7 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 '$*1_ltype'   Name
 ' '           Text.Whitespace
@@ -7891,7 +7891,7 @@
 'out'         Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -8147,7 +8147,7 @@
 'javadirectorin' Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -8167,7 +8167,7 @@
 'javadirectorout' Name
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -8388,7 +8388,7 @@
 '$1_ltype'    Name
 '('           Punctuation
 '('           Punctuation
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 '$1_ltype'    Name
 ' '           Text.Whitespace
@@ -8422,7 +8422,7 @@
 ' '           Text.Whitespace
 'malloc'      Name
 '('           Punctuation
-'sizeof'      Keyword
+'sizeof'      Operator.Word
 '('           Punctuation
 '$1_ltype'    Name
 ')'           Punctuation
@@ -8440,7 +8440,7 @@
 '$1'          Name
 ','           Punctuation
 ' '           Text.Whitespace
-'sizeof'      Keyword
+'sizeof'      Operator.Word
 '('           Punctuation
 '$1_type'     Name
 ')'           Punctuation
@@ -8602,7 +8602,7 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -8679,7 +8679,7 @@
 '$1'          Name
 ','           Punctuation
 ' '           Text.Whitespace
-'sizeof'      Keyword
+'sizeof'      Operator.Word
 '('           Punctuation
 '$1'          Name
 ')'           Punctuation
@@ -8847,7 +8847,7 @@
 '$1'          Name
 ','           Punctuation
 ' '           Text.Whitespace
-'sizeof'      Keyword
+'sizeof'      Operator.Word
 '('           Punctuation
 '$1'          Name
 ')'           Punctuation
@@ -9596,7 +9596,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '('           Punctuation
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -9689,7 +9689,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '('           Punctuation
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -9743,7 +9743,7 @@
 ','           Punctuation
 ' '           Text.Whitespace
 '('           Punctuation
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -10735,7 +10735,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'bool'        Keyword.Type
 ' '           Text.Whitespace
@@ -10769,7 +10769,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -10804,7 +10804,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'signed'      Keyword.Type
 ' '           Text.Whitespace
@@ -10848,7 +10848,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -10860,7 +10860,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'short'       Keyword.Type
 ' '           Text.Whitespace
@@ -10908,7 +10908,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -10920,7 +10920,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -10930,7 +10930,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -10982,7 +10982,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -10994,7 +10994,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -11006,7 +11006,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -11040,7 +11040,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -11077,7 +11077,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'float'       Keyword.Type
 ' '           Text.Whitespace
@@ -11110,7 +11110,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'double'      Keyword.Type
 ' '           Text.Whitespace
@@ -11379,7 +11379,7 @@
 'SWIGTYPE'    Name
 ' '           Text.Whitespace
 '*'           Operator
-'const'       Keyword
+'const'       Keyword.Declaration
 '&'           Operator
 ','           Punctuation
 ' '           Text.Whitespace
@@ -11641,7 +11641,7 @@
 'bool'        Keyword.Type
 ','           Punctuation
 '               ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'bool'        Keyword.Type
 ' '           Text.Whitespace
@@ -11653,7 +11653,7 @@
 'char'        Keyword.Type
 ','           Punctuation
 '               ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -11667,7 +11667,7 @@
 'char'        Keyword.Type
 ','           Punctuation
 '        '    Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'signed'      Keyword.Type
 ' '           Text.Whitespace
@@ -11683,7 +11683,7 @@
 'char'        Keyword.Type
 ','           Punctuation
 '      '      Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -11697,7 +11697,7 @@
 'short'       Keyword.Type
 ','           Punctuation
 '              ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'short'       Keyword.Type
 ' '           Text.Whitespace
@@ -11711,7 +11711,7 @@
 'short'       Keyword.Type
 ','           Punctuation
 '     '       Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -11725,7 +11725,7 @@
 'int'         Keyword.Type
 ','           Punctuation
 '                ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -11739,7 +11739,7 @@
 'int'         Keyword.Type
 ','           Punctuation
 '       '     Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -11753,7 +11753,7 @@
 'long'        Keyword.Type
 ','           Punctuation
 '               ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -11767,7 +11767,7 @@
 'long'        Keyword.Type
 ','           Punctuation
 '      '      Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -11783,7 +11783,7 @@
 'long'        Keyword.Type
 ','           Punctuation
 '          '  Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -11801,7 +11801,7 @@
 'long'        Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -11817,7 +11817,7 @@
 'float'       Keyword.Type
 ','           Punctuation
 '              ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'float'       Keyword.Type
 ' '           Text.Whitespace
@@ -11829,7 +11829,7 @@
 'double'      Keyword.Type
 ','           Punctuation
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'double'      Keyword.Type
 ' '           Text.Whitespace
@@ -12046,7 +12046,7 @@
 'bool'        Keyword.Type
 ','           Punctuation
 '               ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'bool'        Keyword.Type
 ' '           Text.Whitespace
@@ -12058,7 +12058,7 @@
 'char'        Keyword.Type
 ','           Punctuation
 '               ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 ' '           Text.Whitespace
@@ -12072,7 +12072,7 @@
 'char'        Keyword.Type
 ','           Punctuation
 '        '    Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'signed'      Keyword.Type
 ' '           Text.Whitespace
@@ -12088,7 +12088,7 @@
 'char'        Keyword.Type
 ','           Punctuation
 '      '      Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -12102,7 +12102,7 @@
 'short'       Keyword.Type
 ','           Punctuation
 '              ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'short'       Keyword.Type
 ' '           Text.Whitespace
@@ -12116,7 +12116,7 @@
 'short'       Keyword.Type
 ','           Punctuation
 '     '       Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -12130,7 +12130,7 @@
 'int'         Keyword.Type
 ','           Punctuation
 '                ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -12144,7 +12144,7 @@
 'int'         Keyword.Type
 ','           Punctuation
 '       '     Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -12158,7 +12158,7 @@
 'long'        Keyword.Type
 ','           Punctuation
 '               ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -12172,7 +12172,7 @@
 'long'        Keyword.Type
 ','           Punctuation
 '      '      Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -12188,7 +12188,7 @@
 'long'        Keyword.Type
 ','           Punctuation
 '          '  Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -12206,7 +12206,7 @@
 'long'        Keyword.Type
 ','           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -12222,7 +12222,7 @@
 'float'       Keyword.Type
 ','           Punctuation
 '              ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'float'       Keyword.Type
 ' '           Text.Whitespace
@@ -12234,7 +12234,7 @@
 'double'      Keyword.Type
 ','           Punctuation
 '             ' Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'double'      Keyword.Type
 ' '           Text.Whitespace
@@ -12622,7 +12622,7 @@
 'SWIGTYPE'    Name
 ' '           Text.Whitespace
 '*'           Operator
-'const'       Keyword
+'const'       Keyword.Declaration
 '&'           Operator
 ' '           Text.Whitespace
 '"'           Literal.String
@@ -12638,7 +12638,7 @@
 'SWIGTYPE'    Name
 ' '           Text.Whitespace
 '*'           Operator
-'const'       Keyword
+'const'       Keyword.Declaration
 '&'           Operator
 ' '           Text.Whitespace
 '"'           Literal.String
@@ -12654,7 +12654,7 @@
 'SWIGTYPE'    Name
 ' '           Text.Whitespace
 '*'           Operator
-'const'       Keyword
+'const'       Keyword.Declaration
 '&'           Operator
 ' '           Text.Whitespace
 '"'           Literal.String
@@ -12670,7 +12670,7 @@
 'SWIGTYPE'    Name
 ' '           Text.Whitespace
 '*'           Operator
-'const'       Keyword
+'const'       Keyword.Declaration
 '&'           Operator
 ' '           Text.Whitespace
 '"'           Literal.String
@@ -12686,7 +12686,7 @@
 'SWIGTYPE'    Name
 ' '           Text.Whitespace
 '*'           Operator
-'const'       Keyword
+'const'       Keyword.Declaration
 '&'           Operator
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -12745,7 +12745,7 @@
 'SWIGTYPE'    Name
 ' '           Text.Whitespace
 '*'           Operator
-'const'       Keyword
+'const'       Keyword.Declaration
 '&'           Operator
 ' '           Text.Whitespace
 '('           Punctuation
@@ -12799,7 +12799,7 @@
 'SWIGTYPE'    Name
 ' '           Text.Whitespace
 '*'           Operator
-'const'       Keyword
+'const'       Keyword.Declaration
 '&'           Operator
 '\n'          Text.Whitespace
 
@@ -13150,7 +13150,7 @@
 '  '          Text.Whitespace
 'CPTR_VISIBILITY' Name
 ' '           Text.Whitespace
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -13274,7 +13274,7 @@
 '  '          Text.Whitespace
 'CPTR_VISIBILITY' Name
 ' '           Text.Whitespace
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -13443,7 +13443,7 @@
 '  '          Text.Whitespace
 'CPTR_VISIBILITY' Name
 ' '           Text.Whitespace
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -13581,7 +13581,7 @@
 '  '          Text.Whitespace
 'CPTR_VISIBILITY' Name
 ' '           Text.Whitespace
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'String'      Name
 ' '           Text.Whitespace
@@ -14216,7 +14216,7 @@
 
 '%apply'      Name.Function
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -14226,7 +14226,7 @@
 ' '           Text.Whitespace
 '{'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'size_t'      Keyword.Type
 ' '           Text.Whitespace
@@ -14279,7 +14279,7 @@
 'SWIGTYPE'    Name
 ' '           Text.Whitespace
 '*'           Operator
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 '}'           Punctuation
 '\n'          Text.Whitespace

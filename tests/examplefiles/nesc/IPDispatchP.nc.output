@@ -660,7 +660,7 @@
 'r_meta'      Name
 ','           Punctuation
 ' '           Text.Whitespace
-'sizeof'      Keyword
+'sizeof'      Operator.Word
 '('           Punctuation
 'struct'      Keyword
 ' '           Text.Whitespace
@@ -1251,7 +1251,7 @@
 'recon_data'  Name
 ','           Punctuation
 ' '           Text.Whitespace
-'sizeof'      Keyword
+'sizeof'      Operator.Word
 '('           Punctuation
 'struct'      Keyword
 ' '           Text.Whitespace
@@ -1371,7 +1371,7 @@
 ' '           Text.Whitespace
 '-'           Operator
 ' '           Text.Whitespace
-'sizeof'      Keyword
+'sizeof'      Operator.Word
 '('           Punctuation
 'struct'      Keyword
 ' '           Text.Whitespace
@@ -2217,7 +2217,7 @@
 '          '  Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'done'        Name
+'done'        Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -2262,7 +2262,7 @@
 '          '  Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'done'        Name
+'done'        Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -2506,7 +2506,7 @@
 '      '      Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fail'        Name
+'fail'        Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -2628,7 +2628,7 @@
 '        '    Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fail'        Name
+'fail'        Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -2662,7 +2662,7 @@
 '\n'          Text.Whitespace
 
 '             ' Text.Whitespace
-'sizeof'      Keyword
+'sizeof'      Operator.Word
 '('           Punctuation
 'ieee154_addr_t' Name
 ')'           Punctuation
@@ -2745,7 +2745,7 @@
 ' '           Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fail'        Name
+'fail'        Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -2833,7 +2833,7 @@
 '        '    Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fail'        Name
+'fail'        Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -2979,7 +2979,7 @@
 '\n'          Text.Whitespace
 
 '             ' Text.Whitespace
-'sizeof'      Keyword
+'sizeof'      Operator.Word
 '('           Punctuation
 'ieee154_addr_t' Name
 ')'           Punctuation
@@ -3079,7 +3079,7 @@
 '        '    Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fail'        Name
+'fail'        Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -3149,7 +3149,7 @@
 '    '        Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'done'        Name
+'done'        Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -3350,7 +3350,7 @@
 '      '      Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fail'        Name
+'fail'        Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -3421,7 +3421,7 @@
 '      '      Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fail'        Name
+'fail'        Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -3803,7 +3803,7 @@
 '      '      Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'cleanup_outer' Name
+'cleanup_outer' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -3987,7 +3987,7 @@
 '        '    Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'done'        Name
+'done'        Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -4170,7 +4170,7 @@
 '        '    Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'done'        Name
+'done'        Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -4238,7 +4238,7 @@
 '        '    Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'done'        Name
+'done'        Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -4557,7 +4557,7 @@
 '      '      Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'done'        Name
+'done'        Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -5018,7 +5018,7 @@
 'stats'       Name
 ','           Punctuation
 ' '           Text.Whitespace
-'sizeof'      Keyword
+'sizeof'      Operator.Word
 '('           Punctuation
 'ip_statistics_t' Name
 ')'           Punctuation
@@ -5060,7 +5060,7 @@
 'stats'       Name
 ','           Punctuation
 ' '           Text.Whitespace
-'sizeof'      Keyword
+'sizeof'      Operator.Word
 '('           Punctuation
 'ip_statistics_t' Name
 ')'           Punctuation

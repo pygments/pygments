@@ -110,7 +110,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'void'        Keyword.Type
 '\n'          Text.Whitespace
@@ -128,7 +128,7 @@
 '\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -242,7 +242,7 @@
 ' '           Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'loop'        Name
+'loop'        Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -569,7 +569,7 @@
 'ifdef WITH_TSC' Comment.Preproc
 '\n'          Comment.Preproc
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'PyObject'    Name
 ' '           Text.Whitespace
@@ -601,7 +601,7 @@
 'else'        Comment.Preproc
 '\n'          Comment.Preproc
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'PyObject'    Name
 ' '           Text.Whitespace
@@ -625,7 +625,7 @@
 'endif'       Comment.Preproc
 '\n'          Comment.Preproc
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'PyObject'    Name
 ' '           Text.Whitespace
@@ -656,7 +656,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'PyObject'    Name
 ' '           Text.Whitespace
@@ -684,7 +684,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'PyObject'    Name
 ' '           Text.Whitespace
@@ -715,7 +715,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'PyObject'    Name
 ' '           Text.Whitespace
@@ -744,7 +744,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'PyObject'    Name
 ' '           Text.Whitespace
@@ -772,7 +772,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'PyObject'    Name
 ' '           Text.Whitespace
@@ -806,7 +806,7 @@
 'ifdef LLTRACE' Comment.Preproc
 '\n'          Comment.Preproc
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -814,7 +814,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -836,7 +836,7 @@
 'endif'       Comment.Preproc
 '\n'          Comment.Preproc
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -867,7 +867,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
@@ -898,7 +898,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
@@ -919,7 +919,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -959,7 +959,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'PyObject'    Name
 ' '           Text.Whitespace
@@ -984,7 +984,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -1014,7 +1014,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'PyObject'    Name
 ' '           Text.Whitespace
@@ -1037,7 +1037,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'PyObject'    Name
 ' '           Text.Whitespace
@@ -1057,7 +1057,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -1075,7 +1075,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'PyObject'    Name
 ' '           Text.Whitespace
@@ -1100,7 +1100,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -1130,7 +1130,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
@@ -1158,7 +1158,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
@@ -1171,7 +1171,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
@@ -1194,7 +1194,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'PyObject'    Name
 ' '           Text.Whitespace
@@ -1274,7 +1274,7 @@
 'ifdef DXPAIRS' Comment.Preproc
 '\n'          Comment.Preproc
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -1296,7 +1296,7 @@
 'else'        Comment.Preproc
 '\n'          Comment.Preproc
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -1328,7 +1328,7 @@
 'define PCALL_NUM 11' Comment.Preproc
 '\n'          Comment.Preproc
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -1577,7 +1577,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'PyThread_type_lock' Name
 ' '           Text.Whitespace
@@ -1591,7 +1591,7 @@
 '/* This is the GIL */' Comment.Multiline
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -2207,7 +2207,7 @@
 'define NPENDINGCALLS 32' Comment.Preproc
 '\n'          Comment.Preproc
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'struct'      Keyword
 ' '           Text.Whitespace
@@ -2246,7 +2246,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'volatile'    Keyword
 ' '           Text.Whitespace
@@ -2260,7 +2260,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'volatile'    Keyword
 ' '           Text.Whitespace
@@ -2274,7 +2274,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'volatile'    Keyword
 ' '           Text.Whitespace
@@ -2319,7 +2319,7 @@
 '\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'volatile'    Keyword
 ' '           Text.Whitespace
@@ -2537,7 +2537,7 @@
 '\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -2826,7 +2826,7 @@
 'endif'       Comment.Preproc
 '\n'          Comment.Preproc
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -3083,7 +3083,7 @@
 
 'enum'        Keyword
 ' '           Text.Whitespace
-'why_code'    Name
+'why_code'    Name.Class
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
@@ -3170,13 +3170,13 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'enum'        Keyword
 ' '           Text.Whitespace
-'why_code'    Name
+'why_code'    Name.Class
 ' '           Text.Whitespace
-'do_raise'    Name.Function
+'do_raise'    Name
 '('           Punctuation
 'PyObject'    Name
 ' '           Text.Whitespace
@@ -3195,7 +3195,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -3436,7 +3436,7 @@
 '\n'          Comment.Preproc
 
 '\t'          Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'PyObject'    Name
 ' '           Text.Whitespace
@@ -3449,7 +3449,7 @@
 '\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'unsigned'    Keyword.Type
 ' '           Text.Whitespace
@@ -3461,7 +3461,7 @@
 '\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -3472,7 +3472,7 @@
 '\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -3483,11 +3483,11 @@
 '\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'enum'        Keyword
 ' '           Text.Whitespace
-'why_code'    Name
+'why_code'    Name.Class
 ' '           Text.Whitespace
 'why'         Name
 ';'           Punctuation
@@ -3496,7 +3496,7 @@
 '\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -3507,7 +3507,7 @@
 '\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'PyObject'    Name
 ' '           Text.Whitespace
@@ -3519,7 +3519,7 @@
 '\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'PyObject'    Name
 ' '           Text.Whitespace
@@ -3531,7 +3531,7 @@
 '\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'PyObject'    Name
 ' '           Text.Whitespace
@@ -3541,7 +3541,7 @@
 '\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'PyObject'    Name
 ' '           Text.Whitespace
@@ -3551,7 +3551,7 @@
 '\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'PyObject'    Name
 ' '           Text.Whitespace
@@ -3561,7 +3561,7 @@
 '\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'PyObject'    Name
 ' '           Text.Whitespace
@@ -3577,7 +3577,7 @@
 '\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'PyObject'    Name
 ' '           Text.Whitespace
@@ -4194,7 +4194,7 @@
 '\t\t\t\t'    Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'exit_eval_frame' Name
+'exit_eval_frame' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -4270,7 +4270,7 @@
 '\t\t\t\t'    Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'exit_eval_frame' Name
+'exit_eval_frame' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -4564,7 +4564,7 @@
 '\t\t'        Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'on_error'    Name
+'on_error'    Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -4793,7 +4793,7 @@
 '                                ' Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fast_next_opcode' Name
+'fast_next_opcode' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -4875,7 +4875,7 @@
 '\t\t\t\t\t'  Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'on_error'    Name
+'on_error'    Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -5085,7 +5085,7 @@
 '\t\t\t\t\t'  Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'on_error'    Name
+'on_error'    Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -5299,7 +5299,7 @@
 '\t\t\t\t'    Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'on_error'    Name
+'on_error'    Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -5570,7 +5570,7 @@
 '\t\t\t'      Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fast_next_opcode' Name
+'fast_next_opcode' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -5629,7 +5629,7 @@
 '\t\t\t\t'    Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fast_next_opcode' Name
+'fast_next_opcode' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -5712,7 +5712,7 @@
 '\t\t\t'      Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fast_next_opcode' Name
+'fast_next_opcode' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -5758,7 +5758,7 @@
 '\t\t\t'      Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fast_next_opcode' Name
+'fast_next_opcode' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -5801,7 +5801,7 @@
 '\t\t\t'      Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fast_next_opcode' Name
+'fast_next_opcode' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -5855,7 +5855,7 @@
 '\t\t\t'      Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fast_next_opcode' Name
+'fast_next_opcode' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -5928,7 +5928,7 @@
 '\t\t\t'      Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fast_next_opcode' Name
+'fast_next_opcode' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -6020,7 +6020,7 @@
 '\t\t\t'      Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fast_next_opcode' Name
+'fast_next_opcode' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -6063,7 +6063,7 @@
 '\t\t\t'      Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fast_next_opcode' Name
+'fast_next_opcode' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -6156,7 +6156,7 @@
 '\t\t\t\t'    Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fast_next_opcode' Name
+'fast_next_opcode' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -6271,7 +6271,7 @@
 '\t\t\t\t'    Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fast_next_opcode' Name
+'fast_next_opcode' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -7342,7 +7342,7 @@
 '\n'          Text.Whitespace
 
 '\t\t\t\t'    Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -7425,7 +7425,7 @@
 '\t\t\t\t\t'  Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'slow_add'    Name
+'slow_add'    Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -7498,7 +7498,7 @@
 '\t\t\t\t'    Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'skip_decref_vx' Name
+'skip_decref_vx' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -7643,7 +7643,7 @@
 '\n'          Text.Whitespace
 
 '\t\t\t\t'    Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -7727,7 +7727,7 @@
 '\t\t\t\t\t'  Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'slow_sub'    Name
+'slow_sub'    Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -7978,7 +7978,7 @@
 '\t\t\t\t\t'  Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'slow_get'    Name
+'slow_get'    Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -9232,7 +9232,7 @@
 '\n'          Text.Whitespace
 
 '\t\t\t\t'    Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -9315,7 +9315,7 @@
 '\t\t\t\t\t'  Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'slow_iadd'   Name
+'slow_iadd'   Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -9388,7 +9388,7 @@
 '\t\t\t\t'    Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'skip_decref_v' Name
+'skip_decref_v' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -9533,7 +9533,7 @@
 '\n'          Text.Whitespace
 
 '\t\t\t\t'    Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -9617,7 +9617,7 @@
 '\t\t\t\t\t'  Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'slow_isub'   Name
+'slow_isub'   Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -12257,7 +12257,7 @@
 '\t\t\t'      Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fast_block_end' Name
+'fast_block_end' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -12305,7 +12305,7 @@
 '\t\t\t'      Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fast_yield'  Name
+'fast_yield'  Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -12545,7 +12545,7 @@
 '('           Punctuation
 'enum'        Keyword
 ' '           Text.Whitespace
-'why_code'    Name
+'why_code'    Name.Class
 ')'           Punctuation
 ' '           Text.Whitespace
 'PyInt_AS_LONG' Name
@@ -14495,7 +14495,7 @@
 '\t\t\t\t\t'  Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'load_global_error' Name
+'load_global_error' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -15475,7 +15475,7 @@
 '\n'          Text.Whitespace
 
 '\t\t\t\t'    Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -15487,7 +15487,7 @@
 '\n'          Text.Whitespace
 
 '\t\t\t\t'    Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -15709,7 +15709,7 @@
 ' '           Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'slow_compare' Name
+'slow_compare' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -16479,7 +16479,7 @@
 '\t\t\t'      Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fast_next_opcode' Name
+'fast_next_opcode' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -16537,7 +16537,7 @@
 '\t\t\t\t'    Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fast_next_opcode' Name
+'fast_next_opcode' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -16571,7 +16571,7 @@
 '\t\t\t\t'    Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fast_next_opcode' Name
+'fast_next_opcode' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -16703,7 +16703,7 @@
 '\t\t\t\t'    Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fast_next_opcode' Name
+'fast_next_opcode' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -16737,7 +16737,7 @@
 '\t\t\t\t'    Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fast_next_opcode' Name
+'fast_next_opcode' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -17154,7 +17154,7 @@
 '\t\t\t'      Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fast_block_end' Name
+'fast_block_end' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -17220,7 +17220,7 @@
 '\t\t\t'      Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fast_block_end' Name
+'fast_block_end' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -18862,7 +18862,7 @@
 '\t\t\t'      Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'dispatch_opcode' Name
+'dispatch_opcode' Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 

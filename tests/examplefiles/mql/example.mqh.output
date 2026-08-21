@@ -109,7 +109,7 @@
 'void'        Keyword.Type
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 '{'           Punctuation
 ' '           Text.Whitespace
@@ -127,7 +127,7 @@
 '              ' Text.Whitespace
 'Step'        Name.Function
 '('           Punctuation
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -144,7 +144,7 @@
 'void'        Keyword.Type
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 '{'           Punctuation
 ' '           Text.Whitespace
@@ -165,7 +165,7 @@
 'void'        Keyword.Type
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 '{'           Punctuation
 ' '           Text.Whitespace
@@ -188,7 +188,7 @@
 'void'        Keyword.Type
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 '{'           Punctuation
 ' '           Text.Whitespace
@@ -206,7 +206,7 @@
 '              ' Text.Whitespace
 'IsSorted'    Name.Function
 '('           Punctuation
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -215,7 +215,7 @@
 '0'           Literal.Number.Integer
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 '{'           Punctuation
 ' '           Text.Whitespace
@@ -239,7 +239,7 @@
 'void'        Keyword.Type
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 '{'           Punctuation
 ' '           Text.Whitespace
@@ -283,7 +283,7 @@
 '      '      Text.Whitespace
 'Save'        Name.Function
 '('           Punctuation
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -299,7 +299,7 @@
 '      '      Text.Whitespace
 'Load'        Name.Function
 '('           Punctuation
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -316,7 +316,7 @@
 '              ' Text.Whitespace
 'Sort'        Name.Function
 '('           Punctuation
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -348,7 +348,7 @@
 ' '           Text.Whitespace
 'end'         Name
 ','           Punctuation
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -458,7 +458,7 @@
 ':'           Operator
 'Step'        Name
 '('           Punctuation
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -531,7 +531,7 @@
 ':'           Operator
 'Sort'        Name
 '('           Punctuation
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -614,7 +614,7 @@
 ':'           Operator
 'Save'        Name
 '('           Punctuation
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -656,7 +656,7 @@
 ')'           Punctuation
 '='           Operator
 '='           Operator
-'sizeof'      Keyword
+'sizeof'      Operator.Word
 '('           Punctuation
 'long'        Keyword.Type
 ')'           Punctuation
@@ -732,7 +732,7 @@
 ':'           Operator
 'Load'        Name
 '('           Punctuation
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace

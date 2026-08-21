@@ -95,7 +95,7 @@ public struct MiddleAnchorValue
    union
    {
       int distance;
-      float percent;      
+      float percent;
    };
    property int
    {

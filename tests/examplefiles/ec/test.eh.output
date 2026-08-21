@@ -31,7 +31,7 @@
 '   '         Text.Whitespace
 'enum'        Keyword
 ' '           Text.Whitespace
-'yytokentype' Name
+'yytokentype' Name.Class
 ' '           Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
@@ -1733,7 +1733,7 @@
 
 '\n'          Text.Whitespace
 
-'extern'      Keyword
+'extern'      Keyword.Declaration
 ' '           Text.Whitespace
 'YYSTYPE'     Name
 ' '           Text.Whitespace
@@ -1810,7 +1810,7 @@
 
 '\n'          Text.Whitespace
 
-'extern'      Keyword
+'extern'      Keyword.Declaration
 ' '           Text.Whitespace
 'YYLTYPE'     Name
 ' '           Text.Whitespace

@@ -1,13 +1,13 @@
 'package'     Keyword.Namespace
 ' '           Text.Whitespace
-'main'        Name.Other
+'main'        Name.Namespace
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
 
 'func'        Keyword.Declaration
 ' '           Text.Whitespace
-'main'        Name.Other
+'main'        Name.Function
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -21,24 +21,24 @@
 '\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
-'float'       Name.Other
+'float'       Name
 ' '           Text.Whitespace
 'float32'     Keyword.Type
 '\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
-'_'           Name.Other
+'_'           Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
 'float64'     Keyword.Type
 '('           Punctuation
-'float'       Name.Other
+'float'       Name
 ')'           Punctuation
 '\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
-'_'           Name.Other
+'_'           Name
 ' '           Text.Whitespace
 'map'         Keyword.Type
 '['           Punctuation
@@ -48,7 +48,7 @@
 '\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
-'_'           Name.Other
+'_'           Name
 ' '           Text.Whitespace
 'chan'        Keyword.Type
 ' '           Text.Whitespace
@@ -56,7 +56,7 @@
 '\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
-'_'           Name.Other
+'_'           Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
@@ -76,7 +76,7 @@
 '\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
-'x'           Name.Other
+'x'           Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
@@ -92,7 +92,7 @@
 '\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
-'_'           Name.Other
+'_'           Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
@@ -100,7 +100,7 @@
 '\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
-'_'           Name.Other
+'_'           Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
@@ -108,13 +108,13 @@
 '\n'          Text.Whitespace
 
 '\t\t'        Text.Whitespace
-'_'           Name.Other
+'_'           Name
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
 '!'           Operator
 '('           Punctuation
-'x'           Name.Other
+'x'           Name
 ' '           Text.Whitespace
 '>'           Operator
 ' '           Text.Whitespace
@@ -122,7 +122,7 @@
 ' '           Text.Whitespace
 '&&'          Operator
 ' '           Text.Whitespace
-'x'           Name.Other
+'x'           Name
 ' '           Text.Whitespace
 '<'           Operator
 ' '           Text.Whitespace
@@ -135,7 +135,7 @@
 '\n'          Text.Whitespace
 
 '\t'          Text.Whitespace
-'x'           Name.Other
+'x'           Name
 ' '           Text.Whitespace
 '^='          Operator
 ' '           Text.Whitespace

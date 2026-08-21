@@ -99,6 +99,7 @@ class CFamilyLexer(RegexLexer):
             (r'(-)?0(\'?[0-7])+' + _intsuffix, Number.Oct),
             (r'(-)?' + _decpart + _intsuffix, Number.Integer),
             (r'[~!%^&*+=|?:<>/-]', Operator),
+            (r'(sizeof|alignof)\b', Operator.Word),
             (r'[()\[\],.]', Punctuation),
             (r'(true|false|NULL|nullptr)\b', Name.Builtin),
             (_ident, Name)
@@ -108,17 +109,30 @@ class CFamilyLexer(RegexLexer):
                     suffix=r'\b'), Keyword.Reserved),
             (words(('bool', 'int', 'long', 'float', 'short', 'double', 'char',
                     'unsigned', 'signed', 'void', '_BitInt',
-                    '__int128'), suffix=r'\b'), Keyword.Type)
+                    '__int128'), suffix=r'\b'), Keyword.Type),
+        ],
+        'compoundtypes': [
+            include('whitespace'),
+            (fr'({_possible_comments})'
+             r'((?:\[\[[^\[\]]*\]\])*)'
+             fr'({_possible_comments})'
+             fr'({_namespaced_ident})',
+             bygroups(using(this, state='whitespace'), using(this),
+                      using(this, state='whitespace'), Name.Class), '#pop'),
+            (r'{', Punctuation, '#pop'),
         ],
         'keywords': [
-            (r'(struct|union)(\s+)', bygroups(Keyword, Whitespace), 'classname'),
             (r'case\b', Keyword, 'case-value'),
-            (words(('asm', 'auto', 'break', 'const', 'constexpr', 'continue', 'countof', 'default',
-                    'defer', 'do', 'else', 'enum', 'extern', 'for', 'goto', 'if', 'register', 
-                    'restricted', 'return', 'sizeof', 'struct', 'static', 'switch', 
-                    'typedef', 'typeof', 'typeof_unqual', 'volatile', 'while', 'union',
-                    'thread_local', 'alignas', 'alignof', 'static_assert', '_Pragma', 'fortran'),
+            (r'(goto)(\s+)(' + _ident + ')', bygroups(Keyword, Whitespace, Name.Label)),
+            (words(('asm', 'break', 'continue', 'countof', 'default',
+                    'defer', 'do', 'else', 'for', 'if', 'restricted', 'return',
+                    'switch', 'typedef', 'typeof', 'typeof_unqual', 'volatile',
+                    'while', 'static_assert', '_Pragma', 'fortran'),
                    suffix=r'\b'), Keyword),
+            (words(('auto', 'const', 'constexpr', 'extern', 'register',
+                    'static', 'thread_local', 'alignas'),
+                   suffix=r'\b'), Keyword.Declaration),
+            (r'(enum|struct|union)\b', Keyword, 'compoundtypes'),
             (words(('inline', '_inline', '__inline', 'naked', 'restrict',
                     'thread'), suffix=r'\b'), Keyword.Reserved),
             # Vector intrinsics
@@ -135,12 +149,12 @@ class CFamilyLexer(RegexLexer):
             include('whitespace'),
             include('keywords'),
             # functions
-            (r'(' + _namespaced_ident + r'(?:[&*\s])+)'  # return arguments
-             r'(' + _possible_comments + r')'
-             r'(' + _namespaced_ident + r')'             # method name
-             r'(' + _possible_comments + r')'
-             r'(\([^;"\')]*?\))'                         # signature
-             r'(' + _possible_comments + r')'
+            (fr'({_namespaced_ident}(?:[&*\s])+)'  # return arguments
+             fr'({_possible_comments})'
+             fr'({_namespaced_ident})'             # method name
+             fr'({_possible_comments})'
+             r'(\([^;"\')]*?\))'                   # signature
+             fr'({_possible_comments})'
              r'([^;{/"\']*)(\{)',
              bygroups(using(this), using(this, state='whitespace'),
                       Name.Function, using(this, state='whitespace'),
@@ -148,12 +162,12 @@ class CFamilyLexer(RegexLexer):
                       using(this), Punctuation),
              'function'),
             # function declarations
-            (r'(' + _namespaced_ident + r'(?:[&*\s])+)'  # return arguments
-             r'(' + _possible_comments + r')'
-             r'(' + _namespaced_ident + r')'             # method name
-             r'(' + _possible_comments + r')'
-             r'(\([^;"\')]*?\))'                         # signature
-             r'(' + _possible_comments + r')'
+            (fr'({_namespaced_ident}(?:[&*\s])+)'  # return arguments
+             fr'({_possible_comments})'
+             fr'({_namespaced_ident})'             # method name
+             fr'({_possible_comments})'
+             r'(\([^;"\')]*?\))'                   # signature
+             fr'({_possible_comments})'
              r'([^;/"\']*)(;)',
              bygroups(using(this), using(this, state='whitespace'),
                       Name.Function, using(this, state='whitespace'),
@@ -184,10 +198,10 @@ class CFamilyLexer(RegexLexer):
             (r'\\', String),  # stray backslash
         ],
         'macro': [
-            (r'('+_ws1+r')(include)('+_ws1+r')("[^"]+"|<[^>]+>)([^\S\n]*)([^/\n]*/[*][\s\S]*?[*]/)',
+            (fr'({_ws1})(include)({_ws1})("[^"]+"|<[^>]+>)([^\S\n]*)([^/\n]*/[*][\s\S]*?[*]/)',
                 bygroups(using(this), Comment.Preproc, using(this),
                          Comment.PreprocFile, using(this), Comment.Multiline)),
-            (r'('+_ws1+r')(include)('+_ws1+r')("[^"]+"|<[^>]+>)([^\S\n]*)([^\n]*)',
+            (fr'({_ws1})(include)({_ws1})("[^"]+"|<[^>]+>)([^\S\n]*)([^\n]*)',
                 bygroups(using(this), Comment.Preproc, using(this),
                          Comment.PreprocFile, using(this), Comment.Single)),
             (r'[^/\n]+', Comment.Preproc),
@@ -318,17 +332,19 @@ class CLexer(CFamilyLexer):
         'statements': [
             # C23 attributes [[...]] — lookahead to avoid matching ObjC's [[obj msg] msg]
             (r'\[\[(?=[^\[\]]*\]\])', Punctuation, 'attribute'),
+            (r'(_Alignof)\b', Operator.Word),
             inherit,
         ],
         'keywords': [
             (words((
-                '_Alignas', '_Alignof', '_Noreturn', '_Countof', '_Generic', '_Thread_local',
+                '_Alignas', '_Noreturn', '_Countof', '_Generic', '_Thread_local',
                 '_Static_assert', '_Imaginary', 'noreturn', 'imaginary', 'complex'),
                 suffix=r'\b'), Keyword),
             inherit
         ],
         'types': [
             (words(('_Bool', '_Complex', '_Atomic', '_Decimal32', '_Decimal64', '_Decimal128'), suffix=r'\b'), Keyword.Type),
+            (r'char(16_t|32_t|8_t)\b', Keyword.Type),  # C23 also has these
             inherit
         ]
     }

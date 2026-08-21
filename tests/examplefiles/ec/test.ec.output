@@ -36,7 +36,9 @@
 
 '   '         Text.Whitespace
 'union'       Keyword
-'\n   '       Text.Whitespace
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
@@ -769,7 +771,9 @@
 
 '   '         Text.Whitespace
 'union'       Keyword
-'\n   '       Text.Whitespace
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
 '{'           Punctuation
 '\n'          Text.Whitespace
 
@@ -785,7 +789,6 @@
 ' '           Text.Whitespace
 'percent'     Name
 ';'           Punctuation
-'      '      Text.Whitespace
 '\n'          Text.Whitespace
 
 '   '         Text.Whitespace
@@ -1358,7 +1361,7 @@
 ' '           Text.Whitespace
 'enum'        Keyword
 ' '           Text.Whitespace
-'AnchorValueType' Name
+'AnchorValueType' Name.Class
 ' '           Text.Whitespace
 '{'           Punctuation
 ' '           Text.Whitespace

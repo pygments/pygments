@@ -133,9 +133,12 @@ class RustLexer(RegexLexer):
             (r'[0-9][0-9_]*', Number.Integer, 'number_lit'),
 
             # String literals
-            (r'b"', String, 'bytestring'),
+            (r'(b)(")', bygroups(String.Affix, String), 'bytestring'),
             (r'"', String, 'string'),
             (r'(?s)b?r(#*)".*?"\1', String),
+
+            # Loop labels
+            (r"('[a-zA-Z_]\w*)(:)", bygroups(Name.Label, Punctuation)),
 
             # Lifetime names
             (r"'", Operator, 'lifetime'),

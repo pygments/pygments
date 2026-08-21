@@ -61,7 +61,7 @@
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -112,7 +112,7 @@
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -282,7 +282,7 @@
 '    '        Text.Whitespace
 'typedef'     Keyword
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'value_type'  Name
 '*'           Operator
@@ -304,7 +304,7 @@
 '    '        Text.Whitespace
 'typedef'     Keyword
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 '_Tp'         Name
 '&'           Operator
@@ -433,9 +433,9 @@
 '\n'          Text.Whitespace
 
 '\t  '        Text.Whitespace
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 '*'           Operator
@@ -647,7 +647,7 @@
 '    '        Text.Whitespace
 'typedef'     Keyword
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'value_type'  Name
 '*'           Operator
@@ -788,9 +788,9 @@
 '\n'          Text.Whitespace
 
 '\t  '        Text.Whitespace
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 '*'           Operator
@@ -944,7 +944,7 @@
 '<'           Operator
 '_Tp'         Name
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 '*'           Operator
 ','           Punctuation
@@ -985,7 +985,7 @@
 ' '           Text.Whitespace
 '_Tp'         Name
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
@@ -1006,7 +1006,7 @@
 '    '        Text.Whitespace
 'typedef'     Keyword
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'value_type'  Name
 '*'           Operator
@@ -1066,7 +1066,7 @@
 '<'           Operator
 '_Tp'         Name
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 '*'           Operator
 ','           Punctuation
 ' '           Text.Whitespace
@@ -1128,7 +1128,7 @@
 '<'           Operator
 '_Tp'         Name
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 '*'           Operator
 ','           Punctuation
 ' '           Text.Whitespace
@@ -1151,9 +1151,9 @@
 '\n'          Text.Whitespace
 
 '\t  '        Text.Whitespace
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 '*'           Operator
@@ -1218,7 +1218,7 @@
 '<'           Operator
 '_Tp'         Name
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 '*'           Operator
 ','           Punctuation
 ' '           Text.Whitespace
@@ -1248,7 +1248,7 @@
 '<'           Operator
 '_Tp'         Name
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 '*'           Operator
 ','           Punctuation
 ' '           Text.Whitespace
@@ -1362,7 +1362,7 @@
 '    '        Text.Whitespace
 'typedef'     Keyword
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'value_type'  Name
 '*'           Operator
@@ -1501,9 +1501,9 @@
 '\n'          Text.Whitespace
 
 '\t  '        Text.Whitespace
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 '*'           Operator
