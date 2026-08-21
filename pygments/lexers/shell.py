@@ -235,9 +235,15 @@ class BashSessionLexer(ShellSessionBaseLexer):
     _example = "console/example.sh-session"
 
     _innerLexerCls = BashLexer
+    # The `\S+?` (current directory) and `(?:\s+\S+)??` (optional extra
+    # prompt component, as in `user@host ~ $`) parts are lazy so that the
+    # shortest possible prompt wins.  Were they greedy, they would swallow
+    # the beginning of the command and let a shell variable act as the
+    # prompt character, lexing `user@host:~$ echo $HOME` as the prompt
+    # `user@host:~$ echo $` followed by the output `HOME`.
     _ps1rgx = re.compile(
-        r'^((?:(?:\[.*?\])|(?:\(\S+\))?(?:| |sh\S*?|\w+\S+[@:]\S+(?:\s+\S+)' \
-        r'?|\[\S+[@:][^\n]+\].+))\s*[$#%❯]\s*)(.*\n?)')
+        r'^((?:(?:\[.*?\])|(?:\(\S+\))?(?:| |sh\S*?|\w+\S+[@:]\S+?(?:\s+\S+)' \
+        r'??|\[\S+[@:][^\n]+\].+))\s*[$#%❯]\s*)(.*\n?)')
     _ps2 = '> '
 
 

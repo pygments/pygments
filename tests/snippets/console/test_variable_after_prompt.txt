@@ -1,0 +1,22 @@
+---input---
+user@host:~$ echo $HOME
+/home/user
+pi@raspberrypi ~ $ echo $HOME
+/home/pi
+
+---tokens---
+'user@host:~$ ' Generic.Prompt
+'echo'        Name.Builtin
+' '           Text.Whitespace
+'$HOME'       Name.Variable
+'\n'          Text.Whitespace
+
+'/home/user\n' Generic.Output
+
+'pi@raspberrypi ~ $ ' Generic.Prompt
+'echo'        Name.Builtin
+' '           Text.Whitespace
+'$HOME'       Name.Variable
+'\n'          Text.Whitespace
+
+'/home/pi\n'  Generic.Output
