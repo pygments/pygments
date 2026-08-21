@@ -1,0 +1,2043 @@
+'(*'          Comment.Multiline
+' A torture test for the Active Oberon lexer: ' Comment.Multiline
+'(*'          Comment.Multiline
+' nested comments ' Comment.Multiline
+'*)'          Comment.Multiline
+',\n   escaped strings, math arrays, active objects and inline assembler. ' Comment.Multiline
+'*)'          Comment.Multiline
+'\n'          Text
+
+'(**'         Comment.Special
+' A documentation comment, extracted by the A2 documentation tools. ' Comment.Special
+'*)'          Comment.Special
+'\n\n'        Text
+
+'MODULE'      Keyword.Reserved
+' '           Text
+'Example'     Name
+';'           Punctuation
+'\n\n'        Text
+
+'IMPORT'      Keyword.Reserved
+' '           Text
+'SYSTEM'      Name.Builtin
+','           Punctuation
+' '           Text
+'KernelLog'   Name
+','           Punctuation
+' '           Text
+'Streams'     Name
+','           Punctuation
+' '           Text
+'Commands'    Name
+','           Punctuation
+' '           Text
+'Log'         Name
+' '           Text
+':='          Operator
+' '           Text
+'KernelLog'   Name
+';'           Punctuation
+'\n\n'        Text
+
+'CONST'       Keyword.Reserved
+'\n'          Text
+
+'  '          Text
+'Max'         Name.Builtin
+'*'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'100'         Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'Mask'        Name
+' '           Text
+'='           Operator
+' '           Text
+'{'           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'4'           Literal.Number.Integer
+'..'          Operator
+'7'           Literal.Number.Integer
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'Message'     Name
+' '           Text
+'='           Operator
+' '           Text
+'"double quoted"' Literal.String.Double
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'Other'       Name
+' '           Text
+'='           Operator
+' '           Text
+'\'single quoted, may contain "\'' Literal.String.Single
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'Raw'         Name
+' '           Text
+'='           Operator
+' '           Text
+'\\"an escaped string: it may contain " and \\n verbatim"\\' Literal.String.Other
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'Hex'         Name
+' '           Text
+'='           Operator
+' '           Text
+'0FFFFFFFFH'  Literal.Number.Hex
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'Big'         Name
+' '           Text
+'='           Operator
+' '           Text
+"1'000'000"   Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'Bin'         Name
+' '           Text
+'='           Operator
+' '           Text
+"0b1010'1010" Literal.Number.Bin
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'Cee'         Name
+' '           Text
+'='           Operator
+' '           Text
+'0x2A'        Literal.Number.Hex
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'Nl'          Name
+' '           Text
+'='           Operator
+' '           Text
+'0AX'         Literal.Number.Hex
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'Pi'          Name
+' '           Text
+'='           Operator
+' '           Text
+'3.14159'     Literal.Number.Float
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'Tiny'        Name
+' '           Text
+'='           Operator
+' '           Text
+'1.5E-3'      Literal.Number.Float
+';'           Punctuation
+'\n\n'        Text
+
+'TYPE'        Keyword.Reserved
+'\n'          Text
+
+'  '          Text
+'Name'        Name
+'*'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'ARRAY'       Keyword.Reserved
+' '           Text
+'32'          Literal.Number.Integer
+' '           Text
+'OF'          Keyword.Reserved
+' '           Text
+'CHAR'        Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'Handler'     Name
+'*'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'PROCEDURE'   Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'DELEGATE'    Keyword.Pseudo
+'}'           Punctuation
+' '           Text
+'('           Punctuation
+'n'           Name
+':'           Punctuation
+' '           Text
+'SIGNED32'    Keyword.Type
+';'           Punctuation
+' '           Text
+'CONST'       Keyword.Reserved
+' '           Text
+'s'           Name
+':'           Punctuation
+' '           Text
+'ARRAY'       Keyword.Reserved
+' '           Text
+'OF'          Keyword.Reserved
+' '           Text
+'CHAR'        Keyword.Type
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'Callback'    Name
+' '           Text
+'='           Operator
+' '           Text
+'PROCEDURE'   Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'WINAPI'      Keyword.Pseudo
+'}'           Punctuation
+' '           Text
+'('           Punctuation
+'handle'      Name
+':'           Punctuation
+' '           Text
+'ADDRESS'     Keyword.Type
+')'           Punctuation
+':'           Punctuation
+' '           Text
+'UNSIGNED32'  Keyword.Type
+';'           Punctuation
+'\n\n'        Text
+
+'  '          Text
+'Color'       Name
+'*'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'ENUM'        Keyword.Reserved
+' '           Text
+'Red'         Name
+'*'           Operator
+','           Punctuation
+' '           Text
+'Green'       Name
+'*'           Operator
+','           Punctuation
+' '           Text
+'Blue'        Name
+'*'           Operator
+' '           Text
+'END'         Keyword.Reserved
+';'           Punctuation
+'\n\n'        Text
+
+'  '          Text
+'Date'        Name
+'*'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'RECORD'      Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'FINAL'       Keyword.Pseudo
+'}'           Punctuation
+'\n'          Text
+
+'    '        Text
+'year'        Name
+'*'           Operator
+':'           Punctuation
+' '           Text
+'SIGNED16'    Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'month'       Name
+'-'           Operator
+','           Punctuation
+' '           Text
+'day'         Name
+'-'           Operator
+':'           Punctuation
+' '           Text
+'SIGNED8'     Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'END'         Keyword.Reserved
+';'           Punctuation
+'\n\n'        Text
+
+'  '          Text
+'Gpio'        Name
+' '           Text
+'='           Operator
+' '           Text
+'POINTER'     Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'UNSAFE'      Keyword.Pseudo
+'}'           Punctuation
+' '           Text
+'TO'          Keyword.Reserved
+' '           Text
+'RECORD'      Keyword.Reserved
+'\n'          Text
+
+'    '        Text
+'input'       Name
+','           Punctuation
+' '           Text
+'output'      Name
+':'           Punctuation
+' '           Text
+'UNSIGNED32'  Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'END'         Keyword.Reserved
+';'           Punctuation
+'\n\n'        Text
+
+'  '          Text
+'Vector'      Name
+'*'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'ARRAY'       Keyword.Reserved
+' '           Text
+'['           Punctuation
+'*'           Operator
+']'           Punctuation
+' '           Text
+'OF'          Keyword.Reserved
+' '           Text
+'FLOAT64'     Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'Matrix'      Name
+'*'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'ARRAY'       Keyword.Reserved
+' '           Text
+'['           Punctuation
+'*'           Operator
+','           Punctuation
+' '           Text
+'*'           Operator
+']'           Punctuation
+' '           Text
+'OF'          Keyword.Reserved
+' '           Text
+'FLOAT64'     Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'Tensor'      Name
+'*'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'ARRAY'       Keyword.Reserved
+' '           Text
+'['           Punctuation
+'?'           Operator
+']'           Punctuation
+' '           Text
+'OF'          Keyword.Reserved
+' '           Text
+'COMPLEX64'   Keyword.Type
+';'           Punctuation
+'\n\n'        Text
+
+'  '          Text
+'Shape'       Name
+'*'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'OBJECT'      Keyword.Type
+' '           Text
+'{'           Punctuation
+'ABSTRACT'    Keyword.Pseudo
+'}'           Punctuation
+'\n'          Text
+
+'    '        Text
+'PROCEDURE'   Keyword.Reserved
+' '           Text
+'Area'        Name
+'*'           Operator
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text
+'FLOAT64'     Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'BEGIN'       Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'ABSTRACT'    Keyword.Pseudo
+'}'           Punctuation
+'\n'          Text
+
+'    '        Text
+'END'         Keyword.Reserved
+' '           Text
+'Area'        Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'END'         Keyword.Reserved
+' '           Text
+'Shape'       Name
+';'           Punctuation
+'\n\n'        Text
+
+'  '          Text
+'Buffer'      Name
+'*'           Operator
+' '           Text
+'='           Operator
+' '           Text
+'OBJECT'      Keyword.Type
+' '           Text
+'('           Punctuation
+'Shape'       Name
+')'           Punctuation
+'\n'          Text
+
+'  '          Text
+'VAR'         Keyword.Reserved
+'\n'          Text
+
+'    '        Text
+'data'        Name
+':'           Punctuation
+' '           Text
+'ARRAY'       Keyword.Reserved
+' '           Text
+'16'          Literal.Number.Integer
+' '           Text
+'OF'          Keyword.Reserved
+' '           Text
+'SIGNED32'    Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'head'        Name
+','           Punctuation
+' '           Text
+'tail'        Name
+','           Punctuation
+' '           Text
+'count'       Name
+':'           Punctuation
+' '           Text
+'SIZE'        Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'cache'       Name
+' '           Text
+'{'           Punctuation
+'UNTRACED'    Keyword.Pseudo
+'}'           Punctuation
+':'           Punctuation
+' '           Text
+'POINTER'     Keyword.Reserved
+' '           Text
+'TO'          Keyword.Reserved
+' '           Text
+'ARRAY'       Keyword.Reserved
+' '           Text
+'OF'          Keyword.Reserved
+' '           Text
+'CHAR'        Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'stamp'       Name
+' '           Text
+'{'           Punctuation
+'ALIGNED'     Keyword.Pseudo
+'('           Punctuation
+'32'          Literal.Number.Integer
+')'           Punctuation
+'}'           Punctuation
+':'           Punctuation
+' '           Text
+'UNSIGNED64'  Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'alive'       Name
+':'           Punctuation
+' '           Text
+'BOOLEAN'     Keyword.Type
+';'           Punctuation
+'\n\n'        Text
+
+'    '        Text
+'PROCEDURE'   Keyword.Reserved
+' '           Text
+'&'           Operator
+'Init'        Name
+'*'           Operator
+'('           Punctuation
+'CONST'       Keyword.Reserved
+' '           Text
+'name'        Name
+':'           Punctuation
+' '           Text
+'ARRAY'       Keyword.Reserved
+' '           Text
+'OF'          Keyword.Reserved
+' '           Text
+'CHAR'        Keyword.Type
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'BEGIN'       Keyword.Reserved
+'\n'          Text
+
+'      '      Text
+'head'        Name
+' '           Text
+':='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'tail'        Name
+' '           Text
+':='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'count'       Name
+' '           Text
+':='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text
+'alive'       Name
+' '           Text
+':='          Operator
+' '           Text
+'TRUE'        Keyword.Constant
+'\n'          Text
+
+'    '        Text
+'END'         Keyword.Reserved
+' '           Text
+'Init'        Name
+';'           Punctuation
+'\n\n'        Text
+
+'    '        Text
+'PROCEDURE'   Keyword.Reserved
+' '           Text
+'Put'         Name
+'*'           Operator
+'('           Punctuation
+'x'           Name
+':'           Punctuation
+' '           Text
+'SIGNED32'    Keyword.Type
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'BEGIN'       Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'EXCLUSIVE'   Keyword.Pseudo
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'AWAIT'       Keyword.Reserved
+'('           Punctuation
+'count'       Name
+' '           Text
+'<'           Operator
+' '           Text
+'LEN'         Name.Builtin
+'('           Punctuation
+'data'        Name
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'data'        Name
+'['           Punctuation
+'tail'        Name
+']'           Punctuation
+' '           Text
+':='          Operator
+' '           Text
+'x'           Name
+';'           Punctuation
+' '           Text
+'tail'        Name
+' '           Text
+':='          Operator
+' '           Text
+'('           Punctuation
+'tail'        Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'MOD'         Keyword.Reserved
+' '           Text
+'LEN'         Name.Builtin
+'('           Punctuation
+'data'        Name
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'INC'         Name.Builtin
+'('           Punctuation
+'count'       Name
+')'           Punctuation
+'\n'          Text
+
+'    '        Text
+'END'         Keyword.Reserved
+' '           Text
+'Put'         Name
+';'           Punctuation
+'\n\n'        Text
+
+'    '        Text
+'PROCEDURE'   Keyword.Reserved
+' '           Text
+'Get'         Name
+'*'           Operator
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text
+'SIGNED32'    Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'VAR'         Keyword.Reserved
+' '           Text
+'x'           Name
+':'           Punctuation
+' '           Text
+'SIGNED32'    Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'BEGIN'       Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'EXCLUSIVE'   Keyword.Pseudo
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'AWAIT'       Keyword.Reserved
+'('           Punctuation
+'count'       Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'x'           Name
+' '           Text
+':='          Operator
+' '           Text
+'data'        Name
+'['           Punctuation
+'head'        Name
+']'           Punctuation
+';'           Punctuation
+' '           Text
+'head'        Name
+' '           Text
+':='          Operator
+' '           Text
+'('           Punctuation
+'head'        Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'MOD'         Keyword.Reserved
+' '           Text
+'LEN'         Name.Builtin
+'('           Punctuation
+'data'        Name
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'DEC'         Name.Builtin
+'('           Punctuation
+'count'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'RETURN'      Keyword.Reserved
+' '           Text
+'x'           Name
+'\n'          Text
+
+'    '        Text
+'END'         Keyword.Reserved
+' '           Text
+'Get'         Name
+';'           Punctuation
+'\n\n'        Text
+
+'    '        Text
+'PROCEDURE'   Keyword.Reserved
+' '           Text
+'Area'        Name
+'*'           Operator
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text
+'FLOAT64'     Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'    '        Text
+'BEGIN'       Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'OVERRIDE'    Keyword.Pseudo
+'}'           Punctuation
+'\n'          Text
+
+'      '      Text
+'RETURN'      Keyword.Reserved
+' '           Text
+'0.0'         Literal.Number.Float
+'\n'          Text
+
+'    '        Text
+'END'         Keyword.Reserved
+' '           Text
+'Area'        Name
+';'           Punctuation
+'\n\n'        Text
+
+'  '          Text
+'BEGIN'       Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'ACTIVE'      Keyword.Pseudo
+','           Punctuation
+' '           Text
+'SAFE'        Keyword.Pseudo
+','           Punctuation
+' '           Text
+'PRIORITY'    Keyword.Pseudo
+'('           Punctuation
+'High'        Name
+')'           Punctuation
+'}'           Punctuation
+'\n'          Text
+
+'    '        Text
+'WHILE'       Keyword.Reserved
+' '           Text
+'alive'       Name
+' '           Text
+'DO'          Keyword.Reserved
+' '           Text
+'Log'         Name
+'.'           Punctuation
+'Int'         Name
+'('           Punctuation
+'SELF'        Name.Builtin.Pseudo
+'.'           Punctuation
+'Get'         Name
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'Log'         Name
+'.'           Punctuation
+'Ln'          Name
+' '           Text
+'END'         Keyword.Reserved
+'\n'          Text
+
+'  '          Text
+'END'         Keyword.Reserved
+' '           Text
+'Buffer'      Name
+';'           Punctuation
+'\n\n'        Text
+
+'  '          Text
+'(*'          Comment.Multiline
+' Active Cells: hardware description ' Comment.Multiline
+'*)'          Comment.Multiline
+'\n'          Text
+
+'  '          Text
+'Adder'       Name
+' '           Text
+'='           Operator
+' '           Text
+'CELL'        Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'DataMemorySize' Keyword.Pseudo
+'('           Punctuation
+'1024'        Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'ChannelWidth' Keyword.Pseudo
+'('           Punctuation
+'32'          Literal.Number.Integer
+')'           Punctuation
+'}'           Punctuation
+' '           Text
+'('           Punctuation
+'in'          Keyword.Reserved
+':'           Punctuation
+' '           Text
+'PORT'        Keyword.Reserved
+' '           Text
+'IN'          Keyword.Reserved
+';'           Punctuation
+'\n'          Text
+
+'      '      Text
+'out'         Keyword.Reserved
+':'           Punctuation
+' '           Text
+'PORT'        Keyword.Reserved
+' '           Text
+'OUT'         Keyword.Reserved
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'VAR'         Keyword.Reserved
+' '           Text
+'x'           Name
+':'           Punctuation
+' '           Text
+'SIGNED32'    Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'BEGIN'       Keyword.Reserved
+'\n'          Text
+
+'    '        Text
+'LOOP'        Keyword.Reserved
+' '           Text
+'in'          Keyword.Reserved
+' '           Text
+'?'           Operator
+' '           Text
+'x'           Name
+';'           Punctuation
+' '           Text
+'out'         Keyword.Reserved
+' '           Text
+'!'           Operator
+' '           Text
+'x'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'END'         Keyword.Reserved
+'\n'          Text
+
+'  '          Text
+'END'         Keyword.Reserved
+' '           Text
+'Adder'       Name
+';'           Punctuation
+'\n\n'        Text
+
+'  '          Text
+'Net'         Name
+' '           Text
+'='           Operator
+' '           Text
+'CELLNET'     Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'Backend'     Keyword.Pseudo
+'('           Punctuation
+'"TRM"'       Literal.String.Double
+')'           Punctuation
+'}'           Punctuation
+' '           Text
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'VAR'         Keyword.Reserved
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'b'           Name
+':'           Punctuation
+' '           Text
+'Adder'       Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'BEGIN'       Keyword.Reserved
+'\n'          Text
+
+'    '        Text
+'CONNECT'     Name.Builtin
+'('           Punctuation
+'a'           Name
+'.'           Punctuation
+'out'         Keyword.Reserved
+','           Punctuation
+' '           Text
+'b'           Name
+'.'           Punctuation
+'in'          Keyword.Reserved
+')'           Punctuation
+'\n'          Text
+
+'  '          Text
+'END'         Keyword.Reserved
+' '           Text
+'Net'         Name
+';'           Punctuation
+'\n\n'        Text
+
+'VAR'         Keyword.Reserved
+'\n'          Text
+
+'  '          Text
+'counter'     Name
+'-'           Operator
+':'           Punctuation
+' '           Text
+'SIGNED32'    Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'origin'      Name
+':'           Punctuation
+' '           Text
+'Date'        Name
+';'           Punctuation
+'\n\n'        Text
+
+'OPERATOR'    Keyword.Reserved
+' '           Text
+'"+"'         Literal.String.Double
+'*'           Operator
+' '           Text
+'('           Punctuation
+'CONST'       Keyword.Reserved
+' '           Text
+'a'           Name
+','           Punctuation
+' '           Text
+'b'           Name
+':'           Punctuation
+' '           Text
+'Date'        Name
+')'           Punctuation
+':'           Punctuation
+' '           Text
+'Date'        Name
+';'           Punctuation
+'\n'          Text
+
+'VAR'         Keyword.Reserved
+' '           Text
+'r'           Name
+':'           Punctuation
+' '           Text
+'Date'        Name
+';'           Punctuation
+'\n'          Text
+
+'BEGIN'       Keyword.Reserved
+'\n'          Text
+
+'  '          Text
+'r'           Name
+' '           Text
+':='          Operator
+' '           Text
+'a'           Name
+';'           Punctuation
+' '           Text
+'INC'         Name.Builtin
+'('           Punctuation
+'r'           Name
+'.'           Punctuation
+'year'        Name
+','           Punctuation
+' '           Text
+'b'           Name
+'.'           Punctuation
+'year'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'RETURN'      Keyword.Reserved
+' '           Text
+'r'           Name
+'\n'          Text
+
+'END'         Keyword.Reserved
+' '           Text
+'"+"'         Literal.String.Double
+';'           Punctuation
+'\n\n'        Text
+
+'PROCEDURE'   Keyword.Reserved
+' '           Text
+'Statements'  Name
+'('           Punctuation
+'n'           Name
+':'           Punctuation
+' '           Text
+'SIGNED32'    Keyword.Type
+';'           Punctuation
+' '           Text
+'VAR'         Keyword.Reserved
+' '           Text
+'out'         Keyword.Reserved
+':'           Punctuation
+' '           Text
+'SIGNED32'    Keyword.Type
+')'           Punctuation
+':'           Punctuation
+' '           Text
+'SIGNED32'    Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'VAR'         Keyword.Reserved
+' '           Text
+'i'           Name
+','           Punctuation
+' '           Text
+'sum'         Name.Builtin
+':'           Punctuation
+' '           Text
+'SIZE'        Keyword.Type
+';'           Punctuation
+' '           Text
+'c'           Name
+':'           Punctuation
+' '           Text
+'CHAR'        Keyword.Type
+';'           Punctuation
+' '           Text
+'color'       Name
+':'           Punctuation
+' '           Text
+'Color'       Name
+';'           Punctuation
+' '           Text
+'s'           Name
+':'           Punctuation
+' '           Text
+'SET'         Keyword.Type
+';'           Punctuation
+' '           Text
+'any'         Keyword.Type
+':'           Punctuation
+' '           Text
+'ANY'         Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'BEGIN'       Keyword.Reserved
+'\n'          Text
+
+'  '          Text
+'IF'          Keyword.Reserved
+' '           Text
+'n'           Name
+' '           Text
+'<'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'THEN'        Keyword.Reserved
+' '           Text
+'n'           Name
+' '           Text
+':='          Operator
+' '           Text
+'-'           Operator
+'n'           Name
+' '           Text
+'ELSIF'       Keyword.Reserved
+' '           Text
+'n'           Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'THEN'        Keyword.Reserved
+' '           Text
+'n'           Name
+' '           Text
+':='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'ELSE'        Keyword.Reserved
+' '           Text
+'n'           Name
+' '           Text
+':='          Operator
+' '           Text
+'n'           Name
+' '           Text
+'DIV'         Keyword.Reserved
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'END'         Keyword.Reserved
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'CASE'        Keyword.Reserved
+' '           Text
+'c'           Name
+' '           Text
+'OF'          Keyword.Reserved
+'\n'          Text
+
+'      '      Text
+'"a"'         Literal.String.Double
+'..'          Operator
+'"m"'         Literal.String.Double
+':'           Punctuation
+' '           Text
+'sum'         Name.Builtin
+' '           Text
+':='          Operator
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text
+'|'           Punctuation
+' '           Text
+'"n"'         Literal.String.Double
+'..'          Operator
+'"z"'         Literal.String.Double
+':'           Punctuation
+' '           Text
+'sum'         Name.Builtin
+' '           Text
+':='          Operator
+' '           Text
+'2'           Literal.Number.Integer
+'\n'          Text
+
+'  '          Text
+'ELSE'        Keyword.Reserved
+' '           Text
+'sum'         Name.Builtin
+' '           Text
+':='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'  '          Text
+'END'         Keyword.Reserved
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'WHILE'       Keyword.Reserved
+' '           Text
+'n'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'DO'          Keyword.Reserved
+' '           Text
+'n'           Name
+' '           Text
+':='          Operator
+' '           Text
+'n'           Name
+' '           Text
+'DIV'         Keyword.Reserved
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'END'         Keyword.Reserved
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'REPEAT'      Keyword.Reserved
+' '           Text
+'INC'         Name.Builtin
+'('           Punctuation
+'n'           Name
+')'           Punctuation
+' '           Text
+'UNTIL'       Keyword.Reserved
+' '           Text
+'n'           Name
+' '           Text
+'>='          Operator
+' '           Text
+'4'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'FOR'         Keyword.Reserved
+' '           Text
+'i'           Name
+' '           Text
+':='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'TO'          Keyword.Reserved
+' '           Text
+'10'          Literal.Number.Integer
+' '           Text
+'BY'          Keyword.Reserved
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'DO'          Keyword.Reserved
+' '           Text
+'INC'         Name.Builtin
+'('           Punctuation
+'sum'         Name.Builtin
+','           Punctuation
+' '           Text
+'i'           Name
+')'           Punctuation
+' '           Text
+'END'         Keyword.Reserved
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'LOOP'        Keyword.Reserved
+' '           Text
+'INC'         Name.Builtin
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'IF'          Keyword.Reserved
+' '           Text
+'i'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'100'         Literal.Number.Integer
+' '           Text
+'THEN'        Keyword.Reserved
+' '           Text
+'EXIT'        Keyword.Reserved
+' '           Text
+'END'         Keyword.Reserved
+' '           Text
+'END'         Keyword.Reserved
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'s'           Name
+' '           Text
+':='          Operator
+' '           Text
+'{'           Punctuation
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'5'           Literal.Number.Integer
+'..'          Operator
+'7'           Literal.Number.Integer
+'}'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'Mask'        Name
+';'           Punctuation
+' '           Text
+'s'           Name
+' '           Text
+':='          Operator
+' '           Text
+'s'           Name
+' '           Text
+'*'           Operator
+' '           Text
+'{'           Punctuation
+'1'           Literal.Number.Integer
+'}'           Punctuation
+';'           Punctuation
+' '           Text
+'INCL'        Name.Builtin
+'('           Punctuation
+'s'           Name
+','           Punctuation
+' '           Text
+'9'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'EXCL'        Name.Builtin
+'('           Punctuation
+'s'           Name
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'IF'          Keyword.Reserved
+' '           Text
+'3'           Literal.Number.Integer
+' '           Text
+'IN'          Keyword.Reserved
+' '           Text
+'s'           Name
+' '           Text
+'THEN'        Keyword.Reserved
+' '           Text
+'color'       Name
+' '           Text
+':='          Operator
+' '           Text
+'Color'       Name
+'.'           Punctuation
+'Green'       Name
+' '           Text
+'END'         Keyword.Reserved
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'WITH'        Keyword.Reserved
+' '           Text
+'any'         Keyword.Type
+':'           Punctuation
+' '           Text
+'Buffer'      Name
+' '           Text
+'DO'          Keyword.Reserved
+' '           Text
+'Log'         Name
+'.'           Punctuation
+'Int'         Name
+'('           Punctuation
+'any'         Keyword.Type
+'.'           Punctuation
+'Get'         Name
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'END'         Keyword.Reserved
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'IGNORE'      Keyword.Reserved
+' '           Text
+'Statements'  Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'out'         Keyword.Reserved
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'VAR'         Keyword.Reserved
+' '           Text
+'local'       Name
+' '           Text
+':='          Operator
+' '           Text
+'sum'         Name.Builtin
+' '           Text
+'+'           Operator
+' '           Text
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'ASSERT'      Name.Builtin
+'('           Punctuation
+'local'       Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'RETURN'      Keyword.Reserved
+' '           Text
+'SIGNED32'    Keyword.Type
+'('           Punctuation
+'local'       Name
+')'           Punctuation
+'\n'          Text
+
+'FINALLY'     Keyword.Reserved
+'\n'          Text
+
+'  '          Text
+'RETURN'      Keyword.Reserved
+' '           Text
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'END'         Keyword.Reserved
+' '           Text
+'Statements'  Name
+';'           Punctuation
+'\n\n'        Text
+
+'PROCEDURE'   Keyword.Reserved
+' '           Text
+'MathArrays'  Name
+';'           Punctuation
+'\n'          Text
+
+'VAR'         Keyword.Reserved
+' '           Text
+'v'           Name
+','           Punctuation
+' '           Text
+'w'           Name
+':'           Punctuation
+' '           Text
+'Vector'      Name
+';'           Punctuation
+' '           Text
+'m'           Name
+':'           Punctuation
+' '           Text
+'Matrix'      Name
+';'           Punctuation
+' '           Text
+'f'           Name
+':'           Punctuation
+' '           Text
+'FLOAT64'     Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'BEGIN'       Keyword.Reserved
+'\n'          Text
+
+'  '          Text
+'NEW'         Keyword.Reserved
+'('           Punctuation
+'v'           Name
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'NEW'         Keyword.Reserved
+'('           Punctuation
+'w'           Name
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'NEW'         Keyword.Reserved
+'('           Punctuation
+'m'           Name
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'v'           Name
+' '           Text
+':='          Operator
+' '           Text
+'['           Punctuation
+'1.0'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'2.0'         Literal.Number.Float
+','           Punctuation
+' '           Text
+'3.0'         Literal.Number.Float
+']'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'w'           Name
+' '           Text
+':='          Operator
+' '           Text
+'v'           Name
+' '           Text
+'.*'          Operator
+' '           Text
+'v'           Name
+';'           Punctuation
+' '           Text
+'w'           Name
+' '           Text
+':='          Operator
+' '           Text
+'2'           Literal.Number.Integer
+' '           Text
+'*'           Operator
+' '           Text
+'v'           Name
+';'           Punctuation
+' '           Text
+'w'           Name
+' '           Text
+':='          Operator
+' '           Text
+'v'           Name
+' '           Text
+'+'           Operator
+' '           Text
+'w'           Name
+';'           Punctuation
+' '           Text
+'m'           Name
+' '           Text
+':='          Operator
+' '           Text
+'m'           Name
+'`'           Operator
+';'           Punctuation
+' '           Text
+'f'           Name
+' '           Text
+':='          Operator
+' '           Text
+'SUM'         Name.Builtin
+'('           Punctuation
+'v'           Name
+' '           Text
+'.*'          Operator
+' '           Text
+'w'           Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'IF'          Keyword.Reserved
+' '           Text
+'v'           Name
+' '           Text
+'.='          Operator
+' '           Text
+'w'           Name
+' '           Text
+'THEN'        Keyword.Reserved
+' '           Text
+'f'           Name
+' '           Text
+':='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'END'         Keyword.Reserved
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'Log'         Name
+'.'           Punctuation
+'Int'         Name
+'('           Punctuation
+'LEN'         Name.Builtin
+'('           Punctuation
+'v'           Name
+','           Punctuation
+' '           Text
+'0'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'Log'         Name
+'.'           Punctuation
+'Int'         Name
+'('           Punctuation
+'DIM'         Name.Builtin
+'('           Punctuation
+'m'           Name
+')'           Punctuation
+','           Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'Log'         Name
+'.'           Punctuation
+'Ln'          Name
+'\n'          Text
+
+'END'         Keyword.Reserved
+' '           Text
+'MathArrays'  Name
+';'           Punctuation
+'\n\n'        Text
+
+'PROCEDURE'   Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'PLAIN'       Keyword.Pseudo
+'}'           Punctuation
+' '           Text
+'LowLevel'    Name
+'('           Punctuation
+'adr'         Name
+':'           Punctuation
+' '           Text
+'ADDRESS'     Keyword.Type
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'VAR'         Keyword.Reserved
+' '           Text
+'value'       Name
+':'           Punctuation
+' '           Text
+'UNSIGNED32'  Keyword.Type
+';'           Punctuation
+'\n'          Text
+
+'BEGIN'       Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'UNCHECKED'   Keyword.Pseudo
+','           Punctuation
+' '           Text
+'UNCOOPERATIVE' Keyword.Pseudo
+'}'           Punctuation
+'\n'          Text
+
+'  '          Text
+'SYSTEM'      Name.Builtin
+'.'           Punctuation
+'GET'         Name
+'('           Punctuation
+'adr'         Name
+','           Punctuation
+' '           Text
+'value'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'SYSTEM'      Name.Builtin
+'.'           Punctuation
+'PUT32'       Name
+'('           Punctuation
+'adr'         Name
+' '           Text
+'+'           Operator
+' '           Text
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text
+'value'       Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'value'       Name
+' '           Text
+':='          Operator
+' '           Text
+'SYSTEM'      Name.Builtin
+'.'           Punctuation
+'VAL'         Name
+'('           Punctuation
+'UNSIGNED32'  Keyword.Type
+','           Punctuation
+' '           Text
+'adr'         Name
+')'           Punctuation
+'\n'          Text
+
+'END'         Keyword.Reserved
+' '           Text
+'LowLevel'    Name
+';'           Punctuation
+'\n\n'        Text
+
+'PROCEDURE'   Keyword.Reserved
+' '           Text
+'{'           Punctuation
+'NORETURN'    Keyword.Pseudo
+'}'           Punctuation
+' '           Text
+'Reset'       Name
+';'           Punctuation
+'\n'          Text
+
+'CODE'        Keyword.Reserved
+'\n'          Text
+
+'#IF I386 THEN' Comment.Preproc
+'\n'          Text
+
+'  '          Text
+'loop'        Name
+':'           Operator
+'\n'          Text
+
+'  '          Text
+'CMP'         Name
+' '           Text
+'ECX'         Name
+','           Operator
+' '           Text
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'  '          Text
+'JE'          Name
+' '           Text
+'end'         Name
+'          '  Text
+'; a label may well be called end' Comment.Single
+'\n'          Text
+
+'  '          Text
+'MOV'         Name
+' '           Text
+'EAX'         Name
+','           Operator
+' '           Text
+'['           Operator
+'EBP'         Name
+'+'           Operator
+'8'           Literal.Number.Integer
+']'           Operator
+'\n'          Text
+
+'  '          Text
+'JMP'         Name
+' '           Text
+'loop'        Name
+'\n'          Text
+
+'  '          Text
+'end'         Name
+':'           Operator
+'\n'          Text
+
+'  '          Text
+'HLT'         Name
+'\n'          Text
+
+'#ELSE'       Comment.Preproc
+'\n'          Text
+
+'  '          Text
+'NOP'         Name
+'\n'          Text
+
+'#END'        Comment.Preproc
+'\n'          Text
+
+'END'         Keyword.Reserved
+' '           Text
+'Reset'       Name
+';'           Punctuation
+'\n\n'        Text
+
+'PROCEDURE'   Keyword.Reserved
+' '           Text
+'Command'     Name
+'*'           Operator
+'('           Punctuation
+'context'     Name
+':'           Punctuation
+' '           Text
+'Commands'    Name
+'.'           Punctuation
+'Context'     Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'VAR'         Keyword.Reserved
+' '           Text
+'name'        Name
+':'           Punctuation
+' '           Text
+'Name'        Name
+';'           Punctuation
+'\n'          Text
+
+'BEGIN'       Keyword.Reserved
+'\n'          Text
+
+'  '          Text
+'context'     Name
+'.'           Punctuation
+'arg'         Name
+'.'           Punctuation
+'SkipWhitespace' Name
+';'           Punctuation
+' '           Text
+'context'     Name
+'.'           Punctuation
+'arg'         Name
+'.'           Punctuation
+'String'      Name
+'('           Punctuation
+'name'        Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'IF'          Keyword.Reserved
+' '           Text
+'name'        Name
+' '           Text
+'='           Operator
+' '           Text
+'""'          Literal.String.Double
+' '           Text
+'THEN'        Keyword.Reserved
+' '           Text
+'COPY'        Name.Builtin
+'('           Punctuation
+'"world"'     Literal.String.Double
+','           Punctuation
+' '           Text
+'name'        Name
+')'           Punctuation
+' '           Text
+'END'         Keyword.Reserved
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'context'     Name
+'.'           Punctuation
+'out'         Keyword.Reserved
+'.'           Punctuation
+'String'      Name
+'('           Punctuation
+'Message'     Name
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'context'     Name
+'.'           Punctuation
+'out'         Keyword.Reserved
+'.'           Punctuation
+'String'      Name
+'('           Punctuation
+'name'        Name
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'context'     Name
+'.'           Punctuation
+'out'         Keyword.Reserved
+'.'           Punctuation
+'Ln'          Name
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'context'     Name
+'.'           Punctuation
+'out'         Keyword.Reserved
+'.'           Punctuation
+'Update'      Name
+'\n'          Text
+
+'END'         Keyword.Reserved
+' '           Text
+'Command'     Name
+';'           Punctuation
+'\n\n'        Text
+
+'BEGIN'       Keyword.Reserved
+'\n'          Text
+
+'  '          Text
+'counter'     Name
+' '           Text
+':='          Operator
+' '           Text
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text
+
+'  '          Text
+'KernelLog'   Name
+'.'           Punctuation
+'String'      Name
+'('           Punctuation
+'"Example loaded"' Literal.String.Double
+')'           Punctuation
+';'           Punctuation
+' '           Text
+'KernelLog'   Name
+'.'           Punctuation
+'Ln'          Name
+'\n'          Text
+
+'END'         Keyword.Reserved
+' '           Text
+'Example'     Name.Namespace
+'.'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'Compiler.Compile Example.Mod ~' Comment.Single
+'\n'          Text
+
+'Example.Command Active Oberon ~' Comment.Single
+'\n'          Text
+
+'System.Free Example ~' Comment.Single
+'\n'          Text
