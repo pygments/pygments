@@ -125,7 +125,7 @@ class MojoLexer(RegexLexer):
             # (r"(mut)(\s+)", bygroups(Keyword, Whitespace), "mutname"),
             # (r"(where)(\s+)", bygroups(Keyword, Whitespace), "where"),
             (r"(struct)((?:\s|\\\s)+)", bygroups(Keyword, Whitespace), "structname"),
-            (r"(trait)((?:\s|\\\s)+)", bygroups(Keyword, Whitespace), "traitname"),
+            (r"(trait)((?:\s|\\\s)+)", bygroups(Keyword, Whitespace), "traitname"),  # TODO needs to be trait?
             (r"(var)(\s+)", bygroups(Keyword, Whitespace), "varname"),
             (r"(from)(\s+)", bygroups(Keyword.Namespace, Whitespace), "fromimport"),
             (r"(import)(\s+)", bygroups(Keyword.Namespace, Whitespace), "import"),
@@ -617,6 +617,9 @@ class MojoLexer(RegexLexer):
         ],
         "structname": [
             (uni_name, Name.Struct, "#pop"),
+        ],
+        "traitname": [
+            (uni_name, Name.Trait, "#pop"),
         ],
         "import": [
             (r"(\s+)(as)(\s+)", bygroups(Whitespace, Keyword, Whitespace)),
