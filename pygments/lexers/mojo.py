@@ -117,20 +117,16 @@ class MojoLexer(RegexLexer):
             # In the original PR, all the below here used ((?:\s|\\\s)+) to
             # designate whitespace, but I can't find any example of this being
             # needed in the example file, so we're replacing it with `\s+`.
-            (r"(def)(\s+)", bygroups(Keyword, Whitespace), "funcname"),
+            (r"(def)((?:\s|\\\s)+)", bygroups(Keyword, Whitespace), "funcname"),
+            (r"(class)((?:\s|\\\s)+)", bygroups(Keyword, Whitespace), "classname"),  # not implemented yet
+            # (r"(alias)(\s+)", bygroups(Keyword, Whitespace), "aliasname"),
+            # (r"(ref)(\s+)", bygroups(Keyword, Whitespace), "refname"),
+            # (r"(out)(\s+)", bygroups(Keyword, Whitespace), "outname"),
+            # (r"(mut)(\s+)", bygroups(Keyword, Whitespace), "mutname"),
+            # (r"(where)(\s+)", bygroups(Keyword, Whitespace), "where"),
+            (r"(struct)((?:\s|\\\s)+)", bygroups(Keyword, Whitespace), "structname"),
+            (r"(trait)((?:\s|\\\s)+)", bygroups(Keyword, Whitespace), "traitname"),
             (r"(var)(\s+)", bygroups(Keyword, Whitespace), "varname"),
-            (r"(alias)(\s+)", bygroups(Keyword, Whitespace), "aliasname"),
-            (r"(ref)(\s+)", bygroups(Keyword, Whitespace), "refname"),
-            (r"(out)(\s+)", bygroups(Keyword, Whitespace), "outname"),
-            (r"(mut)(\s+)", bygroups(Keyword, Whitespace), "mutname"),
-            (r"(where)(\s+)", bygroups(Keyword, Whitespace), "where"),
-            (
-                r"(class)(\s+)",
-                bygroups(Keyword, Whitespace),
-                "classname",
-            ),  # not implemented yet
-            (r"(struct)(\s+)", bygroups(Keyword, Whitespace), "structname"),
-            (r"(trait)(\s+)", bygroups(Keyword, Whitespace), "traitname"),
             (r"(from)(\s+)", bygroups(Keyword.Namespace, Whitespace), "fromimport"),
             (r"(import)(\s+)", bygroups(Keyword.Namespace, Whitespace), "import"),
             include("expr"),
