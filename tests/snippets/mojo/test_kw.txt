@@ -1,5 +1,4 @@
 ---input---
-fn
 def
 struct
 trait
@@ -10,8 +9,6 @@ else
 with
 
 ---tokens---
-'fn'          Keyword
-'\n'          Text.Whitespace
 
 'def'         Name.Function
 '\n'          Text.Whitespace

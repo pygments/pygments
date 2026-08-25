@@ -117,12 +117,12 @@ class MojoLexer(RegexLexer):
             # In the original PR, all the below here used ((?:\s|\\\s)+) to
             # designate whitespace, but I can't find any example of this being
             # needed in the example file, so we're replacing it with `\s+`.
-            (r"(alias)(\s+)", bygroups(Keyword, Whitespace), "aliasname"),
+            (r"(def)(\s+)", bygroups(Keyword, Whitespace), "funcname"),
             (r"(var)(\s+)", bygroups(Keyword, Whitespace), "varname"),
+            (r"(alias)(\s+)", bygroups(Keyword, Whitespace), "aliasname"),
             (r"(ref)(\s+)", bygroups(Keyword, Whitespace), "refname"),
             (r"(out)(\s+)", bygroups(Keyword, Whitespace), "outname"),
             (r"(mut)(\s+)", bygroups(Keyword, Whitespace), "mutname"),
-            (r"(def)(\s+)", bygroups(Keyword, Whitespace), "funcname"),
             (r"(where)(\s+)", bygroups(Keyword, Whitespace), "where"),
             (
                 r"(class)(\s+)",
