@@ -119,14 +119,14 @@ class MojoLexer(RegexLexer):
             # needed in the example file, so we're replacing it with `\s+`.
             (r"(def)((?:\s|\\\s)+)", bygroups(Keyword, Whitespace), "funcname"),
             (r"(class)((?:\s|\\\s)+)", bygroups(Keyword, Whitespace), "classname"),  # not implemented yet
-            # (r"(alias)(\s+)", bygroups(Keyword, Whitespace), "aliasname"),
-            # (r"(ref)(\s+)", bygroups(Keyword, Whitespace), "refname"),
-            # (r"(out)(\s+)", bygroups(Keyword, Whitespace), "outname"),
-            # (r"(mut)(\s+)", bygroups(Keyword, Whitespace), "mutname"),
-            # (r"(where)(\s+)", bygroups(Keyword, Whitespace), "where"),
             (r"(struct)((?:\s|\\\s)+)", bygroups(Keyword, Whitespace), "structname"),
-            (r"(trait)((?:\s|\\\s)+)", bygroups(Keyword, Whitespace), "traitname"),  # TODO needs to be trait?
+            (r"(trait)((?:\s|\\\s)+)", bygroups(Keyword, Whitespace), "traitname"),
+            (r"(alias)(\s+)", bygroups(Keyword, Whitespace), "aliasname"),
             (r"(var)(\s+)", bygroups(Keyword, Whitespace), "varname"),
+            (r"(ref)(\s+)", bygroups(Keyword, Whitespace), "aliasname"),  # TODO change name
+            (r"(out)(\s+)", bygroups(Keyword, Whitespace), "aliasname"),  # TODO change name
+            (r"(mut)(\s+)", bygroups(Keyword, Whitespace), "aliasname"),  # TODO change name
+            (r"(where)(\s+)", bygroups(Keyword, Whitespace), "aliasname"),  # TODO change name
             (r"(from)(\s+)", bygroups(Keyword.Namespace, Whitespace), "fromimport"),
             (r"(import)(\s+)", bygroups(Keyword.Namespace, Whitespace), "import"),
             include("expr"),
@@ -605,6 +605,9 @@ class MojoLexer(RegexLexer):
             (uni_name, Name),
         ],
         "varname": [
+            (uni_name, Name.Variable, "#pop"),
+        ],
+        "aliasname": [
             (uni_name, Name.Variable, "#pop"),
         ],
         "funcname": [
