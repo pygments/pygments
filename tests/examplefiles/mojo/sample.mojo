@@ -98,6 +98,17 @@ struct Person(Greet):
         print(self.name, "says hello!")
 
 
+@fieldwise_init
+struct Point:
+    var x: Float64
+    var y: Float64
+
+
+def pow2[n: Int]() -> Int where n >= 0:
+    ...
+
+comptime assert x >= 0, "x must be greater than or equal to 0."
+
 def main():
     for i in range(3):
         var pers = Person("Per_" + String(i))
