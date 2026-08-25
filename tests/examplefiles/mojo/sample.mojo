@@ -85,7 +85,7 @@ struct Person(Greet):
 
     var name: String
 
-    def __init__(inout self, name: String):
+    def __init__(out self, name: String):
         self.name = name
 
     def __str__(self) -> String:
