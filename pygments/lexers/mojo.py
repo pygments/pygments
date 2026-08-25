@@ -119,6 +119,9 @@ class MojoLexer(RegexLexer):
             # needed in the example file, so we're replacing it with `\s+`.
             (r"(alias)(\s+)", bygroups(Keyword, Whitespace), "aliasname"),
             (r"(var)(\s+)", bygroups(Keyword, Whitespace), "varname"),
+            (r"(ref)(\s+)", bygroups(Keyword, Whitespace), "refname"),
+            (r"(out)(\s+)", bygroups(Keyword, Whitespace), "outname"),
+            (r"(mut)(\s+)", bygroups(Keyword, Whitespace), "mutname"),
             (r"(def)(\s+)", bygroups(Keyword, Whitespace), "funcname"),
             (r"(where)(\s+)", bygroups(Keyword, Whitespace), "where"),
             (
@@ -291,6 +294,7 @@ class MojoLexer(RegexLexer):
                         "await",
                         "borrowed",
                         "break",
+                        "comptime",
                         "continue",
                         "del",
                         "elif",
