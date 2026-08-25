@@ -1,11 +1,11 @@
 """
-    pygments.lexers.mojo
-    ~~~~~~~~~~~~~~~~~~~~
+pygments.lexers.mojo
+~~~~~~~~~~~~~~~~~~~~
 
-    Lexers for Mojo and related languages.
+Lexers for Mojo and related languages.
 
-    :copyright: Copyright 2006-present by the Pygments team, see AUTHORS.
-    :license: BSD, see LICENSE for details.
+:copyright: Copyright 2006-present by the Pygments team, see AUTHORS.
+:license: BSD, see LICENSE for details.
 """
 
 import keyword
@@ -40,11 +40,11 @@ __all__ = ["MojoLexer"]
 
 class MojoLexer(RegexLexer):
     """
-    For Mojo source code (version 24.2.1).
+    For Mojo source code (version 1.0.0).
     """
 
     name = "Mojo"
-    url = "https://docs.modular.com/mojo/"
+    url = "https://mojolang.org/docs/"
     aliases = ["mojo", "🔥"]
     filenames = [
         "*.mojo",
@@ -645,9 +645,7 @@ class MojoLexer(RegexLexer):
             include("rfstringescape"),
             include("stringescape"),
         ],
-        "bytesescape": [
-            (r'\\([\\abfnrtv"\']|\n|x[a-fA-F0-9]{2}|[0-7]{1,3})', String.Escape)
-        ],
+        "bytesescape": [(r'\\([\\abfnrtv"\']|\n|x[a-fA-F0-9]{2}|[0-7]{1,3})', String.Escape)],
         "stringescape": [
             (r"\\(N\{.*?\}|u[a-fA-F0-9]{4}|U[a-fA-F0-9]{8})", String.Escape),
             include("bytesescape"),
