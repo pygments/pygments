@@ -413,6 +413,7 @@ class MojoLexer(RegexLexer):
                         "vars",
                         "zip",
                         # Mojo builtin types: https://docs.modular.com/mojo/stdlib/builtin/
+                        "std",
                         "AnyType",
                         "Coroutine",
                         "DType",
