@@ -10,24 +10,19 @@ from sys.info import (
 from sys.info import _current_cpu, _current_target, _triple_attr
 
 
-def func() -> None:
-    variable = "implicit variable"
+def func():
+    var variable: String = "variable"
     print("def function", variable)
 
 
-fn strict_func():
-    var variable = "explicit variable"
-    print("fn function", variable)
-
-
-fn generic_func[a: Int = 3, msg: StringLiteral = "woof"]():
+def generic_func[a: Int = 3, msg: StringLiteral = "woof"]():
     """
     A generic function.
     """
     print(msg, a)
 
 
-fn get_sys_info() -> String:
+def get_sys_info() -> String:
     """
     Retrieves system information (based upon: https://github.com/modularml/mojo/blob/main/examples/deviceinfo.mojo).
     """
@@ -77,7 +72,7 @@ trait Greet:
     A trait example.
     """
 
-    fn say_hello(self) -> None:
+    def say_hello(self) -> None:
         """Says hello."""
         ...
 
@@ -90,20 +85,31 @@ struct Person(Greet):
 
     var name: String
 
-    fn __init__(inout self, name: String):
+    def __init__(out self, name: String):
         self.name = name
 
-    fn __str__(self) -> String:
+    def __str__(self) -> String:
         """
         Overridden __str__ method
         """
         return "Person named " + self.name
 
-    fn say_hello(self) -> None:
+    def say_hello(self) -> None:
         print(self.name, "says hello!")
 
 
-fn main():
+@fieldwise_init
+struct Point:
+    var x: Float64
+    var y: Float64
+
+
+def pow2[n: Int]() -> Int where n >= 0:
+    ...
+
+comptime assert x >= 0, "x must be greater than or equal to 0."
+
+def main():
     for i in range(3):
         var pers = Person("Per_" + String(i))
         print(pers)

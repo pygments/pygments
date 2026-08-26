@@ -1,11 +1,11 @@
 """
-    pygments.lexers.mojo
-    ~~~~~~~~~~~~~~~~~~~~
+pygments.lexers.mojo
+~~~~~~~~~~~~~~~~~~~~
 
-    Lexers for Mojo and related languages.
+Lexers for Mojo and related languages.
 
-    :copyright: Copyright 2006-present by the Pygments team, see AUTHORS.
-    :license: BSD, see LICENSE for details.
+:copyright: Copyright 2006-present by the Pygments team, see AUTHORS.
+:license: BSD, see LICENSE for details.
 """
 
 import keyword
@@ -40,11 +40,11 @@ __all__ = ["MojoLexer"]
 
 class MojoLexer(RegexLexer):
     """
-    For Mojo source code (version 24.2.1).
+    For Mojo source code (version 1.0.0).
     """
 
     name = "Mojo"
-    url = "https://docs.modular.com/mojo/"
+    url = "https://mojolang.org/docs/"
     aliases = ["mojo", "🔥"]
     filenames = [
         "*.mojo",
@@ -117,21 +117,16 @@ class MojoLexer(RegexLexer):
             # In the original PR, all the below here used ((?:\s|\\\s)+) to
             # designate whitespace, but I can't find any example of this being
             # needed in the example file, so we're replacing it with `\s+`.
-            (
-                r"(alias)(\s+)",
-                bygroups(Keyword, Whitespace),
-                "varname",  # TODO varname the right fit?
-            ),
+            (r"(def)((?:\s|\\\s)+)", bygroups(Keyword, Whitespace), "funcname"),
+            (r"(class)((?:\s|\\\s)+)", bygroups(Keyword, Whitespace), "classname"),
+            (r"(struct)((?:\s|\\\s)+)", bygroups(Keyword, Whitespace), "structname"),
+            (r"(trait)((?:\s|\\\s)+)", bygroups(Keyword, Whitespace), "traitname"),
+            (r"(alias)(\s+)", bygroups(Keyword, Whitespace), "aliasname"),
             (r"(var)(\s+)", bygroups(Keyword, Whitespace), "varname"),
-            (r"(def)(\s+)", bygroups(Keyword, Whitespace), "funcname"),
-            (r"(fn)(\s+)", bygroups(Keyword, Whitespace), "funcname"),
-            (
-                r"(class)(\s+)",
-                bygroups(Keyword, Whitespace),
-                "classname",
-            ),  # not implemented yet
-            (r"(struct)(\s+)", bygroups(Keyword, Whitespace), "structname"),
-            (r"(trait)(\s+)", bygroups(Keyword, Whitespace), "structname"),
+            (r"(ref)(\s+)", bygroups(Keyword, Whitespace), "aliasname"),  # TODO change name
+            (r"(out)(\s+)", bygroups(Keyword, Whitespace), "aliasname"),  # TODO change name
+            (r"(mut)(\s+)", bygroups(Keyword, Whitespace), "aliasname"),  # TODO change name
+            (r"(where)(\s+)", bygroups(Keyword, Whitespace), "aliasname"),  # TODO change name
             (r"(from)(\s+)", bygroups(Keyword.Namespace, Whitespace), "fromimport"),
             (r"(import)(\s+)", bygroups(Keyword.Namespace, Whitespace), "import"),
             include("expr"),
@@ -293,8 +288,8 @@ class MojoLexer(RegexLexer):
                         "assert",
                         "async",
                         "await",
-                        "borrowed",
                         "break",
+                        "comptime",
                         "continue",
                         "del",
                         "elif",
@@ -413,6 +408,7 @@ class MojoLexer(RegexLexer):
                         "vars",
                         "zip",
                         # Mojo builtin types: https://docs.modular.com/mojo/stdlib/builtin/
+                        "std",
                         "AnyType",
                         "Coroutine",
                         "DType",
@@ -609,6 +605,11 @@ class MojoLexer(RegexLexer):
         ],
         "varname": [
             (uni_name, Name.Variable, "#pop"),
+            default("#pop"),
+        ],
+        "aliasname": [
+            (uni_name, Name.Variable, "#pop"),
+            default("#pop"),
         ],
         "funcname": [
             include("magicfuncs"),
@@ -620,6 +621,9 @@ class MojoLexer(RegexLexer):
         ],
         "structname": [
             (uni_name, Name.Struct, "#pop"),
+        ],
+        "traitname": [
+            (uni_name, Name.Trait, "#pop"),
         ],
         "import": [
             (r"(\s+)(as)(\s+)", bygroups(Whitespace, Keyword, Whitespace)),
@@ -645,9 +649,7 @@ class MojoLexer(RegexLexer):
             include("rfstringescape"),
             include("stringescape"),
         ],
-        "bytesescape": [
-            (r'\\([\\abfnrtv"\']|\n|x[a-fA-F0-9]{2}|[0-7]{1,3})', String.Escape)
-        ],
+        "bytesescape": [(r'\\([\\abfnrtv"\']|\n|x[a-fA-F0-9]{2}|[0-7]{1,3})', String.Escape)],
         "stringescape": [
             (r"\\(N\{.*?\}|u[a-fA-F0-9]{4}|U[a-fA-F0-9]{8})", String.Escape),
             include("bytesescape"),
