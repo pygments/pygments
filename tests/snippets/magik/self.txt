@@ -1,0 +1,14 @@
+---input---
+_self
+_self.new()
+
+---tokens---
+'_self'       Name.Class
+'\n'          Text.Whitespace
+
+'_self'       Name.Class
+'.'           Punctuation
+'new'         Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace

@@ -1,0 +1,428 @@
+---input---
+_if _true
+_then
+  >> _false
+_endif
+
+_if _true
+_then
+  >> _false
+_elif _false
+_then
+  >> _true
+_else
+  >> _maybe
+_endif
+
+_if _true
+_then
+  >> _false
+_else
+  >> _maybe
+_endif
+
+_if _true
+_then
+  >> _false
+_elif _false
+_then
+  >> _true
+_endif
+
+_if _true _then >> _false _endif
+_if _true _then >> _false _elif _false _then >> _true _else >> _maybe _endif
+_if _true _then >> _false _else >> _maybe _endif
+_if _true _then >> _false _elif _false _then >> _true _endif
+
+_if _true _then _self.do_something() _endif
+_if _true _then _self.do_something() _elif _false _then _self.do_something_else() _else _self.do_something_different() _endif
+_if _true _then _self.do_something() _else _self.do_something_else() _endif
+_if _true _then _self.do_something() _elif _false _then _self.do_something_else() _endif
+
+ok? << _if _true _then >> _false _endif
+ok? << _if _true _then >> _false _elif _false _then >> _true _else >> _maybe _endif
+ok? << _if _true _then >> _false _else >> _maybe _endif
+ok? << _if _true _then >> _false _elif _false _then >> _true _endif
+
+---tokens---
+'_if'         Keyword
+' '           Text.Whitespace
+'_true'       Literal
+'\n'          Text.Whitespace
+
+'_then'       Keyword
+'\n  '        Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_false'      Literal
+'\n'          Text.Whitespace
+
+'_endif'      Keyword
+'\n\n'        Text.Whitespace
+
+'_if'         Keyword
+' '           Text.Whitespace
+'_true'       Literal
+'\n'          Text.Whitespace
+
+'_then'       Keyword
+'\n  '        Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_false'      Literal
+'\n'          Text.Whitespace
+
+'_elif'       Keyword
+' '           Text.Whitespace
+'_false'      Literal
+'\n'          Text.Whitespace
+
+'_then'       Keyword
+'\n  '        Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_true'       Literal
+'\n'          Text.Whitespace
+
+'_else'       Keyword
+'\n  '        Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_maybe'      Literal
+'\n'          Text.Whitespace
+
+'_endif'      Keyword
+'\n\n'        Text.Whitespace
+
+'_if'         Keyword
+' '           Text.Whitespace
+'_true'       Literal
+'\n'          Text.Whitespace
+
+'_then'       Keyword
+'\n  '        Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_false'      Literal
+'\n'          Text.Whitespace
+
+'_else'       Keyword
+'\n  '        Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_maybe'      Literal
+'\n'          Text.Whitespace
+
+'_endif'      Keyword
+'\n\n'        Text.Whitespace
+
+'_if'         Keyword
+' '           Text.Whitespace
+'_true'       Literal
+'\n'          Text.Whitespace
+
+'_then'       Keyword
+'\n  '        Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_false'      Literal
+'\n'          Text.Whitespace
+
+'_elif'       Keyword
+' '           Text.Whitespace
+'_false'      Literal
+'\n'          Text.Whitespace
+
+'_then'       Keyword
+'\n  '        Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_true'       Literal
+'\n'          Text.Whitespace
+
+'_endif'      Keyword
+'\n\n'        Text.Whitespace
+
+'_if'         Keyword
+' '           Text.Whitespace
+'_true'       Literal
+' '           Text.Whitespace
+'_then'       Keyword
+' '           Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_false'      Literal
+' '           Text.Whitespace
+'_endif'      Keyword
+'\n'          Text.Whitespace
+
+'_if'         Keyword
+' '           Text.Whitespace
+'_true'       Literal
+' '           Text.Whitespace
+'_then'       Keyword
+' '           Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_false'      Literal
+' '           Text.Whitespace
+'_elif'       Keyword
+' '           Text.Whitespace
+'_false'      Literal
+' '           Text.Whitespace
+'_then'       Keyword
+' '           Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_true'       Literal
+' '           Text.Whitespace
+'_else'       Keyword
+' '           Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_maybe'      Literal
+' '           Text.Whitespace
+'_endif'      Keyword
+'\n'          Text.Whitespace
+
+'_if'         Keyword
+' '           Text.Whitespace
+'_true'       Literal
+' '           Text.Whitespace
+'_then'       Keyword
+' '           Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_false'      Literal
+' '           Text.Whitespace
+'_else'       Keyword
+' '           Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_maybe'      Literal
+' '           Text.Whitespace
+'_endif'      Keyword
+'\n'          Text.Whitespace
+
+'_if'         Keyword
+' '           Text.Whitespace
+'_true'       Literal
+' '           Text.Whitespace
+'_then'       Keyword
+' '           Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_false'      Literal
+' '           Text.Whitespace
+'_elif'       Keyword
+' '           Text.Whitespace
+'_false'      Literal
+' '           Text.Whitespace
+'_then'       Keyword
+' '           Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_true'       Literal
+' '           Text.Whitespace
+'_endif'      Keyword
+'\n\n'        Text.Whitespace
+
+'_if'         Keyword
+' '           Text.Whitespace
+'_true'       Literal
+' '           Text.Whitespace
+'_then'       Keyword
+' '           Text.Whitespace
+'_self'       Name.Class
+'.'           Punctuation
+'do_something' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'_endif'      Keyword
+'\n'          Text.Whitespace
+
+'_if'         Keyword
+' '           Text.Whitespace
+'_true'       Literal
+' '           Text.Whitespace
+'_then'       Keyword
+' '           Text.Whitespace
+'_self'       Name.Class
+'.'           Punctuation
+'do_something' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'_elif'       Keyword
+' '           Text.Whitespace
+'_false'      Literal
+' '           Text.Whitespace
+'_then'       Keyword
+' '           Text.Whitespace
+'_self'       Name.Class
+'.'           Punctuation
+'do_something_else' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'_else'       Keyword
+' '           Text.Whitespace
+'_self'       Name.Class
+'.'           Punctuation
+'do_something_different' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'_endif'      Keyword
+'\n'          Text.Whitespace
+
+'_if'         Keyword
+' '           Text.Whitespace
+'_true'       Literal
+' '           Text.Whitespace
+'_then'       Keyword
+' '           Text.Whitespace
+'_self'       Name.Class
+'.'           Punctuation
+'do_something' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'_else'       Keyword
+' '           Text.Whitespace
+'_self'       Name.Class
+'.'           Punctuation
+'do_something_else' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'_endif'      Keyword
+'\n'          Text.Whitespace
+
+'_if'         Keyword
+' '           Text.Whitespace
+'_true'       Literal
+' '           Text.Whitespace
+'_then'       Keyword
+' '           Text.Whitespace
+'_self'       Name.Class
+'.'           Punctuation
+'do_something' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'_elif'       Keyword
+' '           Text.Whitespace
+'_false'      Literal
+' '           Text.Whitespace
+'_then'       Keyword
+' '           Text.Whitespace
+'_self'       Name.Class
+'.'           Punctuation
+'do_something_else' Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'_endif'      Keyword
+'\n\n'        Text.Whitespace
+
+'ok?'         Name
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'_if'         Keyword
+' '           Text.Whitespace
+'_true'       Literal
+' '           Text.Whitespace
+'_then'       Keyword
+' '           Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_false'      Literal
+' '           Text.Whitespace
+'_endif'      Keyword
+'\n'          Text.Whitespace
+
+'ok?'         Name
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'_if'         Keyword
+' '           Text.Whitespace
+'_true'       Literal
+' '           Text.Whitespace
+'_then'       Keyword
+' '           Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_false'      Literal
+' '           Text.Whitespace
+'_elif'       Keyword
+' '           Text.Whitespace
+'_false'      Literal
+' '           Text.Whitespace
+'_then'       Keyword
+' '           Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_true'       Literal
+' '           Text.Whitespace
+'_else'       Keyword
+' '           Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_maybe'      Literal
+' '           Text.Whitespace
+'_endif'      Keyword
+'\n'          Text.Whitespace
+
+'ok?'         Name
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'_if'         Keyword
+' '           Text.Whitespace
+'_true'       Literal
+' '           Text.Whitespace
+'_then'       Keyword
+' '           Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_false'      Literal
+' '           Text.Whitespace
+'_else'       Keyword
+' '           Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_maybe'      Literal
+' '           Text.Whitespace
+'_endif'      Keyword
+'\n'          Text.Whitespace
+
+'ok?'         Name
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'_if'         Keyword
+' '           Text.Whitespace
+'_true'       Literal
+' '           Text.Whitespace
+'_then'       Keyword
+' '           Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_false'      Literal
+' '           Text.Whitespace
+'_elif'       Keyword
+' '           Text.Whitespace
+'_false'      Literal
+' '           Text.Whitespace
+'_then'       Keyword
+' '           Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_true'       Literal
+' '           Text.Whitespace
+'_endif'      Keyword
+'\n'          Text.Whitespace

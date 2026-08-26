@@ -1,0 +1,21 @@
+---input---
+_block
+	_lock _self
+	      _return
+	_endlock
+_endblock
+
+---tokens---
+'_block'      Keyword
+'\n\t'        Text.Whitespace
+'_lock'       Keyword
+' '           Text.Whitespace
+'_self'       Name.Class
+'\n\t      '  Text.Whitespace
+'_return'     Operator
+'\n\t'        Text.Whitespace
+'_endlock'    Keyword
+'\n'          Text.Whitespace
+
+'_endblock'   Keyword
+'\n'          Text.Whitespace

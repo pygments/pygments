@@ -1,0 +1,74 @@
+---input---
+_proc(first, second, _optional third, fourth _gather rest)
+_endproc
+
+_iter _proc()
+  _loopbody(i)
+_endproc
+
+_proc()
+	## multi
+	## line
+	## documentation
+
+	# comment
+	## comment
+_endproc
+
+---tokens---
+'_proc'       Keyword
+'('           Punctuation
+'first'       Name
+','           Punctuation
+' '           Text.Whitespace
+'second'      Name
+','           Punctuation
+' '           Text.Whitespace
+'_optional'   Keyword
+' '           Text.Whitespace
+'third'       Name
+','           Punctuation
+' '           Text.Whitespace
+'fourth'      Name
+' '           Text.Whitespace
+'_gather'     Keyword
+' '           Text.Whitespace
+'rest'        Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'_endproc'    Keyword
+'\n\n'        Text.Whitespace
+
+'_iter'       Keyword
+' '           Text.Whitespace
+'_proc'       Keyword
+'('           Punctuation
+')'           Punctuation
+'\n  '        Text.Whitespace
+'_loopbody'   Keyword
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'_endproc'    Keyword
+'\n\n'        Text.Whitespace
+
+'_proc'       Keyword
+'('           Punctuation
+')'           Punctuation
+'\n\t'        Text.Whitespace
+'## multi'    Comment.Special
+'\n\t'        Text.Whitespace
+'## line'     Comment.Special
+'\n\t'        Text.Whitespace
+'## documentation' Comment.Special
+'\n\n\t'      Text.Whitespace
+'# comment'   Comment.Single
+'\n\t'        Text.Whitespace
+'## comment'  Comment.Special
+'\n'          Text.Whitespace
+
+'_endproc'    Keyword
+'\n'          Text.Whitespace

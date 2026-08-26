@@ -1,0 +1,14 @@
+---input---
+_package user
+_package sw
+
+---tokens---
+'_package'    Name.Builtin
+' '           Text.Whitespace
+'user'        Name
+'\n'          Text.Whitespace
+
+'_package'    Name.Builtin
+' '           Text.Whitespace
+'sw'          Name
+'\n'          Text.Whitespace

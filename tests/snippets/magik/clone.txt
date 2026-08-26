@@ -1,0 +1,14 @@
+---input---
+_clone
+_clone.init()
+
+---tokens---
+'_clone'      Name.Class
+'\n'          Text.Whitespace
+
+'_clone'      Name.Class
+'.'           Punctuation
+'init'        Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace

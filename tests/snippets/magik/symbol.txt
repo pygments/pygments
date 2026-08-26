@@ -1,0 +1,65 @@
+---input---
+:symbol
+:boolean?
+:kleenean??
+:int!internal
+:|piped|
+:int|!|internal
+:new|()|
+:|A|b|c ||()|
+:_new
+:|=|
+:|new world|
+:||
+
+---tokens---
+':symbol'     Literal.String.Symbol
+'\n'          Text.Whitespace
+
+':boolean?'   Literal.String.Symbol
+'\n'          Text.Whitespace
+
+':kleenean??' Literal.String.Symbol
+'\n'          Text.Whitespace
+
+':int!internal' Literal.String.Symbol
+'\n'          Text.Whitespace
+
+':|piped|'    Literal.String.Symbol
+'\n'          Text.Whitespace
+
+':int'        Literal.String.Symbol
+'|!|'         Name.Variable
+'internal'    Name
+'\n'          Text.Whitespace
+
+':new'        Literal.String.Symbol
+'|'           Punctuation
+'('           Punctuation
+')'           Punctuation
+'|'           Punctuation
+'\n'          Text.Whitespace
+
+':|A|'        Literal.String.Symbol
+'b'           Name
+'|'           Punctuation
+'c'           Name
+' '           Text.Whitespace
+'|'           Punctuation
+'|'           Punctuation
+'('           Punctuation
+')'           Punctuation
+'|'           Punctuation
+'\n'          Text.Whitespace
+
+':_new'       Literal.String.Symbol
+'\n'          Text.Whitespace
+
+':|=|'        Literal.String.Symbol
+'\n'          Text.Whitespace
+
+':|new world|' Literal.String.Symbol
+'\n'          Text.Whitespace
+
+':||'         Literal.String.Symbol
+'\n'          Text.Whitespace

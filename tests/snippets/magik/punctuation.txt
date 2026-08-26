@@ -1,0 +1,34 @@
+---input---
+[1]
+(:a, :b)
+{_unset}
+{:a}; {:b}
+
+---tokens---
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'('           Punctuation
+':a'          Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+':b'          Literal.String.Symbol
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'_unset'      Literal
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+':a'          Literal.String.Symbol
+'}'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+':b'          Literal.String.Symbol
+'}'           Punctuation
+'\n'          Text.Whitespace

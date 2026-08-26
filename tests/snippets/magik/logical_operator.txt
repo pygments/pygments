@@ -1,0 +1,50 @@
+---input---
+_true _and _true
+_false _or _true
+_true _xor _false
+_true _andif _true
+_false _orif _true
+_false _xorif _true
+
+---tokens---
+'_true'       Literal
+' '           Text.Whitespace
+'_and'        Operator
+' '           Text.Whitespace
+'_true'       Literal
+'\n'          Text.Whitespace
+
+'_false'      Literal
+' '           Text.Whitespace
+'_or'         Operator
+' '           Text.Whitespace
+'_true'       Literal
+'\n'          Text.Whitespace
+
+'_true'       Literal
+' '           Text.Whitespace
+'_xor'        Operator
+' '           Text.Whitespace
+'_false'      Literal
+'\n'          Text.Whitespace
+
+'_true'       Literal
+' '           Text.Whitespace
+'_andif'      Operator
+' '           Text.Whitespace
+'_true'       Literal
+'\n'          Text.Whitespace
+
+'_false'      Literal
+' '           Text.Whitespace
+'_orif'       Operator
+' '           Text.Whitespace
+'_true'       Literal
+'\n'          Text.Whitespace
+
+'_false'      Literal
+' '           Text.Whitespace
+'_xorif'      Name
+' '           Text.Whitespace
+'_true'       Literal
+'\n'          Text.Whitespace

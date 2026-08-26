@@ -1,0 +1,38 @@
+---input---
+# Single line 'comment'
+
+# Multi
+# Line
+# Comment
+
+_block
+ 1 _and # comment
+ 2
+_endblock
+
+---tokens---
+"# Single line 'comment'" Comment.Single
+'\n\n'        Text.Whitespace
+
+'# Multi'     Comment.Single
+'\n'          Text.Whitespace
+
+'# Line'      Comment.Single
+'\n'          Text.Whitespace
+
+'# Comment'   Comment.Single
+'\n\n'        Text.Whitespace
+
+'_block'      Keyword
+'\n '         Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'_and'        Operator
+' '           Text.Whitespace
+'# comment'   Comment.Single
+'\n '         Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'_endblock'   Keyword
+'\n'          Text.Whitespace

@@ -1,0 +1,121 @@
+---input---
+0
+65535
+4294967295
+18446744073709551617
+-65535
+0.0
+655.35
+-655.35
+2e2
+2e+2
+2E+2
+2e-2
+2E-2
+2.2e+10
+2.2E+10
+2.2e-10
+2.2E-10
+2&3
+2&-3
+2r0
+2R11
+8r0
+8R757
+16r0123456789abcdef
+16R0123456789abcdef
+16raBcDeF0123456789
+16RaBcDeF0123456789
+36rz
+-36rZ
+
+---tokens---
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'65535'       Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'4294967295'  Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'18446744073709551617' Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'-'           Operator
+'65535'       Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'0.0'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'655.35'      Literal.Number.Float
+'\n'          Text.Whitespace
+
+'-'           Operator
+'655.35'      Literal.Number.Float
+'\n'          Text.Whitespace
+
+'2e2'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'2e+2'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'2E+2'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'2e-2'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'2E-2'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'2.2e+10'     Literal.Number.Float
+'\n'          Text.Whitespace
+
+'2.2E+10'     Literal.Number.Float
+'\n'          Text.Whitespace
+
+'2.2e-10'     Literal.Number.Float
+'\n'          Text.Whitespace
+
+'2.2E-10'     Literal.Number.Float
+'\n'          Text.Whitespace
+
+'2&3'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'2&-3'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'2r0'         Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'2R11'        Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'8r0'         Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'8R757'       Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'16r0123456789abcdef' Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'16R0123456789abcdef' Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'16raBcDeF0123456789' Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'16RaBcDeF0123456789' Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'36rz'        Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'-'           Operator
+'36rZ'        Literal.Number.Integer
+'\n'          Text.Whitespace
