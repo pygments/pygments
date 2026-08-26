@@ -1,0 +1,86 @@
+---input---
+struct Person(Greet):
+    """
+    A person.
+    """
+
+    var name: String
+
+    def __init__(out self, name: String):
+        self.name = name
+
+    def say_hello(self) -> None:
+        print(self.name, "says hello!")
+
+---tokens---
+'struct'      Keyword
+' '           Text.Whitespace
+'Person'      Name.Struct
+'('           Punctuation
+'Greet'       Name
+'):'          Punctuation
+'\n    '      Text.Whitespace
+'"""'         Literal.String.Double
+'\n'          Literal.String.Double
+
+'    A person.' Literal.String.Double
+'\n'          Literal.String.Double
+
+'    '        Literal.String.Double
+'"""'         Literal.String.Double
+'\n\n    '    Text.Whitespace
+'var'         Keyword
+' '           Text.Whitespace
+'name'        Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'String'      Name.Builtin
+'\n\n    '    Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'__init__'    Name.Function.Magic
+'('           Punctuation
+'out'         Keyword
+' '           Text.Whitespace
+'self'        Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'name'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'String'      Name.Builtin
+'):'          Punctuation
+'\n        '  Text.Whitespace
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'name'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'name'        Name
+'\n\n    '    Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'say_hello'   Name.Function
+'('           Punctuation
+'self'        Name.Builtin.Pseudo
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'None'        Keyword.Constant
+':'           Punctuation
+'\n        '  Text.Whitespace
+'print'       Name.Builtin
+'('           Punctuation
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'name'        Name
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'says hello!' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text.Whitespace

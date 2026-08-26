@@ -118,7 +118,7 @@ class MojoLexer(RegexLexer):
             # designate whitespace, but I can't find any example of this being
             # needed in the example file, so we're replacing it with `\s+`.
             (r"(def)((?:\s|\\\s)+)", bygroups(Keyword, Whitespace), "funcname"),
-            (r"(class)((?:\s|\\\s)+)", bygroups(Keyword, Whitespace), "classname"),  # not implemented yet
+            (r"(class)((?:\s|\\\s)+)", bygroups(Keyword, Whitespace), "classname"),
             (r"(struct)((?:\s|\\\s)+)", bygroups(Keyword, Whitespace), "structname"),
             (r"(trait)((?:\s|\\\s)+)", bygroups(Keyword, Whitespace), "traitname"),
             (r"(alias)(\s+)", bygroups(Keyword, Whitespace), "aliasname"),
@@ -288,7 +288,6 @@ class MojoLexer(RegexLexer):
                         "assert",
                         "async",
                         "await",
-                        "borrowed",
                         "break",
                         "comptime",
                         "continue",
@@ -606,9 +605,11 @@ class MojoLexer(RegexLexer):
         ],
         "varname": [
             (uni_name, Name.Variable, "#pop"),
+            default("#pop"),
         ],
         "aliasname": [
             (uni_name, Name.Variable, "#pop"),
+            default("#pop"),
         ],
         "funcname": [
             include("magicfuncs"),
