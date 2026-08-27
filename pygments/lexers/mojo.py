@@ -1,11 +1,11 @@
 """
-pygments.lexers.mojo
-~~~~~~~~~~~~~~~~~~~~
+    pygments.lexers.mojo
+    ~~~~~~~~~~~~~~~~~~~~
 
-Lexers for Mojo and related languages.
+    Lexers for Mojo and related languages.
 
-:copyright: Copyright 2006-present by the Pygments team, see AUTHORS.
-:license: BSD, see LICENSE for details.
+    :copyright: Copyright 2006-present by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
 """
 
 import keyword
