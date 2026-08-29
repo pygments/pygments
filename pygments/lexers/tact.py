@@ -23,6 +23,7 @@ class TactLexer(RegexLexer):
     filenames = ['*.tact']
     url = "https://tact-lang.org"
     version_added = '2.18'
+    _example = 'tact/sample.tact'
 
     tokens = {
         'root': [

@@ -202,6 +202,7 @@ class ObjectiveCLexer(objective(CLexer)):
     filenames = ['*.m', '*.h']
     mimetypes = ['text/x-objective-c']
     version_added = ''
+    _example = "objective-c/objc_example.m"
     priority = 0.05    # Lower than C
 
 
@@ -215,6 +216,7 @@ class ObjectiveCppLexer(objective(CppLexer)):
     filenames = ['*.mm', '*.hh']
     mimetypes = ['text/x-objective-c++']
     version_added = ''
+    _example = ""
     priority = 0.05    # Lower than C++
 
 
@@ -228,6 +230,7 @@ class LogosLexer(ObjectiveCppLexer):
     filenames = ['*.x', '*.xi', '*.xm', '*.xmi']
     mimetypes = ['text/x-logos']
     version_added = '1.6'
+    _example = "logos/logos_example.xm"
     priority = 0.25
 
     tokens = {
@@ -291,6 +294,7 @@ class SwiftLexer(RegexLexer):
     aliases = ['swift']
     mimetypes = ['text/x-swift']
     version_added = '2.0'
+    _example = "swift/test.swift"
 
     tokens = {
         'root': [

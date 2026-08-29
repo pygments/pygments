@@ -24,6 +24,7 @@ class JMESPathLexer(RegexLexer):
     filenames = ['*.jp']
     aliases = ['jmespath', 'jp']
     version_added = ''
+    _example = 'jmespath/example.jp'
 
     tokens = {
         'string': [

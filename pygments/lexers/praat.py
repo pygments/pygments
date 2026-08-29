@@ -25,6 +25,7 @@ class PraatLexer(RegexLexer):
     aliases = ['praat']
     filenames = ['*.praat', '*.proc', '*.psc']
     version_added = '2.1'
+    _example = 'praat/example.praat'
 
     keywords = (
         'if', 'then', 'else', 'elsif', 'elif', 'endif', 'fi', 'for', 'from', 'to',

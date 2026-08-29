@@ -31,6 +31,7 @@ class IrcLogsLexer(RegexLexer):
     mimetypes = ['text/x-irclog']
     url = 'https://en.wikipedia.org/wiki/Internet_Relay_Chat'
     version_added = ''
+    _example = 'irc/example.weechatlog'
 
     flags = re.VERBOSE | re.MULTILINE
     timestamp = r"""
@@ -95,6 +96,7 @@ class GettextLexer(RegexLexer):
     mimetypes = ['application/x-gettext', 'text/x-gettext', 'text/gettext']
     url = 'https://www.gnu.org/software/gettext'
     version_added = '0.9'
+    _example = 'pot/de.MoinMoin.po'
 
     tokens = {
         'root': [
@@ -122,6 +124,7 @@ class HttpLexer(RegexLexer):
     aliases = ['http']
     url = 'https://httpwg.org/specs'
     version_added = '1.5'
+    _example = 'http/http_response_example'
 
     flags = re.DOTALL
 
@@ -214,6 +217,7 @@ class TodotxtLexer(RegexLexer):
     url = 'http://todotxt.com/'
     aliases = ['todotxt']
     version_added = '2.0'
+    _example = 'todotxt/example.todotxt'
     # *.todotxt is not a standard extension for Todo.txt files; including it
     # makes testing easier, and also makes autodetecting file type easier.
     filenames = ['todo.txt', '*.todotxt']
@@ -320,6 +324,7 @@ class NotmuchLexer(RegexLexer):
     url = 'https://notmuchmail.org/'
     aliases = ['notmuch']
     version_added = '2.5'
+    _example = 'notmuch/notmuch_example'
 
     def _highlight_code(self, match):
         code = match.group(1)
@@ -396,6 +401,7 @@ class KernelLogLexer(RegexLexer):
     filenames = ['*.kmsg', '*.dmesg']
     url = 'https://fr.wikipedia.org/wiki/Dmesg'
     version_added = '2.6'
+    _example = 'kmsg/example.dmesg'
 
     tokens = {
         'root': [

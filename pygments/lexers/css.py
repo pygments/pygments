@@ -179,6 +179,7 @@ class CssLexer(RegexLexer):
     filenames = ['*.css']
     mimetypes = ['text/css']
     version_added = ''
+    _example = 'css/test.css'
 
     tokens = {
         'root': [
@@ -589,6 +590,7 @@ class LessCssLexer(CssLexer):
     filenames = ['*.less']
     mimetypes = ['text/x-less-css']
     version_added = '2.1'
+    _example = ""
 
     tokens = {
         # FIXME: It's not currently possible to simply do the following,

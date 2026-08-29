@@ -28,6 +28,7 @@ class SmaliLexer(RegexLexer):
     filenames = ['*.smali']
     mimetypes = ['text/smali']
     version_added = '1.6'
+    _example = 'smali/hello.smali'
 
     tokens = {
         'root': [

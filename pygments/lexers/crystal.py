@@ -35,6 +35,7 @@ class CrystalLexer(ExtendedRegexLexer):
     filenames = ['*.cr']
     mimetypes = ['text/x-crystal']
     version_added = '2.2'
+    _example = 'cr/test.cr'
 
     flags = re.DOTALL | re.MULTILINE
 

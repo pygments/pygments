@@ -24,6 +24,7 @@ class SmithyLexer(RegexLexer):
     filenames = ['*.smithy']
     aliases = ['smithy']
     version_added = '2.10'
+    _example = 'smithy/test.smithy'
 
     unquoted = r'[A-Za-z0-9_\.#$-]+'
     identifier = r"[A-Za-z0-9_\.#$-]+"

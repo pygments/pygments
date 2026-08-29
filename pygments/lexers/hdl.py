@@ -27,6 +27,7 @@ class VerilogLexer(RegexLexer):
     mimetypes = ['text/x-verilog']
     url = 'https://en.wikipedia.org/wiki/Verilog'
     version_added = '1.4'
+    _example = 'verilog/example_coq.v'
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
@@ -154,6 +155,7 @@ class SystemVerilogLexer(RegexLexer):
     mimetypes = ['text/x-systemverilog']
     url = 'https://en.wikipedia.org/wiki/SystemVerilog'
     version_added = '1.5'
+    _example = 'systemverilog/flipflop.sv'
 
     #: optional Comment or Whitespace
     _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
@@ -380,6 +382,7 @@ class VhdlLexer(RegexLexer):
     mimetypes = ['text/x-vhdl']
     url = 'https://en.wikipedia.org/wiki/VHDL'
     version_added = '1.5'
+    _example = 'vhdl/test.vhdl'
     flags = re.MULTILINE | re.IGNORECASE
 
     tokens = {

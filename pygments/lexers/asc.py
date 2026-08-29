@@ -32,6 +32,7 @@ class AscLexer(RegexLexer):
                  'application/pgp-signature', 'application/pem-certificate-chain']
     url = 'https://www.openpgp.org'
     version_added = '2.10'
+    _example = 'asc/id_ecdsa'
 
     flags = re.MULTILINE
 

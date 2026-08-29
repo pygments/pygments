@@ -29,6 +29,7 @@ class CddlLexer(RegexLexer):
     filenames = ["*.cddl"]
     mimetypes = ["text/x-cddl"]
     version_added = '2.8'
+    _example = 'cddl/example.cddl'
 
     _prelude_types = [
         "any",

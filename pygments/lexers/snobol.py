@@ -29,6 +29,7 @@ class SnobolLexer(RegexLexer):
     mimetypes = ['text/x-snobol']
     url = 'https://www.regressive.org/snobol4'
     version_added = '1.5'
+    _example = 'snobol/example.snobol'
 
     tokens = {
         # root state, start of line

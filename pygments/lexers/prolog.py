@@ -27,6 +27,7 @@ class PrologLexer(RegexLexer):
     mimetypes = ['text/x-prolog']
     url = 'https://en.wikipedia.org/wiki/Prolog'
     version_added = ''
+    _example = 'prolog/qsort.prolog'
 
     tokens = {
         'root': [
@@ -99,6 +100,7 @@ class LogtalkLexer(RegexLexer):
     filenames = ['*.lgt', '*.logtalk']
     mimetypes = ['text/x-logtalk']
     version_added = '0.10'
+    _example = 'logtalk/source.lgt'
 
     tokens = {
         'root': [

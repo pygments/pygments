@@ -23,6 +23,7 @@ class RtsLexer(RegexLexer):
     filenames = ['*.rts']
     url = 'https://riverbed.com'
     version_added = '2.1'
+    _example = 'rts/example.rts'
 
     tokens = {
         'root' : [

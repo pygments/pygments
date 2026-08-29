@@ -27,6 +27,7 @@ class SophiaLexer(RegexLexer):
     mimetypes = []
     url = 'https://docs.aeternity.com/aesophia'
     version_added = '2.11'
+    _example = 'sophia/test.aes'
 
     keywords = (
         'contract', 'include', 'let', 'switch', 'type', 'record', 'datatype',

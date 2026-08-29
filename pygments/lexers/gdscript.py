@@ -32,6 +32,7 @@ class GDScriptLexer(RegexLexer):
     filenames = ["*.gd"]
     mimetypes = ["text/x-gdscript", "application/x-gdscript"]
     version_added = ''
+    _example = 'gdscript/gdscript_example.gd'
 
     def innerstring_rules(ttype):
         return [

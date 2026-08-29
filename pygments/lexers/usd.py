@@ -37,6 +37,7 @@ class UsdLexer(RegexLexer):
     aliases = ["usd", "usda"]
     filenames = ["*.usd", "*.usda"]
     version_added = '2.6'
+    _example = 'usd/example.usd'
 
     tokens = {
         "root": [
