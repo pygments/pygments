@@ -73,7 +73,7 @@
 ' '           Text
 '='           Operator
 ' '           Text
-'fopen'       Name.Builtin
+'fopen'       Name.Function
 '('           Punctuation
 "'hello.txt'" Literal.String.Single
 ','           Punctuation
@@ -191,7 +191,7 @@
 ' '           Text
 'new'         Keyword
 ' '           Text
-'Foo\\Bar\\Baz' Name.Other
+'Foo\\Bar\\Baz' Name.Function
 '();'         Punctuation
 '\n'          Text
 
@@ -206,7 +206,7 @@
 ' '           Text
 'new'         Keyword
 ' '           Text
-'Baz'         Name.Other
+'Baz'         Name.Function
 '();'         Punctuation
 '\n'          Text
 
