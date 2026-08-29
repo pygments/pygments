@@ -1,0 +1,43 @@
+'trait'       Keyword
+' '           Text.Whitespace
+'DeflectionSensing' Name.Class
+':'           Punctuation
+'\n    '      Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'fetch_reading' Name.Function
+'('           Punctuation
+'self'        Name.Builtin.Pseudo
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'Float64'     Name.Builtin
+':'           Punctuation
+'\n\n'        Text.Whitespace
+
+'class'       Keyword
+' '           Text.Whitespace
+'NotSupportedYet' Name.Class
+':'           Punctuation
+'\n    '      Text.Whitespace
+'"""'         Literal.String.Double
+'Just for formatter / style reference' Literal.String.Double
+'"""'         Literal.String.Double
+'\n    '      Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'__init__'    Name.Function.Magic
+'('           Punctuation
+'self'        Name.Builtin.Pseudo
+'):'          Punctuation
+'\n        '  Text.Whitespace
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'val'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace

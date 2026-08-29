@@ -355,7 +355,7 @@
 
 'trait'       Keyword
 ' '           Text.Whitespace
-'Greet'       Name.Trait
+'Greet'       Name.Class
 ':'           Punctuation
 '\n    '      Text.Whitespace
 '"""'         Literal.String.Double
@@ -394,7 +394,7 @@
 
 'struct'      Keyword
 ' '           Text.Whitespace
-'Person'      Name.Struct
+'Person'      Name.Class
 '('           Punctuation
 'Greet'       Name
 '):'          Punctuation
@@ -503,7 +503,7 @@
 
 'struct'      Keyword
 ' '           Text.Whitespace
-'Point'       Name.Struct
+'Point'       Name.Class
 ':'           Punctuation
 '\n    '      Text.Whitespace
 'var'         Keyword

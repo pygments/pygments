@@ -1,6 +1,6 @@
 'trait'       Keyword
 ' '           Text.Whitespace
-'DeflectionSensing' Name.Trait
+'DeflectionSensing' Name.Class
 ':'           Punctuation
 '\n    '      Text.Whitespace
 'def'         Keyword
@@ -65,7 +65,7 @@
 
 'trait'       Keyword
 ' '           Text.Whitespace
-'CalibratableDeflectionSensing' Name.Trait
+'CalibratableDeflectionSensing' Name.Class
 '('           Punctuation
 'DeflectionSensing' Name
 '):'          Punctuation
@@ -86,7 +86,7 @@
 
 'struct'      Keyword
 ' '           Text.Whitespace
-'EddyCurrentSensor' Name.Struct
+'EddyCurrentSensor' Name.Class
 '('           Punctuation
 'CalibratableDeflectionSensing' Name
 '):'          Punctuation
