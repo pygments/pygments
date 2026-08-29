@@ -654,10 +654,10 @@ class MojoLexer(RegexLexer):
             (uni_name, Name.Class, "#pop"),
         ],
         "structname": [
-            (uni_name, Name.Struct, "#pop"),
+            (uni_name, Name.Class, "#pop"),  # mapping to Name.Class (Name.Struct does not exist)
         ],
         "traitname": [
-            (uni_name, Name.Trait, "#pop"),
+            (uni_name, Name.Class, "#pop"),  # mapping to Name.Class (Name.Trait does not exist)
         ],
         "import": [
             (r"(\s+)(as)(\s+)", bygroups(Whitespace, Keyword, Whitespace)),
