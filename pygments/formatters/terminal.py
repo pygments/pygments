@@ -12,7 +12,7 @@ from pygments.formatter import Formatter
 from pygments.token import Keyword, Name, Comment, String, Error, \
     Number, Operator, Generic, Token, Whitespace
 from pygments.console import ansiformat
-from pygments.util import get_choice_opt
+from pygments.util import get_choice_opt, get_int_opt
 
 
 __all__ = ['TerminalFormatter']
@@ -75,6 +75,10 @@ class TerminalFormatter(Formatter):
     `linenos`
         Set to ``True`` to have line numbers on the terminal output as well
         (default: ``False`` = no line numbers).
+
+    `linenostart`
+        The line number for the first line (default: ``1``).
+
     """
     name = 'Terminal'
     aliases = ['terminal', 'console']
@@ -86,14 +90,17 @@ class TerminalFormatter(Formatter):
                                      ['light', 'dark'], 'light') == 'dark'
         self.colorscheme = options.get('colorscheme', None) or TERMINAL_COLORS
         self.linenos = options.get('linenos', False)
-        self._lineno = 0
+        self.linenostart = abs(get_int_opt(options, "linenostart", 1))
+        self._lineno = self.linenostart
 
     def format(self, tokensource, outfile):
         return Formatter.format(self, tokensource, outfile)
 
     def _write_lineno(self, outfile):
+        outfile.write(
+            "%s%04d: " % (self._lineno > self.linenostart and "\n" or "", self._lineno)
+        )
         self._lineno += 1
-        outfile.write("%s%04d: " % (self._lineno != 1 and '\n' or '', self._lineno))
 
     def _get_color(self, ttype):
         # self.colorscheme is a dict containing usually generic types, so we
