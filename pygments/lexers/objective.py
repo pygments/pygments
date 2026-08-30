@@ -391,6 +391,7 @@ class SwiftLexer(RegexLexer):
 
             # Implicit Block Variables
             (r'\$\d+', Name.Variable),
+            (r'\$[a-zA-Z_]\w*', Name.Variable),
 
             # Binary Literal
             (r'0b[01_]+', Number.Bin),
@@ -439,14 +440,14 @@ class SwiftLexer(RegexLexer):
             (r'(class)(\s+)(func)(\s+)([a-zA-Z_]\w*)',
              bygroups(Keyword.Declaration, Whitespace, Keyword.Declaration,
                       Whitespace, Name.Function)),
-            (r'(class)(\s+)(var)(\s+)([a-zA-Z_]\w*)',
+            (r'(class)(\s+)(var)(\s+)(\$?[a-zA-Z_]\w*)',
              bygroups(Keyword.Declaration, Whitespace, Keyword.Declaration,
                       Whitespace, Name.Variable)),
             (r'(class|enum|extension|struct|protocol)(\s+)([a-zA-Z_]\w*)',
              bygroups(Keyword.Declaration, Whitespace, Name.Class)),
             (r'(func)(\s+)([a-zA-Z_]\w*)',
              bygroups(Keyword.Declaration, Whitespace, Name.Function)),
-            (r'(var|let)(\s+)([a-zA-Z_]\w*)', bygroups(Keyword.Declaration,
+            (r'(var|let)(\s+)(\$?[a-zA-Z_]\w*)', bygroups(Keyword.Declaration,
              Whitespace, Name.Variable)),
             (words((
                 'actor', 'associatedtype', 'class', 'deinit', 'enum', 'extension', 'func', 'import',
