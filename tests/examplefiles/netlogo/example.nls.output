@@ -1,0 +1,150 @@
+';; Example code for the NetLogo language (https://netlogo.org)' Comment
+'\n\n'        Text.Whitespace
+
+'breed'       Keyword
+' '           Text.Whitespace
+'['           Punctuation
+'cats'        Name
+' '           Text.Whitespace
+'cat'         Name
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'breed'       Keyword
+' '           Text.Whitespace
+'['           Punctuation
+'rats'        Name
+' '           Text.Whitespace
+'rat'         Name
+']'           Punctuation
+'\n\n'        Text.Whitespace
+
+'cats-own'    Name
+' '           Text.Whitespace
+'['           Punctuation
+'\n  '        Text.Whitespace
+'feral?'      Name
+'\n'          Text.Whitespace
+
+']'           Punctuation
+'\n\n'        Text.Whitespace
+
+'to'          Keyword
+' '           Text.Whitespace
+'setup'       Name
+'\n  '        Text.Whitespace
+'clear-all'   Name.Builtin
+'\n\n  '      Text.Whitespace
+'create-cats' Name
+' '           Text.Whitespace
+'10'          Name
+' '           Text.Whitespace
+'['           Punctuation
+'\n    '      Text.Whitespace
+'set'         Name.Builtin
+' '           Text.Whitespace
+'color'       Name.Builtin
+' '           Text.Whitespace
+'orange'      Name.Variable
+'\n    '      Text.Whitespace
+'set'         Name.Builtin
+' '           Text.Whitespace
+'feral?'      Name
+' '           Text.Whitespace
+'one-of'      Name.Builtin
+' '           Text.Whitespace
+'['           Punctuation
+'true'        Name
+' '           Text.Whitespace
+'false'       Name
+']'           Punctuation
+'\n  '        Text.Whitespace
+']'           Punctuation
+'\n\n  '      Text.Whitespace
+'create-rats' Name
+' '           Text.Whitespace
+'100'         Name
+' '           Text.Whitespace
+'['           Punctuation
+'\n    '      Text.Whitespace
+'set'         Name.Builtin
+' '           Text.Whitespace
+'color'       Name.Builtin
+' '           Text.Whitespace
+'gray'        Name.Variable
+'\n  '        Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'end'         Keyword
+'\n\n'        Text.Whitespace
+
+'to'          Keyword
+' '           Text.Whitespace
+'go'          Name
+'\n  '        Text.Whitespace
+'ask'         Name.Builtin
+' '           Text.Whitespace
+'cats'        Name
+' '           Text.Whitespace
+'['           Punctuation
+'\n    '      Text.Whitespace
+'lt'          Name.Builtin
+' '           Text.Whitespace
+'random-normal' Name.Builtin
+' '           Text.Whitespace
+'0'           Name
+' '           Text.Whitespace
+'.456e2'      Literal.Number
+'\n\n    '    Text.Whitespace
+'let'         Name.Builtin
+' '           Text.Whitespace
+'speed'       Name
+' '           Text.Whitespace
+'1.23'        Literal.Number
+'\n\n    '    Text.Whitespace
+'if'          Name.Builtin
+' '           Text.Whitespace
+'feral?'      Name
+' '           Text.Whitespace
+'['           Punctuation
+'\n      '    Text.Whitespace
+'fd'          Name.Builtin
+' '           Text.Whitespace
+'2'           Name
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'speed'       Name
+'\n    '      Text.Whitespace
+']'           Punctuation
+'\n\n    '    Text.Whitespace
+'fd'          Name.Builtin
+' '           Text.Whitespace
+'speed'       Name
+'\n  '        Text.Whitespace
+']'           Punctuation
+'\n\n  '      Text.Whitespace
+'ask'         Name.Builtin
+' '           Text.Whitespace
+'rats'        Name
+' '           Text.Whitespace
+'['           Punctuation
+'\n    '      Text.Whitespace
+'lt'          Name.Builtin
+' '           Text.Whitespace
+'random-normal' Name.Builtin
+' '           Text.Whitespace
+'0'           Name
+' '           Text.Whitespace
+'.345e2'      Literal.Number
+'\n    '      Text.Whitespace
+'fd'          Name.Builtin
+' '           Text.Whitespace
+'3'           Name
+'\n  '        Text.Whitespace
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'end'         Keyword
+'\n'          Text.Whitespace
