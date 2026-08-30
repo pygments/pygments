@@ -1,0 +1,86 @@
+'auto'        Keyword
+' '           Text.Whitespace
+'lo'          Name
+'\n'          Text.Whitespace
+
+'iface'       Keyword
+' '           Text.Whitespace
+'lo'          Name
+' '           Text.Whitespace
+'inet'        Keyword
+' '           Text.Whitespace
+'loopback'    Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'auto'        Keyword
+' '           Text.Whitespace
+'eth0'        Name
+'\n'          Text.Whitespace
+
+'iface'       Keyword
+' '           Text.Whitespace
+'eth0'        Name
+' '           Text.Whitespace
+'inet'        Keyword
+' '           Text.Whitespace
+'static'      Keyword
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'address'     Keyword
+' '           Text.Whitespace
+'127.0.0.1'   Literal.IP
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'netmask'     Keyword
+' '           Text.Whitespace
+'255.255.255.128' Literal.IP
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'gateway'     Keyword
+' '           Text.Whitespace
+'127.0.1.1'   Literal.IP
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'iface'       Keyword
+' '           Text.Whitespace
+'eth0'        Name
+' '           Text.Whitespace
+'inet6'       Keyword
+' '           Text.Whitespace
+'static'      Keyword
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'address'     Keyword
+' '           Text.Whitespace
+'2001:db8:0:0:1:0:0:1' Literal.IP
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'netmask'     Keyword
+' '           Text.Whitespace
+'64'          Literal.Number
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'gateway'     Keyword
+' '           Text.Whitespace
+'2001:db8:0:0:1:0:0:2' Literal.IP
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+''            Text
+'autoconf'    Keyword
+' '           Text.Whitespace
+'0'           Literal.Number
+'\n'          Text.Whitespace
