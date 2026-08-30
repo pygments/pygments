@@ -1,0 +1,13 @@
+Tests that 'with' is a keyword when standalone, but part of identifier
+when hyphenated.
+
+---input---
+with
+with-streams
+
+---tokens---
+'with'        Keyword
+'\n'          Text.Whitespace
+
+'with-streams' Name
+'\n'          Text.Whitespace
