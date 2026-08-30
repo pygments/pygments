@@ -1,0 +1,117 @@
+---input---
+Event Empty()
+  ; Nothing
+EndEvent
+
+Event Arg(Bar b)
+  ; Nothing
+EndEvent
+
+Event ArgDef(Int i= ;/ Comment /; 0x123)
+  ; Nothing
+EndEvent
+
+Event Args(Bar b, Foo f)
+  ; Nothing
+EndEvent
+
+Event ArgsDef(Int i = 0x123, String s = "Test")
+  ; Nothing
+EndEvent
+
+---tokens---
+'Event'       Keyword.Declaration
+' '           Text.Whitespace
+'Empty'       Name.Function.Magic
+'('           Punctuation
+')'           Punctuation
+'\n  '        Text.Whitespace
+'; Nothing\n' Comment.Single
+
+'EndEvent'    Keyword.Declaration
+'\n\n'        Text.Whitespace
+
+'Event'       Keyword.Declaration
+' '           Text.Whitespace
+'Arg'         Name.Function.Magic
+'('           Punctuation
+'Bar'         Name.Class
+' '           Text.Whitespace
+'b'           Name.Variable.Instance
+')'           Punctuation
+'\n  '        Text.Whitespace
+'; Nothing\n' Comment.Single
+
+'EndEvent'    Keyword.Declaration
+'\n\n'        Text.Whitespace
+
+'Event'       Keyword.Declaration
+' '           Text.Whitespace
+'ArgDef'      Name.Function.Magic
+'('           Punctuation
+'Int'         Keyword.Type
+' '           Text.Whitespace
+'i'           Name.Variable.Instance
+'='           Operator
+' '           Text.Whitespace
+';/ Comment /;' Comment.Multiline
+' '           Text.Whitespace
+'0x123'       Literal.Number.Hex
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'; Nothing\n' Comment.Single
+
+'EndEvent'    Keyword.Declaration
+'\n\n'        Text.Whitespace
+
+'Event'       Keyword.Declaration
+' '           Text.Whitespace
+'Args'        Name.Function.Magic
+'('           Punctuation
+'Bar'         Name.Class
+' '           Text.Whitespace
+'b'           Name.Variable.Instance
+','           Punctuation
+' '           Text.Whitespace
+'Foo'         Name.Class
+' '           Text.Whitespace
+'f'           Name.Variable.Instance
+')'           Punctuation
+'\n  '        Text.Whitespace
+'; Nothing\n' Comment.Single
+
+'EndEvent'    Keyword.Declaration
+'\n\n'        Text.Whitespace
+
+'Event'       Keyword.Declaration
+' '           Text.Whitespace
+'ArgsDef'     Name.Function.Magic
+'('           Punctuation
+'Int'         Keyword.Type
+' '           Text.Whitespace
+'i'           Name.Variable.Instance
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x123'       Literal.Number.Hex
+','           Punctuation
+' '           Text.Whitespace
+'String'      Keyword.Type
+' '           Text.Whitespace
+'s'           Name.Variable.Instance
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Test'        Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'; Nothing\n' Comment.Single
+
+'EndEvent'    Keyword.Declaration
+'\n'          Text.Whitespace

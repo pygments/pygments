@@ -1,0 +1,69 @@
+---input---
+Auto State Foo
+  Function Bar()
+    GoToState("Bar")
+  EndFunction
+EndState
+
+State Bar
+  Function Bar()
+    Debug.Trace(GetState())
+  EndFunction
+EndState
+
+---tokens---
+'Auto'        Keyword
+' '           Text.Whitespace
+'State'       Keyword.Declaration
+' '           Text.Whitespace
+'Foo'         Name.Label
+'\n  '        Text.Whitespace
+'Function'    Keyword.Declaration
+' '           Text.Whitespace
+'Bar'         Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n    '      Text.Whitespace
+'GoToState'   Name.Builtin
+'('           Punctuation
+'"Bar"'       Name.Label
+')'           Punctuation
+'\n  '        Text.Whitespace
+'EndFunction' Keyword.Declaration
+'\n'          Text.Whitespace
+
+'EndState'    Keyword.Declaration
+'\n\n'        Text.Whitespace
+
+'State'       Keyword.Declaration
+' '           Text.Whitespace
+'Bar'         Name.Label
+'\n  '        Text.Whitespace
+'Function'    Keyword.Declaration
+' '           Text.Whitespace
+'Bar'         Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n    '      Text.Whitespace
+'Debug'       Name.Variable
+'.'           Operator
+'Trace'       Name.Function
+'('           Punctuation
+''            Text
+'GetState'    Name.Builtin
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+''            Text
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+''            Text
+'EndFunction' Name.Variable
+'\n'          Text.Whitespace
+
+''            Text
+'EndState'    Name.Variable
+'\n'          Text.Whitespace
+
+''            Text
