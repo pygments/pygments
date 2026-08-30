@@ -1,0 +1,235 @@
+! =============================================================================
+! Syntax Highlighting — Rosetta Code
+! https://rosettacode.org/wiki/Syntax_Highlighting
+! =============================================================================
+!
+! Highlight SheerPower 4GL source for MediaWiki:
+!   keywords/reserved words → bold  ('''…''')
+!   comments (! or //)      → italic (''…'')
+!   each line gets a leading space for preformatted display
+!
+! Special characters are escaped:
+!   '  →  &apos;      &  →  &amp;
+!   <  →  &lt;       >  →  &gt;
+!
+! The program reads its own source file via command_line$ and writes
+! the wiki-formatted version to the console.
+!
+! Demonstrates: FOR/NEXT, WHILE/DO, IF/ELSEIF/ELSE, routine, string ops
+! =============================================================================
+
+! ── Keyword table ────────────────────────────────────────────────────────────
+! SheerPower keywords that we want rendered in bold.
+
+dim kw$(64)
+declare integer kw_count%
+
+kw_count% = 0
+
+routine add_kw(w$)
+  kw_count% = kw_count% + 1
+  kw$(kw_count%) = lcase$(w$)
+end routine
+
+! Statement keywords
+call add_kw('print')    : call add_kw('input')    : call add_kw('prompt')
+call add_kw('let')      : call add_kw('stop')     : call add_kw('delay')
+call add_kw('pass')     : call add_kw('call')     : call add_kw('open')
+call add_kw('close')    : call add_kw('all')      : call add_kw('file')
+call add_kw('line')     : call add_kw('add')      : call add_kw('delete')
+call add_kw('reset')    : call add_kw('collect')  : call add_kw('copy')
+call add_kw('sort')     : call add_kw('extract')  : call add_kw('clear')
+
+! Declaration / structure
+call add_kw('dim')      : call add_kw('const')    : call add_kw('declare')
+call add_kw('enum')     : call add_kw('program')  : call add_kw('routine')
+call add_kw('end')      : call add_kw('local')    : call add_kw('private')
+call add_kw('module')   : call add_kw('cluster')  : call add_kw('table')
+
+! Conditionals
+call add_kw('if')       : call add_kw('then')     : call add_kw('else')
+call add_kw('elseif')
+
+! Loops
+call add_kw('for')      : call add_kw('to')       : call add_kw('step')
+call add_kw('next')     : call add_kw('while')    : call add_kw('until')
+call add_kw('do')       : call add_kw('loop')     : call add_kw('exit')
+call add_kw('iterate')
+
+! Exception handling
+call add_kw('when')     : call add_kw('exception')
+call add_kw('use')      : call add_kw('continue') : call add_kw('retry')
+call add_kw('handler')
+
+! Word-form operators
+call add_kw('and')      : call add_kw('or')       : call add_kw('not')
+call add_kw('mod')      : call add_kw('is')       : call add_kw('by')
+call add_kw('ascending'): call add_kw('descending')
+call add_kw('from')     : call add_kw('include')  : call add_kw('exclude')
+call add_kw('unique')   : call add_kw('nowait')   : call add_kw('using')
+call add_kw('select')   : call add_kw('case')     : call add_kw('in')
+
+! Type keywords
+call add_kw('real')     : call add_kw('string')   : call add_kw('integer')
+call add_kw('boolean')  : call add_kw('dynamic')
+
+
+! ── Helper: check if a word is a keyword ─────────────────────────────────────
+routine is_keyword?(w$)
+  declare integer k%
+  declare string lw$
+  lw$ = lcase$(w$)
+  for k% = 1 to kw_count%
+    if kw$(k%) = lw$ then
+      is_keyword? = 1
+      exit routine
+    end if
+  next k%
+  is_keyword? = 0
+end routine
+
+
+! ── Helper: escape special characters ────────────────────────────────────────
+routine escape$(t$)
+  declare string r$
+  declare integer p%
+  declare string ch$
+  r$ = ''
+  for p% = 1 to len(t$)
+    ch$ = mid$(t$, p%, 1)
+    if ch$ = '&' then
+      r$ = r$ + '&amp;'
+    elseif ch$ = "'" then
+      r$ = r$ + '&apos;'
+    elseif ch$ = '<' then
+      r$ = r$ + '&lt;'
+    elseif ch$ = '>' then
+      r$ = r$ + '&gt;'
+    else
+      r$ = r$ + ch$
+    end if
+  next p%
+  escape$ = r$
+end routine
+
+
+! ── Main: read own source and produce wiki-formatted output ──────────────────
+declare string src_file$, src_line$
+declare integer ch_pos%, line_len%
+declare string ch$, out$, word$, base$
+
+src_file$ = command_line$
+
+open file 1: src_file$
+
+do while not end_of_file?(1)
+  line input #1: src_line$
+  out$ = ' '
+  ch_pos% = 1
+  line_len% = len(src_line$)
+
+  do while ch_pos% <= line_len%
+    ch$ = mid$(src_line$, ch_pos%, 1)
+
+    ! ── Comment: ! or // to end-of-line ──────────────────────────────────
+    if ch$ = '!' or (ch$ = '/' and ch_pos% < line_len% and mid$(src_line$, ch_pos% + 1, 1) = '/') then
+      out$ = out$ + "''" + escape$(mid$(src_line$, ch_pos%)) + "''"
+      ch_pos% = line_len% + 1
+      iterate do
+
+    ! ── String literal: single- or double-quoted ─────────────────────────
+    elseif ch$ = "'" or ch$ = '"' then
+      declare string quote$
+      declare integer j%
+      quote$ = ch$
+      j% = ch_pos% + 1
+      do while j% <= line_len%
+        if mid$(src_line$, j%, 1) = quote$ then
+          if j% < line_len% and mid$(src_line$, j% + 1, 1) = quote$ then
+            j% = j% + 2
+          else
+            j% = j% + 1
+            exit do
+          end if
+        else
+          j% = j% + 1
+        end if
+      loop
+      out$ = out$ + escape$(mid$(src_line$, ch_pos%, j% - ch_pos%))
+      ch_pos% = j%
+      iterate do
+
+    ! ── Preprocessor directive: %keyword ─────────────────────────────────
+    elseif ch$ = '%' then
+      declare integer pj%
+      pj% = ch_pos% + 1
+      do while pj% <= line_len% and mid$(src_line$, pj%, 1) >= 'a' and mid$(src_line$, pj%, 1) <= 'z'
+        pj% = pj% + 1
+      loop
+      out$ = out$ + "'''" + escape$(mid$(src_line$, ch_pos%, pj% - ch_pos%)) + "'''"
+      ch_pos% = pj%
+      iterate do
+
+    ! ── Identifier / keyword ─────────────────────────────────────────────
+    elseif (ch$ >= 'a' and ch$ <= 'z') or (ch$ >= 'A' and ch$ <= 'Z') or ch$ = '_' then
+      declare integer wj%
+      wj% = ch_pos% + 1
+      do while wj% <= line_len%
+        declare string wc$
+        wc$ = mid$(src_line$, wj%, 1)
+        if (wc$ >= 'a' and wc$ <= 'z') or (wc$ >= 'A' and wc$ <= 'Z') or (wc$ >= '0' and wc$ <= '9') or wc$ = '_' then
+          wj% = wj% + 1
+        else
+          exit do
+        end if
+      loop
+      ! Include optional type suffix ($, %, ?)
+      if wj% <= line_len% then
+        declare string suffix$
+        suffix$ = mid$(src_line$, wj%, 1)
+        if suffix$ = '$' or suffix$ = '%' or suffix$ = '?' then
+          wj% = wj% + 1
+        end if
+      end if
+      word$ = mid$(src_line$, ch_pos%, wj% - ch_pos%)
+      ! Strip type suffix for keyword check
+      base$ = word$
+      if right$(base$, 1) = '$' or right$(base$, 1) = '%' or right$(base$, 1) = '?' then
+        base$ = left$(base$, len(base$) - 1)
+      end if
+      if is_keyword?(base$) then
+        out$ = out$ + "'''" + escape$(word$) + "'''"
+      else
+        out$ = out$ + escape$(word$)
+      end if
+      ch_pos% = wj%
+      iterate do
+
+    ! ── Digits ───────────────────────────────────────────────────────────
+    elseif ch$ >= '0' and ch$ <= '9' then
+      declare integer dj%
+      dj% = ch_pos% + 1
+      do while dj% <= line_len%
+        declare string dc$
+        dc$ = mid$(src_line$, dj%, 1)
+        if (dc$ >= '0' and dc$ <= '9') or dc$ = '.' or dc$ = '_' then
+          dj% = dj% + 1
+        else
+          exit do
+        end if
+      loop
+      out$ = out$ + escape$(mid$(src_line$, ch_pos%, dj% - ch_pos%))
+      ch_pos% = dj%
+      iterate do
+
+    ! ── Anything else: operators, whitespace, punctuation ────────────────
+    else
+      out$ = out$ + escape$(ch$)
+      ch_pos% = ch_pos% + 1
+    end if
+  loop
+
+  print out$
+loop
+
+close file 1
