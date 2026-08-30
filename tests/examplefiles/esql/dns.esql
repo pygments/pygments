@@ -1,0 +1,6 @@
+FROM logs-*
+| GROK dns.question.name "%{DATA}\\.%{GREEDYDATA:dns.question.registered_domain:string}"
+| STATS unique_queries = COUNT_DISTINCT(dns.question.name) BY dns.question.registered_domain, process.name
+| WHERE unique_queries > 10
+| SORT unique_queries DESC
+| RENAME unique_queries AS `Unique Queries`, dns.question.registered_domain AS `Registered Domain`, process.name AS `Process`
