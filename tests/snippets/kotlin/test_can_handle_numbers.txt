@@ -1,0 +1,139 @@
+---input---
+0
+1
+123
+9_000
+1__2
+123u
+123U
+123L
+123uL
+123UL
+123f
+0003f
+0b0110_10
+0B0110_10
+0xaf0__5
+0XAf0_76
+0b01L
+0xFF8800L
+0XFF8800L
+0b01uL
+0xFF8800uL
+0XFF8800uL
+0b01UL
+0xFF8800UL
+0XFF8800UL
+1.23
+.123
+1.2_3
+123.123e123
+123.123E123
+123.123e+123
+123.123E+123
+123.123e-123
+123.123E-123
+
+
+---tokens---
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'123'         Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'9_000'       Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'1__2'        Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'123u'        Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'123U'        Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'123L'        Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'123uL'       Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'123UL'       Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'123f'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'0003f'       Literal.Number.Float
+'\n'          Text.Whitespace
+
+'0b0110_10'   Literal.Number.Bin
+'\n'          Text.Whitespace
+
+'0B0110_10'   Literal.Number.Bin
+'\n'          Text.Whitespace
+
+'0xaf0__5'    Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'0XAf0_76'    Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'0b01L'       Literal.Number.Bin
+'\n'          Text.Whitespace
+
+'0xFF8800L'   Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'0XFF8800L'   Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'0b01uL'      Literal.Number.Bin
+'\n'          Text.Whitespace
+
+'0xFF8800uL'  Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'0XFF8800uL'  Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'0b01UL'      Literal.Number.Bin
+'\n'          Text.Whitespace
+
+'0xFF8800UL'  Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'0XFF8800UL'  Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'1.23'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'.123'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'1.2_3'       Literal.Number.Float
+'\n'          Text.Whitespace
+
+'123.123e123' Literal.Number.Float
+'\n'          Text.Whitespace
+
+'123.123E123' Literal.Number.Float
+'\n'          Text.Whitespace
+
+'123.123e+123' Literal.Number.Float
+'\n'          Text.Whitespace
+
+'123.123E+123' Literal.Number.Float
+'\n'          Text.Whitespace
+
+'123.123e-123' Literal.Number.Float
+'\n'          Text.Whitespace
+
+'123.123E-123' Literal.Number.Float
+'\n'          Text.Whitespace
