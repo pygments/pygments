@@ -1,0 +1,57 @@
+---input---
+export BUILD_SYS
+unset DISTRO_FEATURES
+unset do_configure[noexec]
+addpylib ${LAYERDIR}/lib oe
+addfragments conf/fragments BB_CONF_FRAGMENT_SUMMARY BB_CONF_FRAGMENT_DESCRIPTION OE_FRAGMENTS
+export CFLAGS = "-O2"
+
+---tokens---
+'export'      Keyword
+' '           Text.Whitespace
+'BUILD_SYS'   Name.Variable
+'\n'          Text.Whitespace
+
+'unset'       Keyword
+' '           Text.Whitespace
+'DISTRO_FEATURES' Name.Variable
+'\n'          Text.Whitespace
+
+'unset'       Keyword
+' '           Text.Whitespace
+'do_configure' Name.Variable
+'['           Punctuation
+'noexec'      Name.Attribute
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'addpylib'    Keyword
+' '           Text.Whitespace
+'${'          Literal.String.Interpol
+'LAYERDIR'    Name.Variable
+'}'           Literal.String.Interpol
+'/lib'        Name
+' '           Text.Whitespace
+'oe'          Name
+'\n'          Text.Whitespace
+
+'addfragments' Keyword
+' '           Text.Whitespace
+'conf/fragments' Name
+' '           Text.Whitespace
+'BB_CONF_FRAGMENT_SUMMARY' Name
+' '           Text.Whitespace
+'BB_CONF_FRAGMENT_DESCRIPTION' Name
+' '           Text.Whitespace
+'OE_FRAGMENTS' Name
+'\n'          Text.Whitespace
+
+'export '     Keyword.Type
+'CFLAGS'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'-O2'         Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace

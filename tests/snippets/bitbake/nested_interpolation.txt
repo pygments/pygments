@@ -1,0 +1,79 @@
+---input---
+TUNE_ARCH = "${TUNE_ARCH:tune-${DEFAULTTUNE}}"
+EFI_CLASS = "${@bb.utils.contains('MACHINE_FEATURES', 'efi', '${EFI_PROVIDER}', '', d)}"
+SP_UUID = "${SPM_TEST${SP_INDEX}_UUID}"
+AFTER = "still highlighted"
+
+---tokens---
+'TUNE_ARCH'   Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'${'          Literal.String.Interpol
+'TUNE_ARCH:tune-' Name.Variable
+'${'          Literal.String.Interpol
+'DEFAULTTUNE' Name.Variable
+'}'           Literal.String.Interpol
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'EFI_CLASS'   Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'${@'         Literal.String.Interpol
+'bb'          Name
+'.'           Operator
+'utils'       Name
+'.'           Operator
+'contains'    Name
+'('           Punctuation
+"'"           Literal.String.Single
+'MACHINE_FEATURES' Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'efi'         Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'${'          Literal.String.Interpol
+'EFI_PROVIDER' Name.Variable
+'}'           Literal.String.Interpol
+"'"           Literal.String.Single
+', '          Literal.String.Single
+"'"           Literal.String.Single
+"'"           Literal.String.Single
+', d)'        Literal.String.Single
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'SP_UUID'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'${'          Literal.String.Interpol
+'SPM_TEST'    Name.Variable
+'${'          Literal.String.Interpol
+'SP_INDEX'    Name.Variable
+'}'           Literal.String.Interpol
+'_UUID'       Name.Variable
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'AFTER'       Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'still highlighted' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace

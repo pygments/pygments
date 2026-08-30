@@ -1,0 +1,134 @@
+---input---
+fakeroot create_shar() {
+   cat << "EOF" > ${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.sh
+usage()
+{
+   echo "test"
+}
+EOF
+}
+SUMMARY = "this quote never closes
+PN = "recovered"
+COMPATIBLE_MACHINE = "^$"
+L = "${@'a'.replace('b', 'c')}"
+python do_broken() {
+    if True
+        pass ?? 3
+}
+
+---tokens---
+'fakeroot '   Keyword.Type
+'create_shar' Name.Function
+'() '         Text
+'{\n'         Punctuation
+
+'   '         Text.Whitespace
+'cat'         Text
+' '           Text.Whitespace
+'<'           Text
+'<'           Text
+' '           Text.Whitespace
+'"EOF"'       Literal.String.Double
+' '           Text.Whitespace
+'>'           Text
+' '           Text.Whitespace
+'${'          Literal.String.Interpol
+'SDK_DEPLOY'  Name.Variable
+'}'           Literal.String.Interpol
+'/'           Text
+'${'          Literal.String.Interpol
+'TOOLCHAIN_OUTPUTNAME' Name.Variable
+'}'           Literal.String.Interpol
+'.sh'         Text
+'\n'          Text.Whitespace
+
+'usage'       Text
+'('           Operator
+')'           Operator
+'\n'          Text.Whitespace
+
+'{'           Operator
+'\n   '       Text.Whitespace
+'echo'        Name.Builtin
+' '           Text.Whitespace
+'"test"'      Literal.String.Double
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'EOF'         Error
+'\n'          Text.Whitespace
+
+'}'           Error
+'\n'          Text.Whitespace
+
+'SUMMARY = "this quote never closes' Error
+'\n'          Text.Whitespace
+
+'PN'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'recovered'   Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'COMPATIBLE_MACHINE' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'^'           Literal.String.Double
+'$'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'L'           Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'${@'         Literal.String.Interpol
+"'"           Literal.String.Single
+'a'           Literal.String.Single
+"'"           Literal.String.Single
+'.'           Operator
+'replace'     Name
+'('           Punctuation
+"'"           Literal.String.Single
+'b'           Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'c'           Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'python'      Keyword
+' do_broken'  Name.Function
+'() '         Text
+'{\n'         Punctuation
+
+'    '        Text
+'if'          Keyword
+' '           Text
+'True'        Keyword.Constant
+'\n'          Text.Whitespace
+
+'        '    Text
+'pass'        Keyword
+' '           Text
+'?'           Error
+'?'           Error
+' '           Text
+'3'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

@@ -1,0 +1,95 @@
+---input---
+COMPATIBLE_MACHINE = "^$"
+UPSTREAM_CHECK_GITTAGREGEX = "^v(?P<pver>\d+(\.\d+)+)$"
+SPDX_FILE_EXCLUDE_PATTERNS = "\\.patch$ \\.o$"
+
+do_deploy() {
+    DEST=$1
+    EFIPATH=$(echo "${EFIDIR}" | sed 's/\//\\/g')
+    install -d "$DEST"
+}
+
+---tokens---
+'COMPATIBLE_MACHINE' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'^'           Literal.String.Double
+'$'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'UPSTREAM_CHECK_GITTAGREGEX' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'^v(?P<pver>' Literal.String.Double
+'\\'          Literal.String.Double
+'d+('         Literal.String.Double
+'\\'          Literal.String.Double
+'.'           Literal.String.Double
+'\\'          Literal.String.Double
+'d+)+)'       Literal.String.Double
+'$'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'SPDX_FILE_EXCLUDE_PATTERNS' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'\\'          Literal.String.Double
+'\\'          Literal.String.Double
+'.patch'      Literal.String.Double
+'$'           Literal.String.Double
+' '           Literal.String.Double
+'\\'          Literal.String.Double
+'\\'          Literal.String.Double
+'.o'          Literal.String.Double
+'$'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'do_deploy'   Name.Function
+'() '         Text
+'{\n'         Punctuation
+
+'    '        Text.Whitespace
+'DEST'        Name.Variable
+'='           Operator
+'$1'          Name.Variable
+'\n    '      Text.Whitespace
+'EFIPATH'     Name.Variable
+'='           Operator
+'$('          Keyword
+'echo'        Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'${'          Literal.String.Interpol
+'EFIDIR'      Name.Variable
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'|'           Punctuation
+' '           Text.Whitespace
+'sed'         Text
+' '           Text.Whitespace
+"'s/\\//\\\\/g'" Literal.String.Single
+')'           Keyword
+'\n    '      Text.Whitespace
+'install'     Text
+' '           Text.Whitespace
+'-d'          Text
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'$DEST'       Name.Variable
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
