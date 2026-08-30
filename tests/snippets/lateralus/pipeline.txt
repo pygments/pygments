@@ -1,0 +1,97 @@
+---input---
+fn square(x: int) -> int { x * x }
+
+fn main() {
+    let nums = [1, 2, 3, 4, 5]
+    let total = nums |> map(square) |> sum()
+    println("total = {total}")
+}
+
+---tokens---
+'fn'          Keyword
+' '           Text.Whitespace
+'square'      Name
+'('           Punctuation
+'x'           Name
+':'           Punctuation
+' '           Text.Whitespace
+'int'         Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'fn'          Keyword
+' '           Text.Whitespace
+'main'        Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'nums'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+']'           Punctuation
+'\n    '      Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'total'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'nums'        Name
+' '           Text.Whitespace
+'|>'          Operator
+' '           Text.Whitespace
+'map'         Keyword.Type
+'('           Punctuation
+'square'      Name
+')'           Punctuation
+' '           Text.Whitespace
+'|>'          Operator
+' '           Text.Whitespace
+'sum'         Name.Builtin
+'('           Punctuation
+')'           Punctuation
+'\n    '      Text.Whitespace
+'println'     Name.Builtin
+'('           Punctuation
+'"'           Literal.String
+'total = '    Literal.String
+'{total}'     Literal.String.Interpol
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
