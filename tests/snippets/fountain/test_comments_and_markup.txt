@@ -1,0 +1,55 @@
+---input---
+This is [[a note]] inside action.
+
+/*
+Hidden scene.
+Still hidden.
+*/
+
+~Sing a *_song_*.
+
+STEEL
+Escape this: \*9765\*
+
+---tokens---
+'This is '    Text
+'[[a note]]'  Comment.Special
+' inside action.' Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'/*'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'Hidden scene.' Comment.Multiline
+'\n'          Text.Whitespace
+
+'Still hidden.' Comment.Multiline
+'\n'          Text.Whitespace
+
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'~'           Punctuation
+'Sing a '     Literal.String.Other
+'*'           Punctuation
+'_'           Punctuation
+'song'        Generic.EmphStrong
+'_'           Punctuation
+'*'           Punctuation
+'.'           Literal.String.Other
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'STEEL'       Name.Label
+'\n'          Text.Whitespace
+
+'Escape this: ' Literal.String
+'\\*'         Literal.String.Escape
+'9765'        Literal.String
+'\\*'         Literal.String.Escape
+'\n'          Text.Whitespace
