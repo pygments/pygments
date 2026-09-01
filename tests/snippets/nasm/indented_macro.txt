@@ -1,0 +1,90 @@
+---input---
+%define MACRO1 value1
+    %define MACRO2 value2
+mov eax, 1
+    %define MACRO3 value3
+%macro NAME 0
+    nop
+%endmacro
+    %macro NAME2 0
+        nop
+    %endmacro
+%ifdef DEBUG
+    int 3
+%endif
+    %ifdef DEBUG2
+        int 3
+    %endif
+
+---tokens---
+'%'           Comment.Preproc
+'define MACRO1 value1' Comment.Preproc
+'\n'          Comment.Preproc
+
+'    %'       Comment.Preproc
+'define MACRO2 value2' Comment.Preproc
+'\n'          Comment.Preproc
+
+'mov'         Name.Function
+' '           Text.Whitespace
+'eax'         Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'    %'       Comment.Preproc
+'define MACRO3 value3' Comment.Preproc
+'\n'          Comment.Preproc
+
+'%'           Comment.Preproc
+'macro NAME 0' Comment.Preproc
+'\n'          Comment.Preproc
+
+'    '        Text.Whitespace
+'nop'         Name.Function
+'\n'          Text.Whitespace
+
+'%'           Comment.Preproc
+'endmacro'    Comment.Preproc
+'\n'          Comment.Preproc
+
+'    %'       Comment.Preproc
+'macro NAME2 0' Comment.Preproc
+'\n'          Comment.Preproc
+
+'        '    Text.Whitespace
+'nop'         Name.Function
+'\n'          Text.Whitespace
+
+'    %'       Comment.Preproc
+'endmacro'    Comment.Preproc
+'\n'          Comment.Preproc
+
+'%'           Comment.Preproc
+'ifdef DEBUG' Comment.Preproc
+'\n'          Comment.Preproc
+
+'    '        Text.Whitespace
+'int'         Name.Function
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'%'           Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
+
+'    %'       Comment.Preproc
+'ifdef DEBUG2' Comment.Preproc
+'\n'          Comment.Preproc
+
+'        '    Text.Whitespace
+'int'         Name.Function
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'    %'       Comment.Preproc
+'endif'       Comment.Preproc
+'\n'          Comment.Preproc
