@@ -1283,7 +1283,7 @@ class WikitextLexer(RegexLexer):
             (r'(?i)(<)(gallery)\b', bygroups(
                 Punctuation, Name.Tag), ('tag-gallery', 'tag-inner')),
             # <graph>
-            (r'(?i)(<)(gallery)\b', bygroups(
+            (r'(?i)(<)(graph)\b', bygroups(
                 Punctuation, Name.Tag), ('tag-graph', 'tag-inner')),
             # <dynamicpagelist>
             (r'(?i)(<)(dynamicpagelist)\b', bygroups(

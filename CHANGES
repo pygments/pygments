@@ -7,6 +7,10 @@ Version 2.22.0
 --------------
 (not released yet)
 
+- Updated lexers:
+
+  * Wikitext: Fix ``<graph>`` rule matching ``gallery`` instead of ``graph``,
+    so that ``<graph>`` content is treated as plain text
 Version 2.21.0
 ---------------
 (released August 17th, 2026)

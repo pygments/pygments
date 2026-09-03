@@ -96,6 +96,9 @@ arialabel=
 File:Example.jpg
 File:Example.jpg
 </gallery>
+<graph>
+digraph Graph { [[a]] -> ''b'' }
+</graph>
 <gallery mode=packed heights=150px style="text-align:left">
 a|1
 Detroit Publishing Co. - A Yeoman of the Guard (N.B. actually a Yeoman Warder), full restoration.jpg|A Yeoman Warder, from a Victorian-era [[photochrom]]
@@ -802,6 +805,16 @@ e f g a|b c' d' e'|f' g' a' b'|]
 
 '</'          Punctuation
 'gallery'     Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'graph'       Name.Tag
+'>'           Punctuation
+"\ndigraph Graph { [[a]] -> ''b'' }\n" Text
+
+'</'          Punctuation
+'graph'       Name.Tag
 '>'           Punctuation
 '\n'          Text
 
