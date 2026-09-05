@@ -1,0 +1,51 @@
+---input---
+main {
+  color: red;
+  .sidenote {
+    color: blue;
+    .end {
+      display: none;
+    }
+  }
+}
+
+---tokens---
+'main'        Name.Tag
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'color'       Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'red'         Keyword.Constant
+';'           Punctuation
+'\n  '        Text.Whitespace
+'.'           Punctuation
+'sidenote'    Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'color'       Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'blue'        Keyword.Constant
+';'           Punctuation
+'\n    '      Text.Whitespace
+'.'           Punctuation
+'end'         Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n      '    Text.Whitespace
+'display'     Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'none'        Keyword.Constant
+';'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

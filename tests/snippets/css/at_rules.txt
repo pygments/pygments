@@ -1,0 +1,73 @@
+---input---
+@font-face {
+  font-family: "Foo";
+  src: url(foo.woff2);
+}
+.bar {
+  color: red;
+  @media (width >= 600px) {
+    color: blue;
+  }
+}
+
+---tokens---
+'@'           Punctuation
+'font-face'   Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'font-family' Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'"Foo"'       Literal.String.Double
+';'           Punctuation
+'\n  '        Text.Whitespace
+'src'         Name
+':'           Punctuation
+' '           Text.Whitespace
+'url'         Name.Builtin
+'('           Punctuation
+'foo.woff2'   Literal.String.Other
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'.'           Punctuation
+'bar'         Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'color'       Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'red'         Keyword.Constant
+';'           Punctuation
+'\n  '        Text.Whitespace
+'@'           Punctuation
+'media'       Keyword
+' '           Text.Whitespace
+'('           Operator
+'width'       Name.Tag
+' '           Text.Whitespace
+'>'           Operator
+'='           Operator
+' '           Text.Whitespace
+'600px'       Name.Tag
+')'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'color'       Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'blue'        Keyword.Constant
+';'           Punctuation
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
