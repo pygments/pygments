@@ -1,0 +1,46 @@
+---input---
+int fourcc = 'ABCD';
+char esc = '\n', oct = '\101', quote = '\'';
+
+---tokens---
+'int'         Keyword.Type
+' '           Text.Whitespace
+'fourcc'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'ABCD'        Literal.String.Char
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'char'        Keyword.Type
+' '           Text.Whitespace
+'esc'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'\\n'         Literal.String.Char
+"'"           Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+'oct'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'\\101'       Literal.String.Char
+"'"           Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+'quote'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Char
+"\\'"         Literal.String.Char
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
