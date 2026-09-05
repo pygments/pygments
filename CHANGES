@@ -12,6 +12,8 @@ Version 2.22.0
   * CSS:
     - Support nested parentheses inside functions such as ``calc()``
     - Keep a dashed identifier in a single token in a function argument
+    - Allow ``<`` and ``>`` inside a function, as used by the syntax
+      argument of ``attr()``
     - Add the ``fr`` unit and the newer font-relative, viewport and
       container-query length units (``lh``, ``dvh``, ``cqw``, ...)
     - Refresh the property list

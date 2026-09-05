@@ -274,7 +274,7 @@ class CssLexer(RegexLexer):
 
             (r'/\*[\s\S]*?\*/', Comment),
             include('numeric-values'),
-            (r'[*+/-]', Operator),
+            (r'[*+/<>-]', Operator),
             (r',', Punctuation),
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
             (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
