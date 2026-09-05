@@ -206,13 +206,10 @@ class CssLexer(RegexLexer):
             (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
         ],
         'atrule': [
-            (r'\{', Punctuation, 'atcontent'),
+            (r'\{', Punctuation, ('#pop', 'content')),
             (r';', Punctuation, '#pop'),
+            (r'(@)([\w-]+)', bygroups(Punctuation, Keyword)),
             include('basics'),
-        ],
-        'atcontent': [
-            include('basics'),
-            (r'\}', Punctuation, '#pop:2'),
         ],
         'content': [
             (r'\s+', Whitespace),
@@ -229,6 +226,9 @@ class CssLexer(RegexLexer):
              'value-start'),
 
             (r'/\*[\s\S]*?\*/', Comment),
+
+            # nested rules
+            include('basics'),
         ],
         'value-start': [
             (r'\s+', Whitespace),
@@ -615,12 +615,8 @@ class LessCssLexer(CssLexer):
             (r'/\*[\s\S]*?\*/', Comment.Multiline),
             inherit,
         ],
-        'atcontent': [
-            (r'//.*\n', Comment.Single),
-            (r'/\*[\s\S]*?\*/', Comment.Multiline),
-            inherit,
-        ],
         'atrule': [
+            (r'@\w+', Name.Variable),
             (r'//.*\n', Comment.Single),
             (r'/\*[\s\S]*?\*/', Comment.Multiline),
             inherit,
