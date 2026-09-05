@@ -248,6 +248,7 @@ class CssLexer(RegexLexer):
 
             include('numeric-values'),
 
+            (r'-{1,2}[a-zA-Z_][\w-]*', Name.Variable),
             (r'[~^*!%&<>|+=@:./?-]+', Operator),
             (r'[\[\](),]+', Punctuation),
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
@@ -258,7 +259,7 @@ class CssLexer(RegexLexer):
         ],
         'function-start': [
             (r'\s+', Whitespace),
-            (r'[-]+([A-Za-z][\w+]*[-]*)+', Name.Variable),
+            (r'-{1,2}[a-zA-Z_][\w-]*', Name.Variable),
             include('urls'),
             (words(_vendor_prefixes,), Keyword.Pseudo),
             (words(_keyword_values, suffix=r'\b'), Keyword.Constant),
@@ -277,7 +278,7 @@ class CssLexer(RegexLexer):
             (r',', Punctuation),
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
             (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
-            (r'[a-zA-Z_-]\w*', Name),
+            (r'[a-zA-Z_][\w-]*', Name),
             # parenthesized sub-expressions, e.g. in calc()
             (r'\(', Punctuation, '#push'),
             (r'\)', Punctuation, '#pop'),

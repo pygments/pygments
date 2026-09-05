@@ -1,0 +1,52 @@
+---input---
+.sidenote {
+  --sidenote-width: 10rem;
+  anchor-name: --sidenote;
+  color: attr(data-color);
+  width: var(--sidenote-width, 10px);
+}
+
+---tokens---
+'.'           Punctuation
+'sidenote'    Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'--sidenote-width' Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'rem'         Keyword.Type
+';'           Punctuation
+'\n  '        Text.Whitespace
+'anchor-name' Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'--sidenote'  Name.Variable
+';'           Punctuation
+'\n  '        Text.Whitespace
+'color'       Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'attr'        Name.Builtin
+'('           Punctuation
+'data-color'  Name
+')'           Punctuation
+';'           Punctuation
+'\n  '        Text.Whitespace
+'width'       Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'var'         Name.Function
+'('           Punctuation
+'--sidenote-width' Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'px'          Keyword.Type
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
