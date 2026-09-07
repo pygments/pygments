@@ -1,0 +1,86 @@
+'/* Multi-character character constants (ISO C17 6.4.4.4p10, implementation-defined).\n   Used in practice for FourCC / four-byte magic numbers. Must not lex as Error. */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'video_fourcc' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'ABCD'        Literal.String.Char
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'avc1'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'avc1'        Literal.String.Char
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'yuy2'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'YUY2'        Literal.String.Char
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'char'        Keyword.Type
+' '           Text.Whitespace
+'single'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'a'           Literal.String.Char
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'char'        Keyword.Type
+' '           Text.Whitespace
+'escaped'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'\\n'         Literal.String.Char
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'char'        Keyword.Type
+' '           Text.Whitespace
+'hex_escape'  Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'\\x41'       Literal.String.Char
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'unsigned'    Keyword.Type
+' '           Text.Whitespace
+'octal_escape' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'\\101'       Literal.String.Char
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
