@@ -185,6 +185,12 @@ def test_get_lexers():
         raise Exception
 
 
+@pytest.mark.parametrize('mimetype', ['text/markdown', 'text/x-markdown'])
+def test_get_markdown_lexer_for_mimetype(mimetype):
+    assert isinstance(lexers.get_lexer_for_mimetype(mimetype),
+                      lexers.MarkdownLexer)
+
+
 @pytest.mark.parametrize('cls', [getattr(formatters, name)
                                  for name in formatters.FORMATTERS])
 def test_formatter_public_api(cls):

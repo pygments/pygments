@@ -528,7 +528,7 @@ class MarkdownLexer(RegexLexer):
     url = 'https://daringfireball.net/projects/markdown/'
     aliases = ['markdown', 'md']
     filenames = ['*.md', '*.markdown']
-    mimetypes = ["text/x-markdown"]
+    mimetypes = ["text/markdown", "text/x-markdown"]
     version_added = '2.2'
     flags = re.MULTILINE
 
