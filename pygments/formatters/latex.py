@@ -241,6 +241,10 @@ class LatexFormatter(Formatter):
         set. (default: ``''``).
 
         .. versionadded:: 2.0
+        .. versionchanged:: 2.22
+           Escapes outside of comments are found when the formatter is used
+           from Python as well. Before, that only worked on the command line,
+           which wraps the lexer in `LatexEmbeddedLexer`.
 
     `envname`
         Allows you to pick an alternative environment name replacing Verbatim.
@@ -318,6 +322,68 @@ class LatexFormatter(Formatter):
             t2n[ttype] = name
             c2d[name] = cmndef
 
+    def _escape_inside(self, tokensource):
+        # comments and strings keep their tokens, everything in between is
+        # joined and searched for the delimiters, which can sit in other
+        # tokens than the text they enclose. this is what LatexEmbeddedLexer
+        # does for the command line, done again here so the option also works
+        # when the formatter is fed by a plain lexer
+        buffer = []
+        for ttype, value in tokensource:
+            if ttype in Token.Comment or ttype in Token.String                     or ttype in Token.Escape:
+                yield from self._split_escapes(buffer)
+                buffer = []
+                yield ttype, value
+            else:
+                buffer.append((ttype, value))
+        yield from self._split_escapes(buffer)
+
+    def _split_escapes(self, tokens):
+        text = ''.join(value for _, value in tokens)
+        if self.left not in text:
+            yield from tokens
+            return
+
+        # the spans to replace, as (start, end, token type, value)
+        spans = []
+        pos = 0
+        while True:
+            start = text.find(self.left, pos)
+            if start < 0:
+                break
+            end = text.find(self.right, start + len(self.left))
+            if end < 0:
+                # a lone delimiter is an error, like in the embedded lexer
+                pos = start + len(self.left)
+                spans.append((start, pos, Token.Error, self.left))
+                continue
+            inner = text[start + len(self.left):end]
+            pos = end + len(self.right)
+            spans.append((start, pos, Token.Escape, inner))
+
+        # hand the tokens out again, cut where a span starts or ends
+        state = [0, 0, 0]  # token index, its offset in text, emitted up to
+
+        def walk(upto, keep):
+            i, offset, at = state
+            while at < upto:
+                ttype, value = tokens[i]
+                end = offset + len(value)
+                cut = min(end, upto)
+                if keep and cut > at:
+                    yield ttype, value[at - offset:cut - offset]
+                at = cut
+                if at == end:
+                    i += 1
+                    offset = end
+            state[:] = [i, offset, at]
+
+        for start, end, ttype, value in spans:
+            yield from walk(start, True)
+            yield ttype, value
+            yield from walk(end, False)
+        yield from walk(len(text), True)
+
     def get_style_defs(self, arg=''):
         """
         Return the command sequences needed to define the commands
@@ -352,6 +418,9 @@ class LatexFormatter(Formatter):
             if self.verboptions:
                 outfile.write(',' + self.verboptions)
             outfile.write(']\n')
+
+        if self.escapeinside:
+            tokensource = self._escape_inside(tokensource)
 
         for ttype, value in tokensource:
             if ttype in Token.Comment:
