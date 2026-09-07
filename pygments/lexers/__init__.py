@@ -29,7 +29,17 @@ __all__ = ['get_lexer_by_name', 'get_lexer_for_filename', 'find_lexer_class',
            'guess_lexer', 'load_lexer_from_file'] + list(LEXERS) + list(COMPAT)
 
 _lexer_cache = {}
+_alias_cache = {}
 _pattern_cache = {}
+# Mutated in place so lookups stay shared after this module is swapped
+# for the lazy _automodule at the bottom of the file.
+_lexer_lookup_state = {'plugins_loaded': False}
+
+_alias_index = {}
+for _modname, _lname, _aliases, _filenames, _mimetypes in LEXERS.values():
+    for _alias in _aliases:
+        _alias_index.setdefault(_alias.lower(), (_modname, _lname))
+del _modname, _lname, _aliases, _filenames, _mimetypes, _alias
 
 
 def _fn_matches(fn, glob):
@@ -40,12 +50,28 @@ def _fn_matches(fn, glob):
     return _pattern_cache[glob].match(fn)
 
 
+def _register_lexer(cls):
+    """Remember a lexer class by name and by each of its aliases."""
+    _lexer_cache[cls.name] = cls
+    for alias in cls.aliases:
+        _alias_cache[alias.lower()] = cls
+
+
 def _load_lexers(module_name):
     """Load a lexer (and all others in the module too)."""
     mod = __import__(module_name, None, None, ['__all__'])
     for lexer_name in mod.__all__:
         cls = getattr(mod, lexer_name)
-        _lexer_cache[cls.name] = cls
+        _register_lexer(cls)
+
+
+def _load_plugin_lexers():
+    """Load plugin lexers once so later alias lookups are O(1)."""
+    if _lexer_lookup_state['plugins_loaded']:
+        return
+    for cls in find_plugin_lexers():
+        _register_lexer(cls)
+    _lexer_lookup_state['plugins_loaded'] = True
 
 
 def get_all_lexers(plugins=True):
@@ -75,9 +101,8 @@ def find_lexer_class(name):
             _load_lexers(module_name)
             return _lexer_cache[name]
     # continue with lexers from setuptools entrypoints
-    for cls in find_plugin_lexers():
-        if cls.name == name:
-            return cls
+    _load_plugin_lexers()
+    return _lexer_cache.get(name)
 
 
 def find_lexer_class_by_name(_alias):
@@ -94,16 +119,20 @@ def find_lexer_class_by_name(_alias):
     """
     if not _alias:
         raise ClassNotFound(f'no lexer for alias {_alias!r} found')
-    # lookup builtin lexers
-    for module_name, name, aliases, _, _ in LEXERS.values():
-        if _alias.lower() in aliases:
-            if name not in _lexer_cache:
-                _load_lexers(module_name)
-            return _lexer_cache[name]
-    # continue with lexers from setuptools entrypoints
-    for cls in find_plugin_lexers():
-        if _alias.lower() in cls.aliases:
-            return cls
+    key = _alias.lower()
+    cls = _alias_cache.get(key)
+    if cls is not None:
+        return cls
+    info = _alias_index.get(key)
+    if info is not None:
+        module_name, name = info
+        if name not in _lexer_cache:
+            _load_lexers(module_name)
+        return _lexer_cache[name]
+    _load_plugin_lexers()
+    cls = _alias_cache.get(key)
+    if cls is not None:
+        return cls
     raise ClassNotFound(f'no lexer for alias {_alias!r} found')
 
 
@@ -116,20 +145,7 @@ def get_lexer_by_name(_alias, **options):
     Will raise :exc:`pygments.util.ClassNotFound` if no lexer with that alias is
     found.
     """
-    if not _alias:
-        raise ClassNotFound(f'no lexer for alias {_alias!r} found')
-
-    # lookup builtin lexers
-    for module_name, name, aliases, _, _ in LEXERS.values():
-        if _alias.lower() in aliases:
-            if name not in _lexer_cache:
-                _load_lexers(module_name)
-            return _lexer_cache[name](**options)
-    # continue with lexers from setuptools entrypoints
-    for cls in find_plugin_lexers():
-        if _alias.lower() in cls.aliases:
-            return cls(**options)
-    raise ClassNotFound(f'no lexer for alias {_alias!r} found')
+    return find_lexer_class_by_name(_alias)(**options)
 
 
 def load_lexer_from_file(filename, lexername="CustomLexer", **options):
