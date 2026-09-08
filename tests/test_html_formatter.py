@@ -324,14 +324,12 @@ def test_html_escape_attributes():
         cssclass='bad<script>',
         cssstyles='color: "&"',
         filename='<file\'>.py',
-        lineseparator='<br>',
         lineanchors='anchor"name',
         linespans='span&name',
     )
     assert fmt.cssclass == 'bad&lt;script&gt;'
     assert fmt.cssstyles == 'color: &quot;&amp;&quot;'
     assert fmt.filename == '&lt;file&#x27;&gt;.py'
-    assert fmt.lineseparator == '&lt;br&gt;'
     assert fmt.lineanchors == 'anchor&quot;name'
     assert fmt.linespans == 'span&amp;name'
 
@@ -351,3 +349,15 @@ def test_html_escape_attributes():
     assert fmt_none.lineseparator == ''
     assert fmt_none.lineanchors == ''
     assert fmt_none.linespans == ''
+
+
+def test_lineseparator_not_escaped():
+    """``lineseparator`` is emitted as element content, so it must not be
+    HTML-escaped: setting it to ``<br>`` should insert a real line break,
+    not the ``&lt;br&gt;`` text (regression for #3301)."""
+    outfile = StringIO()
+    fmt = HtmlFormatter(lineseparator='<br>', nowrap=True)
+    fmt.format([(Token.Keyword, 'def\n'), (Token.Name, 'f\n')], outfile)
+    html = outfile.getvalue()
+    assert '<br>' in html
+    assert '&lt;br&gt;' not in html

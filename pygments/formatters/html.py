@@ -439,7 +439,12 @@ class HtmlFormatter(Formatter):
         self.linenostep = abs(get_int_opt(options, 'linenostep', 1))
         self.linenospecial = abs(get_int_opt(options, 'linenospecial', 0))
         self.nobackground = get_bool_opt(options, 'nobackground', False)
-        self.lineseparator = html_escape(options.get('lineseparator', '\n'))
+        # ``lineseparator`` is emitted as element content between lines (not
+        # inside an attribute), so it must not be HTML-escaped -- otherwise
+        # the documented ``<br>`` value is rendered literally as ``&lt;br&gt;``.
+        # ``lineanchors``/``linespans`` DO end up inside attributes (id/name/
+        # href), so they must stay escaped.
+        self.lineseparator = options.get('lineseparator', '\n') or ''
         self.lineanchors = html_escape(options.get('lineanchors', ''))
         self.linespans = html_escape(options.get('linespans', ''))
         self.anchorlinenos = get_bool_opt(options, 'anchorlinenos', False)
