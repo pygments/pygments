@@ -303,6 +303,32 @@ def test_filename_none():
     assert '<span class="filename">' not in outfile.getvalue()
 
 
+def test_langclass():
+    fmt = HtmlFormatter(langclass='python')
+    outfile = StringIO()
+    fmt.format(tokensource, outfile)
+    html = outfile.getvalue()
+    assert '<div class="highlight language-python">' in html
+
+
+def test_langclass_without_cssclass():
+    # cssclass='' would normally suppress the class attribute entirely;
+    # langclass should still cause one to be emitted.
+    fmt = HtmlFormatter(cssclass='', langclass='python')
+    outfile = StringIO()
+    fmt.format(tokensource, outfile)
+    html = outfile.getvalue()
+    assert '<div class="language-python">' in html
+
+
+def test_langclass_default_empty():
+    fmt = HtmlFormatter()
+    assert fmt.langclass == ''
+    outfile = StringIO()
+    fmt.format(tokensource, outfile)
+    assert outfile.getvalue().startswith('<div class="highlight"><pre>')
+
+
 def test_debug_token_types():
     fmt_nod_token_types = HtmlFormatter(debug_token_types=False)
     outfile_nod_token_types = StringIO()
@@ -327,6 +353,7 @@ def test_html_escape_attributes():
         lineseparator='<br>',
         lineanchors='anchor"name',
         linespans='span&name',
+        langclass='c++<script>',
     )
     assert fmt.cssclass == 'bad&lt;script&gt;'
     assert fmt.cssstyles == 'color: &quot;&amp;&quot;'
@@ -334,6 +361,7 @@ def test_html_escape_attributes():
     assert fmt.lineseparator == '&lt;br&gt;'
     assert fmt.lineanchors == 'anchor&quot;name'
     assert fmt.linespans == 'span&amp;name'
+    assert fmt.langclass == 'c++&lt;script&gt;'
 
     """Test that None values for these options are handled gracefully."""
 
@@ -344,6 +372,7 @@ def test_html_escape_attributes():
         lineseparator=None,
         lineanchors=None,
         linespans=None,
+        langclass=None,
     )
     assert fmt_none.cssclass == ''
     assert fmt_none.cssstyles == ''
@@ -351,3 +380,4 @@ def test_html_escape_attributes():
     assert fmt_none.lineseparator == ''
     assert fmt_none.lineanchors == ''
     assert fmt_none.linespans == ''
+    assert fmt_none.langclass == ''
