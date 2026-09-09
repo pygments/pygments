@@ -89,6 +89,9 @@ class BaseMakefileLexer(RegexLexer):
             (r'((?:un)?export)(\s+)(?=[\w${}\t -]+\n)',
              bygroups(Keyword, Whitespace), 'export'),
             (r'(?:un)?export\s+', Keyword),
+            # GNU make: ``override`` prefixes a variable assignment and must
+            # not fall through to the error path (see #2683).
+            (r'override(?=\s)', Keyword),
             # assignment
             (r'([\w${}().-]+)(\s*)([!?:+]?=)([ \t]*)((?:.*\\\n)+|.*\n)',
              bygroups(

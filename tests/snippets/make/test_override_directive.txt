@@ -1,0 +1,47 @@
+---input---
+override variable = value
+override variable := value
+override variable += value
+override: target
+override-var = x
+
+---tokens---
+'override'    Keyword
+' '           Text.Whitespace
+'variable'    Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'value'       Text
+'\n'          Text.Whitespace
+
+'override'    Keyword
+' '           Text.Whitespace
+'variable'    Name.Variable
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'value'       Text
+'\n'          Text.Whitespace
+
+'override'    Keyword
+' '           Text.Whitespace
+'variable'    Name.Variable
+' '           Text.Whitespace
+'+='          Operator
+' '           Text.Whitespace
+'value'       Text
+'\n'          Text.Whitespace
+
+'override'    Name.Function
+':'           Operator
+' '           Text.Whitespace
+'target'      Name
+'\n'          Text.Whitespace
+
+'override-var' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'x'           Text
+'\n'          Text.Whitespace
