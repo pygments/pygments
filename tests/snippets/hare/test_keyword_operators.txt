@@ -1,0 +1,78 @@
+---input---
+export fn isfile(path: str) bool = {
+	let ascii = 0;
+	let found = ascii as int;
+	let is_valid = found is int;
+	return true;
+};
+
+---tokens---
+'export'      Keyword
+' '           Text.Whitespace
+'fn'          Keyword
+' '           Text.Whitespace
+'isfile'      Name
+'('           Punctuation
+'path'        Name
+':'           Operator
+' '           Text.Whitespace
+'str'         Name
+')'           Punctuation
+' '           Text.Whitespace
+'bool'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'ascii'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'found'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'ascii'       Name
+' '           Text.Whitespace
+'as'          Operator
+' '           Text.Whitespace
+'int'         Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'is_valid'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'found'       Name
+' '           Text.Whitespace
+'is'          Operator
+' '           Text.Whitespace
+'int'         Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'true'        Name.Builtin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'};'          Punctuation
+'\n'          Text.Whitespace
