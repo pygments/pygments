@@ -1,0 +1,9 @@
+An unterminated comment ending in a run of backslashes at the end of
+the input must highlight in linear time; see issue #3311.
+
+---input---
+//\\\\
+
+---tokens---
+'//\\\\\\\\'  Comment.Single
+'\n'          Text

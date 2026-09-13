@@ -1,0 +1,16 @@
+A comment ending in an even number of backslashes ends at the newline;
+the next line is lexed normally.
+
+---input---
+//\\
+foo();
+
+---tokens---
+'//\\\\'      Comment.Single
+'\n'          Text
+
+'foo'         Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text

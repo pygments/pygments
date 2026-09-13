@@ -181,8 +181,10 @@
 '/**/'        Comment.Multiline
 '/**/'        Comment.Multiline
 ' '           Text
-'// /* \\\\\n#define Room Unthing' Comment.Single
+'// /* \\\\'  Comment.Single
 '\n'          Text
+
+'#define Room Unthing\n' Comment.Preproc
 
 '    '        Text
 'template'    Keyword.Reserved
@@ -1663,20 +1665,27 @@
 '\n\n'        Text
 
 ''            Text
-'string'      Keyword
+'string'      Name.Class
 ' '           Text
 '/**/'        Comment.Multiline
 '/**/'        Comment.Multiline
 ' '           Text
-'// /* \\\\\n#define Room Unthing' Comment.Single
+'// /* \\\\'  Comment.Single
 '\n'          Text
+
+'#define Room Unthing\n' Comment.Preproc
 
 '    '        Text
 'template'    Keyword.Reserved
 ' '           Text
-'<<highlight *>>' Literal.String.Interpol
+'<<'          Punctuation
+'highlight'   Name.Variable
 ' '           Text
-'highlightToken' Name.Function
+'*'           Punctuation
+'>>'          Punctuation
+' '           Text
+'highlightToken' Name.Variable
+''            Text
 ';'           Punctuation
 '\n\n'        Text
 
@@ -2624,16 +2633,20 @@
 '('           Punctuation
 'gDobj'       Name
 ' '           Text
-'not'         Operator.Word
+''            Text
+'not'         Name
 ' '           Text
 '/**/'        Comment.Multiline
 '/**/'        Comment.Multiline
 ' '           Text
-'// /* \\\\\n#define Room Unthing' Comment.Single
+'// /* \\\\'  Comment.Single
 '\n'          Text
 
+'#define Room Unthing\n' Comment.Preproc
+
 '                ' Text
-'in'          Operator.Word
+''            Text
+'in'          Name
 ' '           Text
 '('           Punctuation
 'necklace'    Name
@@ -7850,11 +7863,13 @@
 '/**/'        Comment.Multiline
 '/**/'        Comment.Multiline
 ' '           Text
-'// /* \\\\\n#define Room Unthing' Comment.Single
+'// /* \\\\'  Comment.Single
 '\n'          Text
 
+'#define Room Unthing\n' Comment.Preproc
+
 '    '        Text
-'badness'     Keyword
+'badness'     Name.Constant
 ' '           Text
 '500'         Literal.Number.Integer
 ']'           Punctuation
@@ -7864,21 +7879,20 @@
 'clean'       Literal.String.Single
 "'"           Literal.String.Single
 ' '           Text
-'|'           Punctuation
+'|'           Operator
 ' '           Text
 "'"           Literal.String.Single
 'wash'        Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
 ' '           Text
-'dobjList'    Name.Constant
+'dobjList'    Name.Variable
 ':'           Punctuation
 '\n'          Text
 
 ';'           Punctuation
 '\n\n'        Text
 
-''            Text
 'grammar'     Keyword.Reserved
 ' '           Text
 'predicate'   Name.Class
@@ -7970,9 +7984,8 @@
 '\n'          Text
 
 '    '        Text
-''            Text
 '['           Punctuation
-'badness'     Keyword
+'badness'     Name
 ' '           Text
 '500'         Literal.Number.Integer
 ']'           Punctuation
@@ -7981,7 +7994,7 @@
 'pray'        Literal.String.Single
 "'"           Literal.String.Single
 ' '           Text
-'singleDobj'  Name.Constant
+'singleDobj'  Name.Variable
 '\n'          Text
 
 '    '        Text
@@ -8011,7 +8024,6 @@
 '\n'          Text
 
 '    '        Text
-''            Text
 "'"           Literal.String.Single
 'pray'        Literal.String.Single
 "'"           Literal.String.Single
@@ -8021,14 +8033,14 @@
 'at'          Literal.String.Single
 "'"           Literal.String.Single
 ' '           Text
-'|'           Punctuation
+'|'           Operator
 ' '           Text
 "'"           Literal.String.Single
 'to'          Literal.String.Single
 "'"           Literal.String.Single
 ')'           Punctuation
 ' '           Text
-'singleDobj'  Name.Constant
+'singleDobj'  Name.Variable
 '\n'          Text
 
 '    '        Text
@@ -8165,10 +8177,13 @@
 '/**/'        Comment.Multiline
 '/**/'        Comment.Multiline
 ' '           Text
-'// /* \\\\\n#define Room Unthing' Comment.Single
+'// /* \\\\'  Comment.Single
 '\n'          Text
 
+'#define Room Unthing\n' Comment.Preproc
+
 '    '        Text
+''            Text
 'grammar'     Keyword.Reserved
 ' '           Text
 'directionName' Name.Class
@@ -8190,14 +8205,13 @@
 '\n'          Text
 
 '   '         Text
-'dir'         Name.Variable
+'dir'         Name.Class
 ' '           Text
 '='           Punctuation
 ' '           Text
 'outDirection' Name
 '\n'          Text
 
-''            Punctuation
 ';'           Punctuation
 '\n\n'        Text
 
@@ -8621,115 +8635,117 @@
 '/*\n#endif\n?*/' Comment
 '\n'          Comment
 
-'//\\\\\n#endif' Comment
+'//\\\\'      Comment
 '\n'          Comment
 
-"'''"         Comment
-'\n#endif\n'  Comment
+'#endif\n'    Comment.Preproc
 
-"'"           Comment
-"\\''''"      Comment
-'\n#endif\n'  Comment
+"'''"         Literal.String.Single
+'\n#endif\n'  Literal.String.Single
 
-'\\\\'        Comment
-"'''"         Comment
-'\n'          Comment
+"'"           Literal.String.Single
+"\\''''"      Literal.String.Escape
+'\n#endif\n'  Literal.String.Single
 
-'"""'         Comment
-'\n#endif\n'  Comment
+'\\\\'        Literal.String.Escape
+"'''"         Literal.String.Single
+'\n'          Text
 
-'"'           Comment
-'\\""""'      Comment
-'\n#endif\n'  Comment
+'"""'         Literal.String.Double
+'\n#endif\n'  Literal.String.Double
 
-'\\\\'        Comment
-'"""'         Comment
-'\n'          Comment
+'"'           Literal.String.Double
+'\\""""'      Literal.String.Escape
+'\n#endif\n'  Literal.String.Double
 
-"'"           Comment
-'\n#endif\n'  Comment
+'\\\\'        Literal.String.Escape
+'"""'         Literal.String.Double
+'\n'          Text
 
-"\\'"         Comment
-'\n#endif\n'  Comment
+"'"           Literal.String.Single
+'\n#endif\n'  Literal.String.Single
 
-'\\\\'        Comment
-"'"           Comment
-'\n'          Comment
+"\\'"         Literal.String.Escape
+'\n#endif\n'  Literal.String.Single
 
-'"'           Comment
-'\n#endif\n'  Comment
+'\\\\'        Literal.String.Escape
+"'"           Literal.String.Single
+'\n'          Text
 
-'\\"'         Comment
-'\n#endif\n'  Comment
+'"'           Literal.String.Double
+'\n#endif\n'  Literal.String.Double
 
-'\\\\'        Comment
-'"'           Comment
-'\n'          Comment
+'\\"'         Literal.String.Escape
+'\n#endif\n'  Literal.String.Double
 
-"'''"         Comment
-'<<'          Comment
-"'"           Comment
-'<<'          Comment
-"'"           Comment
-'\n#endif\n'  Comment
+'\\\\'        Literal.String.Escape
+'"'           Literal.String.Double
+'\n'          Text
 
-"'"           Comment
-'>>'          Comment
-"'"           Comment
-'>>'          Comment
-'\n#endif\n'  Comment
+"'''"         Literal.String.Single
+'<<'          Literal.String.Interpol
+"'"           Literal.String.Single
+'<<'          Literal.String.Interpol
+"'"           Literal.String.Single
+'\n#endif\n'  Literal.String.Single
 
-"'''"         Comment
-'\n'          Comment
+"'"           Literal.String.Single
+'>>'          Literal.String.Interpol
+"'"           Literal.String.Single
+'>>'          Literal.String.Interpol
+'\n#endif\n'  Literal.String.Single
 
-'"""'         Comment
-'<<'          Comment
-"'"           Comment
-'<<'          Comment
-"'"           Comment
-'\n#endif\n'  Comment
+"'''"         Literal.String.Single
+'\n'          Text
 
-"'"           Comment
-'>>'          Comment
-"'"           Comment
-'>>'          Comment
-'\n#endif\n'  Comment
+'"""'         Literal.String.Double
+'<<'          Literal.String.Interpol
+"'"           Literal.String.Single
+'<<'          Literal.String.Interpol
+"'"           Literal.String.Single
+'\n#endif\n'  Literal.String.Single
 
-'"""'         Comment
-'\n'          Comment
+"'"           Literal.String.Single
+'>>'          Literal.String.Interpol
+"'"           Literal.String.Single
+'>>'          Literal.String.Interpol
+'\n#endif\n'  Literal.String.Double
 
-"'"           Comment
-'<<'          Comment
-"'"           Comment
-'<<'          Comment
-"'"           Comment
-'\n#endif\n'  Comment
+'"""'         Literal.String.Double
+'\n'          Text
 
-"'"           Comment
-'>>'          Comment
-"'"           Comment
-'>>'          Comment
-'\n#endif\n'  Comment
+"'"           Literal.String.Single
+'<<'          Literal.String.Interpol
+"'"           Literal.String.Single
+'<<'          Literal.String.Interpol
+"'"           Literal.String.Single
+'\n#endif\n'  Literal.String.Single
 
-"'"           Comment
-'\n'          Comment
+"'"           Literal.String.Single
+'>>'          Literal.String.Interpol
+"'"           Literal.String.Single
+'>>'          Literal.String.Interpol
+'\n#endif\n'  Literal.String.Single
 
-'"'           Comment
-'<<'          Comment
-"'"           Comment
-'<<'          Comment
-"'"           Comment
-'\n#endif\n'  Comment
+"'"           Literal.String.Single
+'\n'          Text
 
-"'"           Comment
-'>>'          Comment
-"'"           Comment
-'>>'          Comment
-'\n#endif\n'  Comment
+'"'           Literal.String.Double
+'<<'          Literal.String.Interpol
+"'"           Literal.String.Single
+'<<'          Literal.String.Interpol
+"'"           Literal.String.Single
+'\n#endif\n'  Literal.String.Single
 
-'"'           Comment
-'//"'         Comment
-'\n'          Comment
+"'"           Literal.String.Single
+'>>'          Literal.String.Interpol
+"'"           Literal.String.Single
+'>>'          Literal.String.Interpol
+'\n#endif\n'  Literal.String.Double
+
+'"'           Literal.String.Double
+'//"'         Comment.Single
+'\n'          Text
 
 '\\\n\t#\tendif\n' Comment.Preproc
 

@@ -1,0 +1,10 @@
+A comment ending in an odd number of backslashes consumes the newline
+as the character escaped by the last backslash.
+
+---input---
+//\\\
+foo();
+
+---tokens---
+'//\\\\\\\nfoo();' Comment.Single
+'\n'          Text
