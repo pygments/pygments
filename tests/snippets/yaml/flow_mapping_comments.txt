@@ -1,0 +1,96 @@
+# Issue #2652: comments containing colons must not be parsed as mapping keys.
+
+---input---
+{
+  "foo": "foo",
+  # foo:
+  "bar": "bar",
+  # baz: 0
+  "baz": "baz",
+  # baz
+  plain#key: value,
+  nested: {# inline: comment
+    key: value},
+  # multiple: colons: here
+}
+
+---tokens---
+'{'           Punctuation.Indicator
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'"'           Literal.String
+'foo'         Literal.String
+'"'           Literal.String
+':'           Punctuation.Indicator
+' '           Text.Whitespace
+'"'           Literal.String
+'foo'         Literal.String
+'"'           Literal.String
+','           Punctuation.Indicator
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'# foo:'      Comment.Single
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'"'           Literal.String
+'bar'         Literal.String
+'"'           Literal.String
+':'           Punctuation.Indicator
+' '           Text.Whitespace
+'"'           Literal.String
+'bar'         Literal.String
+'"'           Literal.String
+','           Punctuation.Indicator
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'# baz: 0'    Comment.Single
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'"'           Literal.String
+'baz'         Literal.String
+'"'           Literal.String
+':'           Punctuation.Indicator
+' '           Text.Whitespace
+'"'           Literal.String
+'baz'         Literal.String
+'"'           Literal.String
+','           Punctuation.Indicator
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'# baz'       Comment.Single
+'\n'          Text.Whitespace
+
+'  plain#key' Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'value'       Name.Variable
+','           Punctuation.Indicator
+'\n'          Text.Whitespace
+
+'  nested'    Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation.Indicator
+'# inline: comment' Comment.Single
+'\n'          Text.Whitespace
+
+'    key'     Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'value'       Name.Variable
+'}'           Punctuation.Indicator
+','           Punctuation.Indicator
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'# multiple: colons: here' Comment.Single
+'\n'          Text.Whitespace
+
+'}'           Punctuation.Indicator
+'\n'          Text.Whitespace

@@ -308,8 +308,8 @@ class YamlLexer(ExtendedRegexLexer):
 
         # a flow mapping indicated by '{' and '}'
         'flow-mapping': [
-            # key with colon
-            (r'''([^,:?\[\]{}"'\n]+)(:)(?=[ ]|$)''',
+            # key with colon, excluding comment lines
+            (r'''(?![ ]*#)([^,:?\[\]{}"'\n]+)(:)(?=[ ]|$)''',
              bygroups(Name.Tag, Punctuation)),
             # include flow collection rules
             include('flow-collection'),
