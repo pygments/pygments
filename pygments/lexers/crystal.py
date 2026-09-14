@@ -82,6 +82,10 @@ class CrystalLexer(ExtendedRegexLexer):
                     # end of heredoc not found -- error!
                     for amatch in lines:
                         yield amatch.start(), Error, amatch.group()
+                    # advance past the consumed lines so they are not
+                    # re-lexed (and thus duplicated) once ctx.end is reset
+                    if lines:
+                        ctx.pos = lines[-1].end()
             ctx.end = len(ctx.text)
             del heredocstack[:]
 
