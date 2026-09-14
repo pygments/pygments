@@ -9,7 +9,7 @@
 import pytest
 
 from pygments.lexers.configs import TerraformLexer
-from pygments.token import Error
+from pygments.token import Error, Whitespace
 
 
 @pytest.fixture(scope='module')
@@ -43,3 +43,21 @@ def test_terminated_heredoc_is_unaffected(lexer):
     output = ''.join(value for _, value in lexer.get_tokens(text))
 
     assert output == text
+
+
+def test_whitespace_after_heredoc_operator_is_kept(lexer):
+    """The space between ``<<`` and the delimiter must not be dropped.
+
+    The rule matched it with a non-capturing ``\\s*`` that the callback
+    never yielded, so those characters disappeared from the output.
+    """
+    text = 'x = << EOF\nalpha\nEOF\n'
+    tokens = list(lexer.get_tokens(text))
+    output = ''.join(value for _, value in tokens)
+
+    assert output == text
+
+    # the whitespace is yielded in its own token, right after the operator
+    values = [(token, value) for token, value in tokens]
+    operator_index = next(i for i, (_, value) in enumerate(values) if value == '<<')
+    assert values[operator_index + 1] == (Whitespace, ' ')
