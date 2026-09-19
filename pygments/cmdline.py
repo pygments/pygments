@@ -456,8 +456,8 @@ def main_inner(parser, argns):
     # determine output encoding if not explicitly selected
     if not outencoding:
         if outfn:
-            # output file? use lexer encoding for now (can still be None)
-            fmter.encoding = inencoding
+            # Use the input encoding, or a fixed default for streamed input.
+            fmter.encoding = inencoding or 'utf-8'
         else:
             # else use terminal encoding
             fmter.encoding = terminal_encoding(sys.stdout)
