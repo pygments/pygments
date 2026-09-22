@@ -251,6 +251,7 @@ class Terminal256Formatter(Formatter):
 
     def format_unencoded(self, tokensource, outfile):
         if self.linenos:
+            self._lineno = 0
             self._write_lineno(outfile)
 
         for ttype, value in tokensource:

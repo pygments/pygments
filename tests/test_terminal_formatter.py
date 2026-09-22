@@ -9,14 +9,16 @@
 import re
 from io import StringIO
 
+import pytest
+
 from pygments.lexers.sql import PlPgsqlLexer
 from pygments.formatters import TerminalFormatter, Terminal256Formatter, \
-    HtmlFormatter, LatexFormatter
+    TerminalTrueColorFormatter, HtmlFormatter, LatexFormatter
 
 from pygments.style import Style
 from pygments.token import Token
 from pygments.lexers import Python3Lexer
-from pygments import highlight
+from pygments import format, highlight
 
 DEMO_TEXT = '''\
 -- comment
@@ -53,6 +55,20 @@ def test_reasonable_output_lineno():
 
     for a, b in zip(DEMO_TEXT.splitlines(), plain.splitlines()):
         assert a in b
+
+
+@pytest.mark.parametrize('formatter_cls', [
+    TerminalFormatter, Terminal256Formatter, TerminalTrueColorFormatter,
+])
+@pytest.mark.parametrize('linenos', [False, True])
+@pytest.mark.parametrize('text', ['hello', 'hello\nworld'])
+def test_reuse_formatter_restarts_line_numbers(formatter_cls, linenos, text):
+    formatter = formatter_cls(linenos=linenos)
+    tokens = [(Token.Text, text)]
+    expected = '0001: ' + text.replace('\n', '\n0002: ') + '\n' if linenos else text
+
+    assert format(tokens, formatter) == expected
+    assert format(tokens, formatter) == expected
 
 
 class MyStyle(Style):
