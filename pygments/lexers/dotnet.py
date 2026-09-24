@@ -558,7 +558,7 @@ class GenericAspxLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'(<%[@=#]?)(.*?)(%>)', bygroups(Name.Tag, Other, Name.Tag)),
+            (r'(<%[@=#]?)((?:<%\$.*?%>|.)*?)(%>)', bygroups(Name.Tag, Other, Name.Tag)),
             (r'(<script.*?>)(.*?)(</script>)', bygroups(using(XmlLexer),
                                                         Other,
                                                         using(XmlLexer))),

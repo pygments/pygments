@@ -1,0 +1,26 @@
+Regression test for pygments/pygments#329: a nested ASP.NET resource
+expression (`<%$ Resources: ... %>`) inside a directive must not be
+mistaken for the directive's own closing `%>`.
+
+---input---
+<%@ Page Language="VB" Title="<%$Resources:Resource, FOO_BAR %>" %>
+
+---tokens---
+'<%@'         Name.Tag
+' '           Text.Whitespace
+'Page'        Name
+' '           Text.Whitespace
+'Language'    Name
+'='           Operator
+'"'           Literal.String
+'VB'          Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'Title'       Name
+'='           Operator
+'"'           Literal.String
+'<%$Resources:Resource, FOO_BAR %>' Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'%>'          Name.Tag
+'\n'          Text.Whitespace
