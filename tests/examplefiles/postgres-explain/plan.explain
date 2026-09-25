@@ -319,3 +319,38 @@ Planning Time: 0.263 ms
 Serialization: time=0.008 ms  output=1kB  format=text
 Execution Time: 0.109 ms
 
+Aggregate  (cost=2538929.68..2538929.69 rows=1 width=48) (actual rows=1 loops=1)
+	  Buffers: shared hit=1398 read=1133145 dirtied=19877 written=3358
+	  I/O Timings: shared read=11377.821 write=46.334
+	  WAL: records=39261 fpi=19879 bytes=163163801
+	  ->  Finalize GroupAggregate  (cost=2480129.10..2532267.33 rows=333117 width=8) (actual rows=24 loops=1)
+	        Group Key: (width_bucket((pi.at)::double precision, ((EXTRACT(epoch FROM now()))::double precision - '172800'::double precision), (EXTRACT(epoch FROM now()))::double precision, 24))
+	        Buffers: shared hit=1398 read=1133145 dirtied=19877 written=3358
+	        I/O Timings: shared read=11377.821 write=46.334
+	        WAL: records=39261 fpi=19879 bytes=163163801
+	        ->  Gather Merge  (cost=2480129.10..2519166.93 rows=288262 width=12) (actual rows=72 loops=1)
+	              Workers Planned: 2
+	              Workers Launched: 2
+	              Buffers: shared hit=1398 read=1133145 dirtied=19877 written=3358
+	              I/O Timings: shared read=11377.821 write=46.334
+	              WAL: records=39261 fpi=19879 bytes=163163801
+	              ->  Partial GroupAggregate  (cost=2479129.08..2484894.32 rows=144131 width=12) (actual rows=24 loops=3)
+	                    Group Key: (width_bucket((pi.at)::double precision, ((EXTRACT(epoch FROM now()))::double precision - '172800'::double precision), (EXTRACT(epoch FROM now()))::double precision, 24))
+	                    Buffers: shared hit=1398 read=1133145 dirtied=19877 written=3358
+	                    I/O Timings: shared read=11377.821 write=46.334
+	                    WAL: records=39261 fpi=19879 bytes=163163801
+	                    ->  Sort  (cost=2479129.08..2479489.40 rows=144131 width=4) (actual rows=40285 loops=3)
+	                          Sort Key: (width_bucket((pi.at)::double precision, ((EXTRACT(epoch FROM now()))::double precision - '172800'::double precision), (EXTRACT(epoch FROM now()))::double precision, 24))
+	                          Sort Method: quicksort  Memory: 1537kB
+	                          Buffers: shared hit=1398 read=1133145 dirtied=19877 written=3358
+	                          I/O Timings: shared read=11377.821 write=46.334
+	                          WAL: records=39261 fpi=19879 bytes=163163801
+	                          Worker 0:  Sort Method: quicksort  Memory: 1537kB
+	                          Worker 1:  Sort Method: quicksort  Memory: 1537kB
+	                          ->  Parallel Seq Scan on pi  (cost=0.00..2466779.20 rows=144131 width=4) (actual rows=40285 loops=3)
+	                                Filter: ((mod = ANY ('{p,c}'::text[])) AND ((at)::double precision <= (EXTRACT(epoch FROM now()))::double precision) AND ((at)::double precision >= ((EXTRACT(epoch FROM now()))::double precision - '172800'::double precision)))
+	                                Rows Removed by Filter: 26715351
+	                                Buffers: shared hit=1284 read=1133145 dirtied=19877 written=3358
+	                                I/O Timings: shared read=11377.821 write=46.334
+	                                WAL: records=39261 fpi=19879 bytes=163163801
+	Settings: effective_cache_size = '11660MB', jit = 'off', random_page_cost = '1.2', work_mem = '485MB'
