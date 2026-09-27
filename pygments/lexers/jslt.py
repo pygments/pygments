@@ -78,7 +78,7 @@ class JSLTLexer(RegexLexer):
             (r'[A-Z_a-z][0-9A-Z_a-z-]*', Name.Variable),
         ],
         'import-path': [
-            (r'"([^"]|\\.)*"', String.Symbol, 'root'),
+            (r'"([^"\\]|\\.)*"', String.Symbol, 'root'),
         ],
         'import-alias': [
             (r'[A-Z_a-z][0-9A-Z_a-z-]*', Name.Namespace, 'root'),

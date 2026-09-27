@@ -46,7 +46,7 @@ class RellLexer(RegexLexer):
              Keyword.Reserved),
             (r'//.*?$', Comment.Single),
             (r'/\*[\s\S]*?\*/', Comment.Multiline),
-            (r'"(\\\\|\\"|[^"])*"', String.Double),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
             (r'\'(\\\\|\\\'|[^\\\'])*\'', String.Single),
             (r'-?[0-9]*\.[0-9]+([eE][+-][0-9]+)?', Number.Float),
             (r'-?[0-9]+([eE][+-][0-9]+|[lL])?', Number.Integer),

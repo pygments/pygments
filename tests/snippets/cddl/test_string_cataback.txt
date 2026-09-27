@@ -1,0 +1,58 @@
+Odd-length backslash run in an unterminated string. Regression test:
+this must not trigger catastrophic backtracking in the lexer.
+
+---input---
+"\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+---tokens---
+'"'           Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\\'          Error
+'\n'          Text.Whitespace

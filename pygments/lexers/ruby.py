@@ -473,7 +473,7 @@ class FancyLexer(RegexLexer):
             (r's<(\\\\|\\[^\\]|[^>\\])*>\s*', String.Regex, 'balanced-regex'),
             (r's\[(\\\\|\\[^\\]|[^\]\\])*\]\s*', String.Regex, 'balanced-regex'),
             (r's\((\\\\|\\[^\\]|[^)\\])*\)\s*', String.Regex, 'balanced-regex'),
-            (r'm?/(\\\\|\\[^\\]|[^///\n])*/[gcimosx]*', String.Regex),
+            (r'm?/(\\\\|\\[^\\]|[^/\\\n])*/[gcimosx]*', String.Regex),
             (r'm(?=[/!\\{<\[(@%$])', String.Regex, 'balanced-regex'),
 
             # Comments

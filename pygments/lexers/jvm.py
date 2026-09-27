@@ -328,14 +328,14 @@ class ScalaLexer(RegexLexer):
             (r'[0-9]+[lL]', Number.Integer.Long),
             (r'[0-9]+', Number.Integer),
             (r'""".*?"""(?!")', String),
-            (r'"(\\\\|\\"|[^"])*"', String),
+            (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             (r"(')(\\.)(')", bygroups(String.Char, String.Escape, String.Char)),
             (r"'[^\\]'|'\\u[0-9a-fA-F]{4}'", String.Char),
         ],
         "strings": [
             (r'[fs]"""', String, 'interpolated-string-triple'),
             (r'[fs]"', String, 'interpolated-string'),
-            (r'raw"(\\\\|\\"|[^"])*"', String),
+            (r'raw"(\\\\|\\[^\\]|[^"\\])*"', String),
         ],
         'symbols': [
             (rf"('{plainid})(?!')", String.Symbol),
