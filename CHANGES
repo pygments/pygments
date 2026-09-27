@@ -7,6 +7,13 @@ Version 2.22.0
 --------------
 (not released yet)
 
+- Updated lexers:
+
+  * Bash Session: Don't let a shell variable at the start of the command
+    act as the prompt character, which lexed
+    ``user@host:~$ echo $HOME`` as the prompt ``user@host:~$ echo $``
+    followed by the output ``HOME`` (#2843)
+
 Version 2.21.0
 ---------------
 (released August 17th, 2026)
