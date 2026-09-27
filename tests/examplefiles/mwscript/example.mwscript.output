@@ -1,0 +1,314 @@
+'begin'       Keyword
+' '           Text.Whitespace
+'TrickChestScript' Name.Namespace
+'\n'          Text.Whitespace
+
+'short'       Keyword.Type
+' '           Text.Whitespace
+'OpenAttempt' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'; Check for the player attempting to open the chest. Use the OpenAttempt variable as' Comment.Single
+'\n'          Text.Whitespace
+
+'; putting all the code into the OnActivate if statement becomes difficult for more' Comment.Single
+'\n'          Text.Whitespace
+
+'; complex scripts.' Comment.Single
+'\n'          Text.Whitespace
+
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'OnActivate'  Name.Builtin.Pseudo
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'set'         Keyword
+' '           Text.Whitespace
+'OpenAttempt' Name
+' '           Text.Whitespace
+'to'          Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'end'         Keyword
+' '           Text.Whitespace
+'if'          Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'; Stop the script if not trying to open the chest' Comment.Single
+'\n'          Text.Whitespace
+
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'OpenAttempt' Name
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+'\n'          Text.Whitespace
+
+'endif'       Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+"; Check the player for the 'secret' key, which is 10 pillows" Comment.Single
+'\n'          Text.Whitespace
+
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'player'      Name.Builtin.Pseudo
+'->'          Operator
+'GetItemCount' Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'"misc_uni_pillow_01"' Literal.String.Double
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Activate'    Name.Builtin
+'        '    Text.Whitespace
+'; Open the container normally' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Set'         Keyword
+' '           Text.Whitespace
+'OpenAttempt' Name
+' '           Text.Whitespace
+'to'          Keyword
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'MessageBox'  Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'"The chest opens mysteriously..."' Literal.String.Double
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+"; The player doesn't have 10 pillows, activate trap" Comment.Single
+'\n'          Text.Whitespace
+
+'else'        Keyword
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'PlaySound3D' Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'"Heavy Armor Hit"' Literal.String.Double
+'      '      Text.Whitespace
+'; Play ominous sound' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Set'         Keyword
+' '           Text.Whitespace
+'OpenAttempt' Name
+' '           Text.Whitespace
+'to'          Keyword
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'; Cast trap on player depending on level' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'player'      Name.Builtin.Pseudo
+'->'          Operator
+'GetLevel'    Name.Builtin
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'Cast'        Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'"poisontrap_10"' Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'Player'      Name.Builtin.Pseudo
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'elseif'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'player'      Name.Builtin.Pseudo
+'->'          Operator
+'GetLevel'    Name.Builtin
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'25'          Literal.Number.Integer
+' '           Text.Whitespace
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'Cast'        Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'"poisontrap_50"' Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'Player'      Name.Builtin.Pseudo
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'elseif'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'player'      Name.Builtin.Pseudo
+'->'          Operator
+'GetLevel'    Name.Builtin
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'50'          Literal.Number.Integer
+' '           Text.Whitespace
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'Cast'        Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'"poisontrap_150"' Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'Player'      Name.Builtin.Pseudo
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'else'        Keyword
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'Cast'        Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'"poisontrap_250"' Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'Player'      Name.Builtin.Pseudo
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'endif'       Keyword
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
+
+'endif'       Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'short'       Keyword.Type
+' '           Text.Whitespace
+'Value'       Name
+'\n'          Text.Whitespace
+
+'while'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'Value'       Name
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+')'           Punctuation
+'    '        Text.Whitespace
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'set'         Keyword
+' '           Text.Whitespace
+'Value'       Name
+' '           Text.Whitespace
+'to'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'Value'       Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'endwhile'    Keyword
+'\n'          Text.Whitespace
+
+'MessageBox'  Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'"Value:%d"'  Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'Value'       Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'end'         Keyword
+'\n'          Text.Whitespace

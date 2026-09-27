@@ -1,0 +1,154 @@
+---input---
+begin TestScript
+
+short DaysPassed
+float Gold
+
+set DaysPassed to 0
+set Gold to ( Gold + 100.5 )
+
+while ( Gold < 100000 )
+    player->AddItem, Gold_001, 100
+    set Gold to Gold + 100
+endwhile
+
+if ( DaysPassed <= 3 )
+    MessageBox, "Not enough time has passed"
+endif
+
+set objectID.varName to 100
+
+end
+
+---tokens---
+'begin'       Keyword
+' '           Text.Whitespace
+'TestScript'  Name.Namespace
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'short'       Keyword.Type
+' '           Text.Whitespace
+'DaysPassed'  Name.Builtin.Pseudo
+'\n'          Text.Whitespace
+
+'float'       Keyword.Type
+' '           Text.Whitespace
+'Gold'        Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'set'         Keyword
+' '           Text.Whitespace
+'DaysPassed'  Name.Builtin.Pseudo
+' '           Text.Whitespace
+'to'          Keyword
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'set'         Keyword
+' '           Text.Whitespace
+'Gold'        Name
+' '           Text.Whitespace
+'to'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'Gold'        Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'100.5'       Literal.Number.Float
+' '           Text.Whitespace
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'while'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'Gold'        Name
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'100000'      Literal.Number.Integer
+' '           Text.Whitespace
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'player'      Name.Builtin.Pseudo
+'->'          Operator
+'AddItem'     Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'Gold_001'    Name
+','           Punctuation
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'set'         Keyword
+' '           Text.Whitespace
+'Gold'        Name
+' '           Text.Whitespace
+'to'          Keyword
+' '           Text.Whitespace
+'Gold'        Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'endwhile'    Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+' '           Text.Whitespace
+'DaysPassed'  Name.Builtin.Pseudo
+' '           Text.Whitespace
+'<='          Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'MessageBox'  Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'"Not enough time has passed"' Literal.String.Double
+'\n'          Text.Whitespace
+
+'endif'       Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'set'         Keyword
+' '           Text.Whitespace
+'objectID'    Name
+'.'           Punctuation
+'varName'     Name
+' '           Text.Whitespace
+'to'          Keyword
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'end'         Keyword
+'\n'          Text.Whitespace
