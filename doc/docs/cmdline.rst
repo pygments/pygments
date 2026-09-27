@@ -216,10 +216,14 @@ Pygments tries to be smart regarding encodings in the formatting process:
 * If you give an ``inencoding`` option, it will override ``encoding``
   as the input encoding.
 
-* If you don't give an encoding and have given an output file, the default
-  encoding for lexer and formatter is the terminal encoding or the default
-  locale encoding of the system.  As a last resort, ``latin1`` is used (which
-  will pass through all non-ASCII characters).
+* If you use ``-s`` with an output file and don't give an encoding, output
+  uses ``utf-8``. This keeps one output encoding even if different input lines
+  need different decoding fallbacks.
+
+* If you don't give an encoding and have given an output file without ``-s``,
+  the default encoding for lexer and formatter is the terminal encoding or the
+  default locale encoding of the system.  As a last resort, ``latin1`` is used
+  (which will pass through all non-ASCII characters).
 
 * If you don't give an encoding and haven't given an output file (that means
   output is written to the console), the default encoding for lexer and

@@ -151,6 +151,46 @@ def test_stream_opt():
     assert o.replace('\r\n', '\n') == TESTCODE
 
 
+@pytest.mark.parametrize('stdin_encoding, input_bytes, options, expected', [
+    ('utf-8', 'hello\ncafé\n'.encode(), [], 'hello\ncafé\n'.encode()),
+    ('ascii', 'hello\n日本語\n'.encode(), [], 'hello\n日本語\n'.encode()),
+    ('ascii', b'hello\ncaf\xe9\n', [], 'hello\ncafé\n'.encode()),
+    ('latin1', b'caf\xe9\n', [], 'café\n'.encode()),
+    ('utf-8', b'caf\xe9\n', ['-O', 'inencoding=latin1'], b'caf\xe9\n'),
+    ('utf-8', 'café\n'.encode(), ['-O', 'outencoding=latin1'], b'caf\xe9\n'),
+    ('utf-8', b'caf\xe9\n', ['-O', 'encoding=latin1'], b'caf\xe9\n'),
+    ('utf-8', '日本語\n'.encode(),
+     ['-O', 'encoding=latin1,inencoding=utf-8,outencoding=utf-16le'],
+     '日本語\n'.encode('utf-16le')),
+])
+def test_stream_outfile_encoding(tmp_path, monkeypatch, stdin_encoding,
+                                input_bytes, options, expected):
+    monkeypatch.setattr(sys, 'stdin',
+                       io.TextIOWrapper(BytesIO(input_bytes), stdin_encoding))
+    filename = tmp_path / 'stream.txt'
+    ret = cmdline.main(['pygmentize', '-ltext', '-ftext', '-s',
+                       '-o', str(filename), *options])
+    assert ret == 0
+    assert filename.read_bytes() == expected
+
+
+def test_stream_html_outfile(tmp_path):
+    filename = tmp_path / 'stream.html'
+    text = '12:00 <alice> café\n12:01 <bob> 日本語\n'
+    assert check_success('-lirc', '-fhtml', '-s', '-o', str(filename),
+                         stdin=text) == ''
+    output = filename.read_text(encoding='utf-8')
+    assert 'café' in output
+    assert '日本語' in output
+
+
+def test_stream_raw_outfile(tmp_path):
+    filename = tmp_path / 'stream.raw'
+    assert check_success('-ltext', '-fraw', '-s', '-o', str(filename),
+                         stdin='café\n') == ''
+    assert filename.read_bytes() == b"Token.Text\t'caf\\xe9\\n'\n"
+
+
 def test_h_opt():
     o = check_success('-h')
     assert 'usage:' in o
