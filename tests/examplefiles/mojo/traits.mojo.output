@@ -1,0 +1,119 @@
+'trait'       Keyword
+' '           Text.Whitespace
+'DeflectionSensing' Name.Class
+':'           Punctuation
+'\n    '      Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'fetch_reading' Name.Function
+'('           Punctuation
+'self'        Name.Builtin.Pseudo
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'Float64'     Name.Builtin
+':'           Punctuation
+'\n        '  Text.Whitespace
+'.'           Operator
+'.'           Operator
+'.'           Operator
+'\n\n    '    Text.Whitespace
+'comptime'    Keyword
+' '           Text.Whitespace
+'absolute_tolerance' Name
+':'           Punctuation
+' '           Text.Whitespace
+'Float64'     Name.Builtin
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0.05'        Literal.Number.Float
+'  '          Text.Whitespace
+'# This is made up for this example' Comment.Single
+'\n\n    '    Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'within_tolerance' Name.Function
+'('           Punctuation
+'self'        Name.Builtin.Pseudo
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'Bool'        Name.Builtin
+':'           Punctuation
+'\n        '  Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'abs'         Name.Builtin
+'('           Punctuation
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'fetch_reading' Name
+'())'         Punctuation
+' '           Text.Whitespace
+'<'           Operator
+'='           Operator
+' '           Text.Whitespace
+'Self'        Name
+'.'           Operator
+'absolute_tolerance' Name
+'\n\n\n'      Text.Whitespace
+
+'trait'       Keyword
+' '           Text.Whitespace
+'CalibratableDeflectionSensing' Name.Class
+'('           Punctuation
+'DeflectionSensing' Name
+'):'          Punctuation
+'\n    '      Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'calibrate'   Name.Function
+'('           Punctuation
+'mut'         Keyword
+' '           Text.Whitespace
+'self'        Name.Variable
+'):'          Punctuation
+'\n        '  Text.Whitespace
+'.'           Operator
+'.'           Operator
+'.'           Operator
+'\n\n'        Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'EddyCurrentSensor' Name.Class
+'('           Punctuation
+'CalibratableDeflectionSensing' Name
+'):'          Punctuation
+'\n    '      Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'fetch_reading' Name.Function
+'('           Punctuation
+'self'        Name.Builtin.Pseudo
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'Float64'     Name.Builtin
+':'           Punctuation
+'\n        '  Text.Whitespace
+'# its implementation' Comment.Single
+'\n\n    '    Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'calibrate'   Name.Function
+'('           Punctuation
+'mut'         Keyword
+' '           Text.Whitespace
+'self'        Name.Variable
+'):'          Punctuation
+'\n        '  Text.Whitespace
+'# its implementation' Comment.Single
+'\n'          Text.Whitespace
