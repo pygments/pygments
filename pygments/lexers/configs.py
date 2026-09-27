@@ -753,18 +753,20 @@ class TerraformLexer(ExtendedRegexLexer):
 
     def heredoc_callback(self, match, ctx):
         # Parse a terraform heredoc
-        # match: 1 = <<[-]?, 2 = name 3 = rest of line
+        # match: 1 = <<[-]?, 2 = whitespace, 3 = name, 4 = rest of line
 
         start = match.start(1)
         yield start, Operator, match.group(1)        # <<[-]?
-        yield match.start(2), String.Delimiter, match.group(2)  # heredoc name
+        if match.group(2):
+            yield match.start(2), Whitespace, match.group(2)
+        yield match.start(3), String.Delimiter, match.group(3)  # heredoc name
 
-        ctx.pos = match.start(3)
-        ctx.end = match.end(3)
-        yield ctx.pos, String.Heredoc, match.group(3)
+        ctx.pos = match.start(4)
+        ctx.end = match.end(4)
+        yield ctx.pos, String.Heredoc, match.group(4)
         ctx.pos = match.end()
 
-        hdname = match.group(2)
+        hdname = match.group(3)
         tolerant = True  # leading whitespace is always accepted
 
         lines = []
@@ -786,6 +788,10 @@ class TerraformLexer(ExtendedRegexLexer):
             # end of heredoc not found -- error!
             for amatch in lines:
                 yield amatch.start(), Error, amatch.group()
+            # advance past the consumed lines so they are not
+            # re-lexed (and thus duplicated) once ctx.end is reset
+            if lines:
+                ctx.pos = lines[-1].end()
         ctx.end = len(ctx.text)
 
     tokens = {
@@ -837,7 +843,7 @@ class TerraformLexer(ExtendedRegexLexer):
              bygroups(Keyword.Reserved, Whitespace, Name.Class, Whitespace, Name.Variable, Whitespace, Punctuation)),
 
             # here-doc style delimited strings
-            (r'(<<-?)\s*([a-zA-Z_]\w*)(.*?\n)', heredoc_callback),
+            (r'(<<-?)(\s*)([a-zA-Z_]\w*)(.*?\n)', heredoc_callback),
         ],
         'identifier': [
             (r'\b(var\.[0-9a-zA-Z-_\.\[\]]+)\b', bygroups(Name.Variable)),
