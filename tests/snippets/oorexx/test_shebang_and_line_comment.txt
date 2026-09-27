@@ -1,0 +1,17 @@
+---input---
+#!/usr/bin/env rexx
+-- a line comment
+say "hi"
+
+---tokens---
+'#!/usr/bin/env rexx\n' Comment.Hashbang
+
+'-- a line comment' Comment.Single
+'\n'          Text.Whitespace
+
+'say'         Keyword.Reserved
+' '           Text.Whitespace
+'"'           Literal.String
+'hi'          Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace

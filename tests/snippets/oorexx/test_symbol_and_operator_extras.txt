@@ -1,0 +1,63 @@
+---input---
+::method eof -- an instance method
+  say 1
+sign = (imaginary < 0)~?(-1, 1)
+$count = $count + 1
+self~write(counter); return
+
+---tokens---
+'::'          Keyword.Namespace
+'method'      Keyword.Declaration
+' '           Text.Whitespace
+'eof'         Text
+' '           Text.Whitespace
+'-- an instance method' Comment.Single
+'\n  '        Text.Whitespace
+'say'         Keyword.Reserved
+' '           Text.Whitespace
+'1'           Literal.Number
+'\n'          Text.Whitespace
+
+'sign'        Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'('           Operator
+'imaginary'   Text
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'0'           Literal.Number
+')'           Operator
+'~'           Operator
+'?'           Name.Function
+'('           Operator
+'-'           Operator
+'1'           Literal.Number
+','           Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+')'           Operator
+'\n'          Text.Whitespace
+
+'$count'      Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'$count'      Text
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+'\n'          Text.Whitespace
+
+'self'        Keyword.Reserved
+'~'           Operator
+'write'       Name.Function
+'('           Operator
+'counter'     Text
+')'           Operator
+';'           Operator
+' '           Text.Whitespace
+'return'      Keyword.Reserved
+'\n'          Text.Whitespace

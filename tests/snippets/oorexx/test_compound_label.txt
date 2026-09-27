@@ -1,0 +1,17 @@
+---input---
+TRAP.SIGL:
+  say condition("O")
+
+---tokens---
+'TRAP.SIGL'   Name.Label
+':'           Operator
+'\n  '        Text.Whitespace
+'say'         Keyword.Reserved
+' '           Text.Whitespace
+'condition'   Name.Builtin
+'('           Operator
+'"'           Literal.String
+'O'           Literal.String
+'"'           Literal.String
+')'           Operator
+'\n'          Text.Whitespace

@@ -1,0 +1,15 @@
+---input---
+::class Vector subclass complex public
+
+---tokens---
+'::'          Keyword.Namespace
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'Vector'      Text
+' '           Text.Whitespace
+'subclass'    Keyword.Declaration
+' '           Text.Whitespace
+'complex'     Text
+' '           Text.Whitespace
+'public'      Keyword.Declaration
+'\n'          Text.Whitespace

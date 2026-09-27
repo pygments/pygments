@@ -1,0 +1,22 @@
+---input---
+signal on lostdigits
+call on nomethod name handler
+
+---tokens---
+'signal'      Keyword.Reserved
+' '           Text.Whitespace
+'on'          Keyword.Reserved
+' '           Text.Whitespace
+'lostdigits'  Keyword.Type
+'\n'          Text.Whitespace
+
+'call'        Keyword.Reserved
+' '           Text.Whitespace
+'on'          Keyword.Reserved
+' '           Text.Whitespace
+'nomethod'    Keyword.Type
+' '           Text.Whitespace
+'name'        Text
+' '           Text.Whitespace
+'handler'     Text
+'\n'          Text.Whitespace

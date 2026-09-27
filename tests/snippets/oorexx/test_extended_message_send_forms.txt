@@ -1,0 +1,33 @@
+---input---
+obj~~foo~~bar
+mystem[foo] = 'bar'
+self~init:super()
+
+---tokens---
+'obj'         Text
+'~~'          Operator
+'foo'         Name.Function
+'~~'          Operator
+'bar'         Name.Function
+'\n'          Text.Whitespace
+
+'mystem'      Text
+'['           Operator
+'foo'         Text
+']'           Operator
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String
+'bar'         Literal.String
+"'"           Literal.String
+'\n'          Text.Whitespace
+
+'self'        Keyword.Reserved
+'~'           Operator
+'init'        Name.Function
+':'           Operator
+'super'       Text
+'('           Operator
+')'           Operator
+'\n'          Text.Whitespace

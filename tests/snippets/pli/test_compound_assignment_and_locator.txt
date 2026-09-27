@@ -1,0 +1,71 @@
+---input---
+X += 1;
+X -= 1;
+X *= 2;
+X /= 2;
+X ||= '!';
+P->Field = 1;
+H=>Field = 2;
+
+---tokens---
+'X'           Text
+' '           Text.Whitespace
+'+='          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Operator
+'\n'          Text.Whitespace
+
+'X'           Text
+' '           Text.Whitespace
+'-='          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Operator
+'\n'          Text.Whitespace
+
+'X'           Text
+' '           Text.Whitespace
+'*='          Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+';'           Operator
+'\n'          Text.Whitespace
+
+'X'           Text
+' '           Text.Whitespace
+'/='          Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+';'           Operator
+'\n'          Text.Whitespace
+
+'X'           Text
+' '           Text.Whitespace
+'||='         Operator
+' '           Text.Whitespace
+"'"           Literal.String
+'!'           Literal.String
+"'"           Literal.String
+';'           Operator
+'\n'          Text.Whitespace
+
+'P'           Text
+'->'          Operator
+'Field'       Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Operator
+'\n'          Text.Whitespace
+
+'H'           Text
+'=>'          Operator
+'Field'       Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+';'           Operator
+'\n'          Text.Whitespace

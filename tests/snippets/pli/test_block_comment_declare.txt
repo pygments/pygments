@@ -1,0 +1,22 @@
+---input---
+/* a block comment */
+DCL Y CHAR(10) VARYING;
+
+---tokens---
+'/*'          Comment.Multiline
+' a block comment ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'DCL'         Keyword.Reserved
+' '           Text.Whitespace
+'Y'           Text
+' '           Text.Whitespace
+'CHAR'        Keyword.Type
+'('           Operator
+'10'          Literal.Number.Integer
+')'           Operator
+' '           Text.Whitespace
+'VARYING'     Keyword.Type
+';'           Operator
+'\n'          Text.Whitespace

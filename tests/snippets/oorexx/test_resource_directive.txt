@@ -1,0 +1,17 @@
+---input---
+::resource greeting
+Hello, ~world~ raw text
+::
+
+---tokens---
+'::'          Keyword.Namespace
+'resource'    Keyword.Declaration
+' '           Text.Whitespace
+'greeting'    Name.Label
+'\n'          Literal.String.Other
+
+'Hello, ~world~ raw text' Literal.String.Other
+'\n'          Literal.String.Other
+
+'::'          Keyword.Namespace
+'\n'          Text.Whitespace

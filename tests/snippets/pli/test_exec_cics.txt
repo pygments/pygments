@@ -1,0 +1,25 @@
+---input---
+EXEC CICS SEND TEXT FROM(WSMSG) LENGTH(WSLEN) END-EXEC;
+
+---tokens---
+'EXEC'        Keyword.Reserved
+' '           Text.Whitespace
+'CICS'        Keyword.Reserved
+' '           Text.Whitespace
+'SEND'        Name
+' '           Text.Whitespace
+'TEXT'        Name
+' '           Text.Whitespace
+'FROM'        Name
+'('           Punctuation
+'WSMSG'       Name
+')'           Punctuation
+' '           Text.Whitespace
+'LENGTH'      Name
+'('           Punctuation
+'WSLEN'       Name
+')'           Punctuation
+' '           Text.Whitespace
+'END-EXEC'    Keyword.Reserved
+';'           Operator
+'\n'          Text.Whitespace

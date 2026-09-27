@@ -1,0 +1,17 @@
+---input---
+::annotate class Foo author "Jane"
+
+---tokens---
+'::'          Keyword.Namespace
+'annotate'    Keyword.Declaration
+' '           Text.Whitespace
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'Foo'         Text
+' '           Text.Whitespace
+'author'      Text
+' '           Text.Whitespace
+'"'           Literal.String
+'Jane'        Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace

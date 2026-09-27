@@ -1,0 +1,42 @@
+---input---
+DCL X FIXED BINARY(31) STATIC INITIAL(0);
+DCL Y CHAR(20) VARYING BASED(P);
+
+---tokens---
+'DCL'         Keyword.Reserved
+' '           Text.Whitespace
+'X'           Text
+' '           Text.Whitespace
+'FIXED'       Keyword.Type
+' '           Text.Whitespace
+'BINARY'      Keyword.Type
+'('           Operator
+'31'          Literal.Number.Integer
+')'           Operator
+' '           Text.Whitespace
+'STATIC'      Keyword.Type
+' '           Text.Whitespace
+'INITIAL'     Keyword.Type
+'('           Operator
+'0'           Literal.Number.Integer
+')'           Operator
+';'           Operator
+'\n'          Text.Whitespace
+
+'DCL'         Keyword.Reserved
+' '           Text.Whitespace
+'Y'           Text
+' '           Text.Whitespace
+'CHAR'        Keyword.Type
+'('           Operator
+'20'          Literal.Number.Integer
+')'           Operator
+' '           Text.Whitespace
+'VARYING'     Keyword.Type
+' '           Text.Whitespace
+'BASED'       Keyword.Type
+'('           Operator
+'P'           Text
+')'           Operator
+';'           Operator
+'\n'          Text.Whitespace

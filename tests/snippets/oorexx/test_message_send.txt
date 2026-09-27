@@ -1,0 +1,24 @@
+---input---
+obj~toString
+obj~~foo~~bar
+self~init:super
+
+---tokens---
+'obj'         Text
+'~'           Operator
+'toString'    Name.Function
+'\n'          Text.Whitespace
+
+'obj'         Text
+'~~'          Operator
+'foo'         Name.Function
+'~~'          Operator
+'bar'         Name.Function
+'\n'          Text.Whitespace
+
+'self'        Keyword.Reserved
+'~'           Operator
+'init'        Name.Function
+':'           Operator
+'super'       Text
+'\n'          Text.Whitespace

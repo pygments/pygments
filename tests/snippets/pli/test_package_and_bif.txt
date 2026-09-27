@@ -1,0 +1,39 @@
+---input---
+MYPKG: PACKAGE EXPORTS(*);
+  X = SUBSTR(Y, 1, 5);
+END MYPKG;
+
+---tokens---
+'MYPKG'       Name.Label
+':'           Punctuation
+' '           Text.Whitespace
+'PACKAGE'     Keyword.Reserved
+' '           Text.Whitespace
+'EXPORTS'     Keyword.Reserved
+'('           Operator
+'*'           Operator
+')'           Operator
+';'           Operator
+'\n  '        Text.Whitespace
+'X'           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'SUBSTR'      Name.Builtin
+'('           Operator
+'Y'           Text
+','           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Operator
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+')'           Operator
+';'           Operator
+'\n'          Text.Whitespace
+
+'END'         Keyword.Reserved
+' '           Text.Whitespace
+'MYPKG'       Text
+';'           Operator
+'\n'          Text.Whitespace

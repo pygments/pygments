@@ -1,0 +1,18 @@
+---input---
+.true
+.array~new
+.MyClass~new
+
+---tokens---
+'.true'       Name.Variable.Global
+'\n'          Text.Whitespace
+
+'.array'      Name.Variable.Global
+'~'           Operator
+'new'         Name.Function
+'\n'          Text.Whitespace
+
+'.MyClass'    Name.Variable.Global
+'~'           Operator
+'new'         Name.Function
+'\n'          Text.Whitespace
