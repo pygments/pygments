@@ -266,7 +266,7 @@ class MapleLexer(ExtendedRegexLexer):
         'root': [
             (r'#.*\n', Comment.Single),
             (r'\(\*', Comment.Multiline, 'comment'),
-            (r'"(\\.|.|\s)*?"', String),
+            (r'"(\\[\s\S]|[^"\\])*"', String),
             (r"('+)(([\s\S])*?)\1", delayed_callback),
             (r'`(\\`|.)*?`', Name),
             (words(keywords, prefix=r'\b', suffix=r'\b'), Keyword),
