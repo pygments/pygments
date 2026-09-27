@@ -266,20 +266,26 @@ class CFamilyLexer(RegexLexer):
         self.c99highlighting = get_bool_opt(options, 'c99highlighting', True)
         self.c11highlighting = get_bool_opt(options, 'c11highlighting', True)
         self.platformhighlighting = get_bool_opt(options, 'platformhighlighting', True)
+        # Precompute the union of enabled type sets so that each Name token
+        # only needs a single set membership test at tokenization time.
+        highlighted_types = set()
+        if self.stdlibhighlighting:
+            highlighted_types |= self.stdlib_types
+        if self.c99highlighting:
+            highlighted_types |= self.c99_types
+        if self.c11highlighting:
+            highlighted_types |= self.c11_atomic_types
+        if self.platformhighlighting:
+            highlighted_types |= self.linux_types
+        self._highlighted_types = highlighted_types
         RegexLexer.__init__(self, **options)
 
     def get_tokens_unprocessed(self, text, stack=('root',)):
+        highlighted_types = self._highlighted_types
         for index, token, value in \
                 RegexLexer.get_tokens_unprocessed(self, text, stack):
-            if token is Name:
-                if self.stdlibhighlighting and value in self.stdlib_types:
-                    token = Keyword.Type
-                elif self.c99highlighting and value in self.c99_types:
-                    token = Keyword.Type
-                elif self.c11highlighting and value in self.c11_atomic_types:
-                    token = Keyword.Type
-                elif self.platformhighlighting and value in self.linux_types:
-                    token = Keyword.Type
+            if token is Name and value in highlighted_types:
+                token = Keyword.Type
             yield index, token, value
 
 
