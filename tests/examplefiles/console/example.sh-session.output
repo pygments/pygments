@@ -59,3 +59,17 @@
 ' '           Text.Whitespace
 '-a'          Text
 '\n'          Text.Whitespace
+
+'[main] user@host:~$ ls -a\n' Generic.Output
+
+'/var/log # ' Generic.Prompt
+'pwd'         Name.Builtin
+'\n'          Text.Whitespace
+
+'/usr/lib # ' Generic.Prompt
+'/usr/bin/id' Text
+'\n'          Text.Whitespace
+
+'uid=0(root) gid=0(root)\n' Generic.Output
+
+'/usr/lib # \n' Generic.Prompt
