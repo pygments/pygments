@@ -1,0 +1,20 @@
+---input---
+cat <<EOF
+See the EOFs below for details
+EOF
+rm -rf "$dir"
+
+---tokens---
+'cat'         Text
+' '           Text.Whitespace
+'<<EOF\nSee the EOFs below for details\nEOF' Literal.String
+'\n'          Text.Whitespace
+
+'rm'          Text
+' '           Text.Whitespace
+'-rf'         Text
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'$dir'        Name.Variable
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
