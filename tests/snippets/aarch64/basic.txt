@@ -1,0 +1,81 @@
+---input---
+.global _start
+_start:
+        mov     x0, #1
+        ldr     x1, [sp, #16]
+        add     w2, w2, #0x10
+        b.eq    done
+        fmul    v0.4s, v1.4s, v2.4s
+done:
+        ret     // return
+
+---tokens---
+'.global'     Keyword.Pseudo
+' '           Text.Whitespace
+'_start'      Name.Constant
+'\n'          Text.Whitespace
+
+'_start:'     Name.Label
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'mov'         Keyword
+'     '       Text.Whitespace
+'x0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'#1'          Literal.Number
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'ldr'         Keyword
+'     '       Text.Whitespace
+'x1'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'sp'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'#16'         Literal.Number
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'add'         Keyword
+'     '       Text.Whitespace
+'w2'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'w2'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'#0x10'       Literal.Number
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'b.eq'        Keyword
+'    '        Text.Whitespace
+'done'        Name.Constant
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'fmul'        Keyword
+'    '        Text.Whitespace
+'v0.4s'       Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'v1.4s'       Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'v2.4s'       Name.Builtin
+'\n'          Text.Whitespace
+
+'done:'       Name.Label
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'ret'         Keyword
+'     '       Text.Whitespace
+'// return'   Comment.Single
+'\n'          Text.Whitespace

@@ -1,0 +1,52 @@
+---input---
+// a line comment
+        nop             // trailing comment
+        /* inline */ mov x0, x1
+        add     x0, x1, x2      /* block */
+        /* a block comment
+           spanning several
+           lines */
+        ret
+
+---tokens---
+'// a line comment' Comment.Single
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'nop'         Keyword
+'             ' Text.Whitespace
+'// trailing comment' Comment.Single
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'/* inline */' Comment.Multiline
+' '           Text.Whitespace
+'mov'         Keyword
+' '           Text.Whitespace
+'x0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'x1'          Name.Builtin
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'add'         Keyword
+'     '       Text.Whitespace
+'x0'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'x1'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'x2'          Name.Builtin
+'      '      Text.Whitespace
+'/* block */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'/* a block comment\n           spanning several\n           lines */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'ret'         Keyword
+'\n'          Text.Whitespace
