@@ -35,7 +35,7 @@ class AtomsLexer(RegexLexer):
             (r'([ \t]*)(--.*)$', bygroups(Whitespace, Comment)),
         ],
         'archetype_id': [
-            (r'([ \t]*)(([a-zA-Z]\w{1,100}(\.[a-zA-Z]\w{1,100})*::)?[a-zA-Z]\w{1,100}(-[a-zA-Z]\w{1,100}){2}'
+            (r'([ \t]{0,100})(([a-zA-Z]\w{1,100}(\.[a-zA-Z]\w{1,100})*::)?[a-zA-Z]\w{1,100}(-[a-zA-Z]\w{1,100}){2}'
              r'\.\w{1,100}[\w-]*\.v\d+(\.\d+){,2}((-[a-z]+)(\.\d+)?)?)',
              bygroups(Whitespace, Name.Decorator)),
         ],
@@ -260,9 +260,9 @@ class AdlLexer(AtomsLexer):
     tokens = {
         'whitespace': [
             # blank line ends
-            (r'\s*\n', Whitespace),
+            (r'\s{0,1000}\n', Whitespace),
             # comment-only line
-            (r'^([ \t]*)(--.*)$', bygroups(Whitespace, Comment)),
+            (r'^([ \t]{0,1000})(--.*)$', bygroups(Whitespace, Comment)),
         ],
         'odin_section': [
             # repeating the following two rules from the root state enable multi-line
@@ -309,7 +309,7 @@ class AdlLexer(AtomsLexer):
             (r'^(definition)[ \t]*\n', Generic.Heading, 'cadl_section'),
             (r'^(rules)[ \t]*\n', Generic.Heading, 'rules_section'),
             include('archetype_id'),
-            (r'([ \t]*)(\()', bygroups(Whitespace, Punctuation), 'metadata'),
+            (r'([ \t]{0,1000})(\()', bygroups(Whitespace, Punctuation), 'metadata'),
             include('whitespace'),
         ],
     }
