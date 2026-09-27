@@ -308,8 +308,19 @@ class CommonLispLexer(RegexLexer):
     # couple of useful regexes
 
     # characters that are not macro-characters and can be used to begin a symbol
+    #
+    # "+-/" here is an unescaped range (+,-./ ), not the three literal characters
+    # + - / it looks like - so nonmacro already matches "." (and ",", though that
+    # one turns out not to matter below). constituent then adds "." again via its
+    # own explicit "[#.:]". A run of "." inside symbol's (?:{constituent})* can
+    # therefore be attributed to either alternative on every iteration, and when
+    # the enclosing rule (e.g. the "*symbol*" special-variable rule below) fails
+    # to close, the engine retries every such split before giving up - quadratic
+    # in the run's length. Dropping the redundant "." from constituent's own
+    # suffix removes the second path without changing what nonmacro accepts
+    # (which some real symbols, e.g. one starting with a literal ".", rely on).
     nonmacro = r'\\.|[\w!$%&*+-/<=>?@\[\]^{}~]'
-    constituent = nonmacro + '|[#.:]'
+    constituent = nonmacro + '|[#:]'
     terminated = r'(?=[ "()\'\n,;`])'  # whitespace or terminating macro characters
 
     # symbol token, reverse-engineered from hyperspec
@@ -1674,8 +1685,11 @@ class EmacsLispLexer(RegexLexer):
     # couple of useful regexes
 
     # characters that are not macro-characters and can be used to begin a symbol
+    # See the comment on CommonLispLexer.nonmacro above: constituent's own
+    # "[#.:]" duplicates the "." that nonmacro's "+-/" range already lets
+    # through, with the same quadratic-backtracking risk.
     nonmacro = r'\\.|[\w!$%&*+-/<=>?@^{}~|]'
-    constituent = nonmacro + '|[#.:]'
+    constituent = nonmacro + '|[#:]'
     terminated = r'(?=[ "()\]\'\n,;`])'  # whitespace or terminating macro characters
 
     # symbol token, reverse-engineered from hyperspec
