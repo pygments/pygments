@@ -18,6 +18,7 @@ from pygments.token import Error, Text, Other, Whitespace, _TokenType
 from pygments.util import get_bool_opt, get_int_opt, get_list_opt, \
     make_analysator, Future, guess_decode
 from pygments.regexopt import regex_opt
+from pygments._firstchar import state_dispatch
 
 __all__ = ['Lexer', 'RegexLexer', 'ExtendedRegexLexer', 'DelegatingLexer',
            'LexerContext', 'include', 'inherit', 'bygroups', 'using', 'this',
@@ -707,10 +708,16 @@ class RegexLexer(Lexer, metaclass=RegexLexerMeta):
         """
         pos = 0
         tokendefs = self._tokens
+        dispatch = state_dispatch(tokendefs)
         statestack = list(stack)
-        statetokens = tokendefs[statestack[-1]]
+        buckets, statetokens = dispatch[statestack[-1]]
+        tlen = len(text)
         while 1:
-            for rexmatch, action, new_state in statetokens:
+            if buckets is not None and pos < tlen:
+                rules = buckets.get(text[pos], statetokens)
+            else:
+                rules = statetokens
+            for rexmatch, action, new_state in rules:
                 m = rexmatch(text, pos)
                 if m:
                     if action is not None:
@@ -742,7 +749,7 @@ class RegexLexer(Lexer, metaclass=RegexLexerMeta):
                             statestack.append(statestack[-1])
                         else:
                             assert False, f"wrong state def: {new_state!r}"
-                        statetokens = tokendefs[statestack[-1]]
+                        buckets, statetokens = dispatch[statestack[-1]]
                     break
             else:
                 # We are here only if all state tokens have been considered
@@ -751,7 +758,7 @@ class RegexLexer(Lexer, metaclass=RegexLexerMeta):
                     if text[pos] == '\n':
                         # at EOL, reset state to "root"
                         statestack = ['root']
-                        statetokens = tokendefs['root']
+                        buckets, statetokens = dispatch['root']
                         yield pos, Whitespace, '\n'
                         pos += 1
                         continue
@@ -787,15 +794,20 @@ class ExtendedRegexLexer(RegexLexer):
         If ``context`` is given, use this lexer context instead.
         """
         tokendefs = self._tokens
+        dispatch = state_dispatch(tokendefs)
         if not context:
             ctx = LexerContext(text, 0)
-            statetokens = tokendefs['root']
+            buckets, statetokens = dispatch['root']
         else:
             ctx = context
-            statetokens = tokendefs[ctx.stack[-1]]
+            buckets, statetokens = dispatch[ctx.stack[-1]]
             text = ctx.text
         while 1:
-            for rexmatch, action, new_state in statetokens:
+            if buckets is not None and ctx.pos < ctx.end:
+                rules = buckets.get(text[ctx.pos], statetokens)
+            else:
+                rules = statetokens
+            for rexmatch, action, new_state in rules:
                 m = rexmatch(text, ctx.pos, ctx.end)
                 if m:
                     if action is not None:
@@ -806,7 +818,7 @@ class ExtendedRegexLexer(RegexLexer):
                             yield from action(self, m, ctx)
                             if not new_state:
                                 # altered the state stack?
-                                statetokens = tokendefs[ctx.stack[-1]]
+                                buckets, statetokens = dispatch[ctx.stack[-1]]
                     # CAUTION: callback must set ctx.pos!
                     if new_state is not None:
                         # state transition
@@ -829,7 +841,7 @@ class ExtendedRegexLexer(RegexLexer):
                             ctx.stack.append(ctx.stack[-1])
                         else:
                             assert False, f"wrong state def: {new_state!r}"
-                        statetokens = tokendefs[ctx.stack[-1]]
+                        buckets, statetokens = dispatch[ctx.stack[-1]]
                     break
             else:
                 try:
@@ -838,7 +850,7 @@ class ExtendedRegexLexer(RegexLexer):
                     if text[ctx.pos] == '\n':
                         # at EOL, reset state to "root"
                         ctx.stack = ['root']
-                        statetokens = tokendefs['root']
+                        buckets, statetokens = dispatch['root']
                         yield ctx.pos, Text, '\n'
                         ctx.pos += 1
                         continue
