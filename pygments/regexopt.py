@@ -11,27 +11,29 @@
 
 import re
 from re import escape
-from itertools import groupby
 from operator import itemgetter
 
 CS_ESCAPE = re.compile(r'[\[\^\\\-\]]')
 FIRST_ELEMENT = itemgetter(0)
 
 
-def commonprefix(m):
-    """Given an iterable of strings, returns the longest common leading substring"""
-    if not m:
-        return ""
-    s1 = min(m)
-    s2 = max(m)
+def _common_leading(s1, s2):
+    """Return the longest common leading substring of two strings."""
     for i, c in enumerate(s1):
         if c != s2[i]:
             return s1[:i]
     return s1
 
 
+def commonprefix(m):
+    """Given an iterable of strings, returns the longest common leading substring"""
+    if not m:
+        return ""
+    return _common_leading(min(m), max(m))
+
+
 def make_charset(letters):
-    return '[' + CS_ESCAPE.sub(lambda m: '\\' + m.group(), ''.join(letters)) + ']'
+    return '[' + CS_ESCAPE.sub(r'\\\g<0>', ''.join(letters)) + ']'
 
 
 def regex_opt_inner(strings, open_paren):
@@ -65,7 +67,9 @@ def regex_opt_inner(strings, open_paren):
                     + make_charset(oneletter) + close_paren
             # print '-> only 1-character'
             return open_paren + make_charset(oneletter) + close_paren
-    prefix = commonprefix(strings)
+    # `strings` is sorted, so the longest common prefix of all of them is the
+    # common prefix of the first and last one -- no need to rescan for min/max.
+    prefix = _common_leading(first, strings[-1])
     if prefix:
         plen = len(prefix)
         # we have a prefix for all strings
@@ -84,9 +88,18 @@ def regex_opt_inner(strings, open_paren):
             + escape(suffix[::-1]) + close_paren
     # recurse on common 1-string prefixes
     # print '-> last resort'
-    return open_paren + \
-        '|'.join(regex_opt_inner(list(group[1]), '')
-                 for group in groupby(strings, lambda s: s[0] == first[0])) \
+    # `strings` is sorted and `first` is its smallest element, so the strings
+    # sharing their first character with `first` form a contiguous block at the
+    # front.  Find that boundary directly instead of running groupby with a
+    # per-element key function.
+    c0 = first[0]
+    split = 1
+    n = len(strings)
+    while split < n and strings[split][0] == c0:
+        split += 1
+    return open_paren \
+        + regex_opt_inner(strings[:split], '') + '|' \
+        + regex_opt_inner(strings[split:], '') \
         + close_paren
 
 
