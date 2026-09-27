@@ -327,6 +327,9 @@ def test_html_escape_attributes():
         lineseparator='<br>',
         lineanchors='anchor"name',
         linespans='span&name',
+        title='</title><script>',
+        classprefix='pre"fix-',
+        prestyles='color: "&"',
     )
     assert fmt.cssclass == 'bad&lt;script&gt;'
     assert fmt.cssstyles == 'color: &quot;&amp;&quot;'
@@ -334,6 +337,9 @@ def test_html_escape_attributes():
     assert fmt.lineseparator == '&lt;br&gt;'
     assert fmt.lineanchors == 'anchor&quot;name'
     assert fmt.linespans == 'span&amp;name'
+    assert fmt.title == '&lt;/title&gt;&lt;script&gt;'
+    assert fmt.classprefix == 'pre&quot;fix-'
+    assert fmt.prestyles == 'color: &quot;&amp;&quot;'
 
     """Test that None values for these options are handled gracefully."""
 
@@ -344,6 +350,9 @@ def test_html_escape_attributes():
         lineseparator=None,
         lineanchors=None,
         linespans=None,
+        title=None,
+        classprefix=None,
+        prestyles=None,
     )
     assert fmt_none.cssclass == ''
     assert fmt_none.cssstyles == ''
@@ -351,3 +360,38 @@ def test_html_escape_attributes():
     assert fmt_none.lineseparator == ''
     assert fmt_none.lineanchors == ''
     assert fmt_none.linespans == ''
+    assert fmt_none.title == ''
+    assert fmt_none.classprefix == ''
+    assert fmt_none.prestyles == ''
+
+
+def test_html_escape_attributes_in_output():
+    outfile = StringIO()
+    fmt = HtmlFormatter(classprefix='"><b x="', prestyles='"><b x="')
+    fmt.format([(Token.Keyword, 'def\n')], outfile)
+    html = outfile.getvalue()
+    assert '<b x=' not in html
+    assert 'class="&quot;&gt;&lt;b x=&quot;k"' in html
+    assert 'style="&quot;&gt;&lt;b x=&quot;"' in html
+
+
+def test_token_type_name_is_escaped_in_attributes():
+    ttype = getattr(Name, 'Weird"><b y="')
+    outfile = StringIO()
+    fmt = HtmlFormatter(debug_token_types=True)
+    fmt.format([(ttype, 'x\n')], outfile)
+    html = outfile.getvalue()
+    assert '<b y=' not in html
+    assert 'class="n n-Weird&quot;&gt;&lt;b y=&quot;"' in html
+    assert 'title="Name.Weird&quot;&gt;&lt;b y=&quot;"' in html
+
+
+def test_cssfile_is_escaped_in_link_href():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        outfile = StringIO()
+        fmt = HtmlFormatter(full=True, title='a&b',
+                            cssfile=path.join(tmpdir, 'a&b.css'))
+        fmt.format([(Token.Text, 'x\n')], outfile)
+        html = outfile.getvalue()
+    assert 'a&amp;b.css" type="text/css">' in html
+    assert '<title>a&amp;b</title>' in html

@@ -109,6 +109,8 @@ Version 2.21.0
 - Fix invalid ``-L`` values report success (#3217)
 - Allow ``transparent`` as a color style definition (#3180, #3170)
 - HtmlFormatter: ``"`` and ``'`` now render literally (#3185)
+- HtmlFormatter, SvgFormatter: escape the option values and token type names
+  that end up inside generated attributes (#3236)
 
 Version 2.20.0
 --------------

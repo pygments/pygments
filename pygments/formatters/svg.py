@@ -84,8 +84,8 @@ class SvgFormatter(Formatter):
     def __init__(self, **options):
         Formatter.__init__(self, **options)
         self.nowrap = get_bool_opt(options, 'nowrap', False)
-        self.fontfamily = options.get('fontfamily', 'monospace')
-        self.fontsize = options.get('fontsize', '14px')
+        self.fontfamily = html_escape(options.get('fontfamily', 'monospace'))
+        self.fontsize = html_escape(options.get('fontsize', '14px'))
         self.xoffset = get_int_opt(options, 'xoffset', 0)
         fs = self.fontsize.strip()
         if fs.endswith('px'):
