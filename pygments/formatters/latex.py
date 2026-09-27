@@ -392,7 +392,9 @@ class LatexFormatter(Formatter):
                             value += escape_tex(a, cp)
                 else:
                     value = escape_tex(value, cp)
-            elif ttype not in Token.Escape:
+            # Token.Escape means verbatim LaTeX, but only LatexEmbeddedLexer
+            # is meant to produce it, and that is used only with escapeinside.
+            elif not (self.escapeinside and ttype in Token.Escape):
                 value = escape_tex(value, cp)
             styles = []
             while ttype is not Token:
