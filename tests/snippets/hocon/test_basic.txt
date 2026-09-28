@@ -1,0 +1,66 @@
+---input---
+# A comment
+// Another comment
+host = "localhost"
+port = 8080
+active = true
+fallback = ${?OVERRIDE_HOST}
+url = ${server.host}":"${server.port}
+
+---tokens---
+'# A comment' Comment.Single
+'\n'          Text.Whitespace
+
+'// Another comment' Comment.Single
+'\n'          Text.Whitespace
+
+'host'        Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'localhost'   Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'port'        Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'8080'        Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'active'      Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'true'        Keyword.Constant
+'\n'          Text.Whitespace
+
+'fallback'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'${?'         Literal.String.Interpol
+'OVERRIDE_HOST' Name.Variable
+'}'           Literal.String.Interpol
+'\n'          Text.Whitespace
+
+'url'         Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'${'          Literal.String.Interpol
+'server'      Name.Variable
+'.'           Punctuation
+'host'        Name.Variable
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+':'           Literal.String.Double
+'"'           Literal.String.Double
+'${'          Literal.String.Interpol
+'server'      Name.Variable
+'.'           Punctuation
+'port'        Name.Variable
+'}'           Literal.String.Interpol
+'\n'          Text.Whitespace

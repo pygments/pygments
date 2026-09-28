@@ -1,0 +1,79 @@
+---input---
+updates.cooldown = {
+  minimumAge = "3 days"
+}
+
+dependencyOverrides = [
+  {
+    dependency = { groupId = "com.my-company" },
+    cooldown = { minimumAge = "1 day" }
+  }
+]
+
+---tokens---
+'updates.cooldown' Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'minimumAge'  Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'3 days'      Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'dependencyOverrides' Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'\n  '        Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'dependency'  Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'groupId'     Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'com.my-company' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+'\n    '      Text.Whitespace
+'cooldown'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'minimumAge'  Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'1 day'       Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+']'           Punctuation
+'\n'          Text.Whitespace
