@@ -16,7 +16,7 @@ _ansimap = {
     'ansiblack': '000000',
     'ansired': '7f0000',
     'ansigreen': '007f00',
-    'ansiyellow': '7f7fe0',
+    'ansiyellow': '7f7f00',
     'ansiblue': '00007f',
     'ansimagenta': '7f007f',
     'ansicyan': '007f7f',
