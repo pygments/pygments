@@ -17,6 +17,16 @@ from pygments.util import get_bool_opt, get_int_opt, get_list_opt, surrogatepair
 __all__ = ['RtfFormatter']
 
 
+def _signed16(cn):
+    """Return ``cn`` as the signed 16 bit value an RTF ``\\uN`` escape needs.
+
+    The RTF specification defines the argument of ``\\u`` as a signed 16 bit
+    integer, so code points above 32767 have to be written as negative
+    numbers.
+    """
+    return cn - 65536 if cn > 32767 else cn
+
+
 class RtfFormatter(Formatter):
     """
     Format tokens as RTF markup. This formatter automatically outputs full RTF
@@ -173,11 +183,12 @@ class RtfFormatter(Formatter):
                 buf.append(str(c))
             elif (2**7) <= cn < (2**16):
                 # single unicode escape sequence
-                buf.append('{\\u%d}' % cn)
+                buf.append('{\\u%d}' % _signed16(cn))
             elif (2**16) <= cn:
                 # RTF limits unicode to 16 bits.
                 # Force surrogate pairs
-                buf.append('{\\u%d}{\\u%d}' % surrogatepair(cn))
+                buf.append('{\\u%d}{\\u%d}'
+                           % tuple(_signed16(x) for x in surrogatepair(cn)))
 
         return ''.join(buf).replace('\n', '\\par')
 

@@ -115,8 +115,10 @@ def test_single_characters():
 def test_double_characters():
     t = 'က 힣 ↕ ↕︎ 鼖'
     result = format_rtf(t)
-    expected = (r'{\u4096} {\u55203} {\u8597} '
-                r'{\u8597}{\u65038} {\u55422}{\u56859}')
+    # Code points above 32767 are written as negative numbers, because the
+    # argument of an RTF \u escape is a signed 16 bit integer.
+    expected = (r'{\u4096} {\u-10333} {\u8597} '
+                r'{\u8597}{\u-498} {\u-10114}{\u-8677}')
     msg = _build_message(t=t, result=result, expected=expected)
     assert result.endswith(expected+foot), msg
 
@@ -550,3 +552,29 @@ def test_all_options():
                    f"{input_text}\n")
 
             assert num_of_pars == num_input_lines, msg
+
+
+@pytest.mark.parametrize('char, expected', [
+    ('\u00e9', [233]),          # Latin-1, unchanged
+    ('\u4e00', [19968]),        # CJK below the signed 16 bit limit, unchanged
+    ('\u8000', [-32768]),       # CJK at the limit
+    ('\u9fa5', [-24667]),       # CJK above the limit
+    ('\U0001f600', [-10179, -8704]),   # non-BMP, emitted as a surrogate pair
+])
+def test_rtf_unicode_is_signed_16_bit(char, expected):
+    r"""The argument of an RTF \u escape is a signed 16 bit integer.
+
+    Code points above 32767 have to be written as negative numbers, so
+    '\u8000' is '\u-32768' and not '\u32768'.
+    """
+    result = format_rtf(char)
+    assert [int(n) for n in re.findall(r'\\u(-?\d+)', result)] == expected
+
+
+def test_rtf_unicode_never_exceeds_signed_16_bit():
+    """No \\u escape may fall outside the signed 16 bit range."""
+    text = '\u00e9\u4e00\u8000\u9fa5\U0001f600\U0010ffff'
+    result = format_rtf(text)
+    values = [int(n) for n in re.findall(r'\\u(-?\d+)', result)]
+    assert values
+    assert all(-32768 <= v <= 32767 for v in values)
