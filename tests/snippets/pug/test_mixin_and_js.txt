@@ -1,0 +1,73 @@
+---input---
+- const myStyles = {"color":"white"}
+mixin basic
+  div Hello
++basic
+mixin comment(name, comment)
+  div
++comment("Bob", "This is Awesome")
++basic(attr="x")
+
+---tokens---
+''            Text.Whitespace
+'-'           Punctuation
+''            Text
+' '           Text.Whitespace
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'myStyles'    Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'"color"'     Literal.String.Double
+':'           Operator
+'"white"'     Literal.String.Double
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+''            Text.Whitespace
+'mixin'       Name.Tag
+' basic'      Text
+'\n'          Text
+
+'  '          Text.Whitespace
+'div'         Name.Tag
+' Hello'      Text
+'\n'          Text
+
+''            Text.Whitespace
+'+'           Punctuation
+'basic'       Name.Tag
+'\n'          Text
+
+''            Text.Whitespace
+'mixin'       Name.Tag
+' comment(name, comment)' Text
+'\n'          Text
+
+'  '          Text.Whitespace
+'div'         Name.Tag
+'\n'          Text
+
+''            Text.Whitespace
+'+'           Punctuation
+'comment'     Name.Tag
+'('           Text
+'"Bob"'       Literal.String
+','           Punctuation
+' '           Text
+'"This is Awesome"' Literal.String
+')'           Text
+'\n'          Text
+
+''            Text.Whitespace
+'+'           Punctuation
+'basic'       Name.Tag
+'('           Text
+'attr='       Name.Attribute
+'"x"'         Literal.String
+')'           Text
+'\n'          Text
+
+''            Text.Whitespace

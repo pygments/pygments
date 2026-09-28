@@ -529,7 +529,7 @@ class PugLexer(ExtendedRegexLexer):
         'eval-or-plain': [
             (r'[&!]?==', Punctuation, 'plain'),
             (r'([&!]?[=~])(' + _dot + r'*\n)',
-             bygroups(Punctuation, using(ScalaLexer)),  'root'),
+             bygroups(Punctuation, using(JavascriptLexer)),  'root'),
             default('plain'),
         ],
 
@@ -544,21 +544,23 @@ class PugLexer(ExtendedRegexLexer):
             (r'-#' + _dot + r'*\n', _starts_block(Comment.Preproc,
                                                   'scaml-comment-block'), '#pop'),
             (r'(-@\s*)(import)?(' + _dot + r'*\n)',
-             bygroups(Punctuation, Keyword, using(ScalaLexer)),
+             bygroups(Punctuation, Keyword, using(JavascriptLexer)),
              '#pop'),
             (r'(-)(' + _dot + r'*\n)',
-             bygroups(Punctuation, using(ScalaLexer)),
+             bygroups(Punctuation, using(JavascriptLexer)),
              '#pop'),
             (r':' + _dot + r'*\n', _starts_block(Name.Decorator, 'filter-block'),
              '#pop'),
+            # Pug 2 mixin calls are written with a leading ``+``
+            (r'(\+)([\w:-]+)', bygroups(Punctuation, Name.Tag), 'tag'),
             (r'[\w:-]+', Name.Tag, 'tag'),
             (r'\|', Text, 'eval-or-plain'),
         ],
 
         'tag': [
             include('css'),
-            (r'\{(,\n|' + _dot + r')*?\}', using(ScalaLexer)),
-            (r'\[' + _dot + r'*?\]', using(ScalaLexer)),
+            (r'\{(,\n|' + _dot + r')*?\}', using(JavascriptLexer)),
+            (r'\[' + _dot + r'*?\]', using(JavascriptLexer)),
             (r'\(', Text, 'html-attributes'),
             (r'/[ \t]*\n', Punctuation, '#pop:2'),
             (r'[<>]{1,2}(?=[ \t=])', Punctuation),
@@ -568,7 +570,7 @@ class PugLexer(ExtendedRegexLexer):
         'plain': [
             (r'([^#\n]|#[^{\n]|(\\\\)*\\#\{)+', Text),
             (r'(#\{)(' + _dot + r'*?)(\})',
-             bygroups(String.Interpol, using(ScalaLexer), String.Interpol)),
+             bygroups(String.Interpol, using(JavascriptLexer), String.Interpol)),
             (r'\n', Text, 'root'),
         ],
 
@@ -576,6 +578,10 @@ class PugLexer(ExtendedRegexLexer):
             (r'\s+', Text),
             (r'[\w:-]+[ \t]*=', Name.Attribute, 'html-attribute-value'),
             (r'[\w:-]+', Name.Attribute),
+            # positional arguments to mixin calls, e.g. ``+comment("Bob")``
+            (r"'(\\\\|\\[^\\]|[^'\\\n])*'", String),
+            (r'"(\\\\|\\[^\\]|[^"\\\n])*"', String),
+            (r',', Punctuation),
             (r'\)', Text, '#pop'),
         ],
 
@@ -601,7 +607,7 @@ class PugLexer(ExtendedRegexLexer):
         'filter-block': [
             (r'([^#\n]|#[^{\n]|(\\\\)*\\#\{)+', Name.Decorator),
             (r'(#\{)(' + _dot + r'*?)(\})',
-             bygroups(String.Interpol, using(ScalaLexer), String.Interpol)),
+             bygroups(String.Interpol, using(JavascriptLexer), String.Interpol)),
             (r'\n', Text, 'root'),
         ],
     }

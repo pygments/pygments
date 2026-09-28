@@ -7,6 +7,10 @@ Version 2.22.0
 --------------
 (not released yet)
 
+- Pug/Jade lexer: run embedded code through the JavaScript lexer (it is a
+  JavaScript template) and support Pug 2 mixin calls written with a leading
+  ``+``, instead of reporting those as errors (#2706)
+
 Version 2.21.0
 ---------------
 (released August 17th, 2026)
