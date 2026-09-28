@@ -1,0 +1,491 @@
+'#!/usr/bin/env nu' Comment.Hashbang
+'\n\n'        Text.Whitespace
+
+'# A small Nushell script exercising the lexer.' Comment.Single
+'\n\n'        Text.Whitespace
+
+'# Module-level constants and environment.' Comment.Single
+'\n'          Text.Whitespace
+
+'const'       Keyword
+' '           Text.Whitespace
+'APP'         Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'example'     Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'$env.LOG_LEVEL' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'info'        Literal.String.Double
+'"'           Literal.String.Double
+'\n\n'        Text.Whitespace
+
+'# A custom command with a typed signature and flags.' Comment.Single
+'\n'          Text.Whitespace
+
+'def'         Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'build report' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'['           Punctuation
+'\n    '      Text.Whitespace
+'dir'         Text
+':'           Punctuation
+' '           Text.Whitespace
+'path'        Keyword.Type
+'            ' Text.Whitespace
+'# directory to scan' Comment.Single
+'\n    '      Text.Whitespace
+'--limit'     Name.Attribute
+' '           Text.Whitespace
+'('           Punctuation
+'-'           Operator
+'n'           Text
+')'           Punctuation
+':'           Punctuation
+' '           Text.Whitespace
+'int'         Keyword.Type
+'    '        Text.Whitespace
+'# keep only the largest N files' Comment.Single
+'\n    '      Text.Whitespace
+'--json'      Name.Attribute
+'                ' Text.Whitespace
+'# emit JSON instead of a table' Comment.Single
+'\n'          Text.Whitespace
+
+']'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'files'       Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'\n        '  Text.Whitespace
+'ls'          Name.Builtin
+' '           Text.Whitespace
+'$dir'        Name.Variable
+'\n        '  Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'type'        Text
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'file'        Text
+' '           Text.Whitespace
+'and'         Operator.Word
+' '           Text.Whitespace
+'size'        Text
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'4kb'         Literal.Number
+'\n        '  Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'sort-by'     Name.Builtin
+' '           Text.Whitespace
+'size'        Text
+' '           Text.Whitespace
+'--reverse'   Name.Attribute
+'\n        '  Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'first'       Name.Builtin
+' '           Text.Whitespace
+'$limit'      Name.Variable
+'\n    '      Text.Whitespace
+')'           Punctuation
+'\n\n    '    Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'$json'       Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'$files'      Name.Variable
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'to'          Name.Builtin
+' '           Text.Whitespace
+'json'        Text
+'\n    '      Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'else'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'$files'      Name.Variable
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'select'      Name.Builtin
+' '           Text.Whitespace
+'name'        Text
+' '           Text.Whitespace
+'size'        Text
+' '           Text.Whitespace
+'modified'    Text
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'# Strings: raw, single, double and interpolated.' Comment.Single
+'\n'          Text.Whitespace
+
+'let'         Keyword
+' '           Text.Whitespace
+'raw'         Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"r#'C:\\Users\\nu\\no-escapes'#" Literal.String.Other
+'\n'          Text.Whitespace
+
+'let'         Keyword
+' '           Text.Whitespace
+'name'        Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'nushell'     Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text.Whitespace
+
+'let'         Keyword
+' '           Text.Whitespace
+'greeting'    Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'$"'          Literal.String.Double
+'Hello from ' Literal.String.Double
+'('           Literal.String.Interpol
+'$name'       Name.Variable
+')'           Literal.String.Interpol
+' v'          Literal.String.Double
+'('           Literal.String.Interpol
+'version'     Text
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'get'         Name.Builtin
+' '           Text.Whitespace
+'version'     Text
+')'           Literal.String.Interpol
+'!'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'print'       Name.Builtin
+' '           Text.Whitespace
+'$greeting'   Name.Variable
+'\n\n'        Text.Whitespace
+
+'# Numbers, durations and file sizes.' Comment.Single
+'\n'          Text.Whitespace
+
+'let'         Keyword
+' '           Text.Whitespace
+'sizes'       Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'1kb'         Literal.Number
+' '           Text.Whitespace
+'3.5mb'       Literal.Number
+' '           Text.Whitespace
+'2gib'        Literal.Number
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'let'         Keyword
+' '           Text.Whitespace
+'timeout'     Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'30sec'       Literal.Number
+'\n'          Text.Whitespace
+
+'let'         Keyword
+' '           Text.Whitespace
+'mask'        Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0o755'       Literal.Number.Oct
+'\n'          Text.Whitespace
+
+'let'         Keyword
+' '           Text.Whitespace
+'flags'       Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0xff'        Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'let'         Keyword
+' '           Text.Whitespace
+'ratio'       Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1_000'       Literal.Number.Integer
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'3.0'         Literal.Number.Float
+'\n\n'        Text.Whitespace
+
+'# Records, lists and closures.' Comment.Single
+'\n'          Text.Whitespace
+
+'let'         Keyword
+' '           Text.Whitespace
+'config'      Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'host'        Text
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'localhost'   Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'\n    '      Text.Whitespace
+'port'        Text
+':'           Punctuation
+' '           Text.Whitespace
+'8080'        Literal.Number.Integer
+','           Punctuation
+'\n    '      Text.Whitespace
+'retries'     Text
+':'           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+','           Punctuation
+'\n    '      Text.Whitespace
+'tags'        Text
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'alpha'       Text
+' '           Text.Whitespace
+'beta'        Text
+' '           Text.Whitespace
+'gamma'       Text
+']'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'let'         Keyword
+' '           Text.Whitespace
+'doubled'     Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'each'        Name.Builtin
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'|'           Operator
+'x'           Text
+'|'           Operator
+' '           Text.Whitespace
+'$x'          Name.Variable
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'reduce'      Name.Builtin
+' '           Text.Whitespace
+'--fold'      Name.Attribute
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'|'           Operator
+'it'          Text
+','           Punctuation
+' '           Text.Whitespace
+'acc'         Text
+'|'           Operator
+' '           Text.Whitespace
+'$acc'        Name.Variable
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'$it'         Name.Variable
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'# Ranges, pipelines and boolean operators.' Comment.Single
+'\n'          Text.Whitespace
+
+'for'         Keyword
+' '           Text.Whitespace
+'i'           Text
+' '           Text.Whitespace
+'in'          Operator.Word
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'..<'         Operator
+'('           Punctuation
+'$config.retries' Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'$i'          Name.Variable
+' '           Text.Whitespace
+'mod'         Operator.Word
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'and'         Operator.Word
+' '           Text.Whitespace
+'not'         Operator.Word
+' '           Text.Whitespace
+'('           Punctuation
+'$i'          Name.Variable
+' '           Text.Whitespace
+'in'          Operator.Word
+' '           Text.Whitespace
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'print'       Name.Builtin
+' '           Text.Whitespace
+'$"'          Literal.String.Double
+'attempt '    Literal.String.Double
+'('           Literal.String.Interpol
+'$i'          Name.Variable
+')'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'# Error handling.' Comment.Single
+'\n'          Text.Whitespace
+
+'try'         Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'open'        Name.Builtin
+' '           Text.Whitespace
+'nonexistent' Text
+'.'           Text
+'toml'        Text
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'from'        Name.Builtin
+' '           Text.Whitespace
+'toml'        Text
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'catch'       Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'|'           Operator
+'err'         Text
+'|'           Operator
+'\n    '      Text.Whitespace
+'print'       Name.Builtin
+' '           Text.Whitespace
+'--stderr'    Name.Attribute
+' '           Text.Whitespace
+'$"'          Literal.String.Double
+'failed: '    Literal.String.Double
+'('           Literal.String.Interpol
+'$err.msg'    Name.Variable
+')'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'build'       Text
+' '           Text.Whitespace
+'report'      Text
+' '           Text.Whitespace
+'~'           Text
+'/'           Operator
+'downloads'   Text
+' '           Text.Whitespace
+'--limit'     Name.Attribute
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+' '           Text.Whitespace
+'--json'      Name.Attribute
+'\n'          Text.Whitespace

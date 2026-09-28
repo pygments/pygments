@@ -19,7 +19,7 @@ from pygments.util import shebang_matches
 __all__ = ['BashLexer', 'BashSessionLexer', 'TcshLexer', 'BatchLexer',
            'SlurmBashLexer', 'MSDOSSessionLexer', 'PowerShellLexer',
            'PowerShellSessionLexer', 'TcshSessionLexer', 'FishShellLexer',
-           'ExeclineLexer']
+           'ExeclineLexer', 'NushellLexer']
 
 
 class BashLexer(RegexLexer):
@@ -900,3 +900,133 @@ class ExeclineLexer(RegexLexer):
     def analyse_text(text):
         if shebang_matches(text, r'execlineb'):
             return 1
+
+
+class NushellLexer(RegexLexer):
+    """
+    Lexer for Nushell (nu), a shell built around structured data.
+    """
+
+    name = 'Nushell'
+    aliases = ['nushell', 'nu']
+    filenames = ['*.nu']
+    mimetypes = ['application/x-nushell']
+    url = 'https://www.nushell.sh'
+    version_added = '2.22'
+
+    keywords = (
+        'let', 'mut', 'const', 'def', 'export', 'export-env', 'alias', 'use',
+        'module', 'overlay', 'hide', 'hide-env', 'source', 'source-env',
+        'register', 'extern', 'if', 'else', 'match', 'for', 'while', 'loop',
+        'break', 'continue', 'return', 'try', 'catch', 'do', 'where',
+    )
+
+    types = (
+        'any', 'int', 'float', 'number', 'string', 'bool', 'binary', 'date',
+        'datetime', 'duration', 'filesize', 'range', 'record', 'table', 'list',
+        'block', 'closure', 'cell-path', 'nothing', 'error', 'glob', 'path',
+        'oneof',
+    )
+
+    word_operators = (
+        'and', 'or', 'xor', 'not', 'in', 'not-in', 'mod', 'has', 'starts-with',
+        'ends-with', 'bit-and', 'bit-or', 'bit-xor', 'bit-shl', 'bit-shr',
+    )
+
+    builtins = (
+        'ls', 'cd', 'pwd', 'cp', 'mv', 'rm', 'mkdir', 'mktemp', 'open', 'save',
+        'touch', 'echo', 'print', 'each', 'where', 'get', 'select', 'reject',
+        'sort-by', 'group-by', 'uniq', 'append', 'prepend', 'length', 'first',
+        'last', 'skip', 'take', 'reverse', 'flatten', 'wrap', 'merge', 'insert',
+        'update', 'upsert', 'rename', 'str', 'into', 'from', 'to', 'lines',
+        'split', 'join', 'columns', 'transpose', 'reduce', 'enumerate', 'zip',
+        'par-each', 'filter', 'find', 'is-empty', 'default', 'range', 'describe',
+        'all', 'any', 'help', 'history', 'exit', 'math', 'seq', 'char', 'ansi',
+        'format', 'parse', 'http', 'url', 'path', 'date', 'sleep', 'input',
+        'which',
+    )
+
+    tokens = {
+        'root': [
+            (r'\A#!.+$', Comment.Hashbang),
+            include('expression'),
+        ],
+        'expression': [
+            (r'\s+', Whitespace),
+            (r'#.*$', Comment.Single),
+
+            # Raw strings: r#'...'#, r##'...'##, matching hash counts.
+            (r"(?s)r(#+)'.*?'\1", String.Other),
+
+            # Interpolated strings.
+            (r'\$"', String.Double, 'interp-double'),
+            (r"\$'", String.Single, 'interp-single'),
+
+            # Plain strings.
+            (r'"', String.Double, 'double'),
+            (r"'", String.Single, 'single'),
+            (r'`', String.Backtick, 'backtick'),
+
+            # Variables (with cell-path access).
+            (r'\$[a-zA-Z_][\w.?]*', Name.Variable),
+
+            # Long option flags and the end-of-options marker.
+            (r'--[a-zA-Z][\w-]*|--(?=\s|$)', Name.Attribute),
+
+            # Numbers, with optional filesize/duration units.
+            (r'0[xX][0-9a-fA-F][0-9a-fA-F_]*', Number.Hex),
+            (r'0[oO][0-7][0-7_]*', Number.Oct),
+            (r'0[bB][01][01_]*', Number.Bin),
+            (r'(?i)\d[\d_]*(?:\.\d[\d_]*)?'
+             r'(?:kb|mb|gb|tb|pb|eb|zb|kib|mib|gib|tib|pib|eib|zib|'
+             r'ns|us|\u00b5s|ms|sec|min|hr|day|wk)\b', Number),
+            (r'\d[\d_]*\.\d[\d_]*(?:[eE][+-]?\d+)?', Number.Float),
+            (r'\d[\d_]*[eE][+-]?\d+', Number.Float),
+            (r'\d[\d_]*', Number.Integer),
+
+            (words(keywords, prefix=r'\b', suffix=r'\b'), Keyword),
+            (words(('true', 'false', 'null'), prefix=r'\b', suffix=r'\b'),
+             Keyword.Constant),
+            (words(types, prefix=r'\b', suffix=r'\b'), Keyword.Type),
+            (words(builtins, prefix=r'\b', suffix=r'\b'), Name.Builtin),
+            (words(word_operators, prefix=r'\b', suffix=r'\b'), Operator.Word),
+
+            (r'=>|\|\||&&|\*\*|\+\+=?|\.\.<?|//|<=|>=|==|!=|=~|!~|'
+             r'[-+*/%]=?|[<>=!|&;?]', Operator),
+            (r'[\[\]{}(),:]', Punctuation),
+
+            (r'[a-zA-Z_][\w-]*', Text),
+            (r'.', Text),
+        ],
+        'double': [
+            (r'"', String.Double, '#pop'),
+            (r'\\u\{[0-9a-fA-F]+\}', String.Escape),
+            (r'\\.', String.Escape),
+            (r'[^"\\]+', String.Double),
+        ],
+        'single': [
+            (r"'", String.Single, '#pop'),
+            (r"[^']+", String.Single),
+        ],
+        'backtick': [
+            (r'`', String.Backtick, '#pop'),
+            (r'[^`]+', String.Backtick),
+        ],
+        'interp-double': [
+            (r'"', String.Double, '#pop'),
+            (r'\\u\{[0-9a-fA-F]+\}', String.Escape),
+            (r'\\.', String.Escape),
+            (r'\(', String.Interpol, 'interp-expr'),
+            (r'[^"\\(]+', String.Double),
+        ],
+        'interp-single': [
+            (r"'", String.Single, '#pop'),
+            (r'\(', String.Interpol, 'interp-expr'),
+            (r"[^'(]+", String.Single),
+        ],
+        'interp-expr': [
+            (r'\)', String.Interpol, '#pop'),
+            (r'\(', String.Interpol, '#push'),
+            include('expression'),
+        ],
+    }
