@@ -15,6 +15,7 @@ from pygments.lexers import (
     find_lexer_class_by_name,
     get_lexer_by_name,
     guess_lexer,
+    guess_lexer_for_filename,
 )
 from pygments.lexers.basic import CbmBasicV2Lexer
 from pygments.lexers.ecl import ECLLexer
@@ -264,3 +265,10 @@ def test_filename_matching(example_file):
             matches.append(pattern)
 
     assert matches, f"No {klass.filenames} patterns matches {example_file.name!r}"
+
+
+def test_guess_odin_lexers():
+    odinlang = 'package main\n\nmain :: proc() {\n}\n'
+    openehr_odin = 'original_author = <\n    ["name"] = <"J Joyce">\n>\n'
+    assert guess_lexer_for_filename('t.odin', odinlang).__class__.__name__ == 'OdinLangLexer'
+    assert guess_lexer_for_filename('t.odin', openehr_odin).__class__.__name__ == 'OdinLexer'

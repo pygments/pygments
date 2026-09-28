@@ -1,0 +1,52 @@
+---input---
+/* outer comment /* inner comment */ still in outer */
+code_after_comment := true
+
+/* multiple levels
+   /* level 2
+      /* level 3 */ 
+      back to level 2 
+   */ 
+   back to level 1 
+*/
+more_code := 42
+
+---tokens---
+'/*'          Comment.Multiline
+' outer comment ' Comment.Multiline
+'/*'          Comment.Multiline
+' inner comment ' Comment.Multiline
+'*/'          Comment.Multiline
+' still in outer ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'code_after_comment' Name.Other
+' '           Text
+':='          Operator
+' '           Text
+'true'        Keyword.Constant
+'\n'          Text
+
+'\n'          Text
+
+'/*'          Comment.Multiline
+' multiple levels\n   ' Comment.Multiline
+'/*'          Comment.Multiline
+' level 2\n      ' Comment.Multiline
+'/*'          Comment.Multiline
+' level 3 '   Comment.Multiline
+'*/'          Comment.Multiline
+' \n      back to level 2 \n   ' Comment.Multiline
+'*/'          Comment.Multiline
+' \n   back to level 1 \n' Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n'          Text
+
+'more_code'   Name.Other
+' '           Text
+':='          Operator
+' '           Text
+'42'          Literal.Number.Integer
+'\n'          Text
