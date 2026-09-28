@@ -1,0 +1,27 @@
+---input---
+0xffff, 0xFFFF_FFFF, 0b1011, 0b1111_1111, 1_000_000, 1_0.5, 1.5e1_0, .5
+
+---tokens---
+'0xffff'      Literal.Number.Hex
+','           Punctuation
+' '           Text.Whitespace
+'0xFFFF_FFFF' Literal.Number.Hex
+','           Punctuation
+' '           Text.Whitespace
+'0b1011'      Literal.Number.Bin
+','           Punctuation
+' '           Text.Whitespace
+'0b1111_1111' Literal.Number.Bin
+','           Punctuation
+' '           Text.Whitespace
+'1_000_000'   Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'1_0.5'       Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'1.5e1_0'     Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'.5'          Literal.Number.Float
+'\n'          Text.Whitespace

@@ -1,0 +1,46 @@
+---input---
+for $x in (1, 2, 3)
+while $x < 3
+trace $x
+return $x
+
+---tokens---
+'for'         Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'x'           Name
+' '           Text.Whitespace
+'in'          Operator.Word
+' '           Text.Whitespace
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'while'       Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'x'           Name
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'trace'       Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'x'           Name
+'\n'          Text.Whitespace
+
+'return'      Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'x'           Name
+'\n'          Text.Whitespace

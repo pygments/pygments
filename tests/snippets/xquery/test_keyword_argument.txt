@@ -1,0 +1,24 @@
+---input---
+substring($s, start := 2, length := 3)
+
+---tokens---
+'substring'   Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'s'           Name
+','           Punctuation
+' '           Text.Whitespace
+'start'       Name.Label
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'length'      Name.Label
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace

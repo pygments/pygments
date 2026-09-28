@@ -1,0 +1,20 @@
+---input---
+$string => upper-case() =!> tokenize(" ")
+
+---tokens---
+'$'           Name.Variable
+'string'      Name
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'upper-case'  Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'=!>'         Operator
+' '           Text.Whitespace
+'tokenize'    Name.Function
+'('           Punctuation
+'" "'         Literal.String.Double
+')'           Punctuation
+'\n'          Text.Whitespace

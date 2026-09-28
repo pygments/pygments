@@ -78,8 +78,7 @@
 ' '           Text.Whitespace
 'as'          Keyword
 ' '           Text.Whitespace
-'element'     Name.Tag
-''            Text.Whitespace
+'element'     Keyword.Type
 '('           Punctuation
 'sess:session' Name
 ')'           Punctuation
@@ -173,12 +172,7 @@
 '<'           Name.Tag
 'x'           Name.Tag
 '>'           Name.Tag
-'"'           Literal
-'t'           Literal
-'e'           Literal
-'s'           Literal
-'t'           Literal
-'"'           Literal
+'"test"'      Literal
 '</'          Name.Tag
 'x'           Name.Tag
 '>'           Name.Tag
@@ -293,10 +287,7 @@
 '<'           Name.Tag
 'some'        Name.Tag
 '>'           Name.Tag
-'h'           Literal
-'t'           Literal
-'m'           Literal
-'l'           Literal
+'html'        Literal
 '</'          Name.Tag
 'some'        Name.Tag
 '>'           Name.Tag
@@ -320,10 +311,7 @@
 '<'           Name.Tag
 'some'        Name.Tag
 '>'           Name.Tag
-'h'           Literal
-'t'           Literal
-'m'           Literal
-'l'           Literal
+'html'        Literal
 '</'          Name.Tag
 'some'        Name.Tag
 '>'           Name.Tag
@@ -345,10 +333,7 @@
 '<'           Name.Tag
 'some'        Name.Tag
 '>'           Name.Tag
-'h'           Literal
-'t'           Literal
-'m'           Literal
-'l'           Literal
+'html'        Literal
 '</'          Name.Tag
 'some'        Name.Tag
 '>'           Name.Tag
@@ -502,34 +487,7 @@
 'xmlns'       Name.Tag
 '='           Operator
 '"'           Punctuation
-'h'           Name.Attribute
-'t'           Name.Attribute
-'t'           Name.Attribute
-'p'           Name.Attribute
-':'           Name.Attribute
-'/'           Name.Attribute
-'/'           Name.Attribute
-'w'           Name.Attribute
-'w'           Name.Attribute
-'w'           Name.Attribute
-'.'           Name.Attribute
-'w'           Name.Attribute
-'3'           Name.Attribute
-'.'           Name.Attribute
-'o'           Name.Attribute
-'r'           Name.Attribute
-'g'           Name.Attribute
-'/'           Name.Attribute
-'1'           Name.Attribute
-'9'           Name.Attribute
-'9'           Name.Attribute
-'9'           Name.Attribute
-'/'           Name.Attribute
-'x'           Name.Attribute
-'h'           Name.Attribute
-'t'           Name.Attribute
-'m'           Name.Attribute
-'l'           Name.Attribute
+'http://www.w3.org/1999/xhtml' Name.Attribute
 '"'           Punctuation
 '>'           Name.Tag
 '\n'          Literal
@@ -539,32 +497,15 @@
 '<'           Name.Tag
 'outer'       Name.Tag
 '>'           Name.Tag
-'\n'          Literal
-
-'\t'          Literal
+'\n\t'        Literal
 '<'           Name.Tag
 'movie'       Name.Tag
 '>'           Name.Tag
-'\n'          Literal
-
-'\t'          Literal
-'\t'          Literal
+'\n\t\t'      Literal
 '<'           Name.Tag
 'title'       Name.Tag
 '>'           Name.Tag
-'T'           Literal
-'h'           Literal
-'e'           Literal
-' '           Literal
-'P'           Literal
-'r'           Literal
-'i'           Literal
-'n'           Literal
-'c'           Literal
-'e'           Literal
-'s'           Literal
-'s'           Literal
-' '           Literal
+'The Princess ' Literal
 '{'           Punctuation
 ' '           Text.Whitespace
 'fn:capitalize' Name.Function
@@ -577,15 +518,11 @@
 '</'          Name.Tag
 'title'       Name.Tag
 '>'           Name.Tag
-'\n'          Literal
-
-'\t'          Literal
+'\n\t'        Literal
 '</'          Name.Tag
 'movie'       Name.Tag
 '>'           Name.Tag
-'\n'          Literal
-
-'\t'          Literal
+'\n\t'        Literal
 '<'           Name.Tag
 'form'        Name.Tag
 ' '           Text.Whitespace
@@ -597,69 +534,29 @@
 'method'      Name.Tag
 '='           Operator
 '"'           Punctuation
-'p'           Name.Attribute
-'o'           Name.Attribute
-'s'           Name.Attribute
-'t'           Name.Attribute
+'post'        Name.Attribute
 '"'           Punctuation
 ' '           Text.Whitespace
 'id'          Name.Tag
 '='           Operator
 '"'           Punctuation
-'s'           Name.Attribute
-'e'           Name.Attribute
-'s'           Name.Attribute
-'s'           Name.Attribute
-'i'           Name.Attribute
-'o'           Name.Attribute
-'n'           Name.Attribute
-'-'           Name.Attribute
-'f'           Name.Attribute
-'o'           Name.Attribute
-'r'           Name.Attribute
-'m'           Name.Attribute
+'session-form' Name.Attribute
 '"'           Punctuation
 ' '           Text.Whitespace
 'call'        Name.Tag
 '='           Operator
 '"'           Punctuation
-'c'           Name.Attribute
-'a'           Name.Attribute
-'l'           Name.Attribute
-'l'           Name.Attribute
-'s'           Name.Attribute
-'o'           Name.Attribute
-'m'           Name.Attribute
-'e'           Name.Attribute
-'t'           Name.Attribute
-'h'           Name.Attribute
-'i'           Name.Attribute
-'n'           Name.Attribute
-'g'           Name.Attribute
-'('           Name.Attribute
-')'           Name.Attribute
+'callsomething()' Name.Attribute
 '"'           Punctuation
 '>'           Name.Tag
-'\n'          Literal
-
-' '           Literal
-' '           Literal
-' '           Literal
-' '           Literal
-' '           Literal
-' '           Literal
+'\n      '    Literal
 '<'           Name.Tag
 'input'       Name.Tag
 ' '           Text.Whitespace
 'type'        Name.Tag
 '='           Operator
 '"'           Punctuation
-'h'           Name.Attribute
-'i'           Name.Attribute
-'d'           Name.Attribute
-'d'           Name.Attribute
-'e'           Name.Attribute
-'n'           Name.Attribute
+'hidden'      Name.Attribute
 '"'           Punctuation
 ' '           Text.Whitespace
 'name'        Name.Tag
@@ -680,14 +577,7 @@
 '}'           Punctuation
 '"'           Punctuation
 '/>'          Name.Tag
-'\n'          Literal
-
-' '           Literal
-' '           Literal
-' '           Literal
-' '           Literal
-' '           Literal
-' '           Literal
+'\n      '    Literal
 '{'           Punctuation
 '\n\t\t\t\t'  Text.Whitespace
 '(:'          Comment
@@ -774,11 +664,7 @@
 '}'           Punctuation
 '\n\t\t\t'    Text.Whitespace
 '}'           Punctuation
-'\n'          Literal
-
-'\t'          Literal
-'\t'          Literal
-'\t'          Literal
+'\n\t\t\t'    Literal
 '{'           Punctuation
 '\n\t\t\t\t'  Text.Whitespace
 'for'         Keyword
@@ -1365,25 +1251,18 @@
 '}'           Punctuation
 '\n\t\t\t'    Text.Whitespace
 '}'           Punctuation
-'\n'          Literal
-
-'\t'          Literal
+'\n\t'        Literal
 '</'          Name.Tag
 'form'        Name.Tag
 '>'           Name.Tag
-'\n'          Literal
-
-'\t'          Literal
+'\n\t'        Literal
 '</'          Name.Tag
 'outer'       Name.Tag
 '>'           Name.Tag
 '\n'          Text.Whitespace
 
 '}'           Punctuation
-'\n'          Literal
-
-' '           Literal
-' '           Literal
+'\n  '        Literal
 '<'           Name.Tag
 'tr'          Name.Tag
 '>'           Name.Tag
@@ -1391,17 +1270,7 @@
 'td'          Name.Tag
 '>'           Name.Tag
 '<!--'        Literal.String.Doc
-' s'          Literal
-'om'          Literal
-'e '          Literal
-'co'          Literal
-'mm'          Literal
-'en'          Literal
-'te'          Literal
-'d '          Literal
-'th'          Literal
-'in'          Literal
-'gs'          Literal
+' some commented things' Literal
 '-->'         Literal.String.Doc
 '&nbsp;'      Literal
 '</'          Name.Tag

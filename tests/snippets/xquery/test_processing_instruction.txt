@@ -1,0 +1,26 @@
+---input---
+<a><?php echo "x"; ?><?xml-stylesheet href="s.xsl"?><?pi:target data?></a>
+
+---tokens---
+'<'           Name.Tag
+'a'           Name.Tag
+'>'           Name.Tag
+'<?'          Literal.String.Doc
+'php'         Name
+' '           Text
+'echo "x"; '  Literal
+'?>'          Literal.String.Doc
+'<?'          Literal.String.Doc
+'xml-stylesheet' Name
+' '           Text
+'href="s.xsl"' Literal
+'?>'          Literal.String.Doc
+'<?'          Literal.String.Doc
+'pi:target'   Name
+' '           Text
+'data'        Literal
+'?>'          Literal.String.Doc
+'</'          Name.Tag
+'a'           Name.Tag
+'>'           Name.Tag
+'\n'          Text.Whitespace

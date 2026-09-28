@@ -1,0 +1,31 @@
+---input---
+<a>{}</a>, <b c="{}">{ }</b>
+
+---tokens---
+'<'           Name.Tag
+'a'           Name.Tag
+'>'           Name.Tag
+'{'           Punctuation
+'}'           Punctuation
+'</'          Name.Tag
+'a'           Name.Tag
+'>'           Name.Tag
+','           Punctuation
+' '           Text.Whitespace
+'<'           Name.Tag
+'b'           Name.Tag
+' '           Text.Whitespace
+'c'           Name.Tag
+'='           Operator
+'"'           Punctuation
+'{'           Punctuation
+'}'           Punctuation
+'"'           Punctuation
+'>'           Name.Tag
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'</'          Name.Tag
+'b'           Name.Tag
+'>'           Name.Tag
+'\n'          Text.Whitespace

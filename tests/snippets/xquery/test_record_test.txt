@@ -1,0 +1,53 @@
+---input---
+declare function local:name($r as record(name as xs:string, age as xs:integer?, *)) as xs:string {
+  $r?name
+};
+
+---tokens---
+'declare'     Keyword.Declaration
+' '           Text.Whitespace
+'function'    Keyword.Declaration
+' '           Text.Whitespace
+'local:name'  Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'r'           Name
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'record'      Keyword.Type
+'('           Punctuation
+'name'        Name.Variable
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'xs:string'   Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'age'         Name.Variable
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'xs:integer'  Keyword.Type
+'?'           Operator
+','           Punctuation
+' '           Text.Whitespace
+'*'           Punctuation
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'xs:string'   Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'$'           Name.Variable
+'r'           Name
+'?'           Punctuation
+'name'        Name
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

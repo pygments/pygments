@@ -1,0 +1,33 @@
+---input---
+declare record local:point(x as xs:double := 0, y as xs:double := -1.5);
+
+---tokens---
+'declare'     Keyword.Declaration
+' '           Text.Whitespace
+'record'      Keyword.Declaration
+' '           Text.Whitespace
+'local:point' Keyword.Type
+'('           Punctuation
+'x'           Name.Variable
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'xs:double'   Keyword.Type
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'y'           Name.Variable
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'xs:double'   Keyword.Type
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'-1.5'        Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

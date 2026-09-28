@@ -1,0 +1,43 @@
+---input---
+declare context value as xs:string := "a";
+declare variable $v as xs:integer external := 5;
+.
+
+---tokens---
+'declare'     Keyword.Declaration
+' '           Text
+'context'     Keyword.Declaration
+' '           Text
+'value'       Keyword.Declaration
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'xs:string'   Keyword.Type
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'"a"'         Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'declare'     Keyword.Declaration
+' '           Text.Whitespace
+'variable'    Keyword.Declaration
+' '           Text.Whitespace
+'$'           Name.Variable
+'v'           Name
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'xs:integer'  Keyword.Type
+' '           Text.Whitespace
+'external'    Keyword
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'.'           Operator
+'\n'          Text.Whitespace

@@ -1,0 +1,20 @@
+---input---
+<p title="Grüße – für alle">Café … naïve · 😎 &amp; more</p>
+
+---tokens---
+'<'           Name.Tag
+'p'           Name.Tag
+' '           Text.Whitespace
+'title'       Name.Tag
+'='           Operator
+'"'           Punctuation
+'Grüße – für alle' Name.Attribute
+'"'           Punctuation
+'>'           Name.Tag
+'Café … naïve · 😎 ' Literal
+'&amp;'       Literal
+' more'       Literal
+'</'          Name.Tag
+'p'           Name.Tag
+'>'           Name.Tag
+'\n'          Text.Whitespace

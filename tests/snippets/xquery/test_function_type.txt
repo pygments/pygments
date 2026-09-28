@@ -1,0 +1,44 @@
+---input---
+$f instance of fn(xs:integer, $y as xs:string?) as xs:boolean,
+$g instance of fn(*)
+
+---tokens---
+'$'           Name.Variable
+'f'           Name
+' '           Text.Whitespace
+'instance'    Keyword
+' '           Text.Whitespace
+'of'          Keyword
+' '           Text.Whitespace
+'fn'          Keyword.Type
+'('           Punctuation
+'xs:integer'  Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'y'           Name
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'xs:string'   Keyword.Type
+'?'           Operator
+')'           Punctuation
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'xs:boolean'  Keyword.Type
+','           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Name.Variable
+'g'           Name
+' '           Text.Whitespace
+'instance'    Keyword
+' '           Text.Whitespace
+'of'          Keyword
+' '           Text.Whitespace
+'fn'          Keyword.Type
+'('           Punctuation
+'*'           Operator
+')'           Punctuation
+'\n'          Text.Whitespace

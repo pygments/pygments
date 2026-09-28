@@ -1,0 +1,57 @@
+---input---
+declare function local:größe($café as xs:integer) as element(über) {
+  <über naïve="{ $café }">{ $café }</über>
+};
+
+---tokens---
+'declare'     Keyword.Declaration
+' '           Text.Whitespace
+'function'    Keyword.Declaration
+' '           Text.Whitespace
+'local:größe' Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'café'        Name
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'xs:integer'  Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'element'     Keyword.Type
+'('           Punctuation
+'über'        Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'<'           Name.Tag
+'über'        Name.Tag
+' '           Text.Whitespace
+'naïve'       Name.Tag
+'='           Operator
+'"'           Punctuation
+'{'           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'café'        Name
+' '           Text.Whitespace
+'}'           Punctuation
+'"'           Punctuation
+'>'           Name.Tag
+'{'           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'café'        Name
+' '           Text.Whitespace
+'}'           Punctuation
+'</'          Name.Tag
+'über'        Name.Tag
+'>'           Name.Tag
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

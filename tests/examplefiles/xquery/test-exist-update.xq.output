@@ -22,8 +22,7 @@
 ' '           Text.Whitespace
 'as'          Keyword
 ' '           Text.Whitespace
-'empty-sequence' Name.Tag
-''            Text.Whitespace
+'empty-sequence' Keyword.Type
 '('           Punctuation
 ')'           Punctuation
 '?'           Punctuation
@@ -165,8 +164,7 @@
 ' '           Text.Whitespace
 'as'          Keyword
 ' '           Text.Whitespace
-'element'     Name.Tag
-''            Text.Whitespace
+'element'     Keyword.Type
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -274,8 +272,7 @@
 ' '           Text.Whitespace
 'as'          Keyword
 ' '           Text.Whitespace
-'element'     Name.Tag
-''            Text.Whitespace
+'element'     Keyword.Type
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -337,8 +334,7 @@
 ' '           Text.Whitespace
 'as'          Keyword
 ' '           Text.Whitespace
-'element'     Name.Tag
-''            Text.Whitespace
+'element'     Keyword.Type
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -358,8 +354,7 @@
 ' '           Text.Whitespace
 'as'          Keyword
 ' '           Text.Whitespace
-'element'     Name.Tag
-''            Text.Whitespace
+'element'     Keyword.Type
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -417,27 +412,7 @@
 '<'           Name.Tag
 'LogEntry'    Name.Tag
 '>'           Name.Tag
-'S'           Literal
-'o'           Literal
-'m'           Literal
-'e'           Literal
-'t'           Literal
-'h'           Literal
-'i'           Literal
-'n'           Literal
-'g'           Literal
-' '           Literal
-'h'           Literal
-'a'           Literal
-'p'           Literal
-'p'           Literal
-'e'           Literal
-'n'           Literal
-'e'           Literal
-'d'           Literal
-'.'           Literal
-'.'           Literal
-'.'           Literal
+'Something happened...' Literal
 '</'          Name.Tag
 'LogEntry'    Name.Tag
 '>'           Name.Tag
@@ -488,27 +463,7 @@
 '<'           Name.Tag
 'LogEntry'    Name.Tag
 '>'           Name.Tag
-'S'           Literal
-'o'           Literal
-'m'           Literal
-'e'           Literal
-'t'           Literal
-'h'           Literal
-'i'           Literal
-'n'           Literal
-'g'           Literal
-' '           Literal
-'h'           Literal
-'a'           Literal
-'p'           Literal
-'p'           Literal
-'e'           Literal
-'n'           Literal
-'e'           Literal
-'d'           Literal
-'.'           Literal
-'.'           Literal
-'.'           Literal
+'Something happened...' Literal
 '</'          Name.Tag
 'LogEntry'    Name.Tag
 '>'           Name.Tag
@@ -616,8 +571,7 @@
 ' '           Text.Whitespace
 'as'          Keyword
 ' '           Text.Whitespace
-'document-node' Name.Tag
-''            Text.Whitespace
+'document-node' Keyword.Type
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -683,15 +637,11 @@
 '<'           Name.Tag
 'a'           Name.Tag
 '>'           Name.Tag
-'a'           Literal
-'a'           Literal
-'a'           Literal
+'aaa'         Literal
 '<'           Name.Tag
 'b'           Name.Tag
 '>'           Name.Tag
-'b'           Literal
-'b'           Literal
-'b'           Literal
+'bbb'         Literal
 '</'          Name.Tag
 'b'           Name.Tag
 '>'           Name.Tag

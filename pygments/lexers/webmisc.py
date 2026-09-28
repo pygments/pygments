@@ -23,6 +23,14 @@ from pygments.lexers.ruby import RubyLexer
 __all__ = ['DuelLexer', 'SlimLexer', 'XQueryLexer', 'QmlLexer', 'CirruLexer']
 
 
+def _kindtest_name(match):
+    """Yield the name, the optional whitespace and the '(' of a kind test."""
+    yield match.start(1), Keyword.Type, match.group(1)
+    if match.group(2):
+        yield match.start(2), Whitespace, match.group(2)
+    yield match.start(3), Punctuation, match.group(3)
+
+
 class DuelLexer(RegexLexer):
     """
     Lexer for Duel Views Engine (formerly JBST) markup with JavaScript code blocks.
@@ -68,25 +76,29 @@ class XQueryLexer(ExtendedRegexLexer):
 
     xquery_parse_state = []
 
-    # FIX UNICODE LATER
-    # ncnamestartchar = (
-    #    r"[A-Z]|_|[a-z]|[\u00C0-\u00D6]|[\u00D8-\u00F6]|[\u00F8-\u02FF]|"
-    #    r"[\u0370-\u037D]|[\u037F-\u1FFF]|[\u200C-\u200D]|[\u2070-\u218F]|"
-    #    r"[\u2C00-\u2FEF]|[\u3001-\uD7FF]|[\uF900-\uFDCF]|[\uFDF0-\uFFFD]|"
-    #    r"[\u10000-\uEFFFF]"
-    # )
-    ncnamestartchar = r"(?:[A-Z]|_|[a-z])"
-    # FIX UNICODE LATER
-    # ncnamechar = ncnamestartchar + (r"|-|\.|[0-9]|\u00B7|[\u0300-\u036F]|"
-    #                                 r"[\u203F-\u2040]")
-    ncnamechar = r"(?:" + ncnamestartchar + r"|-|\.|[0-9])"
-    ncname = f"(?:{ncnamestartchar}+{ncnamechar}*)"
-    pitarget_namestartchar = r"(?:[A-KN-WYZ]|_|:|[a-kn-wyz])"
-    pitarget_namechar = r"(?:" + pitarget_namestartchar + r"|-|\.|[0-9])"
-    pitarget = f"{pitarget_namestartchar}+{pitarget_namechar}*"
+    # NameStartChar and NameChar of XML 1.0 5th ed., without the colon
+    namestart = (r"A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF"
+                 r"\u0370-\u037D\u037F-\u1FFF\u200C-\u200D"
+                 r"\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF"
+                 r"\uF900-\uFDCF\uFDF0-\uFFFD\U00010000-\U000EFFFF")
+    namechar = namestart + r"\-.0-9\u00B7\u0300-\u036F\u203F-\u2040"
+    ncnamestartchar = f"[{namestart}]"
+    ncnamechar = f"[{namechar}]"
+    ncname = f"(?:{ncnamestartchar}{ncnamechar}*)"
+    # a processing instruction target is a name, but never "xml"
+    pitarget = (f"(?![xX][mM][lL](?![{namechar}:]))"
+                f"[{namestart}:][{namechar}:]*")
     prefixedname = f"{ncname}:{ncname}"
     unprefixedname = ncname
-    qname = f"(?:{prefixedname}|{unprefixedname})"
+    # braced URI literal, e.g. Q{http://www.w3.org/2005/xpath-functions}name
+    bracedurilit = r"(?:Q\{[^{}]*\})"
+    qname = (f"(?:{bracedurilit}{ncname}|{prefixedname}|"
+             f"(?!Q\\{{){unprefixedname})")
+
+    # 4.0 allows underscores between the digits of any numeric literal
+    digits = r'(?:[0-9]+(?:_+[0-9]+)*)'
+    hexdigits = r'(?:[0-9a-fA-F]+(?:_+[0-9a-fA-F]+)*)'
+    bindigits = r'(?:[01]+(?:_+[01]+)*)'
 
     entityref = r'(?:&(?:lt|gt|amp|quot|apos|nbsp);)'
     charref = r'(?:&#[0-9]+;|&#x[0-9a-fA-F]+;)'
@@ -94,20 +106,10 @@ class XQueryLexer(ExtendedRegexLexer):
     stringdouble = r'(?:"(?:' + entityref + r'|' + charref + r'|""|[^&"])*")'
     stringsingle = r"(?:'(?:" + entityref + r"|" + charref + r"|''|[^&'])*')"
 
-    # FIX UNICODE LATER
-    # elementcontentchar = (r'\t|\r|\n|[\u0020-\u0025]|[\u0028-\u003b]|'
-    #                       r'[\u003d-\u007a]|\u007c|[\u007e-\u007F]')
-    elementcontentchar = r'[A-Za-z]|\s|\d|[!"#$%()*+,\-./:;=?@\[\\\]^_\'`|~]'
-    # quotattrcontentchar = (r'\t|\r|\n|[\u0020-\u0021]|[\u0023-\u0025]|'
-    #                        r'[\u0027-\u003b]|[\u003d-\u007a]|\u007c|[\u007e-\u007F]')
-    quotattrcontentchar = r'[A-Za-z]|\s|\d|[!#$%()*+,\-./:;=?@\[\\\]^_\'`|~]'
-    # aposattrcontentchar = (r'\t|\r|\n|[\u0020-\u0025]|[\u0028-\u003b]|'
-    #                        r'[\u003d-\u007a]|\u007c|[\u007e-\u007F]')
-    aposattrcontentchar = r'[A-Za-z]|\s|\d|[!"#$%()*+,\-./:;=?@\[\\\]^_`|~]'
-
-    # CHAR elements - fix the above elementcontentchar, quotattrcontentchar,
-    #                 aposattrcontentchar
-    # x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]
+    # content is any run of characters that does not end the construct
+    elementcontentchar = r'[^{}<&]+'
+    quotattrcontentchar = r'[^{}<&"]+'
+    aposattrcontentchar = r"[^{}<&']+"
 
     flags = re.DOTALL | re.MULTILINE
 
@@ -161,8 +163,8 @@ class XQueryLexer(ExtendedRegexLexer):
         elif len(ctx.stack) > 1:
             ctx.stack.append(lexer.xquery_parse_state.pop())
         else:
-            # i don't know if i'll need this, but in case, default back to root
-            ctx.stack = ['root']
+            # an empty enclosed expression pushed no state of its own
+            ctx.stack = ['root', lexer.xquery_parse_state.pop()]
         ctx.pos = match.end()
 
     def pushstate_element_content_starttag_callback(lexer, match, ctx):
@@ -211,8 +213,8 @@ class XQueryLexer(ExtendedRegexLexer):
         yield match.start(), Keyword, match.group(1)
         yield match.start(), Whitespace, match.group(2)
         yield match.start(), Keyword, match.group(3)
+        # the '{' that follows the mode pushes the parse state
         ctx.stack = ['root']
-        lexer.xquery_parse_state.append('operator')
         ctx.pos = match.end()
 
     def pushstate_operator_processing_instruction_callback(lexer, match, ctx):
@@ -252,33 +254,26 @@ class XQueryLexer(ExtendedRegexLexer):
         ctx.pos = match.end()
 
     def pushstate_kindtest_callback(lexer, match, ctx):
-        yield match.start(), Keyword, match.group(1)
-        yield match.start(), Whitespace, match.group(2)
-        yield match.start(), Punctuation, match.group(3)
+        yield from _kindtest_name(match)
         lexer.xquery_parse_state.append('kindtest')
         ctx.stack.append('kindtest')
         ctx.pos = match.end()
 
     def pushstate_operator_kindtestforpi_callback(lexer, match, ctx):
-        yield match.start(), Keyword, match.group(1)
-        yield match.start(), Whitespace, match.group(2)
-        yield match.start(), Punctuation, match.group(3)
-        lexer.xquery_parse_state.append('operator')
+        yield from _kindtest_name(match)
+        # the state is left with '#pop', so do not use the parse state here
+        ctx.stack.append('operator')
         ctx.stack.append('kindtestforpi')
         ctx.pos = match.end()
 
     def pushstate_operator_kindtest_callback(lexer, match, ctx):
-        yield match.start(), Keyword, match.group(1)
-        yield match.start(), Whitespace, match.group(2)
-        yield match.start(), Punctuation, match.group(3)
+        yield from _kindtest_name(match)
         lexer.xquery_parse_state.append('operator')
         ctx.stack.append('kindtest')
         ctx.pos = match.end()
 
     def pushstate_occurrenceindicator_kindtest_callback(lexer, match, ctx):
-        yield match.start(), Name.Tag, match.group(1)
-        yield match.start(), Whitespace, match.group(2)
-        yield match.start(), Punctuation, match.group(3)
+        yield from _kindtest_name(match)
         lexer.xquery_parse_state.append('occurrenceindicator')
         ctx.stack.append('kindtest')
         ctx.pos = match.end()
@@ -315,6 +310,12 @@ class XQueryLexer(ExtendedRegexLexer):
         ctx.stack.append('operator')
         ctx.pos = match.end()
 
+    def get_tokens_unprocessed(self, text=None, context=None):
+        if context is None:
+            # a truncated document must not leave entries behind for the next
+            self.xquery_parse_state = []
+        yield from super().get_tokens_unprocessed(text, context)
+
     tokens = {
         'comment': [
             # xquery comments
@@ -326,24 +327,50 @@ class XQueryLexer(ExtendedRegexLexer):
         'whitespace': [
             (r'\s+', Whitespace),
         ],
+        # 4.0 lookup: ?name, ?"key", ?1, ?$k, ?(expr), ?*, ?.
+        'lookup': [
+            (r'(\?)(\s*)(\d+)',
+             bygroups(Punctuation, Whitespace, Number.Integer), 'operator'),
+            (r'(\?)(\s*)([*.])',
+             bygroups(Punctuation, Whitespace, Operator), 'operator'),
+            (r'(\?)(\s*)(' + ncname + r')',
+             bygroups(Punctuation, Whitespace, Name), 'operator'),
+            (r'(\?)(\s*)(' + stringdouble + ')',
+             bygroups(Punctuation, Whitespace, String.Double), 'operator'),
+            (r'(\?)(\s*)(' + stringsingle + ')',
+             bygroups(Punctuation, Whitespace, String.Single), 'operator'),
+            (r'(\?)(\s*)(\$)',
+             bygroups(Punctuation, Whitespace, Name.Variable), 'varname'),
+            (r'(\?)(\s*)(\()',
+             bygroups(Punctuation, Whitespace, Punctuation), 'root'),
+        ],
         'operator': [
             include('whitespace'),
             (r'(\})', popstate_callback),
+            # a predicate or array constructor pushes a state, so this pops one
+            (r'(\])', popstate_callback),
             (r'\(:', Comment, 'comment'),
 
             (r'(\{)', pushstate_root_callback),
             (r'then|else|external|at|div|except', Keyword, 'root'),
             (r'order by', Keyword, 'root'),
             (r'group by', Keyword, 'root'),
+            # 4.0 node comparisons in word form
+            (r'(is-not|precedes-or-is|follows-or-is|precedes|follows)\b',
+             Operator.Word, 'root'),
             (r'is|mod|order\s+by|stable\s+order\s+by', Keyword, 'root'),
             (r'and|or', Operator.Word, 'root'),
-            (r'(eq|ge|gt|le|lt|ne|idiv|intersect|in)\b',
+            (r'(eq|ge|gt|le|lt|ne|idiv|intersect|in|otherwise)\b',
              Operator.Word, 'root'),
             (r'return|satisfies|to|union|where|count|preserve\s+strip',
              Keyword, 'root'),
-            (r'(>=|>>|>|<=|<<|<|-|\*|!=|\+|\|\||\||:=|=|!)',
+            # 4.0 while and trace clauses
+            (r'(while|trace)\b', Keyword, 'root'),
+            (r'finally\b', Keyword),
+            (r'(=!>|=>|->|>=|>>|>|<=|<<|<|-|\*|!=|\+|\|\||\||:=|=|!)',
              operator_root_callback),
-            (r'(::|:|;|\[|//|/|,)',
+            (r'(\[)', pushstate_operator_root_callback),
+            (r'(::|:|;|//|/|,)',
              punctuation_root_callback),
             (r'(castable|cast)(\s+)(as)\b',
              bygroups(Keyword, Whitespace, Keyword), 'singletype'),
@@ -355,24 +382,45 @@ class XQueryLexer(ExtendedRegexLexer):
              bygroups(Keyword, Whitespace, String.Double), 'itemtype'),
             (r'(case)(\s+)(' + stringsingle + ')',
              bygroups(Keyword, Whitespace, String.Single), 'itemtype'),
+            # typeswitch: a parenthesized choice item type, not an expression
+            (r'(case)(\s+)(?=\(\s*' + qname + r'\s*[|)])',
+             bygroups(Keyword, Whitespace), 'itemtype'),
+            # switch: a case clause is followed by an expression, not by a type
+            (r'(case)(\s+)(?=[-+\d($])', bygroups(Keyword, Whitespace), 'root'),
             (r'(case|as)\b', Keyword, 'itemtype'),
             (r'(\))(\s*)(as)',
              bygroups(Punctuation, Whitespace, Keyword), 'itemtype'),
             (r'\$', Name.Variable, 'varname'),
+            (r'(let)(\s+)(\$)(\s*)([(\[{])',
+             bygroups(Keyword, Whitespace, Name.Variable, Whitespace,
+                      Punctuation),
+             ('operator', 'destructuring')),
             (r'(for|let|previous|next)(\s+)(\$)',
              bygroups(Keyword, Whitespace, Name.Variable), 'varname'),
             (r'(for)(\s+)(tumbling|sliding)(\s+)(window)(\s+)(\$)',
              bygroups(Keyword, Whitespace, Keyword, Whitespace, Keyword,
                       Whitespace, Name.Variable),
              'varname'),
-            # (r'\)|\?|\]', Punctuation, '#push'),
-            (r'\)|\?|\]', Punctuation),
+            (r'(for)(\s+)(member|key)(\s+)(\$)',
+             bygroups(Keyword, Whitespace, Keyword, Whitespace, Name.Variable),
+             'varname'),
+            (r'(member|key|value)(\s+)(\$)',
+             bygroups(Keyword, Whitespace, Name.Variable), 'varname'),
+            include('lookup'),
+            (r'\)|\?', Punctuation),
+            # argument list of a postfix call, e.g. $m?f(1), $a[1](2)
+            (r'\(', Punctuation, 'root'),
             (r'(empty)(\s+)(greatest|least)',
              bygroups(Keyword, Whitespace, Keyword)),
             (r'ascending|descending|default', Keyword, '#push'),
             (r'(allowing)(\s+)(empty)',
              bygroups(Keyword, Whitespace, Keyword)),
             (r'external', Keyword),
+            (r'(only)(\s+)(end)(\s+)(when)\b',
+             bygroups(Keyword, Whitespace, Keyword, Whitespace, Keyword),
+             'root'),
+            (r'(start|end)(\s+)(when)\b',
+             bygroups(Keyword, Whitespace, Keyword), 'root'),
             (r'(start|when|end)', Keyword, 'root'),
             (r'(only)(\s+)(end)', bygroups(Keyword, Whitespace, Keyword),
              'root'),
@@ -391,6 +439,8 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'(catch)(\s*)', bygroups(Keyword, Whitespace), 'root'),
         ],
         'uritooperator': [
+            include('whitespace'),
+            (r'\(:', Comment, 'comment'),
             (stringdouble, String.Double, '#pop'),
             (stringsingle, String.Single, '#pop'),
         ],
@@ -420,30 +470,85 @@ class XQueryLexer(ExtendedRegexLexer):
             (r',', Punctuation),
         ],
         'annotationname': [
+            include('whitespace'),
             (r'\(:', Comment, 'comment'),
+            (r'\%', Name.Decorator),
+            (r'(variable)(\s+)(\$)',
+             bygroups(Keyword.Declaration, Whitespace, Name.Variable),
+             'varname'),
+            # 4.0 annotated item type and record declarations
+            (r'(type)(\s+)(' + qname + r')(\s+)(as)\b',
+             bygroups(Keyword.Declaration, Whitespace, Keyword.Type,
+                      Whitespace, Keyword),
+             'itemtype'),
+            (r'(record)(\s+)(' + qname + r')(\s*)(\()',
+             bygroups(Keyword.Declaration, Whitespace, Keyword.Type,
+                      Whitespace, Punctuation),
+             'recordtest'),
+            # not the prefix of an annotation name such as %fn:x
+            (r'(function|fn)(?![' + namechar + r':])',
+             Keyword.Declaration, 'root'),
+            # 4.0 annotation arguments are constants, not just string literals
+            (r'[(),]', Punctuation),
+            (stringdouble, String.Double),
+            (stringsingle, String.Single),
+            (r'0x' + hexdigits, Number.Hex),
+            (r'0b' + bindigits, Number.Bin),
+            (r'-?' + digits + r'\.' + digits + r'?|-?\.' + digits,
+             Number.Float),
+            (r'-?' + digits, Number.Integer),
+            (r'(#)(' + qname + r')', bygroups(Punctuation, String.Symbol)),
+            (r'(true|false)(\s*)(\()(\s*)(\))',
+             bygroups(Keyword, Whitespace, Punctuation, Whitespace,
+                      Punctuation)),
             (qname, Name.Decorator),
-            (r'(\()(' + stringdouble + ')', bygroups(Punctuation, String.Double)),
-            (r'(\()(' + stringsingle + ')', bygroups(Punctuation, String.Single)),
-            (r'(\,)(\s+)(' + stringdouble + ')',
-             bygroups(Punctuation, Text, String.Double)),
-            (r'(\,)(\s+)(' + stringsingle + ')',
-             bygroups(Punctuation, Text, String.Single)),
-            (r'\)', Punctuation),
-            (r'(\s+)(\%)', bygroups(Text, Name.Decorator), 'annotationname'),
-            (r'(\s+)(variable)(\s+)(\$)',
-             bygroups(Text, Keyword.Declaration, Text, Name.Variable), 'varname'),
-            (r'(\s+)(function)(\s+)',
-             bygroups(Text, Keyword.Declaration, Text), 'root')
         ],
         'varname': [
             (r'\(:', Comment, 'comment'),
-            (r'(' + qname + r')(\()?', bygroups(Name, Punctuation), 'operator'),
+            # dynamic function call, e.g. $f(1)
+            (r'(' + qname + r')(\()', bygroups(Name, Punctuation), 'root'),
+            (qname, Name, 'operator'),
+        ],
+        # names bound by a destructuring let, e.g. let $( $a, $b ) := (1, 2)
+        'destructuring': [
+            include('whitespace'),
+            (r'\(:', Comment, 'comment'),
+            (r'[)\]}]', Punctuation, '#pop'),
+            (r',', Punctuation),
+            (r'(as)\b', Keyword, 'recordfieldtype'),
+            (r'(\$)(' + qname + r')', bygroups(Name.Variable, Name)),
         ],
         'singletype': [
             include('whitespace'),
             (r'\(:', Comment, 'comment'),
-            (ncname + r'(:\*)', Name.Variable, 'operator'),
-            (qname, Name.Variable, 'operator'),
+            # 4.0 cast targets other than a plain type name
+            (r'(record)(\s*)(\()',
+             bygroups(Keyword.Type, Whitespace, Punctuation),
+             ('operator', 'recordtest')),
+            (r'(enum|fn|function|map|array|gnode|jnode)(\s*)(\()',
+             bygroups(Keyword.Type, Whitespace, Punctuation),
+             ('operator', 'typeargs')),
+            (r'\(', Punctuation, ('operator', 'choiceitemtype')),
+            (ncname + r':\*', Keyword.Type, 'operator'),
+            # the optional occurrence indicator belongs to the single type
+            (r'(' + qname + r')(\?)?', bygroups(Keyword.Type, Operator),
+             'operator'),
+        ],
+        # 4.0 choice item type, e.g. (xs:date | xs:time)
+        'choiceitemtype': [
+            include('whitespace'),
+            (r'\(:', Comment, 'comment'),
+            (r'\)', Punctuation, '#pop'),
+            (r'\|', Operator),
+            (r'(record)(\s*)(\()',
+             bygroups(Keyword.Type, Whitespace, Punctuation), 'recordtest'),
+            (r'(' + qname + r')(\s*)(\()',
+             bygroups(Keyword.Type, Whitespace, Punctuation), 'typeargs'),
+            (r'[?*+]', Operator),
+            (stringdouble, String.Double),
+            (stringsingle, String.Single),
+            (ncname + r':\*', Keyword.Type),
+            (qname, Keyword.Type),
         ],
         'itemtype': [
             include('whitespace'),
@@ -452,16 +557,20 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'(void)(\s*)(\()(\s*)(\))',
              bygroups(Keyword, Text, Punctuation, Text, Punctuation), 'operator'),
             (r'(element|attribute|schema-element|schema-attribute|comment|text|'
-             r'node|binary|document-node|empty-sequence)(\s*)(\()',
+             r'node|namespace-node|binary|document-node|empty-sequence)(\s*)(\()',
              pushstate_occurrenceindicator_kindtest_callback),
             # Marklogic specific type?
             (r'(processing-instruction)(\s*)(\()',
              bygroups(Keyword, Text, Punctuation),
              ('occurrenceindicator', 'kindtestforpi')),
-            (r'(item)(\s*)(\()(\s*)(\))(?=[*+?])',
+            (r'(item)(\s*)(\()(\s*)(\))',
              bygroups(Keyword, Text, Punctuation, Text, Punctuation),
              'occurrenceindicator'),
             (r'(\(\#)(\s*)', bygroups(Punctuation, Text), 'pragma'),
+            # 4.0 annotated function type, e.g. %updating fn(*)
+            (r'(\%)(' + qname + r')',
+             bygroups(Name.Decorator, Name.Decorator)),
+            (r'\(', Punctuation, ('occurrenceindicator', 'choiceitemtype')),
             (r';', Punctuation, '#pop'),
             (r'then|else', Keyword, '#pop'),
             (r'(at)(\s+)(' + stringdouble + ')',
@@ -486,16 +595,80 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'case|as', Keyword, 'itemtype'),
             (r'(\))(\s*)(as)', bygroups(Operator, Text, Keyword), 'itemtype'),
             (ncname + r':\*', Keyword.Type, 'operator'),
-            (r'(function|map|array)(\()', bygroups(Keyword.Type, Punctuation)),
+            (r'(record)(\s*)(\()',
+             bygroups(Keyword.Type, Whitespace, Punctuation),
+             ('occurrenceindicator', 'recordtest')),
+            (r'(enum|fn|function|map|array|gnode|jnode)(\s*)(\()',
+             bygroups(Keyword.Type, Whitespace, Punctuation),
+             ('occurrenceindicator', 'typeargs')),
             (qname, Keyword.Type, 'occurrenceindicator'),
         ],
+        # 4.0 record test: record(field as type, ...), record(*)
+        'recordtest': [
+            include('whitespace'),
+            (r'\(:', Comment, 'comment'),
+            (r'\)', Punctuation, '#pop'),
+            (r',', Punctuation),
+            (r'\*', Punctuation),
+            (stringdouble, String.Double),
+            (stringsingle, String.Single),
+            (r'(as)\b', Keyword, 'recordfieldtype'),
+            # literal default value of a declared record field
+            (r':=', Operator),
+            (r'0x' + hexdigits, Number.Hex),
+            (r'0b' + bindigits, Number.Bin),
+            (r'-?' + digits + r'\.' + digits + r'?|-?\.' + digits,
+             Number.Float),
+            (r'-?' + digits, Number.Integer),
+            (r'(\()(\s*)(\))', bygroups(Punctuation, Whitespace, Punctuation)),
+            (ncname, Name.Variable),
+        ],
+        # sequence type of a record field, ending before the next ',' or ')'
+        'recordfieldtype': [
+            include('whitespace'),
+            (r'\(:', Comment, 'comment'),
+            (r'(record)(\s*)(\()',
+             bygroups(Keyword.Type, Whitespace, Punctuation), 'recordtest'),
+            (r'(' + qname + r')(\s*)(\()',
+             bygroups(Keyword.Type, Whitespace, Punctuation), 'typeargs'),
+            (r'\(', Punctuation, 'choiceitemtype'),
+            (r'(\%)(' + qname + r')',
+             bygroups(Name.Decorator, Name.Decorator)),
+            (r'[?*+]', Operator),
+            (ncname + r':\*', Keyword.Type),
+            (qname, Keyword.Type),
+            default('#pop'),
+        ],
+        # arguments of a parameterized type: map(...), fn(...), enum(...)
+        'typeargs': [
+            include('whitespace'),
+            (r'\(:', Comment, 'comment'),
+            (r'\)', Punctuation, '#pop'),
+            (r'(record)(\s*)(\()',
+             bygroups(Keyword.Type, Whitespace, Punctuation), 'recordtest'),
+            (r'(' + qname + r')(\s*)(\()',
+             bygroups(Keyword.Type, Whitespace, Punctuation), '#push'),
+            (r'\(', Punctuation, 'choiceitemtype'),
+            (r'(\%)(' + qname + r')',
+             bygroups(Name.Decorator, Name.Decorator)),
+            (r'(as)\b', Keyword),
+            (r'(\$)(' + qname + r')', bygroups(Name.Variable, Name)),
+            (r'[?*+]', Operator),
+            (r',', Punctuation),
+            (stringdouble, String.Double),
+            (stringsingle, String.Single),
+            (ncname + r':\*', Keyword.Type),
+            (qname, Keyword.Type),
+        ],
         'kindtest': [
+            include('whitespace'),
             (r'\(:', Comment, 'comment'),
             (r'\{', Punctuation, 'root'),
             (r'(\))([*+?]?)', popstate_kindtest_callback),
+            # nested kind test, e.g. document-node(element(a))
+            (r'(element|schema-element)(\s*)(\()', pushstate_kindtest_callback),
             (r'\*', Name, 'closekindtest'),
             (qname, Name, 'closekindtest'),
-            (r'(element|schema-element)(\s*)(\()', pushstate_kindtest_callback),
         ],
         'kindtestforpi': [
             (r'\(:', Comment, 'comment'),
@@ -505,32 +678,35 @@ class XQueryLexer(ExtendedRegexLexer):
             (stringsingle, String.Single),
         ],
         'closekindtest': [
+            include('whitespace'),
             (r'\(:', Comment, 'comment'),
             (r'(\))', popstate_callback),
             (r',', Punctuation),
             (r'(\{)', pushstate_operator_root_callback),
             (r'\?', Punctuation),
+            # type name of a typed kind test, e.g. element(*, xs:string)
+            (qname, Keyword.Type),
         ],
         'xml_comment': [
             (r'(-->)', popstate_xmlcomment_callback),
-            (r'[^-]{1,2}', Literal),
-            (r'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|[\U00010000-\U0010FFFF]',
-             Literal),
+            (r'[^-]+', Literal),
+            (r'-', Literal),
         ],
         'processing_instruction': [
             (r'\s+', Text, 'processing_instruction_content'),
-            (r'\?>', String.Doc, '#pop'),
+            # the content state is pushed, so return via the parse state
+            (r'(\?>)', popstate_xmlcomment_callback),
             (pitarget, Name),
         ],
         'processing_instruction_content': [
-            (r'\?>', String.Doc, '#pop'),
-            (r'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|[\U00010000-\U0010FFFF]',
-             Literal),
+            (r'(\?>)', popstate_xmlcomment_callback),
+            (r'[^?]+', Literal),
+            (r'\?', Literal),
         ],
         'cdata_section': [
-            (r']]>', String.Doc, '#pop'),
-            (r'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|[\U00010000-\U0010FFFF]',
-             Literal),
+            (r'(]]>)', popstate_xmlcomment_callback),
+            (r'[^\]]+', Literal),
+            (r'\]', Literal),
         ],
         'start_tag': [
             include('whitespace'),
@@ -542,25 +718,29 @@ class XQueryLexer(ExtendedRegexLexer):
             (qname, Name.Tag),
         ],
         'quot_attribute_content': [
+            # escaped delimiters and braces, before the rules that end them
+            (r'""', Name.Attribute),
+            (r'\{\{|\}\}', Name.Attribute),
             (r'"', Punctuation, 'start_tag'),
             (r'(\{)', pushstate_root_callback),
-            (r'""', Name.Attribute),
             (quotattrcontentchar, Name.Attribute),
             (entityref, Name.Attribute),
             (charref, Name.Attribute),
-            (r'\{\{|\}\}', Name.Attribute),
         ],
         'apos_attribute_content': [
-            (r"'", Punctuation, 'start_tag'),
-            (r'\{', Punctuation, 'root'),
+            # escaped delimiters and braces, before the rules that end them
             (r"''", Name.Attribute),
+            (r'\{\{|\}\}', Name.Attribute),
+            (r"'", Punctuation, 'start_tag'),
+            (r'(\{)', pushstate_root_callback),
             (aposattrcontentchar, Name.Attribute),
             (entityref, Name.Attribute),
             (charref, Name.Attribute),
-            (r'\{\{|\}\}', Name.Attribute),
         ],
         'element_content': [
             (r'</', Name.Tag, 'end_tag'),
+            # literal braces, before the enclosed-expression rule
+            (r'\{\{|\}\}', Literal),
             (r'(\{)', pushstate_root_callback),
             (r'(<!--)', pushstate_element_content_xmlcomment_callback),
             (r'(<\?)', pushstate_element_content_processing_instruction_callback),
@@ -569,7 +749,6 @@ class XQueryLexer(ExtendedRegexLexer):
             (elementcontentchar, Literal),
             (entityref, Literal),
             (charref, Literal),
-            (r'\{\{|\}\}', Literal),
         ],
         'end_tag': [
             include('whitespace'),
@@ -599,20 +778,47 @@ class XQueryLexer(ExtendedRegexLexer):
         ],
         'pragmacontents': [
             (r'#\)', Punctuation, 'operator'),
-            (r'\t|\r|\n|[\u0020-\uD7FF]|[\uE000-\uFFFD]|[\U00010000-\U0010FFFF]',
-             Literal),
-            (r'(\s+)', Whitespace),
+            (r'[^#]+', Literal),
+            (r'#', Literal),
         ],
         'occurrenceindicator': [
             include('whitespace'),
             (r'\(:', Comment, 'comment'),
             (r'\*|\?|\+', Operator, 'operator'),
+            # 4.0 sequence type union, e.g. case xs:date | xs:time
+            (r'\|', Operator, 'itemtype'),
             (r':=', Operator, 'root'),
             default('operator'),
         ],
         'option': [
             include('whitespace'),
             (qname, Name.Variable, '#pop'),
+        ],
+        # declare decimal-format name property="value", ...;
+        'decimalformat': [
+            include('whitespace'),
+            (r'\(:', Comment, 'comment'),
+            (r';', Punctuation, 'root'),
+            (r'=', Operator),
+            (stringdouble, String.Double),
+            (stringsingle, String.Single),
+            (qname, Name.Variable),
+        ],
+        # 3.1 string constructor: ``[ text `{ expr }` text ]``
+        'stringconstructor': [
+            (r'\]``', String.Other, '#pop'),
+            (r'(`\{)', pushstate_root_callback),
+            (r'`', Punctuation),
+            (r'[^`\]]+', String.Other),
+            (r'\]', String.Other),
+        ],
+        # 4.0 string template: `text { expr } text`
+        'stringtemplate': [
+            (r'\{\{|\}\}|``', String.Other),
+            (r'`', String.Other, '#pop'),
+            (r'(\{)', pushstate_root_callback),
+            (r'[^`{}]+', String.Other),
+            (r'\}', String.Other),
         ],
         'qname_braren': [
             include('whitespace'),
@@ -631,22 +837,35 @@ class XQueryLexer(ExtendedRegexLexer):
 
             # handle operator state
             # order on numbers matters - handle most complex first
-            (r'\d+(\.\d*)?[eE][+-]?\d+', Number.Float, 'operator'),
-            (r'(\.\d+)[eE][+-]?\d+', Number.Float, 'operator'),
-            (r'(\.\d+|\d+\.\d*)', Number.Float, 'operator'),
-            (r'(\d+)', Number.Integer, 'operator'),
-            (r'(\.\.|\.|\))', Punctuation, 'operator'),
+            (r'0x' + hexdigits, Number.Hex, 'operator'),
+            (r'0b' + bindigits, Number.Bin, 'operator'),
+            (digits + r'(?:\.' + digits + r')?[eE][+-]?' + digits,
+             Number.Float, 'operator'),
+            (r'\.' + digits + r'[eE][+-]?' + digits, Number.Float, 'operator'),
+            (r'\.' + digits + r'|' + digits + r'\.' + digits + r'?',
+             Number.Float, 'operator'),
+            (digits, Number.Integer, 'operator'),
+            # 4.0 QName literal, e.g. #local:name
+            (r'(#)(' + qname + r')',
+             bygroups(Punctuation, String.Symbol), 'operator'),
+            # context item and parent step, as in the operator state
+            (r'\.\.|\.', Operator, 'operator'),
+            (r'\)', Punctuation, 'operator'),
             (r'(declare)(\s+)(construction)',
-             bygroups(Keyword.Declaration, Text, Keyword.Declaration), 'operator'),
+             bygroups(Keyword.Declaration, Text, Keyword.Declaration),
+             'xmlspace_decl'),
             (r'(declare)(\s+)(default)(\s+)(order)',
              bygroups(Keyword.Declaration, Text, Keyword.Declaration, Text, Keyword.Declaration), 'operator'),
-            (r'(declare)(\s+)(context)(\s+)(item)',
+            (r'(declare)(\s+)(context)(\s+)(item|value)',
              bygroups(Keyword.Declaration, Text, Keyword.Declaration, Text, Keyword.Declaration), 'operator'),
             (ncname + r':\*', Name, 'operator'),
+            (bracedurilit + r'\*', Name.Tag, 'operator'),
             (r'\*:'+ncname, Name.Tag, 'operator'),
             (r'\*', Name.Tag, 'operator'),
             (stringdouble, String.Double, 'operator'),
             (stringsingle, String.Single, 'operator'),
+            (r'``\[', String.Other, ('operator', 'stringconstructor')),
+            (r'`', String.Other, ('operator', 'stringtemplate')),
 
             (r'(\}|\])', popstate_callback),
 
@@ -674,11 +893,19 @@ class XQueryLexer(ExtendedRegexLexer):
              'namespacekeyword'),
 
             # VARNAMEs
-            (r'(for|let|some|every)(\s+)(\$)',
+            # 4.0 destructuring let, e.g. let $(a, b) := (1, 2)
+            (r'(let)(\s+)(\$)(\s*)([(\[{])',
+             bygroups(Keyword, Whitespace, Name.Variable, Whitespace,
+                      Punctuation),
+             ('operator', 'destructuring')),
+            (r'(for|let|some|every|member|key|value)(\s+)(\$)',
              bygroups(Keyword, Whitespace, Name.Variable), 'varname'),
             (r'(for)(\s+)(tumbling|sliding)(\s+)(window)(\s+)(\$)',
              bygroups(Keyword, Whitespace, Keyword, Whitespace, Keyword,
                       Whitespace, Name.Variable),
+             'varname'),
+            (r'(for)(\s+)(member|key)(\s+)(\$)',
+             bygroups(Keyword, Whitespace, Keyword, Whitespace, Name.Variable),
              'varname'),
             (r'\$', Name.Variable, 'varname'),
             (r'(declare)(\s+)(variable)(\s+)(\$)',
@@ -686,20 +913,31 @@ class XQueryLexer(ExtendedRegexLexer):
                       Whitespace, Name.Variable),
              'varname'),
 
+            # DECIMAL FORMATS
+            (r'(declare)(\s+)(default)(\s+)(decimal-format)',
+             bygroups(Keyword.Declaration, Whitespace, Keyword.Declaration,
+                      Whitespace, Keyword.Declaration),
+             'decimalformat'),
+            (r'(declare)(\s+)(decimal-format)',
+             bygroups(Keyword.Declaration, Whitespace, Keyword.Declaration),
+             'decimalformat'),
+
             # ANNOTATED GLOBAL VARIABLES AND FUNCTIONS
             (r'(declare)(\s+)(\%)', bygroups(Keyword.Declaration, Whitespace,
                                              Name.Decorator),
              'annotationname'),
+            # annotated inline function, e.g. %updating function() { ... }
+            (r'(\%)', Name.Decorator, 'annotationname'),
 
             # ITEMTYPE
             (r'(\))(\s+)(as)', bygroups(Operator, Whitespace, Keyword),
              'itemtype'),
 
             (r'(element|attribute|schema-element|schema-attribute|comment|'
-             r'text|node|document-node|empty-sequence)(\s+)(\()',
+             r'text|node|namespace-node|document-node|empty-sequence)(\s*)(\()',
              pushstate_operator_kindtest_callback),
 
-            (r'(processing-instruction)(\s+)(\()',
+            (r'(processing-instruction)(\s*)(\()',
              pushstate_operator_kindtestforpi_callback),
 
             (r'(<!--)', pushstate_operator_xmlcomment_callback),
@@ -714,6 +952,8 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'(declare)(\s+)(boundary-space)',
              bygroups(Keyword.Declaration, Text, Keyword.Declaration), 'xmlspace_decl'),
 
+            (r'(validate)(\s+)(type)(\s+)(' + qname + r')',
+             bygroups(Keyword, Whitespace, Keyword, Whitespace, Keyword.Type)),
             (r'(validate)(\s+)(lax|strict)',
              pushstate_operator_root_validate_withmode),
             (r'(validate)(\s*)(\{)', pushstate_operator_root_validate),
@@ -725,6 +965,9 @@ class XQueryLexer(ExtendedRegexLexer):
 
             (r'(document|text|processing-instruction|comment)(\s*)(\{)',
              pushstate_operator_root_construct_callback),
+            # 4.0 computed constructor named by a QName literal
+            (r'(element|attribute|namespace)(\s+)(#)(' + qname + r')',
+             bygroups(Keyword, Whitespace, Punctuation, String.Symbol)),
             # ATTRIBUTE
             (r'(attribute)(\s+)(?=' + qname + r')',
              bygroups(Keyword, Whitespace), 'attribute_qname'),
@@ -739,6 +982,16 @@ class XQueryLexer(ExtendedRegexLexer):
 
             (r'(declare|define)(\s+)(function)',
              bygroups(Keyword.Declaration, Whitespace, Keyword.Declaration)),
+
+            # 4.0 item type and named record declarations
+            (r'(declare)(\s+)(type)(\s+)(' + qname + r')(\s+)(as)\b',
+             bygroups(Keyword.Declaration, Whitespace, Keyword.Declaration,
+                      Whitespace, Keyword.Type, Whitespace, Keyword),
+             'itemtype'),
+            (r'(declare)(\s+)(record)(\s+)(' + qname + r')(\s*)(\()',
+             bygroups(Keyword.Declaration, Whitespace, Keyword.Declaration,
+                      Whitespace, Keyword.Type, Whitespace, Punctuation),
+             'recordtest'),
 
             (r'(\{|\[)', pushstate_operator_root_callback),
 
@@ -779,6 +1032,15 @@ class XQueryLexer(ExtendedRegexLexer):
 
             (r'then|else', Keyword),
 
+            # 4.0 braced switch and typeswitch cases
+            (r'(case)(\s+)(?=\(\s*' + qname + r'\s*[|)])',
+             bygroups(Keyword, Whitespace), 'itemtype'),
+            (r'(case)(\s+)(?=[-+\d("\'])', bygroups(Keyword, Whitespace)),
+            (r'(case)(\s+)(\$)',
+             bygroups(Keyword, Whitespace, Name.Variable), 'varname'),
+            (r'(case)\b', Keyword, 'itemtype'),
+            (r'(default|finally)\b', Keyword),
+
             # eXist specific XQUF
             (r'(update)(\s*)(insert|delete|replace|value|rename)',
              bygroups(Keyword, Whitespace, Keyword)),
@@ -797,9 +1059,17 @@ class XQueryLexer(ExtendedRegexLexer):
             (r'@\*', Name.Attribute, 'operator'),
             (r'(@)', Name.Attribute, 'operator'),
 
-            (r'//|/|\+|-|;|,|\(|\)', Punctuation),
+            include('lookup'),
+
+            (r':=', Operator),
+            (r'//|/|\+|-|;|,|\(|\)|\?', Punctuation),
 
             # STANDALONE QNAMES
+            # 4.0 inline function expression and keyword argument
+            # the signature is optional, as in fn { ?height * ?width }
+            (r'(function|fn)(?=\s*[({])', Keyword.Declaration),
+            (r'(' + qname + r')(\s*)(:=)',
+             bygroups(Name.Label, Whitespace, Operator)),
             (qname + r'(?=\s*\{)', Name.Tag, 'qname_braren'),
             (qname + r'(?=\s*\([^:])', Name.Function, 'qname_braren'),
             (r'(' + qname + ')(#)([0-9]+)', bygroups(Name.Function, Keyword.Type, Number.Integer)),

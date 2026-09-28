@@ -1,0 +1,36 @@
+---input---
+declare decimal-format local:df decimal-separator="," NaN="n/a";
+declare default decimal-format grouping-separator=".";
+1
+
+---tokens---
+'declare'     Keyword.Declaration
+' '           Text.Whitespace
+'decimal-format' Keyword.Declaration
+' '           Text.Whitespace
+'local:df'    Name.Variable
+' '           Text.Whitespace
+'decimal-separator' Name.Variable
+'='           Operator
+'","'         Literal.String.Double
+' '           Text.Whitespace
+'NaN'         Name.Variable
+'='           Operator
+'"n/a"'       Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'declare'     Keyword.Declaration
+' '           Text.Whitespace
+'default'     Keyword.Declaration
+' '           Text.Whitespace
+'decimal-format' Keyword.Declaration
+' '           Text.Whitespace
+'grouping-separator' Name.Variable
+'='           Operator
+'"."'         Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
