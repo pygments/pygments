@@ -309,7 +309,12 @@ class CommonLispLexer(RegexLexer):
 
     # characters that are not macro-characters and can be used to begin a symbol
     nonmacro = r'\\.|[\w!$%&*+-/<=>?@\[\]^{}~]'
-    constituent = nonmacro + '|[#.:]'
+    # '.' is already covered by nonmacro's own (overly broad) character
+    # range above, so leaving it out of this alternative avoids the two
+    # alternatives being able to match the same character, which is what
+    # was causing catastrophic backtracking on long runs of '.' with no
+    # closing terminator.
+    constituent = nonmacro + '|[#:]'
     terminated = r'(?=[ "()\'\n,;`])'  # whitespace or terminating macro characters
 
     # symbol token, reverse-engineered from hyperspec
@@ -1675,7 +1680,12 @@ class EmacsLispLexer(RegexLexer):
 
     # characters that are not macro-characters and can be used to begin a symbol
     nonmacro = r'\\.|[\w!$%&*+-/<=>?@^{}~|]'
-    constituent = nonmacro + '|[#.:]'
+    # '.' is already covered by nonmacro's own (overly broad) character
+    # range above, so leaving it out of this alternative avoids the two
+    # alternatives being able to match the same character, which is what
+    # was causing catastrophic backtracking on long runs of '.' with no
+    # closing terminator.
+    constituent = nonmacro + '|[#:]'
     terminated = r'(?=[ "()\]\'\n,;`])'  # whitespace or terminating macro characters
 
     # symbol token, reverse-engineered from hyperspec
