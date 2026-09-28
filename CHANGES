@@ -7,6 +7,12 @@ Version 2.22.0
 --------------
 (not released yet)
 
+- Updated lexers:
+
+  * ASP.NET: Fix a nested resource expression (``<%$ Resources: ... %>``)
+    inside a directive being mistaken for the directive's own closing
+    ``%>`` (#329)
+
 Version 2.21.0
 ---------------
 (released August 17th, 2026)
