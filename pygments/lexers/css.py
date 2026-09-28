@@ -619,6 +619,13 @@ class LessCssLexer(CssLexer):
             (r'//.*\n', Comment.Single),
             (r'/\*[\s\S]*?\*/', Comment.Multiline),
             inherit,
+            # LESS allows nested rules, so selectors (which CssLexer only
+            # recognizes in its 'basics' state, not 'content') need to be
+            # matched here too, once the declaration-style rules above have
+            # had a chance to claim `property: value` pairs.
+            (r'(\.)([\w-]+)', bygroups(Punctuation, Name.Class)),
+            (r'(\#)([\w-]+)', bygroups(Punctuation, Name.Namespace)),
+            (r'[\w-]+', Name.Tag),
         ],
         'value-start': [
             (r'//.*\n', Comment.Single),

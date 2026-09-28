@@ -1,0 +1,45 @@
+---input---
+.highlight {
+  .highlight-header {
+    display: flex;
+
+    h2 {
+      text-align: center;
+    }
+  }
+}
+
+---tokens---
+'.'           Punctuation
+'highlight'   Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'.'           Punctuation
+'highlight-header' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'display'     Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'flex'        Keyword.Constant
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'h2'          Name.Tag
+' '           Text.Whitespace
+'{'           Punctuation
+'\n      '    Text.Whitespace
+'text-align'  Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'center'      Keyword.Constant
+';'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
