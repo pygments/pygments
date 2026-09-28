@@ -1,0 +1,84 @@
+---input---
+func iter list A, (pred i:A) ->.
+external func neg bool -> bool.
+pred main list argument.
+pred (;) (pred), (pred).
+pred do-ok! o:diagnostic, i:list (pred o:diagnostic).
+
+---tokens---
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'iter'        Name.Function
+' '           Text.Whitespace
+'list'        Keyword.Type
+' '           Text.Whitespace
+'A'           Keyword.Type
+','           Keyword.Mode
+' '           Text.Whitespace
+'('           Keyword.Mode
+'pred'        Keyword.Declaration
+' '           Text.Whitespace
+'i:'          Keyword.Mode
+'A'           Keyword.Type
+')'           Keyword.Mode
+' '           Text.Whitespace
+'->'          Keyword.Mode
+'.'           Text
+'\n'          Text.Whitespace
+
+'external func' Keyword.Declaration
+' '           Text.Whitespace
+'neg'         Name.Function
+' '           Text.Whitespace
+'bool'        Keyword.Type
+' '           Text.Whitespace
+'->'          Keyword.Mode
+' '           Text.Whitespace
+'bool'        Keyword.Type
+'.'           Text
+'\n'          Text.Whitespace
+
+'pred'        Keyword.Declaration
+' '           Text.Whitespace
+'main'        Name.Function
+' '           Text.Whitespace
+'list'        Keyword.Type
+' '           Text.Whitespace
+'argument'    Keyword.Type
+'.'           Text
+'\n'          Text.Whitespace
+
+'pred'        Keyword.Declaration
+' '           Text.Whitespace
+'(;)'         Name.Function
+' '           Text.Whitespace
+'('           Keyword.Mode
+'pred'        Keyword.Declaration
+')'           Keyword.Mode
+','           Keyword.Mode
+' '           Text.Whitespace
+'('           Keyword.Mode
+'pred'        Keyword.Declaration
+')'           Keyword.Mode
+'.'           Text
+'\n'          Text.Whitespace
+
+'pred'        Keyword.Declaration
+' '           Text.Whitespace
+'do-ok!'      Name.Function
+' '           Text.Whitespace
+'o:'          Keyword.Mode
+'diagnostic'  Keyword.Type
+','           Keyword.Mode
+' '           Text.Whitespace
+'i:'          Keyword.Mode
+'list'        Keyword.Type
+' '           Text.Whitespace
+'('           Keyword.Mode
+'pred'        Keyword.Declaration
+' '           Text.Whitespace
+'o:'          Keyword.Mode
+'diagnostic'  Keyword.Type
+')'           Keyword.Mode
+'.'           Text
+'\n'          Text.Whitespace

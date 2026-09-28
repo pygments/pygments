@@ -9,9 +9,8 @@ shorten foo. { bar }.
 ' '           Text.Whitespace
 'foo.bar'     Text
 ' '           Text.Whitespace
-'{\n'         Text
-
-'  '          Text.Whitespace
+'{'           Text
+'\n  '        Text.Whitespace
 'baz'         Text
 ' '           Text.Whitespace
 ':-'          Keyword.Declaration
@@ -22,14 +21,17 @@ shorten foo. { bar }.
 '.'           Operator
 '\n'          Text.Whitespace
 
-'}\n'         Text
+'}'           Text
+'\n'          Text.Whitespace
 
 'shorten'     Keyword.Declaration
 ' '           Text.Whitespace
 'foo.'        Text
 ' '           Text.Whitespace
-'{ '          Text
+'{'           Text
+' '           Text.Whitespace
 'bar'         Text
 ' '           Text.Whitespace
-'}.'          Text
+'}'           Text
+'.'           Operator
 '\n'          Text.Whitespace

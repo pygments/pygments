@@ -1,0 +1,65 @@
+---input---
+height L K V R H :-
+  H is {std.max {height L} {height R}} + 1.
+
+namespace foo {
+  bar :- true.
+}
+
+---tokens---
+'height'      Text
+' '           Text.Whitespace
+'L'           Name.Variable
+' '           Text.Whitespace
+'K'           Name.Variable
+' '           Text.Whitespace
+'V'           Name.Variable
+' '           Text.Whitespace
+'R'           Name.Variable
+' '           Text.Whitespace
+'H'           Name.Variable
+' '           Text.Whitespace
+':-'          Keyword.Declaration
+'\n  '        Text.Whitespace
+'H'           Name.Variable
+' '           Text.Whitespace
+'is'          Keyword.Declaration
+' '           Text.Whitespace
+'{'           Text
+'std.max'     Text
+' '           Text.Whitespace
+'{'           Text
+'height'      Text
+' '           Text.Whitespace
+'L'           Name.Variable
+'}'           Text
+' '           Text.Whitespace
+'{'           Text
+'height'      Text
+' '           Text.Whitespace
+'R'           Name.Variable
+'}'           Text
+'}'           Text
+' '           Text.Whitespace
+'+'           Keyword.Declaration
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'.'           Operator
+'\n\n'        Text.Whitespace
+
+'namespace'   Keyword.Declaration
+' '           Text.Whitespace
+'foo'         Text
+' '           Text.Whitespace
+'{'           Text
+'\n  '        Text.Whitespace
+'bar'         Text
+' '           Text.Whitespace
+':-'          Keyword.Declaration
+' '           Text.Whitespace
+'true'        Text
+'.'           Operator
+'\n'          Text.Whitespace
+
+'}'           Text
+'\n'          Text.Whitespace

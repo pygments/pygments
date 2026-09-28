@@ -37,9 +37,10 @@ class ElpiLexer(RegexLexer):
     idcharstarns_re = rf"({idchar_re}*(\.({lcase_re}|{ucase_re}){idchar_re}*)*)"
     symbchar_re = rf"({lcase_re}|{ucase_re}|{digit_re}|{schar_re}|:)"
     constant_re = rf"({ucase_re}{idchar_re}*|{lcase_re}{idcharstarns_re}|{schar2_re}{symbchar_re}*|_{idchar_re}+)"
-    symbol_re = r"(,|<=>|->|:-|;|\?-|->|&|=>|\bas\b|\buvar\b|<|=<|=|==|>=|>|\bi<|\bi=<|\bi>=|\bi>|\bis\b|\br<|\br=<|\br>=|\br>|\bs<|\bs=<|\bs>=|\bs>|@|::|\[\]|`->|`:|`:=|\^|-|\+|\bi-|\bi\+|r-|r\+|/|\*|\bdiv\b|\bi\*|\bmod\b|\br\*|~|\bi~|\br~)"
+    symbol_re = r"(,|<=>|-->|:-|:>|;|\?-|->|&|=>|\bas\b|\buvar\b|<|=<|=|==|>=|>|\bi<|\bi=<|\bi>=|\bi>|\bis\b|\br<|\br=<|\br>=|\br>|\bs<|\bs=<|\bs>=|\bs>|@|::|\[\]|`->|`:|`:=|\^|-|\+|\bi-|\bi\+|r-|r\+|/|\*|\bdiv\b|\bi\*|\bmod\b|\br\*|~|\bi~|\br~)"
     escape_re = rf"\(({constant_re}|{symbol_re})\)"
     const_sym_re = rf"({constant_re}|{symbol_re}|{escape_re})"
+    ext_re = r"(?:external|builtin)"
 
     tokens = {
         'root': [
@@ -49,21 +50,28 @@ class ElpiLexer(RegexLexer):
         'elpi': [
             include('_elpi-comment'),
 
-            (r"(:before|:after|:if|:name)(\s*)(\")",
+            (r"(:functional|:nooc|:untyped|:external)\b", Keyword.Mode),
+            (r"(:before|:after|:if|:name|:replace|:remove)(\s*)(\")",
              bygroups(Keyword.Mode, Text.Whitespace, String.Double),
              'elpi-string'),
             (r"(:index)(\s*)(\()", bygroups(Keyword.Mode, Text.Whitespace, Punctuation),
              'elpi-indexing-expr'),
-            (rf"\b(external pred|pred)(\s+)({const_sym_re})",
+            (rf"\b({ext_re}\s+pred|pred)(\s+)({const_sym_re})",
              bygroups(Keyword.Declaration, Text.Whitespace, Name.Function),
              'elpi-pred-item'),
-            (rf"\b(func)(\s+)({const_sym_re})",
+            (rf"\b({ext_re}\s+func|func)(\s+)({const_sym_re})",
              bygroups(Keyword.Declaration, Text.Whitespace, Name.Function),
              'elpi-func-item'),
             (rf"\b(external type|type)(\s+)(({const_sym_re}(,\s*)?)+)",
              bygroups(Keyword.Declaration, Text.Whitespace, Name.Function),
              'elpi-type'),
             (rf"\b(kind)(\s+)(({const_sym_re}|,)+)",
+             bygroups(Keyword.Declaration, Text.Whitespace, Name.Function),
+             'elpi-type'),
+            (rf"\b(builtin\s+data|data)(\s+)(({const_sym_re}|,)+)",
+             bygroups(Keyword.Declaration, Text.Whitespace, Name.Function),
+             'elpi-type'),
+            (rf"\b({ext_re}\s+symbol|{ext_re}\s+symb|symbol|symb)(\s+)(({const_sym_re}(,\s*)?)+)",
              bygroups(Keyword.Declaration, Text.Whitespace, Name.Function),
              'elpi-type'),
             (rf"\b(typeabbrev)(\s+)({const_sym_re})",
@@ -88,21 +96,24 @@ class ElpiLexer(RegexLexer):
             (rf"(?=[A-Z_]){constant_re}", Name.Variable),
             (rf"(?=[a-z_])({constant_re}|_)\\", Name.Variable),
             (r"_", Name.Variable),
+            (r"\\", Keyword.Declaration),
             (rf"({symbol_re}|!|=>|;)", Keyword.Declaration),
             (constant_re, Text),
             (r"\[|\]|\||=>", Keyword.Declaration),
+            (r"[\xab\xbb]", Operator),
+            (r":", Punctuation),
             (r'"', String.Double, 'elpi-string'),
             (r'`', String.Double, 'elpi-btick'),
             (r'\'', String.Double, 'elpi-tick'),
             (r'\{\{', Punctuation, 'elpi-quote'),
-            (r'\{[^\{]', Text, 'elpi-spill'),
+            (r'\{(?!\{)', Text, 'elpi-spill'),
             (r"\(", Punctuation, 'elpi-in-parens'),
             (r'\d[\d_]*', Number.Integer),
             (r'-?\d[\d_]*(.[\d_]*)?([eE][+\-]?\d[\d_]*)', Number.Float),
             (r"[\+\*\-/\^\.]", Operator),
         ],
         '_elpi-comment': [
-            (r'%[^\n]*\n', Comment),
+            (r'%[^\n]*\n?', Comment),
             (r'/(?:\\\n)?[*](?:[^*]|[*](?!(?:\\\n)?/))*[*](?:\\\n)?/', Comment),
             (r"\s+", Text.Whitespace),
         ],
@@ -112,9 +123,14 @@ class ElpiLexer(RegexLexer):
         ],
         'elpi-type': [
             (r"(ctype\s+)(\")", bygroups(Keyword.Type, String.Double), 'elpi-string'),
+            (r'\.\.', Keyword.Type),
             (r'->', Keyword.Type),
             (r'prop', Keyword.Mode),
+            (r':', Text),
+            (r'=', Text),
+            (r'"', String.Double, 'elpi-string'),
             (constant_re, Keyword.Type),
+            (r',', Text),
             (r"\(|\)", Keyword.Type),
             (r"\.", Text, '#pop'),
             include('_elpi-comment'),
@@ -163,8 +179,6 @@ class ElpiLexer(RegexLexer):
             include('_elpi-comment'),
         ],
 
-        ''
-
         'elpi-btick': [
             (r'[^` ]+', String.Double),
             (r'`', String.Double, '#pop'),
@@ -181,7 +195,8 @@ class ElpiLexer(RegexLexer):
             (r'\}\}', Punctuation, '#pop'),
             (r"\s+", Text.Whitespace),
             (r"(lp:)(\{\{)", bygroups(Number, Punctuation), 'elpi-quote-exit'),
-            (rf"(lp:)((?=[A-Z_]){constant_re})", bygroups(Number, Name.Variable)),
+            (rf"(lp:)({constant_re}|_)", bygroups(Number, Name.Variable)),
+            (r"(lp:)(\()", bygroups(Number, Punctuation), 'elpi-in-parens'),
             (r"((?!lp:|\}\}).)+", using(RocqLexer)),
         ],
         'elpi-quote-exit': [
@@ -189,8 +204,8 @@ class ElpiLexer(RegexLexer):
             (r'\}\}', Punctuation, '#pop'),
         ],
         'elpi-spill': [
-            (r'\{[^\{]', Text, '#push'),
-            (r'\}[^\}]', Text, '#pop'),
+            (r'\{(?!\{)', Text, '#push'),
+            (r'\}', Text, '#pop'),
             include('elpi'),
         ],
         'elpi-in-parens': [

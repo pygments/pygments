@@ -1,0 +1,112 @@
+---input---
+foo :- {{ fun (x : lp:A) => lp:(Bo x) }}.
+bar :- pi a\ mk-ty a {{ lp:a -> Type }}.
+baz :- {{ forall x, lib:elpi.reflect lp:P lp:_ }}.
+qux :- {{ f (lp:(g (h x))) }}.
+
+---tokens---
+'foo'         Text
+' '           Text.Whitespace
+':-'          Keyword.Declaration
+' '           Text.Whitespace
+'{{'          Punctuation
+' '           Text.Whitespace
+'fun'         Keyword
+' '           Text
+'('           Operator
+'x'           Name
+' '           Text
+':'           Operator
+' '           Text
+'lp:'         Literal.Number
+'A'           Name.Variable
+')'           Operator
+' '           Text
+'=>'          Operator
+' '           Text
+'lp:'         Literal.Number
+'('           Punctuation
+'Bo'          Name.Variable
+' '           Text.Whitespace
+'x'           Text
+')'           Punctuation
+' '           Text.Whitespace
+'}}'          Punctuation
+'.'           Operator
+'\n'          Text.Whitespace
+
+'bar'         Text
+' '           Text.Whitespace
+':-'          Keyword.Declaration
+' '           Text.Whitespace
+'pi'          Keyword.Declaration
+' '           Text.Whitespace
+'a'           Name.Variable
+'\\'          Text
+' '           Text.Whitespace
+'mk-ty'       Text
+' '           Text.Whitespace
+'a'           Text
+' '           Text.Whitespace
+'{{'          Punctuation
+' '           Text.Whitespace
+'lp:'         Literal.Number
+'a'           Name.Variable
+' '           Text.Whitespace
+'->'          Operator
+' '           Text
+'Type'        Keyword.Type
+' '           Text
+'}}'          Punctuation
+'.'           Operator
+'\n'          Text.Whitespace
+
+'baz'         Text
+' '           Text.Whitespace
+':-'          Keyword.Declaration
+' '           Text.Whitespace
+'{{'          Punctuation
+' '           Text.Whitespace
+'forall'      Keyword
+' '           Text
+'x'           Name
+','           Operator
+' '           Text
+'lib'         Name
+':'           Operator
+'elpi.reflect' Name
+' '           Text
+'lp:'         Literal.Number
+'P'           Name.Variable
+' '           Text.Whitespace
+'lp:'         Literal.Number
+'_'           Name.Variable
+' '           Text.Whitespace
+'}}'          Punctuation
+'.'           Operator
+'\n'          Text.Whitespace
+
+'qux'         Text
+' '           Text.Whitespace
+':-'          Keyword.Declaration
+' '           Text.Whitespace
+'{{'          Punctuation
+' '           Text.Whitespace
+'f'           Name
+' '           Text
+'('           Operator
+'lp:'         Literal.Number
+'('           Punctuation
+'g'           Text
+' '           Text.Whitespace
+'('           Punctuation
+'h'           Text
+' '           Text.Whitespace
+'x'           Text
+')'           Punctuation
+')'           Punctuation
+')'           Operator
+' '           Text
+'}}'          Punctuation
+'.'           Operator
+'\n'          Text.Whitespace

@@ -1,0 +1,113 @@
+---input---
+data tm A B.
+builtin data box A.
+symb sumof : int -> int = "1".
+external symbol negate : int -> int.
+builtin symb (,) : (func (func) ..).
+type std.map std.map.private.map K V -> (func K, K -> cmp) -> std.map K V.
+
+---tokens---
+'data'        Keyword.Declaration
+' '           Text.Whitespace
+'tm'          Name.Function
+' '           Text.Whitespace
+'A'           Keyword.Type
+' '           Text.Whitespace
+'B'           Keyword.Type
+'.'           Text
+'\n'          Text.Whitespace
+
+'builtin data' Keyword.Declaration
+' '           Text.Whitespace
+'box'         Name.Function
+' '           Text.Whitespace
+'A'           Keyword.Type
+'.'           Text
+'\n'          Text.Whitespace
+
+'symb'        Keyword.Declaration
+' '           Text.Whitespace
+'sumof'       Name.Function
+' '           Text.Whitespace
+':'           Text
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'->'          Keyword.Type
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'='           Text
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'1'           Literal.String.Double
+'"'           Literal.String.Double
+'.'           Text
+'\n'          Text.Whitespace
+
+'external symbol' Keyword.Declaration
+' '           Text.Whitespace
+'negate'      Name.Function
+' '           Text.Whitespace
+':'           Text
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'->'          Keyword.Type
+' '           Text.Whitespace
+'int'         Keyword.Type
+'.'           Text
+'\n'          Text.Whitespace
+
+'builtin symb' Keyword.Declaration
+' '           Text.Whitespace
+'(,)'         Name.Function
+' '           Text.Whitespace
+':'           Text
+' '           Text.Whitespace
+'('           Keyword.Type
+'func'        Keyword.Type
+' '           Text.Whitespace
+'('           Keyword.Type
+'func'        Keyword.Type
+')'           Keyword.Type
+' '           Text.Whitespace
+'..'          Keyword.Type
+')'           Keyword.Type
+'.'           Text
+'\n'          Text.Whitespace
+
+'type'        Keyword.Declaration
+' '           Text.Whitespace
+'std.map'     Name.Function
+' '           Text.Whitespace
+'std.map.private.map' Keyword.Type
+' '           Text.Whitespace
+'K'           Keyword.Type
+' '           Text.Whitespace
+'V'           Keyword.Type
+' '           Text.Whitespace
+'->'          Keyword.Type
+' '           Text.Whitespace
+'('           Keyword.Type
+'func'        Keyword.Type
+' '           Text.Whitespace
+'K'           Keyword.Type
+','           Text
+' '           Text.Whitespace
+'K'           Keyword.Type
+' '           Text.Whitespace
+'->'          Keyword.Type
+' '           Text.Whitespace
+'cmp'         Keyword.Type
+')'           Keyword.Type
+' '           Text.Whitespace
+'->'          Keyword.Type
+' '           Text.Whitespace
+'std.map'     Keyword.Type
+' '           Text.Whitespace
+'K'           Keyword.Type
+' '           Text.Whitespace
+'V'           Keyword.Type
+'.'           Text
+'\n'          Text.Whitespace

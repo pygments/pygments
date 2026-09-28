@@ -1,0 +1,83 @@
+---input---
+:functional :nooc :untyped :external
+pred p i:int.
+
+:before "foo"
+pred q i:int.
+
+foo :- A --> B, C :> D, pi x \ y\ bar x y, print «nat».
+
+---tokens---
+':functional' Keyword.Mode
+' '           Text.Whitespace
+':nooc'       Keyword.Mode
+' '           Text.Whitespace
+':untyped'    Keyword.Mode
+' '           Text.Whitespace
+':external'   Keyword.Mode
+'\n'          Text.Whitespace
+
+'pred'        Keyword.Declaration
+' '           Text.Whitespace
+'p'           Name.Function
+' '           Text.Whitespace
+'i:'          Keyword.Mode
+'int'         Keyword.Type
+'.'           Text
+'\n\n'        Text.Whitespace
+
+':before'     Keyword.Mode
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'foo'         Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'pred'        Keyword.Declaration
+' '           Text.Whitespace
+'q'           Name.Function
+' '           Text.Whitespace
+'i:'          Keyword.Mode
+'int'         Keyword.Type
+'.'           Text
+'\n\n'        Text.Whitespace
+
+'foo'         Text
+' '           Text.Whitespace
+':-'          Keyword.Declaration
+' '           Text.Whitespace
+'A'           Name.Variable
+' '           Text.Whitespace
+'-->'         Keyword.Declaration
+' '           Text.Whitespace
+'B'           Name.Variable
+','           Keyword.Declaration
+' '           Text.Whitespace
+'C'           Name.Variable
+' '           Text.Whitespace
+':>'          Keyword.Declaration
+' '           Text.Whitespace
+'D'           Name.Variable
+','           Keyword.Declaration
+' '           Text.Whitespace
+'pi'          Keyword.Declaration
+' '           Text.Whitespace
+'x '          Name.Variable
+'\\'          Text
+' '           Text.Whitespace
+'y\\'         Name.Variable
+' '           Text.Whitespace
+'bar'         Text
+' '           Text.Whitespace
+'x'           Text
+' '           Text.Whitespace
+'y'           Text
+','           Keyword.Declaration
+' '           Text.Whitespace
+'print'       Text
+' '           Text.Whitespace
+'«'           Operator
+'nat'         Text
+'»'           Operator
+'.'           Operator
+'\n'          Text.Whitespace
