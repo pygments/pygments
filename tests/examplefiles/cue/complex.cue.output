@@ -1,0 +1,492 @@
+'package'     Keyword.Namespace
+' '           Text.Whitespace
+'kubernetes'  Name.Namespace
+'\n\n'        Text.Whitespace
+
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'('           Punctuation.Marker
+'\n\t'        Text.Whitespace
+'strs '       Name.Namespace
+'"'           Punctuation.Marker
+'strings'     Literal.String
+'"'           Punctuation.Marker
+'\n'          Text.Whitespace
+
+')'           Punctuation.Marker
+'\n\n'        Text.Whitespace
+
+'// Multi-line strings' Comment.Single
+'\n'          Text.Whitespace
+
+'description' Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'"""'         Literal.String.Delimiter
+'\n\tThis is a multi-line string\n\tthat spans multiple lines.\n\tIt supports interpolation: ' Literal.String.Double
+'\\('         Punctuation
+'name'        Name.Property
+')'           Punctuation
+'\n\t'        Literal.String.Double
+'"""'         Literal.String.Delimiter
+'\n\n'        Text.Whitespace
+
+'// Advanced number formats' Comment.Single
+'\n'          Text.Whitespace
+
+'hexValue'    Name.Property
+':'           Punctuation.Marker
+'           ' Text.Whitespace
+'0xFF'        Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'octalValue'  Name.Property
+':'           Punctuation.Marker
+'         '   Text.Whitespace
+'0o777'       Literal.Number.Oct
+'\n'          Text.Whitespace
+
+'binaryValue' Name.Property
+':'           Punctuation.Marker
+'        '    Text.Whitespace
+'0b1010'      Literal.Number.Bin
+'\n'          Text.Whitespace
+
+'scientificNotation' Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'1.23e-4'     Literal.Number.Float
+'\n'          Text.Whitespace
+
+'floatWithUnits' Name.Property
+':'           Punctuation.Marker
+'     '       Text.Whitespace
+'3Ki'         Literal.Number.Integer
+'\n\n'        Text.Whitespace
+
+'interpolation' Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'true'        Keyword.Constant
+'\n\n'        Text.Whitespace
+
+'// String variations' Comment.Single
+'\n'          Text.Whitespace
+
+'singleQuoted' Name.Property
+':'           Punctuation.Marker
+'    '        Text.Whitespace
+"'"           Literal.String.Delimiter
+'single quoted string' Literal.String.Single
+"'"           Literal.String.Delimiter
+'\n'          Text.Whitespace
+
+'doubleQuoted' Name.Property
+':'           Punctuation.Marker
+'    '        Text.Whitespace
+'"'           Literal.String.Delimiter
+'double quoted string' Literal.String.Double
+'"'           Literal.String.Delimiter
+'\n'          Text.Whitespace
+
+'multiLineString' Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'"""'         Literal.String.Delimiter
+'\n\tmulti-line string with ' Literal.String.Double
+'\\('         Punctuation
+'interpolation' Name.Property
+')'           Punctuation
+'\n\t'        Literal.String.Double
+'"""'         Literal.String.Delimiter
+'\n'          Text.Whitespace
+
+'sharpString' Name.Property
+':'           Punctuation.Marker
+'     '       Text.Whitespace
+'#"'          Literal.String.Delimiter
+'string with # delimiter' Literal.String.Double
+'"#'          Literal.String.Delimiter
+'\n'          Text.Whitespace
+
+'multilineSharp' Name.Property
+':'           Punctuation.Marker
+'  '          Text.Whitespace
+'#"""'        Literal.String.Delimiter
+'\n\tMulti-line sharp string\n\twith ' Literal.String.Double
+'\\#('        Punctuation
+'interpolation' Name.Property
+')'           Punctuation
+'\n\t'        Literal.String.Double
+'"""#'        Literal.String.Delimiter
+'\n\n'        Text.Whitespace
+
+'// Complex attribute syntax' Comment.Single
+'\n'          Text.Whitespace
+
+'@'           Punctuation.Marker
+'tag'         Name
+'('           Punctuation.Marker
+'go'          Name.Variable
+'='           Punctuation
+'"'           Literal.String.Delimiter
+'json,omitempty' Literal.String.Double
+'"'           Literal.String.Delimiter
+')'           Punctuation.Marker
+'\n'          Text.Whitespace
+
+'@'           Punctuation.Marker
+'deprecated'  Name
+'('           Punctuation.Marker
+'"'           Literal.String.Delimiter
+'use newField instead' Literal.String.Double
+'"'           Literal.String.Delimiter
+')'           Punctuation.Marker
+'\n'          Text.Whitespace
+
+'field'       Name.Property
+'?'           Punctuation
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'string'      Keyword.Type
+'\n\n'        Text.Whitespace
+
+'name'        Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'prod'        Literal.String.Double
+'"'           Literal.String.Delimiter
+'\n\n'        Text.Whitespace
+
+'// Advanced pattern matching' Comment.Single
+'\n'          Text.Whitespace
+
+'switch'      Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'{'           Punctuation.Marker
+'\n\t'        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'name'        Name.Property
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'prod'        Literal.String.Double
+'"'           Literal.String.Delimiter
+' '           Text.Whitespace
+'{'           Punctuation.Marker
+'\n\t\t'      Text.Whitespace
+'replicas'    Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+'\n\t'        Text.Whitespace
+'}'           Punctuation.Marker
+'\n\t'        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'name'        Name.Property
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'dev'         Literal.String.Double
+'"'           Literal.String.Delimiter
+' '           Text.Whitespace
+'{'           Punctuation.Marker
+'\n\t\t'      Text.Whitespace
+'replicas'    Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n\t'        Text.Whitespace
+'}'           Punctuation.Marker
+'\n'          Text.Whitespace
+
+'}'           Punctuation.Marker
+'\n\n'        Text.Whitespace
+
+'// Recursive definitions' Comment.Single
+'\n'          Text.Whitespace
+
+'#Tree'       Name.Entity
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'{'           Punctuation.Marker
+'\n\t'        Text.Whitespace
+'value'       Name.Property
+':'           Punctuation.Marker
+'  '          Text.Whitespace
+'string'      Keyword.Type
+'\n\t'        Text.Whitespace
+'left'        Name.Property
+'?'           Punctuation
+':'           Punctuation.Marker
+'  '          Text.Whitespace
+'#Tree'       Name.Entity
+'\n\t'        Text.Whitespace
+'right'       Name.Property
+'?'           Punctuation
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'#Tree'       Name.Entity
+'\n'          Text.Whitespace
+
+'}'           Punctuation.Marker
+'\n\n'        Text.Whitespace
+
+'// Complex comprehensions' Comment.Single
+'\n'          Text.Whitespace
+
+'config'      Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'{'           Punctuation.Marker
+'\n\t'        Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'env'         Name
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'['           Punctuation.Marker
+'"'           Literal.String.Delimiter
+'dev'         Literal.String.Double
+'"'           Literal.String.Delimiter
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'staging'     Literal.String.Double
+'"'           Literal.String.Delimiter
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'prod'        Literal.String.Double
+'"'           Literal.String.Delimiter
+']'           Punctuation.Marker
+' '           Text.Whitespace
+'{'           Punctuation.Marker
+'\n\t\t'      Text.Whitespace
+'"'           Literal.String.Delimiter
+'\\('         Punctuation
+'env'         Name.Property
+')'           Punctuation
+'"'           Literal.String.Delimiter
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'{'           Punctuation.Marker
+'\n\t\t\t'    Text.Whitespace
+'resources'   Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'{'           Punctuation.Marker
+'\n\t\t\t\t'  Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'env'         Name.Property
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'prod'        Literal.String.Double
+'"'           Literal.String.Delimiter
+' '           Text.Whitespace
+'{'           Punctuation.Marker
+'\n\t\t\t\t\t' Text.Whitespace
+'cpu'         Name.Property
+':'           Punctuation.Marker
+'    '        Text.Whitespace
+'"'           Literal.String.Delimiter
+'2000m'       Literal.String.Double
+'"'           Literal.String.Delimiter
+'\n\t\t\t\t\t' Text.Whitespace
+'memory'      Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'4Gi'         Literal.String.Double
+'"'           Literal.String.Delimiter
+'\n\t\t\t\t'  Text.Whitespace
+'}'           Punctuation.Marker
+'\n\t\t\t\t'  Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'env'         Name.Property
+' '           Text.Whitespace
+'!='          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'prod'        Literal.String.Double
+'"'           Literal.String.Delimiter
+' '           Text.Whitespace
+'{'           Punctuation.Marker
+'\n\t\t\t\t\t' Text.Whitespace
+'cpu'         Name.Property
+':'           Punctuation.Marker
+'    '        Text.Whitespace
+'"'           Literal.String.Delimiter
+'500m'        Literal.String.Double
+'"'           Literal.String.Delimiter
+'\n\t\t\t\t\t' Text.Whitespace
+'memory'      Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'1Gi'         Literal.String.Double
+'"'           Literal.String.Delimiter
+'\n\t\t\t\t'  Text.Whitespace
+'}'           Punctuation.Marker
+'\n\t\t\t'    Text.Whitespace
+'}'           Punctuation.Marker
+'\n\t\t'      Text.Whitespace
+'}'           Punctuation.Marker
+'\n\t'        Text.Whitespace
+'}'           Punctuation.Marker
+'\n'          Text.Whitespace
+
+'}'           Punctuation.Marker
+'\n\n'        Text.Whitespace
+
+'// Nullable and bottom values' Comment.Single
+'\n'          Text.Whitespace
+
+'nullable'    Name.Property
+':'           Punctuation.Marker
+'     '       Text.Whitespace
+'null'        Keyword.Constant
+'\n'          Text.Whitespace
+
+'bottomValue' Name.Property
+'?'           Punctuation
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'_|_'         Operator
+'\n'          Text.Whitespace
+
+'topValue'    Name.Property
+'?'           Punctuation
+':'           Punctuation.Marker
+'    '        Text.Whitespace
+'_'           Operator
+'\n\n'        Text.Whitespace
+
+'// Function calls' Comment.Single
+'\n'          Text.Whitespace
+
+'userNames'   Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'['           Punctuation.Marker
+'"'           Literal.String.Delimiter
+'a'           Literal.String.Double
+'"'           Literal.String.Delimiter
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'b'           Literal.String.Double
+'"'           Literal.String.Delimiter
+']'           Punctuation.Marker
+'\n'          Text.Whitespace
+
+'processedData' Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'len'         Name.Function
+'('           Punctuation.Marker
+'userNames'   Name.Property
+')'           Punctuation.Marker
+'\n'          Text.Whitespace
+
+'combined'    Name.Property
+':'           Punctuation.Marker
+'      '      Text.Whitespace
+'strs'        Name.Namespace
+'.'           Punctuation.Marker
+'Join'        Name.Namespace
+'('           Punctuation.Marker
+'userNames'   Name.Property
+','           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+', '          Literal.String.Double
+'"'           Literal.String.Delimiter
+')'           Punctuation.Marker
+'\n\n'        Text.Whitespace
+
+'// Complex validation' Comment.Single
+'\n'          Text.Whitespace
+
+'#validatedConfig' Name.Entity
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'{'           Punctuation.Marker
+'\n\t'        Text.Whitespace
+'name'        Name.Property
+':'           Punctuation.Marker
+'     '       Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+'=~'          Operator
+'"'           Literal.String.Delimiter
+'^[a-z][a-z0-9-]*[a-z0-9]$' Literal.String.Double
+'"'           Literal.String.Delimiter
+'\n\t'        Text.Whitespace
+'port'        Name.Property
+':'           Punctuation.Marker
+'     '       Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+'>'           Operator
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+'<='          Operator
+'65535'       Literal.Number.Integer
+'\n\t'        Text.Whitespace
+'protocol'    Name.Property
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'*'           Operator
+'"'           Literal.String.Delimiter
+'TCP'         Literal.String.Double
+'"'           Literal.String.Delimiter
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'UDP'         Literal.String.Double
+'"'           Literal.String.Delimiter
+'\n\n\t'      Text.Whitespace
+'// Conditional validation' Comment.Single
+'\n\t'        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'protocol'    Name.Property
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Delimiter
+'TCP'         Literal.String.Double
+'"'           Literal.String.Delimiter
+' '           Text.Whitespace
+'{'           Punctuation.Marker
+'\n\t\t'      Text.Whitespace
+'keepAlive'   Name.Property
+'?'           Punctuation
+':'           Punctuation.Marker
+' '           Text.Whitespace
+'bool'        Keyword.Type
+'\n\t'        Text.Whitespace
+'}'           Punctuation.Marker
+'\n'          Text.Whitespace
+
+'}'           Punctuation.Marker
+'\n'          Text.Whitespace
