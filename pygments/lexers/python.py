@@ -338,14 +338,18 @@ class PythonLexer(RegexLexer):
             (uni_name, Name.Class, '#pop'),
         ],
         'import': [
-            (r'(\s+)(as)(\s+)', bygroups(Whitespace, Keyword, Whitespace)),
+            # Do not pop on ``\\\n`` so ``import foo \ as bar`` still
+            # highlights ``bar`` as a namespace name.
+            (r'(?:[ \t]|\\\n)+', Whitespace),
+            (r'as\b', Keyword),
             (r'\.', Name.Namespace),
             (uni_name, Name.Namespace),
-            (r'(\s*)(,)(\s*)', bygroups(Whitespace, Operator, Whitespace)),
+            (r',', Operator),
             default('#pop')  # all else: go back
         ],
         'fromimport': [
-            (r'(\s+)(import)\b', bygroups(Whitespace, Keyword.Namespace), '#pop'),
+            (r'(?:[ \t]|\\\n)+', Whitespace),
+            (r'import\b', Keyword.Namespace, ('#pop', 'import')),
             (r'\.', Name.Namespace),
             # if None occurs here, it's "raise x from None", since None can
             # never be a module name

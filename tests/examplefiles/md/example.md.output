@@ -402,8 +402,8 @@
 'pygments'    Name.Namespace
 ' '           Text.Whitespace
 'import'      Keyword.Namespace
-' '           Text
-'token'       Name
+' '           Text.Whitespace
+'token'       Name.Namespace
 '\n'          Text.Whitespace
 
 '# comment'   Comment.Single
