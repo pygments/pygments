@@ -1,0 +1,102 @@
+---input---
+import operator as op
+
+import operator \
+as op
+
+import \
+    operator \
+    as \
+    op
+
+from os.path import exists as e
+
+from os.path \
+    import exists as e
+
+from os.path import \
+    exists as e
+
+---tokens---
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'operator'    Name.Namespace
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'op'          Name.Namespace
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'operator'    Name.Namespace
+' \\\n'       Text.Whitespace
+
+'as'          Keyword
+' '           Text.Whitespace
+'op'          Name.Namespace
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'import'      Keyword.Namespace
+' \\\n    '   Text.Whitespace
+'operator'    Name.Namespace
+' \\\n    '   Text.Whitespace
+'as'          Keyword
+' \\\n    '   Text.Whitespace
+'op'          Name.Namespace
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'from'        Keyword.Namespace
+' '           Text.Whitespace
+'os'          Name.Namespace
+'.'           Name.Namespace
+'path'        Name.Namespace
+' '           Text.Whitespace
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'exists'      Name.Namespace
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'e'           Name.Namespace
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'from'        Keyword.Namespace
+' '           Text.Whitespace
+'os'          Name.Namespace
+'.'           Name.Namespace
+'path'        Name.Namespace
+' \\\n    '   Text.Whitespace
+'import'      Keyword.Namespace
+' '           Text.Whitespace
+'exists'      Name.Namespace
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'e'           Name.Namespace
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'from'        Keyword.Namespace
+' '           Text.Whitespace
+'os'          Name.Namespace
+'.'           Name.Namespace
+'path'        Name.Namespace
+' '           Text.Whitespace
+'import'      Keyword.Namespace
+' \\\n    '   Text.Whitespace
+'exists'      Name.Namespace
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'e'           Name.Namespace
+'\n'          Text.Whitespace

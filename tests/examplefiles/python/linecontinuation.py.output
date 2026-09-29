@@ -45,17 +45,14 @@
 'os'          Name.Namespace
 ' '           Text.Whitespace
 'import'      Keyword.Namespace
-' '           Text
-'path'        Name
+' '           Text.Whitespace
+'path'        Name.Namespace
 '\n'          Text.Whitespace
 
 'from'        Keyword.Namespace
 ' \\\n        ' Text.Whitespace
 'os'          Name.Namespace
-' '           Text
-'\\\n'        Text
-
-'        '    Text
+' \\\n        ' Text.Whitespace
 'import'      Keyword.Namespace
 ' \\\n        ' Text.Whitespace
 'path'        Name.Namespace
@@ -81,16 +78,10 @@
 'os'          Name.Namespace
 '.'           Name.Namespace
 'path'        Name.Namespace
-' '           Text
-'\\\n'        Text
-
-'        '    Text
+' \\\n        ' Text.Whitespace
 'as'          Keyword
-' '           Text
-'\\\n'        Text
-
-'        '    Text
-'something'   Name
+' \\\n        ' Text.Whitespace
+'something'   Name.Namespace
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace

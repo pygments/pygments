@@ -68,6 +68,8 @@ Version 2.21.0
     - Recognize ``sentinel`` (#3114)
     - Recognize ``frozendict`` (#3119)
     - Recognize lazy imports (#3115)
+    - Keep ``import`` / ``from ... import`` highlighting across line
+      continuations (#1855)
   * reStructuredText: Allow ``.`` and ``+`` in directive/role names (#3085)
   * Ruby: Don't duplicate the body of an unterminated heredoc (#2998)
   * Ruby: Treat ``<<`` after ``)``, ``]`` or ``}`` as the shift operator
