@@ -1,0 +1,153 @@
+---input---
+/- {
+    a
+}
+
+a; b; c;
+
+cool /-a="thing" plus="something else" {
+    stuff
+}
+
+a 12.42e8
+
+// Nodes can be separated into multiple lines
+title \
+  "Some title"
+
+
+// Files must be utf8 encoded!
+smile 😁
+
+// Node names and property keys are just strings, so you can write them like
+// quoted or raw strings, too!
+"illegal(){}[]/\\=#;identifier" #"1.2.3"# "#false"=#true
+
+// Identifiers are very flexible. The following is a legal bare identifier:
+-<123~!$@%^&*,.:'`|?+>
+
+// And you can also use non-ASCII unicode!
+ノード　お名前=ฅ^•ﻌ•^ฅ
+
+// kdl specifically allows properties and values to be
+// interspersed with each other, much like CLI commands.
+foo bar=#true baz quux=#false 1 2 3
+
+---tokens---
+'/- {'        Comment.Multiline
+'\n    a\n'   Comment.Multiline
+
+'}'           Comment.Multiline
+'\n'          Text.Whitespace
+
+'\na'         Name.Label
+';'           Operator
+' b'          Name.Label
+';'           Operator
+' c'          Name.Label
+';'           Operator
+'\n\ncool'    Name.Label
+' /-a="thing" ' Comment.Single
+'plus='       Name.Attribute
+'"'           Literal.String
+'something else' Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'{'           Operator
+'\n    stuff' Name.Label
+'\n'          Text.Whitespace
+
+'}'           Operator
+'\n'          Text.Whitespace
+
+'\na'         Name.Label
+' '           Text.Whitespace
+'12.42e8'     Literal.Number.Float
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Nodes can be separated into multiple lines\n' Comment.Single
+
+'title'       Name.Label
+' '           Text.Whitespace
+'\\'          Operator
+'\n'          Text.Whitespace
+
+' '           Text.Whitespace
+' '           Text.Whitespace
+'"'           Literal.String
+'Some title'  Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Files must be utf8 encoded!\n' Comment.Single
+
+'smile'       Name.Label
+' '           Text.Whitespace
+'😁'           Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Node names and property keys are just strings, so you can write them like\n' Comment.Single
+
+'// quoted or raw strings, too!\n' Comment.Single
+
+'"'           Literal.String
+'illegal(){}[]/' Literal.String
+'\\\\'        Literal.String.Escape
+'=#;identifier' Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'#"1.2.3"#'   Literal.String
+' '           Text.Whitespace
+'"'           Literal.String
+'#false'      Literal.String
+'"'           Literal.String
+'='           Operator
+'#true'       Keyword.Constant
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Identifiers are very flexible. The following is a legal bare identifier:\n' Comment.Single
+
+"-<123~!$@%^&*,.:'`|?+>" Name.Label
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// And you can also use non-ASCII unicode!\n' Comment.Single
+
+'ノード\u3000お名前' Name.Label
+'='           Operator
+'ฅ^•ﻌ•^ฅ'     Literal.String
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// kdl specifically allows properties and values to be\n' Comment.Single
+
+'// interspersed with each other, much like CLI commands.\n' Comment.Single
+
+'foo'         Name.Label
+' '           Text.Whitespace
+'bar='        Name.Attribute
+'#true'       Keyword.Constant
+' '           Text.Whitespace
+'baz'         Literal.String
+' '           Text.Whitespace
+'quux='       Name.Attribute
+'#false'      Keyword.Constant
+' '           Text.Whitespace
+'1'           Literal.Number.Decimal
+' '           Text.Whitespace
+'2'           Literal.Number.Decimal
+' '           Text.Whitespace
+'3'           Literal.Number.Decimal
+'\n'          Text.Whitespace
