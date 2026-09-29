@@ -767,7 +767,7 @@ class Tads3Lexer(RegexLexer):
 
     flags = re.DOTALL | re.MULTILINE
 
-    _comment_single = r'(?://(?:[^\\\n]|\\+[\w\W])*$)'
+    _comment_single = r'(?://(?:[^\\\n]|\\\n|\\(?!\n))*$)'
     _comment_multiline = r'(?:/\*(?:[^*]|\*(?!/))*\*/)'
     _escape = (r'(?:\\(?:[\n\\<>"\'^v bnrt]|u[\da-fA-F]{,4}|x[\da-fA-F]{,2}|'
                r'[0-3]?[0-7]{1,2}))')
