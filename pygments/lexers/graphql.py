@@ -112,6 +112,7 @@ class GraphQLLexer(RegexLexer):
             include("ignored_tokens"),
             (r"[a-zA-Z_]\w*", Name.Function),
             (r"\(", Punctuation, "variable_definition"),
+            (r"@[a-zA-Z_]\w*", Name.Decorator, "directive"),
             (r"\{", Punctuation, ("#pop", "selection_set")),
         ],
         "variable_definition": [
@@ -120,6 +121,7 @@ class GraphQLLexer(RegexLexer):
             (r"[\]!]", Punctuation),
             (r":", Punctuation, "type"),
             (r"=", Punctuation, "value"),
+            (r"@[a-zA-Z_]\w*", Name.Decorator, "directive"),
             (r"\)", Punctuation, "#pop"),
         ],
         "type": [
@@ -146,6 +148,8 @@ class GraphQLLexer(RegexLexer):
         "directive": [
             include("ignored_tokens"),
             (r"\(", Punctuation, ("#pop", "arguments")),
+            # A directive without arguments ends where its name ends.
+            default("#pop"),
         ],
         "arguments": [
             include("ignored_tokens"),
