@@ -75,6 +75,8 @@ Version 2.21.0
   * SCSS: Recognize variable references in property values (#2818)
   * Shell: Recognize chevron prompts (#3096)
   * Smithy: Fix text blocks and add missing syntax (#3168)
+  * SPARQL, Turtle, ShExC: Avoid quadratic behavior on colonless
+    prefixed-name candidates (#3226)
   * Swift: Keep ``func`` a keyword in ``class func`` type methods (#1125)
   * Tcl: Stop ``$name`` variable references at a dash (#1720)
   * TeX: Recognize LaTeX math environments as math (#3034)
