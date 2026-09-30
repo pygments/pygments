@@ -1,0 +1,140 @@
+---input---
+<?php
+enum Suit: string {
+    case Hearts = 'H';
+}
+
+$double = fn($x) => $x * 2;
+
+function pick(callable $cb) {
+    if ($cb instanceof Closure) {
+        goto done;
+    }
+    done:
+}
+
+class Deck {
+    use HasCards, HasJokers { HasCards::draw insteadof HasJokers; }
+}
+
+$fn_helper = enumerate();
+
+---tokens---
+'<?php'       Comment.Preproc
+'\n'          Text
+
+'enum'        Keyword
+' '           Text
+'Suit'        Name.Other
+':'           Operator
+' '           Text
+'string'      Name.Other
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'case'        Keyword
+' '           Text
+'Hearts'      Name.Other
+' '           Text
+'='           Operator
+' '           Text
+"'H'"         Literal.String.Single
+';'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'$double'     Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'fn'          Keyword
+'('           Punctuation
+'$x'          Name.Variable
+')'           Punctuation
+' '           Text
+'=>'          Operator
+' '           Text
+'$x'          Name.Variable
+' '           Text
+'*'           Operator
+' '           Text
+'2'           Literal.Number.Integer
+';'           Punctuation
+'\n\n'        Text
+
+'function'    Keyword
+' '           Text
+'pick'        Name.Function
+'('           Punctuation
+'callable'    Keyword
+' '           Text
+'$cb'         Name.Variable
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'$cb'         Name.Variable
+' '           Text
+'instanceof'  Keyword
+' '           Text
+'Closure'     Name.Other
+')'           Punctuation
+' '           Text
+'{'           Punctuation
+'\n        '  Text
+'goto'        Keyword
+' '           Text
+'done'        Name.Other
+';'           Punctuation
+'\n    '      Text
+'}'           Punctuation
+'\n    '      Text
+'done'        Name.Other
+':'           Operator
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'class'       Keyword
+' '           Text
+'Deck'        Name.Class
+' '           Text
+'{'           Punctuation
+'\n    '      Text
+'use'         Keyword
+' '           Text
+'HasCards'    Name.Other
+','           Punctuation
+' '           Text
+'HasJokers'   Name.Other
+' '           Text
+'{'           Punctuation
+' '           Text
+'HasCards'    Name.Other
+'::'          Operator
+'draw'        Name.Attribute
+' '           Text
+'insteadof'   Keyword
+' '           Text
+'HasJokers'   Name.Other
+';'           Punctuation
+' '           Text
+'}'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n\n'        Text
+
+'$fn_helper'  Name.Variable
+' '           Text
+'='           Operator
+' '           Text
+'enumerate'   Name.Other
+'();'         Punctuation
+'\n'          Text
