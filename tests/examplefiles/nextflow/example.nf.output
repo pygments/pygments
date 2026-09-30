@@ -1,0 +1,1279 @@
+'#!/usr/bin/env nextflow' Comment.Hashbang
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Enable typed processes and workflows' Comment.Single
+'\n'          Text.Whitespace
+
+'nextflow'    Name.Builtin
+'.'           Operator
+'enable'      Name.Attribute
+'.'           Operator
+'types'       Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'true'        Keyword.Constant
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Include definitions from other scripts or from the Nextflow registry' Comment.Single
+'\n'          Text.Whitespace
+
+"// include { FASTQC } from './modules/fastqc'" Comment.Single
+'\n'          Text.Whitespace
+
+"// include { BWA_MEM } from 'nf-core/bwa/mem'" Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'////////////////////////////////////////////////////' Comment.Single
+'\n'          Text.Whitespace
+
+'// Parameters' Comment.Single
+'\n'          Text.Whitespace
+
+'////////////////////////////////////////////////////' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Pipeline parameters are declared with a name, type, and optional default.' Comment.Single
+'\n'          Text.Whitespace
+
+'// They can be set on the command line, e.g. `--input samples.csv`' Comment.Single
+'\n'          Text.Whitespace
+
+'params'      Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Parameters without a default are required' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'input'       Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'Path'        Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Parameters with a default are optional' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'min_reads'   Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'Integer'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Boolean parameters default to false' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'save_summary' Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'Boolean'     Name
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'////////////////////////////////////////////////////' Comment.Single
+'\n'          Text.Whitespace
+
+'// Record types and functions' Comment.Single
+'\n'          Text.Whitespace
+
+'////////////////////////////////////////////////////' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// A record type specifies the fields that a record must have.' Comment.Single
+'\n'          Text.Whitespace
+
+'// Records are duck-typed: extra fields are allowed' Comment.Single
+'\n'          Text.Whitespace
+
+'record'      Keyword.Declaration
+' '           Text.Whitespace
+'Sample'      Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'id'          Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'String'      Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'fastq'       Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'Path'        Name
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'record'      Keyword.Declaration
+' '           Text.Whitespace
+'QcSample'    Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'id'          Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'String'      Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'fastq'       Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'Path'        Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'num_reads'   Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'Integer'     Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'gc'          Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'Path'        Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'notes'       Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'String'      Name
+'?'           Operator
+'      '      Text.Whitespace
+'// optional field' Comment.Single
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Enums define a fixed set of values' Comment.Single
+'\n'          Text.Whitespace
+
+'enum'        Keyword.Declaration
+' '           Text.Whitespace
+'Strandedness' Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'FORWARD'     Name.Attribute
+','           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'REVERSE'     Name.Attribute
+','           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'UNSTRANDED'  Name.Attribute
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// Functions can declare parameter types and a return type' Comment.Single
+'\n'          Text.Whitespace
+
+'def'         Keyword.Declaration
+' '           Text.Whitespace
+'isPassing'   Name.Function
+'('           Punctuation
+'sample'      Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'QcSample'    Name
+','           Punctuation
+' '           Text.Whitespace
+'min_reads'   Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'Integer'     Name
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'Boolean'     Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'sample'      Name.Attribute
+'.'           Operator
+'num_reads'   Name.Attribute
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'min_reads'   Name.Attribute
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'////////////////////////////////////////////////////' Comment.Single
+'\n'          Text.Whitespace
+
+'// Processes' Comment.Single
+'\n'          Text.Whitespace
+
+'////////////////////////////////////////////////////' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// A process runs a script for each set of inputs. Each execution is a' Comment.Single
+'\n'          Text.Whitespace
+
+'// *task*, which runs in its own work directory, in parallel with other' Comment.Single
+'\n'          Text.Whitespace
+
+'// tasks, on any supported executor (local, HPC, cloud, Kubernetes)' Comment.Single
+'\n'          Text.Whitespace
+
+'process'     Keyword.Declaration
+' '           Text.Whitespace
+'COUNT_READS' Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Directives control how each task is executed' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'tag'         Name.Attribute
+' '           Text.Whitespace
+'sample'      Name.Attribute
+'.'           Operator
+'id'          Name.Attribute
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'cpus'        Name.Attribute
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'memory'      Name.Attribute
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'.'           Operator
+'GB'          Name.Attribute
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'container'   Name.Attribute
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'ubuntu:24.04' Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'input'       Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Each input has a name and a type.' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// `Path` inputs (and `Path` fields in records) are staged automatically' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'sample'      Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'Sample'      Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'output'      Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Outputs are regular values, built with output functions such as' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// `stdout()`, `file()`, `files()`, `env()`, and `eval()`' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'record'      Name.Builtin
+'('           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'id'          Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'sample'      Name.Attribute
+'.'           Operator
+'id'          Name.Attribute
+','           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'num_reads'   Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'stdout'      Name.Builtin
+'('           Punctuation
+')'           Punctuation
+'.'           Operator
+'trim'        Name.Attribute
+'('           Punctuation
+')'           Punctuation
+'.'           Operator
+'toInteger'   Name.Attribute
+'('           Punctuation
+')'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'script'      Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// The script is a string executed by bash. Nextflow variables use `$`,' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// so escape Bash variables with `\\$`' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'"""'         Literal.String.Double
+'\n    echo ' Literal.String.Double
+'\\$'         Literal.String.Escape
+'(( '         Literal.String.Double
+'\\$'         Literal.String.Escape
+'(wc -l < '   Literal.String.Double
+'${'          Literal.String.Interpol
+'sample'      Name.Attribute
+'.'           Operator
+'fastq'       Name.Attribute
+'}'           Literal.String.Interpol
+') / 4 ))\n    ' Literal.String.Double
+'"""'         Literal.String.Double
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'process'     Keyword.Declaration
+' '           Text.Whitespace
+'GC_CONTENT'  Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'tag'         Name.Attribute
+' '           Text.Whitespace
+'id'          Name.Attribute
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'input'       Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Records can be destructured into individual inputs' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'record'      Name.Builtin
+'('           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'id'          Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'String'      Name
+','           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'fastq'       Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'Path'        Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'stage'       Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// The stage section customizes how inputs are staged' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'stageAs'     Name.Attribute
+' '           Text.Whitespace
+'fastq'       Name.Attribute
+','           Punctuation
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'reads.fq'    Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'env'         Name.Builtin
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'SAMPLE_ID'   Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text.Whitespace
+'id'          Name.Attribute
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'output'      Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'record'      Name.Builtin
+'('           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'id'          Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'id'          Name.Attribute
+','           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'gc'          Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'file'        Name.Builtin
+'('           Punctuation
+'"'           Literal.String.Double
+'${'          Literal.String.Interpol
+'id'          Name.Attribute
+'}'           Literal.String.Interpol
+'.gc.txt'     Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'topic'       Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Emit values to a *topic* channel, which can be read from anywhere' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'eval'        Name.Builtin
+'('           Punctuation
+"'"           Literal.String.Single
+'bash --version | head -1' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+' '           Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'versions'    Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'script'      Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'"""'         Literal.String.Double
+"\n    awk 'NR % 4 == 2 { n += length(" Literal.String.Double
+'\\$'         Literal.String.Escape
+'0); gc += gsub(/[GC]/, ' Literal.String.Double
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+") }\n         END { print gc / n }' reads.fq > " Literal.String.Double
+'\\$'         Literal.String.Escape
+'{SAMPLE_ID}.gc.txt\n    ' Literal.String.Double
+'"""'         Literal.String.Double
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'process'     Keyword.Declaration
+' '           Text.Whitespace
+'SUMMARIZE'   Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'input'       Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Use collection types for multiple files' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'reports'     Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'Bag'         Name
+'<'           Operator
+'Path'        Name
+'>'           Operator
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'output'      Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'file'        Name.Builtin
+'('           Punctuation
+"'"           Literal.String.Single
+'summary.txt' Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'script'      Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'"""'         Literal.String.Double
+'\n    cat '  Literal.String.Double
+'${'          Literal.String.Interpol
+'reports'     Name.Attribute
+'.'           Operator
+'join'        Name.Attribute
+'('           Punctuation
+"'"           Literal.String.Single
+' '           Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'}'           Literal.String.Interpol
+' > summary.txt\n    ' Literal.String.Double
+'"""'         Literal.String.Double
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'////////////////////////////////////////////////////' Comment.Single
+'\n'          Text.Whitespace
+
+'// Workflows' Comment.Single
+'\n'          Text.Whitespace
+
+'////////////////////////////////////////////////////' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// A named workflow composes processes and operators, and can be called' Comment.Single
+'\n'          Text.Whitespace
+
+'// like a process. `Channel` and `Value` are *dataflow types*' Comment.Single
+'\n'          Text.Whitespace
+
+'workflow'    Keyword.Declaration
+' '           Text.Whitespace
+'QC'          Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'take'        Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'samples'     Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'Channel'     Name
+'<'           Operator
+'Sample'      Name
+'>'           Operator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'min_reads'   Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'Integer'     Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'main'        Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Calling a process with a channel runs a task for each value.' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Processes return channels of their outputs' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'counts_ch'   Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'COUNT_READS' Name.Attribute
+'('           Punctuation
+'samples'     Name.Attribute
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'gc_ch'       Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'GC_CONTENT'  Name.Attribute
+'('           Punctuation
+'samples'     Name.Attribute
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Join the results by sample ID, keeping every field' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'qc_ch'       Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'samples'     Name.Attribute
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'.'           Operator
+'join'        Name.Attribute
+'('           Punctuation
+'counts_ch'   Name.Attribute
+','           Punctuation
+' '           Text.Whitespace
+'by'          Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'id'          Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'.'           Operator
+'join'        Name.Attribute
+'('           Punctuation
+'gc_ch'       Name.Attribute
+','           Punctuation
+' '           Text.Whitespace
+'by'          Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'id'          Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'passed_ch'   Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'qc_ch'       Name.Attribute
+'.'           Operator
+'filter'      Name.Attribute
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'s'           Name.Attribute
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'isPassing'   Name.Attribute
+'('           Punctuation
+'s'           Name.Attribute
+','           Punctuation
+' '           Text.Whitespace
+'min_reads'   Name.Attribute
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'failed_ch'   Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'qc_ch'       Name.Attribute
+'.'           Operator
+'filter'      Name.Attribute
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'s'           Name.Attribute
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'!'           Operator
+'isPassing'   Name.Attribute
+'('           Punctuation
+'s'           Name.Attribute
+','           Punctuation
+' '           Text.Whitespace
+'min_reads'   Name.Attribute
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'emit'        Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Each output has a name and optional type (unless there is only one)' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'passed'      Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'Channel'     Name
+'<'           Operator
+'QcSample'    Name
+'>'           Operator
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'passed_ch'   Name.Attribute
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'failed'      Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'Channel'     Name
+'<'           Operator
+'QcSample'    Name
+'>'           Operator
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'failed_ch'   Name.Attribute
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// The entry workflow is the entrypoint of the pipeline. It is the only' Comment.Single
+'\n'          Text.Whitespace
+
+'// place where `params` should be used' Comment.Single
+'\n'          Text.Whitespace
+
+'workflow'    Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'main'        Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Load the samplesheet as a channel of records' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'samples_ch'  Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'channel'     Name.Builtin
+'.'           Operator
+'of'          Name.Attribute
+'('           Punctuation
+'params'      Name.Builtin
+'.'           Operator
+'input'       Name.Attribute
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'.'           Operator
+'flatMap'     Name.Attribute
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'csv'         Name.Attribute
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'csv'         Name.Attribute
+'.'           Operator
+'splitCsv'    Name.Attribute
+'('           Punctuation
+'header'      Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'true'        Keyword.Constant
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'.'           Operator
+'map'         Name.Attribute
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'row'         Name.Attribute
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'record'      Name.Builtin
+'('           Punctuation
+'id'          Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'row'         Name.Attribute
+'.'           Operator
+'id'          Name.Attribute
+','           Punctuation
+' '           Text.Whitespace
+'fastq'       Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'file'        Name.Builtin
+'('           Punctuation
+'row'         Name.Attribute
+'.'           Operator
+'fastq'       Name.Attribute
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'qc'          Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'QC'          Name.Attribute
+'('           Punctuation
+'samples_ch'  Name.Attribute
+','           Punctuation
+' '           Text.Whitespace
+'params'      Name.Builtin
+'.'           Operator
+'min_reads'   Name.Attribute
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'qc'          Name.Attribute
+'.'           Operator
+'failed'      Name.Attribute
+'.'           Operator
+'view'        Name.Attribute
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'s'           Name.Attribute
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Sample '     Literal.String.Double
+'${'          Literal.String.Interpol
+'s'           Name.Attribute
+'.'           Operator
+'id'          Name.Attribute
+'}'           Literal.String.Interpol
+' has too few reads' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// `collect()` gathers all values into a single dataflow value,' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// so SUMMARIZE runs once with all of the reports' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'summary'     Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'SUMMARIZE'   Name.Attribute
+'('           Punctuation
+'qc'          Name.Attribute
+'.'           Operator
+'passed'      Name.Attribute
+'.'           Operator
+'map'         Name.Attribute
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'s'           Name.Attribute
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'s'           Name.Attribute
+'.'           Operator
+'gc'          Name.Attribute
+' '           Text.Whitespace
+'}'           Punctuation
+'.'           Operator
+'collect'     Name.Attribute
+'('           Punctuation
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Read values from a topic channel' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'channel'     Name.Builtin
+'.'           Operator
+'topic'       Name.Attribute
+'('           Punctuation
+"'"           Literal.String.Single
+'versions'    Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'.'           Operator
+'unique'      Name.Attribute
+'('           Punctuation
+')'           Punctuation
+'.'           Operator
+'view'        Name.Attribute
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'publish'     Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Assign channels and values to workflow outputs' Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'samples'     Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'qc'          Name.Attribute
+'.'           Operator
+'passed'      Name.Attribute
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'summary'     Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'summary'     Name.Attribute
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'////////////////////////////////////////////////////' Comment.Single
+'\n'          Text.Whitespace
+
+'// Outputs'  Comment.Single
+'\n'          Text.Whitespace
+
+'////////////////////////////////////////////////////' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// The output block declares the pipeline outputs, and how to publish them' Comment.Single
+'\n'          Text.Whitespace
+
+'// from the work directory to the output directory (`results` by default)' Comment.Single
+'\n'          Text.Whitespace
+
+'output'      Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'samples'     Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'Channel'     Name
+'<'           Operator
+'QcSample'    Name
+'>'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'// Publish files into a custom directory for each value' Comment.Single
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'path'        Name.Attribute
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'s'           Name.Attribute
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'gc/'         Literal.String.Double
+'${'          Literal.String.Interpol
+'s'           Name.Attribute
+'.'           Operator
+'id'          Name.Attribute
+'}'           Literal.String.Interpol
+'/'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'// Save the channel as a samplesheet, including published file paths' Comment.Single
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'index'       Name.Attribute
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'path'        Name.Attribute
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'samples.csv' Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'header'      Name.Attribute
+' '           Text.Whitespace
+'true'        Keyword.Constant
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'summary'     Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'Path'        Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'path'        Name.Attribute
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'.'           Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'// Publish settings such as `mode` and `enabled` can also be set here' Comment.Single
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'mode'        Name.Attribute
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'copy'        Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'enabled'     Name.Attribute
+' '           Text.Whitespace
+'params'      Name.Builtin
+'.'           Operator
+'save_summary' Name.Attribute
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

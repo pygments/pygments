@@ -1,0 +1,116 @@
+---input---
+record Sample {
+    id: String
+    fastq: Path?
+}
+
+enum Day { MON, TUE }
+
+def greet(s: Sample) -> String {
+    record(id: s.id)
+}
+
+workflow {
+    main:
+    println(workflow.runName)
+}
+
+---tokens---
+'record'      Keyword.Declaration
+' '           Text.Whitespace
+'Sample'      Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'id'          Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'String'      Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'fastq'       Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'Path'        Name
+'?'           Operator
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'enum'        Keyword.Declaration
+' '           Text.Whitespace
+'Day'         Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'MON'         Name.Attribute
+','           Punctuation
+' '           Text.Whitespace
+'TUE'         Name.Attribute
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'def'         Keyword.Declaration
+' '           Text.Whitespace
+'greet'       Name.Function
+'('           Punctuation
+'s'           Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'Sample'      Name
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'String'      Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'record'      Name.Builtin
+'('           Punctuation
+'id'          Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'s'           Name.Attribute
+'.'           Operator
+'id'          Name.Attribute
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'workflow'    Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'main'        Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'println'     Name.Builtin
+'('           Punctuation
+'workflow'    Name.Builtin
+'.'           Operator
+'runName'     Name.Attribute
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
