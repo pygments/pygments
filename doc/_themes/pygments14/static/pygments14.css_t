@@ -203,6 +203,16 @@ div.sphinxsidebarwrapper {
     gap: 15px;
     position: sticky;
     top: 0;
+    max-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+@media screen and (max-width: 970px) {
+    div.sphinxsidebarwrapper {
+        position: static;
+        max-height: none;
+    }
 }
 
 div.sphinxsidebarwrapper > h3:first-child {
