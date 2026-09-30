@@ -704,8 +704,8 @@ class TerraformLexer(ExtendedRegexLexer):
     mimetypes = ['application/x-tf', 'application/x-terraform']
     version_added = '2.1'
 
-    classes = ('backend', 'data', 'module', 'output', 'provider',
-               'provisioner', 'resource', 'variable')
+    classes = ('backend', 'check', 'data', 'dynamic', 'module', 'output',
+               'provider', 'provisioner', 'resource', 'variable')
     classes_re = "({})".format(('|').join(classes))
 
     types = ('string', 'number', 'bool', 'list', 'tuple', 'map', 'set', 'object', 'null')

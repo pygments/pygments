@@ -1,0 +1,96 @@
+---input---
+resource "aws_security_group" "allow_tls" {
+  dynamic "ingress" {
+    for_each = var.ports
+    content {
+      from_port = ingress.value
+    }
+  }
+}
+
+check "health" {
+  assert {
+    condition = true
+  }
+}
+
+---tokens---
+'resource'    Keyword.Reserved
+' '           Text.Whitespace
+'"aws_security_group"' Name.Class
+' '           Text.Whitespace
+'"allow_tls"' Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'dynamic'     Keyword.Reserved
+' '           Text.Whitespace
+'"ingress"'   Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'for_each'    Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'var.ports'   Name.Variable
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'content'     Name.Builtin
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'      '      Text.Whitespace
+'from_port'   Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'ingress.value' Name.Variable
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'check'       Keyword.Reserved
+' '           Text.Whitespace
+'"health"'    Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'assert'      Name.Builtin
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'condition'   Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'true'        Name.Constant
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
