@@ -222,7 +222,8 @@ class PhpLexer(RegexLexer):
              r'array|E_ALL|NULL|final|php_user_filter|interface|'
              r'implements|public|private|protected|abstract|clone|try|'
              r'catch|throw|this|use|namespace|trait|yield( from)?|'
-             r'finally|match|readonly)\b', Keyword),
+             r'finally|match|readonly|callable|enum|fn|goto|instanceof|'
+             r'insteadof)\b', Keyword),
             (r'(true|false|null)\b', Keyword.Constant),
             include('magicconstants'),
             (r'\$\{', Name.Variable, 'variablevariable'),
