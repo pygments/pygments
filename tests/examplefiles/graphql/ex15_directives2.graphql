@@ -1,0 +1,12 @@
+query Hero($episode: Episode @deprecated) @cached {
+  hero(episode: $episode) {
+    name @uppercase @trim
+    ... on Droid @include(if: true) {
+      primaryFunction
+    }
+  }
+}
+
+fragment HeroName on Character @cached {
+  name
+}

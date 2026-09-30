@@ -1,0 +1,75 @@
+'query'       Keyword
+' '           Text.Whitespace
+'Hero'        Name.Function
+'('           Punctuation
+'$episode'    Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Episode'     Name.Class
+' '           Text.Whitespace
+'@deprecated' Name.Decorator
+')'           Punctuation
+' '           Text.Whitespace
+'@cached'     Name.Decorator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'hero'        Name
+'('           Punctuation
+'episode'     Name
+':'           Punctuation
+' '           Text.Whitespace
+'$episode'    Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'name'        Name
+' '           Text.Whitespace
+'@uppercase'  Name.Decorator
+' '           Text.Whitespace
+'@trim'       Name.Decorator
+'\n    '      Text.Whitespace
+'...'         Punctuation
+' '           Text.Whitespace
+'on'          Keyword
+' '           Text.Whitespace
+'Droid'       Name.Class
+' '           Text.Whitespace
+'@include'    Name.Decorator
+'('           Punctuation
+'if'          Name
+':'           Punctuation
+' '           Text.Whitespace
+'true'        Name.Builtin
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n      '    Text.Whitespace
+'primaryFunction' Name
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'fragment'    Keyword
+' '           Text.Whitespace
+'HeroName'    Name.Function
+' '           Text.Whitespace
+'on'          Keyword
+' '           Text.Whitespace
+'Character'   Name.Class
+' '           Text.Whitespace
+'@cached'     Name.Decorator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'name'        Name
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
