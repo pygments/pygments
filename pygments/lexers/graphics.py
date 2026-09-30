@@ -342,7 +342,7 @@ class PostScriptLexer(RegexLexer):
             (r'[+-]?[0-9]+' + delimiter_end, Number.Integer),
 
             # References
-            (rf'\/{valid_name}', Name.Variable),
+            (rf'\/\/?{valid_name}', Name.Variable),
 
             # Names
             (valid_name, Name.Function),      # Anything else is executed
