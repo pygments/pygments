@@ -218,6 +218,16 @@ def test_S_opt():
     check_failure('-S', 'default', '-f', 'foobar')
 
 
+@pytest.mark.parametrize('verbose', [[], ['-v']])
+def test_S_opt_invalid_formatter_option(verbose):
+    err = check_failure('-S', 'default', '-f', 'html',
+                        '-O', 'linenostart=invalid', *verbose)
+    assert err.splitlines() == [
+        "Invalid value 'invalid' for option linenostart; "
+        "you must give an integer value"
+    ]
+
+
 def test_N_opt():
     o = check_success('-N', 'test.py')
     assert 'python' == o.strip()

@@ -285,7 +285,7 @@ def main_inner(parser, argns):
         try:
             parsed_opts['style'] = S_opt
             fmter = get_formatter_by_name(f_opt, **parsed_opts)
-        except ClassNotFound as err:
+        except (OptionError, ClassNotFound) as err:
             print(err, file=sys.stderr)
             return 1
 
