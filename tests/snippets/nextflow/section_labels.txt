@@ -1,0 +1,67 @@
+---input---
+params {
+    input: Path
+}
+
+process FOO {
+    input:
+    sample: Sample
+
+    output: // comment
+    stdout()
+}
+
+---tokens---
+'params'      Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'input'       Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'Path'        Name
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'process'     Keyword.Declaration
+' '           Text.Whitespace
+'FOO'         Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'input'       Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'sample'      Name.Attribute
+':'           Operator
+' '           Text.Whitespace
+'Sample'      Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'output'      Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'// comment'  Comment.Single
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'stdout'      Name.Builtin
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

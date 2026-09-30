@@ -1,0 +1,49 @@
+---input---
+"""
+echo \$HOME ${sample.id} $name.first ${ xs.collect { x -> x * 2 } }
+"""
+'no $interp here'
+
+---tokens---
+'"""'         Literal.String.Double
+'\necho '     Literal.String.Double
+'\\$'         Literal.String.Escape
+'HOME '       Literal.String.Double
+'${'          Literal.String.Interpol
+'sample'      Name.Attribute
+'.'           Operator
+'id'          Name.Attribute
+'}'           Literal.String.Interpol
+' '           Literal.String.Double
+'$name.first' Literal.String.Interpol
+' '           Literal.String.Double
+'${'          Literal.String.Interpol
+' '           Text.Whitespace
+'xs'          Name.Attribute
+'.'           Operator
+'collect'     Name.Attribute
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'x'           Name.Attribute
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'x'           Name.Attribute
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'}'           Literal.String.Interpol
+'\n'          Literal.String.Double
+
+'"""'         Literal.String.Double
+'\n'          Text.Whitespace
+
+"'"           Literal.String.Single
+'no $interp here' Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text.Whitespace

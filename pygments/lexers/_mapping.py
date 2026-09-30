@@ -355,6 +355,7 @@ LEXERS = {
     'NestedTextLexer': ('pygments.lexers.configs', 'NestedText', ('nestedtext', 'nt'), ('*.nt',), ()),
     'NewLispLexer': ('pygments.lexers.lisp', 'NewLisp', ('newlisp',), ('*.lsp', '*.nl', '*.kif'), ('text/x-newlisp', 'application/x-newlisp')),
     'NewspeakLexer': ('pygments.lexers.smalltalk', 'Newspeak', ('newspeak',), ('*.ns2',), ('text/x-newspeak',)),
+    'NextflowLexer': ('pygments.lexers.nextflow', 'Nextflow', ('nextflow', 'nf'), ('*.nf', 'nextflow.config'), ('text/x-nextflow',)),
     'NginxConfLexer': ('pygments.lexers.configs', 'Nginx configuration file', ('nginx',), ('nginx.conf',), ('text/x-nginx-conf',)),
     'NimrodLexer': ('pygments.lexers.nimrod', 'Nimrod', ('nimrod', 'nim'), ('*.nim', '*.nimrod'), ('text/x-nim',)),
     'NitLexer': ('pygments.lexers.nit', 'Nit', ('nit',), ('*.nit',), ()),
