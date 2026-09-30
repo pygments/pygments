@@ -365,7 +365,11 @@ common_sass_tokens = {
         (r'\$[\w-]+', Name.Variable),
         (r'#\{', String.Interpol, 'interpolation'),
         (r'&', Keyword),
-        (r'[~^*!&\[\]()<>|+=@:;,./?-]', Operator),
+        # Placeholder selector, the sibling of the class and id rules above.
+        (r'%(?=[\w-])', Name.Class, 'class'),
+        # The SCSS lexer also reads declaration values in this state, so the
+        # percent sign of a percentage lands here too.
+        (r'[~^*!&%\[\]()<>|+=@:;,./?-]', Operator),
         (r'"', String.Double, 'string-double'),
         (r"'", String.Single, 'string-single'),
     ],
