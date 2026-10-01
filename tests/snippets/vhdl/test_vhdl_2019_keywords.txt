@@ -1,0 +1,35 @@
+---input---
+view v_data of rec_t is
+end view;
+
+private variable count : integer;
+
+---tokens---
+'view'        Keyword
+' '           Text.Whitespace
+'v_data'      Name
+' '           Text.Whitespace
+'of'          Keyword
+' '           Text.Whitespace
+'rec_t'       Name
+' '           Text.Whitespace
+'is'          Keyword
+'\n'          Text.Whitespace
+
+'end'         Keyword
+' '           Text.Whitespace
+'view'        Keyword
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'private'     Keyword
+' '           Text.Whitespace
+'variable'    Keyword
+' '           Text.Whitespace
+'count'       Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'integer'     Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace
