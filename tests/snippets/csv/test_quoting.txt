@@ -1,0 +1,36 @@
+---input---
+"quoted, field","with ""escaped"" quotes"
+"multi
+line, field",plain
+mid"field"quote,""
+"unterminated string
+
+---tokens---
+'"'           Punctuation
+'quoted, field' Literal.String.Double
+'"'           Punctuation
+','           Punctuation
+'"'           Punctuation
+'with '       Literal.String.Double
+'""'          Literal.String.Double.Escape
+'escaped'     Literal.String.Double
+'""'          Literal.String.Double.Escape
+' quotes'     Literal.String.Double
+'"'           Punctuation
+'\n'          Text.Whitespace
+
+'"'           Punctuation
+'multi\nline, field' Literal.String.Double
+'"'           Punctuation
+','           Punctuation
+'plain'       Text
+'\n'          Text.Whitespace
+
+'mid"field"quote' Text
+','           Punctuation
+'"'           Punctuation
+'"'           Punctuation
+'\n'          Text.Whitespace
+
+'"'           Punctuation
+'unterminated string\n' Literal.String.Double

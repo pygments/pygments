@@ -9,11 +9,12 @@
 """
 
 from pygments.lexer import Lexer, ExtendedRegexLexer, LexerContext, \
-    include, bygroups
+    RegexLexer, include, bygroups
 from pygments.token import Comment, Error, Keyword, Literal, Name, Number, \
-    Punctuation, String, Whitespace
+    Punctuation, String, Text, Whitespace
 
-__all__ = ['YamlLexer', 'JsonLexer', 'JsonBareObjectLexer', 'JsonLdLexer']
+__all__ = ['YamlLexer', 'JsonLexer', 'JsonBareObjectLexer', 'JsonLdLexer',
+           'CsvLexer']
 
 
 class YamlLexerContext(LexerContext):
@@ -761,3 +762,52 @@ class JsonLdLexer(JsonLexer):
                 yield start, Name.Decorator, value
             else:
                 yield start, token, value
+
+
+class CsvLexer(RegexLexer):
+    """
+    For CSV (comma-separated values) data, as described in RFC 4180.
+
+    Commas separating fields, and the double quotes delimiting quoted
+    fields, are emitted as ``Punctuation``.  A quoted field is emitted
+    as a ``String.Double``, with doubled quotes (the RFC 4180 escape
+    mechanism) emitted as ``String.Double.Escape``.  Unquoted fields
+    whose entire content is a number are emitted as ``Number.Integer``
+    or ``Number.Float``; any other field content is emitted as ``Text``.
+    A double quote inside an unquoted field does not open a quoted
+    field; an unterminated quoted field consumes the rest of the input
+    as string content.
+    """
+    name = 'CSV'
+    url = 'https://datatracker.ietf.org/doc/html/rfc4180'
+    aliases = ['csv']
+    filenames = ['*.csv']
+    mimetypes = ['text/csv']
+    version_added = '2.22'
+
+    tokens = {
+        'root': [
+            # Quoted field: the opening quote enters the "quoted" state.
+            (r'"', Punctuation, 'quoted'),
+            # Numbers must span an entire field (the lookahead ensures the
+            # number is not a prefix of a larger value such as "123abc").
+            (r'[-+]?(?:\d+\.\d*|\.\d+)(?:[eE][-+]?\d+)?(?=[,\r\n])',
+             Number.Float),
+            (r'[-+]?\d+[eE][-+]?\d+(?=[,\r\n])', Number.Float),
+            (r'[-+]?\d+(?=[,\r\n])', Number.Integer),
+            # Field separator and record separator.
+            (r',', Punctuation),
+            (r'[\r\n]+', Whitespace),
+            # Any other unquoted field content, up to the next separator.
+            # This rule consumes double quotes inside the field, so a
+            # quote that is not at the start of a field is treated as
+            # literal content (this matches the behaviour of Python's
+            # csv module); only the rule above can open a quoted field.
+            (r'[^,\r\n]+', Text),
+        ],
+        'quoted': [
+            (r'""', String.Double.Escape),
+            (r'"', Punctuation, '#pop'),
+            (r'[^"]+', String.Double),
+        ],
+    }

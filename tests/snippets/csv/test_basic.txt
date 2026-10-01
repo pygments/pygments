@@ -1,0 +1,24 @@
+---input---
+name,notes
+Alice,hello world
+Bob,
+,leading empty field
+
+---tokens---
+'name'        Text
+','           Punctuation
+'notes'       Text
+'\n'          Text.Whitespace
+
+'Alice'       Text
+','           Punctuation
+'hello world' Text
+'\n'          Text.Whitespace
+
+'Bob'         Text
+','           Punctuation
+'\n'          Text.Whitespace
+
+','           Punctuation
+'leading empty field' Text
+'\n'          Text.Whitespace

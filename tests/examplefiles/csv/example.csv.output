@@ -1,0 +1,56 @@
+'id'          Text
+','           Punctuation
+'product'     Text
+','           Punctuation
+'price'       Text
+','           Punctuation
+'notes'       Text
+'\n'          Text.Whitespace
+
+'1'           Literal.Number.Integer
+','           Punctuation
+'"'           Punctuation
+'Widget, standard' Literal.String.Double
+'"'           Punctuation
+','           Punctuation
+'19.99'       Literal.Number.Float
+','           Punctuation
+'"'           Punctuation
+'in stock'    Literal.String.Double
+'"'           Punctuation
+'\n'          Text.Whitespace
+
+'2'           Literal.Number.Integer
+','           Punctuation
+'"'           Punctuation
+'Widget '     Literal.String.Double
+'""'          Literal.String.Double.Escape
+'pro'         Literal.String.Double
+'""'          Literal.String.Double.Escape
+'"'           Punctuation
+','           Punctuation
+'49.99'       Literal.Number.Float
+','           Punctuation
+'backordered' Text
+'\n'          Text.Whitespace
+
+'3'           Literal.Number.Integer
+','           Punctuation
+'plain widget' Text
+','           Punctuation
+'9.99'        Literal.Number.Float
+','           Punctuation
+'\n'          Text.Whitespace
+
+'4'           Literal.Number.Integer
+','           Punctuation
+'"'           Punctuation
+'multi-line\nnote with, comma' Literal.String.Double
+'"'           Punctuation
+','           Punctuation
+'4.5'         Literal.Number.Float
+','           Punctuation
+'"'           Punctuation
+'sold out'    Literal.String.Double
+'"'           Punctuation
+'\n'          Text.Whitespace

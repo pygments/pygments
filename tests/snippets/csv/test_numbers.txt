@@ -1,0 +1,30 @@
+---input---
+1,2.5,-3,+7
+1e5,1.5e-3,2E+10,.5
+123abc,0x1F,1.2.3
+
+---tokens---
+'1'           Literal.Number.Integer
+','           Punctuation
+'2.5'         Literal.Number.Float
+','           Punctuation
+'-3'          Literal.Number.Integer
+','           Punctuation
+'+7'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'1e5'         Literal.Number.Float
+','           Punctuation
+'1.5e-3'      Literal.Number.Float
+','           Punctuation
+'2E+10'       Literal.Number.Float
+','           Punctuation
+'.5'          Literal.Number.Float
+'\n'          Text.Whitespace
+
+'123abc'      Text
+','           Punctuation
+'0x1F'        Text
+','           Punctuation
+'1.2.3'       Text
+'\n'          Text.Whitespace
