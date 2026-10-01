@@ -1558,6 +1558,7 @@ class NodeConsoleLexer(Lexer):
 
         curcode = ''
         insertions = []
+        offset = 0
 
         for match in line_re.finditer(text):
             line = match.group()
@@ -1578,15 +1579,18 @@ class NodeConsoleLexer(Lexer):
                 curcode += code
             else:
                 if curcode:
-                    yield from do_insertions(insertions,
-                        jslexer.get_tokens_unprocessed(curcode))
+                    for i, t, v in do_insertions(insertions,
+                            jslexer.get_tokens_unprocessed(curcode)):
+                        yield offset + i, t, v
 
                     curcode = ''
                     insertions = []
 
-                yield from do_insertions([],
-                    jslexer.get_tokens_unprocessed(line))
+                for i, t, v in jslexer.get_tokens_unprocessed(line):
+                    yield match.start() + i, t, v
+                offset = match.end()
 
         if curcode:
-            yield from do_insertions(insertions,
-                jslexer.get_tokens_unprocessed(curcode))
+            for i, t, v in do_insertions(insertions,
+                    jslexer.get_tokens_unprocessed(curcode)):
+                yield offset + i, t, v

@@ -184,6 +184,19 @@ def test_P_opt():
     assert '<title>foo, bar=baz=,</title>' in o
 
 
+@pytest.mark.parametrize('command', ['a', 'ab', 'abc', 'π'])
+@pytest.mark.parametrize('batches', [1, 2])
+def test_node_console_escapeinside(command, batches):
+    # gh-2666: escaped output stays before the comma, regardless of prompt length.
+    source = (f'> {command}\n[ @\\textit{{1}}@, 2 ]\n') * batches
+    output = check_success('-l', 'nodejsrepl', '-f', 'latex',
+                           '-P', 'escapeinside=@@', stdin=source)
+
+    expected = (r'\PY{p}{[}\PY{+w}{ }\PY{esc}{\textit{1}}\PY{p}{,}'
+                r'\PY{+w}{ }\PY{l+m+mf}{2}\PY{+w}{ }\PY{p}{]}')
+    assert output.count(expected) == batches
+
+
 def test_F_opt():
     filename = TESTFILE
     o = check_success('-Fhighlight:tokentype=Name.Blubb,'
