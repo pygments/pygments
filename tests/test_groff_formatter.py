@@ -91,3 +91,22 @@ def test_wrap_does_not_duplicate_characters():
     # A piece that does end in a newline still keeps that trailing newline.
     fmt = GroffFormatter(wrap=4)
     assert fmt._wrap_line("123456\n") == "1234\n56\n"
+
+
+def test_escape_chars_astral_code_points():
+    # groff_char(7): a Unicode code point "can be accessed with four to six
+    # hexadecimal digits, with hexadecimal letters accepted in uppercase form
+    # only".  Code points above U+FFFF used to be written with eight digits,
+    # which groff rejects ("special character 'u0001F600' not defined") and
+    # drops the character from the output.
+    fmt = GroffFormatter()
+    assert fmt._escape_chars('\u00e9') == r'\[u00E9]'
+    assert fmt._escape_chars('\u20ac') == r'\[u20AC]'
+    assert fmt._escape_chars('\U0001f600') == r'\[u1F600]'
+    assert fmt._escape_chars('\U00020b9f') == r'\[u20B9F]'
+
+    for char in '\u00a0\u00e9\u0100\u20ac\U0001f600\U00020b9f\U0010fffd':
+        digits = fmt._escape_chars(char)[3:-1]
+        assert 4 <= len(digits) <= 6, (char, digits)
+        assert digits == digits.upper()
+        assert int(digits, 16) == ord(char)
