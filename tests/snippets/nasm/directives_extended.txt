@@ -1,0 +1,41 @@
+---input---
+ALIGNB 16
+FLOAT DAZ
+INCBIN "data.bin"
+ISTRUC mystruct
+AT field, dw 5
+IEND
+
+---tokens---
+'ALIGNB'      Keyword
+' '           Text.Whitespace
+'16'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'FLOAT'       Keyword
+' '           Text.Whitespace
+'DAZ'         Name.Variable
+'\n'          Text.Whitespace
+
+'INCBIN'      Keyword
+' '           Text.Whitespace
+'"data.bin"'  Literal.String
+'\n'          Text.Whitespace
+
+'ISTRUC'      Keyword
+' '           Text.Whitespace
+'mystruct'    Name.Variable
+'\n'          Text.Whitespace
+
+'AT'          Keyword
+' '           Text.Whitespace
+'field'       Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'dw'          Name.Variable
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'IEND'        Keyword
+'\n'          Text.Whitespace

@@ -1,0 +1,26 @@
+---input---
+    %define FOO 1
+    %ifdef FOO
+    mov eax, FOO
+    %endif
+
+---tokens---
+'    %define' Comment.Preproc
+' FOO 1'      Comment.Preproc
+'\n'          Comment.Preproc
+
+'    %ifdef'  Comment.Preproc
+' FOO'        Comment.Preproc
+'\n'          Comment.Preproc
+
+'    '        Text.Whitespace
+'mov'         Name.Function
+' '           Text.Whitespace
+'eax'         Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'FOO'         Name.Variable
+'\n'          Text.Whitespace
+
+'    %endif'  Comment.Preproc
+'\n'          Comment.Preproc

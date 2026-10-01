@@ -1,0 +1,87 @@
+---input---
+mov rax, [rip+0x10]
+bndmov bnd0, [rax]
+mov cr8, rax
+mov cr15, rbx
+lgdt [gdtr]
+lidt [idtr]
+kmovw k1, k2
+mov sil, 1
+mov dil, 1
+
+---tokens---
+'mov'         Name.Function
+' '           Text.Whitespace
+'rax'         Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'rip'         Name.Builtin
+'+'           Operator
+'0x10'        Literal.Number.Hex
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'bndmov'      Name.Function
+' '           Text.Whitespace
+'bnd0'        Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'rax'         Name.Builtin
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'mov'         Name.Function
+' '           Text.Whitespace
+'cr8'         Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'rax'         Name.Builtin
+'\n'          Text.Whitespace
+
+'mov'         Name.Function
+' '           Text.Whitespace
+'cr15'        Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'rbx'         Name.Builtin
+'\n'          Text.Whitespace
+
+'lgdt'        Name.Function
+' '           Text.Whitespace
+'['           Punctuation
+'gdtr'        Name.Builtin
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'lidt'        Name.Function
+' '           Text.Whitespace
+'['           Punctuation
+'idtr'        Name.Builtin
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'kmovw'       Name.Function
+' '           Text.Whitespace
+'k1'          Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'k2'          Name.Builtin
+'\n'          Text.Whitespace
+
+'mov'         Name.Function
+' '           Text.Whitespace
+'sil'         Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'mov'         Name.Function
+' '           Text.Whitespace
+'dil'         Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
