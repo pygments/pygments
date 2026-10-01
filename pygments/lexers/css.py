@@ -571,9 +571,26 @@ class ScssLexer(RegexLexer):
             (r'#\{', String.Interpol, 'interpolation'),
             (r"\*/", Comment, '#pop'),
         ],
+
+        'selector-url': [
+            (r'\s+', Whitespace),
+            (r'"', String.Double, 'string-double'),
+            (r"'", String.Single, 'string-single'),
+            (r'(\\[^\n]|#(?=[^\n{])|[^\n#)\\\'\"])+', String.Other),
+            (r'#\{', String.Interpol, 'interpolation'),
+            (r'\)', String.Other, '#pop'),
+        ],
     }
     for group, common in common_sass_tokens.items():
         tokens[group] = copy.copy(common)
+    # Declarations also use this state; keep URL contents opaque to comments.
+    tokens['pseudo-class'].insert(0, (
+        r'url\(', String.Other, ('#pop', 'selector-url')))
+    tokens['selector'] = [
+        (r'url\(', String.Other, 'selector-url'),
+        (r'/\*', Comment.Multiline, 'inline-comment'),
+        (r'//[^\n]*', Comment.Single),
+    ] + tokens['selector']
     tokens['value'].extend([(r'\n', Whitespace), (r'[;{}]', Punctuation, '#pop')])
     tokens['selector'].extend([(r'\n', Whitespace), (r'[;{}]', Punctuation, '#pop')])
 
