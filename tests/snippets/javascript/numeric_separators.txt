@@ -1,0 +1,103 @@
+---input---
+const budget = 1_000_000;
+const big = 9_007_199_254_740_993n;
+const mask = 0b1010_0001;
+const mode = 0o7_5_5;
+const color = 0xFF_EC_DE;
+const ratio = 1_0.2_5e1_0;
+const legacy = 07;
+const notANumber = 1_;
+const alsoNot = 0x_1;
+
+---tokens---
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'budget'      Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1_000_000'   Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'big'         Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'9_007_199_254_740_993n' Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'mask'        Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0b1010_0001' Literal.Number.Bin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'mode'        Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0o7_5_5'     Literal.Number.Oct
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'color'       Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0xFF_EC_DE'  Literal.Number.Hex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'ratio'       Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1_0.2_5e1_0' Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'legacy'      Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'07'          Literal.Number.Oct
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'notANumber'  Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Float
+'_'           Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'alsoNot'     Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Float
+'x_1'         Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
