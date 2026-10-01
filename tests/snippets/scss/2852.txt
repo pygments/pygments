@@ -1,0 +1,138 @@
+Single-line comments in SCSS selectors and declarations, with URL and string controls.
+
+---input---
+a, // selector comment
+b {
+  color: red; // inline comment
+  // after declaration
+  background:url(http://example.com/a//b);
+  background: URL(
+    https://example.com/image.png);
+  background: url(//example.com/image.png);
+  background: url("https://example.com/a)b//c");
+  background: url(https://example.com/a\)b//c);
+  background: url(https://example.com/#{$name}//image.png);
+  content: "escaped \" // literal";
+  /* // block comment
+   */ // after block comment
+  width: 1px;
+}
+
+---tokens---
+'a'           Name.Tag
+','           Operator
+' '           Text.Whitespace
+'// selector comment' Comment.Single
+'\n'          Text.Whitespace
+
+'b'           Name.Tag
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'color'       Name.Tag
+':'           Name.Decorator
+' '           Text.Whitespace
+'red'         Name.Tag
+';'           Operator
+' '           Text.Whitespace
+'// inline comment' Comment.Single
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'// after declaration' Comment.Single
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'background'  Name.Tag
+':'           Name.Decorator
+'url('        Literal.String.Other
+'http://example.com/a//b' Literal.String.Other
+')'           Literal.String.Other
+';'           Operator
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'background'  Name.Tag
+':'           Name.Decorator
+' '           Text.Whitespace
+'URL('        Literal.String.Other
+'\n    '      Text.Whitespace
+'https://example.com/image.png' Literal.String.Other
+')'           Literal.String.Other
+';'           Operator
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'background'  Name.Tag
+':'           Name.Decorator
+' '           Text.Whitespace
+'url('        Literal.String.Other
+'//example.com/image.png' Literal.String.Other
+')'           Literal.String.Other
+';'           Operator
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'background'  Name.Tag
+':'           Name.Decorator
+' '           Text.Whitespace
+'url('        Literal.String.Other
+'"'           Literal.String.Double
+'https://example.com/a)b//c' Literal.String.Double
+'"'           Literal.String.Double
+')'           Literal.String.Other
+';'           Operator
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'background'  Name.Tag
+':'           Name.Decorator
+' '           Text.Whitespace
+'url('        Literal.String.Other
+'https://example.com/a\\)b//c' Literal.String.Other
+')'           Literal.String.Other
+';'           Operator
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'background'  Name.Tag
+':'           Name.Decorator
+' '           Text.Whitespace
+'url('        Literal.String.Other
+'https://example.com/' Literal.String.Other
+'#{'          Literal.String.Interpol
+'$name'       Name.Variable
+'}'           Literal.String.Interpol
+'//image.png' Literal.String.Other
+')'           Literal.String.Other
+';'           Operator
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'content'     Name.Tag
+':'           Name.Decorator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'escaped \\" // literal' Literal.String.Double
+'"'           Literal.String.Double
+';'           Operator
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'/*'          Comment.Multiline
+' // block comment\n   ' Comment.Multiline
+'*/'          Comment
+' '           Text.Whitespace
+'// after block comment' Comment.Single
+'\n'          Text.Whitespace
+
+'  '          Text.Whitespace
+'width'       Name.Tag
+':'           Name.Decorator
+' '           Text.Whitespace
+'1px'         Name.Tag
+';'           Operator
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
