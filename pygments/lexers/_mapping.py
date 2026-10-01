@@ -120,6 +120,7 @@ LEXERS = {
     'CssLexer': ('pygments.lexers.css', 'CSS', ('css',), ('*.css',), ('text/css',)),
     'CssPhpLexer': ('pygments.lexers.templates', 'CSS+PHP', ('css+php',), (), ('text/css+php',)),
     'CssSmartyLexer': ('pygments.lexers.templates', 'CSS+Smarty', ('css+smarty',), (), ('text/css+smarty',)),
+    'CsvLexer': ('pygments.lexers.data', 'CSV', ('csv',), ('*.csv',), ('text/csv',)),
     'CudaLexer': ('pygments.lexers.c_like', 'CUDA', ('cuda', 'cu'), ('*.cu', '*.cuh'), ('text/x-cuda',)),
     'CypherLexer': ('pygments.lexers.graph', 'Cypher', ('cypher',), ('*.cyp', '*.cypher'), ()),
     'CythonLexer': ('pygments.lexers.python', 'Cython', ('cython', 'pyx', 'pyrex'), ('*.pyx', '*.pxd', '*.pxi'), ('text/x-cython', 'application/x-cython')),
