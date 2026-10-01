@@ -29,6 +29,13 @@ JS_IDENT_PART = ('(?:[$' + uni.combine('Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl',
                  '\u200c\u200d]|\\\\u[a-fA-F0-9]{4})')
 JS_IDENT = JS_IDENT_START + '(?:' + JS_IDENT_PART + ')*'
 
+# ES2021 lets a single "_" separate digits of a numeric literal, but not lead
+# it, trail it or double up, so each run of digits is "digit (_? digit)*".
+JS_DEC = r'[0-9](?:_?[0-9])*'
+JS_BIN = r'[01](?:_?[01])*'
+JS_OCT = r'[0-7](?:_?[0-7])*'
+JS_HEX = r'[0-9a-fA-F](?:_?[0-9a-fA-F])*'
+
 
 class JavascriptLexer(RegexLexer):
     """
@@ -68,14 +75,16 @@ class JavascriptLexer(RegexLexer):
             include('commentsandwhitespace'),
 
             # Numeric literals
-            (r'0[bB][01]+n?', Number.Bin),
-            (r'0[oO]?[0-7]+n?', Number.Oct),  # Browsers support "0o7" and "07" (< ES5) notations
-            (r'0[xX][0-9a-fA-F]+n?', Number.Hex),
-            (r'[0-9]+n', Number.Integer),  # Javascript BigInt requires an "n" postfix
+            (r'0[bB]' + JS_BIN + r'n?', Number.Bin),
+            (r'0[oO]' + JS_OCT + r'n?', Number.Oct),
+            (r'0[0-7]+n?', Number.Oct),  # legacy octal: "07", without separators
+            (r'0[xX]' + JS_HEX + r'n?', Number.Hex),
+            (r'' + JS_DEC + r'n', Number.Integer),  # Javascript BigInt requires an "n" postfix
             # Javascript doesn't have actual integer literals, so every other
             # numeric literal is handled by the regex below (including "normal")
             # integers
-            (r'(\.[0-9]+|[0-9]+\.[0-9]*|[0-9]+)([eE][-+]?[0-9]+)?', Number.Float),
+            (r'(\.' + JS_DEC + r'|' + JS_DEC + r'\.(?:' + JS_DEC + r')?|' + JS_DEC +
+             r')(?:[eE][-+]?' + JS_DEC + r')?', Number.Float),
 
             (r'\.\.\.|=>', Punctuation),
             (r'\+\+|--|~|\?\?=?|\?|:|\\(?=\n)|'
