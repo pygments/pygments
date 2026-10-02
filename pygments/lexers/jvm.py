@@ -67,7 +67,7 @@ class JavaLexer(RegexLexer):
             (r'(var)(\s+)', bygroups(Keyword.Declaration, Whitespace), 'var'),
             (r'(import(?:\s+(?:static|module))?)(\s+)', bygroups(Keyword.Namespace, Whitespace),
              'import'),
-            (r'"""\n', String, 'multiline_string'),
+            (r'"""[ \t\f]*\n', String, 'multiline_string'),
             (r'"', String, 'string'),
             (r"'\\.'|'[^\\]'|'\\u[0-9a-fA-F]{4}'", String.Char),
             (r'(\.)((?:[^\W\d]|\$)[\w$]*)', bygroups(Punctuation,
