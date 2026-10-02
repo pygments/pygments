@@ -1,0 +1,92 @@
+---input---
+SourceTableView = where("Client Type" = filter(<> "Web Service" & <> NAS),
+                        Status = filter(Open | Released));
+CalcFormula = sum("Sales Line".Amount where("Document No." = field("No.")));
+Sign := Rec."Show Opposite Sign" ? -1 : 1;
+
+---tokens---
+'SourceTableView' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'where'       Keyword
+'('           Punctuation
+'"Client Type"' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'filter'      Keyword
+'('           Punctuation
+'<>'          Operator
+' '           Text.Whitespace
+'"Web Service"' Name.Variable
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+'<>'          Operator
+' '           Text.Whitespace
+'NAS'         Name
+')'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'                        ' Text.Whitespace
+'Status'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'filter'      Keyword
+'('           Punctuation
+'Open'        Name
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'Released'    Name
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'CalcFormula' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'sum'         Keyword
+'('           Punctuation
+'"Sales Line"' Name.Variable
+'.'           Punctuation
+'Amount'      Name
+' '           Text.Whitespace
+'where'       Keyword
+'('           Punctuation
+'"Document No."' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'field'       Keyword
+'('           Punctuation
+'"No."'       Name.Variable
+')'           Punctuation
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'Sign'        Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'Rec'         Name
+'.'           Punctuation
+'"Show Opposite Sign"' Name.Variable
+' '           Text.Whitespace
+'?'           Operator
+' '           Text.Whitespace
+'-'           Operator
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
