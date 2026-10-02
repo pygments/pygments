@@ -109,6 +109,7 @@ Version 2.21.0
 - Fix invalid ``-L`` values report success (#3217)
 - Allow ``transparent`` as a color style definition (#3180, #3170)
 - HtmlFormatter: ``"`` and ``'`` now render literally (#3185)
+- Speed up ``RegexLexer`` by merging runs of consecutive simple rules (#3155)
 
 Version 2.20.0
 --------------

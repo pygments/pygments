@@ -497,6 +497,19 @@ class words(Future):
         return regex_opt(self.words, prefix=self.prefix, suffix=self.suffix)
 
 
+def _can_merge_pattern(pattern):
+    """Whether *pattern* is safe to fold into a merged alternation.
+
+    It must not use a named group (which could collide with another rule's name
+    or with the wrapper group), a backreference (whose group number shifts once
+    the rule is one alternative among many), or a global inline flag like
+    ``(?i)`` (illegal once it is no longer at the start of the combined regex).
+    """
+    return ('(?P<' not in pattern
+            and not re.search(r'\\[1-9]', pattern)
+            and not re.search(r'\(\?[aiLmsux]+\)', pattern))
+
+
 class RegexLexerMeta(LexerMeta):
     """
     Metaclass for RegexLexer, creates the self._tokens attribute from
@@ -593,12 +606,80 @@ class RegexLexerMeta(LexerMeta):
             tokens.append((rex, token, new_state))
         return tokens
 
+    def _merge_simple_runs(cls, tokens):
+        """Merge maximal runs of consecutive "simple" rules in a processed state
+        into a single combined regex.
+
+        A rule is *simple* when it emits one plain token for the whole match and
+        does not change state (``(match, _TokenType, None)``), shares the base
+        flags, and has a foldable pattern.  Such adjacent rules are equivalent
+        to one ordered alternation ``(?P<g0>r0)|(?P<g1>r1)|...`` (Python's regex
+        alternation is leftmost-match, preserving the original rule order), so
+        merging them is output-preserving while replacing N per-position
+        ``match()`` calls with one.  Non-simple rules stay in place as barriers,
+        so the relative order of every rule is unchanged.
+        """
+        result = []
+        run = []
+
+        def flush():
+            if len(run) < 2:
+                result.extend(run)
+                run.clear()
+                return
+            flags = run[0][0].__self__.flags
+            parts = [f'(?P<g{i}>{rexmatch.__self__.pattern})'
+                     for i, (rexmatch, _, _) in enumerate(run)]
+            compiled = re.compile('|'.join(parts), flags)
+            # Map every capturing-group index to the token of the alternative
+            # that owns it, so dispatch works even when a rule has inner groups:
+            # exactly one alternative matches, and all its groups (outer wrapper
+            # plus any inner ones) fall in a contiguous index range.
+            groupmap = [None] * (compiled.groups + 1)
+            for i, (_, token, _) in enumerate(run):
+                start = compiled.groupindex[f'g{i}']
+                end = (compiled.groupindex[f'g{i + 1}']
+                       if i + 1 < len(run) else compiled.groups + 1)
+                for g in range(start, end):
+                    groupmap[g] = token
+            combined = compiled.match
+
+            def grouped(lexer, match, ctx=None, _groupmap=groupmap):
+                yield match.start(), _groupmap[match.lastindex], match.group()
+                if ctx is not None:
+                    # ExtendedRegexLexer: callbacks must advance the context.
+                    ctx.pos = match.end()
+
+            result.append((combined, grouped, None))
+            run.clear()
+
+        for rule in tokens:
+            rexmatch, action, new_state = rule
+            simple = (new_state is None and type(action) is _TokenType
+                      and _can_merge_pattern(rexmatch.__self__.pattern))
+            # Only merge consecutive simple rules that share the same compiled
+            # flags, so the single combined regex is equivalent to each rule.
+            if simple and (not run
+                           or rexmatch.__self__.flags == run[0][0].__self__.flags):
+                run.append(rule)
+            else:
+                flush()
+                if simple:
+                    run.append(rule)
+                else:
+                    result.append(rule)
+        flush()
+        return result
+
     def process_tokendef(cls, name, tokendefs=None):
         """Preprocess a dictionary of token definitions."""
         processed = cls._all_tokens[name] = {}
         tokendefs = tokendefs or cls.tokens[name]
         for state in list(tokendefs):
             cls._process_state(tokendefs, processed, state)
+        if getattr(cls, 'merge_simple_rules', True):
+            for state in processed:
+                processed[state] = cls._merge_simple_runs(processed[state])
         return processed
 
     def get_tokendefs(cls):
@@ -674,6 +755,12 @@ class RegexLexer(Lexer, metaclass=RegexLexerMeta):
     #: Flags for compiling the regular expressions.
     #: Defaults to MULTILINE.
     flags = re.MULTILINE
+
+    #: Merge runs of consecutive plain-token rules in each state into a single
+    #: combined regex when the token tables are processed.  This is an
+    #: output-preserving optimisation that reduces the number of regex match
+    #: attempts per character.  Set to False to disable (e.g. for debugging).
+    merge_simple_rules = True
 
     #: At all time there is a stack of states. Initially, the stack contains
     #: a single state 'root'. The top of the stack is called "the current state".
