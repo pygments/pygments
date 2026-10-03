@@ -135,13 +135,21 @@ class SvgFormatter(Formatter):
             counter += 1
 
         outfile.write(f'<text x="{line_x}" y="{y}" xml:space="preserve">')
+        column = 0
         for ttype, value in tokensource:
             style = self._get_style(ttype)
             tspan = style and '<tspan' + style + '>' or ''
             tspanend = tspan and '</tspan>' or ''
+            if self.spacehack:
+                # Keep tab stops across tokens and measure source characters,
+                # not the length of their escaped XML representations.
+                value = (' ' * column + value).expandtabs()[column:]
+                last_break = max(value.rfind('\n'), value.rfind('\r'))
+                column = (len(value) - last_break - 1 if last_break >= 0
+                          else column + len(value)) % 8
             value = html_escape(value)
             if self.spacehack:
-                value = value.expandtabs().replace(' ', '&#160;')
+                value = value.replace(' ', '&#160;')
             parts = value.split('\n')
             for part in parts[:-1]:
                 outfile.write(tspan + part + tspanend)
