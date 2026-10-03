@@ -82,11 +82,12 @@ class MIMELexer(RegexLexer):
         pos_body_start = match.start()
         entire_body = match.group()
 
-        # skip first newline
-        if entire_body[0] == '\n':
-            yield pos_body_start, Text.Whitespace, '\n'
-            pos_body_start = pos_body_start + 1
-            entire_body = entire_body[1:]
+        # Skip the newline separating headers from the body.
+        newline = re.match(r"\r?\n", entire_body)
+        if newline:
+            yield pos_body_start, Text.Whitespace, newline.group()
+            pos_body_start += newline.end()
+            entire_body = entire_body[newline.end():]
 
         # if it is not a multipart
         if not self.content_type.startswith("multipart") or not self.boundary:
@@ -95,7 +96,7 @@ class MIMELexer(RegexLexer):
             return
 
         # find boundary
-        bdry_pattern = rf"^--{re.escape(self.boundary)}(--)?\n"
+        bdry_pattern = rf"^--{re.escape(self.boundary)}(--)?\r?\n"
         bdry_matcher = re.compile(bdry_pattern, re.MULTILINE)
 
         # some data has prefix text before first boundary
@@ -104,7 +105,7 @@ class MIMELexer(RegexLexer):
             pos_part_start = pos_body_start + m.end()
             pos_iter_start = lpos_end = m.end()
             yield pos_body_start, Text, entire_body[:m.start()]
-            yield pos_body_start + lpos_end, String.Delimiter, m.group()
+            yield pos_body_start + m.start(), String.Delimiter, m.group()
         else:
             pos_part_start = pos_body_start
             pos_iter_start = 0
@@ -185,12 +186,15 @@ class MIMELexer(RegexLexer):
     tokens = {
         "root": [
             (r"^([\w-]+):( *)([\s\S]*?\n)(?![ \t])", get_header_tokens),
-            (r"^$[\s\S]+", get_body_tokens),
+            (r"^\r?$[\s\S]+", get_body_tokens),
+        ],
+        "body": [
+            (r"[\s\S]+", get_body_tokens),
         ],
         "header": [
             # folding
-            (r"\n[ \t]", Text.Whitespace),
-            (r"\n(?![ \t])", Text.Whitespace, "#pop"),
+            (r"\r?\n[ \t]", Text.Whitespace),
+            (r"\r?\n(?![ \t])", Text.Whitespace, "#pop"),
         ],
         "content-type": [
             include("header"),
@@ -199,9 +203,9 @@ class MIMELexer(RegexLexer):
                 r"|message)/([\w-]+))",
                 store_content_type,
             ),
-            (r'(;)((?:[ \t]|\n[ \t])*)([\w:-]+)(=)([\s\S]*?)(?=;|\n(?![ \t]))',
+            (r'(;)((?:[ \t]|\r?\n[ \t])*)([\w:-]+)(=)([\s\S]*?)(?=;|\r?\n(?![ \t]))',
              get_content_type_subtokens),
-            (r';[ \t]*\n(?![ \t])', Text, '#pop'),
+            (r';[ \t]*\r?\n(?![ \t])', Text, '#pop'),
         ],
         "content-transfer-encoding": [
             include("header"),
