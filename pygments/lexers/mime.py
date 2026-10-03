@@ -172,7 +172,7 @@ class MIMELexer(RegexLexer):
 
         if match.group(3).lower() == "boundary":
             boundary = match.group(5).strip()
-            if boundary[0] == '"' and boundary[-1] == '"':
+            if boundary and boundary[0] == '"' and boundary[-1] == '"':
                 boundary = boundary[1:-1]
             self.boundary = boundary
 
