@@ -130,7 +130,7 @@ class SparqlLexer(RegexLexer):
             # integer literals ::
             (r'[+\-]?\d+', Number.Integer),
             # operators ::
-            (r'(\|\||&&|=|\*|\-|\+|/|!=|<=|>=|!|<|>)', Operator),
+            (r'(\|\||&&|=|\*|\-|\+|/|!=|<=|>=|!|<|>|\?|\|)', Operator),
             # punctuation characters ::
             (r'[(){}.;,:^\[\]]', Punctuation),
             # line comments ::
