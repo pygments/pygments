@@ -38,6 +38,8 @@ Version 2.21.0
   * Csound: Add missing opcode parameter type letter (#3161)
   * CUDA: Derive from the C++ lexer instead of C to highlight C++
     constructs such as ``template``, ``class`` and ``namespace`` (#3127)
+  * Cypher: Recognize the arithmetic operators ``+``, ``-``, ``/``, ``%``,
+    ``^`` and ``+=`` instead of emitting an error token (#2694)
   * D: Allow non-ASCII (Unicode) identifiers (#1088)
   * Fish: Fix single quote backslash escape (#3138, #2821)
   * Go: Various lexer improvements (#3199)

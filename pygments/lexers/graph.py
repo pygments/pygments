@@ -88,6 +88,13 @@ class CypherLexer(RegexLexer):
             (r'(<-\[)(.*?)(\]-)', bygroups(Operator, using(this), Operator)),
             (r'(-\[)(.*?)(\]-)', bygroups(Operator, using(this), Operator)),
             (r'-->|<--|\[|\]', Operator),
+            # Arithmetic. This has to follow the relationship patterns above so
+            # that '-[', '-->' and '<--' are not split on their leading '-', and
+            # division needs the lookahead because 'relations' is matched before
+            # 'comment', so a bare '/' would otherwise eat the start of a '//'
+            # comment. '*' is left to the punctuation rule below, where it covers
+            # the node(*) and count(*) wildcards rather than multiplication.
+            (r'\+=|/(?!/)|[+\-%^]', Operator),
             (r'<|>|<>|=|<=|=>|\(|\)|\||:|,|;', Punctuation),
             (r'[.*{}]', Punctuation),
         ],
