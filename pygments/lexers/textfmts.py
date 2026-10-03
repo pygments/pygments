@@ -9,6 +9,7 @@
 """
 
 import re
+from email.message import Message
 
 from pygments.lexers import guess_lexer, get_lexer_by_name
 from pygments.lexer import RegexLexer, bygroups, default, include
@@ -128,14 +129,13 @@ class HttpLexer(RegexLexer):
     def get_tokens_unprocessed(self, text, stack=('root',)):
         """Reset the content-type state."""
         self.content_type = None
+        self._content_type_header = False
         return RegexLexer.get_tokens_unprocessed(self, text, stack)
 
     def header_callback(self, match):
-        if match.group(1).lower() == 'content-type':
-            content_type = match.group(5).strip()
-            if ';' in content_type:
-                content_type = content_type[:content_type.find(';')].strip()
-            self.content_type = content_type
+        self._content_type_header = match.group(1).lower() == 'content-type'
+        if self._content_type_header:
+            self.content_type = match.group(5).strip()
         yield match.start(1), Name.Attribute, match.group(1)
         yield match.start(2), Text, match.group(2)
         yield match.start(3), Operator, match.group(3)
@@ -144,6 +144,8 @@ class HttpLexer(RegexLexer):
         yield match.start(6), Text, match.group(6)
 
     def continuous_header_callback(self, match):
+        if self._content_type_header:
+            self.content_type += " " + match.group(2).strip()
         yield match.start(1), Text, match.group(1)
         yield match.start(2), Literal, match.group(2)
         yield match.start(3), Text, match.group(3)
@@ -154,6 +156,10 @@ class HttpLexer(RegexLexer):
         offset = match.start()
         if content_type:
             from pygments.lexers import get_lexer_for_mimetype
+            from pygments.lexers.mime import MIMELexer
+            header = Message()
+            header["Content-Type"] = content_type
+            content_type = header.get_content_type()
             possible_lexer_mimetypes = [content_type]
             if '+' in content_type:
                 # application/calendar+xml can be treated as application/xml
@@ -168,7 +174,13 @@ class HttpLexer(RegexLexer):
                 except ClassNotFound:
                     pass
                 else:
-                    for idx, token, value in lexer.get_tokens_unprocessed(content):
+                    if isinstance(lexer, MIMELexer):
+                        lexer.content_type = content_type
+                        lexer.boundary = header.get_boundary()
+                        tokens = lexer.get_tokens_unprocessed(content, ("body",))
+                    else:
+                        tokens = lexer.get_tokens_unprocessed(content)
+                    for idx, token, value in tokens:
                         yield offset + idx, token, value
                     return
         yield offset, Text, content
