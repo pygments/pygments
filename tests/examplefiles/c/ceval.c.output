@@ -2362,7 +2362,8 @@
 '\t\t'        Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'-1'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -2430,7 +2431,8 @@
 '\t\t'        Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'-1'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
 ';'           Punctuation
 ' '           Text.Whitespace
 '/* Queue full */' Comment.Multiline
@@ -2774,7 +2776,8 @@
 '\t\t\t'      Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'-1'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -2987,7 +2990,8 @@
 '\t\t'        Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'-1'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -3049,7 +3053,8 @@
 '\t\t'        Text.Whitespace
 'return'      Keyword
 ' '           Text.Whitespace
-'-1'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -3641,7 +3646,8 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'-1'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text.Whitespace
 'instr_lb'    Name
@@ -3655,7 +3661,8 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'-1'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -6571,7 +6578,8 @@
 '\t\t\t'      Text.Whitespace
 'STACKADJ'    Name
 '('           Punctuation
-'-1'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -10832,7 +10840,8 @@
 '\t\t\t'      Text.Whitespace
 'STACKADJ'    Name
 '('           Punctuation
-'-3'          Literal.Number.Integer
+'-'           Operator
+'3'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -10938,7 +10947,8 @@
 '\t\t\t'      Text.Whitespace
 'STACKADJ'    Name
 '('           Punctuation
-'-2'          Literal.Number.Integer
+'-'           Operator
+'2'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -11068,7 +11078,8 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'-1'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -11133,7 +11144,8 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'-1'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -11197,7 +11209,8 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'-1'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -11348,7 +11361,8 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'-1'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -11529,7 +11543,8 @@
 's'           Name
 '['           Punctuation
 'len'         Name
-'-1'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
@@ -11542,7 +11557,8 @@
 's'           Name
 '['           Punctuation
 'len'         Name
-'-1'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
@@ -11639,7 +11655,8 @@
 's'           Name
 '['           Punctuation
 'len'         Name
-'-1'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -11651,7 +11668,8 @@
 's'           Name
 '['           Punctuation
 'len'         Name
-'-1'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
 ']'           Punctuation
 ' '           Text.Whitespace
 '='           Operator
@@ -12354,7 +12372,8 @@
 '\t\t\t'      Text.Whitespace
 'STACKADJ'    Name
 '('           Punctuation
-'-3'          Literal.Number.Integer
+'-'           Operator
+'3'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -12788,7 +12807,8 @@
 '\t\t\t'      Text.Whitespace
 'STACKADJ'    Name
 '('           Punctuation
-'-2'          Literal.Number.Integer
+'-'           Operator
+'2'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -13520,7 +13540,8 @@
 '\t\t\t'      Text.Whitespace
 'STACKADJ'    Name
 '('           Punctuation
-'-2'          Literal.Number.Integer
+'-'           Operator
+'2'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -14220,7 +14241,8 @@
 '!'           Operator
 '='           Operator
 ' '           Text.Whitespace
-'-1'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
 ')'           Punctuation
 ' '           Text.Whitespace
 '{'           Punctuation
@@ -14857,7 +14879,8 @@
 ' '           Text.Whitespace
 '='           Operator
 ' '           Text.Whitespace
-'-1'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -15957,7 +15980,8 @@
 '!'           Operator
 '='           Operator
 ' '           Text.Whitespace
-'-1'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
 ' '           Text.Whitespace
 '|'           Operator
 '|'           Operator
@@ -16942,7 +16966,8 @@
 '\t\t\t'      Text.Whitespace
 'STACKADJ'    Name
 '('           Punctuation
-'-1'          Literal.Number.Integer
+'-'           Operator
+'1'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
@@ -17501,7 +17526,8 @@
 '\t\t\t\t'    Text.Whitespace
 'STACKADJ'    Name
 '('           Punctuation
-'-3'          Literal.Number.Integer
+'-'           Operator
+'3'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
 '\n'          Text.Whitespace
