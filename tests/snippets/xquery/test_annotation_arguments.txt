@@ -1,0 +1,42 @@
+---input---
+declare %limit(5) %rest:path("/x", "/y") %flag(#name) function local:f() { () };
+
+---tokens---
+'declare'     Keyword.Declaration
+' '           Text.Whitespace
+'%'           Name.Decorator
+'limit'       Name.Decorator
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'%'           Name.Decorator
+'rest:path'   Name.Decorator
+'('           Punctuation
+'"/x"'        Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"/y"'        Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'%'           Name.Decorator
+'flag'        Name.Decorator
+'('           Punctuation
+'#'           Punctuation
+'name'        Literal.String.Symbol
+')'           Punctuation
+' '           Text.Whitespace
+'function'    Keyword.Declaration
+' '           Text.Whitespace
+'local:f'     Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

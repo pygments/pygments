@@ -1,0 +1,55 @@
+---input---
+$x instance of element(*, xs:string),
+$y instance of attribute(a, xs:string),
+$z instance of document-node(element(a))
+
+---tokens---
+'$'           Name.Variable
+'x'           Name
+' '           Text.Whitespace
+'instance'    Keyword
+' '           Text.Whitespace
+'of'          Keyword
+' '           Text.Whitespace
+'element'     Keyword.Type
+'('           Punctuation
+'*'           Name
+','           Punctuation
+' '           Text.Whitespace
+'xs:string'   Keyword.Type
+')'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Name.Variable
+'y'           Name
+' '           Text.Whitespace
+'instance'    Keyword
+' '           Text.Whitespace
+'of'          Keyword
+' '           Text.Whitespace
+'attribute'   Keyword.Type
+'('           Punctuation
+'a'           Name
+','           Punctuation
+' '           Text.Whitespace
+'xs:string'   Keyword.Type
+')'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Name.Variable
+'z'           Name
+' '           Text.Whitespace
+'instance'    Keyword
+' '           Text.Whitespace
+'of'          Keyword
+' '           Text.Whitespace
+'document-node' Keyword.Type
+'('           Punctuation
+'element'     Keyword.Type
+'('           Punctuation
+'a'           Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace

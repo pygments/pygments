@@ -1,0 +1,11 @@
+---input---
+$sequence otherwise "fallback"
+
+---tokens---
+'$'           Name.Variable
+'sequence'    Name
+' '           Text.Whitespace
+'otherwise'   Operator.Word
+' '           Text.Whitespace
+'"fallback"'  Literal.String.Double
+'\n'          Text.Whitespace

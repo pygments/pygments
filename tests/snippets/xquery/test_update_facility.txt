@@ -1,0 +1,175 @@
+---input---
+declare revalidation lax;
+declare updating function local:f($x) {
+  insert node <a/> as first into $x,
+  insert nodes $x/b after $x/c,
+  delete node $x/d,
+  replace value of node $x/@e with 1,
+  rename node $x/f as "g"
+};
+copy $c := <x/> modify delete node $c/a return $c,
+$y transform with { delete node a },
+invoke updating $f(1)
+
+---tokens---
+'declare'     Keyword.Declaration
+' '           Text.Whitespace
+'revalidation' Keyword.Declaration
+' '           Text.Whitespace
+'lax'         Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'declare'     Keyword.Declaration
+' '           Text.Whitespace
+'updating'    Keyword.Declaration
+' '           Text.Whitespace
+'function'    Keyword.Declaration
+' '           Text.Whitespace
+'local:f'     Name.Function
+'('           Punctuation
+'$'           Name.Variable
+'x'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'insert'      Keyword
+' '           Text.Whitespace
+'node'        Keyword
+' '           Text.Whitespace
+'<'           Name.Tag
+'a'           Name.Tag
+'/>'          Name.Tag
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'first'       Keyword
+' '           Text.Whitespace
+'into'        Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'x'           Name
+','           Punctuation
+'\n  '        Text.Whitespace
+'insert'      Keyword
+' '           Text.Whitespace
+'nodes'       Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'x'           Name
+'/'           Punctuation
+'b'           Name.Tag
+' '           Text.Whitespace
+'after'       Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'x'           Name
+'/'           Punctuation
+'c'           Name.Tag
+','           Punctuation
+'\n  '        Text.Whitespace
+'delete'      Keyword
+' '           Text.Whitespace
+'node'        Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'x'           Name
+'/'           Punctuation
+'d'           Name.Tag
+','           Punctuation
+'\n  '        Text.Whitespace
+'replace'     Keyword
+' '           Text.Whitespace
+'value'       Keyword
+' '           Text.Whitespace
+'of'          Keyword
+' '           Text.Whitespace
+'node'        Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'x'           Name
+'/'           Punctuation
+'@e'          Name.Attribute
+' '           Text.Whitespace
+'with'        Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+'\n  '        Text.Whitespace
+'rename'      Keyword
+' '           Text.Whitespace
+'node'        Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'x'           Name
+'/'           Punctuation
+'f'           Name.Tag
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'"g"'         Literal.String.Double
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'copy'        Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'c'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'<'           Name.Tag
+'x'           Name.Tag
+'/>'          Name.Tag
+' '           Text.Whitespace
+'modify'      Keyword
+' '           Text.Whitespace
+'delete'      Keyword
+' '           Text.Whitespace
+'node'        Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'c'           Name
+'/'           Punctuation
+'a'           Name.Tag
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'c'           Name
+','           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Name.Variable
+'y'           Name
+' '           Text.Whitespace
+'transform'   Keyword
+' '           Text.Whitespace
+'with'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'delete'      Keyword
+' '           Text.Whitespace
+'node'        Keyword
+' '           Text.Whitespace
+'a'           Name.Tag
+' '           Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'invoke'      Keyword
+' '           Text.Whitespace
+'updating'    Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'f'           Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace

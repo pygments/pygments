@@ -1,0 +1,32 @@
+---input---
+let $f := %updating function() { () }
+return $f
+
+---tokens---
+'let'         Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'f'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'%'           Name.Decorator
+'updating'    Name.Decorator
+' '           Text.Whitespace
+'function'    Keyword.Declaration
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'return'      Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'f'           Name
+'\n'          Text.Whitespace

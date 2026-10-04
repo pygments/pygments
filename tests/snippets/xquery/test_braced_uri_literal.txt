@@ -1,0 +1,30 @@
+---input---
+Q{http://www.w3.org/2005/xpath-functions}count(
+  $x instance of Q{http://www.w3.org/2001/XMLSchema}string,
+  /Q{http://example.com/ns}*/child::a
+)
+
+---tokens---
+'Q{http://www.w3.org/2005/xpath-functions}count' Name.Function
+'('           Punctuation
+'\n  '        Text.Whitespace
+'$'           Name.Variable
+'x'           Name
+' '           Text.Whitespace
+'instance'    Keyword
+' '           Text.Whitespace
+'of'          Keyword
+' '           Text.Whitespace
+'Q{http://www.w3.org/2001/XMLSchema}string' Keyword.Type
+','           Punctuation
+'\n  '        Text.Whitespace
+'/'           Punctuation
+'Q{http://example.com/ns}*' Name.Tag
+'/'           Punctuation
+'child'       Keyword
+'::'          Punctuation
+'a'           Name.Tag
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace

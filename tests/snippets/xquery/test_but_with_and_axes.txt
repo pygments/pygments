@@ -1,0 +1,31 @@
+---input---
+$r but with { 'x': 1 }, a/item::b/preceding-or-self::c
+
+---tokens---
+'$'           Name.Variable
+'r'           Name
+' '           Text.Whitespace
+'but'         Operator.Word
+' '           Text.Whitespace
+'with'        Operator.Word
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+"'x'"         Literal.String.Single
+':'           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'a'           Name.Tag
+'/'           Punctuation
+'item'        Keyword
+'::'          Punctuation
+'b'           Name.Tag
+'/'           Punctuation
+'preceding-or-self' Keyword
+'::'          Punctuation
+'c'           Name.Tag
+'\n'          Text.Whitespace

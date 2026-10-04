@@ -1,0 +1,25 @@
+---input---
+<input value='{ $page }' name="p"/>
+
+---tokens---
+'<'           Name.Tag
+'input'       Name.Tag
+' '           Text.Whitespace
+'value'       Name.Tag
+'='           Operator
+"'"           Punctuation
+'{'           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'page'        Name
+' '           Text.Whitespace
+'}'           Punctuation
+"'"           Punctuation
+' '           Text.Whitespace
+'name'        Name.Tag
+'='           Operator
+'"'           Punctuation
+'p'           Name.Attribute
+'"'           Punctuation
+'/>'          Name.Tag
+'\n'          Text.Whitespace

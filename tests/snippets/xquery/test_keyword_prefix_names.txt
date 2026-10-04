@@ -1,0 +1,46 @@
+---input---
+elsewhere/tryout/within/returns/following[modify-date],
+for $x in f() order by f() ascending return $x
+
+---tokens---
+'elsewhere'   Name.Tag
+'/'           Punctuation
+'tryout'      Name.Tag
+'/'           Punctuation
+'within'      Name.Tag
+'/'           Punctuation
+'returns'     Name.Tag
+'/'           Punctuation
+'following'   Name.Tag
+'['           Punctuation
+'modify-date' Name.Tag
+']'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'for'         Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'x'           Name
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'f'           Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'order'       Keyword
+' '           Text.Whitespace
+'by'          Keyword
+' '           Text.Whitespace
+'f'           Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'ascending'   Keyword
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'x'           Name
+'\n'          Text.Whitespace

@@ -1,0 +1,65 @@
+---input---
+switch ($value) {
+  case 1 return "one"
+  default return "other"
+},
+typeswitch ($value) {
+  case xs:integer return "int"
+  default return "other"
+}
+
+---tokens---
+'switch'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'$'           Name.Variable
+'value'       Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'"one"'       Literal.String.Double
+'\n  '        Text.Whitespace
+'default'     Keyword
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'"other"'     Literal.String.Double
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'typeswitch'  Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'$'           Name.Variable
+'value'       Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'xs:integer'  Keyword.Type
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'"int"'       Literal.String.Double
+'\n  '        Text.Whitespace
+'default'     Keyword
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'"other"'     Literal.String.Double
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

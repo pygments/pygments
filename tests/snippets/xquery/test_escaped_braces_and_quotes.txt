@@ -1,0 +1,31 @@
+---input---
+<a b="say ""hi""" c='it''s'>{{ literal braces }}</a>
+
+---tokens---
+'<'           Name.Tag
+'a'           Name.Tag
+' '           Text.Whitespace
+'b'           Name.Tag
+'='           Operator
+'"'           Punctuation
+'say '        Name.Attribute
+'""'          Name.Attribute
+'hi'          Name.Attribute
+'""'          Name.Attribute
+'"'           Punctuation
+' '           Text.Whitespace
+'c'           Name.Tag
+'='           Operator
+"'"           Punctuation
+'it'          Name.Attribute
+"''"          Name.Attribute
+'s'           Name.Attribute
+"'"           Punctuation
+'>'           Name.Tag
+'{{'          Literal
+' literal braces ' Literal
+'}}'          Literal
+'</'          Name.Tag
+'a'           Name.Tag
+'>'           Name.Tag
+'\n'          Text.Whitespace

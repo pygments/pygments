@@ -1,0 +1,65 @@
+---input---
+$x instance of (xs:date | xs:time),
+$x cast as (xs:date | xs:time),
+typeswitch ($x) case xs:integer | xs:string return 1 default return 2
+
+---tokens---
+'$'           Name.Variable
+'x'           Name
+' '           Text.Whitespace
+'instance'    Keyword
+' '           Text.Whitespace
+'of'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'xs:date'     Keyword.Type
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'xs:time'     Keyword.Type
+')'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Name.Variable
+'x'           Name
+' '           Text.Whitespace
+'cast'        Keyword
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'xs:date'     Keyword.Type
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'xs:time'     Keyword.Type
+')'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'typeswitch'  Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'$'           Name.Variable
+'x'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'xs:integer'  Keyword.Type
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'xs:string'   Keyword.Type
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'default'     Keyword
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace

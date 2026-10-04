@@ -1,0 +1,32 @@
+---input---
+$map?handler(1), $array[1](2), $f(1)(2)
+
+---tokens---
+'$'           Name.Variable
+'map'         Name
+'?'           Punctuation
+'handler'     Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'array'       Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'f'           Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace

@@ -1,0 +1,21 @@
+---input---
+`Hello { $name }, {{ literally }} and `` a backtick`
+
+---tokens---
+'`'           Literal.String.Other
+'Hello '      Literal.String.Other
+'{'           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'name'        Name
+' '           Text.Whitespace
+'}'           Punctuation
+', '          Literal.String.Other
+'{{'          Literal.String.Other
+' literally ' Literal.String.Other
+'}}'          Literal.String.Other
+' and '       Literal.String.Other
+'``'          Literal.String.Other
+' a backtick' Literal.String.Other
+'`'           Literal.String.Other
+'\n'          Text.Whitespace

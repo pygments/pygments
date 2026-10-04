@@ -1,0 +1,22 @@
+---input---
+$value instance of enum("red", "green", "blue")
+
+---tokens---
+'$'           Name.Variable
+'value'       Name
+' '           Text.Whitespace
+'instance'    Keyword
+' '           Text.Whitespace
+'of'          Keyword
+' '           Text.Whitespace
+'enum'        Keyword.Type
+'('           Punctuation
+'"red"'       Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"green"'     Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'"blue"'      Literal.String.Double
+')'           Punctuation
+'\n'          Text.Whitespace

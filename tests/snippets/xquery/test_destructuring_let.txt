@@ -1,0 +1,90 @@
+---input---
+let $( $a, $b ) := (1, 2)
+let $[ $c as xs:integer, $d ] := [3, 4]
+let ${ $e, $f } := { "e": 5 }
+return $a
+
+---tokens---
+'let'         Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'('           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'a'           Name
+','           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'b'           Name
+' '           Text.Whitespace
+')'           Punctuation
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'let'         Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'['           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'c'           Name
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'xs:integer'  Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'d'           Name
+' '           Text.Whitespace
+']'           Punctuation
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'['           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'let'         Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'{'           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'e'           Name
+','           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'f'           Name
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'"e"'         Literal.String.Double
+':'           Punctuation
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'return'      Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'a'           Name
+'\n'          Text.Whitespace

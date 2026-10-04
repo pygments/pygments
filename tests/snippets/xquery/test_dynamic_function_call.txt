@@ -1,0 +1,38 @@
+---input---
+let $f := fn($x) { $x + 1 }
+return $f(2)
+
+---tokens---
+'let'         Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'f'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'fn'          Keyword.Declaration
+'('           Punctuation
+'$'           Name.Variable
+'x'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'x'           Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'return'      Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'f'           Name
+'('           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace

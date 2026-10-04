@@ -1,0 +1,38 @@
+---input---
+declare type local:name as xs:string;
+declare record local:point(x as xs:double, y as xs:double);
+
+---tokens---
+'declare'     Keyword.Declaration
+' '           Text.Whitespace
+'type'        Keyword.Declaration
+' '           Text.Whitespace
+'local:name'  Keyword.Type
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'xs:string'   Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'declare'     Keyword.Declaration
+' '           Text.Whitespace
+'record'      Keyword.Declaration
+' '           Text.Whitespace
+'local:point' Keyword.Type
+'('           Punctuation
+'x'           Name.Variable
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'xs:double'   Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'y'           Name.Variable
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'xs:double'   Keyword.Type
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

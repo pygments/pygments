@@ -1,0 +1,56 @@
+---input---
+$map?key, $map?"a b", $map?1, $map?$name, $map?($name), $map?*, [1, 2, 3]?2
+
+---tokens---
+'$'           Name.Variable
+'map'         Name
+'?'           Punctuation
+'key'         Name
+','           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'map'         Name
+'?'           Punctuation
+'"a b"'       Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'map'         Name
+'?'           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'map'         Name
+'?'           Punctuation
+'$'           Name.Variable
+'name'        Name
+','           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'map'         Name
+'?'           Punctuation
+'('           Punctuation
+'$'           Name.Variable
+'name'        Name
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable
+'map'         Name
+'?'           Punctuation
+'*'           Operator
+','           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+']'           Punctuation
+'?'           Punctuation
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
