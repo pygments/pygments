@@ -1,0 +1,87 @@
+---input---
+set amount \$16.42
+
+puts lots\nof\n\n\n\n\n\nnewlines
+
+set somevar {
+    This is a literal $ sign, and this \} escaped
+    brace remains uninterpreted
+}
+
+puts \
+\164\x68\u1eed
+
+---tokens---
+'set'         Keyword
+' '           Text.Whitespace
+'amount'      Text
+' '           Text.Whitespace
+'\\$'         Literal.String.Escape
+'16.42'       Literal.Number.Float
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'puts'        Name.Builtin
+' '           Text.Whitespace
+'lots'        Text
+'\\n'         Literal.String.Escape
+'of'          Text
+'\\n'         Literal.String.Escape
+'\\n'         Literal.String.Escape
+'\\n'         Literal.String.Escape
+'\\n'         Literal.String.Escape
+'\\n'         Literal.String.Escape
+'\\n'         Literal.String.Escape
+'newlines'    Text
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'set'         Keyword
+' '           Text.Whitespace
+'somevar'     Text
+' '           Text.Whitespace
+'{'           Keyword
+'\n    '      Text.Whitespace
+'This'        Name.Variable
+' '           Text.Whitespace
+'is'          Text
+' '           Text.Whitespace
+'a'           Text
+' '           Text.Whitespace
+'literal'     Text
+' '           Text.Whitespace
+'$ '          Text
+'sign,'       Text
+' '           Text.Whitespace
+'and'         Text
+' '           Text.Whitespace
+'this'        Text
+' '           Text.Whitespace
+'\\}'         Literal.String.Escape
+' '           Text.Whitespace
+'escaped'     Text
+'\n'          Text
+
+'    '        Text.Whitespace
+'brace'       Name.Variable
+' '           Text.Whitespace
+'remains'     Text
+' '           Text.Whitespace
+'uninterpreted' Text
+'\n'          Text
+
+'}'           Keyword
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'puts'        Name.Builtin
+' '           Text.Whitespace
+'\\\n'        Literal.String.Escape
+
+'\\164'       Literal.String.Escape
+'\\x68'       Literal.String.Escape
+'\\u1eed'     Literal.String.Escape
+'\n'          Text
