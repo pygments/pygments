@@ -1,0 +1,112 @@
+---input---
+say 1 + 2 * 3 ** 4 %% 5; say $a <=> $b, $a ~~ $b, $a ... *, 1..^5, 1 ^..^ 5;
+@a ==> grep(*) ==> say; $x := $y; $x //= 1; sub f(--> Int) { }; -> $a { }
+
+---tokens---
+'say'         Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'**'          Operator
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+' '           Text.Whitespace
+'%%'          Operator
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'$a'          Name.Variable
+' '           Text.Whitespace
+'<=>'         Operator
+' '           Text.Whitespace
+'$b'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'$a'          Name.Variable
+' '           Text.Whitespace
+'~~'          Operator
+' '           Text.Whitespace
+'$b'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'$a'          Name.Variable
+' '           Text.Whitespace
+'...'         Operator
+' '           Text.Whitespace
+'*'           Operator
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'..^'         Operator
+'5'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'^..^'        Operator
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@a'          Name.Variable
+' '           Text.Whitespace
+'==>'         Operator
+' '           Text.Whitespace
+'grep'        Name.Builtin
+'('           Punctuation
+'*'           Operator
+')'           Punctuation
+' '           Text.Whitespace
+'==>'         Operator
+' '           Text.Whitespace
+'say'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'$x'          Name.Variable
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'$y'          Name.Variable
+';'           Punctuation
+' '           Text.Whitespace
+'$x'          Name.Variable
+' '           Text.Whitespace
+'//='         Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'sub'         Keyword.Declaration
+' '           Text.Whitespace
+'f'           Name.Function
+'('           Punctuation
+'-->'         Operator
+' '           Text.Whitespace
+'Int'         Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'$a'          Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace

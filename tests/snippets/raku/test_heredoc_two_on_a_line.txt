@@ -1,0 +1,44 @@
+---input---
+my ($a, $b) = qq:to/A/, q:to/B/;
+x $v
+A
+y $w
+B
+say $a;
+
+---tokens---
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'$a'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'$b'          Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'qq:to/A/'    Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'q:to/B/'     Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'x '          Literal.String.Double
+'$v'          Literal.String.Interpol
+'\n'          Literal.String.Double
+
+'A'           Literal.String
+'\n'          Text.Whitespace
+
+'y $w\n'      Literal.String
+
+'B'           Literal.String
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'$a'          Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace

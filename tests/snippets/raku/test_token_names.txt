@@ -1,0 +1,80 @@
+---input---
+token TOP { <foo> {$x = "}" } 'a}' }
+rule bar { x { say "q{1}" } }
+regex baz { \d+ }
+token foo:sym<bar> { bar }
+
+---tokens---
+'token'       Keyword.Declaration
+' '           Text.Whitespace
+'TOP'         Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'<'           Punctuation
+'foo'         Name.Function
+'>'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'$x'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'}'           Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+"'a}'"        Literal.String.Single
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'rule'        Keyword.Declaration
+' '           Text.Whitespace
+'bar'         Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'x'           Literal.String.Regex
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'q'           Literal.String.Double
+'{'           Punctuation
+'1'           Literal.Number.Integer
+'}'           Punctuation
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'regex'       Keyword.Declaration
+' '           Text.Whitespace
+'baz'         Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'\\d'         Literal.String.Escape
+'+'           Operator
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'token'       Keyword.Declaration
+' '           Text.Whitespace
+'foo:sym'     Name.Function
+'<bar>'       Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'bar'         Literal.String.Regex
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace

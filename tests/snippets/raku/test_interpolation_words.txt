@@ -1,0 +1,38 @@
+---input---
+my @a = << $x "b c" >>; my @b = «$x y»; my @c = <a b c>;
+
+---tokens---
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'@a'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'<<'          Literal.String.Double
+' '           Literal.String.Double
+'$x'          Literal.String.Interpol
+' "b c" '     Literal.String.Double
+'>>'          Literal.String.Double
+';'           Punctuation
+' '           Text.Whitespace
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'@b'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'«'           Literal.String.Double
+'$x'          Literal.String.Interpol
+' y'          Literal.String.Double
+'»'           Literal.String.Double
+';'           Punctuation
+' '           Text.Whitespace
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'@c'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'<a b c>'     Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace

@@ -1,0 +1,47 @@
+---input---
+use v6.d; use v6.*; need v6.c; use Foo;
+
+use v6.e.PREVIEW; use v6.d+; say v1.2.Str, v1.2+;
+
+---tokens---
+'use'         Keyword.Namespace
+' '           Text.Whitespace
+'v6.d'        Literal.Number
+';'           Punctuation
+' '           Text.Whitespace
+'use'         Keyword.Namespace
+' '           Text.Whitespace
+'v6.*'        Literal.Number
+';'           Punctuation
+' '           Text.Whitespace
+'need'        Keyword.Namespace
+' '           Text.Whitespace
+'v6.c'        Literal.Number
+';'           Punctuation
+' '           Text.Whitespace
+'use'         Keyword.Namespace
+' '           Text.Whitespace
+'Foo'         Name.Namespace
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'use'         Keyword.Namespace
+' '           Text.Whitespace
+'v6.e.PREVIEW' Literal.Number
+';'           Punctuation
+' '           Text.Whitespace
+'use'         Keyword.Namespace
+' '           Text.Whitespace
+'v6.d+'       Literal.Number
+';'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'v1.2'        Literal.Number
+'.'           Operator
+'Str'         Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'v1.2+'       Literal.Number
+';'           Punctuation
+'\n'          Text.Whitespace

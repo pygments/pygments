@@ -1,0 +1,86 @@
+---input---
+say 1 x 3, 1 xx 3, $a cmp $b, $a eq $b, $a min $b, $a div 2, $a mod 2, 1 Z 2, 1 X 2;
+say $a and $b or not $c;
+
+---tokens---
+'say'         Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'x'           Operator.Word
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'xx'          Operator.Word
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'$a'          Name.Variable
+' '           Text.Whitespace
+'cmp'         Operator.Word
+' '           Text.Whitespace
+'$b'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'$a'          Name.Variable
+' '           Text.Whitespace
+'eq'          Operator.Word
+' '           Text.Whitespace
+'$b'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'$a'          Name.Variable
+' '           Text.Whitespace
+'min'         Operator.Word
+' '           Text.Whitespace
+'$b'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'$a'          Name.Variable
+' '           Text.Whitespace
+'div'         Operator.Word
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'$a'          Name.Variable
+' '           Text.Whitespace
+'mod'         Operator.Word
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'Z'           Operator.Word
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'X'           Operator.Word
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'$a'          Name.Variable
+' '           Text.Whitespace
+'and'         Operator.Word
+' '           Text.Whitespace
+'$b'          Name.Variable
+' '           Text.Whitespace
+'or'          Operator.Word
+' '           Text.Whitespace
+'not'         Operator.Word
+' '           Text.Whitespace
+'$c'          Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace

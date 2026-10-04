@@ -1,0 +1,96 @@
+---input---
+say $s ~~ /(\d+) <[a..z]>/;
+$data.subst(/\x[0000]+/, '');
+say 'yes' if /A/ ff /B/;
+when /:i ^Bar/ { .say }
+say $a / $b / 2, $total /= 3;
+
+---tokens---
+'say'         Name.Builtin
+' '           Text.Whitespace
+'$s'          Name.Variable
+' '           Text.Whitespace
+'~~'          Operator
+' '           Text.Whitespace
+'/'           Literal.String.Regex
+'('           Punctuation
+'\\d'         Literal.String.Escape
+'+'           Operator
+')'           Punctuation
+' '           Text.Whitespace
+'<[a..z]>'    Literal.String.Regex
+'/'           Literal.String.Regex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'$data'       Name.Variable
+'.'           Operator
+'subst'       Name.Builtin
+'('           Punctuation
+'/'           Literal.String.Regex
+'\\x[0000]'   Literal.String.Escape
+'+'           Operator
+'/'           Literal.String.Regex
+','           Punctuation
+' '           Text.Whitespace
+"''"          Literal.String.Single
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+"'yes'"       Literal.String.Single
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'/'           Literal.String.Regex
+'A'           Literal.String.Regex
+'/'           Literal.String.Regex
+' '           Text.Whitespace
+'ff'          Operator.Word
+' '           Text.Whitespace
+'/'           Literal.String.Regex
+'B'           Literal.String.Regex
+'/'           Literal.String.Regex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'when'        Keyword
+' '           Text.Whitespace
+'/'           Literal.String.Regex
+':'           Punctuation
+'i'           Name.Attribute
+' '           Text.Whitespace
+'^'           Operator
+'Bar'         Literal.String.Regex
+'/'           Literal.String.Regex
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'.'           Operator
+'say'         Name.Builtin
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'$a'          Name.Variable
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'$b'          Name.Variable
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'$total'      Name.Variable
+' '           Text.Whitespace
+'/='          Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace

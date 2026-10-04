@@ -1,0 +1,92 @@
+---input---
+use Foo; need Bar; no strict;
+my Int $x; our Str:D $y = "a"; has IO::Path $.p; class A { method m { } }
+if $x { last } else { next }; my X::AdHoc $e;
+
+---tokens---
+'use'         Keyword.Namespace
+' '           Text.Whitespace
+'Foo'         Name.Namespace
+';'           Punctuation
+' '           Text.Whitespace
+'need'        Keyword.Namespace
+' '           Text.Whitespace
+'Bar'         Name.Namespace
+';'           Punctuation
+' '           Text.Whitespace
+'no'          Keyword.Namespace
+' '           Text.Whitespace
+'strict'      Name.Namespace
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'Int'         Keyword.Type
+' '           Text.Whitespace
+'$x'          Name.Variable
+';'           Punctuation
+' '           Text.Whitespace
+'our'         Keyword.Declaration
+' '           Text.Whitespace
+'Str:D'       Keyword.Type
+' '           Text.Whitespace
+'$y'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'a'           Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+' '           Text.Whitespace
+'has'         Keyword.Declaration
+' '           Text.Whitespace
+'IO::Path'    Keyword.Type
+' '           Text.Whitespace
+'$.p'         Name.Variable.Instance
+';'           Punctuation
+' '           Text.Whitespace
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'A'           Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'method'      Keyword.Declaration
+' '           Text.Whitespace
+'m'           Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'if'          Keyword
+' '           Text.Whitespace
+'$x'          Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'last'        Keyword
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'else'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'next'        Keyword
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'X::AdHoc'    Keyword.Type
+' '           Text.Whitespace
+'$e'          Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace

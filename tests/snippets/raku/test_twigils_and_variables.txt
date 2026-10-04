@@ -1,0 +1,93 @@
+---input---
+class Foo { has $.x; has $!y; method m(\raw, ::T $t, *@rest) { $!y = $.x; say $?FILE, $=pod } }
+state $ = 0; my @a = @(1, 2); say $(1), ::?CLASS;
+
+---tokens---
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'Foo'         Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'has'         Keyword.Declaration
+' '           Text.Whitespace
+'$.x'         Name.Variable.Instance
+';'           Punctuation
+' '           Text.Whitespace
+'has'         Keyword.Declaration
+' '           Text.Whitespace
+'$!y'         Name.Variable.Instance
+';'           Punctuation
+' '           Text.Whitespace
+'method'      Keyword.Declaration
+' '           Text.Whitespace
+'m'           Name.Function
+'('           Punctuation
+'\\raw'       Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'::T'         Name.Class
+' '           Text.Whitespace
+'$t'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'*'           Operator
+'@rest'       Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'$!y'         Name.Variable.Instance
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'$.x'         Name.Variable.Instance
+';'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'$?FILE'      Name.Variable.Magic
+','           Punctuation
+' '           Text.Whitespace
+'$=pod'       Name.Variable.Magic
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'state'       Keyword.Declaration
+' '           Text.Whitespace
+'$'           Name.Variable.Anonymous
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'@a'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'@'           Operator
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'$'           Operator
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'::?CLASS'    Name.Variable.Global
+';'           Punctuation
+'\n'          Text.Whitespace

@@ -1,0 +1,103 @@
+---input---
+say add(2, 3), name, hour;
+Human.new(name => 'John', hour => 1, x => 2);
+say $john.name, $d.hour, .elems;
+my $p = start { 1 }; say $p.start, $/.made, .last; last;
+
+---tokens---
+'say'         Name.Builtin
+' '           Text.Whitespace
+'add'         Name
+'('           Punctuation
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'name'        Name
+','           Punctuation
+' '           Text.Whitespace
+'hour'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'Human'       Name
+'.'           Operator
+'new'         Name.Builtin
+'('           Punctuation
+'name'        Name
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+"'John'"      Literal.String.Single
+','           Punctuation
+' '           Text.Whitespace
+'hour'        Name
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'$john'       Name.Variable
+'.'           Operator
+'name'        Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'$d'          Name.Variable
+'.'           Operator
+'hour'        Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'.'           Operator
+'elems'       Name.Builtin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'$p'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'start'       Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'$p'          Name.Variable
+'.'           Operator
+'start'       Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'$/'          Name.Variable.Global
+'.'           Operator
+'made'        Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'.'           Operator
+'last'        Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'last'        Keyword
+';'           Punctuation
+'\n'          Text.Whitespace

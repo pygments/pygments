@@ -1,0 +1,88 @@
+---input---
+OUTER: for 1..3 { next OUTER }
+f(:verbose, :!flag, :name<x>, :n(5), :$var);
+say %h<a>:exists, %h{1}:delete, $x.foo: 1;
+my Int:D $z = 1;
+
+---tokens---
+'OUTER'       Name.Label
+':'           Punctuation
+' '           Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'..'          Operator
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'next'        Keyword
+' '           Text.Whitespace
+'OUTER'       Name
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'f'           Name
+'('           Punctuation
+':'           Punctuation
+'verbose'     Name.Attribute
+','           Punctuation
+' '           Text.Whitespace
+':!'          Punctuation
+'flag'        Name.Attribute
+','           Punctuation
+' '           Text.Whitespace
+':'           Punctuation
+'name'        Name.Attribute
+'<x>'         Literal.String
+','           Punctuation
+' '           Text.Whitespace
+':'           Punctuation
+'n'           Name.Attribute
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+':'           Punctuation
+'$var'        Name.Variable
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'%h<a>'       Name.Variable
+':'           Punctuation
+'exists'      Name.Attribute
+','           Punctuation
+' '           Text.Whitespace
+'%h'          Name.Variable
+'{'           Punctuation
+'1'           Literal.Number.Integer
+'}'           Punctuation
+':'           Punctuation
+'delete'      Name.Attribute
+','           Punctuation
+' '           Text.Whitespace
+'$x'          Name.Variable
+'.'           Operator
+'foo'         Name.Function
+':'           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'Int:D'       Keyword.Type
+' '           Text.Whitespace
+'$z'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace

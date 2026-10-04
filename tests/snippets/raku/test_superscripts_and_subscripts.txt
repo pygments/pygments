@@ -1,0 +1,66 @@
+---input---
+say $x² + $y³ * %h<a b>[0] + %h«k»;
+if $a <5 { say 1 }
+say $b > 3;
+my @w = <a b
+c d>;
+
+---tokens---
+'say'         Name.Builtin
+' '           Text.Whitespace
+'$x'          Name.Variable
+'²'           Operator
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'$y'          Name.Variable
+'³'           Operator
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'%h<a b>'     Name.Variable
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'%h«k»'       Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'if'          Keyword
+' '           Text.Whitespace
+'$a'          Name.Variable
+' '           Text.Whitespace
+'<'           Operator
+'5'           Literal.Number.Integer
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'$b'          Name.Variable
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'@w'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'<a b\nc d>'  Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace

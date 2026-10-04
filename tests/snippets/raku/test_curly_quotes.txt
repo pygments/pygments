@@ -1,0 +1,40 @@
+---input---
+say ‘curly’, “dbl $x {1 + 1}”, ｢raw \n $x｣, „low“;
+say ‘it's "fine"’.chars;
+
+---tokens---
+'say'         Name.Builtin
+' '           Text.Whitespace
+'‘curly’'     Literal.String.Single
+','           Punctuation
+' '           Text.Whitespace
+'“'           Literal.String.Double
+'dbl '        Literal.String.Double
+'$x'          Literal.String.Interpol
+' '           Literal.String.Double
+'{'           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'}'           Punctuation
+'”'           Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'｢raw \\n $x｣' Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'„'           Literal.String.Double
+'low'         Literal.String.Double
+'“'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'‘it\'s "fine"’' Literal.String.Single
+'.'           Operator
+'chars'       Name.Builtin
+';'           Punctuation
+'\n'          Text.Whitespace

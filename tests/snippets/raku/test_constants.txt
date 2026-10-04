@@ -1,0 +1,42 @@
+---input---
+say π, τ, ∞, 𝑒, pi, tau, Inf, NaN, True, False, Nil, self;
+
+---tokens---
+'say'         Name.Builtin
+' '           Text.Whitespace
+'π'           Name.Constant
+','           Punctuation
+' '           Text.Whitespace
+'τ'           Name.Constant
+','           Punctuation
+' '           Text.Whitespace
+'∞'           Name.Constant
+','           Punctuation
+' '           Text.Whitespace
+'𝑒'           Name.Constant
+','           Punctuation
+' '           Text.Whitespace
+'pi'          Name.Constant
+','           Punctuation
+' '           Text.Whitespace
+'tau'         Name.Constant
+','           Punctuation
+' '           Text.Whitespace
+'Inf'         Name.Constant
+','           Punctuation
+' '           Text.Whitespace
+'NaN'         Name.Constant
+','           Punctuation
+' '           Text.Whitespace
+'True'        Keyword.Constant
+','           Punctuation
+' '           Text.Whitespace
+'False'       Keyword.Constant
+','           Punctuation
+' '           Text.Whitespace
+'Nil'         Keyword.Constant
+','           Punctuation
+' '           Text.Whitespace
+'self'        Name.Builtin.Pseudo
+';'           Punctuation
+'\n'          Text.Whitespace

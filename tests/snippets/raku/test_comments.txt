@@ -1,0 +1,35 @@
+---input---
+# plain
+#| declarator, leading
+#= declarator, trailing
+#`(embedded
+  comment) say 1;
+#|{ bracketed declarator }
+say 1;
+
+---tokens---
+'# plain'     Comment.Single
+'\n'          Text.Whitespace
+
+'#| declarator, leading' Comment.Special
+'\n'          Text.Whitespace
+
+'#= declarator, trailing' Comment.Special
+'\n'          Text.Whitespace
+
+'#`(embedded\n  comment)' Comment.Multiline
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'#|{ bracketed declarator }' Comment.Multiline
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace

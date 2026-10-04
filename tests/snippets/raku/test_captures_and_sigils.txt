@@ -1,0 +1,78 @@
+---input---
+my $c = \(1, 2, :a);
+say $++, $--, @$x, $@a, %$h, $¢;
+state $ = 0; my ($, @) = 1, 2;
+
+---tokens---
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'$c'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'\\'          Operator
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+':'           Punctuation
+'a'           Name.Attribute
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'$'           Name.Variable.Anonymous
+'++'          Operator
+','           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable.Anonymous
+'--'          Operator
+','           Punctuation
+' '           Text.Whitespace
+'@'           Operator
+'$x'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'$'           Operator
+'@a'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'%'           Operator
+'$h'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'$¢'          Name.Variable.Global
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'state'       Keyword.Declaration
+' '           Text.Whitespace
+'$'           Name.Variable.Anonymous
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'('           Punctuation
+'$'           Name.Variable.Anonymous
+','           Punctuation
+' '           Text.Whitespace
+'@'           Name.Variable.Anonymous
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace

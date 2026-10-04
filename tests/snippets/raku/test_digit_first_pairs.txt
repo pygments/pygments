@@ -1,0 +1,61 @@
+---input---
+$str ~~ s:2nd/o/x/; f(:1x, :2nd); my %a = :11a, :22b;
+Date.new(:2015year, :12month);
+
+---tokens---
+'$str'        Name.Variable
+' '           Text.Whitespace
+'~~'          Operator
+' '           Text.Whitespace
+'s:2nd/'      Literal.String.Regex
+'o'           Literal.String.Regex
+'/'           Literal.String.Regex
+'x'           Literal.String.Double
+'/'           Literal.String.Regex
+';'           Punctuation
+' '           Text.Whitespace
+'f'           Name
+'('           Punctuation
+':'           Punctuation
+'1'           Literal.Number.Integer
+'x'           Name.Attribute
+','           Punctuation
+' '           Text.Whitespace
+':'           Punctuation
+'2'           Literal.Number.Integer
+'nd'          Name.Attribute
+')'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'%a'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+':'           Punctuation
+'11'          Literal.Number.Integer
+'a'           Name.Attribute
+','           Punctuation
+' '           Text.Whitespace
+':'           Punctuation
+'22'          Literal.Number.Integer
+'b'           Name.Attribute
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'Date'        Keyword.Type
+'.'           Operator
+'new'         Name.Builtin
+'('           Punctuation
+':'           Punctuation
+'2015'        Literal.Number.Integer
+'year'        Name.Attribute
+','           Punctuation
+' '           Text.Whitespace
+':'           Punctuation
+'12'          Literal.Number.Integer
+'month'       Name.Attribute
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

@@ -1,0 +1,82 @@
+---input---
+@a»++; say (&f, &g)».(1); say @a»[0]; say @a».say;
+say +«<42 50>; say $size «[r/]« (1, 2); say @a »+« @b;
+say «a $b»;
+
+---tokens---
+'@a'          Name.Variable
+'»'           Operator
+'++'          Operator
+';'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'('           Punctuation
+'&f'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'&g'          Name.Variable
+')'           Punctuation
+'»'           Operator
+'.'           Operator
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'@a'          Name.Variable
+'»'           Operator
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'@a'          Name.Variable
+'»'           Operator
+'.'           Operator
+'say'         Name.Builtin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'+«'          Operator
+'<42 50>'     Literal.String
+';'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'$size'       Name.Variable
+' '           Text.Whitespace
+'«[r/]«'      Operator
+' '           Text.Whitespace
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'@a'          Name.Variable
+' '           Text.Whitespace
+'»+«'         Operator
+' '           Text.Whitespace
+'@b'          Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'«'           Literal.String.Double
+'a '          Literal.String.Double
+'$b'          Literal.String.Interpol
+'»'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace

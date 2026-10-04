@@ -1,0 +1,41 @@
+---input---
+=begin pod
+Some pod
+=end pod
+=head1 Heading
+
+say 1;
+=finish
+anything $here "goes
+
+---tokens---
+'=begin'      Comment.Preproc
+' '           Text.Whitespace
+'pod'         Name.Namespace
+'\n'          Text.Whitespace
+
+'Some pod'    Comment.Multiline
+'\n'          Text.Whitespace
+
+'=end'        Comment.Preproc
+' '           Text.Whitespace
+'pod'         Name.Namespace
+'\n'          Text.Whitespace
+
+'=head1'      Comment.Preproc
+' Heading'    Generic.Heading
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'=finish'     Comment.Preproc
+'\n'          Text.Whitespace
+
+'anything $here "goes' Comment.Multiline
+'\n'          Text.Whitespace

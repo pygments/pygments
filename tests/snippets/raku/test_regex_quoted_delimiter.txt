@@ -1,0 +1,38 @@
+---input---
+say rx/ '/tmp/' .* /;
+say S:g/@a/%h{$/}/ given 'abc';
+say $x;
+
+---tokens---
+'say'         Name.Builtin
+' '           Text.Whitespace
+'rx/'         Literal.String.Regex
+' '           Text.Whitespace
+"'/tmp/'"     Literal.String.Single
+' '           Text.Whitespace
+'.'           Operator
+'*'           Operator
+' '           Text.Whitespace
+'/'           Literal.String.Regex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'S:g/'        Literal.String.Regex
+'@a'          Name.Variable
+'/'           Literal.String.Regex
+'%h{$/}'      Literal.String.Interpol
+'/'           Literal.String.Regex
+' '           Text.Whitespace
+'given'       Keyword
+' '           Text.Whitespace
+"'abc'"       Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'$x'          Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace

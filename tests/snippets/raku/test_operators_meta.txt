@@ -1,0 +1,78 @@
+---input---
+say [+] 1, 2, 3; say [\+] 1..5; say [<=] 1, 2; say @a »+« @b; say @a >>+<< @b; say @a».say; say @a>>.say; say @a[0];
+
+---tokens---
+'say'         Name.Builtin
+' '           Text.Whitespace
+'[+]'         Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'[\\+]'       Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'..'          Operator
+'5'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'[<=]'        Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'@a'          Name.Variable
+' '           Text.Whitespace
+'»+«'         Operator
+' '           Text.Whitespace
+'@b'          Name.Variable
+';'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'@a'          Name.Variable
+' '           Text.Whitespace
+'>>+<<'       Operator
+' '           Text.Whitespace
+'@b'          Name.Variable
+';'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'@a'          Name.Variable
+'»'           Operator
+'.'           Operator
+'say'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'@a'          Name.Variable
+'>>'          Operator
+'.'           Operator
+'say'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'@a'          Name.Variable
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

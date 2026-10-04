@@ -1,0 +1,91 @@
+---input---
+@names.push: $name;
+@a.map: { $_ * 2 };
+method new(Blob:D: Int:D $n --> Nil) { }
+multi method gist(X::AdHoc:D:) { }
+my Foo:D $f; sub g(::?CLASS:U $c) { }
+
+---tokens---
+'@names'      Name.Variable
+'.'           Operator
+'push'        Name.Builtin
+':'           Punctuation
+' '           Text.Whitespace
+'$name'       Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@a'          Name.Variable
+'.'           Operator
+'map'         Name.Builtin
+':'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'$_'          Name.Variable
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'method'      Keyword.Declaration
+' '           Text.Whitespace
+'new'         Name.Function
+'('           Punctuation
+'Blob:D'      Keyword.Type
+':'           Punctuation
+' '           Text.Whitespace
+'Int:D'       Keyword.Type
+' '           Text.Whitespace
+'$n'          Name.Variable
+' '           Text.Whitespace
+'-->'         Operator
+' '           Text.Whitespace
+'Nil'         Keyword.Constant
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'multi'       Keyword.Declaration
+' '           Text.Whitespace
+'method'      Keyword.Declaration
+' '           Text.Whitespace
+'gist'        Name.Function
+'('           Punctuation
+'X::AdHoc:D'  Keyword.Type
+':'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'Foo:D'       Name.Class
+' '           Text.Whitespace
+'$f'          Name.Variable
+';'           Punctuation
+' '           Text.Whitespace
+'sub'         Keyword.Declaration
+' '           Text.Whitespace
+'g'           Name.Function
+'('           Punctuation
+'::?CLASS'    Name.Variable.Global
+':U'          Keyword.Type
+' '           Text.Whitespace
+'$c'          Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace

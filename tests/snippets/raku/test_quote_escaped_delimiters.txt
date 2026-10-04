@@ -1,0 +1,39 @@
+---input---
+my $x = q{a\}b};
+my $y = q/a\/b/;
+my $z = qq[a\]$b];
+
+---tokens---
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'$x'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'q{a\\}b}'    Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'$y'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'q/a\\/b/'    Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'$z'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'qq['         Literal.String
+'a'           Literal.String.Double
+'\\]'         Literal.String.Double
+'$b'          Literal.String.Interpol
+']'           Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace

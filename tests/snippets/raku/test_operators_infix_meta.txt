@@ -1,0 +1,71 @@
+---input---
+say 1 Z+ 2, 1 X* 3, 1 Rcmp 2, 1 Z=> 2;
+$x x= 3; $y xx= 2; $z min= 1;
+say <1/3>, <1+2i>, <a b>;
+
+---tokens---
+'say'         Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'Z+'          Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'X*'          Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'Rcmp'        Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'Z'           Name
+'=>'          Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'$x'          Name.Variable
+' '           Text.Whitespace
+'x='          Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'$y'          Name.Variable
+' '           Text.Whitespace
+'xx='         Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'$z'          Name.Variable
+' '           Text.Whitespace
+'min='        Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'<1/3>'       Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'<1+2i>'      Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'<a b>'       Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace

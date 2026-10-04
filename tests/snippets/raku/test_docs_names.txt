@@ -1,0 +1,118 @@
+---input---
+die X::AdHoc.new; CATCH { when CX::Done { } when X::IO::DoesNotExist { } }
+my $s = Signal; my RakuAST::Name $n; say Format, Sequence, Raku;
+only sub f() { }; my $x will leave { say 1 }; dd map { $_ }, list 1, 2; say START;
+
+---tokens---
+'die'         Name.Builtin
+' '           Text.Whitespace
+'X::AdHoc'    Keyword.Type
+'.'           Operator
+'new'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'CATCH'       Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'when'        Keyword
+' '           Text.Whitespace
+'CX::Done'    Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'when'        Keyword
+' '           Text.Whitespace
+'X::IO::DoesNotExist' Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'$s'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Signal'      Keyword.Type
+';'           Punctuation
+' '           Text.Whitespace
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'RakuAST::Name' Keyword.Type
+' '           Text.Whitespace
+'$n'          Name.Variable
+';'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'Format'      Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'Sequence'    Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'Raku'        Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'only'        Keyword.Declaration
+' '           Text.Whitespace
+'sub'         Keyword.Declaration
+' '           Text.Whitespace
+'f'           Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'$x'          Name.Variable
+' '           Text.Whitespace
+'will'        Keyword
+' '           Text.Whitespace
+'leave'       Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'dd'          Name.Builtin
+' '           Text.Whitespace
+'map'         Name.Builtin
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'$_'          Name.Variable
+' '           Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'list'        Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'START'       Name
+';'           Punctuation
+'\n'          Text.Whitespace

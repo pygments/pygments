@@ -1,0 +1,151 @@
+---input---
+class Foo::Bar is export { method baz(--> Int) { } submethod BUILD { } method !priv { } }
+role R { } grammar G { } module M { } enum Color <red green>; subset Even of Int where * %% 2;
+multi sub f($x) { } proto sub g() { } multi method infix:<+>(Foo $a, Foo $b) { }
+unit module Foo;
+
+---tokens---
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'Foo::Bar'    Name.Class
+' '           Text.Whitespace
+'is'          Keyword
+' '           Text.Whitespace
+'export'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'method'      Keyword.Declaration
+' '           Text.Whitespace
+'baz'         Name.Function
+'('           Punctuation
+'-->'         Operator
+' '           Text.Whitespace
+'Int'         Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'submethod'   Keyword.Declaration
+' '           Text.Whitespace
+'BUILD'       Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'method'      Keyword.Declaration
+' '           Text.Whitespace
+'!priv'       Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'role'        Keyword.Declaration
+' '           Text.Whitespace
+'R'           Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'grammar'     Keyword.Declaration
+' '           Text.Whitespace
+'G'           Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'module'      Keyword.Declaration
+' '           Text.Whitespace
+'M'           Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'enum'        Keyword.Declaration
+' '           Text.Whitespace
+'Color'       Name.Class
+' '           Text.Whitespace
+'<red green>' Literal.String
+';'           Punctuation
+' '           Text.Whitespace
+'subset'      Keyword.Declaration
+' '           Text.Whitespace
+'Even'        Name.Class
+' '           Text.Whitespace
+'of'          Keyword
+' '           Text.Whitespace
+'Int'         Keyword.Type
+' '           Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'%%'          Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'multi'       Keyword.Declaration
+' '           Text.Whitespace
+'sub'         Keyword.Declaration
+' '           Text.Whitespace
+'f'           Name.Function
+'('           Punctuation
+'$x'          Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'proto'       Keyword.Declaration
+' '           Text.Whitespace
+'sub'         Keyword.Declaration
+' '           Text.Whitespace
+'g'           Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'multi'       Keyword.Declaration
+' '           Text.Whitespace
+'method'      Keyword.Declaration
+' '           Text.Whitespace
+'infix:<+>'   Name.Function
+'('           Punctuation
+'Foo'         Name.Class
+' '           Text.Whitespace
+'$a'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'Foo'         Name.Class
+' '           Text.Whitespace
+'$b'          Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'unit'        Keyword.Declaration
+' '           Text.Whitespace
+'module'      Keyword.Declaration
+' '           Text.Whitespace
+'Foo'         Name.Class
+';'           Punctuation
+'\n'          Text.Whitespace

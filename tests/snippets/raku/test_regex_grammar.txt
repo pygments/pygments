@@ -1,0 +1,160 @@
+---input---
+grammar G {
+    token TOP { ^ <line>+ % \n $ }
+    rule line { <word> [ ',' <.ws> <word> ]* <?before <alpha>> }
+    token word { <[a..z A..Z _]>+ | <:Lu>+ | \d ** 2..4 | 'lit' | "q$x" }
+    regex num { :i :my $n = 5; $<n>=(\d+) <?{ $n > 3 }> <foo=bar> }
+}
+
+---tokens---
+'grammar'     Keyword.Declaration
+' '           Text.Whitespace
+'G'           Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'token'       Keyword.Declaration
+' '           Text.Whitespace
+'TOP'         Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'^'           Operator
+' '           Text.Whitespace
+'<'           Punctuation
+'line'        Name.Function
+'>'           Punctuation
+'+'           Operator
+' '           Text.Whitespace
+'%'           Operator
+' '           Text.Whitespace
+'\\n'         Literal.String.Escape
+' '           Text.Whitespace
+'$'           Operator
+' '           Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'rule'        Keyword.Declaration
+' '           Text.Whitespace
+'line'        Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'<'           Punctuation
+'word'        Name.Function
+'>'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+' '           Text.Whitespace
+"','"         Literal.String.Single
+' '           Text.Whitespace
+'<'           Punctuation
+'.'           Punctuation
+'ws'          Name.Builtin
+'>'           Punctuation
+' '           Text.Whitespace
+'<'           Punctuation
+'word'        Name.Function
+'>'           Punctuation
+' '           Text.Whitespace
+']'           Punctuation
+'*'           Operator
+' '           Text.Whitespace
+'<'           Punctuation
+'?'           Punctuation
+'before'      Name.Builtin
+' '           Text.Whitespace
+'<'           Punctuation
+'alpha'       Name.Builtin
+'>'           Punctuation
+'>'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'token'       Keyword.Declaration
+' '           Text.Whitespace
+'word'        Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'<[a..z A..Z _]>' Literal.String.Regex
+'+'           Operator
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'<:Lu>'       Name.Builtin
+'+'           Operator
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'\\d'         Literal.String.Escape
+' '           Text.Whitespace
+'**'          Operator
+' '           Text.Whitespace
+'2'           Literal.String.Regex
+'..'          Operator
+'4'           Literal.String.Regex
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+"'lit'"       Literal.String.Single
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'q'           Literal.String.Double
+'$x'          Literal.String.Interpol
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'regex'       Keyword.Declaration
+' '           Text.Whitespace
+'num'         Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+':'           Punctuation
+'i'           Name.Attribute
+' '           Text.Whitespace
+':'           Punctuation
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'$n'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'$<n>'        Name.Variable
+'='           Operator
+'('           Punctuation
+'\\d'         Literal.String.Escape
+'+'           Operator
+')'           Punctuation
+' '           Text.Whitespace
+'<'           Punctuation
+'?'           Operator
+'{'           Punctuation
+' '           Text.Whitespace
+'$n'          Name.Variable
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'>'           Punctuation
+' '           Text.Whitespace
+'<'           Punctuation
+'foo'         Name.Variable
+'='           Operator
+'bar'         Name.Function
+'>'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

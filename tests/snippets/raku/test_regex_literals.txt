@@ -1,0 +1,62 @@
+---input---
+say "a/b" ~~ m/a\/b/;
+say $s ~~ rx:i/ <[a..z]> \d+ /;
+say $s ~~ m:g{ (\w+) <?before \s> };
+
+---tokens---
+'say'         Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'a/b'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'~~'          Operator
+' '           Text.Whitespace
+'m/'          Literal.String.Regex
+'a'           Literal.String.Regex
+'\\/'         Literal.String.Escape
+'b'           Literal.String.Regex
+'/'           Literal.String.Regex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'$s'          Name.Variable
+' '           Text.Whitespace
+'~~'          Operator
+' '           Text.Whitespace
+'rx:i/'       Literal.String.Regex
+' '           Text.Whitespace
+'<[a..z]>'    Literal.String.Regex
+' '           Text.Whitespace
+'\\d'         Literal.String.Escape
+'+'           Operator
+' '           Text.Whitespace
+'/'           Literal.String.Regex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'$s'          Name.Variable
+' '           Text.Whitespace
+'~~'          Operator
+' '           Text.Whitespace
+'m:g{'        Literal.String.Regex
+' '           Text.Whitespace
+'('           Punctuation
+'\\w'         Literal.String.Escape
+'+'           Operator
+')'           Punctuation
+' '           Text.Whitespace
+'<'           Punctuation
+'?'           Punctuation
+'before'      Name.Builtin
+' '           Text.Whitespace
+'\\s'         Literal.String.Escape
+'>'           Punctuation
+' '           Text.Whitespace
+'}'           Literal.String.Regex
+';'           Punctuation
+'\n'          Text.Whitespace

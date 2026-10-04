@@ -1,0 +1,118 @@
+'token'       Keyword.Declaration
+' '           Text.Whitespace
+'pod_formatting_code' Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'$<code>'     Name.Variable
+'='           Operator
+'<[A..Z]>'    Literal.String.Regex
+'\n    '      Text.Whitespace
+"'<'"         Literal.String.Single
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'$*POD_IN_FORMATTINGCODE' Name.Variable.Global
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'$<content>'  Name.Variable
+'='           Operator
+'['           Punctuation
+' '           Text.Whitespace
+'<'           Punctuation
+'!'           Punctuation
+'before'      Name.Builtin
+' '           Text.Whitespace
+"'>'"         Literal.String.Single
+'>'           Punctuation
+' '           Text.Whitespace
+'<'           Punctuation
+'pod_string_character' Name.Function
+'>'           Punctuation
+' '           Text.Whitespace
+']'           Punctuation
+'+'           Operator
+'\n    '      Text.Whitespace
+"'>'"         Literal.String.Single
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'$*POD_IN_FORMATTINGCODE' Name.Variable.Global
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'token'       Keyword.Declaration
+' '           Text.Whitespace
+'pod_string'  Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'<'           Punctuation
+'pod_string_character' Name.Function
+'>'           Punctuation
+'+'           Operator
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'token'       Keyword.Declaration
+' '           Text.Whitespace
+'something:sym' Name.Function
+'«<»'         Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'<'           Punctuation
+'!'           Operator
+'>'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'token'       Keyword.Declaration
+' '           Text.Whitespace
+'name'        Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'<'           Punctuation
+'!'           Operator
+'>'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'token'       Keyword.Declaration
+' '           Text.Whitespace
+'comment:sym' Name.Function
+'<#>'         Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n   '       Text.Whitespace
+"'#'"         Literal.String.Single
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+' '           Text.Whitespace
+'\\N'         Literal.String.Escape
+'*'           Operator
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

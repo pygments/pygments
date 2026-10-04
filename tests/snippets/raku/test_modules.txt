@@ -1,0 +1,45 @@
+---input---
+use Test;
+use Foo::Bar:ver<1.0>:auth<me>;
+need Baz;
+use lib 'x';
+use v6.d;
+
+---tokens---
+'use'         Keyword.Namespace
+' '           Text.Whitespace
+'Test'        Name.Namespace
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'use'         Keyword.Namespace
+' '           Text.Whitespace
+'Foo::Bar'    Name.Namespace
+':'           Punctuation
+'ver'         Name.Attribute
+'<1.0>'       Literal.String
+':'           Punctuation
+'auth'        Name.Attribute
+'<me>'        Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'need'        Keyword.Namespace
+' '           Text.Whitespace
+'Baz'         Name.Namespace
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'use'         Keyword.Namespace
+' '           Text.Whitespace
+'lib'         Name.Namespace
+' '           Text.Whitespace
+"'x'"         Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'use'         Keyword.Namespace
+' '           Text.Whitespace
+'v6.d'        Literal.Number
+';'           Punctuation
+'\n'          Text.Whitespace

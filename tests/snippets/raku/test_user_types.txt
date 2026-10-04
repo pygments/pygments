@@ -1,0 +1,98 @@
+---input---
+class Bar is Foo does Baz { has Bar::Qux $x; method m(--> Quux) { } }
+sub g(Foo:D $a, Int $b, Str:D :$c) returns Result { }
+subset Even of Int where * %% 2; my %h of Frob;
+
+---tokens---
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'Bar'         Name.Class
+' '           Text.Whitespace
+'is'          Keyword
+' '           Text.Whitespace
+'Foo'         Name.Class
+' '           Text.Whitespace
+'does'        Keyword
+' '           Text.Whitespace
+'Baz'         Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'has'         Keyword.Declaration
+' '           Text.Whitespace
+'Bar::Qux'    Name.Class
+' '           Text.Whitespace
+'$x'          Name.Variable
+';'           Punctuation
+' '           Text.Whitespace
+'method'      Keyword.Declaration
+' '           Text.Whitespace
+'m'           Name.Function
+'('           Punctuation
+'-->'         Operator
+' '           Text.Whitespace
+'Quux'        Name.Class
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'sub'         Keyword.Declaration
+' '           Text.Whitespace
+'g'           Name.Function
+'('           Punctuation
+'Foo:D'       Name.Class
+' '           Text.Whitespace
+'$a'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'Int'         Keyword.Type
+' '           Text.Whitespace
+'$b'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'Str:D'       Keyword.Type
+' '           Text.Whitespace
+':'           Punctuation
+'$c'          Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'returns'     Keyword
+' '           Text.Whitespace
+'Result'      Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'subset'      Keyword.Declaration
+' '           Text.Whitespace
+'Even'        Name.Class
+' '           Text.Whitespace
+'of'          Keyword
+' '           Text.Whitespace
+'Int'         Keyword.Type
+' '           Text.Whitespace
+'where'       Keyword
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'%%'          Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'%h'          Name.Variable
+' '           Text.Whitespace
+'of'          Keyword
+' '           Text.Whitespace
+'Frob'        Name.Class
+';'           Punctuation
+'\n'          Text.Whitespace

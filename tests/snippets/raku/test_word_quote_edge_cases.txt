@@ -1,0 +1,34 @@
+---input---
+say <<a>b>>, <a b>, <<$x y>>;
+say ~&marine, +&foo;
+
+---tokens---
+'say'         Name.Builtin
+' '           Text.Whitespace
+'<<'          Literal.String.Double
+'a'           Literal.String.Double
+'>'           Literal.String.Double
+'b'           Literal.String.Double
+'>>'          Literal.String.Double
+','           Punctuation
+' '           Text.Whitespace
+'<a b>'       Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'<<'          Literal.String.Double
+'$x'          Literal.String.Interpol
+' y'          Literal.String.Double
+'>>'          Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'~'           Operator
+'&marine'     Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'+'           Operator
+'&foo'        Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace

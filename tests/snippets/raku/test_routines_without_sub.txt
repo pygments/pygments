@@ -1,0 +1,84 @@
+---input---
+multi foo(Int $x) { }
+proto bar(|) {*}
+only baz() { }
+multi infix:<+>(Foo $a, Foo $b) { }
+say infix:<+>(1, 2); my &op = &infix:<*>;
+
+---tokens---
+'multi'       Keyword.Declaration
+' '           Text.Whitespace
+'foo'         Name.Function
+'('           Punctuation
+'Int'         Keyword.Type
+' '           Text.Whitespace
+'$x'          Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'proto'       Keyword.Declaration
+' '           Text.Whitespace
+'bar'         Name.Function
+'('           Punctuation
+'|'           Operator
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'*'           Operator
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'only'        Keyword.Declaration
+' '           Text.Whitespace
+'baz'         Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'multi'       Keyword.Declaration
+' '           Text.Whitespace
+'infix:<+>'   Name.Function
+'('           Punctuation
+'Foo'         Name.Class
+' '           Text.Whitespace
+'$a'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'Foo'         Name.Class
+' '           Text.Whitespace
+'$b'          Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'infix:<+>'   Name.Function
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'&op'         Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'&infix:<*>'  Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace

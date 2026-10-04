@@ -1,0 +1,281 @@
+'role'        Keyword.Declaration
+' '           Text.Whitespace
+'q'           Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'token'       Keyword.Declaration
+' '           Text.Whitespace
+'stopper'     Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+"\\'"         Literal.String.Escape
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n    '    Text.Whitespace
+'token'       Keyword.Declaration
+' '           Text.Whitespace
+'escape:sym'  Name.Function
+'<\\\\>'      Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'<'           Punctuation
+'sym'         Name.Function
+'>'           Punctuation
+' '           Text.Whitespace
+'<'           Punctuation
+'item'        Name.Function
+'='           Operator
+'.'           Operator
+'backslash'   Literal.String.Regex
+'>'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n    '    Text.Whitespace
+'token'       Keyword.Declaration
+' '           Text.Whitespace
+'backslash:sym' Name.Function
+'<qq>'        Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'<'           Punctuation
+'?'           Punctuation
+'before'      Name.Builtin
+' '           Text.Whitespace
+"'q'"         Literal.String.Single
+'>'           Punctuation
+' '           Text.Whitespace
+'<'           Punctuation
+'quote'       Name.Function
+'='           Operator
+'.'           Operator
+'LANG'        Literal.String.Regex
+'('           Punctuation
+"'MAIN'"      Literal.String.Single
+','           Literal.String.Regex
+"'quote'"     Literal.String.Single
+')'           Punctuation
+'>'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'token'       Keyword.Declaration
+' '           Text.Whitespace
+'backslash:sym' Name.Function
+'<\\\\>'      Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'<'           Punctuation
+'text'        Name.Function
+'='           Operator
+'.'           Operator
+'sym'         Literal.String.Regex
+'>'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'token'       Keyword.Declaration
+' '           Text.Whitespace
+'backslash:sym' Name.Function
+'<stopper>'   Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'<'           Punctuation
+'text'        Name.Function
+'='           Operator
+'.'           Operator
+'stopper'     Literal.String.Regex
+'>'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n    '    Text.Whitespace
+'token'       Keyword.Declaration
+' '           Text.Whitespace
+'backslash:sym' Name.Function
+'<miscq>'     Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+' '           Text.Whitespace
+'.'           Operator
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n    '    Text.Whitespace
+'method'      Keyword.Declaration
+' '           Text.Whitespace
+'tweak_q'     Name.Function
+'('           Punctuation
+'$v'          Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'panic'       Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'Too late for :q' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'method'      Keyword.Declaration
+' '           Text.Whitespace
+'tweak_qq'    Name.Function
+'('           Punctuation
+'$v'          Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'panic'       Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'Too late for :qq' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'role'        Keyword.Declaration
+' '           Text.Whitespace
+'q'           Name
+'q'           Name
+' '           Text.Whitespace
+'does'        Keyword
+' '           Text.Whitespace
+'b1'          Name
+' '           Text.Whitespace
+'does'        Keyword
+' '           Text.Whitespace
+'c1'          Name
+' '           Text.Whitespace
+'does'        Keyword
+' '           Text.Whitespace
+'s1'          Name
+' '           Text.Whitespace
+'does'        Keyword
+' '           Text.Whitespace
+'a1'          Name
+' '           Text.Whitespace
+'does'        Keyword
+' '           Text.Whitespace
+'h1'          Name
+' '           Text.Whitespace
+'does'        Keyword
+' '           Text.Whitespace
+'f1'          Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'token'       Keyword.Declaration
+' '           Text.Whitespace
+'stopper'     Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'\\"'         Literal.String.Escape
+' '           Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'token'       Keyword.Declaration
+' '           Text.Whitespace
+'backslash:sym' Name.Function
+'<unrec>'     Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'\\w'         Literal.String.Escape
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'throw_unrecog_backslash_seq' Name.Function
+':'           Punctuation
+' '           Text.Whitespace
+'$/'          Name.Variable.Global
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+'.'           Operator
+'Str'         Name.Builtin
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'token'       Keyword.Declaration
+' '           Text.Whitespace
+'backslash:sym' Name.Function
+'<misc>'      Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'\\W'         Literal.String.Escape
+' '           Text.Whitespace
+'}'           Punctuation
+'\n\n    '    Text.Whitespace
+'method'      Keyword.Declaration
+' '           Text.Whitespace
+'tweak_q'     Name.Function
+'('           Punctuation
+'$v'          Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'panic'       Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'Too late for :q' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'method'      Keyword.Declaration
+' '           Text.Whitespace
+'tweak_qq'    Name.Function
+'('           Punctuation
+'$v'          Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'self'        Name.Builtin.Pseudo
+'.'           Operator
+'panic'       Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'Too late for :qq' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

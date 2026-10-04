@@ -1,0 +1,21 @@
+---input---
+say "$(1 + 1) @(1, 2) $x's $y-1 {$z}";
+
+---tokens---
+'say'         Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'$(1 + 1)'    Literal.String.Interpol
+' '           Literal.String.Double
+'@(1, 2)'     Literal.String.Interpol
+' '           Literal.String.Double
+"$x's"        Literal.String.Interpol
+' '           Literal.String.Double
+'$y'          Literal.String.Interpol
+'-1 '         Literal.String.Double
+'{'           Punctuation
+'$z'          Name.Variable
+'}'           Punctuation
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace

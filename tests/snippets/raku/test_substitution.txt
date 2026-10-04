@@ -1,0 +1,128 @@
+---input---
+$_ ~~ s/a/b/;
+s{x}{y};
+s:g/\s+/ /;
+s{x} = 'y';
+tr/a-z/A-Z/;
+S/a/{$x}/;
+my %h = s => 1, m => 2, q => 3, tr => 4;
+say max(1, 2), map({ $_ }, 1);
+
+---tokens---
+'$_'          Name.Variable
+' '           Text.Whitespace
+'~~'          Operator
+' '           Text.Whitespace
+'s/'          Literal.String.Regex
+'a'           Literal.String.Regex
+'/'           Literal.String.Regex
+'b'           Literal.String.Double
+'/'           Literal.String.Regex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'s{'          Literal.String.Regex
+'x'           Literal.String.Regex
+'}'           Literal.String.Regex
+'{'           Literal.String.Regex
+'y'           Literal.String.Double
+'}'           Literal.String.Regex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'s:g/'        Literal.String.Regex
+'\\s'         Literal.String.Escape
+'+'           Operator
+'/'           Literal.String.Regex
+' '           Literal.String.Double
+'/'           Literal.String.Regex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'s{'          Literal.String.Regex
+'x'           Literal.String.Regex
+'}'           Literal.String.Regex
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'y'"         Literal.String.Single
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'tr/'         Literal.String.Regex
+'a-z'         Literal.String.Regex
+'/'           Literal.String.Regex
+'A-Z'         Literal.String.Regex
+'/'           Literal.String.Regex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'S/'          Literal.String.Regex
+'a'           Literal.String.Regex
+'/'           Literal.String.Regex
+'{'           Punctuation
+'$x'          Name.Variable
+'}'           Punctuation
+'/'           Literal.String.Regex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'%h'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'s'           Name
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'q'           Name
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'tr'          Name
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'max'         Name.Builtin
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'map'         Name.Builtin
+'('           Punctuation
+'{'           Punctuation
+' '           Text.Whitespace
+'$_'          Name.Variable
+' '           Text.Whitespace
+'}'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

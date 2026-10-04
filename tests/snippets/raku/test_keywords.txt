@@ -1,0 +1,60 @@
+---input---
+react { whenever $supply { say $_ } } my $p = start { 42 }; once { }; quietly { }; temp $x = 1;
+
+---tokens---
+'react'       Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'whenever'    Keyword
+' '           Text.Whitespace
+'$supply'     Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'$_'          Name.Variable
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'$p'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'start'       Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'42'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'once'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'quietly'     Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'temp'        Keyword
+' '           Text.Whitespace
+'$x'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace

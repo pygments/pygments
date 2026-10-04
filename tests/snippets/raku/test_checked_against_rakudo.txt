@@ -1,0 +1,194 @@
+---input---
+my Seq $s = (1, 2).Seq; my int $n = 1; my str $t; my buf8 $b;
+for @a <-> $x { $x++ }
+say "x".IO.e, $p.Str, 5.Int, $o.HOW, Foo.new, $d.succ;
+say v1.0.1, v6.d, v1.2+; say e, i, 2i;
+say 1 but True, $a minmax $b, 1 Zeq 2; temp $x = 1; let $y = 2;
+has $.a handles <b c>; sub f(%, $) { }
+
+---tokens---
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'Seq'         Keyword.Type
+' '           Text.Whitespace
+'$s'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+')'           Punctuation
+'.'           Operator
+'Seq'         Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'$n'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'str'         Keyword.Type
+' '           Text.Whitespace
+'$t'          Name.Variable
+';'           Punctuation
+' '           Text.Whitespace
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'buf8'        Keyword.Type
+' '           Text.Whitespace
+'$b'          Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'for'         Keyword
+' '           Text.Whitespace
+'@a'          Name.Variable
+' '           Text.Whitespace
+'<->'         Operator
+' '           Text.Whitespace
+'$x'          Name.Variable
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'$x'          Name.Variable
+'++'          Operator
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'x'           Literal.String.Double
+'"'           Literal.String.Double
+'.'           Operator
+'IO'          Name.Builtin
+'.'           Operator
+'e'           Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'$p'          Name.Variable
+'.'           Operator
+'Str'         Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'.'           Operator
+'Int'         Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'$o'          Name.Variable
+'.'           Operator
+'HOW'         Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'Foo'         Name
+'.'           Operator
+'new'         Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'$d'          Name.Variable
+'.'           Operator
+'succ'        Name.Builtin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'v1.0.1'      Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'v6.d'        Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'v1.2+'       Literal.Number
+';'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'e'           Name.Constant
+','           Punctuation
+' '           Text.Whitespace
+'i'           Name.Constant
+','           Punctuation
+' '           Text.Whitespace
+'2i'          Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'but'         Operator.Word
+' '           Text.Whitespace
+'True'        Keyword.Constant
+','           Punctuation
+' '           Text.Whitespace
+'$a'          Name.Variable
+' '           Text.Whitespace
+'minmax'      Operator.Word
+' '           Text.Whitespace
+'$b'          Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'Zeq'         Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'temp'        Keyword
+' '           Text.Whitespace
+'$x'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'$y'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'has'         Keyword.Declaration
+' '           Text.Whitespace
+'$.a'         Name.Variable.Instance
+' '           Text.Whitespace
+'handles'     Keyword
+' '           Text.Whitespace
+'<b c>'       Literal.String
+';'           Punctuation
+' '           Text.Whitespace
+'sub'         Keyword.Declaration
+' '           Text.Whitespace
+'f'           Name.Function
+'('           Punctuation
+'%'           Name.Variable.Anonymous
+','           Punctuation
+' '           Text.Whitespace
+'$'           Name.Variable.Anonymous
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace

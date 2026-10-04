@@ -1,0 +1,59 @@
+---input---
+say -∞, ∞.Int, ∞i, ∅, A⁻¹, $x²;
+say 1 § 2; say a ⩶ b; say a ⩵ b;
+
+---tokens---
+'say'         Name.Builtin
+' '           Text.Whitespace
+'-'           Operator
+'∞'           Name.Constant
+','           Punctuation
+' '           Text.Whitespace
+'∞'           Name.Constant
+'.'           Operator
+'Int'         Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'∞'           Name.Constant
+'i'           Name.Constant
+','           Punctuation
+' '           Text.Whitespace
+'∅'           Name.Constant
+','           Punctuation
+' '           Text.Whitespace
+'A'           Name
+'⁻¹'          Operator
+','           Punctuation
+' '           Text.Whitespace
+'$x'          Name.Variable
+'²'           Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'§'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'⩶'           Operator
+' '           Text.Whitespace
+'b'           Name
+';'           Punctuation
+' '           Text.Whitespace
+'say'         Name.Builtin
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'⩵'           Operator
+' '           Text.Whitespace
+'b'           Name
+';'           Punctuation
+'\n'          Text.Whitespace

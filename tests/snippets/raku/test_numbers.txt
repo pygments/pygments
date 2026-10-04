@@ -1,0 +1,56 @@
+---input---
+say 42, 1_000, 0x1F, 0o17, 0b101, 0d19, 0123, 1.5, .5, 1e3, 1.5e-3, :16<FF>, :2<1010>, 3i, 1.5i, 1..10;
+
+---tokens---
+'say'         Name.Builtin
+' '           Text.Whitespace
+'42'          Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'1_000'       Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0x1F'        Literal.Number.Hex
+','           Punctuation
+' '           Text.Whitespace
+'0o17'        Literal.Number.Oct
+','           Punctuation
+' '           Text.Whitespace
+'0b101'       Literal.Number.Bin
+','           Punctuation
+' '           Text.Whitespace
+'0d19'        Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0123'        Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'1.5'         Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'.5'          Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'1e3'         Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'1.5e-3'      Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+':16<FF>'     Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+':2<1010>'    Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'3i'          Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'1.5i'        Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'..'          Operator
+'10'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace

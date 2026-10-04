@@ -1,0 +1,22 @@
+---input---
+qq{a {$x} b $y.uc() c}; q[plain $x {1}]; Q:qq<$z>
+
+---tokens---
+'qq{'         Literal.String
+'a '          Literal.String.Double
+'{'           Punctuation
+'$x'          Name.Variable
+'}'           Punctuation
+' b '         Literal.String.Double
+'$y.uc()'     Literal.String.Interpol
+' c'          Literal.String.Double
+'}'           Literal.String
+';'           Punctuation
+' '           Text.Whitespace
+'q[plain $x {1}]' Literal.String
+';'           Punctuation
+' '           Text.Whitespace
+'Q:qq<'       Literal.String
+'$z'          Literal.String.Interpol
+'>'           Literal.String
+'\n'          Text.Whitespace

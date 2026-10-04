@@ -1,0 +1,86 @@
+---input---
+my Int $a = "5".Int;
+say $a.Str, $f.bar, $f.^name, $f.?baz, @l.map(*+1).sort.say, Foo.new;
+say $x.is, $y.start, .first, .of;
+
+---tokens---
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'Int'         Keyword.Type
+' '           Text.Whitespace
+'$a'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'5'           Literal.String.Double
+'"'           Literal.String.Double
+'.'           Operator
+'Int'         Name.Builtin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'$a'          Name.Variable
+'.'           Operator
+'Str'         Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'$f'          Name.Variable
+'.'           Operator
+'bar'         Name.Function
+','           Punctuation
+' '           Text.Whitespace
+'$f'          Name.Variable
+'.'           Operator
+'^'           Operator
+'name'        Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'$f'          Name.Variable
+'.'           Operator
+'?'           Operator
+'baz'         Name.Function
+','           Punctuation
+' '           Text.Whitespace
+'@l'          Name.Variable
+'.'           Operator
+'map'         Name.Builtin
+'('           Punctuation
+'*'           Operator
+'+'           Operator
+'1'           Literal.Number.Integer
+')'           Punctuation
+'.'           Operator
+'sort'        Name.Builtin
+'.'           Operator
+'say'         Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'Foo'         Name
+'.'           Operator
+'new'         Name.Builtin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'$x'          Name.Variable
+'.'           Operator
+'is'          Name.Function
+','           Punctuation
+' '           Text.Whitespace
+'$y'          Name.Variable
+'.'           Operator
+'start'       Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'.'           Operator
+'first'       Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'.'           Operator
+'of'          Name.Builtin
+';'           Punctuation
+'\n'          Text.Whitespace

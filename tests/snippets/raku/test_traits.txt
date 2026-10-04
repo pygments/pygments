@@ -1,0 +1,69 @@
+---input---
+sub f($c is raw, $d is copy) is export { }
+has $.x is rw is required; my $v is default(5); class A is B { }
+
+---tokens---
+'sub'         Keyword.Declaration
+' '           Text.Whitespace
+'f'           Name.Function
+'('           Punctuation
+'$c'          Name.Variable
+' '           Text.Whitespace
+'is'          Keyword
+' '           Text.Whitespace
+'raw'         Keyword
+','           Punctuation
+' '           Text.Whitespace
+'$d'          Name.Variable
+' '           Text.Whitespace
+'is'          Keyword
+' '           Text.Whitespace
+'copy'        Keyword
+')'           Punctuation
+' '           Text.Whitespace
+'is'          Keyword
+' '           Text.Whitespace
+'export'      Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'has'         Keyword.Declaration
+' '           Text.Whitespace
+'$.x'         Name.Variable.Instance
+' '           Text.Whitespace
+'is'          Keyword
+' '           Text.Whitespace
+'rw'          Keyword
+' '           Text.Whitespace
+'is'          Keyword
+' '           Text.Whitespace
+'required'    Keyword
+';'           Punctuation
+' '           Text.Whitespace
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'$v'          Name.Variable
+' '           Text.Whitespace
+'is'          Keyword
+' '           Text.Whitespace
+'default'     Keyword
+'('           Punctuation
+'5'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'A'           Name.Class
+' '           Text.Whitespace
+'is'          Keyword
+' '           Text.Whitespace
+'B'           Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace

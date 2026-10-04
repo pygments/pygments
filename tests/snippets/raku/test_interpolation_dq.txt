@@ -1,0 +1,35 @@
+---input---
+"Hi $name, @list[0] %h<k> $obj.meth(1) &f(2) {1 + 2} \n \x[41] \{ user@example.com 100%"
+
+---tokens---
+'"'           Literal.String.Double
+'Hi '         Literal.String.Double
+'$name'       Literal.String.Interpol
+', '          Literal.String.Double
+'@list[0]'    Literal.String.Interpol
+' '           Literal.String.Double
+'%h<k>'       Literal.String.Interpol
+' '           Literal.String.Double
+'$obj.meth(1)' Literal.String.Interpol
+' '           Literal.String.Double
+'&f(2)'       Literal.String.Interpol
+' '           Literal.String.Double
+'{'           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'}'           Punctuation
+' '           Literal.String.Double
+'\\n'         Literal.String.Escape
+' '           Literal.String.Double
+'\\x[41]'     Literal.String.Escape
+' '           Literal.String.Double
+'\\{'         Literal.String.Escape
+' user'       Literal.String.Double
+'@'           Literal.String.Double
+'example.com 100' Literal.String.Double
+'%'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace

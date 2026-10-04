@@ -1,0 +1,74 @@
+---input---
+say $x.rule, $x.token; my %h = regex => 1, rule => 2;
+say /regex/.does(Callable);
+my regex r { \d+ }; token { x }
+
+---tokens---
+'say'         Name.Builtin
+' '           Text.Whitespace
+'$x'          Name.Variable
+'.'           Operator
+'rule'        Name.Function
+','           Punctuation
+' '           Text.Whitespace
+'$x'          Name.Variable
+'.'           Operator
+'token'       Name.Function
+';'           Punctuation
+' '           Text.Whitespace
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'%h'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'regex'       Name
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'rule'        Name
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'/'           Literal.String.Regex
+'regex'       Literal.String.Regex
+'/'           Literal.String.Regex
+'.'           Operator
+'does'        Name.Builtin
+'('           Punctuation
+'Callable'    Keyword.Type
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'regex'       Keyword.Declaration
+' '           Text.Whitespace
+'r'           Name.Function
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'\\d'         Literal.String.Escape
+'+'           Operator
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'token'       Keyword.Declaration
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'x'           Literal.String.Regex
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace

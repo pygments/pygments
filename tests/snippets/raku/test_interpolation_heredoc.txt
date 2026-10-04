@@ -1,0 +1,59 @@
+---input---
+my $t = qq:to/END/;
+    Hi $name, {"nested {1+1}"}
+    END
+my $r = q:to/EOT/ ;
+no $interp {here}
+EOT
+say $t;
+
+---tokens---
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'$t'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'qq:to/END/'  Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    Hi '     Literal.String.Double
+'$name'       Literal.String.Interpol
+', '          Literal.String.Double
+'{'           Punctuation
+'"'           Literal.String.Double
+'nested '     Literal.String.Double
+'{'           Punctuation
+'1'           Literal.Number.Integer
+'+'           Operator
+'1'           Literal.Number.Integer
+'}'           Punctuation
+'"'           Literal.String.Double
+'}'           Punctuation
+'\n'          Literal.String.Double
+
+'    END'     Literal.String
+'\n'          Text.Whitespace
+
+'my'          Keyword.Declaration
+' '           Text.Whitespace
+'$r'          Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'q:to/EOT/'   Literal.String
+' '           Text.Whitespace
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'no $interp {here}\n' Literal.String
+
+'EOT'         Literal.String
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'$t'          Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace

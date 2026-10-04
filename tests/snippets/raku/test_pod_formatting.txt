@@ -1,0 +1,74 @@
+---input---
+=begin pod
+=head1 A Title
+Some B<bold> and I<italic> text with C<code> and L<a link|http://x>.
+=item First
+=end pod
+=head2 Another
+Paragraph B<here>.
+
+say "after";
+
+---tokens---
+'=begin'      Comment.Preproc
+' '           Text.Whitespace
+'pod'         Name.Namespace
+'\n'          Text.Whitespace
+
+'=head1'      Comment.Preproc
+' A Title'    Generic.Heading
+'\n'          Text.Whitespace
+
+'Some '       Comment.Multiline
+'B'           Name.Decorator
+'<'           Punctuation
+'bold'        Generic.Strong
+'>'           Punctuation
+' and '       Comment.Multiline
+'I'           Name.Decorator
+'<'           Punctuation
+'italic'      Generic.Emph
+'>'           Punctuation
+' text with ' Comment.Multiline
+'C'           Name.Decorator
+'<'           Punctuation
+'code'        Literal.String.Backtick
+'>'           Punctuation
+' and '       Comment.Multiline
+'L'           Name.Decorator
+'<'           Punctuation
+'a link|http://x' Comment.Multiline
+'>'           Punctuation
+'.'           Comment.Multiline
+'\n'          Text.Whitespace
+
+'=item'       Comment.Preproc
+' First'      Comment.Multiline
+'\n'          Text.Whitespace
+
+'=end'        Comment.Preproc
+' '           Text.Whitespace
+'pod'         Name.Namespace
+'\n'          Text.Whitespace
+
+'=head2'      Comment.Preproc
+' Another'    Generic.Heading
+'\n'          Text.Whitespace
+
+'Paragraph '  Comment.Multiline
+'B'           Name.Decorator
+'<'           Punctuation
+'here'        Generic.Strong
+'>'           Punctuation
+'.'           Comment.Multiline
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'say'         Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'after'       Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
