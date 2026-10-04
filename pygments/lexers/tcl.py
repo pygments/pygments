@@ -80,6 +80,7 @@ class TclLexer(RegexLexer):
             (r'"', String.Double, 'string'),
             (r'(eq|ne|in|ni)\b', Operator.Word),
             (r'!=|==|<<|>>|<=|>=|&&|\|\||\*\*|[-+~!*/%<>&^|?:]', Operator),
+            (r'=', Text),
         ],
         'data': [
             (r'\s+', Whitespace),

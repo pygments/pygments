@@ -1,0 +1,113 @@
+---input---
+set_property verilog_define {VAR_NAME=1} [current_fileset]
+set a=b
+set nested {outer {inner=value}}
+if {$a == $b && $a != $c && $a <= $d && $a >= $e} {# keep this comment}
+expr true==false
+expr true!=false
+expr true<=false
+expr true>=false
+
+---tokens---
+'set_property' Name.Variable
+' '           Text.Whitespace
+'verilog_define' Text
+' '           Text.Whitespace
+'{'           Keyword
+'VAR_NAME'    Name.Variable
+'='           Text
+'1'           Literal.Number.Integer
+'}'           Keyword
+' '           Text.Whitespace
+'['           Keyword
+'current_fileset' Name.Variable
+']'           Keyword
+'\n'          Text
+
+'set'         Keyword
+' '           Text.Whitespace
+'a'           Text
+'='           Text
+'b'           Text
+'\n'          Text
+
+'set'         Keyword
+' '           Text.Whitespace
+'nested'      Text
+' '           Text.Whitespace
+'{'           Keyword
+'outer'       Name.Variable
+' '           Text.Whitespace
+'{'           Keyword
+'inner'       Name.Variable
+'='           Text
+'value'       Text
+'}'           Keyword
+'}'           Keyword
+'\n'          Text
+
+'if'          Keyword
+' '           Text.Whitespace
+'{'           Keyword
+'$a'          Name.Variable
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'$b'          Name.Variable
+' '           Text.Whitespace
+'&&'          Operator
+' '           Text.Whitespace
+'$a'          Name.Variable
+' '           Text.Whitespace
+'!='          Operator
+' '           Text.Whitespace
+'$c'          Name.Variable
+' '           Text.Whitespace
+'&&'          Operator
+' '           Text.Whitespace
+'$a'          Name.Variable
+' '           Text.Whitespace
+'<='          Operator
+' '           Text.Whitespace
+'$d'          Name.Variable
+' '           Text.Whitespace
+'&&'          Operator
+' '           Text.Whitespace
+'$a'          Name.Variable
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'$e'          Name.Variable
+'}'           Keyword
+' '           Text.Whitespace
+'{'           Keyword
+'#'           Comment
+' keep this comment}\n' Comment
+
+'expr'        Keyword
+' '           Text.Whitespace
+'true'        Text
+'=='          Operator
+'false'       Text
+'\n'          Text
+
+'expr'        Keyword
+' '           Text.Whitespace
+'true'        Text
+'!='          Operator
+'false'       Text
+'\n'          Text
+
+'expr'        Keyword
+' '           Text.Whitespace
+'true'        Text
+'<='          Operator
+'false'       Text
+'\n'          Text
+
+'expr'        Keyword
+' '           Text.Whitespace
+'true'        Text
+'>='          Operator
+'false'       Text
+'\n'          Text
