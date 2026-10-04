@@ -99,11 +99,16 @@ class MatlabLexer(RegexLexer):
              ('defprops', 'propattrs')),
             (r'(\s*^\s*)(properties)\b',
              bygroups(Whitespace, Keyword), 'defprops'),
+            (r'(?<!\.)([ \t]*)(arguments)(\s+)(\()',
+             bygroups(Whitespace, Keyword, Whitespace, Punctuation),
+             ('defargs', 'argattrs')),
+            (r'(?<!\.)([ \t]*)(arguments)\b',
+             bygroups(Whitespace, Keyword), 'defargs'),
 
             # from 'iskeyword' on version 9.4 (R2018a):
             # Check that there is no preceding dot, as keywords are valid field
             # names.
-            (words(('break', 'case', 'catch', 'classdef', 'continue',
+            (words(('arguments', 'break', 'case', 'catch', 'classdef', 'continue',
                     'dynamicprops', 'else', 'elseif', 'end', 'for', 'function',
                     'global', 'if', 'methods', 'otherwise', 'parfor',
                     'persistent', 'return', 'spmd', 'switch',
@@ -544,7 +549,6 @@ class MatlabLexer(RegexLexer):
                         "appdesigner",
                         "append",
                         "area",
-                        "arguments",
                         "array2table",
                         "array2timetable",
                         "arrayDatastore",
@@ -2716,6 +2720,18 @@ class MatlabLexer(RegexLexer):
             (r'.', Text),
         ],
         'defprops': [
+            (r'%\{\s*\n', Comment.Multiline, 'blockcomment'),
+            (r'%.*$', Comment),
+            (r'(?<!\.)end\b', Keyword, '#pop'),
+            include('expressions'),
+        ],
+        'argattrs': [
+            (r'(Repeating|Input|Output)\b', Keyword),
+            (r'\)', Punctuation, '#pop'),
+            (r'\s+', Whitespace),
+            (r'.', Text),  # consume unexpected characters (e.g. malformed syntax)
+        ],
+        'defargs': [
             (r'%\{\s*\n', Comment.Multiline, 'blockcomment'),
             (r'%.*$', Comment),
             (r'(?<!\.)end\b', Keyword, '#pop'),
