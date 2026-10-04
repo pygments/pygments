@@ -1,0 +1,32 @@
+---input---
+sup[data-anchor] {
+  anchor-name: attr(data-anchor type(<custom-ident>));
+}
+
+---tokens---
+'sup'         Name.Tag
+'['           Operator
+'data-anchor' Name.Tag
+']'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'anchor-name' Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'attr'        Name.Builtin
+'('           Punctuation
+'data-anchor' Name
+' '           Text.Whitespace
+'type'        Name.Function
+'('           Punctuation
+'<'           Operator
+'custom-ident' Name
+'>'           Operator
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

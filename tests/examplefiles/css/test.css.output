@@ -210,20 +210,20 @@
 ' '           Text.Whitespace
 '{'           Punctuation
 ' '           Text.Whitespace
-'font-family' Name.Tag
-':'           Operator
+'font-family' Keyword
+':'           Punctuation
 ' '           Text.Whitespace
 '"Example Font"' Literal.String.Double
-';'           Operator
+';'           Punctuation
 ' '           Text.Whitespace
-'src'         Name.Tag
-':'           Operator
+'src'         Name
+':'           Punctuation
 ' '           Text.Whitespace
-'url'         Name.Tag
-'('           Operator
+'url'         Name.Builtin
+'('           Punctuation
 '"http://www.example.com/fonts/example"' Literal.String.Double
-')'           Operator
-';'           Operator
+')'           Punctuation
+';'           Punctuation
 ' '           Text.Whitespace
 '}'           Punctuation
 '\n\n'        Text.Whitespace

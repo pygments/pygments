@@ -1,0 +1,68 @@
+---input---
+a {
+    height: calc((100vw / 5) - (100vw / 25) + 20px);
+    margin: calc(var(--gap) * (1 + 2));
+}
+
+---tokens---
+'a'           Name.Tag
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'height'      Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'calc'        Name.Builtin
+'('           Punctuation
+'('           Punctuation
+'100'         Literal.Number.Integer
+'vw'          Keyword.Type
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'100'         Literal.Number.Integer
+'vw'          Keyword.Type
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'25'          Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'20'          Literal.Number.Integer
+'px'          Keyword.Type
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'margin'      Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'calc'        Name.Builtin
+'('           Punctuation
+'var'         Name.Function
+'('           Punctuation
+'--gap'       Name.Variable
+')'           Punctuation
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

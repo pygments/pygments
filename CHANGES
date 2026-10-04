@@ -7,6 +7,19 @@ Version 2.22.0
 --------------
 (not released yet)
 
+- Updated lexers:
+
+  * CSS:
+    - Support nested parentheses inside functions such as ``calc()``
+    - Keep a dashed identifier in a single token in a function argument
+    - Allow ``<`` and ``>`` inside a function, as used by the syntax
+      argument of ``attr()``
+    - Support nested rules
+    - Lex the body of an at-rule such as ``@font-face`` as declarations
+    - Add the ``fr`` unit and the newer font-relative, viewport and
+      container-query length units (``lh``, ``dvh``, ``cqw``, ...)
+    - Refresh the property list
+
 Version 2.21.0
 ---------------
 (released August 17th, 2026)

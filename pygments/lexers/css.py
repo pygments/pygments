@@ -154,9 +154,17 @@ _frequency_units = (
     'Hz', 'kHz',
 )
 _length_units = (
-    'em', 'ex', 'ch', 'rem',
-    'vh', 'vw', 'vmin', 'vmax',
+    'em', 'ex', 'ch', 'rem', 'cap', 'ic', 'lh', 'rlh',
+    'rex', 'rch', 'rcap', 'ric',
+    'vh', 'vw', 'vmin', 'vmax', 'vi', 'vb',
+    'svh', 'svw', 'svmin', 'svmax', 'svi', 'svb',
+    'lvh', 'lvw', 'lvmin', 'lvmax', 'lvi', 'lvb',
+    'dvh', 'dvw', 'dvmin', 'dvmax', 'dvi', 'dvb',
+    'cqw', 'cqh', 'cqi', 'cqb', 'cqmin', 'cqmax',
     'px', 'mm', 'cm', 'in', 'pt', 'pc', 'q',
+)
+_flex_units = (
+    'fr',
 )
 _resolution_units = (
     'dpi', 'dpcm', 'dppx',
@@ -165,7 +173,7 @@ _time_units = (
     's', 'ms',
 )
 _all_units = _angle_units + _frequency_units + _length_units + \
-    _resolution_units + _time_units
+    _resolution_units + _time_units + _flex_units
 
 
 class CssLexer(RegexLexer):
@@ -198,13 +206,10 @@ class CssLexer(RegexLexer):
             (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
         ],
         'atrule': [
-            (r'\{', Punctuation, 'atcontent'),
+            (r'\{', Punctuation, ('#pop', 'content')),
             (r';', Punctuation, '#pop'),
+            (r'(@)([\w-]+)', bygroups(Punctuation, Keyword)),
             include('basics'),
-        ],
-        'atcontent': [
-            include('basics'),
-            (r'\}', Punctuation, '#pop:2'),
         ],
         'content': [
             (r'\s+', Whitespace),
@@ -221,6 +226,9 @@ class CssLexer(RegexLexer):
              'value-start'),
 
             (r'/\*[\s\S]*?\*/', Comment),
+
+            # nested rules
+            include('basics'),
         ],
         'value-start': [
             (r'\s+', Whitespace),
@@ -240,6 +248,7 @@ class CssLexer(RegexLexer):
 
             include('numeric-values'),
 
+            (r'-{1,2}[a-zA-Z_][\w-]*', Name.Variable),
             (r'[~^*!%&<>|+=@:./?-]+', Operator),
             (r'[\[\](),]+', Punctuation),
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
@@ -250,7 +259,7 @@ class CssLexer(RegexLexer):
         ],
         'function-start': [
             (r'\s+', Whitespace),
-            (r'[-]+([A-Za-z][\w+]*[-]*)+', Name.Variable),
+            (r'-{1,2}[a-zA-Z_][\w-]*', Name.Variable),
             include('urls'),
             (words(_vendor_prefixes,), Keyword.Pseudo),
             (words(_keyword_values, suffix=r'\b'), Keyword.Constant),
@@ -265,11 +274,13 @@ class CssLexer(RegexLexer):
 
             (r'/\*[\s\S]*?\*/', Comment),
             include('numeric-values'),
-            (r'[*+/-]', Operator),
+            (r'[*+/<>-]', Operator),
             (r',', Punctuation),
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String.Double),
             (r"'(\\\\|\\[^\\]|[^'\\])*'", String.Single),
-            (r'[a-zA-Z_-]\w*', Name),
+            (r'[a-zA-Z_][\w-]*', Name),
+            # parenthesized sub-expressions, e.g. in calc()
+            (r'\(', Punctuation, '#push'),
             (r'\)', Punctuation, '#pop'),
         ],
         'urls': [
@@ -604,12 +615,8 @@ class LessCssLexer(CssLexer):
             (r'/\*[\s\S]*?\*/', Comment.Multiline),
             inherit,
         ],
-        'atcontent': [
-            (r'//.*\n', Comment.Single),
-            (r'/\*[\s\S]*?\*/', Comment.Multiline),
-            inherit,
-        ],
         'atrule': [
+            (r'@\w+', Name.Variable),
             (r'//.*\n', Comment.Single),
             (r'/\*[\s\S]*?\*/', Comment.Multiline),
             inherit,
