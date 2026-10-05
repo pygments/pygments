@@ -1,0 +1,95 @@
+---input---
+const [error, setError] = useState<string | null>(null);
+type Session = Awaited<ReturnType<typeof getSession>>;
+const labels: Record<number, string> = {};
+const el = <span aria-hidden className="x">{labels[1]}</span>;
+
+---tokens---
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'['           Punctuation
+'error'       Name.Other
+','           Punctuation
+' '           Text.Whitespace
+'setError'    Name.Other
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'useState'    Name.Other
+'<'           Operator
+'string'      Keyword.Type
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'null'        Keyword.Constant
+'>'           Operator
+'('           Punctuation
+'null'        Keyword.Constant
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'type'        Keyword.Reserved
+' '           Text.Whitespace
+'Session'     Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Awaited'     Name.Other
+'<'           Operator
+'ReturnType'  Name.Other
+'<'           Operator
+'typeof'      Operator.Word
+' '           Text.Whitespace
+'getSession'  Name.Other
+'>>'          Operator
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'labels'      Name.Other
+':'           Operator
+' '           Text.Whitespace
+'Record'      Keyword.Type
+'<'           Operator
+'number'      Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'string'      Keyword.Type
+'>'           Operator
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'el'          Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'<'           Punctuation
+'span'        Name.Tag
+' '           Text.Whitespace
+'aria-hidden' Name.Attribute
+' '           Text.Whitespace
+'className'   Name.Attribute
+'='           Operator
+'"x"'         Literal.String
+'>'           Punctuation
+'{'           Punctuation
+'labels'      Name.Other
+'['           Punctuation
+'1'           Literal.Number.Float
+']'           Punctuation
+'}'           Punctuation
+'</'          Punctuation
+'span'        Name.Tag
+'>'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

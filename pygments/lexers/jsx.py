@@ -20,7 +20,9 @@ __all__ = ['JsxLexer', 'TsxLexer']
 _JSX_RULES = {
     "jsx": [
         (r"</?>", Punctuation),  # JSXFragment <>|</>
-        (r"(<)(\w+)(\.?)", bygroups(Punctuation, Name.Tag, Punctuation), "tag"),
+        # A tag never directly follows an identifier, ")" or "]"; a "<"
+        # there is a comparison or, in TSX, a type argument list.
+        (r"(?<![\w)\]])(<)(\w+)(\.?)", bygroups(Punctuation, Name.Tag, Punctuation), "tag"),
         (
             r"(</)(\w+)(>)",
             bygroups(Punctuation, Name.Tag, Punctuation),
@@ -35,7 +37,7 @@ _JSX_RULES = {
         (r"\s+", Whitespace),
         (r"([\w-]+)(\s*)(=)(\s*)", bygroups(Name.Attribute, Whitespace, Operator, Whitespace), "attr"),
         (r"[{}]+", Punctuation),
-        (r"[\w\.]+", Name.Attribute),
+        (r"[\w.-]+", Name.Attribute),
         (r"(/?)(\s*)(>)", bygroups(Punctuation, Text, Punctuation), "#pop"),
     ],
     "fragment": [

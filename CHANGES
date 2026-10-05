@@ -7,6 +7,11 @@ Version 2.22.0
 --------------
 (not released yet)
 
+- Updated lexers:
+
+  * JSX/TSX: Do not lex type arguments such as ``useState<string | null>``
+    as JSX tags, and accept dashes in valueless attributes (``aria-hidden``)
+
 Version 2.21.0
 ---------------
 (released August 17th, 2026)
