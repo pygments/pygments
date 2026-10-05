@@ -185,6 +185,16 @@ def test_get_lexers():
         raise Exception
 
 
+@pytest.mark.parametrize('filename', ['Dockerfile.backend', 'backend.dockerfile'])
+def test_get_docker_lexer_for_alternative_filename(filename):
+    assert isinstance(lexers.get_lexer_for_filename(filename), lexers.DockerLexer)
+
+
+def test_get_docker_lexer_for_mimetype():
+    assert isinstance(lexers.get_lexer_for_mimetype('text/x-dockerfile'),
+                      lexers.DockerLexer)
+
+
 @pytest.mark.parametrize('cls', [getattr(formatters, name)
                                  for name in formatters.FORMATTERS])
 def test_formatter_public_api(cls):

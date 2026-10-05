@@ -664,8 +664,8 @@ class DockerLexer(RegexLexer):
     name = 'Docker'
     url = 'http://docker.io'
     aliases = ['docker', 'dockerfile']
-    filenames = ['Dockerfile', '*.docker']
-    mimetypes = ['text/x-dockerfile-config']
+    filenames = ['Dockerfile', 'Dockerfile.*', '*.docker', '*.dockerfile']
+    mimetypes = ['text/x-dockerfile-config', 'text/x-dockerfile']
     version_added = '2.0'
 
     _keywords = (r'(?:MAINTAINER|EXPOSE|WORKDIR|USER|STOPSIGNAL)')

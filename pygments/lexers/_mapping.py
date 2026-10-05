@@ -138,7 +138,7 @@ LEXERS = {
     'DiffLexer': ('pygments.lexers.diff', 'Diff', ('diff', 'udiff'), ('*.diff', '*.patch'), ('text/x-diff', 'text/x-patch')),
     'DjangoLexer': ('pygments.lexers.templates', 'Django/Jinja', ('django', 'jinja'), (), ('application/x-django-templating', 'application/x-jinja')),
     'DnsZoneLexer': ('pygments.lexers.dns', 'Zone', ('zone',), ('*.zone',), ('text/dns',)),
-    'DockerLexer': ('pygments.lexers.configs', 'Docker', ('docker', 'dockerfile'), ('Dockerfile', '*.docker'), ('text/x-dockerfile-config',)),
+    'DockerLexer': ('pygments.lexers.configs', 'Docker', ('docker', 'dockerfile'), ('Dockerfile', 'Dockerfile.*', '*.docker', '*.dockerfile'), ('text/x-dockerfile-config', 'text/x-dockerfile')),
     'DtdLexer': ('pygments.lexers.html', 'DTD', ('dtd',), ('*.dtd',), ('application/xml-dtd',)),
     'DuelLexer': ('pygments.lexers.webmisc', 'Duel', ('duel', 'jbst', 'jsonml+bst'), ('*.duel', '*.jbst'), ('text/x-duel', 'text/x-jbst')),
     'DylanConsoleLexer': ('pygments.lexers.dylan', 'Dylan session', ('dylan-console', 'dylan-repl'), ('*.dylan-console',), ('text/x-dylan-console',)),
