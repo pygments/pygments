@@ -185,6 +185,49 @@ def test_get_lexers():
         raise Exception
 
 
+def test_builtin_alias_lookup_is_cached():
+    lexers.get_lexer_by_name('python')
+    g = lexers.find_lexer_class_by_name.__globals__
+    assert g['_alias_cache']['python'].name == 'Python'
+    assert lexers.find_lexer_class_by_name('PYTHON') is g['_alias_cache']['python']
+
+
+def test_plugin_lexer_lookup_is_cached(monkeypatch):
+    class PluginCacheLexer(RegexLexer):
+        name = 'PluginCacheLexer'
+        aliases = ['plugincachetest']
+        filenames = []
+        tokens = {'root': [(r'.+', Text)]}
+
+    calls = {'n': 0}
+
+    def fake_plugins():
+        calls['n'] += 1
+        yield PluginCacheLexer
+
+    g = lexers.find_lexer_class_by_name.__globals__
+    state = g['_lexer_lookup_state']
+    prev_loaded = state['plugins_loaded']
+    monkeypatch.setitem(g, 'find_plugin_lexers', fake_plugins)
+    try:
+        state['plugins_loaded'] = False
+        g['_alias_cache'].pop('plugincachetest', None)
+        g['_lexer_cache'].pop('PluginCacheLexer', None)
+
+        cls = lexers.find_lexer_class_by_name('plugincachetest')
+        inst = lexers.get_lexer_by_name('PluginCacheTest')
+        by_name = lexers.find_lexer_class('PluginCacheLexer')
+
+        assert calls['n'] == 1
+        assert cls is PluginCacheLexer
+        assert isinstance(inst, PluginCacheLexer)
+        assert by_name is PluginCacheLexer
+    finally:
+        state['plugins_loaded'] = prev_loaded
+        g['_alias_cache'].pop('plugincachetest', None)
+        g['_lexer_cache'].pop('PluginCacheLexer', None)
+
+
 @pytest.mark.parametrize('cls', [getattr(formatters, name)
                                  for name in formatters.FORMATTERS])
 def test_formatter_public_api(cls):
