@@ -191,12 +191,12 @@ class PythonLexer(RegexLexer):
             (r'[{([]', Punctuation, 'expr-inside-fstring-inner'),
             # without format specifier
             (r'(=\s*)?'         # debug (https://bugs.python.org/issue36817)
-             r'(\![sraf])?'     # conversion
+             r'(\![sraf]\s*)?'  # conversion (whitespace allowed since 3.12)
              r'\}', String.Interpol, '#pop'),
             # with format specifier
             # we'll catch the remaining '}' in the outer scope
             (r'(=\s*)?'         # debug (https://bugs.python.org/issue36817)
-             r'(\![sraf])?'     # conversion
+             r'(\![sraf]\s*)?'  # conversion (whitespace allowed since 3.12)
              r':', String.Interpol, '#pop'),
             (r'\s+', Whitespace),  # allow new lines
             include('expr'),

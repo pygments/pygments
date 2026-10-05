@@ -1,0 +1,32 @@
+---input---
+f"{3!s  }"
+f'{1.25!s  :10.10}'
+f"{value = !r }"
+
+---tokens---
+'f'           Literal.String.Affix
+'"'           Literal.String.Double
+'{'           Literal.String.Interpol
+'3'           Literal.Number.Integer
+'!s  }'       Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'f'           Literal.String.Affix
+"'"           Literal.String.Single
+'{'           Literal.String.Interpol
+'1.25'        Literal.Number.Float
+'!s  :'       Literal.String.Interpol
+'10.10'       Literal.String.Single
+'}'           Literal.String.Interpol
+"'"           Literal.String.Single
+'\n'          Text.Whitespace
+
+'f'           Literal.String.Affix
+'"'           Literal.String.Double
+'{'           Literal.String.Interpol
+'value'       Name
+' '           Text.Whitespace
+'= !r }'      Literal.String.Interpol
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
