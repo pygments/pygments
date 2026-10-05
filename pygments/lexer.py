@@ -10,6 +10,7 @@
 
 import re
 import sys
+import threading
 import time
 
 from pygments.filter import apply_filters, Filter
@@ -497,6 +498,12 @@ class words(Future):
         return regex_opt(self.words, prefix=self.prefix, suffix=self.suffix)
 
 
+# Token definitions are preprocessed lazily, on the first instantiation of a
+# lexer class, and that keeps state on the class while it runs.  The lock makes
+# sure only one thread at a time does this.
+_tokendefs_lock = threading.RLock()
+
+
 class RegexLexerMeta(LexerMeta):
     """
     Metaclass for RegexLexer, creates the self._tokens attribute from
@@ -595,10 +602,14 @@ class RegexLexerMeta(LexerMeta):
 
     def process_tokendef(cls, name, tokendefs=None):
         """Preprocess a dictionary of token definitions."""
-        processed = cls._all_tokens[name] = {}
-        tokendefs = tokendefs or cls.tokens[name]
-        for state in list(tokendefs):
-            cls._process_state(tokendefs, processed, state)
+        with _tokendefs_lock:
+            processed = {}
+            tokendefs = tokendefs or cls.tokens[name]
+            for state in list(tokendefs):
+                cls._process_state(tokendefs, processed, state)
+            # only store the table once it is complete, lexers with
+            # token_variants look it up without holding the lock
+            cls._all_tokens[name] = processed
         return processed
 
     def get_tokendefs(cls):
@@ -653,13 +664,17 @@ class RegexLexerMeta(LexerMeta):
     def __call__(cls, *args, **kwds):
         """Instantiate cls after preprocessing its token definitions."""
         if '_tokens' not in cls.__dict__:
-            cls._all_tokens = {}
-            cls._tmpname = 0
-            if hasattr(cls, 'token_variants') and cls.token_variants:
-                # don't process yet
-                pass
-            else:
-                cls._tokens = cls.process_tokendef('', cls.get_tokendefs())
+            with _tokendefs_lock:
+                if hasattr(cls, 'token_variants') and cls.token_variants:
+                    # don't process yet, but keep the variants that have
+                    # already been processed
+                    if '_all_tokens' not in cls.__dict__:
+                        cls._all_tokens = {}
+                        cls._tmpname = 0
+                elif '_tokens' not in cls.__dict__:
+                    cls._all_tokens = {}
+                    cls._tmpname = 0
+                    cls._tokens = cls.process_tokendef('', cls.get_tokendefs())
 
         return type.__call__(cls, *args, **kwds)
 
