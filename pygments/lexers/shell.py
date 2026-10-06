@@ -158,6 +158,9 @@ class ShellSessionBaseLexer(Lexer):
     _bare_continuation = False
     _venv = re.compile(r'^(\([^)]*\))(\s*)')
 
+    def _is_continuation(self, curcode):
+        return self._bare_continuation
+
     def get_tokens_unprocessed(self, text):
         innerlexer = self._innerLexerCls(**self.options)
 
@@ -201,11 +204,12 @@ class ShellSessionBaseLexer(Lexer):
                 else:
                     curcode += line
                 backslash_continuation = curcode.endswith('\\\n')
-            elif self._bare_continuation and line.startswith(self._ps2):
+            elif insertions and line.startswith(self._ps2) and self._is_continuation(curcode):
                 insertions.append((len(curcode),
                                    [(0, Generic.Prompt,
                                      line[:len(self._ps2)])]))
                 curcode += line[len(self._ps2):]
+                backslash_continuation = curcode.endswith('\\\n')
             else:
                 if insertions:
                     toks = innerlexer.get_tokens_unprocessed(curcode)
@@ -239,6 +243,71 @@ class BashSessionLexer(ShellSessionBaseLexer):
         r'^((?:(?:\[.*?\])|(?:\(\S+\))?(?:| |sh\S*?|\w+\S+[@:]\S+(?:\s+\S+)' \
         r'?|\[\S+[@:][^\n]+\].+))\s*[$#%❯]\s*)(.*\n?)')
     _ps2 = '> '
+
+    _continuation_token_re = re.compile(
+        r"""
+        '[^']*' | '[^']*$ |
+        "(?:[^"\\]|\\.)*" | "(?:[^"\\]|\\.)*$ |
+        `[^`\\]*(?:\\.[^`\\]*)*` | `[^`\\]*(?:\\.[^`\\]*)*$ |
+        #[^\n]* |
+        \\. |
+        && | \|\| | \|&? |
+        [();{}] |
+        \b(?:if|fi|then|elif|else|for|while|until|select|do|done|case|esac)\b
+        """,
+        re.VERBOSE,
+    )
+
+    def _is_continuation(self, curcode):
+        if not curcode:
+            return False
+
+        keyword_stack = []
+        parens = 0
+        braces = 0
+        last_op = None
+
+        for m in self._continuation_token_re.finditer(curcode):
+            tok = m.group(0)
+            if tok.startswith('#'):
+                continue
+            if tok.startswith("'"):
+                if len(tok) < 2 or not tok.endswith("'"):
+                    return True
+                continue
+            if tok.startswith('"'):
+                if len(tok) < 2 or not tok.endswith('"'):
+                    return True
+                continue
+            if tok.startswith('`'):
+                if len(tok) < 2 or not tok.endswith('`'):
+                    return True
+                continue
+            if tok in ('&&', '||', '|', '|&'):
+                last_op = tok
+                continue
+            last_op = None
+            if tok == '(':
+                parens += 1
+            elif tok == ')':
+                parens = max(0, parens - 1)
+            elif tok == '{':
+                braces += 1
+            elif tok == '}':
+                braces = max(0, braces - 1)
+            elif tok == 'if':
+                keyword_stack.append('fi')
+            elif tok in ('for', 'while', 'until', 'select'):
+                keyword_stack.append('done')
+            elif tok == 'case':
+                keyword_stack.append('esac')
+            elif tok in ('fi', 'done', 'esac'):
+                if keyword_stack and keyword_stack[-1] == tok:
+                    keyword_stack.pop()
+            elif tok in ('then', 'do', 'else', 'elif'):
+                last_op = tok
+
+        return bool(keyword_stack or parens > 0 or braces > 0 or last_op)
 
 
 class BatchLexer(RegexLexer):
