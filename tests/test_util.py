@@ -211,3 +211,17 @@ def test_xml_redos_resistance():
     elapsed = time.time() - t0
     assert result is False
     assert elapsed < 2.0, f'Catastrophic backtracking: took {elapsed:.1f}s (should be < 2s)'
+
+
+def test_ansimap_dark_colors_are_half_intensity():
+    # The "dark" ANSI colors are the half-intensity versions of the bright
+    # ones: each channel is either 00 or 7f. 'ansiyellow' used to carry a
+    # typo ('7f7fe0', a blue-purple) instead of red+green (#3302).
+    from pygments.style import _ansimap
+
+    assert _ansimap['ansiyellow'] == '7f7f00'
+    for name, hexcolor in _ansimap.items():
+        if name.startswith('ansibright') or name in ('ansigray', 'ansiwhite'):
+            continue
+        for channel in (hexcolor[0:2], hexcolor[2:4], hexcolor[4:6]):
+            assert channel in ('00', '7f'), (name, hexcolor)
