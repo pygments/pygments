@@ -347,6 +347,81 @@
 'form'        Name.Tag
 '>'           Punctuation
 '\n    '      Text
+'<!-- v-slot shorthand -->' Comment.Multiline
+'\n    '      Text
+'<'           Punctuation
+'template'    Name.Tag
+' '           Text
+'#'           Punctuation
+'header'      Name.Attribute
+'>'           Punctuation
+'\n        '  Text
+'<'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'Here might be a page title' Text
+'<'           Punctuation
+'/'           Punctuation
+'h1'          Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'template'    Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'template'    Name.Tag
+' '           Text
+'#'           Punctuation
+'default'     Name.Attribute
+'='           Operator
+'"'           Literal.String
+'slotProps'   Name.Other
+'"'           Literal.String
+'>'           Punctuation
+'\n        '  Text
+'{{'          Comment.Preproc
+''            Text
+' '           Text.Whitespace
+'slotProps'   Name.Other
+'.'           Punctuation
+'text'        Name.Other
+' '           Text.Whitespace
+'}}'          Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'template'    Name.Tag
+'>'           Punctuation
+'\n    '      Text
+'<'           Punctuation
+'template'    Name.Tag
+' '           Text
+'#'           Punctuation
+'item'        Name.Attribute
+'='           Operator
+'"'           Literal.String
+'{'           Punctuation
+' '           Text.Whitespace
+'message'     Name.Other
+' '           Text.Whitespace
+'}'           Punctuation
+'"'           Literal.String
+'>'           Punctuation
+'\n        '  Text
+'{{'          Comment.Preproc
+''            Text
+' '           Text.Whitespace
+'message'     Name.Other
+' '           Text.Whitespace
+'}}'          Comment.Preproc
+'\n    '      Text
+'<'           Punctuation
+'/'           Punctuation
+'template'    Name.Tag
+'>'           Punctuation
+'\n    '      Text
 '<'           Punctuation
 'li'          Name.Tag
 ' '           Text
