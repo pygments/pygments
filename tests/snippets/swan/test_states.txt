@@ -1,0 +1,55 @@
+---input---
+/* simple
+   comment */
+/* aa /* nested comment */ bb */
+#pragma test #end
+#pragma this is # not the ##end #end
+1 + {% _a %} + {foobar%
+  x1 % 2
+  x2 %foobar}
+
+---tokens---
+'/*'          Comment.Multiline
+' simple\n   comment ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'/*'          Comment.Multiline
+' aa '        Comment.Multiline
+'/*'          Comment.Multiline
+' nested comment ' Comment.Multiline
+'*/'          Comment.Multiline
+' bb '        Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text
+
+'#pragma'     Comment.Preproc
+' test '      Comment.Preproc
+'#end'        Comment.Preproc
+'\n'          Text
+
+'#pragma'     Comment.Preproc
+' this is '   Comment.Preproc
+'#'           Comment.Preproc
+' not the '   Comment.Preproc
+'##'          Comment.Preproc
+'end '        Comment.Preproc
+'#end'        Comment.Preproc
+'\n'          Text
+
+'1'           Literal.Number.Integer
+' '           Text
+'+'           Operator
+' '           Text
+'{%'          Comment.Special
+' _a '        Comment.Special
+'%}'          Comment.Special
+' '           Text
+'+'           Operator
+' '           Text
+'{foobar%'    Comment.Special
+'\n  x1 '     Comment.Special
+'%'           Comment.Special
+' 2\n  x2 '   Comment.Special
+'%foobar}'    Comment.Special
+'\n'          Text

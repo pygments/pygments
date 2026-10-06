@@ -1,0 +1,84 @@
+---input---
+use A::B::C as ABC;
+y1 = 0 + 12 - 0b010101 mod 0o777 + 0o1357 + (0xFFF lsl 3) + (42_i8 :> int32);
+y2 = 123._f32 + .456 = 123.456e+0_f32 + ABC::D;
+
+---tokens---
+'use'         Keyword.Namespace
+' '           Text.Whitespace
+'A::B::'      Name.Namespace
+'C'           Name
+' '           Text
+'as'          Operator.Word
+' '           Text
+'ABC'         Name
+';'           Punctuation
+'\n'          Text
+
+'y1'          Name
+' '           Text
+'='           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'+'           Operator
+' '           Text
+'12'          Literal.Number.Integer
+' '           Text
+'-'           Operator
+' '           Text
+'0b010101'    Literal.Number.Bin
+' '           Text
+'mod'         Operator.Word
+' '           Text
+'0o777'       Literal.Number.Oct
+' '           Text
+'+'           Operator
+' '           Text
+'0o1357'      Literal.Number.Oct
+' '           Text
+'+'           Operator
+' '           Text
+'('           Punctuation
+'0xFFF'       Literal.Number.Hex
+' '           Text
+'lsl'         Operator.Word
+' '           Text
+'3'           Literal.Number.Integer
+')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'('           Punctuation
+'42'          Literal.Number.Integer
+'_i8'         Keyword
+' '           Text
+':>'          Operator
+' '           Text
+'int32'       Keyword.Type
+')'           Punctuation
+';'           Punctuation
+'\n'          Text
+
+'y2'          Name
+' '           Text
+'='           Operator
+' '           Text
+'123.'        Literal.Number.Float
+'_f32'        Keyword
+' '           Text
+'+'           Operator
+' '           Text
+'.456'        Literal.Number.Float
+' '           Text
+'='           Operator
+' '           Text
+'123.456e+0'  Literal.Number.Float
+'_f32'        Keyword
+' '           Text
+'+'           Operator
+' '           Text
+'ABC::'       Name.Namespace
+'D'           Name
+';'           Punctuation
+'\n'          Text
