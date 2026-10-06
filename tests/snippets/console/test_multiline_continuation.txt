@@ -1,0 +1,26 @@
+---input---
+$ if true
+> then echo hi
+> fi
+hi
+
+---tokens---
+'$ '          Generic.Prompt
+'if'          Keyword
+' '           Text.Whitespace
+'true'        Name.Builtin
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+'then'        Keyword
+' '           Text.Whitespace
+'echo'        Name.Builtin
+' '           Text.Whitespace
+'hi'          Text
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+'fi'          Keyword
+'\n'          Text.Whitespace
+
+'hi\n'        Generic.Output
