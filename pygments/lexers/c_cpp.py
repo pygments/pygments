@@ -119,8 +119,8 @@ class CFamilyLexer(RegexLexer):
                     'typedef', 'typeof', 'typeof_unqual', 'volatile', 'while', 'union',
                     'thread_local', 'alignas', 'alignof', 'static_assert', '_Pragma', 'fortran'),
                    suffix=r'\b'), Keyword),
-            (words(('inline', '_inline', '__inline', 'naked', 'restrict',
-                    'thread'), suffix=r'\b'), Keyword.Reserved),
+            (words(('inline', '_inline', '__inline', 'naked', 'restrict'),
+                   suffix=r'\b'), Keyword.Reserved),
             # Vector intrinsics
             (r'(__m(128i|128d|128|64))\b', Keyword.Reserved),
             # Microsoft-isms
