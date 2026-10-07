@@ -1,0 +1,177 @@
+'// examples/fibonacci.ltl  -  Fibonacci demonstration' Comment.Single
+'\n\n'        Text.Whitespace
+
+'module'      Keyword
+' '           Text.Whitespace
+'examples'    Name
+'.'           Punctuation
+'fibonacci'   Name
+'\n\n'        Text.Whitespace
+
+'import'      Keyword
+' '           Text.Whitespace
+'io'          Name
+'\n\n'        Text.Whitespace
+
+'fn'          Keyword
+' '           Text.Whitespace
+'fib'         Name
+'('           Punctuation
+'n'           Name
+':'           Punctuation
+' '           Text.Whitespace
+'int'         Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'n'           Name
+' '           Text.Whitespace
+'<='          Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'n'           Name
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'fib'         Name
+'('           Punctuation
+'n'           Name
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'fib'         Name
+'('           Punctuation
+'n'           Name
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'fn'          Keyword
+' '           Text.Whitespace
+'main'        Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'io'          Name
+'.'           Punctuation
+'println'     Name.Builtin
+'('           Punctuation
+'"'           Literal.String
+'Fibonacci sequence:' Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'mut'         Keyword
+' '           Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n    '      Text.Whitespace
+'while'       Keyword
+' '           Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+'<='          Operator
+' '           Text.Whitespace
+'15'          Literal.Number.Integer
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'io'          Name
+'.'           Punctuation
+'println'     Name.Builtin
+'('           Punctuation
+'"'           Literal.String
+'fib('        Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'str'         Keyword.Type
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+') = '        Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'fib'         Name
+'('           Punctuation
+'i'           Name
+')'           Punctuation
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'str'         Keyword.Type
+')'           Punctuation
+'\n        '  Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+'+'           Operator
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'main'        Name
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
