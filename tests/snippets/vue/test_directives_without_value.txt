@@ -1,0 +1,74 @@
+---input---
+<template>
+  <a @click.stop :href="url" @keydown.enter.prevent v-else>link</a>
+  <slot #default="{ item }" />
+  <slot #footer />
+</template>
+
+---tokens---
+'<'           Punctuation
+'template'    Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'a'           Name.Tag
+' '           Text
+'@'           Punctuation
+'click'       Name.Attribute
+'.'           Punctuation
+'stop'        Name.Attribute
+' '           Text
+':'           Punctuation
+'href'        Name.Attribute
+'='           Operator
+'"'           Literal.String
+'url'         Name.Other
+'"'           Literal.String
+' '           Text
+'@'           Punctuation
+'keydown'     Name.Attribute
+'.'           Punctuation
+'enter'       Name.Attribute
+'.'           Punctuation
+'prevent'     Name.Attribute
+' '           Text
+'v-else'      Name.Attribute
+'>'           Punctuation
+'link'        Text
+'<'           Punctuation
+'/'           Punctuation
+'a'           Name.Tag
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'slot'        Name.Tag
+' '           Text
+'#'           Punctuation
+'default'     Name.Attribute
+'='           Operator
+'"'           Literal.String
+'{'           Punctuation
+' '           Text.Whitespace
+'item'        Name.Other
+' '           Text.Whitespace
+'}'           Punctuation
+'"'           Literal.String
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n  '        Text
+'<'           Punctuation
+'slot'        Name.Tag
+' '           Text
+'#'           Punctuation
+'footer'      Name.Attribute
+' '           Text
+'/'           Punctuation
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'/'           Punctuation
+'template'    Name.Tag
+'>'           Punctuation
+'\n'          Text

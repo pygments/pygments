@@ -648,9 +648,12 @@ class VueLexer(HtmlLexer):
         ],
         'tag': [
             (r'\s+', Text),
-            (r'((?:[@:]|v-)(?:[.\w:-]|\[[^\]]*?\])+\s*)(=)(\s*)',
+            (r'((?:[@:#]|v-)(?:[.\w:-]|\[[^\]]*?\])+\s*)(=)(\s*)',
              bygroups(using(this, state=['name']), Operator, Text),
              'attr-directive'),
+            # directives without a value, e.g. @click.stop or #default
+            (r'(?:[@:#]|v-)(?:[.\w:-]|\[[^\]]*?\])+',
+             using(this, state=['name'])),
             (r'([\w:-]+\s*)(=)(\s*)', bygroups(Name.Attribute, Operator, Text),
              'attr'),
             (r'[\w:-]+', Name.Attribute),
@@ -658,7 +661,7 @@ class VueLexer(HtmlLexer):
         ],
         'name': [
             (r'[\w-]+', Name.Attribute),
-            (r'[:@.]', Punctuation),
+            (r'[:@.#]', Punctuation),
             (r'(\[)([^\]]*?)(\])', bygroups(Comment.Preproc,
              using(JavascriptLexer), Comment.Preproc)),
         ],
