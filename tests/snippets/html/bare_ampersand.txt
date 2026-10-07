@@ -1,0 +1,37 @@
+---input---
+<p>AT&T &amp; &#169; &#xA9; &Eacute;</p>
+<span class="punctuation">&</span>
+
+---tokens---
+'<'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'AT'          Text
+'&'           Text
+'T '          Text
+'&amp;'       Name.Entity
+' '           Text
+'&#169;'      Name.Entity
+' '           Text
+'&#xA9;'      Name.Entity
+' '           Text
+'&Eacute;'    Name.Entity
+'<'           Punctuation
+'/'           Punctuation
+'p'           Name.Tag
+'>'           Punctuation
+'\n'          Text
+
+'<'           Punctuation
+'span'        Name.Tag
+' '           Text
+'class'       Name.Attribute
+'='           Operator
+'"punctuation"' Literal.String
+'>'           Punctuation
+'&'           Text
+'<'           Punctuation
+'/'           Punctuation
+'span'        Name.Tag
+'>'           Punctuation
+'\n'          Text
