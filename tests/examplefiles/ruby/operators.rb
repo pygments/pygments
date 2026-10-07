@@ -1,0 +1,15 @@
+a <=> b
+a => b
+x <= y
+x >= y
+x << y
+x >> y
+x < y
+x > y
+x =~ y
+x === y
+x == y
+x !~ y
+x ** y
+x && y
+x || y
