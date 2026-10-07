@@ -43,6 +43,9 @@ class MakefileLexer(Lexer):
         # GNU Automake
         r'\s*(if|else|endif))(?=\s)')
     r_comment = re.compile(r'^\s*@?#')
+    r_define = re.compile(
+        r'^ *(?:(?:override|export|unexport)\s+)*define(?=\s|$)')
+    r_endef = re.compile(r'^ *endef(?=\s|$)')
 
     def get_tokens_unprocessed(self, text):
         ins = []
@@ -50,8 +53,19 @@ class MakefileLexer(Lexer):
         done = ''
         lex = BaseMakefileLexer(**self.options)
         backslashflag = False
+        define_depth = 0
         for line in lines:
-            if self.r_special.match(line) or backslashflag:
+            if self.r_define.match(line):
+                define_depth += 1
+                ins.append((len(done), [(0, Comment.Preproc, line)]))
+            elif define_depth:
+                if self.r_endef.match(line):
+                    define_depth -= 1
+                    token = Comment.Preproc
+                else:
+                    token = Text
+                ins.append((len(done), [(0, token, line)]))
+            elif self.r_special.match(line) or backslashflag:
                 ins.append((len(done), [(0, Comment.Preproc, line)]))
                 backslashflag = line.strip().endswith('\\')
             elif self.r_comment.match(line):
