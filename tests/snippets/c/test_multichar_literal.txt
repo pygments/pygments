@@ -1,0 +1,15 @@
+---input---
+int foo = 'ABCD';
+
+---tokens---
+'int'         Keyword.Type
+' '           Text.Whitespace
+'foo'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String.Char
+'ABCD'        Literal.String.Char
+"'"           Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
