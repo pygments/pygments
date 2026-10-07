@@ -1,0 +1,26 @@
+---input---
+HTTP/2 200 OK
+:status: 200
+
+{}
+
+---tokens---
+'HTTP'        Keyword.Reserved
+'/'           Operator
+'2'           Literal.Number
+' '           Text
+'200'         Literal.Number
+' '           Text
+'OK'          Name.Exception
+'\n'          Text
+
+':status'     Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'200'         Literal
+'\n'          Text
+
+'\n'          Text
+
+'{}\n'        Text
