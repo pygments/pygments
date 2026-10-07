@@ -7,6 +7,14 @@ Version 2.22.0
 --------------
 (not released yet)
 
+- PostgreSQL: Classify quoted identifiers as ``Name.Quoted`` instead of
+  ``String.Name`` (#2780).
+- Register ``Name.Quoted`` as a standard token with HTML class ``nq``.
+  This also changes the class for MySQL and GoogleSQL quoted identifiers from
+  ``n-Quoted`` to ``nq``, and their ``Name.Quoted.Escape`` class from
+  ``n-Quoted-Escape`` to ``nq-Escape``. Custom styles for PostgreSQL quoted
+  identifiers should target ``Name.Quoted`` instead of ``String.Name``.
+
 Version 2.21.0
 ---------------
 (released August 17th, 2026)

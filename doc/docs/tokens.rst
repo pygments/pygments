@@ -183,6 +183,10 @@ Name Tokens
 `Name.Property`
     Additional token type occasionally used for class attributes.
 
+`Name.Quoted`
+    For quoted identifiers, such as double-quoted names in PostgreSQL or
+    backtick-quoted names in MySQL and GoogleSQL.
+
 `Name.Tag`
     Tag names (in HTML/XML markup or configuration files).
 

@@ -233,12 +233,12 @@
 ' '           Text.Whitespace
 'from'        Keyword
 ' '           Text.Whitespace
-'"'           Literal.String.Name
-'\n'          Literal.String.Name
+'"'           Name.Quoted
+'\n'          Name.Quoted
 
 'piro">'      Generic.Prompt
-' foo'        Literal.String.Name
-'"'           Literal.String.Name
+' foo'        Name.Quoted
+'"'           Name.Quoted
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -306,9 +306,9 @@
 ' '           Text.Whitespace
 'AS'          Keyword
 ' '           Text.Whitespace
-'"'           Literal.String.Name
-'hex'         Literal.String.Name
-'"'           Literal.String.Name
+'"'           Name.Quoted
+'hex'         Name.Quoted
+'"'           Name.Quoted
 ','           Punctuation
 ' '           Text.Whitespace
 "'"           Literal.String.Single
@@ -319,9 +319,9 @@
 ' '           Text.Whitespace
 'AS'          Keyword
 ' '           Text.Whitespace
-'"'           Literal.String.Name
-'dec'         Literal.String.Name
-'"'           Literal.String.Name
+'"'           Name.Quoted
+'dec'         Name.Quoted
+'"'           Name.Quoted
 ','           Punctuation
 '\n'          Text.Whitespace
 

@@ -181,7 +181,7 @@ class PostgresLexer(PostgresBase, RegexLexer):
             (r'[0-9]+', Number.Integer),
             (r"((?:E|U&)?)(')", bygroups(String.Affix, String.Single), 'string'),
             # quoted identifier
-            (r'((?:U&)?)(")', bygroups(String.Affix, String.Name), 'quoted-ident'),
+            (r'((?:U&)?)(")', bygroups(String.Affix, Name.Quoted), 'quoted-ident'),
             (r'(?s)(\$)([^$]*)(\$)(.*?)(\$)(\2)(\$)', language_callback),
             (r'[a-z_]\w*', Name),
 
@@ -202,9 +202,9 @@ class PostgresLexer(PostgresBase, RegexLexer):
             (r"'", String.Single, '#pop'),
         ],
         'quoted-ident': [
-            (r'[^"]+', String.Name),
-            (r'""', String.Name),
-            (r'"', String.Name, '#pop'),
+            (r'[^"]+', Name.Quoted),
+            (r'""', Name.Quoted),
+            (r'"', Name.Quoted, '#pop'),
         ],
     }
 
@@ -852,10 +852,8 @@ class MySqlLexer(RegexLexer):
         # Schema object name substates
         # ----------------------------
         #
-        # "Name.Quoted" and "Name.Quoted.Escape" are non-standard but
-        # formatters will style them as "Name" by default but add
-        # additional styles based on the token name. This gives users
-        # flexibility to add custom styles as desired.
+        # "Name.Quoted.Escape" inherits the style of "Name.Quoted" by
+        # default. Users can customize either token independently.
         #
         'schema-object-name': [
             (r'[^`]+', Name.Quoted),
@@ -1025,10 +1023,8 @@ class GoogleSqlLexer(RegexLexer):
         # Schema object name substates
         # ----------------------------
         #
-        # "Name.Quoted" and "Name.Quoted.Escape" are non-standard but
-        # formatters will style them as "Name" by default but add
-        # additional styles based on the token name. This gives users
-        # flexibility to add custom styles as desired.
+        # "Name.Quoted.Escape" inherits the style of "Name.Quoted" by
+        # default. Users can customize either token independently.
         #
         'schema-object-name': [
             (r'[^`]+', Name.Quoted),

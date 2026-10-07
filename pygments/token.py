@@ -149,6 +149,7 @@ STANDARD_TYPES = {
     Name.Function:                 'nf',
     Name.Function.Magic:           'fm',
     Name.Property:                 'py',
+    Name.Quoted:                   'nq',
     Name.Label:                    'nl',
     Name.Namespace:                'nn',
     Name.Other:                    'nx',
