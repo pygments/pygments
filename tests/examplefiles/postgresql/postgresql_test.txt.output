@@ -289,9 +289,9 @@
 'FROM'        Keyword
 ' '           Text.Whitespace
 'U&'          Literal.String.Affix
-'"'           Literal.String.Name
-'\\0441\\043B\\043E\\043D' Literal.String.Name
-'"'           Literal.String.Name
+'"'           Name.Quoted
+'\\0441\\043B\\043E\\043D' Name.Quoted
+'"'           Name.Quoted
 ';'           Punctuation
 '\n\n'        Text.Whitespace
 

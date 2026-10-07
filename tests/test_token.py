@@ -43,6 +43,10 @@ def test_sanity_check():
             pytest.fail(f"{k!r} has more than one key: {v!r}")
 
 
+def test_quoted_name_is_standard():
+    assert token.STANDARD_TYPES[token.Name.Quoted] == 'nq'
+
+
 def test_copying():
     # Token instances are supposed to be singletons, so copying or even
     # deepcopying should return themselves

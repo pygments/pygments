@@ -10,9 +10,37 @@ import pytest
 
 from pygments.lexers.sql import name_between_bracket_re, \
     name_between_backtick_re, tsql_go_re, tsql_declare_re, \
-    tsql_variable_re, MySqlLexer, TransactSqlLexer
+    tsql_variable_re, MySqlLexer, PostgresLexer, TransactSqlLexer
 
-from pygments.token import Comment, Name, Number, Punctuation, Whitespace
+from pygments.token import Comment, Name, Number, Punctuation, String, Whitespace
+
+
+@pytest.mark.parametrize('source', [
+    '"hello"', '"select"', '"with space"', '"a""b"', '"한국어"',
+    '"a\\b"', '"line\nbreak"', '""', 'U&"d\\0061t"', 'u&"d\\0061t"',
+    '"unterminated', '"',
+])
+def test_postgres_quoted_identifiers(source):
+    tokens = list(PostgresLexer().get_tokens_unprocessed(source))
+    assert ''.join(value for _, _, value in tokens) == source
+    position = 0
+    for index, _, value in tokens:
+        assert index == position
+        position += len(value)
+    if source[:2].upper() == 'U&':
+        assert tokens.pop(0) == (0, String.Affix, source[:2])
+    assert tokens
+    assert all(token is Name.Quoted for _, token, _ in tokens)
+
+
+def test_postgres_quoted_names_are_distinct_from_strings():
+    source = 'SELECT "column", \'value\', E\'escaped\', U&\'unicode\';'
+    tokens = list(PostgresLexer().get_tokens_unprocessed(source))
+    assert ''.join(value for _, _, value in tokens) == source
+    assert ''.join(value for _, token, value in tokens
+                   if token is Name.Quoted) == '"column"'
+    assert ''.join(value for _, token, value in tokens
+                   if token is String.Single) == "'value''escaped''unicode'"
 
 
 @pytest.fixture(scope='module')

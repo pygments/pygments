@@ -15,7 +15,7 @@ from os import path
 import pytest
 
 from pygments.formatters import HtmlFormatter, NullFormatter
-from pygments.lexers import PythonLexer
+from pygments.lexers import GoogleSqlLexer, MySqlLexer, PostgresLexer, PythonLexer
 from pygments.style import Style
 from pygments.token import Name, Token
 from pygments.util import html_escape
@@ -59,6 +59,34 @@ def test_quotes_in_token_text_are_not_escaped():
     assert '&#x27;' not in output
     assert '&amp;' in output      # ampersand is still escaped
     assert '&lt;d&gt;' in output  # angle brackets are still escaped
+
+
+@pytest.mark.parametrize('lexer, source', [
+    (PostgresLexer(), '"column"'),
+    (MySqlLexer(), '`column`'),
+    (GoogleSqlLexer(), '`column`'),
+])
+def test_quoted_name_css(lexer, source):
+    class QuotedNameStyle(Style):
+        styles = {Name.Quoted: '#123456'}
+
+    formatter = HtmlFormatter(nowrap=True, style=QuotedNameStyle)
+    output = StringIO()
+    formatter.format(lexer.get_tokens(source), output)
+    assert f'<span class="nq">{source}</span>' in output.getvalue()
+    assert '.nq { color: #123456 }' in formatter.get_style_defs()
+
+
+@pytest.mark.parametrize('lexer', [MySqlLexer(), GoogleSqlLexer()])
+def test_quoted_name_escape_css(lexer):
+    class QuotedNameStyle(Style):
+        styles = {Name.Quoted: '#123456'}
+
+    formatter = HtmlFormatter(nowrap=True, style=QuotedNameStyle)
+    output = StringIO()
+    formatter.format(lexer.get_tokens('`a``b`'), output)
+    assert '<span class="nq nq-Escape">``</span>' in output.getvalue()
+    assert '.nq { color: #123456 }' in formatter.get_style_defs()
 
 
 def test_external_css():
