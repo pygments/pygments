@@ -1366,4 +1366,33 @@
 ';'           Punctuation
 ' '           Text.Whitespace
 '-- of add32csa' Comment.Single
+'\n\n  '      Text.Whitespace
+'-- extended identifiers (VHDL-93): delimited by backslashes,' Comment.Single
+'\n  '        Text.Whitespace
+'-- may contain any printing characters' Comment.Single
+'\n  '        Text.Whitespace
+'\\Buffer\\'  Name
+' '           Text.Whitespace
+'<'           Operator
+'='           Operator
+' '           Text.Whitespace
+'\\1st value\\' Name
+';'           Punctuation
+'\n  '        Text.Whitespace
+'signal'      Keyword
+' '           Text.Whitespace
+'\\a b\\'     Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'std_logic'   Keyword.Type
+';'           Punctuation
+'\n  '        Text.Whitespace
+'\\weird!id\\' Name
+' '           Text.Whitespace
+'<'           Operator
+'='           Operator
+' '           Text.Whitespace
+"'0'"         Literal.String.Char
+';'           Punctuation
 '\n'          Text.Whitespace

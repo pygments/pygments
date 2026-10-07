@@ -386,6 +386,7 @@ class VhdlLexer(RegexLexer):
         'root': [
             (r'\s+', Whitespace),
             (r'(\\)(\n)', bygroups(String.Escape, Whitespace)),  # line continuation
+            (r'\\[^\\\n]*?\\', Name),  # extended identifier (VHDL-93)
             (r'--.*?$', Comment.Single),
             (r'/(\\\n)?[*][\s\S]*?[*](\\\n)?/', Comment.Multiline),
             (r"'(U|X|0|1|Z|W|L|H|-)'", String.Char),
