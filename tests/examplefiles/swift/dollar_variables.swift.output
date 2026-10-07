@@ -1,0 +1,69 @@
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'values'      Name.Variable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'3'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+']'           Punctuation
+'\n'          Text
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'sorted'      Name.Variable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'values'      Name
+'.'           Punctuation
+'sorted'      Name.Builtin.Pseudo
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'$0'          Name.Variable
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'$1'          Name.Variable
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text
+
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'$x'          Name.Variable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'foo'         Literal.String
+'"'           Literal.String
+'\n'          Text
+
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'$result'     Name.Variable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'$x'          Name.Variable
+'\n'          Text
+
+'$R0'         Name.Variable
+':'           Punctuation
+' '           Text.Whitespace
+'Int'         Name.Builtin
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'\n'          Text
