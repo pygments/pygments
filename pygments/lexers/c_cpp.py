@@ -36,7 +36,7 @@ class CFamilyLexer(RegexLexer):
     # This includes decimal separators matching.
     _decpart = r'\d(\'?\d)*'
     # Integer literal suffix (e.g. 'ull' or 'll').
-    _intsuffix = r'(([uU]?[zZ])|([zZ][uU])|([uU][lL]{0,2})|([lL]{1,2}[uU]?))?'
+    _intsuffix = r'(([uU][zZ])|([zZ][uU]?)|([uU][lL]{0,2})|([lL]{1,2}[uU]?))?'
 
     # Identifier regex with C and C++ Universal Character Name (UCN) support.
     _ident = r'(?!\d)(?:[\w$]|\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8})+'
@@ -93,7 +93,7 @@ class CFamilyLexer(RegexLexer):
             (r'(-)?(' + _decpart + r'\.' + _decpart + r'|\.' + _decpart + r'|' +
              _decpart + r')[eE][+-]?' + _decpart + r'[fFlL]?', Number.Float),
             (r'(-)?((' + _decpart + r'\.(' + _decpart + r')?|\.' +
-             _decpart + r')[fFlL]?)|(' + _decpart + r'[fFlL])', Number.Float),
+             _decpart + r')[fFlL]?)|(' + _decpart + r'[fF])', Number.Float),
             (r'(-)?0[xX]' + _hexpart + _intsuffix, Number.Hex),
             (r'(-)?0[bB][01](\'?[01])*' + _intsuffix, Number.Bin),
             (r'(-)?0(\'?[0-7])+' + _intsuffix, Number.Oct),

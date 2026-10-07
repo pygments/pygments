@@ -9,6 +9,12 @@
 '<iostream>'  Comment.PreprocFile
 '\n'          Comment.Preproc
 
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'<cstddef>'   Comment.PreprocFile
+'\n'          Comment.Preproc
+
 '\n'          Text.Whitespace
 
 'int'         Keyword.Type
@@ -132,6 +138,112 @@
 ':'           Operator
 ':'           Operator
 'endl'        Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'long'        Keyword.Type
+' '           Text.Whitespace
+'i1'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'12l'         Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'long'        Keyword.Type
+' '           Text.Whitespace
+'i2'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'12L'         Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'std'         Name
+':'           Operator
+':'           Operator
+'size_t'      Keyword.Type
+' '           Text.Whitespace
+'i3'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'12z'         Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'std'         Name
+':'           Operator
+':'           Operator
+'size_t'      Keyword.Type
+' '           Text.Whitespace
+'i4'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'12Z'         Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'float'       Keyword.Type
+' '           Text.Whitespace
+'f1'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'12f'         Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'float'       Keyword.Type
+' '           Text.Whitespace
+'f2'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'12F'         Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'long'        Keyword.Type
+' '           Text.Whitespace
+'double'      Keyword.Type
+' '           Text.Whitespace
+'d1'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'12.0l'       Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'long'        Keyword.Type
+' '           Text.Whitespace
+'double'      Keyword.Type
+' '           Text.Whitespace
+'d2'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'12.0L'       Literal.Number.Float
 ';'           Punctuation
 '\n'          Text.Whitespace
 
