@@ -1,0 +1,50 @@
+---input---
+GET / HTTP/2.0
+:method: GET
+:scheme: https
+:authority: example.com
+:path: /route?q=a:b
+
+{}
+
+---tokens---
+'GET'         Name.Function
+' '           Text
+'/'           Name.Namespace
+' '           Text
+'HTTP'        Keyword.Reserved
+'/'           Operator
+'2.0'         Literal.Number
+'\n'          Text
+
+':method'     Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'GET'         Literal
+'\n'          Text
+
+':scheme'     Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'https'       Literal
+'\n'          Text
+
+':authority'  Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'example.com' Literal
+'\n'          Text
+
+':path'       Name.Attribute
+''            Text
+':'           Operator
+' '           Text
+'/route?q=a:b' Literal
+'\n'          Text
+
+'\n'          Text
+
+'{}\n'        Text
