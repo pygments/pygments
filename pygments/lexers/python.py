@@ -119,8 +119,13 @@ class PythonLexer(RegexLexer):
             (r'^(lazy)((?:\s|\\\s)+)(import)((?:\s|\\\s)+)',
              bygroups(Keyword.Namespace, Whitespace, Keyword.Namespace, Whitespace),
              'import'),
-            (r'(from)((?:\s|\\\s)+)', bygroups(Keyword.Namespace, Whitespace),
-             'fromimport'),
+            # ``from`` only starts an import when an ``import`` keyword follows
+            # on the same logical line (line continuations included, comments
+            # and further statements excluded).  Otherwise it is a plain
+            # keyword, e.g. exception chaining: ``raise X from cause``.
+            (r'(from)((?:\s|\\\s)+)(?=(?:\\\r?\n|[^\n#;])*\bimport\b)',
+             bygroups(Keyword.Namespace, Whitespace), 'fromimport'),
+            (r'from\b', Keyword),
             (r'(import)((?:\s|\\\s)+)', bygroups(Keyword.Namespace, Whitespace),
              'import'),
             include('expr'),
@@ -347,8 +352,7 @@ class PythonLexer(RegexLexer):
         'fromimport': [
             (r'(\s+)(import)\b', bygroups(Whitespace, Keyword.Namespace), '#pop'),
             (r'\.', Name.Namespace),
-            # if None occurs here, it's "raise x from None", since None can
-            # never be a module name
+            # ``None`` can never be a module name.
             (r'None\b', Keyword.Constant, '#pop'),
             (uni_name, Name.Namespace),
             default('#pop'),
@@ -470,8 +474,12 @@ class Python2Lexer(RegexLexer):
             include('keywords'),
             (r'(def)((?:\s|\\\s)+)', bygroups(Keyword, Whitespace), 'funcname'),
             (r'(class)((?:\s|\\\s)+)', bygroups(Keyword, Whitespace), 'classname'),
-            (r'(from)((?:\s|\\\s)+)', bygroups(Keyword.Namespace, Whitespace),
-             'fromimport'),
+            # ``from`` only starts an import when an ``import`` keyword follows
+            # on the same logical line; otherwise it is a plain keyword, as in
+            # exception chaining: ``raise X from cause``.
+            (r'(from)((?:\s|\\\s)+)(?=(?:\\\r?\n|[^\n#;])*\bimport\b)',
+             bygroups(Keyword.Namespace, Whitespace), 'fromimport'),
+            (r'from\b', Keyword),
             (r'(import)((?:\s|\\\s)+)', bygroups(Keyword.Namespace, Whitespace),
              'import'),
             include('builtins'),
@@ -604,13 +612,9 @@ class Python2Lexer(RegexLexer):
         'fromimport': [
             (r'(?:[ \t]|\\\n)+', Text),
             (r'import\b', Keyword.Namespace, '#pop'),
-            # if None occurs here, it's "raise x from None", since None can
-            # never be a module name
+            # ``None`` can never be a module name.
             (r'None\b', Name.Builtin.Pseudo, '#pop'),
-            # sadly, in "raise x from y" y will be highlighted as namespace too
             (r'[a-zA-Z_.][\w.]*', Name.Namespace),
-            # anything else here also means "raise x from y" and is therefore
-            # not an error
             default('#pop'),
         ],
         'stringescape': [
