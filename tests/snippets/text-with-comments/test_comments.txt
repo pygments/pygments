@@ -1,0 +1,28 @@
+---input---
+text # inline comment
+# full line comment
+#full line comment
+text#invalid inline comment
+text #inline comment
+text# invalid inline comment
+
+---tokens---
+'text '       Text
+'# inline comment' Comment.Single
+'\n'          Text.Whitespace
+
+'# full line comment' Comment.Single
+'\n'          Text.Whitespace
+
+'#full line comment' Comment.Single
+'\n'          Text.Whitespace
+
+'text#invalid inline comment' Text
+'\n'          Text.Whitespace
+
+'text '       Text
+'#inline comment' Comment.Single
+'\n'          Text.Whitespace
+
+'text# invalid inline comment' Text
+'\n'          Text.Whitespace
