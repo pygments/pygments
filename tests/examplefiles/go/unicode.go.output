@@ -1,6 +1,6 @@
 'package'     Keyword.Namespace
 ' '           Text.Whitespace
-'main'        Name.Other
+'main'        Name.Namespace
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -14,7 +14,7 @@
 
 'func'        Keyword.Declaration
 ' '           Text.Whitespace
-'main'        Name.Other
+'main'        Name.Function
 '('           Punctuation
 ')'           Punctuation
 ' '           Text.Whitespace
@@ -22,7 +22,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'世界'          Name.Other
+'世界'          Name
 ' '           Text.Whitespace
 ':='          Operator
 ' '           Text.Whitespace
@@ -30,7 +30,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'さようなら'       Name.Other
+'さようなら'       Name
 ' '           Text.Whitespace
 ':='          Operator
 ' '           Text.Whitespace
@@ -38,20 +38,20 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'fmt'         Name.Other
+'fmt'         Name
 '.'           Punctuation
-'Println'     Name.Other
+'Println'     Name
 '('           Punctuation
-'世界'          Name.Other
+'世界'          Name
 ')'           Punctuation
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'fmt'         Name.Other
+'fmt'         Name
 '.'           Punctuation
-'Println'     Name.Other
+'Println'     Name
 '('           Punctuation
-'さようなら'       Name.Other
+'さようなら'       Name
 ')'           Punctuation
 '\n'          Text.Whitespace
 

@@ -36,7 +36,7 @@
 
 '\n'          Text.Whitespace
 
-'extern'      Keyword
+'extern'      Keyword.Declaration
 ' '           Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
@@ -52,7 +52,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'stringBuffer' Name
 '*'           Operator
@@ -61,7 +61,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'stringBuffer' Name
 '*'           Operator
@@ -70,7 +70,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'stringBuffer' Name
 '*'           Operator
@@ -79,7 +79,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'stringBuffer' Name
 '*'           Operator
@@ -88,7 +88,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'stringBuffer' Name
 '*'           Operator
@@ -99,7 +99,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -107,7 +107,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -115,7 +115,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -123,7 +123,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -133,7 +133,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -141,7 +141,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -149,7 +149,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -159,7 +159,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -171,7 +171,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -196,7 +196,7 @@
 
 '\n'          Text.Whitespace
 
-'extern'      Keyword
+'extern'      Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 '*'           Operator
@@ -212,7 +212,7 @@
 '/* forward declarations */' Comment.Multiline
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
@@ -1817,7 +1817,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
@@ -2185,7 +2185,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'ID'          Name
 ' '           Text.Whitespace
@@ -2216,7 +2216,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 ' '           Text.Whitespace
@@ -2226,7 +2226,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -2270,7 +2270,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'inline'      Keyword.Reserved
 ' '           Text.Whitespace
@@ -2290,7 +2290,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 ' '           Text.Whitespace
@@ -2300,7 +2300,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'long'        Keyword.Type
 ' '           Text.Whitespace
@@ -2309,7 +2309,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'register'    Keyword
+'register'    Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 ' '           Text.Whitespace
@@ -2359,7 +2359,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'inline'      Keyword.Reserved
 ' '           Text.Whitespace
@@ -2470,7 +2470,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'void'        Keyword.Type
 '\n'          Text.Whitespace
@@ -2672,7 +2672,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -2740,7 +2740,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 ' '           Text.Whitespace
@@ -2751,7 +2751,7 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -2856,7 +2856,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -2944,7 +2944,7 @@
 ' '           Text.Whitespace
 '*'           Operator
 ' '           Text.Whitespace
-'sizeof'      Keyword
+'sizeof'      Operator.Word
 '('           Punctuation
 'VALUE'       Name
 ')'           Punctuation
@@ -3365,7 +3365,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 ' '           Text.Whitespace
@@ -3680,7 +3680,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 ' '           Text.Whitespace
@@ -3791,7 +3791,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -3999,7 +3999,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -4260,7 +4260,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -4309,7 +4309,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -4405,7 +4405,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 ' '           Text.Whitespace
@@ -4430,7 +4430,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -4720,7 +4720,7 @@
 '('           Punctuation
 'long'        Keyword.Type
 ')'           Punctuation
-'sizeof'      Keyword
+'sizeof'      Operator.Word
 '('           Punctuation
 'VALUE'       Name
 ')'           Punctuation
@@ -5007,7 +5007,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -5393,7 +5393,7 @@
 '('           Punctuation
 'long'        Keyword.Type
 ')'           Punctuation
-'sizeof'      Keyword
+'sizeof'      Operator.Word
 '('           Punctuation
 'VALUE'       Name
 ')'           Punctuation
@@ -5599,7 +5599,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -5806,7 +5806,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -5985,7 +5985,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -6278,7 +6278,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -6555,7 +6555,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -6992,7 +6992,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -7179,7 +7179,7 @@
 "/* faster version - use this if you don't need to treat negative offset */" Comment.Multiline
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'inline'      Keyword.Reserved
 ' '           Text.Whitespace
@@ -7379,7 +7379,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -8078,7 +8078,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -8131,7 +8131,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -8268,7 +8268,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -8412,7 +8412,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -8715,7 +8715,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -8970,7 +8970,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -9371,7 +9371,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'void'        Keyword.Type
 '\n'          Text.Whitespace
@@ -10181,7 +10181,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -10368,7 +10368,7 @@
 '\t'          Text.Whitespace
 'goto'        Keyword
 ' '           Text.Whitespace
-'fixnum'      Name
+'fixnum'      Name.Label
 ';'           Punctuation
 '\n'          Text.Whitespace
 
@@ -10508,7 +10508,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -10828,7 +10828,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -10918,7 +10918,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -11047,7 +11047,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -11094,7 +11094,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -11273,7 +11273,7 @@
 
 '\n'          Text.Whitespace
 
-'extern'      Keyword
+'extern'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 ' '           Text.Whitespace
@@ -11283,7 +11283,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -11912,7 +11912,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -12097,7 +12097,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -12352,7 +12352,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -12428,7 +12428,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -12526,7 +12526,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -12743,7 +12743,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -12784,7 +12784,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -12858,7 +12858,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'void'        Keyword.Type
 '\n'          Text.Whitespace
@@ -12953,7 +12953,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 '\n'          Text.Whitespace
@@ -13066,7 +13066,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 '\n'          Text.Whitespace
@@ -13333,7 +13333,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -13429,7 +13429,7 @@
 'len'         Name
 ','           Punctuation
 ' '           Text.Whitespace
-'sizeof'      Keyword
+'sizeof'      Operator.Word
 '('           Punctuation
 'VALUE'       Name
 ')'           Punctuation
@@ -13464,7 +13464,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -13667,7 +13667,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -13842,7 +13842,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -14298,7 +14298,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace
@@ -14378,7 +14378,7 @@
 
 '\n'          Text.Whitespace
 
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'VALUE'       Name
 '\n'          Text.Whitespace

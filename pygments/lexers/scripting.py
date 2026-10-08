@@ -70,7 +70,7 @@ class LuaLexer(RegexLexer):
     tokens = {
         'root': [
             # Lua allows a file to start with a shebang.
-            (r'#!.*', Comment.Preproc),
+            (r'#!.*', Comment.Hashbang),
             default('base'),
         ],
         'ws': [
@@ -103,7 +103,7 @@ class LuaLexer(RegexLexer):
             (r'local\b', Keyword.Declaration),
             (r'(true|false|nil)\b', Keyword.Constant),
 
-            (r'function\b', Keyword.Reserved, 'funcname'),
+            (r'function\b', Keyword.Declaration, 'funcname'),
 
             (words(all_lua_builtins(), suffix=r'\b'), Name.Builtin),
             (fr'[A-Za-z_]\w*(?={_s_la}*\()', Name.Function),
@@ -230,6 +230,7 @@ def _luau_make_expression_special(should_pop):
     if should_pop:
         return temp_list
     return [(entry[0], entry[1], entry[2][1:]) for entry in temp_list]
+
 
 class LuauLexer(RegexLexer):
     """
@@ -512,6 +513,7 @@ class LuauLexer(RegexLexer):
                 continue
             yield index, token, value
 
+
 class MoonScriptLexer(LuaLexer):
     """
     For MoonScript source code.
@@ -526,7 +528,7 @@ class MoonScriptLexer(LuaLexer):
 
     tokens = {
         'root': [
-            (r'#!(.*?)$', Comment.Preproc),
+            (r'#!(.*?)$', Comment.Hashbang),
             default('base'),
         ],
         'base': [

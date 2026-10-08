@@ -8,7 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, bygroups, words
+from pygments.lexer import RegexLexer, bygroups, words, using, this
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Whitespace
 
@@ -26,6 +26,8 @@ class GoLexer(RegexLexer):
     mimetypes = ['text/x-gosrc']
     version_added = '1.2'
 
+    __ident = r'[^\W\d]\w*'
+
     tokens = {
         'root': [
             (r'\n', Whitespace),
@@ -33,12 +35,17 @@ class GoLexer(RegexLexer):
             (r'(\\)(\n)', bygroups(Text, Whitespace)),  # line continuations
             (r'//(.*?)$', Comment.Single),
             (r'/(\\\n)?[*][\s\S]*?[*](\\\n)?/', Comment.Multiline),
-            (r'(import|package)\b', Keyword.Namespace),
-            (r'(var|func|struct|type|interface|const)\b',
+            (r'(package)\b', Keyword.Namespace, 'packagename'),
+            (r'(import)\b', Keyword.Namespace),
+            (r'(func)\b', Keyword.Declaration, 'funcdef'),
+            (r'(type)\b', Keyword.Declaration, 'typedef'),
+            (r'(var|struct|interface|const)\b',
              Keyword.Declaration),
+            (r'(goto|break|continue)(\b\s*)(' + __ident + ')?',
+             bygroups(Keyword, Text.Whitespace, Name.Label)),
             (words((
                 'break', 'default', 'select', 'case', 'defer', 'go',
-                'else', 'goto', 'switch', 'fallthrough', 'if', 'range',
+                'else', 'switch', 'fallthrough', 'if', 'range',
                 'continue', 'for', 'return'), suffix=r'\b'),
              Keyword),
             (r'(true|false|iota|nil)\b', Keyword.Constant),
@@ -82,10 +89,28 @@ class GoLexer(RegexLexer):
             # -- interpreted_string_lit
             (r'"(\\\\|\\[^\\]|[^"\\])*"', String),
             # Tokens
-            (r'(<<=|>>=|<<|>>|<=|>=|&\^=|&\^|\+=|-=|\*=|/=|%=|&=|\|=|\^=|&&|\|\|'
-             r'|<-|\+\+|--|==|!=|:=|[+\-*/%&!=<>|^])', Operator),
+            (r'(&\^=?|<-|<<=?|>>=?|&&|\|\||\+\+|--|[+\-*/%=!<>&|^]=?|:=|~)', Operator),
             (r'(\.\.\.|[()\[\]{}.,;:~])', Punctuation),
             # identifier
-            (r'[^\W\d]\w*', Name.Other),
+            (__ident, Name),
+        ],
+
+        'funcdef': [
+            (r'\s+', Whitespace),
+            (__ident, Name.Function, '#pop'),
+            (fr'(\()([^)]+)(\))(?=\s+{__ident})',  # Method syntax
+             bygroups(Punctuation, using(this), Punctuation)),
+            (r'\(', Punctuation, '#pop'),  # Lambda
+        ],
+
+        'packagename': [
+            (r'\s+', Whitespace),
+            (__ident, Name.Namespace, '#pop'),
+        ],
+
+        'typedef': [
+            (r'\s+', Whitespace),
+            (__ident, Name.Class, '#pop'),
+            (r'[{\(]', Punctuation, '#pop'),
         ]
     }

@@ -35,7 +35,7 @@
 'maybe_unused' Name.Attribute
 ']]'          Punctuation
 ' '           Text.Whitespace
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -55,7 +55,7 @@
 ' '           Text.Whitespace
 'fatalError'  Name
 '('           Punctuation
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'char'        Keyword.Type
 '*'           Operator

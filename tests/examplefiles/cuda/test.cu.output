@@ -66,13 +66,13 @@
 
 '__global__'  Keyword.Reserved
 ' '           Text.Whitespace
-'static'      Keyword
+'static'      Keyword.Declaration
 ' '           Text.Whitespace
 'void'        Keyword.Type
 ' '           Text.Whitespace
 'reduction'   Name
 '('           Punctuation
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'float'       Keyword.Type
 '*'           Operator
@@ -102,7 +102,7 @@
 '// __shared__ float shared[2 * blockDim.x];\n' Comment.Single
 
 '    '        Text.Whitespace
-'extern'      Keyword
+'extern'      Keyword.Declaration
 ' '           Text.Whitespace
 '__shared__'  Keyword.Type
 ' '           Text.Whitespace
@@ -117,7 +117,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -132,7 +132,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'const'       Keyword
+'const'       Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -355,7 +355,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'constexpr'   Keyword
+'constexpr'   Keyword.Declaration
 ' '           Text.Whitespace
 'int'         Keyword.Type
 ' '           Text.Whitespace
@@ -368,7 +368,7 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'auto'        Keyword
+'auto'        Keyword.Declaration
 ' '           Text.Whitespace
 'idx'         Name
 ' '           Text.Whitespace
