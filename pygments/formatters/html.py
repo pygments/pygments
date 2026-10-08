@@ -343,6 +343,22 @@ class HtmlFormatter(Formatter):
 
         .. versionadded:: 2.4
 
+    `langclass`
+        If set to a language name, e.g. ``python``, the wrapping ``<div>``
+        tag will get an additional CSS class of ``language-python``. This
+        follows the convention used by tools such as highlight.js, Prism and
+        CommonMark, and allows JavaScript syntax highlighters or other
+        client-side tooling to detect the source language of an
+        already-highlighted code block (default: ``''``).
+
+        Since a `Formatter` is not given any information about the `Lexer`
+        that produced its token stream, this must be supplied explicitly by
+        the caller, e.g.::
+
+            formatter = HtmlFormatter(langclass=lexer.aliases[0])
+
+        .. versionadded:: 2.22
+
     `debug_token_types`
         Add ``title`` attributes to all token ``<span>`` tags that show the
         name of the token.
@@ -418,6 +434,7 @@ class HtmlFormatter(Formatter):
         self.tagurlformat = self._decodeifneeded(options.get('tagurlformat', ''))
         self.filename = html_escape(self._decodeifneeded(options.get('filename', '')))
         self.wrapcode = get_bool_opt(options, 'wrapcode', False)
+        self.langclass = html_escape(self._decodeifneeded(options.get('langclass', '')))
         self.span_element_openers = {}
         self.debug_token_types = get_bool_opt(options, 'debug_token_types', False)
 
@@ -789,7 +806,14 @@ class HtmlFormatter(Formatter):
             style.append(self.cssstyles)
         style = '; '.join(style)
 
-        yield 0, ('<div' + (self.cssclass and f' class="{self.cssclass}"') +
+        classes = []
+        if self.cssclass:
+            classes.append(self.cssclass)
+        if self.langclass:
+            classes.append(f'language-{self.langclass}')
+        cls = ' '.join(classes)
+
+        yield 0, ('<div' + (cls and f' class="{cls}"') +
                   (style and (f' style="{style}"')) + '>')
         yield from inner
         yield 0, '</div>\n'

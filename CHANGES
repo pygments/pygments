@@ -7,6 +7,10 @@ Version 2.22.0
 --------------
 (not released yet)
 
+- HtmlFormatter: Add a `langclass` option to emit a `language-<lang>`
+  CSS class on the wrapping `<div>`, matching the convention used by
+  highlight.js/Prism/CommonMark (#1844)
+
 Version 2.21.0
 ---------------
 (released August 17th, 2026)
