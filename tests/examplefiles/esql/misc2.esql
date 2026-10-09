@@ -1,0 +1,119 @@
+/* STATS Command and Ext. */
+FROM employees
+| EVAL height * 3.281
+| STATS avg_height_feet = AVG(`height * 3.281`)
+| KEEP first_name, last_name, height
+| RENAME first_name AS fn
+| RENAME last_name AS ln
+| SORT first_name ASC NULLS FIRST
+
+FROM employees
+| STATS COUNT(*) BY birth_window=ROUND_TO(
+    birth_date,
+    "1900-01-01T00:00:00Z"::DATETIME,
+    "1950-01-01T00:00:00Z"::DATETIME,
+    "1955-01-01T00:00:00Z"::DATETIME,
+    "1960-01-01T00:00:00Z"::DATETIME,
+    "1965-01-01T00:00:00Z"::DATETIME,
+    "1970-01-01T00:00:00Z"::DATETIME,
+    "1975-01-01T00:00:00Z"::DATETIME
+)
+| SORT birth_window ASC
+
+
+/* Functions */
+FROM airports
+| WHERE country == "India"
+| STATS extent = ST_EXTENT_AGG(location)
+
+FROM airport_city_boundaries
+| WHERE abbrev == "CPH"
+| EVAL envelope = ST_ENVELOPE(city_boundary)
+| EVAL xmin = ST_XMIN(envelope), xmax = ST_XMAX(envelope), ymin = ST_YMIN(envelope), ymax = ST_YMAX(envelope)
+| KEEP abbrev, airport, xmin, xmax, ymin, ymax
+
+// Not functional but grammatically correct in order to test:
+// MATCH_PHRASE, KQL
+// DATE casting
+FROM books-db
+| WHERE MATCH_PHRASE(author, "William Faulkner")
+| WHERE KQL("title: Wind") OR KQL("""NOT title: Faulkner""")
+| EVAL date = book.date_string::DATE
+
+
+/* LOOKUP JOIN Command */
+FROM firewall_logs
+| LOOKUP JOIN threat_list ON source.ip
+| WHERE threat_level IS NOT NULL
+| SORT timestamp
+| KEEP source.ip, action, threat_type, threat_level
+| LIMIT 10
+
+
+/* TO_DATE_NANOS Function */
+FROM date_nanos
+| WHERE MV_MIN(nanos) < TO_DATE_NANOS("2023-10-23T12:27:28.948Z")
+    AND millis > "2000-01-01"
+| SORT nanos DESC
+
+
+/* SAMPLE Function */
+FROM employees
+| STATS sample = SAMPLE(gender, 5)
+
+/* SAMPLE Command */
+SAMPLE probability
+
+FROM employees
+| KEEP emp_no
+| SAMPLE 0.05
+
+
+/* Not FROM Processing Commands */
+COMPLETION [column =] prompt WITH my_inference_endpoint
+// ES|QL 9.2 version pretest
+COMPLETION [column =] prompt WITH { "inference_id" : "my_inference_endpoint" }
+
+CHANGE_POINT value ON key AS type_name, pvalue_name
+
+
+/* Source Commands */
+SHOW item
+SHOW INFO
+
+ROW a = 1, b = "two", c = null
+ROW a = [2, 1]
+ROW a = ROUND(1.23, 0)
+
+ROW ver = CONCAT(("0"::INT + 1)::STRING, ".2.3")::VERSION
+
+ROW a = 1, b = 4, c = 3
+| WHERE c-a IN (3, b / 2, a)
+
+ROW end_23 = TO_DATETIME("2023-12-31T23:59:59.999Z"),
+  start_24 = TO_DATETIME("2024-01-01T00:00:00.000Z"),
+    end_24 = TO_DATETIME("2024-12-31T23:59:59.999")
+| EVAL end23_to_start24 = DATE_DIFF("year", end_23, start_24)
+| EVAL end23_to_end24   = DATE_DIFF("year", end_23, end_24)
+| EVAL start_to_end_24  = DATE_DIFF("year", start_24, end_24)
+
+
+/* Processing Commands */
+FROM books
+| WHERE MATCH(title, "Hobbit Back Again", {"operator": "AND"})
+| KEEP title
+
+FROM sample_data
+| WHERE message != "Connection error"
+| EVAL md5 = hash("md5", message), sha256 = hash("sha256", message), sha1 = SHA1(message)
+| KEEP message, md5, sha256, sha1
+
+FROM employees
+| EVAL type = CASE(
+    languages <= 1, "monolingual",
+    languages <= 2, "bilingual",
+     "polyglot")
+| KEEP emp_no, languages, type
+
+FROM sample_data
+| STATS count=COUNT() BY category=CATEGORIZE(message)
