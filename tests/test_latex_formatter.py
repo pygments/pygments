@@ -107,6 +107,43 @@ def test_embedded_lexer():
     ]
 
 
+def test_escapeinside_outside_comments():
+    # gh-2759: fed by a plain lexer, the formatter only looked for the
+    # delimiters inside comments. the command line got the rest from
+    # LatexEmbeddedLexer, and the docs promised it everywhere but strings
+    src = dedent("""\
+    y = mul(x, |$z^2$|)  # a |$z$| in a comment
+    s = '|$z$|'
+    """)
+    out = StringIO()
+    LatexFormatter(escapeinside='||', nowrap=True).format(
+        PythonLexer().get_tokens(src), out)
+    result = out.getvalue()
+
+    assert r'\PY{esc}{$z^2$}' in result
+    assert r'\PYZsh{} a $z$ in a comment' in result
+    assert r'|\PYZdl{}z\PYZdl{}|' in result
+
+
+def test_escapeinside_matches_the_embedded_lexer():
+    # the command line wraps the lexer in LatexEmbeddedLexer, both ways
+    # have to produce the same document
+    src = dedent("""\
+    y = mul(x, |$z^2$|) | 3  # these |pipes| too
+    z = |\\alpha| + a|b
+    """)
+    fmt = LatexFormatter(escapeinside='||', nowrap=True)
+
+    plain = StringIO()
+    fmt.format(PythonLexer().get_tokens(src), plain)
+    embedded = StringIO()
+    fmt.format(LatexEmbeddedLexer('|', '|', PythonLexer()).get_tokens(src),
+               embedded)
+
+    assert plain.getvalue() == embedded.getvalue()
+    assert r'\PY{esc}{\alpha}' in plain.getvalue()
+
+
 def test_embedded_lexer_inherits_options():
     # gh-2975: wrapping a lexer in LatexEmbeddedLexer (as the command line
     # does when `escapeinside` is set) must not override the wrapped lexer's
