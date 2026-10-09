@@ -1,0 +1,122 @@
+---input---
+x = 1234.5678_wp
+x = 1234.5678
+x = 10E10
+x = 1.0_dp
+x = 1.0e3_8
+x = 1.0d0
+x = 12d3
+x = 1.5D-3_dp
+x = 123_8
+x = 42_int64
+x = 1.0_16
+x = 7_16
+x = .5_sp
+x = 3.
+x = 0
+
+---tokens---
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1234.5678_wp' Literal.Number.Float
+'\n'          Text.Whitespace
+
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1234.5678'   Literal.Number.Float
+'\n'          Text.Whitespace
+
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'10E10'       Literal.Number.Float
+'\n'          Text.Whitespace
+
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1.0_dp'      Literal.Number.Float
+'\n'          Text.Whitespace
+
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1.0e3_8'     Literal.Number.Float
+'\n'          Text.Whitespace
+
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1.0d0'       Literal.Number.Float
+'\n'          Text.Whitespace
+
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'12d3'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1.5D-3_dp'   Literal.Number.Float
+'\n'          Text.Whitespace
+
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'123_8'       Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'42_int64'    Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1.0_16'      Literal.Number.Float
+'\n'          Text.Whitespace
+
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'7_16'        Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'.5_sp'       Literal.Number.Float
+'\n'          Text.Whitespace
+
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'3.'          Literal.Number.Float
+'\n'          Text.Whitespace
+
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace

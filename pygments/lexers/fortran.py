@@ -94,7 +94,7 @@ class FortranLexer(RegexLexer):
 
             (r'(::)', Keyword.Declaration),
 
-            (r'[()\[\],:&%;.]', Punctuation),
+            (r'[()\[\],:&%;]|\.(?!\d)', Punctuation),
             # Intrinsics
             (words((
                 'Abort', 'Abs', 'Access', 'AChar', 'ACos', 'ACosH', 'AdjustL',
@@ -161,10 +161,10 @@ class FortranLexer(RegexLexer):
         ],
 
         'nums': [
-            (r'\d+(?![.e])(_([1-9]|[a-z]\w*))?', Number.Integer),
-            (r'[+-]?\d*\.\d+([ed][-+]?\d+)?(_([1-9]|[a-z]\w*))?', Number.Float),
-            (r'[+-]?\d+\.\d*([ed][-+]?\d+)?(_([1-9]|[a-z]\w*))?', Number.Float),
-            (r'[+-]?\d+(\.\d*)?[ed][-+]?\d+(_([1-9]|[a-z]\w*))?', Number.Float),
+            (r'\d+(?![.ed\d])(_(\d+|[a-z]\w*))?', Number.Integer),
+            (r'[+-]?\d*\.\d+([ed][-+]?\d+)?(_(\d+|[a-z]\w*))?', Number.Float),
+            (r'[+-]?\d+\.\d*([ed][-+]?\d+)?(_(\d+|[a-z]\w*))?', Number.Float),
+            (r'[+-]?\d+(\.\d*)?[ed][-+]?\d+(_(\d+|[a-z]\w*))?', Number.Float),
         ],
     }
 

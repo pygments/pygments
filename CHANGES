@@ -7,6 +7,11 @@ Version 2.22.0
 --------------
 (not released yet)
 
+- Updated lexers:
+
+  * Fortran: Recognize a numeric literal with an exponent, a kind suffix, or a
+    leading decimal point as one number token (#1176)
+
 Version 2.21.0
 ---------------
 (released August 17th, 2026)
