@@ -14,13 +14,43 @@ from textwrap import dedent
 
 import pytest
 
+from pygments import highlight
 from pygments.formatters import LatexFormatter
 from pygments.formatters.latex import LatexEmbeddedLexer
-from pygments.lexers import PythonLexer, PythonConsoleLexer
+from pygments.lexers import CLexer, CppLexer, PythonLexer, PythonConsoleLexer
 from pygments.token import Token
 
 TESTDIR = path.dirname(path.abspath(__file__))
 TESTFILE = path.join(TESTDIR, 'test_latex_formatter.py')
+
+
+@pytest.mark.parametrize('lexer', [CLexer, CppLexer])
+@pytest.mark.parametrize('source', [
+    '#define DefineArray(name, type) \\\n'
+    'class name{ \\\n'
+    '    type *date; \\\n'
+    '};\n',
+    '#include "my_header.h"\n',
+])
+def test_texcomments_escapes_preprocessor(lexer, source):
+    # gh-793: preprocessor tokens are code, despite being Comment subtypes.
+    expected = highlight(source, lexer(), LatexFormatter(nowrap=True))
+    actual = highlight(source, lexer(),
+                       LatexFormatter(nowrap=True, texcomments=True))
+    assert actual == expected
+
+
+@pytest.mark.parametrize('lexer, source', [
+    (CLexer, r'/* \textbf{bold} */'),
+    (CppLexer, r'// \textbf{bold}'),
+    (PythonLexer, r'# \textbf{bold}'),
+    (CLexer, r'#define VALUE /* \textbf{bold} */ 1'),
+])
+def test_texcomments_preserves_comment_markup(lexer, source):
+    actual = highlight(source, lexer(),
+                       LatexFormatter(nowrap=True, texcomments=True))
+    assert r'\textbf{bold}' in actual
+    assert r'\PYZbs{}textbf' not in actual
 
 
 def test_correct_output():

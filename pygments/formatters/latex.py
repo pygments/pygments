@@ -222,7 +222,8 @@ class LatexFormatter(Formatter):
     `texcomments`
         If set to ``True``, enables LaTeX comment lines.  That is, LaTex markup
         in comment tokens is not escaped so that LaTeX can render it (default:
-        ``False``).
+        ``False``). Preprocessor directives and their filenames are still
+        escaped.
 
         .. versionadded:: 1.2
 
@@ -355,7 +356,10 @@ class LatexFormatter(Formatter):
 
         for ttype, value in tokensource:
             if ttype in Token.Comment:
-                if self.texcomments:
+                if self.texcomments and (ttype in Token.Comment.Preproc or
+                                         ttype in Token.Comment.PreprocFile):
+                    value = escape_tex(value, cp)
+                elif self.texcomments:
                     # Try to guess comment starting lexeme and escape it ...
                     start = value[0:1]
                     for i in range(1, len(value)):
