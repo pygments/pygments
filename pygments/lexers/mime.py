@@ -46,6 +46,10 @@ class MIMELexer(RegexLexer):
     `Content-Transfer-Encoding`
         Treat the data as a specific encoding. Or this lexer would try to parse
         from header by default. (default: None)
+
+    The legacy spellings ``Content_Type`` and ``Content_Transfer_Encoding`` are
+    also accepted. If both spellings are supplied, the documented spelling
+    takes precedence.
     """
 
     name = "MIME"
@@ -59,8 +63,12 @@ class MIMELexer(RegexLexer):
     def __init__(self, **options):
         super().__init__(**options)
         self.boundary = options.get("Multipart-Boundary")
-        self.content_transfer_encoding = options.get("Content_Transfer_Encoding")
-        self.content_type = options.get("Content_Type", "text/plain")
+        self.content_transfer_encoding = options.get(
+            "Content-Transfer-Encoding", options.get("Content_Transfer_Encoding")
+        )
+        self.content_type = options.get(
+            "Content-Type", options.get("Content_Type", "text/plain")
+        )
         self.max_nested_level = get_int_opt(options, "MIME-max-level", -1)
 
     def get_header_tokens(self, match):
