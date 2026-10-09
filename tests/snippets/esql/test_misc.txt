@@ -1,0 +1,143 @@
+---input---
+// This is a comment
+ROW test_keyword = 1
+/*
+/* Misc. request, might be not functional ut grammatically
+correct, in order to test multiple token combinations.*/
+FROM logs-*
+/*
+*/
+| STATS COUNT(`1.field`)
+| EVAL my_count = `COUNT(``1.field``)`
+| WHERE name == """Indiana "Indy" Jones""" OR /* ok */ name == "My \"Special\" Guest"
+| WHERE date > 4d AND NOT date > 34  years
+| WHERE value > 1.2e-3
+
+---tokens---
+'// This is a comment\n' Comment.Single
+
+'ROW'         Keyword
+' '           Text.Whitespace
+'test_keyword' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'/*'          Comment.Multiline
+'\n'          Comment.Multiline
+
+'/*'          Comment.Multiline
+' Misc. request, might be not functional ut grammatically\ncorrect, in order to test multiple token combinations.' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'FROM'        Keyword
+' '           Text.Whitespace
+'logs-'       Name
+'*'           Name
+'\n'          Text.Whitespace
+
+'/*'          Comment.Multiline
+'\n'          Comment.Multiline
+
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'STATS'       Keyword
+' '           Text.Whitespace
+'COUNT'       Name.Function
+'('           Punctuation
+'`'           Name
+'1.field'     Name
+'`'           Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'EVAL'        Keyword
+' '           Text.Whitespace
+'my_count'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'`'           Name
+'COUNT'       Name
+'('           Name
+'``'          Literal.String.Escape
+'1.field'     Name
+'``'          Literal.String.Escape
+')'           Name
+'`'           Name
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'WHERE'       Keyword
+' '           Text.Whitespace
+'name'        Name
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'"""'         Literal.String
+'Indiana '    Literal.String
+'"I'          Literal.String
+'ndy'         Literal.String
+'" '          Literal.String
+'Jones'       Literal.String
+'"""'         Literal.String
+' '           Text.Whitespace
+'OR'          Operator.Word
+' '           Text.Whitespace
+'/*'          Comment.Multiline
+' ok '        Comment.Multiline
+'*/'          Comment.Multiline
+' '           Text.Whitespace
+'name'        Name
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'My '         Literal.String
+'\\"'         Literal.String.Escape
+'Special'     Literal.String
+'\\"'         Literal.String.Escape
+' Guest'      Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'WHERE'       Keyword
+' '           Text.Whitespace
+'date'        Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'4d'          Literal.Date
+' '           Text.Whitespace
+'AND'         Operator.Word
+' '           Text.Whitespace
+'NOT'         Operator.Word
+' '           Text.Whitespace
+'date'        Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'34  years'   Literal.Date
+'\n'          Text.Whitespace
+
+'|'           Punctuation
+' '           Text.Whitespace
+'WHERE'       Keyword
+' '           Text.Whitespace
+'value'       Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'1.2e-3'      Literal.Number
+'\n'          Text.Whitespace
