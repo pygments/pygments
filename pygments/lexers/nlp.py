@@ -24,16 +24,18 @@ REGIONS = (
 
 # Node constants matching classes of text rather than a named node.
 CONSTANTS = (
-    'xALPHA', 'xCTRL', 'xEND', 'xNIL', 'xNUM', 'xSTART', 'xWHITE', 'xWILD'
+    'xALPHA', 'xANY', 'xBLANK', 'xCAP', 'xCAPLET', 'xCTRL', 'xEMOJI', 'xEND',
+    'xEOF', 'xLET', 'xNIL', 'xNUM', 'xPUNCT', 'xSTART', 'xVAR', 'xWHITE',
+    'xWILD'
 )
 
 # Modifiers inside a rule element's [...] block.
 ATTRIBUTES = (
-    'attr', 'attrs', 'da', 'deacc', 'deaccent', 'except', 'excepts', 'fail',
-    'fails', 'gp', 'group', 'layer', 'layers', 'look', 'lookahead', 'match',
-    'matches', 'max', 'min', 'nest', 'o', 'one', 'opt', 'option', 'optional',
-    'pass', 'passes', 'plus', 'recurse', 'ren', 'rename', 's', 'singlet',
-    'star', 't', 'tree', 'trig', 'trigger', 'unsealed'
+    'attr', 'attrs', 'base', 'da', 'deacc', 'deaccent', 'except', 'excepts',
+    'fail', 'fails', 'gp', 'group', 'layer', 'layers', 'look', 'lookahead',
+    'match', 'matches', 'max', 'min', 'nest', 'o', 'one', 'opt', 'option',
+    'optional', 'pass', 'passes', 'plus', 'recurse', 'ren', 'rename', 's',
+    'singlet', 'star', 't', 'tree', 'trig', 'trigger', 'unsealed'
 )
 
 # Engine builtins callable from code regions.
@@ -59,7 +61,7 @@ BUILTINS = (
     'makephrase', 'makestmt', 'merge', 'merger', 'mkdir', 'mod', 'movecleft',
     'movecright', 'movesem', 'ndump', 'next', 'nextattr', 'nextval', 'ninc',
     'nodeconcept', 'nodeowner', 'noop', 'num', 'numrange', 'numval',
-    'openfile', 'pathconcept', 'percentstr', 'permuten', 'phraselength',
+    'openfile', 'or', 'pathconcept', 'percentstr', 'permuten', 'phraselength',
     'phraseraw', 'phrasetext', 'pncopyvars', 'pndeletechilds', 'pndown',
     'pninsert', 'pnmakevar', 'pnname', 'pnnext', 'pnprev', 'pnrename',
     'pnreplaceval', 'pnroot', 'pnsingletdown', 'pnup', 'pnvar', 'pnvarnames',
@@ -158,7 +160,6 @@ class NLPPlusLexer(RegexLexer):
 
         'code': [
             (r'\b(?i:if|else|while|return)\b', Keyword),
-            (r'\b(?i:and|or|not|in)\b', Operator.Word),
             # N("num"), S("sem"), X(...), G(...), L(...) reach parse-tree variables
             (r'\b[NSXGL](?=\s*\()', Name.Builtin.Pseudo),
             (words(BUILTINS, prefix=r'\b(?i:', suffix=r')\b(?=\s*\()'),

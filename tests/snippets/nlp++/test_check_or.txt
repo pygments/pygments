@@ -1,0 +1,65 @@
+---input---
+@CHECK
+if (N("x",1) || or(1,2)) succeed();
+@RULES
+_np [base] <-
+	in [s]
+	_xCAP
+	_xPUNCT
+	@@
+
+---tokens---
+'@CHECK'      Keyword.Declaration
+'\n'          Text.Whitespace
+
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'N'           Name.Builtin.Pseudo
+'('           Punctuation
+'"'           Literal.String.Double
+'x'           Literal.String.Double
+'"'           Literal.String.Double
+','           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'||'          Operator
+' '           Text.Whitespace
+'or'          Name.Builtin
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+'2'           Literal.Number.Integer
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'succeed'     Name.Builtin
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@RULES'      Keyword.Declaration
+'\n'          Text.Whitespace
+
+'_np'         Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'base'        Name.Attribute
+']'           Punctuation
+' '           Text.Whitespace
+'<-'          Operator
+'\n\t'        Text.Whitespace
+'in'          Name
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name.Attribute
+']'           Punctuation
+'\n\t'        Text.Whitespace
+'_xCAP'       Name.Constant
+'\n\t'        Text.Whitespace
+'_xPUNCT'     Name.Constant
+'\n\t'        Text.Whitespace
+'@@'          Keyword.Declaration
+'\n'          Text.Whitespace
