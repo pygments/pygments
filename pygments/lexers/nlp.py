@@ -267,11 +267,11 @@ class NLPPlusDictLexer(_NLPPlusDataLexer):
         'root': [
             (r'\s+', Whitespace),
             include('comments'),
-            # the headword runs up to the first attribute name
-            (r'^([^\s#=/][^=\n]*?)(\s+)(?=[\w-]+\s*=)',
-             bygroups(Name.Label, Whitespace), 'entry'),
-            # a headword with no attributes
-            (r'^[^\s#=/][^\n]*', Name.Label),
+            # The headword: words separated by spaces, up to the first
+            # attribute name. Words and spaces never overlap, so a long line
+            # cannot make the match backtrack.
+            (r'^[^\s#/=][^\s=]*(?:[ \t]+(?![\w-]+[ \t]*=)[^\s=]+)*',
+             Name.Label, 'entry'),
         ],
         'entry': [
             (r'\n', Whitespace, '#pop'),
