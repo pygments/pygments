@@ -10,11 +10,12 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, words
-from pygments.token import Comment, Keyword, Name, Number, Operator, \
-    Punctuation, String, Whitespace
+from pygments.lexer import RegexLexer, bygroups, include, words
+from pygments.token import Comment, Generic, Keyword, Name, Number, \
+    Operator, Punctuation, String, Text, Whitespace
 
-__all__ = ['NLPPlusLexer']
+__all__ = ['NLPPlusLexer', 'NLPPlusDictLexer', 'NLPPlusKbbLexer',
+           'NLPPlusSeqLexer', 'NLPPlusTreeLexer']
 
 # Region markers introduce the parts of a pass: @RULES holds the pattern rules,
 # @POST/@PRE/@CHECK the code attached to them, @NODES the tree region to run over.
@@ -208,3 +209,204 @@ class NLPPlusLexer(RegexLexer):
             # a rule rewrite alongside them makes it near certain
             return 0.9 if re.search(r'^\s*_\w+.*<-', text, re.M) else 0.5
         return 0.0
+
+
+class _NLPPlusDataLexer(RegexLexer):
+    """
+    Shared states for the NLP++ data formats: comments, quoted strings,
+    numbers, and the attribute=value pairs that .dict and .kbb files share.
+    """
+
+    tokens = {
+        'comments': [
+            (r'#.*?$', Comment.Single),
+            (r'/\*', Comment.Multiline, 'comment-block'),
+        ],
+        'comment-block': [
+            (r'[^*/]+', Comment.Multiline),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'[*/]', Comment.Multiline),
+        ],
+        'string': [
+            (r'[^"\\\n]+', String.Double),
+            (r'\\.', String.Escape),
+            (r'"', String.Double, '#pop'),
+            # an unterminated string ends with its line
+            (r'\n', Whitespace, '#pop'),
+        ],
+        # name=value pairs; a value is a quoted string, a number, a bare word,
+        # or a [list, "of", values]
+        'attributes': [
+            (r'[ \t]+', Whitespace),
+            (r'([\w-]+)(\s*)(=)',
+             bygroups(Name.Attribute, Whitespace, Operator)),
+            (r'"', String.Double, 'string'),
+            (r'-?\d+(?:\.\d+)?\b', Number),
+            (r'[\[\],]', Punctuation),
+            (r'[^\s"\[\],=]+', String),
+        ],
+    }
+
+
+class NLPPlusDictLexer(_NLPPlusDataLexer):
+    """
+    For NLP++ dictionaries (.dict files).
+
+    Each line is a headword (one or more words) followed by the
+    attribute=value pairs the tokenizer attaches to matching text.
+    """
+
+    name = 'NLP++ Dictionary'
+    url = 'https://visualtext.org'
+    aliases = ['nlpplus-dict']
+    filenames = ['*.dict']
+    mimetypes = ['text/x-nlpplus-dict']
+    version_added = '2.22'
+
+    tokens = {
+        'root': [
+            (r'\s+', Whitespace),
+            include('comments'),
+            # the headword runs up to the first attribute name
+            (r'^([^\s#=/][^=\n]*?)(\s+)(?=[\w-]+\s*=)',
+             bygroups(Name.Label, Whitespace), 'entry'),
+            # a headword with no attributes
+            (r'^[^\s#=/][^\n]*', Name.Label),
+        ],
+        'entry': [
+            (r'\n', Whitespace, '#pop'),
+            include('attributes'),
+        ],
+    }
+
+
+class NLPPlusKbbLexer(_NLPPlusDataLexer):
+    """
+    For NLP++ knowledge bases (.kbb files).
+
+    An indented hierarchy of concepts; a concept may be followed by a colon
+    and comma-separated attribute=value pairs.
+    """
+
+    name = 'NLP++ Knowledge Base'
+    url = 'https://visualtext.org'
+    aliases = ['nlpplus-kbb', 'kbb']
+    filenames = ['*.kbb']
+    mimetypes = ['text/x-nlpplus-kbb']
+    version_added = '2.22'
+
+    tokens = {
+        'root': [
+            # Indentation is the hierarchy, so it belongs to the concept rules
+            # below; only newlines and blank or comment-only lines go here.
+            (r'\n', Whitespace),
+            (r'^[ \t]+(?=\n|#|/\*)', Whitespace),
+            include('comments'),
+            # a top-level concept
+            (r'^([^\s#:/][^:\n]*?)(:)',
+             bygroups(Name.Namespace, Punctuation), 'concept-attributes'),
+            (r'^[^\s#:/][^:\n]*', Name.Namespace),
+            # an indented concept
+            (r'^([ \t]+)([^\s#:][^:\n]*?)(:)',
+             bygroups(Whitespace, Name.Class, Punctuation),
+             'concept-attributes'),
+            (r'^([ \t]+)([^\s#:][^:\n]*)',
+             bygroups(Whitespace, Name.Class)),
+        ],
+        'concept-attributes': [
+            (r'\n', Whitespace, '#pop'),
+            include('attributes'),
+        ],
+    }
+
+
+class NLPPlusSeqLexer(RegexLexer):
+    """
+    For NLP++ analyzer sequences (analyzer.seq).
+
+    One pass per line: the pass type, the pass file (or nil), and a comment.
+    A leading slash makes a pass inactive.
+    """
+
+    name = 'NLP++ Analyzer Sequence'
+    url = 'https://visualtext.org'
+    aliases = ['nlpplus-seq']
+    filenames = ['analyzer.seq']
+    mimetypes = ['text/x-nlpplus-seq']
+    version_added = '2.22'
+
+    # Pass types the engine's sequence reader accepts.
+    PASS_TYPES = (
+        'chartok', 'cmltok', 'cmltokenize', 'dicttok', 'dicttokz', 'end',
+        'folder', 'gen', 'genhash', 'hash', 'intern', 'line', 'lines',
+        'nintern', 'nlp', 'python', 'rec', 'stub', 'tok', 'token', 'tokenize'
+    )
+
+    tokens = {
+        'root': [
+            (r'\s+', Whitespace),
+            (r'#.*?$', Comment.Single),
+            (r'/\*', Comment.Multiline, 'comment-block'),
+            # a lone slash at the start of a line switches the pass off
+            (r'^/.*?$', Comment.Special),
+            (words(PASS_TYPES, prefix=r'^(?i:', suffix=r')\b'), Keyword),
+            (r'\bnil\b', Keyword.Constant),
+            (r'[^\s#/]+', Name.Function),
+        ],
+        'comment-block': [
+            (r'[^*/]+', Comment.Multiline),
+            (r'\*/', Comment.Multiline, '#pop'),
+            (r'[*/]', Comment.Multiline),
+        ],
+    }
+
+
+class NLPPlusTreeLexer(RegexLexer):
+    """
+    For NLP++ parse trees (.tree files), as the engine writes them.
+
+    Each line is a node, indented under its parent, with its offsets, type,
+    flags and variables in brackets: _np [0,6,0,6,8,23,node,fired, ("x" 1)]
+    """
+
+    name = 'NLP++ Parse Tree'
+    url = 'https://visualtext.org'
+    aliases = ['nlpplus-tree']
+    filenames = ['*.tree']
+    mimetypes = ['text/x-nlpplus-tree']
+    version_added = '2.22'
+
+    tokens = {
+        'root': [
+            (r'\n', Whitespace),
+            (r'^\*+[ \t]*$', Comment.Special),
+            # pass headers between the per-pass snapshots
+            (r'^([ \t]*)(PASS)([ \t]+)(\d+)([ \t]+)(\(.*?\))',
+             bygroups(Whitespace, Generic.Heading, Whitespace, Number,
+                      Whitespace, Generic.Subheading)),
+            (r'^[A-Z][A-Z ]* TREE:[ \t]*$', Generic.Heading),
+            # a node built by a rule, then a leaf token
+            (r'^([ \t]*)(_\w+)([ \t]+)(?=\[)',
+             bygroups(Whitespace, Name.Variable, Whitespace), 'record'),
+            (r'^([ \t]*)(\S+)([ \t]+)(?=\[)',
+             bygroups(Whitespace, Name, Whitespace), 'record'),
+            # a whitespace token prints as blanks before its record
+            (r'^[ \t]*(?=\[)', Whitespace, 'record'),
+            (r'[^\n]+', Text),
+        ],
+        'record': [
+            (r'\n', Whitespace, '#pop'),
+            (r'[ \t]+', Whitespace),
+            (r'\d+', Number),
+            (words(('null', 'node', 'alpha', 'num', 'punct', 'white', 'ctrl',
+                    'emoji'), suffix=r'\b'), Keyword.Type),
+            (words(('b', 'un', 'sem', 'fired', 'blt'), suffix=r'\b'),
+             Keyword),
+            # ("name" value): the variable's name, then its value(s)
+            (r'(\()([ \t]*)("(?:\\.|[^"\\\n])*")',
+             bygroups(Punctuation, Whitespace, Name.Attribute)),
+            (r'"(?:\\.|[^"\\\n])*"', String.Double),
+            (r'[\[\](),]', Punctuation),
+            (r'[^\s\[\](),"]+', Text),
+        ],
+    }

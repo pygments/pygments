@@ -1,0 +1,15 @@
+# Nationality (demonym) names in English, related to their countries.
+# Forward lookup:  nationality -> country   (concept "nationalities nationality french" -> country=france)
+nationalities
+  nationality
+    afghan: country=afghanistan, iso2=af, iso3=afg, noun=afghan, plural=afghans
+    alandic: country="åland islands", iso2=ax, iso3=ala, noun=alander, plural=alanders, synonym=["åland island","åland islander"]
+    american samoan: country="american samoa", iso2=as, iso3=asm, noun="american samoan", plural="american samoans"
+    argentine: country=argentina, iso2=ar, iso3=arg, noun=argentine, plural=argentines, synonym=[argentinian,argentinians]
+/* Academic degrees, with their levels and fields. */
+degrees
+  degree
+    bs: name="bachelor of science", level=bachelor, field=science, latin="scientiae baccalaureus", synonym=[bsc,sb,scb]
+    mbbs: name="bachelor of medicine and bachelor of surgery", level=bachelor, professional=1, uk=1
+  level
+    associate: word=[associate,associates], degree=[aa,aaa,aas,aat,aba,adn,afa,ags,aos,as,asn]

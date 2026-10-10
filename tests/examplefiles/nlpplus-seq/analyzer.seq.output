@@ -1,0 +1,126 @@
+'tokenize'    Keyword
+'\t'          Text.Whitespace
+'nil'         Keyword.Constant
+'\t'          Text.Whitespace
+'# Gen:   Convert input to token list.' Comment.Single
+'\n'          Text.Whitespace
+
+'nlp'         Keyword
+'\t'          Text.Whitespace
+'KBFuncs'     Name.Function
+'\t'          Text.Whitespace
+'# Declare the knowledge base display and dump functions' Comment.Single
+'\n'          Text.Whitespace
+
+'nlp'         Keyword
+'\t'          Text.Whitespace
+'initKB'      Name.Function
+'\t'          Text.Whitespace
+'# Create the corporate, parse, and companies concepts and seed the known companies' Comment.Single
+'\n'          Text.Whitespace
+
+'nlp'         Keyword
+'\t'          Text.Whitespace
+'join'        Name.Function
+'\t'          Text.Whitespace
+'# Join numbers, years, and quoted text into single nodes' Comment.Single
+'\n'          Text.Whitespace
+
+'nlp'         Keyword
+'\t'          Text.Whitespace
+'sentences'   Name.Function
+'\t'          Text.Whitespace
+'# Cut the text into sentences and make a concept for each one' Comment.Single
+'\n'          Text.Whitespace
+
+'nlp'         Keyword
+'\t'          Text.Whitespace
+'paragraphs'  Name.Function
+'\t'          Text.Whitespace
+'# Gather the sentences into paragraphs' Comment.Single
+'\n'          Text.Whitespace
+
+'nlp'         Keyword
+'\t'          Text.Whitespace
+'removeWhite' Name.Function
+'\t'          Text.Whitespace
+'# Remove the white space tokens inside each sentence' Comment.Single
+'\n'          Text.Whitespace
+
+'stub'        Keyword
+'\t'          Text.Whitespace
+'words'       Name.Function
+'\t'          Text.Whitespace
+'# Start of the automatically generated word lookup passes' Comment.Single
+'\n'          Text.Whitespace
+
+'nlp'         Keyword
+'\t'          Text.Whitespace
+'city'        Name.Function
+'\t'          Text.Whitespace
+'# Automatically generated rules matching the known city names' Comment.Single
+'\n'          Text.Whitespace
+
+'nlp'         Keyword
+'\t'          Text.Whitespace
+'company'     Name.Function
+'\t'          Text.Whitespace
+'# Automatically generated rules matching the known company names' Comment.Single
+'\n'          Text.Whitespace
+
+'nlp'         Keyword
+'\t'          Text.Whitespace
+'state'       Name.Function
+'\t'          Text.Whitespace
+'# Automatically generated rules matching the known state names' Comment.Single
+'\n'          Text.Whitespace
+
+'end'         Keyword
+'\t'          Text.Whitespace
+'words'       Name.Function
+'\t'          Text.Whitespace
+'# End of the automatically generated word lookup passes' Comment.Single
+'\n'          Text.Whitespace
+
+'nlp'         Keyword
+'\t'          Text.Whitespace
+'lookup'      Name.Function
+'\t'          Text.Whitespace
+'# Look each capitalized phrase up in the companies knowledge base' Comment.Single
+'\n'          Text.Whitespace
+
+'nlp'         Keyword
+'\t'          Text.Whitespace
+'vocabulary'  Name.Function
+'\t'          Text.Whitespace
+'# Recognize the closed-class vocabulary: pronouns, prepositions, determiners, and the like' Comment.Single
+'\n'          Text.Whitespace
+
+'nlp'         Keyword
+'\t'          Text.Whitespace
+'phrases'     Name.Function
+'\t'          Text.Whitespace
+'# Recognize the domain phrases: officers, money types, and commentors' Comment.Single
+'\n'          Text.Whitespace
+
+'nlp'         Keyword
+'\t'          Text.Whitespace
+'money'       Name.Function
+'\t'          Text.Whitespace
+'# Recognize monetary amounts and compute their value' Comment.Single
+'\n'          Text.Whitespace
+
+'/nlp\tanaphoraSearch\t# inactive: a leading slash switches a pass off' Comment.Special
+'\n'          Text.Whitespace
+
+'/*'          Comment.Multiline
+' Passes that write the report.\n   Kept last so they see the finished tree. ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'nlp'         Keyword
+'\t'          Text.Whitespace
+'output'      Name.Function
+'\t'          Text.Whitespace
+'# Write the companies and events out as a report' Comment.Single
+'\n'          Text.Whitespace
