@@ -1,0 +1,19 @@
+
+***************
+    PASS 12 (doses)
+***************
+
+PAT OUTPUT TREE:
+
+
+_ROOT [0,1362,0,1362,0,0,node,un, ("TOT LINES" 1) ("TOT TABS" 0) ("TOT LOWERS" 229) ("TOT CAPS" 35) ("TOT UPPERS" 8) ("TOT NUMS" 51)]
+   _sig [0,33,0,33,6,20,node,fired,blt]
+      _verb [0,3,0,3,8,23,node,fired,blt, ("NOSP" 1) ("cap" 1) ("sig" "verb") ("verb" "take") ("rule" "vocab rule 1")]
+         Take [0,3,0,3,0,0,alpha,fired, ("NOSP" 1) ("cap" 1) ("sig" "verb") ("verb" "take")]
+      _dose [5,12,5,12,12,22,node,fired,blt, ("min" "1") ("max" "1") ("unit" "tablet") ("kind" "count") ("rule" "doses rule 1")]
+         _range [5,5,5,5,11,32,node,fired,blt, ("min" "1") ("max" "1") ("rule" "ranges rule 2")]
+            _qty [5,5,5,5,10,17,node,fired,blt, ("value" "1") ("rule" "quantities rule 1")]
+               1 [5,5,5,5,0,0,num, ("SP" 1)]
+         _unit [7,12,7,12,8,23,node,fired,blt, ("SP" 1) ("lower" 1) ("sig" "unit") ("unit" "tablet") ("kind" "count") ("rule" "vocab rule 1")]
+            tablet [7,12,7,12,0,0,alpha,fired, ("SP" 1) ("lower" 1) ("sig" "unit") ("unit" "tablet") ("kind" "count")]
+      _how [14,21,14,21,19,29,node,fired,blt, ("route" "oral") ("rule" "sites rule 2")]
