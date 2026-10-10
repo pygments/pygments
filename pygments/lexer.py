@@ -650,8 +650,8 @@ class RegexLexerMeta(LexerMeta):
 
         return tokens
 
-    def __call__(cls, *args, **kwds):
-        """Instantiate cls after preprocessing its token definitions."""
+    def _prepare_tokens(cls):
+        """Lazily preprocess the token definitions of this class."""
         if '_tokens' not in cls.__dict__:
             cls._all_tokens = {}
             cls._tmpname = 0
@@ -661,6 +661,9 @@ class RegexLexerMeta(LexerMeta):
             else:
                 cls._tokens = cls.process_tokendef('', cls.get_tokendefs())
 
+    def __call__(cls, *args, **kwds):
+        """Instantiate cls after preprocessing its token definitions."""
+        cls._prepare_tokens()
         return type.__call__(cls, *args, **kwds)
 
 
@@ -698,6 +701,19 @@ class RegexLexer(Lexer, metaclass=RegexLexerMeta):
     #: case the rules from the state named by the string are included in the
     #: current one.
     tokens = {}
+
+    def __setstate__(self, state):
+        # Unpickling bypasses the metaclass's __call__, so a fresh process
+        # needs to prepare the class without repeating instance initialization.
+        type(self)._prepare_tokens()
+        if isinstance(state, tuple):
+            state, slots = state
+        else:
+            slots = {}
+        if state is not None:
+            self.__dict__.update(state)
+        for name, value in slots.items():
+            setattr(self, name, value)
 
     def get_tokens_unprocessed(self, text, stack=('root',)):
         """
