@@ -325,7 +325,7 @@ class NLPPlusSeqLexer(RegexLexer):
     For NLP++ analyzer sequences (analyzer.seq).
 
     One pass per line: the pass type, the pass file (or nil), and a comment.
-    A leading slash makes a pass inactive.
+    A leading slash makes a pass inactive; two slashes start a comment.
     """
 
     name = 'NLP++ Analyzer Sequence'
@@ -335,11 +335,12 @@ class NLPPlusSeqLexer(RegexLexer):
     mimetypes = ['text/x-nlpplus-seq']
     version_added = '2.22'
 
-    # Pass types the engine's sequence reader accepts.
+    # Pass types the engine's sequence reader accepts; "pat" is read as "nlp".
     PASS_TYPES = (
         'chartok', 'cmltok', 'cmltokenize', 'dicttok', 'dicttokz', 'end',
         'folder', 'gen', 'genhash', 'hash', 'intern', 'line', 'lines',
-        'nintern', 'nlp', 'python', 'rec', 'stub', 'tok', 'token', 'tokenize'
+        'nintern', 'nlp', 'pat', 'python', 'rec', 'stub', 'tok', 'token',
+        'tokenize'
     )
 
     tokens = {
@@ -347,6 +348,7 @@ class NLPPlusSeqLexer(RegexLexer):
             (r'\s+', Whitespace),
             (r'#.*?$', Comment.Single),
             (r'/\*', Comment.Multiline, 'comment-block'),
+            (r'//.*?$', Comment.Single),
             # a lone slash at the start of a line switches the pass off
             (r'^/.*?$', Comment.Special),
             (words(PASS_TYPES, prefix=r'^(?i:', suffix=r')\b'), Keyword),

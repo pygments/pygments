@@ -26,7 +26,7 @@
 '# Join numbers, years, and quoted text into single nodes' Comment.Single
 '\n'          Text.Whitespace
 
-'nlp'         Keyword
+'pat'         Keyword
 '\t'          Text.Whitespace
 'sentences'   Name.Function
 '\t'          Text.Whitespace
@@ -111,6 +111,9 @@
 '\n'          Text.Whitespace
 
 '/nlp\tanaphoraSearch\t# inactive: a leading slash switches a pass off' Comment.Special
+'\n'          Text.Whitespace
+
+'// two slashes start a comment' Comment.Single
 '\n'          Text.Whitespace
 
 '/*'          Comment.Multiline

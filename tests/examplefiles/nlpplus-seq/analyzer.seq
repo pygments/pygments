@@ -2,7 +2,7 @@ tokenize	nil	# Gen:   Convert input to token list.
 nlp	KBFuncs	# Declare the knowledge base display and dump functions
 nlp	initKB	# Create the corporate, parse, and companies concepts and seed the known companies
 nlp	join	# Join numbers, years, and quoted text into single nodes
-nlp	sentences	# Cut the text into sentences and make a concept for each one
+pat	sentences	# Cut the text into sentences and make a concept for each one
 nlp	paragraphs	# Gather the sentences into paragraphs
 nlp	removeWhite	# Remove the white space tokens inside each sentence
 stub	words	# Start of the automatically generated word lookup passes
@@ -15,6 +15,7 @@ nlp	vocabulary	# Recognize the closed-class vocabulary: pronouns, prepositions, 
 nlp	phrases	# Recognize the domain phrases: officers, money types, and commentors
 nlp	money	# Recognize monetary amounts and compute their value
 /nlp	anaphoraSearch	# inactive: a leading slash switches a pass off
+// two slashes start a comment
 /* Passes that write the report.
    Kept last so they see the finished tree. */
 nlp	output	# Write the companies and events out as a report
