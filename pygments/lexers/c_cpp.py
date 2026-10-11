@@ -374,6 +374,11 @@ class CppLexer(CFamilyLexer):
     version_added = ''
     priority = 0.1
 
+    # Recognize one level of nested arguments without parsing arbitrary C++ types.
+    _template_return_type = (
+        CFamilyLexer._namespaced_ident + r'<(?:[^<>;{}()]|<[^<>;{}()]*>)*>'
+    )
+
     tokens = {
         'statements': [
             # C++11 raw strings
@@ -388,6 +393,33 @@ class CppLexer(CFamilyLexer):
             inherit,
         ],
         'root': [
+            include('whitespace'),
+            include('keywords'),
+            # functions
+            (r'(' + _template_return_type + r'(?:[&*\s])+)'  # return arguments
+             r'(' + CFamilyLexer._possible_comments + r')'
+             r'(' + CFamilyLexer._namespaced_ident + r')'             # method name
+             r'(' + CFamilyLexer._possible_comments + r')'
+             r'(\([^;"\')]*?\))'                         # signature
+             r'(' + CFamilyLexer._possible_comments + r')'
+             r'([^;{/"\']*)(\{)',
+             bygroups(using(this), using(this, state='whitespace'),
+                      Name.Function, using(this, state='whitespace'),
+                      using(this), using(this, state='whitespace'),
+                      using(this), Punctuation),
+             'function'),
+            # function declarations
+            (r'(' + _template_return_type + r'(?:[&*\s])+)'  # return arguments
+             r'(' + CFamilyLexer._possible_comments + r')'
+             r'(' + CFamilyLexer._namespaced_ident + r')'             # method name
+             r'(' + CFamilyLexer._possible_comments + r')'
+             r'(\([^;"\')]*?\))'                         # signature
+             r'(' + CFamilyLexer._possible_comments + r')'
+             r'([^;/"\']*)(;)',
+             bygroups(using(this), using(this, state='whitespace'),
+                      Name.Function, using(this, state='whitespace'),
+                      using(this), using(this, state='whitespace'),
+                      using(this), Punctuation)),
             inherit,
             # C++ Microsoft-isms
             (words(('virtual_inheritance', 'uuidof', 'super', 'extends', 'single_inheritance',
