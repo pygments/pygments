@@ -1,0 +1,138 @@
+---input---
+class \packed\ Foo
+actor \nodoc, nosupertype\ ref Bar
+fun \inline\ ref apply(x: U32): U32 =>
+  if \likely\ x > 0 then x else 0 end
+  match \exhaustive\ x
+  | \unlikely\ 1 => recover \nodoc(1)\ iso Bar end
+  end
+  {\a, b\ () => None}
+
+---tokens---
+'class'       Keyword
+' '           Text
+'\\'          Punctuation
+'packed'      Name.Decorator
+'\\'          Punctuation
+' '           Text
+'Foo'         Name.Class
+'\n'          Text
+
+'actor'       Keyword
+' '           Text
+'\\'          Punctuation
+'nodoc'       Name.Decorator
+','           Punctuation
+' '           Text
+'nosupertype' Name.Decorator
+'\\'          Punctuation
+' '           Text
+'ref'         Keyword
+' '           Text
+'Bar'         Name.Class
+'\n'          Text
+
+'fun'         Keyword
+' '           Text
+'\\'          Punctuation
+'inline'      Name.Decorator
+'\\'          Punctuation
+' '           Text
+'ref'         Keyword
+' '           Text
+'apply'       Name.Function
+'('           Punctuation
+'x'           Name
+':'           Punctuation
+' '           Text
+'U32'         Name.Builtin.Type
+')'           Punctuation
+':'           Punctuation
+' '           Text
+'U32'         Name.Builtin.Type
+' '           Text
+'=>'          Punctuation
+'\n'          Text
+
+'  '          Text
+'if'          Keyword
+' '           Text
+'\\'          Punctuation
+'likely'      Name.Decorator
+'\\'          Punctuation
+' '           Text
+'x'           Name
+' '           Text
+'>'           Operator
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'then'        Keyword
+' '           Text
+'x'           Name
+' '           Text
+'else'        Keyword
+' '           Text
+'0'           Literal.Number.Integer
+' '           Text
+'end'         Keyword
+'\n'          Text
+
+'  '          Text
+'match'       Keyword
+' '           Text
+'\\'          Punctuation
+'exhaustive'  Name.Decorator
+'\\'          Punctuation
+' '           Text
+'x'           Name
+'\n'          Text
+
+'  '          Text
+'|'           Punctuation
+' '           Text
+'\\'          Punctuation
+'unlikely'    Name.Decorator
+'\\'          Punctuation
+' '           Text
+'1'           Literal.Number.Integer
+' '           Text
+'=>'          Punctuation
+' '           Text
+'recover'     Keyword
+' '           Text
+'\\'          Punctuation
+'nodoc'       Name.Decorator
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\\'          Punctuation
+' '           Text
+'iso'         Keyword
+' '           Text
+'Bar'         Name.Type
+' '           Text
+'end'         Keyword
+'\n'          Text
+
+'  '          Text
+'end'         Keyword
+'\n'          Text
+
+'  '          Text
+'{'           Punctuation
+'\\'          Punctuation
+'a'           Name.Decorator
+','           Punctuation
+' '           Text
+'b'           Name.Decorator
+'\\'          Punctuation
+' '           Text
+'('           Punctuation
+')'           Punctuation
+' '           Text
+'=>'          Punctuation
+' '           Text
+'None'        Name.Builtin.Type
+'}'           Punctuation
+'\n'          Text

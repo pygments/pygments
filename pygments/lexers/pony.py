@@ -37,6 +37,7 @@ class PonyLexer(RegexLexer):
             (r'"""[\s\S]*?"""', String.Doc),
             (r'"', String, 'string'),
             (r'\'.*\'', String.Char),
+            (r'\\', Punctuation, 'annotation'),
             (r'=>|[]{}:().~;,|&!^?[]', Punctuation),
             (words((
                 'addressof', 'and', 'as', 'consume', 'digestof', 'is', 'isnt',
@@ -72,12 +73,23 @@ class PonyLexer(RegexLexer):
             (r'_?[a-z][\w\']*', Name)
         ],
         'typename': [
+            (r'\\', Punctuation, 'annotation'),
+            (r'\s+', Text),
             (_caps + r'?((?:\s)*)(_?[A-Z]\w*)',
              bygroups(Keyword, Text, Name.Class), '#pop')
         ],
         'methodname': [
+            (r'\\', Punctuation, 'annotation'),
+            (r'\s+', Text),
             (_caps + r'?((?:\s)*)(_?[a-z]\w*)',
              bygroups(Keyword, Text, Name.Function), '#pop')
+        ],
+        'annotation': [
+            (r'\\', Punctuation, '#pop'),
+            (r'\s+', Text),
+            (r'[,()]', Punctuation),
+            (r'\d+', Number.Integer),
+            (r"[\w']+", Name.Decorator)
         ],
         'nested_comment': [
             (r'[^*/]+', Comment.Multiline),
