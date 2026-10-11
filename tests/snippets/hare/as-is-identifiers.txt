@@ -1,0 +1,40 @@
+---input---
+fn isfile(p: str) bool = p is str;
+let n = x as int;
+
+---tokens---
+'fn'          Keyword
+' '           Text.Whitespace
+'isfile'      Name
+'('           Punctuation
+'p'           Name
+':'           Operator
+' '           Text.Whitespace
+'str'         Name
+')'           Punctuation
+' '           Text.Whitespace
+'bool'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'p'           Name
+' '           Text.Whitespace
+'is'          Operator
+' '           Text.Whitespace
+'str'         Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'let'         Keyword
+' '           Text.Whitespace
+'n'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'as'          Operator
+' '           Text.Whitespace
+'int'         Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace
