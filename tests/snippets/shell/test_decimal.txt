@@ -1,0 +1,30 @@
+---input---
+cmd -p 0.03
+echo 1.2.3
+echo 127.0.0.1
+x=0.0
+
+---tokens---
+'cmd'         Text
+' '           Text.Whitespace
+'-p'          Text
+' '           Text.Whitespace
+'0.03'        Literal.Number
+'\n'          Text.Whitespace
+
+'echo'        Name.Builtin
+' '           Text.Whitespace
+'1'           Literal.Number
+'.2.3'        Text
+'\n'          Text.Whitespace
+
+'echo'        Name.Builtin
+' '           Text.Whitespace
+'127'         Literal.Number
+'.0.0.1'      Text
+'\n'          Text.Whitespace
+
+'x'           Name.Variable
+'='           Operator
+'0.0'         Literal.Number
+'\n'          Text.Whitespace

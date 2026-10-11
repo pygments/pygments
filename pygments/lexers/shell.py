@@ -82,6 +82,8 @@ class BashLexer(RegexLexer):
             (r'&', Punctuation),
             (r'\|', Punctuation),
             (r'\s+', Whitespace),
+            # One decimal point. Do not treat 1.2.3 as a number (#2668).
+            (r'(?<!\.)\d+\.\d+(?!\.)\b', Number),
             (r'\d+\b', Number),
             (r'[^=\s\[\]{}()$"\'`\\<&|;]+', Text),
             (r'<', Text),
