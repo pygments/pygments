@@ -439,7 +439,9 @@ class HtmlFormatter(Formatter):
         self.linenostep = abs(get_int_opt(options, 'linenostep', 1))
         self.linenospecial = abs(get_int_opt(options, 'linenospecial', 0))
         self.nobackground = get_bool_opt(options, 'nobackground', False)
-        self.lineseparator = html_escape(options.get('lineseparator', '\n'))
+        # Inserted as HTML between lines (documented to accept e.g. "<br>").
+        lineseparator = options.get('lineseparator', '\n')
+        self.lineseparator = '' if lineseparator is None else str(lineseparator)
         self.lineanchors = html_escape(options.get('lineanchors', ''))
         self.linespans = html_escape(options.get('linespans', ''))
         self.anchorlinenos = get_bool_opt(options, 'anchorlinenos', False)
