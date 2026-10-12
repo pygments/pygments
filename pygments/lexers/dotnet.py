@@ -128,10 +128,10 @@ class CSharpLexer(RegexLexer):
                     'notnull', 'nuint', 'or', 'scoped', 'unmanaged', 'when',
                     'with'
                 ), suffix=r'\b'), Keyword),
-                # version 1: assumes that 'file' is the only contextual keyword
-                # that is a class modifier
-                (r'(file)(\s+)(record|class|abstract|enum|new|sealed|static)\b',
-                   bygroups(Keyword, Whitespace, Keyword)),
+                # Leave the type keyword for its own rule to handle the name.
+                (r'file(?=\s+(?:record|class|struct|interface|enum|delegate|'
+                 r'abstract|new|partial|readonly|ref|sealed|static|unsafe)\b)',
+                 Keyword),
                 (r'(global)(::)', bygroups(Keyword, Punctuation)),
                 (r'(bool|byte|char|decimal|double|dynamic|float|int|long|object|'
                  r'sbyte|short|string|uint|ulong|ushort|var)\b\??', Keyword.Type),
