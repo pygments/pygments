@@ -1,0 +1,189 @@
+---input---
+; A small arithmetic problem with a named assertion.
+(set-logic QF_LIA)
+(set-option :produce-models true)
+(declare-const |start value| Int)
+(define-fun increment ((n Int)) Int (+ n 1))
+(assert (! (= (increment |start value|) 42) :named answer))
+(check-sat)
+(get-model)
+
+; Literal forms and quoted text.
+(set-info :source "An original example with ""quotes"";
+and a literal backslash: \\n")
+(assert (= #x0a #b00001010))
+(assert (= 0.125 (/ 1.0 8.0)))
+(assert (forall ((x Int)) (exists ((y Int)) (= y (+ x 1)))))
+(exit)
+
+---tokens---
+'; A small arithmetic problem with a named assertion.' Comment.Single
+'\n'          Text.Whitespace
+
+'('           Punctuation
+'set-logic'   Keyword
+' '           Text.Whitespace
+'QF_LIA'      Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'('           Punctuation
+'set-option'  Keyword
+' '           Text.Whitespace
+':produce-models' Name.Attribute
+' '           Text.Whitespace
+'true'        Keyword.Constant
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'('           Punctuation
+'declare-const' Keyword
+' '           Text.Whitespace
+'|start value|' Name
+' '           Text.Whitespace
+'Int'         Keyword.Type
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'('           Punctuation
+'define-fun'  Keyword
+' '           Text.Whitespace
+'increment'   Name
+' '           Text.Whitespace
+'(('          Punctuation
+'n'           Name
+' '           Text.Whitespace
+'Int'         Keyword.Type
+'))'          Punctuation
+' '           Text.Whitespace
+'Int'         Keyword.Type
+' '           Text.Whitespace
+'('           Punctuation
+'+'           Name.Builtin
+' '           Text.Whitespace
+'n'           Name
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'))'          Punctuation
+'\n'          Text.Whitespace
+
+'('           Punctuation
+'assert'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'!'           Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'='           Name.Builtin
+' '           Text.Whitespace
+'('           Punctuation
+'increment'   Name
+' '           Text.Whitespace
+'|start value|' Name
+')'           Punctuation
+' '           Text.Whitespace
+'42'          Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+':named'      Name.Attribute
+' '           Text.Whitespace
+'answer'      Name
+'))'          Punctuation
+'\n'          Text.Whitespace
+
+'('           Punctuation
+'check-sat'   Keyword
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'('           Punctuation
+'get-model'   Keyword
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'; Literal forms and quoted text.' Comment.Single
+'\n'          Text.Whitespace
+
+'('           Punctuation
+'set-info'    Keyword
+' '           Text.Whitespace
+':source'     Name.Attribute
+' '           Text.Whitespace
+'"'           Literal.String
+'An original example with ' Literal.String
+'""'          Literal.String.Escape
+'quotes'      Literal.String
+'""'          Literal.String.Escape
+';\nand a literal backslash: \\\\n' Literal.String
+'"'           Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'('           Punctuation
+'assert'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'='           Name.Builtin
+' '           Text.Whitespace
+'#x0a'        Literal.Number.Hex
+' '           Text.Whitespace
+'#b00001010'  Literal.Number.Bin
+'))'          Punctuation
+'\n'          Text.Whitespace
+
+'('           Punctuation
+'assert'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'='           Name.Builtin
+' '           Text.Whitespace
+'0.125'       Literal.Number.Float
+' '           Text.Whitespace
+'('           Punctuation
+'/'           Name.Builtin
+' '           Text.Whitespace
+'1.0'         Literal.Number.Float
+' '           Text.Whitespace
+'8.0'         Literal.Number.Float
+')))'         Punctuation
+'\n'          Text.Whitespace
+
+'('           Punctuation
+'assert'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'forall'      Keyword
+' '           Text.Whitespace
+'(('          Punctuation
+'x'           Name
+' '           Text.Whitespace
+'Int'         Keyword.Type
+'))'          Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'exists'      Keyword
+' '           Text.Whitespace
+'(('          Punctuation
+'y'           Name
+' '           Text.Whitespace
+'Int'         Keyword.Type
+'))'          Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'='           Name.Builtin
+' '           Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+'('           Punctuation
+'+'           Name.Builtin
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+')))))'       Punctuation
+'\n'          Text.Whitespace
+
+'('           Punctuation
+'exit'        Keyword
+')'           Punctuation
+'\n'          Text.Whitespace
