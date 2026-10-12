@@ -6,15 +6,23 @@ file sealed class X { }
 file static class X { }
 file enum X { file }
 file new record X(int file);
+file struct S { }
+file interface I { }
+file delegate void D();
+file readonly struct S { }
+file ref struct S { }
+file partial class C { }
+file unsafe class C { }
 int file(Func<int> file) => file();
 int file = Program.file(file => 42);
+file className;
 
 ---tokens---
 'file'        Keyword
 ' '           Text.Whitespace
 'class'       Keyword
 ' '           Text.Whitespace
-'X'           Name
+'X'           Name.Class
 ' '           Text.Whitespace
 '{'           Punctuation
 ' '           Text.Whitespace
@@ -101,6 +109,92 @@ int file = Program.file(file => 42);
 ';'           Punctuation
 '\n'          Text.Whitespace
 
+'file'        Keyword
+' '           Text.Whitespace
+'struct'      Keyword
+' '           Text.Whitespace
+'S'           Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'file'        Keyword
+' '           Text.Whitespace
+'interface'   Keyword
+' '           Text.Whitespace
+'I'           Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'file'        Keyword
+' '           Text.Whitespace
+'delegate'    Keyword
+' '           Text.Whitespace
+'void'        Keyword
+' '           Text.Whitespace
+'D'           Name.Function
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'file'        Keyword
+' '           Text.Whitespace
+'readonly'    Keyword
+' '           Text.Whitespace
+'struct'      Keyword
+' '           Text.Whitespace
+'S'           Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'file'        Keyword
+' '           Text.Whitespace
+'ref'         Keyword
+' '           Text.Whitespace
+'struct'      Keyword
+' '           Text.Whitespace
+'S'           Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'file'        Keyword
+' '           Text.Whitespace
+'partial'     Keyword
+' '           Text.Whitespace
+'class'       Keyword
+' '           Text.Whitespace
+'C'           Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'file'        Keyword
+' '           Text.Whitespace
+'unsafe'      Keyword
+' '           Text.Whitespace
+'class'       Keyword
+' '           Text.Whitespace
+'C'           Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
 'int'         Keyword.Type
 ' '           Text.Whitespace
 'file'        Name.Function
@@ -137,5 +231,11 @@ int file = Program.file(file => 42);
 ' '           Text.Whitespace
 '42'          Literal.Number.Integer
 ')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'file'        Name
+' '           Text.Whitespace
+'className'   Name
 ';'           Punctuation
 '\n'          Text.Whitespace
