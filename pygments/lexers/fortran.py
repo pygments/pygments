@@ -13,6 +13,7 @@ import re
 from pygments.lexer import RegexLexer, bygroups, include, words, using, default
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic
+from pygments.util import get_bool_opt
 
 __all__ = ['FortranLexer', 'FortranFixedLexer']
 
@@ -20,6 +21,15 @@ __all__ = ['FortranLexer', 'FortranFixedLexer']
 class FortranLexer(RegexLexer):
     """
     Lexer for FORTRAN 90 code.
+
+    Additional options accepted:
+
+    `backslash_escapes`
+        Treat backslashes in strings as escape characters (default: ``True``).
+        Set to ``False`` for code where backslashes are ordinary characters,
+        such as GNU Fortran code compiled without ``-fbackslash``.
+
+        .. versionadded:: 2.22
     """
     name = 'Fortran'
     url = 'https://fortran-lang.org/'
@@ -28,6 +38,19 @@ class FortranLexer(RegexLexer):
     mimetypes = ['text/x-fortran']
     version_added = '0.10'
     flags = re.IGNORECASE | re.MULTILINE
+
+    def __init__(self, **options):
+        if not get_bool_opt(options, 'backslash_escapes', True):
+            cls = self.__class__
+            if 'no-backslash' not in cls._all_tokens:
+                tokendefs = cls.get_tokendefs()
+                tokendefs['strings'] = [
+                    (r'"(?:""|[^"])*"', String.Double),
+                    (r"'(?:''|[^'])*'", String.Single),
+                ]
+                cls.process_tokendef('no-backslash', tokendefs)
+            self._tokens = cls._all_tokens['no-backslash']
+        RegexLexer.__init__(self, **options)
 
     # Data Types: INTEGER, REAL, COMPLEX, LOGICAL, CHARACTER and DOUBLE PRECISION
     # Operators: **, *, +, -, /, <, >, <=, >=, ==, /=
@@ -172,6 +195,8 @@ class FortranLexer(RegexLexer):
 class FortranFixedLexer(RegexLexer):
     """
     Lexer for fixed format Fortran.
+
+    Accepts the `backslash_escapes` option documented for `FortranLexer`.
     """
     name = 'FortranFixed'
     aliases = ['fortranfixed']
@@ -183,7 +208,7 @@ class FortranFixedLexer(RegexLexer):
 
     def _lex_fortran(self, match, ctx=None):
         """Lex a line just as free form fortran without line break."""
-        lexer = FortranLexer()
+        lexer = FortranLexer(**self.options)
         text = match.group(0) + "\n"
         for index, token, value in lexer.get_tokens_unprocessed(text):
             value = value.replace('\n', '')
