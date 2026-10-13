@@ -1,0 +1,26 @@
+---input---
+p {
+  all: revert-layer;
+  color: revert;
+}
+
+---tokens---
+'p'           Name.Tag
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'all'         Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'revert-layer' Keyword.Constant
+';'           Punctuation
+'\n  '        Text.Whitespace
+'color'       Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'revert'      Keyword.Constant
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
