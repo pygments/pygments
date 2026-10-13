@@ -7,6 +7,11 @@ Version 2.22.0
 --------------
 (not released yet)
 
+- Updated lexers:
+
+  * Nginx: Keep bare IP addresses and other arguments with numeric prefixes
+    together instead of highlighting their prefixes as integers (#1118).
+
 Version 2.21.0
 ---------------
 (released August 17th, 2026)
