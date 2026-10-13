@@ -87,7 +87,7 @@ class CFamilyLexer(RegexLexer):
              bygroups(String.Affix, String.Char, String.Char, String.Char)),
 
              # Hexadecimal floating-point literals (C11, C++17)
-            (r'0[xX](' + _hexpart + r'\.' + _hexpart + r'|\.' + _hexpart +
+            (r'0[xX](' + _hexpart + r'\.(' + _hexpart + r')?|\.' + _hexpart +
              r'|' + _hexpart + r')[pP][+-]?' + _hexpart + r'[lL]?', Number.Float),
 
             (r'(-)?(' + _decpart + r'\.' + _decpart + r'|\.' + _decpart + r'|' +
