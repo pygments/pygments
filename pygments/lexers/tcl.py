@@ -91,6 +91,10 @@ class TclLexer(RegexLexer):
             # whereas the braced `${name}` form may contain dashes.
             (r'\$[\w.:]+', Name.Variable),
             (r'\$\{[\w.:-]+\}', Name.Variable),
+            (r'\$', Text),  # a lone $ is a literal character
+            # Backslash quotes the next character or starts an escape
+            # (\\$, \\n, \\}, octal, ...). These are valid Tcl, not errors.
+            (r'\\(?:[0-7]{1,3}|.|\n)', String.Escape),
             (r'[\w.,@:-]+', Text),
         ],
         'params': [
