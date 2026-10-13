@@ -136,6 +136,8 @@ class GroffFormatter(Formatter):
 
 
     def format_unencoded(self, tokensource, outfile):
+        self._lineno = 0
+        self._linelen = 0
         self._define_colors(outfile)
 
         outfile.write('.nf\n\\f[CR]\n')
