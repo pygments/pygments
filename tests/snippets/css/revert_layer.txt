@@ -1,0 +1,39 @@
+---input---
+p {
+  all: revert-layer;
+  color: revert;
+  display: var(--display, revert-layer);
+}
+
+---tokens---
+'p'           Name.Tag
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'all'         Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'revert-layer' Keyword.Constant
+';'           Punctuation
+'\n  '        Text.Whitespace
+'color'       Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'revert'      Keyword.Constant
+';'           Punctuation
+'\n  '        Text.Whitespace
+'display'     Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'var'         Name.Function
+'('           Punctuation
+'--display'   Name.Variable
+','           Punctuation
+' '           Text.Whitespace
+'revert-layer' Keyword.Constant
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
