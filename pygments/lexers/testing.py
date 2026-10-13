@@ -50,7 +50,7 @@ class GherkinLexer(RegexLexer):
             (r"(\s|.)", Name.Function),
         ],
         'examples_table_header': [
-            (r"\s+\|\s*$", Keyword, "#pop:2"),
+            (r"\s*\|\s*$", Keyword, "#pop:2"),
             include('comments'),
             (r"\\\|", Name.Variable),
             (r"\s*\|", Keyword),
@@ -96,7 +96,7 @@ class GherkinLexer(RegexLexer):
             (r'(\s|.)', Name.Function),
         ],
         'table_content': [
-            (r"\s+\|\s*$", Keyword, "#pop"),
+            (r"\s*\|\s*$", Keyword, "#pop"),
             include('comments'),
             (r"\\\|", String),
             (r"\s*\|", Keyword),
