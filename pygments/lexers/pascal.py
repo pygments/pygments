@@ -438,7 +438,7 @@ class DelphiLexer(Lexer):
                 if scanner.scan(r'\s+'):
                     token = Whitespace
                 elif not self.is_portugol and scanner.scan(r'\{.*?\}|\(\*.*?\*\)'):
-                    if scanner.match.startswith('$'):
+                    if scanner.match.startswith(('{$', '(*$')):
                         token = Comment.Preproc
                     else:
                         token = Comment.Multiline
@@ -604,7 +604,7 @@ class DelphiLexer(Lexer):
                     token = Keyword
                     stack.pop()
                 elif scanner.scan(r'\{.*?\}|\(\*.*?\*\)'):
-                    if scanner.match.startswith('$'):
+                    if scanner.match.startswith(('{$', '(*$')):
                         token = Comment.Preproc
                     else:
                         token = Comment.Multiline

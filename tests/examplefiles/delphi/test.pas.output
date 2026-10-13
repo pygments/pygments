@@ -930,7 +930,7 @@
 'Boolean'     Keyword.Type
 ';'           Operator
 ' '           Text.Whitespace
-'{$IFDEF OMORPHIA_FEATURES_USEASM}' Comment.Multiline
+'{$IFDEF OMORPHIA_FEATURES_USEASM}' Comment.Preproc
 ' '           Text.Whitespace
 'Assembler'   Keyword.Pseudo
 ';'           Operator
@@ -964,7 +964,7 @@
 '   '         Text.Whitespace
 'AL'          Name.Builtin
 '\n\n    '    Text.Whitespace
-'{$IFDEF WINDOWS}' Comment.Multiline
+'{$IFDEF WINDOWS}' Comment.Preproc
 '\n    '      Text.Whitespace
 'JZ'          Keyword
 '      '      Text.Whitespace
@@ -1165,7 +1165,7 @@
 '     '       Text.Whitespace
 'EAX'         Name.Builtin
 '\n    '      Text.Whitespace
-'{$ENDIF}'    Comment.Multiline
+'{$ENDIF}'    Comment.Preproc
 '\n\n'        Text.Whitespace
 
 '@@Finish'    Name.Label
@@ -1176,7 +1176,7 @@
 ';'           Operator
 '\n'          Text.Whitespace
 
-'{$ELSE}'     Comment.Multiline
+'{$ELSE}'     Comment.Preproc
 '\n'          Text.Whitespace
 
 'Var'         Keyword
@@ -1300,7 +1300,7 @@
 ';'           Operator
 '\n'          Text.Whitespace
 
-'{$ENDIF}'    Comment.Multiline
+'{$ENDIF}'    Comment.Preproc
 '\n\n\n    \t\n\n' Text.Whitespace
 
 '{*******************************************************}' Comment.Multiline
@@ -2323,31 +2323,31 @@
 ';'           Operator
 '\n\n'        Text.Whitespace
 
-'{$L deflate.obj}' Comment.Multiline
+'{$L deflate.obj}' Comment.Preproc
 '\n'          Text.Whitespace
 
-'{$L inflate.obj}' Comment.Multiline
+'{$L inflate.obj}' Comment.Preproc
 '\n'          Text.Whitespace
 
-'{$L inftrees.obj}' Comment.Multiline
+'{$L inftrees.obj}' Comment.Preproc
 '\n'          Text.Whitespace
 
-'{$L trees.obj}' Comment.Multiline
+'{$L trees.obj}' Comment.Preproc
 '\n'          Text.Whitespace
 
-'{$L adler32.obj}' Comment.Multiline
+'{$L adler32.obj}' Comment.Preproc
 '\n'          Text.Whitespace
 
-'{$L infblock.obj}' Comment.Multiline
+'{$L infblock.obj}' Comment.Preproc
 '\n'          Text.Whitespace
 
-'{$L infcodes.obj}' Comment.Multiline
+'{$L infcodes.obj}' Comment.Preproc
 '\n'          Text.Whitespace
 
-'{$L infutil.obj}' Comment.Multiline
+'{$L infutil.obj}' Comment.Preproc
 '\n'          Text.Whitespace
 
-'{$L inffast.obj}' Comment.Multiline
+'{$L inffast.obj}' Comment.Preproc
 '\n\n'        Text.Whitespace
 
 'procedure'   Keyword
