@@ -82,7 +82,7 @@
 ';'           Operator
 '\n'          Text.Whitespace
 
-'{$IFNDEF VER140}' Comment.Multiline
+'{$IFNDEF VER140}' Comment.Preproc
 '\n  '        Text.Whitespace
 'sLineBreak'  Name
 ' '           Text.Whitespace
@@ -109,7 +109,7 @@
 ';'           Operator
 '\n'          Text.Whitespace
 
-'{$ENDIF}'    Comment.Multiline
+'{$ENDIF}'    Comment.Preproc
 '\n  '        Text.Whitespace
 'EOL'         Name
 ' '           Text.Whitespace
@@ -4243,7 +4243,7 @@
 '{ Backward compatibility }' Comment.Multiline
 '\n'          Text.Whitespace
 
-'{$IFNDEF VER130}' Comment.Multiline
+'{$IFNDEF VER130}' Comment.Preproc
 '\n'          Text.Whitespace
 
 'function'    Keyword
@@ -4266,13 +4266,13 @@
 ';'           Operator
 '\n'          Text.Whitespace
 
-'{$ENDIF}'    Comment.Multiline
+'{$ENDIF}'    Comment.Preproc
 '\n\n'        Text.Whitespace
 
 'implementation' Keyword
 '\n'          Text.Whitespace
 
-'{$IFNDEF VER140}' Comment.Multiline
+'{$IFNDEF VER140}' Comment.Preproc
 '\n'          Text.Whitespace
 
 'uses'        Keyword
@@ -4281,10 +4281,10 @@
 ';'           Operator
 '\n'          Text.Whitespace
 
-'{$ENDIF}'    Comment.Multiline
+'{$ENDIF}'    Comment.Preproc
 '\n\n'        Text.Whitespace
 
-'{$IFNDEF VER130}' Comment.Multiline
+'{$IFNDEF VER130}' Comment.Preproc
 '\n'          Text.Whitespace
 
 'function'    Keyword
@@ -4332,7 +4332,7 @@
 ';'           Operator
 '\n'          Text.Whitespace
 
-'{$ENDIF}'    Comment.Multiline
+'{$ENDIF}'    Comment.Preproc
 '\n\n'        Text.Whitespace
 
 'procedure'   Keyword
@@ -14262,7 +14262,7 @@
 ')'           Punctuation
 ';'           Operator
 '\n  '        Text.Whitespace
-'{$I-}'       Comment.Multiline
+'{$I-}'       Comment.Preproc
 'Reset'       Name.Builtin
 '('           Punctuation
 'F'           Name
@@ -14271,7 +14271,7 @@
 '1'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Operator
-'{$I+}'       Comment.Multiline
+'{$I+}'       Comment.Preproc
 '\n  '        Text.Whitespace
 'if'          Keyword
 ' '           Text.Whitespace
@@ -15286,7 +15286,7 @@
 ')'           Punctuation
 ';'           Operator
 '\n  '        Text.Whitespace
-'{$I-}'       Comment.Multiline
+'{$I-}'       Comment.Preproc
 'Rewrite'     Name.Builtin
 '('           Punctuation
 'F'           Name
@@ -15295,7 +15295,7 @@
 '1'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Operator
-'{$I+}'       Comment.Multiline
+'{$I+}'       Comment.Preproc
 '\n  '        Text.Whitespace
 'if'          Keyword
 ' '           Text.Whitespace
@@ -15407,7 +15407,7 @@
 ')'           Punctuation
 ';'           Operator
 '\n  '        Text.Whitespace
-'{$I-}'       Comment.Multiline
+'{$I-}'       Comment.Preproc
 'Reset'       Name.Builtin
 '('           Punctuation
 'F'           Name
@@ -15416,7 +15416,7 @@
 '1'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Operator
-'{$I+}'       Comment.Multiline
+'{$I+}'       Comment.Preproc
 '\n  '        Text.Whitespace
 'if'          Keyword
 ' '           Text.Whitespace

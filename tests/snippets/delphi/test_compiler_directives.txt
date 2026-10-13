@@ -1,0 +1,22 @@
+---input---
+{$IFDEF DEBUG}
+(*$R+*)
+{ not a directive }
+(* not a directive either *)
+{$ENDIF}
+
+---tokens---
+'{$IFDEF DEBUG}' Comment.Preproc
+'\n'          Text.Whitespace
+
+'(*$R+*)'     Comment.Preproc
+'\n'          Text.Whitespace
+
+'{ not a directive }' Comment.Multiline
+'\n'          Text.Whitespace
+
+'(* not a directive either *)' Comment.Multiline
+'\n'          Text.Whitespace
+
+'{$ENDIF}'    Comment.Preproc
+'\n'          Text.Whitespace
