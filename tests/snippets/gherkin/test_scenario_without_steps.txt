@@ -1,0 +1,32 @@
+---input---
+Feature: Empty scenarios
+  Scenario: No steps yet
+  Scenario: Has steps
+    Given a step
+
+---tokens---
+'Feature'     Keyword
+':'           Keyword
+' Empty scenarios' Name.Function
+'\n'          Name.Function
+
+'  '          Name.Function
+'Scenario'    Keyword
+':'           Keyword
+' No steps yet' Name.Function
+'\n'          Name.Function
+
+'  '          Name.Function
+'Scenario'    Keyword
+':'           Keyword
+' Has steps'  Name.Function
+'\n'          Name.Function
+
+'    Given '  Keyword
+'a'           Name.Function
+' '           Name.Function
+'s'           Name.Function
+'t'           Name.Function
+'e'           Name.Function
+'p'           Name.Function
+'\n'          Name.Function
