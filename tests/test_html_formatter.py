@@ -285,6 +285,44 @@ def test_ctags():
         assert '<a href="test_html_formatter.py#L-165">test_ctags</a>' \
             in outfile.getvalue()
 
+        # Repeated names must not accumulate links, even across format calls.
+        source = 'test_ctags()\ntest_ctags()\n'
+        for _ in range(2):
+            outfile = StringIO()
+            fmt.format(PythonLexer().get_tokens(source), outfile)
+            assert outfile.getvalue().count(
+                '<a href="test_html_formatter.py#L-165">'
+            ) == 2
+
+
+@pytest.mark.parametrize('value', ['test_ctags', '<&>"\'', 'first\nsecond', 'last\n'])
+@pytest.mark.parametrize('options', [
+    {'nowrap': True},
+    {'noclasses': True},
+    {'linenos': 'inline'},
+    {'linenos': 'table', 'hl_lines': [1]},
+])
+def test_ctags_does_not_modify_cached_parts(monkeypatch, value, options):
+    fmt = HtmlFormatter(lineanchors='L', tagurlformat='%(fname)s%(fext)s',
+                        **options)
+    # Exercise link formatting even when the optional ctags module is absent.
+    fmt.tagsfile = 'dummy'
+    monkeypatch.setattr(fmt, '_lookup_ctag', lambda value: ('test.py', 1))
+    expected_parts = html_escape(value, quote=False).split('\n')
+    cached_parts = fmt._translate_parts(value)
+    source = [(Name, value), (Token.Text, '\n'), (Name, value),
+              (Token.Text, '\n'), (Token.Text, value)]
+    outputs = []
+    for _ in range(2):
+        outfile = StringIO()
+        fmt.format(source, outfile)
+        outputs.append(outfile.getvalue())
+        # Only Name tokens get links; identical Text tokens must stay unlinked.
+        assert outputs[-1].count('<a href="test.py#L-1">') == 2
+        assert fmt._translate_parts(value) is cached_parts
+        assert cached_parts == expected_parts
+    assert outputs[0] == outputs[1]
+
 
 def test_filename():
     optdict = dict(filename="test.py")

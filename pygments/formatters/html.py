@@ -865,6 +865,8 @@ class HtmlFormatter(Formatter):
             if tagsfile and ttype in Token.Name:
                 filename, linenumber = self._lookup_ctag(value)
                 if linenumber:
+                    # Don't modify the cached parts when adding a link.
+                    parts = parts.copy()
                     base, filename = os.path.split(filename)
                     if base:
                         base += '/'
