@@ -34,14 +34,19 @@ class GherkinLexer(RegexLexer):
         'comments': [
             (r'^\s*#.*$', Comment),
         ],
+        'tags': [
+            (r'(\s*)(@[^@\r\n\t ]+)', bygroups(Name.Function, Name.Tag)),
+        ],
         'feature_elements': [
             (step_keywords, Keyword, "step_content_stack"),
             include('comments'),
+            include('tags'),
             (r"(\s|.)", Name.Function),
         ],
         'feature_elements_on_stack': [
             (step_keywords, Keyword, "#pop:2"),
             include('comments'),
+            include('tags'),
             (r"(\s|.)", Name.Function),
         ],
         'examples_table': [
@@ -64,6 +69,7 @@ class GherkinLexer(RegexLexer):
         'narrative': [
             include('scenario_sections_on_stack'),
             include('comments'),
+            include('tags'),
             (r"(\s|.)", Name.Function),
         ],
         'table_vars': [
@@ -114,7 +120,7 @@ class GherkinLexer(RegexLexer):
             (r'"', Name.Function, "double_string"),
             include('table_vars'),
             include('numbers'),
-            (r'(\s*)(@[^@\r\n\t ]+)', bygroups(Name.Function, Name.Tag)),
+            include('tags'),
             (step_keywords, bygroups(Name.Function, Keyword),
              'step_content_root'),
             (feature_keywords, bygroups(Keyword, Keyword, Name.Function),
