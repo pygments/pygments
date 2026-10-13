@@ -1,0 +1,30 @@
+---input---
+<li>⭐ GitHub star → Slack — it’s “great”</li>
+
+---tokens---
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'⭐'           Text
+' '           Text.Whitespace
+'GitHub'      Name.Other
+' '           Text.Whitespace
+'star'        Name.Other
+' '           Text.Whitespace
+'→'           Text
+' '           Text.Whitespace
+'Slack'       Name.Other
+' '           Text.Whitespace
+'—'           Text
+' '           Text.Whitespace
+'it'          Name.Other
+'’'           Text
+'s'           Name.Other
+' '           Text.Whitespace
+'“'           Text
+'great'       Name.Other
+'”'           Text
+'</'          Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n'          Text.Whitespace

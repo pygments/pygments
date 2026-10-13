@@ -74,7 +74,9 @@ class JsxLexer(JavascriptLexer):
         "root": [
             include("jsx"),
             inherit,
+            # apostrophes and non-ASCII characters in JSX text
             (r"'", Text),
+            (r"[^\x00-\x7f]+", Text),
         ],
     **_JSX_RULES}
 
@@ -97,6 +99,8 @@ class TsxLexer(TypeScriptLexer):
         "root": [
             include("jsx"),
             inherit,
+            # apostrophes and non-ASCII characters in JSX text
             (r"'", Text),
+            (r"[^\x00-\x7f]+", Text),
         ],
     **_JSX_RULES}
