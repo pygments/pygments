@@ -1,0 +1,46 @@
+---input---
+const bin_val = 0b1010;
+const hex_val = 0xFF;
+const oct_val = 0o777;
+const dec_val = 42;
+
+---tokens---
+'const'       Keyword
+' '           Text.Whitespace
+'bin_val'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0b1010'      Literal.Number.Bin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword
+' '           Text.Whitespace
+'hex_val'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0xFF'        Literal.Number.Hex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword
+' '           Text.Whitespace
+'oct_val'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0o777'       Literal.Number.Oct
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword
+' '           Text.Whitespace
+'dec_val'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'42'          Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
