@@ -618,7 +618,7 @@ class NginxConfLexer(RegexLexer):
              bygroups(Name, Punctuation, Number.Integer)),
             (r'[a-z-]+/[a-z-+]+', String),  # mimetype
             # (r'[a-zA-Z._-]+', Keyword),
-            (r'[0-9]+[km]?\b', Number.Integer),
+            (r'[0-9]+[km]?(?=[\s;#{}]|$)', Number.Integer),
             (r'(~)(\s*)([^\s{]+)', bygroups(Punctuation, Whitespace, String.Regex)),
             (r'[:=~]', Punctuation),
             (r'[^\s;#{}$]+', String),  # catch all
