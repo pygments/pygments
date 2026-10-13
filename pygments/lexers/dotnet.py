@@ -81,7 +81,9 @@ class CSharpLexer(RegexLexer):
                  r'(\s*)(\()',                               # signature start
                  bygroups(Whitespace, using(this), Name.Function, Whitespace,
                           Punctuation)),
-                (r'^(\s*)(\[.*?\])', bygroups(Whitespace, Name.Attribute)),
+                # skip over string arguments, which may contain ']'
+                (r'^(\s*)(\[(?:@"(?:""|[^"])*"|"(?:\\.|[^"\\\n])*"|[^\]"])*\])',
+                 bygroups(Whitespace, Name.Attribute)),
                 (r'[^\S\n]+', Whitespace),
                 (r'(\\)(\n)', bygroups(Text, Whitespace)),  # line continuation
                 (r'//.*?\n', Comment.Single),
