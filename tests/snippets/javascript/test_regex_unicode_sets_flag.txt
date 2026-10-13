@@ -1,0 +1,29 @@
+---input---
+const emoji = /^\p{RGI_Emoji}$/v;
+const vowels = /[[a-z]&&[aeiou]]/gv.test(s);
+
+---tokens---
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'emoji'       Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'/^\\p{RGI_Emoji}$/v' Literal.String.Regex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'vowels'      Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'/[[a-z]&&[aeiou]]/gv' Literal.String.Regex
+'.'           Punctuation
+'test'        Name.Other
+'('           Punctuation
+'s'           Name.Other
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

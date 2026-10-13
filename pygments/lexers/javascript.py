@@ -55,7 +55,7 @@ class JavascriptLexer(RegexLexer):
         'slashstartsregex': [
             include('commentsandwhitespace'),
             (r'/(\\.|[^[/\\\n]|\[(\\.|[^\]\\\n])*])+/'
-             r'([gimuysd]+\b|\B)', String.Regex, '#pop'),
+             r'([gimuysdv]+\b|\B)', String.Regex, '#pop'),
             (r'(?=/)', Text, ('#pop', 'badregex')),
             default('#pop')
         ],
