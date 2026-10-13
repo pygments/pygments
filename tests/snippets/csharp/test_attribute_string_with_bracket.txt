@@ -1,0 +1,19 @@
+---input---
+[Route("api/[controller]")]
+[Obsolete(@"use ""[New]"" instead")]
+class A {}
+
+---tokens---
+'[Route("api/[controller]")]' Name.Attribute
+'\n'          Text.Whitespace
+
+'[Obsolete(@"use ""[New]"" instead")]' Name.Attribute
+'\n'          Text.Whitespace
+
+'class'       Keyword
+' '           Text.Whitespace
+'A'           Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
