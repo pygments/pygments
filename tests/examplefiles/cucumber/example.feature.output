@@ -196,3 +196,68 @@
 '1'           Literal.String
 '5'           Literal.String
 '        |\n' Keyword
+
+'\n'          Name.Function
+
+'Rule'        Keyword
+':'           Keyword
+' Grouped scenarios' Name.Function
+'\n'          Name.Function
+
+'\n  '        Name.Function
+'Example'     Keyword
+':'           Keyword
+' Basic example' Name.Function
+'\n'          Name.Function
+
+'    Given '  Keyword
+'s'           Name.Function
+'o'           Name.Function
+'m'           Name.Function
+'e'           Name.Function
+'t'           Name.Function
+'h'           Name.Function
+'i'           Name.Function
+'n'           Name.Function
+'g'           Name.Function
+''            Keyword
+'\n'          Name.Function
+
+'\n  '        Name.Function
+'Scenario Template' Keyword
+':'           Keyword
+' Template alias' Name.Function
+'\n'          Name.Function
+
+'    Given '  Keyword
+'v'           Name.Function
+'a'           Name.Function
+'l'           Name.Function
+'u'           Name.Function
+'e'           Name.Function
+' '           Name.Function
+'<x>'         Name.Variable
+''            Keyword
+'\n'          Name.Function
+
+'\n    '      Name.Function
+'Scenarios'   Keyword
+':'           Keyword
+'\n      |'   Keyword
+' '           Name.Variable
+'x'           Name.Variable
+' |'          Keyword
+'\n'          Name.Function
+
+' '           Name.Function
+' '           Name.Function
+' '           Name.Function
+' '           Name.Function
+' '           Name.Function
+' '           Name.Function
+'|'           Name.Function
+' '           Name.Function
+'1'           Name.Function
+' '           Name.Function
+'|'           Name.Function
+'\n'          Name.Function
