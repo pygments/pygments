@@ -37,12 +37,19 @@ class GherkinLexer(RegexLexer):
         'feature_elements': [
             (step_keywords, Keyword, "step_content_stack"),
             include('comments'),
+            include('sibling_feature_elements'),
             (r"(\s|.)", Name.Function),
         ],
         'feature_elements_on_stack': [
             (step_keywords, Keyword, "#pop:2"),
             include('comments'),
+            include('sibling_feature_elements'),
             (r"(\s|.)", Name.Function),
+        ],
+        # a scenario without any steps is directly followed by the next one
+        'sibling_feature_elements': [
+            (feature_element_keywords,
+             bygroups(Name.Function, Keyword, Keyword, Name.Function)),
         ],
         'examples_table': [
             (r"\s+\|", Keyword, 'examples_table_header'),
