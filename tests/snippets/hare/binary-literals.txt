@@ -1,0 +1,71 @@
+---input---
+let bits = 0b1010;
+let small: u8 = 0b1_010u8;
+let signed: i32 = -0b101i32;
+let combined = 0b10 | 0b01;
+let count: size = 0b1z;
+
+---tokens---
+'let'         Keyword
+' '           Text.Whitespace
+'bits'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0b1010'      Literal.Number.Bin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'let'         Keyword
+' '           Text.Whitespace
+'small'       Name
+':'           Operator
+' '           Text.Whitespace
+'u8'          Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0b1_010u8'   Literal.Number.Bin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'let'         Keyword
+' '           Text.Whitespace
+'signed'      Name
+':'           Operator
+' '           Text.Whitespace
+'i32'         Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'-'           Operator
+'0b101i32'    Literal.Number.Bin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'let'         Keyword
+' '           Text.Whitespace
+'combined'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0b10'        Literal.Number.Bin
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'0b01'        Literal.Number.Bin
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'let'         Keyword
+' '           Text.Whitespace
+'count'       Name
+':'           Operator
+' '           Text.Whitespace
+'size'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0b1z'        Literal.Number.Bin
+';'           Punctuation
+'\n'          Text.Whitespace

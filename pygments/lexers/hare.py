@@ -44,6 +44,7 @@ class HareLexer(RegexLexer):
             (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
             (r'0x[0-9a-fA-F]+[LlUu]*', Number.Hex),
             (r'0o[0-7]+[LlUu]*', Number.Oct),
+            (r'0b[01](?:_?[01])*(?:[iu](?:8|16|32|64)?|z)?', Number.Bin),
             (r'\d+[zui]?(\d+)?', Number.Integer),
             (r'[~!%^&*+=|?:<>/-]', Operator),
             (words(('as', 'is', '=>', '..', '...')), Operator),
