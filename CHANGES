@@ -7,6 +7,11 @@ Version 2.22.0
 --------------
 (not released yet)
 
+- Updated lexers:
+
+  * Gherkin: Recognize table row endings without a space before the closing
+    pipe, so following steps and scenarios are highlighted correctly (#565).
+
 Version 2.21.0
 ---------------
 (released August 17th, 2026)
