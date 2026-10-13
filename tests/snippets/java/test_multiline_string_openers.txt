@@ -1,0 +1,50 @@
+---input---
+class A {
+    String a = """   
+hello
+""";
+    String b = """	
+world
+""";
+}
+
+---tokens---
+'class'       Keyword.Declaration
+' '           Text
+'A'           Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'String'      Name
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"""   \n'    Literal.String
+
+'hello\n'     Literal.String
+
+'"""'         Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'String'      Name
+' '           Text.Whitespace
+'b'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"""\t\n'     Literal.String
+
+'world\n'     Literal.String
+
+'"""'         Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
