@@ -251,6 +251,7 @@ class IDLLexer(RegexLexer):
         'root': [
             (r'(^\s*)(;.*?)(\n)', bygroups(Whitespace, Comment.Single,
                 Whitespace)),
+            (r';[^\n]*', Comment.Single),
             (words(_RESERVED, prefix=r'\b', suffix=r'\b'), Keyword),
             (words(_BUILTIN_LIB, prefix=r'\b', suffix=r'\b'), Name.Builtin),
             (r'\+=|-=|\^=|\*=|/=|#=|##=|<=|>=|=', Operator),
