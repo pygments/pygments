@@ -14,3 +14,16 @@ Scenario Outline: My detailed scenario #string
     | x    | subtract | remain#der |
     | 12   | 5\|3     |  #73       |
     | #the | 10       |  15        |
+
+Rule: grouping scenarios
+  Example: an example is a scenario
+    Given a precondition
+    When an action
+    Then a result
+
+  Scenario Template: template with an examples table
+    Given a <thing>
+    Then it is <state>
+    Scenarios:
+      | thing | state |
+      | x     | ok    |
