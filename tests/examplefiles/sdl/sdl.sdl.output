@@ -1,0 +1,155 @@
+'// A line comment.' Comment.Single
+'\n'          Text.Whitespace
+
+'-- Another line comment style.' Comment.Single
+'\n'          Text.Whitespace
+
+'# Yet another line comment style.' Comment.Single
+'\n\n'        Text.Whitespace
+
+'/* A block comment,\n   possibly spanning several lines. */' Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'name'        Name.Tag
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'John Doe'    Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'nickname'    Name.Tag
+' '           Text.Whitespace
+'`raw string, no \\n escapes`' Literal.String.Backtick
+'\n'          Text.Whitespace
+
+'age'         Name.Tag
+' '           Text.Whitespace
+'42'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'height'      Name.Tag
+' '           Text.Whitespace
+'1.85f'       Literal.Number.Float
+'\n'          Text.Whitespace
+
+'balance'     Name.Tag
+' '           Text.Whitespace
+'-1234.50f'   Literal.Number.Float
+'\n'          Text.Whitespace
+
+'big'         Name.Tag
+' '           Text.Whitespace
+'12345678901234567890BD' Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'active'      Name.Tag
+' '           Text.Whitespace
+'true'        Keyword.Constant
+'\n'          Text.Whitespace
+
+'disabled'    Name.Tag
+' '           Text.Whitespace
+'off'         Keyword.Constant
+'\n'          Text.Whitespace
+
+'nothing'     Name.Tag
+' '           Text.Whitespace
+'null'        Keyword.Constant
+'\n\n'        Text.Whitespace
+
+'created'     Name.Tag
+' '           Text.Whitespace
+'2016/09/03'  Literal.Date
+'\n'          Text.Whitespace
+
+'modified'    Name.Tag
+' '           Text.Whitespace
+'2016/09/03 12:34:56.789-UTC' Literal.Date
+'\n'          Text.Whitespace
+
+'elapsed'     Name.Tag
+' '           Text.Whitespace
+'5d:12:34:56.789' Literal.Date
+'\n\n'        Text.Whitespace
+
+'data'        Name.Tag
+' '           Text.Whitespace
+'[dGVzdCBkYXRhIGFuZCBtb3Jl]' Literal.String.Other
+'\n\n'        Text.Whitespace
+
+'person'      Name.Tag
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'name'        Name.Tag
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Jane Doe'    Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
+'age'         Name.Tag
+' '           Text.Whitespace
+'29'          Literal.Number.Integer
+'\n    '      Text.Whitespace
+'address'     Name.Tag
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'street'      Name.Tag
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Main Street' Literal.String.Double
+'"'           Literal.String.Double
+'\n        '  Text.Whitespace
+'city'        Name.Tag
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Springfield' Literal.String.Double
+'"'           Literal.String.Double
+'\n        '  Text.Whitespace
+'zip'         Name.Tag
+' '           Text.Whitespace
+'12345'       Literal.Number.Integer
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'hobbies'     Name.Tag
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'reading'     Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'hiking'      Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'coding'      Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'ns'          Name.Namespace
+':'           Punctuation
+'tag'         Name.Tag
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'namespaced'  Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'attr'        Name.Attribute
+'='           Operator
+'"'           Literal.String.Double
+'value'       Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'count'       Name.Attribute
+'='           Operator
+'42'          Literal.Number.Integer
+' '           Text.Whitespace
+'enabled'     Name.Attribute
+'='           Operator
+'true'        Keyword.Constant
+'\n'          Text.Whitespace

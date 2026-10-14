@@ -1,0 +1,35 @@
+// A line comment.
+-- Another line comment style.
+# Yet another line comment style.
+
+/* A block comment,
+   possibly spanning several lines. */
+
+name "John Doe"
+nickname `raw string, no \n escapes`
+age 42
+height 1.85f
+balance -1234.50f
+big 12345678901234567890BD
+active true
+disabled off
+nothing null
+
+created 2016/09/03
+modified 2016/09/03 12:34:56.789-UTC
+elapsed 5d:12:34:56.789
+
+data [dGVzdCBkYXRhIGFuZCBtb3Jl]
+
+person {
+    name "Jane Doe"
+    age 29
+    address {
+        street "Main Street"
+        city "Springfield"
+        zip 12345
+    }
+    hobbies "reading" "hiking" "coding"
+}
+
+ns:tag "namespaced" attr="value" count=42 enabled=true
