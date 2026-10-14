@@ -189,6 +189,10 @@ class PythonLexer(RegexLexer):
         ],
         'expr-inside-fstring': [
             (r'[{([]', Punctuation, 'expr-inside-fstring-inner'),
+            # PEP 701: a `#` inside a replacement field starts a comment
+            # running to the end of the line, so the field may close on a
+            # later line
+            (r'#[^\n]*', Comment.Single),
             # without format specifier
             (r'(=\s*)?'         # debug (https://bugs.python.org/issue36817)
              r'(\![sraf])?'     # conversion
@@ -204,6 +208,7 @@ class PythonLexer(RegexLexer):
         'expr-inside-fstring-inner': [
             (r'[{([]', Punctuation, 'expr-inside-fstring-inner'),
             (r'[])}]', Punctuation, '#pop'),
+            (r'#[^\n]*', Comment.Single),
             (r'\s+', Whitespace),  # allow new lines
             include('expr'),
         ],
