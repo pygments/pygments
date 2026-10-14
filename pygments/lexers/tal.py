@@ -48,6 +48,9 @@ class TalLexer(RegexLexer):
         ],
         'root': [
             (r'\s+', Whitespace), # spaces
+            # named comments: the open parenthesis is immediately followed by
+            # a word holding meaning for external tools, e.g. `(doc ... )`
+            (r'(?<!\S)\((?=\w)', Comment.Multiline, 'comment'), # comments
             (r'(?<!\S)\((?!\S)', Comment.Multiline, 'comment'), # comments
             (words(instructions, prefix=r'(?<!\S)', suffix=r'2?k?r?(?!\S)'),
              Keyword.Reserved), # instructions

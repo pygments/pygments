@@ -4444,4 +4444,24 @@
 '8080'        Literal
 ' '           Text.Whitespace
 ']'           Punctuation
+'\n\n\n'      Text.Whitespace
+
+'('           Comment.Multiline
+'doc\n\tNamed docstring comment. ' Comment.Multiline
+')'           Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'('           Comment.Multiline
+'credits: Devine Lu Linvega ' Comment.Multiline
+')'           Comment.Multiline
+'\n'          Text.Whitespace
+
+'('           Comment.Multiline
+'version-added: 1.1 ' Comment.Multiline
+')'           Comment.Multiline
+'\n'          Text.Whitespace
+
+'('           Comment.Multiline
+'\n@|Group '  Comment.Multiline
+')'           Comment.Multiline
 '\n'          Text.Whitespace
