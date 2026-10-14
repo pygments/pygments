@@ -302,6 +302,7 @@ LEXERS = {
     'MCSchemaLexer': ('pygments.lexers.minecraft', 'MCSchema', ('mcschema',), ('*.mcschema',), ('text/mcschema',)),
     'MIMELexer': ('pygments.lexers.mime', 'MIME', ('mime',), (), ('multipart/mixed', 'multipart/related', 'multipart/alternative')),
     'MIPSLexer': ('pygments.lexers.mips', 'MIPS', ('mips',), ('*.mips', '*.MIPS'), ()),
+    'MintLexer': ('pygments.lexers.mint', 'Mint', ('mint',), ('*.mint',), ()),
     'MOOCodeLexer': ('pygments.lexers.scripting', 'MOOCode', ('moocode', 'moo'), ('*.moo',), ('text/x-moocode',)),
     'MSDOSSessionLexer': ('pygments.lexers.shell', 'MSDOS Session', ('doscon',), (), ()),
     'Macaulay2Lexer': ('pygments.lexers.macaulay2', 'Macaulay2', ('macaulay2',), ('*.m2',), ()),
