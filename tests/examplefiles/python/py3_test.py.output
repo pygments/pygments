@@ -7,3 +7,88 @@
 '    '        Text
 'pass'        Keyword
 '\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'def'         Keyword
+' '           Text.Whitespace
+'handle'      Name.Function
+'('           Punctuation
+'error'       Name
+')'           Punctuation
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'try'         Keyword
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text
+'raise'       Keyword
+' '           Text
+'Exception'   Name.Exception
+'('           Punctuation
+'"'           Literal.String.Double
+'boom'        Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+' '           Text
+'from'        Keyword
+' '           Text
+'error'       Name
+'\n'          Text.Whitespace
+
+'    '        Text
+'except'      Keyword
+' '           Text
+'Exception'   Name.Exception
+' '           Text
+'as'          Keyword
+' '           Text
+'e'           Name
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text
+'raise'       Keyword
+' '           Text
+'e'           Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text
+'raise'       Keyword
+' '           Text
+'ValueError'  Name.Exception
+'('           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text
+'"'           Literal.String.Double
+'message'     Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'    '        Text
+')'           Punctuation
+' '           Text
+'from'        Keyword
+' '           Text
+'None'        Keyword.Constant
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text
+'raise'       Keyword
+' '           Text
+'TypeError'   Name.Exception
+' '           Text
+'from'        Keyword
+' '           Text
+'error'       Name
+'\n'          Text.Whitespace
