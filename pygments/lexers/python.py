@@ -109,6 +109,9 @@ class PythonLexer(RegexLexer):
             (r'#.*$', Comment.Single),
             (r'\\\n', Text),
             (r'\\', Text),
+            # `raise ... from ...` chains exceptions, so the `from` is a
+            # plain keyword there, not an import.
+            (r'\braise\b', Keyword, 'raise'),
             include('keywords'),
             include('soft-keywords'),
             (r'(def)((?:\s|\\\s)+)', bygroups(Keyword, Whitespace), 'funcname'),
@@ -352,6 +355,24 @@ class PythonLexer(RegexLexer):
             (r'None\b', Keyword.Constant, '#pop'),
             (uni_name, Name.Namespace),
             default('#pop'),
+        ],
+        # Inside a `raise` statement: the exception expression, optionally
+        # followed by `from <cause>`, where `from` is a plain keyword.
+        'raise': [
+            (r'\bfrom\b', Keyword, '#pop'),
+            (r'[([{]', Punctuation, 'raise-inner'),
+            (r'\\\n', Text),
+            (r'\n', Whitespace, '#pop'),
+            include('expr'),
+        ],
+        # Inside brackets of a `raise` expression: newlines do not end it.
+        'raise-inner': [
+            (r'\bfrom\b', Keyword, '#pop'),
+            (r'[([{]', Punctuation, '#push'),
+            (r'[)\]}]', Punctuation, '#pop'),
+            (r'\\\n', Text),
+            (r'\n', Whitespace),
+            include('expr'),
         ],
         'rfstringescape': [
             (r'\{\{', String.Escape),
