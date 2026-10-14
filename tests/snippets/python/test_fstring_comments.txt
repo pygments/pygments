@@ -1,0 +1,67 @@
+---input---
+x = f"""{1+2 = # my comment
+}"""
+y = f'''{ # some comment goes here
+  "abc"}'''
+z = f"""{f(1, # two
+  2):#x}"""
+
+---tokens---
+'x'           Name
+' '           Text
+'='           Operator
+' '           Text
+'f'           Literal.String.Affix
+'"""'         Literal.String.Double
+'{'           Literal.String.Interpol
+'1'           Literal.Number.Integer
+'+'           Operator
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'# my comment' Comment.Single
+'\n'          Text.Whitespace
+
+'}'           Literal.String.Interpol
+'"""'         Literal.String.Double
+'\n'          Text.Whitespace
+
+'y'           Name
+' '           Text
+'='           Operator
+' '           Text
+'f'           Literal.String.Affix
+"'''"         Literal.String.Single
+'{'           Literal.String.Interpol
+' '           Text.Whitespace
+'# some comment goes here' Comment.Single
+'\n  '        Text.Whitespace
+'"'           Literal.String.Double
+'abc'         Literal.String.Double
+'"'           Literal.String.Double
+'}'           Literal.String.Interpol
+"'''"         Literal.String.Single
+'\n'          Text.Whitespace
+
+'z'           Name
+' '           Text
+'='           Operator
+' '           Text
+'f'           Literal.String.Affix
+'"""'         Literal.String.Double
+'{'           Literal.String.Interpol
+'f'           Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'# two'       Comment.Single
+'\n  '        Text.Whitespace
+'2'           Literal.Number.Integer
+')'           Punctuation
+':'           Literal.String.Interpol
+'#x'          Literal.String.Double
+'}'           Literal.String.Interpol
+'"""'         Literal.String.Double
+'\n'          Text.Whitespace
