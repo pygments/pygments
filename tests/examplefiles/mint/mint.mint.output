@@ -1,0 +1,590 @@
+'/*\n * A multi-line comment.\n */' Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'// A single-line comment.' Comment.Single
+'\n\n'        Text.Whitespace
+
+'component'   Keyword
+' '           Text.Whitespace
+'Counter'     Name.Class
+' '           Text.Whitespace
+'{'           Operator
+'\n  '        Text.Whitespace
+'property'    Keyword
+' '           Text.Whitespace
+'name'        Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'String'      Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Joe'         Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
+'property'    Keyword
+' '           Text.Whitespace
+'step'        Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Number'      Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+'\n\n  '      Text.Whitespace
+'state'       Keyword
+' '           Text.Whitespace
+'counter'     Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Number'      Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number
+'\n  '        Text.Whitespace
+'state'       Keyword
+' '           Text.Whitespace
+'label'       Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'String'      Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'count'       Literal.String.Double
+'"'           Literal.String.Double
+'\n\n  '      Text.Whitespace
+'const'       Keyword
+' '           Text.Whitespace
+'LIMIT'       Name.Class
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Number'      Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'10'          Literal.Number
+'\n\n  '      Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'increment'   Name.Function
+' '           Text.Whitespace
+'{'           Operator
+'\n    '      Text.Whitespace
+'next'        Keyword
+' '           Text.Whitespace
+'{'           Operator
+' '           Text.Whitespace
+'counter'     Name
+':'           Operator
+' '           Text.Whitespace
+'counter'     Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'step'        Name
+' '           Text.Whitespace
+'}'           Operator
+'\n  '        Text.Whitespace
+'}'           Operator
+'\n\n  '      Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'format'      Name.Function
+' '           Text.Whitespace
+'('           Operator
+'value'       Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Number'      Keyword.Type
+')'           Operator
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'String'      Keyword.Type
+' '           Text.Whitespace
+'{'           Operator
+'\n    '      Text.Whitespace
+'"'           Literal.String.Double
+'#{'          Literal.String.Interpol
+'label'       Name
+'}'           Literal.String.Interpol
+': '          Literal.String.Double
+'#{'          Literal.String.Interpol
+'value'       Name
+'}'           Literal.String.Interpol
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
+'}'           Operator
+'\n\n  '      Text.Whitespace
+'get'         Keyword
+' '           Text.Whitespace
+'doubled'     Name.Function
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Number'      Keyword.Type
+' '           Text.Whitespace
+'{'           Operator
+'\n    '      Text.Whitespace
+'counter'     Name
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number
+'\n  '        Text.Whitespace
+'}'           Operator
+'\n\n  '      Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'render'      Name.Function
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Html'        Keyword.Type
+' '           Text.Whitespace
+'{'           Operator
+'\n    '      Text.Whitespace
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text.Whitespace
+'class'       Name.Attribute
+'='           Operator
+'"counter"'   Literal.String.Double
+' '           Text.Whitespace
+'data-value'  Name.Attribute
+'='           Operator
+'{'           Punctuation
+'counter'     Name
+'}'           Punctuation
+' '           Text.Whitespace
+'onClick'     Name.Attribute
+'='           Operator
+'{'           Punctuation
+'increment'   Name
+'}'           Punctuation
+'>'           Punctuation
+'\n      '    Text.Whitespace
+'<'           Punctuation
+'span::test'  Name.Tag
+'>'           Punctuation
+'"'           Literal.String.Double
+'Hello '      Literal.String.Double
+'#{'          Literal.String.Interpol
+'name'        Name
+'}'           Literal.String.Interpol
+'!'           Literal.String.Double
+'"'           Literal.String.Double
+'</'          Punctuation
+'span'        Name.Tag
+'>'           Punctuation
+'\n      '    Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Operator
+'counter'     Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'LIMIT'       Name.Class
+')'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'<'           Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'{'           Punctuation
+'counter'     Name
+'}'           Punctuation
+'</'          Punctuation
+'b'           Name.Tag
+'>'           Punctuation
+'\n      '    Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'else'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'"'           Literal.String.Double
+'below the limit' Literal.String.Double
+'"'           Literal.String.Double
+'\n      '    Text.Whitespace
+'}'           Punctuation
+'\n      '    Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'('           Operator
+'item'        Name
+' '           Text.Whitespace
+'of'          Keyword
+' '           Text.Whitespace
+'['           Operator
+'1'           Literal.Number
+','           Operator
+' '           Text.Whitespace
+'2'           Literal.Number
+','           Operator
+' '           Text.Whitespace
+'3'           Literal.Number
+']'           Operator
+')'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'<'           Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'{'           Punctuation
+'item'        Name
+'}'           Punctuation
+'</'          Punctuation
+'li'          Name.Tag
+'>'           Punctuation
+'\n      '    Text.Whitespace
+'}'           Punctuation
+'\n      '    Text.Whitespace
+'<'           Punctuation
+'input'       Name.Tag
+' '           Text.Whitespace
+'type'        Name.Attribute
+'='           Operator
+'"text"'      Literal.String.Double
+' '           Text.Whitespace
+'value'       Name.Attribute
+'='           Operator
+'{'           Punctuation
+'label'       Name
+'}'           Punctuation
+'/>'          Punctuation
+'\n    '      Text.Whitespace
+'</'          Punctuation
+'div'         Name.Tag
+'>'           Punctuation
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n\n  '      Text.Whitespace
+'style'       Keyword
+' '           Text.Whitespace
+'test'        Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'color'       Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'red'         Keyword.Constant
+';'           Punctuation
+'\n    '      Text.Whitespace
+'background'  Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'#{'          Literal.String.Interpol
+'counter'     Name
+'}'           Literal.String.Interpol
+';'           Punctuation
+'\n    '      Text.Whitespace
+'font-size'   Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'12px'        Literal.Number
+';'           Punctuation
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'store'       Keyword
+' '           Text.Whitespace
+'Session'     Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'state'       Keyword
+' '           Text.Whitespace
+'user'        Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'String'      Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'guest'       Literal.String.Double
+'"'           Literal.String.Double
+'\n\n  '      Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'login'       Name.Function
+' '           Text.Whitespace
+'('           Operator
+'name'        Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'String'      Keyword.Type
+')'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'next'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'user'        Name
+':'           Operator
+' '           Text.Whitespace
+'name'        Name
+' '           Text.Whitespace
+'}'           Punctuation
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'module'      Keyword
+' '           Text.Whitespace
+'Main'        Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'fun'         Keyword
+' '           Text.Whitespace
+'render'      Name.Function
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Html'        Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'<>'          Punctuation
+'\n      '    Text.Whitespace
+'<'           Punctuation
+'div'         Name.Tag
+' '           Text.Whitespace
+'as'          Name.Attribute
+' '           Text.Whitespace
+'ref'         Name.Attribute
+'/>'          Punctuation
+'\n      '    Text.Whitespace
+'<'           Punctuation
+'br'          Name.Tag
+'/>'          Punctuation
+'\n      '    Text.Whitespace
+'<'           Punctuation
+'Counter'     Name.Tag
+' '           Text.Whitespace
+'name'        Name.Attribute
+'='           Operator
+'"world"'     Literal.String.Double
+'/>'          Punctuation
+'\n    '      Text.Whitespace
+'</>'         Punctuation
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'type'        Keyword
+' '           Text.Whitespace
+'Maybe'       Name.Class
+'('           Operator
+'value'       Name
+')'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'Just'        Name.Class
+'('           Operator
+'value'       Name
+')'           Operator
+'\n  '        Text.Whitespace
+'Nothing'     Name.Class
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'type'        Keyword
+' '           Text.Whitespace
+'Person'      Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'name'        Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'String'      Keyword.Type
+','           Operator
+'\n  '        Text.Whitespace
+'age'         Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Number'      Keyword.Type
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'fun'         Keyword
+' '           Text.Whitespace
+'compute'     Name.Function
+' '           Text.Whitespace
+'('           Operator
+'a'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Number'      Keyword.Type
+','           Operator
+' '           Text.Whitespace
+'b'           Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Number'      Keyword.Type
+')'           Operator
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'String'      Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'sum'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'b'           Name
+'\n  '        Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'ratio'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'b'           Name
+'\n  '        Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'text'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'first'       Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'\\'          Operator
+'\n             ' Text.Whitespace
+'"'           Literal.String.Double
+'second'      Literal.String.Double
+'"'           Literal.String.Double
+'\n  '        Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'pattern'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'/ab+c/gi'    Literal.String.Regex
+'\n  '        Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'code'        Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'`'           Literal.String.Backtick
+'console.log(' Literal.String.Backtick
+'#{'          Literal.String.Interpol
+'sum'         Name
+'}'           Literal.String.Interpol
+')'           Literal.String.Backtick
+'`'           Literal.String.Backtick
+'\n  '        Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'neg'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'-'           Operator
+'5'           Literal.Number
+'\n  '        Text.Whitespace
+'let'         Keyword
+' '           Text.Whitespace
+'float'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'3.14'        Literal.Number
+'\n\n  '      Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'('           Operator
+'sum'         Name
+')'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'zero'        Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'one'         Literal.String.Double
+'"'           Literal.String.Double
+'\n    '      Text.Whitespace
+'_'           Name
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'sum'         Name
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number
+'\n  '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
