@@ -1,0 +1,194 @@
+'// A module with single-line and grouped directives.' Comment.Single
+'\n'          Text.Whitespace
+
+'module'      Keyword
+' '           Text.Whitespace
+'example.com/project' Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'go'          Keyword
+' '           Text.Whitespace
+'1.26.0'      Literal.Number
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'toolchain'   Keyword
+' '           Text.Whitespace
+'go1.27.1'    Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'godebug'     Keyword
+' '           Text.Whitespace
+'default=go1.26' Name
+'\n'          Text.Whitespace
+
+'godebug'     Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'panicnil=1'  Name
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'asynctimerchan=0' Name
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'require'     Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'example.com/library' Name
+' '           Text.Whitespace
+'v1.2.3'      Literal.Number
+' '           Text.Whitespace
+'// indirect' Comment.Single
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'example.com/another/v2' Name
+' '           Text.Whitespace
+'v2.0.0-rc.1' Literal.Number
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'example.com/legacy' Name
+' '           Text.Whitespace
+'v3.1.0+incompatible' Literal.Number
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'example.com/snapshot' Name
+' '           Text.Whitespace
+'v0.0.0-20260102030405-abcdef123456' Literal.Number
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'exclude'     Keyword
+' '           Text.Whitespace
+'example.com/library' Name
+' '           Text.Whitespace
+'v1.2.2'      Literal.Number
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'replace'     Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'example.com/library' Name
+' '           Text.Whitespace
+'v1.2.3'      Literal.Number
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'example.com/fork' Name
+' '           Text.Whitespace
+'v1.3.0'      Literal.Number
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'example.com/another/v2' Name
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'../local module' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'example.com/legacy' Name
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'../legacy'   Name
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'retract'     Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'v0.1.0'      Literal.Number
+' '           Text.Whitespace
+'// Published in error.' Comment.Single
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'['           Punctuation
+'v0.2.0'      Literal.Number
+','           Punctuation
+' '           Text.Whitespace
+'v0.2.3'      Literal.Number
+']'           Punctuation
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'tool'        Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'example.com/project/cmd/check' Name
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'example.com/project/cmd/generate' Name
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'ignore'      Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'module'      Name
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'go'          Name
+'\n'          Text.Whitespace
+
+'\t'          Text.Whitespace
+'./node_modules' Name
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace

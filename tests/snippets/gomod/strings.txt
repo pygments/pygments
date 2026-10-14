@@ -1,0 +1,60 @@
+---input---
+module "example.com/quoted"
+replace "example.com/dependency" => "../a\"b"
+replace example.com/raw => "../a//b"
+replace example.com/unicode => "../本地"
+require example.com/require v1.2.3-pre.1+incompatible // indirect
+
+---tokens---
+'module'      Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'example.com/quoted' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'replace'     Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'example.com/dependency' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'../a'        Literal.String.Double
+'\\"'         Literal.String.Escape
+'b'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'replace'     Keyword
+' '           Text.Whitespace
+'example.com/raw' Name
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'../a//b'     Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'replace'     Keyword
+' '           Text.Whitespace
+'example.com/unicode' Name
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'../本地'       Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'require'     Keyword
+' '           Text.Whitespace
+'example.com/require' Name
+' '           Text.Whitespace
+'v1.2.3-pre.1+incompatible' Literal.Number
+' '           Text.Whitespace
+'// indirect' Comment.Single
+'\n'          Text.Whitespace
