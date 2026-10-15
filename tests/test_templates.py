@@ -1,7 +1,8 @@
 import pytest
 
-from pygments.lexers.templates import JavascriptDjangoLexer, MasonLexer, \
-    SqlJinjaLexer, VelocityLexer
+from pygments.lexers import get_lexer_for_filename
+from pygments.lexers.templates import JavascriptDjangoLexer, MakoLexer, \
+    MasonLexer, SqlJinjaLexer, VelocityLexer
 
 from pygments.token import Comment
 
@@ -40,6 +41,10 @@ def test_do_not_mistake_JSDoc_for_django_comment(lexer):
               };"""
     tokens = lexer.get_tokens(text)
     assert not any(t[0] == Comment for t in tokens)
+
+@pytest.mark.parametrize('filename', ['index.mako', 'script.py.mako', 'test.mao'])
+def test_mako_filenames(filename):
+    assert isinstance(get_lexer_for_filename(filename), MakoLexer)
 
 def test_mason_unnamed_block(lexerMason):
     text = """

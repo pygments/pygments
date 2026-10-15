@@ -588,7 +588,7 @@ class MakoLexer(RegexLexer):
     name = 'Mako'
     url = 'http://www.makotemplates.org/'
     aliases = ['mako']
-    filenames = ['*.mao']
+    filenames = ['*.mako', '*.mao']
     mimetypes = ['application/x-mako']
     version_added = '0.7'
 
