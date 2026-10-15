@@ -11,7 +11,7 @@
 import re
 
 from pygments.lexer import Lexer, RegexLexer, bygroups, do_insertions, \
-    default, include, inherit, line_re
+    default, include, inherit, line_re, this, using
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Whitespace
 from pygments import unistring as uni
@@ -40,8 +40,16 @@ class HaskellLexer(RegexLexer):
              'DC[1-4]', 'NAK', 'SYN', 'ETB', 'CAN',
              'EM', 'SUB', 'ESC', '[FGRU]S', 'SP', 'DEL')
 
+    _varid = r"[_" + uni.Ll + r"][\w']*"
+    _varsym = r'[!#$%&*+.\\/<=>?@^|~-][:!#$%&*+.\\/<=>?@^|~-]*'
+    _signature_var = rf'(?:{_varid}|\({_varsym}\))'
+
     tokens = {
         'root': [
+            # All names in a shared type signature have the same role.
+            (r'(^[ \t]*|[ \t]*(?:\n[ \t]*)+)(' + _signature_var + r'(?:\s*,\s*' + _signature_var +
+             r')+)(\s*)(::)(?![:!#$%&*+.\\/<=>?@^|~-])',
+             bygroups(Whitespace, using(this, state='signature'), Whitespace, Operator.Word)),
             # Whitespace:
             (r'\s+', Whitespace),
             # (r'--\s*|.*$', Comment.Doc),
@@ -84,6 +92,12 @@ class HaskellLexer(RegexLexer):
             (r'\[\]', Keyword.Type),
             (r'\(\)', Name.Builtin),
             (r'[][(),;`{}]', Punctuation),
+        ],
+        'signature': [
+            (r'\s+', Whitespace),
+            (_varid, Name.Function),
+            (_varsym, Operator),
+            (r'[(),]', Punctuation),
         ],
         'import': [
             # Import statements
