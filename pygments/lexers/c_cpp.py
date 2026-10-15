@@ -375,6 +375,10 @@ class CppLexer(CFamilyLexer):
     priority = 0.1
 
     tokens = {
+        'statement': [
+            (r'\}', Punctuation, '#pop'),
+            inherit,
+        ],
         'statements': [
             # C++11 raw strings
             (r'((?:[LuU]|u8)?R)(")([^\\()\s]{,16})(\()([\s\S]*?)(\)\3)(")',
