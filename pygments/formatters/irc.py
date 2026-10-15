@@ -132,6 +132,7 @@ class IRCFormatter(Formatter):
             outfile.write("%04d: " % self._lineno)
 
     def format_unencoded(self, tokensource, outfile):
+        self._lineno = 0
         self._write_lineno(outfile)
 
         for ttype, value in tokensource:
