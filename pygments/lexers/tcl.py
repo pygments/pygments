@@ -88,9 +88,10 @@ class TclLexer(RegexLexer):
             (r'\d+\.\d+', Number.Float),
             (r'\d+', Number.Integer),
             # `$name` notation stops at a dash (e.g. `$foo-bar` reads `$foo`),
-            # whereas the braced `${name}` form may contain dashes.
+            # whereas the braced `${name}` form may contain any character
+            # except a closing brace.
             (r'\$[\w.:]+', Name.Variable),
-            (r'\$\{[\w.:-]+\}', Name.Variable),
+            (r'\$\{[^}]+\}', Name.Variable),
             (r'[\w.,@:-]+', Text),
         ],
         'params': [
