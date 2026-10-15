@@ -1165,6 +1165,9 @@ class KotlinLexer(RegexLexer):
             # Functions
             (r'((?:(?:' + modifiers + r')\s+)*)(fun)(\s+)',
              bygroups(using(this, state='modifiers'), Keyword.Declaration, Whitespace), 'function'),
+            # Named call arguments (declaration parameters have a type after ':').
+            (r'([,(])(\s*)' + kt_id + r'(\s*)(=)(?!=)',
+             bygroups(Punctuation, Whitespace, Name.Variable, Whitespace, Operator)),
             # Operators
             (r'::|!!|\?[:.]', Operator),
             (r'[~^*!%&\[\]<>|+=/?-]', Operator),
