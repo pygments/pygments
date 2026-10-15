@@ -17,6 +17,7 @@ from pygments.util import get_choice_opt
 from pygments import unistring as uni
 
 from pygments.lexers.html import XmlLexer
+from pygments.lexers.javascript import JavascriptLexer
 
 __all__ = ['CSharpLexer', 'NemerleLexer', 'BooLexer', 'VbNetLexer',
            'CSharpAspxLexer', 'VbNetAspxLexer', 'FSharpLexer', 'XppLexer']
@@ -544,6 +545,21 @@ class VbNetLexer(RegexLexer):
             return 0.5
 
 
+class _AspxCodeLexer(RegexLexer):
+    flags = re.DOTALL
+    tokens = {
+        'root': [
+            (r'(<%[@=#]?)(.*?)(%>)', bygroups(Name.Tag, Other.Server, Name.Tag)),
+            (r'(?:(?!<%).)+', Other),
+        ],
+    }
+
+
+class _AspxJavascriptLexer(DelegatingLexer):
+    def __init__(self, **options):
+        super().__init__(JavascriptLexer, _AspxCodeLexer, **options)
+
+
 class GenericAspxLexer(RegexLexer):
     """
     Lexer for ASP.NET pages.
@@ -556,12 +572,36 @@ class GenericAspxLexer(RegexLexer):
 
     flags = re.DOTALL
 
+    def _script_content(lexer, match):
+        attributes = {}
+        attribute = None
+        for offset, kind, value in XmlLexer(**lexer.options).get_tokens_unprocessed(match[1]):
+            yield match.start(1) + offset, kind, value
+            if kind is Name.Attribute:
+                attribute = value[:-1].strip().lower()
+            elif kind is String and attribute is not None:
+                attributes[attribute] = value.strip('\"\'').lower()
+                attribute = None
+
+        javascript = (
+            attributes.get('runat') != 'server' and
+            attributes.get('language', 'javascript') in ('javascript', 'jscript', 'ecmascript') and
+            attributes.get('type', 'text/javascript') in (
+                'text/javascript', 'application/javascript', 'text/ecmascript',
+                'application/ecmascript', 'module'))
+        if javascript:
+            for offset, kind, value in _AspxJavascriptLexer(**lexer.options).get_tokens_unprocessed(match[2]):
+                yield match.start(2) + offset, kind, value
+        elif match[2]:
+            yield match.start(2), Other.Server, match[2]
+        for offset, kind, value in XmlLexer(**lexer.options).get_tokens_unprocessed(match[3]):
+            yield match.start(3) + offset, kind, value
+
     tokens = {
         'root': [
-            (r'(<%[@=#]?)(.*?)(%>)', bygroups(Name.Tag, Other, Name.Tag)),
-            (r'(<script.*?>)(.*?)(</script>)', bygroups(using(XmlLexer),
-                                                        Other,
-                                                        using(XmlLexer))),
+            (r'(<%[@=#]?)(.*?)(%>)', bygroups(Name.Tag, Other.Server, Name.Tag)),
+            (r'((?i:<script)\b(?:[^>\"\']|\"[^\"]*\"|\'[^\']*\')*>)'
+             r'(.*?)((?i:</script)\s*>)', _script_content),
             (r'(.+?)(?=<)', using(XmlLexer)),
             (r'.+', using(XmlLexer)),
         ],
@@ -582,7 +622,7 @@ class CSharpAspxLexer(DelegatingLexer):
     version_added = ''
 
     def __init__(self, **options):
-        super().__init__(CSharpLexer, GenericAspxLexer, **options)
+        super().__init__(CSharpLexer, GenericAspxLexer, Other.Server, **options)
 
     def analyse_text(text):
         if re.search(r'Page\s*Language="C#"', text, re.I) is not None:
@@ -604,7 +644,7 @@ class VbNetAspxLexer(DelegatingLexer):
     version_added = ''
 
     def __init__(self, **options):
-        super().__init__(VbNetLexer, GenericAspxLexer, **options)
+        super().__init__(VbNetLexer, GenericAspxLexer, Other.Server, **options)
 
     def analyse_text(text):
         if re.search(r'Page\s*Language="Vb"', text, re.I) is not None:
