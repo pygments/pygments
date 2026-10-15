@@ -213,7 +213,7 @@ class PropertiesLexer(RegexLexer):
     tokens = {
         'root': [
             # comments
-            (r'[!#].*|/{2}.*', Comment.Single),
+            (r'[!#].*', Comment.Single),
             # ending a comment or whitespace-only line
             (r'\n', Whitespace),
             # eat whitespace at the beginning of a line
