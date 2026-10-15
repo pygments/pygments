@@ -611,6 +611,7 @@ class ImageFormatter(Formatter):
         This implementation calculates where it should draw each token on the
         pixmap, then calculates the required pixmap size and draws the items.
         """
+        self.drawables = []
         self._create_drawables(tokensource)
         self._draw_line_numbers()
         im = Image.new(
