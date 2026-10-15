@@ -1,0 +1,20 @@
+---input---
+puts ${my var}
+puts ${a(1)}
+puts ${x$y}
+
+---tokens---
+'puts'        Name.Builtin
+' '           Text.Whitespace
+'${my var}'   Name.Variable
+'\n'          Text
+
+'puts'        Name.Builtin
+' '           Text.Whitespace
+'${a(1)}'     Name.Variable
+'\n'          Text
+
+'puts'        Name.Builtin
+' '           Text.Whitespace
+'${x$y}'      Name.Variable
+'\n'          Text
