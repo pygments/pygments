@@ -1,0 +1,27 @@
+---input---
+0b1010u8
+0b1010_1100
+0b0
+x+0b1010+y
+0b1010foo
+
+---tokens---
+'0b1010u8'    Literal.Number.Bin
+'\n'          Text.Whitespace
+
+'0b1010_1100' Literal.Number.Bin
+'\n'          Text.Whitespace
+
+'0b0'         Literal.Number.Bin
+'\n'          Text.Whitespace
+
+'x'           Name
+'+'           Operator
+'0b1010'      Literal.Number.Bin
+'+'           Operator
+'y'           Name
+'\n'          Text.Whitespace
+
+'0b1010'      Literal.Number.Bin
+'foo'         Name
+'\n'          Text.Whitespace
