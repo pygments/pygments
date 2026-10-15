@@ -348,7 +348,7 @@ class LatexFormatter(Formatter):
                               (step and ',stepnumber=%d' % step or ''))
             if self.mathescape or self.texcomments or self.escapeinside:
                 outfile.write(',codes={\\catcode`\\$=3\\catcode`\\^=7'
-                              '\\catcode`\\_=8\\relax}')
+                              '\\catcode`\\_=8\\catcode`\\&=4\\relax}')
             if self.verboptions:
                 outfile.write(',' + self.verboptions)
             outfile.write(']\n')

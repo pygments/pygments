@@ -34,6 +34,27 @@ def test_correct_output():
     assert r'\end{Verbatim}' not in houtfile.getvalue()
 
 
+@pytest.mark.parametrize('options,comment', [
+    ({'mathescape': True}, r'# $\begin{pmatrix}a & b \\ c & d\end{pmatrix}$'),
+    ({'texcomments': True}, r'# $\begin{pmatrix}a & b \\ c & d\end{pmatrix}$'),
+    ({'escapeinside': '||'}, r'# |$\begin{pmatrix}a & b \\ c & d\end{pmatrix}$|'),
+])
+def test_escaped_math_alignment(options, comment):
+    output = StringIO()
+    LatexFormatter(**options).format(PythonLexer().get_tokens(comment), output)
+    result = output.getvalue()
+    assert r'\catcode`\&=4' in result
+    assert r'\begin{pmatrix}a & b \\ c & d\end{pmatrix}' in result
+
+
+def test_ampersand_without_tex_escaping():
+    output = StringIO()
+    LatexFormatter().format(PythonLexer().get_tokens('x = a & b'), output)
+    result = output.getvalue()
+    assert r'\PYZam{}' in result
+    assert 'codes=' not in result
+
+
 def test_valid_output():
     with open(TESTFILE, encoding='utf-8') as fp:
         tokensource = list(PythonLexer().get_tokens(fp.read()))
