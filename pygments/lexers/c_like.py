@@ -35,6 +35,7 @@ class PikeLexer(CppLexer):
 
     tokens = {
         'statements': [
+            (r'case\b', Keyword, 'case-value'),
             (words((
                 'catch', 'new', 'private', 'protected', 'public', 'gauge',
                 'throw', 'throws', 'class', 'interface', 'implement', 'abstract',
