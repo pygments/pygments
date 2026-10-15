@@ -1,0 +1,60 @@
+---input---
+let d = AVCaptureDevice.devices(for: .audio, in: 42)
+func move(from a: Int, to b: Int, in c: Int) {}
+
+---tokens---
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'d'           Name.Variable
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'AVCaptureDevice' Name.Builtin.Pseudo
+'.'           Punctuation
+'devices'     Name
+'('           Punctuation
+'for'         Name
+':'           Punctuation
+' '           Text.Whitespace
+'.'           Punctuation
+'audio'       Name
+','           Punctuation
+' '           Text.Whitespace
+'in'          Name
+':'           Punctuation
+' '           Text.Whitespace
+'42'          Literal.Number.Integer
+')'           Punctuation
+'\n'          Text
+
+'func'        Keyword.Declaration
+' '           Text.Whitespace
+'move'        Name.Function
+'('           Punctuation
+'from'        Name
+' '           Text.Whitespace
+'a'           Name
+':'           Punctuation
+' '           Text.Whitespace
+'Int'         Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'to'          Name
+' '           Text.Whitespace
+'b'           Name
+':'           Punctuation
+' '           Text.Whitespace
+'Int'         Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'in'          Name
+' '           Text.Whitespace
+'c'           Name
+':'           Punctuation
+' '           Text.Whitespace
+'Int'         Name.Builtin
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text

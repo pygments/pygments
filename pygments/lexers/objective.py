@@ -301,6 +301,14 @@ class SwiftLexer(RegexLexer):
             (r'/\*', Comment.Multiline, 'comment-multi'),
             (r'#(if|elseif|else|endif|available)\b', Comment.Preproc, 'preproc'),
 
+            # Argument labels, which may be any keyword except `inout`, `var`
+            # and `let`: `f(for: x)`, `func f(in x: Int)`. Literals are left
+            # alone for dictionary keys such as `[true: 1, false: 0]`.
+            (r'([(,])(\s*)(?!(?:inout|var|let|true|false|nil)\b)'
+             r'([a-zA-Z]\w*|_\w+)'
+             r'(?=\s*:|\s+[a-zA-Z_]\w*\s*:)',
+             bygroups(Punctuation, Whitespace, Name)),
+
             # Keywords
             include('keywords'),
 
