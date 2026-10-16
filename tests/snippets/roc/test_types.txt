@@ -1,0 +1,319 @@
+---input---
+number_operators : I64, I64 -> _
+is_empty : Str -> Bool
+read_str! : Path => Try(Str, ReadFileErr)
+average : Dec, Dec -> Dec
+strings : List(Str)
+record : { name : Str, age : I64 }
+letters : [A, B, ..]
+Color := [Red, Green, Blue]
+NominalTypeRecord := { x : U64 }
+Secret :: {
+    key : Str,
+}
+ServerConfig := { host : Str, port : U16 ?? 8080, timeout_ms ?: U64 }
+stringify : a -> Str where [a.to_str : a -> Str]
+config = ServerConfig.{ host: "localhost" }
+timeout = config.?timeout_ms
+tup = ("Roc", 1)
+second = tup.1
+updated = { ..person, age: 31 }
+{ email: _, ..rest } = person
+
+---tokens---
+'number_operators' Name.Function
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'I64'         Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'I64'         Keyword.Type
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'_'           Name
+'\n'          Text.Whitespace
+
+'is_empty'    Name.Function
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Str'         Keyword.Type
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'Bool'        Keyword.Type
+'\n'          Text.Whitespace
+
+'read_str'    Name.Function
+'!'           Operator
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Path'        Keyword.Type
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'Try'         Keyword.Type
+'('           Punctuation
+'Str'         Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'ReadFileErr' Keyword.Type
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'average'     Name.Function
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Dec'         Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'Dec'         Keyword.Type
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'Dec'         Keyword.Type
+'\n'          Text.Whitespace
+
+'strings'     Name.Function
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'List'        Keyword.Type
+'('           Punctuation
+'Str'         Keyword.Type
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'record'      Name.Function
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'name'        Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Str'         Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'age'         Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'I64'         Keyword.Type
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'letters'     Name.Function
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'A'           Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'B'           Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'..'          Operator
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'Color'       Keyword.Type
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'['           Punctuation
+'Red'         Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'Green'       Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'Blue'        Keyword.Type
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'NominalTypeRecord' Keyword.Type
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'U64'         Keyword.Type
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'Secret'      Keyword.Type
+' '           Text.Whitespace
+'::'          Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'key'         Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Str'         Keyword.Type
+','           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'ServerConfig' Keyword.Type
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'host'        Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Str'         Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'port'        Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'U16'         Keyword.Type
+' '           Text.Whitespace
+'??'          Operator
+' '           Text.Whitespace
+'8080'        Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'timeout_ms'  Name
+' '           Text.Whitespace
+'?:'          Operator
+' '           Text.Whitespace
+'U64'         Keyword.Type
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'stringify'   Name.Function
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'Str'         Keyword.Type
+' '           Text.Whitespace
+'where'       Keyword.Reserved
+' '           Text.Whitespace
+'['           Punctuation
+'a'           Name
+'.'           Operator
+'to_str'      Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'Str'         Keyword.Type
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'config'      Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'ServerConfig' Keyword.Type
+'.'           Operator
+'{'           Punctuation
+' '           Text.Whitespace
+'host'        Name
+':'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'localhost'   Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'timeout'     Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'config'      Name
+'.?'          Operator
+'timeout_ms'  Name
+'\n'          Text.Whitespace
+
+'tup'         Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'('           Punctuation
+'"'           Literal.String
+'Roc'         Literal.String
+'"'           Literal.String
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'second'      Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'tup'         Name
+'.'           Operator
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'updated'     Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'..'          Operator
+'person'      Name
+','           Punctuation
+' '           Text.Whitespace
+'age'         Name
+':'           Punctuation
+' '           Text.Whitespace
+'31'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+' '           Text.Whitespace
+'email'       Name
+':'           Punctuation
+' '           Text.Whitespace
+'_'           Name
+','           Punctuation
+' '           Text.Whitespace
+'..'          Operator
+'rest'        Name
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'person'      Name
+'\n'          Text.Whitespace

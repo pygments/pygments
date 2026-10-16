@@ -1,0 +1,384 @@
+---input---
+# a comment
+## a doc comment
+simple_match = |color| {
+    match color {
+        Red => "The color is red."
+        Green => "The color is green."
+        Blue | BabyBlue => "The color is blue."
+        [1, 2, ..] => 66
+        [1, .. as tail] => 77 + tail.len()
+        _ => 100
+    }
+}
+count_down = |limit| {
+    var $count = 0
+    while $count < limit {
+        $count = $count + 1
+        if $count == 3 {
+            break
+        } else {
+            {}
+        }
+    }
+    $count
+}
+for_loop = |num_list| {
+    var $sum = 0
+    for num in num_list {
+        $sum = $sum + num
+    }
+    $sum
+}
+not_implemented = |str| {
+    if str == "" {
+        crash "not implemented"
+    } else {
+        return str
+    }
+}
+check = |flag| {
+    expect flag or (!flag)
+    dbg flag
+    flag and True
+}
+first_or = |strings| {
+    first = strings.first() ? NoFirstError
+    first?
+}
+placeholder = |_x| ...
+
+---tokens---
+'# a comment' Comment.Single
+'\n'          Text.Whitespace
+
+'## a doc comment' Comment.Single
+'\n'          Text.Whitespace
+
+'simple_match' Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'|'           Operator
+'color'       Name
+'|'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'match'       Keyword.Reserved
+' '           Text.Whitespace
+'color'       Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'Red'         Keyword.Type
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'The color is red.' Literal.String
+'"'           Literal.String
+'\n        '  Text.Whitespace
+'Green'       Keyword.Type
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'The color is green.' Literal.String
+'"'           Literal.String
+'\n        '  Text.Whitespace
+'Blue'        Keyword.Type
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'BabyBlue'    Keyword.Type
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'The color is blue.' Literal.String
+'"'           Literal.String
+'\n        '  Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'..'          Operator
+']'           Punctuation
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'66'          Literal.Number.Integer
+'\n        '  Text.Whitespace
+'['           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'..'          Operator
+' '           Text.Whitespace
+'as'          Keyword.Reserved
+' '           Text.Whitespace
+'tail'        Name
+']'           Punctuation
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'77'          Literal.Number.Integer
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'tail'        Name
+'.'           Operator
+'len'         Name
+'('           Punctuation
+')'           Punctuation
+'\n        '  Text.Whitespace
+'_'           Name
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'count_down'  Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'|'           Operator
+'limit'       Name
+'|'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'var'         Keyword.Reserved
+' '           Text.Whitespace
+'$count'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n    '      Text.Whitespace
+'while'       Keyword.Reserved
+' '           Text.Whitespace
+'$count'      Name.Variable
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'limit'       Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'$count'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'$count'      Name.Variable
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n        '  Text.Whitespace
+'if'          Keyword.Reserved
+' '           Text.Whitespace
+'$count'      Name.Variable
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'break'       Keyword.Reserved
+'\n        '  Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'else'        Keyword.Reserved
+' '           Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n        '  Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'$count'      Name.Variable
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'for_loop'    Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'|'           Operator
+'num_list'    Name
+'|'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'var'         Keyword.Reserved
+' '           Text.Whitespace
+'$sum'        Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n    '      Text.Whitespace
+'for'         Keyword.Reserved
+' '           Text.Whitespace
+'num'         Name
+' '           Text.Whitespace
+'in'          Keyword.Reserved
+' '           Text.Whitespace
+'num_list'    Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'$sum'        Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'$sum'        Name.Variable
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'num'         Name
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'$sum'        Name.Variable
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'not_implemented' Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'|'           Operator
+'str'         Name
+'|'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'if'          Keyword.Reserved
+' '           Text.Whitespace
+'str'         Name
+' '           Text.Whitespace
+'=='          Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'crash'       Keyword.Reserved
+' '           Text.Whitespace
+'"'           Literal.String
+'not implemented' Literal.String
+'"'           Literal.String
+'\n    '      Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'else'        Keyword.Reserved
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'return'      Keyword.Reserved
+' '           Text.Whitespace
+'str'         Name
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'check'       Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'|'           Operator
+'flag'        Name
+'|'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'expect'      Keyword.Reserved
+' '           Text.Whitespace
+'flag'        Name
+' '           Text.Whitespace
+'or'          Operator.Word
+' '           Text.Whitespace
+'('           Punctuation
+'!'           Operator
+'flag'        Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+'dbg'         Keyword.Reserved
+' '           Text.Whitespace
+'flag'        Name
+'\n    '      Text.Whitespace
+'flag'        Name
+' '           Text.Whitespace
+'and'         Operator.Word
+' '           Text.Whitespace
+'True'        Keyword.Type
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'first_or'    Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'|'           Operator
+'strings'     Name
+'|'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'first'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'strings'     Name
+'.'           Operator
+'first'       Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'?'           Operator
+' '           Text.Whitespace
+'NoFirstError' Keyword.Type
+'\n    '      Text.Whitespace
+'first'       Name
+'?'           Operator
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'placeholder' Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'|'           Operator
+'_x'          Name
+'|'           Operator
+' '           Text.Whitespace
+'...'         Operator
+'\n'          Text.Whitespace

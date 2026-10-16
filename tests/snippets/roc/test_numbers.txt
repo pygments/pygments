@@ -1,0 +1,111 @@
+---input---
+42
+42.0
+0x5
+0o5
+0b0101
+usage_based = 5
+explicit_u8 = 5.U8
+explicit_i64 = 5.I64
+explicit_dec = 5.Dec
+range = List.range({ start: 1, end: 10 })
+div_trunc = 7 // 2
+default = I64.from_str("x") ?? 0
+
+---tokens---
+'42'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'42.0'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'0x5'         Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'0o5'         Literal.Number.Oct
+'\n'          Text.Whitespace
+
+'0b0101'      Literal.Number.Bin
+'\n'          Text.Whitespace
+
+'usage_based' Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'explicit_u8' Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'5.U8'        Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'explicit_i64' Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'5.I64'       Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'explicit_dec' Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'5.Dec'       Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'range'       Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'List'        Keyword.Type
+'.'           Operator
+'range'       Name
+'('           Punctuation
+'{'           Punctuation
+' '           Text.Whitespace
+'start'       Name
+':'           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'end'         Name
+':'           Punctuation
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'div_trunc'   Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'7'           Literal.Number.Integer
+' '           Text.Whitespace
+'//'          Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'default'     Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'I64'         Keyword.Type
+'.'           Operator
+'from_str'    Name
+'('           Punctuation
+'"'           Literal.String
+'x'           Literal.String
+'"'           Literal.String
+')'           Punctuation
+' '           Text.Whitespace
+'??'          Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace

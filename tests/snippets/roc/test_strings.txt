@@ -1,0 +1,140 @@
+---input---
+plain = "Hello, world!"
+escaped = "line one\nline two\ttabbed \"quoted\" backslash \\ and an escaped interpolation \$"
+unicode = "non-breaking space:\u(00A0)"
+interp = "2 + 2 is ${2 + 2}"
+interp_call = "Performed by ${song.artist}"
+interp_nested = "record: ${Str.inspect({ x: 1, y: 2 })}"
+interpolated = |number|
+    \\Line 1
+    \\Line 2
+    \\Line ${number.to_str()}
+
+---tokens---
+'plain'       Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'Hello, world!' Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'escaped'     Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'line one'    Literal.String
+'\\n'         Literal.String.Escape
+'line two'    Literal.String
+'\\t'         Literal.String.Escape
+'tabbed '     Literal.String
+'\\"'         Literal.String.Escape
+'quoted'      Literal.String
+'\\"'         Literal.String.Escape
+' backslash ' Literal.String
+'\\\\'        Literal.String.Escape
+' and an escaped interpolation ' Literal.String
+'\\$'         Literal.String.Escape
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'unicode'     Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'non-breaking space:' Literal.String
+'\\u(00A0)'   Literal.String.Escape
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'interp'      Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'2 + 2 is '   Literal.String
+'${'          Literal.String.Interpol
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'}'           Literal.String.Interpol
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'interp_call' Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'Performed by ' Literal.String
+'${'          Literal.String.Interpol
+'song'        Name
+'.'           Operator
+'artist'      Name
+'}'           Literal.String.Interpol
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'interp_nested' Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'record: '    Literal.String
+'${'          Literal.String.Interpol
+'Str'         Keyword.Type
+'.'           Operator
+'inspect'     Name
+'('           Punctuation
+'{'           Punctuation
+' '           Text.Whitespace
+'x'           Name
+':'           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'y'           Name
+':'           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Literal.String.Interpol
+')'           Punctuation
+'}'           Literal.String.Interpol
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'interpolated' Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'|'           Operator
+'number'      Name
+'|'           Operator
+'\n    '      Text.Whitespace
+'\\\\'        Literal.String
+'Line 1'      Literal.String
+'\n'          Literal.String
+
+'    '        Text.Whitespace
+'\\\\'        Literal.String
+'Line 2'      Literal.String
+'\n'          Literal.String
+
+'    '        Text.Whitespace
+'\\\\'        Literal.String
+'Line '       Literal.String
+'${'          Literal.String.Interpol
+'number'      Name
+'.'           Operator
+'to_str'      Name
+'('           Punctuation
+')'           Punctuation
+'}'           Literal.String.Interpol
+'\n'          Literal.String
