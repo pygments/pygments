@@ -1,0 +1,106 @@
+---input---
+main! = |_args| {
+    echo!("Hello, world!\n")
+    Ok({})
+}
+sum = |a, b| a + b
+double = |n| n * 2
+greet = |name| "Hi ${name}"
+result = sum(1, 2) |> double
+
+---tokens---
+'main'        Name.Function
+'!'           Operator
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'|'           Operator
+'_args'       Name
+'|'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'echo'        Name
+'!'           Operator
+'('           Punctuation
+'"'           Literal.String
+'Hello, world!' Literal.String
+'\\n'         Literal.String.Escape
+'"'           Literal.String
+')'           Punctuation
+'\n    '      Text.Whitespace
+'Ok'          Keyword.Type
+'('           Punctuation
+'{'           Punctuation
+'}'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'sum'         Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'|'           Operator
+'a'           Name
+','           Punctuation
+' '           Text.Whitespace
+'b'           Name
+'|'           Operator
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'b'           Name
+'\n'          Text.Whitespace
+
+'double'      Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'|'           Operator
+'n'           Name
+'|'           Operator
+' '           Text.Whitespace
+'n'           Name
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'greet'       Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'|'           Operator
+'name'        Name
+'|'           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+'Hi '         Literal.String
+'${'          Literal.String.Interpol
+'name'        Name
+'}'           Literal.String.Interpol
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'result'      Name.Function
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'sum'         Name
+'('           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'|>'          Operator
+' '           Text.Whitespace
+'double'      Name
+'\n'          Text.Whitespace

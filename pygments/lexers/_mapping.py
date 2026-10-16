@@ -456,6 +456,7 @@ LEXERS = {
     'RoboconfGraphLexer': ('pygments.lexers.roboconf', 'Roboconf Graph', ('roboconf-graph',), ('*.graph',), ()),
     'RoboconfInstancesLexer': ('pygments.lexers.roboconf', 'Roboconf Instances', ('roboconf-instances',), ('*.instances',), ()),
     'RobotFrameworkLexer': ('pygments.lexers.robotframework', 'RobotFramework', ('robotframework',), ('*.robot', '*.resource'), ('text/x-robotframework',)),
+    'RocLexer': ('pygments.lexers.roc', 'Roc', ('roc',), ('*.roc',), ('text/x-roc',)),
     'RocqLexer': ('pygments.lexers.theorem', 'Rocq Prover', ('coq', 'rocq', 'rocq-prover'), ('*.v',), ('text/x-coq', 'text/x-rocq')),
     'RqlLexer': ('pygments.lexers.sql', 'RQL', ('rql',), ('*.rql',), ('text/x-rql',)),
     'RslLexer': ('pygments.lexers.dsls', 'RSL', ('rsl',), ('*.rsl',), ('text/rsl',)),

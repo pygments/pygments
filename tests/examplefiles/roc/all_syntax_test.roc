@@ -1,0 +1,531 @@
+import "../../README.md" as readme : Str
+
+## Double hashtag for doc comment
+number_operators : I64, I64 -> _
+number_operators = |a, b| {
+	a_f64 = I64.to_f64(a)
+	b_f64 = I64.to_f64(b)
+
+	{
+		# binary operators
+		sum: a + b,
+		diff: a - b,
+		prod: a * b,
+		div: a_f64 / b_f64,
+		div_trunc: a // b,
+		rem: a % b,
+		eq: a == b,
+		neq: a != b,
+		lt: a < b,
+		lteq: a <= b,
+		gt: a > b,
+		gteq: a >= b,
+
+		# `??` to provide a default value in case of `Err`.
+		default: I64.from_str("not a number") ?? 0,
+
+		# unary operators
+		neg: -a,
+		# the last item can have a comma too
+	}
+}
+
+boolean_operators : Bool, Bool -> _
+boolean_operators = |a, b| {
+	bool_and_keyword: a and b,
+	bool_or_keyword: a or b,
+	not_a: !a,
+}
+
+simple_match : [Red, Green, Blue, BabyBlue] -> Str
+simple_match = |color| {
+	match color {
+		Red => "The color is red."
+		Green => "The color is green."
+		Blue | BabyBlue => "The color is blue."
+	}
+}
+
+match_list_patterns : List(U64) -> U64
+match_list_patterns = |lst| {
+	match lst {
+		[] => 0
+		[x] => x
+		[1, 2, 3] => 6
+		[1, 2, ..] => 66
+		[2, .., 1] => 88
+		[1, .. as tail] => 77 + tail.len()
+		[_head, 5] => 55
+		[99, x] if x < 4 => 99 + x
+
+		# Note: avoid overusing `_` in a match branch, in general you should
+		# try to match all cases explicitly.
+		_ => 100
+	}
+}
+
+match_tag_union_advanced : Try({}, [StdoutErr(Str), Other]) -> Str
+match_tag_union_advanced = |try|
+# `Try(a, b)` is the tag union `[Ok(a), Err(b)]` under the hood.
+	match try {
+		Ok(_) =>
+			"Success"
+
+		Err(StdoutErr(err)) =>
+			"StdoutErr: ${Str.inspect(err)}"
+
+		Err(_) =>
+			"Unknown error"
+		}
+
+multiline_str : U64 -> Str
+multiline_str = |number|
+	\\Line 1
+	\\Line 2
+	\\Line ${number.to_str()}
+
+# end name with `!` for effectful functions
+# `=>` shows effectfulness in the type signature
+effect_demo! : Str => {}
+effect_demo! = |msg|
+	echo!("${msg}\n")
+
+question_postfix : List(Str) -> Try(I64, _)
+question_postfix = |strings| {
+	# `?` to immediately return the error if there is one
+	first_str = strings.first()?
+	first_num = I64.from_str(first_str)?
+
+	Ok(first_num)
+}
+
+# `?` with a right-hand side maps the err payload before early returning.
+# The rhs can be a bare tag (applied as a constructor) or any function-like
+# expression (e.g. a lambda); the err payload is passed as its argument.
+question_with_err_map : List(Str) -> Try(Str, _)
+question_with_err_map = |strings| {
+	# `? NoFirstError` wraps the err as `NoFirstError(err)` before returning
+	first_str = strings.first() ? NoFirstError
+	Ok(first_str)
+}
+
+question_with_err_lambda : List(Str) -> Try(Str, _)
+question_with_err_lambda = |strings| {
+	# `? |e| NoFirstError(e)` is the explicit lambda form
+	first_str = strings.first() ? |e| NoFirstError(e)
+	Ok(first_str)
+}
+
+# Use crash for placeholders you want to fill in later.
+implement_me_later : Str -> Str
+implement_me_later = |str| {
+	if str == "" {
+		str
+	} else {
+		crash "not implemented"
+	}
+}
+
+# for loops can be easier to think about than List.fold (previously `List.walk`)
+for_loop = |num_list| {
+	var $sum = 0
+
+	for num in num_list {
+		$sum = $sum + num
+	}
+
+	$sum
+}
+
+# break exits a for or while loop early
+break_in_for_loop = |bool_list| {
+	var $allTrue = True
+	for b in bool_list {
+		if b == False {
+			$allTrue = False
+			break
+		} else {
+			{}
+		}
+	}
+	$allTrue
+}
+
+while_loop = |limit| {
+	var $count = 0
+	var $sum = 0
+
+	while $count < limit {
+		$sum = $sum + $count
+		$count = $count + 1
+	}
+
+	$sum
+}
+
+print! = |something| {
+	echo!("${Str.inspect(something)}\n")
+}
+
+dbg_keyword = || {
+	foo : Dec
+	foo = 42.0
+
+	dbg foo
+
+	# This variation does not work yet:
+	# bar = dbg 43
+
+	foo
+}
+
+if_demo : U64 -> Str
+if_demo = |num| {
+	# every if must have an else branch!
+	one_line_if = if num == 1 "One" else "NotOne"
+
+	two_line_if =
+		if num == 2
+			"Two"
+		else
+			"NotTwo"
+
+	with_curlies =
+		if num == 5 {
+			"Five"
+		} else {
+			"NotFive"
+		}
+
+	# else if
+	if num == 3
+		"Three"
+	else if num == 4
+		"Four"
+	else
+		one_line_if.concat(two_line_if).concat(with_curlies)
+}
+
+tuple_demo =
+# tuples can contain multiple types
+	("Roc", 1)
+
+# Here we use a type variable `a` to indicate this function works for a list of any type.
+type_var : List(a) -> List(a)
+type_var = |lst| lst
+
+destructuring = || {
+	tup : (Str, Dec)
+	tup = ("Roc", 1.0)
+	(str, num) = tup
+
+	rec : { x : Dec, y : Dec }
+	rec = { x: 1.0, y: tup.1 } # tuple access with `.index`
+	{ x, y } = rec
+
+	(str, num, x, y)
+}
+
+# A record builder combines wrapped field values using the suffix type's `map2`.
+# Its type variables let each field have a different type and the result be a record.
+Builder(a) := { value : a }.{
+	pure : a -> Builder(a)
+	pure = |x| { value: x }
+
+	map2 : Builder(a), Builder(b), (a, b -> c) -> Builder(c)
+	map2 = |a, b, combine| { value: combine(a.value, b.value) }
+
+	run : Builder(a) -> a
+	run = |builder| builder.value
+}
+
+record_builder = || {
+	built = {
+		count: Builder.pure(42.U64),
+		name: Builder.pure("Roc"),
+	}.Builder
+	# The two-field builder above calls Builder.map2 with a function that makes the record.
+	built.run()
+}
+
+NominalTypeRecord := { x : U64 }
+
+# `Type.{ fields }` also works as a pattern, destructuring a nominal type's
+# backing record directly.
+destructure_nominal_type : NominalTypeRecord -> U64
+destructure_nominal_type = |NominalTypeRecord.{ x }| x
+
+# TODO not sure if still planned for implementation
+# record_update = {
+#     rec = { x: 1, y: 2 }
+#     rec2 = { rec & y: 3 }
+#     rec2
+# }
+
+record_update_2 : { name : Str, age : I64 } -> { name : Str, age : I64 }
+record_update_2 = |person| {
+	{ ..person, age: 31 }
+}
+
+# `..rest` in a record pattern binds every field you did not name as a new
+# record, so it doubles as a way to remove a field: `rest` is `person` without `email`.
+remove_record_field : { name : Str, age : I64, email : Str } -> { name : Str, age : I64 }
+remove_record_field = |person| {
+	{ email: _, ..rest } = person
+	rest
+}
+
+# A record field can have a default value (`field : Type ?? default`) or be
+# optional (`field ?: Type`). Both let you leave the field out when you build the record.
+# A defaulted field is always there when you read it, so you read it with plain `.field`.
+# An optional field may be missing, so you read it with `.?field`, which gives you a `Try`.
+# Defaults are only allowed on a nominal (`:=`) type declaration's backing record,
+# so every construction that omits a defaulted field is an explicit `ServerConfig.{...}`.
+ServerConfig := { host : Str, port : U16 ?? 8080, timeout_ms ?: U64 }
+
+describe_config : ServerConfig -> Str
+describe_config = |config| {
+	timeout_str = match config.?timeout_ms {
+		Ok(ms) => "${ms.to_str()}ms"
+		Err(MissingField) => "no timeout"
+	}
+
+	# `config.port` needs no unwrapping, it's the default when it wasn't provided
+	"${config.host}:${config.port.to_str()} (${timeout_str})"
+}
+
+number_literals = {
+	usage_based: 5, # defaults to Dec
+	explicit_u8: 5.U8, # Note that most of the time you will want to specify the type in the type signature instead.
+	explicit_i8: 5.I8,
+	explicit_u16: 5.U16,
+	explicit_i16: 5.I16,
+	explicit_u32: 5.U32,
+	explicit_i32: 5.I32,
+	explicit_u64: 5.U64,
+	explicit_i64: 5.I64,
+	explicit_u128: 5.U128,
+	explicit_i128: 5.I128,
+	# Note: F32, F64, and Dec literals use type inference which doesn't work with Str.inspect so they are omitted here.
+	hex: 0x5,
+	octal: 0o5,
+	binary: 0b0101,
+}
+
+# Opaque type
+# Useful if you want to hide fields e.g. so users of the type can not access some implementation detail you did not want to expose.
+Secret :: {
+	key : Str,
+}.{
+	new : Str -> Secret
+	new = |k| { key: k }
+
+	unlock : Secret, Str -> Str
+	unlock = |secret, password| {
+		if password == "open sesame" {
+			"The secret key is: ${secret.key}"
+		} else {
+			"Wrong password!"
+		}
+	}
+}
+
+# Define a nominal type with a custom is_eq method
+Animal := [Dog(Str), Cat(Str)].{
+	# Usually you should let the compiler derive the implementation using just the line below.
+	# is_eq : _
+
+	is_eq = |a, b| match (a, b) {
+		(Dog(name1), Dog(name2)) => name1 == name2
+		(Cat(name1), Cat(name2)) => name1 == name2
+		_ => Bool.False
+	}
+}
+
+# Use `...` for something that is not yet implemented.
+# This gets translated under the hood to `crash "not implemented"`.
+make_animal_noise : Animal -> Str
+make_animal_noise = |_animal| ...
+
+early_return = |arg| {
+	first =
+		if !arg {
+			return 99
+		} else {
+			"continue"
+		}
+
+	# Do some other stuff
+	Str.count_utf8_bytes(first)
+}
+
+my_concat = Str.concat
+
+# Complex pipeline: chaining static dispatch methods with a lambda
+format_names : List(Str) -> Str
+format_names = |names|
+	names
+		.map(|name| name.trim())
+		|> Str.join_with(", ")
+		|> (|joined| {
+			if joined.is_empty() "No names provided" else "Names: ${joined}"
+		})
+
+# Tags can have multiple payloads
+multi_payload_tag : [Foo(I64, Str), Bar] -> Str
+multi_payload_tag = |tag| match tag {
+	Foo(num, name) => "Foo with ${num.to_str()} and ${name}"
+	Bar => "Just Bar"
+}
+
+# Mark a tag union as open using `..`.
+# This function accepts any tag union containing at least Red and Green.
+color_to_str : [Red, Green, ..] -> Str
+color_to_str = |color| match color {
+	Red => "red"
+	Green => "green"
+	_ => "other color"
+}
+
+# TODO: Closed tag unions with `..[]]` - syntax not implemented yet
+# str_to_color : Str -> [Red, Green, Blue, Other, ..[]]
+
+# Type alias for an extensible tag union. You can use a type var (`others`) like so:
+Letters(others) : [A, B, ..others]
+
+# Use the type alias in a function signature. Pass `[C]` as `others`.
+letter_to_str : Letters([C]) -> Str
+letter_to_str = |letter| match letter {
+	A => "A"
+	B => "B"
+	_ => "other letter"
+}
+
+# If you want to define a function that works for any type that has a specific method, you can use `where`:
+stringify : a -> Str where [a.to_str : a -> Str]
+stringify = |value| value.to_str()
+
+main! = |_args| {
+	echo!("Hello, world!\n")
+	echo!("Hello, world! (using alias)\n")
+
+	echo!("${Str.inspect(number_operators(10, 5))}\n")
+	print!(boolean_operators(Bool.True, Bool.False))
+
+	# `.` (Static Dispatch) allows you to call methods that are defined on the type,
+	# like Str.concat below, or Animal.is_eq above
+	print!("One".concat(" Two"))
+
+	# If you want a very similar style for a function that is not defined on the type but is in scope, you can use `|>` (Pizza Operator):
+	print!("Three" |> my_concat(" Four"))
+
+	echo!("${simple_match(Red)}\n")
+	print!(match_list_patterns([1, 10]))
+	echo!("${match_tag_union_advanced(Ok({}))}\n")
+
+	echo!("${multiline_str(3)}\n")
+	echo!("Unicode escape sequence: \u(00A0)\n")
+
+	effect_demo!("This is an effectful function!")
+
+	print!(question_postfix(["1", "not a number", "100"]))
+	print!(question_with_err_map([]))
+	print!(question_with_err_lambda([]))
+
+	sum = for_loop([1, 2, 3, 4, 5])
+	print!(sum)
+
+	expect sum == 15
+
+	all_true = break_in_for_loop([True, True, False, True, True])
+	print!(all_true)
+
+	while_sum = while_loop(5)
+	print!(while_sum)
+
+	print!(dbg_keyword())
+
+	echo!("${if_demo(2)}\n")
+
+	print!(tuple_demo)
+
+	print!(type_var(["a", "b"]))
+
+	print!(destructuring())
+
+	print!(record_builder())
+
+	print!(destructure_nominal_type(NominalTypeRecord.{ x: 42 }))
+
+	# print!(record_update)
+
+	print!({ x: 10, y: 20 }.x)
+
+	print!(record_update_2({ name: "Alice", age: 30 }))
+
+	print!(remove_record_field({ name: "Alice", age: 30, email: "alice@example.com" }))
+
+	# We only provide `host`, so `port` falls back to its default and `timeout_ms` is missing.
+	minimal_config : ServerConfig
+	minimal_config = ServerConfig.{ host: "localhost" }
+	print!(describe_config(minimal_config))
+
+	# Reading an optional field that was not provided gives `Err(MissingField)`.
+	print!(minimal_config.?timeout_ms)
+	expect minimal_config.?timeout_ms == Err(MissingField)
+	expect minimal_config.port == 8080
+
+	# Here we do provide all fields, so `.?timeout_ms` is an `Ok`.
+	full_config : ServerConfig
+	full_config = ServerConfig.{ host: "example.com", port: 80, timeout_ms: 5000 }
+	print!(describe_config(full_config))
+	expect full_config.?timeout_ms == Ok(5000)
+
+	print!(number_literals)
+
+	secret = Secret.new("my_secret_key")
+	# This print will not expose internal data.
+	print!(secret)
+	print!(secret.unlock("open sesame"))
+
+	dog : Animal
+	dog = Dog("Fido")
+	cat : Animal
+	cat = Cat("Whiskers")
+	print!(dog == cat)
+
+	print!(early_return(Bool.False))
+
+	print!(stringify(12345))
+
+	# Tags with multiple payloads
+	print!(multi_payload_tag(Foo(42, "hello")))
+
+	# Open tag unions with `..`
+	# This function accepts [Red, Green, ..] so we can pass Blue too
+	print!(color_to_str(Blue))
+
+	# Complex pipeline with arrow lambda
+	print!(format_names(["  Alice ", "Bob  ", " Charlie"]))
+
+	# Type alias for extensible tag union
+	print!(letter_to_str(A))
+	print!(letter_to_str(C)) # C is not in [A, B] but we passed it in the signature of letter_to_str
+
+	print!(readme.contains("Roc"))
+
+	# Commented out so CI tests can pass
+	# crash "Avoid using crash in production software!"
+
+	Ok({})
+}
+
+# Top level expects only run when using `roc test file.roc`
+expect Bool.True != Bool.False
+
+## Multi-line expect that confirms basic math works.
+expect {
+	x = 4
+	y = 5
+	x + y == 9
+}
