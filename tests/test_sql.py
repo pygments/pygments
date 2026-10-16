@@ -12,7 +12,7 @@ from pygments.lexers.sql import name_between_bracket_re, \
     name_between_backtick_re, tsql_go_re, tsql_declare_re, \
     tsql_variable_re, MySqlLexer, TransactSqlLexer
 
-from pygments.token import Comment, Name, Number, Punctuation, Whitespace
+from pygments.token import Comment, Name, Number, Punctuation, String, Whitespace
 
 
 @pytest.fixture(scope='module')
@@ -107,3 +107,30 @@ def test_can_analyze_text():
             f'lexer must be {expected_lexer.name} (rating {expected_rating:.2f}) instead of '
             f'{best_lexer_name} (rating {best_rating:.2f}) for analyse_text() on code:\n{code}')
         assert expected_lexer.name == best_lexer_name, message
+
+
+@pytest.mark.parametrize('literal', ["N'AString'", "N''", "N'it''s'", "N'你好'", "N'first\nsecond'"])
+def test_tsql_unicode_string_prefix(lexer, literal):
+    _assert_tokens_match(lexer, literal, (
+        (String.Affix, 'N'), (String.Single, literal[1:]),
+    ))
+
+
+@pytest.mark.parametrize('prefix', ['n', 'N ', 'NameN', '@N', '#N'])
+def test_tsql_non_string_prefix(lexer, prefix):
+    tokens = list(lexer.get_tokens(prefix + "'text'"))
+    assert all(token_type != String.Affix for token_type, _ in tokens)
+    assert (String.Single, "'text'") in tokens
+
+
+def test_tsql_plain_and_adjacent_strings(lexer):
+    _assert_tokens_match(lexer, "'plain',N'a''b',N''", (
+        (String.Single, "'plain'"), (Punctuation, ','),
+        (String.Affix, 'N'), (String.Single, "'a''b'"),
+        (Punctuation, ','), (String.Affix, 'N'), (String.Single, "''"),
+    ))
+
+
+def test_tsql_prefix_in_comment_and_quoted_name(lexer):
+    _assert_tokens_match(lexer, "-- N'text'\n", ((Comment.Single, "-- N'text'\n"),))
+    _assert_tokens_match(lexer, '"N"', ((String.Symbol, '"N"'),))
