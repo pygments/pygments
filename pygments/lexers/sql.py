@@ -73,7 +73,7 @@ tsql_declare_re = re.compile(r'\bdeclare\s+@', re.IGNORECASE)
 tsql_variable_re = re.compile(r'@[a-zA-Z_]\w*\b')
 
 # Identifiers for analyse_text()
-googlesql_identifiers = (
+googlesql_identifiers = frozenset(
     _googlesql_builtins.functionnames
     + _googlesql_builtins.keywords
     + _googlesql_builtins.types)
