@@ -645,6 +645,7 @@ class TransactSqlLexer(RegexLexer):
             # Float variant 3, for example: 123e45
             (r'[0-9]+e[+-]?[0-9]+', Number.Float),
             (r'[0-9]+', Number.Integer),
+            (r"(?-i:N)(?=')", String.Affix),
             (r"'(''|[^'])*'", String.Single),
             (r'"(""|[^"])*"', String.Symbol),
             (r'[;(),.]', Punctuation),
