@@ -394,6 +394,31 @@ def test_hl_color_style():
     assert result.endswith(expected), msg
 
 
+@pytest.mark.parametrize('use_style_colors', [True, False])
+def test_linenos_and_highlighting_share_color(use_style_colors):
+    class TestStyle(Style):
+        line_number_color = '#ff0000'
+        highlight_color = '#ff0000'
+        styles = {Token: '', Name: '#0000ff'}
+
+    options = dict(style=TestStyle, linenos=True, hl_lines='1')
+    if not use_style_colors:
+        options.update(lineno_color='ff0000', hl_color='ff0000')
+    result = format_rtf('name\n', options, PythonLexer)
+    color_table = extract_color_table(result)
+
+    # Resolve output references against the actual table, including a later
+    # syntax color whose index must not shift when the two options share one.
+    for pattern, color in [
+        (r'\\highlight(\d+) ', 'ff0000'),
+        (r'\\cf(\d+) 1  }', 'ff0000'),
+        (r'\\cf(\d+) name}', '0000ff'),
+    ]:
+        index = int(re.search(pattern, result).group(1))
+        assert 1 <= index <= len(color_table)
+        assert color_table[index - 1] == RtfFormatter.hex_to_rtf_color(color)
+
+
 def test_hl_color_style_no_linenos():
     class TestStyle(Style):
         name = 'rtf_formatter_test'
