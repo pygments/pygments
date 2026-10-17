@@ -806,7 +806,8 @@ class VisibleWhitespaceFilter(Filter):
       lexer is nonzero, as tabs will already have been expanded then.
     `tabsize` : int
       If tabs are to be replaced by this filter (see the `tabs` option), this
-      is the total number of characters that a tab should be expanded to.
+      is the number of characters between tab stops. Each tab is expanded
+      only as far as the next tab stop.
       The default is ``8``.
     `newlines` : string or bool
       The same as for `spaces`, but the default replacement character is ``¶``
@@ -829,7 +830,7 @@ class VisibleWhitespaceFilter(Filter):
                 setattr(self, name, opt)
             else:
                 setattr(self, name, (opt and default or ''))
-        tabsize = get_int_opt(options, 'tabsize', 8)
+        self.tabsize = tabsize = get_int_opt(options, 'tabsize', 8)
         if self.tabs:
             self.tabs += ' ' * (tabsize - 1)
         if self.newlines:
@@ -837,35 +838,33 @@ class VisibleWhitespaceFilter(Filter):
         self.wstt = get_bool_opt(options, 'wstokentype', True)
 
     def filter(self, lexer, stream):
-        if self.wstt:
-            spaces = self.spaces or ' '
-            tabs = self.tabs or '\t'
-            newlines = self.newlines or '\n'
-            regex = re.compile(r'\s')
-
-            def replacefunc(wschar):
-                if wschar == ' ':
-                    return spaces
-                elif wschar == '\t':
-                    return tabs
-                elif wschar == '\n':
-                    return newlines
-                return wschar
-
-            for ttype, value in stream:
-                yield from _replace_special(ttype, value, regex, Whitespace,
-                                            replacefunc)
-        else:
-            spaces, tabs, newlines = self.spaces, self.tabs, self.newlines
-            # simpler processing
-            for ttype, value in stream:
-                if spaces:
-                    value = value.replace(' ', spaces)
-                if tabs:
-                    value = value.replace('\t', tabs)
-                if newlines:
-                    value = value.replace('\n', newlines)
-                yield ttype, value
+        column = 0
+        regex = re.compile(r'(\s)')
+        for ttype, value in stream:
+            parts = regex.split(value)
+            for index, part in enumerate(parts):
+                if index % 2:
+                    if part == '\t' and self.tabs:
+                        width = self.tabsize - column % self.tabsize if self.tabsize > 0 else 1
+                        column += width
+                        part = self.tabs[:width]
+                    elif part in ('\n', '\r'):
+                        column = 0
+                        if part == '\n':
+                            part = self.newlines or part
+                    else:
+                        column += 1
+                        if part == ' ':
+                            part = self.spaces or part
+                    if self.wstt:
+                        yield Whitespace, part
+                else:
+                    column += len(part)
+                    if self.wstt and part:
+                        yield ttype, part
+                parts[index] = part
+            if not self.wstt:
+                yield ttype, ''.join(parts)
 
 
 class GobbleFilter(Filter):

@@ -15,7 +15,8 @@ import re
 import pytest
 
 from pygments import lexers, formatters, lex, format, __version__
-from pygments.token import _TokenType, Text
+from pygments.token import _TokenType, Text, Whitespace
+from pygments.filters import VisibleWhitespaceFilter
 from pygments.lexer import RegexLexer
 from pygments.formatter import Formatter
 from pygments.formatters.img import FontNotFound
@@ -364,6 +365,25 @@ class TestFilters:
             text = fp.read().decode('utf-8')
         lxtext = ''.join([t[1] for t in list(lx.get_tokens(text))])
         assert ' ' not in lxtext
+
+    @pytest.mark.parametrize('wstokentype', [True, False])
+    @pytest.mark.parametrize('chunks, expected', [
+        (['abc\t1'], 'abc»1'),
+        (['a', 'bc', '\t1'], 'abc»1'),
+        (['abcd\t1'], 'abcd»   1'),
+        (['a\t\t1'], 'a»  »   1'),
+        (['abc\n', '\t1'], 'abc\n»   1'),
+        (['abc\r', '\t1'], 'abc\r»   1'),
+    ])
+    def test_whitespace_tab_stops(self, wstokentype, chunks, expected):
+        whitespace = VisibleWhitespaceFilter(tabs=True, tabsize=4,
+                                             wstokentype=wstokentype)
+        tokens = list(whitespace.filter(None, ((Text, text) for text in chunks)))
+        assert ''.join(value for _, value in tokens) == expected
+        if wstokentype:
+            assert all(ttype is Whitespace for ttype, value in tokens if '»' in value)
+        else:
+            assert all(ttype is Text for ttype, _ in tokens)
 
     def test_keywordcase(self):
         lx = lexers.PythonLexer()
