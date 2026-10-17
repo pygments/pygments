@@ -1,0 +1,20 @@
+# Tests that 'anext', 'ascii', 'exec', and 'help' are recognized as built-ins
+
+---input---
+anext
+ascii
+exec
+help
+
+---tokens---
+'anext'       Name.Builtin
+'\n'          Text.Whitespace
+
+'ascii'       Name.Builtin
+'\n'          Text.Whitespace
+
+'exec'        Name.Builtin
+'\n'          Text.Whitespace
+
+'help'        Name.Builtin
+'\n'          Text.Whitespace
