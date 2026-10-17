@@ -222,7 +222,7 @@ class RtfFormatter(Formatter):
             color_mapping[self.lineno_color] = offset
             offset += 1
 
-        if self.hl_lines:
+        if self.hl_lines and self.hl_color not in color_mapping:
             color_mapping[self.hl_color] = offset
             offset += 1
 
