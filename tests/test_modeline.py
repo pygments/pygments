@@ -18,3 +18,13 @@ def test_modelines():
             '\n' * 8 + 'vim: some,other,syn=python\n\n\n\n'
     ]:
         assert modeline.get_filetype_from_buffer(buf) == 'python'
+
+
+def test_modeline_later_start():
+    buf = 'vim: set ts=4 ex: ft=python'
+    assert modeline.get_filetype_from_buffer(buf) == 'python'
+
+
+def test_modeline_no_quadratic_backtracking():
+    # used to take about a minute
+    assert modeline.get_filetype_from_buffer('vi:' * 32000) is None
