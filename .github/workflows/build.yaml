@@ -39,6 +39,31 @@ jobs:
     - name: Test package
       run: tox -- -W error
 
+  test-wheel:
+    # The wheel ships lexers whose simple rules were merged at build time
+    # (see scripts/optimize_lexers.py), so run the tests against it too.
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v6
+    - uses: actions/setup-python@v6
+      with:
+        python-version: "3.x"
+    - name: Build the wheel
+      run: |
+        pip install build
+        python -m build --wheel
+    - name: Install the wheel and the test dependencies
+      run: |
+        pip install dist/*.whl "pytest ~= 8.2" pytest-randomly wcag-contrast-ratio
+        # Make sure the tests import the installed wheel, not the source tree.
+        rm -r pygments
+    - name: Check that the installed lexers are optimized
+      run: |
+        python -c "import pygments.lexers.python as m; assert 'merged(' in open(m.__file__, encoding='utf-8').read()"
+    - name: Test the wheel
+      run: pytest -W error
+
   check:
     runs-on: ubuntu-latest
     steps:

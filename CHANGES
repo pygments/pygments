@@ -96,6 +96,13 @@ Version 2.21.0
 
   * Night Owl (#3132)
 
+- The lexers shipped in the wheel now have every run of consecutive simple
+  rules merged into one regex at build time, which cuts the number of regex
+  match attempts per token and makes lexing 20 to 40 percent faster for
+  typical lexers.  The lexer sources are unchanged; ``scripts/optimize_lexers.py``
+  rewrites them from the build hook in ``hatch_build.py``.  Editable installs
+  run the unoptimized sources, and ``PYGMENTS_OPTIMIZE_LEXERS=0`` builds a
+  wheel without the optimization (#3155)
 - Fix catastrophic backtracking in ``looks_like_xml`` (#2931, #3112)
 - Improve monokai theme colors (#3100)
 - Improve handling of non-string types in ``html_escape`` to fix broken clients (#3090, #3086)
