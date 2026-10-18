@@ -59,6 +59,11 @@ pygmentize = "pygments.cmdline:main"
 [tool.hatch.build.targets.wheel]
 packages = ["pygments"]
 
+# Ship the lexers with their simple rules merged into combined regexes,
+# see scripts/optimize_lexers.py.
+[tool.hatch.build.targets.wheel.hooks.custom]
+path = "hatch_build.py"
+
 [tool.hatch.version]
 path = "pygments/__init__.py"
 
