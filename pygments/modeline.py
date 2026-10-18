@@ -13,6 +13,10 @@ import re
 __all__ = ['get_filetype_from_buffer']
 
 
+modeline_start_re = re.compile(r'''
+    (?: vi | vim | ex ) (?: [<=>]? \d* )? :
+''', re.VERBOSE)
+
 modeline_re = re.compile(r'''
     (?: vi | vim | ex ) (?: [<=>]? \d* )? :
     .* (?: ft | filetype | syn | syntax ) = ( [^:\s]+ )
@@ -20,9 +24,13 @@ modeline_re = re.compile(r'''
 
 
 def get_filetype_from_line(l): # noqa: E741
-    m = modeline_re.search(l)
-    if m:
-        return m.group(1)
+    # Only try the leftmost modeline start: the ".*" can skip over any later
+    # one, so searching from each of them would just repeat the same scan.
+    start = modeline_start_re.search(l)
+    if start:
+        m = modeline_re.match(l, start.start())
+        if m:
+            return m.group(1)
 
 
 def get_filetype_from_buffer(buf, max_lines=5):
