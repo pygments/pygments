@@ -93,6 +93,11 @@ class JLexer(RegexLexer):
             # Copula
             (r'=[.:]', Operator),
 
+            # Two-character primitives that would otherwise split into
+            # a pair of single-character operators (e.g. ?. roll/deal
+            # with a fixed seed).
+            (r'\?\.', Operator),
+
             # Builtins
             (r'[-=+*#$%@!~`^&";:.,<>{}\[\]\\|/?]', Operator),
 
