@@ -185,6 +185,31 @@ def test_get_lexers():
         raise Exception
 
 
+class _MixedCaseAliasLexer(RegexLexer):
+    """Minimal plugin lexer whose advertised alias is mixed-case (#1172)."""
+    name = 'Domsagxo Keyword Lexer'
+    aliases = ['domsaLex']
+    filenames = ['*.domsa']
+    tokens = {'root': [(r'.+', Text)]}
+
+
+def test_plugin_lexer_mixed_case_alias(monkeypatch):
+    # pygmentize -L lists plugin aliases as declared, but -l used to
+    # look up the lowercased name with a case-sensitive membership test.
+    # Lookup functions close over the original module globals (see
+    # `_automodule` at the bottom of pygments.lexers), so patch there.
+    monkeypatch.setitem(
+        lexers.find_lexer_class_by_name.__globals__,
+        'find_plugin_lexers',
+        lambda: iter([_MixedCaseAliasLexer]),
+    )
+    for name in ('domsaLex', 'domsalex', 'DOMSALEX'):
+        cls = lexers.find_lexer_class_by_name(name)
+        assert cls is _MixedCaseAliasLexer
+        inst = lexers.get_lexer_by_name(name)
+        assert isinstance(inst, _MixedCaseAliasLexer)
+
+
 @pytest.mark.parametrize('cls', [getattr(formatters, name)
                                  for name in formatters.FORMATTERS])
 def test_formatter_public_api(cls):

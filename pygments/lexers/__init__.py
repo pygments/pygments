@@ -80,6 +80,19 @@ def find_lexer_class(name):
             return cls
 
 
+def _alias_matches(alias, aliases):
+    """Return whether *alias* is in *aliases*, ignoring case.
+
+    Builtin aliases are stored lowercase, but plugin lexers (and some
+    older custom lexers) may advertise mixed-case aliases.  Lookup
+    always lowercases the requested name, so a case-sensitive
+    membership test would list a plugin in ``-L`` and then fail for
+    ``-l``.
+    """
+    lowered = alias.lower()
+    return any(a.lower() == lowered for a in aliases)
+
+
 def find_lexer_class_by_name(_alias):
     """
     Return the `Lexer` subclass that has `alias` in its aliases list, without
@@ -96,13 +109,13 @@ def find_lexer_class_by_name(_alias):
         raise ClassNotFound(f'no lexer for alias {_alias!r} found')
     # lookup builtin lexers
     for module_name, name, aliases, _, _ in LEXERS.values():
-        if _alias.lower() in aliases:
+        if _alias_matches(_alias, aliases):
             if name not in _lexer_cache:
                 _load_lexers(module_name)
             return _lexer_cache[name]
     # continue with lexers from setuptools entrypoints
     for cls in find_plugin_lexers():
-        if _alias.lower() in cls.aliases:
+        if _alias_matches(_alias, cls.aliases):
             return cls
     raise ClassNotFound(f'no lexer for alias {_alias!r} found')
 
@@ -121,13 +134,13 @@ def get_lexer_by_name(_alias, **options):
 
     # lookup builtin lexers
     for module_name, name, aliases, _, _ in LEXERS.values():
-        if _alias.lower() in aliases:
+        if _alias_matches(_alias, aliases):
             if name not in _lexer_cache:
                 _load_lexers(module_name)
             return _lexer_cache[name](**options)
     # continue with lexers from setuptools entrypoints
     for cls in find_plugin_lexers():
-        if _alias.lower() in cls.aliases:
+        if _alias_matches(_alias, cls.aliases):
             return cls(**options)
     raise ClassNotFound(f'no lexer for alias {_alias!r} found')
 
