@@ -1,0 +1,91 @@
+---input---
+str7 = (
+  '''TEST1 multiline literal'''
+)
+
+str8 = [
+  # a comment
+  """TEST2 literal""",
+]
+
+def f():
+    """real docstring"""
+    return {
+        'key': """value""",
+    }
+
+---tokens---
+'str7'        Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text
+"'''"         Literal.String.Single
+'TEST1 multiline literal' Literal.String.Single
+"'''"         Literal.String.Single
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'str8'        Name
+' '           Text
+'='           Operator
+' '           Text
+'['           Punctuation
+'\n'          Text.Whitespace
+
+'  '          Text
+'# a comment' Comment.Single
+'\n'          Text.Whitespace
+
+'  '          Text
+'"""'         Literal.String.Double
+'TEST2 literal' Literal.String.Double
+'"""'         Literal.String.Double
+','           Punctuation
+'\n'          Text.Whitespace
+
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'def'         Keyword
+' '           Text.Whitespace
+'f'           Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'"""real docstring"""' Literal.String.Doc
+'\n'          Text.Whitespace
+
+'    '        Text
+'return'      Keyword
+' '           Text
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text
+"'"           Literal.String.Single
+'key'         Literal.String.Single
+"'"           Literal.String.Single
+':'           Punctuation
+' '           Text
+'"""'         Literal.String.Double
+'value'       Literal.String.Double
+'"""'         Literal.String.Double
+','           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'}'           Punctuation
+'\n'          Text.Whitespace
