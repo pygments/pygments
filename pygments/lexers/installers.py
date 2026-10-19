@@ -231,9 +231,18 @@ class DebianSourcesLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'^(Signed-By)(:)(\s*)', bygroups(Keyword, Punctuation, Whitespace), 'signed-by'),
+            (r'^(Signed-By)(:)(\s*)(?=-----BEGIN PGP PUBLIC KEY BLOCK-----)',
+             bygroups(Keyword, Punctuation, Whitespace), 'signed-by'),
+            (r'^(Signed-By)(:)([ \t]*)([^\n]*)',
+             bygroups(Keyword, Punctuation, Whitespace, String), 'signed-by-value'),
             (r'^([a-zA-Z\-0-9\.]*?)(:)(\s*)(.*?)$',
              bygroups(Keyword, Punctuation, Whitespace, String)),
+        ],
+        'signed-by-value': [
+            (r'\n(?=[ \t#])', Whitespace),
+            (r'^#.*$', Comment),
+            (r'^([ \t]+)([^\n]*)', bygroups(Whitespace, String)),
+            default('#pop'),
         ],
         'signed-by': [
             (r' -----END PGP PUBLIC KEY BLOCK-----\n', Text, '#pop'),
