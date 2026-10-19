@@ -1,0 +1,41 @@
+---input---
+x = foo(
+    1,
+)
+y = (1 + \
+    """continued""")
+
+---tokens---
+'x'           Name
+' '           Text
+'='           Operator
+' '           Text
+'foo'         Name
+'('           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'1'           Literal.Number.Integer
+','           Punctuation
+'\n'          Text.Whitespace
+
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'y'           Name
+' '           Text
+'='           Operator
+' '           Text
+'('           Punctuation
+'1'           Literal.Number.Integer
+' '           Text
+'+'           Operator
+' '           Text
+'\\\n'        Text
+
+'    '        Text
+'"""'         Literal.String.Double
+'continued'   Literal.String.Double
+'"""'         Literal.String.Double
+')'           Punctuation
+'\n'          Text.Whitespace

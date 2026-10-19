@@ -179,13 +179,38 @@ class PythonLexer(RegexLexer):
             (r'[^\S\n]+', Text),
             include('numbers'),
             (r'!=|==|<<|>>|:=|[-~+/*%=<>&^|.]', Operator),
-            (r'[]{}:(),;[]', Punctuation),
+            # Track bracket nesting so that a string literal starting a new
+            # line inside brackets is not mistaken for a docstring (#3025).
+            (r'\(', Punctuation, 'expr-parens'),
+            (r'\[', Punctuation, 'expr-brackets'),
+            (r'\{', Punctuation, 'expr-braces'),
+            # unbalanced closing brackets (e.g. in code fragments)
+            (r'[])}:,;]', Punctuation),
             (r'(in|is|and|or|not)\b', Operator.Word),
             include('expr-keywords'),
             include('builtins'),
             include('magicfuncs'),
             include('magicvars'),
             include('name'),
+        ],
+        'expr-parens': [
+            (r'\)', Punctuation, '#pop'),
+            include('expr-inside-brackets'),
+        ],
+        'expr-brackets': [
+            (r'\]', Punctuation, '#pop'),
+            include('expr-inside-brackets'),
+        ],
+        'expr-braces': [
+            (r'\}', Punctuation, '#pop'),
+            include('expr-inside-brackets'),
+        ],
+        'expr-inside-brackets': [
+            (r'\n', Whitespace),
+            (r'#.*$', Comment.Single),
+            (r'\\\n', Text),
+            (r'\\', Text),
+            include('expr'),
         ],
         'expr-inside-fstring': [
             (r'[{([]', Punctuation, 'expr-inside-fstring-inner'),
