@@ -1,0 +1,290 @@
+'='           Generic.Heading
+' '           Text
+'AsciiDoc Sample Document' Generic.Heading
+'\n'          Text
+
+'Doc Writer ' Name.Attribute
+'<writer@example.org>' Literal.String
+'\n'          Text
+
+'v1.0, 2026-10-21' Generic.Subheading
+':'           Punctuation
+' First draft' Literal.String
+'\n'          Text
+
+':'           Punctuation
+'toc'         Name.Attribute
+':'           Punctuation
+'\n'          Text
+
+':'           Punctuation
+'sectnums'    Name.Attribute
+':'           Punctuation
+'\n'          Text
+
+':'           Punctuation
+'source-highlighter' Name.Attribute
+':'           Punctuation
+' rouge'      Literal.String
+'\n'          Text
+
+'\n'          Text.Whitespace
+
+'Preamble'    Text
+' '           Text
+'paragraph'   Text
+' '           Text
+'with'        Text
+' '           Text
+'*bold*'      Generic.Strong
+','           Text
+' '           Text
+'_italic_'    Generic.Emph
+','           Text
+' '           Text
+'`monospace`' Literal.String.Backtick
+' '           Text
+'and'         Text
+' '           Text
+'#highlighted#' Generic.EmphStrong
+' '           Text
+'text.'       Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'=='          Generic.Subheading
+' '           Text
+'First Section' Generic.Subheading
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Some'        Text
+' '           Text
+'text'        Text
+' '           Text
+'with'        Text
+' '           Text
+'a'           Text
+' '           Text
+'link:'       Punctuation
+'https://example.org' Name.Tag
+'['           Punctuation
+'link text'   Literal.String
+']'           Punctuation
+','           Text
+' '           Text
+'a'           Text
+' '           Text
+'bare'        Text
+' '           Text
+'URL'         Text
+'\n'          Text.Whitespace
+
+'https://example.org/page' Name.Tag
+' '           Text
+'and'         Text
+' '           Text
+'an'          Text
+' '           Text
+'attribute'   Text
+' '           Text
+'reference'   Text
+' '           Text
+'{toc}'       Name.Variable
+'.'           Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'A'           Text
+' '           Text
+'labeled'     Text
+' '           Text
+'list:'       Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'first term'  Name.Tag
+'::'          Punctuation
+' '           Text
+'first'       Text
+' '           Text
+'definition'  Text
+'\n'          Text.Whitespace
+
+'second term' Name.Tag
+'::'          Punctuation
+' '           Text
+'second'      Text
+' '           Text
+'definition'  Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'*'           Keyword
+' '           Text
+'bullet'      Text
+' '           Text
+'item'        Text
+'\n'          Text.Whitespace
+
+'**'          Keyword
+' '           Text
+'nested'      Text
+' '           Text
+'bullet'      Text
+' '           Text
+'item'        Text
+'\n'          Text.Whitespace
+
+'.'           Keyword
+' '           Text
+'ordered'     Text
+' '           Text
+'item'        Text
+'\n'          Text.Whitespace
+
+'..'          Keyword
+' '           Text
+'nested'      Text
+' '           Text
+'ordered'     Text
+' '           Text
+'item'        Text
+'\n'          Text.Whitespace
+
+'*'           Keyword
+' '           Text
+'[x]'         Keyword
+' '           Text
+'checked'     Text
+' '           Text
+'item'        Text
+'\n'          Text.Whitespace
+
+'*'           Keyword
+' '           Text
+'[ ]'         Keyword
+' '           Text
+'unchecked'   Text
+' '           Text
+'item'        Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'['           Punctuation
+'NOTE'        Keyword
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'===='        Punctuation
+'\n'          Text
+
+'An admonition block.' Text
+'\n'          Text
+
+'===='        Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'TIP'         Keyword
+':'           Punctuation
+' '           Text
+'A'           Text
+' '           Text
+'one-line'    Text
+' '           Text
+'admonition.' Text
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'['           Punctuation
+'source,python' Keyword
+']'           Punctuation
+'\n'          Text.Whitespace
+
+'----'        Punctuation
+'\n'          Literal.String
+
+'def hello():' Literal.String
+'\n'          Literal.String
+
+'    print("hello")' Literal.String
+'\n'          Literal.String
+
+'----'        Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'****'        Punctuation
+'\n'          Text
+
+'A sidebar block.' Text
+'\n'          Text
+
+'****'        Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'===='        Punctuation
+'\n'          Text
+
+'An example block.' Text
+'\n'          Text
+
+'===='        Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'____'        Punctuation
+'\n'          Text
+
+'A quote block.' Text
+'\n'          Text
+
+'____'        Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'....'        Punctuation
+'\n'          Literal.String
+
+'A literal block.' Literal.String
+'\n'          Literal.String
+
+'....'        Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'// a line comment' Comment.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'////'        Comment.Multiline
+'\n'          Comment.Multiline
+
+'A block comment.' Comment.Multiline
+'\n'          Comment.Multiline
+
+'////'        Comment.Multiline
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'image'       Name.Tag
+'::'          Punctuation
+'sunset.jpg[Sunset]' Text
+'\n'          Text.Whitespace
