@@ -266,5 +266,5 @@ class TNTLexer(Lexer):
                     del self.cur[orig:]
                 except NameError:
                     pass  # if orig was never defined, fine
-                self.error_till_line_end(start, text)
+                start = end = self.error_till_line_end(start, text)
         return self.cur
