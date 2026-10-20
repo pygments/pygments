@@ -1,0 +1,62 @@
+= AsciiDoc Sample Document
+Doc Writer <writer@example.org>
+v1.0, 2026-10-21: First draft
+:toc:
+:sectnums:
+:source-highlighter: rouge
+
+Preamble paragraph with *bold*, _italic_, `monospace` and #highlighted# text.
+
+== First Section
+
+Some text with a link:https://example.org[link text], a bare URL
+https://example.org/page and an attribute reference {toc}.
+
+A labeled list:
+
+first term:: first definition
+second term:: second definition
+
+* bullet item
+** nested bullet item
+. ordered item
+.. nested ordered item
+* [x] checked item
+* [ ] unchecked item
+
+[NOTE]
+====
+An admonition block.
+====
+
+TIP: A one-line admonition.
+
+[source,python]
+----
+def hello():
+    print("hello")
+----
+
+****
+A sidebar block.
+****
+
+====
+An example block.
+====
+
+____
+A quote block.
+____
+
+....
+A literal block.
+....
+
+// a line comment
+
+////
+A block comment.
+////
+
+image::sunset.jpg[Sunset]
