@@ -169,6 +169,7 @@ LEXERS = {
     'FactorLexer': ('pygments.lexers.factor', 'Factor', ('factor',), ('*.factor',), ('text/x-factor',)),
     'FancyLexer': ('pygments.lexers.ruby', 'Fancy', ('fancy', 'fy'), ('*.fy', '*.fancypack'), ('text/x-fancysrc',)),
     'FantomLexer': ('pygments.lexers.fantom', 'Fantom', ('fan',), ('*.fan',), ('application/x-fantom',)),
+    'FastaLexer': ('pygments.lexers.bio', 'FASTA', ('fasta',), ('*.fa', '*.fasta', '*.fas', '*.faa', '*.fna', '*.ffn', '*.frn', '*.pep', '*.seq'), ()),
     'FelixLexer': ('pygments.lexers.felix', 'Felix', ('felix', 'flx'), ('*.flx', '*.flxh'), ('text/x-felix',)),
     'FennelLexer': ('pygments.lexers.lisp', 'Fennel', ('fennel', 'fnl'), ('*.fnl', '*.fnlm'), ('text/x-fennel',)),
     'FiftLexer': ('pygments.lexers.fift', 'Fift', ('fift', 'fif'), ('*.fif',), ()),
