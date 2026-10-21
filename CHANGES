@@ -7,6 +7,16 @@ Version 2.22.0
 --------------
 (not released yet)
 
+- Updated lexers:
+
+  * BitBake:
+    - Take the statement rules from BitBake's own parser, so the lexer
+      accepts exactly what BitBake accepts and marks what it rejects
+    - Lex nested ``${...}`` expansions, including those embedded in a
+      ``${@...}`` Python expression
+    - Recover at the end of a line from an unterminated string or
+      expansion instead of losing the rest of the file
+
 Version 2.21.0
 ---------------
 (released August 17th, 2026)

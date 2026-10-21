@@ -1,0 +1,100 @@
+---input---
+3GTOOLS:microblaze ?= ""
+PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
+PREFERRED_PROVIDER_virtual/nativesdk-${SDK_PREFIX}libc = "nativesdk-glibc"
+LICENSE:modules/freebsd/vmblock = "BSD-2-Clause"
+ESW_BRANCH[2024.1] = "xlnx_rel_v2024.1"
+GOARM:arm:class-target[export] = "1"
+
+python populate_packages:prepend () {
+    d.setVar('FOO', 'bar')
+}
+
+---tokens---
+'3GTOOLS'     Name.Variable
+':microblaze' Name.Decorator
+' '           Text.Whitespace
+'?='          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'PREFERRED_PROVIDER_virtual/kernel' Name.Variable
+' '           Text.Whitespace
+'?='          Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'linux-yocto' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'PREFERRED_PROVIDER_virtual/nativesdk-${SDK_PREFIX}libc' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'nativesdk-glibc' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'LICENSE'     Name.Variable
+':modules/freebsd/vmblock' Name.Decorator
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'BSD-2-Clause' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'ESW_BRANCH'  Name.Variable
+'['           Punctuation
+'2024.1'      Name.Attribute
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'xlnx_rel_v2024.1' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'GOARM'       Name.Variable
+':arm:class-target' Name.Decorator
+'['           Punctuation
+'export'      Name.Attribute
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'1'           Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'python'      Keyword
+' populate_packages:prepend' Name.Function
+' () '        Text
+'{\n'         Punctuation
+
+'    '        Text
+'d'           Name
+'.'           Operator
+'setVar'      Name
+'('           Punctuation
+"'"           Literal.String.Single
+'FOO'         Literal.String.Single
+"'"           Literal.String.Single
+','           Punctuation
+' '           Text
+"'"           Literal.String.Single
+'bar'         Literal.String.Single
+"'"           Literal.String.Single
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

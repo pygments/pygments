@@ -1,0 +1,37 @@
+---input---
+SUMMARY = "unterminated because the expansion closes with a paren ${DB_DIR)/"
+RECOVERED = "this line is still an assignment"
+do_rootfs[recrdeptask] += "do_package_write_rpm
+ALSO_RECOVERED = "and so is this one"
+
+---tokens---
+'SUMMARY'     Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'unterminated because the expansion closes with a paren ' Literal.String.Double
+'${'          Literal.String.Interpol
+'DB_DIR)/"'   Name.Variable
+'\n'          Text.Whitespace
+
+'RECOVERED'   Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'this line is still an assignment' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'do_rootfs[recrdeptask] += "do_package_write_rpm' Error
+'\n'          Text.Whitespace
+
+'ALSO_RECOVERED' Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'and so is this one' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
