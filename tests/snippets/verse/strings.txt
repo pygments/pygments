@@ -1,0 +1,52 @@
+---input---
+Print("Count {N + 1}\n<not a comment> \"quoted\" <# but this is #>")
+Separator : char = '|'
+Tab : char = 0o09
+
+---tokens---
+'Print'       Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'Count '      Literal.String.Double
+'{'           Literal.String.Interpol
+'N'           Name
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'}'           Literal.String.Interpol
+'\\n'         Literal.String.Escape
+'<'           Literal.String.Double
+'not a comment> ' Literal.String.Double
+'\\"'         Literal.String.Escape
+'quoted'      Literal.String.Double
+'\\"'         Literal.String.Escape
+' '           Literal.String.Double
+'<#'          Comment.Multiline
+' but this is ' Comment.Multiline
+'#>'          Comment.Multiline
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'Separator'   Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'char'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'|'"         Literal.String.Char
+'\n'          Text.Whitespace
+
+'Tab'         Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'char'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0o09'        Literal.String.Char
+'\n'          Text.Whitespace

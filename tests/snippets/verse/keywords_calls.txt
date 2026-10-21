@@ -1,0 +1,40 @@
+---input---
+if (IsReady?):
+    (super:)OnBegin()
+    Spend<public>(Amount:int)<transacts><decides>:void = {}
+
+---tokens---
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'IsReady'     Name
+'?'           Operator
+')'           Punctuation
+':'           Operator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'(super:)'    Name.Builtin.Pseudo
+'OnBegin'     Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Spend'       Name.Function
+'<public>'    Name.Decorator
+'('           Punctuation
+'Amount'      Name
+':'           Operator
+'int'         Keyword.Type
+')'           Punctuation
+'<transacts>' Name.Decorator
+'<decides>'   Name.Decorator
+':'           Operator
+'void'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace

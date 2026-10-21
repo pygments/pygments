@@ -1,0 +1,27 @@
+---input---
+Main():void =
+    <#> This whole region
+        is a comment
+    Print("after")
+
+---tokens---
+'Main'        Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Operator
+'void'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'<#> This whole region\n        is a comment\n' Comment.Multiline
+
+'    '        Text.Whitespace
+'Print'       Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'after'       Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text.Whitespace
