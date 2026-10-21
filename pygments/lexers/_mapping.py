@@ -569,6 +569,7 @@ LEXERS = {
     'VelocityXmlLexer': ('pygments.lexers.templates', 'XML+Velocity', ('xml+velocity',), (), ('application/xml+velocity',)),
     'VerifpalLexer': ('pygments.lexers.verifpal', 'Verifpal', ('verifpal',), ('*.vp',), ('text/x-verifpal',)),
     'VerilogLexer': ('pygments.lexers.hdl', 'verilog', ('verilog', 'v'), ('*.v',), ('text/x-verilog',)),
+    'VerseLexer': ('pygments.lexers.verse', 'Verse', ('verse',), ('*.verse',), ('text/x-verse', 'application/x-verse')),
     'VhdlLexer': ('pygments.lexers.hdl', 'vhdl', ('vhdl',), ('*.vhdl', '*.vhd'), ('text/x-vhdl',)),
     'VimLexer': ('pygments.lexers.textedit', 'VimL', ('vim',), ('*.vim', '.vimrc', '.exrc', '.gvimrc', '_vimrc', '_exrc', '_gvimrc', 'vimrc', 'gvimrc'), ('text/x-vim',)),
     'VisualPrologGrammarLexer': ('pygments.lexers.vip', 'Visual Prolog Grammar', ('visualprologgrammar',), ('*.vipgrm',), ()),

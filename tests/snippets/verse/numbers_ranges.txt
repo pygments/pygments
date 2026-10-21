@@ -1,0 +1,34 @@
+---input---
+for (I := 0..9):
+    X := 1.5e3 + 0x1F - 2.0
+
+---tokens---
+'for'         Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'I'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'..'          Operator
+'9'           Literal.Number.Integer
+')'           Punctuation
+':'           Operator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'X'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'1.5e3'       Literal.Number.Float
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'0x1F'        Literal.Number.Hex
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'2.0'         Literal.Number.Float
+'\n'          Text.Whitespace

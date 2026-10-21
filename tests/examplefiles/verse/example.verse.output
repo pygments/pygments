@@ -1,0 +1,928 @@
+'# A small coin-collecting game device for UEFN' Comment.Single
+'\n'          Text.Whitespace
+
+'using'       Keyword.Namespace
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'/'           Punctuation
+'Fortnite'    Name.Namespace
+'.'           Punctuation
+'com'         Name.Namespace
+'/'           Punctuation
+'Devices'     Name.Namespace
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'using'       Keyword.Namespace
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'/'           Punctuation
+'Verse'       Name.Namespace
+'.'           Punctuation
+'org'         Name.Namespace
+'/'           Punctuation
+'Simulation'  Name.Namespace
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'using'       Keyword.Namespace
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'/'           Punctuation
+'UnrealEngine' Name.Namespace
+'.'           Punctuation
+'com'         Name.Namespace
+'/'           Punctuation
+'Temporary'   Name.Namespace
+'/'           Punctuation
+'Diagnostics' Name.Namespace
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'<#'          Comment.Multiline
+' Block comments span lines\n   ' Comment.Multiline
+'<#'          Comment.Multiline
+' and they can nest ' Comment.Multiline
+'#>'          Comment.Multiline
+' '           Comment.Multiline
+'#>'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'coin_kind'   Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'enum'        Keyword
+':'           Operator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Bronze'      Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Silver'      Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Gold'        Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'coin_reward' Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'struct'      Keyword
+':'           Operator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Kind'        Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'coin_kind'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'coin_kind'   Name
+'.'           Punctuation
+'Bronze'      Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Points'      Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'collector'   Name
+'<public>'    Name.Decorator
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'interface'   Keyword
+':'           Operator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Collect'     Name.Function
+'<public>'    Name.Decorator
+'('           Punctuation
+'Reward'      Name
+':'           Operator
+'coin_reward' Name
+')'           Punctuation
+'<transacts>' Name.Decorator
+':'           Operator
+'void'        Keyword.Type
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'wallet'      Name
+'<public>'    Name.Decorator
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'class'       Keyword
+'<concrete>'  Name.Decorator
+'('           Punctuation
+'collector'   Name
+')'           Punctuation
+':'           Operator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'Coins'       Name
+'<public>'    Name.Decorator
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'Counts'      Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'coin_kind'   Name
+']'           Punctuation
+'int'         Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'map'         Keyword
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Collect'     Name.Function
+'<override>'  Name.Decorator
+'('           Punctuation
+'Reward'      Name
+':'           Operator
+'coin_reward' Name
+')'           Punctuation
+'<transacts>' Name.Decorator
+':'           Operator
+'void'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'set'         Keyword.Declaration
+' '           Text.Whitespace
+'Coins'       Name
+' '           Text.Whitespace
+'+='          Operator
+' '           Text.Whitespace
+'Reward'      Name
+'.'           Punctuation
+'Points'      Name
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'set'         Keyword.Declaration
+' '           Text.Whitespace
+'Counts'      Name
+'['           Punctuation
+'Reward'      Name
+'.'           Punctuation
+'Kind'        Name
+']'           Punctuation
+' '           Text.Whitespace
+'+='          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+' '           Text.Whitespace
+'else'        Keyword
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'set'         Keyword.Declaration
+' '           Text.Whitespace
+'Counts'      Name
+'['           Punctuation
+'Reward'      Name
+'.'           Punctuation
+'Kind'        Name
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Spend'       Name.Function
+'<public>'    Name.Decorator
+'('           Punctuation
+'Amount'      Name
+':'           Operator
+'int'         Keyword.Type
+')'           Punctuation
+'<transacts>' Name.Decorator
+'<decides>'   Name.Decorator
+':'           Operator
+'void'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'Coins'       Name
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'Amount'      Name
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'set'         Keyword.Declaration
+' '           Text.Whitespace
+'Coins'       Name
+' '           Text.Whitespace
+'-='          Operator
+' '           Text.Whitespace
+'Amount'      Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Separator'   Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'char'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'|'"         Literal.String.Char
+'\n'          Text.Whitespace
+
+'MaxCoins'    Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x3E8'       Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'IsTimed'     Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'logic'       Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'true'        Keyword.Constant
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'PointsFor'   Name.Function
+'('           Punctuation
+'Kind'        Name
+':'           Operator
+'coin_kind'   Name
+')'           Punctuation
+'<computes>'  Name.Decorator
+':'           Operator
+'int'         Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'case'        Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'Kind'        Name
+')'           Punctuation
+':'           Operator
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'coin_kind'   Name
+'.'           Punctuation
+'Gold'        Name
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'coin_kind'   Name
+'.'           Punctuation
+'Silver'      Name
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'_'           Name
+' '           Text.Whitespace
+'=>'          Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'Average'     Name.Function
+'('           Punctuation
+'Values'      Name
+':'           Operator
+'['           Punctuation
+']'           Punctuation
+'int'         Keyword.Type
+')'           Punctuation
+'<transacts>' Name.Decorator
+'<decides>'   Name.Decorator
+':'           Operator
+'int'         Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'Sum'         Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'int'         Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'Value'       Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Values'      Name
+')'           Punctuation
+':'           Operator
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'set'         Keyword.Declaration
+' '           Text.Whitespace
+'Sum'         Name
+' '           Text.Whitespace
+'+='          Operator
+' '           Text.Whitespace
+'Value'       Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Floor'       Name.Function
+'('           Punctuation
+'Sum'         Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'Values'      Name
+'.'           Punctuation
+'Length'      Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'FindRichest' Name.Function
+'('           Punctuation
+'Wallets'     Name
+':'           Operator
+'['           Punctuation
+']'           Punctuation
+'wallet'      Name
+')'           Punctuation
+'<transacts>' Name.Decorator
+':'           Operator
+'?'           Operator
+'tuple'       Keyword.Type
+'('           Punctuation
+'int'         Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'wallet'      Name
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'option'      Keyword.Type
+'{'           Punctuation
+' '           Text.Whitespace
+'first'       Keyword
+'('           Punctuation
+'Index'       Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'Wallet'      Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Wallets'     Name
+','           Punctuation
+' '           Text.Whitespace
+'Wallet'      Name
+'.'           Punctuation
+'Coins'       Name
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+')'           Punctuation
+'.'           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'Index'       Name
+','           Punctuation
+' '           Text.Whitespace
+'Wallet'      Name
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'CountDown'   Name.Function
+'('           Punctuation
+'Seconds'     Name
+':'           Operator
+'int'         Keyword.Type
+')'           Punctuation
+'<suspends>'  Name.Decorator
+':'           Operator
+'void'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'defer'       Keyword
+':'           Operator
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'Print'       Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'Go!'         Literal.String.Double
+'\\n'         Literal.String.Escape
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'I'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'..'          Operator
+'Seconds'     Name
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+')'           Punctuation
+':'           Operator
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'Print'       Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'{'           Literal.String.Interpol
+'Seconds'     Name
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'I'           Name
+'}'           Literal.String.Interpol
+'...'         Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'Sleep'       Name.Function
+'('           Punctuation
+'1.0'         Literal.Number.Float
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'coin_game_device' Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'class'       Keyword
+'('           Punctuation
+'creative_device' Name
+')'           Punctuation
+':'           Operator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'@editable'   Name.Decorator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'CoinButton'  Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'button_device' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'button_device' Name
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'@editable'   Name.Decorator
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'RoundSeconds' Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'float'       Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'30.0'        Literal.Number.Float
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'Players'     Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'player'      Name
+']'           Punctuation
+'wallet'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'map'         Keyword
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'OnBegin'     Name.Function
+'<override>'  Name.Decorator
+'('           Punctuation
+')'           Punctuation
+'<suspends>'  Name.Decorator
+':'           Operator
+'void'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'CoinButton'  Name
+'.'           Punctuation
+'InteractedWithEvent' Name
+'.'           Punctuation
+'Subscribe'   Name.Function
+'('           Punctuation
+'OnPressed'   Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'spawn'       Keyword.Reserved
+'{'           Punctuation
+' '           Text.Whitespace
+'CountDown'   Name.Function
+'('           Punctuation
+'3'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'IsTimed'     Name
+'?'           Operator
+')'           Punctuation
+':'           Operator
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'race'        Keyword.Reserved
+':'           Operator
+'\n'          Text.Whitespace
+
+'                ' Text.Whitespace
+'Sleep'       Name.Function
+'('           Punctuation
+'RoundSeconds' Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'                ' Text.Whitespace
+'WaitForWinner' Name.Function
+'('           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'Print'       Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'Round over after ' Literal.String.Double
+'{'           Literal.String.Interpol
+'RoundSeconds' Name
+'}'           Literal.String.Interpol
+' seconds'    Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'OnPressed'   Name.Function
+'('           Punctuation
+'Agent'       Name
+':'           Operator
+'agent'       Name
+')'           Punctuation
+':'           Operator
+'void'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'Reward'      Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'coin_reward' Name
+'{'           Punctuation
+'Kind'        Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'coin_kind'   Name
+'.'           Punctuation
+'Gold'        Name
+','           Punctuation
+' '           Text.Whitespace
+'Points'      Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'PointsFor'   Name.Function
+'('           Punctuation
+'coin_kind'   Name
+'.'           Punctuation
+'Gold'        Name
+')'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'Player'      Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'player'      Name
+'['           Punctuation
+'Agent'       Name
+']'           Punctuation
+')'           Punctuation
+':'           Operator
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'Wallet'      Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'Players'     Name
+'['           Punctuation
+'Player'      Name
+']'           Punctuation
+')'           Punctuation
+':'           Operator
+'\n'          Text.Whitespace
+
+'                ' Text.Whitespace
+'Wallet'      Name
+'.'           Punctuation
+'Collect'     Name.Function
+'('           Punctuation
+'Reward'      Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'else'        Keyword
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'set'         Keyword.Declaration
+' '           Text.Whitespace
+'Players'     Name
+'['           Punctuation
+'Player'      Name
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'wallet'      Name
+'{'           Punctuation
+'}'           Punctuation
+')'           Punctuation
+':'           Operator
+'\n'          Text.Whitespace
+
+'                ' Text.Whitespace
+'Print'       Name.Function
+'('           Punctuation
+'"'           Literal.String.Double
+'New player joined' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'WaitForWinner' Name.Function
+'('           Punctuation
+')'           Punctuation
+'<suspends>'  Name.Decorator
+':'           Operator
+'void'        Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'loop'        Keyword
+':'           Operator
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'Sleep'       Name.Function
+'('           Punctuation
+'0.5'         Literal.Number.Float
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'Leaders'     Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'Player'      Name
+' '           Text.Whitespace
+'->'          Operator
+' '           Text.Whitespace
+'Wallet'      Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'Players'     Name
+','           Punctuation
+' '           Text.Whitespace
+'Wallet'      Name
+'.'           Punctuation
+'Coins'       Name
+' '           Text.Whitespace
+'>='          Operator
+' '           Text.Whitespace
+'MaxCoins'    Name
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'Player'      Name
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'            ' Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'Leaders'     Name
+'.'           Punctuation
+'Length'      Name
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+')'           Punctuation
+':'           Operator
+'\n'          Text.Whitespace
+
+'                ' Text.Whitespace
+'break'       Keyword.Reserved
+'\n'          Text.Whitespace
