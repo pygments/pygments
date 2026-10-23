@@ -45,12 +45,20 @@ class JavascriptLexer(RegexLexer):
 
     flags = re.DOTALL | re.MULTILINE
 
+    _ws = r'(?:\s|/\*(?:[^*]|\*(?!/))*\*/|//[^\n]*$)'
+
     tokens = {
         'commentsandwhitespace': [
             (r'\s+', Whitespace),
             (r'<!--', Comment),
             (r'//.*?$', Comment.Single),
             (r'/\*.*?\*/', Comment.Multiline)
+        ],
+        'function-name': [
+            include('commentsandwhitespace'),
+            (r'\*', Operator),
+            (JS_IDENT + r'(?=' + _ws + r'*[<(])', Name.Function, '#pop'),
+            default('#pop'),  # Anonymous function: let root handle the parameters.
         ],
         'slashstartsregex': [
             include('commentsandwhitespace'),
@@ -81,6 +89,10 @@ class JavascriptLexer(RegexLexer):
             (r'\+\+|--|~|\?\?=?|\?|:|\\(?=\n)|'
              r'(<<|>>>?|==?|!=?|(?:\*\*|\|\||&&|[-<>+*%&|^/]))=?', Operator, 'slashstartsregex'),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
+            # A property named "function" must not start a function definition.
+            (r'(\.)(' + _ws + r'*)(function)\b(?!\s*:)',
+             bygroups(Punctuation, using(this, state='commentsandwhitespace'),
+                      Keyword.Declaration), 'slashstartsregex'),
             (r'[})\].]', Punctuation),
 
             (r'(typeof|instanceof|in|void|delete|new)\b', Operator.Word, 'slashstartsregex'),
@@ -91,6 +103,7 @@ class JavascriptLexer(RegexLexer):
             (r'(for|in|while|do|break|return|continue|switch|case|default|if|else|'
              r'throw|try|catch|finally|yield|await|async|this|of|static|export|'
              r'import|debugger|extends|super)\b', Keyword, 'slashstartsregex'),
+            (r'function(?=\s|/[/*]|\*)', Keyword.Declaration, 'function-name'),
             (r'(var|let|const|with|function|class)\b', Keyword.Declaration, 'slashstartsregex'),
 
             (r'(abstract|boolean|byte|char|double|enum|final|float|goto|'
