@@ -70,7 +70,8 @@ class BashLexer(RegexLexer):
             (r'(\b\w+)(\s*)(\+?=)', bygroups(Name.Variable, Whitespace, Operator)),
             (r'[\[\]{}()=]', Operator),
             (r'<<<', Operator),  # here-string
-            (r'<<-?\s*(\'?)\\?(\w+)[\w\W]+?\2', String),
+            (r'(<<-?\s*(\'?)\\?(\w+)\2)((?:[^\n\\]|\\[\w\W])*)(\n[\w\W]*?\3)',
+             bygroups(String, None, None, using(this), String)),
             (r'&&|\|\|', Operator),
         ],
         'data': [
