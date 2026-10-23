@@ -1441,16 +1441,19 @@ class EasytrieveLexer(RegexLexer):
         hasReport = False
 
         def isCommentLine(line):
-            return EasytrieveLexer._COMMENT_LINE_REGEX.match(lines[0]) is not None
+            return EasytrieveLexer._COMMENT_LINE_REGEX.match(line) is not None
 
         def isEmptyLine(line):
             return not bool(line.strip())
 
         # Remove possible empty lines and header comments.
-        while lines and (isEmptyLine(lines[0]) or isCommentLine(lines[0])):
-            if not isEmptyLine(lines[0]):
+        start = 0
+        while start < len(lines) and (isEmptyLine(lines[start]) or
+                                      isCommentLine(lines[start])):
+            if not isEmptyLine(lines[start]):
                 hasHeaderComment = True
-            del lines[0]
+            start += 1
+        del lines[:start]
 
         if EasytrieveLexer._MACRO_HEADER_REGEX.match(lines[0]):
             # Looks like an Easytrieve macro.

@@ -505,7 +505,7 @@ class AntlrLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        return re.search(r'^\s*grammar\s+[a-zA-Z0-9]+\s*;', text, re.M)
+        return re.search(r'^[^\S\n]*grammar\s+[a-zA-Z0-9]+\s*;', text, re.M)
 
 
 # http://www.antlr.org/wiki/display/ANTLR3/Code+Generation+Targets
@@ -526,7 +526,7 @@ class AntlrCppLexer(DelegatingLexer):
 
     def analyse_text(text):
         return AntlrLexer.analyse_text(text) and \
-            re.search(r'^\s*language\s*=\s*C\s*;', text, re.M)
+            re.search(r'^[^\S\n]*language\s*=\s*C\s*;', text, re.M)
 
 
 class AntlrObjectiveCLexer(DelegatingLexer):
@@ -564,7 +564,7 @@ class AntlrCSharpLexer(DelegatingLexer):
 
     def analyse_text(text):
         return AntlrLexer.analyse_text(text) and \
-            re.search(r'^\s*language\s*=\s*CSharp2\s*;', text, re.M)
+            re.search(r'^[^\S\n]*language\s*=\s*CSharp2\s*;', text, re.M)
 
 
 class AntlrPythonLexer(DelegatingLexer):
@@ -583,7 +583,7 @@ class AntlrPythonLexer(DelegatingLexer):
 
     def analyse_text(text):
         return AntlrLexer.analyse_text(text) and \
-            re.search(r'^\s*language\s*=\s*Python\s*;', text, re.M)
+            re.search(r'^[^\S\n]*language\s*=\s*Python\s*;', text, re.M)
 
 
 class AntlrJavaLexer(DelegatingLexer):
@@ -621,7 +621,7 @@ class AntlrRubyLexer(DelegatingLexer):
 
     def analyse_text(text):
         return AntlrLexer.analyse_text(text) and \
-            re.search(r'^\s*language\s*=\s*Ruby\s*;', text, re.M)
+            re.search(r'^[^\S\n]*language\s*=\s*Ruby\s*;', text, re.M)
 
 
 class AntlrPerlLexer(DelegatingLexer):
@@ -640,7 +640,7 @@ class AntlrPerlLexer(DelegatingLexer):
 
     def analyse_text(text):
         return AntlrLexer.analyse_text(text) and \
-            re.search(r'^\s*language\s*=\s*Perl5\s*;', text, re.M)
+            re.search(r'^[^\S\n]*language\s*=\s*Perl5\s*;', text, re.M)
 
 
 class AntlrActionScriptLexer(DelegatingLexer):
@@ -660,7 +660,7 @@ class AntlrActionScriptLexer(DelegatingLexer):
 
     def analyse_text(text):
         return AntlrLexer.analyse_text(text) and \
-            re.search(r'^\s*language\s*=\s*ActionScript\s*;', text, re.M)
+            re.search(r'^[^\S\n]*language\s*=\s*ActionScript\s*;', text, re.M)
 
 
 class TreetopBaseLexer(RegexLexer):

@@ -1007,7 +1007,7 @@ class ObjectiveJLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        if re.search(r'^\s*@import\s+[<"]', text, re.MULTILINE):
+        if re.search(r'^[^\S\n]*@import\s+[<"]', text, re.MULTILINE):
             # special directive found in most Objective-J files
             return True
         return False

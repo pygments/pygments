@@ -1742,11 +1742,11 @@ class JasminLexer(RegexLexer):
 
     def analyse_text(text):
         score = 0
-        if re.search(r'^\s*\.class\s', text, re.MULTILINE):
+        if re.search(r'^[^\S\n]*\.class\s', text, re.MULTILINE):
             score += 0.5
-            if re.search(r'^\s*[a-z]+_[a-z]+\b', text, re.MULTILINE):
+            if re.search(r'^[^\S\n]*[a-z]+_[a-z]+\b', text, re.MULTILINE):
                 score += 0.3
-        if re.search(r'^\s*\.(attribute|bytecode|debug|deprecated|enclosing|'
+        if re.search(r'^[^\S\n]*\.(attribute|bytecode|debug|deprecated|enclosing|'
                      r'inner|interface|limit|set|signature|stack)\b', text,
                      re.MULTILINE):
             score += 0.6

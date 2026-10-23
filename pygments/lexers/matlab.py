@@ -2747,7 +2747,7 @@ class MatlabLexer(RegexLexer):
                 and '{' not in first_non_comment):
             return 1.
         # comment
-        elif re.search(r'^\s*%', text, re.M):
+        elif re.search(r'^[^\S\n]*%', text, re.M):
             return 0.2
         # system cmd
         elif re.search(r'^!\w+', text, re.M):

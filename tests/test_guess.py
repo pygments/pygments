@@ -6,6 +6,7 @@
     :license: BSD, see LICENSE for details.
 """
 
+import time
 from pathlib import Path
 
 import pytest
@@ -203,6 +204,17 @@ def test_ecl_analyze_text():
             """
     res = ECLLexer.analyse_text(text)
     assert res == 0.01
+
+
+@pytest.mark.parametrize("text", ["\n" * 40000, "\n " * 40000, " " * 100000],
+                         ids=["newlines", "indented-lines", "spaces"])
+def test_guess_lexer_whitespace_is_fast(text):
+    # Several analyse_text() heuristics used to scan for leading whitespace
+    # in a way that was quadratic in the number of blank lines.
+    start = time.time()
+    guess_lexer(text)
+    # Generous limit to avoid false positives when starved for CPU time.
+    assert time.time() - start < 10
 
 
 def iter_fixture_dir(sub_dir):

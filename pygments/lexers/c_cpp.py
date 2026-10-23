@@ -334,9 +334,9 @@ class CLexer(CFamilyLexer):
     }
 
     def analyse_text(text):
-        if re.search(r'^\s*#include [<"]', text, re.MULTILINE):
+        if re.search(r'^[^\S\n]*#include [<"]', text, re.MULTILINE):
             return 0.1
-        if re.search(r'^\s*#ifn?def ', text, re.MULTILINE):
+        if re.search(r'^[^\S\n]*#ifn?def ', text, re.MULTILINE):
             return 0.1
 
 
