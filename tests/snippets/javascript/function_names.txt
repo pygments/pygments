@@ -1,0 +1,25 @@
+Named function declarations (#2756).
+
+---input---
+function processData(items) { console.log(items); }
+
+---tokens---
+'function'    Keyword.Declaration
+' '           Text.Whitespace
+'processData' Name.Function
+'('           Punctuation
+'items'       Name.Other
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'console'     Name.Other
+'.'           Punctuation
+'log'         Name.Other
+'('           Punctuation
+'items'       Name.Other
+')'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace

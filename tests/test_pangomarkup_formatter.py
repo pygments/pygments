@@ -26,7 +26,7 @@ function foobar(a, b) {
 }
 """
 
-OUTPUT = r"""<tt><span fgcolor="#"><b>function</b></span><span fgcolor="#"> </span>foobar(a,<span fgcolor="#"> </span>b)<span fgcolor="#"> </span>{<span fgcolor="#">
+OUTPUT = r"""<tt><span fgcolor="#"><b>function</b></span><span fgcolor="#"> </span><span fgcolor="#">foobar</span>(a,<span fgcolor="#"> </span>b)<span fgcolor="#"> </span>{<span fgcolor="#">
    </span><span fgcolor="#"><b>if</b></span><span fgcolor="#"> </span>(a<span fgcolor="#"> </span><span fgcolor="#">></span><span fgcolor="#"> </span>b)<span fgcolor="#"> </span>{<span fgcolor="#">
       </span><span fgcolor="#"><b>return</b></span><span fgcolor="#"> </span>a<span fgcolor="#"> </span><span fgcolor="#">&amp;</span><span fgcolor="#"> </span>b;<span fgcolor="#">
    </span>}<span fgcolor="#">
