@@ -1,0 +1,10 @@
+---input---
+// line comment
+/// doc comment
+
+---tokens---
+'// line comment' Comment.Single
+'\n'          Text.Whitespace
+
+'/// doc comment' Comment.Single
+'\n'          Text.Whitespace

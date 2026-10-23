@@ -1,0 +1,13 @@
+---input---
+@since(version = 0.2.0)
+
+---tokens---
+'@since'      Name.Decorator
+'('           Punctuation
+'version'     Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0.2.0'       Literal.Number
+')'           Punctuation
+'\n'          Text.Whitespace
