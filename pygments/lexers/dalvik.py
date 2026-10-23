@@ -108,7 +108,7 @@ class SmaliLexer(RegexLexer):
 
     def analyse_text(text):
         score = 0
-        if re.search(r'^\s*\.class\s', text, re.MULTILINE):
+        if re.search(r'^[^\S\n]*\.class\s', text, re.MULTILINE):
             score += 0.5
             if re.search(r'\b((check-cast|instance-of|throw-verification-error'
                          r')\b|(-to|add|[ais]get|[ais]put|and|cmpl|const|div|'

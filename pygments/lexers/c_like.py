@@ -381,7 +381,7 @@ class SwigLexer(CppLexer):
         # Search for SWIG directives, which are conventionally at the beginning of
         # a line. The probability of them being within a line is low, so let another
         # lexer win in this case.
-        matches = re.findall(r'^\s*(%[a-z_][a-z0-9_]*)', text, re.M)
+        matches = re.findall(r'^[^\S\n]*(%[a-z_][a-z0-9_]*)', text, re.M)
         for m in matches:
             if m in SwigLexer.swig_directives:
                 rv = 0.98
