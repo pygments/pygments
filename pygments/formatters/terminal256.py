@@ -26,6 +26,7 @@
 from pygments.formatter import Formatter
 from pygments.console import codes
 from pygments.style import ansicolors
+from pygments.util import get_bool_opt
 
 
 __all__ = ['Terminal256Formatter', 'TerminalTrueColorFormatter']
@@ -146,7 +147,7 @@ class Terminal256Formatter(Formatter):
         self._build_color_table()  # build an RGB-to-256 color conversion table
         self._setup_styles()  # convert selected style's colors to term. colors
 
-        self.linenos = options.get('linenos', False)
+        self.linenos = get_bool_opt(options, 'linenos', False)
         self._lineno = 0
 
     def _build_color_table(self):
