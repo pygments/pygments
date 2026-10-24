@@ -76,7 +76,9 @@ class CSharpLexer(RegexLexer):
             'root': [
                 include('numbers'),
                 # method names
-                (r'^([ \t]*)((?:' + cs_ident + r'(?:\[\])?\s+)+?)'  # return type
+                (r'^([ \t]*)((?:' + cs_ident +
+                 r'(?:\.' + cs_ident + r')*'                       # qualified type
+                 r'(?:<[^;\n(){}]+>)?(?:\[\])?\s+)+?)'          # generic return type
                  r'(' + cs_ident + ')'                            # method name
                  r'(\s*)(\()',                               # signature start
                  bygroups(Whitespace, using(this), Name.Function, Whitespace,
