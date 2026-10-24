@@ -178,6 +178,15 @@ def test_O_opt():
     assert 'Error: Invalid value' in e
 
 
+@pytest.mark.parametrize('formatter', ['terminal', 'terminal256', 'terminal16m', 'irc'])
+@pytest.mark.parametrize('linenos', ['0', 'no', 'false', 'off'])
+def test_linenos_false(formatter, linenos):
+    text = 'first\nsecond\n'
+    output = check_success('-ltext', '-f', formatter, '-O',
+                           f'linenos={linenos}', stdin=text)
+    assert output.replace('\r\n', '\n') == text
+
+
 def test_P_opt():
     filename = TESTFILE
     o = check_success('-Pfull', '-Ptitle=foo, bar=baz=,', '-fhtml', filename)

@@ -9,13 +9,15 @@
 import re
 from io import StringIO
 
+import pytest
+
 from pygments.lexers.sql import PlPgsqlLexer
 from pygments.formatters import TerminalFormatter, Terminal256Formatter, \
-    HtmlFormatter, LatexFormatter
+    TerminalTrueColorFormatter, IRCFormatter, HtmlFormatter, LatexFormatter
 
 from pygments.style import Style
 from pygments.token import Token
-from pygments.lexers import Python3Lexer
+from pygments.lexers import Python3Lexer, TextLexer
 from pygments import highlight
 
 DEMO_TEXT = '''\
@@ -53,6 +55,22 @@ def test_reasonable_output_lineno():
 
     for a, b in zip(DEMO_TEXT.splitlines(), plain.splitlines()):
         assert a in b
+
+
+@pytest.mark.parametrize('formatter', [
+    TerminalFormatter, Terminal256Formatter, TerminalTrueColorFormatter,
+    IRCFormatter,
+])
+@pytest.mark.parametrize('linenos, enabled', [
+    ('0', False), ('no', False), ('false', False), ('off', False),
+    ('1', True), ('yes', True), ('true', True), ('on', True),
+    ('FaLsE', False), ('TrUe', True),
+])
+def test_linenos_boolean_option(formatter, linenos, enabled):
+    text = 'first\nsecond\n'
+    actual = highlight(text, TextLexer(), formatter(linenos=linenos))
+    expected = highlight(text, TextLexer(), formatter(linenos=enabled))
+    assert actual == expected
 
 
 class MyStyle(Style):

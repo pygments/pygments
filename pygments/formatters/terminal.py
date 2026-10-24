@@ -12,7 +12,7 @@ from pygments.formatter import Formatter
 from pygments.token import Keyword, Name, Comment, String, Error, \
     Number, Operator, Generic, Token, Whitespace
 from pygments.console import ansiformat
-from pygments.util import get_choice_opt
+from pygments.util import get_bool_opt, get_choice_opt
 
 
 __all__ = ['TerminalFormatter']
@@ -85,7 +85,7 @@ class TerminalFormatter(Formatter):
         self.darkbg = get_choice_opt(options, 'bg',
                                      ['light', 'dark'], 'light') == 'dark'
         self.colorscheme = options.get('colorscheme', None) or TERMINAL_COLORS
-        self.linenos = options.get('linenos', False)
+        self.linenos = get_bool_opt(options, 'linenos', False)
         self._lineno = 0
 
     def format(self, tokensource, outfile):

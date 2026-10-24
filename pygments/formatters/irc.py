@@ -11,7 +11,7 @@
 from pygments.formatter import Formatter
 from pygments.token import Keyword, Name, Comment, String, Error, \
     Number, Operator, Generic, Token, Whitespace
-from pygments.util import get_choice_opt
+from pygments.util import get_bool_opt, get_choice_opt
 
 
 __all__ = ['IRCFormatter']
@@ -123,7 +123,7 @@ class IRCFormatter(Formatter):
         self.darkbg = get_choice_opt(options, 'bg',
                                      ['light', 'dark'], 'light') == 'dark'
         self.colorscheme = options.get('colorscheme', None) or IRC_COLORS
-        self.linenos = options.get('linenos', False)
+        self.linenos = get_bool_opt(options, 'linenos', False)
         self._lineno = 0
 
     def _write_lineno(self, outfile):
