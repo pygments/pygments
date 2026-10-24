@@ -230,11 +230,11 @@ class Lexer(metaclass=LexerMeta):
                 text = decoded
             else:
                 text = text.decode(self.encoding)
-                if text.startswith('\ufeff'):
-                    text = text[len('\ufeff'):]
-        else:
-            if text.startswith('\ufeff'):
-                text = text[len('\ufeff'):]
+
+        # A byte order mark is part of the encoding, not of the source code,
+        # so it is dropped for all input types and encodings.
+        if text.startswith('\ufeff'):
+            text = text[len('\ufeff'):]
 
         # text now *is* a unicode string
         text = text.replace('\r\n', '\n')

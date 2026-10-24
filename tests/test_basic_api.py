@@ -156,6 +156,19 @@ def test_lexer_options(cls):
         ensure(inst.get_tokens('a\nb\n\n'), 'a\nb')
 
 
+def test_bom_removed_from_byte_string_input():
+    # A UTF-8 BOM is part of the encoding, not of the source code, so it must
+    # be removed for byte strings as well as for Unicode strings (the default
+    # "guess" encoding is documented as doing BOM handling).
+    text = 'x = 1\n'
+    expected = list(lexers.PythonLexer().get_tokens(text))
+    for options in ({}, {'encoding': 'guess'}, {'inencoding': 'guess'}):
+        lexer = lexers.PythonLexer(**options)
+        tokens = list(lexer.get_tokens(text.encode('utf-8-sig')))
+        assert tokens == expected, f'{options}: {tokens!r} != {expected!r}'
+        assert '\ufeff' not in ''.join(value for _, value in tokens)
+
+
 def test_get_lexers():
     # test that the lexers functions work
     for func, args in [(lexers.get_lexer_by_name, ("python",)),
