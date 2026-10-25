@@ -7,6 +7,11 @@ Version 2.22.0
 --------------
 (not released yet)
 
+- Updated lexers:
+
+  * Rexx: Recognize hex and binary string suffixes (``'0A'x``,
+    ``'0110 0001'b``); ``;`` is no longer an Error token (#3434)
+
 Version 2.21.0
 ---------------
 (released August 17th, 2026)

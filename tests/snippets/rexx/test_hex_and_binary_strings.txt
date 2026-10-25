@@ -1,0 +1,46 @@
+---input---
+nl = '0A'x; a = "61"X; b = '0110 0001'b
+y = '61'xyz
+say 'plain'
+
+---tokens---
+'nl'          Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'0A'"        Literal.String.Other
+'x'           Literal.String.Affix
+';'           Operator
+' '           Text.Whitespace
+'a'           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"61"'        Literal.String.Other
+'X'           Literal.String.Affix
+';'           Operator
+' '           Text.Whitespace
+'b'           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'0110 0001'" Literal.String.Other
+'b'           Literal.String.Affix
+'\n'          Text.Whitespace
+
+'y'           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String
+'61'          Literal.String
+"'"           Literal.String
+'xyz'         Text
+'\n'          Text.Whitespace
+
+'say'         Keyword.Reserved
+' '           Text.Whitespace
+"'"           Literal.String
+'plain'       Literal.String
+"'"           Literal.String
+'\n'          Text.Whitespace

@@ -1084,6 +1084,11 @@ class RexxLexer(RegexLexer):
         'root': [
             (r'\s+', Whitespace),
             (r'/\*', Comment.Multiline, 'comment'),
+            # Hex and binary strings ('0A'x, '0110 0001'b); a suffix
+            # followed by another symbol character is a string abutted
+            # to a symbol instead ('61'xyz)
+            (r'("(?:[^"\n]|"")*"|\'(?:[^\'\n]|\'\')*\')([xb])(?![\w@#$!?.])',
+             bygroups(String.Other, String.Affix)),
             (r'"', String, 'string_double'),
             (r"'", String, 'string_single'),
             (r'[0-9]+(\.[0-9]+)?(e[+-]?[0-9])?', Number),
@@ -1120,7 +1125,7 @@ class RexxLexer(RegexLexer):
         'operator': [
             (r'(-|//|/|\(|\)|\*\*|\*|\\<<|\\<|\\==|\\=|\\>>|\\>|\\|\|\||\||'
              r'&&|&|%|\+|<<=|<<|<=|<>|<|==|=|><|>=|>>=|>>|>|¬<<|¬<|¬==|¬=|'
-             r'¬>>|¬>|¬|\.|,)', Operator),
+             r'¬>>|¬>|¬|\.|,|;)', Operator),
         ],
         'string_double': [
             (r'[^"\n]+', String),
