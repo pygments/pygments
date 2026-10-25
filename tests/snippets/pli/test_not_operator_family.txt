@@ -1,0 +1,61 @@
+---input---
+¬A & (B ¬= C) & (D ¬< E) & (F ¬> G);
+X = A ¬ B;
+Y = ^FLAG;
+
+---tokens---
+'¬'           Operator
+'A'           Text
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+'('           Operator
+'B'           Text
+' '           Text.Whitespace
+'¬='          Operator
+' '           Text.Whitespace
+'C'           Text
+')'           Operator
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+'('           Operator
+'D'           Text
+' '           Text.Whitespace
+'¬<'          Operator
+' '           Text.Whitespace
+'E'           Text
+')'           Operator
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+'('           Operator
+'F'           Text
+' '           Text.Whitespace
+'¬>'          Operator
+' '           Text.Whitespace
+'G'           Text
+')'           Operator
+';'           Operator
+'\n'          Text.Whitespace
+
+'X'           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'A'           Text
+' '           Text.Whitespace
+'¬'           Operator
+' '           Text.Whitespace
+'B'           Text
+';'           Operator
+'\n'          Text.Whitespace
+
+'Y'           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'^'           Operator
+'FLAG'        Text
+';'           Operator
+'\n'          Text.Whitespace

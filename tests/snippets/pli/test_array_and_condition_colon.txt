@@ -1,0 +1,57 @@
+---input---
+DCL A(0:1000) FIXED;
+(subrg,strg,size): reform: proc(parm) options(main);
+(nozerodivide): x = 1/y;
+
+---tokens---
+'DCL'         Keyword.Reserved
+' '           Text.Whitespace
+'A'           Text
+'('           Operator
+'0'           Literal.Number.Integer
+':'           Operator
+'1000'        Literal.Number.Integer
+')'           Operator
+' '           Text.Whitespace
+'FIXED'       Keyword.Type
+';'           Operator
+'\n'          Text.Whitespace
+
+'('           Operator
+'subrg'       Text
+','           Operator
+'strg'        Text
+','           Operator
+'size'        Keyword.Reserved
+')'           Operator
+':'           Operator
+' '           Text.Whitespace
+'reform'      Name.Label
+':'           Punctuation
+' '           Text.Whitespace
+'proc'        Keyword.Reserved
+'('           Operator
+'parm'        Text
+')'           Operator
+' '           Text.Whitespace
+'options'     Keyword.Reserved
+'('           Operator
+'main'        Keyword.Reserved
+')'           Operator
+';'           Operator
+'\n'          Text.Whitespace
+
+'('           Operator
+'nozerodivide' Text
+')'           Operator
+':'           Operator
+' '           Text.Whitespace
+'x'           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'/'           Operator
+'y'           Text
+';'           Operator
+'\n'          Text.Whitespace

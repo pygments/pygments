@@ -1,0 +1,15 @@
+---input---
+::options digits 15 namespace myns
+
+---tokens---
+'::'          Keyword.Namespace
+'options'     Keyword.Declaration
+' '           Text.Whitespace
+'digits'      Keyword.Type
+' '           Text.Whitespace
+'15'          Literal.Number
+' '           Text.Whitespace
+'namespace'   Keyword.Type
+' '           Text.Whitespace
+'myns'        Text
+'\n'          Text.Whitespace

@@ -1,0 +1,27 @@
+---input---
+ON ENDFILE(SYSIN) GO TO EOF;
+ON ERROR IGNORE;
+
+---tokens---
+'ON'          Keyword.Reserved
+' '           Text.Whitespace
+'ENDFILE'     Keyword.Reserved
+'('           Operator
+'SYSIN'       Text
+')'           Operator
+' '           Text.Whitespace
+'GO'          Keyword.Reserved
+' '           Text.Whitespace
+'TO'          Keyword.Reserved
+' '           Text.Whitespace
+'EOF'         Text
+';'           Operator
+'\n'          Text.Whitespace
+
+'ON'          Keyword.Reserved
+' '           Text.Whitespace
+'ERROR'       Keyword.Reserved
+' '           Text.Whitespace
+'IGNORE'      Keyword.Reserved
+';'           Operator
+'\n'          Text.Whitespace

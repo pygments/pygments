@@ -1,0 +1,28 @@
+---input---
+address system 'dir' with output stem out. error stem err.
+
+---tokens---
+'address'     Keyword.Reserved
+' '           Text.Whitespace
+'system'      Text
+' '           Text.Whitespace
+"'"           Literal.String
+'dir'         Literal.String
+"'"           Literal.String
+' '           Text.Whitespace
+'with'        Keyword.Reserved
+' '           Text.Whitespace
+'output'      Keyword.Reserved
+' '           Text.Whitespace
+'stem'        Keyword.Reserved
+' '           Text.Whitespace
+'out'         Text
+'.'           Operator
+' '           Text.Whitespace
+'error'       Keyword.Type
+' '           Text.Whitespace
+'stem'        Keyword.Reserved
+' '           Text.Whitespace
+'err'         Text
+'.'           Operator
+'\n'          Text.Whitespace

@@ -1,0 +1,35 @@
+---input---
+::class Point
+::method init
+  expose x y
+  use strict arg x, y
+
+---tokens---
+'::'          Keyword.Namespace
+'class'       Keyword.Declaration
+' '           Text.Whitespace
+'Point'       Text
+'\n'          Text.Whitespace
+
+'::'          Keyword.Namespace
+'method'      Keyword.Declaration
+' '           Text.Whitespace
+'init'        Text
+'\n  '        Text.Whitespace
+'expose'      Keyword.Reserved
+' '           Text.Whitespace
+'x'           Text
+' '           Text.Whitespace
+'y'           Text
+'\n  '        Text.Whitespace
+'use'         Keyword.Reserved
+' '           Text.Whitespace
+'strict'      Keyword.Reserved
+' '           Text.Whitespace
+'arg'         Keyword.Reserved
+' '           Text.Whitespace
+'x'           Text
+','           Operator
+' '           Text.Whitespace
+'y'           Text
+'\n'          Text.Whitespace

@@ -1,0 +1,101 @@
+---input---
+%DECLARE X FIXED;
+%IF X > 0 %THEN %DO;
+%INCLUDE COPYLIB;
+%END;
+Sq: %PROCEDURE(X);
+    IF X < 0 THEN
+        RETURN('0');
+    ELSE
+        RETURN(X);
+%END;
+Y = COMPILEDATE() || SYSPARM();
+
+---tokens---
+'%DECLARE'    Comment.Preproc
+' '           Text.Whitespace
+'X'           Text
+' '           Text.Whitespace
+'FIXED'       Keyword.Type
+';'           Operator
+'\n'          Text.Whitespace
+
+'%IF'         Comment.Preproc
+' '           Text.Whitespace
+'X'           Text
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'%THEN'       Comment.Preproc
+' '           Text.Whitespace
+'%DO'         Comment.Preproc
+';'           Operator
+'\n'          Text.Whitespace
+
+'%INCLUDE'    Comment.Preproc
+' '           Text.Whitespace
+'COPYLIB'     Text
+';'           Operator
+'\n'          Text.Whitespace
+
+'%END'        Comment.Preproc
+';'           Operator
+'\n'          Text.Whitespace
+
+'Sq'          Name.Label
+':'           Punctuation
+' '           Text.Whitespace
+'%PROCEDURE'  Comment.Preproc
+'('           Operator
+'X'           Text
+')'           Operator
+';'           Operator
+'\n    '      Text.Whitespace
+'IF'          Keyword.Reserved
+' '           Text.Whitespace
+'X'           Text
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'THEN'        Keyword.Reserved
+'\n        '  Text.Whitespace
+'RETURN'      Keyword.Reserved
+'('           Operator
+"'"           Literal.String
+'0'           Literal.String
+"'"           Literal.String
+')'           Operator
+';'           Operator
+'\n    '      Text.Whitespace
+'ELSE'        Keyword.Reserved
+'\n        '  Text.Whitespace
+'RETURN'      Keyword.Reserved
+'('           Operator
+'X'           Text
+')'           Operator
+';'           Operator
+'\n'          Text.Whitespace
+
+'%END'        Comment.Preproc
+';'           Operator
+'\n'          Text.Whitespace
+
+'Y'           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'COMPILEDATE' Name.Builtin
+'('           Operator
+')'           Operator
+' '           Text.Whitespace
+'||'          Operator
+' '           Text.Whitespace
+'SYSPARM'     Name.Builtin
+'('           Operator
+')'           Operator
+';'           Operator
+'\n'          Text.Whitespace

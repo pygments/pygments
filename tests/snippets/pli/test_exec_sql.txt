@@ -1,0 +1,31 @@
+---input---
+EXEC SQL SELECT NAME INTO :WSNAME FROM EMP WHERE ID = :WSID;
+
+---tokens---
+'EXEC'        Keyword.Reserved
+' '           Text.Whitespace
+'SQL'         Keyword.Reserved
+' '           Text.Whitespace
+'SELECT'      Name
+' '           Text.Whitespace
+'NAME'        Name
+' '           Text.Whitespace
+'INTO'        Name
+' '           Text.Whitespace
+':'           Punctuation
+'WSNAME'      Name.Variable
+' '           Text.Whitespace
+'FROM'        Name
+' '           Text.Whitespace
+'EMP'         Name
+' '           Text.Whitespace
+'WHERE'       Name
+' '           Text.Whitespace
+'ID'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+':'           Punctuation
+'WSID'        Name.Variable
+';'           Punctuation
+'\n'          Text.Whitespace

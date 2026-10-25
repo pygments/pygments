@@ -1,0 +1,32 @@
+---input---
+select case x
+  when 1 then say "one"
+  otherwise nop
+end
+
+---tokens---
+'select'      Keyword.Reserved
+' '           Text.Whitespace
+'case'        Keyword.Reserved
+' '           Text.Whitespace
+'x'           Text
+'\n  '        Text.Whitespace
+'when'        Keyword.Reserved
+' '           Text.Whitespace
+'1'           Literal.Number
+' '           Text.Whitespace
+'then'        Keyword.Reserved
+' '           Text.Whitespace
+'say'         Keyword.Reserved
+' '           Text.Whitespace
+'"'           Literal.String
+'one'         Literal.String
+'"'           Literal.String
+'\n  '        Text.Whitespace
+'otherwise'   Keyword.Reserved
+' '           Text.Whitespace
+'nop'         Keyword.Reserved
+'\n'          Text.Whitespace
+
+'end'         Keyword.Reserved
+'\n'          Text.Whitespace

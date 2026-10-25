@@ -1,0 +1,119 @@
+---input---
+P: PROC OPTIONS(MAIN REORDER);
+    DO WHILE(x < 10);
+        x = x + 1;
+    END;
+    ON ENDFILE(f) GO TO Done;
+    ON CONVERSION BEGIN;
+    END;
+    PUT SKIP LIST(x);
+    PUT EDIT('code=', ONCODE)(A);
+Done:
+    ALLOCATE x;
+END P;
+
+---tokens---
+'P'           Name.Label
+':'           Punctuation
+' '           Text.Whitespace
+'PROC'        Keyword.Reserved
+' '           Text.Whitespace
+'OPTIONS'     Keyword.Reserved
+'('           Operator
+'MAIN'        Keyword.Reserved
+' '           Text.Whitespace
+'REORDER'     Keyword.Reserved
+')'           Operator
+';'           Operator
+'\n    '      Text.Whitespace
+'DO'          Keyword.Reserved
+' '           Text.Whitespace
+'WHILE'       Keyword.Reserved
+'('           Operator
+'x'           Text
+' '           Text.Whitespace
+'<'           Operator
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+')'           Operator
+';'           Operator
+'\n        '  Text.Whitespace
+'x'           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'x'           Text
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Operator
+'\n    '      Text.Whitespace
+'END'         Keyword.Reserved
+';'           Operator
+'\n    '      Text.Whitespace
+'ON'          Keyword.Reserved
+' '           Text.Whitespace
+'ENDFILE'     Keyword.Reserved
+'('           Operator
+'f'           Text
+')'           Operator
+' '           Text.Whitespace
+'GO'          Keyword.Reserved
+' '           Text.Whitespace
+'TO'          Keyword.Reserved
+' '           Text.Whitespace
+'Done'        Text
+';'           Operator
+'\n    '      Text.Whitespace
+'ON'          Keyword.Reserved
+' '           Text.Whitespace
+'CONVERSION'  Keyword.Reserved
+' '           Text.Whitespace
+'BEGIN'       Keyword.Reserved
+';'           Operator
+'\n    '      Text.Whitespace
+'END'         Keyword.Reserved
+';'           Operator
+'\n    '      Text.Whitespace
+'PUT'         Keyword.Reserved
+' '           Text.Whitespace
+'SKIP'        Keyword.Reserved
+' '           Text.Whitespace
+'LIST'        Keyword.Reserved
+'('           Operator
+'x'           Text
+')'           Operator
+';'           Operator
+'\n    '      Text.Whitespace
+'PUT'         Keyword.Reserved
+' '           Text.Whitespace
+'EDIT'        Keyword.Reserved
+'('           Operator
+"'"           Literal.String
+'code='       Literal.String
+"'"           Literal.String
+','           Operator
+' '           Text.Whitespace
+'ONCODE'      Name.Builtin
+')'           Operator
+'('           Operator
+'A'           Text
+')'           Operator
+';'           Operator
+'\n'          Text.Whitespace
+
+'Done'        Name.Label
+':'           Punctuation
+'\n    '      Text.Whitespace
+'ALLOCATE'    Keyword.Reserved
+' '           Text.Whitespace
+'x'           Text
+';'           Operator
+'\n'          Text.Whitespace
+
+'END'         Keyword.Reserved
+' '           Text.Whitespace
+'P'           Text
+';'           Operator
+'\n'          Text.Whitespace

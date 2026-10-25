@@ -1,0 +1,43 @@
+---input---
+/* comment */
+if a = b then do
+  call foo
+end
+x = 'hello' 3.14
+
+---tokens---
+'/*'          Comment.Multiline
+' comment '   Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'if'          Keyword.Reserved
+' '           Text.Whitespace
+'a'           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'b'           Text
+' '           Text.Whitespace
+'then'        Keyword.Reserved
+' '           Text.Whitespace
+'do'          Keyword.Reserved
+'\n  '        Text.Whitespace
+'call'        Keyword.Reserved
+' '           Text.Whitespace
+'foo'         Text
+'\n'          Text.Whitespace
+
+'end'         Keyword.Reserved
+'\n'          Text.Whitespace
+
+'x'           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String
+'hello'       Literal.String
+"'"           Literal.String
+' '           Text.Whitespace
+'3.14'        Literal.Number
+'\n'          Text.Whitespace

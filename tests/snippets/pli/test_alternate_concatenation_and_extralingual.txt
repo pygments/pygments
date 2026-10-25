@@ -1,0 +1,56 @@
+---input---
+DCL $DSNAME CHAR(44);
+#_OF_PCBS = 1;
+POSREP = POSREP !! DEL !! REPTAB(I);
+A = B <> C;
+
+---tokens---
+'DCL'         Keyword.Reserved
+' '           Text.Whitespace
+'$DSNAME'     Text
+' '           Text.Whitespace
+'CHAR'        Keyword.Type
+'('           Operator
+'44'          Literal.Number.Integer
+')'           Operator
+';'           Operator
+'\n'          Text.Whitespace
+
+'#_OF_PCBS'   Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Operator
+'\n'          Text.Whitespace
+
+'POSREP'      Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'POSREP'      Text
+' '           Text.Whitespace
+'!!'          Operator
+' '           Text.Whitespace
+'DEL'         Text
+' '           Text.Whitespace
+'!!'          Operator
+' '           Text.Whitespace
+'REPTAB'      Text
+'('           Operator
+'I'           Text
+')'           Operator
+';'           Operator
+'\n'          Text.Whitespace
+
+'A'           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'B'           Text
+' '           Text.Whitespace
+'<>'          Operator
+' '           Text.Whitespace
+'C'           Text
+';'           Operator
+'\n'          Text.Whitespace

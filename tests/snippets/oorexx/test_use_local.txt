@@ -1,0 +1,13 @@
+---input---
+use local x, y
+
+---tokens---
+'use'         Keyword.Reserved
+' '           Text.Whitespace
+'local'       Keyword.Reserved
+' '           Text.Whitespace
+'x'           Text
+','           Operator
+' '           Text.Whitespace
+'y'           Text
+'\n'          Text.Whitespace

@@ -1,0 +1,37 @@
+---input---
+MathTools: PACKAGE EXPORTS(Square) RESERVES(Counter);
+  X = PACKAGENAME();
+END MathTools;
+
+---tokens---
+'MathTools'   Name.Label
+':'           Punctuation
+' '           Text.Whitespace
+'PACKAGE'     Keyword.Reserved
+' '           Text.Whitespace
+'EXPORTS'     Keyword.Reserved
+'('           Operator
+'Square'      Text
+')'           Operator
+' '           Text.Whitespace
+'RESERVES'    Keyword.Reserved
+'('           Operator
+'Counter'     Text
+')'           Operator
+';'           Operator
+'\n  '        Text.Whitespace
+'X'           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'PACKAGENAME' Name.Builtin
+'('           Operator
+')'           Operator
+';'           Operator
+'\n'          Text.Whitespace
+
+'END'         Keyword.Reserved
+' '           Text.Whitespace
+'MathTools'   Text
+';'           Operator
+'\n'          Text.Whitespace

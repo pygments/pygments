@@ -1,0 +1,112 @@
+---input---
+'O''Brien'
+'10110100'B
+'1F'X
+3.14159E10
+DEFINE ALIAS Foo Bar;
+%PACKAGE;
+%;
+%INCLUDE "b.pli";
+a & b | ¬c;
+EXECUTIVE = 1;
+EXEC SQL COMMIT END-EXEC;
+EXEC SQL INSERT INTO T VALUES ('a;b'); CALL DONE;
+
+---tokens---
+"'"           Literal.String
+'O'           Literal.String
+"''"          Literal.String
+'Brien'       Literal.String
+"'"           Literal.String
+'\n'          Text.Whitespace
+
+"'10110100'B" Literal.Number.Bin
+'\n'          Text.Whitespace
+
+"'1F'X"       Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'3.14159E10'  Literal.Number.Float
+'\n'          Text.Whitespace
+
+'DEFINE'      Keyword.Reserved
+' '           Text.Whitespace
+'ALIAS'       Keyword.Reserved
+' '           Text.Whitespace
+'Foo'         Text
+' '           Text.Whitespace
+'Bar'         Text
+';'           Operator
+'\n'          Text.Whitespace
+
+'%PACKAGE'    Comment.Preproc
+';'           Operator
+'\n'          Text.Whitespace
+
+'%'           Comment.Preproc
+';'           Operator
+'\n'          Text.Whitespace
+
+'%INCLUDE'    Comment.Preproc
+' '           Text.Whitespace
+'"'           Literal.String
+'b.pli'       Literal.String
+'"'           Literal.String
+';'           Operator
+'\n'          Text.Whitespace
+
+'a'           Text
+' '           Text.Whitespace
+'&'           Operator
+' '           Text.Whitespace
+'b'           Text
+' '           Text.Whitespace
+'|'           Operator
+' '           Text.Whitespace
+'¬'           Operator
+'c'           Text
+';'           Operator
+'\n'          Text.Whitespace
+
+'EXECUTIVE'   Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Operator
+'\n'          Text.Whitespace
+
+'EXEC'        Keyword.Reserved
+' '           Text.Whitespace
+'SQL'         Keyword.Reserved
+' '           Text.Whitespace
+'COMMIT'      Name
+' '           Text.Whitespace
+'END-EXEC'    Keyword.Reserved
+';'           Operator
+'\n'          Text.Whitespace
+
+'EXEC'        Keyword.Reserved
+' '           Text.Whitespace
+'SQL'         Keyword.Reserved
+' '           Text.Whitespace
+'INSERT'      Name
+' '           Text.Whitespace
+'INTO'        Name
+' '           Text.Whitespace
+'T'           Name
+' '           Text.Whitespace
+'VALUES'      Name
+' '           Text.Whitespace
+'('           Punctuation
+"'"           Literal.String
+'a;b'         Literal.String
+"'"           Literal.String
+')'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'CALL'        Keyword.Reserved
+' '           Text.Whitespace
+'DONE'        Text
+';'           Operator
+'\n'          Text.Whitespace

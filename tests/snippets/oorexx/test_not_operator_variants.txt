@@ -1,0 +1,34 @@
+---input---
+a = 5
+b = a \= 3
+c = a ¬= 3
+
+---tokens---
+'a'           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'5'           Literal.Number
+'\n'          Text.Whitespace
+
+'b'           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'a'           Text
+' '           Text.Whitespace
+'\\='         Operator
+' '           Text.Whitespace
+'3'           Literal.Number
+'\n'          Text.Whitespace
+
+'c'           Text
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'a'           Text
+' '           Text.Whitespace
+'¬='          Operator
+' '           Text.Whitespace
+'3'           Literal.Number
+'\n'          Text.Whitespace
