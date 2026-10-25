@@ -29,6 +29,42 @@ Functions from :mod:`pygments.lexers`:
 .. autofunction:: get_all_lexers
 .. autofunction:: find_lexer_class_by_name
 .. autofunction:: find_lexer_class
+.. autofunction:: find_lexer_class_for_filename
+
+Choosing a lexer by filename
+----------------------------
+
+Use :func:`find_lexer_class_for_filename` when you need the lexer class
+itself. It returns ``None`` when no lexer matches and accepts optional code
+to help choose between matching lexers. Use :func:`get_lexer_for_filename`
+when you want an instance; its optional ``code`` argument serves the same
+purpose. Both functions match the lexer's ``filenames`` patterns and rank
+matches using text analysis for nonempty code, or lexer priority otherwise.
+Filename patterns without ``*`` receive a bonus in either case.
+
+Use :func:`guess_lexer_for_filename` when you have the file contents and want
+Pygments to compare matching lexers' ``analyse_text()`` results. It requires
+the text and considers both ``filenames`` and ``alias_filenames`` patterns.
+The analysis ranks matching lexers; it does not validate the text or require
+a positive score. All three functions accept paths as well as basenames.
+
+For example, these calls all select a lexer for ``example.py``; the first
+returns its class and the other two return instances:
+
+.. code-block:: pycon
+
+   >>> from pygments.lexers import (
+   ...     find_lexer_class_for_filename,
+   ...     get_lexer_for_filename,
+   ...     guess_lexer_for_filename,
+   ... )
+   >>> lexer_class = find_lexer_class_for_filename("example.py")
+   >>> lexer_class.__name__
+   'PythonLexer'
+   >>> type(get_lexer_for_filename("example.py")).__name__
+   'PythonLexer'
+   >>> type(guess_lexer_for_filename("example.py", "print('hello')")).__name__
+   'PythonLexer'
 
 
 .. module:: pygments.formatters

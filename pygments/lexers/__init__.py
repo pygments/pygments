@@ -167,12 +167,15 @@ def load_lexer_from_file(filename, lexername="CustomLexer", **options):
 
 
 def find_lexer_class_for_filename(_fn, code=None):
-    """Get a lexer for a filename.
+    """Find the lexer class that best matches a filename.
 
     If multiple lexers match the filename pattern, use ``analyse_text()`` to
-    figure out which one is more appropriate.
+    choose between them when *code* is nonempty. Otherwise, use lexer
+    priority. In either case, filename patterns without ``*`` receive a
+    bonus. Bytes passed as *code* are decoded before analysis.
 
-    Returns None if not found.
+    Return the lexer class without instantiating it, or ``None`` if no lexer
+    matches the filename.
     """
     matches = []
     fn = basename(_fn)
@@ -210,17 +213,17 @@ def find_lexer_class_for_filename(_fn, code=None):
 
 
 def get_lexer_for_filename(_fn, code=None, **options):
-    """Get a lexer for a filename.
+    """Get a lexer instance for a filename.
 
-    Return a `Lexer` subclass instance that has a filename pattern
-    matching `fn`. The lexer is given the `options` at its
-    instantiation.
+    Return an instance of a lexer whose filename pattern matches *fn*. If
+    multiple lexers match, nonempty *code* is used to compare their
+    ``analyse_text()`` results; otherwise, lexer priority is used. Filename
+    patterns without ``*`` receive a bonus, as described in
+    :func:`find_lexer_class_for_filename`. Bytes passed as *code* are decoded
+    before analysis. The lexer is instantiated with *options*.
 
-    Raise :exc:`pygments.util.ClassNotFound` if no lexer for that filename
-    is found.
-
-    If multiple lexers match the filename pattern, use their ``analyse_text()``
-    methods to figure out which one is more appropriate.
+    Raise :exc:`pygments.util.ClassNotFound` if no lexer matches the
+    filename.
     """
     res = find_lexer_class_for_filename(_fn, code)
     if not res:
@@ -260,11 +263,17 @@ def _iter_lexerclasses(plugins=True):
 
 def guess_lexer_for_filename(_fn, _text, **options):
     """
-    As :func:`guess_lexer()`, but only lexers which have a pattern in `filenames`
-    or `alias_filenames` that matches `filename` are taken into consideration.
+    Guess a lexer instance from a filename and its text.
 
-    :exc:`pygments.util.ClassNotFound` is raised if no lexer thinks it can
-    handle the content.
+    Only lexers whose ``filenames`` or ``alias_filenames`` pattern matches
+    *fn* are considered. If more than one lexer matches, their
+    ``analyse_text()`` methods are used to choose one. If exactly one lexer
+    matches, it is returned without analyzing the text. The chosen lexer is
+    instantiated with *options*.
+
+    Raise :exc:`pygments.util.ClassNotFound` if no lexer matches the
+    filename. Text analysis ranks matching lexers; it does not validate the
+    text or require a positive analysis score.
     """
     fn = basename(_fn)
     primary = {}
