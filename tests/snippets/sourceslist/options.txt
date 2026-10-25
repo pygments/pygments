@@ -1,0 +1,118 @@
+---input---
+# A regular source keeps the existing URI, suite, and component tokens.
+deb http://deb.debian.org/debian bookworm main
+
+# Options must not change the URI token type for either source kind.
+deb [trusted=yes] http://deb.debian.org/debian bookworm main
+deb-src [arch=amd64 trusted=yes] https://deb.debian.org/debian bookworm stable main contrib # trailing comment
+deb [trusted=yes] # no URI
+deb [trusted=yes] http://deb.debian.org/debian/$(ARCH) bookworm main
+deb-src [trusted=yes]		http://deb.debian.org/debian bookworm main
+deb [trusted=yes]
+deb http://deb.debian.org/debian bookworm main
+
+---tokens---
+'# A regular source keeps the existing URI, suite, and component tokens.' Comment
+'\n'          Text.Whitespace
+
+'deb'         Keyword
+' '           Text.Whitespace
+'http://deb.debian.org/debian' Literal.String
+' '           Text.Whitespace
+'bookworm'    Keyword.Pseudo
+' '           Text.Whitespace
+'main'        Keyword.Pseudo
+''            Text
+'\n\n'        Text.Whitespace
+
+'# Options must not change the URI token type for either source kind.' Comment
+'\n'          Text.Whitespace
+
+'deb'         Keyword
+' '           Text.Whitespace
+'['           Literal.String.Other
+'trusted=yes' Literal.String.Other
+']'           Literal.String.Other
+' '           Text.Whitespace
+'http://deb.debian.org/debian' Literal.String
+' '           Text.Whitespace
+'bookworm'    Keyword.Pseudo
+' '           Text.Whitespace
+'main'        Keyword.Pseudo
+''            Text
+'\n'          Text.Whitespace
+
+'deb-src'     Keyword
+' '           Text.Whitespace
+'['           Literal.String.Other
+'arch=amd64 trusted=yes' Literal.String.Other
+']'           Literal.String.Other
+' '           Text.Whitespace
+'https://deb.debian.org/debian' Literal.String
+' '           Text.Whitespace
+'bookworm'    Keyword.Pseudo
+' '           Text.Whitespace
+'stable'      Keyword.Pseudo
+' '           Text.Whitespace
+'main'        Keyword.Pseudo
+' '           Text.Whitespace
+'contrib'     Keyword.Pseudo
+' '           Text.Whitespace
+'# trailing comment' Comment
+'\n'          Text.Whitespace
+
+'deb'         Keyword
+' '           Text.Whitespace
+'['           Literal.String.Other
+'trusted=yes' Literal.String.Other
+']'           Literal.String.Other
+' '           Text.Whitespace
+'# no URI'    Comment
+'\n'          Text.Whitespace
+
+'deb'         Keyword
+' '           Text.Whitespace
+'['           Literal.String.Other
+'trusted=yes' Literal.String.Other
+']'           Literal.String.Other
+' '           Text.Whitespace
+'http://deb.debian.org/debian/' Literal.String
+'$(ARCH)'     Name.Variable
+' '           Text.Whitespace
+'bookworm'    Keyword.Pseudo
+' '           Text.Whitespace
+'main'        Keyword.Pseudo
+''            Text
+'\n'          Text.Whitespace
+
+'deb-src'     Keyword
+' '           Text.Whitespace
+'['           Literal.String.Other
+'trusted=yes' Literal.String.Other
+']'           Literal.String.Other
+'\t\t'        Text.Whitespace
+'http://deb.debian.org/debian' Literal.String
+' '           Text.Whitespace
+'bookworm'    Keyword.Pseudo
+' '           Text.Whitespace
+'main'        Keyword.Pseudo
+''            Text
+'\n'          Text.Whitespace
+
+'deb'         Keyword
+' '           Text.Whitespace
+'['           Literal.String.Other
+'trusted=yes' Literal.String.Other
+']'           Literal.String.Other
+''            Text
+'\n'          Text.Whitespace
+
+'deb'         Keyword
+' '           Text.Whitespace
+'http://deb.debian.org/debian' Literal.String
+' '           Text.Whitespace
+'bookworm'    Keyword.Pseudo
+' '           Text.Whitespace
+'main'        Keyword.Pseudo
+''            Text
+'\n'          Text.Whitespace

@@ -270,10 +270,16 @@ class SourcesListLexer(RegexLexer):
             (r'\s+', Whitespace, 'components')
         ],
         'escaped-distribution': [
-            (r'\]', String.Other, '#pop'),
+            (r'\]', String.Other, ('#pop', 'after-options')),
             (r'\$\(ARCH\)', Name.Variable),
             (r'[^\]$]+', String.Other),
             (r'\$', String.Other)
+        ],
+        'after-options': [
+            (r'#.*?$', Comment, '#pop:2'),
+            (r'[^\S\n]+', Whitespace),
+            (r'$', Text, '#pop:2'),
+            default('#pop'),
         ],
         'components': [
             (r'#.*?$', Comment, '#pop:2'),
