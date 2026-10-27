@@ -7,6 +7,11 @@ Version 2.22.0
 --------------
 (not released yet)
 
+- Updated lexers:
+
+  * C/C++: Highlight MSVC braced inline assembly (``__asm { ... }``)
+    blocks as assembly in both the C and C++ lexers (#2942)
+
 Version 2.21.0
 ---------------
 (released August 17th, 2026)

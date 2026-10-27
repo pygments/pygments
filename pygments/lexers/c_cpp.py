@@ -53,6 +53,17 @@ class CFamilyLexer(RegexLexer):
     # Regex to match optional comments
     _possible_comments = rf'\s*(?:(?:(?:{_comment_single})|(?:{_comment_multiline}))\s*)*'
 
+    # Entry rule for MSVC braced inline assembly, shared by the
+    # 'root' and 'statements' states so that a standalone ``__asm { }``
+    # block (not inside a function) is also recognised.  It must come
+    # before the keyword rules so ``__asm`` is not consumed on its own
+    # as Keyword.Reserved.  See issue #2942.
+    _msvc_asm_entry = [
+        (r'(__asm|_asm)(\s*)(\{)',
+         bygroups(Keyword.Reserved, Whitespace, Punctuation),
+         'msvc-asm'),
+    ]
+
     tokens = {
         'whitespace': [
             # preprocessor directives: without whitespace
@@ -80,6 +91,7 @@ class CFamilyLexer(RegexLexer):
             (r'/(\\\n)?[*][\w\W]*', Comment.Multiline),
         ],
         'statements': [
+            *_msvc_asm_entry,
             include('keywords'),
             include('types'),
             (r'([LuU]|u8)?(")', bygroups(String.Affix, String), 'string'),
@@ -133,6 +145,7 @@ class CFamilyLexer(RegexLexer):
         ],
         'root': [
             include('whitespace'),
+            *_msvc_asm_entry,
             include('keywords'),
             # functions
             (r'(' + _namespaced_ident + r'(?:[&*\s])+)'  # return arguments
@@ -174,6 +187,87 @@ class CFamilyLexer(RegexLexer):
             (';', Punctuation),
             (r'\{', Punctuation, '#push'),
             (r'\}', Punctuation, '#pop'),
+        ],
+        # MSVC braced inline assembly (MASM dialect) body.  Entered from
+        # the 'statements' state after ``__asm {``.  Uses balanced brace
+        # counting (#push/#pop) so nested braces, and braces appearing in
+        # comments or strings, do not terminate the block prematurely.
+        # MSVC inline asm is MASM, not NASM, so registers/comments follow
+        # MASM conventions (``;`` line comments, bare register names).
+        'msvc-asm': [
+            # C/C++ comments are allowed inside MSVC __asm blocks; a
+            # brace inside a comment must not close the block (#2942).
+            # Reuse the shared C comment patterns so multiline /* */
+            # comments span newlines without a global DOTALL flag.
+            (_comment_single, Comment.Single),
+            (_comment_multiline, Comment.Multiline),
+            # Unterminated /* ... : consume to end of input safely.
+            (r'/(?:\\\n)?[*][\w\W]*', Comment.Multiline),
+            (r'\}', Punctuation, '#pop'),
+            (r'\{', Punctuation, '#push'),
+            (r';[^\n]*', Comment.Single),
+            (r'"', String, 'msvc-asm-string'),
+            (r"'", String.Char, 'msvc-asm-char'),
+            (r'[ \t]+', Whitespace),
+            (r'\n', Whitespace),
+            # Numeric literals: MASM hex (trailing h) or C-style 0x, plus
+            # plain decimal.
+            (r'[0-9][0-9a-fA-F]*[hH]\b', Number.Hex),
+            (r'0[xX][0-9a-fA-F]+', Number.Hex),
+            (r'[0-9]+', Number.Integer),
+            # x86 registers -> Name.Builtin (consistent with NasmLexer).
+            (r'(?i)(?:[er]?[a-d]x|[er]?[sb]p|[er]?[sd]i|r[0-9]{1,2}[bwd]?'
+             r'|[a-d][lh]|[cdefgs]s|[xyz]mm[0-9]{1,2}|mm[0-7]|st|'
+             r'cr[0-4]|dr[0-7]|tr[3-7])\b', Name.Builtin),
+            # A label (identifier followed by a single colon) at the
+            # start of a statement -> Name.Label.
+            (r'([a-zA-Z_@?$][\w@?$]*)(:)(?!:)',
+             bygroups(Name.Label, Punctuation)),
+            # A mnemonic at the start of a statement -> Name.Function,
+            # its operands are lexed in 'msvc-asm-args'.
+            (r'[a-zA-Z_@?$][\w@?$]*', Name.Function, 'msvc-asm-args'),
+            (r'[-+*/,:().\[\]]', Punctuation),
+        ],
+        'msvc-asm-args': [
+            (r'\n', Whitespace, '#pop'),
+            # C/C++ comments are allowed inside MSVC __asm blocks; a
+            # brace inside a comment must not close the block (#2942).
+            # A single-line /* */ comment stays within the operand list,
+            # so the following operand keeps its operand context.  A //
+            # comment, or a /* */ comment that spans a newline, ends the
+            # current instruction line, so pop back to the statement
+            # level; a following mnemonic is then a fresh instruction.
+            (r'/\*[^\n]*?\*/', Comment.Multiline),
+            (_comment_single, Comment.Single, '#pop'),
+            (_comment_multiline, Comment.Multiline, '#pop'),
+            # Unterminated /* ... : consume to end of input safely.
+            (r'/(?:\\\n)?[*][\w\W]*', Comment.Multiline, '#pop'),
+            (r'[ \t]+', Whitespace),
+            (r';[^\n]*', Comment.Single),
+            (r'"', String, 'msvc-asm-string'),
+            (r"'", String.Char, 'msvc-asm-char'),
+            (r'[0-9][0-9a-fA-F]*[hH]\b', Number.Hex),
+            (r'0[xX][0-9a-fA-F]+', Number.Hex),
+            (r'[0-9]+', Number.Integer),
+            (r'(?i)(?:[er]?[a-d]x|[er]?[sb]p|[er]?[sd]i|r[0-9]{1,2}[bwd]?'
+             r'|[a-d][lh]|[cdefgs]s|[xyz]mm[0-9]{1,2}|mm[0-7]|st|'
+             r'cr[0-4]|dr[0-7]|tr[3-7])\b', Name.Builtin),
+            (r'(?i)(byte|word|dword|qword|tbyte|ptr|offset|near|far|'
+             r'short|type|length|size)\b', Keyword.Type),
+            (r'[a-zA-Z_@?$][\w@?$]*', Name),
+            (r'[-+*/,:().\[\]]', Punctuation),
+            # A closing brace ends both the operand list and the block.
+            (r'(?=[{}])', Text, '#pop'),
+        ],
+        'msvc-asm-string': [
+            (r'"', String, '#pop'),
+            (r'[^"\n]+', String),
+            (r'\n', String, '#pop'),
+        ],
+        'msvc-asm-char': [
+            (r"'", String.Char, '#pop'),
+            (r"[^'\n]+", String.Char),
+            (r'\n', String.Char, '#pop'),
         ],
         'string': [
             (r'"', String, '#pop'),
