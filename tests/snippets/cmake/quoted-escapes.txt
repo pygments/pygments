@@ -1,0 +1,61 @@
+---input---
+message("say \"hello\" (# not a comment)")
+message("quote: \" # still a string")
+message("ends with a backslash \\")
+message("escaped backslash and quote \\\"")
+message("continued \
+on the next line")
+message("multiple
+lines")
+message("")
+message("after") # a comment
+
+---tokens---
+'message'     Name.Builtin
+'('           Punctuation
+'"say \\"hello\\" (# not a comment)"' Literal.String.Double
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'message'     Name.Builtin
+'('           Punctuation
+'"quote: \\" # still a string"' Literal.String.Double
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'message'     Name.Builtin
+'('           Punctuation
+'"ends with a backslash \\\\"' Literal.String.Double
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'message'     Name.Builtin
+'('           Punctuation
+'"escaped backslash and quote \\\\\\""' Literal.String.Double
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'message'     Name.Builtin
+'('           Punctuation
+'"continued \\\non the next line"' Literal.String.Double
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'message'     Name.Builtin
+'('           Punctuation
+'"multiple\nlines"' Literal.String.Double
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'message'     Name.Builtin
+'('           Punctuation
+'""'          Literal.String.Double
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'message'     Name.Builtin
+'('           Punctuation
+'"after"'     Literal.String.Double
+')'           Punctuation
+' '           Text.Whitespace
+'# a comment\n' Comment
