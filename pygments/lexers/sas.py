@@ -136,7 +136,7 @@ class SASLexer(RegexLexer):
         ],
         # Special highlight for proc, data, quit, run
         'proc-data': [
-            (r'[^;]\s*(proc \w+|data|run|quit)[\s;]',
+            (r'\b(proc\s+\w+|data|run|quit)(?=[\s;])',
              Keyword.Reserved),
         ],
         # Special highlight cards and datalines
