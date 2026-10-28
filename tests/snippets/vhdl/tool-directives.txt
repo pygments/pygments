@@ -1,0 +1,85 @@
+---input---
+`if VHDL_VERSION >= "2019" then
+entity example is
+end entity;
+`elsif TOOL_TYPE = "SIMULATION" then
+    `warning "Using fallback -- not a comment"
+`else
+`error "Unsupported version"
+`end if
+
+-- `warning "This is a comment"
+/* `error "This is also a comment" */
+constant message : string := "`warning is text";
+
+`protect begin_protected
+`vendor_extension argument
+signal ready : bit;
+
+---tokens---
+'`if VHDL_VERSION >= "2019" then' Comment.Preproc
+'\n'          Text.Whitespace
+
+'entity'      Keyword
+' '           Text.Whitespace
+'example'     Name.Class
+' '           Text.Whitespace
+'is'          Keyword
+'\n'          Text.Whitespace
+
+'end'         Keyword
+' '           Text.Whitespace
+'entity'      Keyword
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'`elsif TOOL_TYPE = "SIMULATION" then' Comment.Preproc
+'\n    '      Text.Whitespace
+'`warning "Using fallback -- not a comment"' Comment.Preproc
+'\n'          Text.Whitespace
+
+'`else'       Comment.Preproc
+'\n'          Text.Whitespace
+
+'`error "Unsupported version"' Comment.Preproc
+'\n'          Text.Whitespace
+
+'`end if'     Comment.Preproc
+'\n\n'        Text.Whitespace
+
+'-- `warning "This is a comment"' Comment.Single
+'\n'          Text.Whitespace
+
+'/* `error "This is also a comment" */' Comment.Multiline
+'\n'          Text.Whitespace
+
+'constant'    Keyword
+' '           Text.Whitespace
+'message'     Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+':'           Operator
+'='           Operator
+' '           Text.Whitespace
+'"`warning is text"' Literal.String
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'`protect begin_protected' Comment.Preproc
+'\n'          Text.Whitespace
+
+'`vendor_extension argument' Comment.Preproc
+'\n'          Text.Whitespace
+
+'signal'      Keyword
+' '           Text.Whitespace
+'ready'       Name
+' '           Text.Whitespace
+':'           Operator
+' '           Text.Whitespace
+'bit'         Keyword.Type
+';'           Punctuation
+'\n'          Text.Whitespace

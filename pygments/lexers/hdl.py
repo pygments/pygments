@@ -384,6 +384,7 @@ class VhdlLexer(RegexLexer):
 
     tokens = {
         'root': [
+            (r'`[^\n]*', Comment.Preproc),
             (r'\s+', Whitespace),
             (r'(\\)(\n)', bygroups(String.Escape, Whitespace)),  # line continuation
             (r'--.*?$', Comment.Single),
@@ -422,6 +423,7 @@ class VhdlLexer(RegexLexer):
             (r'[a-z_]\w*', Name),
         ],
         'endblock': [
+            (r'`[^\n]*', Comment.Preproc),
             include('keywords'),
             (r'[a-z_]\w*', Name.Class),
             (r'\s+', Whitespace),
