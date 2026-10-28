@@ -30,7 +30,7 @@ General contribution checklist
 * Make sure to add a test for your new functionality, and where applicable,
   write documentation.
 
-* Use the standard importing convention: ``from token import Punctuation``
+* Use the standard importing convention: ``from pygments.token import Punctuation``
 
 Goals & non-goals of Pygments
 =============================
