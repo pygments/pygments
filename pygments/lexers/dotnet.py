@@ -72,11 +72,18 @@ class CSharpLexer(RegexLexer):
     token_variants = True
 
     for levelname, cs_ident in levels.items():
+        cs_generic = r'(?:\s*<[\w\s@.,:<>\[\]?()]+>)?'
+        cs_type = (
+            cs_ident + cs_generic +
+            r'(?:\s*(?:\.|::)\s*' + cs_ident + cs_generic + r')*'
+            r'(?:\?|\s*\[\s*(?:,\s*)*\])*'
+        )
         tokens[levelname] = {
             'root': [
                 include('numbers'),
-                # method names
-                (r'^([ \t]*)((?:' + cs_ident + r'(?:\[\])?\s+)+?)'  # return type
+                # method names (return type may be generic / nested / nullable / array)
+                # Fixes #3424: GenericResult<bool> Method(...) was not matched as a method.
+                (r'^([ \t]*)((?:' + cs_type + r'\s+)+?)'           # return type
                  r'(' + cs_ident + ')'                            # method name
                  r'(\s*)(\()',                               # signature start
                  bygroups(Whitespace, using(this), Name.Function, Whitespace,

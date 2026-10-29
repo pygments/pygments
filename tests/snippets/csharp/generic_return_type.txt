@@ -1,0 +1,54 @@
+---input---
+public GenericResult Connect(IPAddress ip);
+public GenericResult<bool> Connect(IPAddress ip);
+public GenericResult<MeLiBu.IMeLiBuFrame> MeLiBu_ReceiveFrame(MeLiBu.IMeLiBuFrameHeader frameHeader);
+
+---tokens---
+'public'      Keyword
+' '           Text.Whitespace
+'GenericResult' Name
+' '           Text.Whitespace
+'Connect'     Name.Function
+'('           Punctuation
+'IPAddress'   Name
+' '           Text.Whitespace
+'ip'          Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'public'      Keyword
+' '           Text.Whitespace
+'GenericResult' Name
+'<'           Operator
+'bool'        Keyword.Type
+'>'           Operator
+' '           Text.Whitespace
+'Connect'     Name.Function
+'('           Punctuation
+'IPAddress'   Name
+' '           Text.Whitespace
+'ip'          Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'public'      Keyword
+' '           Text.Whitespace
+'GenericResult' Name
+'<'           Operator
+'MeLiBu'      Name
+'.'           Punctuation
+'IMeLiBuFrame' Name
+'>'           Operator
+' '           Text.Whitespace
+'MeLiBu_ReceiveFrame' Name.Function
+'('           Punctuation
+'MeLiBu'      Name
+'.'           Punctuation
+'IMeLiBuFrameHeader' Name
+' '           Text.Whitespace
+'frameHeader' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
