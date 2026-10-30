@@ -1173,7 +1173,7 @@ class KotlinLexer(RegexLexer):
             # Strings
             (r'"""', String, 'multiline_string'),
             (r'"', String, 'string'),
-            (r"'\\.'|'[^\\]'", String.Char),
+            (r"'\\(?:u[0-9a-fA-F]{4}|.)'|'[^\\]'", String.Char),
             # Numbers
             (r"[0-9](\.[0-9]*)?([eE][+-][0-9]+)?[flFL]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),

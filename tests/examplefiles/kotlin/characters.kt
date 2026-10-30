@@ -1,0 +1,7 @@
+val ascii = 'a'
+val newline = '\n'
+val quote = '\''
+val backslash = '\\'
+val unicode = '\u0041'
+val omega = '\u03A9'
+val nul = '\u0000'
