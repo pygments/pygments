@@ -1,0 +1,119 @@
+---input---
+@description('A simple resource')
+param location string = resourceGroup().location
+
+var prefix = 'demo'
+// short comment
+/* block
+   comment */
+
+resource sa 'Microsoft.Storage/storageAccounts@2023-01-01' = {
+  name: '${prefix}storage'
+  location: location
+  sku: { name: 'Standard_LRS' }
+}
+
+output id string = sa.id
+
+
+---tokens---
+'@'           Punctuation
+'description' Name.Decorator
+'('           Punctuation
+"'"           Literal.String
+'A simple resource' Literal.String
+"'"           Literal.String
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'param'       Keyword.Declaration
+' '           Text.Whitespace
+'location'    Name
+' '           Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'resourceGroup' Name.Builtin
+'('           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'location'    Name
+'\n\n'        Text.Whitespace
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'prefix'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String
+'demo'        Literal.String
+"'"           Literal.String
+'\n'          Text.Whitespace
+
+'// short comment' Comment.Single
+'\n'          Text.Whitespace
+
+'/*'          Comment.Multiline
+' block\n   comment ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n\n'        Text.Whitespace
+
+'resource'    Keyword.Declaration
+' '           Text.Whitespace
+'sa'          Name
+' '           Text.Whitespace
+"'"           Literal.String
+'Microsoft.Storage/storageAccounts@2023-01-01' Literal.String
+"'"           Literal.String
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'name'        Name
+':'           Operator
+' '           Text.Whitespace
+"'"           Literal.String
+'${'          Literal.String.Interpol
+'prefix'      Name
+'}'           Literal.String.Interpol
+'storage'     Literal.String
+"'"           Literal.String
+'\n  '        Text.Whitespace
+'location'    Name
+':'           Operator
+' '           Text.Whitespace
+'location'    Name
+'\n  '        Text.Whitespace
+'sku'         Name
+':'           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'name'        Name
+':'           Operator
+' '           Text.Whitespace
+"'"           Literal.String
+'Standard_LRS' Literal.String
+"'"           Literal.String
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n\n'        Text.Whitespace
+
+'output'      Keyword.Declaration
+' '           Text.Whitespace
+'id'          Name
+' '           Text.Whitespace
+'string'      Keyword.Type
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'sa'          Name
+'.'           Punctuation
+'id'          Name
+'\n'          Text.Whitespace

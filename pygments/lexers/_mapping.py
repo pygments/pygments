@@ -53,6 +53,7 @@ LEXERS = {
     'BefungeLexer': ('pygments.lexers.esoteric', 'Befunge', ('befunge',), ('*.befunge',), ('application/x-befunge',)),
     'BerryLexer': ('pygments.lexers.berry', 'Berry', ('berry', 'be'), ('*.be',), ('text/x-berry', 'application/x-berry')),
     'BibTeXLexer': ('pygments.lexers.bibtex', 'BibTeX', ('bibtex', 'bib'), ('*.bib',), ('text/x-bibtex',)),
+    'BicepLexer': ('pygments.lexers.configs', 'Bicep', ('bicep',), ('*.bicep', '*.bicepparam'), ()),
     'BitBakeLexer': ('pygments.lexers.bitbake', 'BitBake', ('bitbake',), ('*.bbclass', '*.bbappend'), ('text/x-bitbake',)),
     'BlitzBasicLexer': ('pygments.lexers.basic', 'BlitzBasic', ('blitzbasic', 'b3d', 'bplus'), ('*.bb', '*.decls'), ('text/x-bb',)),
     'BlitzMaxLexer': ('pygments.lexers.basic', 'BlitzMax', ('blitzmax', 'bmax'), ('*.bmx',), ('text/x-bmx',)),
