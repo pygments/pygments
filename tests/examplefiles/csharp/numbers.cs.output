@@ -100,5 +100,55 @@
 ';'           Punctuation
 '\n'          Text.Whitespace
 
+'    '        Text.Whitespace
+'public'      Keyword
+' '           Text.Whitespace
+'int'         Keyword.Type
+'['           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'SeparatedInts' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'1_000'       Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0xFF_FF'     Literal.Number.Hex
+','           Punctuation
+' '           Text.Whitespace
+'0b_0010_1010' Literal.Number.Bin
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'public'      Keyword
+' '           Text.Whitespace
+'decimal'     Keyword.Type
+'['           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'SeparatedReals' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'1_000.25_00m' Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'.12_34m'     Literal.Number.Float
+','           Punctuation
+' '           Text.Whitespace
+'1_2e+1_0m'   Literal.Number.Float
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
 '}'           Punctuation
 '\n'          Text.Whitespace
