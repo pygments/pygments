@@ -109,6 +109,7 @@ LEXERS = {
     'CppObjdumpLexer': ('pygments.lexers.asm', 'cpp-objdump', ('cpp-objdump', 'c++-objdumb', 'cxx-objdump'), ('*.cpp-objdump', '*.c++-objdump', '*.cxx-objdump'), ('text/x-cpp-objdump',)),
     'CrmshLexer': ('pygments.lexers.dsls', 'Crmsh', ('crmsh', 'pcmk'), ('*.crmsh', '*.pcmk'), ()),
     'CrocLexer': ('pygments.lexers.d', 'Croc', ('croc',), ('*.croc',), ('text/x-crocsrc',)),
+    'CrowLexer': ('pygments.lexers.crow', 'Crow', ('crow',), ('*.co',), ('text/x-crow',)),
     'CryptolLexer': ('pygments.lexers.haskell', 'Cryptol', ('cryptol', 'cry'), ('*.cry',), ('text/x-cryptol',)),
     'CrystalLexer': ('pygments.lexers.crystal', 'Crystal', ('cr', 'crystal'), ('*.cr',), ('text/x-crystal',)),
     'CsoundDocumentLexer': ('pygments.lexers.csound', 'Csound Document', ('csound-document', 'csound-csd'), ('*.csd',), ()),
