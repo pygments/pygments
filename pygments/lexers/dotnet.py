@@ -84,7 +84,7 @@ class CSharpLexer(RegexLexer):
                 (r'^(\s*)(\[.*?\])', bygroups(Whitespace, Name.Attribute)),
                 (r'[^\S\n]+', Whitespace),
                 (r'(\\)(\n)', bygroups(Text, Whitespace)),  # line continuation
-                (r'//.*?\n', Comment.Single),
+                (r'//.*?(?:\n|$)', Comment.Single),
                 (r'/[*].*?[*]/', Comment.Multiline),
                 (r'\n', Whitespace),
                 (words((
@@ -454,8 +454,8 @@ class VbNetLexer(RegexLexer):
             (r'^\s*<.*?>', Name.Attribute),
             (r'\s+', Whitespace),
             (r'\n', Whitespace),
-            (r'(rem\b.*?)(\n)', bygroups(Comment, Whitespace)),
-            (r"('.*?)(\n)", bygroups(Comment, Whitespace)),
+            (r'(rem\b.*?)(\n|$)', bygroups(Comment, Whitespace)),
+            (r"('.*?)(\n|$)", bygroups(Comment, Whitespace)),
             (r'#If\s.*?\sThen|#ElseIf\s.*?\sThen|#Else|#End\s+If|#Const|'
              r'#ExternalSource.*?\n|#End\s+ExternalSource|'
              r'#Region.*?\n|#End\s+Region|#ExternalChecksum',
@@ -679,8 +679,8 @@ class FSharpLexer(RegexLexer):
             (r'\b(?<!\.)([A-Z][\w\']*)(?=\s*\.)',
              Name.Namespace, 'dotted'),
             (r'\b([A-Z][\w\']*)', Name),
-            (r'(///.*?)(\n)', bygroups(String.Doc, Whitespace)),
-            (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace)),
+            (r'(///.*?)(\n|$)', bygroups(String.Doc, Whitespace)),
+            (r'(//.*?)(\n|$)', bygroups(Comment.Single, Whitespace)),
             (r'\(\*(?!\))', Comment, 'comment'),
 
             (r'@"', String, 'lstring'),

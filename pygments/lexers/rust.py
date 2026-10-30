@@ -74,9 +74,9 @@ class RustLexer(RegexLexer):
             # Whitespace and Comments
             (r'\n', Whitespace),
             (r'\s+', Whitespace),
-            (r'//!.*?\n', String.Doc),
-            (r'///(\n|[^/].*?\n)', String.Doc),
-            (r'//(.*?)\n', Comment.Single),
+            (r'//!.*?(?:\n|$)', String.Doc),
+            (r'///(?=[^/]|$)[^\n]*(?:\n|$)', String.Doc),
+            (r'//(.*?)(?:\n|$)', Comment.Single),
             (r'/\*\*(\n|[^/*])', String.Doc, 'doccomment'),
             (r'/\*!', String.Doc, 'doccomment'),
             (r'/\*', Comment.Multiline, 'comment'),
