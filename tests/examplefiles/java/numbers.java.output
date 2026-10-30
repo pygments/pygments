@@ -1,0 +1,86 @@
+'class'       Keyword.Declaration
+' '           Text
+'Numbers'     Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'double'      Keyword.Type
+' '           Text.Whitespace
+'exponent'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'12e3'        Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'double'      Keyword.Type
+' '           Text.Whitespace
+'negativeExponent' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'123E-4'      Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'float'       Keyword.Type
+' '           Text.Whitespace
+'exponentSuffix' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'12e+3F'      Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'double'      Keyword.Type
+' '           Text.Whitespace
+'separated'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1_000e2'     Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'float'       Keyword.Type
+' '           Text.Whitespace
+'integerPart' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'12f'         Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'double'      Keyword.Type
+' '           Text.Whitespace
+'doubleSuffix' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'123D'        Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'float'       Keyword.Type
+' '           Text.Whitespace
+'separatedSuffix' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1_000F'      Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
