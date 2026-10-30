@@ -1,0 +1,84 @@
+'fn'          Keyword
+' '           Text.Whitespace
+'main'        Name.Function
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'ordinary'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'c"'          Literal.String
+'hello'       Literal.String
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'escaped'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'c"'          Literal.String
+'\\xC3'       Literal.String.Escape
+'\\xA6'       Literal.String.Escape
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'unicode'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'c"'          Literal.String
+'\\u{00E6}'   Literal.String.Escape
+'"'           Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'raw'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'cr"C:\\path"' Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'quoted'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'cr#""hello""#' Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'hashed'      Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'cr##""hello"#"##' Literal.String
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

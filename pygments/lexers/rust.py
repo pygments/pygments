@@ -132,10 +132,10 @@ class RustLexer(RegexLexer):
              'number_lit'),
             (r'[0-9][0-9_]*', Number.Integer, 'number_lit'),
 
-            # String literals
-            (r'b"', String, 'bytestring'),
+            # String literals (C strings allow both byte and Unicode escapes)
+            (r'[bc]"', String, 'bytestring'),
             (r'"', String, 'string'),
-            (r'(?s)b?r(#*)".*?"\1', String),
+            (r'(?s)[bc]?r(#*)".*?"\1', String),
 
             # Lifetime names
             (r"'", Operator, 'lifetime'),
