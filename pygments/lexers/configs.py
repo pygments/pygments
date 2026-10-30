@@ -1264,14 +1264,14 @@ class TOMLLexer(RegexLexer):
             (r".*?'", String.Single, '#pop'),
         ],
         'multiline-basic-string': [
-            (r'"""', String.Double, '#pop'),
+            (r'"{3,5}', String.Double, '#pop'),
             (r'(\\)(\n)', bygroups(String.Escape, Whitespace)),
             include('escapes'),
             (r'[^"\\]+', String.Double),
             (r'"', String.Double),
         ],
         'multiline-literal-string': [
-            (r"'''", String.Single, '#pop'),
+            (r"'{3,5}", String.Single, '#pop'),
             (r"[^']+", String.Single),
             (r"'", String.Single),
         ],
