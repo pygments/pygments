@@ -35,7 +35,7 @@
 'test2'       Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'fred'        Literal.Scalar.Plain
+'fred'        Literal.String
 '\n'          Text.Whitespace
 
 '...'         Name.Namespace
@@ -61,23 +61,23 @@
 
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'Mark'        Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'McGwire'     Literal.Scalar.Plain
+'Mark'        Literal.String
+' '           Literal.String
+'McGwire'     Literal.String
 '\n'          Text.Whitespace
 
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'Sammy'       Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Sosa'        Literal.Scalar.Plain
+'Sammy'       Literal.String
+' '           Literal.String
+'Sosa'        Literal.String
 '\n'          Text.Whitespace
 
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'Ken'         Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Griffey'     Literal.Scalar.Plain
+'Ken'         Literal.String
+' '           Literal.String
+'Griffey'     Literal.String
 '\n\n'        Text.Whitespace
 
 '# Mapping scalars to scalars' Comment.Single
@@ -89,7 +89,7 @@
 'hr'          Name.Tag
 ':'           Punctuation
 '  '          Text.Whitespace
-'65'          Literal.Scalar.Plain
+'65'          Literal.String
 '    '        Text.Whitespace
 '# Home runs' Comment.Single
 '\n'          Text.Whitespace
@@ -97,7 +97,7 @@
 'avg'         Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'0.278'       Literal.Scalar.Plain
+'0.278'       Literal.String
 ' '           Text.Whitespace
 '# Batting average' Comment.Single
 '\n'          Text.Whitespace
@@ -105,7 +105,7 @@
 'rbi'         Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'147'         Literal.Scalar.Plain
+'147'         Literal.String
 '   '         Text.Whitespace
 '# Runs Batted In' Comment.Single
 '\n\n'        Text.Whitespace
@@ -123,29 +123,29 @@
 '  '          Text.Whitespace
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'Boston'      Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Red'         Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Sox'         Literal.Scalar.Plain
+'Boston'      Literal.String
+' '           Literal.String
+'Red'         Literal.String
+' '           Literal.String
+'Sox'         Literal.String
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'Detroit'     Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Tigers'      Literal.Scalar.Plain
+'Detroit'     Literal.String
+' '           Literal.String
+'Tigers'      Literal.String
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'New'         Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'York'        Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Yankees'     Literal.Scalar.Plain
+'New'         Literal.String
+' '           Literal.String
+'York'        Literal.String
+' '           Literal.String
+'Yankees'     Literal.String
 '\n'          Text.Whitespace
 
 'national'    Name.Tag
@@ -155,27 +155,27 @@
 '  '          Text.Whitespace
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'New'         Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'York'        Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Mets'        Literal.Scalar.Plain
+'New'         Literal.String
+' '           Literal.String
+'York'        Literal.String
+' '           Literal.String
+'Mets'        Literal.String
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'Chicago'     Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Cubs'        Literal.Scalar.Plain
+'Chicago'     Literal.String
+' '           Literal.String
+'Cubs'        Literal.String
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'Atlanta'     Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Braves'      Literal.Scalar.Plain
+'Atlanta'     Literal.String
+' '           Literal.String
+'Braves'      Literal.String
 '\n\n'        Text.Whitespace
 
 '# Sequence of mappings' Comment.Single
@@ -191,23 +191,23 @@
 'name'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'Mark'        Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'McGwire'     Literal.Scalar.Plain
+'Mark'        Literal.String
+' '           Literal.String
+'McGwire'     Literal.String
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'hr'          Name.Tag
 ':'           Punctuation
 '   '         Text.Whitespace
-'65'          Literal.Scalar.Plain
+'65'          Literal.String
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'avg'         Name.Tag
 ':'           Punctuation
 '  '          Text.Whitespace
-'0.278'       Literal.Scalar.Plain
+'0.278'       Literal.String
 '\n'          Text.Whitespace
 
 '-'           Punctuation.Indicator
@@ -217,23 +217,23 @@
 'name'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'Sammy'       Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Sosa'        Literal.Scalar.Plain
+'Sammy'       Literal.String
+' '           Literal.String
+'Sosa'        Literal.String
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'hr'          Name.Tag
 ':'           Punctuation
 '   '         Text.Whitespace
-'63'          Literal.Scalar.Plain
+'63'          Literal.String
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'avg'         Name.Tag
 ':'           Punctuation
 '  '          Text.Whitespace
-'0.288'       Literal.Scalar.Plain
+'0.288'       Literal.String
 '\n\n'        Text.Whitespace
 
 '# Sequence of sequences' Comment.Single
@@ -343,23 +343,23 @@
 
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'Mark'        Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'McGwire'     Literal.Scalar.Plain
+'Mark'        Literal.String
+' '           Literal.String
+'McGwire'     Literal.String
 '\n'          Text.Whitespace
 
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'Sammy'       Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Sosa'        Literal.Scalar.Plain
+'Sammy'       Literal.String
+' '           Literal.String
+'Sosa'        Literal.String
 '\n'          Text.Whitespace
 
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'Ken'         Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Griffey'     Literal.Scalar.Plain
+'Ken'         Literal.String
+' '           Literal.String
+'Griffey'     Literal.String
 '\n'          Text.Whitespace
 
 '---'         Name.Namespace
@@ -369,18 +369,18 @@
 
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'Chicago'     Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Cubs'        Literal.Scalar.Plain
+'Chicago'     Literal.String
+' '           Literal.String
+'Cubs'        Literal.String
 '\n'          Text.Whitespace
 
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'St'          Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Louis'       Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Cardinals'   Literal.Scalar.Plain
+'St'          Literal.String
+' '           Literal.String
+'Louis'       Literal.String
+' '           Literal.String
+'Cardinals'   Literal.String
 '\n\n'        Text.Whitespace
 
 '# Documents with the end indicator' Comment.Single
@@ -392,23 +392,23 @@
 'time'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'20:03:20'    Literal.Scalar.Plain
+'20:03:20'    Literal.String
 '\n'          Text.Whitespace
 
 'player'      Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'Sammy'       Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Sosa'        Literal.Scalar.Plain
+'Sammy'       Literal.String
+' '           Literal.String
+'Sosa'        Literal.String
 '\n'          Text.Whitespace
 
 'action'      Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'strike'      Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'(miss)'      Literal.Scalar.Plain
+'strike'      Literal.String
+' '           Literal.String
+'(miss)'      Literal.String
 '\n'          Text.Whitespace
 
 '...'         Name.Namespace
@@ -420,23 +420,23 @@
 'time'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'20:03:47'    Literal.Scalar.Plain
+'20:03:47'    Literal.String
 '\n'          Text.Whitespace
 
 'player'      Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'Sammy'       Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Sosa'        Literal.Scalar.Plain
+'Sammy'       Literal.String
+' '           Literal.String
+'Sosa'        Literal.String
 '\n'          Text.Whitespace
 
 'action'      Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'grand'       Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'slam'        Literal.Scalar.Plain
+'grand'       Literal.String
+' '           Literal.String
+'slam'        Literal.String
 '\n'          Text.Whitespace
 
 '...'         Name.Namespace
@@ -457,17 +457,17 @@
 '  '          Text.Whitespace
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'Mark'        Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'McGwire'     Literal.Scalar.Plain
+'Mark'        Literal.String
+' '           Literal.String
+'McGwire'     Literal.String
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'Sammy'       Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Sosa'        Literal.Scalar.Plain
+'Sammy'       Literal.String
+' '           Literal.String
+'Sosa'        Literal.String
 '\n'          Text.Whitespace
 
 'rbi'         Name.Tag
@@ -481,17 +481,17 @@
 '  '          Text.Whitespace
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'Sammy'       Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Sosa'        Literal.Scalar.Plain
+'Sammy'       Literal.String
+' '           Literal.String
+'Sosa'        Literal.String
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'Ken'         Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Griffey'     Literal.Scalar.Plain
+'Ken'         Literal.String
+' '           Literal.String
+'Griffey'     Literal.String
 '\n\n'        Text.Whitespace
 
 '# Anchors and aliases' Comment.Single
@@ -507,9 +507,9 @@
 '  '          Text.Whitespace
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'Mark'        Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'McGwire'     Literal.Scalar.Plain
+'Mark'        Literal.String
+' '           Literal.String
+'McGwire'     Literal.String
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
@@ -521,9 +521,9 @@
 ' '           Text.Whitespace
 '&SS'         Name.Label
 ' '           Text.Whitespace
-'Sammy'       Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Sosa'        Literal.Scalar.Plain
+'Sammy'       Literal.String
+' '           Literal.String
+'Sosa'        Literal.String
 '\n'          Text.Whitespace
 
 'rbi'         Name.Tag
@@ -541,9 +541,9 @@
 '  '          Text.Whitespace
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'Ken'         Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Griffey'     Literal.Scalar.Plain
+'Ken'         Literal.String
+' '           Literal.String
+'Griffey'     Literal.String
 '\n\n'        Text.Whitespace
 
 '# Mapping between sequences' Comment.Single
@@ -556,17 +556,17 @@
 ' '           Text.Whitespace
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'Detroit'     Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Tigers'      Literal.Scalar.Plain
+'Detroit'     Literal.String
+' '           Literal.String
+'Tigers'      Literal.String
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'Chicago'     Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'cubs'        Literal.Scalar.Plain
+'Chicago'     Literal.String
+' '           Literal.String
+'cubs'        Literal.String
 '\n'          Text.Whitespace
 
 ':'           Punctuation.Indicator
@@ -575,7 +575,7 @@
 '  '          Text.Whitespace
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'2001-07-23'  Literal.Scalar.Plain
+'2001-07-23'  Literal.String
 '\n'          Text.Whitespace
 
 '?'           Punctuation.Indicator
@@ -629,16 +629,16 @@
 'item    '    Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'Super'       Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Hoop'        Literal.Scalar.Plain
+'Super'       Literal.String
+' '           Literal.String
+'Hoop'        Literal.String
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'quantity'    Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'1'           Literal.Scalar.Plain
+'1'           Literal.String
 '\n'          Text.Whitespace
 
 '-'           Punctuation.Indicator
@@ -646,14 +646,14 @@
 'item    '    Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'Basketball'  Literal.Scalar.Plain
+'Basketball'  Literal.String
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'quantity'    Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'4'           Literal.Scalar.Plain
+'4'           Literal.String
 '\n'          Text.Whitespace
 
 '-'           Punctuation.Indicator
@@ -661,16 +661,16 @@
 'item    '    Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'Big'         Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Shoes'       Literal.Scalar.Plain
+'Big'         Literal.String
+' '           Literal.String
+'Shoes'       Literal.String
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'quantity'    Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'1'           Literal.Scalar.Plain
+'1'           Literal.String
 '\n\n'        Text.Whitespace
 
 '# Literal scalars' Comment.Single
@@ -759,9 +759,9 @@
 'name'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'Mark'        Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'McGwire'     Literal.Scalar.Plain
+'Mark'        Literal.String
+' '           Literal.String
+'McGwire'     Literal.String
 '\n'          Text.Whitespace
 
 'accomplishment' Name.Tag
@@ -890,19 +890,19 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'This'        Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'unquoted'    Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'scalar'      Literal.Scalar.Plain
+'This'        Literal.String
+' '           Literal.String
+'unquoted'    Literal.String
+' '           Literal.String
+'scalar'      Literal.String
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'spans'       Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'many'        Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'lines.'      Literal.Scalar.Plain
+'spans'       Literal.String
+' '           Literal.String
+'many'        Literal.String
+' '           Literal.String
+'lines.'      Literal.String
 '\n'          Text.Whitespace
 
 'quoted'      Name.Tag
@@ -933,31 +933,31 @@
 'canonical'   Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'12345'       Literal.Scalar.Plain
+'12345'       Literal.String
 '\n'          Text.Whitespace
 
 'decimal'     Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'+12_345'     Literal.Scalar.Plain
+'+12_345'     Literal.String
 '\n'          Text.Whitespace
 
 'sexagesimal' Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'3:25:45'     Literal.Scalar.Plain
+'3:25:45'     Literal.String
 '\n'          Text.Whitespace
 
 'octal'       Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'014'         Literal.Scalar.Plain
+'014'         Literal.String
 '\n'          Text.Whitespace
 
 'hexadecimal' Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'0xC'         Literal.Scalar.Plain
+'0xC'         Literal.String
 '\n\n'        Text.Whitespace
 
 '# Floating point' Comment.Single
@@ -969,37 +969,37 @@
 'canonical'   Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'1.23015e+3'  Literal.Scalar.Plain
+'1.23015e+3'  Literal.String
 '\n'          Text.Whitespace
 
 'exponential' Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'12.3015e+02' Literal.Scalar.Plain
+'12.3015e+02' Literal.String
 '\n'          Text.Whitespace
 
 'sexagesimal' Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'20:30.15'    Literal.Scalar.Plain
+'20:30.15'    Literal.String
 '\n'          Text.Whitespace
 
 'fixed'       Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'1_230.15'    Literal.Scalar.Plain
+'1_230.15'    Literal.String
 '\n'          Text.Whitespace
 
 'negative infinity' Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'-.inf'       Literal.Scalar.Plain
+'-.inf'       Literal.String
 '\n'          Text.Whitespace
 
 'not a number' Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'.NaN'        Literal.Scalar.Plain
+'.NaN'        Literal.String
 '\n\n'        Text.Whitespace
 
 '# Miscellaneous' Comment.Single
@@ -1011,19 +1011,19 @@
 'null'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'~'           Literal.Scalar.Plain
+'~'           Literal.String
 '\n'          Text.Whitespace
 
 'true'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'boolean'     Literal.Scalar.Plain
+'boolean'     Literal.String
 '\n'          Text.Whitespace
 
 'false'       Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'boolean'     Literal.Scalar.Plain
+'boolean'     Literal.String
 '\n'          Text.Whitespace
 
 'string'      Name.Tag
@@ -1043,29 +1043,29 @@
 'canonical'   Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'2001-12-15T02:59:43.1Z' Literal.Scalar.Plain
+'2001-12-15T02:59:43.1Z' Literal.String
 '\n'          Text.Whitespace
 
 'iso8601'     Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'2001-12-14t21:59:43.10-05:00' Literal.Scalar.Plain
+'2001-12-14t21:59:43.10-05:00' Literal.String
 '\n'          Text.Whitespace
 
 'spaced'      Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'2001-12-14'  Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'21:59:43.10' Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'-5'          Literal.Scalar.Plain
+'2001-12-14'  Literal.String
+' '           Literal.String
+'21:59:43.10' Literal.String
+' '           Literal.String
+'-5'          Literal.String
 '\n'          Text.Whitespace
 
 'date'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'2002-12-14'  Literal.Scalar.Plain
+'2002-12-14'  Literal.String
 '\n\n'        Text.Whitespace
 
 '# Various explicit tags' Comment.Single
@@ -1079,7 +1079,7 @@
 ' '           Text.Whitespace
 '!!str'       Keyword.Type
 ' '           Text.Whitespace
-'2002-04-28'  Literal.Scalar.Plain
+'2002-04-28'  Literal.String
 '\n'          Text.Whitespace
 
 'picture'     Name.Tag
@@ -1179,7 +1179,7 @@
 'radius'      Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'7'           Literal.Scalar.Plain
+'7'           Literal.String
 '\n'          Text.Whitespace
 
 '-'           Punctuation.Indicator
@@ -1228,18 +1228,18 @@
 'color'       Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'0xFFEEBB'    Literal.Scalar.Plain
+'0xFFEEBB'    Literal.String
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
 'text'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'Pretty'      Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'vector'      Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'drawing.'    Literal.Scalar.Plain
+'Pretty'      Literal.String
+' '           Literal.String
+'vector'      Literal.String
+' '           Literal.String
+'drawing.'    Literal.String
 '\n\n'        Text.Whitespace
 
 '# Unordered sets' Comment.Single
@@ -1261,23 +1261,23 @@
 
 '?'           Punctuation.Indicator
 ' '           Text.Whitespace
-'Mark'        Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'McGwire'     Literal.Scalar.Plain
+'Mark'        Literal.String
+' '           Literal.String
+'McGwire'     Literal.String
 '\n'          Text.Whitespace
 
 '?'           Punctuation.Indicator
 ' '           Text.Whitespace
-'Sammy'       Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Sosa'        Literal.Scalar.Plain
+'Sammy'       Literal.String
+' '           Literal.String
+'Sosa'        Literal.String
 '\n'          Text.Whitespace
 
 '?'           Punctuation.Indicator
 ' '           Text.Whitespace
-'Ken'         Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Griff'       Literal.Scalar.Plain
+'Ken'         Literal.String
+' '           Literal.String
+'Griff'       Literal.String
 '\n\n'        Text.Whitespace
 
 '# Ordered mappings' Comment.Single
@@ -1302,7 +1302,7 @@
 'Mark McGwire' Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'65'          Literal.Scalar.Plain
+'65'          Literal.String
 '\n'          Text.Whitespace
 
 '-'           Punctuation.Indicator
@@ -1310,7 +1310,7 @@
 'Sammy Sosa'  Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'63'          Literal.Scalar.Plain
+'63'          Literal.String
 '\n'          Text.Whitespace
 
 '-'           Punctuation.Indicator
@@ -1318,7 +1318,7 @@
 'Ken Griffy'  Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'58'          Literal.Scalar.Plain
+'58'          Literal.String
 '\n\n'        Text.Whitespace
 
 '# Full length example' Comment.Single
@@ -1332,13 +1332,13 @@
 'invoice'     Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'34843'       Literal.Scalar.Plain
+'34843'       Literal.String
 '\n'          Text.Whitespace
 
 'date   '     Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'2001-01-23'  Literal.Scalar.Plain
+'2001-01-23'  Literal.String
 '\n'          Text.Whitespace
 
 'bill-to'     Name.Tag
@@ -1351,14 +1351,14 @@
 'given  '     Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'Chris'       Literal.Scalar.Plain
+'Chris'       Literal.String
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
 'family '     Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'Dumars'      Literal.Scalar.Plain
+'Dumars'      Literal.String
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -1385,23 +1385,23 @@
 'city    '    Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'Royal'       Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Oak'         Literal.Scalar.Plain
+'Royal'       Literal.String
+' '           Literal.String
+'Oak'         Literal.String
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace
 'state   '    Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'MI'          Literal.Scalar.Plain
+'MI'          Literal.String
 '\n'          Text.Whitespace
 
 '        '    Text.Whitespace
 'postal  '    Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'48046'       Literal.Scalar.Plain
+'48046'       Literal.String
 '\n'          Text.Whitespace
 
 'ship-to'     Name.Tag
@@ -1420,28 +1420,28 @@
 'sku         ' Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'BL394D'      Literal.Scalar.Plain
+'BL394D'      Literal.String
 '\n'          Text.Whitespace
 
 '      '      Text.Whitespace
 'quantity    ' Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'4'           Literal.Scalar.Plain
+'4'           Literal.String
 '\n'          Text.Whitespace
 
 '      '      Text.Whitespace
 'description ' Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'Basketball'  Literal.Scalar.Plain
+'Basketball'  Literal.String
 '\n'          Text.Whitespace
 
 '      '      Text.Whitespace
 'price       ' Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'450.00'      Literal.Scalar.Plain
+'450.00'      Literal.String
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -1450,42 +1450,42 @@
 'sku         ' Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'BL4438H'     Literal.Scalar.Plain
+'BL4438H'     Literal.String
 '\n'          Text.Whitespace
 
 '      '      Text.Whitespace
 'quantity    ' Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'1'           Literal.Scalar.Plain
+'1'           Literal.String
 '\n'          Text.Whitespace
 
 '      '      Text.Whitespace
 'description ' Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'Super'       Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Hoop'        Literal.Scalar.Plain
+'Super'       Literal.String
+' '           Literal.String
+'Hoop'        Literal.String
 '\n'          Text.Whitespace
 
 '      '      Text.Whitespace
 'price       ' Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'2392.00'     Literal.Scalar.Plain
+'2392.00'     Literal.String
 '\n'          Text.Whitespace
 
 'tax  '       Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'251.42'      Literal.Scalar.Plain
+'251.42'      Literal.String
 '\n'          Text.Whitespace
 
 'total'       Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'4443.52'     Literal.Scalar.Plain
+'4443.52'     Literal.String
 '\n'          Text.Whitespace
 
 'comments'    Name.Tag
@@ -1493,31 +1493,31 @@
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'Late'        Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'afternoon'   Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'is'          Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'best.'       Literal.Scalar.Plain
+'Late'        Literal.String
+' '           Literal.String
+'afternoon'   Literal.String
+' '           Literal.String
+'is'          Literal.String
+' '           Literal.String
+'best.'       Literal.String
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'Backup'      Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'contact'     Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'is'          Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'Nancy'       Literal.Scalar.Plain
+'Backup'      Literal.String
+' '           Literal.String
+'contact'     Literal.String
+' '           Literal.String
+'is'          Literal.String
+' '           Literal.String
+'Nancy'       Literal.String
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
-'Billsmer'    Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'@'           Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'338-4338.'   Literal.Scalar.Plain
+'Billsmer'    Literal.String
+' '           Literal.String
+'@'           Literal.String
+' '           Literal.String
+'338-4338.'   Literal.String
 '\n\n'        Text.Whitespace
 
 '# Another full-length example' Comment.Single
@@ -1529,17 +1529,17 @@
 'Time'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'2001-11-23'  Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'15:01:42'    Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'-5'          Literal.Scalar.Plain
+'2001-11-23'  Literal.String
+' '           Literal.String
+'15:01:42'    Literal.String
+' '           Literal.String
+'-5'          Literal.String
 '\n'          Text.Whitespace
 
 'User'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'ed'          Literal.Scalar.Plain
+'ed'          Literal.String
 '\n'          Text.Whitespace
 
 'Warning'     Name.Tag
@@ -1547,25 +1547,25 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'This'        Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'is'          Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'an'          Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'error'       Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'message'     Literal.Scalar.Plain
+'This'        Literal.String
+' '           Literal.String
+'is'          Literal.String
+' '           Literal.String
+'an'          Literal.String
+' '           Literal.String
+'error'       Literal.String
+' '           Literal.String
+'message'     Literal.String
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'for'         Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'the'         Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'log'         Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'file'        Literal.Scalar.Plain
+'for'         Literal.String
+' '           Literal.String
+'the'         Literal.String
+' '           Literal.String
+'log'         Literal.String
+' '           Literal.String
+'file'        Literal.String
 '\n'          Text.Whitespace
 
 '---'         Name.Namespace
@@ -1574,17 +1574,17 @@
 'Time'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'2001-11-23'  Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'15:02:31'    Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'-5'          Literal.Scalar.Plain
+'2001-11-23'  Literal.String
+' '           Literal.String
+'15:02:31'    Literal.String
+' '           Literal.String
+'-5'          Literal.String
 '\n'          Text.Whitespace
 
 'User'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'ed'          Literal.Scalar.Plain
+'ed'          Literal.String
 '\n'          Text.Whitespace
 
 'Warning'     Name.Tag
@@ -1592,17 +1592,17 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'A'           Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'slightly'    Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'different'   Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'error'       Literal.Scalar.Plain
+'A'           Literal.String
+' '           Literal.String
+'slightly'    Literal.String
+' '           Literal.String
+'different'   Literal.String
+' '           Literal.String
+'error'       Literal.String
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'message.'    Literal.Scalar.Plain
+'message.'    Literal.String
 '\n'          Text.Whitespace
 
 '---'         Name.Namespace
@@ -1611,17 +1611,17 @@
 'Date'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'2001-11-23'  Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'15:03:17'    Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'-5'          Literal.Scalar.Plain
+'2001-11-23'  Literal.String
+' '           Literal.String
+'15:03:17'    Literal.String
+' '           Literal.String
+'-5'          Literal.String
 '\n'          Text.Whitespace
 
 'User'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'ed'          Literal.Scalar.Plain
+'ed'          Literal.String
 '\n'          Text.Whitespace
 
 'Fatal'       Name.Tag
@@ -1629,11 +1629,11 @@
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
-'Unknown'     Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'variable'    Literal.Scalar.Plain
-' '           Literal.Scalar.Plain
-'"bar"'       Literal.Scalar.Plain
+'Unknown'     Literal.String
+' '           Literal.String
+'variable'    Literal.String
+' '           Literal.String
+'"bar"'       Literal.String
 '\n'          Text.Whitespace
 
 'Stack'       Name.Tag
@@ -1646,14 +1646,14 @@
 'file'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'TopClass.py' Literal.Scalar.Plain
+'TopClass.py' Literal.String
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
 'line'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'23'          Literal.Scalar.Plain
+'23'          Literal.String
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -1673,14 +1673,14 @@
 'file'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'MoreClass.py' Literal.Scalar.Plain
+'MoreClass.py' Literal.String
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
 'line'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'58'          Literal.Scalar.Plain
+'58'          Literal.String
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace

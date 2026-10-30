@@ -10,7 +10,7 @@
 
 from pygments.lexer import Lexer, ExtendedRegexLexer, LexerContext, \
     include, bygroups
-from pygments.token import Comment, Error, Keyword, Literal, Name, Number, \
+from pygments.token import Comment, Error, Keyword, Name, Number, \
     Punctuation, String, Whitespace
 
 __all__ = ['YamlLexer', 'JsonLexer', 'JsonBareObjectLexer', 'JsonLdLexer']
@@ -403,9 +403,9 @@ class YamlLexer(ExtendedRegexLexer):
             # line breaks are ignored
             (r'\n+', Whitespace, 'plain-scalar-in-block-context-new-line'),
             # other whitespaces are a part of the value
-            (r'[ \xa0]+', Literal.Scalar.Plain),
+            (r'[ \xa0]+', String),
             # regular non-whitespace characters
-            (r'(?::(?!\s)|[^\s:])+', Literal.Scalar.Plain),
+            (r'(?::(?!\s)|[^\s:])+', String),
         ],
 
         # a plain scalar is the flow context

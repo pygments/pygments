@@ -5,7 +5,7 @@
 '  '          Text.Whitespace
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'moosefs'     Literal.Scalar.Plain
+'moosefs'     Literal.String
 '\n\n'        Text.Whitespace
 
 '{%'          Comment.Preproc
@@ -67,7 +67,7 @@
 'fstype'      Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'xfs'         Literal.Scalar.Plain
+'xfs'         Literal.String
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -76,7 +76,7 @@
 'mkmnt'       Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'True'        Literal.Scalar.Plain
+'True'        Literal.String
 '\n'          Text.Whitespace
 
 '  '          Text.Whitespace
@@ -90,7 +90,7 @@
 'user'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'mfs'         Literal.Scalar.Plain
+'mfs'         Literal.String
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -99,7 +99,7 @@
 'group'       Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'mfs'         Literal.Scalar.Plain
+'mfs'         Literal.String
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -115,7 +115,7 @@
 'user'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'mfs'         Literal.Scalar.Plain
+'mfs'         Literal.String
 '\n'          Text.Whitespace
 
 '      '      Text.Whitespace
@@ -124,7 +124,7 @@
 'group'       Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'mfs'         Literal.Scalar.Plain
+'mfs'         Literal.String
 '\n'          Text.Whitespace
 
 '{%'          Comment.Preproc
@@ -149,7 +149,7 @@
 'source'      Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'salt://moosefs/mfshdd.cfg' Literal.Scalar.Plain
+'salt://moosefs/mfshdd.cfg' Literal.String
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -158,7 +158,7 @@
 'user'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'root'        Literal.Scalar.Plain
+'root'        Literal.String
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -167,7 +167,7 @@
 'group'       Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'root'        Literal.Scalar.Plain
+'root'        Literal.String
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -176,7 +176,7 @@
 'mode'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'644'         Literal.Scalar.Plain
+'644'         Literal.String
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -185,7 +185,7 @@
 'template'    Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'jinja'       Literal.Scalar.Plain
+'jinja'       Literal.String
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -201,7 +201,7 @@
 'pkg'         Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'mfs-chunkserver' Literal.Scalar.Plain
+'mfs-chunkserver' Literal.String
 '\n\n'        Text.Whitespace
 
 '/etc/mfschunkserver.cfg' Name.Tag
@@ -219,7 +219,7 @@
 'source'      Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'salt://moosefs/mfschunkserver.cfg' Literal.Scalar.Plain
+'salt://moosefs/mfschunkserver.cfg' Literal.String
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -228,7 +228,7 @@
 'user'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'root'        Literal.Scalar.Plain
+'root'        Literal.String
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -237,7 +237,7 @@
 'group'       Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'root'        Literal.Scalar.Plain
+'root'        Literal.String
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -246,7 +246,7 @@
 'mode'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'644'         Literal.Scalar.Plain
+'644'         Literal.String
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -255,7 +255,7 @@
 'template'    Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'jinja'       Literal.Scalar.Plain
+'jinja'       Literal.String
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -271,7 +271,7 @@
 'pkg'         Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'mfs-chunkserver' Literal.Scalar.Plain
+'mfs-chunkserver' Literal.String
 '\n\n'        Text.Whitespace
 
 'mfs-chunkserver' Name.Tag
@@ -286,7 +286,7 @@
 '    '        Text.Whitespace
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'installed'   Literal.Scalar.Plain
+'installed'   Literal.String
 '\n'          Text.Whitespace
 
 'mfschunkserver' Name.Tag
@@ -301,7 +301,7 @@
 '    '        Text.Whitespace
 '-'           Punctuation.Indicator
 ' '           Text.Whitespace
-'running'     Literal.Scalar.Plain
+'running'     Literal.String
 '\n'          Text.Whitespace
 
 '    '        Text.Whitespace
@@ -336,7 +336,7 @@
 'mount'       Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'/mnt/moose'  Literal.Scalar.Plain
+'/mnt/moose'  Literal.String
 '{{'          Comment.Preproc
 ' '           Text
 'mnt'         Name.Variable
@@ -354,7 +354,7 @@
 'file'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'/mnt/moose'  Literal.Scalar.Plain
+'/mnt/moose'  Literal.String
 '{{'          Comment.Preproc
 ' '           Text
 'mnt'         Name.Variable
@@ -379,7 +379,7 @@
 'file'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'/etc/mfschunkserver.cfg' Literal.Scalar.Plain
+'/etc/mfschunkserver.cfg' Literal.String
 '\n'          Text.Whitespace
 
 '      '      Text.Whitespace
@@ -388,7 +388,7 @@
 'file'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'/etc/mfshdd.cfg' Literal.Scalar.Plain
+'/etc/mfshdd.cfg' Literal.String
 '\n'          Text.Whitespace
 
 '      '      Text.Whitespace
@@ -397,5 +397,5 @@
 'file'        Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'/var/lib/mfs' Literal.Scalar.Plain
+'/var/lib/mfs' Literal.String
 '\n'          Text.Whitespace

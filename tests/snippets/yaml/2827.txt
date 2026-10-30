@@ -5,7 +5,7 @@ foo: bar baz
 'foo'         Name.Tag
 ':'           Punctuation
 ' '           Text.Whitespace
-'bar'         Literal.Scalar.Plain
-'\xa0'        Literal.Scalar.Plain
-'baz'         Literal.Scalar.Plain
+'bar'         Literal.String
+'\xa0'        Literal.String
+'baz'         Literal.String
 '\n'          Text.Whitespace
