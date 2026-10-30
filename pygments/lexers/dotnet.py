@@ -100,7 +100,8 @@ class CSharpLexer(RegexLexer):
                 (r'(?:\$@|@\$)"(""|[^"])*"', String),
                 (r'@"(""|[^"])*"', String),
                 (r'\$?"(\\\\|\\[^\\]|[^"\\\n])*["\n]', String),
-                (r"'\\.'|'[^\\]'", String.Char),
+                (r"'\\(?:x[0-9a-fA-F]{1,4}|u[0-9a-fA-F]{4}|"
+                 r"U[0-9a-fA-F]{8}|.)'|'[^\\]'", String.Char),
                 (r"[0-9]+(\.[0-9]*)?([eE][+-][0-9]+)?"
                  r"[flFLdD]?|0[xX][0-9a-fA-F]+[Ll]?", Number),
                 (r'(#)([ \t]*)(if|endif|else|elif|define|undef|'
