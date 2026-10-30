@@ -633,6 +633,8 @@ class TransactSqlLexer(RegexLexer):
             (words(_tsql_builtins.OPERATORS), Operator),
             (words(_tsql_builtins.OPERATOR_WORDS, suffix=r'\b'), Operator.Word),
             (words(_tsql_builtins.TYPES, suffix=r'\b'), Name.Class),
+            # LEFT and RIGHT also name functions; recognize their JOIN role first.
+            (r'(left|right)\b(?=\s+(?:outer\s+)?join\b)', Keyword),
             (words(_tsql_builtins.FUNCTIONS, suffix=r'\b'), Name.Function),
             (r'(goto)(\s+)(\w+\b)', bygroups(Keyword, Whitespace, Name.Label)),
             (words(_tsql_builtins.KEYWORDS, suffix=r'\b'), Keyword),
