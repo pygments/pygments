@@ -70,6 +70,7 @@ class CSharpLexer(RegexLexer):
 
     tokens = {}
     token_variants = True
+    cs_digits = r'[0-9](?:_*[0-9])*'
 
     for levelname, cs_ident in levels.items():
         tokens[levelname] = {
@@ -140,15 +141,16 @@ class CSharpLexer(RegexLexer):
                 (cs_ident, Name),
             ],
             'numbers_int': [
-                (r"0[xX][0-9a-fA-F]+(([uU][lL]?)|[lL][uU]?)?", Number.Hex),
-                (r"0[bB][01]+(([uU][lL]?)|[lL][uU]?)?", Number.Bin),
-                (r"[0-9]+(([uU][lL]?)|[lL][uU]?)?", Number.Integer),
+                (r"0[xX]_*[0-9a-fA-F](?:_*[0-9a-fA-F])*"
+                 r"(([uU][lL]?)|[lL][uU]?)?", Number.Hex),
+                (r"0[bB]_*[01](?:_*[01])*(([uU][lL]?)|[lL][uU]?)?", Number.Bin),
+                (cs_digits + r"(([uU][lL]?)|[lL][uU]?)?", Number.Integer),
             ],
             'numbers_float': [
-                (r"([0-9]+\.[0-9]+([eE][+-]?[0-9]+)?[fFdDmM]?)|"
-                 r"(\.[0-9]+([eE][+-]?[0-9]+)?[fFdDmM]?)|"
-                 r"([0-9]+([eE][+-]?[0-9]+)[fFdDmM]?)|"
-                 r"([0-9]+[fFdDmM])", Number.Float),
+                (rf"({cs_digits}\.{cs_digits}([eE][+-]?{cs_digits})?[fFdDmM]?)|"
+                 rf"(\.{cs_digits}([eE][+-]?{cs_digits})?[fFdDmM]?)|"
+                 rf"({cs_digits}([eE][+-]?{cs_digits})[fFdDmM]?)|"
+                 rf"({cs_digits}[fFdDmM])", Number.Float),
             ],
             'numbers': [
                 include('numbers_float'),
