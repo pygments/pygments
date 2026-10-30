@@ -1,0 +1,45 @@
+--- Word frequency, closures over names, structs, tests and interpolation.
+use math, frame
+use lib/scene as s
+
+struct Point [x, y]
+
+--- the distance between two points
+fn dist[a, b]
+    return sqrt[(a.x - b.x) ^ 2 + (a.y - b.y) ^ 2]
+
+test dist_laws[]
+    assert[dist[Point[0.0, 0.0], Point[3.0, 4.0]] eq 5.0]
+
+fn is_big[x]
+    return x gt 100 and not (x gte 1000)
+
+nums = [1, 20, 300, 4000, 2.5e3]
+big = for n in nums
+    if is_big[n]
+        n
+counts = map[]
+for w in split['the fox and the dog', ' ']
+    if w in counts
+        counts = set[counts, w, counts[w] + 1]
+    else if w ne ''
+        counts = set[counts, w, 1]
+i = 0
+while i lt 3
+    i = i + 1
+    if i eq 2
+        continue
+log['found `len[big]` big numbers, first `big[0]`; it\'s `fmt[pi, decimals = 2]`']
+m = [[1.0, 2.0], [3.0, 4.0]]
+p = m * m
+q = m .* m ./ 2.0
+df = frame.new[k = [1, 2], v = [3.0, 4.0]]
+k = 1
+df.lag_`k` = df.v
+total = nums then sum
+ok = true or false
+r = read['notes.txt']
+if not r.ok
+    log['failed: `r.reason`']
+log['joined: `join[[\'a\', \'b\'], \', \']` and a tab\there, a quote \' and a tick \`']
+log['encoded: `url_encode[s, keep = \'-._~\\\'()\']`']
