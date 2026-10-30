@@ -498,6 +498,9 @@ class VbNetLexer(RegexLexer):
              r'UShort)\b', Keyword.Type),
             (r'(?<!\.)(AddressOf|And|AndAlso|As|GetType|In|Is|IsNot|Like|Mod|'
              r'Or|OrElse|TypeOf|Xor)\b', Operator.Word),
+            (r'&H_*[0-9a-f](?:_*[0-9a-f])*([SILDFR]|US|UI|UL)?', Number.Integer),
+            (r'&O_*[0-7](?:_*[0-7])*([SILDFR]|US|UI|UL)?', Number.Integer),
+            (r'&B_*[01](?:_*[01])*([SILDFR]|US|UI|UL)?', Number.Integer),
             (r'&=|[*]=|/=|\\=|\^=|\+=|-=|<<=|>>=|<<|>>|:=|'
              r'<=|>=|<>|[-&*/\\^+=<>\[\]]',
              Operator),
@@ -507,8 +510,6 @@ class VbNetLexer(RegexLexer):
             ('#.*?#', Literal.Date),
             (r'(\d+\.\d*|\d*\.\d+)(F[+-]?[0-9]+)?', Number.Float),
             (r'\d+([SILDFR]|US|UI|UL)?', Number.Integer),
-            (r'&H[0-9a-f]+([SILDFR]|US|UI|UL)?', Number.Integer),
-            (r'&O[0-7]+([SILDFR]|US|UI|UL)?', Number.Integer),
         ],
         'string': [
             (r'""', String),
