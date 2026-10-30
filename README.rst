@@ -84,7 +84,7 @@ The authors
 Pygments is maintained by **Georg Brandl**, e-mail address *georg*\ *@*\ *python.org*, **Matthäus Chajdas** and **Jean Abou-Samra**.
 
 Many lexers and fixes have been contributed by **Armin Ronacher**, the rest of
-the `Pocoo <https://www.pocoo.org/>`_ team and **Tim Hatch**.
+the `Pocoo <https://palletsprojects.com/>`_ team and **Tim Hatch**.
 
 The code is distributed under the BSD 2-clause license.  Contributors making pull
 requests must agree that they are able and willing to put their contributions

@@ -35,7 +35,7 @@ The authors
 Pygments is maintained by **Georg Brandl**, e-mail address *georg*\ *@*\ *python.org*, **Matthäus Chajdas** and **Jean Abou-Samra**.
 
 Many lexers and fixes have been contributed by **Armin Ronacher**, the rest of
-the `Pocoo <https://www.pocoo.org/>`_ team and **Tim Hatch**.
+the `Pocoo <https://palletsprojects.com/>`_ team and **Tim Hatch**.
 
 .. toctree::
    :maxdepth: 1
