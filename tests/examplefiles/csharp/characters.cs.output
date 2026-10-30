@@ -1,0 +1,87 @@
+'class'       Keyword
+' '           Text.Whitespace
+'Characters'  Name.Class
+'\n'          Text.Whitespace
+
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'char'        Keyword.Type
+' '           Text.Whitespace
+'ascii'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'a'"         Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'char'        Keyword.Type
+' '           Text.Whitespace
+'newline'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'\\n'"       Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'char'        Keyword.Type
+' '           Text.Whitespace
+'quote'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'\\''"       Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'char'        Keyword.Type
+' '           Text.Whitespace
+'hex'         Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'\\x41'"     Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'char'        Keyword.Type
+' '           Text.Whitespace
+'paddedHex'   Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'\\x0041'"   Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'char'        Keyword.Type
+' '           Text.Whitespace
+'unicode'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'\\u0041'"   Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'char'        Keyword.Type
+' '           Text.Whitespace
+'longUnicode' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'\\U00000041'" Literal.String.Char
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
