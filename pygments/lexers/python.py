@@ -317,8 +317,9 @@ class PythonLexer(RegexLexer):
         ],
         'numbers': [
             (r'(\d(?:_?\d)*\.(?:\d(?:_?\d)*)?|(?:\d(?:_?\d)*)?\.\d(?:_?\d)*)'
-             r'([eE][+-]?\d(?:_?\d)*)?', Number.Float),
-            (r'\d(?:_?\d)*[eE][+-]?\d(?:_?\d)*j?', Number.Float),
+             r'([eE][+-]?\d(?:_?\d)*)?[jJ]?', Number.Float),
+            (r'\d(?:_?\d)*[eE][+-]?\d(?:_?\d)*[jJ]?', Number.Float),
+            (r'\d(?:_?\d)*[jJ]', Number.Float),
             (r'0[oO](?:_?[0-7])+', Number.Oct),
             (r'0[bB](?:_?[01])+', Number.Bin),
             (r'0[xX](?:_?[a-fA-F0-9])+', Number.Hex),
