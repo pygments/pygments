@@ -7,6 +7,11 @@ Version 2.22.0
 --------------
 (not released yet)
 
+- Updated lexers:
+
+  * Jsonnet: Recognize complete decimal and exponent literals, including digit
+    separators, without consuming adjacent punctuation or arithmetic operators.
+
 Version 2.21.0
 ---------------
 (released August 17th, 2026)
