@@ -277,7 +277,8 @@ class PythonLexer(RegexLexer):
                 'PermissionError', 'ProcessLookupError', 'TimeoutError',
                 # others new in Python 3
                 'StopAsyncIteration', 'ModuleNotFoundError', 'RecursionError',
-                'EncodingWarning'),
+                'EncodingWarning', 'BaseExceptionGroup', 'ExceptionGroup',
+                'PythonFinalizationError'),
                 prefix=r'(?<!\.)', suffix=r'\b'),
              Name.Exception),
         ],
