@@ -11,7 +11,7 @@
 import keyword
 
 from pygments.lexer import DelegatingLexer, RegexLexer, include, \
-    bygroups, using, default, words, combined, this
+    bygroups, using, default, words, combined
 from pygments.util import get_bool_opt, shebang_matches
 from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
     Number, Punctuation, Generic, Other, Error, Whitespace
@@ -97,6 +97,12 @@ class PythonLexer(RegexLexer):
             (r'[\'"\\]', ttype),
             # newlines are an error (use "nl" state)
         ]
+
+    soft_keyword_guard = (
+        r'\b(?![ \t]*(?:'
+        r'[:,;=^&|@~)\]}]|(?:' +
+        '|'.join(k for k in keyword.kwlist if k[0].islower()) + r')\b))'
+    )
 
     tokens = {
         'root': [
@@ -225,19 +231,27 @@ class PythonLexer(RegexLexer):
             (words(('True', 'False', 'None'), suffix=r'\b'), Keyword.Constant),
         ],
         'soft-keywords': [
-            # `match`, `case` and `_` soft keywords
-            (r'(^[ \t]*)'              # at beginning of line + possible indentation
-             r'(match|case)\b'         # a possible keyword
-             r'(?![ \t]*(?:'           # not followed by...
-             r'[:,;=^&|@~)\]}]|(?:' +  # characters and keywords that mean this isn't
-                                       # pattern matching (but None/True/False is ok)
-             r'|'.join(k for k in keyword.kwlist if k[0].islower()) + r')\b))',
-             bygroups(Text, Keyword), 'soft-keywords-inner'),
+            (r'(^[ \t]*)(match)' + soft_keyword_guard,
+             bygroups(Text, Keyword)),
+            (r'(^[ \t]*)(case)' + soft_keyword_guard,
+             bygroups(Text, Keyword), 'case-pattern'),
         ],
-        'soft-keywords-inner': [
-            # optional `_` keyword
-            (r'(\s+)([^\n_]*)(_\b)', bygroups(Whitespace, using(this), Keyword)),
-            default('#pop')
+        'case-pattern': [
+            (r':', Punctuation, '#pop'),
+            (r'if\b', Keyword, '#pop'),
+            include('case-pattern-inner'),
+        ],
+        'case-pattern-inner': [
+            (r'[{([]', Punctuation, 'case-pattern-nested'),
+            (r'as\b', Keyword),
+            (r'_\b', Keyword),
+            (r'#.*$', Comment.Single),
+            (r'\n', Whitespace),
+            include('expr'),
+        ],
+        'case-pattern-nested': [
+            (r'[])}]', Punctuation, '#pop'),
+            include('case-pattern-inner'),
         ],
         'builtins': [
             (words((
