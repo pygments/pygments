@@ -49,7 +49,7 @@ class RConsoleLexer(Lexer):
             else:
                 # We have reached a non-prompt line!
                 # If we have stored prompt lines, need to process them first.
-                if current_code_block:
+                if insertions:
                     # Weave together the prompts and highlight code.
                     yield from do_insertions(
                         insertions, slexer.get_tokens_unprocessed(current_code_block))
@@ -62,7 +62,7 @@ class RConsoleLexer(Lexer):
         # If we happen to end on a code block with nothing after it, need to
         # process the last code block. This is neither elegant nor DRY so
         # should be changed.
-        if current_code_block:
+        if insertions:
             yield from do_insertions(
                 insertions, slexer.get_tokens_unprocessed(current_code_block))
 
