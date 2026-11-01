@@ -224,3 +224,27 @@ def test_fantasy_positive_matches(lexer, text):
 def test_no_crashing(lexer, text):
     """Test incomplete text fragments that shouldn't crash the whole lexer."""
     assert lexer.get_tokens(text)
+
+
+# The lexer must keep the tokens it already produced when the input ends
+# right after a valid construct: an IndexError at EOF used to revert to a
+# stale snapshot of the token stream and silently drop them.
+
+@pytest.mark.parametrize('text', (
+    '0',                    # empty line number at the end of the input
+    '42',                   # multi-digit line number
+    '1 a=b premise',        # rule without a line-number reference
+    '1 b=a symmetry\n0',   # ... followed by an empty line number
+    '[ push\n0',           # empty line number after a fantasy rule
+))
+def test_tokens_not_discarded_at_end_of_input(lexer, text):
+    """Test that EOF does not make the lexer drop tokens."""
+    expected = text if text.endswith('\n') else text + '\n'
+    tokens = list(lexer.get_tokens(text))
+    assert ''.join(value for _, value in tokens) == expected
+
+
+def test_rule_token_kept_at_end_of_input(lexer):
+    """Test that the rule keyword survives until the end of the input."""
+    tokens = list(lexer.get_tokens_unprocessed('1 a=b premise\n'))
+    assert (6, Keyword, 'premise') in tokens

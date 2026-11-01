@@ -218,6 +218,12 @@ class TNTLexer(Lexer):
                     # do not attempt to process the rest
                     continue
                 del match
+                if start == len(text):
+                    # Input ended cleanly after a line number, so keep the
+                    # tokens produced so far. Indexing text[start] here would
+                    # raise IndexError and the handler would revert to a stale
+                    # snapshot of the token stream.
+                    break
                 if text[start] in '[]':  # fantasy push or pop
                     self.cur.append((start, Keyword, text[start]))
                     start += 1
@@ -251,6 +257,11 @@ class TNTLexer(Lexer):
                     continue
                 # skip whitespace after rule
                 start = end = self.whitespace(end, text)
+                if start == len(text):
+                    # Input ended cleanly after a rule (no line marker), so
+                    # keep the tokens produced so far instead of raising
+                    # IndexError and reverting to a stale token snapshot.
+                    break
                 # line marker
                 if text[start] == '(':
                     orig = len(self.cur)
