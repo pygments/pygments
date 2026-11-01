@@ -1,0 +1,294 @@
+'// =======================================================================' Comment.Singleline
+'\n'          Text.Whitespace
+
+'// Function Block Timed Counter: Incremental count of the timed interval' Comment.Singleline
+'\n'          Text.Whitespace
+
+'// =======================================================================' Comment.Singleline
+'\n'          Text.Whitespace
+
+'FUNCTION_BLOCK' Keyword
+' '           Text.Whitespace
+'FB_Timed_Counter' Name
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'VAR_INPUT'   Keyword
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'Execute'     Name
+':'           Operator
+' '           Text.Whitespace
+'BOOL'        Keyword.Type
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'FALSE'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'// Trigger signal to begin Timed Counting' Comment.Singleline
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'Time_Increment' Name
+':'           Operator
+' '           Text.Whitespace
+'REAL'        Keyword.Type
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'1.25'        Literal.Number.Float
+';'           Punctuation
+' '           Text.Whitespace
+'// Enter Cycle Time (Seconds) between counts' Comment.Singleline
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'Count_Cycles' Name
+':'           Operator
+' '           Text.Whitespace
+'INT'         Keyword.Type
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'20'          Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'// Number of Desired Count Cycles' Comment.Singleline
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'END_VAR'     Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'VAR_OUTPUT'  Keyword
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'Timer_Done_Bit' Name
+':'           Operator
+' '           Text.Whitespace
+'BOOL'        Keyword.Type
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'FALSE'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'// One Shot Bit indicating Timer Cycle Done' Comment.Singleline
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'Count_Complete' Name
+':'           Operator
+' '           Text.Whitespace
+'BOOL'        Keyword.Type
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'FALSE'       Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'// Output Bit indicating the Count is complete' Comment.Singleline
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'Current_Count' Name
+':'           Operator
+' '           Text.Whitespace
+'INT'         Keyword.Type
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'// Accumulating Value of Counter' Comment.Singleline
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'END_VAR'     Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'VAR'         Keyword
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'CycleTimer'  Name
+':'           Operator
+' '           Text.Whitespace
+'TON'         Name
+';'           Punctuation
+' '           Text.Whitespace
+'// Timer FB from Command Library' Comment.Singleline
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'CycleCounter' Name
+':'           Operator
+' '           Text.Whitespace
+'CTU'         Name
+';'           Punctuation
+' '           Text.Whitespace
+'// Counter FB from Command Library' Comment.Singleline
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'TimerPreset' Name
+':'           Operator
+' '           Text.Whitespace
+'TIME'        Keyword.Type
+';'           Punctuation
+' '           Text.Whitespace
+'// Converted Time_Increment in Seconds to MS' Comment.Singleline
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'END_VAR'     Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'// Start of Function Block programming' Comment.Singleline
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'TimerPreset' Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'REAL_TO_TIME' Operator.Word
+'('           Punctuation
+'in'          Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'Time_Increment' Name
+')'           Punctuation
+' '           Text.Whitespace
+'*'           Operator
+' '           Text.Whitespace
+'1000'        Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'CycleTimer(' Name.Function
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'in'          Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'Execute'     Name
+' '           Text.Whitespace
+'AND'         Operator.Word
+' '           Text.Whitespace
+'NOT'         Operator.Word
+' '           Text.Whitespace
+'CycleTimer'  Name
+'.'           Punctuation
+'Q'           Name
+','           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'pt'          Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'TimerPreset' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Timer_Done_Bit' Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'CycleTimer'  Name
+'.'           Punctuation
+'Q'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'CycleCounter(' Name.Function
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'cu'          Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'CycleTimer'  Name
+'.'           Punctuation
+'Q'           Name
+','           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'r'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'NOT'         Operator.Word
+' '           Text.Whitespace
+'Execute'     Name
+','           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'pv'          Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'Count_Cycles' Name
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Current_Count' Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'CycleCounter' Name
+'.'           Punctuation
+'cv'          Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'Count_Complete' Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'CycleCounter' Name
+'.'           Punctuation
+'q'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'END_FUNCTION_BLOCK' Keyword
+'\n'          Text.Whitespace
