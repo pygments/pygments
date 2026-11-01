@@ -419,11 +419,11 @@ class LlvmLexer(RegexLexer):
                 'argmemonly', 'args', 'arm_aapcs_vfpcc', 'arm_aapcscc',
                 'arm_apcscc', 'ashr', 'asm', 'atomic', 'atomicrmw',
                 'attributes', 'available_externally', 'avr_intrcc',
-                'avr_signalcc', 'bit', 'bitcast', 'bitMask', 'blockaddress',
-                'blockcount', 'br', 'branchFunnel', 'builtin', 'byArg',
-                'byref', 'byte', 'byteArray', 'byval', 'c', 'call', 'callbr',
-                'callee', 'caller', 'calls', 'canAutoHide', 'catch',
-                'catchpad', 'catchret', 'catchswitch', 'cc', 'ccc',
+                'avr_signalcc', 'bit', 'bitcast', 'bitextract', 'bitinsert',
+                'bitMask', 'blockaddress', 'blockcount', 'br', 'branchFunnel',
+                'builtin', 'byArg', 'byref', 'byte', 'byteArray', 'byval', 'c',
+                'call', 'callbr', 'callee', 'caller', 'calls', 'canAutoHide',
+                'catch', 'catchpad', 'catchret', 'catchswitch', 'cc', 'ccc',
                 'cfguard_checkcc', 'cleanup', 'cleanuppad', 'cleanupret',
                 'cmpxchg', 'cold', 'coldcc', 'comdat', 'common', 'constant',
                 'contract', 'convergent', 'critical', 'cxx_fast_tlscc',
@@ -460,11 +460,11 @@ class LlvmLexer(RegexLexer):
                 'optnone', 'optsize', 'or', 'ord', 'param', 'params',
                 'partition', 'path', 'personality', 'phi', 'poison',
                 'preallocated', 'prefix', 'preserve_allcc', 'preserve_mostcc',
-                'private', 'prologue', 'protected', 'ptrtoint', 'ptx_device',
-                'ptx_kernel', 'readnone', 'readNone', 'readonly', 'readOnly',
-                'reassoc', 'refs', 'relbf', 'release', 'resByArg', 'resume',
-                'ret', 'returnDoesNotAlias', 'returned', 'returns_twice',
-                'safestack', 'samesize', 'sanitize_address',
+                'private', 'prologue', 'protected', 'ptrtoaddr', 'ptrtoint',
+                'ptx_device', 'ptx_kernel', 'readnone', 'readNone', 'readonly',
+                'readOnly', 'reassoc', 'refs', 'relbf', 'release', 'resByArg',
+                'resume', 'ret', 'returnDoesNotAlias', 'returned',
+                'returns_twice', 'safestack', 'samesize', 'sanitize_address',
                 'sanitize_hwaddress', 'sanitize_memory', 'sanitize_memtag',
                 'sanitize_thread', 'sdiv', 'section', 'select', 'seq_cst',
                 'sext', 'sge', 'sgt', 'shadowcallstack', 'shl',
@@ -502,7 +502,10 @@ class LlvmLexer(RegexLexer):
                    Keyword.Type),
 
             # Integer types
-            (r'i[1-9]\d*', Keyword.Type)
+            (r'i[1-9]\d*', Keyword.Type),
+
+            # Byte types
+            (r'b[1-9]\d*', Keyword.Type)
         ]
     }
 
