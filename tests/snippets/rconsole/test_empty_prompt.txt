@@ -1,0 +1,22 @@
+---input---
+> x <- 1
+> x
+[1] 1
+>
+
+---tokens---
+'> '          Generic.Prompt
+'x'           Name
+' '           Text.Whitespace
+'<-'          Operator
+' '           Text.Whitespace
+'1'           Literal.Number
+'\n'          Text.Whitespace
+
+'> '          Generic.Prompt
+'x'           Name
+'\n'          Text.Whitespace
+
+'[1] 1\n'     Generic.Output
+
+'>\n'         Generic.Prompt
