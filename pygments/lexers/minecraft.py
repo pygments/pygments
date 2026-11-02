@@ -356,7 +356,7 @@ class MCSchemaLexer(RegexLexer):
             (r'[^\\"]+', String.Double),
         ],
         'root': [
-            (r'^(?=\s|/|<!--)', Text, 'slashstartsregex'),
+            (r'^(?=\s|/)', Text, 'slashstartsregex'),
             include('commentsandwhitespace'),
 
             # keywords for optional word and field types

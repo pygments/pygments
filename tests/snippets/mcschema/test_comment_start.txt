@@ -1,0 +1,26 @@
+---input---
+<!-- generated file -->
+format_version:{
+  version "1.0"
+}
+
+---tokens---
+'<'           Operator
+'!'           Operator
+'--'          Operator
+' '           Text.Whitespace
+'generated file -->\n' Text
+
+'format_version' Literal.String.Symbol
+':'           Operator
+'{'           Punctuation
+'\n  '        Text.Whitespace
+'version'     Keyword.Declaration
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'1.0'         Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
