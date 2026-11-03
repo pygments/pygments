@@ -1,0 +1,32 @@
+---input---
+@"
+"@
+Get-Date
+@'
+'@
+Get-Date
+@'
+not a terminator: '@
+'@
+Get-Date
+
+---tokens---
+'@"\n'        Literal.String.Heredoc
+
+'"@'          Literal.String.Heredoc
+'\n'          Text
+
+'Get-Date'    Name.Builtin
+'\n'          Text
+
+"@'\n'@"      Literal.String.Heredoc
+'\n'          Text
+
+'Get-Date'    Name.Builtin
+'\n'          Text
+
+"@'\nnot a terminator: '@\n'@" Literal.String.Heredoc
+'\n'          Text
+
+'Get-Date'    Name.Builtin
+'\n'          Text

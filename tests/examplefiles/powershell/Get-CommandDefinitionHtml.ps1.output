@@ -489,7 +489,9 @@
 't'           Literal.String.Heredoc
 'd'           Literal.String.Heredoc
 '>'           Literal.String.Heredoc
-'\n"@'        Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+'"@'          Literal.String.Heredoc
 '\n            ' Text
 '$count'      Name.Variable
 '+'           Punctuation
@@ -602,7 +604,9 @@
 't'           Literal.String.Heredoc
 'r'           Literal.String.Heredoc
 '>'           Literal.String.Heredoc
-'\n"@'        Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+'"@'          Literal.String.Heredoc
 '\n    '      Text
 '}'           Punctuation
 '\n'          Text
@@ -660,7 +664,9 @@
 'm'           Literal.String.Heredoc
 'l'           Literal.String.Heredoc
 '>'           Literal.String.Heredoc
-'\n"@'        Literal.String.Heredoc
+'\n'          Literal.String.Heredoc
+
+'"@'          Literal.String.Heredoc
 '\n'          Text
 
 '}'           Punctuation

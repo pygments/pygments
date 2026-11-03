@@ -708,7 +708,7 @@ class PowerShellLexer(RegexLexer):
             (r'#[^\n]*?$', Comment),
             (r'(&lt;|<)#', Comment.Multiline, 'multline'),
             (r'@"\n', String.Heredoc, 'heredoc-double'),
-            (r"@'\n.*?\n'@", String.Heredoc),
+            (r"@'\n.*?^'@", String.Heredoc),
             # escaped syntax
             (r'`[\'"$@-]', Punctuation),
             (r'"', String.Double, 'string'),
@@ -743,7 +743,7 @@ class PowerShellLexer(RegexLexer):
             (r'"', String.Double, '#pop'),
         ],
         'heredoc-double': [
-            (r'\n"@', String.Heredoc, '#pop'),
+            (r'^"@', String.Heredoc, '#pop'),
             (r'\$\(', Punctuation, 'child'),
             (r'[^@\n]+"]', String.Heredoc),
             (r".", String.Heredoc),
