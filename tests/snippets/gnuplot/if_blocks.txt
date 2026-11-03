@@ -1,0 +1,94 @@
+Nested parentheses and curly braces in conditionals (#1552).
+
+---input---
+if (!exists("outfile")) outfile='plot.eps'
+if (!exists("imageName")) {
+    set title "Comparison of histograms of input image, input histogram, and output image"
+} else {
+    set title "Comparison of histograms of " . imageName . ", " . histoName . ", and specified image"
+}
+
+---tokens---
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'!'           Operator
+'exists'      Name.Function
+'('           Punctuation
+'"'           Literal.String
+'outfile'     Literal.String
+'"'           Literal.String
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'outfile'     Name.Variable
+'='           Operator
+"'"           Literal.String
+'plot.eps'    Literal.String
+"'"           Literal.String
+'\n'          Text.Whitespace
+
+'if'          Keyword
+' '           Text
+'('           Punctuation
+'!'           Operator
+'exists'      Name.Function
+'('           Punctuation
+'"'           Literal.String
+'imageName'   Literal.String
+'"'           Literal.String
+')'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'set'         Keyword
+' '           Text.Whitespace
+'title'       Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String
+'Comparison of histograms of input image, input histogram, and output image' Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+' '           Text.Whitespace
+'else'        Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'set'         Keyword
+' '           Text.Whitespace
+'title'       Name.Builtin
+' '           Text.Whitespace
+'"'           Literal.String
+'Comparison of histograms of ' Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'.'           Operator
+' '           Text.Whitespace
+'imageName'   Name
+' '           Text.Whitespace
+'.'           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+', '          Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'.'           Operator
+' '           Text.Whitespace
+'histoName'   Name
+' '           Text.Whitespace
+'.'           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+', and specified image' Literal.String
+'"'           Literal.String
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

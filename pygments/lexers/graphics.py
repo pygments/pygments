@@ -564,6 +564,7 @@ class GnuplotLexer(RegexLexer):
                       Text, Punctuation, Whitespace, Operator), 'genericargs'),
             (r'@[a-zA-Z_]\w*', Name.Constant),  # macros
             (r';', Keyword),
+            (r'[{}]', Punctuation),
         ],
         'comment': [
             (r'[^\\\n]+', Comment),
@@ -660,6 +661,9 @@ class GnuplotLexer(RegexLexer):
             include('plot'),
         ],
         'if': [
+            (r'\(', Punctuation, '#push'),
+            (r'([a-zA-Z_]\w*)(\s*)(\()',
+             bygroups(Name.Function, Text, Punctuation), '#push'),
             (r'\)', Punctuation, '#pop'),
             include('genericargs'),
         ],
