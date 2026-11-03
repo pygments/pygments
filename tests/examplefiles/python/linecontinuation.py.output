@@ -52,13 +52,13 @@
 'from'        Keyword.Namespace
 ' \\\n        ' Text.Whitespace
 'os'          Name.Namespace
+' \\\n        ' Text.Whitespace
+'import'      Keyword.Namespace
 ' '           Text
 '\\\n'        Text
 
 '        '    Text
-'import'      Keyword.Namespace
-' \\\n        ' Text.Whitespace
-'path'        Name.Namespace
+'path'        Name
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
@@ -81,16 +81,10 @@
 'os'          Name.Namespace
 '.'           Name.Namespace
 'path'        Name.Namespace
-' '           Text
-'\\\n'        Text
-
-'        '    Text
+' \\\n        ' Text.Whitespace
 'as'          Keyword
-' '           Text
-'\\\n'        Text
-
-'        '    Text
-'something'   Name
+' \\\n        ' Text.Whitespace
+'something'   Name.Namespace
 '\n'          Text.Whitespace
 
 '\n'          Text.Whitespace
