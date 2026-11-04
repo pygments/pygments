@@ -1,0 +1,165 @@
+# Anchor names can contain punctuation; flow indicators delimit them.
+
+---input---
+dot: &foo.bar value
+dot-alias: *foo.bar
+slash: &foo/bar value
+slash-alias: *foo/bar
+colon: &foo:bar value
+colon-alias: *foo:bar
+question: &foo?bar value
+question-alias: *foo?bar
+sequence: [&flow.name value, *flow.name]
+mapping: {first: &flow/name value, second: *flow/name}
+nested-sequence: &nested.name [*foo.bar]
+nested-mapping: &nested/name {key: *foo/bar}
+empty-nodes: [&empty.name, *empty.name]
+ordinary: &old_name-1 value
+ordinary-alias: *old_name-1
+comment: &comment.name value # comment
+
+---tokens---
+'dot'         Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'&foo.bar'    Name.Label
+' '           Text.Whitespace
+'value'       Literal.Scalar.Plain
+'\n'          Text.Whitespace
+
+'dot-alias'   Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'*foo.bar'    Name.Variable
+'\n'          Text.Whitespace
+
+'slash'       Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'&foo/bar'    Name.Label
+' '           Text.Whitespace
+'value'       Literal.Scalar.Plain
+'\n'          Text.Whitespace
+
+'slash-alias' Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'*foo/bar'    Name.Variable
+'\n'          Text.Whitespace
+
+'colon'       Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'&foo:bar'    Name.Label
+' '           Text.Whitespace
+'value'       Literal.Scalar.Plain
+'\n'          Text.Whitespace
+
+'colon-alias' Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'*foo:bar'    Name.Variable
+'\n'          Text.Whitespace
+
+'question'    Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'&foo?bar'    Name.Label
+' '           Text.Whitespace
+'value'       Literal.Scalar.Plain
+'\n'          Text.Whitespace
+
+'question-alias' Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'*foo?bar'    Name.Variable
+'\n'          Text.Whitespace
+
+'sequence'    Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation.Indicator
+'&flow.name'  Name.Label
+' '           Text.Whitespace
+'value'       Name.Variable
+','           Punctuation.Indicator
+' '           Text.Whitespace
+'*flow.name'  Name.Variable
+']'           Punctuation.Indicator
+'\n'          Text.Whitespace
+
+'mapping'     Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation.Indicator
+'first'       Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'&flow/name'  Name.Label
+' '           Text.Whitespace
+'value'       Name.Variable
+','           Punctuation.Indicator
+' second'     Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'*flow/name'  Name.Variable
+'}'           Punctuation.Indicator
+'\n'          Text.Whitespace
+
+'nested-sequence' Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'&nested.name' Name.Label
+' '           Text.Whitespace
+'['           Punctuation.Indicator
+'*foo.bar'    Name.Variable
+']'           Punctuation.Indicator
+'\n'          Text.Whitespace
+
+'nested-mapping' Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'&nested/name' Name.Label
+' '           Text.Whitespace
+'{'           Punctuation.Indicator
+'key'         Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'*foo/bar'    Name.Variable
+'}'           Punctuation.Indicator
+'\n'          Text.Whitespace
+
+'empty-nodes' Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'['           Punctuation.Indicator
+'&empty.name' Name.Label
+','           Punctuation.Indicator
+' '           Text.Whitespace
+'*empty.name' Name.Variable
+']'           Punctuation.Indicator
+'\n'          Text.Whitespace
+
+'ordinary'    Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'&old_name-1' Name.Label
+' '           Text.Whitespace
+'value'       Literal.Scalar.Plain
+'\n'          Text.Whitespace
+
+'ordinary-alias' Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'*old_name-1' Name.Variable
+'\n'          Text.Whitespace
+
+'comment'     Name.Tag
+':'           Punctuation
+' '           Text.Whitespace
+'&comment.name' Name.Label
+' '           Text.Whitespace
+'value'       Literal.Scalar.Plain
+' '           Text.Whitespace
+'# comment'   Comment.Single
+'\n'          Text.Whitespace
