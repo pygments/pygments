@@ -252,9 +252,9 @@ class YamlLexer(ExtendedRegexLexer):
             (r'!(?:[\w-]+!)?'
              r'[\w#;/?:@&=+$,.!~*\'()\[\]%-]*', Keyword.Type),
             # an anchor
-            (r'&[\w-]+', Name.Label),
+            (r'&[^\s\[\]{},]+', Name.Label),
             # an alias
-            (r'\*[\w-]+', Name.Variable),
+            (r'\*[^\s\[\]{},]+', Name.Variable),
         ],
 
         # block collections and scalars
