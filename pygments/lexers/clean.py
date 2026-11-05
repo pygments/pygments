@@ -19,14 +19,12 @@ class CleanLexer(ExtendedRegexLexer):
     """
     Lexer for the general purpose, state-of-the-art, pure and lazy functional
     programming language Clean.
-
-    .. versionadded: 2.2
     """
     name = 'Clean'
     url = 'http://clean.cs.ru.nl/Clean'
     aliases = ['clean']
     filenames = ['*.icl', '*.dcl']
-    version_added = ''
+    version_added = '2.2'
 
     keywords = (
         'case', 'ccall', 'class', 'code', 'code inline', 'derive', 'export',

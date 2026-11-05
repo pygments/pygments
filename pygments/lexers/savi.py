@@ -32,15 +32,13 @@ __all__ = ['SaviLexer']
 class SaviLexer(RegexLexer):
     """
     For Savi source code.
-
-    .. versionadded: 2.10
     """
 
     name = 'Savi'
     url = 'https://github.com/savi-lang/savi'
     aliases = ['savi']
     filenames = ['*.savi']
-    version_added = ''
+    version_added = '2.10'
 
     tokens = {
       "root": [
