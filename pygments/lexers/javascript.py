@@ -1248,8 +1248,6 @@ class MaskLexer(RegexLexer):
 class EarlGreyLexer(RegexLexer):
     """
     For Earl-Grey source code.
-
-    .. versionadded: 2.1
     """
 
     name = 'Earl Grey'
@@ -1257,7 +1255,7 @@ class EarlGreyLexer(RegexLexer):
     filenames = ['*.eg']
     mimetypes = ['text/x-earl-grey']
     url = 'https://github.com/breuleux/earl-grey'
-    version_added = ''
+    version_added = '2.1'
 
     tokens = {
         'root': [
@@ -1544,14 +1542,12 @@ class NodeConsoleLexer(Lexer):
         '4'
         > b == a
         false
-
-    .. versionadded: 2.10
     """
     name = 'Node.js REPL console session'
     aliases = ['nodejsrepl', ]
     mimetypes = ['text/x-nodejsrepl', ]
     url = 'https://nodejs.org'
-    version_added = ''
+    version_added = '2.10'
 
     def get_tokens_unprocessed(self, text):
         jslexer = JavascriptLexer(**self.options)

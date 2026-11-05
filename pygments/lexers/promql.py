@@ -21,15 +21,13 @@ class PromQLLexer(RegexLexer):
 
     For details about the grammar see:
     https://github.com/prometheus/prometheus/tree/master/promql/parser
-
-    .. versionadded: 2.7
     """
 
     name = "PromQL"
     url = 'https://prometheus.io/docs/prometheus/latest/querying/basics/'
     aliases = ["promql"]
     filenames = ["*.promql"]
-    version_added = ''
+    version_added = '2.7'
 
     base_keywords = (
         words(
