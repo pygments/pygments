@@ -224,3 +224,24 @@ def test_fantasy_positive_matches(lexer, text):
 def test_no_crashing(lexer, text):
     """Test incomplete text fragments that shouldn't crash the whole lexer."""
     assert lexer.get_tokens(text)
+
+
+@pytest.mark.parametrize("text", ("a", "S", "(", "a'"))
+def test_tnt_terminates_without_trailing_newline(monkeypatch, text):
+    """Malformed TNT without a trailing newline must not loop (#3418)."""
+    lexer = TNTLexer(ensurenl=False)
+    original = lexer.error_till_line_end
+    seen = set()
+
+    def bounded_error(start, source):
+        # A repeated identical recovery state is this bug's non-progress witness.
+        state = (start, source)
+        if state in seen:
+            raise AssertionError("TNT error recovery repeated without progress")
+        seen.add(state)
+        return original(start, source)
+
+    monkeypatch.setattr(lexer, "error_till_line_end", bounded_error)
+    tokens = list(lexer.get_tokens(text))
+    assert "".join(value for _, value in tokens) == text
+
