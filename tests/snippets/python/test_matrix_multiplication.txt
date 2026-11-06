@@ -1,0 +1,80 @@
+---input---
+a@b
+a @b
+a @ b
+f'{a@b}'
+
+@decorator
+def f(): pass
+
+class C:
+    @decorator
+    def f(self): pass
+
+---tokens---
+'a'           Name
+'@'           Operator
+'b'           Name
+'\n'          Text.Whitespace
+
+'a'           Name
+' '           Text
+'@'           Operator
+'b'           Name
+'\n'          Text.Whitespace
+
+'a'           Name
+' '           Text
+'@'           Operator
+' '           Text
+'b'           Name
+'\n'          Text.Whitespace
+
+'f'           Literal.String.Affix
+"'"           Literal.String.Single
+'{'           Literal.String.Interpol
+'a'           Name
+'@'           Operator
+'b'           Name
+'}'           Literal.String.Interpol
+"'"           Literal.String.Single
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'@decorator'  Name.Decorator
+'\n'          Text.Whitespace
+
+'def'         Keyword
+' '           Text.Whitespace
+'f'           Name.Function
+'('           Punctuation
+')'           Punctuation
+':'           Punctuation
+' '           Text
+'pass'        Keyword
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'class'       Keyword
+' '           Text.Whitespace
+'C'           Name.Class
+':'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text
+'@decorator'  Name.Decorator
+'\n'          Text.Whitespace
+
+'    '        Text
+'def'         Keyword
+' '           Text.Whitespace
+'f'           Name.Function
+'('           Punctuation
+'self'        Name.Builtin.Pseudo
+')'           Punctuation
+':'           Punctuation
+' '           Text
+'pass'        Keyword
+'\n'          Text.Whitespace
