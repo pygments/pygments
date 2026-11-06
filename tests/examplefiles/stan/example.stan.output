@@ -13,7 +13,7 @@
 '\n  '        Text
 'void'        Keyword.Type
 ' '           Text
-'f1'          Name
+'f1'          Name.Function
 '('           Punctuation
 'void'        Keyword.Type
 ' '           Text
@@ -40,7 +40,7 @@
 '\n  '        Text
 'real'        Keyword.Type
 ' '           Text
-'f2'          Name
+'f2'          Name.Function
 '('           Punctuation
 'int'         Keyword.Type
 ' '           Text
@@ -427,14 +427,14 @@
 '1'           Literal.Number.Float
 ')'           Punctuation
 ' '           Text
-'T'           Name
-'('           Punctuation
+'T'           Keyword
+'['           Punctuation
 '-'           Operator
 '0.5'         Literal.Number.Float
 ','           Punctuation
 ' '           Text
 '0.5'         Literal.Number.Float
-')'           Punctuation
+']'           Punctuation
 ';'           Punctuation
 '\n  '        Text
 'real'        Keyword.Type
@@ -690,7 +690,7 @@
 ' '           Text
 '+'           Operator
 ' '           Text
-'normal_log'  Name
+'normal_log'  Name.Function
 '('           Punctuation
 'plugh'       Name
 ','           Punctuation
@@ -702,9 +702,9 @@
 ')'           Punctuation
 ';'           Punctuation
 '\n  '        Text
-'increment_log_prob' Name
+'increment_log_prob' Name.Function
 '('           Punctuation
-'normal_log'  Name
+'normal_log'  Name.Function
 '('           Punctuation
 'plugh'       Name
 ','           Punctuation
@@ -769,11 +769,17 @@
 ' '           Text
 '<-'          Operator
 ' '           Text
-'foo'         Name
+'f2'          Name.Function
 ' '           Text
-'+'           Operator
-' '           Text
+'('           Punctuation
 '1'           Literal.Number.Float
+','           Punctuation
+' '           Text
+'bar'         Name
+','           Punctuation
+' '           Text
+'foo'         Name
+')'           Punctuation
 ';'           Punctuation
 '\n'          Text
 

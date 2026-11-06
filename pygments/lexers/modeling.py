@@ -357,7 +357,7 @@ class StanLexer(RegexLexer):
             (r'[A-Za-z]\w*__\b', Name.Builtin.Pseudo),
             (r'({})\b'.format(r'|'.join(_stan_builtins.RESERVED)), Keyword.Reserved),
             # user-defined functions
-            (r'[A-Za-z]\w*(?=\s*\()]', Name.Function),
+            (r'[A-Za-z]\w*(?=\s*\()', Name.Function),
             # Imaginary Literals
             (r'[0-9]+(\.[0-9]*)?([eE][+-]?[0-9]+)?i', Number.Float),
             (r'\.[0-9]+([eE][+-]?[0-9]+)?i', Number.Float),
