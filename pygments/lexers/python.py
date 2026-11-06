@@ -109,6 +109,7 @@ class PythonLexer(RegexLexer):
             (r'#.*$', Comment.Single),
             (r'\\\n', Text),
             (r'\\', Text),
+            (r'(^[ \t\f]*)(@' + uni_name + r')', bygroups(Text, Name.Decorator)),
             include('keywords'),
             include('soft-keywords'),
             (r'(def)((?:\s|\\\s)+)', bygroups(Keyword, Whitespace), 'funcname'),
@@ -178,7 +179,7 @@ class PythonLexer(RegexLexer):
 
             (r'[^\S\n]+', Text),
             include('numbers'),
-            (r'!=|==|<<|>>|:=|[-~+/*%=<>&^|.]', Operator),
+            (r'!=|==|<<|>>|:=|[-~+/*%=<>&^|.@]', Operator),
             (r'[]{}:(),;[]', Punctuation),
             (r'(in|is|and|or|not)\b', Operator.Word),
             include('expr-keywords'),
@@ -325,8 +326,6 @@ class PythonLexer(RegexLexer):
             (r'\d(?:_?\d)*', Number.Integer),
         ],
         'name': [
-            (r'@' + uni_name, Name.Decorator),
-            (r'@', Operator),  # new matrix multiplication operator
             (uni_name, Name),
         ],
         'funcname': [
