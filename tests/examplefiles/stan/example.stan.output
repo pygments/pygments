@@ -29,7 +29,7 @@
 '\n    '      Text
 'return'      Keyword
 ' '           Text
-'1'           Literal.Number.Float
+'1'           Literal.Number.Integer
 ' '           Text
 '/'           Operator
 ' '           Text
@@ -100,13 +100,13 @@
 ' '           Text
 'foo'         Name
 '['           Punctuation
-'2'           Literal.Number.Float
+'2'           Literal.Number.Integer
 ']'           Punctuation
 ';'           Punctuation
 '\n  '        Text
 'vector'      Keyword.Type
 '['           Punctuation
-'3'           Literal.Number.Float
+'3'           Literal.Number.Integer
 ']'           Punctuation
 ' '           Text
 'bar'         Name
@@ -114,7 +114,7 @@
 '\n  '        Text
 'row_vector'  Keyword.Type
 '['           Punctuation
-'3'           Literal.Number.Float
+'3'           Literal.Number.Integer
 ']'           Punctuation
 ' '           Text
 'baz'         Name
@@ -122,9 +122,9 @@
 '\n  '        Text
 'matrix'      Keyword.Type
 '['           Punctuation
-'3'           Literal.Number.Float
+'3'           Literal.Number.Integer
 ','           Punctuation
-'3'           Literal.Number.Float
+'3'           Literal.Number.Integer
 ']'           Punctuation
 ' '           Text
 'qux'         Name
@@ -132,7 +132,7 @@
 '\n  '        Text
 'simplex'     Keyword.Type
 '['           Punctuation
-'3'           Literal.Number.Float
+'3'           Literal.Number.Integer
 ']'           Punctuation
 ' '           Text
 'quux'        Name
@@ -140,7 +140,7 @@
 '\n  '        Text
 'ordered'     Keyword.Type
 '['           Punctuation
-'3'           Literal.Number.Float
+'3'           Literal.Number.Integer
 ']'           Punctuation
 ' '           Text
 'corge'       Name
@@ -148,7 +148,7 @@
 '\n  '        Text
 'positive_ordered' Keyword.Type
 '['           Punctuation
-'3'           Literal.Number.Float
+'3'           Literal.Number.Integer
 ']'           Punctuation
 ' '           Text
 'wibble'      Name
@@ -156,7 +156,7 @@
 '\n  '        Text
 'corr_matrix' Keyword.Type
 '['           Punctuation
-'3'           Literal.Number.Float
+'3'           Literal.Number.Integer
 ']'           Punctuation
 ' '           Text
 'grault'      Name
@@ -164,7 +164,7 @@
 '\n  '        Text
 'cov_matrix'  Keyword.Type
 '['           Punctuation
-'3'           Literal.Number.Float
+'3'           Literal.Number.Integer
 ']'           Punctuation
 ' '           Text
 'garply'      Name
@@ -172,7 +172,7 @@
 '\n  '        Text
 'cholesky_factor_cov' Keyword.Type
 '['           Punctuation
-'3'           Literal.Number.Float
+'3'           Literal.Number.Integer
 ']'           Punctuation
 ' '           Text
 'waldo'       Name
@@ -180,7 +180,7 @@
 '\n  '        Text
 'cholesky_factor_corr' Keyword.Type
 '['           Punctuation
-'3'           Literal.Number.Float
+'3'           Literal.Number.Integer
 ']'           Punctuation
 ' '           Text
 'waldo2'      Name
@@ -191,11 +191,11 @@
 'lower'       Keyword
 '='           Punctuation
 '-'           Operator
-'1'           Literal.Number.Float
+'1'           Literal.Number.Integer
 ','           Punctuation
 'upper'       Keyword
 '='           Punctuation
-'1'           Literal.Number.Float
+'1'           Literal.Number.Integer
 '>'           Operator
 ' '           Text
 'foo1'        Name
@@ -205,7 +205,7 @@
 '<'           Operator
 'lower'       Keyword
 '='           Punctuation
-'0'           Literal.Number.Float
+'0'           Literal.Number.Integer
 '>'           Operator
 ' '           Text
 'foo2'        Name
@@ -215,7 +215,7 @@
 '<'           Operator
 'upper'       Keyword
 '='           Punctuation
-'0'           Literal.Number.Float
+'0'           Literal.Number.Integer
 '>'           Operator
 ' '           Text
 'foo3'        Name
@@ -225,7 +225,7 @@
 '<'           Operator
 'offset'      Keyword
 '='           Punctuation
-'10'          Literal.Number.Float
+'10'          Literal.Number.Integer
 '>'           Operator
 ' '           Text
 'foo4'        Name
@@ -235,7 +235,7 @@
 '<'           Operator
 'multiplier'  Keyword
 '='           Punctuation
-'2'           Literal.Number.Float
+'2'           Literal.Number.Integer
 '>'           Operator
 ' '           Text
 'foo5'        Name
@@ -315,6 +315,10 @@
 ' '           Text
 '135e-5'      Literal.Number.Float
 ')'           Punctuation
+' '           Text
+'+'           Operator
+' '           Text
+'1.'          Literal.Number.Float
 ';'           Punctuation
 '\n  '        Text
 '// integer literal' Comment.Single
@@ -324,7 +328,7 @@
 '<-'          Operator
 ' '           Text
 '-'           Operator
-'12309865'    Literal.Number.Float
+'12309865'    Literal.Number.Integer
 ';'           Punctuation
 '\n  '        Text
 '// imaginary literals' Comment.Single
@@ -421,10 +425,10 @@
 ' '           Text.Whitespace
 'normal'      Name.Builtin
 '('           Punctuation
-'0'           Literal.Number.Float
+'0'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text
-'1'           Literal.Number.Float
+'1'           Literal.Number.Integer
 ')'           Punctuation
 ' '           Text
 'T'           Keyword
@@ -458,9 +462,9 @@
 ' '           Text
 'in'          Keyword
 ' '           Text
-'1'           Literal.Number.Float
+'1'           Literal.Number.Integer
 ':'           Operator
-'10'          Literal.Number.Float
+'10'          Literal.Number.Integer
 ')'           Punctuation
 ' '           Text
 '{'           Punctuation
@@ -505,7 +509,7 @@
 ' '           Text
 '+'           Operator
 ' '           Text
-'1'           Literal.Number.Float
+'1'           Literal.Number.Integer
 ';'           Punctuation
 '\n  '        Text
 '}'           Punctuation
@@ -695,10 +699,10 @@
 'plugh'       Name
 ','           Punctuation
 ' '           Text
-'0'           Literal.Number.Float
+'0'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text
-'1'           Literal.Number.Float
+'1'           Literal.Number.Integer
 ')'           Punctuation
 ';'           Punctuation
 '\n  '        Text
@@ -709,10 +713,10 @@
 'plugh'       Name
 ','           Punctuation
 ' '           Text
-'0'           Literal.Number.Float
+'0'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text
-'1'           Literal.Number.Float
+'1'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
 ';'           Punctuation
@@ -772,7 +776,7 @@
 'f2'          Name.Function
 ' '           Text
 '('           Punctuation
-'1'           Literal.Number.Float
+'1'           Literal.Number.Integer
 ','           Punctuation
 ' '           Text
 'bar'         Name

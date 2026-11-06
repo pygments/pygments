@@ -50,7 +50,7 @@ transformed data {
   // all floating point literals should be recognized
   // all operators should be recognized
   // paren should be recognized;
-  xyzzy <- 1234.5687 + .123 - (2.7e3 / 2E-5 * 135e-5);
+  xyzzy <- 1234.5687 + .123 - (2.7e3 / 2E-5 * 135e-5) + 1.;
   // integer literal
   thud <- -12309865;
   // imaginary literals

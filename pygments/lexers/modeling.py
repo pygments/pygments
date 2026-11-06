@@ -362,9 +362,9 @@ class StanLexer(RegexLexer):
             (r'[0-9]+(\.[0-9]*)?([eE][+-]?[0-9]+)?i', Number.Float),
             (r'\.[0-9]+([eE][+-]?[0-9]+)?i', Number.Float),
             (r'[0-9]+i', Number.Float),
-            # Real Literals
-            (r'[0-9]+(\.[0-9]*)?([eE][+-]?[0-9]+)?', Number.Float),
-            (r'\.[0-9]+([eE][+-]?[0-9]+)?', Number.Float),
+            # Real literals require a decimal point or an exponent.
+            (r'([0-9]+\.[0-9]*|\.[0-9]+)([eE][+-]?[0-9]+)?', Number.Float),
+            (r'[0-9]+[eE][+-]?[0-9]+', Number.Float),
             # Integer Literals
             (r'[0-9]+', Number.Integer),
             # Regular variable names
