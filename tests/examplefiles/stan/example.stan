@@ -50,7 +50,7 @@ transformed data {
   // all floating point literals should be recognized
   // all operators should be recognized
   // paren should be recognized;
-  xyzzy <- 1234.5687 + .123 - (2.7e3 / 2E-5 * 135e-5);
+  xyzzy <- 1234.5687 + .123 - (2.7e3 / 2E-5 * 135e-5) + 1.;
   // integer literal
   thud <- -12309865;
   // imaginary literals
@@ -71,7 +71,7 @@ model {
   // ~, <- are operators,
   // T may be be recognized
   // normal is a function
-  fred ~ normal(0, 1) T(-0.5, 0.5);
+  fred ~ normal(0, 1) T[-0.5, 0.5];
   real tmp;
   // C++ reserved
   real public;
@@ -130,5 +130,5 @@ model {
 }
 generated quantities {
   real bar1;
-  bar1 <- foo + 1;
+  bar1 <- f2 (1, bar, foo);
 }
