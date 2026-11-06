@@ -13,7 +13,9 @@ import pytest
 from pygments.lexers import (
     _fn_matches,
     find_lexer_class_by_name,
+    find_lexer_class_for_filename,
     get_lexer_by_name,
+    get_lexer_for_filename,
     guess_lexer,
 )
 from pygments.lexers.basic import CbmBasicV2Lexer
@@ -190,6 +192,27 @@ def test_guess_carbon_lexer():
     '''
     lexer = guess_lexer(code)
     assert lexer.__class__.__name__ == 'CarbonLexer'
+
+
+@pytest.mark.parametrize(
+    'filename, code, expected',
+    [
+        # Both lexers claim "*.pl", so only analyse_text() can tell them apart.
+        ('example.pl', "#!/usr/bin/perl\nprint 'Hello';\n", 'PerlLexer'),
+        # Likewise for "*.bas".
+        ('example.bas', '10 PRINT "HELLO"\n20 GOTO 10\n', 'CbmBasicV2Lexer'),
+    ],
+)
+def test_lexer_for_filename_bytes_code(filename, code, expected):
+    """The *code* argument of the filename based lexer APIs may be given as
+    bytes.  It must be decoded before it reaches ``analyse_text()``, which
+    always expects a string, otherwise content based disambiguation silently
+    stops working.
+    """
+    assert get_lexer_for_filename(filename, code).__class__.__name__ == expected
+    assert get_lexer_for_filename(filename, code.encode()).__class__.__name__ == expected
+    assert find_lexer_class_for_filename(filename, code.encode()).__name__ == expected
+
 
 def test_cbmbasicv2_analyse_text():
     text = "10 PRINT \"PART 1\""

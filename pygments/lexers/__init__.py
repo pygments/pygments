@@ -189,7 +189,7 @@ def find_lexer_class_for_filename(_fn, code=None):
 
     if isinstance(code, bytes):
         # decode it, since all analyse_text functions expect unicode
-        code = guess_decode(code)
+        code, _ = guess_decode(code)
 
     def get_rating(info):
         cls, filename = info
