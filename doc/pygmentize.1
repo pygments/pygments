@@ -1,4 +1,4 @@
-.TH PYGMENTIZE 1 "January 20, 2021"
+.TH PYGMENTIZE 1 "November 7, 2026"
 
 .SH NAME
 pygmentize \- highlights the input file
@@ -75,6 +75,27 @@ This option can be given multiple times.
 This option adds lexer and formatter options like the -O option, but
 you can only give one option per -P. That way, the option value may contain
 commas and equals signs, which it can't with -O.
+.TP
+.B \-v
+Print a detailed traceback on unhandled exceptions, which is useful for
+debugging and bug reports.
+.TP
+.B \-s
+Process lines one at a time until EOF, rather than waiting to process the
+entire file.  This only works for stdin, only for lexers with no line-spanning
+constructs, and is intended for streaming input such as you get from
+`tail -f`.
+.TP
+.B \-x
+Allow custom lexers and formatters to be loaded from a .py file relative to
+the current working directory.  By default, this option expects a file with a
+class named CustomLexer or CustomFormatter; you can also specify your own
+class name with a colon (`-l ./lexer.py:MyLexer`).
+Users should be very careful not to use this option with untrusted files,
+because it will import and run them.
+.TP
+.B \-\-json
+Output as JSON.  This can only be used in conjunction with \fB\-L\fP.
 .TP
 .B \-S \fI<style>\fP
 Print out style definitions for style \fI<style>\fP and for formatter \fI<formatter>\fP.
