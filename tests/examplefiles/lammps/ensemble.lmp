@@ -1,0 +1,22 @@
+# A small Lennard-Jones simulation.
+units lj
+atom_style atomic
+boundary p p p
+
+lattice fcc 0.8
+region box block 0 4 0 4 0 4
+create_box 1 box
+create_atoms 1 box
+mass 1 1.0
+pair_style lj/cut 2.5
+pair_coeff 1 1 1.0 1.0 2.5
+
+variable steps index 100
+variable T equal 1.0
+velocity all create $T 12345
+fix integrate all nvt temp $T $T &
+    0.1
+thermo 10
+run ${steps}
+unfix integrate
+print "Completed ${steps} steps."
