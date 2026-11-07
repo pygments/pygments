@@ -1,0 +1,57 @@
+Bold words declared in another file: an operator follows an operand or
+precedes a denotation, a mode follows REF or begins a declaration.
+
+---input---
+PR read "primes.a68" PR
+[]BOOL prime = PRIMESIEVE 1000;
+REF QUEUE q = HEAP QUEUE;
+VECTOR v := a CROSS b
+
+---tokens---
+'PR'          Comment.Preproc
+' read '      Comment.Preproc
+'"primes.a68"' Comment.Preproc
+' '           Comment.Preproc
+'PR'          Comment.Preproc
+'\n'          Text.Whitespace
+
+'['           Punctuation
+']'           Punctuation
+'BOOL'        Keyword.Type
+' '           Text.Whitespace
+'prime'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'PRIMESIEVE'  Operator.Word
+' '           Text.Whitespace
+'1000'        Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'REF'         Keyword.Type
+' '           Text.Whitespace
+'QUEUE'       Name.Class
+' '           Text.Whitespace
+'q'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'HEAP'        Keyword
+' '           Text.Whitespace
+'QUEUE'       Name.Class
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'VECTOR'      Name.Class
+' '           Text.Whitespace
+'v'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'CROSS'       Operator.Word
+' '           Text.Whitespace
+'b'           Name
+'\n'          Text.Whitespace

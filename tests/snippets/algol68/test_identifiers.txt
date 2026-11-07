@@ -1,0 +1,35 @@
+Identifiers may contain blanks; bold words consist of capitals only.
+
+---input---
+INT number of items = long max int; REAL x2 = 8776H1259;
+INTx := max_int
+
+---tokens---
+'INT'         Keyword.Type
+' '           Text.Whitespace
+'number of items' Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'long max int' Name.Builtin
+';'           Punctuation
+' '           Text.Whitespace
+'REAL'        Keyword.Type
+' '           Text.Whitespace
+'x2'          Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'8776'        Literal.Number.Integer
+'H'           Operator.Word
+'1259'        Literal.Number.Integer
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'INT'         Keyword.Type
+'x'           Name
+' '           Text.Whitespace
+':='          Operator
+' '           Text.Whitespace
+'max_int'     Name.Builtin
+'\n'          Text.Whitespace
