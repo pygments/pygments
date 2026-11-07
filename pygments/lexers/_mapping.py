@@ -272,6 +272,7 @@ LEXERS = {
     'KuinLexer': ('pygments.lexers.kuin', 'Kuin', ('kuin',), ('*.kn',), ()),
     'KustoLexer': ('pygments.lexers.kusto', 'Kusto', ('kql', 'kusto'), ('*.kql', '*.kusto', '.csl'), ()),
     'LSLLexer': ('pygments.lexers.scripting', 'LSL', ('lsl',), ('*.lsl',), ('text/x-lsl',)),
+    'LammpsLexer': ('pygments.lexers.lammps', 'LAMMPS', ('lammps',), ('*.lammps', '*.lmp'), ()),
     'LassoCssLexer': ('pygments.lexers.templates', 'CSS+Lasso', ('css+lasso',), (), ('text/css+lasso',)),
     'LassoHtmlLexer': ('pygments.lexers.templates', 'HTML+Lasso', ('html+lasso',), (), ('text/html+lasso', 'application/x-httpd-lasso', 'application/x-httpd-lasso[89]')),
     'LassoJavascriptLexer': ('pygments.lexers.templates', 'JavaScript+Lasso', ('javascript+lasso', 'js+lasso'), (), ('application/x-javascript+lasso', 'text/x-javascript+lasso', 'text/javascript+lasso')),

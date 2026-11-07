@@ -1,0 +1,170 @@
+'#'           Comment.Single
+' A small Lennard-Jones simulation.' Comment.Single
+'\n'          Text.Whitespace
+
+'units'       Keyword
+' '           Text.Whitespace
+'lj'          Name
+'\n'          Text.Whitespace
+
+'atom_style'  Keyword
+' '           Text.Whitespace
+'atomic'      Name
+'\n'          Text.Whitespace
+
+'boundary'    Keyword
+' '           Text.Whitespace
+'p'           Name
+' '           Text.Whitespace
+'p'           Name
+' '           Text.Whitespace
+'p'           Name
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'lattice'     Keyword
+' '           Text.Whitespace
+'fcc'         Name
+' '           Text.Whitespace
+'0.8'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'region'      Keyword
+' '           Text.Whitespace
+'box'         Name
+' '           Text.Whitespace
+'block'       Name
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'create_box'  Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'box'         Name
+'\n'          Text.Whitespace
+
+'create_atoms' Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'box'         Name
+'\n'          Text.Whitespace
+
+'mass'        Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'1.0'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'pair_style'  Keyword
+' '           Text.Whitespace
+'lj/cut'      Name
+' '           Text.Whitespace
+'2.5'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'pair_coeff'  Keyword
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'1.0'         Literal.Number.Float
+' '           Text.Whitespace
+'1.0'         Literal.Number.Float
+' '           Text.Whitespace
+'2.5'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'variable'    Keyword
+' '           Text.Whitespace
+'steps'       Name
+' '           Text.Whitespace
+'index'       Name
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'variable'    Keyword
+' '           Text.Whitespace
+'T'           Name
+' '           Text.Whitespace
+'equal'       Name
+' '           Text.Whitespace
+'1.0'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'velocity'    Keyword
+' '           Text.Whitespace
+'all'         Name
+' '           Text.Whitespace
+'create'      Name
+' '           Text.Whitespace
+'$'           Name.Variable
+'T'           Name.Variable
+' '           Text.Whitespace
+'12345'       Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'fix'         Keyword
+' '           Text.Whitespace
+'integrate'   Name
+' '           Text.Whitespace
+'all'         Name
+' '           Text.Whitespace
+'nvt'         Name
+' '           Text.Whitespace
+'temp'        Name
+' '           Text.Whitespace
+'$'           Name.Variable
+'T'           Name.Variable
+' '           Text.Whitespace
+'$'           Name.Variable
+'T'           Name.Variable
+' '           Text.Whitespace
+'&\n'         Punctuation
+
+'    '        Text.Whitespace
+'0.1'         Literal.Number.Float
+'\n'          Text.Whitespace
+
+'thermo'      Keyword
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'\n'          Text.Whitespace
+
+'run'         Keyword
+' '           Text.Whitespace
+'$'           Name.Variable
+'{'           Name.Variable
+'steps'       Name.Variable
+'}'           Name.Variable
+'\n'          Text.Whitespace
+
+'unfix'       Keyword
+' '           Text.Whitespace
+'integrate'   Name
+'\n'          Text.Whitespace
+
+'print'       Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'Completed ${steps} steps.' Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace

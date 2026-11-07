@@ -1,0 +1,125 @@
+LAMMPS parsing: comments, quote nesting, substitutions and logical lines.
+
+---input---
+# A continued comment &
+  this remains commented out
+print 'A # marker and $name are protected here'
+if "1 < 2" then "print 'inner quoted argument'"
+print """
+Multiline argument with #, $, and a literal &
+"""
+variable energy equal $(sqrt((v_x+1)*2):%10.3f)
+read_data data.${sample}.$xx
+pair_coeff 2*4 3*5 1.0 +2.5e-3
+variable colors string "red green &
+  blue"
+run 2 & # this comment prevents continuation
+run 3
+
+---tokens---
+'#'           Comment.Single
+' A continued comment ' Comment.Single
+'&\n'         Comment.Single
+
+'  this remains commented out' Comment.Single
+'\n'          Text.Whitespace
+
+'print'       Keyword
+' '           Text.Whitespace
+"'"           Literal.String.Single
+'A # marker and $name are protected here' Literal.String.Single
+"'"           Literal.String.Single
+'\n'          Text.Whitespace
+
+'if'          Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'1 < 2'       Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'then'        Name
+' '           Text.Whitespace
+'"'           Literal.String.Double
+"print 'inner quoted argument'" Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'print'       Keyword
+' '           Text.Whitespace
+'"""'         Literal.String.Double
+'\nMultiline argument with #, $, and a literal &\n' Literal.String.Double
+
+'"""'         Literal.String.Double
+'\n'          Text.Whitespace
+
+'variable'    Keyword
+' '           Text.Whitespace
+'energy'      Name
+' '           Text.Whitespace
+'equal'       Name
+' '           Text.Whitespace
+'$'           Name.Variable
+'('           Name.Variable
+'sqrt'        Name.Variable
+'('           Name.Variable
+'('           Name.Variable
+'v_x+1'       Name.Variable
+')'           Name.Variable
+'*2'          Name.Variable
+')'           Name.Variable
+':%10.3f'     Name.Variable
+')'           Name.Variable
+'\n'          Text.Whitespace
+
+'read_data'   Keyword
+' '           Text.Whitespace
+'data.'       Name
+'$'           Name.Variable
+'{'           Name.Variable
+'sample'      Name.Variable
+'}'           Name.Variable
+'.'           Name
+'$'           Name.Variable
+'x'           Name.Variable
+'x'           Name
+'\n'          Text.Whitespace
+
+'pair_coeff'  Keyword
+' '           Text.Whitespace
+'2*4'         Name
+' '           Text.Whitespace
+'3*5'         Name
+' '           Text.Whitespace
+'1.0'         Literal.Number.Float
+' '           Text.Whitespace
+'+2.5e-3'     Literal.Number.Float
+'\n'          Text.Whitespace
+
+'variable'    Keyword
+' '           Text.Whitespace
+'colors'      Name
+' '           Text.Whitespace
+'string'      Name
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'red green '  Literal.String.Double
+'&\n'         Literal.String.Escape
+
+'  blue'      Literal.String.Double
+'"'           Literal.String.Double
+'\n'          Text.Whitespace
+
+'run'         Keyword
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'&'           Name
+' '           Text.Whitespace
+'#'           Comment.Single
+' this comment prevents continuation' Comment.Single
+'\n'          Text.Whitespace
+
+'run'         Keyword
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+'\n'          Text.Whitespace
