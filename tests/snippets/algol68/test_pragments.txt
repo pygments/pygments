@@ -1,0 +1,46 @@
+Comments and pragmats; pragmats and nestable comments skip strings.
+
+---input---
+CO a comment CO COMMENT another one COMMENT # and a third # ¢ and a fourth ¢
+PR include "PR.a68" PR
+NOTE a NOTE b ETON "ETON" ETON
+{ a { b } "}" }
+
+---tokens---
+'CO a comment CO' Comment.Multiline
+' '           Text.Whitespace
+'COMMENT another one COMMENT' Comment.Multiline
+' '           Text.Whitespace
+'# and a third #' Comment.Multiline
+' '           Text.Whitespace
+'¢ and a fourth ¢' Comment.Multiline
+'\n'          Text.Whitespace
+
+'PR'          Comment.Preproc
+' include '   Comment.Preproc
+'"PR.a68"'    Comment.Preproc
+' '           Comment.Preproc
+'PR'          Comment.Preproc
+'\n'          Text.Whitespace
+
+'NOTE'        Comment.Multiline
+' a '         Comment.Multiline
+'NOTE'        Comment.Multiline
+' b '         Comment.Multiline
+'ETON'        Comment.Multiline
+' '           Comment.Multiline
+'"ETON"'      Comment.Multiline
+' '           Comment.Multiline
+'ETON'        Comment.Multiline
+'\n'          Text.Whitespace
+
+'{'           Comment.Multiline
+' a '         Comment.Multiline
+'{'           Comment.Multiline
+' b '         Comment.Multiline
+'}'           Comment.Multiline
+' '           Comment.Multiline
+'"}"'         Comment.Multiline
+' '           Comment.Multiline
+'}'           Comment.Multiline
+'\n'          Text.Whitespace

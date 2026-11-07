@@ -1,0 +1,69 @@
+PR nowarnings PR
+COMMENT
+   A small persistent binary search tree with a few operators, written to
+   exercise the lexer: comments, pragmats, bold words, strings and formats.
+COMMENT
+
+MODE NODE = STRUCT (INT key, STRING value, TREE left, right),
+     TREE = REF NODE;
+
+PRIO INSERT = 1, LOOKUP = 1;
+
+# Inserts an entry and returns the new tree; the old one is unchanged. #
+OP INSERT = (TREE t, STRUCT (INT key, STRING value) entry) TREE:
+   IF t IS NIL THEN
+      HEAP NODE := (key OF entry, value OF entry, NIL, NIL)
+   ELIF key OF entry < key OF t THEN
+      HEAP NODE := (key OF t, value OF t, left OF t INSERT entry, right OF t)
+   ELIF key OF entry > key OF t THEN
+      HEAP NODE := (key OF t, value OF t, left OF t, right OF t INSERT entry)
+   ELSE
+      HEAP NODE := (key OF t, value OF entry, left OF t, right OF t)
+   FI;
+
+OP LOOKUP = (TREE t, INT key) UNION (STRING, VOID):
+   IF t ISNT NIL THEN
+      CASE SIGN (key - key OF t) + 2
+      IN left OF t LOOKUP key, value OF t, right OF t LOOKUP key
+      ESAC
+   ELSE EMPTY
+   FI;
+
+OP SIZE = (TREE t) INT: (t IS NIL | 0 | SIZE left OF t + 1 + SIZE right OF t);
+
+PROC walk = (TREE t, PROC (INT, STRING) VOID visit) VOID:
+   IF t ISNT NIL ANDTH key OF t >= 0 THEN
+      walk (left OF t, visit); visit (key OF t, value OF t); walk (right OF t, visit)
+   FI;
+
+CO The publication language and the GNU extensions CO
+NOTE nestable NOTE comments ETON with "ETON" in a string ETON
+{ braces { nest } as well }
+¢ an old comment ¢
+
+BEGIN
+   TREE tree := NIL;
+   []STRUCT (INT key, STRING value) words =
+      ((3, "three"), (1, "one"), (4, "four"), (1, "uno"), (5, "five"));
+   FOR i FROM LWB words TO UPB words DO tree := tree INSERT words[i] OD;
+
+   CASE tree LOOKUP 1
+   IN (STRING s): print (("found ", s, newline)),
+      (VOID): print (("not found", newline))
+   ESAC;
+
+   INT count := 0;
+   walk (tree, (INT k, STRING v) VOID: count +:= k);
+   print (("sum of keys: ", whole (count, 0), ", size: ", whole (SIZE tree, 0), newline));
+
+   LONG INT big = long max int;
+   BITS mask = 16rff00 OR 2r1010;
+   REAL x = 1.5e-3 + .25 * pi, y = 2e10;
+   COMPL z = 1 I 2;
+   CHAR quote = """", tab = "'t";
+   STRING text = "say ""hello""'n";
+   printf (($g(0) x g(-12, 4) l$, big, x));
+   FORMAT f = $"value: " 3d "$" l$;
+   IF ABS mask /= 0 AND x <= y OREL FALSE THEN SKIP FI;
+   print ((REPR 65, BIN 5, ENTIER x, ROUND y, ODD 3, newline))
+END

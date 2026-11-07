@@ -12,6 +12,7 @@ LEXERS = {
     'AdlLexer': ('pygments.lexers.archetype', 'ADL', ('adl',), ('*.adl', '*.adls', '*.adlf', '*.adlx'), ()),
     'AgdaLexer': ('pygments.lexers.haskell', 'Agda', ('agda',), ('*.agda',), ('text/x-agda',)),
     'AheuiLexer': ('pygments.lexers.esoteric', 'Aheui', ('aheui',), ('*.aheui',), ()),
+    'Algol68Lexer': ('pygments.lexers.algol68', 'Algol 68', ('algol68', 'a68'), ('*.a68',), ('text/x-algol68',)),
     'AlloyLexer': ('pygments.lexers.dsls', 'Alloy', ('alloy',), ('*.als',), ('text/x-alloy',)),
     'AmbientTalkLexer': ('pygments.lexers.ambient', 'AmbientTalk', ('ambienttalk', 'ambienttalk/2', 'at'), ('*.at',), ('text/x-ambienttalk',)),
     'AmplLexer': ('pygments.lexers.ampl', 'Ampl', ('ampl',), ('*.run',), ()),
