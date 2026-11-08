@@ -1,0 +1,44 @@
+---input---
+print "hello" |& "sort"
+"sort" |& getline result
+print "hello" | "sort"
+a || b && c
+
+---tokens---
+'print'       Keyword.Reserved
+' '           Text
+'"hello"'     Literal.String.Double
+' '           Text
+'|&'          Operator
+' '           Text
+'"sort"'      Literal.String.Double
+'\n'          Text
+
+'"sort"'      Literal.String.Double
+' '           Text
+'|&'          Operator
+' '           Text
+'getline'     Keyword.Reserved
+' '           Text
+'result'      Name.Other
+'\n'          Text
+
+'print'       Keyword.Reserved
+' '           Text
+'"hello"'     Literal.String.Double
+' '           Text
+'|'           Operator
+' '           Text
+'"sort"'      Literal.String.Double
+'\n'          Text
+
+'a'           Name.Other
+' '           Text
+'||'          Operator
+' '           Text
+'b'           Name.Other
+' '           Text
+'&&'          Operator
+' '           Text
+'c'           Name.Other
+'\n'          Text
