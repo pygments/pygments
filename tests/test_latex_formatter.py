@@ -17,6 +17,7 @@ import pytest
 from pygments.formatters import LatexFormatter
 from pygments.formatters.latex import LatexEmbeddedLexer
 from pygments.lexers import PythonLexer, PythonConsoleLexer
+from pygments.style import Style
 from pygments.token import Token
 
 TESTDIR = path.dirname(path.abspath(__file__))
@@ -126,3 +127,16 @@ def test_embedded_lexer_inherits_options():
 
     # An option passed explicitly to the wrapper still takes precedence.
     assert LatexEmbeddedLexer('|', '|', inner, stripnl=True).stripnl is True
+
+
+@pytest.mark.parametrize(('font', 'command'), [
+    ('roman', r'\textrm'),
+    ('sans', r'\textsf'),
+    ('mono', r'\texttt'),
+])
+def test_font_family(font, command):
+    class FontStyle(Style):
+        styles = {Token.Name: font}
+
+    definitions = LatexFormatter(style=FontStyle).get_style_defs()
+    assert r'\@namedef{PY@tok@n}{\let\PY@ff=' + command + '}' in definitions
