@@ -302,7 +302,7 @@ class LatexFormatter(Formatter):
             if ndef['sans']:
                 cmndef += r'\let\$$@ff=\textsf'
             if ndef['mono']:
-                cmndef += r'\let\$$@ff=\textsf'
+                cmndef += r'\let\$$@ff=\texttt'
             if ndef['color']:
                 cmndef += (r'\def\$$@tc##1{{\textcolor[rgb]{{{}}}{{##1}}}}'.format(rgbcolor(ndef['color'])))
             if ndef['border']:
