@@ -1,0 +1,273 @@
+'// Derek compiles a chart from a dataset and publishes it in a report.' Comment.Single
+'\n'          Text.Whitespace
+
+'document'    Keyword
+'\n  '        Text.Whitespace
+'prefix'      Keyword.Declaration
+' '           Text.Whitespace
+'ex'          Name.Namespace
+' '           Text.Whitespace
+'<http://example.org/>' Literal.String.Other
+'\n  '        Text.Whitespace
+'prefix'      Keyword.Declaration
+' '           Text.Whitespace
+'foaf'        Name.Namespace
+' '           Text.Whitespace
+'<http://xmlns.com/foaf/0.1/>' Literal.String.Other
+'\n  '        Text.Whitespace
+'default'     Keyword.Declaration
+' '           Text.Whitespace
+'<http://example.org/default#>' Literal.String.Other
+'\n\n  '      Text.Whitespace
+'entity'      Keyword
+'('           Punctuation
+'ex'          Name.Namespace
+':'           Punctuation
+'dataset'     Name
+','           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'prov'        Name.Namespace
+':'           Punctuation
+'type'        Name.Attribute
+'='           Punctuation
+"'ex:Dataset'" Literal.String.Single
+','           Punctuation
+' '           Text.Whitespace
+'ex'          Name.Namespace
+':'           Punctuation
+'rows'        Name.Attribute
+'='           Punctuation
+'1024'        Literal.Number.Integer
+']'           Punctuation
+')'           Punctuation
+'\n  '        Text.Whitespace
+'entity'      Keyword
+'('           Punctuation
+'ex'          Name.Namespace
+':'           Punctuation
+'chart'       Name
+','           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'prov'        Name.Namespace
+':'           Punctuation
+'label'       Name.Attribute
+'='           Punctuation
+'"Bar chart"' Literal.String.Double
+'@en'         Name.Decorator
+','           Punctuation
+' '           Text.Whitespace
+'ex'          Name.Namespace
+':'           Punctuation
+'version'     Name.Attribute
+'='           Punctuation
+'"2"'         Literal.String.Double
+' '           Text.Whitespace
+'%%'          Operator
+' '           Text.Whitespace
+'xsd'         Name.Namespace
+':'           Punctuation
+'int'         Keyword.Type
+']'           Punctuation
+')'           Punctuation
+'\n  '        Text.Whitespace
+'activity'    Keyword
+'('           Punctuation
+'ex'          Name.Namespace
+':'           Punctuation
+'compile'     Name
+','           Punctuation
+' '           Text.Whitespace
+'2026-11-08T10:00:00Z' Literal.Date
+','           Punctuation
+' '           Text.Whitespace
+'2026-11-08T10:05:30.5+01:00' Literal.Date
+')'           Punctuation
+'\n  '        Text.Whitespace
+'agent'       Keyword
+'('           Punctuation
+'ex'          Name.Namespace
+':'           Punctuation
+'derek'       Name
+','           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'prov'        Name.Namespace
+':'           Punctuation
+'type'        Name.Attribute
+'='           Punctuation
+"'prov:Person'" Literal.String.Single
+','           Punctuation
+' '           Text.Whitespace
+'foaf'        Name.Namespace
+':'           Punctuation
+'name'        Name.Attribute
+'='           Punctuation
+'"Derek"'     Literal.String.Double
+']'           Punctuation
+')'           Punctuation
+'\n\n  '      Text.Whitespace
+'used'        Keyword
+'('           Punctuation
+'ex'          Name.Namespace
+':'           Punctuation
+'compile'     Name
+','           Punctuation
+' '           Text.Whitespace
+'ex'          Name.Namespace
+':'           Punctuation
+'dataset'     Name
+','           Punctuation
+' '           Text.Whitespace
+'-'           Keyword.Constant
+')'           Punctuation
+'\n  '        Text.Whitespace
+'wasGeneratedBy' Keyword
+'('           Punctuation
+'ex'          Name.Namespace
+':'           Punctuation
+'gen1'        Name
+';'           Punctuation
+' '           Text.Whitespace
+'ex'          Name.Namespace
+':'           Punctuation
+'chart'       Name
+','           Punctuation
+' '           Text.Whitespace
+'ex'          Name.Namespace
+':'           Punctuation
+'compile'     Name
+','           Punctuation
+' '           Text.Whitespace
+'-'           Keyword.Constant
+')'           Punctuation
+'\n  '        Text.Whitespace
+'wasAssociatedWith' Keyword
+'('           Punctuation
+'ex'          Name.Namespace
+':'           Punctuation
+'compile'     Name
+','           Punctuation
+' '           Text.Whitespace
+'ex'          Name.Namespace
+':'           Punctuation
+'derek'       Name
+','           Punctuation
+' '           Text.Whitespace
+'-'           Keyword.Constant
+','           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'prov'        Name.Namespace
+':'           Punctuation
+'role'        Name.Attribute
+'='           Punctuation
+"'ex:analyst'" Literal.String.Single
+']'           Punctuation
+')'           Punctuation
+'\n  '        Text.Whitespace
+'wasDerivedFrom' Keyword
+'('           Punctuation
+'ex'          Name.Namespace
+':'           Punctuation
+'chart'       Name
+','           Punctuation
+' '           Text.Whitespace
+'ex'          Name.Namespace
+':'           Punctuation
+'dataset'     Name
+','           Punctuation
+' '           Text.Whitespace
+'ex'          Name.Namespace
+':'           Punctuation
+'compile'     Name
+','           Punctuation
+' '           Text.Whitespace
+'ex'          Name.Namespace
+':'           Punctuation
+'gen1'        Name
+','           Punctuation
+' '           Text.Whitespace
+'-'           Keyword.Constant
+')'           Punctuation
+'\n\n  '      Text.Whitespace
+'/* The report is described in its own bundle,\n     and the chart in it is a mention of the chart above. */' Comment.Multiline
+'\n  '        Text.Whitespace
+'bundle'      Keyword
+' '           Text.Whitespace
+'ex'          Name.Namespace
+':'           Punctuation
+'report-bundle' Name
+'\n    '      Text.Whitespace
+'entity'      Keyword
+'('           Punctuation
+'ex'          Name.Namespace
+':'           Punctuation
+'report'      Name
+','           Punctuation
+' '           Text.Whitespace
+'['           Punctuation
+'ex'          Name.Namespace
+':'           Punctuation
+'abstract'    Name.Attribute
+'='           Punctuation
+'"""A report\non the "compiled" chart."""' Literal.String.Double
+']'           Punctuation
+')'           Punctuation
+'\n    '      Text.Whitespace
+'entity'      Keyword
+'('           Punctuation
+'ex'          Name.Namespace
+':'           Punctuation
+'figure-1'    Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+'mentionOf'   Keyword
+'('           Punctuation
+'ex'          Name.Namespace
+':'           Punctuation
+'figure-1'    Name
+','           Punctuation
+' '           Text.Whitespace
+'ex'          Name.Namespace
+':'           Punctuation
+'chart'       Name
+','           Punctuation
+' '           Text.Whitespace
+'ex'          Name.Namespace
+':'           Punctuation
+'report-bundle' Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+'specializationOf' Keyword
+'('           Punctuation
+'ex'          Name.Namespace
+':'           Punctuation
+'figure-1'    Name
+','           Punctuation
+' '           Text.Whitespace
+'ex'          Name.Namespace
+':'           Punctuation
+'chart'       Name
+')'           Punctuation
+'\n    '      Text.Whitespace
+'ex'          Name.Namespace
+':'           Punctuation
+'cites'       Name.Function
+'('           Punctuation
+'ex'          Name.Namespace
+':'           Punctuation
+'report'      Name
+','           Punctuation
+' '           Text.Whitespace
+'ex'          Name.Namespace
+':'           Punctuation
+'dataset'     Name
+')'           Punctuation
+'\n  '        Text.Whitespace
+'endBundle'   Keyword
+'\n'          Text.Whitespace
+
+'endDocument' Keyword
+'\n'          Text.Whitespace
