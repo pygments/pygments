@@ -1,0 +1,27 @@
+// Derek compiles a chart from a dataset and publishes it in a report.
+document
+  prefix ex <http://example.org/>
+  prefix foaf <http://xmlns.com/foaf/0.1/>
+  default <http://example.org/default#>
+
+  entity(ex:dataset, [prov:type='ex:Dataset', ex:rows=1024])
+  entity(ex:chart, [prov:label="Bar chart"@en, ex:version="2" %% xsd:int])
+  activity(ex:compile, 2026-11-08T10:00:00Z, 2026-11-08T10:05:30.5+01:00)
+  agent(ex:derek, [prov:type='prov:Person', foaf:name="Derek"])
+
+  used(ex:compile, ex:dataset, -)
+  wasGeneratedBy(ex:gen1; ex:chart, ex:compile, -)
+  wasAssociatedWith(ex:compile, ex:derek, -, [prov:role='ex:analyst'])
+  wasDerivedFrom(ex:chart, ex:dataset, ex:compile, ex:gen1, -)
+
+  /* The report is described in its own bundle,
+     and the chart in it is a mention of the chart above. */
+  bundle ex:report-bundle
+    entity(ex:report, [ex:abstract="""A report
+on the "compiled" chart."""])
+    entity(ex:figure-1)
+    mentionOf(ex:figure-1, ex:chart, ex:report-bundle)
+    specializationOf(ex:figure-1, ex:chart)
+    ex:cites(ex:report, ex:dataset)
+  endBundle
+endDocument
