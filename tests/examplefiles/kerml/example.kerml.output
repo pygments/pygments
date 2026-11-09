@@ -1,0 +1,874 @@
+'// A small model that exercises the lexical structure of KerML.' Comment.Single
+'\n'          Text.Whitespace
+
+'library'     Keyword
+' '           Text.Whitespace
+'package'     Keyword
+' '           Text.Whitespace
+'Vehicles'    Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'private'     Keyword
+' '           Text.Whitespace
+'import'      Keyword
+' '           Text.Whitespace
+'ScalarValues' Name
+'::'          Punctuation
+'*'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'public'      Keyword
+' '           Text.Whitespace
+'import'      Keyword
+' '           Text.Whitespace
+'Base'        Name
+'::'          Punctuation
+'Anything'    Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'alias'       Keyword
+' '           Text.Whitespace
+'Thing'       Name
+' '           Text.Whitespace
+'for'         Keyword
+' '           Text.Whitespace
+'Anything'    Name
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'doc'         Keyword
+' '           Text.Whitespace
+'/*'          Literal.String
+' Classifiers, features and expressions in KerML. ' Literal.String
+'*/'          Literal.String
+'\n\n    '    Text.Whitespace
+'comment'     Keyword
+' '           Text.Whitespace
+'Units'       Name
+' '           Text.Whitespace
+'about'       Keyword
+' '           Text.Whitespace
+'Car'         Name
+' '           Text.Whitespace
+'locale'      Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'en_US'       Literal.String.Double
+'"'           Literal.String.Double
+'\n        '  Text.Whitespace
+'/*'          Literal.String
+' All values are in SI units. ' Literal.String
+'*/'          Literal.String
+'\n\n    '    Text.Whitespace
+'abstract'    Keyword
+' '           Text.Whitespace
+'classifier'  Keyword
+' '           Text.Whitespace
+'Vehicle'     Name
+' '           Text.Whitespace
+'specializes' Keyword
+' '           Text.Whitespace
+'Anything'    Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'classifier'  Keyword
+' '           Text.Whitespace
+'Truck'       Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'subclassifier' Keyword
+' '           Text.Whitespace
+'Truck'       Name
+' '           Text.Whitespace
+'specializes' Keyword
+' '           Text.Whitespace
+'Vehicle'     Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'datatype'    Keyword
+' '           Text.Whitespace
+'Speed'       Name
+' '           Text.Whitespace
+':>'          Punctuation
+' '           Text.Whitespace
+'Real'        Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'class'       Keyword
+' '           Text.Whitespace
+'Wheel'       Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'class'       Keyword
+' '           Text.Whitespace
+'Engine'      Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'struct'      Keyword
+' '           Text.Whitespace
+'Car'         Name
+' '           Text.Whitespace
+':>'          Punctuation
+' '           Text.Whitespace
+'Vehicle'     Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'wheels'      Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Wheel'       Name
+'['           Punctuation
+'4'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'ordered'     Keyword
+' '           Text.Whitespace
+'nonunique'   Keyword
+';'           Punctuation
+'\n        '  Text.Whitespace
+'composite'   Keyword
+' '           Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'engine'      Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Engine'      Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n        '  Text.Whitespace
+'derived'     Keyword
+' '           Text.Whitespace
+'var'         Keyword
+' '           Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'speed'       Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Speed'       Name
+';'           Punctuation
+'\n        '  Text.Whitespace
+'const'       Keyword
+' '           Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'serial'      Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'String'      Name
+';'           Punctuation
+'\n        '  Text.Whitespace
+'portion'     Keyword
+' '           Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+"'body\\'s frame'" Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Car'         Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+'..'          Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'assoc'       Keyword
+' '           Text.Whitespace
+'Ownership'   Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'end'         Keyword
+' '           Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'owner'       Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Car'         Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n        '  Text.Whitespace
+'end'         Keyword
+' '           Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'owned'       Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Wheel'       Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'metaclass'   Keyword
+' '           Text.Whitespace
+'Tag'         Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'behavior'    Keyword
+' '           Text.Whitespace
+'Drive'       Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'distance'    Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Real'        Name
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'function'    Keyword
+' '           Text.Whitespace
+'Double'      Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Real'        Name
+';'           Punctuation
+' '           Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Real'        Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'*'           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'predicate'   Keyword
+' '           Text.Whitespace
+'IsFast'      Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'s'           Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Speed'       Name
+';'           Punctuation
+' '           Text.Whitespace
+'s'           Name
+' '           Text.Whitespace
+'>'           Punctuation
+' '           Text.Whitespace
+'1.5e2'       Literal.Number.Float
+' '           Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'interaction' Keyword
+' '           Text.Whitespace
+'Handshake'   Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'end'         Keyword
+' '           Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'caller'      Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Car'         Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n        '  Text.Whitespace
+'end'         Keyword
+' '           Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'callee'      Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Car'         Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n\n    '    Text.Whitespace
+'#Tag'        Keyword
+' '           Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'tagged'      Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Car'         Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'new'         Keyword
+' '           Text.Whitespace
+'Car'         Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'cars'        Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Car'         Name
+'['           Punctuation
+'*'           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'trucks'      Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Truck'       Name
+'['           Punctuation
+'*'           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'spareWheels' Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Wheel'       Name
+'['           Punctuation
+'*'           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'fleet'       Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Vehicle'     Name
+'['           Punctuation
+'*'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'unions'      Keyword
+' '           Text.Whitespace
+'cars'        Name
+','           Punctuation
+' '           Text.Whitespace
+'trucks'      Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'both'        Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Vehicle'     Name
+'['           Punctuation
+'*'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'intersects'  Keyword
+' '           Text.Whitespace
+'cars'        Name
+','           Punctuation
+' '           Text.Whitespace
+'trucks'      Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'others'      Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Vehicle'     Name
+'['           Punctuation
+'*'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'differences' Keyword
+' '           Text.Whitespace
+'fleet'       Name
+','           Punctuation
+' '           Text.Whitespace
+'cars'        Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'drivers'     Name
+'['           Punctuation
+'*'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'featured'    Keyword
+' '           Text.Whitespace
+'by'          Keyword
+' '           Text.Whitespace
+'Car'         Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'carEngines'  Name
+' '           Text.Whitespace
+'chains'      Keyword
+' '           Text.Whitespace
+'cars'        Name
+'.'           Punctuation
+'engine'      Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'owners'      Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Car'         Name
+'['           Punctuation
+'*'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'inverse'     Keyword
+' '           Text.Whitespace
+'of'          Keyword
+' '           Text.Whitespace
+'Ownership'   Name
+'::'          Punctuation
+'owner'       Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'multiplicity' Keyword
+' '           Text.Whitespace
+'few'         Name
+' '           Text.Whitespace
+'subsets'     Keyword
+' '           Text.Whitespace
+'Base'        Name
+'::'          Punctuation
+'exactlyOne'  Name
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'disjoining'  Keyword
+' '           Text.Whitespace
+'d'           Name
+' '           Text.Whitespace
+'disjoint'    Keyword
+' '           Text.Whitespace
+'Car'         Name
+' '           Text.Whitespace
+'from'        Keyword
+' '           Text.Whitespace
+'Wheel'       Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'subset'      Keyword
+' '           Text.Whitespace
+'trucks'      Name
+' '           Text.Whitespace
+'subsets'     Keyword
+' '           Text.Whitespace
+'fleet'       Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'typing'      Keyword
+' '           Text.Whitespace
+'cars'        Name
+' '           Text.Whitespace
+'typed'       Keyword
+' '           Text.Whitespace
+'by'          Keyword
+' '           Text.Whitespace
+'Car'         Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'featuring'   Keyword
+' '           Text.Whitespace
+'fleetFeaturing' Name
+' '           Text.Whitespace
+'of'          Keyword
+' '           Text.Whitespace
+'fleet'       Name
+' '           Text.Whitespace
+'by'          Keyword
+' '           Text.Whitespace
+'Anything'    Name
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'step'        Keyword
+' '           Text.Whitespace
+'drive'       Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Drive'       Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'succession'  Keyword
+' '           Text.Whitespace
+'first'       Keyword
+' '           Text.Whitespace
+'drive'       Name
+' '           Text.Whitespace
+'then'        Keyword
+' '           Text.Whitespace
+'drive'       Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'connector'   Keyword
+' '           Text.Whitespace
+'link'        Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Ownership'   Name
+' '           Text.Whitespace
+'from'        Keyword
+' '           Text.Whitespace
+'cars'        Name
+' '           Text.Whitespace
+'to'          Keyword
+' '           Text.Whitespace
+'spareWheels' Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'binding'     Keyword
+' '           Text.Whitespace
+'of'          Keyword
+' '           Text.Whitespace
+'fleet'       Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'others'      Name
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'expr'        Keyword
+' '           Text.Whitespace
+'half'        Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Real'        Name
+';'           Punctuation
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'/'           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'bool'        Keyword
+' '           Text.Whitespace
+'positive'    Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Real'        Name
+';'           Punctuation
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'>'           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'inv'         Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'true'        Keyword.Constant
+' '           Text.Whitespace
+'and'         Keyword
+' '           Text.Whitespace
+'not'         Keyword
+' '           Text.Whitespace
+'false'       Keyword.Constant
+' '           Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Real'        Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'+'           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'*'           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'-'           Punctuation
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+' '           Text.Whitespace
+'/'           Punctuation
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+' '           Text.Whitespace
+'%'           Punctuation
+' '           Text.Whitespace
+'6'           Literal.Number.Integer
+' '           Text.Whitespace
+'**'          Punctuation
+' '           Text.Whitespace
+'7'           Literal.Number.Integer
+' '           Text.Whitespace
+'^'           Punctuation
+' '           Text.Whitespace
+'8'           Literal.Number.Integer
+';'           Punctuation
+'\n    '      Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'y'           Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Real'        Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'null'        Keyword.Constant
+' '           Text.Whitespace
+'??'          Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'as'          Keyword
+' '           Text.Whitespace
+'Real'        Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'isCar'       Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Boolean'     Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'tagged'      Name
+' '           Text.Whitespace
+'istype'      Keyword
+' '           Text.Whitespace
+'Car'         Name
+' '           Text.Whitespace
+'and'         Keyword
+' '           Text.Whitespace
+'tagged'      Name
+' '           Text.Whitespace
+'hastype'     Keyword
+' '           Text.Whitespace
+'Car'         Name
+'\n        '  Text.Whitespace
+'or'          Keyword
+' '           Text.Whitespace
+'tagged'      Name
+' '           Text.Whitespace
+'@'           Punctuation
+' '           Text.Whitespace
+'Vehicle'     Name
+' '           Text.Whitespace
+'xor'         Keyword
+' '           Text.Whitespace
+'false'       Keyword.Constant
+' '           Text.Whitespace
+'implies'     Keyword
+' '           Text.Whitespace
+'true'        Keyword.Constant
+';'           Punctuation
+'\n    '      Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'isFeature'   Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Boolean'     Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'tagged'      Name
+' '           Text.Whitespace
+'@@'          Punctuation
+' '           Text.Whitespace
+'KerML'       Name
+'::'          Punctuation
+'Feature'     Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'firstCar'    Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Car'         Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'cars'        Name
+'#'           Punctuation
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'check'       Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Integer'     Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'true'        Keyword.Constant
+' '           Text.Whitespace
+'?'           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'else'        Keyword
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+';'           Punctuation
+'\n    '      Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'root'        Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Car'         Name
+'['           Punctuation
+'*'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'$'           Punctuation
+'::'          Punctuation
+'Vehicles'    Name
+'::'          Punctuation
+'cars'        Name
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'namespace'   Keyword
+' '           Text.Whitespace
+'N'           Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'doc'         Keyword
+' '           Text.Whitespace
+'/*'          Literal.String
+' A plain namespace. ' Literal.String
+'*/'          Literal.String
+' '           Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'rep'         Keyword
+' '           Text.Whitespace
+'language'    Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'alf'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'/*'          Literal.String
+' this.x = 1; ' Literal.String
+'*/'          Literal.String
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

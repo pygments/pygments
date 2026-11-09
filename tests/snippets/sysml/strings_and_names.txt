@@ -1,0 +1,44 @@
+---input---
+attribute serial = "DR-01 \"alpha\"";
+part 'Max. Speed' : 'Speed Value';
+attribute 'part' = $::Root::x;
+
+---tokens---
+'attribute'   Keyword
+' '           Text.Whitespace
+'serial'      Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'DR-01 '      Literal.String.Double
+'\\"'         Literal.String.Escape
+'alpha'       Literal.String.Double
+'\\"'         Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'part'        Keyword
+' '           Text.Whitespace
+"'Max. Speed'" Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+"'Speed Value'" Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'attribute'   Keyword
+' '           Text.Whitespace
+"'part'"      Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'$'           Punctuation
+'::'          Punctuation
+'Root'        Name
+'::'          Punctuation
+'x'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
