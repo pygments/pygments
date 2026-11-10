@@ -49,6 +49,7 @@ class JavaLexer(RegexLexer):
             (r'(assert|break|case|catch|continue|default|do|else|finally|for|'
              r'if|goto|instanceof|new|return|switch|this|throw|try|while)\b',
              Keyword),
+            (r'\bvalue(?=\s+(?:class|interface)\b)', Keyword.Declaration),
             # method names
             (r'((?:(?:[^\W\d]|\$)[\w.\[\]$<>?]*\s+)+?)'  # return arguments
              r'((?:[^\W\d]|\$)[\w$]*)'                  # method name
@@ -57,7 +58,7 @@ class JavaLexer(RegexLexer):
             (r'@[^\W\d][\w.]*', Name.Decorator),
             (r'(abstract|const|enum|exports|extends|final|implements|native|non-sealed|'
              r'open|opens|permits|private|protected|provides|public|requires|sealed|static|strictfp|'
-             r'super|synchronized|throws|to|transient|transitive|uses|volatile|with|yield)\b', Keyword.Declaration),
+             r'super|synchronized|throws|to|transient|transitive|uses|volatile|with|when|yield)\b', Keyword.Declaration),
             (r'(boolean|byte|char|double|float|int|long|short|void)\b',
              Keyword.Type),
             (r'(package)(\s+)', bygroups(Keyword.Namespace, Whitespace), 'import'),
