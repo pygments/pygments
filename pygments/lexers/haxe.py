@@ -55,6 +55,15 @@ class HaxeLexer(ExtendedRegexLexer):
 
     preproc_stack = []
 
+    def get_tokens_unprocessed(self, text=None, context=None):
+        # Lexer instances are cached and reused, and preproc_stack is a
+        # mutable class attribute shared by all of them: a leftover stack
+        # from a previous run with unbalanced #if/#end would be restored by
+        # a later run's #else/#elseif, corrupting its tokens. Start every
+        # run with a fresh stack.
+        self.preproc_stack = []
+        yield from super().get_tokens_unprocessed(text, context)
+
     def preproc_callback(self, match, ctx):
         proc = match.group(2)
 
