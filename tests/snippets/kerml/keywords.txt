@@ -1,0 +1,59 @@
+---input---
+struct Car { feature part : Wheel[4]; }
+feature c : Car = new Car();
+inv { true and not false }
+
+---tokens---
+'struct'      Keyword
+' '           Text.Whitespace
+'Car'         Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'feature'     Keyword
+' '           Text.Whitespace
+'part'        Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Wheel'       Name
+'['           Punctuation
+'4'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'feature'     Keyword
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Car'         Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'new'         Keyword
+' '           Text.Whitespace
+'Car'         Name
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'inv'         Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'true'        Keyword.Constant
+' '           Text.Whitespace
+'and'         Keyword
+' '           Text.Whitespace
+'not'         Keyword
+' '           Text.Whitespace
+'false'       Keyword.Constant
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace

@@ -1,0 +1,58 @@
+---input---
+part rotors[4];
+part pilots[0..*];
+attribute mass = 1.25 [kg];
+attribute x = .5 + 2E-3 + 1.5e3;
+
+---tokens---
+'part'        Keyword
+' '           Text.Whitespace
+'rotors'      Name
+'['           Punctuation
+'4'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'part'        Keyword
+' '           Text.Whitespace
+'pilots'      Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+'..'          Punctuation
+'*'           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'attribute'   Keyword
+' '           Text.Whitespace
+'mass'        Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'1.25'        Literal.Number.Float
+' '           Text.Whitespace
+'['           Punctuation
+'kg'          Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'attribute'   Keyword
+' '           Text.Whitespace
+'x'           Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'.5'          Literal.Number.Float
+' '           Text.Whitespace
+'+'           Punctuation
+' '           Text.Whitespace
+'2E-3'        Literal.Number.Float
+' '           Text.Whitespace
+'+'           Punctuation
+' '           Text.Whitespace
+'1.5e3'       Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace

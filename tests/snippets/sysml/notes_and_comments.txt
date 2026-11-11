@@ -1,0 +1,52 @@
+---input---
+// A note: ignored by the parser.
+//* A multiline note,
+    also ignored. */
+part def Drone {
+    doc /* Documentation is part of the model. */
+    comment Units about Drone /* SI units. */
+    /* A comment without the keyword. */
+}
+
+---tokens---
+'// A note: ignored by the parser.' Comment.Single
+'\n'          Text.Whitespace
+
+'//*'         Comment.Multiline
+' A multiline note,\n    also ignored. ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n'          Text.Whitespace
+
+'part'        Keyword
+' '           Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'Drone'       Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'doc'         Keyword
+' '           Text.Whitespace
+'/*'          Literal.String
+' Documentation is part of the model. ' Literal.String
+'*/'          Literal.String
+'\n    '      Text.Whitespace
+'comment'     Keyword
+' '           Text.Whitespace
+'Units'       Name
+' '           Text.Whitespace
+'about'       Keyword
+' '           Text.Whitespace
+'Drone'       Name
+' '           Text.Whitespace
+'/*'          Literal.String
+' SI units. ' Literal.String
+'*/'          Literal.String
+'\n    '      Text.Whitespace
+'/*'          Literal.String
+' A comment without the keyword. ' Literal.String
+'*/'          Literal.String
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace

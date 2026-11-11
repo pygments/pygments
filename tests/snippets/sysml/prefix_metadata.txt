@@ -1,0 +1,58 @@
+---input---
+#Safety part battery;
+#SafetyMetadata::'Hazard Level' part motor;
+@Safety;
+attribute isDrone = uav @ Drone;
+ref part firstDrone = drones#(1);
+
+---tokens---
+'#Safety'     Keyword
+' '           Text.Whitespace
+'part'        Keyword
+' '           Text.Whitespace
+'battery'     Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+"#SafetyMetadata::'Hazard Level'" Keyword
+' '           Text.Whitespace
+'part'        Keyword
+' '           Text.Whitespace
+'motor'       Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'@'           Punctuation
+'Safety'      Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'attribute'   Keyword
+' '           Text.Whitespace
+'isDrone'     Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'uav'         Name
+' '           Text.Whitespace
+'@'           Punctuation
+' '           Text.Whitespace
+'Drone'       Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'ref'         Keyword
+' '           Text.Whitespace
+'part'        Keyword
+' '           Text.Whitespace
+'firstDrone'  Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'drones'      Name
+'#'           Punctuation
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

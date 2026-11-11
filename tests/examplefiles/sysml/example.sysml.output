@@ -1,0 +1,949 @@
+'// A small drone model that exercises the lexical structure of SysML v2.' Comment.Single
+'\n'          Text.Whitespace
+
+'package'     Keyword
+' '           Text.Whitespace
+"'Drone Example'" Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'private'     Keyword
+' '           Text.Whitespace
+'import'      Keyword
+' '           Text.Whitespace
+'ScalarValues' Name
+'::'          Punctuation
+'*'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'private'     Keyword
+' '           Text.Whitespace
+'import'      Keyword
+' '           Text.Whitespace
+'ISQ'         Name
+'::'          Punctuation
+'*'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'private'     Keyword
+' '           Text.Whitespace
+'import'      Keyword
+' '           Text.Whitespace
+'SI'          Name
+'::'          Punctuation
+'*'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'private'     Keyword
+' '           Text.Whitespace
+'import'      Keyword
+' '           Text.Whitespace
+'NumericalFunctions' Name
+'::'          Punctuation
+'sum'         Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'private'     Keyword
+' '           Text.Whitespace
+'import'      Keyword
+' '           Text.Whitespace
+'SequenceFunctions' Name
+'::'          Punctuation
+'size'        Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'private'     Keyword
+' '           Text.Whitespace
+'import'      Keyword
+' '           Text.Whitespace
+'ControlFunctions' Name
+'::'          Punctuation
+'select'      Name
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'//*'         Comment.Multiline
+' A multiline note.\n        The parser ignores it, unlike the regular comments below. ' Comment.Multiline
+'*/'          Comment.Multiline
+'\n\n    '    Text.Whitespace
+'doc'         Keyword
+' '           Text.Whitespace
+'/*'          Literal.String
+' Models of a small quadcopter, see https://www.omg.org/spec/SysML/. ' Literal.String
+'*/'          Literal.String
+'\n\n    '    Text.Whitespace
+'comment'     Keyword
+' '           Text.Whitespace
+'Units'       Name
+' '           Text.Whitespace
+'about'       Keyword
+' '           Text.Whitespace
+'Drone'       Name
+' '           Text.Whitespace
+'locale'      Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'en_US'       Literal.String.Double
+'"'           Literal.String.Double
+'\n        '  Text.Whitespace
+'/*'          Literal.String
+' All values are in SI units. ' Literal.String
+'*/'          Literal.String
+'\n\n    '    Text.Whitespace
+'metadata'    Keyword
+' '           Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'Safety'      Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'attribute'   Keyword
+' '           Text.Whitespace
+'isMandatory' Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Boolean'     Name
+' '           Text.Whitespace
+'default'     Keyword
+' '           Text.Whitespace
+'true'        Keyword.Constant
+';'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'metadata'    Keyword
+' '           Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'<'           Punctuation
+'ss'          Name
+'>'           Punctuation
+' '           Text.Whitespace
+'SafetySpecific' Name
+' '           Text.Whitespace
+':>'          Punctuation
+' '           Text.Whitespace
+'Metaobjects' Name
+'::'          Punctuation
+'SemanticMetadata' Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+':>>'         Punctuation
+' '           Text.Whitespace
+'baseType'    Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'drones'      Name
+' '           Text.Whitespace
+'meta'        Keyword
+' '           Text.Whitespace
+'SysML'       Name
+'::'          Punctuation
+'PartUsage'   Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n\n    '    Text.Whitespace
+'abstract'    Keyword
+' '           Text.Whitespace
+'part'        Keyword
+' '           Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'Vehicle'     Name
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'part'        Keyword
+' '           Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'Drone'       Name
+' '           Text.Whitespace
+':>'          Punctuation
+' '           Text.Whitespace
+'Vehicle'     Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'doc'         Keyword
+' '           Text.Whitespace
+'/*'          Literal.String
+' A drone with four rotors. ' Literal.String
+'*/'          Literal.String
+'\n        '  Text.Whitespace
+'attribute'   Keyword
+' '           Text.Whitespace
+'mass'        Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'MassValue'   Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'1.25'        Literal.Number.Float
+' '           Text.Whitespace
+'['           Punctuation
+'kg'          Name
+']'           Punctuation
+';'           Punctuation
+'\n        '  Text.Whitespace
+'attribute'   Keyword
+' '           Text.Whitespace
+"'max. speed'" Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'SpeedValue'  Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'2.0E1'       Literal.Number.Float
+' '           Text.Whitespace
+'['           Punctuation
+'m'           Name
+'/'           Punctuation
+'s'           Name
+']'           Punctuation
+';'           Punctuation
+'\n        '  Text.Whitespace
+'attribute'   Keyword
+' '           Text.Whitespace
+'serial'      Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'String'      Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'DR-01 '      Literal.String.Double
+'\\"'         Literal.String.Escape
+'alpha'       Literal.String.Double
+'\\"'         Literal.String.Escape
+'"'           Literal.String.Double
+';'           Punctuation
+'\n        '  Text.Whitespace
+'attribute'   Keyword
+' '           Text.Whitespace
+'manual'      Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'String'      Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'https://example.org/drones' Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+' '           Text.Whitespace
+'// Don\'t "quote" notes.' Comment.Single
+'\n        '  Text.Whitespace
+'attribute'   Keyword
+' '           Text.Whitespace
+'flightTime'  Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'DurationValue' Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+'..'          Punctuation
+'1'           Literal.Number.Integer
+']'           Punctuation
+';'           Punctuation
+'\n\n        ' Text.Whitespace
+'#Safety'     Keyword
+' '           Text.Whitespace
+'part'        Keyword
+' '           Text.Whitespace
+'battery'     Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Battery'     Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n            ' Text.Whitespace
+'attribute'   Keyword
+' '           Text.Whitespace
+'capacity'    Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Real'        Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'5.4e3'       Literal.Number.Float
+';'           Punctuation
+'\n        '  Text.Whitespace
+'}'           Punctuation
+'\n        '  Text.Whitespace
+"#'Drone Example'::Safety" Keyword
+' '           Text.Whitespace
+'part'        Keyword
+' '           Text.Whitespace
+'spare'       Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Battery'     Name
+';'           Punctuation
+'\n        '  Text.Whitespace
+'part'        Keyword
+' '           Text.Whitespace
+'rotors'      Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Rotor'       Name
+'['           Punctuation
+'4'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'ordered'     Keyword
+' '           Text.Whitespace
+'nonunique'   Keyword
+';'           Punctuation
+'\n        '  Text.Whitespace
+'part'        Keyword
+' '           Text.Whitespace
+"'pilot\\'s seat'" Name
+';'           Punctuation
+'\n        '  Text.Whitespace
+'port'        Keyword
+' '           Text.Whitespace
+'controlPort' Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'~'           Punctuation
+'ControlPort' Name
+';'           Punctuation
+'\n        '  Text.Whitespace
+'ref'         Keyword
+' '           Text.Whitespace
+'part'        Keyword
+' '           Text.Whitespace
+'pilot'       Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Pilot'       Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+'..'          Punctuation
+'*'           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n\n        ' Text.Whitespace
+'constraint'  Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'mass'        Name
+' '           Text.Whitespace
+'<='          Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'['           Punctuation
+'kg'          Name
+']'           Punctuation
+' '           Text.Whitespace
+'and'         Keyword
+' '           Text.Whitespace
+'flightTime'  Name
+' '           Text.Whitespace
+'>='          Punctuation
+' '           Text.Whitespace
+'900'         Literal.Number.Integer
+' '           Text.Whitespace
+'['           Punctuation
+'s'           Name
+']'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n\n    '    Text.Whitespace
+'part'        Keyword
+' '           Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'Battery'     Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'part'        Keyword
+' '           Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'Rotor'       Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'part'        Keyword
+' '           Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'Pilot'       Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'port'        Keyword
+' '           Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'ControlPort' Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'attribute'   Keyword
+' '           Text.Whitespace
+'command'     Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'String'      Name
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'item'        Keyword
+' '           Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'Command'     Name
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'part'        Keyword
+' '           Text.Whitespace
+'drones'      Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Drone'       Name
+'['           Punctuation
+'*'           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'#SafetySpecific' Keyword
+' '           Text.Whitespace
+'part'        Keyword
+' '           Text.Whitespace
+'drone'       Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Drone'       Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'@'           Punctuation
+'Safety'      Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'isMandatory' Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'false'       Keyword.Constant
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n\n    '    Text.Whitespace
+'action'      Keyword
+' '           Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'Fly'         Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'item'        Keyword
+' '           Text.Whitespace
+'target'      Name
+';'           Punctuation
+'\n        '  Text.Whitespace
+'out'         Keyword
+' '           Text.Whitespace
+'attribute'   Keyword
+' '           Text.Whitespace
+'success'     Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Boolean'     Name
+';'           Punctuation
+'\n        '  Text.Whitespace
+'first'       Keyword
+' '           Text.Whitespace
+'start'       Name
+' '           Text.Whitespace
+'then'        Keyword
+' '           Text.Whitespace
+'takeOff'     Name
+';'           Punctuation
+'\n        '  Text.Whitespace
+'action'      Keyword
+' '           Text.Whitespace
+'takeOff'     Name
+';'           Punctuation
+'\n        '  Text.Whitespace
+'then'        Keyword
+' '           Text.Whitespace
+'action'      Keyword
+' '           Text.Whitespace
+'cruise'      Name
+';'           Punctuation
+'\n        '  Text.Whitespace
+'then'        Keyword
+' '           Text.Whitespace
+'done'        Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n\n    '    Text.Whitespace
+'state'       Keyword
+' '           Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'FlightStates' Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'entry'       Keyword
+';'           Punctuation
+' '           Text.Whitespace
+'then'        Keyword
+' '           Text.Whitespace
+'idle'        Name
+';'           Punctuation
+'\n        '  Text.Whitespace
+'state'       Keyword
+' '           Text.Whitespace
+'idle'        Name
+';'           Punctuation
+'\n        '  Text.Whitespace
+'transition'  Keyword
+' '           Text.Whitespace
+'idle_to_flying' Name
+'\n            ' Text.Whitespace
+'first'       Keyword
+' '           Text.Whitespace
+'idle'        Name
+'\n            ' Text.Whitespace
+'accept'      Keyword
+' '           Text.Whitespace
+'Command'     Name
+'\n            ' Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'drone'       Name
+'.'           Punctuation
+'battery'     Name
+'.'           Punctuation
+'capacity'    Name
+' '           Text.Whitespace
+'>'           Punctuation
+' '           Text.Whitespace
+'.5'          Literal.Number.Float
+'\n            ' Text.Whitespace
+'do'          Keyword
+' '           Text.Whitespace
+'action'      Keyword
+' '           Text.Whitespace
+'launch'      Name
+'\n            ' Text.Whitespace
+'then'        Keyword
+' '           Text.Whitespace
+'flying'      Name
+';'           Punctuation
+'\n        '  Text.Whitespace
+'state'       Keyword
+' '           Text.Whitespace
+'flying'      Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n\n    '    Text.Whitespace
+'requirement' Keyword
+' '           Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'<'           Punctuation
+"'R1.1'"      Name
+'>'           Punctuation
+' '           Text.Whitespace
+'MaxMass'     Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'subject'     Keyword
+' '           Text.Whitespace
+'drone'       Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Drone'       Name
+';'           Punctuation
+'\n        '  Text.Whitespace
+'require'     Keyword
+' '           Text.Whitespace
+'constraint'  Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'drone'       Name
+'.'           Punctuation
+'mass'        Name
+' '           Text.Whitespace
+'<='          Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'['           Punctuation
+'kg'          Name
+']'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n\n    '    Text.Whitespace
+'calc'        Keyword
+' '           Text.Whitespace
+'def'         Keyword
+' '           Text.Whitespace
+'Average'     Name
+' '           Text.Whitespace
+'{'           Punctuation
+'\n        '  Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'values'      Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Real'        Name
+'['           Punctuation
+'1'           Literal.Number.Integer
+'..'          Punctuation
+'*'           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n        '  Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'result'      Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Real'        Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'sum'         Name
+'('           Punctuation
+'values'      Name
+')'           Punctuation
+' '           Text.Whitespace
+'/'           Punctuation
+' '           Text.Whitespace
+'size'        Name
+'('           Punctuation
+'values'      Name
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'}'           Punctuation
+'\n\n    '    Text.Whitespace
+'ref'         Keyword
+' '           Text.Whitespace
+'part'        Keyword
+' '           Text.Whitespace
+'selected'    Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Drone'       Name
+'['           Punctuation
+'*'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'drones'      Name
+'->'          Punctuation
+'select'      Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'d'           Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Drone'       Name
+';'           Punctuation
+' '           Text.Whitespace
+'d'           Name
+'.'           Punctuation
+'mass'        Name
+' '           Text.Whitespace
+'<'           Punctuation
+' '           Text.Whitespace
+'1.5'         Literal.Number.Float
+' '           Text.Whitespace
+'['           Punctuation
+'kg'          Name
+']'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'ref'         Keyword
+' '           Text.Whitespace
+'part'        Keyword
+' '           Text.Whitespace
+'firstDrone'  Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Drone'       Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'selected'    Name
+'#'           Punctuation
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'attribute'   Keyword
+' '           Text.Whitespace
+'isDrone'     Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Boolean'     Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'drone'       Name
+' '           Text.Whitespace
+'@'           Punctuation
+' '           Text.Whitespace
+'Drone'       Name
+' '           Text.Whitespace
+'and'         Keyword
+' '           Text.Whitespace
+'drone'       Name
+' '           Text.Whitespace
+'istype'      Keyword
+' '           Text.Whitespace
+'Vehicle'     Name
+'\n        '  Text.Whitespace
+'and'         Keyword
+' '           Text.Whitespace
+'not'         Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'drone'       Name
+' '           Text.Whitespace
+'hastype'     Keyword
+' '           Text.Whitespace
+'Rotor'       Name
+')'           Punctuation
+' '           Text.Whitespace
+'xor'         Keyword
+' '           Text.Whitespace
+'false'       Keyword.Constant
+' '           Text.Whitespace
+'implies'     Keyword
+' '           Text.Whitespace
+'true'        Keyword.Constant
+';'           Punctuation
+'\n    '      Text.Whitespace
+'attribute'   Keyword
+' '           Text.Whitespace
+'isPart'      Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Boolean'     Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'drone'       Name
+' '           Text.Whitespace
+'@@'          Punctuation
+' '           Text.Whitespace
+'SysML'       Name
+'::'          Punctuation
+'PartUsage'   Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'attribute'   Keyword
+' '           Text.Whitespace
+'serials'     Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'String'      Name
+'['           Punctuation
+'*'           Punctuation
+']'           Punctuation
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'drones'      Name
+'.?'          Punctuation
+'{'           Punctuation
+' '           Text.Whitespace
+'in'          Keyword
+' '           Text.Whitespace
+'d'           Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Drone'       Name
+';'           Punctuation
+' '           Text.Whitespace
+'d'           Name
+'.'           Punctuation
+'serial'      Name
+' '           Text.Whitespace
+'!='          Punctuation
+' '           Text.Whitespace
+'null'        Keyword.Constant
+' '           Text.Whitespace
+'}'           Punctuation
+'.'           Punctuation
+'serial'      Name
+' '           Text.Whitespace
+'??'          Punctuation
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'none'        Literal.String.Double
+'"'           Literal.String.Double
+';'           Punctuation
+'\n    '      Text.Whitespace
+'attribute'   Keyword
+' '           Text.Whitespace
+'total'       Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Real'        Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'('           Punctuation
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'+'           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'*'           Punctuation
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'-'           Punctuation
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+' '           Text.Whitespace
+'/'           Punctuation
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+' '           Text.Whitespace
+'%'           Punctuation
+' '           Text.Whitespace
+'6'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'**'          Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+' '           Text.Whitespace
+'^'           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+';'           Punctuation
+'\n    '      Text.Whitespace
+'attribute'   Keyword
+' '           Text.Whitespace
+'same'        Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Boolean'     Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'drone'       Name
+' '           Text.Whitespace
+'==='         Punctuation
+' '           Text.Whitespace
+'drone'       Name
+' '           Text.Whitespace
+'or'          Keyword
+' '           Text.Whitespace
+'drone'       Name
+' '           Text.Whitespace
+'!=='         Punctuation
+' '           Text.Whitespace
+'firstDrone'  Name
+';'           Punctuation
+'\n    '      Text.Whitespace
+'ref'         Keyword
+' '           Text.Whitespace
+'part'        Keyword
+' '           Text.Whitespace
+'root'        Name
+' '           Text.Whitespace
+':'           Punctuation
+' '           Text.Whitespace
+'Drone'       Name
+' '           Text.Whitespace
+'='           Punctuation
+' '           Text.Whitespace
+'$'           Punctuation
+'::'          Punctuation
+"'Drone Example'" Name
+'::'          Punctuation
+'drone'       Name
+';'           Punctuation
+'\n\n    '    Text.Whitespace
+'rep'         Keyword
+' '           Text.Whitespace
+'inOCL'       Name
+' '           Text.Whitespace
+'language'    Keyword
+' '           Text.Whitespace
+'"'           Literal.String.Double
+'ocl'         Literal.String.Double
+'"'           Literal.String.Double
+' '           Text.Whitespace
+'/*'          Literal.String
+' self.drones->size() <= 10 ' Literal.String
+'*/'          Literal.String
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
