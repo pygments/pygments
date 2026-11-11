@@ -8,8 +8,6 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
-
 from pygments.lexer import RegexLexer, words
 from pygments.token import Comment, Keyword, Name, Number, Punctuation, \
     String, Whitespace
@@ -138,18 +136,6 @@ class SysMLLexer(RegexLexer):
     version_added = '2.22'
 
     tokens = _tokens(SYSML_KEYWORDS)
-
-    _definition = re.compile(
-        r'\b(?:part|item|action|attribute|port|state|requirement|constraint|'
-        r'calc|connection|interface|allocation|occurrence|enum|metadata|'
-        r'concern|case|analysis|verification|view|viewpoint|rendering|flow)'
-        r'\s+def\s+[A-Za-z_\'<{]')
-
-    def analyse_text(text):
-        # "part def Name" and its siblings occur in no other language.
-        if SysMLLexer._definition.search(text):
-            return 0.5
-        return 0.0
 
 
 class KerMLLexer(RegexLexer):
