@@ -1,0 +1,60 @@
+---input---
+SELECT ?s WHERE {
+  ?s <urn:p> """first "line"
+second ""line"""@en .
+  ?s <urn:q> '''next \'quote''' .
+  FILTER(?s != <urn:missing>)
+}
+
+---tokens---
+'SELECT'      Keyword
+' '           Text
+'?s'          Name.Variable
+' '           Text
+'WHERE'       Keyword
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'?s'          Name.Variable
+' '           Text
+'<urn:p>'     Name.Label
+' '           Text
+'"""'         Literal.String
+'first '      Literal.String
+'"'           Literal.String
+'line'        Literal.String
+'"'           Literal.String
+'\nsecond '   Literal.String
+'""'          Literal.String
+'line'        Literal.String
+'"""'         Literal.String
+'@'           Operator
+'en'          Name.Function
+' '           Text
+'.'           Punctuation
+'\n  '        Text
+'?s'          Name.Variable
+' '           Text
+'<urn:q>'     Name.Label
+' '           Text
+"'''"         Literal.String
+'next '       Literal.String
+'\\'          Literal.String.Escape
+"'"           Literal.String.Escape
+'quote'       Literal.String
+"'''"         Literal.String
+' '           Text
+'.'           Punctuation
+'\n  '        Text
+'FILTER'      Keyword
+'('           Punctuation
+'?s'          Name.Variable
+' '           Text
+'!='          Operator
+' '           Text
+'<urn:missing>' Name.Label
+')'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text

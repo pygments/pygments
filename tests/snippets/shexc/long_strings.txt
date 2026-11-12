@@ -1,0 +1,49 @@
+---input---
+<urn:Shape> {
+  <urn:p> [ """first "quote" """@en '''second \'quote''' ] ;
+  <urn:q> [ """last""" ]
+}
+
+---tokens---
+'<urn:Shape>' Name.Label
+' '           Text
+'{'           Punctuation
+'\n  '        Text
+'<urn:p>'     Name.Label
+' '           Text
+'['           Punctuation
+' '           Text
+'"""'         Literal.String
+'first '      Literal.String
+'"'           Literal.String
+'quote'       Literal.String
+'"'           Literal.String
+' '           Literal.String
+'"""'         Literal.String
+'@'           Operator
+'en'          Name.Function
+' '           Text
+"'''"         Literal.String
+'second '     Literal.String
+'\\'          Literal.String.Escape
+"'"           Literal.String.Escape
+'quote'       Literal.String
+"'''"         Literal.String
+' '           Text
+']'           Punctuation
+' '           Text
+';'           Punctuation
+'\n  '        Text
+'<urn:q>'     Name.Label
+' '           Text
+'['           Punctuation
+' '           Text
+'"""'         Literal.String
+'last'        Literal.String
+'"""'         Literal.String
+' '           Text
+']'           Punctuation
+'\n'          Text
+
+'}'           Punctuation
+'\n'          Text
