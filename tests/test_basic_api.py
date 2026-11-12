@@ -15,7 +15,7 @@ import re
 import pytest
 
 from pygments import lexers, formatters, lex, format, __version__
-from pygments.token import _TokenType, Text
+from pygments.token import _TokenType, Text, Whitespace
 from pygments.lexer import RegexLexer
 from pygments.formatter import Formatter
 from pygments.formatters.img import FontNotFound
@@ -364,6 +364,20 @@ class TestFilters:
             text = fp.read().decode('utf-8')
         lxtext = ''.join([t[1] for t in list(lx.get_tokens(text))])
         assert ' ' not in lxtext
+
+    def test_whitespace_trailing(self):
+        text = ' a b \t\n-c  \n'
+        for lx in lexers.DiffLexer(), lexers.TextLexer():
+            lx.add_filter('whitespace', spaces='%', tabs='>', tabsize=1,
+                          trailing=True)
+            lxtext = ''.join([t[1] for t in lx.get_tokens(text)])
+            assert lxtext == ' a b%>\n-c%%\n'
+        text_lexer = lx
+        assert list(text_lexer.get_tokens(text)) == [
+            (Text, ' a b'), (Whitespace, '%'), (Whitespace, '>'),
+            (Whitespace, '\n'), (Text, '-c'), (Whitespace, '%'),
+            (Whitespace, '%'), (Whitespace, '\n'),
+        ]
 
     def test_keywordcase(self):
         lx = lexers.PythonLexer()
