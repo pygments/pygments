@@ -1230,7 +1230,8 @@ class KotlinLexer(RegexLexer):
             (r'\\"', String),  # escaped quote
             (r'\\', String),  # bare backslash
             (r'\$\{', String.Interpol, 'interpolation'),
-            (r'(\$)(\w+)', bygroups(String.Interpol, Name)),
+            (r'(\$)([a-zA-Z_]\w*)', bygroups(String.Interpol, Name)),
+            (r'\$', String),  # a lone dollar sign is literal text
             (r'[^\\"$]+', String)
         ],
         'interpolation': [
