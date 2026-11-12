@@ -1,0 +1,63 @@
+---input---
+let p = Punct { char: '\'', spacing: 'a' };
+fn f<'a>(x: &'a str) -> &'static str { "" }
+
+---tokens---
+'let'         Keyword.Declaration
+' '           Text.Whitespace
+'p'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'Punct'       Name
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'char'        Keyword.Type
+':'           Punctuation
+' '           Text.Whitespace
+"'\\''"       Literal.String.Char
+','           Punctuation
+' '           Text.Whitespace
+'spacing'     Name
+':'           Punctuation
+' '           Text.Whitespace
+"'a'"         Literal.String.Char
+' '           Text.Whitespace
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'fn'          Keyword
+' '           Text.Whitespace
+'f'           Name.Function
+'<'           Operator
+"'"           Operator
+'a'           Name.Attribute
+'>'           Operator
+'('           Punctuation
+'x'           Name
+':'           Punctuation
+' '           Text.Whitespace
+'&'           Keyword.Pseudo
+"'"           Operator
+'a'           Name.Attribute
+' '           Text.Whitespace
+'str'         Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Punctuation
+' '           Text.Whitespace
+'&'           Keyword.Pseudo
+"'"           Operator
+'static'      Name.Builtin
+' '           Text.Whitespace
+'str'         Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'"'           Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace

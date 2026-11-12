@@ -183,6 +183,10 @@ class RustLexer(RegexLexer):
         'typename': [
             (r'\s+', Whitespace),
             (r'&', Keyword.Pseudo),
+            # a character literal, e.g. in `Foo { c: '\'' }` or `f(c: 'a')`
+            (r"""'(\\['"\\nrt]|\\x[0-7][0-9a-fA-F]|\\0"""
+             r"""|\\u\{[0-9a-fA-F]{1,6}\}|.)'""",
+             String.Char, '#pop'),
             (r"'", Operator, 'lifetime'),
             builtin_funcs_types,
             keyword_types,
