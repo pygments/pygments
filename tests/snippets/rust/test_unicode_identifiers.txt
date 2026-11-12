@@ -1,0 +1,39 @@
+---input---
+mod модуль;
+fn größe<'жизнь>(привет: &'жизнь Ёж) -> u8 { 1 }
+
+---tokens---
+'mod'         Keyword
+' '           Text.Whitespace
+'модуль'      Name.Namespace
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'fn'          Keyword
+' '           Text.Whitespace
+'größe'       Name.Function
+'<'           Operator
+"'"           Operator
+'жизнь'       Name.Attribute
+'>'           Operator
+'('           Punctuation
+'привет'      Name
+':'           Punctuation
+' '           Text.Whitespace
+'&'           Keyword.Pseudo
+"'"           Operator
+'жизнь'       Name.Attribute
+' '           Text.Whitespace
+'Ёж'          Name.Class
+')'           Punctuation
+' '           Text.Whitespace
+'->'          Punctuation
+' '           Text.Whitespace
+'u8'          Keyword.Type
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace

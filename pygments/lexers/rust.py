@@ -82,7 +82,7 @@ class RustLexer(RegexLexer):
             (r'/\*', Comment.Multiline, 'comment'),
 
             # Macro parameters
-            (r"""\$([a-zA-Z_]\w*|\(,?|\),?|,?)""", Comment.Preproc),
+            (r"""\$([^\W\d]\w*|\(,?|\),?|,?)""", Comment.Preproc),
             # Keywords
             (words(('as', 'async', 'await', 'box', 'const', 'crate', 'dyn',
                     'else', 'extern', 'for', 'if', 'impl', 'in', 'loop',
@@ -109,7 +109,7 @@ class RustLexer(RegexLexer):
             # Types in positions.
             (r'(?::|->)', Punctuation, 'typename'),
             # Labels
-            (r'(break|continue)(\b\s*)(\'[A-Za-z_]\w*)?',
+            (r'(break|continue)(\b\s*)(\'[^\W\d]\w*)?',
              bygroups(Keyword, Text.Whitespace, Name.Label)),
 
             # Character literals
@@ -146,9 +146,9 @@ class RustLexer(RegexLexer):
             (r'[+\-*/%&|<>^!~@=:?]', Operator),
 
             # Identifiers
-            (r'[a-zA-Z_]\w*', Name),
+            (r'[^\W\d]\w*', Name),
             # Raw identifiers
-            (r'r#[a-zA-Z_]\w*', Name),
+            (r'r#[^\W\d]\w*', Name),
 
             # Attributes
             (r'#!?\[', Comment.Preproc, 'attribute['),
@@ -172,12 +172,12 @@ class RustLexer(RegexLexer):
         ],
         'modname': [
             (r'\s+', Whitespace),
-            (r'[a-zA-Z_]\w*', Name.Namespace, '#pop'),
+            (r'[^\W\d]\w*', Name.Namespace, '#pop'),
             default('#pop'),
         ],
         'funcname': [
             (r'\s+', Whitespace),
-            (r'[a-zA-Z_]\w*', Name.Function, '#pop'),
+            (r'[^\W\d]\w*', Name.Function, '#pop'),
             default('#pop'),
         ],
         'typename': [
@@ -186,12 +186,12 @@ class RustLexer(RegexLexer):
             (r"'", Operator, 'lifetime'),
             builtin_funcs_types,
             keyword_types,
-            (r'[a-zA-Z_]\w*', Name.Class, '#pop'),
+            (r'[^\W\d]\w*', Name.Class, '#pop'),
             default('#pop'),
         ],
         'lifetime': [
             (r"(static|_)", Name.Builtin),
-            (r"[a-zA-Z_]+\w*", Name.Attribute),
+            (r"[^\W\d]\w*", Name.Attribute),
             default('#pop'),
         ],
         'number_lit': [
