@@ -257,6 +257,61 @@ def test_get_background_style_defs_uses_multiple_css_prefixes():
     assert lines[1].startswith(".foo , .bar {")
 
 
+@pytest.mark.parametrize('cssclass', ['highlight', 'embedded_code'])
+def test_get_style_defs_cssclass_background(cssclass):
+    class TestStyle(Style):
+        background_color = '#112233'
+        styles = {Token.Text: '#aabbcc'}
+
+    formatter = HtmlFormatter(style=TestStyle, cssclass=cssclass, classprefix='token_')
+    output = StringIO()
+    formatter.format(PythonLexer().get_tokens('print("hello")\n'), output)
+    assert f'<div class="{cssclass}">' in output.getvalue()
+
+    stylesheet = formatter.get_style_defs()
+    assert f'.{cssclass} {{ background: #112233; color: #ABC }}' in stylesheet
+    assert stylesheet == formatter.get_style_defs('.' + cssclass)
+
+
+@pytest.mark.parametrize(
+    'options, selector, expected_selector',
+    [
+        ({}, None, None),
+        ({'cssclass': ''}, None, None),
+        ({'cssclass': 'embedded_code'}, '', None),
+        ({'cssclass': 'embedded_code'}, [], None),
+        ({'cssclass': 'embedded_code'}, '.other', '.other'),
+        ({'cssclass': 'embedded_code'}, ['.first', '.second'], '.first , .second'),
+    ],
+)
+def test_get_style_defs_cssclass_background_selector(options, selector, expected_selector):
+    formatter = HtmlFormatter(**options)
+    lines = formatter.get_background_style_defs(selector)
+    background_rules = [line for line in lines if '{ background:' in line]
+    if expected_selector is None:
+        assert background_rules == []
+    else:
+        assert len(background_rules) == 1
+        assert background_rules[0].startswith(expected_selector + ' { background:')
+
+
+@pytest.mark.parametrize('selector', [None, '.other'])
+def test_get_style_defs_cssclass_background_disabled(selector):
+    formatter = HtmlFormatter(cssclass='embedded_code', nobackground=True)
+    assert all('{ background:' not in line
+               for line in formatter.get_background_style_defs(selector))
+
+
+@pytest.mark.parametrize('selector', [None, '.other'])
+def test_get_style_defs_cssclass_background_missing(selector):
+    class NoBackgroundStyle(Style):
+        background_color = None
+
+    formatter = HtmlFormatter(cssclass='embedded_code', style=NoBackgroundStyle)
+    assert all('{ background:' not in line
+               for line in formatter.get_background_style_defs(selector))
+
+
 def test_unicode_options():
     fmt = HtmlFormatter(title='Föö',
                         cssclass='bär',
