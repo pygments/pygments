@@ -1,0 +1,55 @@
+---input---
+.grid {
+    grid-template-columns: 1fr minmax(10rem, 2fr);
+    height: 100dvh;
+    width: calc(100cqw - 2lh);
+}
+
+---tokens---
+'.'           Punctuation
+'grid'        Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n    '      Text.Whitespace
+'grid-template-columns' Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'fr'          Keyword.Type
+' '           Text.Whitespace
+'minmax'      Name.Function
+'('           Punctuation
+'10'          Literal.Number.Integer
+'rem'         Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'fr'          Keyword.Type
+')'           Punctuation
+';'           Punctuation
+'\n    '      Text.Whitespace
+'height'      Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'100'         Literal.Number.Integer
+'dvh'         Keyword.Type
+';'           Punctuation
+'\n    '      Text.Whitespace
+'width'       Keyword
+':'           Punctuation
+' '           Text.Whitespace
+'calc'        Name.Builtin
+'('           Punctuation
+'100'         Literal.Number.Integer
+'cqw'         Keyword.Type
+' '           Text.Whitespace
+'-'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'lh'          Keyword.Type
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
