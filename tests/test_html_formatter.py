@@ -351,3 +351,17 @@ def test_html_escape_attributes():
     assert fmt_none.lineseparator == ''
     assert fmt_none.lineanchors == ''
     assert fmt_none.linespans == ''
+
+
+def test_linkurls():
+    fmt = HtmlFormatter(nowrap=True, linkurls=True)
+    outfile = StringIO()
+    fmt.format([(Token.Text, 'See https://example.org/a?b=1&c=2.\n'),
+                (Token.String, '"https://example.org/"onmouseover=x <b>\n')],
+               outfile)
+    assert outfile.getvalue() == (
+        'See <a href="https://example.org/a?b=1&amp;c=2">'
+        'https://example.org/a?b=1&amp;c=2</a>.\n'
+        '<span class="s">"<a href="https://example.org/">https://example.org/</a>'
+        '"onmouseover=x &lt;b&gt;</span>\n'
+    )
