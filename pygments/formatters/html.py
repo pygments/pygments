@@ -532,6 +532,8 @@ class HtmlFormatter(Formatter):
         return lines
 
     def get_background_style_defs(self, arg=None):
+        if arg is None and 'cssclass' in self.options and self.cssclass:
+            arg = '.' + self.cssclass
         prefix = self.get_css_prefix(arg)
         bg_color = self.style.background_color
         hl_color = self.style.highlight_color
