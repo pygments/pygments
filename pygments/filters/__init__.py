@@ -62,6 +62,40 @@ def _replace_special(ttype, value, regex, specialttype,
         yield ttype, value[last:]
 
 
+_trailing_re = re.compile(r'[ \t]+(?=\n|\Z)')
+
+
+def _split_trailing(stream):
+    """Split the spaces and tabs at the end of each line off the stream.
+
+    Yields ``(ttype, value, trailing)``, where *trailing* is true for them.
+    """
+    pending = []
+    for ttype, value in stream:
+        if pending:
+            rest = value.lstrip(' \t')
+            if not rest:
+                pending.append((ttype, value))
+                continue
+            for pending_ttype, pending_value in pending:
+                yield pending_ttype, pending_value, rest[0] == '\n'
+            pending = []
+        last = 0
+        for match in _trailing_re.finditer(value):
+            start, end = match.start(), match.end()
+            if start != last:
+                yield ttype, value[last:start], False
+            if end == len(value):
+                pending.append((ttype, value[start:]))
+            else:
+                yield ttype, value[start:end], True
+            last = end
+        if last != len(value):
+            yield ttype, value[last:], False
+    for ttype, value in pending:
+        yield ttype, value, True
+
+
 class CodeTagFilter(Filter):
     """Highlight special code tags in comments and docstrings.
 
@@ -815,6 +849,12 @@ class VisibleWhitespaceFilter(Filter):
       If true, give whitespace the special `Whitespace` token type.  This allows
       styling the visible whitespace differently (e.g. greyed out), but it can
       disrupt background colors.  The default is ``True``.
+    `trailing` : bool
+      If true, only spaces and tabs at the end of a line are replaced (and,
+      with `wstokentype`, given the `Whitespace` token type).  The default is
+      ``False``.
+
+      .. versionadded:: 2.22
 
     .. versionadded:: 0.8
     """
@@ -835,13 +875,19 @@ class VisibleWhitespaceFilter(Filter):
         if self.newlines:
             self.newlines += '\n'
         self.wstt = get_bool_opt(options, 'wstokentype', True)
+        self.trailing = get_bool_opt(options, 'trailing', False)
 
     def filter(self, lexer, stream):
+        if self.trailing:
+            stream = _split_trailing(stream)
+        else:
+            stream = ((ttype, value, True) for ttype, value in stream)
         if self.wstt:
             spaces = self.spaces or ' '
             tabs = self.tabs or '\t'
             newlines = self.newlines or '\n'
             regex = re.compile(r'\s')
+            newline_regex = re.compile(r'\n')
 
             def replacefunc(wschar):
                 if wschar == ' ':
@@ -852,16 +898,17 @@ class VisibleWhitespaceFilter(Filter):
                     return newlines
                 return wschar
 
-            for ttype, value in stream:
-                yield from _replace_special(ttype, value, regex, Whitespace,
-                                            replacefunc)
+            for ttype, value, visible in stream:
+                yield from _replace_special(ttype, value,
+                                            regex if visible else newline_regex,
+                                            Whitespace, replacefunc)
         else:
             spaces, tabs, newlines = self.spaces, self.tabs, self.newlines
             # simpler processing
-            for ttype, value in stream:
-                if spaces:
+            for ttype, value, visible in stream:
+                if spaces and visible:
                     value = value.replace(' ', spaces)
-                if tabs:
+                if tabs and visible:
                     value = value.replace('\t', tabs)
                 if newlines:
                     value = value.replace('\n', newlines)
