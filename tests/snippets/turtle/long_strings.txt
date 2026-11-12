@@ -1,0 +1,47 @@
+---input---
+<urn:s> <urn:p> """first "line"
+second ""line"""@en ;
+  <urn:q> '''next \'quote''' .
+<urn:after> <urn:p> """last""" .
+
+---tokens---
+'<urn:s>'     Name.Variable
+' '           Text
+'<urn:p>'     Name.Variable
+' '           Text
+'"""'         Literal.String
+'first '      Literal.String
+'"'           Literal.String
+'line'        Literal.String
+'"'           Literal.String
+'\nsecond '   Literal.String
+'""'          Literal.String
+'line'        Literal.String
+'"""'         Literal.String
+'@'           Operator
+'en'          Generic.Emph
+' '           Text
+';'           Punctuation
+'\n  '        Text
+'<urn:q>'     Name.Variable
+' '           Text
+"'''"         Literal.String
+'next '       Literal.String
+'\\'          Literal.String
+"'"           Literal.String
+'quote'       Literal.String
+"'''"         Literal.String
+' '           Text
+'.'           Punctuation
+'\n'          Text
+
+'<urn:after>' Name.Variable
+' '           Text
+'<urn:p>'     Name.Variable
+' '           Text
+'"""'         Literal.String
+'last'        Literal.String
+'"""'         Literal.String
+' '           Text
+'.'           Punctuation
+'\n'          Text

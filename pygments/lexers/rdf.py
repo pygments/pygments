@@ -143,7 +143,7 @@ class SparqlLexer(RegexLexer):
         ],
         'triple-double-quoted-string': [
             (r'"""', String, 'end-of-string'),
-            (r'[^\\]+', String),
+            (r'[^"\\]+|"{1,2}', String),
             (r'\\', String, 'string-escape'),
         ],
         'single-double-quoted-string': [
@@ -153,7 +153,7 @@ class SparqlLexer(RegexLexer):
         ],
         'triple-single-quoted-string': [
             (r"'''", String, 'end-of-string'),
-            (r'[^\\]+', String),
+            (r"[^'\\]+|'{1,2}", String),
             (r'\\', String.Escape, 'string-escape'),
         ],
         'single-single-quoted-string': [
@@ -280,7 +280,7 @@ class TurtleLexer(RegexLexer):
         ],
         'triple-double-quoted-string': [
             (r'"""', String, 'end-of-string'),
-            (r'[^\\]+(?=""")', String),
+            (r'[^"\\]+|"{1,2}', String),
             (r'\\', String, 'string-escape'),
         ],
         'single-double-quoted-string': [
@@ -290,7 +290,7 @@ class TurtleLexer(RegexLexer):
         ],
         'triple-single-quoted-string': [
             (r"'''", String, 'end-of-string'),
-            (r"[^\\]+(?=''')", String),
+            (r"[^'\\]+|'{1,2}", String),
             (r'\\', String, 'string-escape'),
         ],
         'single-single-quoted-string': [
@@ -437,7 +437,7 @@ class ShExCLexer(RegexLexer):
         ],
         'triple-double-quoted-string': [
             (r'"""', String, 'end-of-string'),
-            (r'[^\\]+', String),
+            (r'[^"\\]+|"{1,2}', String),
             (r'\\', String, 'string-escape'),
         ],
         'single-double-quoted-string': [
@@ -447,7 +447,7 @@ class ShExCLexer(RegexLexer):
         ],
         'triple-single-quoted-string': [
             (r"'''", String, 'end-of-string'),
-            (r'[^\\]+', String),
+            (r"[^'\\]+|'{1,2}", String),
             (r'\\', String.Escape, 'string-escape'),
         ],
         'single-single-quoted-string': [
