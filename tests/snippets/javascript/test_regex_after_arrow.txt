@@ -1,0 +1,57 @@
+---input---
+const f = () => /ab\/c/gi;
+const g = x => /^a/.test(x);
+const h = [.../ab/.exec(s)];
+
+---tokens---
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'f'           Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'=>'          Punctuation
+' '           Text.Whitespace
+'/ab\\/c/gi'  Literal.String.Regex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'g'           Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'x'           Name.Other
+' '           Text.Whitespace
+'=>'          Punctuation
+' '           Text.Whitespace
+'/^a/'        Literal.String.Regex
+'.'           Punctuation
+'test'        Name.Other
+'('           Punctuation
+'x'           Name.Other
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'h'           Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'...'         Punctuation
+'/ab/'        Literal.String.Regex
+'.'           Punctuation
+'exec'        Name.Other
+'('           Punctuation
+'s'           Name.Other
+')'           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
