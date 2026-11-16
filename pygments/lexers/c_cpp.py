@@ -388,6 +388,10 @@ class CppLexer(CFamilyLexer):
             inherit,
         ],
         'root': [
+            # An access specifier consumes its colon and stays in root, so the
+            # first member declaration is recognized like later ones.
+            (r'(public|protected|private)(' + CFamilyLexer._possible_comments + r')(:)',
+             bygroups(Keyword, using(this, state='whitespace'), Operator)),
             inherit,
             # C++ Microsoft-isms
             (words(('virtual_inheritance', 'uuidof', 'super', 'extends', 'single_inheritance',
