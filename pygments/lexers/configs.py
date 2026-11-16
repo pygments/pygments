@@ -184,12 +184,18 @@ class RegeditLexer(RegexLexer):
         ],
         'value': [
             (r'-', Operator, '#pop'),  # delete value
-            (r'(dword|hex(?:\([0-9a-fA-F]\))?)(:)([0-9a-fA-F,]+)',
+            (r'(dword)(:)([0-9a-fA-F,]+)',
              bygroups(Name.Variable, Punctuation, Number), '#pop'),
-            # As far as I know, .reg files do not support line continuation.
+            (r'(hex(?:\([0-9a-fA-F]\))?)(:)',
+             bygroups(Name.Variable, Punctuation), ('#pop', 'hex-value')),
             (r'.+', String, '#pop'),
             default('#pop'),
-        ]
+        ],
+        'hex-value': [
+            (r'[0-9a-fA-F,]+', Number),
+            (r'(\\)(\n[ \t]*)', bygroups(Punctuation, Whitespace)),
+            default('#pop'),
+        ],
     }
 
     def analyse_text(text):

@@ -1,0 +1,37 @@
+---input---
+"Binary"=hex:01,02,\
+  03,04,\
+  05,06
+"MultiString"=hex(7):\
+  41,00,00,00,00,00
+"Next"=dword:00000001
+
+---tokens---
+'"Binary"'    Name.Attribute
+'='           Operator
+'hex'         Name.Variable
+':'           Punctuation
+'01,02,'      Literal.Number
+'\\'          Punctuation
+'\n  '        Text.Whitespace
+'03,04,'      Literal.Number
+'\\'          Punctuation
+'\n  '        Text.Whitespace
+'05,06'       Literal.Number
+'\n'          Text.Whitespace
+
+'"MultiString"' Name.Attribute
+'='           Operator
+'hex(7)'      Name.Variable
+':'           Punctuation
+'\\'          Punctuation
+'\n  '        Text.Whitespace
+'41,00,00,00,00,00' Literal.Number
+'\n'          Text.Whitespace
+
+'"Next"'      Name.Attribute
+'='           Operator
+'dword'       Name.Variable
+':'           Punctuation
+'00000001'    Literal.Number
+'\n'          Text.Whitespace
