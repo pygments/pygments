@@ -18,8 +18,56 @@ from pygments.lexers import (
 )
 from pygments.lexers.basic import CbmBasicV2Lexer
 from pygments.lexers.ecl import ECLLexer
+from pygments.lexers.python import PythonLexer
 
 TESTDIR = Path(__file__).resolve().parent
+
+
+@pytest.mark.parametrize('code', [
+    'def my_func(param1, param2):\n  print(f"{param1} {param2}")',
+    'def greet(name):\n    return name',
+    'async def greet(name):\n    return name',
+    'def greet(name: str) -> str:\n    return name',
+    '@decorator\ndef greet(name):\n    return name',
+    'class Greeter:\n    def greet(self, name):\n        return name',
+    'def grüßen(name):\n    return name',
+    'def greet(name):\r\n    return name\r\n',
+    'def greet(name):  # A greeting\n    return name',
+])
+def test_guess_python_function_without_imports(code):
+    assert isinstance(guess_lexer(code), PythonLexer)
+
+
+@pytest.mark.parametrize('code', [
+    'def greet(name)\n  name\nend',
+    'function greet(name) { return name; }',
+    'greet(name)',
+    'The def greet(name): example uses a greeting.',
+    'def greet(name: String): String = name',
+    'class Greeter {\n    def greet(name: String): String = name\n}',
+    'def greet(name: String): String =\n  name',
+    'def greet(name: String): Unit',
+])
+def test_python_function_detection_requires_python_signature(code):
+    assert PythonLexer.analyse_text(code) == 0
+
+
+def test_scdoc_header_outweighs_python_function_example():
+    code = 'example(1)\n\n```\ndef greet(name):\n    return name\n```\n'
+    assert guess_lexer(code).name == 'scdoc'
+
+
+@pytest.mark.parametrize('code', [
+    '#!/usr/bin/python3\ndef greet(name):\n    return name',
+    'import os\ndef greet(name):\n    return name',
+])
+def test_python_strong_guess_signals_unchanged(code):
+    assert PythonLexer.analyse_text(code) == 1.0
+
+
+def test_ruby_shebang_outweighs_python_function_example():
+    code = '#!/usr/bin/ruby\n# Python example\ndef greet(name):\n    return name'
+    assert guess_lexer(code).name == 'Ruby'
 
 
 def get_input(lexer, filename):
