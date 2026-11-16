@@ -9,6 +9,7 @@
 """
 
 import keyword
+import re
 
 from pygments.lexer import DelegatingLexer, RegexLexer, include, \
     bygroups, using, default, words, combined, this
@@ -415,8 +416,15 @@ class PythonLexer(RegexLexer):
     }
 
     def analyse_text(text):
-        return shebang_matches(text, r'pythonw?(3(\.\d)?)?') or \
-            'import ' in text[:1000]
+        if shebang_matches(text, r'pythonw?(3(\.\d)?)?') or 'import ' in text[:1000]:
+            return 1.0
+        if re.search(
+            r'^[ \t]*(?:async[ \t]+)?def[ \t]+\w+[ \t]*\(.*\)'
+            r'[ \t]*(?:->[^\n:]+)?[ \t]*:[ \t]*(?:#[^\r\n]*)?\r?$',
+            text[:1000], re.MULTILINE
+        ):
+            return 0.4
+        return 0.0
 
 
 Python3Lexer = PythonLexer
