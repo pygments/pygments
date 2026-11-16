@@ -1,0 +1,60 @@
+---input---
+$a -in $b
+$a -notin $b
+$a -cin $b
+$a -cnotin $b
+$a -iin $b
+$a -inotin $b
+Get-ChildItem -Include *.txt
+
+---tokens---
+'$a'          Name.Variable
+' '           Text
+'-in'         Operator
+' '           Text
+'$b'          Name.Variable
+'\n'          Text
+
+'$a'          Name.Variable
+' '           Text
+'-notin'      Operator
+' '           Text
+'$b'          Name.Variable
+'\n'          Text
+
+'$a'          Name.Variable
+' '           Text
+'-cin'        Operator
+' '           Text
+'$b'          Name.Variable
+'\n'          Text
+
+'$a'          Name.Variable
+' '           Text
+'-cnotin'     Operator
+' '           Text
+'$b'          Name.Variable
+'\n'          Text
+
+'$a'          Name.Variable
+' '           Text
+'-iin'        Operator
+' '           Text
+'$b'          Name.Variable
+'\n'          Text
+
+'$a'          Name.Variable
+' '           Text
+'-inotin'     Operator
+' '           Text
+'$b'          Name.Variable
+'\n'          Text
+
+'Get-ChildItem' Name.Builtin
+' '           Text
+'-Include'    Name
+' '           Text
+'*'           Punctuation
+'.'           Punctuation
+'txt'         Name
+'\n'          Text
