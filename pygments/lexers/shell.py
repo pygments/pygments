@@ -660,12 +660,12 @@ class PowerShellLexer(RegexLexer):
         'valuefromremainingarguments helpmessage try catch throw').split()
 
     operators = (
-        'and as band bnot bor bxor casesensitive ccontains ceq cge cgt cle '
-        'clike clt cmatch cne cnotcontains cnotlike cnotmatch contains '
-        'creplace eq exact f file ge gt icontains ieq ige igt ile ilike ilt '
-        'imatch ine inotcontains inotlike inotmatch ireplace is isnot le like '
-        'lt match ne not notcontains notlike notmatch or regex replace '
-        'wildcard').split()
+        'and as band bnot bor bxor casesensitive ccontains ceq cge cgt cin cle '
+        'clike clt cmatch cne cnotcontains cnotin cnotlike cnotmatch contains '
+        'creplace eq exact f file ge gt icontains ieq ige igt iin ile ilike '
+        'ilt imatch in ine inotcontains inotin inotlike inotmatch ireplace '
+        'is isnot le like lt match ne not notcontains notin notlike notmatch '
+        'or regex replace wildcard').split()
 
     verbs = (
         'write where watch wait use update unregister unpublish unprotect '
