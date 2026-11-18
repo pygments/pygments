@@ -37,6 +37,17 @@ def test_guess_lexer_brainfuck():
     assert lx.__class__.__name__ == 'BrainfuckLexer'
 
 
+@pytest.mark.parametrize('header', ['#compdef xcodebuild', '#compdef\t-k complete-word ^X'])
+def test_guess_zsh_completion(header):
+    lexer = guess_lexer(f'{header}\n_arguments "*:file:_files"\n')
+    assert type(lexer) is find_lexer_class_by_name('zsh')
+
+
+@pytest.mark.parametrize('text', ['#compdefinition xcodebuild', '# comment\n#compdef xcodebuild'])
+def test_zsh_completion_requires_initial_directive(text):
+    assert not get_lexer_by_name('zsh').analyse_text(text)
+
+
 def test_guess_lexer_singularity():
     lx = guess_lexer(get_input('singularity', 'Singularity'))
     assert lx.__class__.__name__ == 'SingularityLexer'
