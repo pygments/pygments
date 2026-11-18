@@ -312,6 +312,10 @@ class LatexFormatter(Formatter):
             elif ndef['bgcolor']:
                 cmndef += (r'\def\$$@bc##1{{{{\setlength{{\fboxsep}}{{0pt}}'
                            r'\colorbox[rgb]{{{}}}{{\strut ##1}}}}}}'.format(rgbcolor(ndef['bgcolor'])))
+            elif ttype.parent is not None:
+                parent = self.style.style_for_token(ttype.parent)
+                if parent['bgcolor'] or parent['border']:
+                    cmndef += r'\let\$$@bc=\relax'
             if cmndef == '':
                 continue
             cmndef = cmndef.replace('$$', cp)

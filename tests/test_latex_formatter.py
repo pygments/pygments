@@ -17,10 +17,49 @@ import pytest
 from pygments.formatters import LatexFormatter
 from pygments.formatters.latex import LatexEmbeddedLexer
 from pygments.lexers import PythonLexer, PythonConsoleLexer
+from pygments.style import Style
 from pygments.token import Token
 
 TESTDIR = path.dirname(path.abspath(__file__))
 TESTFILE = path.join(TESTDIR, 'test_latex_formatter.py')
+
+
+@pytest.mark.parametrize('token, name', [
+    (Token.String.Char, 'sc'),
+    (Token.String.Doc, 'sd'),
+    (Token.String.Symbol, 'ss'),
+])
+def test_colorful_transparent_background(token, name):
+    formatter = LatexFormatter(style='colorful', nowrap=True)
+    output = StringIO()
+    formatter.format([(token, 'text')], output)
+    assert output.getvalue() == rf'\PY{{l+s+{name}}}{{text}}'
+
+    definitions = formatter.get_style_defs().splitlines()
+    parent = next(line for line in definitions
+                  if line.startswith(r'\@namedef{PY@tok@s}'))
+    child = next(line for line in definitions
+                 if line.startswith(rf'\@namedef{{PY@tok@{name}}}'))
+    assert r'\colorbox' in parent
+    assert r'\let\PY@bc=\relax' in child
+    inherited = next(line for line in definitions
+                     if line.startswith(r'\@namedef{PY@tok@s2}'))
+    assert r'\colorbox' in inherited
+    assert r'\let\PY@bc=\relax' not in inherited
+
+
+@pytest.mark.parametrize('child_style', ['bg:', 'noinherit'])
+@pytest.mark.parametrize('commandprefix', ['PY', 'Custom'])
+def test_clear_background_without_other_styles(child_style, commandprefix):
+    class TransparentStyle(Style):
+        styles = {
+            Token.String: 'bg:#ffffff',
+            Token.String.Doc: child_style,
+        }
+
+    formatter = LatexFormatter(style=TransparentStyle, commandprefix=commandprefix)
+    definitions = formatter.get_style_defs().splitlines()
+    assert rf'\@namedef{{{commandprefix}@tok@sd}}{{\let\{commandprefix}@bc=\relax}}' in definitions
 
 
 def test_correct_output():
