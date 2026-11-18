@@ -354,3 +354,16 @@ Aggregate  (cost=2538929.68..2538929.69 rows=1 width=48) (actual rows=1 loops=1)
 	                                I/O Timings: shared read=11377.821 write=46.334
 	                                WAL: records=39261 fpi=19879 bytes=163163801
 	Settings: effective_cache_size = '11660MB', jit = 'off', random_page_cost = '1.2', work_mem = '485MB'
+
+Nested Loop Left Join  (cost=0.28..576.01 rows=1404 width=627) (actual time=0.020..4.373 rows=1405.00 loops=1)
+  Join Filter: (company.id = ref.id)
+  Rows Removed by Join Filter: 8301
+  Buffers: shared hit=1206
+  ->  Index Scan using company_pkey on company  (cost=0.28..374.96 rows=1404 width=425) (actual time=0.006..2.169 rows=1405.00 loops=1)
+        Index Searches: 1
+        Buffers: shared hit=1205
+  ->  Materialize  (cost=0.00..1.15 rows=10 width=202) (actual time=0.000..0.000 rows=6.53 loops=1405)
+        Storage: Memory  Maximum Storage: 18kB
+        Buffers: shared hit=1
+        ->  Seq Scan on ref  (cost=0.00..1.10 rows=10 width=202) (actual time=0.007..0.010 rows=10.00 loops=1)
+              Buffers: shared hit=1

@@ -403,7 +403,8 @@ class PostgresExplainLexer(RegexLexer):
                     'Batches', 'originally', 'row', 'rows', 'Hits', 'Misses',
                     'Evictions', 'Overflows', 'Planned Partitions', 'Estimates',
                     'capacity', 'distinct keys', 'lookups', 'hit percent',
-                    'Index Searches', 'Storage', 'Disk Maximum Storage'), suffix=r'\b'),
+                    'Index Searches', 'Storage', 'Disk Maximum Storage',
+                    'Memory  Maximum Storage'), suffix=r'\b'),
              Comment.Single),
 
             (r'(hit|read|dirtied|written|write|time|calls|records|bytes|allocated|used|output|format|fpi)(=)', bygroups(Comment.Single, Operator)),
