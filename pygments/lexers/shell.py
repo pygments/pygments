@@ -122,6 +122,8 @@ class BashLexer(RegexLexer):
     def analyse_text(text):
         if shebang_matches(text, r'(ba|z|)sh'):
             return 1
+        if text.startswith(('#compdef ', '#compdef\t')):
+            return 1
         if text.startswith('$ '):
             return 0.2
 
