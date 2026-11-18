@@ -1,0 +1,79 @@
+---input---
+%ifos linux
+  %elifarch aarch64
+%elifos freebsd
+%elif 1
+%else
+%endif
+%description
+%ifnos linux
+x %elif
+%endif
+%prep
+%changelog
+%if 1
+%endif#done
+%elifx
+
+---tokens---
+'%ifos'       Comment.Preproc
+' linux'      Text
+'\n  '        Text.Whitespace
+'%elifarch'   Comment.Preproc
+' aarch64'    Text
+'\n'          Text.Whitespace
+
+'%elifos'     Comment.Preproc
+' freebsd'    Text
+'\n'          Text.Whitespace
+
+'%elif'       Comment.Preproc
+' 1'          Text
+'\n'          Text.Whitespace
+
+'%else'       Comment.Preproc
+'\n'          Text.Whitespace
+
+'%endif'      Comment.Preproc
+'\n'          Text.Whitespace
+
+'%description' Name.Decorator
+'\n'          Text.Whitespace
+
+'%ifnos'      Comment.Preproc
+' linux'      Text
+'\n'          Text.Whitespace
+
+'x'           Text
+' '           Text.Whitespace
+'%'           Text
+'e'           Text
+'l'           Text
+'i'           Text
+'f'           Text
+'\n'          Text.Whitespace
+
+'%endif'      Comment.Preproc
+'\n'          Text.Whitespace
+
+'%prep'       Name.Decorator
+'\n'          Text.Whitespace
+
+'%changelog'  Name.Decorator
+'\n'          Text.Whitespace
+
+'%if'         Comment.Preproc
+' 1'          Text
+'\n'          Text.Whitespace
+
+'%endif'      Comment.Preproc
+'#done'       Text
+'\n'          Text.Whitespace
+
+'%'           Text
+'e'           Text
+'l'           Text
+'i'           Text
+'f'           Text
+'x'           Text
+'\n'          Text.Whitespace

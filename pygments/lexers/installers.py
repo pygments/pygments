@@ -161,16 +161,18 @@ class RPMSpecLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'#.*$', Comment),
+            include('conditionals'),
             include('basic'),
         ],
         'description': [
+            include('conditionals'),
             (r'^(%' + _directives + ')(.*)$',
              bygroups(Name.Decorator, Text), '#pop'),
             (r'\s+', Whitespace),
             (r'.', Text),
         ],
         'changelog': [
+            include('conditionals'),
             (r'\*.*$', Generic.Subheading),
             (r'^(%' + _directives + ')(.*)$',
              bygroups(Name.Decorator, Text), '#pop'),
@@ -184,12 +186,13 @@ class RPMSpecLexer(RegexLexer):
             (r'.', String.Double),
         ],
         'basic': [
+            (r'#.*$', Comment),
             include('macro'),
             (r'(?i)^(Name|Version|Release|Epoch|Summary|Group|License|Packager|'
              r'Vendor|Icon|URL|Distribution|Prefix|Patch[0-9]*|Source[0-9]*|'
              r'Requires\(?[a-z]*\)?|[a-z]+Req|Obsoletes|Suggests|Provides|Conflicts|'
              r'Build[a-z]+|[a-z]+Arch|Auto[a-z]+)(:)(.*)$',
-             bygroups(Generic.Heading, Punctuation, using(this))),
+             bygroups(Generic.Heading, Punctuation, using(this, state='basic'))),
             (r'^%description', Name.Decorator, 'description'),
             (r'^%changelog', Name.Decorator, 'changelog'),
             (r'^(%' + _directives + ')(.*)$', bygroups(Name.Decorator, Text)),
@@ -202,11 +205,15 @@ class RPMSpecLexer(RegexLexer):
             (r'\s+', Whitespace),
             (r'.', Text),
         ],
+        'conditionals': [
+            # Consume leading whitespace here so indentation after a newline is preserved.
+            (r'((?:\s*\n|^)[ \t]*)(%(?:if(?:n?(?:arch|os))?|elif(?:arch|os)?|elseif)'
+             r'(?=[ \t]|$)|%(?:else|endif)(?=[ \t#]|$))(.*)$',
+             bygroups(Whitespace, Comment.Preproc, Text)),
+        ],
         'macro': [
             (r'%define.*$', Comment.Preproc),
             (r'%\{\!\?.*%define.*\}', Comment.Preproc),
-            (r'(%(?:if(?:n?arch)?|else(?:if)?|endif))(.*)$',
-             bygroups(Comment.Preproc, Text)),
         ],
         'interpol': [
             (r'%\{?__[a-z_]+\}?', Name.Function),
