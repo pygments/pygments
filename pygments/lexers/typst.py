@@ -8,7 +8,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from pygments.lexer import RegexLexer, words, bygroups, include
+from pygments.lexer import RegexLexer, default, words, bygroups, include
 from pygments.token import Comment, Keyword, Name, String, Punctuation, \
     Whitespace, Generic, Operator, Number, Text
 from pygments.util import get_choice_opt
@@ -47,15 +47,15 @@ class TypstLexer(RegexLexer):
         ],
         # common cases going from math/markup into code mode
         'into_code': [
-            (words(('#let', '#set', '#show'), suffix=r'\b'), Keyword.Declaration, 'inline_code'),
-            (words(('#import', '#include'), suffix=r'\b'), Keyword.Namespace, 'inline_code'),
-            (words(('#if', '#for', '#while', '#export'), suffix=r'\b'), Keyword.Reserved, 'inline_code'),
+            (words(('#let', '#set', '#show'), suffix=r'\b'), Keyword.Declaration, 'line_code'),
+            (words(('#import', '#include'), suffix=r'\b'), Keyword.Namespace, 'line_code'),
+            (words(('#if', '#for', '#while', '#export'), suffix=r'\b'), Keyword.Reserved, 'line_code'),
             (r'#\{', Punctuation, 'code'),
             (r'#\(', Punctuation, 'code'),
-            (r'(#[a-zA-Z_][a-zA-Z0-9_-]*)(\[)', bygroups(Name.Function, Punctuation), 'markup'),
-            (r'(#[a-zA-Z_][a-zA-Z0-9_-]*)(\()', bygroups(Name.Function, Punctuation), 'code'),
+            (r'(#[a-zA-Z_][a-zA-Z0-9_-]*)(\[)', bygroups(Name.Function, Punctuation), ('inline_code', 'markup')),
+            (r'(#[a-zA-Z_][a-zA-Z0-9_-]*)(\()', bygroups(Name.Function, Punctuation), ('inline_code', 'code')),
             (words(('#true', '#false', '#none', '#auto'), suffix=r'\b'), Keyword.Constant),
-            (r'#[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable),
+            (r'#[a-zA-Z_][a-zA-Z0-9_]*', Name.Variable, 'inline_code'),
             (r'#0x[0-9a-fA-F]+', Number.Hex),
             (r'#0b[01]+', Number.Bin),
             (r'#0o[0-7]+', Number.Oct),
@@ -115,15 +115,15 @@ class TypstLexer(RegexLexer):
             (r'\)|\}', Punctuation, '#pop'),
             (r'"[^"]*"', String.Double),
             (r',|\.{1,2}', Punctuation),
-            (r'=', Operator),
             (words(('and', 'or', 'not'), suffix=r'\b'), Operator.Word),
-            (r'=>|<=|==|!=|>|<|-=|\+=|\*=|/=|\+|-|\\|\*', Operator), # comparisons
+            (r'=>|<=|==?|!=|>|<|-=|\+=|\*=|/=|\+|-|\\|\*', Operator), # comparisons
             (r'([a-zA-Z_][a-zA-Z0-9_-]*)(:)', bygroups(Name.Variable, Punctuation)),
             (r'([a-zA-Z_][a-zA-Z0-9_-]*)(\()', bygroups(Name.Function, Punctuation), 'code'),
+            (r'([a-zA-Z_][a-zA-Z0-9_-]*)(\[)', bygroups(Name.Function, Punctuation), 'markup'),
             (words(('as', 'break', 'export', 'continue', 'else', 'for', 'if',
                     'in', 'return', 'while'), suffix=r'\b'),
              Keyword.Reserved),
-             (words(('import', 'include'), suffix=r'\b'), Keyword.Namespace),
+            (words(('import', 'include'), suffix=r'\b'), Keyword.Namespace),
             (words(('auto', 'none', 'true', 'false'), suffix=r'\b'), Keyword.Constant),
             (r'([0-9.]+)(mm|pt|cm|in|em|fr|%)', bygroups(Number, Keyword.Reserved)),
             (r'0x[0-9a-fA-F]+', Number.Hex),
@@ -140,10 +140,20 @@ class TypstLexer(RegexLexer):
             (r':', Punctuation), # from imports like "import a: b" or "show: text.with(..)"
         ],
         'inline_code': [
-            (r';\b', Punctuation, '#pop'),
+            (r'\(', Punctuation, 'code'),
+            (r'(\.)([a-zA-Z_][a-zA-Z0-9_-]*)(\()', bygroups(Punctuation, Name.Function, Punctuation), 'code'),
+            (r'(\.)([a-zA-Z_][a-zA-Z0-9_-]*)(\[)', bygroups(Punctuation, Name.Function, Punctuation), 'markup'),
+            (r'(\.)([a-zA-Z_][a-zA-Z0-9_-]*)', bygroups(Punctuation, Name.Function)),
+            default('#pop')
+        ],
+        # Inline code (initiated by #) that could have spaces.
+        # This is wrong in some cases, because it can't detect when the expression is done exactly.
+        # For most code, stopping after a newline or a semicolon is enough.
+        'line_code': [
+            (r';', Punctuation, '#pop'),
             (r'\n', Whitespace, '#pop'),
             include('code'),
-        ],
+        ]
     }
 
     def __init__(self, **options):
