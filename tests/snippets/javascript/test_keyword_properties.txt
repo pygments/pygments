@@ -1,0 +1,208 @@
+---input---
+promise.catch(handler).finally(cleanup);
+module.default;
+object . /* comment */ catch(handler);
+object.
+    catch(handler);
+object.// comment
+    catch(handler);
+object?.catch(handler);
+object?.[key];
+object.return / divisor / 2;
+object.function(handler);
+object.constructor;
+object.true;
+object.delete;
+object.Array;
+const message = `${object.default}`;
+
+try { run(); } catch (error) { throw error; }
+const fraction = .5;
+const copied = [...items];
+
+---tokens---
+'promise'     Name.Other
+'.'           Punctuation
+'catch'       Name.Other
+'('           Punctuation
+'handler'     Name.Other
+')'           Punctuation
+'.'           Punctuation
+'finally'     Name.Other
+'('           Punctuation
+'cleanup'     Name.Other
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'module'      Name.Other
+'.'           Punctuation
+'default'     Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'object'      Name.Other
+' '           Text.Whitespace
+'.'           Punctuation
+' '           Text.Whitespace
+'/* comment */' Comment.Multiline
+' '           Text.Whitespace
+'catch'       Name.Other
+'('           Punctuation
+'handler'     Name.Other
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'object'      Name.Other
+'.'           Punctuation
+'\n    '      Text.Whitespace
+'catch'       Name.Other
+'('           Punctuation
+'handler'     Name.Other
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'object'      Name.Other
+'.'           Punctuation
+'// comment'  Comment.Single
+'\n    '      Text.Whitespace
+'catch'       Name.Other
+'('           Punctuation
+'handler'     Name.Other
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'object'      Name.Other
+'?'           Operator
+'.'           Punctuation
+'catch'       Name.Other
+'('           Punctuation
+'handler'     Name.Other
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'object'      Name.Other
+'?'           Operator
+'.'           Punctuation
+'['           Punctuation
+'key'         Name.Other
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'object'      Name.Other
+'.'           Punctuation
+'return'      Name.Other
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'divisor'     Name.Other
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'object'      Name.Other
+'.'           Punctuation
+'function'    Name.Other
+'('           Punctuation
+'handler'     Name.Other
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'object'      Name.Other
+'.'           Punctuation
+'constructor' Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'object'      Name.Other
+'.'           Punctuation
+'true'        Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'object'      Name.Other
+'.'           Punctuation
+'delete'      Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'object'      Name.Other
+'.'           Punctuation
+'Array'       Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'message'     Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'`'           Literal.String.Backtick
+'${'          Literal.String.Interpol
+'object'      Name.Other
+'.'           Punctuation
+'default'     Name.Other
+'}'           Literal.String.Interpol
+'`'           Literal.String.Backtick
+';'           Punctuation
+'\n\n'        Text.Whitespace
+
+'try'         Keyword
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'run'         Name.Other
+'('           Punctuation
+')'           Punctuation
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+' '           Text.Whitespace
+'catch'       Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'error'       Name.Other
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'throw'       Keyword
+' '           Text.Whitespace
+'error'       Name.Other
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'fraction'    Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'.5'          Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'copied'      Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'['           Punctuation
+'...'         Punctuation
+'items'       Name.Other
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
