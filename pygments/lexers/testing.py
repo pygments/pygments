@@ -145,25 +145,31 @@ class TAPLexer(RegexLexer):
 
     tokens = {
         'root': [
+            # YAML diagnostics may contain text that looks like nested TAP.
+            (r'^((?: {4})*  )---\n[\s\S]*?^\1\.\.\.\n', Text),
+
+            # Subtests indent their TAP stream by four spaces per level.
             # A TAP version may be specified.
-            (r'^TAP version \d+\n', Name.Namespace),
+            (r'^((?: {4})*)(TAP version \d+\n)',
+             bygroups(Text, Name.Namespace)),
 
             # Specify a plan with a plan line.
-            (r'^1\.\.\d+', Keyword.Declaration, 'plan'),
+            (r'^((?: {4})*)(1\.\.\d+)',
+             bygroups(Text, Keyword.Declaration), 'plan'),
 
             # A test failure
-            (r'^(not ok)([^\S\n]*)(\d*)',
-             bygroups(Generic.Error, Text, Number.Integer), 'test'),
+            (r'^((?: {4})*)(not ok)([^\S\n]*)(\d*)',
+             bygroups(Text, Generic.Error, Text, Number.Integer), 'test'),
 
             # A test success
-            (r'^(ok)([^\S\n]*)(\d*)',
-             bygroups(Keyword.Reserved, Text, Number.Integer), 'test'),
+            (r'^((?: {4})*)(ok)([^\S\n]*)(\d*)',
+             bygroups(Text, Keyword.Reserved, Text, Number.Integer), 'test'),
 
             # Diagnostics start with a hash.
-            (r'^#.*\n', Comment),
+            (r'^((?: {4})*)(#.*\n)', bygroups(Text, Comment)),
 
             # TAP's version of an abort statement.
-            (r'^Bail out!.*\n', Generic.Error),
+            (r'^((?: {4})*)(Bail out!.*\n)', bygroups(Text, Generic.Error)),
 
             # TAP ignores any unrecognized lines.
             (r'^.*\n', Text),
