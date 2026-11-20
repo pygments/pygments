@@ -1,0 +1,66 @@
+---input---
+def_slotted_exemplar(:exemplar, {}, {}, {_class |com.gesmallworld.magik.language.MagikFinalisable|})
+
+def_slotted_exemplar(:another_exemplar, {}, _unset, {_class |com.gesmallworld.magik.html5.MagikHTML5Component|})
+
+---tokens---
+'def_slotted_exemplar' Name
+'('           Punctuation
+':exemplar'   Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'_class'      Keyword
+' '           Text.Whitespace
+'|'           Punctuation
+'com'         Name
+'.'           Punctuation
+'gesmallworld' Name
+'.'           Punctuation
+'magik'       Name
+'.'           Punctuation
+'language'    Name
+'.'           Punctuation
+'MagikFinalisable' Name
+'|'           Punctuation
+'}'           Punctuation
+')'           Punctuation
+'\n\n'        Text.Whitespace
+
+'def_slotted_exemplar' Name
+'('           Punctuation
+':another_exemplar' Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'_unset'      Literal
+','           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'_class'      Keyword
+' '           Text.Whitespace
+'|'           Punctuation
+'com'         Name
+'.'           Punctuation
+'gesmallworld' Name
+'.'           Punctuation
+'magik'       Name
+'.'           Punctuation
+'html5'       Name
+'.'           Punctuation
+'MagikHTML5Component' Name
+'|'           Punctuation
+'}'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace

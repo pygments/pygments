@@ -1,0 +1,328 @@
+'_package'    Name.Builtin
+' '           Text.Whitespace
+'user'        Name
+'\n\n'        Text.Whitespace
+
+'_pragma(classify_level=restricted)' Literal.String.Doc
+'\n'          Text.Whitespace
+
+'_method'     Keyword
+' '           Text.Whitespace
+'attachment_editor' Name
+'.'           Punctuation
+'create_document_list' Name
+'('           Punctuation
+'container'   Name
+')'           Punctuation
+'\n\t'        Text.Whitespace
+'## @param {sw:sw_container} container' Comment.Special
+'\n\n\t'      Text.Whitespace
+'main'        Name
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'sw_container' Name
+'.'           Punctuation
+'new'         Name
+'('           Punctuation
+'container'   Name
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+','           Punctuation
+'\n\t\t'      Text.Whitespace
+':outer_spacing' Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+'8'           Literal.Number.Integer
+','           Punctuation
+'\n\t\t'      Text.Whitespace
+':row_spacing' Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+'8'           Literal.Number.Integer
+','           Punctuation
+'\n\t\t'      Text.Whitespace
+':row_resize_values' Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'1'           Literal.Number.Integer
+','           Punctuation
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'}'           Punctuation
+')'           Punctuation
+'\n\n\t'      Text.Whitespace
+'.'           Punctuation
+'menu_items'  Name
+'['           Punctuation
+':list_document' Literal.String.Symbol
+']'           Punctuation
+' '           Text.Whitespace
+'<<'          Operator
+'\n\t\t'      Text.Whitespace
+'sw_table'    Name
+'.'           Punctuation
+'new'         Name
+'('           Punctuation
+'main'        Name
+','           Punctuation
+'\n\t\t\t'    Text.Whitespace
+':column_lines?' Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+'_true'       Literal
+','           Punctuation
+'\n\t\t\t'    Text.Whitespace
+':model'      Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+'_self'       Name.Class
+','           Punctuation
+'\n\t\t\t'    Text.Whitespace
+':aspect'     Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+':list_document' Literal.String.Symbol
+','           Punctuation
+'\n\t\t\t'    Text.Whitespace
+':selection_mode' Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+':one'        Literal.String.Symbol
+','           Punctuation
+'\n\t\t\t'    Text.Whitespace
+':selection_type' Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+':row'        Literal.String.Symbol
+','           Punctuation
+'\n\t\t\t'    Text.Whitespace
+':data_selector' Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+':list_documents' Literal.String.Symbol
+'|'           Punctuation
+'('           Punctuation
+')'           Punctuation
+'|'           Punctuation
+','           Punctuation
+'\n\t\t\t'    Text.Whitespace
+':double_click_notifier' Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+':show_path_name' Literal.String.Symbol
+'|'           Punctuation
+'('           Punctuation
+')'           Punctuation
+'|'           Punctuation
+','           Punctuation
+'\n\t\t\t'    Text.Whitespace
+':selection_notifier' Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+':select_document' Literal.String.Symbol
+'|'           Punctuation
+'('           Punctuation
+')'           Punctuation
+'|'           Punctuation
+')'           Punctuation
+'\n\n\t'      Text.Whitespace
+'_if'         Keyword
+' '           Text.Whitespace
+'.'           Punctuation
+'embedded?'   Name
+' '           Text.Whitespace
+'_is'         Operator
+' '           Text.Whitespace
+'_false'      Literal
+' '           Text.Whitespace
+'_andif'      Operator
+'\n\t    '    Text.Whitespace
+'_self'       Name.Class
+'.'           Punctuation
+'toolbar_for_floating?' Name
+' '           Text.Whitespace
+'_is'         Operator
+' '           Text.Whitespace
+'_false'      Literal
+'\n\t'        Text.Whitespace
+'_then'       Keyword
+' '           Text.Whitespace
+'_return'     Operator
+'\n\t'        Text.Whitespace
+'_endif'      Keyword
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+'\n\n'        Text.Whitespace
+
+'_pragma(classify_level=restricted)' Literal.String.Doc
+'\n'          Text.Whitespace
+
+'_method'     Keyword
+' '           Text.Whitespace
+'sw_product'  Name
+'.'           Punctuation
+'requires?'   Name
+'('           Punctuation
+'product_name' Name
+')'           Punctuation
+'\n\t'        Text.Whitespace
+'## @param {sw:symbol} product_name' Comment.Special
+'\n\t'        Text.Whitespace
+'## @return {sw:false}' Comment.Special
+'\n\n\t'      Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_self'       Name.Class
+'.'           Punctuation
+'prerequisites' Name
+'.'           Punctuation
+'select'      Name
+'('           Punctuation
+'predicate'   Name
+'.'           Punctuation
+'using'       Name
+'('           Punctuation
+'\n\t\t'      Text.Whitespace
+'_proc'       Keyword
+'('           Punctuation
+'prerequisite' Name
+')'           Punctuation
+'\n\t\t\t'    Text.Whitespace
+'## @param {sw:simple_vector<E=sw:char16_vector>, E=sw:char16_vector>} prerequisite' Comment.Special
+'\n\t\t\t'    Text.Whitespace
+'## @return {sw:false}' Comment.Special
+'\n\n\t\t\t'  Text.Whitespace
+'_import'     Keyword
+' '           Text.Whitespace
+'product_name' Name
+'\n\n\t\t\t'  Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'prerequisite' Name
+'.'           Punctuation
+'first'       Name
+'.'           Punctuation
+'as_symbol'   Name
+'('           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'product_name' Name
+'\n\t\t'      Text.Whitespace
+'_endproc'    Keyword
+')'           Punctuation
+')'           Punctuation
+'.'           Punctuation
+'empty?'      Name
+'.'           Punctuation
+'not'         Name
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+'\n\n'        Text.Whitespace
+
+'_pragma(classify_level=restricted)' Literal.String.Doc
+'\n'          Text.Whitespace
+
+'logger'      Name
+'.'           Punctuation
+'define_shared_constant' Name
+'('           Punctuation
+':log_levels' Literal.String.Symbol
+','           Punctuation
+'\n\t'        Text.Whitespace
+'{'           Punctuation
+':off'        Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+':fatal'      Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+':error'      Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+':warning'    Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+':info'       Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+':debug'      Literal.String.Symbol
+','           Punctuation
+' '           Text.Whitespace
+':all'        Literal.String.Symbol
+'}'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'_false'      Literal
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+'\n\n'        Text.Whitespace
+
+'_pragma(classify_level=restricted)' Literal.String.Doc
+'\n'          Text.Whitespace
+
+'_method'     Keyword
+' '           Text.Whitespace
+'logger'      Name
+'.'           Punctuation
+'log_level'   Name
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'log_level'   Name
+'\n\t'        Text.Whitespace
+'## @param {sw:symbol} log_level' Comment.Special
+'\n\n\t'      Text.Whitespace
+'.'           Punctuation
+'log_level'   Name
+' '           Text.Whitespace
+'<<'          Operator
+' '           Text.Whitespace
+'_if'         Keyword
+' '           Text.Whitespace
+'log_level'   Name
+' '           Text.Whitespace
+'_is'         Operator
+' '           Text.Whitespace
+'_unset'      Literal
+'\n\t\t      ' Text.Whitespace
+'_then'       Keyword
+' '           Text.Whitespace
+'>>'          Operator
+' '           Text.Whitespace
+'_self'       Name.Class
+'.'           Punctuation
+'get_log_level_from_system' Name
+'('           Punctuation
+')'           Punctuation
+'\n\t\t      ' Text.Whitespace
+'_endif'      Keyword
+'.'           Punctuation
+'default'     Name
+'('           Punctuation
+'log_level'   Name
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'_endmethod'  Keyword
+'\n'          Text.Whitespace
+
+'$'           Punctuation
+'\n'          Text.Whitespace
