@@ -1,0 +1,46 @@
+---input---
+interface Options { number: number; }
+const result = options.interface;
+options.number;
+options?.readonly;
+
+---tokens---
+'interface'   Keyword.Declaration
+' '           Text.Whitespace
+'Options'     Name.Other
+' '           Text.Whitespace
+'{'           Punctuation
+' '           Text.Whitespace
+'number'      Keyword.Type
+':'           Operator
+' '           Text.Whitespace
+'number'      Keyword.Type
+';'           Punctuation
+' '           Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'result'      Name.Other
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'options'     Name.Other
+'.'           Punctuation
+'interface'   Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'options'     Name.Other
+'.'           Punctuation
+'number'      Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'options'     Name.Other
+'?'           Operator
+'.'           Punctuation
+'readonly'    Name.Other
+';'           Punctuation
+'\n'          Text.Whitespace
