@@ -81,7 +81,8 @@ class JavascriptLexer(RegexLexer):
             (r'\+\+|--|~|\?\?=?|\?|:|\\(?=\n)|'
              r'(<<|>>>?|==?|!=?|(?:\*\*|\|\||&&|[-<>+*%&|^/]))=?', Operator, 'slashstartsregex'),
             (r'[{(\[;,]', Punctuation, 'slashstartsregex'),
-            (r'[})\].]', Punctuation),
+            (r'[})\]]', Punctuation),
+            (r'\.', Punctuation, 'property'),
 
             (r'(typeof|instanceof|in|void|delete|new)\b', Operator.Word, 'slashstartsregex'),
 
@@ -121,6 +122,11 @@ class JavascriptLexer(RegexLexer):
             (r'`', String.Backtick, 'interp'),
             # private identifier
             (r'#[a-zA-Z_]\w*', Name),
+        ],
+        'property': [
+            include('commentsandwhitespace'),
+            (JS_IDENT, Name.Other, '#pop'),
+            default('#pop'),
         ],
         'interp': [
             (r'`', String.Backtick, '#pop'),
