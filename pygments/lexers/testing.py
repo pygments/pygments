@@ -146,7 +146,7 @@ class TAPLexer(RegexLexer):
     tokens = {
         'root': [
             # YAML diagnostics may contain text that looks like nested TAP.
-            (r'^((?: {4})*  )---\n[\s\S]*?^\1\.\.\.\n', Text),
+            (r'^((?: {4})*  )---\n(?:(?=\1|[ \t]*\n).*\n)*?^\1\.\.\.\n', Text),
 
             # Subtests indent their TAP stream by four spaces per level.
             # A TAP version may be specified.
