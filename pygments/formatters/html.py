@@ -12,6 +12,7 @@ import functools
 import os
 import sys
 import os.path
+import re
 from io import StringIO
 from html import escape as _escape
 
@@ -40,6 +41,24 @@ def webify(color):
             return f'#{color[0]}{color[2]}{color[4]}'
         else:
             return f'#{color}'
+
+
+# An http(s) URL, without a closing punctuation mark.
+_url_re = re.compile(
+    r"https?://[^\s\x00-\x1f\x7f\"'`<>]*[^\s\x00-\x1f\x7f\"'`<>.,:;!?)\]]")
+
+
+def _link_urls(text):
+    """HTML-escape *text*, with its http(s) URLs as links."""
+    parts = []
+    last = 0
+    for match in _url_re.finditer(text):
+        url = _escape(match.group())
+        parts.append(_escape(text[last:match.start()], quote=False))
+        parts.append(f'<a href="{url}">{url}</a>')
+        last = match.end()
+    parts.append(_escape(text[last:], quote=False))
+    return ''.join(parts)
 
 
 def _get_ttype_class(ttype):
@@ -349,6 +368,12 @@ class HtmlFormatter(Formatter):
 
         .. versionadded:: 2.10
 
+    `linkurls`
+        If set to ``True``, turn the ``http://`` and ``https://`` URLs in the
+        text into links.  The default is ``False``.
+
+        .. versionadded:: 2.22
+
 
     **Subclassing the HTML formatter**
 
@@ -420,6 +445,7 @@ class HtmlFormatter(Formatter):
         self.wrapcode = get_bool_opt(options, 'wrapcode', False)
         self.span_element_openers = {}
         self.debug_token_types = get_bool_opt(options, 'debug_token_types', False)
+        self.linkurls = get_bool_opt(options, 'linkurls', False)
 
         if self.tagsfile:
             if not ctags:
@@ -825,6 +851,8 @@ class HtmlFormatter(Formatter):
         not need escaping.  Skipping those two replacements is measurably
         faster on the per-token hot path.
         """
+        if self.linkurls:
+            return [_link_urls(line) for line in value.split('\n')]
         return _escape(value, quote=False).split('\n')
 
     def _format_lines(self, tokensource):
