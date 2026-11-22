@@ -45,7 +45,11 @@ class SmalltalkLexer(RegexLexer):
             # without breaking everything
             (r'([a-zA-Z]+\w*:)(\s*)(\w+)',
              bygroups(Name.Function, Text, Name.Variable)),
-            (r'^(\b[a-zA-Z]+\w*\b)(\s*)$', bygroups(Name.Function, Text)),
+            # A keyword selector after whitespace/comments makes the preceding
+            # name a message receiver, not a unary method header (gh-911).
+            (r'^(\b[a-zA-Z]+\w*\b)'
+             r'(?!(?:\s|"[^"]*")*[a-zA-Z]+\w*:(?!=))(\s*)$',
+             bygroups(Name.Function, Text)),
             (r'^([-+*/\\~<>=|&!?,@%]+)(\s*)(\w+)(\s*)$',
              bygroups(Name.Function, Text, Name.Variable, Text)),
         ],
