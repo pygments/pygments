@@ -211,18 +211,23 @@ class ValaLexer(RegexLexer):
             (r'0x[0-9a-fA-F]+[Ll]?', Number.Hex),
             (r'0[0-7]+[Ll]?', Number.Oct),
             (r'\d+[Ll]?', Number.Integer),
-            (r'[~!%^&*+=|?:<>/-]', Operator),
+            # A slash after a postfix increment or decrement means division.
+            (r'\+\+|--', Operator),
+            (r'\?\?|&&|\|\||[!=<>+-]', Operator, 'possible-regex'),
+            (r'[~%^&*|?:/]', Operator),
             (r'(\[)(Compact|Immutable|(?:Boolean|Simple)Type)(\])',
              bygroups(Punctuation, Name.Decorator, Punctuation)),
             # TODO: "correctly" parse complex code attributes
             (r'(\[)(CCode|(?:Integer|Floating)Type)',
              bygroups(Punctuation, Name.Decorator)),
-            (r'[()\[\],.]', Punctuation),
+            (r'[(,{]', Punctuation, 'possible-regex'),
+            (r'[)\[\].]', Punctuation),
+            (r'return\b', Keyword, 'possible-regex'),
             (words((
                 'as', 'base', 'break', 'case', 'catch', 'construct', 'continue',
                 'default', 'delete', 'do', 'else', 'enum', 'finally', 'for',
                 'foreach', 'get', 'if', 'in', 'is', 'lock', 'new', 'out', 'params',
-                'return', 'set', 'sizeof', 'switch', 'this', 'throw', 'try',
+                'set', 'sizeof', 'switch', 'this', 'throw', 'try',
                 'typeof', 'while', 'yield'), suffix=r'\b'),
              Keyword),
             (words((
@@ -254,8 +259,13 @@ class ValaLexer(RegexLexer):
         'statement': [
             include('whitespace'),
             include('statements'),
-            ('[{}]', Punctuation),
+            ('}', Punctuation),
             (';', Punctuation, '#pop'),
+        ],
+        'possible-regex': [
+            include('whitespace'),
+            (r'/(?:[^/\\\n]|\\.)+/[ismxo]*', String.Regex, '#pop'),
+            default('#pop'),
         ],
         'string': [
             (r'"', String, '#pop'),

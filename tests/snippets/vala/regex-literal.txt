@@ -1,0 +1,62 @@
+---input---
+if (/^a@b$/i.match(email))
+var pattern = /a\/b/msx;
+return /* pattern */ /c/o;
+total / count / scale;
+n++ / p / q;
+
+---tokens---
+'if'          Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'/^a@b$/i'    Literal.String.Regex
+'.'           Punctuation
+'match'       Name
+'('           Punctuation
+'email'       Name
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'pattern'     Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'/a\\/b/msx'  Literal.String.Regex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'return'      Keyword
+' '           Text.Whitespace
+'/* pattern */' Comment.Multiline
+' '           Text.Whitespace
+'/c/o'        Literal.String.Regex
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'total'       Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'count'       Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'scale'       Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'n'           Name
+'++'          Operator
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'p'           Name
+' '           Text.Whitespace
+'/'           Operator
+' '           Text.Whitespace
+'q'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
