@@ -259,7 +259,7 @@ class ValaLexer(RegexLexer):
         'statement': [
             include('whitespace'),
             include('statements'),
-            ('}', Punctuation),
+            (r'\}', Punctuation),
             (';', Punctuation, '#pop'),
         ],
         'possible-regex': [
