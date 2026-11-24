@@ -27,8 +27,8 @@ class PddlLexer(RegexLexer):
     name = 'PDDL'
     aliases = ['pddl']
     filenames = ['*.pddl']
-    # there doesn't really seem to be a PDDL homepage.
-    url = 'https://en.wikipedia.org/wiki/Planning_Domain_Definition_Language'
+    # there doesn't really seem to be a PDDL homepage, but this one is at least better than wikipedia
+    url = 'https://planning.wiki/guide/whatis/pddl'
     version_added = '2.19'
 
     tokens = {
@@ -48,10 +48,15 @@ class PddlLexer(RegexLexer):
             (words((
                 ':requirements', ':types', ':constants',
                 ':predicates', ':functions', ':action', ':agent',
+                # actions
                 ':parameters', ':precondition', ':effect',
                 ':durative-action', ':duration', ':condition',
                 ':derived', ':domain', ':objects', ':init',
                 ':goal', ':metric', ':length', ':serial', ':parallel',
+                # axioms
+                ':axiom', ':vars', ':context', ':implies',
+                # misc
+                ':safety', ':timeless',
                 # the following are requirements
                 ':strips', ':typing', ':negative-preconditions',
                 ':disjunctive-preconditions', ':equality',
@@ -62,7 +67,12 @@ class PddlLexer(RegexLexer):
                 ':time-intial-literals', ':preferences',
                 ':constraints', ':action-costs', ':multi-agent',
                 ':unfactored-privacy', ':factored-privacy',
-                ':non-deterministic'
+                ':non-deterministic',
+                # older PDDL versions
+                ':action-expansions', ':foreach-expansions', ':dag-expansions',
+                ':domain-axioms', ':subgoal-through-axioms', ':safety-constraints',
+                ':expression-evaluation', ':open-world', ':true-negation',
+                ':ucpop', ':duration-inequalities'
                 ), suffix=r'\b'), Keyword)
         ],
         'builtins': [
