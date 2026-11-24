@@ -1,0 +1,75 @@
+'0000000000000000' Literal.Number.Hex
+' '           Text.Whitespace
+'<'           Punctuation
+'print_var'   Name.Function
+'>:'          Punctuation
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'0:'          Name.Label
+'   '         Text.Whitespace
+'55 '         Literal.Number.Hex
+'                     ' Text.Whitespace
+'push'        Name.Function
+'   '         Text.Whitespace
+'rbp'         Name.Builtin
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'1:'          Name.Label
+'   '         Text.Whitespace
+'48 89 e5 '   Literal.Number.Hex
+'               ' Text.Whitespace
+'mov'         Name.Function
+'    '        Text.Whitespace
+'rbp'         Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'rsp'         Name.Builtin
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'4:'          Name.Label
+'   '         Text.Whitespace
+'48 8b 05 00 00 00 00 ' Literal.Number.Hex
+'   '         Text.Whitespace
+'mov'         Name.Function
+'    '        Text.Whitespace
+'rax'         Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'QWORD'       Keyword.Type
+' '           Text.Whitespace
+'PTR'         Name.Variable
+' '           Text.Whitespace
+'['           Punctuation
+'rip'         Name.Variable
+'+'           Operator
+'0x0'         Literal.Number.Hex
+']'           Punctuation
+'  '          Text.Whitespace
+'# <global_var>' Comment.Single
+'\n'          Text.Whitespace
+
+'                                ' Text.Whitespace
+'4:'          Name.Label
+'  '          Text.Whitespace
+'R_X86_64_PC32' Name.Function
+'    '        Text.Whitespace
+'global_var'  Name.Variable
+'-'           Operator
+'0x4'         Literal.Number.Hex
+'\n'          Text.Whitespace
+
+'   '         Text.Whitespace
+'b:'          Name.Label
+'   '         Text.Whitespace
+'89 c6 '      Literal.Number.Hex
+'                  ' Text.Whitespace
+'mov'         Name.Function
+'    '        Text.Whitespace
+'esi'         Name.Builtin
+','           Punctuation
+' '           Text.Whitespace
+'eax'         Name.Builtin
+'\n'          Text.Whitespace
