@@ -193,8 +193,8 @@ class RPMSpecLexer(RegexLexer):
             (r'^%description', Name.Decorator, 'description'),
             (r'^%changelog', Name.Decorator, 'changelog'),
             (r'^(%' + _directives + ')(.*)$', bygroups(Name.Decorator, Text)),
-            (r'%(attr|defattr|dir|doc(?:dir)?|setup|config(?:ure)?|'
-             r'make(?:install)|ghost|patch[0-9]+|find_lang|exclude|verify)',
+            (r'%(attr|defattr|dir|doc(?:dir)?|(?:auto)?setup|autopatch|config(?:ure)?|'
+             r'make(?:install)|ghost|patch[0-9]*|find_lang|exclude|verify)\b',
              Keyword),
             include('interpol'),
             (r"'.*?'", String.Single),

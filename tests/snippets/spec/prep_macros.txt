@@ -1,0 +1,42 @@
+---input---
+%prep
+%autosetup -N
+%autopatch -p1
+%patch 2
+%patch7
+%patches
+
+---tokens---
+'%prep'       Name.Decorator
+'\n'          Text.Whitespace
+
+'%autosetup'  Keyword
+' '           Text.Whitespace
+'-'           Text
+'N'           Text
+'\n'          Text.Whitespace
+
+'%autopatch'  Keyword
+' '           Text.Whitespace
+'-'           Text
+'p'           Text
+'1'           Text
+'\n'          Text.Whitespace
+
+'%patch'      Keyword
+' '           Text.Whitespace
+'2'           Text
+'\n'          Text.Whitespace
+
+'%patch7'     Keyword
+'\n'          Text.Whitespace
+
+'%'           Text
+'p'           Text
+'a'           Text
+'t'           Text
+'c'           Text
+'h'           Text
+'e'           Text
+'s'           Text
+'\n'          Text.Whitespace
