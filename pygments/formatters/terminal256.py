@@ -47,7 +47,10 @@ class EscapeSequence:
     def color_string(self):
         attrs = []
         if self.fg is not None:
-            if self.fg in ansicolors:
+            if self.fg == 'ansiwhite':
+                # console.codes aliases white to bold, not bright white.
+                attrs.append("97")
+            elif self.fg in ansicolors:
                 esc = codes[self.fg.replace('ansi','')]
                 if ';01m' in esc:
                     self.bold = True
@@ -56,7 +59,9 @@ class EscapeSequence:
             else:
                 attrs.extend(("38", "5", "%i" % self.fg))
         if self.bg is not None:
-            if self.bg in ansicolors:
+            if self.bg == 'ansiwhite':
+                attrs.append("107")
+            elif self.bg in ansicolors:
                 esc = codes[self.bg.replace('ansi','')]
                 # extract fg color code, add 10 for bg.
                 attrs.append(str(int(esc[2:4])+10))

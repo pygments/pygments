@@ -9,6 +9,8 @@
 import re
 from io import StringIO
 
+import pytest
+
 from pygments.lexers.sql import PlPgsqlLexer
 from pygments.formatters import TerminalFormatter, Terminal256Formatter, \
     HtmlFormatter, LatexFormatter
@@ -100,3 +102,22 @@ def test_256esc_seq():
     assert '92;42' in termtest('123')
     assert '90' in termtest('#comment')
     assert '94;41' in termtest('"String"')
+
+
+@pytest.mark.parametrize('style, start, reset', [
+    ('ansiwhite', '97', '39'),
+    ('bg:ansiwhite', '107', '49'),
+    ('ansiwhite bg:ansiwhite', '97;107', '39;49'),
+    ('bold italic underline ansiwhite bg:ansiwhite',
+     '97;107;01;04;03', '39;49;00'),
+])
+def test_256_ansiwhite_resets_before_unstyled_text(style, start, reset):
+    class WhiteStyle(Style):
+        styles = {Token.String: style}
+
+    out = StringIO()
+    Terminal256Formatter(style=WhiteStyle).format([
+        (Token.String, 'white'),
+        (Token.Text, 'plain'),
+    ], out)
+    assert out.getvalue() == f'\x1b[{start}mwhite\x1b[{reset}mplain'
