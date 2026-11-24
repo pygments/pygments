@@ -1,0 +1,46 @@
+---input---
+$PATH.append(p"/home/anki-code/" / ".local/bin")
+$(echo @("Path updated"))
+bash -c! echo 1
+
+---tokens---
+'$PATH'       Name.Variable
+'.'           Operator
+'append'      Name
+'('           Punctuation
+'p'           Name
+'"'           Literal.String.Double
+'/home/anki-code/' Literal.String.Double
+'"'           Literal.String.Double
+' '           Text
+'/'           Operator
+' '           Text
+'"'           Literal.String.Double
+'.local/bin'  Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'$'           Keyword
+'('           Punctuation
+'echo'        Name.Builtin
+' '           Text
+'@'           Keyword
+'('           Punctuation
+'"'           Literal.String.Double
+'Path updated' Literal.String.Double
+'"'           Literal.String.Double
+')'           Punctuation
+')'           Punctuation
+'\n'          Text.Whitespace
+
+'bash'        Name
+' '           Text
+'-'           Operator
+'c'           Name
+'!'           Keyword
+' '           Text
+'echo'        Name
+' '           Text
+'1'           Literal.Number.Integer
+'\n'          Text.Whitespace
