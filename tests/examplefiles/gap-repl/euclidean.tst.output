@@ -5,7 +5,7 @@
 '('           Punctuation
 '"euclidean.tst"' Literal.String
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Generic.Output
@@ -24,7 +24,7 @@
 'function'    Keyword
 '('           Punctuation
 'R'           Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
 'colls'       Name.Variable
 '.'           Operator
@@ -39,31 +39,31 @@
 'local'       Keyword
 ' '           Text
 'coll1'       Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
 'coll2'       Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
 'a'           Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
 'b'           Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
 'deg_b'       Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
 'deg_r'       Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
 'q'           Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
 'r'           Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
 'qr'          Name.Variable
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -76,10 +76,9 @@
 'colls'       Name.Variable
 ')'           Punctuation
 ' '           Text
-'>'           Operator
-'='           Operator
+'>='          Operator
 ' '           Text
-'1'           Name.Variable
+'1'           Literal.Number.Integer
 ' '           Text
 'then'        Keyword
 ' '           Text
@@ -87,9 +86,9 @@
 ':='          Operator
 'colls'       Name.Variable
 '['           Punctuation
-'1'           Name.Variable
+'1'           Literal.Number.Integer
 ']'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -102,10 +101,9 @@
 'R'           Name.Variable
 ')'           Punctuation
 ' '           Text
-'<'           Operator
-'='           Operator
+'<='          Operator
 ' '           Text
-'100'         Name.Variable
+'100'         Literal.Number.Integer
 ' '           Text
 'then'        Keyword
 ' '           Text
@@ -114,7 +112,7 @@
 ':='          Operator
 ' '           Text
 'R'           Name.Variable
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -129,28 +127,26 @@
 'List'        Name.Variable
 '('           Punctuation
 '['           Punctuation
-'1'           Name.Variable
-'.'           Operator
-'.'           Operator
-'100'         Name.Variable
+'1'           Literal.Number.Integer
+'..'          Operator
+'100'         Literal.Number.Integer
 ']'           Punctuation
-','           Operator
+','           Punctuation
 'i'           Name.Variable
-'-'           Operator
-'>'           Operator
+'->'          Operator
 'Random'      Name.Variable
 '('           Punctuation
 'R'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
 ' '           Text
 'fi'          Keyword
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -163,10 +159,9 @@
 'colls'       Name.Variable
 ')'           Punctuation
 ' '           Text
-'>'           Operator
-'='           Operator
+'>='          Operator
 ' '           Text
-'2'           Name.Variable
+'2'           Literal.Number.Integer
 ' '           Text
 'then'        Keyword
 ' '           Text
@@ -174,9 +169,9 @@
 ':='          Operator
 'colls'       Name.Variable
 '['           Punctuation
-'2'           Name.Variable
+'2'           Literal.Number.Integer
 ']'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -189,10 +184,9 @@
 'R'           Name.Variable
 ')'           Punctuation
 ' '           Text
-'<'           Operator
-'='           Operator
+'<='          Operator
 ' '           Text
-'100'         Name.Variable
+'100'         Literal.Number.Integer
 ' '           Text
 'then'        Keyword
 ' '           Text
@@ -201,7 +195,7 @@
 ':='          Operator
 ' '           Text
 'R'           Name.Variable
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -216,28 +210,26 @@
 'List'        Name.Variable
 '('           Punctuation
 '['           Punctuation
-'1'           Name.Variable
-'.'           Operator
-'.'           Operator
-'100'         Name.Variable
+'1'           Literal.Number.Integer
+'..'          Operator
+'100'         Literal.Number.Integer
 ']'           Punctuation
-','           Operator
+','           Punctuation
 'i'           Name.Variable
-'-'           Operator
-'>'           Operator
+'->'          Operator
 'Random'      Name.Variable
 '('           Punctuation
 'R'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
 ' '           Text
 'fi'          Keyword
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -269,10 +261,10 @@
 'then'        Keyword
 ' '           Text
 'continue'    Keyword
-';'           Operator
+';'           Punctuation
 ' '           Text
 'fi'          Keyword
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -287,11 +279,11 @@
 'EuclideanDegree' Name.Variable
 '('           Punctuation
 'R'           Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
 'b'           Name.Variable
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -324,19 +316,19 @@
 'EuclideanQuotient' Name.Variable
 '('           Punctuation
 'R'           Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
 'a'           Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
 'b'           Name.Variable
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 ' '           Text
 'Assert'      Keyword
 '('           Punctuation
-'0'           Name.Variable
-','           Operator
+'0'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
 'q'           Name.Variable
 ' '           Text
@@ -344,7 +336,7 @@
 ' '           Text
 'R'           Name.Variable
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -361,19 +353,19 @@
 'EuclideanRemainder' Name.Variable
 '('           Punctuation
 'R'           Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
 'a'           Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
 'b'           Name.Variable
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 ' '           Text
 'Assert'      Keyword
 '('           Punctuation
-'0'           Name.Variable
-','           Operator
+'0'           Literal.Number.Integer
+','           Punctuation
 ' '           Text
 'r'           Name.Variable
 ' '           Text
@@ -381,7 +373,7 @@
 ' '           Text
 'R'           Name.Variable
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -395,8 +387,7 @@
 ' '           Text
 'a'           Name.Variable
 ' '           Text
-'<'           Operator
-'>'           Operator
+'<>'          Operator
 ' '           Text
 'q'           Name.Variable
 '*'           Operator
@@ -411,20 +402,20 @@
 'Error'       Name.Variable
 '('           Punctuation
 '"a <> q*b + r for "' Literal.String
-','           Operator
+','           Punctuation
 ' '           Text
 '['           Punctuation
 'R'           Name.Variable
-','           Operator
+','           Punctuation
 'a'           Name.Variable
-','           Operator
+','           Punctuation
 'b'           Name.Variable
 ']'           Punctuation
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 ' '           Text
 'fi'          Keyword
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -441,11 +432,11 @@
 'EuclideanDegree' Name.Variable
 '('           Punctuation
 'R'           Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
 'r'           Name.Variable
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -468,8 +459,7 @@
 ' '           Text
 'deg_r'       Name.Variable
 ' '           Text
-'>'           Operator
-'='           Operator
+'>='          Operator
 ' '           Text
 'deg_b'       Name.Variable
 ' '           Text
@@ -478,19 +468,19 @@
 'Error'       Name.Variable
 '('           Punctuation
 '"Euclidean degree did not decrease for "' Literal.String
-','           Operator
+','           Punctuation
 '['           Punctuation
 'R'           Name.Variable
-','           Operator
+','           Punctuation
 'a'           Name.Variable
-','           Operator
+','           Punctuation
 'b'           Name.Variable
 ']'           Punctuation
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 ' '           Text
 'fi'          Keyword
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -507,14 +497,14 @@
 'QuotientRemainder' Name.Variable
 '('           Punctuation
 'R'           Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
 'a'           Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
 'b'           Name.Variable
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -528,12 +518,11 @@
 ' '           Text
 'qr'          Name.Variable
 ' '           Text
-'<'           Operator
-'>'           Operator
+'<>'          Operator
 ' '           Text
 '['           Punctuation
 'q'           Name.Variable
-','           Operator
+','           Punctuation
 ' '           Text
 'r'           Name.Variable
 ']'           Punctuation
@@ -543,20 +532,20 @@
 'Error'       Name.Variable
 '('           Punctuation
 '"QuotientRemainder inconsistent for "' Literal.String
-','           Operator
+','           Punctuation
 ' '           Text
 '['           Punctuation
 'R'           Name.Variable
-','           Operator
+','           Punctuation
 'a'           Name.Variable
-','           Operator
+','           Punctuation
 'b'           Name.Variable
 ']'           Punctuation
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 ' '           Text
 'fi'          Keyword
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -565,14 +554,14 @@
 ' '           Text
 ' '           Text
 'od'          Keyword
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 ' '           Text
 ' '           Text
 'od'          Keyword
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
@@ -581,13 +570,13 @@
 'return'      Keyword
 ' '           Text
 'true'        Name.Constant
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '> '          Generic.Prompt
 'end'         Keyword
-';'           Operator
-';'           Operator
+';'           Punctuation
+';'           Punctuation
 '\n'          Text.Whitespace
 
 '\n'          Generic.Output
@@ -598,24 +587,22 @@
 'checkEuclideanRing' Name.Variable
 '('           Punctuation
 'Integers'    Name.Variable
-','           Operator
+','           Punctuation
 '['           Punctuation
 '-'           Operator
-'100'         Name.Variable
-'.'           Operator
-'.'           Operator
-'100'         Name.Variable
+'100'         Literal.Number.Integer
+'..'          Operator
+'100'         Literal.Number.Integer
 ']'           Punctuation
-','           Operator
+','           Punctuation
 '['           Punctuation
 '-'           Operator
-'100'         Name.Variable
-'.'           Operator
-'.'           Operator
-'100'         Name.Variable
+'100'         Literal.Number.Integer
+'..'          Operator
+'100'         Literal.Number.Integer
 ']'           Punctuation
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 'true\n'      Generic.Output
@@ -625,7 +612,7 @@
 '('           Punctuation
 'Rationals'   Name.Variable
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 'true\n'      Generic.Output
@@ -635,7 +622,7 @@
 '('           Punctuation
 'GaussianIntegers' Name.Variable
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 'true\n'      Generic.Output
@@ -645,7 +632,7 @@
 '('           Punctuation
 'GaussianRationals' Name.Variable
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 'true\n'      Generic.Output
@@ -660,20 +647,18 @@
 'Filtered'    Name.Variable
 '('           Punctuation
 '['           Punctuation
-'2'           Name.Variable
-'.'           Operator
-'.'           Operator
-'50'          Name.Variable
+'2'           Literal.Number.Integer
+'..'          Operator
+'50'          Literal.Number.Integer
 ']'           Punctuation
-','           Operator
+','           Punctuation
 ' '           Text
 'IsPrimePowerInt' Name.Variable
 ')'           Punctuation
-','           Operator
+','           Punctuation
 ' '           Text
 'q'           Name.Variable
-'-'           Operator
-'>'           Operator
+'->'          Operator
 'checkEuclideanRing' Name.Variable
 '('           Punctuation
 'GF'          Name.Variable
@@ -682,7 +667,7 @@
 ')'           Punctuation
 ')'           Punctuation
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 'true\n'      Generic.Output
@@ -695,17 +680,15 @@
 'ForAll'      Name.Variable
 '('           Punctuation
 '['           Punctuation
-'1'           Name.Variable
-'.'           Operator
-'.'           Operator
-'50'          Name.Variable
+'1'           Literal.Number.Integer
+'..'          Operator
+'50'          Literal.Number.Integer
 ']'           Punctuation
-','           Operator
+','           Punctuation
 ' '           Text
 'm'           Name.Variable
 ' '           Text
-'-'           Operator
-'>'           Operator
+'->'          Operator
 ' '           Text
 'checkEuclideanRing' Name.Variable
 '('           Punctuation
@@ -716,7 +699,7 @@
 'm'           Name.Variable
 ')'           Punctuation
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 'true\n'      Generic.Output
@@ -730,17 +713,17 @@
 ' '           Text
 '('           Punctuation
 '('           Punctuation
-'2'           Name.Variable
+'2'           Literal.Number.Integer
 '*'           Operator
-'3'           Name.Variable
+'3'           Literal.Number.Integer
 '*'           Operator
-'5'           Name.Variable
+'5'           Literal.Number.Integer
 ')'           Punctuation
 '^'           Operator
-'2'           Name.Variable
+'2'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 'true\n'      Generic.Output
@@ -754,17 +737,17 @@
 ' '           Text
 '('           Punctuation
 '('           Punctuation
-'2'           Name.Variable
+'2'           Literal.Number.Integer
 '*'           Operator
-'3'           Name.Variable
+'3'           Literal.Number.Integer
 '*'           Operator
-'5'           Name.Variable
+'5'           Literal.Number.Integer
 ')'           Punctuation
 '^'           Operator
-'3'           Name.Variable
+'3'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 'true\n'      Generic.Output
@@ -778,19 +761,19 @@
 ' '           Text
 '('           Punctuation
 '('           Punctuation
-'2'           Name.Variable
+'2'           Literal.Number.Integer
 '*'           Operator
-'3'           Name.Variable
+'3'           Literal.Number.Integer
 '*'           Operator
-'5'           Name.Variable
+'5'           Literal.Number.Integer
 '*'           Operator
-'7'           Name.Variable
+'7'           Literal.Number.Integer
 ')'           Punctuation
 '^'           Operator
-'2'           Name.Variable
+'2'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 'true\n'      Generic.Output
@@ -804,19 +787,19 @@
 ' '           Text
 '('           Punctuation
 '('           Punctuation
-'2'           Name.Variable
+'2'           Literal.Number.Integer
 '*'           Operator
-'3'           Name.Variable
+'3'           Literal.Number.Integer
 '*'           Operator
-'5'           Name.Variable
+'5'           Literal.Number.Integer
 '*'           Operator
-'7'           Name.Variable
+'7'           Literal.Number.Integer
 ')'           Punctuation
 '^'           Operator
-'3'           Name.Variable
+'3'           Literal.Number.Integer
 ')'           Punctuation
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
 
 'true\n'      Generic.Output
@@ -830,9 +813,9 @@
 '('           Punctuation
 ' '           Text
 '"euclidean.tst"' Literal.String
-','           Operator
+','           Punctuation
 ' '           Text
-'1'           Name.Variable
+'1'           Literal.Number.Integer
 ')'           Punctuation
-';'           Operator
+';'           Punctuation
 '\n'          Text.Whitespace
