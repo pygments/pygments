@@ -26,6 +26,7 @@ class RideLexer(RegexLexer):
     mimetypes = ['text/x-ride']
     url = 'https://docs.waves.tech/en/ride'
     version_added = '2.6'
+    _example = 'ride/auction.ride'
 
     validName = r'[a-zA-Z_][a-zA-Z0-9_\']*'
 

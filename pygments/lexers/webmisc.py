@@ -34,6 +34,7 @@ class DuelLexer(RegexLexer):
     filenames = ['*.duel', '*.jbst']
     mimetypes = ['text/x-duel', 'text/x-jbst']
     version_added = '1.4'
+    _example = 'duel/jbst_example2.jbst'
 
     flags = re.DOTALL
 
@@ -65,6 +66,7 @@ class XQueryLexer(ExtendedRegexLexer):
     filenames = ['*.xqy', '*.xquery', '*.xq', '*.xql', '*.xqm']
     mimetypes = ['text/xquery', 'application/xquery']
     version_added = '1.4'
+    _example = 'xquery/test-3.0.xq'
 
     xquery_parse_state = []
 
@@ -822,6 +824,7 @@ class QmlLexer(RegexLexer):
     filenames = ['*.qml', '*.qbs']
     mimetypes = ['application/x-qml', 'application/x-qt.qbs+qml']
     version_added = '1.6'
+    _example = 'qml/minehunt.qml'
 
     # pasted from JavascriptLexer, with some additions
     flags = re.DOTALL | re.MULTILINE
@@ -896,6 +899,7 @@ class CirruLexer(RegexLexer):
     filenames = ['*.cirru']
     mimetypes = ['text/x-cirru']
     version_added = '2.0'
+    _example = 'cirru/scope.cirru'
     flags = re.MULTILINE
 
     tokens = {
@@ -944,6 +948,7 @@ class SlimLexer(ExtendedRegexLexer):
     mimetypes = ['text/x-slim']
     url = 'https://slim-template.github.io'
     version_added = '2.0'
+    _example = 'slim/example.slim'
 
     flags = re.IGNORECASE
     _dot = r'(?: \|\n(?=.* \|)|.)'

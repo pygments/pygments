@@ -64,6 +64,7 @@ class RobotFrameworkLexer(Lexer):
     filenames = ['*.robot', '*.resource']
     mimetypes = ['text/x-robotframework']
     version_added = '1.6'
+    _example = 'robotframework/robotframework_test.robot'
 
     def __init__(self, **options):
         options['tabsize'] = 2

@@ -27,6 +27,7 @@ class APLLexer(RegexLexer):
         '*.aplc', '*.apli', '*.dyalog',
     ]
     version_added = '2.0'
+    _example = 'apl/test.apl'
 
     tokens = {
         'root': [

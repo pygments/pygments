@@ -37,6 +37,7 @@ class HtmlLexer(RegexLexer):
     filenames = ['*.html', '*.htm', '*.xhtml', '*.xslt']
     mimetypes = ['text/html', 'application/xhtml+xml']
     version_added = ''
+    _example = 'html/test.html'
 
     flags = re.IGNORECASE | re.DOTALL
     tokens = {
@@ -117,6 +118,7 @@ class DtdLexer(RegexLexer):
     mimetypes = ['application/xml-dtd']
     url = 'https://en.wikipedia.org/wiki/Document_type_definition'
     version_added = '1.5'
+    _example = 'dtd/test.dtd'
 
     tokens = {
         'root': [
@@ -207,6 +209,7 @@ class XmlLexer(RegexLexer):
                  'application/rss+xml', 'application/atom+xml']
     url = 'https://www.w3.org/XML'
     version_added = ''
+    _example = 'xml/xml_example.xml'
 
     tokens = {
         'root': [
@@ -249,6 +252,7 @@ class XsltLexer(XmlLexer):
     mimetypes = ['application/xsl+xml', 'application/xslt+xml']
     url = 'https://www.w3.org/TR/xslt-30'
     version_added = '0.10'
+    _example = 'xslt/test.xsl'
 
     EXTRA_KEYWORDS = {
         'apply-imports', 'apply-templates', 'attribute',
@@ -397,6 +401,7 @@ class ScamlLexer(ExtendedRegexLexer):
     mimetypes = ['text/x-scaml']
     url = 'https://scalate.github.io/scalate/'
     version_added = '1.4'
+    _example = 'scaml/test.scaml'
 
     flags = re.IGNORECASE
     # Scaml does not yet support the " |\n" notation to

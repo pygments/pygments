@@ -26,6 +26,7 @@ class VerifpalLexer(RegexLexer):
     mimetypes = ['text/x-verifpal']
     url = 'https://verifpal.com'
     version_added = '2.16'
+    _example = 'verifpal/verifpal_example.vp'
 
     tokens = {
         'root': [

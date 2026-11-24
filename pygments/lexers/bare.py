@@ -23,6 +23,7 @@ class BareLexer(RegexLexer):
     filenames = ['*.bare']
     aliases = ['bare']
     version_added = '2.7'
+    _example = 'bare/bare.bare'
 
     keywords = [
         'type',

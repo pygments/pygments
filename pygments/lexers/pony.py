@@ -25,6 +25,7 @@ class PonyLexer(RegexLexer):
     filenames = ['*.pony']
     url = 'https://www.ponylang.io'
     version_added = '2.4'
+    _example = 'pony/example.pony'
 
     _caps = r'(iso|trn|ref|val|box|tag)'
 

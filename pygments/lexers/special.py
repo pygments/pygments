@@ -28,6 +28,7 @@ class TextLexer(Lexer):
     mimetypes = ['text/plain']
     url = ""
     version_added = ''
+    _example = 'text/mysql.txt'
 
     priority = 0.01
 
@@ -46,7 +47,7 @@ class OutputLexer(Lexer):
     aliases = ['output']
     url = ""
     version_added = '2.10'
-    _example = "output/output"
+    _example = 'output/output'
 
     def get_tokens_unprocessed(self, text):
         yield 0, Generic.Output, text

@@ -25,6 +25,7 @@ class DLexer(RegexLexer):
     aliases = ['d']
     mimetypes = ['text/x-dsrc']
     version_added = '1.2'
+    _example = 'd/test.d'
 
     tokens = {
         'root': [
@@ -194,6 +195,7 @@ class CrocLexer(RegexLexer):
     aliases = ['croc']
     mimetypes = ['text/x-crocsrc']
     version_added = ''
+    _example = 'croc/simple.croc'
 
     tokens = {
         'root': [
@@ -257,3 +259,4 @@ class MiniDLexer(CrocLexer):
     aliases = ['minid']
     mimetypes = ['text/x-minidsrc']
     version_added = ''
+    _example = ""

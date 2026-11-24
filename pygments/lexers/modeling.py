@@ -30,6 +30,7 @@ class ModelicaLexer(RegexLexer):
     filenames = ['*.mo']
     mimetypes = ['text/x-modelica']
     version_added = '1.1'
+    _example = 'modelica/Constants.mo'
 
     flags = re.DOTALL | re.MULTILINE
 
@@ -125,6 +126,7 @@ class BugsLexer(RegexLexer):
     filenames = ['*.bug']
     url = 'https://www.mrc-bsu.cam.ac.uk/software/bugs/openbugs'
     version_added = '1.6'
+    _example = 'bugs/example.bug'
 
     _FUNCTIONS = (
         # Scalar functions
@@ -219,6 +221,7 @@ class JagsLexer(RegexLexer):
     filenames = ['*.jag', '*.bug']
     url = 'https://mcmc-jags.sourceforge.io'
     version_added = '1.6'
+    _example = 'jags/example.jag'
 
     # JAGS
     _FUNCTIONS = (
@@ -310,6 +313,7 @@ class StanLexer(RegexLexer):
     filenames = ['*.stan']
     url = 'https://mc-stan.org'
     version_added = '1.6'
+    _example = 'stan/example.stan'
 
     tokens = {
         'whitespace': [

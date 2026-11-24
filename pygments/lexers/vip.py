@@ -91,6 +91,7 @@ class VisualPrologLexer(VisualPrologBaseLexer):
     aliases = ['visualprolog']
     filenames = ['*.pro', '*.cl', '*.i', '*.pack', '*.ph']
     version_added = '2.17'
+    _example = 'visualprolog/test.pro'
 
     majorkw = ('goal', 'namespace', 'interface', 'class', 'implement', 'where', 'open', 'inherits', 'supports', 'resolve',
                'delegate', 'monitor', 'constants', 'domains', 'predicates', 'constructors', 'properties', 'clauses', 'facts')
@@ -127,6 +128,7 @@ class VisualPrologGrammarLexer(VisualPrologBaseLexer):
     aliases = ['visualprologgrammar']
     filenames = ['*.vipgrm']
     version_added = '2.17'
+    _example = 'visualprologgrammar/grammarDef.vipgrm'
 
     majorkw = ('open', 'namespace', 'grammar', 'nonterminals',
                'startsymbols', 'terminals', 'rules', 'precedence')

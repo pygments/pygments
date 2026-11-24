@@ -46,6 +46,7 @@ class WebIDLLexer(RegexLexer):
     aliases = ['webidl']
     filenames = ['*.webidl']
     version_added = '2.6'
+    _example = 'webidl/example.webidl'
 
     tokens = {
         'common': [
