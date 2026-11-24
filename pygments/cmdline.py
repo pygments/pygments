@@ -179,6 +179,7 @@ def _print_list_as_json(requested_items):
 
     json.dump(result, sys.stdout)
 
+
 def main_inner(parser, argns):
     if argns.help:
         parser.print_help()
@@ -463,8 +464,22 @@ def main_inner(parser, argns):
             fmter.encoding = terminal_encoding(sys.stdout)
 
     # provide coloring under Windows, if possible
-    if not outfn and sys.platform in ('win32', 'cygwin') and \
-       fmter.name in ('Terminal', 'Terminal256'):  # pragma: no cover
+    # extend to all OSes if argsn.strip_escapes == 'on'
+
+    strip_escapes = argns.strip_escapes
+    if isinstance(strip_escapes, list):
+        strip_escapes = strip_escapes[-1]
+    use_colorama = (
+            strip_escapes != 'raw' and
+            sys.platform in ('win32', 'cygwin') and
+            fmter.name in ('Terminal', 'Terminal256')
+        ) or (
+            strip_escapes == 'on' and
+            fmter.name in (
+                'Terminal', 'Terminal256', 'TerminalTrueColor')
+        )
+
+    if use_colorama and not outfn:  # pragma: no cover
         # unfortunately colorama doesn't support binary streams on Py3
         outfile = UnclosingTextIOWrapper(outfile, encoding=fmter.encoding)
         fmter.encoding = None
@@ -473,8 +488,17 @@ def main_inner(parser, argns):
         except ImportError:
             pass
         else:
+            strip = convert = None
+            if strip_escapes == 'off':
+                strip = False
+            elif strip_escapes == 'on':
+                strip = True
+            elif strip_escapes == 'semi-raw':
+                # should have same effect as "raw", but doesn't?
+                convert = strip = False
             outfile = colorama.initialise.wrap_stream(
-                outfile, convert=None, strip=None, autoreset=False, wrap=True)
+                outfile, convert=convert, strip=strip, autoreset=False,
+                wrap=True)
 
     # When using the LaTeX formatter and the option `escapeinside` is
     # specified, we need a special lexer which collects escaped text
@@ -493,6 +517,8 @@ def main_inner(parser, argns):
         finally:
             if outfn:
                 outfile.close()
+            elif hasattr(outfile, 'flush'):
+                outfile.flush()
         return 0
     else:
         # line by line processing of stdin (eg: for 'tail -f')...
@@ -596,6 +622,25 @@ def main(args=sys.argv):
         'be only used in conjunction with -L.',
         default=False,
         action='store_true')
+    flags.add_argument(
+        '--color', 
+        dest='strip_escapes',
+        action='store_const',
+        const='raw',
+        help='Alias for "--strip-escapes=raw".')
+    flags.add_argument(
+        '--strip-escapes',
+        dest='strip_escapes',
+        choices=['off', 'on', 'auto', 'raw', 'semi-raw'],
+        default='auto',  # default from before adding option
+        nargs=1,
+        help=(
+            'Specifies how the output is processed so that what is written '
+            'is appropriate for the platform and destination (on = always '
+            'strip; off = no stripping, but convert as needed on Windows; '
+            'raw = leave output as produced by formatter'
+            ').'
+        ))
 
     special_modes_group = parser.add_argument_group(
         'Special modes - do not do any highlighting')
