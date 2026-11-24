@@ -17,7 +17,7 @@ __all__ = ['GleamLexer']
 
 class GleamLexer(RegexLexer):
     """
-    Lexer for the Gleam programming language (version 1.0.0).
+    Lexer for the Gleam programming language (version >= 1.0.0).
     """
 
     name = 'Gleam'
@@ -27,7 +27,7 @@ class GleamLexer(RegexLexer):
     mimetypes = ['text/x-gleam']
     version_added = '2.19'
 
-    keywords = words((
+    _keywords = words((
         'as', 'assert', 'auto', 'case', 'const', 'delegate', 'derive', 'echo',
         'else', 'fn', 'if', 'implement', 'import', 'let', 'macro', 'opaque',
         'panic', 'pub', 'test', 'todo', 'type', 'use',
@@ -39,26 +39,50 @@ class GleamLexer(RegexLexer):
             (r'(///.*?)(\n)', bygroups(String.Doc, Whitespace)),
             (r'(//.*?)(\n)', bygroups(Comment.Single, Whitespace)),
 
-            # Keywords
-            (keywords, Keyword),
-            (r'([a-zA-Z_]+)(\.)', bygroups(Keyword, Punctuation)),
+            # Multiline Strings
+            (r'"""(.|\n)*?"""', String),
 
-            # Punctuation
-            (r'[()\[\]{}:;,@]+', Punctuation),
-            (r'(#|!=|!|==|\|>|\|\||\||\->|<\-|&&|<<|>>|\.\.|\.|=)', Punctuation),
+            # Single-line Strings
+            (r'"(\\"|[^"])*"', String),
+
+            # Bit arrays
+            (r'<<.*?>>', String.Other),
+
+            # Attributes / annotations
+            (r'@\w+', Name.Decorator),
+
+            # Keywords
+            (_keywords, Keyword),
+
+            # pub fn with function name
+            (r'\b(pub)(\s+)(fn)(\s+)([a-z_][a-zA-Z0-9_]*)',
+             bygroups(Keyword, Whitespace, Keyword, Whitespace, Name.Function)),
+
+            # let binding
+            (r'\b(let)(\s+)(_[a-z][a-z0-9_]*|\w+)',
+             bygroups(Keyword, Whitespace, Name.Variable)),
+
+            # fn name (non-pub)
+            (r'\b(fn)(\s+)([a-z_][a-zA-Z0-9_]*)',
+             bygroups(Keyword, Whitespace, Name.Function)),
+
+            # Type constructors (PascalCase)
+            (r'\b[A-Z][a-zA-Z0-9_]*\b', Name.Class),
+
+            # Discard variables (_foo)
+            (r'\b_[a-z][a-z0-9_]*\b', Name.Other),
+
+            # General identifiers
+            (r'[a-zA-Z_/][a-zA-Z0-9_]*', Name),
 
             # Operators
             (r'(<>|\+\.?|\-\.?|\*\.?|/\.?|%\.?|<=\.?|>=\.?|<\.?|>\.?|=)', Operator),
 
-            # Strings
-            (r'"(\\"|[^"])*"', String),
+            # Punctuation (groupings and flow)
+            (r'[()\[\]{}:;,@]+', Punctuation),
+            (r'(#|!=|!|==|\|>|\|\||\||->|<-|&&|<<|>>|\.\.|\.|=)', Punctuation),
 
-            # Identifiers
-            (r'\b(let)(\s+)(\w+)', bygroups(Keyword, Whitespace, Name.Variable)),
-            (r'\b(fn)(\s+)(\w+)', bygroups(Keyword, Whitespace, Name.Function)),
-            (r'[a-zA-Z_/]\w*', Name),
-
-            # numbers
+            # Numbers
             (r'(\d+(_\d+)*\.(?!\.)(\d+(_\d+)*)?|\.\d+(_\d+)*)([eEf][+-]?[0-9]+)?', Number.Float),
             (r'\d+(_\d+)*[eEf][+-]?[0-9]+', Number.Float),
             (r'0[xX][a-fA-F0-9]+(_[a-fA-F0-9]+)*(\.([a-fA-F0-9]+(_[a-fA-F0-9]+)*)?)?p[+-]?\d+', Number.Float),
@@ -69,6 +93,6 @@ class GleamLexer(RegexLexer):
 
             # Whitespace
             (r'\s+', Whitespace),
-
         ],
     }
+
