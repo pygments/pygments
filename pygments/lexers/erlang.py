@@ -391,9 +391,9 @@ class ElixirLexer(RegexLexer):
             (op1_re, Operator),
 
             # numbers
-            (r'0b[01]+', Number.Bin),
-            (r'0o[0-7]+', Number.Oct),
-            (r'0x[\da-fA-F]+', Number.Hex),
+            (r'0b[01](_?[01])*', Number.Bin),
+            (r'0o[0-7](_?[0-7])*', Number.Oct),
+            (r'0x[\da-fA-F](_?[\da-fA-F])*', Number.Hex),
             (r'\d(_?\d)*\.\d(_?\d)*([eE][-+]?\d(_?\d)*)?', Number.Float),
             (r'\d(_?\d)*', Number.Integer),
 
