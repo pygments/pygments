@@ -1,0 +1,10 @@
+---input---
+0xFF_FF 0o7_5_5 0b1010_1010
+
+---tokens---
+'0xFF_FF'     Literal.Number.Hex
+' '           Text.Whitespace
+'0o7_5_5'     Literal.Number.Oct
+' '           Text.Whitespace
+'0b1010_1010' Literal.Number.Bin
+'\n'          Text.Whitespace
