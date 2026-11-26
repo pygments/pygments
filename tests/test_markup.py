@@ -8,6 +8,7 @@
 
 import pytest
 
+from pygments.lexers import get_lexer_for_mimetype
 from pygments.lexers.markup import (
     MarkdownLexer, RstLexer, TexLexer, TiddlyWiki5Lexer)
 from pygments.token import Name, Operator
@@ -63,3 +64,9 @@ def test_tex_math_environments(environment):
 
     assert (Name.Builtin, 'x') in tokens
     assert (Operator, '+') in tokens
+
+
+@pytest.mark.parametrize('mimetype', ['text/markdown', 'text/x-markdown'])
+def test_markdown_mimetypes(mimetype):
+    lexer = get_lexer_for_mimetype(mimetype)
+    assert isinstance(lexer, MarkdownLexer)
