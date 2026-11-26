@@ -12,6 +12,8 @@ import re
 import sys
 import types
 import fnmatch
+from functools import cache
+from itertools import chain
 from os.path import basename
 
 from pygments.lexers._mapping import LEXERS
@@ -38,6 +40,21 @@ def _fn_matches(fn, glob):
         pattern = _pattern_cache[glob] = re.compile(fnmatch.translate(glob))
         return pattern.match(fn)
     return _pattern_cache[glob].match(fn)
+
+
+@cache
+def _filename_pattern_index():
+    """Group built-in patterns by the literal text after their last dot."""
+    index = {None: []}
+    for module, name, _, patterns, _ in LEXERS.values():
+        for pattern in patterns:
+            suffix = pattern.rpartition('.')[-1]
+            # A dot inside a character class need not match a literal dot.
+            # Keep those patterns and wildcard suffixes in the fallback list.
+            if any(char in suffix for char in '*?[]'):
+                suffix = None
+            index.setdefault(suffix, []).append((module, name, pattern))
+    return index
 
 
 def _load_lexers(module_name):
@@ -176,12 +193,13 @@ def find_lexer_class_for_filename(_fn, code=None):
     """
     matches = []
     fn = basename(_fn)
-    for modname, name, _, filenames, _ in LEXERS.values():
-        for filename in filenames:
-            if _fn_matches(fn, filename):
-                if name not in _lexer_cache:
-                    _load_lexers(modname)
-                matches.append((_lexer_cache[name], filename))
+    index = _filename_pattern_index()
+    suffix = fn.rpartition('.')[-1]
+    for modname, name, filename in chain(index.get(suffix, ()), index[None]):
+        if _fn_matches(fn, filename):
+            if name not in _lexer_cache:
+                _load_lexers(modname)
+            matches.append((_lexer_cache[name], filename))
     for cls in find_plugin_lexers():
         for filename in cls.filenames:
             if _fn_matches(fn, filename):

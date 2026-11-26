@@ -13,6 +13,7 @@ import pytest
 from pygments.lexers import (
     _fn_matches,
     find_lexer_class_by_name,
+    find_lexer_class_for_filename,
     get_lexer_by_name,
     guess_lexer,
 )
@@ -24,6 +25,29 @@ TESTDIR = Path(__file__).resolve().parent
 
 def get_input(lexer, filename):
     return Path(TESTDIR, 'examplefiles', lexer, filename).read_text(encoding='utf-8')
+
+
+@pytest.mark.parametrize(('filename', 'alias'), [
+    ('src/.py', 'python'),                # '*' can match an empty stem
+    ('templates/page.html.j2', 'html+django'),
+    ('Dockerfile', 'docker'),             # exact basename
+    ('not.Dockerfile', None),             # same suffix as an exact basename
+    ('demo.xbm', 'c'),                    # character class in the suffix
+    ('Kconfig.board', 'kconfig'),         # wildcard spanning a dot
+    ('py', None),                         # '*.py' needs a literal dot
+])
+def test_find_lexer_by_filename_pattern(filename, alias):
+    expected = find_lexer_class_by_name(alias) if alias else None
+    assert find_lexer_class_for_filename(filename) is expected
+
+
+@pytest.mark.parametrize(('code', 'alias'), [
+    ('#!/usr/bin/python3\n', 'python'),
+    ('all: $(OBJECTS)\n', 'make'),
+])
+def test_find_lexer_by_filename_with_competing_patterns(code, alias):
+    # Makefile.* and *.py must both participate in content-based ranking.
+    assert find_lexer_class_for_filename('Makefile.py', code) is find_lexer_class_by_name(alias)
 
 
 @pytest.mark.skip(reason="This is identified as T-SQL")
