@@ -20,7 +20,7 @@ from pygments.lexers import _mql_builtins
 
 __all__ = ['PikeLexer', 'NesCLexer', 'ClayLexer', 'ECLexer', 'ValaLexer',
            'CudaLexer', 'SwigLexer', 'MqlLexer', 'ArduinoLexer', 'CharmciLexer',
-           'OmgIdlLexer', 'PromelaLexer']
+           'OmgIdlLexer', 'PromelaLexer', 'MetalLexer']
 
 
 class PikeLexer(CppLexer):
@@ -323,6 +323,153 @@ class CudaLexer(CppLexer):
                     token = Keyword.Reserved
                 elif value in self.functions:
                     token = Name.Function
+            yield index, token, value
+
+
+class MetalLexer(CppLexer):
+    """
+    For Metal Shading Language (MSL) source.
+
+    MSL is based on C++14 (MSL 3.x) and C++17 (MSL 4.x); this lexer extends
+    the C++ lexer with Metal function qualifiers, address spaces, built-in
+    types and ``[[attribute]]`` names.
+    """
+    name = 'Metal'
+    url = 'https://developer.apple.com/metal/'
+    aliases = ['metal', 'msl']
+    filenames = ['*.metal']
+    mimetypes = ['text/x-metal']
+    version_added = '2.22'
+
+    function_qualifiers = {'kernel', 'vertex', 'fragment'}
+    address_spaces = {'device', 'constant', 'thread', 'threadgroup',
+                      'threadgroup_imageblock', 'ray_data', 'object_data'}
+    scalar_types = {'bool', 'char', 'uchar', 'short', 'ushort', 'int', 'uint',
+                    'long', 'ulong', 'half', 'float', 'bfloat', 'size_t',
+                    'ptrdiff_t'}
+    vector_types = set()
+    for _t in ('bool', 'char', 'uchar', 'short', 'ushort', 'int', 'uint',
+               'long', 'ulong', 'half', 'float', 'bfloat'):
+        for _n in '234':
+            vector_types.add(_t + _n)
+            vector_types.add('packed_' + _t + _n)
+    for _t in ('half', 'float', 'bfloat'):
+        for _c in '234':
+            for _r in '234':
+                vector_types.add(f'{_t}{_c}x{_r}')
+    del _t, _n, _c, _r
+    resource_types = {
+        'texture1d', 'texture1d_array', 'texture2d', 'texture2d_array',
+        'texture3d', 'texturecube', 'texturecube_array', 'texture2d_ms',
+        'texture2d_ms_array', 'texture_buffer', 'depth2d', 'depth2d_array',
+        'depthcube', 'depthcube_array', 'depth2d_ms', 'depth2d_ms_array',
+        'sampler', 'imageblock', 'acceleration_structure',
+        'instance_acceleration_structure', 'primitive_acceleration_structure',
+        'intersection_function_table', 'visible_function_table', 'intersector',
+        'intersection_query', 'ray', 'mesh', 'mesh_grid_properties',
+        'patch_control_point', 'render_pipeline_state',
+        'compute_pipeline_state', 'command_buffer', 'atomic', 'atomic_int',
+        'atomic_uint', 'atomic_bool', 'atomic_float', 'atomic_ulong',
+        'tensor', 'tensor_inline', 'tensor_handle', 'tensor_offset',
+        'extents', 'dextents',
+    }
+    attributes = {
+        'accept_intersection', 'alias_implicit_imageblock',
+        'alias_implicit_imageblock_color', 'amplification_count',
+        'amplification_id', 'attribute', 'barycentric_coord', 'base_instance',
+        'base_vertex', 'buffer', 'center', 'center_no_perspective',
+        'center_perspective', 'centroid_no_perspective',
+        'centroid_perspective', 'clip_distance', 'color', 'continue_search',
+        'depth', 'direction', 'dispatch_quadgroups_per_threadgroup',
+        'dispatch_simdgroups_per_threadgroup',
+        'dispatch_threads_per_threadgroup', 'distance', 'early_fragment_tests',
+        'flat', 'fragment', 'front_facing', 'function_constant',
+        'function_groups', 'host', 'host_name', 'id', 'imageblock_data',
+        'instance_id', 'intersection', 'invariant', 'kernel', 'max_distance',
+        'max_total_threadgroups_per_mesh_grid',
+        'max_total_threads_per_threadgroup', 'mesh', 'min_distance', 'object',
+        'origin', 'patch', 'payload', 'pixel_position_in_tile',
+        'pixels_per_tile', 'point_coord', 'point_size', 'position',
+        'primitive_culled', 'primitive_id', 'quadgroup_index_in_threadgroup',
+        'quadgroups_per_threadgroup', 'raster_order_group',
+        'render_target_array_index', 'required_threads_per_threadgroup',
+        'sample_id', 'sample_mask', 'sample_no_perspective',
+        'sample_perspective', 'sampler', 'shared',
+        'simdgroup_index_in_threadgroup', 'simdgroups_per_threadgroup',
+        'stage_in', 'stencil', 'stitchable', 'texture',
+        'thread_execution_width', 'thread_index_in_quadgroup',
+        'thread_index_in_simdgroup', 'thread_index_in_threadgroup',
+        'thread_position_in_grid', 'thread_position_in_threadgroup',
+        'threadgroup', 'threadgroup_position_in_grid', 'threadgroups_per_grid',
+        'threads_per_grid', 'threads_per_simdgroup', 'threads_per_threadgroup',
+        'tile_index', 'user', 'user_annotation', 'vertex', 'vertex_id',
+        'viewport_array_index', 'visible',
+    }
+
+    tokens = {
+        'root': [
+            # Consume the qualifier so the inherited function rule still
+            # recognizes "type name(" and yields Name.Function.
+            (r'(kernel|vertex|fragment)(\s+)',
+             bygroups(Keyword.Reserved, Whitespace)),
+            inherit,
+        ],
+        'statements': [
+            # half-precision literal suffix (needs a '.' or an exponent):
+            # 1.0h, 2.H, .5h, 1e-3h
+            (r'((\d+\.\d*|\.\d+)([eE][+-]?\d+)?|\d+[eE][+-]?\d+)[hH]\b',
+             Number.Float),
+            inherit,
+        ],
+    }
+
+    def get_tokens_unprocessed(self, text, stack=('root',)):
+        # Bracket stack: 'i' for a subscript '[', 'a' for an attribute '[['.
+        # CppLexer emits '[[' / ']]' as single tokens when it recognizes an
+        # attribute, but falls back to separate brackets in some contexts
+        # (e.g. '[[buffer(0)]]' inside a parameter list); in C++, two
+        # consecutive '[' can only start an attribute.
+        brackets = []
+        prev = None        # previous significant token value
+        half_closed = False
+        for index, token, value in CppLexer.get_tokens_unprocessed(
+                self, text, stack):
+            if token is Punctuation and value == '[[':
+                brackets.append('a')
+                half_closed = False
+            elif token is Punctuation and value == ']]':
+                if brackets and brackets[-1] == 'a':
+                    brackets.pop()
+                half_closed = False
+            elif token is Punctuation and value == '[':
+                if prev == '[' and brackets and brackets[-1] == 'i':
+                    brackets[-1] = 'a'
+                else:
+                    brackets.append('i')
+                half_closed = False
+            elif token is Punctuation and value == ']':
+                if brackets and brackets[-1] == 'i':
+                    brackets.pop()
+                elif brackets and brackets[-1] == 'a':
+                    if half_closed:
+                        brackets.pop()
+                        half_closed = False
+                    else:
+                        half_closed = True
+            elif token not in (Whitespace, Text):
+                half_closed = False
+            if token not in (Whitespace, Text):
+                prev = value
+            if token is Name:
+                if 'a' in brackets and value in self.attributes:
+                    token = Name.Attribute
+                elif value in self.address_spaces:
+                    token = Keyword.Type
+                elif value in self.function_qualifiers:
+                    token = Keyword.Reserved
+                elif (value in self.scalar_types or value in self.vector_types
+                      or value in self.resource_types):
+                    token = Keyword.Type
             yield index, token, value
 
 

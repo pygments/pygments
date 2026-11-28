@@ -1,0 +1,79 @@
+---input---
+half a = 1.0h;
+half b = 2.H;
+half c = .5h;
+half d = 1e-3h;
+half e = 1E3H;
+float f = 1.0f;
+int g = 0x1F;
+
+---tokens---
+'half'        Keyword.Type
+' '           Text.Whitespace
+'a'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1.0h'        Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'half'        Keyword.Type
+' '           Text.Whitespace
+'b'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'2.H'         Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'half'        Keyword.Type
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'.5h'         Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'half'        Keyword.Type
+' '           Text.Whitespace
+'d'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1e-3h'       Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'half'        Keyword.Type
+' '           Text.Whitespace
+'e'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1E3H'        Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'float'       Keyword.Type
+' '           Text.Whitespace
+'f'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'1.0f'        Literal.Number.Float
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'int'         Keyword.Type
+' '           Text.Whitespace
+'g'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x1F'        Literal.Number.Hex
+';'           Punctuation
+'\n'          Text.Whitespace

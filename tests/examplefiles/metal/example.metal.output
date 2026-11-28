@@ -1,0 +1,370 @@
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'<metal_stdlib>' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'#'           Comment.Preproc
+'include'     Comment.Preproc
+' '           Text.Whitespace
+'<metal_tensor>' Comment.PreprocFile
+'\n'          Comment.Preproc
+
+'using'       Keyword
+' '           Text.Whitespace
+'namespace'   Keyword
+' '           Text.Whitespace
+'metal'       Name.Namespace
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'struct'      Keyword
+' '           Text.Whitespace
+'VertexOut'   Name.Class
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'float4'      Keyword.Type
+' '           Text.Whitespace
+'position'    Name
+' '           Text.Whitespace
+'[['          Punctuation
+'position'    Name.Attribute
+']]'          Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'half3'       Keyword.Type
+' '           Text.Whitespace
+'color'       Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'vertex'      Keyword.Reserved
+' '           Text.Whitespace
+'VertexOut'   Name
+' '           Text.Whitespace
+'vertex_main' Name.Function
+'('           Punctuation
+'uint'        Keyword.Type
+' '           Text.Whitespace
+'vid'         Name
+' '           Text.Whitespace
+'[['          Punctuation
+'vertex_id'   Name.Attribute
+']]'          Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'                       ' Text.Whitespace
+'constant'    Keyword.Type
+' '           Text.Whitespace
+'packed_float3' Keyword.Type
+' '           Text.Whitespace
+'*'           Operator
+'pos'         Name
+' '           Text.Whitespace
+'['           Punctuation
+'['           Punctuation
+'buffer'      Name.Attribute
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+']'           Punctuation
+']'           Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'VertexOut'   Name
+' '           Text.Whitespace
+'out'         Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'out'         Name
+'.'           Punctuation
+'position'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'float4'      Keyword.Type
+'('           Punctuation
+'pos'         Name
+'['           Punctuation
+'vid'         Name
+']'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'1.0'         Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'out'         Name
+'.'           Punctuation
+'color'       Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'half3'       Keyword.Type
+'('           Punctuation
+'1.0h'        Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'out'         Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'fragment'    Keyword.Reserved
+' '           Text.Whitespace
+'half4'       Keyword.Type
+' '           Text.Whitespace
+'fragment_main' Name.Function
+'('           Punctuation
+'VertexOut'   Name
+' '           Text.Whitespace
+'in'          Name
+' '           Text.Whitespace
+'[['          Punctuation
+'stage_in'    Name.Attribute
+']]'          Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'                     ' Text.Whitespace
+'texture2d'   Keyword.Type
+'<'           Operator
+'half'        Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'access'      Name
+':'           Operator
+':'           Operator
+'sample'      Name
+'>'           Operator
+' '           Text.Whitespace
+'tex'         Name
+' '           Text.Whitespace
+'['           Punctuation
+'['           Punctuation
+'texture'     Name.Attribute
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+']'           Punctuation
+']'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'                     ' Text.Whitespace
+'sampler'     Keyword.Type
+' '           Text.Whitespace
+'s'           Name
+' '           Text.Whitespace
+'[['          Punctuation
+'sampler'     Name.Attribute
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+']]'          Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'return'      Keyword
+' '           Text.Whitespace
+'tex'         Name
+'.'           Punctuation
+'sample'      Name
+'('           Punctuation
+'s'           Name
+','           Punctuation
+' '           Text.Whitespace
+'float2'      Keyword.Type
+'('           Punctuation
+'0.5'         Literal.Number.Float
+')'           Punctuation
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'\n'          Text.Whitespace
+
+'kernel'      Keyword.Reserved
+' '           Text.Whitespace
+'void'        Keyword.Type
+' '           Text.Whitespace
+'kernel_main' Name.Function
+'('           Punctuation
+'device'      Keyword.Type
+' '           Text.Whitespace
+'float'       Keyword.Type
+' '           Text.Whitespace
+'*'           Operator
+'a'           Name
+' '           Text.Whitespace
+'['           Punctuation
+'['           Punctuation
+'buffer'      Name.Attribute
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+']'           Punctuation
+']'           Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'              ' Text.Whitespace
+'threadgroup' Keyword.Type
+' '           Text.Whitespace
+'float'       Keyword.Type
+' '           Text.Whitespace
+'*'           Operator
+'tile'        Name
+' '           Text.Whitespace
+'[['          Punctuation
+'threadgroup' Name.Attribute
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+']]'          Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'              ' Text.Whitespace
+'tensor'      Keyword.Type
+'<'           Operator
+'device'      Keyword.Type
+' '           Text.Whitespace
+'half'        Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'dextents'    Keyword.Type
+'<'           Operator
+'int32_t'     Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+'>'           Operator
+'>'           Operator
+' '           Text.Whitespace
+'t'           Name
+' '           Text.Whitespace
+'[['          Punctuation
+'buffer'      Name.Attribute
+'('           Punctuation
+'1'           Literal.Number.Integer
+')'           Punctuation
+']]'          Punctuation
+','           Punctuation
+'\n'          Text.Whitespace
+
+'              ' Text.Whitespace
+'uint'        Keyword.Type
+' '           Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+'[['          Punctuation
+'thread_position_in_grid' Name.Attribute
+']]'          Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'constexpr'   Keyword
+' '           Text.Whitespace
+'('           Punctuation
+'sizeof'      Keyword
+'('           Punctuation
+'half'        Keyword.Type
+')'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+'='           Operator
+' '           Text.Whitespace
+'2'           Literal.Number.Integer
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'float3x3'    Keyword.Type
+' '           Text.Whitespace
+'m'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'float3x3'    Keyword.Type
+'('           Punctuation
+'1.0'         Literal.Number.Float
+')'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'        '    Text.Whitespace
+'a'           Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'m'           Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+' '           Text.Whitespace
+'+'           Operator
+' '           Text.Whitespace
+'tile'        Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'    '        Text.Whitespace
+'}'           Punctuation
+'\n'          Text.Whitespace
+
+'}'           Punctuation
+'\n'          Text.Whitespace
