@@ -3,6 +3,8 @@
     key 1 = "value1"
     key 2 = "value2" # comment
     key 3 = "value3 ; value 3bis" ; comment
+    author = "It's #1" ; after
+    title = 'Say "yes"; again' # after
 
 ---tokens---
 '[section]'   Keyword
@@ -34,4 +36,24 @@
 '"'           Literal.String
 ' '           Text.Whitespace
 '; comment'   Comment.Single
+'\n    '      Text.Whitespace
+'author'      Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'"'           Literal.String
+"It's #1"     Literal.String
+'"'           Literal.String
+' '           Text.Whitespace
+'; after'     Comment.Single
+'\n    '      Text.Whitespace
+'title'       Name.Attribute
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+"'"           Literal.String
+'Say "yes"; again' Literal.String
+"'"           Literal.String
+' '           Text.Whitespace
+'# after'     Comment.Single
 '\n'          Text.Whitespace

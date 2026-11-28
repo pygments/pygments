@@ -58,8 +58,9 @@ class IniLexer(RegexLexer):
             (r'(.+?)$', Name.Attribute),
         ],
         'quoted_value': [
-            (r'''([^"'\n]*)(["'])(\s*)''',
-             bygroups(String, String, Whitespace), "#pop"),
+            # The opening quote was consumed by the assignment rule.
+            (r'(?<=")([^"\n]*)(")(\s*)', bygroups(String, String, Whitespace), '#pop'),
+            (r"(?<=')([^'\n]*)(')(\s*)", bygroups(String, String, Whitespace), '#pop'),
             (r'[;#].*', Comment.Single),
             (r'$', String, "#pop"),
         ],
