@@ -321,6 +321,7 @@ LEXERS = {
     'MatlabSessionLexer': ('pygments.lexers.matlab', 'Matlab session', ('matlabsession',), (), ()),
     'MaximaLexer': ('pygments.lexers.maxima', 'Maxima', ('maxima', 'macsyma'), ('*.mac', '*.max'), ()),
     'MesonLexer': ('pygments.lexers.meson', 'Meson', ('meson', 'meson.build'), ('meson.build', 'meson.options', 'meson_options.txt'), ('text/x-meson',)),
+    'MetalLexer': ('pygments.lexers.c_like', 'Metal', ('metal', 'msl'), ('*.metal',), ('text/x-metal',)),
     'MiniDLexer': ('pygments.lexers.d', 'MiniD', ('minid',), (), ('text/x-minidsrc',)),
     'MiniScriptLexer': ('pygments.lexers.scripting', 'MiniScript', ('miniscript', 'ms'), ('*.ms',), ('text/x-minicript', 'application/x-miniscript')),
     'ModelicaLexer': ('pygments.lexers.modeling', 'Modelica', ('modelica',), ('*.mo',), ('text/x-modelica',)),

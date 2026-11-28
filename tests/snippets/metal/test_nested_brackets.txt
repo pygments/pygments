@@ -1,0 +1,65 @@
+---input---
+float4 c [[color(kIdx[kMap[0]]), raster_order_group(0)]];
+x = a[b[c[d[i]]]];
+float4 p [[position]][[invariant]];
+
+---tokens---
+'float4'      Keyword.Type
+' '           Text.Whitespace
+'c'           Name
+' '           Text.Whitespace
+'['           Punctuation
+'['           Punctuation
+'color'       Name.Attribute
+'('           Punctuation
+'kIdx'        Name
+'['           Punctuation
+'kMap'        Name
+'['           Punctuation
+'0'           Literal.Number.Integer
+']'           Punctuation
+']'           Punctuation
+')'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'raster_order_group' Name.Attribute
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+']'           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'x'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'a'           Name
+'['           Punctuation
+'b'           Name
+'['           Punctuation
+'c'           Name
+'['           Punctuation
+'d'           Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+']'           Punctuation
+']'           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'float4'      Keyword.Type
+' '           Text.Whitespace
+'p'           Name
+' '           Text.Whitespace
+'[['          Punctuation
+'position'    Name.Attribute
+']]'          Punctuation
+'[['          Punctuation
+'invariant'   Name.Attribute
+']]'          Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace

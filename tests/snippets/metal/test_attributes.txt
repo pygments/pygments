@@ -1,0 +1,39 @@
+---input---
+kernel void k(device float *a [[buffer(0)]], uint i [[thread_position_in_grid]]) {}
+
+---tokens---
+'kernel'      Keyword.Reserved
+' '           Text.Whitespace
+'void'        Keyword.Type
+' '           Text.Whitespace
+'k'           Name.Function
+'('           Punctuation
+'device'      Keyword.Type
+' '           Text.Whitespace
+'float'       Keyword.Type
+' '           Text.Whitespace
+'*'           Operator
+'a'           Name
+' '           Text.Whitespace
+'['           Punctuation
+'['           Punctuation
+'buffer'      Name.Attribute
+'('           Punctuation
+'0'           Literal.Number.Integer
+')'           Punctuation
+']'           Punctuation
+']'           Punctuation
+','           Punctuation
+' '           Text.Whitespace
+'uint'        Keyword.Type
+' '           Text.Whitespace
+'i'           Name
+' '           Text.Whitespace
+'[['          Punctuation
+'thread_position_in_grid' Name.Attribute
+']]'          Punctuation
+')'           Punctuation
+' '           Text.Whitespace
+'{'           Punctuation
+'}'           Punctuation
+'\n'          Text.Whitespace

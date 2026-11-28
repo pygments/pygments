@@ -1,0 +1,36 @@
+---input---
+constant half3x3 m;
+threadgroup packed_float4 p;
+texture2d<float, access::read> t;
+
+---tokens---
+'constant'    Keyword.Type
+' '           Text.Whitespace
+'half3x3'     Keyword.Type
+' '           Text.Whitespace
+'m'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'threadgroup' Keyword.Type
+' '           Text.Whitespace
+'packed_float4' Keyword.Type
+' '           Text.Whitespace
+'p'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'texture2d'   Keyword.Type
+'<'           Operator
+'float'       Keyword.Type
+','           Punctuation
+' '           Text.Whitespace
+'access'      Name
+':'           Operator
+':'           Operator
+'read'        Name
+'>'           Operator
+' '           Text.Whitespace
+'t'           Name
+';'           Punctuation
+'\n'          Text.Whitespace

@@ -1,0 +1,30 @@
+---input---
+float2 v = a[b[i]];
+out.position = p;
+
+---tokens---
+'float2'      Keyword.Type
+' '           Text.Whitespace
+'v'           Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'a'           Name
+'['           Punctuation
+'b'           Name
+'['           Punctuation
+'i'           Name
+']'           Punctuation
+']'           Punctuation
+';'           Punctuation
+'\n'          Text.Whitespace
+
+'out'         Name
+'.'           Punctuation
+'position'    Name
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'p'           Name
+';'           Punctuation
+'\n'          Text.Whitespace
