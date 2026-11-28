@@ -1,0 +1,26 @@
+---input---
+a and b
+a or b
+a ?? b
+
+---tokens---
+'a'           Name
+' '           Text
+'and'         Operator.Word
+' '           Text
+'b'           Name
+'\n'          Text.Whitespace
+
+'a'           Name
+' '           Text
+'or'          Operator.Word
+' '           Text
+'b'           Name
+'\n'          Text.Whitespace
+
+'a'           Name
+' '           Text
+'??'          Operator.Word
+' '           Text
+'b'           Name
+'\n'          Text.Whitespace

@@ -181,6 +181,7 @@ class PythonLexer(RegexLexer):
             (r'!=|==|<<|>>|:=|[-~+/*%=<>&^|.]', Operator),
             (r'[]{}:(),;[]', Punctuation),
             (r'(in|is|and|or|not)\b', Operator.Word),
+            (r'\?\?(?!=)', Operator.Word),
             include('expr-keywords'),
             include('builtins'),
             include('magicfuncs'),
